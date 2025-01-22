@@ -76,8 +76,8 @@ unsafe impl NSObjectProtocol for NSTextLayoutFragment {}
 
 unsafe impl NSSecureCoding for NSTextLayoutFragment {}
 
-extern_methods!(
-    unsafe impl NSTextLayoutFragment {
+impl NSTextLayoutFragment {
+    extern_methods!(
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
         #[unsafe(method(initWithTextElement:range:))]
         #[unsafe(method_family = init)]
@@ -202,14 +202,14 @@ extern_methods!(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextLayoutFragment {
+/// Methods declared on superclass `NSObject`.
+impl NSTextLayoutFragment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

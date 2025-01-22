@@ -23,9 +23,9 @@ unsafe impl NSCoding for NSMagnificationGestureRecognizer {}
 #[cfg(feature = "NSGestureRecognizer")]
 unsafe impl NSObjectProtocol for NSMagnificationGestureRecognizer {}
 
-extern_methods!(
-    #[cfg(feature = "NSGestureRecognizer")]
-    unsafe impl NSMagnificationGestureRecognizer {
+#[cfg(feature = "NSGestureRecognizer")]
+impl NSMagnificationGestureRecognizer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(magnification))]
         #[unsafe(method_family = none)]
@@ -36,13 +36,13 @@ extern_methods!(
         #[unsafe(method(setMagnification:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSGestureRecognizer`
-    #[cfg(feature = "NSGestureRecognizer")]
-    unsafe impl NSMagnificationGestureRecognizer {
+/// Methods declared on superclass `NSGestureRecognizer`.
+#[cfg(feature = "NSGestureRecognizer")]
+impl NSMagnificationGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
@@ -57,13 +57,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSGestureRecognizer")]
-    unsafe impl NSMagnificationGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSGestureRecognizer")]
+impl NSMagnificationGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -71,5 +71,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

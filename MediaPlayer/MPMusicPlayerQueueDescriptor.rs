@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPMusicPlayerQueueDescriptor {}
 
-extern_methods!(
-    unsafe impl MPMusicPlayerQueueDescriptor {
+impl MPMusicPlayerQueueDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -25,8 +25,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayermediaitemqueuedescriptor?language=objc)
@@ -37,8 +37,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPMusicPlayerMediaItemQueueDescriptor {}
 
-extern_methods!(
-    unsafe impl MPMusicPlayerMediaItemQueueDescriptor {
+impl MPMusicPlayerMediaItemQueueDescriptor {
+    extern_methods!(
         #[cfg(feature = "MPMediaQuery")]
         #[unsafe(method(initWithQuery:))]
         #[unsafe(method_family = init)]
@@ -86,12 +86,12 @@ extern_methods!(
         #[unsafe(method(setEndTime:forItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndTime_forItem(&self, end_time: NSTimeInterval, media_item: &MPMediaItem);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`
-    unsafe impl MPMusicPlayerMediaItemQueueDescriptor {
+/// Methods declared on superclass `MPMusicPlayerQueueDescriptor`.
+impl MPMusicPlayerMediaItemQueueDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -99,8 +99,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerstorequeuedescriptor?language=objc)
@@ -111,8 +111,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPMusicPlayerStoreQueueDescriptor {}
 
-extern_methods!(
-    unsafe impl MPMusicPlayerStoreQueueDescriptor {
+impl MPMusicPlayerStoreQueueDescriptor {
+    extern_methods!(
         #[unsafe(method(initWithStoreIDs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStoreIDs(
@@ -153,12 +153,12 @@ extern_methods!(
             end_time: NSTimeInterval,
             store_id: &NSString,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`
-    unsafe impl MPMusicPlayerStoreQueueDescriptor {
+/// Methods declared on superclass `MPMusicPlayerQueueDescriptor`.
+impl MPMusicPlayerStoreQueueDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -166,8 +166,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters?language=objc)
@@ -178,8 +178,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPMusicPlayerPlayParameters {}
 
-extern_methods!(
-    unsafe impl MPMusicPlayerPlayParameters {
+impl MPMusicPlayerPlayParameters {
+    extern_methods!(
         #[unsafe(method(initWithDictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary(
@@ -190,12 +190,12 @@ extern_methods!(
         #[unsafe(method(dictionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionary(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPMusicPlayerPlayParameters {
+/// Methods declared on superclass `NSObject`.
+impl MPMusicPlayerPlayParameters {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -203,8 +203,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparametersqueuedescriptor?language=objc)
@@ -215,8 +215,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPMusicPlayerPlayParametersQueueDescriptor {}
 
-extern_methods!(
-    unsafe impl MPMusicPlayerPlayParametersQueueDescriptor {
+impl MPMusicPlayerPlayParametersQueueDescriptor {
+    extern_methods!(
         #[unsafe(method(initWithPlayParametersQueue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayParametersQueue(
@@ -265,12 +265,12 @@ extern_methods!(
             end_time: NSTimeInterval,
             play_parameters: &MPMusicPlayerPlayParameters,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`
-    unsafe impl MPMusicPlayerPlayParametersQueueDescriptor {
+/// Methods declared on superclass `MPMusicPlayerQueueDescriptor`.
+impl MPMusicPlayerPlayParametersQueueDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -278,5 +278,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -16,11 +16,11 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSAccessibilityColorConformance
-    #[cfg(feature = "NSColor")]
-    unsafe impl NSColor {}
-);
+/// NSAccessibilityColorConformance.
+#[cfg(feature = "NSColor")]
+impl NSColor {
+    extern_methods!();
+}
 
 #[cfg(feature = "NSColor")]
 unsafe impl NSAccessibilityColor for NSColor {}

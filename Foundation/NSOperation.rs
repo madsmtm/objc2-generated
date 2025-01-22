@@ -45,8 +45,8 @@ unsafe impl Sync for NSOperation {}
 
 unsafe impl NSObjectProtocol for NSOperation {}
 
-extern_methods!(
-    unsafe impl NSOperation {
+impl NSOperation {
+    extern_methods!(
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
@@ -152,12 +152,12 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSOperation {
+/// Methods declared on superclass `NSObject`.
+impl NSOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -165,8 +165,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsblockoperation?language=objc)
@@ -181,8 +181,8 @@ unsafe impl Sync for NSBlockOperation {}
 
 unsafe impl NSObjectProtocol for NSBlockOperation {}
 
-extern_methods!(
-    unsafe impl NSBlockOperation {
+impl NSBlockOperation {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(blockOperationWithBlock:))]
         #[unsafe(method_family = none)]
@@ -192,12 +192,12 @@ extern_methods!(
         #[unsafe(method(addExecutionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addExecutionBlock(&self, block: &block2::Block<dyn Fn()>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSBlockOperation {
+/// Methods declared on superclass `NSObject`.
+impl NSBlockOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -205,8 +205,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvocationoperation?language=objc)
@@ -217,8 +217,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSInvocationOperation {}
 
-extern_methods!(
-    unsafe impl NSInvocationOperation {
+impl NSInvocationOperation {
+    extern_methods!(
         #[unsafe(method(initWithTarget:selector:object:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_selector_object(
@@ -244,12 +244,12 @@ extern_methods!(
         #[unsafe(method(result))]
         #[unsafe(method_family = none)]
         pub unsafe fn result(&self) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSInvocationOperation {
+/// Methods declared on superclass `NSObject`.
+impl NSInvocationOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -257,8 +257,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvocationoperationvoidresultexception?language=objc)
@@ -291,8 +291,8 @@ unsafe impl NSObjectProtocol for NSOperationQueue {}
 #[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSOperationQueue {}
 
-extern_methods!(
-    unsafe impl NSOperationQueue {
+impl NSOperationQueue {
+    extern_methods!(
         #[cfg(feature = "NSProgress")]
         /// The `progress` property represents a total progress of the operations executed in the queue. By default NSOperationQueue
         /// does not report progress until the `totalUnitCount` of the progress is set. When the `totalUnitCount` property of the progress is set the
@@ -399,12 +399,12 @@ extern_methods!(
         #[unsafe(method(mainQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainQueue() -> Retained<NSOperationQueue>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSOperationQueue {
+/// Methods declared on superclass `NSObject`.
+impl NSOperationQueue {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -412,12 +412,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSOperationQueue {
+/// NSDeprecated.
+impl NSOperationQueue {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[deprecated = "access to operations is inherently a race condition, it should not be used. For barrier style behaviors please use addBarrierBlock: instead"]
         #[unsafe(method(operations))]
@@ -428,5 +428,5 @@ extern_methods!(
         #[unsafe(method(operationCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn operationCount(&self) -> NSUInteger;
-    }
-);
+    );
+}

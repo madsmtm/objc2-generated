@@ -47,8 +47,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVMetricEventStream {}
 
-extern_methods!(
-    unsafe impl AVMetricEventStream {
+impl AVMetricEventStream {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -88,8 +88,8 @@ extern_methods!(
         #[unsafe(method(subscribeToAllMetricEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscribeToAllMetricEvents(&self);
-    }
-);
+    );
+}
 
 extern_class!(
     /// An abstract base class representing metric events.
@@ -112,8 +112,8 @@ unsafe impl NSObjectProtocol for AVMetricEvent {}
 
 unsafe impl NSSecureCoding for AVMetricEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricEvent {
+impl AVMetricEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -137,8 +137,8 @@ extern_methods!(
         #[unsafe(method(sessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionID(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event when an error occurred.
@@ -161,8 +161,8 @@ unsafe impl NSObjectProtocol for AVMetricErrorEvent {}
 
 unsafe impl NSSecureCoding for AVMetricErrorEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricErrorEvent {
+impl AVMetricErrorEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -180,8 +180,8 @@ extern_methods!(
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Retained<NSError>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event associated with media resource requests.
@@ -204,8 +204,8 @@ unsafe impl NSObjectProtocol for AVMetricMediaResourceRequestEvent {}
 
 unsafe impl NSSecureCoding for AVMetricMediaResourceRequestEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricMediaResourceRequestEvent {
+impl AVMetricMediaResourceRequestEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -264,8 +264,8 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn networkTransactionMetrics(&self)
             -> Option<Retained<NSURLSessionTaskMetrics>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event associated with a HLS playlist resource request.
@@ -288,8 +288,8 @@ unsafe impl NSObjectProtocol for AVMetricHLSPlaylistRequestEvent {}
 
 unsafe impl NSSecureCoding for AVMetricHLSPlaylistRequestEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricHLSPlaylistRequestEvent {
+impl AVMetricHLSPlaylistRequestEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -320,8 +320,8 @@ extern_methods!(
         pub unsafe fn mediaResourceRequestEvent(
             &self,
         ) -> Option<Retained<AVMetricMediaResourceRequestEvent>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event associated with a HLS media segment resource request.
@@ -344,8 +344,8 @@ unsafe impl NSObjectProtocol for AVMetricHLSMediaSegmentRequestEvent {}
 
 unsafe impl NSSecureCoding for AVMetricHLSMediaSegmentRequestEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricHLSMediaSegmentRequestEvent {
+impl AVMetricHLSMediaSegmentRequestEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -386,8 +386,8 @@ extern_methods!(
         pub unsafe fn mediaResourceRequestEvent(
             &self,
         ) -> Option<Retained<AVMetricMediaResourceRequestEvent>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event associated with a HLS content key resource request.
@@ -410,8 +410,8 @@ unsafe impl NSObjectProtocol for AVMetricContentKeyRequestEvent {}
 
 unsafe impl NSSecureCoding for AVMetricContentKeyRequestEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricContentKeyRequestEvent {
+impl AVMetricContentKeyRequestEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -443,8 +443,8 @@ extern_methods!(
         pub unsafe fn mediaResourceRequestEvent(
             &self,
         ) -> Option<Retained<AVMetricMediaResourceRequestEvent>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event when playback was likely to play through without stalling.
@@ -467,8 +467,8 @@ unsafe impl NSObjectProtocol for AVMetricPlayerItemLikelyToKeepUpEvent {}
 
 unsafe impl NSSecureCoding for AVMetricPlayerItemLikelyToKeepUpEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricPlayerItemLikelyToKeepUpEvent {
+impl AVMetricPlayerItemLikelyToKeepUpEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -494,8 +494,8 @@ extern_methods!(
         #[unsafe(method(loadedTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event when playback was first likely to play through without stalling.
@@ -518,8 +518,8 @@ unsafe impl NSObjectProtocol for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
 
 unsafe impl NSSecureCoding for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricPlayerItemInitialLikelyToKeepUpEvent {
+impl AVMetricPlayerItemInitialLikelyToKeepUpEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -548,8 +548,8 @@ extern_methods!(
         pub unsafe fn contentKeyRequestEvents(
             &self,
         ) -> Retained<NSArray<AVMetricContentKeyRequestEvent>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event when playback rate change occurred.
@@ -572,8 +572,8 @@ unsafe impl NSObjectProtocol for AVMetricPlayerItemRateChangeEvent {}
 
 unsafe impl NSSecureCoding for AVMetricPlayerItemRateChangeEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricPlayerItemRateChangeEvent {
+impl AVMetricPlayerItemRateChangeEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -597,8 +597,8 @@ extern_methods!(
         #[unsafe(method(variant))]
         #[unsafe(method_family = none)]
         pub unsafe fn variant(&self) -> Option<Retained<AVAssetVariant>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event when playback stalled.
@@ -621,8 +621,8 @@ unsafe impl NSObjectProtocol for AVMetricPlayerItemStallEvent {}
 
 unsafe impl NSSecureCoding for AVMetricPlayerItemStallEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricPlayerItemStallEvent {
+impl AVMetricPlayerItemStallEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -630,8 +630,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event when playback seeked.
@@ -654,8 +654,8 @@ unsafe impl NSObjectProtocol for AVMetricPlayerItemSeekEvent {}
 
 unsafe impl NSSecureCoding for AVMetricPlayerItemSeekEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricPlayerItemSeekEvent {
+impl AVMetricPlayerItemSeekEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -663,8 +663,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event when playback seek completed.
@@ -687,8 +687,8 @@ unsafe impl NSObjectProtocol for AVMetricPlayerItemSeekDidCompleteEvent {}
 
 unsafe impl NSSecureCoding for AVMetricPlayerItemSeekDidCompleteEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricPlayerItemSeekDidCompleteEvent {
+impl AVMetricPlayerItemSeekDidCompleteEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -701,8 +701,8 @@ extern_methods!(
         #[unsafe(method(didSeekInBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn didSeekInBuffer(&self) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event when variant switch was completed.
@@ -725,8 +725,8 @@ unsafe impl NSObjectProtocol for AVMetricPlayerItemVariantSwitchEvent {}
 
 unsafe impl NSSecureCoding for AVMetricPlayerItemVariantSwitchEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricPlayerItemVariantSwitchEvent {
+impl AVMetricPlayerItemVariantSwitchEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -758,8 +758,8 @@ extern_methods!(
         #[unsafe(method(didSucceed))]
         #[unsafe(method_family = none)]
         pub unsafe fn didSucceed(&self) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a metric event when variant switch was attempted.
@@ -782,8 +782,8 @@ unsafe impl NSObjectProtocol for AVMetricPlayerItemVariantSwitchStartEvent {}
 
 unsafe impl NSSecureCoding for AVMetricPlayerItemVariantSwitchStartEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricPlayerItemVariantSwitchStartEvent {
+impl AVMetricPlayerItemVariantSwitchStartEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -810,8 +810,8 @@ extern_methods!(
         #[unsafe(method(loadedTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a summary metric event with aggregated metrics for the entire playback session.
@@ -834,8 +834,8 @@ unsafe impl NSObjectProtocol for AVMetricPlayerItemPlaybackSummaryEvent {}
 
 unsafe impl NSSecureCoding for AVMetricPlayerItemPlaybackSummaryEvent {}
 
-extern_methods!(
-    unsafe impl AVMetricPlayerItemPlaybackSummaryEvent {
+impl AVMetricPlayerItemPlaybackSummaryEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -893,5 +893,5 @@ extern_methods!(
         #[unsafe(method(timeWeightedPeakBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeWeightedPeakBitrate(&self) -> NSInteger;
-    }
-);
+    );
+}

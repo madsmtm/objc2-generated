@@ -45,9 +45,9 @@ unsafe impl NSObjectProtocol for WKInterfaceImage {}
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl WKImageAnimatable for WKInterfaceImage {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceImage {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceImage {
+    extern_methods!(
         #[cfg(feature = "objc2-ui-kit")]
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
@@ -65,25 +65,25 @@ extern_methods!(
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `WKInterfaceObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceImage {
+/// Methods declared on superclass `WKInterfaceObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceImage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceImage {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceImage {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

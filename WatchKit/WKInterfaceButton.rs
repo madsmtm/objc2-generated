@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl NSObjectProtocol for WKInterfaceButton {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceButton {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceButton {
+    extern_methods!(
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -52,25 +52,25 @@ extern_methods!(
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `WKInterfaceObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceButton {
+/// Methods declared on superclass `WKInterfaceObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceButton {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceButton {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceButton {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

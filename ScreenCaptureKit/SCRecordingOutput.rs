@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCRecordingOutputConfiguration {}
 
-extern_methods!(
-    unsafe impl SCRecordingOutputConfiguration {
+impl SCRecordingOutputConfiguration {
+    extern_methods!(
         /// Specifies output URL to save the recording.
         #[unsafe(method(outputURL))]
         #[unsafe(method_family = none)]
@@ -72,12 +72,12 @@ extern_methods!(
         #[unsafe(method(availableOutputFileTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableOutputFileTypes(&self) -> Retained<NSArray<AVFileType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCRecordingOutputConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl SCRecordingOutputConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -85,8 +85,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines an interface for delegates of SCRecordingOutput to respond to events that occur in the process of recording to file.
@@ -138,8 +138,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCRecordingOutput {}
 
-extern_methods!(
-    unsafe impl SCRecordingOutput {
+impl SCRecordingOutput {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Indicates current duration of recording to the output file.
         #[unsafe(method(recordedDuration))]
@@ -165,12 +165,12 @@ extern_methods!(
             recording_output_configuration: &SCRecordingOutputConfiguration,
             delegate: &ProtocolObject<dyn SCRecordingOutputDelegate>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCRecordingOutput {
+/// Methods declared on superclass `NSObject`.
+impl SCRecordingOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -178,5 +178,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

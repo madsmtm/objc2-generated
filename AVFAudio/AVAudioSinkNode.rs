@@ -60,9 +60,9 @@ extern_class!(
 #[cfg(feature = "AVAudioNode")]
 unsafe impl NSObjectProtocol for AVAudioSinkNode {}
 
-extern_methods!(
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioSinkNode {
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioSinkNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -91,15 +91,15 @@ extern_methods!(
             this: Allocated<Self>,
             block: AVAudioSinkNodeReceiverBlock,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioSinkNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioSinkNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

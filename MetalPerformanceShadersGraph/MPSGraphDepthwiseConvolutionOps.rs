@@ -36,9 +36,9 @@ unsafe impl CopyingHelper for MPSGraphDepthwiseConvolution2DOpDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphDepthwiseConvolution2DOpDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphDepthwiseConvolution2DOpDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphDepthwiseConvolution2DOpDescriptor {
+    extern_methods!(
         /// The stride for the x dimension.
         ///
         /// Default value: 1.
@@ -233,13 +233,13 @@ extern_methods!(
             padding_top: NSUInteger,
             padding_bottom: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphDepthwiseConvolution2DOpDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphDepthwiseConvolution2DOpDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -247,8 +247,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The class that defines the parameters for a 3D-depthwise convolution operation.
@@ -277,9 +277,9 @@ unsafe impl CopyingHelper for MPSGraphDepthwiseConvolution3DOpDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphDepthwiseConvolution3DOpDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphDepthwiseConvolution3DOpDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphDepthwiseConvolution3DOpDescriptor {
+    extern_methods!(
         /// The strides for spatial dimensions.
         ///
         /// Must be three numbers, one for each spatial dimension, fastest running index last.
@@ -409,13 +409,13 @@ extern_methods!(
         pub unsafe fn descriptorWithPaddingStyle(
             padding_style: MPSGraphPaddingStyle,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphDepthwiseConvolution3DOpDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphDepthwiseConvolution3DOpDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -423,13 +423,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MPSGraphDepthwiseConvolutionOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphDepthwiseConvolutionOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a 2D-depthwise convolution operation and returns the result tensor.
         ///
@@ -567,5 +567,5 @@ extern_methods!(
             descriptor: &MPSGraphDepthwiseConvolution3DOpDescriptor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

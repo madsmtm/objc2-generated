@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "UIGestureRecognizer")]
 unsafe impl NSObjectProtocol for UITapGestureRecognizer {}
 
-extern_methods!(
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UITapGestureRecognizer {
+#[cfg(feature = "UIGestureRecognizer")]
+impl UITapGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(numberOfTapsRequired))]
         #[unsafe(method_family = none)]
         pub fn numberOfTapsRequired(&self) -> NSUInteger;
@@ -50,13 +50,13 @@ extern_methods!(
         #[unsafe(method(setButtonMaskRequired:))]
         #[unsafe(method_family = none)]
         pub fn setButtonMaskRequired(&self, button_mask_required: UIEventButtonMask);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIGestureRecognizer`
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UITapGestureRecognizer {
+/// Methods declared on superclass `UIGestureRecognizer`.
+#[cfg(feature = "UIGestureRecognizer")]
+impl UITapGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
@@ -75,15 +75,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UITapGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIGestureRecognizer")]
+impl UITapGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

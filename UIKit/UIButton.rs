@@ -182,9 +182,9 @@ unsafe impl UIResponderStandardEditActions for UIButton {}
 ))]
 unsafe impl UITraitEnvironment for UIButton {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIButton {
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIButton {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -589,13 +589,13 @@ extern_methods!(
         #[unsafe(method(subtitleLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleLabel(&self) -> Option<Retained<UILabel>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIButton {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIButton {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -603,12 +603,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIButton {
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIButton {
+    extern_methods!(
         #[cfg(feature = "UIFont")]
         #[deprecated = "Specify an attributed title with a custom font"]
         #[unsafe(method(font))]
@@ -757,14 +757,14 @@ extern_methods!(
         #[unsafe(method(imageRectForContentRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRectForContentRect(&self, content_rect: CGRect) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SpringLoading
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIButton {}
-);
+/// SpringLoading.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIButton {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "UIControl",

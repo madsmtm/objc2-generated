@@ -176,9 +176,9 @@ unsafe impl NSObjectProtocol for NSView {}
 #[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceItemIdentification"))]
 unsafe impl NSUserInterfaceItemIdentification for NSView {}
 
-extern_methods!(
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -1067,28 +1067,28 @@ extern_methods!(
         #[unsafe(method(viewDidChangeEffectiveAppearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewDidChangeEffectiveAppearance(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewlayercontentscaledelegate?language=objc)
@@ -1140,10 +1140,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSKeyboardUI
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSKeyboardUI.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(nextKeyView))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextKeyView(&self) -> Option<Retained<NSView>>;
@@ -1200,13 +1200,13 @@ extern_methods!(
         #[unsafe(method(noteFocusRingMaskChanged))]
         #[unsafe(method_family = none)]
         pub unsafe fn noteFocusRingMaskChanged(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPrinting
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSPrinting.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(writeEPSInsideRect:toPasteboard:))]
         #[unsafe(method_family = none)]
@@ -1318,13 +1318,13 @@ extern_methods!(
         #[unsafe(method(endPage))]
         #[unsafe(method_family = none)]
         pub unsafe fn endPage(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDrag
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSDrag.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[cfg(all(
             feature = "NSDragging",
             feature = "NSDraggingItem",
@@ -1353,8 +1353,8 @@ extern_methods!(
         #[unsafe(method(unregisterDraggedTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterDraggedTypes(&self);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewfullscreenmodeoptionkey?language=objc)
 // NS_TYPED_ENUM
@@ -1381,10 +1381,10 @@ extern "C" {
         &'static NSViewFullScreenModeOptionKey;
 }
 
-extern_methods!(
-    /// NSFullScreenMode
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSFullScreenMode.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "NSScreen")]
         #[unsafe(method(enterFullScreenMode:withOptions:))]
         #[unsafe(method_family = none)]
@@ -1404,8 +1404,8 @@ extern_methods!(
         #[unsafe(method(isInFullScreenMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInFullScreenMode(&self) -> bool;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefinitionoptionkey?language=objc)
 // NS_TYPED_ENUM
@@ -1431,10 +1431,10 @@ extern "C" {
         &'static NSDefinitionPresentationType;
 }
 
-extern_methods!(
-    /// NSDefinition
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSDefinition.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(showDefinitionForAttributedString:atPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showDefinitionForAttributedString_atPoint(
@@ -1453,23 +1453,23 @@ extern_methods!(
             options: Option<&NSDictionary<NSDefinitionOptionKey, AnyObject>>,
             origin_provider: Option<&block2::Block<dyn Fn(NSRange) -> NSPoint>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSFindIndicator
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSFindIndicator.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(isDrawingFindIndicator))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDrawingFindIndicator(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSGestureRecognizer
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSGestureRecognizer.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "NSGestureRecognizer")]
         #[unsafe(method(gestureRecognizers))]
         #[unsafe(method_family = none)]
@@ -1493,13 +1493,13 @@ extern_methods!(
         #[unsafe(method(removeGestureRecognizer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeGestureRecognizer(&self, gesture_recognizer: &NSGestureRecognizer);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTouchBar
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSTouchBar.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "NSTouch")]
         #[unsafe(method(allowedTouchTypes))]
         #[unsafe(method_family = none)]
@@ -1510,13 +1510,13 @@ extern_methods!(
         #[unsafe(method(setAllowedTouchTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: NSTouchTypeMask);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSafeAreas
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSSafeAreas.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(safeAreaInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn safeAreaInsets(&self) -> NSEdgeInsets;
@@ -1543,13 +1543,13 @@ extern_methods!(
         #[unsafe(method(layoutMarginsGuide))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutMarginsGuide(&self) -> Retained<NSLayoutGuide>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTrackingArea
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSTrackingArea.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "NSTrackingArea")]
         #[unsafe(method(addTrackingArea:))]
         #[unsafe(method_family = none)]
@@ -1600,13 +1600,13 @@ extern_methods!(
         #[unsafe(method(removeTrackingRect:))]
         #[unsafe(method_family = none)]
         pub fn removeTrackingRect(&self, tag: NSTrackingRectTag);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDisplayLink
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSDisplayLink.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(displayLinkWithTarget:selector:))]
@@ -1616,13 +1616,13 @@ extern_methods!(
             target: &AnyObject,
             selector: Sel,
         ) -> Retained<CADisplayLink>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSDeprecated.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSPasteboard"))]
         #[deprecated = "Use -beginDraggingSessionWithItems:event:source: instead"]
         #[unsafe(method(dragImage:at:offset:event:pasteboard:source:slideBack:))]
@@ -1722,13 +1722,13 @@ extern_methods!(
         #[unsafe(method(renewGState))]
         #[unsafe(method_family = none)]
         pub unsafe fn renewGState(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSWritingToolsCoordinator
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSView {
+/// NSWritingToolsCoordinator.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "NSWritingToolsCoordinator")]
         #[unsafe(method(writingToolsCoordinator))]
         #[unsafe(method_family = none)]
@@ -1743,8 +1743,8 @@ extern_methods!(
             &self,
             writing_tools_coordinator: Option<&NSWritingToolsCoordinator>,
         );
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewframedidchangenotification?language=objc)

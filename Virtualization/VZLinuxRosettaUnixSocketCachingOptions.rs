@@ -23,9 +23,9 @@ extern_class!(
 #[cfg(feature = "VZLinuxRosettaCachingOptions")]
 unsafe impl NSObjectProtocol for VZLinuxRosettaUnixSocketCachingOptions {}
 
-extern_methods!(
-    #[cfg(feature = "VZLinuxRosettaCachingOptions")]
-    unsafe impl VZLinuxRosettaUnixSocketCachingOptions {
+#[cfg(feature = "VZLinuxRosettaCachingOptions")]
+impl VZLinuxRosettaUnixSocketCachingOptions {
+    extern_methods!(
         /// Initialize options to be set on a VZLinuxRosettaDirectoryShare.
         ///
         /// Parameter `path`: The path of the Unix Domain Socket to be used to communicate with the Rosetta translation daemon. This cannot exceed maximumPathLength UTF-8 bytes long.
@@ -60,15 +60,15 @@ extern_methods!(
         #[unsafe(method(maximumPathLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumPathLength() -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZLinuxRosettaCachingOptions`
-    #[cfg(feature = "VZLinuxRosettaCachingOptions")]
-    unsafe impl VZLinuxRosettaUnixSocketCachingOptions {
+/// Methods declared on superclass `VZLinuxRosettaCachingOptions`.
+#[cfg(feature = "VZLinuxRosettaCachingOptions")]
+impl VZLinuxRosettaUnixSocketCachingOptions {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

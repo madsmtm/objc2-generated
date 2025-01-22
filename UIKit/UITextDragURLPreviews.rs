@@ -6,10 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// URLPreviews
-    #[cfg(feature = "UIDragPreview")]
-    unsafe impl UIDragPreview {
+/// URLPreviews.
+#[cfg(feature = "UIDragPreview")]
+impl UIDragPreview {
+    extern_methods!(
         #[unsafe(method(previewForURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewForURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
@@ -21,13 +21,13 @@ extern_methods!(
             title: Option<&NSString>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// URLPreviews
-    #[cfg(all(feature = "UITargetedDragPreview", feature = "UITargetedPreview"))]
-    unsafe impl UITargetedDragPreview {
+/// URLPreviews.
+#[cfg(all(feature = "UITargetedDragPreview", feature = "UITargetedPreview"))]
+impl UITargetedDragPreview {
+    extern_methods!(
         #[unsafe(method(previewForURL:target:))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewForURL_target(
@@ -42,5 +42,5 @@ extern_methods!(
             title: Option<&NSString>,
             target: &UIDragPreviewTarget,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

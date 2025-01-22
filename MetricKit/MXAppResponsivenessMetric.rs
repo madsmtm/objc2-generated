@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXAppResponsivenessMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXAppResponsivenessMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXAppResponsivenessMetric {
+#[cfg(feature = "MXMetric")]
+impl MXAppResponsivenessMetric {
+    extern_methods!(
         #[cfg(feature = "MXHistogram")]
         /// Histogrammed app hang time data.
         ///
@@ -43,13 +43,13 @@ extern_methods!(
         pub unsafe fn histogrammedApplicationHangTime(
             &self,
         ) -> Retained<MXHistogram<NSUnitDuration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXAppResponsivenessMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXAppResponsivenessMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,5 +57,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

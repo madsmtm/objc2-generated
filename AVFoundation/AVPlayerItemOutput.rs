@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerItemOutput {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemOutput {
+impl AVPlayerItemOutput {
+    extern_methods!(
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
         /// Convert a host time, expressed in seconds, to item time.
         ///
@@ -77,12 +77,12 @@ extern_methods!(
         #[unsafe(method(setSuppressesPlayerRendering:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuppressesPlayerRendering(&self, suppresses_player_rendering: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerItemOutput {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerItemOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -90,8 +90,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemvideooutput?language=objc)
@@ -102,8 +102,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerItemVideoOutput {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemVideoOutput {
+impl AVPlayerItemVideoOutput {
+    extern_methods!(
         /// Returns an instance of AVPlayerItemVideoOutput, initialized with the specified pixel buffer attributes, for video image output.
         ///
         /// Parameter `pixelBufferAttributes`: The client requirements for output CVPixelBuffers, expressed using the constants in
@@ -194,12 +194,12 @@ extern_methods!(
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemOutputPullDelegate>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerItemVideoOutput {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerItemVideoOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -207,8 +207,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines common delegate methods for objects participating in AVPlayerItemOutput pull sample output acquisition.
@@ -246,8 +246,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerItemLegibleOutput {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemLegibleOutput {
+impl AVPlayerItemLegibleOutput {
+    extern_methods!(
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
@@ -271,12 +271,12 @@ extern_methods!(
             &self,
             advance_interval_for_delegate_invocation: NSTimeInterval,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerItemLegibleOutput {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerItemLegibleOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -284,12 +284,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemLegibleOutput_NativeRepresentation
-    unsafe impl AVPlayerItemLegibleOutput {
+/// AVPlayerItemLegibleOutput_NativeRepresentation.
+impl AVPlayerItemLegibleOutput {
+    extern_methods!(
         /// Returns an instance of AVPlayerItemLegibleOutput with filtering enabled for AVPlayerItemLegibleOutputPushDelegate's legibleOutput:didOutputAttributedStrings:nativeSampleBuffers:forItemTime:.
         ///
         /// Parameter `subtypes`: NSArray of NSNumber FourCC codes, e.g.
@@ -309,8 +309,8 @@ extern_methods!(
             this: Allocated<Self>,
             subtypes: &NSArray<NSNumber>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The type of a text styling resolution.
 ///
@@ -336,9 +336,9 @@ extern "C" {
         &'static AVPlayerItemLegibleOutputTextStylingResolution;
 }
 
-extern_methods!(
-    /// AVPlayerItemLegibleOutput_TextStylingResolution
-    unsafe impl AVPlayerItemLegibleOutput {
+/// AVPlayerItemLegibleOutput_TextStylingResolution.
+impl AVPlayerItemLegibleOutput {
+    extern_methods!(
         /// A string identifier indicating the degree of text styling to be applied to attributed strings vended by the receiver
         ///
         /// Valid values are AVPlayerItemLegibleOutputTextStylingResolutionDefault and AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly.  An NSInvalidArgumentException is raised if this property is set to any other value.  The default value is AVPlayerItemLegibleOutputTextStylingResolutionDefault, which indicates that attributed strings vended by the receiver will include the same level of styling information that would be used if AVFoundation were rendering the text via AVPlayerLayer.
@@ -355,8 +355,8 @@ extern_methods!(
             &self,
             text_styling_resolution: &AVPlayerItemLegibleOutputTextStylingResolution,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to attributed string output.
@@ -421,8 +421,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerItemMetadataOutput {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemMetadataOutput {
+impl AVPlayerItemMetadataOutput {
+    extern_methods!(
         /// Creates an instance of AVPlayerItemMetadataOutput.
         ///
         /// Parameter `identifiers`: A array of metadata identifiers indicating the metadata items that the output should provide.
@@ -458,12 +458,12 @@ extern_methods!(
             &self,
             advance_interval_for_delegate_invocation: NSTimeInterval,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerItemMetadataOutput {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerItemMetadataOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -471,8 +471,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to metadata output.
@@ -520,8 +520,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerItemRenderedLegibleOutput {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemRenderedLegibleOutput {
+impl AVPlayerItemRenderedLegibleOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -580,8 +580,8 @@ extern_methods!(
         #[unsafe(method(setVideoDisplaySize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoDisplaySize(&self, video_display_size: CGSize);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to pixel buffers output.

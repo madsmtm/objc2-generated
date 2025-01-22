@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for UIDeferredMenuElement {}
 #[cfg(feature = "UIMenuElement")]
 unsafe impl NSSecureCoding for UIDeferredMenuElement {}
 
-extern_methods!(
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl UIDeferredMenuElement {
+#[cfg(feature = "UIMenuElement")]
+impl UIDeferredMenuElement {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Returns a placeholder menu element that is replaced with the result of the block's
         /// completion handler. A loading UI takes the place of the element in the menu
@@ -72,13 +72,13 @@ extern_methods!(
             >,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIMenuElement`
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl UIDeferredMenuElement {
+/// Methods declared on superclass `UIMenuElement`.
+#[cfg(feature = "UIMenuElement")]
+impl UIDeferredMenuElement {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -93,5 +93,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

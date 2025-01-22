@@ -48,8 +48,8 @@ unsafe impl NSObjectProtocol for NSTableColumn {}
 #[cfg(feature = "NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSTableColumn {}
 
-extern_methods!(
-    unsafe impl NSTableColumn {
+impl NSTableColumn {
+    extern_methods!(
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
@@ -209,12 +209,12 @@ extern_methods!(
         #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTableColumn {
+/// Methods declared on superclass `NSObject`.
+impl NSTableColumn {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -222,12 +222,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSTableColumn {
+/// NSDeprecated.
+impl NSTableColumn {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setResizable:))]
         #[unsafe(method_family = none)]
@@ -250,5 +250,5 @@ extern_methods!(
         #[unsafe(method(dataCellForRow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Retained<AnyObject>;
-    }
-);
+    );
+}

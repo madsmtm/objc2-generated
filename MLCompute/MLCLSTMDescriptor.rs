@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for MLCLSTMDescriptor {
 
 unsafe impl NSObjectProtocol for MLCLSTMDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCLSTMDescriptor {
+impl MLCLSTMDescriptor {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -205,5 +205,5 @@ extern_methods!(
             dropout: c_float,
             result_mode: MLCLSTMResultMode,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

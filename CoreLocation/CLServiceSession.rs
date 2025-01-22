@@ -38,8 +38,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CLServiceSessionDiagnostic {}
 
-extern_methods!(
-    unsafe impl CLServiceSessionDiagnostic {
+impl CLServiceSessionDiagnostic {
+    extern_methods!(
         #[unsafe(method(authorizationDenied))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDenied(&self) -> bool;
@@ -71,12 +71,12 @@ extern_methods!(
         #[unsafe(method(authorizationRequestInProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRequestInProgress(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CLServiceSessionDiagnostic {
+/// Methods declared on superclass `NSObject`.
+impl CLServiceSessionDiagnostic {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,8 +84,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesession?language=objc)
@@ -96,8 +96,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CLServiceSession {}
 
-extern_methods!(
-    unsafe impl CLServiceSession {
+impl CLServiceSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -122,5 +122,5 @@ extern_methods!(
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
-    }
-);
+    );
+}

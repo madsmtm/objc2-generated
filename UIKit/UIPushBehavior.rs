@@ -41,9 +41,9 @@ extern_class!(
 #[cfg(feature = "UIDynamicBehavior")]
 unsafe impl NSObjectProtocol for UIPushBehavior {}
 
-extern_methods!(
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UIPushBehavior {
+#[cfg(feature = "UIDynamicBehavior")]
+impl UIPushBehavior {
+    extern_methods!(
         #[unsafe(method(initWithItems:mode:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems_mode(
@@ -131,13 +131,13 @@ extern_methods!(
         #[unsafe(method(setAngle:magnitude:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAngle_magnitude(&self, angle: CGFloat, magnitude: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UIPushBehavior {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIDynamicBehavior")]
+impl UIPushBehavior {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -145,5 +145,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

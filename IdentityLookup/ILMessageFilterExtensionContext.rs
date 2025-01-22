@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ILMessageFilterExtensionContext {}
 
-extern_methods!(
-    unsafe impl ILMessageFilterExtensionContext {
+impl ILMessageFilterExtensionContext {
+    extern_methods!(
         #[cfg(all(feature = "ILNetworkResponse", feature = "block2"))]
         /// Defer the current query request to the app extension's associated network service and receive a network response asynchronously.
         ///
@@ -35,12 +35,12 @@ extern_methods!(
             &self,
             completion: &block2::Block<dyn Fn(*mut ILNetworkResponse, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ILMessageFilterExtensionContext {
+/// Methods declared on superclass `NSObject`.
+impl ILMessageFilterExtensionContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -48,5 +48,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

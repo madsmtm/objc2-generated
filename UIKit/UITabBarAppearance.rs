@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITabBarItemStateAppearance {}
 
-extern_methods!(
-    unsafe impl UITabBarItemStateAppearance {
+impl UITabBarItemStateAppearance {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -121,8 +121,8 @@ extern_methods!(
             &self,
             badge_title_position_adjustment: UIOffset,
         );
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemappearancestyle?language=objc)
 // NS_ENUM
@@ -166,8 +166,8 @@ unsafe impl NSObjectProtocol for UITabBarItemAppearance {}
 
 unsafe impl NSSecureCoding for UITabBarItemAppearance {}
 
-extern_methods!(
-    unsafe impl UITabBarItemAppearance {
+impl UITabBarItemAppearance {
+    extern_methods!(
         /// Construct an appearance with default values for the stacked layout.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -213,17 +213,17 @@ extern_methods!(
         #[unsafe(method(focused))]
         #[unsafe(method_family = none)]
         pub unsafe fn focused(&self) -> Retained<UITabBarItemStateAppearance>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITabBarItemAppearance {
+/// Methods declared on superclass `NSObject`.
+impl UITabBarItemAppearance {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarappearance?language=objc)
@@ -251,9 +251,9 @@ unsafe impl NSObjectProtocol for UITabBarAppearance {}
 #[cfg(feature = "UIBarAppearance")]
 unsafe impl NSSecureCoding for UITabBarAppearance {}
 
-extern_methods!(
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl UITabBarAppearance {
+#[cfg(feature = "UIBarAppearance")]
+impl UITabBarAppearance {
+    extern_methods!(
         /// The appearance for the stacked tab bar item layout
         #[unsafe(method(stackedLayoutAppearance))]
         #[unsafe(method_family = none)]
@@ -359,13 +359,13 @@ extern_methods!(
         #[unsafe(method(setStackedItemSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStackedItemSpacing(&self, stacked_item_spacing: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIBarAppearance`
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl UITabBarAppearance {
+/// Methods declared on superclass `UIBarAppearance`.
+#[cfg(feature = "UIBarAppearance")]
+impl UITabBarAppearance {
+    extern_methods!(
         /// Constructs a new bar appearance, configured with default values and targeting the device idiom.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -391,15 +391,15 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl UITabBarAppearance {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIBarAppearance")]
+impl UITabBarAppearance {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

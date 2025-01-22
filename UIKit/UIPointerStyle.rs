@@ -29,9 +29,9 @@ unsafe impl CopyingHelper for UIPointerStyle {
 #[cfg(feature = "UIHoverStyle")]
 unsafe impl NSObjectProtocol for UIPointerStyle {}
 
-extern_methods!(
-    #[cfg(feature = "UIHoverStyle")]
-    unsafe impl UIPointerStyle {
+#[cfg(feature = "UIHoverStyle")]
+impl UIPointerStyle {
+    extern_methods!(
         #[cfg(feature = "UIPointerAccessory")]
         /// Accessories to display alongside this UIPointerStyle. Supports up to 4 accessories.
         /// The system will attempt to animate between neighboring or similar accessories.
@@ -89,13 +89,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIHoverStyle`
-    #[cfg(feature = "UIHoverStyle")]
-    unsafe impl UIPointerStyle {
+/// Methods declared on superclass `UIHoverStyle`.
+#[cfg(feature = "UIHoverStyle")]
+impl UIPointerStyle {
+    extern_methods!(
         #[cfg(feature = "UIShape")]
         /// Creates a hover style with the provided shape and a `UIHoverAutomaticEffect`.
         #[unsafe(method(styleWithShape:))]
@@ -109,8 +109,8 @@ extern_methods!(
         #[unsafe(method(automaticStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffect?language=objc)
@@ -131,8 +131,8 @@ unsafe impl NSObjectProtocol for UIPointerEffect {}
 #[cfg(feature = "UIHoverEffect")]
 unsafe impl UIHoverEffect for UIPointerEffect {}
 
-extern_methods!(
-    unsafe impl UIPointerEffect {
+impl UIPointerEffect {
+    extern_methods!(
         #[cfg(feature = "UITargetedPreview")]
         #[unsafe(method(preview))]
         #[unsafe(method_family = none)]
@@ -158,8 +158,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Pointer slides under the given view and morphs into the view's shape
@@ -182,13 +182,13 @@ unsafe impl NSObjectProtocol for UIPointerHighlightEffect {}
 #[cfg(feature = "UIHoverEffect")]
 unsafe impl UIHoverEffect for UIPointerHighlightEffect {}
 
-extern_methods!(
-    unsafe impl UIPointerHighlightEffect {}
-);
+impl UIPointerHighlightEffect {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIPointerEffect`
-    unsafe impl UIPointerHighlightEffect {
+/// Methods declared on superclass `UIPointerEffect`.
+impl UIPointerHighlightEffect {
+    extern_methods!(
         #[cfg(feature = "UITargetedPreview")]
         /// Creates a pointer content effect with the given preview's view.
         ///
@@ -209,8 +209,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Pointer slides under the given view and disappears as the view scales up and gains a shadow.
@@ -233,13 +233,13 @@ unsafe impl NSObjectProtocol for UIPointerLiftEffect {}
 #[cfg(feature = "UIHoverEffect")]
 unsafe impl UIHoverEffect for UIPointerLiftEffect {}
 
-extern_methods!(
-    unsafe impl UIPointerLiftEffect {}
-);
+impl UIPointerLiftEffect {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIPointerEffect`
-    unsafe impl UIPointerLiftEffect {
+/// Methods declared on superclass `UIPointerEffect`.
+impl UIPointerLiftEffect {
+    extern_methods!(
         #[cfg(feature = "UITargetedPreview")]
         /// Creates a pointer content effect with the given preview's view.
         ///
@@ -260,8 +260,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffecttintmode?language=objc)
 // NS_ENUM
@@ -306,8 +306,8 @@ unsafe impl NSObjectProtocol for UIPointerHoverEffect {}
 #[cfg(feature = "UIHoverEffect")]
 unsafe impl UIHoverEffect for UIPointerHoverEffect {}
 
-extern_methods!(
-    unsafe impl UIPointerHoverEffect {
+impl UIPointerHoverEffect {
+    extern_methods!(
         #[unsafe(method(preferredTintMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTintMode(&self) -> UIPointerEffectTintMode;
@@ -334,12 +334,12 @@ extern_methods!(
         #[unsafe(method(setPrefersScaledContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrefersScaledContent(&self, prefers_scaled_content: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIPointerEffect`
-    unsafe impl UIPointerHoverEffect {
+/// Methods declared on superclass `UIPointerEffect`.
+impl UIPointerHoverEffect {
+    extern_methods!(
         #[cfg(feature = "UITargetedPreview")]
         /// Creates a pointer content effect with the given preview's view.
         ///
@@ -360,8 +360,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointershape?language=objc)
@@ -379,8 +379,8 @@ unsafe impl CopyingHelper for UIPointerShape {
 
 unsafe impl NSObjectProtocol for UIPointerShape {}
 
-extern_methods!(
-    unsafe impl UIPointerShape {
+impl UIPointerShape {
+    extern_methods!(
         #[cfg(feature = "UIBezierPath")]
         /// UIBezierPath describing the pointer's shape. If used alongside a content effect, the shape must be
         /// in the effect's preview's container view's coordinate space. When used as a standalone shape,
@@ -439,5 +439,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

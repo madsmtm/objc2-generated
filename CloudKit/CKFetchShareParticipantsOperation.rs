@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "CKOperation")]
 unsafe impl NSObjectProtocol for CKFetchShareParticipantsOperation {}
 
-extern_methods!(
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKFetchShareParticipantsOperation {
+#[cfg(feature = "CKOperation")]
+impl CKFetchShareParticipantsOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -152,15 +152,15 @@ extern_methods!(
             &self,
             fetch_share_participants_completion_block: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKFetchShareParticipantsOperation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CKOperation")]
+impl CKFetchShareParticipantsOperation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

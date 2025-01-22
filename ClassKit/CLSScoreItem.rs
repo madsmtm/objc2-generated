@@ -26,9 +26,9 @@ unsafe impl NSObjectProtocol for CLSScoreItem {}
 #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
 unsafe impl NSSecureCoding for CLSScoreItem {}
 
-extern_methods!(
-    #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
-    unsafe impl CLSScoreItem {
+#[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
+impl CLSScoreItem {
+    extern_methods!(
         /// Score out of
         /// `maxScore.`
         /// Should be between zero and
@@ -73,13 +73,13 @@ extern_methods!(
             score: c_double,
             max_score: c_double,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLSActivityItem`
-    #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
-    unsafe impl CLSScoreItem {
+/// Methods declared on superclass `CLSActivityItem`.
+#[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
+impl CLSScoreItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -87,5 +87,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

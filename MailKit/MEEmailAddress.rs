@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for MEEmailAddress {}
 
 unsafe impl NSSecureCoding for MEEmailAddress {}
 
-extern_methods!(
-    unsafe impl MEEmailAddress {
+impl MEEmailAddress {
+    extern_methods!(
         /// The raw string for the email address.
         #[unsafe(method(rawString))]
         #[unsafe(method_family = none)]
@@ -54,5 +54,5 @@ extern_methods!(
             this: Allocated<Self>,
             raw_string: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

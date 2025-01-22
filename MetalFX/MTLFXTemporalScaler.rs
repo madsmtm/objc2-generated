@@ -23,8 +23,8 @@ unsafe impl CopyingHelper for MTLFXTemporalScalerDescriptor {
 
 unsafe impl NSObjectProtocol for MTLFXTemporalScalerDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLFXTemporalScalerDescriptor {
+impl MTLFXTemporalScalerDescriptor {
+    extern_methods!(
         #[unsafe(method(colorTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
@@ -191,12 +191,12 @@ extern_methods!(
         #[unsafe(method(supportsDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLFXTemporalScalerDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLFXTemporalScalerDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -204,8 +204,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler?language=objc)

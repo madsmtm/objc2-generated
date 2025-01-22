@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for CLBeaconRegion {}
 #[cfg(feature = "CLRegion")]
 unsafe impl NSSecureCoding for CLBeaconRegion {}
 
-extern_methods!(
-    #[cfg(feature = "CLRegion")]
-    unsafe impl CLBeaconRegion {
+#[cfg(feature = "CLRegion")]
+impl CLBeaconRegion {
+    extern_methods!(
         #[unsafe(method(initWithUUID:identifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUUID_identifier(
@@ -156,13 +156,13 @@ extern_methods!(
         #[unsafe(method(setNotifyEntryStateOnDisplay:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotifyEntryStateOnDisplay(&self, notify_entry_state_on_display: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLRegion`
-    #[cfg(feature = "CLRegion")]
-    unsafe impl CLBeaconRegion {
+/// Methods declared on superclass `CLRegion`.
+#[cfg(feature = "CLRegion")]
+impl CLBeaconRegion {
+    extern_methods!(
         #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[unsafe(method(initCircularRegionWithCenter:radius:identifier:))]
@@ -173,13 +173,13 @@ extern_methods!(
             radius: CLLocationDistance,
             identifier: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CLRegion")]
-    unsafe impl CLBeaconRegion {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CLRegion")]
+impl CLBeaconRegion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -187,8 +187,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeacon?language=objc)
@@ -209,8 +209,8 @@ unsafe impl NSObjectProtocol for CLBeacon {}
 
 unsafe impl NSSecureCoding for CLBeacon {}
 
-extern_methods!(
-    unsafe impl CLBeacon {
+impl CLBeacon {
+    extern_methods!(
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
@@ -245,12 +245,12 @@ extern_methods!(
         #[unsafe(method(rssi))]
         #[unsafe(method_family = none)]
         pub unsafe fn rssi(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CLBeacon {
+/// Methods declared on superclass `NSObject`.
+impl CLBeacon {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -258,5 +258,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

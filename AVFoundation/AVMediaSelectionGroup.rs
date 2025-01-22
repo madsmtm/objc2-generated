@@ -21,8 +21,8 @@ unsafe impl CopyingHelper for AVMediaSelectionGroup {
 
 unsafe impl NSObjectProtocol for AVMediaSelectionGroup {}
 
-extern_methods!(
-    unsafe impl AVMediaSelectionGroup {
+impl AVMediaSelectionGroup {
+    extern_methods!(
         /// A collection of mutually exclusive media selection options.
         ///
         /// An NSArray of AVMediaSelectionOption*.
@@ -56,12 +56,12 @@ extern_methods!(
             &self,
             plist: &AnyObject,
         ) -> Option<Retained<AVMediaSelectionOption>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMediaSelectionGroup {
+/// Methods declared on superclass `NSObject`.
+impl AVMediaSelectionGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -69,17 +69,17 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMediaSelectionOptionFiltering
-    /// Filtering of media selection options.
-    ///
-    /// The AVMediaSelectionOptionFiltering category is provided for convenience in filtering the media selection options in a group
-    /// according to playability, locale, and media characteristics.
-    /// Note that it's possible to implement additional filtering behaviors by using -[NSArray indexesOfObjectsPassingTest:].
-    unsafe impl AVMediaSelectionGroup {
+/// AVMediaSelectionOptionFiltering.
+/// Filtering of media selection options.
+///
+/// The AVMediaSelectionOptionFiltering category is provided for convenience in filtering the media selection options in a group
+/// according to playability, locale, and media characteristics.
+/// Note that it's possible to implement additional filtering behaviors by using -[NSArray indexesOfObjectsPassingTest:].
+impl AVMediaSelectionGroup {
+    extern_methods!(
         /// Filters an array of AVMediaSelectionOptions according to whether they are playable.
         ///
         /// Parameter `mediaSelectionOptions`: An array of AVMediaSelectionOption to be filtered according to whether they are playable.
@@ -150,8 +150,8 @@ extern_methods!(
             media_selection_options: &NSArray<AVMediaSelectionOption>,
             media_characteristics: &NSArray<AVMediaCharacteristic>,
         ) -> Retained<NSArray<AVMediaSelectionOption>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaselectionoption?language=objc)
@@ -168,8 +168,8 @@ unsafe impl CopyingHelper for AVMediaSelectionOption {
 
 unsafe impl NSObjectProtocol for AVMediaSelectionOption {}
 
-extern_methods!(
-    unsafe impl AVMediaSelectionOption {
+impl AVMediaSelectionOption {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         /// The media type of the media data, e.g. AVMediaTypeAudio, AVMediaTypeSubtitle, etc.
         #[unsafe(method(mediaType))]
@@ -304,12 +304,12 @@ extern_methods!(
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMediaSelectionOption {
+/// Methods declared on superclass `NSObject`.
+impl AVMediaSelectionOption {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -317,5 +317,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

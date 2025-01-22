@@ -669,8 +669,8 @@ unsafe impl CopyingHelper for NSEvent {
 
 unsafe impl NSObjectProtocol for NSEvent {}
 
-extern_methods!(
-    unsafe impl NSEvent {
+impl NSEvent {
+    extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> NSEventType;
@@ -1091,12 +1091,12 @@ extern_methods!(
         #[unsafe(method(removeMonitor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeMonitor(event_monitor: &AnyObject);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSEvent {
+/// Methods declared on superclass `NSObject`.
+impl NSEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1104,8 +1104,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuparrowfunctionkey?language=objc)
 pub const NSUpArrowFunctionKey: c_uint = 0xF700;

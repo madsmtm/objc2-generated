@@ -33,9 +33,9 @@ unsafe impl CopyingHelper for VZVirtioGraphicsDeviceConfiguration {
 #[cfg(feature = "VZGraphicsDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioGraphicsDeviceConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZGraphicsDeviceConfiguration")]
-    unsafe impl VZVirtioGraphicsDeviceConfiguration {
+#[cfg(feature = "VZGraphicsDeviceConfiguration")]
+impl VZVirtioGraphicsDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -59,15 +59,15 @@ extern_methods!(
         #[unsafe(method(setScanouts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScanouts(&self, scanouts: &NSArray<VZVirtioGraphicsScanoutConfiguration>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZGraphicsDeviceConfiguration`
-    #[cfg(feature = "VZGraphicsDeviceConfiguration")]
-    unsafe impl VZVirtioGraphicsDeviceConfiguration {
+/// Methods declared on superclass `VZGraphicsDeviceConfiguration`.
+#[cfg(feature = "VZGraphicsDeviceConfiguration")]
+impl VZVirtioGraphicsDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

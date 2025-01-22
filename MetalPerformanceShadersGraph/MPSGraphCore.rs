@@ -22,13 +22,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSGraphObject {}
 
-extern_methods!(
-    unsafe impl MPSGraphObject {}
-);
+impl MPSGraphObject {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSGraphObject {
+/// Methods declared on superclass `NSObject`.
+impl MPSGraphObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -36,8 +36,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The base type class for types on tensors.
@@ -56,13 +56,13 @@ unsafe impl CopyingHelper for MPSGraphType {
 
 unsafe impl NSObjectProtocol for MPSGraphType {}
 
-extern_methods!(
-    unsafe impl MPSGraphType {}
-);
+impl MPSGraphType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSGraphType {
+/// Methods declared on superclass `NSObject`.
+impl MPSGraphType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -70,8 +70,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The shaped type class for types on tensors with a shape and data type.
@@ -90,8 +90,8 @@ unsafe impl CopyingHelper for MPSGraphShapedType {
 
 unsafe impl NSObjectProtocol for MPSGraphShapedType {}
 
-extern_methods!(
-    unsafe impl MPSGraphShapedType {
+impl MPSGraphShapedType {
+    extern_methods!(
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The Shape of the shaped type.
         #[unsafe(method(shape))]
@@ -139,12 +139,12 @@ extern_methods!(
         #[unsafe(method(isEqualTo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualTo(&self, object: Option<&MPSGraphShapedType>) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSGraphShapedType {
+/// Methods declared on superclass `NSObject`.
+impl MPSGraphShapedType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -152,8 +152,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The tensor layout.
 ///

@@ -140,8 +140,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTextSelectionNavigation {}
 
-extern_methods!(
-    unsafe impl NSTextSelectionNavigation {
+impl NSTextSelectionNavigation {
+    extern_methods!(
         #[unsafe(method(initWithDataSource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDataSource(
@@ -259,8 +259,8 @@ extern_methods!(
             destination: NSTextSelectionNavigationDestination,
             allows_decomposition: bool,
         ) -> Retained<NSArray<NSTextRange>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectiondatasource?language=objc)

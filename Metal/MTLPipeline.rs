@@ -69,8 +69,8 @@ unsafe impl CopyingHelper for MTLPipelineBufferDescriptor {
 
 unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLPipelineBufferDescriptor {
+impl MTLPipelineBufferDescriptor {
+    extern_methods!(
         /// Buffer mutability. Defaults to MTLMutabilityDefault: mutable for standard buffers, immutable for argument buffers
         #[unsafe(method(mutability))]
         #[unsafe(method_family = none)]
@@ -80,12 +80,12 @@ extern_methods!(
         #[unsafe(method(setMutability:))]
         #[unsafe(method_family = none)]
         pub fn setMutability(&self, mutability: MTLMutability);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLPipelineBufferDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLPipelineBufferDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -93,8 +93,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelinebufferdescriptorarray?language=objc)
@@ -105,8 +105,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLPipelineBufferDescriptorArray {
+impl MTLPipelineBufferDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -121,12 +121,12 @@ extern_methods!(
             buffer: Option<&MTLPipelineBufferDescriptor>,
             buffer_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLPipelineBufferDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLPipelineBufferDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -134,5 +134,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

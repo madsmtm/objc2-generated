@@ -26,13 +26,13 @@ unsafe impl NSObjectProtocol for UIVisualEffect {}
 
 unsafe impl NSSecureCoding for UIVisualEffect {}
 
-extern_methods!(
-    unsafe impl UIVisualEffect {}
-);
+impl UIVisualEffect {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIVisualEffect {
+/// Methods declared on superclass `NSObject`.
+impl UIVisualEffect {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -40,5 +40,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

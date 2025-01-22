@@ -22,9 +22,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCLSTMLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCLSTMLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCLSTMLayer {
+    extern_methods!(
         #[cfg(feature = "MLCLSTMDescriptor")]
         /// The LSTM descriptor
         #[deprecated]
@@ -195,13 +195,13 @@ extern_methods!(
             gate_activations: &NSArray<MLCActivationDescriptor>,
             output_result_activation: &MLCActivationDescriptor,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCLSTMLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCLSTMLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -211,5 +211,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

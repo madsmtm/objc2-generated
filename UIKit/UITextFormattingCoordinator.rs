@@ -35,8 +35,8 @@ unsafe impl NSObjectProtocol for UITextFormattingCoordinator {}
 #[cfg(feature = "UIFontPickerViewController")]
 unsafe impl UIFontPickerViewControllerDelegate for UITextFormattingCoordinator {}
 
-extern_methods!(
-    unsafe impl UITextFormattingCoordinator {
+impl UITextFormattingCoordinator {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -94,14 +94,14 @@ extern_methods!(
         #[unsafe(method(toggleFontPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleFontPanel(sender: &AnyObject, mtm: MainThreadMarker);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextFormattingCoordinator {
+/// Methods declared on superclass `NSObject`.
+impl UITextFormattingCoordinator {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

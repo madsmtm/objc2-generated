@@ -128,8 +128,8 @@ unsafe impl NSLocking for NSManagedObjectContext {}
 
 unsafe impl NSObjectProtocol for NSManagedObjectContext {}
 
-extern_methods!(
-    unsafe impl NSManagedObjectContext {
+impl NSManagedObjectContext {
+    extern_methods!(
         #[deprecated = "Use -initWithConcurrencyType: instead"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -477,5 +477,5 @@ extern_methods!(
         #[unsafe(method(setTransactionAuthor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransactionAuthor(&self, transaction_author: Option<&NSString>);
-    }
-);
+    );
+}

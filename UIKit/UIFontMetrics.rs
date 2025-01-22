@@ -20,8 +20,8 @@ unsafe impl Sync for UIFontMetrics {}
 
 unsafe impl NSObjectProtocol for UIFontMetrics {}
 
-extern_methods!(
-    unsafe impl UIFontMetrics {
+impl UIFontMetrics {
+    extern_methods!(
         #[unsafe(method(defaultMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultMetrics() -> Retained<UIFontMetrics>;
@@ -93,14 +93,14 @@ extern_methods!(
             value: CGFloat,
             trait_collection: Option<&UITraitCollection>,
         ) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIFontMetrics {
+/// Methods declared on superclass `NSObject`.
+impl UIFontMetrics {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

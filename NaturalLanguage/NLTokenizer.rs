@@ -64,8 +64,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NLTokenizer {}
 
-extern_methods!(
-    unsafe impl NLTokenizer {
+impl NLTokenizer {
+    extern_methods!(
         #[unsafe(method(initWithUnit:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUnit(this: Allocated<Self>, unit: NLTokenUnit) -> Retained<Self>;
@@ -108,12 +108,12 @@ extern_methods!(
             range: NSRange,
             block: &block2::Block<dyn Fn(NSRange, NLTokenizerAttributes, NonNull<Bool>) + '_>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NLTokenizer {
+/// Methods declared on superclass `NSObject`.
+impl NLTokenizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -121,5 +121,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -9,10 +9,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// NSFileProviderThumbnailing
-    #[cfg(feature = "Extension")]
-    unsafe impl NSFileProviderExtension {
+/// NSFileProviderThumbnailing.
+#[cfg(feature = "Extension")]
+impl NSFileProviderExtension {
+    extern_methods!(
         #[cfg(all(
             feature = "NSFileProviderItem",
             feature = "block2",
@@ -57,5 +57,5 @@ extern_methods!(
             >,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         ) -> Retained<NSProgress>;
-    }
-);
+    );
+}

@@ -87,9 +87,9 @@ unsafe impl NSSecureCoding for UICellConfigurationState {}
 #[cfg(all(feature = "UIConfigurationState", feature = "UIViewConfigurationState"))]
 unsafe impl UIConfigurationState for UICellConfigurationState {}
 
-extern_methods!(
-    #[cfg(feature = "UIViewConfigurationState")]
-    unsafe impl UICellConfigurationState {
+#[cfg(feature = "UIViewConfigurationState")]
+impl UICellConfigurationState {
+    extern_methods!(
         #[unsafe(method(isEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditing(&self) -> bool;
@@ -143,13 +143,13 @@ extern_methods!(
         #[unsafe(method(setCellDropState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellDropState(&self, cell_drop_state: UICellConfigurationDropState);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewConfigurationState`
-    #[cfg(feature = "UIViewConfigurationState")]
-    unsafe impl UICellConfigurationState {
+/// Methods declared on superclass `UIViewConfigurationState`.
+#[cfg(feature = "UIViewConfigurationState")]
+impl UICellConfigurationState {
+    extern_methods!(
         #[cfg(feature = "UITraitCollection")]
         /// Returns a new instance with the specified trait collection.
         #[unsafe(method(initWithTraitCollection:))]
@@ -173,5 +173,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

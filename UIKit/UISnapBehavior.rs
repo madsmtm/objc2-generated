@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "UIDynamicBehavior")]
 unsafe impl NSObjectProtocol for UISnapBehavior {}
 
-extern_methods!(
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UISnapBehavior {
+#[cfg(feature = "UIDynamicBehavior")]
+impl UISnapBehavior {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithItem:snapToPoint:))]
         #[unsafe(method_family = init)]
@@ -53,13 +53,13 @@ extern_methods!(
         #[unsafe(method(setDamping:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDamping(&self, damping: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UISnapBehavior {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIDynamicBehavior")]
+impl UISnapBehavior {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -67,5 +67,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

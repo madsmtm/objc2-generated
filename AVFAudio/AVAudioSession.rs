@@ -20,8 +20,8 @@ unsafe impl Sync for AVAudioSession {}
 
 unsafe impl NSObjectProtocol for AVAudioSession {}
 
-extern_methods!(
-    unsafe impl AVAudioSession {
+impl AVAudioSession {
+    extern_methods!(
         /// Return singleton instance.
         #[unsafe(method(sharedInstance))]
         #[unsafe(method_family = none)]
@@ -273,12 +273,12 @@ extern_methods!(
         #[unsafe(method(isEchoCancelledInputAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEchoCancelledInputAvailable(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Activation
-    unsafe impl AVAudioSession {
+/// Activation.
+impl AVAudioSession {
+    extern_methods!(
         /// Set the session active or inactive.
         ///
         /// Note that activating an audio session is a synchronous (blocking) operation.
@@ -326,15 +326,15 @@ extern_methods!(
             options: AVAudioSessionActivationOptions,
             handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAudioSessionHardwareConfiguration
-    /// this category deals with the set of properties that reflect the current state of
-    /// audio hardware in the current route.  Applications whose functionality depends on these
-    /// properties should reevaluate them any time the route changes.
-    unsafe impl AVAudioSession {
+/// AVAudioSessionHardwareConfiguration.
+/// this category deals with the set of properties that reflect the current state of
+/// audio hardware in the current route.  Applications whose functionality depends on these
+/// properties should reevaluate them any time the route changes.
+impl AVAudioSession {
+    extern_methods!(
         /// The preferred hardware sample rate for the session. The actual sample rate may be different.
         #[unsafe(method(setPreferredSampleRate:error:_))]
         #[unsafe(method_family = none)]
@@ -548,12 +548,12 @@ extern_methods!(
         pub unsafe fn supportedOutputChannelLayouts(
             &self,
         ) -> Retained<NSArray<AVAudioChannelLayout>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Observation
-    unsafe impl AVAudioSession {
+/// Observation.
+impl AVAudioSession {
+    extern_methods!(
         /// True when another application is playing audio.
         ///
         /// Note: As of iOS 8.0, Apple recommends that most applications use
@@ -588,12 +588,12 @@ extern_methods!(
         #[unsafe(method(promptStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn promptStyle(&self) -> AVAudioSessionPromptStyle;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// RoutingConfiguration
-    unsafe impl AVAudioSession {
+/// RoutingConfiguration.
+impl AVAudioSession {
+    extern_methods!(
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Get the set of input ports that are available for routing.
         ///
@@ -661,12 +661,12 @@ extern_methods!(
         #[unsafe(method(prefersInterruptionOnRouteDisconnect))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefersInterruptionOnRouteDisconnect(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MicrophoneInjection
-    unsafe impl AVAudioSession {
+/// MicrophoneInjection.
+impl AVAudioSession {
+    extern_methods!(
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Set the preferred form of audio injection into another app's input stream
         /// See AVAudioSessionMicrophoneInjectionMode for available modes
@@ -689,8 +689,8 @@ extern_methods!(
         #[unsafe(method(isMicrophoneInjectionAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMicrophoneInjectionAvailable(&self) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Notification sent to registered listeners when the system has interrupted the audio

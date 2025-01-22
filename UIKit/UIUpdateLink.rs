@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIUpdateLink {}
 
-extern_methods!(
-    unsafe impl UIUpdateLink {
+impl UIUpdateLink {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -148,12 +148,12 @@ extern_methods!(
         #[unsafe(method(currentUpdateInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUpdateInfo(&self) -> Option<Retained<UIUpdateInfo>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Convenience
-    unsafe impl UIUpdateLink {
+/// Convenience.
+impl UIUpdateLink {
+    extern_methods!(
         #[cfg(all(feature = "UIUpdateInfo", feature = "block2"))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
         #[unsafe(method(addActionWithHandler:))]
@@ -220,5 +220,5 @@ extern_methods!(
             target: &AnyObject,
             selector: Sel,
         ) -> Retained<UIUpdateLink>;
-    }
-);
+    );
+}

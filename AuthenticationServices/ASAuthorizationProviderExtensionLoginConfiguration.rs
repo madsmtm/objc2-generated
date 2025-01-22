@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionKerberosMapping {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
+impl ASAuthorizationProviderExtensionKerberosMapping {
+    extern_methods!(
         /// The keypath in the response JSON that uses this set of mappings.
         ///
         /// If the response tokens from login contain this keypath, then the mapping in this class will be used to create a Kerberos ticket. The expected response is a JSON dictionary with the supplied key names.
@@ -96,12 +96,12 @@ extern_methods!(
         #[unsafe(method(setSessionKeyKeyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionKeyKeyName(&self, session_key_key_name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
+/// Methods declared on superclass `NSObject`.
+impl ASAuthorizationProviderExtensionKerberosMapping {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -109,8 +109,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionfederationtype?language=objc)
 // NS_ENUM
@@ -233,8 +233,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginConfiguration {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationProviderExtensionLoginConfiguration {
+impl ASAuthorizationProviderExtensionLoginConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -947,5 +947,5 @@ extern_methods!(
         #[unsafe(method(setHpkeAuthPublicKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHpkeAuthPublicKey(&self, hpke_auth_public_key: Option<&SecKey>);
-    }
-);
+    );
+}

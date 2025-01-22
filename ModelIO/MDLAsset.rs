@@ -48,8 +48,8 @@ unsafe impl NSFastEnumeration for MDLAsset {}
 
 unsafe impl NSObjectProtocol for MDLAsset {}
 
-extern_methods!(
-    unsafe impl MDLAsset {
+impl MDLAsset {
+    extern_methods!(
         /// Initialize an MDLAsset using the contents of the resource located at
         /// the indicated URL
         ///
@@ -324,12 +324,12 @@ extern_methods!(
             &self,
             animations: &ProtocolObject<dyn MDLObjectContainerComponent>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAsset {
+/// Methods declared on superclass `NSObject`.
+impl MDLAsset {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -337,8 +337,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllightprobeirradiancedatasource?language=objc)
@@ -357,16 +357,16 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// MDLLightBaking
-    /// Given a light probe density, method places light probes in the scene according to the
-    /// passed in placement heuristic type. The higher the density, the greater the number of
-    /// light probes placed in the scene.
-    ///
-    /// Using the placement heuristic MDLProbePlacementUniformGrid places the light probes in the
-    /// scene as a uniform grid. The placement heuristic MDLProbePlacementIrradianceDistribution
-    /// places the light probes in areas of greatest irradiance change.
-    unsafe impl MDLAsset {
+/// MDLLightBaking.
+/// Given a light probe density, method places light probes in the scene according to the
+/// passed in placement heuristic type. The higher the density, the greater the number of
+/// light probes placed in the scene.
+///
+/// Using the placement heuristic MDLProbePlacementUniformGrid places the light probes in the
+/// scene as a uniform grid. The placement heuristic MDLProbePlacementIrradianceDistribution
+/// places the light probes in areas of greatest irradiance change.
+impl MDLAsset {
+    extern_methods!(
         #[cfg(all(feature = "MDLLight", feature = "MDLObject", feature = "MDLTypes"))]
         #[unsafe(method(placeLightProbesWithDensity:heuristic:usingIrradianceDataSource:))]
         #[unsafe(method_family = none)]
@@ -375,5 +375,5 @@ extern_methods!(
             r#type: MDLProbePlacement,
             data_source: &ProtocolObject<dyn MDLLightProbeIrradianceDataSource>,
         ) -> Retained<NSArray<MDLLightProbe>>;
-    }
-);
+    );
+}

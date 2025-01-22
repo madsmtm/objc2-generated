@@ -55,8 +55,8 @@ unsafe impl NSObjectProtocol for CIFilterGenerator {}
 
 unsafe impl NSSecureCoding for CIFilterGenerator {}
 
-extern_methods!(
-    unsafe impl CIFilterGenerator {
+impl CIFilterGenerator {
+    extern_methods!(
         /// This creates an empty CIFilterGenerator in which you connect filters and images.
         #[unsafe(method(filterGenerator))]
         #[unsafe(method_family = none)]
@@ -208,12 +208,12 @@ extern_methods!(
         #[unsafe(method(writeToURL:atomically:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_atomically(&self, a_url: &NSURL, flag: bool) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIFilterGenerator {
+/// Methods declared on superclass `NSObject`.
+impl CIFilterGenerator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -221,5 +221,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

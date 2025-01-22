@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for NSPersistentStoreDescription {
 
 unsafe impl NSObjectProtocol for NSPersistentStoreDescription {}
 
-extern_methods!(
-    unsafe impl NSPersistentStoreDescription {
+impl NSPersistentStoreDescription {
+    extern_methods!(
         #[unsafe(method(persistentStoreDescriptionWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentStoreDescriptionWithURL(url: &NSURL) -> Retained<Self>;
@@ -125,12 +125,12 @@ extern_methods!(
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersistentStoreDescription {
+/// Methods declared on superclass `NSObject`.
+impl NSPersistentStoreDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -138,12 +138,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPersistentCloudKitContainerAdditions
-    unsafe impl NSPersistentStoreDescription {
+/// NSPersistentCloudKitContainerAdditions.
+impl NSPersistentStoreDescription {
+    extern_methods!(
         #[cfg(feature = "NSPersistentCloudKitContainerOptions")]
         /// Use this property to apply customized instances of NSPersistentCloudKitContainerOptions to
         /// a store description you wish to use with CloudKit.
@@ -161,5 +161,5 @@ extern_methods!(
             &self,
             cloud_kit_container_options: Option<&NSPersistentCloudKitContainerOptions>,
         );
-    }
-);
+    );
+}

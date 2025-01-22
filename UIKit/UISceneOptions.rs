@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISceneConnectionOptions {}
 
-extern_methods!(
-    unsafe impl UISceneConnectionOptions {
+impl UISceneConnectionOptions {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -62,8 +62,8 @@ extern_methods!(
         #[unsafe(method(cloudKitShareMetadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn cloudKitShareMetadata(&self) -> Option<Retained<CKShareMetadata>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneopenurloptions?language=objc)
@@ -75,8 +75,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISceneOpenURLOptions {}
 
-extern_methods!(
-    unsafe impl UISceneOpenURLOptions {
+impl UISceneOpenURLOptions {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -101,8 +101,8 @@ extern_methods!(
         #[unsafe(method(eventAttribution))]
         #[unsafe(method_family = none)]
         pub unsafe fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneopenexternalurloptions?language=objc)
@@ -114,8 +114,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISceneOpenExternalURLOptions {}
 
-extern_methods!(
-    unsafe impl UISceneOpenExternalURLOptions {
+impl UISceneOpenExternalURLOptions {
+    extern_methods!(
         #[unsafe(method(universalLinksOnly))]
         #[unsafe(method_family = none)]
         pub unsafe fn universalLinksOnly(&self) -> bool;
@@ -135,12 +135,12 @@ extern_methods!(
         #[unsafe(method(setEventAttribution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEventAttribution(&self, event_attribution: Option<&UIEventAttribution>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UISceneOpenExternalURLOptions {
+/// Methods declared on superclass `NSObject`.
+impl UISceneOpenExternalURLOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -148,8 +148,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior?language=objc)
 // NS_ENUM
@@ -185,8 +185,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISceneActivationRequestOptions {}
 
-extern_methods!(
-    unsafe impl UISceneActivationRequestOptions {
+impl UISceneActivationRequestOptions {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
         #[unsafe(method(requestingScene))]
         #[unsafe(method_family = none)]
@@ -209,12 +209,12 @@ extern_methods!(
             &self,
             collection_join_behavior: UISceneCollectionJoinBehavior,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UISceneActivationRequestOptions {
+/// Methods declared on superclass `NSObject`.
+impl UISceneActivationRequestOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -222,8 +222,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedestructionrequestoptions?language=objc)
@@ -235,13 +235,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISceneDestructionRequestOptions {}
 
-extern_methods!(
-    unsafe impl UISceneDestructionRequestOptions {}
-);
+impl UISceneDestructionRequestOptions {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UISceneDestructionRequestOptions {
+/// Methods declared on superclass `NSObject`.
+impl UISceneDestructionRequestOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -249,5 +249,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

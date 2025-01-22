@@ -16,10 +16,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSUserActivity
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSResponder {
+/// NSUserActivity.
+#[cfg(feature = "NSResponder")]
+impl NSResponder {
+    extern_methods!(
         #[unsafe(method(userActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
@@ -32,16 +32,16 @@ extern_methods!(
         #[unsafe(method(updateUserActivityState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateUserActivityState(&self, user_activity: &NSUserActivity);
-    }
-);
+    );
+}
 
 #[cfg(feature = "NSResponder")]
 unsafe impl NSUserActivityRestoring for NSResponder {}
 
-extern_methods!(
-    /// NSUserActivity
-    #[cfg(feature = "NSDocument")]
-    unsafe impl NSDocument {
+/// NSUserActivity.
+#[cfg(feature = "NSDocument")]
+impl NSDocument {
+    extern_methods!(
         #[unsafe(method(userActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
@@ -54,8 +54,8 @@ extern_methods!(
         #[unsafe(method(updateUserActivityState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateUserActivityState(&self, activity: &NSUserActivity);
-    }
-);
+    );
+}
 
 #[cfg(feature = "NSDocument")]
 unsafe impl NSUserActivityRestoring for NSDocument {}

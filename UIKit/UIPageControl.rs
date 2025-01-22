@@ -182,9 +182,9 @@ unsafe impl UIResponderStandardEditActions for UIPageControl {}
 ))]
 unsafe impl UITraitEnvironment for UIPageControl {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIPageControl {
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIPageControl {
+    extern_methods!(
         /// default is 0
         #[unsafe(method(numberOfPages))]
         #[unsafe(method_family = none)]
@@ -389,13 +389,13 @@ extern_methods!(
         #[unsafe(method(updateCurrentPageDisplay))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateCurrentPageDisplay(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIControl`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIPageControl {
+/// Methods declared on superclass `UIControl`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIPageControl {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -421,13 +421,13 @@ extern_methods!(
             frame: CGRect,
             primary_action: Option<&UIAction>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIPageControl {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIPageControl {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -435,5 +435,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

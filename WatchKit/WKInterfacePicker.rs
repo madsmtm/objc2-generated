@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl NSObjectProtocol for WKInterfacePicker {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfacePicker {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfacePicker {
+    extern_methods!(
         #[unsafe(method(focus))]
         #[unsafe(method_family = none)]
         pub unsafe fn focus(&self);
@@ -48,28 +48,28 @@ extern_methods!(
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `WKInterfaceObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfacePicker {
+/// Methods declared on superclass `WKInterfaceObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfacePicker {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfacePicker {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfacePicker {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkpickeritem?language=objc)
@@ -84,8 +84,8 @@ unsafe impl NSObjectProtocol for WKPickerItem {}
 
 unsafe impl NSSecureCoding for WKPickerItem {}
 
-extern_methods!(
-    unsafe impl WKPickerItem {
+impl WKPickerItem {
+    extern_methods!(
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
@@ -125,12 +125,12 @@ extern_methods!(
         #[unsafe(method(setContentImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentImage(&self, content_image: Option<&WKImage>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKPickerItem {
+/// Methods declared on superclass `NSObject`.
+impl WKPickerItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -138,5 +138,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -54,10 +54,10 @@ unsafe impl NSSecureCoding for SKEffectNode {}
 #[cfg(target_os = "macos")]
 unsafe impl SKWarpable for SKEffectNode {}
 
-extern_methods!(
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKEffectNode {
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKEffectNode {
+    extern_methods!(
         #[cfg(feature = "objc2-core-image")]
         /// A CIFilter to be used as an effect
         ///
@@ -156,14 +156,14 @@ extern_methods!(
         #[unsafe(method(setValue:forAttributeNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAttributeNamed(&self, value: &SKAttributeValue, key: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SKNode`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKEffectNode {
+/// Methods declared on superclass `SKNode`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKEffectNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -194,16 +194,16 @@ extern_methods!(
             classes: &NSSet<AnyClass>,
             mtm: MainThreadMarker,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKEffectNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKEffectNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

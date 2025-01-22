@@ -30,8 +30,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCustomRoutingController {}
 
-extern_methods!(
-    unsafe impl AVCustomRoutingController {
+impl AVCustomRoutingController {
+    extern_methods!(
         /// A delegate object for a routing controller.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -131,12 +131,12 @@ extern_methods!(
         #[unsafe(method(isRouteActive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRouteActive(&self, route: &AVCustomDeviceRoute) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCustomRoutingController {
+/// Methods declared on superclass `NSObject`.
+impl AVCustomRoutingController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -144,8 +144,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A protocol for delegates of a custom routing controller.
@@ -231,8 +231,8 @@ unsafe impl Sync for AVCustomRoutingPartialIP {}
 
 unsafe impl NSObjectProtocol for AVCustomRoutingPartialIP {}
 
-extern_methods!(
-    unsafe impl AVCustomRoutingPartialIP {
+impl AVCustomRoutingPartialIP {
+    extern_methods!(
         /// A full or partial IP address for a device known to be on the network.
         ///
         /// Use the following code to create a full known IP address.
@@ -280,5 +280,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

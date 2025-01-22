@@ -61,8 +61,8 @@ unsafe impl NSObjectProtocol for UIColor {}
 
 unsafe impl NSSecureCoding for UIColor {}
 
-extern_methods!(
-    unsafe impl UIColor {
+impl UIColor {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(colorWithWhite:alpha:))]
         #[unsafe(method_family = none)]
@@ -295,12 +295,12 @@ extern_methods!(
         #[unsafe(method(CIColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn CIColor(&self) -> Retained<CIColor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIColor {
+/// Methods declared on superclass `NSObject`.
+impl UIColor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -308,13 +308,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UINSItemProvider
-    unsafe impl UIColor {}
-);
+/// UINSItemProvider.
+impl UIColor {
+    extern_methods!();
+}
 
 unsafe impl NSItemProviderReading for UIColor {}
 
@@ -334,9 +334,9 @@ extern_category!(
     unsafe impl CIColorUIKitAdditions for CIColor {}
 );
 
-extern_methods!(
-    /// UIColorNamedColors
-    unsafe impl UIColor {
+/// UIColorNamedColors.
+impl UIColor {
+    extern_methods!(
         #[unsafe(method(colorNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorNamed(name: &NSString) -> Option<Retained<UIColor>>;
@@ -349,12 +349,12 @@ extern_methods!(
             bundle: Option<&NSBundle>,
             trait_collection: Option<&UITraitCollection>,
         ) -> Option<Retained<UIColor>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DynamicColors
-    unsafe impl UIColor {
+/// DynamicColors.
+impl UIColor {
+    extern_methods!(
         #[cfg(all(feature = "UITraitCollection", feature = "block2"))]
         #[unsafe(method(colorWithDynamicProvider:))]
         #[unsafe(method_family = none)]
@@ -381,12 +381,12 @@ extern_methods!(
             &self,
             trait_collection: &UITraitCollection,
         ) -> Retained<UIColor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// ProminenceSupport
-    unsafe impl UIColor {
+/// ProminenceSupport.
+impl UIColor {
+    extern_methods!(
         #[unsafe(method(colorWithProminence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorWithProminence(
@@ -397,5 +397,5 @@ extern_methods!(
         #[unsafe(method(prominence))]
         #[unsafe(method_family = none)]
         pub unsafe fn prominence(&self) -> UIColorProminence;
-    }
-);
+    );
+}

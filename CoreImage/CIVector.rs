@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for CIVector {}
 
 unsafe impl NSSecureCoding for CIVector {}
 
-extern_methods!(
-    unsafe impl CIVector {
+impl CIVector {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(vectorWithValues:count:))]
         #[unsafe(method_family = none)]
@@ -193,12 +193,12 @@ extern_methods!(
         #[unsafe(method(stringRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIVector {
+/// Methods declared on superclass `NSObject`.
+impl CIVector {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -206,5 +206,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

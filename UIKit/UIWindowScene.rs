@@ -26,9 +26,9 @@ unsafe impl NSObjectProtocol for UIWindowScene {}
 #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
 unsafe impl UIResponderStandardEditActions for UIWindowScene {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-    unsafe impl UIWindowScene {
+#[cfg(all(feature = "UIResponder", feature = "UIScene"))]
+impl UIWindowScene {
+    extern_methods!(
         #[cfg(feature = "UIScreen")]
         #[unsafe(method(screen))]
         #[unsafe(method_family = none)]
@@ -111,13 +111,13 @@ extern_methods!(
         #[unsafe(method(isFullScreen))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFullScreen(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIScene`
-    #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-    unsafe impl UIWindowScene {
+/// Methods declared on superclass `UIScene`.
+#[cfg(all(feature = "UIResponder", feature = "UIScene"))]
+impl UIWindowScene {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -134,18 +134,18 @@ extern_methods!(
             session: &UISceneSession,
             connection_options: &UISceneConnectionOptions,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-    unsafe impl UIWindowScene {
+#[cfg(all(feature = "UIResponder", feature = "UIScene"))]
+impl UIWindowScene {
+    extern_methods!(
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(traitOverrides))]
         #[unsafe(method_family = none)]
         pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
-    }
-);
+    );
+}
 
 #[cfg(all(
     feature = "UIResponder",
@@ -280,9 +280,9 @@ extern_class!(
 #[cfg(feature = "UISceneOptions")]
 unsafe impl NSObjectProtocol for UIWindowSceneDestructionRequestOptions {}
 
-extern_methods!(
-    #[cfg(feature = "UISceneOptions")]
-    unsafe impl UIWindowSceneDestructionRequestOptions {
+#[cfg(feature = "UISceneOptions")]
+impl UIWindowSceneDestructionRequestOptions {
+    extern_methods!(
         #[unsafe(method(windowDismissalAnimation))]
         #[unsafe(method_family = none)]
         pub unsafe fn windowDismissalAnimation(&self) -> UIWindowSceneDismissalAnimation;
@@ -294,13 +294,13 @@ extern_methods!(
             &self,
             window_dismissal_animation: UIWindowSceneDismissalAnimation,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UISceneOptions")]
-    unsafe impl UIWindowSceneDestructionRequestOptions {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UISceneOptions")]
+impl UIWindowSceneDestructionRequestOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -308,8 +308,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesizerestrictions?language=objc)
@@ -321,8 +321,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISceneSizeRestrictions {}
 
-extern_methods!(
-    unsafe impl UISceneSizeRestrictions {
+impl UISceneSizeRestrictions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -361,5 +361,5 @@ extern_methods!(
         #[unsafe(method(setAllowsFullScreen:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsFullScreen(&self, allows_full_screen: bool);
-    }
-);
+    );
+}

@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISceneSystemProtectionManager {}
 
-extern_methods!(
-    unsafe impl UISceneSystemProtectionManager {
+impl UISceneSystemProtectionManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -43,17 +43,17 @@ extern_methods!(
         #[unsafe(method(isUserAuthenticationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUserAuthenticationEnabled(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SystemProtection
-    #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-    unsafe impl UIScene {
+/// SystemProtection.
+#[cfg(all(feature = "UIResponder", feature = "UIScene"))]
+impl UIScene {
+    extern_methods!(
         #[unsafe(method(systemProtectionManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemProtectionManager(
             &self,
         ) -> Option<Retained<UISceneSystemProtectionManager>>;
-    }
-);
+    );
+}

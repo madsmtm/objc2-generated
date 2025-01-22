@@ -55,8 +55,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptionConversionValidator {}
 
-extern_methods!(
-    unsafe impl AVCaptionConversionValidator {
+impl AVCaptionConversionValidator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -157,8 +157,8 @@ extern_methods!(
         #[unsafe(method(warnings))]
         #[unsafe(method_family = none)]
         pub unsafe fn warnings(&self) -> Retained<NSArray<AVCaptionConversionWarning>>;
-    }
-);
+    );
+}
 
 /// The type of a caption conversion warning.
 ///
@@ -191,8 +191,8 @@ unsafe impl Sync for AVCaptionConversionWarning {}
 
 unsafe impl NSObjectProtocol for AVCaptionConversionWarning {}
 
-extern_methods!(
-    unsafe impl AVCaptionConversionWarning {
+impl AVCaptionConversionWarning {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -219,8 +219,8 @@ extern_methods!(
         #[unsafe(method(adjustment))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustment(&self) -> Option<Retained<AVCaptionConversionAdjustment>>;
-    }
-);
+    );
+}
 
 /// The type of a caption conversion adjustment.
 ///
@@ -253,8 +253,8 @@ unsafe impl Sync for AVCaptionConversionAdjustment {}
 
 unsafe impl NSObjectProtocol for AVCaptionConversionAdjustment {}
 
-extern_methods!(
-    unsafe impl AVCaptionConversionAdjustment {
+impl AVCaptionConversionAdjustment {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -267,8 +267,8 @@ extern_methods!(
         #[unsafe(method(adjustmentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustmentType(&self) -> Retained<AVCaptionConversionAdjustmentType>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Describes an adjustment to the timeRange of one or more captions.
@@ -287,8 +287,8 @@ unsafe impl Sync for AVCaptionConversionTimeRangeAdjustment {}
 
 unsafe impl NSObjectProtocol for AVCaptionConversionTimeRangeAdjustment {}
 
-extern_methods!(
-    unsafe impl AVCaptionConversionTimeRangeAdjustment {
+impl AVCaptionConversionTimeRangeAdjustment {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -312,5 +312,5 @@ extern_methods!(
         #[unsafe(method(durationOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn durationOffset(&self) -> CMTime;
-    }
-);
+    );
+}

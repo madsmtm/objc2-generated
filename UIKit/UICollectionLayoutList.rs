@@ -150,8 +150,8 @@ unsafe impl CopyingHelper for UICollectionLayoutListConfiguration {
 
 unsafe impl NSObjectProtocol for UICollectionLayoutListConfiguration {}
 
-extern_methods!(
-    unsafe impl UICollectionLayoutListConfiguration {
+impl UICollectionLayoutListConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -313,13 +313,13 @@ extern_methods!(
             &self,
             content_hugging_elements: UICollectionLayoutListContentHuggingElements,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UICollectionLayoutListSection
-    #[cfg(feature = "UICollectionViewCompositionalLayout")]
-    unsafe impl NSCollectionLayoutSection {
+/// UICollectionLayoutListSection.
+#[cfg(feature = "UICollectionViewCompositionalLayout")]
+impl NSCollectionLayoutSection {
+    extern_methods!(
         /// Creates a list section using the specified configuration. You should pass the layoutEnvironment from inside the UICollectionViewCompositionalLayoutSectionProvider.
         #[unsafe(method(sectionWithListConfiguration:layoutEnvironment:))]
         #[unsafe(method_family = none)]
@@ -327,21 +327,21 @@ extern_methods!(
             configuration: &UICollectionLayoutListConfiguration,
             layout_environment: &ProtocolObject<dyn NSCollectionLayoutEnvironment>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UICollectionLayoutListSection
-    #[cfg(all(
-        feature = "UICollectionViewCompositionalLayout",
-        feature = "UICollectionViewLayout"
-    ))]
-    unsafe impl UICollectionViewCompositionalLayout {
+/// UICollectionLayoutListSection.
+#[cfg(all(
+    feature = "UICollectionViewCompositionalLayout",
+    feature = "UICollectionViewLayout"
+))]
+impl UICollectionViewCompositionalLayout {
+    extern_methods!(
         /// Creates a compositional layout containing only list sections of the specified configuration.
         #[unsafe(method(layoutWithListConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutWithListConfiguration(
             configuration: &UICollectionLayoutListConfiguration,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -53,8 +53,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPageControlProgress {}
 
-extern_methods!(
-    unsafe impl UIPageControlProgress {
+impl UIPageControlProgress {
+    extern_methods!(
         /// An object that defines the delegate of the page control progress.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -87,12 +87,12 @@ extern_methods!(
         #[unsafe(method(isProgressVisible))]
         #[unsafe(method_family = none)]
         pub unsafe fn isProgressVisible(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPageControlProgress {
+/// Methods declared on superclass `NSObject`.
+impl UIPageControlProgress {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,8 +100,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontroltimerprogressdelegate?language=objc)
@@ -136,8 +136,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPageControlTimerProgress {}
 
-extern_methods!(
-    unsafe impl UIPageControlTimerProgress {
+impl UIPageControlTimerProgress {
+    extern_methods!(
         /// Creates a time interval progress with a specified preferred duration.
         #[unsafe(method(initWithPreferredDuration:))]
         #[unsafe(method_family = init)]
@@ -216,5 +216,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

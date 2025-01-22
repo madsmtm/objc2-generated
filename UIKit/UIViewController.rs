@@ -163,9 +163,9 @@ unsafe impl UIResponderStandardEditActions for UIViewController {}
 #[cfg(all(feature = "UIResponder", feature = "UITraitCollection"))]
 unsafe impl UITraitEnvironment for UIViewController {}
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -722,13 +722,13 @@ extern_methods!(
             &self,
             override_user_interface_style: UIUserInterfaceStyle,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -736,13 +736,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewControllerRotation
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIViewControllerRotation.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[deprecated = "Please use instance method `setNeedsUpdateOfSupportedInterfaceOrientations`."]
         #[unsafe(method(attemptRotationToDeviceOrientation))]
         #[unsafe(method_family = none)]
@@ -854,13 +854,13 @@ extern_methods!(
             from_interface_orientation: UIInterfaceOrientation,
             duration: NSTimeInterval,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewControllerEditing
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIViewControllerEditing.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(isEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditing(&self) -> bool;
@@ -878,31 +878,31 @@ extern_methods!(
         #[unsafe(method(editButtonItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn editButtonItem(&self) -> Retained<UIBarButtonItem>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UISearchDisplayControllerSupport
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UISearchDisplayControllerSupport.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[cfg(feature = "UISearchDisplayController")]
         #[deprecated]
         #[unsafe(method(searchDisplayController))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchDisplayController(&self)
             -> Option<Retained<UISearchDisplayController>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerhierarchyinconsistencyexception?language=objc)
     pub static UIViewControllerHierarchyInconsistencyException: &'static NSExceptionName;
 }
 
-extern_methods!(
-    /// UIContainerViewControllerProtectedMethods
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIContainerViewControllerProtectedMethods.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(childViewControllers))]
         #[unsafe(method_family = none)]
         pub unsafe fn childViewControllers(&self) -> Retained<NSArray<UIViewController>>;
@@ -974,13 +974,13 @@ extern_methods!(
         pub unsafe fn childViewControllerForUserInterfaceStyle(
             &self,
         ) -> Option<Retained<UIViewController>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIContainerViewControllerCallbacks
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIContainerViewControllerCallbacks.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers))]
         #[unsafe(method_family = none)]
@@ -1004,13 +1004,13 @@ extern_methods!(
         #[unsafe(method(didMoveToParentViewController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didMoveToParentViewController(&self, parent: Option<&UIViewController>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIStateRestoration
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIStateRestoration.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(restorationIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
@@ -1042,26 +1042,26 @@ extern_methods!(
         #[unsafe(method(applicationFinishedRestoringState))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationFinishedRestoringState(&self);
-    }
-);
+    );
+}
 
 #[cfg(all(feature = "UIResponder", feature = "UIStateRestoration"))]
 unsafe impl UIStateRestoring for UIViewController {}
 
-extern_methods!(
-    /// UIConstraintBasedLayoutCoreMethods
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIConstraintBasedLayoutCoreMethods.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(updateViewConstraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateViewConstraints(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewControllerTransitioning
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIViewControllerTransitioning.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[cfg(feature = "UIViewControllerTransitioning")]
         #[unsafe(method(transitioningDelegate))]
         #[unsafe(method_family = none)]
@@ -1080,13 +1080,13 @@ extern_methods!(
                 &ProtocolObject<dyn UIViewControllerTransitioningDelegate>,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UILayoutSupport
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UILayoutSupport.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[cfg(feature = "NSLayoutConstraint")]
         #[deprecated = "Use view.safeAreaLayoutGuide.topAnchor instead of topLayoutGuide.bottomAnchor"]
         #[unsafe(method(topLayoutGuide))]
@@ -1134,13 +1134,13 @@ extern_methods!(
         #[unsafe(method(viewSafeAreaInsetsDidChange))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewSafeAreaInsetsDidChange(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIKeyCommand
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIKeyCommand.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[cfg(all(
             feature = "UICommand",
             feature = "UIKeyCommand",
@@ -1158,39 +1158,39 @@ extern_methods!(
         #[unsafe(method(removeKeyCommand:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeKeyCommand(&self, key_command: &UIKeyCommand);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIPerformsActions
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIPerformsActions.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         /// Determines whether the receiver continues to respond to actions while it is presenting a view controller modally.
         ///
         /// Defaults to YES. You can change the default return value by providing a value for UIViewControllerPerformsActionsWhilePresentingModally in your Info.plist file.
         #[unsafe(method(performsActionsWhilePresentingModally))]
         #[unsafe(method_family = none)]
         pub unsafe fn performsActionsWhilePresentingModally(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtensionAdditions
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// NSExtensionAdditions.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(extensionContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionContext(&self) -> Option<Retained<NSExtensionContext>>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "UIResponder")]
 unsafe impl NSExtensionRequestHandling for UIViewController {}
 
-extern_methods!(
-    /// UIPresentationController
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIPresentationController.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[cfg(feature = "UIPresentationController")]
         #[unsafe(method(presentationController))]
         #[unsafe(method_family = none)]
@@ -1231,8 +1231,8 @@ extern_methods!(
         #[unsafe(method(setModalInPresentation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModalInPresentation(&self, modal_in_presentation: bool);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerpreviewing?language=objc)
@@ -1300,10 +1300,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UIViewControllerPreviewingRegistration
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIViewControllerPreviewingRegistration.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[cfg(feature = "UIView")]
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
         #[unsafe(method(registerForPreviewingWithDelegate:sourceView:))]
@@ -1321,13 +1321,13 @@ extern_methods!(
             &self,
             previewing: &ProtocolObject<dyn UIViewControllerPreviewing>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIScreenEdgesDeferringSystemGestures
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIScreenEdgesDeferringSystemGestures.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(childViewControllerForScreenEdgesDeferringSystemGestures))]
         #[unsafe(method_family = none)]
         pub unsafe fn childViewControllerForScreenEdgesDeferringSystemGestures(
@@ -1342,13 +1342,13 @@ extern_methods!(
         #[unsafe(method(setNeedsUpdateOfScreenEdgesDeferringSystemGestures))]
         #[unsafe(method_family = none)]
         pub fn setNeedsUpdateOfScreenEdgesDeferringSystemGestures(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIHomeIndicatorAutoHidden
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIHomeIndicatorAutoHidden.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(childViewControllerForHomeIndicatorAutoHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn childViewControllerForHomeIndicatorAutoHidden(
@@ -1362,13 +1362,13 @@ extern_methods!(
         #[unsafe(method(setNeedsUpdateOfHomeIndicatorAutoHidden))]
         #[unsafe(method_family = none)]
         pub fn setNeedsUpdateOfHomeIndicatorAutoHidden(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIPointerLockSupport
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+/// UIPointerLockSupport.
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(childViewControllerForPointerLock))]
         #[unsafe(method_family = none)]
         pub unsafe fn childViewControllerForPointerLock(
@@ -1382,12 +1382,12 @@ extern_methods!(
         #[unsafe(method(setNeedsUpdateOfPrefersPointerLocked))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsUpdateOfPrefersPointerLocked(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[cfg(feature = "UIContentConfiguration")]
         /// Setting a content unavailable configuration replaces the existing content unavailable view of the view controller with a new content unavailable view instance from the configuration,
         /// or directly applies the configuration to the existing content unavailable view if the configuration is compatible with the existing content unavailable view type.
@@ -1433,24 +1433,24 @@ extern_methods!(
             &self,
             state: &UIContentUnavailableConfigurationState,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
         #[unsafe(method(previewActionItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewActionItems(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn UIPreviewActionItem>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(traitOverrides))]
         #[unsafe(method_family = none)]
@@ -1461,8 +1461,8 @@ extern_methods!(
         #[unsafe(method(updateTraitsIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateTraitsIfNeeded(&self);
-    }
-);
+    );
+}
 
 #[cfg(all(feature = "UIResponder", feature = "UITraitCollection"))]
 unsafe impl UITraitChangeObservable for UIViewController {}
@@ -1489,9 +1489,9 @@ unsafe impl RefEncode for UIContainerBackgroundStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIViewController {
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(preferredContainerBackgroundStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredContainerBackgroundStyle(&self) -> UIContainerBackgroundStyle;
@@ -1505,8 +1505,8 @@ extern_methods!(
         #[unsafe(method(setNeedsUpdateOfPreferredContainerBackgroundStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsUpdateOfPreferredContainerBackgroundStyle(&self);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactionitem?language=objc)
@@ -1562,8 +1562,8 @@ unsafe impl NSObjectProtocol for UIPreviewAction {}
 
 unsafe impl UIPreviewActionItem for UIPreviewAction {}
 
-extern_methods!(
-    unsafe impl UIPreviewAction {
+impl UIPreviewAction {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
@@ -1584,12 +1584,12 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(NonNull<UIPreviewAction>, NonNull<UIViewController>)>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPreviewAction {
+/// Methods declared on superclass `NSObject`.
+impl UIPreviewAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1597,8 +1597,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactiongroup?language=objc)
@@ -1619,8 +1619,8 @@ unsafe impl NSObjectProtocol for UIPreviewActionGroup {}
 
 unsafe impl UIPreviewActionItem for UIPreviewActionGroup {}
 
-extern_methods!(
-    unsafe impl UIPreviewActionGroup {
+impl UIPreviewActionGroup {
+    extern_methods!(
         #[unsafe(method(actionGroupWithTitle:style:actions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionGroupWithTitle_style_actions(
@@ -1629,12 +1629,12 @@ extern_methods!(
             actions: &NSArray<UIPreviewAction>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPreviewActionGroup {
+/// Methods declared on superclass `NSObject`.
+impl UIPreviewActionGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1642,5 +1642,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

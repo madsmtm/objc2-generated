@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for UIImageConfiguration {}
 
 unsafe impl NSSecureCoding for UIImageConfiguration {}
 
-extern_methods!(
-    unsafe impl UIImageConfiguration {
+impl UIImageConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -77,5 +77,5 @@ extern_methods!(
             &self,
             other_configuration: Option<&UIImageConfiguration>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -72,13 +72,13 @@ unsafe impl UIResponderStandardEditActions for UIVideoEditorController {}
 ))]
 unsafe impl UITraitEnvironment for UIVideoEditorController {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "UINavigationController",
-        feature = "UIResponder",
-        feature = "UIViewController"
-    ))]
-    unsafe impl UIVideoEditorController {
+#[cfg(all(
+    feature = "UINavigationController",
+    feature = "UIResponder",
+    feature = "UIViewController"
+))]
+impl UIVideoEditorController {
+    extern_methods!(
         #[unsafe(method(canEditVideoAtPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canEditVideoAtPath(video_path: &NSString, mtm: MainThreadMarker) -> bool;
@@ -131,17 +131,17 @@ extern_methods!(
         #[unsafe(method(setVideoQuality:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoQuality(&self, video_quality: UIImagePickerControllerQualityType);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UINavigationController`
-    #[cfg(all(
-        feature = "UINavigationController",
-        feature = "UIResponder",
-        feature = "UIViewController"
-    ))]
-    unsafe impl UIVideoEditorController {
+/// Methods declared on superclass `UINavigationController`.
+#[cfg(all(
+    feature = "UINavigationController",
+    feature = "UIResponder",
+    feature = "UIViewController"
+))]
+impl UIVideoEditorController {
+    extern_methods!(
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
@@ -171,17 +171,17 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "UINavigationController",
-        feature = "UIResponder",
-        feature = "UIViewController"
-    ))]
-    unsafe impl UIVideoEditorController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "UINavigationController",
+    feature = "UIResponder",
+    feature = "UIViewController"
+))]
+impl UIVideoEditorController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -189,8 +189,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivideoeditorcontrollerdelegate?language=objc)

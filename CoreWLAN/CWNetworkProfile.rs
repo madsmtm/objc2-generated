@@ -34,8 +34,8 @@ unsafe impl NSObjectProtocol for CWNetworkProfile {}
 
 unsafe impl NSSecureCoding for CWNetworkProfile {}
 
-extern_methods!(
-    unsafe impl CWNetworkProfile {
+impl CWNetworkProfile {
+    extern_methods!(
         /// Returns the service set identifier (SSID) for the Wi-Fi network profile, encoded as a string.
         ///
         ///
@@ -116,17 +116,17 @@ extern_methods!(
         #[unsafe(method(isEqualToNetworkProfile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToNetworkProfile(&self, network_profile: &CWNetworkProfile) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CWNetworkProfile {
+/// Methods declared on superclass `NSObject`.
+impl CWNetworkProfile {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Mutable subclass of CWNetworkProfile.  Use this class for changing profile properties.
@@ -159,8 +159,8 @@ unsafe impl NSObjectProtocol for CWMutableNetworkProfile {}
 
 unsafe impl NSSecureCoding for CWMutableNetworkProfile {}
 
-extern_methods!(
-    unsafe impl CWMutableNetworkProfile {
+impl CWMutableNetworkProfile {
+    extern_methods!(
         /// Set the service set identifier (SSID).
         #[unsafe(method(ssidData))]
         #[unsafe(method_family = none)]
@@ -182,12 +182,12 @@ extern_methods!(
         #[unsafe(method(setSecurity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecurity(&self, security: CWSecurity);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CWNetworkProfile`
-    unsafe impl CWMutableNetworkProfile {
+/// Methods declared on superclass `CWNetworkProfile`.
+impl CWMutableNetworkProfile {
+    extern_methods!(
         /// Convenience method for getting a CWNetworkProfile object.
         #[unsafe(method(networkProfile))]
         #[unsafe(method_family = none)]
@@ -224,14 +224,14 @@ extern_methods!(
         pub unsafe fn networkProfileWithNetworkProfile(
             network_profile: &CWNetworkProfile,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CWMutableNetworkProfile {
+/// Methods declared on superclass `NSObject`.
+impl CWMutableNetworkProfile {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

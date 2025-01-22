@@ -133,8 +133,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSSharingService {}
 
-extern_methods!(
-    unsafe impl NSSharingService {
+impl NSSharingService {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -266,17 +266,17 @@ extern_methods!(
         #[unsafe(method(performWithItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performWithItems(&self, items: &NSArray);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSharingService {
+/// Methods declared on superclass `NSObject`.
+impl NSSharingService {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Use the sharing scope to specify the nature of the things you are sharing.
 ///
@@ -507,8 +507,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSSharingServicePicker {}
 
-extern_methods!(
-    unsafe impl NSSharingServicePicker {
+impl NSSharingServicePicker {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -557,17 +557,17 @@ extern_methods!(
         #[unsafe(method(standardShareMenuItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardShareMenuItem(&self, mtm: MainThreadMarker) -> Retained<NSMenuItem>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSharingServicePicker {
+/// Methods declared on superclass `NSObject`.
+impl NSSharingServicePicker {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickerdelegate?language=objc)

@@ -37,9 +37,9 @@ unsafe impl NSObjectProtocol for HKCorrelation {}
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKCorrelation {}
 
-extern_methods!(
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKCorrelation {
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKCorrelation {
+    extern_methods!(
         #[cfg(feature = "HKObjectType")]
         #[unsafe(method(correlationType))]
         #[unsafe(method_family = none)]
@@ -110,25 +110,25 @@ extern_methods!(
             &self,
             object_type: &HKObjectType,
         ) -> Retained<NSSet<HKSample>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObject`
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKCorrelation {
+/// Methods declared on superclass `HKObject`.
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKCorrelation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKCorrelation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKCorrelation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

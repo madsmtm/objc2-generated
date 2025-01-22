@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPPlayableContentManagerContext {}
 
-extern_methods!(
-    unsafe impl MPPlayableContentManagerContext {
+impl MPPlayableContentManagerContext {
+    extern_methods!(
         /// The number of items the content server will display when content limiting is enforced.
         /// Returns NSIntegerMax if the content server will never limit the number of items.
         #[deprecated = "Use CarPlay framework"]
@@ -50,12 +50,12 @@ extern_methods!(
         #[unsafe(method(endpointAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn endpointAvailable(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPPlayableContentManagerContext {
+/// Methods declared on superclass `NSObject`.
+impl MPPlayableContentManagerContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -63,5 +63,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -42,8 +42,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLVertexAttribute {}
 
-extern_methods!(
-    unsafe impl MTLVertexAttribute {
+impl MTLVertexAttribute {
+    extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Retained<NSString>;
@@ -68,12 +68,12 @@ extern_methods!(
         #[unsafe(method(isPatchControlPointData))]
         #[unsafe(method_family = none)]
         pub fn isPatchControlPointData(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLVertexAttribute {
+/// Methods declared on superclass `NSObject`.
+impl MTLVertexAttribute {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,8 +81,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattribute?language=objc)
@@ -93,8 +93,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLAttribute {}
 
-extern_methods!(
-    unsafe impl MTLAttribute {
+impl MTLAttribute {
+    extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Retained<NSString>;
@@ -119,12 +119,12 @@ extern_methods!(
         #[unsafe(method(isPatchControlPointData))]
         #[unsafe(method_family = none)]
         pub fn isPatchControlPointData(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAttribute {
+/// Methods declared on superclass `NSObject`.
+impl MTLAttribute {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -132,8 +132,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// An identifier for a top-level Metal function.
 ///
@@ -189,8 +189,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLFunctionConstant {}
 
-extern_methods!(
-    unsafe impl MTLFunctionConstant {
+impl MTLFunctionConstant {
+    extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Retained<NSString>;
@@ -207,12 +207,12 @@ extern_methods!(
         #[unsafe(method(required))]
         #[unsafe(method_family = none)]
         pub fn required(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLFunctionConstant {
+/// Methods declared on superclass `NSObject`.
+impl MTLFunctionConstant {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -220,8 +220,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A handle to intermediate code used as inputs for either a MTLComputePipelineState or a MTLRenderPipelineState.
@@ -494,8 +494,8 @@ unsafe impl CopyingHelper for MTLCompileOptions {
 
 unsafe impl NSObjectProtocol for MTLCompileOptions {}
 
-extern_methods!(
-    unsafe impl MTLCompileOptions {
+impl MTLCompileOptions {
+    extern_methods!(
         /// List of preprocessor macros to consider to when compiling this program. Specified as key value pairs, using a NSDictionary. The keys must be NSString objects and values can be either NSString or NSNumber objects.
         ///
         /// The default value is nil.
@@ -687,12 +687,12 @@ extern_methods!(
         #[unsafe(method(setEnableLogging:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnableLogging(&self, enable_logging: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLCompileOptions {
+/// Methods declared on superclass `NSObject`.
+impl MTLCompileOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -700,8 +700,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLCompileOptions {
     #[inline]

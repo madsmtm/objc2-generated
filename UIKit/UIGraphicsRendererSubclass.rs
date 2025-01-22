@@ -13,10 +13,10 @@ use crate::*;
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsDrawingActions = *mut block2::Block<dyn Fn(NonNull<UIGraphicsRendererContext>)>;
 
-extern_methods!(
-    /// UIGraphicsRendererProtected
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl UIGraphicsRenderer {
+/// UIGraphicsRendererProtected.
+#[cfg(feature = "UIGraphicsRenderer")]
+impl UIGraphicsRenderer {
+    extern_methods!(
         #[unsafe(method(rendererContextClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererContextClass() -> &'static AnyClass;
@@ -37,5 +37,5 @@ extern_methods!(
             drawing_actions: UIGraphicsDrawingActions,
             completion_actions: UIGraphicsDrawingActions,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}

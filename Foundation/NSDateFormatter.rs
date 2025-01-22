@@ -82,9 +82,9 @@ unsafe impl CopyingHelper for NSDateFormatter {
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSDateFormatter {}
 
-extern_methods!(
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSDateFormatter {
+#[cfg(feature = "NSFormatter")]
+impl NSDateFormatter {
+    extern_methods!(
         #[unsafe(method(formattingContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
@@ -534,13 +534,13 @@ extern_methods!(
         #[unsafe(method(setDoesRelativeDateFormatting:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoesRelativeDateFormatting(&self, does_relative_date_formatting: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSDateFormatter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSFormatter")]
+impl NSDateFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -548,13 +548,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDateFormatterCompatibility
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSDateFormatter {
+/// NSDateFormatterCompatibility.
+#[cfg(feature = "NSFormatter")]
+impl NSDateFormatter {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
         #[unsafe(method(initWithDateFormat:allowNaturalLanguage:))]
@@ -569,5 +569,5 @@ extern_methods!(
         #[unsafe(method(allowsNaturalLanguage))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsNaturalLanguage(&self) -> bool;
-    }
-);
+    );
+}

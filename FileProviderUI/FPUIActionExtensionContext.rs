@@ -54,8 +54,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}
 
-extern_methods!(
-    unsafe impl FPUIActionExtensionContext {
+impl FPUIActionExtensionContext {
+    extern_methods!(
         /// The identifier for the domain managed by the current file provider.
         #[unsafe(method(domainIdentifier))]
         #[unsafe(method_family = none)]
@@ -85,12 +85,12 @@ extern_methods!(
         #[unsafe(method(cancelRequestWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl FPUIActionExtensionContext {
+/// Methods declared on superclass `NSObject`.
+impl FPUIActionExtensionContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -98,5 +98,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

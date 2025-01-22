@@ -30,9 +30,9 @@ unsafe impl CopyingHelper for VNClassifyImageRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNClassifyImageRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNClassifyImageRequest {
+#[cfg(feature = "VNRequest")]
+impl VNClassifyImageRequest {
+    extern_methods!(
         #[cfg(feature = "VNObservation")]
         /// Obtain the collection of classifications currently recognized by the Vision framework.
         ///
@@ -71,13 +71,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNClassificationObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNClassifyImageRequest {
+/// Methods declared on superclass `VNRequest`.
+#[cfg(feature = "VNRequest")]
+impl VNClassifyImageRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -94,18 +94,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNClassifyImageRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNClassifyImageRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Classification with a taxonomy of 1,303 possible identifiers.
 ///

@@ -21,8 +21,8 @@ unsafe impl Sync for HMCameraSource {}
 
 unsafe impl NSObjectProtocol for HMCameraSource {}
 
-extern_methods!(
-    unsafe impl HMCameraSource {
+impl HMCameraSource {
+    extern_methods!(
         /// Represents the aspect ratio of the camera source, defined as width over height.
         #[unsafe(method(aspectRatio))]
         #[unsafe(method_family = none)]
@@ -32,14 +32,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMCameraSource {
+/// Methods declared on superclass `NSObject`.
+impl HMCameraSource {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

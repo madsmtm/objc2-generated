@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISearchDisplayController {}
 
-extern_methods!(
-    unsafe impl UISearchDisplayController {
+impl UISearchDisplayController {
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UISearchBar",
@@ -153,12 +153,12 @@ extern_methods!(
         #[unsafe(method(navigationItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn navigationItem(&self) -> Option<Retained<UINavigationItem>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UISearchDisplayController {
+/// Methods declared on superclass `NSObject`.
+impl UISearchDisplayController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -166,8 +166,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchdisplaydelegate?language=objc)

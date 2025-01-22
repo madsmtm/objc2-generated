@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for HKObjectType {}
 
 unsafe impl NSSecureCoding for HKObjectType {}
 
-extern_methods!(
-    unsafe impl HKObjectType {
+impl HKObjectType {
+    extern_methods!(
         /// A unique string identifying a type of health object.
         ///
         /// See HKTypeIdentifiers.h for possible values.
@@ -120,17 +120,17 @@ extern_methods!(
         #[unsafe(method(requiresPerObjectAuthorization))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresPerObjectAuthorization(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKObjectType {
+/// Methods declared on superclass `NSObject`.
+impl HKObjectType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a type of object that describes a characteristic of the user (such as date of birth).
@@ -157,27 +157,27 @@ unsafe impl NSObjectProtocol for HKCharacteristicType {}
 
 unsafe impl NSSecureCoding for HKCharacteristicType {}
 
-extern_methods!(
-    unsafe impl HKCharacteristicType {}
-);
+impl HKCharacteristicType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKCharacteristicType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKCharacteristicType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKCharacteristicType {
+/// Methods declared on superclass `NSObject`.
+impl HKCharacteristicType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a type of HKSample.
@@ -204,8 +204,8 @@ unsafe impl NSObjectProtocol for HKSampleType {}
 
 unsafe impl NSSecureCoding for HKSampleType {}
 
-extern_methods!(
-    unsafe impl HKSampleType {
+impl HKSampleType {
+    extern_methods!(
         /// Returns YES if the start and end date for samples of this type are restricted by a maximum duration.
         #[unsafe(method(isMaximumDurationRestricted))]
         #[unsafe(method_family = none)]
@@ -237,26 +237,26 @@ extern_methods!(
         #[unsafe(method(allowsRecalibrationForEstimates))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsRecalibrationForEstimates(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKSampleType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKSampleType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKSampleType {
+/// Methods declared on superclass `NSObject`.
+impl HKSampleType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represent a type of HKCategorySample.
@@ -283,27 +283,27 @@ unsafe impl NSObjectProtocol for HKCategoryType {}
 
 unsafe impl NSSecureCoding for HKCategoryType {}
 
-extern_methods!(
-    unsafe impl HKCategoryType {}
-);
+impl HKCategoryType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKCategoryType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKCategoryType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKCategoryType {
+/// Methods declared on superclass `NSObject`.
+impl HKCategoryType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a type of HKCorrelation
@@ -330,27 +330,27 @@ unsafe impl NSObjectProtocol for HKCorrelationType {}
 
 unsafe impl NSSecureCoding for HKCorrelationType {}
 
-extern_methods!(
-    unsafe impl HKCorrelationType {}
-);
+impl HKCorrelationType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKCorrelationType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKCorrelationType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKCorrelationType {
+/// Methods declared on superclass `NSObject`.
+impl HKCorrelationType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a type of HKDocument.
@@ -377,27 +377,27 @@ unsafe impl NSObjectProtocol for HKDocumentType {}
 
 unsafe impl NSSecureCoding for HKDocumentType {}
 
-extern_methods!(
-    unsafe impl HKDocumentType {}
-);
+impl HKDocumentType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKDocumentType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKDocumentType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKDocumentType {
+/// Methods declared on superclass `NSObject`.
+impl HKDocumentType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents types of HKQuantitySamples.
@@ -424,8 +424,8 @@ unsafe impl NSObjectProtocol for HKQuantityType {}
 
 unsafe impl NSSecureCoding for HKQuantityType {}
 
-extern_methods!(
-    unsafe impl HKQuantityType {
+impl HKQuantityType {
+    extern_methods!(
         #[cfg(feature = "HKQuantityAggregationStyle")]
         #[unsafe(method(aggregationStyle))]
         #[unsafe(method_family = none)]
@@ -437,26 +437,26 @@ extern_methods!(
         #[unsafe(method(isCompatibleWithUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompatibleWithUnit(&self, unit: &HKUnit) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKQuantityType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKQuantityType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKQuantityType {
+/// Methods declared on superclass `NSObject`.
+impl HKQuantityType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a workout or exercise
@@ -483,27 +483,27 @@ unsafe impl NSObjectProtocol for HKWorkoutType {}
 
 unsafe impl NSSecureCoding for HKWorkoutType {}
 
-extern_methods!(
-    unsafe impl HKWorkoutType {}
-);
+impl HKWorkoutType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKWorkoutType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKWorkoutType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKWorkoutType {
+/// Methods declared on superclass `NSObject`.
+impl HKWorkoutType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a type of HKSeriesSample
@@ -530,8 +530,8 @@ unsafe impl NSObjectProtocol for HKSeriesType {}
 
 unsafe impl NSSecureCoding for HKSeriesType {}
 
-extern_methods!(
-    unsafe impl HKSeriesType {
+impl HKSeriesType {
+    extern_methods!(
         #[unsafe(method(workoutRouteType))]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutRouteType() -> Retained<Self>;
@@ -539,26 +539,26 @@ extern_methods!(
         #[unsafe(method(heartbeatSeriesType))]
         #[unsafe(method_family = none)]
         pub unsafe fn heartbeatSeriesType() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKSeriesType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKSeriesType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKSeriesType {
+/// Methods declared on superclass `NSObject`.
+impl HKSeriesType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents an HKActivitySummary
@@ -585,27 +585,27 @@ unsafe impl NSObjectProtocol for HKActivitySummaryType {}
 
 unsafe impl NSSecureCoding for HKActivitySummaryType {}
 
-extern_methods!(
-    unsafe impl HKActivitySummaryType {}
-);
+impl HKActivitySummaryType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKActivitySummaryType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKActivitySummaryType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKActivitySummaryType {
+/// Methods declared on superclass `NSObject`.
+impl HKActivitySummaryType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents an audiogram sample.
@@ -632,27 +632,27 @@ unsafe impl NSObjectProtocol for HKAudiogramSampleType {}
 
 unsafe impl NSSecureCoding for HKAudiogramSampleType {}
 
-extern_methods!(
-    unsafe impl HKAudiogramSampleType {}
-);
+impl HKAudiogramSampleType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKAudiogramSampleType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKAudiogramSampleType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKAudiogramSampleType {
+/// Methods declared on superclass `NSObject`.
+impl HKAudiogramSampleType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents an electrocardiogram sample.
@@ -679,27 +679,27 @@ unsafe impl NSObjectProtocol for HKElectrocardiogramType {}
 
 unsafe impl NSSecureCoding for HKElectrocardiogramType {}
 
-extern_methods!(
-    unsafe impl HKElectrocardiogramType {}
-);
+impl HKElectrocardiogramType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKElectrocardiogramType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKElectrocardiogramType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKElectrocardiogramType {
+/// Methods declared on superclass `NSObject`.
+impl HKElectrocardiogramType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a prescription type
@@ -726,27 +726,27 @@ unsafe impl NSObjectProtocol for HKPrescriptionType {}
 
 unsafe impl NSSecureCoding for HKPrescriptionType {}
 
-extern_methods!(
-    unsafe impl HKPrescriptionType {}
-);
+impl HKPrescriptionType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKPrescriptionType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKPrescriptionType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKPrescriptionType {
+/// Methods declared on superclass `NSObject`.
+impl HKPrescriptionType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents a scored assessment sample
@@ -773,27 +773,27 @@ unsafe impl NSObjectProtocol for HKScoredAssessmentType {}
 
 unsafe impl NSSecureCoding for HKScoredAssessmentType {}
 
-extern_methods!(
-    unsafe impl HKScoredAssessmentType {}
-);
+impl HKScoredAssessmentType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKScoredAssessmentType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKScoredAssessmentType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKScoredAssessmentType {
+/// Methods declared on superclass `NSObject`.
+impl HKScoredAssessmentType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents an experienced feeling and its surrounding context.
@@ -820,24 +820,24 @@ unsafe impl NSObjectProtocol for HKStateOfMindType {}
 
 unsafe impl NSSecureCoding for HKStateOfMindType {}
 
-extern_methods!(
-    unsafe impl HKStateOfMindType {}
-);
+impl HKStateOfMindType {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObjectType`
-    unsafe impl HKStateOfMindType {
+/// Methods declared on superclass `HKObjectType`.
+impl HKStateOfMindType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKStateOfMindType {
+/// Methods declared on superclass `NSObject`.
+impl HKStateOfMindType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

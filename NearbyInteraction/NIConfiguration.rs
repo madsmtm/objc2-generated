@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for NIDiscoveryToken {}
 
 unsafe impl NSSecureCoding for NIDiscoveryToken {}
 
-extern_methods!(
-    unsafe impl NIDiscoveryToken {
+impl NIDiscoveryToken {
+    extern_methods!(
         #[cfg(feature = "NIDeviceCapability")]
         /// Get the protocol that describes nearby interaction capabilities of the device that generated this token.
         ///
@@ -47,8 +47,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object to describe and configure parameters to be used in a nearby interaction session.
@@ -71,8 +71,8 @@ unsafe impl NSObjectProtocol for NIConfiguration {}
 
 unsafe impl NSSecureCoding for NIConfiguration {}
 
-extern_methods!(
-    unsafe impl NIConfiguration {
+impl NIConfiguration {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -81,8 +81,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object to describe and configure parameters to be used in a nearby interaction session for mutual relative positional measurements.
@@ -107,8 +107,8 @@ unsafe impl NSObjectProtocol for NINearbyPeerConfiguration {}
 
 unsafe impl NSSecureCoding for NINearbyPeerConfiguration {}
 
-extern_methods!(
-    unsafe impl NINearbyPeerConfiguration {
+impl NINearbyPeerConfiguration {
+    extern_methods!(
         /// The discovery token identifying the peer device for this session configuration.
         #[unsafe(method(peerDiscoveryToken))]
         #[unsafe(method_family = none)]
@@ -168,8 +168,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A session configuration that enables interaction with supported accessories.
@@ -192,8 +192,8 @@ unsafe impl NSObjectProtocol for NINearbyAccessoryConfiguration {}
 
 unsafe impl NSSecureCoding for NINearbyAccessoryConfiguration {}
 
-extern_methods!(
-    unsafe impl NINearbyAccessoryConfiguration {
+impl NINearbyAccessoryConfiguration {
+    extern_methods!(
         /// The discovery token identifying the accessory device for this session configuration.
         ///
         /// NINearbyObject updates for this accessory will contain this discovery token.
@@ -257,5 +257,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

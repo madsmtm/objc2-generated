@@ -101,8 +101,8 @@ unsafe impl CopyingHelper for NSTouch {
 
 unsafe impl NSObjectProtocol for NSTouch {}
 
-extern_methods!(
-    unsafe impl NSTouch {
+impl NSTouch {
+    extern_methods!(
         #[unsafe(method(identity))]
         #[unsafe(method_family = none)]
         pub unsafe fn identity(&self) -> Retained<AnyObject /* NSObjectProtocol+ NSCopying */>;
@@ -126,12 +126,12 @@ extern_methods!(
         #[unsafe(method(deviceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceSize(&self) -> NSSize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTouch {
+/// Methods declared on superclass `NSObject`.
+impl NSTouch {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -139,12 +139,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTouchBar
-    unsafe impl NSTouch {
+/// NSTouchBar.
+impl NSTouch {
+    extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> NSTouchType;
@@ -158,5 +158,5 @@ extern_methods!(
         #[unsafe(method(previousLocationInView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousLocationInView(&self, view: Option<&NSView>) -> NSPoint;
-    }
-);
+    );
+}

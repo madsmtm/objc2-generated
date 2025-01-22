@@ -25,8 +25,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZNetworkDevice {}
 
-extern_methods!(
-    unsafe impl VZNetworkDevice {
+impl VZNetworkDevice {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -52,5 +52,5 @@ extern_methods!(
         #[unsafe(method(setAttachment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachment(&self, attachment: Option<&VZNetworkDeviceAttachment>);
-    }
-);
+    );
+}

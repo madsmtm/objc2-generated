@@ -18,13 +18,13 @@ unsafe impl NSFastEnumeration for CMSensorDataList {}
 
 unsafe impl NSObjectProtocol for CMSensorDataList {}
 
-extern_methods!(
-    unsafe impl CMSensorDataList {}
-);
+impl CMSensorDataList {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMSensorDataList {
+/// Methods declared on superclass `NSObject`.
+impl CMSensorDataList {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -32,8 +32,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmsensorrecorder?language=objc)
@@ -44,8 +44,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CMSensorRecorder {}
 
-extern_methods!(
-    unsafe impl CMSensorRecorder {
+impl CMSensorRecorder {
+    extern_methods!(
         #[unsafe(method(isAccelerometerRecordingAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAccelerometerRecordingAvailable() -> bool;
@@ -71,12 +71,12 @@ extern_methods!(
         #[unsafe(method(recordAccelerometerForDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordAccelerometerForDuration(&self, duration: NSTimeInterval);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMSensorRecorder {
+/// Methods declared on superclass `NSObject`.
+impl CMSensorRecorder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,5 +84,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

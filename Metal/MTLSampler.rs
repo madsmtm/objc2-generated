@@ -157,8 +157,8 @@ unsafe impl CopyingHelper for MTLSamplerDescriptor {
 
 unsafe impl NSObjectProtocol for MTLSamplerDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLSamplerDescriptor {
+impl MTLSamplerDescriptor {
+    extern_methods!(
         /// Filter option for combining texels within a mipmap level the sample footprint is larger than a pixel (minification).
         ///
         /// The default value is MTLSamplerMinMagFilterNearest.
@@ -326,12 +326,12 @@ extern_methods!(
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub fn setLabel(&self, label: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLSamplerDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLSamplerDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -339,8 +339,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLSamplerDescriptor {
     #[inline]

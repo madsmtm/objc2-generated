@@ -70,10 +70,10 @@ unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSTableVi
 {
 }
 
-extern_methods!(
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-    {
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[cfg(all(
             feature = "NSControl",
             feature = "NSResponder",
@@ -222,5 +222,5 @@ extern_methods!(
             &self,
             default_row_animation: NSTableViewAnimationOptions,
         );
-    }
-);
+    );
+}

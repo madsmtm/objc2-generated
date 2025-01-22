@@ -28,13 +28,13 @@ unsafe impl CopyingHelper for VNVideoProcessorCadence {
 
 unsafe impl NSObjectProtocol for VNVideoProcessorCadence {}
 
-extern_methods!(
-    unsafe impl VNVideoProcessorCadence {}
-);
+impl VNVideoProcessorCadence {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNVideoProcessorCadence {
+/// Methods declared on superclass `NSObject`.
+impl VNVideoProcessorCadence {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -42,8 +42,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object that defines a frame-based cadence for processing the video stream.
@@ -62,8 +62,8 @@ unsafe impl CopyingHelper for VNVideoProcessorFrameRateCadence {
 
 unsafe impl NSObjectProtocol for VNVideoProcessorFrameRateCadence {}
 
-extern_methods!(
-    unsafe impl VNVideoProcessorFrameRateCadence {
+impl VNVideoProcessorFrameRateCadence {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -78,17 +78,17 @@ extern_methods!(
         #[unsafe(method(frameRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameRate(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNVideoProcessorFrameRateCadence {
+/// Methods declared on superclass `NSObject`.
+impl VNVideoProcessorFrameRateCadence {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object that defines a time-based cadence for processing the video stream.
@@ -107,8 +107,8 @@ unsafe impl CopyingHelper for VNVideoProcessorTimeIntervalCadence {
 
 unsafe impl NSObjectProtocol for VNVideoProcessorTimeIntervalCadence {}
 
-extern_methods!(
-    unsafe impl VNVideoProcessorTimeIntervalCadence {
+impl VNVideoProcessorTimeIntervalCadence {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -125,17 +125,17 @@ extern_methods!(
         #[unsafe(method(timeInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeInterval(&self) -> CFTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNVideoProcessorTimeIntervalCadence {
+/// Methods declared on superclass `NSObject`.
+impl VNVideoProcessorTimeIntervalCadence {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Options applied to a request's processing of the video.
@@ -154,8 +154,8 @@ unsafe impl CopyingHelper for VNVideoProcessorRequestProcessingOptions {
 
 unsafe impl NSObjectProtocol for VNVideoProcessorRequestProcessingOptions {}
 
-extern_methods!(
-    unsafe impl VNVideoProcessorRequestProcessingOptions {
+impl VNVideoProcessorRequestProcessingOptions {
+    extern_methods!(
         /// The cadence at which the request should be performed.
         ///
         /// If this property is not defined, then every frame will be processed.
@@ -167,12 +167,12 @@ extern_methods!(
         #[unsafe(method(setCadence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCadence(&self, cadence: Option<&VNVideoProcessorCadence>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNVideoProcessorRequestProcessingOptions {
+/// Methods declared on superclass `NSObject`.
+impl VNVideoProcessorRequestProcessingOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -180,8 +180,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A controller object that is used to perform one or more requests on a video stream.
@@ -196,8 +196,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VNVideoProcessor {}
 
-extern_methods!(
-    unsafe impl VNVideoProcessor {
+impl VNVideoProcessor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -294,14 +294,14 @@ extern_methods!(
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNVideoProcessor {
+/// Methods declared on superclass `NSObject`.
+impl VNVideoProcessor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

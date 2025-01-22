@@ -51,9 +51,9 @@ unsafe impl NSObjectProtocol for NSScrubberArrangedView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSScrubberArrangedView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberArrangedView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberArrangedView {
+    extern_methods!(
         #[unsafe(method(isSelected))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSelected(&self) -> bool;
@@ -76,13 +76,13 @@ extern_methods!(
         #[unsafe(method(applyLayoutAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyLayoutAttributes(&self, layout_attributes: &NSScrubberLayoutAttributes);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberArrangedView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberArrangedView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -93,28 +93,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberArrangedView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberArrangedView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberArrangedView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberArrangedView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The base view class for all selection decorations used by the
@@ -163,15 +163,15 @@ unsafe impl NSObjectProtocol for NSScrubberSelectionView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSScrubberSelectionView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberSelectionView {}
-);
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberSelectionView {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberSelectionView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberSelectionView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -182,28 +182,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberSelectionView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberSelectionView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberSelectionView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberSelectionView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The base view class that is arranged by a
@@ -252,15 +252,15 @@ unsafe impl NSObjectProtocol for NSScrubberItemView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSScrubberItemView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberItemView {}
-);
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberItemView {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberItemView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberItemView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -271,28 +271,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberItemView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberItemView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberItemView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberItemView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A simple
@@ -347,9 +347,9 @@ unsafe impl NSObjectProtocol for NSScrubberTextItemView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSScrubberTextItemView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberTextItemView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberTextItemView {
+    extern_methods!(
         #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
         #[unsafe(method(textField))]
         #[unsafe(method_family = none)]
@@ -363,13 +363,13 @@ extern_methods!(
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberTextItemView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberTextItemView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -380,28 +380,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberTextItemView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberTextItemView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberTextItemView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberTextItemView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A simple
@@ -459,9 +459,9 @@ unsafe impl NSObjectProtocol for NSScrubberImageItemView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSScrubberImageItemView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberImageItemView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberImageItemView {
+    extern_methods!(
         #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
         #[unsafe(method(imageView))]
         #[unsafe(method_family = none)]
@@ -488,13 +488,13 @@ extern_methods!(
         #[unsafe(method(setImageAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberImageItemView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberImageItemView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -505,25 +505,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberImageItemView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberImageItemView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubberImageItemView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubberImageItemView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -99,10 +99,10 @@ unsafe impl NSObjectProtocol for SKNode {}
 #[cfg(target_os = "macos")]
 unsafe impl NSSecureCoding for SKNode {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKNode {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl SKNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -530,19 +530,19 @@ extern_methods!(
         #[unsafe(method(isEqualToNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToNode(&self, node: &SKNode) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl SKNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "SKNodeEvent" on [`NSEvent`].

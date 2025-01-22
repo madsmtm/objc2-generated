@@ -25,9 +25,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureControl")]
 unsafe impl NSObjectProtocol for AVCaptureIndexPicker {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureControl")]
-    unsafe impl AVCaptureIndexPicker {
+#[cfg(feature = "AVCaptureControl")]
+impl AVCaptureIndexPicker {
+    extern_methods!(
         /// Initializes an `AVCaptureIndexPicker` to pick between `numberOfIndexes` values.
         ///
         ///
@@ -144,13 +144,13 @@ extern_methods!(
             &self,
             accessibility_identifier: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureControl`
-    #[cfg(feature = "AVCaptureControl")]
-    unsafe impl AVCaptureIndexPicker {
+/// Methods declared on superclass `AVCaptureControl`.
+#[cfg(feature = "AVCaptureControl")]
+impl AVCaptureIndexPicker {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -158,5 +158,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

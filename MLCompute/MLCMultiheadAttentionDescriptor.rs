@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for MLCMultiheadAttentionDescriptor {
 
 unsafe impl NSObjectProtocol for MLCMultiheadAttentionDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCMultiheadAttentionDescriptor {
+impl MLCMultiheadAttentionDescriptor {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -132,5 +132,5 @@ extern_methods!(
             model_dimension: NSUInteger,
             head_count: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

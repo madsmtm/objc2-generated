@@ -44,17 +44,17 @@ unsafe impl NSSeguePerforming for GKFriendRequestComposeViewController {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for GKFriendRequestComposeViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKFriendRequestComposeViewController {}
-);
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKFriendRequestComposeViewController {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKFriendRequestComposeViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKFriendRequestComposeViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -69,35 +69,35 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKFriendRequestComposeViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKFriendRequestComposeViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKFriendRequestComposeViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKFriendRequestComposeViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKFriendRequestComposeViewController {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKFriendRequestComposeViewController {
+    extern_methods!(
         /// Get the maximum number of recipients permitted
         #[deprecated]
         #[unsafe(method(maxNumberOfRecipients))]
@@ -146,8 +146,8 @@ extern_methods!(
                 &ProtocolObject<dyn GKFriendRequestComposeViewControllerDelegate>,
             >,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Optional delegate

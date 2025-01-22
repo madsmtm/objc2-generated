@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput {
+impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -32,5 +32,5 @@ extern_methods!(
         #[unsafe(method(didWrite))]
         #[unsafe(method_family = none)]
         pub unsafe fn didWrite(&self) -> bool;
-    }
-);
+    );
+}

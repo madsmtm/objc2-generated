@@ -46,8 +46,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSManagedObject {}
 
-extern_methods!(
-    unsafe impl NSManagedObject {
+impl NSManagedObject {
+    extern_methods!(
         #[unsafe(method(contextShouldIgnoreUnmodeledPropertyChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextShouldIgnoreUnmodeledPropertyChanges() -> bool;
@@ -260,12 +260,12 @@ extern_methods!(
         #[unsafe(method(observationInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn observationInfo(&self) -> *mut c_void;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSManagedObject {
+/// Methods declared on superclass `NSObject`.
+impl NSManagedObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -273,5 +273,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

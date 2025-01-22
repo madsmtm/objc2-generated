@@ -19,8 +19,8 @@ unsafe impl NSCoding for NSSliderAccessory {}
 
 unsafe impl NSObjectProtocol for NSSliderAccessory {}
 
-extern_methods!(
-    unsafe impl NSSliderAccessory {
+impl NSSliderAccessory {
+    extern_methods!(
         #[cfg(feature = "NSImage")]
         #[unsafe(method(accessoryWithImage:))]
         #[unsafe(method_family = none)]
@@ -48,12 +48,12 @@ extern_methods!(
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSliderAccessory {
+/// Methods declared on superclass `NSObject`.
+impl NSSliderAccessory {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -61,12 +61,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSSliderAccessory {}
-);
+impl NSSliderAccessory {
+    extern_methods!();
+}
 
 #[cfg(feature = "NSAccessibilityProtocols")]
 unsafe impl NSAccessibility for NSSliderAccessory {}
@@ -92,8 +92,8 @@ unsafe impl CopyingHelper for NSSliderAccessoryBehavior {
 
 unsafe impl NSObjectProtocol for NSSliderAccessoryBehavior {}
 
-extern_methods!(
-    unsafe impl NSSliderAccessoryBehavior {
+impl NSSliderAccessoryBehavior {
+    extern_methods!(
         /// The behavior is automatically picked to be the system standard for the slider's current context, e.g. NSTouchBarItems have `.valueStep` behavior.
         #[unsafe(method(automaticBehavior))]
         #[unsafe(method_family = none)]
@@ -137,12 +137,12 @@ extern_methods!(
         #[unsafe(method(handleAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleAction(&self, sender: &NSSliderAccessory);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSliderAccessoryBehavior {
+/// Methods declared on superclass `NSObject`.
+impl NSSliderAccessoryBehavior {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -150,5 +150,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

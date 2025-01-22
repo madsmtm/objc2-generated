@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for UIScribbleInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIScribbleInteraction {}
 
-extern_methods!(
-    unsafe impl UIScribbleInteraction {
+impl UIScribbleInteraction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -58,8 +58,8 @@ extern_methods!(
         #[unsafe(method(isPencilInputExpected))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPencilInputExpected(mtm: MainThreadMarker) -> bool;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscribbleinteractiondelegate?language=objc)

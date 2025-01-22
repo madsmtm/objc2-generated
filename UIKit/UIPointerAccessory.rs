@@ -102,8 +102,8 @@ unsafe impl CopyingHelper for UIPointerAccessory {
 
 unsafe impl NSObjectProtocol for UIPointerAccessory {}
 
-extern_methods!(
-    unsafe impl UIPointerAccessory {
+impl UIPointerAccessory {
+    extern_methods!(
         #[cfg(feature = "UIPointerStyle")]
         /// This accessory's shape.
         #[unsafe(method(shape))]
@@ -157,5 +157,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

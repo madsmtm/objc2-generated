@@ -71,9 +71,9 @@ unsafe impl UITableViewDelegate for UITableViewController {}
 ))]
 unsafe impl UITraitEnvironment for UITableViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UITableViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UITableViewController {
+    extern_methods!(
         #[cfg(feature = "UITableView")]
         #[unsafe(method(initWithStyle:))]
         #[unsafe(method_family = init)]
@@ -138,13 +138,13 @@ extern_methods!(
         #[unsafe(method(setRefreshControl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRefreshControl(&self, refresh_control: Option<&UIRefreshControl>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UITableViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UITableViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -152,5 +152,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

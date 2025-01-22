@@ -96,8 +96,8 @@ unsafe impl NSPasteboardWriting for NSColor {}
 
 unsafe impl NSSecureCoding for NSColor {}
 
-extern_methods!(
-    unsafe impl NSColor {
+impl NSColor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -817,21 +817,21 @@ extern_methods!(
         #[unsafe(method(setIgnoresAlpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIgnoresAlpha(ignores_alpha: bool, mtm: MainThreadMarker);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSColor {
+/// Methods declared on superclass `NSObject`.
+impl NSColor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSColor {
+/// NSDeprecated.
+impl NSColor {
+    extern_methods!(
         /// Historically used as the inner border highlight color for beveled buttons. No longer used.
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[unsafe(method(controlHighlightColor))]
@@ -934,19 +934,19 @@ extern_methods!(
             &self,
             name: &NSColorSpaceName,
         ) -> Option<Retained<NSColor>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSQuartzCoreAdditions
-    unsafe impl NSColor {
+/// NSQuartzCoreAdditions.
+impl NSColor {
+    extern_methods!(
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(colorWithCIColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorWithCIColor(color: &CIColor) -> Retained<NSColor>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSAppKitAdditions" on [`CIColor`].

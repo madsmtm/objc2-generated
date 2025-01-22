@@ -9,10 +9,10 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MPSGraphTensorShapeOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphTensorShapeOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(all(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
@@ -1416,5 +1416,5 @@ extern_methods!(
             shape_tensor: &MPSGraphTensor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

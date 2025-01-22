@@ -39,9 +39,9 @@ unsafe impl NSObjectProtocol for MPSCNNPooling {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPooling {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPooling {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPooling {
+    extern_methods!(
         /// Initialize a pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -107,13 +107,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPooling {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPooling {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -128,13 +128,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPooling {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPooling {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -142,8 +142,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -175,9 +175,9 @@ unsafe impl NSObjectProtocol for MPSCNNPoolingMax {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingMax {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingMax {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingMax {
+    extern_methods!(
         /// Initialize a MPSCNNPoolingMax pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -218,13 +218,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNPooling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingMax {
+/// Methods declared on superclass `MPSCNNPooling`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingMax {
+    extern_methods!(
         /// Initialize a pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -249,13 +249,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingMax {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingMax {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -270,13 +270,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingMax {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingMax {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -284,8 +284,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -324,9 +324,9 @@ unsafe impl NSObjectProtocol for MPSCNNPoolingAverage {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingAverage {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingAverage {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingAverage {
+    extern_methods!(
         /// How much zero padding to apply to both left and right borders of the input image for average pooling,
         /// when using
         ///
@@ -405,13 +405,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNPooling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingAverage {
+/// Methods declared on superclass `MPSCNNPooling`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingAverage {
+    extern_methods!(
         /// Initialize a pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -436,13 +436,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingAverage {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingAverage {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -457,13 +457,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingAverage {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingAverage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -471,8 +471,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -505,9 +505,9 @@ unsafe impl NSObjectProtocol for MPSCNNPoolingL2Norm {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingL2Norm {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingL2Norm {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingL2Norm {
+    extern_methods!(
         /// Initialize a MPSCNNPoolingL2Norm pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -548,13 +548,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNPooling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingL2Norm {
+/// Methods declared on superclass `MPSCNNPooling`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingL2Norm {
+    extern_methods!(
         /// Initialize a pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -579,13 +579,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingL2Norm {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingL2Norm {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -600,13 +600,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingL2Norm {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingL2Norm {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -614,8 +614,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -647,9 +647,9 @@ unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMax {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNDilatedPoolingMax {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDilatedPoolingMax {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDilatedPoolingMax {
+    extern_methods!(
         /// dilationRateX for accessing the image passed in as source
         #[unsafe(method(dilationRateX))]
         #[unsafe(method_family = none)]
@@ -707,13 +707,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNPooling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDilatedPoolingMax {
+/// Methods declared on superclass `MPSCNNPooling`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDilatedPoolingMax {
+    extern_methods!(
         /// Initialize a pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -762,13 +762,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDilatedPoolingMax {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDilatedPoolingMax {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -783,13 +783,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDilatedPoolingMax {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDilatedPoolingMax {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -797,8 +797,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -866,9 +866,9 @@ unsafe impl NSObjectProtocol for MPSCNNPoolingGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingGradient {
+    extern_methods!(
         /// An optional source size which defines together with primaryOffset, the set of input gradient
         /// pixels to take into account in the gradient computations.
         ///
@@ -951,13 +951,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -972,13 +972,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -986,8 +986,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -1058,9 +1058,9 @@ unsafe impl NSObjectProtocol for MPSCNNPoolingAverageGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingAverageGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingAverageGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingAverageGradient {
+    extern_methods!(
         /// How much zero padding to apply to both left and right borders of the input image for average pooling,
         /// when using
         ///
@@ -1139,13 +1139,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNPoolingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingAverageGradient {
+/// Methods declared on superclass `MPSCNNPoolingGradient`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingAverageGradient {
+    extern_methods!(
         /// Initialize a gradient pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -1170,13 +1170,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingAverageGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingAverageGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1191,13 +1191,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingAverageGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingAverageGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1205,8 +1205,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -1278,9 +1278,9 @@ unsafe impl NSObjectProtocol for MPSCNNPoolingMaxGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingMaxGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingMaxGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingMaxGradient {
+    extern_methods!(
         /// Initialize a gradient max pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -1321,13 +1321,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNPoolingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingMaxGradient {
+/// Methods declared on superclass `MPSCNNPoolingGradient`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingMaxGradient {
+    extern_methods!(
         /// Initialize a gradient pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -1352,13 +1352,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingMaxGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingMaxGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1373,13 +1373,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingMaxGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingMaxGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1387,8 +1387,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -1446,9 +1446,9 @@ unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingL2NormGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingL2NormGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingL2NormGradient {
+    extern_methods!(
         /// Initialize a gradient L2-norm pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -1489,13 +1489,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNPoolingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingL2NormGradient {
+/// Methods declared on superclass `MPSCNNPoolingGradient`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingL2NormGradient {
+    extern_methods!(
         /// Initialize a gradient pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -1520,13 +1520,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingL2NormGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingL2NormGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1541,13 +1541,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNPoolingL2NormGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNPoolingL2NormGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1555,8 +1555,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -1594,9 +1594,9 @@ unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMaxGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNDilatedPoolingMaxGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDilatedPoolingMaxGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDilatedPoolingMaxGradient {
+    extern_methods!(
         /// Initialize a MPSCNNDilatedPoolingMaxGradient pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -1654,13 +1654,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNPoolingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDilatedPoolingMaxGradient {
+/// Methods declared on superclass `MPSCNNPoolingGradient`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDilatedPoolingMaxGradient {
+    extern_methods!(
         /// Initialize a gradient pooling filter
         ///
         /// Parameter `device`: The device the filter will run on
@@ -1685,13 +1685,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDilatedPoolingMaxGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDilatedPoolingMaxGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1706,13 +1706,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDilatedPoolingMaxGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDilatedPoolingMaxGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1720,5 +1720,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

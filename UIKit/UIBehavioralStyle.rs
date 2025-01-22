@@ -32,15 +32,15 @@ unsafe impl RefEncode for UIBehavioralStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// UIBehavioralStyle
-    #[cfg(all(
-        feature = "UIButton",
-        feature = "UIControl",
-        feature = "UIResponder",
-        feature = "UIView"
-    ))]
-    unsafe impl UIButton {
+/// UIBehavioralStyle.
+#[cfg(all(
+    feature = "UIButton",
+    feature = "UIControl",
+    feature = "UIResponder",
+    feature = "UIView"
+))]
+impl UIButton {
+    extern_methods!(
         /// The button's behavioral style. This property always returns a concrete, resolved style (never UIBehavioralStyleAutomatic).
         #[unsafe(method(behavioralStyle))]
         #[unsafe(method_family = none)]
@@ -58,18 +58,18 @@ extern_methods!(
             &self,
             preferred_behavioral_style: UIBehavioralStyle,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIBehavioralStyle
-    #[cfg(all(
-        feature = "UIControl",
-        feature = "UIResponder",
-        feature = "UISlider",
-        feature = "UIView"
-    ))]
-    unsafe impl UISlider {
+/// UIBehavioralStyle.
+#[cfg(all(
+    feature = "UIControl",
+    feature = "UIResponder",
+    feature = "UISlider",
+    feature = "UIView"
+))]
+impl UISlider {
+    extern_methods!(
         /// The slider's behavioral style. This property always returns a concrete, resolved style (never UIBehavioralStyleAutomatic).
         #[unsafe(method(behavioralStyle))]
         #[unsafe(method_family = none)]
@@ -87,5 +87,5 @@ extern_methods!(
             &self,
             preferred_behavioral_style: UIBehavioralStyle,
         );
-    }
-);
+    );
+}

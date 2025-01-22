@@ -36,9 +36,9 @@ unsafe impl CopyingHelper for UIWindowScenePushPlacement {
 #[cfg(feature = "UIWindowScenePlacement")]
 unsafe impl NSObjectProtocol for UIWindowScenePushPlacement {}
 
-extern_methods!(
-    #[cfg(feature = "UIWindowScenePlacement")]
-    unsafe impl UIWindowScenePushPlacement {
+#[cfg(feature = "UIWindowScenePlacement")]
+impl UIWindowScenePushPlacement {
+    extern_methods!(
         #[cfg(feature = "UISceneSession")]
         /// Creates the placement that will target the given `sceneSession`.
         /// - Parameter targetSceneSession: The scene session of the window scene that will be backgrounded.
@@ -47,13 +47,13 @@ extern_methods!(
         pub unsafe fn placementTargetingSceneSession(
             target_scene_session: &UISceneSession,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIWindowScenePlacement`
-    #[cfg(feature = "UIWindowScenePlacement")]
-    unsafe impl UIWindowScenePushPlacement {
+/// Methods declared on superclass `UIWindowScenePlacement`.
+#[cfg(feature = "UIWindowScenePlacement")]
+impl UIWindowScenePushPlacement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -61,5 +61,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

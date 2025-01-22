@@ -26,8 +26,8 @@ unsafe impl NSObjectProtocol for SKShader {}
 
 unsafe impl NSSecureCoding for SKShader {}
 
-extern_methods!(
-    unsafe impl SKShader {
+impl SKShader {
+    extern_methods!(
         /// Create a custom shader with source code.
         ///
         ///
@@ -151,12 +151,12 @@ extern_methods!(
         #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributes(&self, attributes: &NSArray<SKAttribute>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKShader {
+/// Methods declared on superclass `NSObject`.
+impl SKShader {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -164,5 +164,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

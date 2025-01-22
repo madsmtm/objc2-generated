@@ -43,10 +43,10 @@ unsafe impl NSObjectProtocol for SKLightNode {}
 #[cfg(target_os = "macos")]
 unsafe impl NSSecureCoding for SKLightNode {}
 
-extern_methods!(
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKLightNode {
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKLightNode {
+    extern_methods!(
         /// Enables or disables lighting contribution from this light node.
         ///
         /// Set to YES; sprites using this light will be lit with the ambient color and
@@ -163,14 +163,14 @@ extern_methods!(
         #[unsafe(method(setCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: u32);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SKNode`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKLightNode {
+/// Methods declared on superclass `SKNode`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKLightNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -201,16 +201,16 @@ extern_methods!(
             classes: &NSSet<AnyClass>,
             mtm: MainThreadMarker,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKLightNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKLightNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

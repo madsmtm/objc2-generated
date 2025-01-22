@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for CKRecordZoneID {}
 
 unsafe impl NSSecureCoding for CKRecordZoneID {}
 
-extern_methods!(
-    unsafe impl CKRecordZoneID {
+impl CKRecordZoneID {
+    extern_methods!(
         /// Zone names must be 255 characters or less. Most UTF-8 characters are valid.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -51,5 +51,5 @@ extern_methods!(
         #[unsafe(method(ownerName))]
         #[unsafe(method_family = none)]
         pub unsafe fn ownerName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}

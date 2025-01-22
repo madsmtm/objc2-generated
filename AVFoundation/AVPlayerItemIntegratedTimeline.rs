@@ -52,8 +52,8 @@ unsafe impl Sync for AVPlayerItemSegment {}
 
 unsafe impl NSObjectProtocol for AVPlayerItemSegment {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemSegment {
+impl AVPlayerItemSegment {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -96,8 +96,8 @@ extern_methods!(
         #[unsafe(method(interstitialEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEvent(&self) -> Option<Retained<AVPlayerInterstitialEvent>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVPlayerItemIntegratedTimelineSnapshot provides an immutable representation of inspectable details from an AVPlayerItemIntegratedTimeline.
@@ -118,8 +118,8 @@ unsafe impl Sync for AVPlayerItemIntegratedTimelineSnapshot {}
 
 unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimelineSnapshot {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemIntegratedTimelineSnapshot {
+impl AVPlayerItemIntegratedTimelineSnapshot {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -180,8 +180,8 @@ extern_methods!(
             time_segment_out: Option<&mut Retained<AVPlayerItemSegment>>,
             segment_offset_out: NonNull<CMTime>,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVPlayerItemIntegratedTimeline provides detailed timing information and control for the sequence of playback of a primary AVPlayerItem and scheduled AVPlayerInterstitialEvents.
@@ -201,8 +201,8 @@ unsafe impl Sync for AVPlayerItemIntegratedTimeline {}
 
 unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimeline {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemIntegratedTimeline {
+impl AVPlayerItemIntegratedTimeline {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -230,12 +230,12 @@ extern_methods!(
         #[unsafe(method(currentDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentDate(&self) -> Option<Retained<NSDate>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemIntegratedTimelineControl
-    unsafe impl AVPlayerItemIntegratedTimeline {
+/// AVPlayerItemIntegratedTimelineControl.
+impl AVPlayerItemIntegratedTimeline {
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Seeks to a particular time in the integrated time domain and invokes the completionHandler
         ///
@@ -273,8 +273,8 @@ extern_methods!(
             date: &NSDate,
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines protocol for objects returned from timeline observer routines.
@@ -283,9 +283,9 @@ extern_protocol!(
     pub unsafe trait AVPlayerItemIntegratedTimelineObserver: NSObjectProtocol {}
 );
 
-extern_methods!(
-    /// AVPlayerItemIntegratedTimelineObserver
-    unsafe impl AVPlayerItemIntegratedTimeline {
+/// AVPlayerItemIntegratedTimelineObserver.
+impl AVPlayerItemIntegratedTimeline {
+    extern_methods!(
         /// Cancels a previously registered time observer.
         ///
         /// Parameter `observer`: An object returned by a previous call to -addPeriodicTimeObserverForInterval or -addBoundaryTimeObserverForSegment.
@@ -295,8 +295,8 @@ extern_methods!(
             &self,
             observer: &ProtocolObject<dyn AVPlayerItemIntegratedTimelineObserver>,
         );
-    }
-);
+    );
+}
 
 extern "C" {
     /// A notification which is posted when the snapshot objects provided by this timeline would be out of sync with the current timeline state. See keys below.
@@ -335,13 +335,13 @@ extern "C" {
         &'static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
 }
 
-extern_methods!(
-    /// AVPlayerItemIntegratedTimelineSupport
-    #[cfg(feature = "AVPlayerItem")]
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemIntegratedTimelineSupport.
+#[cfg(feature = "AVPlayerItem")]
+impl AVPlayerItem {
+    extern_methods!(
         /// Obtain an instance of AVPlayerItemIntegratedTimeline representing the timing and control of playback of the item with its scheduled AVPlayerInterstitialEvents. This value will return nil for AVPlayerItems in an interstitial player.
         #[unsafe(method(integratedTimeline))]
         #[unsafe(method_family = none)]
         pub unsafe fn integratedTimeline(&self) -> Retained<AVPlayerItemIntegratedTimeline>;
-    }
-);
+    );
+}

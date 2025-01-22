@@ -25,9 +25,9 @@ unsafe impl MKAnnotation for MKMultiPoint {}
 #[cfg(feature = "MKShape")]
 unsafe impl NSObjectProtocol for MKMultiPoint {}
 
-extern_methods!(
-    #[cfg(feature = "MKShape")]
-    unsafe impl MKMultiPoint {
+#[cfg(feature = "MKShape")]
+impl MKMultiPoint {
+    extern_methods!(
         #[cfg(feature = "MKGeometry")]
         #[unsafe(method(points))]
         #[unsafe(method_family = none)]
@@ -57,13 +57,13 @@ extern_methods!(
             &self,
             indexes: &NSIndexSet,
         ) -> Retained<NSArray<NSNumber>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MKShape")]
-    unsafe impl MKMultiPoint {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MKShape")]
+impl MKMultiPoint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -71,5 +71,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -306,8 +306,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSLinguisticTagger {}
 
-extern_methods!(
-    unsafe impl NSLinguisticTagger {
+impl NSLinguisticTagger {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(initWithTagSchemes:options:))]
@@ -567,12 +567,12 @@ extern_methods!(
             sentence_range: NSRangePointer,
             scores: Option<&mut Option<Retained<NSArray<NSValue>>>>,
         ) -> Option<Retained<NSArray<NSString>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLinguisticTagger {
+/// Methods declared on superclass `NSObject`.
+impl NSLinguisticTagger {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -580,13 +580,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSLinguisticAnalysis
-    #[cfg(feature = "NSString")]
-    unsafe impl NSString {
+/// NSLinguisticAnalysis.
+#[cfg(feature = "NSString")]
+impl NSString {
+    extern_methods!(
         #[cfg(all(
             feature = "NSArray",
             feature = "NSOrthography",
@@ -619,5 +619,5 @@ extern_methods!(
                 dyn Fn(*mut NSLinguisticTag, NSRange, NSRange, NonNull<Bool>) + '_,
             >,
         );
-    }
-);
+    );
+}

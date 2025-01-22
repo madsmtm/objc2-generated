@@ -68,8 +68,8 @@ unsafe impl NSObjectProtocol for CKOperationGroup {}
 
 unsafe impl NSSecureCoding for CKOperationGroup {}
 
-extern_methods!(
-    unsafe impl CKOperationGroup {
+impl CKOperationGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -178,14 +178,14 @@ extern_methods!(
             &self,
             expected_receive_size: CKOperationGroupTransferSize,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKOperationGroup {
+/// Methods declared on superclass `NSObject`.
+impl CKOperationGroup {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

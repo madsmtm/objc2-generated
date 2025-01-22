@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTreeNode {}
 
-extern_methods!(
-    unsafe impl NSTreeNode {
+impl NSTreeNode {
+    extern_methods!(
         #[unsafe(method(treeNodeWithRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn treeNodeWithRepresentedObject(
@@ -69,12 +69,12 @@ extern_methods!(
             sort_descriptors: &NSArray<NSSortDescriptor>,
             recursively: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTreeNode {
+/// Methods declared on superclass `NSObject`.
+impl NSTreeNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,5 +82,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

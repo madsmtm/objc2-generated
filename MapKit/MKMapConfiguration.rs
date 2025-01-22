@@ -46,8 +46,8 @@ unsafe impl NSObjectProtocol for MKMapConfiguration {}
 
 unsafe impl NSSecureCoding for MKMapConfiguration {}
 
-extern_methods!(
-    unsafe impl MKMapConfiguration {
+impl MKMapConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -64,5 +64,5 @@ extern_methods!(
         #[unsafe(method(setElevationStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setElevationStyle(&self, elevation_style: MKMapElevationStyle);
-    }
-);
+    );
+}

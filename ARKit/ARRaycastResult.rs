@@ -21,9 +21,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for ARRaycastResult {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARRaycastResult {
+impl ARRaycastResult {
+    extern_methods!(
         #[cfg(feature = "ARRaycastQuery")]
         /// Type of the target where the ray terminated.
         #[unsafe(method(target))]
@@ -53,16 +52,15 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2")]
-    unsafe impl ARRaycastResult {
+impl ARRaycastResult {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class() -> Retained<Self>;
-    }
-);
+    );
+}

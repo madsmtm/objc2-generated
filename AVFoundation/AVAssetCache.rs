@@ -26,8 +26,8 @@ unsafe impl Sync for AVAssetCache {}
 
 unsafe impl NSObjectProtocol for AVAssetCache {}
 
-extern_methods!(
-    unsafe impl AVAssetCache {
+impl AVAssetCache {
+    extern_methods!(
         #[unsafe(method(isPlayableOffline))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlayableOffline(&self) -> bool;
@@ -47,5 +47,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

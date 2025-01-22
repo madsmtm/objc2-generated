@@ -24,9 +24,9 @@ unsafe impl NSCoding for UIKeyboardLayoutGuide {}
 #[cfg(all(feature = "UILayoutGuide", feature = "UITrackingLayoutGuide"))]
 unsafe impl NSObjectProtocol for UIKeyboardLayoutGuide {}
 
-extern_methods!(
-    #[cfg(all(feature = "UILayoutGuide", feature = "UITrackingLayoutGuide"))]
-    unsafe impl UIKeyboardLayoutGuide {
+#[cfg(all(feature = "UILayoutGuide", feature = "UITrackingLayoutGuide"))]
+impl UIKeyboardLayoutGuide {
+    extern_methods!(
         /// Defaults to
         /// `NO.`
         #[unsafe(method(followsUndockedKeyboard))]
@@ -62,13 +62,13 @@ extern_methods!(
         #[unsafe(method(setKeyboardDismissPadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyboardDismissPadding(&self, keyboard_dismiss_padding: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UILayoutGuide", feature = "UITrackingLayoutGuide"))]
-    unsafe impl UIKeyboardLayoutGuide {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UILayoutGuide", feature = "UITrackingLayoutGuide"))]
+impl UIKeyboardLayoutGuide {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,5 +76,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLComputePipelineReflection {}
 
-extern_methods!(
-    unsafe impl MTLComputePipelineReflection {
+impl MTLComputePipelineReflection {
+    extern_methods!(
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(bindings))]
         #[unsafe(method_family = none)]
@@ -28,12 +28,12 @@ extern_methods!(
         #[unsafe(method(arguments))]
         #[unsafe(method_family = none)]
         pub fn arguments(&self) -> Retained<NSArray<MTLArgument>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLComputePipelineReflection {
+/// Methods declared on superclass `NSObject`.
+impl MTLComputePipelineReflection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -41,8 +41,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor?language=objc)
@@ -59,8 +59,8 @@ unsafe impl CopyingHelper for MTLComputePipelineDescriptor {
 
 unsafe impl NSObjectProtocol for MTLComputePipelineDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLComputePipelineDescriptor {
+impl MTLComputePipelineDescriptor {
+    extern_methods!(
         /// A string to help identify this object.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
@@ -264,12 +264,12 @@ extern_methods!(
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLComputePipelineDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLComputePipelineDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -277,8 +277,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLComputePipelineDescriptor {
     #[inline]

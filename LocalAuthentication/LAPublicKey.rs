@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LAPublicKey {}
 
-extern_methods!(
-    unsafe impl LAPublicKey {
+impl LAPublicKey {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Exports public key bytes.
         ///
@@ -106,5 +106,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

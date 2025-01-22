@@ -68,8 +68,8 @@ unsafe impl NSObjectProtocol for NSTextSelection {}
 
 unsafe impl NSSecureCoding for NSTextSelection {}
 
-extern_methods!(
-    unsafe impl NSTextSelection {
+impl NSTextSelection {
+    extern_methods!(
         #[cfg(feature = "NSTextRange")]
         #[unsafe(method(initWithRanges:affinity:granularity:))]
         #[unsafe(method_family = init)]
@@ -184,14 +184,14 @@ extern_methods!(
             &self,
             text_ranges: &NSArray<NSTextRange>,
         ) -> Retained<NSTextSelection>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextSelection {
+/// Methods declared on superclass `NSObject`.
+impl NSTextSelection {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

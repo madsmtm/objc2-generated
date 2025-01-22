@@ -25,17 +25,17 @@ unsafe impl CopyingHelper for PHObject {
 
 unsafe impl NSObjectProtocol for PHObject {}
 
-extern_methods!(
-    unsafe impl PHObject {
+impl PHObject {
+    extern_methods!(
         #[unsafe(method(localIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn localIdentifier(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHObject {
+/// Methods declared on superclass `NSObject`.
+impl PHObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -43,8 +43,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjectplaceholder?language=objc)
@@ -65,13 +65,13 @@ unsafe impl CopyingHelper for PHObjectPlaceholder {
 
 unsafe impl NSObjectProtocol for PHObjectPlaceholder {}
 
-extern_methods!(
-    unsafe impl PHObjectPlaceholder {}
-);
+impl PHObjectPlaceholder {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHObjectPlaceholder {
+/// Methods declared on superclass `NSObject`.
+impl PHObjectPlaceholder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,5 +79,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -81,8 +81,8 @@ unsafe impl NSObjectProtocol for BADownload {}
 
 unsafe impl NSSecureCoding for BADownload {}
 
-extern_methods!(
-    unsafe impl BADownload {
+impl BADownload {
+    extern_methods!(
         /// The current state of the respresented download.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
@@ -129,5 +129,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

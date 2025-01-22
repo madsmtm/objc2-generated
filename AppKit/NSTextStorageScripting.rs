@@ -7,10 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// Scripting
-    #[cfg(feature = "NSTextStorage")]
-    unsafe impl NSTextStorage {
+/// Scripting.
+#[cfg(feature = "NSTextStorage")]
+impl NSTextStorage {
+    extern_methods!(
         #[unsafe(method(attributeRuns))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeRuns(&self) -> Retained<NSArray<NSTextStorage>>;
@@ -68,5 +68,5 @@ extern_methods!(
         #[unsafe(method(setForegroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setForegroundColor(&self, foreground_color: Option<&NSColor>);
-    }
-);
+    );
+}

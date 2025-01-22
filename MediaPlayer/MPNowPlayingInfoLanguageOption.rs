@@ -87,8 +87,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOption {}
 
-extern_methods!(
-    unsafe impl MPNowPlayingInfoLanguageOption {
+impl MPNowPlayingInfoLanguageOption {
+    extern_methods!(
         #[unsafe(method(initWithType:languageTag:characteristics:displayName:identifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_languageTag_characteristics_displayName_identifier(
@@ -142,12 +142,12 @@ extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPNowPlayingInfoLanguageOption {
+/// Methods declared on superclass `NSObject`.
+impl MPNowPlayingInfoLanguageOption {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -155,8 +155,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiongroup?language=objc)
@@ -167,8 +167,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOptionGroup {}
 
-extern_methods!(
-    unsafe impl MPNowPlayingInfoLanguageOptionGroup {
+impl MPNowPlayingInfoLanguageOptionGroup {
+    extern_methods!(
         #[unsafe(method(initWithLanguageOptions:defaultLanguageOption:allowEmptySelection:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguageOptions_defaultLanguageOption_allowEmptySelection(
@@ -194,12 +194,12 @@ extern_methods!(
         #[unsafe(method(allowEmptySelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowEmptySelection(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPNowPlayingInfoLanguageOptionGroup {
+/// Methods declared on superclass `NSObject`.
+impl MPNowPlayingInfoLanguageOptionGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -207,5 +207,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

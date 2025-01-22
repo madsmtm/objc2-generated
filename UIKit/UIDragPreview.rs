@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for UIDragPreview {
 
 unsafe impl NSObjectProtocol for UIDragPreview {}
 
-extern_methods!(
-    unsafe impl UIDragPreview {
+impl UIDragPreview {
+    extern_methods!(
         #[cfg(all(
             feature = "UIDragPreviewParameters",
             feature = "UIPreviewParameters",
@@ -60,5 +60,5 @@ extern_methods!(
         #[unsafe(method(parameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn parameters(&self) -> Retained<UIDragPreviewParameters>;
-    }
-);
+    );
+}

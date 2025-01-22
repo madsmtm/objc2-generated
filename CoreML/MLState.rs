@@ -49,8 +49,8 @@ unsafe impl Sync for MLState {}
 
 unsafe impl NSObjectProtocol for MLState {}
 
-extern_methods!(
-    unsafe impl MLState {
+impl MLState {
+    extern_methods!(
         #[cfg(all(feature = "MLMultiArray", feature = "block2"))]
         /// Gets a mutable view into a state buffer.
         ///
@@ -73,5 +73,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -72,9 +72,9 @@ unsafe impl NSObjectProtocol for MPSImageArithmetic {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageArithmetic {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageArithmetic {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageArithmetic {
+    extern_methods!(
         #[unsafe(method(primaryScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryScale(&self) -> c_float;
@@ -154,13 +154,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSBinaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageArithmetic {
+/// Methods declared on superclass `MPSBinaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageArithmetic {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -181,13 +181,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageArithmetic {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageArithmetic {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -202,13 +202,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageArithmetic {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageArithmetic {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -216,8 +216,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -250,9 +250,9 @@ unsafe impl NSObjectProtocol for MPSImageAdd {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageAdd {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageAdd {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageAdd {
+    extern_methods!(
         /// Initialize the addition operator
         ///
         /// Parameter `device`: The device the filter will run on.
@@ -264,13 +264,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSBinaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageAdd {
+/// Methods declared on superclass `MPSBinaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageAdd {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -291,13 +291,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageAdd {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageAdd {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -312,13 +312,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageAdd {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageAdd {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -326,8 +326,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -360,9 +360,9 @@ unsafe impl NSObjectProtocol for MPSImageSubtract {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageSubtract {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageSubtract {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageSubtract {
+    extern_methods!(
         /// Initialize the subtraction operator
         ///
         /// Parameter `device`: The device the filter will run on.
@@ -374,13 +374,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSBinaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageSubtract {
+/// Methods declared on superclass `MPSBinaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageSubtract {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -401,13 +401,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageSubtract {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageSubtract {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -422,13 +422,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageSubtract {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageSubtract {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -436,8 +436,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -470,9 +470,9 @@ unsafe impl NSObjectProtocol for MPSImageMultiply {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageMultiply {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageMultiply {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageMultiply {
+    extern_methods!(
         /// Initialize the multiplication operator
         ///
         /// Parameter `device`: The device the filter will run on.
@@ -484,13 +484,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSBinaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageMultiply {
+/// Methods declared on superclass `MPSBinaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageMultiply {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -511,13 +511,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageMultiply {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageMultiply {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -532,13 +532,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageMultiply {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageMultiply {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -546,8 +546,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -580,9 +580,9 @@ unsafe impl NSObjectProtocol for MPSImageDivide {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageDivide {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageDivide {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageDivide {
+    extern_methods!(
         /// Initialize the division operator
         ///
         /// Parameter `device`: The device the filter will run on.
@@ -594,13 +594,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSBinaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageDivide {
+/// Methods declared on superclass `MPSBinaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageDivide {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -621,13 +621,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageDivide {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageDivide {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -642,13 +642,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageDivide {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageDivide {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -656,5 +656,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

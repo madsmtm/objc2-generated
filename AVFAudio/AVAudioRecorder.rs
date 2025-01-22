@@ -22,8 +22,8 @@ unsafe impl Sync for AVAudioRecorder {}
 
 unsafe impl NSObjectProtocol for AVAudioRecorder {}
 
-extern_methods!(
-    unsafe impl AVAudioRecorder {
+impl AVAudioRecorder {
+    extern_methods!(
         /// Init the AudioRecorder with a specified url and settings.
         ///
         /// The file type to create can be set through the corresponding settings key. If not set, it will be inferred from the file extension. Will overwrite a file at the specified url if a file exists.
@@ -205,12 +205,12 @@ extern_methods!(
             &self,
             channel_assignments: Option<&NSArray<AVAudioSessionChannelDescription>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioRecorder {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioRecorder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -218,8 +218,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A protocol for delegates of AVAudioRecorder.

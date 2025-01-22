@@ -31,9 +31,9 @@ unsafe impl CopyingHelper for MSMessageTemplateLayout {
 #[cfg(feature = "MSMessageLayout")]
 unsafe impl NSObjectProtocol for MSMessageTemplateLayout {}
 
-extern_methods!(
-    #[cfg(feature = "MSMessageLayout")]
-    unsafe impl MSMessageTemplateLayout {
+#[cfg(feature = "MSMessageLayout")]
+impl MSMessageTemplateLayout {
+    extern_methods!(
         /// Text to be used as a caption related to the message content.
         #[unsafe(method(caption))]
         #[unsafe(method_family = none)]
@@ -122,13 +122,13 @@ extern_methods!(
         #[unsafe(method(setImageSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageSubtitle(&self, image_subtitle: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MSMessageLayout")]
-    unsafe impl MSMessageTemplateLayout {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MSMessageLayout")]
+impl MSMessageTemplateLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -136,5 +136,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

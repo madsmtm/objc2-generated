@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSCoreDataCoreSpotlightDelegate {}
 
-extern_methods!(
-    unsafe impl NSCoreDataCoreSpotlightDelegate {
+impl NSCoreDataCoreSpotlightDelegate {
+    extern_methods!(
         #[unsafe(method(isIndexingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isIndexingEnabled(&self) -> bool;
@@ -80,14 +80,14 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCoreDataCoreSpotlightDelegate {
+/// Methods declared on superclass `NSObject`.
+impl NSCoreDataCoreSpotlightDelegate {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

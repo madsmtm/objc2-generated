@@ -143,8 +143,8 @@ unsafe impl NSObjectProtocol for NSError {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSError {}
 
-extern_methods!(
-    unsafe impl NSError {
+impl NSError {
+    extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(initWithDomain:code:userInfo:))]
         #[unsafe(method_family = init)]
@@ -232,17 +232,17 @@ extern_methods!(
         ) -> *mut block2::Block<
             dyn Fn(NonNull<NSError>, NonNull<NSErrorUserInfoKey>) -> *mut AnyObject,
         >;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSError {
+/// Methods declared on superclass `NSObject`.
+impl NSError {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSErrorRecoveryAttempting" on [`NSObject`].

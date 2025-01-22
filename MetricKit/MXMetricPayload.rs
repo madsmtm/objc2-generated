@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for MXMetricPayload {}
 
 unsafe impl NSSecureCoding for MXMetricPayload {}
 
-extern_methods!(
-    unsafe impl MXMetricPayload {
+impl MXMetricPayload {
+    extern_methods!(
         /// An NSString representation of the application version from which this payload was generated.
         ///
         /// If the application version was changed during the aggregation of this data, this value will reflect the latest application version at the time of retrieval.
@@ -172,12 +172,12 @@ extern_methods!(
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MXMetricPayload {
+/// Methods declared on superclass `NSObject`.
+impl MXMetricPayload {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -185,5 +185,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

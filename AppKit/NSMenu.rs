@@ -104,8 +104,8 @@ unsafe impl NSObjectProtocol for NSMenu {}
 #[cfg(feature = "NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSMenu {}
 
-extern_methods!(
-    unsafe impl NSMenu {
+impl NSMenu {
+    extern_methods!(
         #[unsafe(method(initWithTitle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle(this: Allocated<Self>, title: &NSString) -> Retained<Self>;
@@ -409,12 +409,12 @@ extern_methods!(
             &self,
             user_interface_layout_direction: NSUserInterfaceLayoutDirection,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMenu {
+/// Methods declared on superclass `NSObject`.
+impl NSMenu {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -422,12 +422,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPaletteMenus
-    unsafe impl NSMenu {
+/// NSPaletteMenus.
+impl NSMenu {
+    extern_methods!(
         #[cfg(all(feature = "NSColor", feature = "block2"))]
         /// Creates a palette menu displaying user-selectable color
         /// tags using the provided array of colors and optional titles.
@@ -510,17 +510,17 @@ extern_methods!(
         #[unsafe(method(setSelectedItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedItems(&self, selected_items: &NSArray<NSMenuItem>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSubmenuAction
-    unsafe impl NSMenu {
+/// NSSubmenuAction.
+impl NSMenu {
+    extern_methods!(
         #[unsafe(method(submenuAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submenuAction(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitemvalidation?language=objc)
@@ -615,14 +615,14 @@ unsafe impl RefEncode for NSMenuProperties {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSMenuPropertiesToUpdate
-    unsafe impl NSMenu {
+/// NSMenuPropertiesToUpdate.
+impl NSMenu {
+    extern_methods!(
         #[unsafe(method(propertiesToUpdate))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertiesToUpdate(&self) -> NSMenuProperties;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuwillsendactionnotification?language=objc)
@@ -659,9 +659,9 @@ extern "C" {
     pub static NSMenuDidEndTrackingNotification: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSMenu {
+/// NSDeprecated.
+impl NSMenu {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setMenuRepresentation:))]
         #[unsafe(method_family = none)]
@@ -743,5 +743,5 @@ extern_methods!(
         #[unsafe(method(isTornOff))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTornOff(&self) -> bool;
-    }
-);
+    );
+}

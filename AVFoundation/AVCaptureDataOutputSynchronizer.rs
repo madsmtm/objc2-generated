@@ -27,8 +27,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDataOutputSynchronizer {}
 
-extern_methods!(
-    unsafe impl AVCaptureDataOutputSynchronizer {
+impl AVCaptureDataOutputSynchronizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,8 +66,8 @@ extern_methods!(
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureDataOutputSynchronizerDelegate>>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizerdelegate?language=objc)
@@ -107,8 +107,8 @@ unsafe impl NSFastEnumeration for AVCaptureSynchronizedDataCollection {}
 
 unsafe impl NSObjectProtocol for AVCaptureSynchronizedDataCollection {}
 
-extern_methods!(
-    unsafe impl AVCaptureSynchronizedDataCollection {
+impl AVCaptureSynchronizedDataCollection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -156,8 +156,8 @@ extern_methods!(
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An abstract base class representing the data delivered by a data output through the AVCaptureDataOutputSynchronizer interface.
@@ -173,8 +173,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureSynchronizedData {}
 
-extern_methods!(
-    unsafe impl AVCaptureSynchronizedData {
+impl AVCaptureSynchronizedData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -191,8 +191,8 @@ extern_methods!(
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> CMTime;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An concrete subclass of AVCaptureSynchronizedData representing the data delivered by an AVCaptureVideoDataOutput or AVCaptureAudioDataOutput.
@@ -208,8 +208,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureSynchronizedSampleBufferData {}
 
-extern_methods!(
-    unsafe impl AVCaptureSynchronizedSampleBufferData {
+impl AVCaptureSynchronizedSampleBufferData {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// A sample buffer containing video or audio data.
         ///
@@ -235,12 +235,12 @@ extern_methods!(
         #[unsafe(method(droppedReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn droppedReason(&self) -> AVCaptureOutputDataDroppedReason;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureSynchronizedData`
-    unsafe impl AVCaptureSynchronizedSampleBufferData {
+/// Methods declared on superclass `AVCaptureSynchronizedData`.
+impl AVCaptureSynchronizedSampleBufferData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -248,8 +248,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An concrete subclass of AVCaptureSynchronizedData representing the data delivered by an AVCaptureMetadataOutput.
@@ -265,8 +265,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureSynchronizedMetadataObjectData {}
 
-extern_methods!(
-    unsafe impl AVCaptureSynchronizedMetadataObjectData {
+impl AVCaptureSynchronizedMetadataObjectData {
+    extern_methods!(
         #[cfg(feature = "AVMetadataObject")]
         /// An array of AVMetadataObject subclasses.
         ///
@@ -275,12 +275,12 @@ extern_methods!(
         #[unsafe(method(metadataObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataObjects(&self) -> Retained<NSArray<AVMetadataObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureSynchronizedData`
-    unsafe impl AVCaptureSynchronizedMetadataObjectData {
+/// Methods declared on superclass `AVCaptureSynchronizedData`.
+impl AVCaptureSynchronizedMetadataObjectData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -288,8 +288,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An concrete subclass of AVCaptureSynchronizedData representing the data delivered by an AVCaptureDepthDataOutput.
@@ -305,8 +305,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureSynchronizedDepthData {}
 
-extern_methods!(
-    unsafe impl AVCaptureSynchronizedDepthData {
+impl AVCaptureSynchronizedDepthData {
+    extern_methods!(
         #[cfg(feature = "AVDepthData")]
         /// An instance of AVDepthData.
         ///
@@ -332,12 +332,12 @@ extern_methods!(
         #[unsafe(method(droppedReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn droppedReason(&self) -> AVCaptureOutputDataDroppedReason;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureSynchronizedData`
-    unsafe impl AVCaptureSynchronizedDepthData {
+/// Methods declared on superclass `AVCaptureSynchronizedData`.
+impl AVCaptureSynchronizedDepthData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -345,5 +345,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

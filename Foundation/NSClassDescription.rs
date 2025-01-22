@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSClassDescription {}
 
-extern_methods!(
-    unsafe impl NSClassDescription {
+impl NSClassDescription {
+    extern_methods!(
         #[unsafe(method(registerClassDescription:forClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClassDescription_forClass(
@@ -56,12 +56,12 @@ extern_methods!(
             &self,
             relationship_key: &NSString,
         ) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSClassDescription {
+/// Methods declared on superclass `NSObject`.
+impl NSClassDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -69,8 +69,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSClassDescriptionPrimitives" on [`NSObject`].

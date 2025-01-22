@@ -163,9 +163,9 @@ unsafe impl NSUserInterfaceCompression for NSSegmentedControl {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSegmentedControl {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSegmentedControl {
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSegmentedControl {
+    extern_methods!(
         #[unsafe(method(segmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
@@ -378,13 +378,13 @@ extern_methods!(
         pub unsafe fn activeCompressionOptions(
             &self,
         ) -> Retained<NSUserInterfaceCompressionOptions>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSegmentedControl {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSegmentedControl {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -395,33 +395,33 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSegmentedControl {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSegmentedControl {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSegmentedControl {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSegmentedControl {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSegmentedControlConvenience
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSegmentedControl {
+/// NSSegmentedControlConvenience.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSegmentedControl {
+    extern_methods!(
         /// Creates a standard segmented control containing one segment for each of the provided labels.
         ///
         /// Parameter `labels`: An array of localized label strings to use for the control's segments.
@@ -464,5 +464,5 @@ extern_methods!(
             action: Option<Sel>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

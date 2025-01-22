@@ -19,8 +19,8 @@ unsafe impl Sync for CKSyncEngineConfiguration {}
 
 unsafe impl NSObjectProtocol for CKSyncEngineConfiguration {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineConfiguration {
+impl CKSyncEngineConfiguration {
+    extern_methods!(
         #[cfg(all(
             feature = "CKDatabase",
             feature = "CKSyncEngine",
@@ -141,5 +141,5 @@ extern_methods!(
         #[unsafe(method(setSubscriptionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionID(&self, subscription_id: Option<&CKSubscriptionID>);
-    }
-);
+    );
+}

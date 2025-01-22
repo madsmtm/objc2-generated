@@ -50,8 +50,8 @@ unsafe impl Sync for HMHome {}
 
 unsafe impl NSObjectProtocol for HMHome {}
 
-extern_methods!(
-    unsafe impl HMHome {
+impl HMHome {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -104,21 +104,21 @@ extern_methods!(
             name: &NSString,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMHome {
+/// Methods declared on superclass `NSObject`.
+impl HMHome {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HMAccessory
-    unsafe impl HMHome {
+/// HMAccessory.
+impl HMHome {
+    extern_methods!(
         #[cfg(feature = "HMAccessory")]
         /// Array of HMAccessory objects that represents all accessories added to the home.
         #[unsafe(method(accessories))]
@@ -268,12 +268,12 @@ extern_methods!(
         #[unsafe(method(supportsAddingNetworkRouter))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAddingNetworkRouter(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HMUser
-    unsafe impl HMHome {
+/// HMUser.
+impl HMHome {
+    extern_methods!(
         #[cfg(feature = "HMUser")]
         /// HMUser object representing the current user of the home.
         #[unsafe(method(currentUser))]
@@ -355,12 +355,12 @@ extern_methods!(
             &self,
             user: &HMUser,
         ) -> Retained<HMHomeAccessControl>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HMRoom
-    unsafe impl HMHome {
+/// HMRoom.
+impl HMHome {
+    extern_methods!(
         #[cfg(feature = "HMRoom")]
         /// Array of HMRoom objects that represents all rooms in the home.
         #[unsafe(method(rooms))]
@@ -418,12 +418,12 @@ extern_methods!(
         #[unsafe(method(roomForEntireHome))]
         #[unsafe(method_family = none)]
         pub unsafe fn roomForEntireHome(&self) -> Retained<HMRoom>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HMZone
-    unsafe impl HMHome {
+/// HMZone.
+impl HMHome {
+    extern_methods!(
         #[cfg(feature = "HMZone")]
         /// Array of HMZone objects that represents all the zones in the home.
         #[unsafe(method(zones))]
@@ -466,12 +466,12 @@ extern_methods!(
             zone: &HMZone,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HMServiceGroup
-    unsafe impl HMHome {
+/// HMServiceGroup.
+impl HMHome {
+    extern_methods!(
         #[cfg(feature = "HMServiceGroup")]
         /// Array of HMServiceGroup objects that represents all service groups in the home.
         #[unsafe(method(serviceGroups))]
@@ -514,12 +514,12 @@ extern_methods!(
             group: &HMServiceGroup,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HMActionSet
-    unsafe impl HMHome {
+/// HMActionSet.
+impl HMHome {
+    extern_methods!(
         #[cfg(feature = "HMActionSet")]
         /// Array of HMActionSet objects that represents all the action sets in the home.
         #[unsafe(method(actionSets))]
@@ -597,12 +597,12 @@ extern_methods!(
             &self,
             action_set_type: &NSString,
         ) -> Option<Retained<HMActionSet>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HMTrigger
-    unsafe impl HMHome {
+/// HMTrigger.
+impl HMHome {
+    extern_methods!(
         #[cfg(feature = "HMTrigger")]
         /// Array of HMTrigger objects that represents all the triggers in the home.
         #[unsafe(method(triggers))]
@@ -651,12 +651,12 @@ extern_methods!(
             trigger: &HMTrigger,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Matter
-    unsafe impl HMHome {
+/// Matter.
+impl HMHome {
+    extern_methods!(
         /// Identifier of the Matter controller associated with this home.
         /// This property can be passed as the first argument to +[MTRDeviceController sharedControllerWithId:xpcConnectBlock:] method
         /// to get a MTRDeviceController object.
@@ -682,8 +682,8 @@ extern_methods!(
         pub unsafe fn matterStartupParametersXPCConnectBlock(
             &self,
         ) -> NonNull<block2::Block<dyn Fn() -> NonNull<NSXPCConnection>>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// This delegate receives update on the various accessories, action sets, groups and triggers

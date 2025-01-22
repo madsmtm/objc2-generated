@@ -32,8 +32,8 @@ unsafe impl NSObjectProtocol for CLPlacemark {}
 
 unsafe impl NSSecureCoding for CLPlacemark {}
 
-extern_methods!(
-    unsafe impl CLPlacemark {
+impl CLPlacemark {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -119,16 +119,16 @@ extern_methods!(
         #[unsafe(method(areasOfInterest))]
         #[unsafe(method_family = none)]
         pub unsafe fn areasOfInterest(&self) -> Option<Retained<NSArray<NSString>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// ContactsAdditions
-    unsafe impl CLPlacemark {
+/// ContactsAdditions.
+impl CLPlacemark {
+    extern_methods!(
         #[cfg(feature = "objc2-contacts")]
         #[cfg(not(target_os = "tvos"))]
         #[unsafe(method(postalAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn postalAddress(&self) -> Option<Retained<CNPostalAddress>>;
-    }
-);
+    );
+}

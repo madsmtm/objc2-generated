@@ -42,13 +42,13 @@ unsafe impl CopyingHelper for DOMCSSImportRule {
 ))]
 unsafe impl NSObjectProtocol for DOMCSSImportRule {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSImportRule {
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSImportRule {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(href))]
         #[unsafe(method_family = none)]
@@ -65,34 +65,34 @@ extern_methods!(
         #[unsafe(method(styleSheet))]
         #[unsafe(method_family = none)]
         pub unsafe fn styleSheet(&self) -> Option<Retained<DOMCSSStyleSheet>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSImportRule {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSImportRule {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSImportRule {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSImportRule {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -17,9 +17,9 @@ extern_class!(
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl NSObjectProtocol for WKInterfaceSKScene {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceSKScene {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceSKScene {
+    extern_methods!(
         #[deprecated = "Use SpriteKit.SpriteView instead."]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -43,15 +43,15 @@ extern_methods!(
         #[unsafe(method(setPreferredFramesPerSecond:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceSKScene {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceSKScene {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

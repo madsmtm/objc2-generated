@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CXCall {}
 
-extern_methods!(
-    unsafe impl CXCall {
+impl CXCall {
+    extern_methods!(
         #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
@@ -44,14 +44,14 @@ extern_methods!(
         #[unsafe(method(isEqualToCall:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToCall(&self, call: &CXCall) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CXCall {
+/// Methods declared on superclass `NSObject`.
+impl CXCall {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

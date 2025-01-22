@@ -22,9 +22,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for ARTrackedRaycast {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARTrackedRaycast {
+impl ARTrackedRaycast {
+    extern_methods!(
         /// Stop raycasting.
         ///
         /// The raycast will be continuously tracked until stopped.
@@ -40,16 +39,15 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2")]
-    unsafe impl ARTrackedRaycast {
+impl ARTrackedRaycast {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -32,9 +32,9 @@ unsafe impl NSObjectProtocol for CLCircularRegion {}
 #[cfg(feature = "CLRegion")]
 unsafe impl NSSecureCoding for CLCircularRegion {}
 
-extern_methods!(
-    #[cfg(feature = "CLRegion")]
-    unsafe impl CLCircularRegion {
+#[cfg(feature = "CLRegion")]
+impl CLCircularRegion {
+    extern_methods!(
         #[cfg(feature = "CLLocation")]
         #[deprecated]
         #[unsafe(method(initWithCenter:radius:identifier:))]
@@ -63,13 +63,13 @@ extern_methods!(
         #[unsafe(method(containsCoordinate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsCoordinate(&self, coordinate: CLLocationCoordinate2D) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLRegion`
-    #[cfg(feature = "CLRegion")]
-    unsafe impl CLCircularRegion {
+/// Methods declared on superclass `CLRegion`.
+#[cfg(feature = "CLRegion")]
+impl CLCircularRegion {
+    extern_methods!(
         #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[unsafe(method(initCircularRegionWithCenter:radius:identifier:))]
@@ -80,13 +80,13 @@ extern_methods!(
             radius: CLLocationDistance,
             identifier: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CLRegion")]
-    unsafe impl CLCircularRegion {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CLRegion")]
+impl CLCircularRegion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -94,5 +94,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

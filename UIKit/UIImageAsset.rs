@@ -24,8 +24,8 @@ unsafe impl NSObjectProtocol for UIImageAsset {}
 
 unsafe impl NSSecureCoding for UIImageAsset {}
 
-extern_methods!(
-    unsafe impl UIImageAsset {
+impl UIImageAsset {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -83,14 +83,14 @@ extern_methods!(
             &self,
             trait_collection: &UITraitCollection,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIImageAsset {
+/// Methods declared on superclass `NSObject`.
+impl UIImageAsset {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -58,8 +58,8 @@ unsafe impl NSObjectProtocol for SKTexture {}
 
 unsafe impl NSSecureCoding for SKTexture {}
 
-extern_methods!(
-    unsafe impl SKTexture {
+impl SKTexture {
+    extern_methods!(
         /// Create a texture from an image file. Behaves similar to imageNamed: in UIImage or NSImage
         ///
         ///
@@ -259,12 +259,12 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn()>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKTexture {
+/// Methods declared on superclass `NSObject`.
+impl SKTexture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -272,5 +272,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

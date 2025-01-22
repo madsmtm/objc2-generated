@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLModel {}
 
-extern_methods!(
-    unsafe impl MLModel {
+impl MLModel {
+    extern_methods!(
         #[cfg(feature = "MLModelDescription")]
         /// A model holds a description of its required inputs and expected outputs.
         #[unsafe(method(modelDescription))]
@@ -191,12 +191,12 @@ extern_methods!(
             configuration: &MLModelConfiguration,
             handler: &block2::Block<dyn Fn(*mut MLModel, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLModel {
+/// Methods declared on superclass `NSObject`.
+impl MLModel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -204,5 +204,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

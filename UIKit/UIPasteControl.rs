@@ -50,8 +50,8 @@ unsafe impl NSObjectProtocol for UIPasteControlConfiguration {}
 
 unsafe impl NSSecureCoding for UIPasteControlConfiguration {}
 
-extern_methods!(
-    unsafe impl UIPasteControlConfiguration {
+impl UIPasteControlConfiguration {
+    extern_methods!(
         #[unsafe(method(displayMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayMode(&self) -> UIPasteControlDisplayMode;
@@ -115,12 +115,12 @@ extern_methods!(
         #[unsafe(method(setBaseBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBaseBackgroundColor(&self, base_background_color: Option<&UIColor>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPasteControlConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl UIPasteControlConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -128,8 +128,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol?language=objc)
@@ -217,9 +217,9 @@ unsafe impl UIResponderStandardEditActions for UIPasteControl {}
 ))]
 unsafe impl UITraitEnvironment for UIPasteControl {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIPasteControl {
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIPasteControl {
+    extern_methods!(
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<UIPasteControlConfiguration>;
@@ -259,13 +259,13 @@ extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIControl`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIPasteControl {
+/// Methods declared on superclass `UIControl`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIPasteControl {
+    extern_methods!(
         #[cfg(all(
             feature = "UIAction",
             feature = "UIMenuElement",
@@ -279,13 +279,13 @@ extern_methods!(
             frame: CGRect,
             primary_action: Option<&UIAction>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIPasteControl {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIPasteControl {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -293,5 +293,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for MEMessageEncodingResult {}
 
 unsafe impl NSSecureCoding for MEMessageEncodingResult {}
 
-extern_methods!(
-    unsafe impl MEMessageEncodingResult {
+impl MEMessageEncodingResult {
+    extern_methods!(
         #[cfg(feature = "MEEncodedOutgoingMessage")]
         /// The encoded message. Nil if no need to encode or an error occured while encoding
         #[unsafe(method(encodedMessage))]
@@ -56,5 +56,5 @@ extern_methods!(
             signing_error: Option<&NSError>,
             encryption_error: Option<&NSError>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

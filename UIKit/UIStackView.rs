@@ -136,9 +136,9 @@ unsafe impl UIResponderStandardEditActions for UIStackView {}
 ))]
 unsafe impl UITraitEnvironment for UIStackView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIStackView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIStackView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -243,13 +243,13 @@ extern_methods!(
             &self,
             layout_margins_relative_arrangement: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIStackView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIStackView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -257,5 +257,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

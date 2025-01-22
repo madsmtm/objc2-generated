@@ -23,15 +23,15 @@ extern_class!(
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSNDArrayGradientState {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSNDArrayGradientState {}
-);
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSNDArrayGradientState {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSNDArrayGradientState {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSNDArrayGradientState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -131,15 +131,15 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSNDArrayGradientState {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSNDArrayGradientState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

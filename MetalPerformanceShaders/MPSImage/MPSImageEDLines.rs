@@ -55,9 +55,9 @@ unsafe impl NSObjectProtocol for MPSImageEDLines {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageEDLines {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSImageEDLines {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSImageEDLines {
+    extern_methods!(
         /// Initialize an EDLines kernel on a given device with specified parameters.
         ///
         /// Parameter `device`: The device the filter will run on
@@ -250,13 +250,13 @@ extern_methods!(
         #[unsafe(method(setMergeLocalityThreshold:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMergeLocalityThreshold(&self, merge_locality_threshold: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSImageEDLines {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSImageEDLines {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -285,13 +285,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSImageEDLines {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSImageEDLines {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -299,5 +299,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

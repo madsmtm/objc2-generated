@@ -833,9 +833,9 @@ unsafe impl NSObjectProtocol for MPSRayIntersector {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSRayIntersector {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRayIntersector {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRayIntersector {
+    extern_methods!(
         /// Whether to ignore intersections between rays and back-facing or front-facing triangles
         /// or quadrilaterals. Defaults to MTLCullModeNone.
         ///
@@ -1377,13 +1377,13 @@ extern_methods!(
             intersection_texture: &ProtocolObject<dyn MTLTexture>,
             acceleration_structure: &MPSAccelerationStructure,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRayIntersector {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRayIntersector {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1398,15 +1398,15 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRayIntersector {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRayIntersector {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

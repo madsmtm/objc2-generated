@@ -149,9 +149,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSColorPanel {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSColorPanel {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSColorPanel {
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSColorPanel {
+    extern_methods!(
         #[unsafe(method(sharedColorPanel))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedColorPanel(mtm: MainThreadMarker) -> Retained<NSColorPanel>;
@@ -248,13 +248,13 @@ extern_methods!(
         #[unsafe(method(detachColorList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detachColorList(&self, color_list: &NSColorList);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSWindow`
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSColorPanel {
+/// Methods declared on superclass `NSWindow`.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSColorPanel {
+    extern_methods!(
         #[cfg(feature = "NSGraphics")]
         #[unsafe(method(initWithContentRect:styleMask:backing:defer:))]
         #[unsafe(method_family = init)]
@@ -289,38 +289,38 @@ extern_methods!(
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSColorPanel {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSColorPanel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSColorPanel {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSColorPanel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSColorPanel
-    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
-    unsafe impl NSApplication {
+/// NSColorPanel.
+#[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(orderFrontColorPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontColorPanel(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorchanging?language=objc)

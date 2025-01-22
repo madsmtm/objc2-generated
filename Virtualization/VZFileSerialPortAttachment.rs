@@ -23,9 +23,9 @@ extern_class!(
 #[cfg(feature = "VZSerialPortAttachment")]
 unsafe impl NSObjectProtocol for VZFileSerialPortAttachment {}
 
-extern_methods!(
-    #[cfg(feature = "VZSerialPortAttachment")]
-    unsafe impl VZFileSerialPortAttachment {
+#[cfg(feature = "VZSerialPortAttachment")]
+impl VZFileSerialPortAttachment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -63,5 +63,5 @@ extern_methods!(
         #[unsafe(method(append))]
         #[unsafe(method_family = none)]
         pub unsafe fn append(&self) -> bool;
-    }
-);
+    );
+}

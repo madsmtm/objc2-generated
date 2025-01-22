@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for SFAcousticFeature {}
 
 unsafe impl NSSecureCoding for SFAcousticFeature {}
 
-extern_methods!(
-    unsafe impl SFAcousticFeature {
+impl SFAcousticFeature {
+    extern_methods!(
         #[unsafe(method(acousticFeatureValuePerFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn acousticFeatureValuePerFrame(&self) -> Retained<NSArray<NSNumber>>;
@@ -34,12 +34,12 @@ extern_methods!(
         #[unsafe(method(frameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameDuration(&self) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFAcousticFeature {
+/// Methods declared on superclass `NSObject`.
+impl SFAcousticFeature {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -47,8 +47,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfvoiceanalytics?language=objc)
@@ -69,8 +69,8 @@ unsafe impl NSObjectProtocol for SFVoiceAnalytics {}
 
 unsafe impl NSSecureCoding for SFVoiceAnalytics {}
 
-extern_methods!(
-    unsafe impl SFVoiceAnalytics {
+impl SFVoiceAnalytics {
+    extern_methods!(
         #[unsafe(method(jitter))]
         #[unsafe(method_family = none)]
         pub unsafe fn jitter(&self) -> Retained<SFAcousticFeature>;
@@ -86,12 +86,12 @@ extern_methods!(
         #[unsafe(method(voicing))]
         #[unsafe(method_family = none)]
         pub unsafe fn voicing(&self) -> Retained<SFAcousticFeature>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFVoiceAnalytics {
+/// Methods declared on superclass `NSObject`.
+impl SFVoiceAnalytics {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -99,5 +99,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -40,8 +40,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptionGroup {}
 
-extern_methods!(
-    unsafe impl AVCaptionGroup {
+impl AVCaptionGroup {
+    extern_methods!(
         #[cfg(all(feature = "AVCaption", feature = "objc2-core-media"))]
         /// Initializes a caption group with the given set of captions and the time range.
         ///
@@ -88,12 +88,12 @@ extern_methods!(
         #[unsafe(method(captions))]
         #[unsafe(method_family = none)]
         pub unsafe fn captions(&self) -> Retained<NSArray<AVCaption>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCaptionGroup {
+/// Methods declared on superclass `NSObject`.
+impl AVCaptionGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -101,5 +101,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

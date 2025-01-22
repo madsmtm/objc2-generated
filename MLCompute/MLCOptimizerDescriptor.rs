@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for MLCOptimizerDescriptor {
 
 unsafe impl NSObjectProtocol for MLCOptimizerDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCOptimizerDescriptor {
+impl MLCOptimizerDescriptor {
+    extern_methods!(
         /// The learning rate
         #[deprecated]
         #[unsafe(method(learningRate))]
@@ -179,12 +179,12 @@ extern_methods!(
             regularization_type: MLCRegularizationType,
             regularization_scale: c_float,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLCOptimizerDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MLCOptimizerDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -192,5 +192,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

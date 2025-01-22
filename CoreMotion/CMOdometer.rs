@@ -53,8 +53,8 @@ unsafe impl NSObjectProtocol for CMOdometerData {}
 
 unsafe impl NSSecureCoding for CMOdometerData {}
 
-extern_methods!(
-    unsafe impl CMOdometerData {
+impl CMOdometerData {
+    extern_methods!(
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
@@ -108,12 +108,12 @@ extern_methods!(
         #[unsafe(method(maxAbsSlope))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxAbsSlope(&self) -> Option<Retained<NSNumber>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMOdometerData {
+/// Methods declared on superclass `NSObject`.
+impl CMOdometerData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -121,5 +121,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

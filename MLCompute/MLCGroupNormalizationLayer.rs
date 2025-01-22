@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCGroupNormalizationLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCGroupNormalizationLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCGroupNormalizationLayer {
+    extern_methods!(
         /// The number of feature channels
         #[deprecated]
         #[unsafe(method(featureChannelCount))]
@@ -93,13 +93,13 @@ extern_methods!(
             gamma: Option<&MLCTensor>,
             variance_epsilon: c_float,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCGroupNormalizationLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCGroupNormalizationLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -109,5 +109,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

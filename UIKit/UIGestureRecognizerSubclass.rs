@@ -7,10 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// UIGestureRecognizerProtected
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UIGestureRecognizer {
+/// UIGestureRecognizerProtected.
+#[cfg(feature = "UIGestureRecognizer")]
+impl UIGestureRecognizer {
+    extern_methods!(
         /// Setter for [`state`][Self::state].
         #[unsafe(method(setState:))]
         #[unsafe(method_family = none)]
@@ -123,5 +123,5 @@ extern_methods!(
             presses: &NSSet<UIPress>,
             event: &UIPressesEvent,
         );
-    }
-);
+    );
+}

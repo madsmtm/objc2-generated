@@ -63,8 +63,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKAudioFilePlayerItem {}
 
-extern_methods!(
-    unsafe impl WKAudioFilePlayerItem {
+impl WKAudioFilePlayerItem {
+    extern_methods!(
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -103,14 +103,14 @@ extern_methods!(
         #[unsafe(method(setCurrentTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKAudioFilePlayerItem {
+/// Methods declared on superclass `NSObject`.
+impl WKAudioFilePlayerItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

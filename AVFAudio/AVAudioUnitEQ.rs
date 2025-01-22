@@ -111,8 +111,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioUnitEQFilterParameters {}
 
-extern_methods!(
-    unsafe impl AVAudioUnitEQFilterParameters {
+impl AVAudioUnitEQFilterParameters {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -180,17 +180,17 @@ extern_methods!(
         #[unsafe(method(setBypass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBypass(&self, bypass: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioUnitEQFilterParameters {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioUnitEQFilterParameters {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVAudioUnitEffect that implements a Multi-Band Equalizer.
@@ -213,13 +213,13 @@ extern_class!(
 ))]
 unsafe impl NSObjectProtocol for AVAudioUnitEQ {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitEffect"
-    ))]
-    unsafe impl AVAudioUnitEQ {
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+impl AVAudioUnitEQ {
+    extern_methods!(
         /// Initialize the EQ with number of bands.
         ///
         /// Parameter `numberOfBands`: The number of bands created by the EQ.
@@ -250,17 +250,17 @@ extern_methods!(
         #[unsafe(method(setGlobalGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlobalGain(&self, global_gain: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAudioUnitEffect`
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitEffect"
-    ))]
-    unsafe impl AVAudioUnitEQ {
+/// Methods declared on superclass `AVAudioUnitEffect`.
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+impl AVAudioUnitEQ {
+    extern_methods!(
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// Create an AVAudioUnitEffect object.
@@ -280,17 +280,17 @@ extern_methods!(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitEffect"
-    ))]
-    unsafe impl AVAudioUnitEQ {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+impl AVAudioUnitEQ {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -298,5 +298,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

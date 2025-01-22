@@ -8,20 +8,20 @@ use objc2_model_io::*;
 
 use crate::*;
 
-extern_methods!(
-    /// SCNModelIO
-    /// ModelIO.h
-    ///
-    /// Bridge with the Model I/O framework
-    #[cfg(feature = "SCNScene")]
-    unsafe impl SCNScene {
+/// SCNModelIO.
+/// ModelIO.h
+///
+/// Bridge with the Model I/O framework
+#[cfg(feature = "SCNScene")]
+impl SCNScene {
+    extern_methods!(
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(sceneWithMDLAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithMDLAsset(mdl_asset: &MDLAsset) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "SCNModelIO" on [`MDLAsset`].
@@ -47,17 +47,17 @@ extern_category!(
     unsafe impl MDLAssetSCNModelIO for MDLAsset {}
 );
 
-extern_methods!(
-    /// SCNModelIO
-    #[cfg(feature = "SCNNode")]
-    unsafe impl SCNNode {
+/// SCNModelIO.
+#[cfg(feature = "SCNNode")]
+impl SCNNode {
+    extern_methods!(
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(nodeWithMDLObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithMDLObject(mdl_object: &MDLObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "SCNModelIO" on [`MDLObject`].
@@ -83,17 +83,17 @@ extern_category!(
     unsafe impl MDLObjectSCNModelIO for MDLObject {}
 );
 
-extern_methods!(
-    /// SCNModelIO
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNGeometry {
+/// SCNModelIO.
+#[cfg(feature = "SCNGeometry")]
+impl SCNGeometry {
+    extern_methods!(
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(geometryWithMDLMesh:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithMDLMesh(mdl_mesh: &MDLMesh) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "SCNModelIO" on [`MDLMesh`].
@@ -119,17 +119,17 @@ extern_category!(
     unsafe impl MDLMeshSCNModelIO for MDLMesh {}
 );
 
-extern_methods!(
-    /// SCNModelIO
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNGeometryElement {
+/// SCNModelIO.
+#[cfg(feature = "SCNGeometry")]
+impl SCNGeometryElement {
+    extern_methods!(
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(geometryElementWithMDLSubmesh:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryElementWithMDLSubmesh(mdl_sub_mesh: &MDLSubmesh) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "SCNModelIO" on [`MDLSubmesh`].
@@ -157,17 +157,17 @@ extern_category!(
     unsafe impl MDLSubmeshSCNModelIO for MDLSubmesh {}
 );
 
-extern_methods!(
-    /// SCNModelIO
-    #[cfg(feature = "SCNMaterial")]
-    unsafe impl SCNMaterial {
+/// SCNModelIO.
+#[cfg(feature = "SCNMaterial")]
+impl SCNMaterial {
+    extern_methods!(
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(materialWithMDLMaterial:))]
         #[unsafe(method_family = none)]
         pub unsafe fn materialWithMDLMaterial(mdl_material: &MDLMaterial) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "SCNModelIO" on [`MDLMaterial`].
@@ -184,17 +184,17 @@ extern_category!(
     unsafe impl MDLMaterialSCNModelIO for MDLMaterial {}
 );
 
-extern_methods!(
-    /// SCNModelIO
-    #[cfg(feature = "SCNLight")]
-    unsafe impl SCNLight {
+/// SCNModelIO.
+#[cfg(feature = "SCNLight")]
+impl SCNLight {
+    extern_methods!(
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(lightWithMDLLight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lightWithMDLLight(mdl_light: &MDLLight) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "SCNModelIO" on [`MDLLight`].
@@ -211,17 +211,17 @@ extern_category!(
     unsafe impl MDLLightSCNModelIO for MDLLight {}
 );
 
-extern_methods!(
-    /// SCNModelIO
-    #[cfg(feature = "SCNCamera")]
-    unsafe impl SCNCamera {
+/// SCNModelIO.
+#[cfg(feature = "SCNCamera")]
+impl SCNCamera {
+    extern_methods!(
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(cameraWithMDLCamera:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraWithMDLCamera(mdl_camera: &MDLCamera) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "SCNModelIO" on [`MDLCamera`].

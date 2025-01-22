@@ -261,8 +261,8 @@ unsafe impl NSObjectProtocol for AVCaptionRegion {}
 
 unsafe impl NSSecureCoding for AVCaptionRegion {}
 
-extern_methods!(
-    unsafe impl AVCaptionRegion {
+impl AVCaptionRegion {
+    extern_methods!(
         /// The top region for iTT format
         ///
         /// This region can be used in iTT format and it occupies the top 15% of the display area. The region uses LRTB, a line progresses left to right and the block extends from top to bottom. Each line is stacked with top justified.
@@ -366,12 +366,12 @@ extern_methods!(
         #[unsafe(method(mutableCopyWithZone:))]
         #[unsafe(method_family = mutableCopy)]
         pub unsafe fn mutableCopyWithZone(&self, zone: *mut NSZone) -> Retained<AnyObject>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCaptionRegion {
+/// Methods declared on superclass `NSObject`.
+impl AVCaptionRegion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -379,8 +379,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Mutable subclass of AVCaptionRegion.
@@ -409,8 +409,8 @@ unsafe impl NSObjectProtocol for AVMutableCaptionRegion {}
 
 unsafe impl NSSecureCoding for AVMutableCaptionRegion {}
 
-extern_methods!(
-    unsafe impl AVMutableCaptionRegion {
+impl AVMutableCaptionRegion {
+    extern_methods!(
         /// Create a region object without any properties.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -480,17 +480,17 @@ extern_methods!(
         #[unsafe(method(setWritingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWritingMode(&self, writing_mode: AVCaptionRegionWritingMode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMutableCaptionRegion {
+/// Methods declared on superclass `NSObject`.
+impl AVMutableCaptionRegion {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Animation effect for a caption
 ///
@@ -543,8 +543,8 @@ unsafe impl NSObjectProtocol for AVCaption {}
 
 unsafe impl NSSecureCoding for AVCaption {}
 
-extern_methods!(
-    unsafe impl AVCaption {
+impl AVCaption {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -610,8 +610,8 @@ extern_methods!(
         #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Mutable subclass of AVCaption.
@@ -640,8 +640,8 @@ unsafe impl NSObjectProtocol for AVMutableCaption {}
 
 unsafe impl NSSecureCoding for AVMutableCaption {}
 
-extern_methods!(
-    unsafe impl AVMutableCaption {
+impl AVMutableCaption {
+    extern_methods!(
         /// The text content of the caption.
         ///
         /// All styling information is cleared on setting this property.
@@ -665,12 +665,12 @@ extern_methods!(
         #[unsafe(method(setTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaption`
-    unsafe impl AVMutableCaption {
+/// Methods declared on superclass `AVCaption`.
+impl AVMutableCaption {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -694,8 +694,8 @@ extern_methods!(
             text: &NSString,
             time_range: CMTimeRange,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Choices for font weight.
 ///
@@ -864,9 +864,9 @@ unsafe impl RefEncode for AVCaptionTextAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// Styling
-    unsafe impl AVCaption {
+/// Styling.
+impl AVCaption {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         /// The color of the character(s).
         ///
@@ -981,12 +981,12 @@ extern_methods!(
             index: NSInteger,
             out_range: *mut NSRange,
         ) -> Option<Retained<AVCaptionRuby>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Region
-    unsafe impl AVCaption {
+/// Region.
+impl AVCaption {
+    extern_methods!(
         /// The region where the caption is placed.
         ///
         /// It can be nil when the underlying caption format doesn't support or use regions.
@@ -1000,21 +1000,21 @@ extern_methods!(
         #[unsafe(method(textAlignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAlignment(&self) -> AVCaptionTextAlignment;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Animation
-    unsafe impl AVCaption {
+/// Animation.
+impl AVCaption {
+    extern_methods!(
         #[unsafe(method(animation))]
         #[unsafe(method_family = none)]
         pub unsafe fn animation(&self) -> AVCaptionAnimation;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Styling
-    unsafe impl AVMutableCaption {
+/// Styling.
+impl AVMutableCaption {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         /// Set text color for the range.
         ///
@@ -1122,12 +1122,12 @@ extern_methods!(
         #[unsafe(method(removeRubyInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRubyInRange(&self, range: NSRange);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Region
-    unsafe impl AVMutableCaption {
+/// Region.
+impl AVMutableCaption {
+    extern_methods!(
         /// The region where the caption is placed.
         ///
         /// It can be nil when the underlying caption format doesn't support or use regions.
@@ -1150,12 +1150,12 @@ extern_methods!(
         #[unsafe(method(setTextAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAlignment(&self, text_alignment: AVCaptionTextAlignment);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Animation
-    unsafe impl AVMutableCaption {
+/// Animation.
+impl AVMutableCaption {
+    extern_methods!(
         #[unsafe(method(animation))]
         #[unsafe(method_family = none)]
         pub unsafe fn animation(&self) -> AVCaptionAnimation;
@@ -1164,8 +1164,8 @@ extern_methods!(
         #[unsafe(method(setAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimation(&self, animation: AVCaptionAnimation);
-    }
-);
+    );
+}
 
 /// Choices for Ruby position
 ///
@@ -1268,8 +1268,8 @@ unsafe impl NSObjectProtocol for AVCaptionRuby {}
 
 unsafe impl NSSecureCoding for AVCaptionRuby {}
 
-extern_methods!(
-    unsafe impl AVCaptionRuby {
+impl AVCaptionRuby {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1305,5 +1305,5 @@ extern_methods!(
         #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> AVCaptionRubyAlignment;
-    }
-);
+    );
+}

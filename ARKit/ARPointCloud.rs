@@ -33,9 +33,8 @@ unsafe impl NSObjectProtocol for ARPointCloud {}
 unsafe impl NSSecureCoding for ARPointCloud {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARPointCloud {
+impl ARPointCloud {
+    extern_methods!(
         /// The number of points in the point cloud.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
@@ -54,5 +53,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

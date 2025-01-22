@@ -19,13 +19,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZVirtualMachineStartOptions {}
 
-extern_methods!(
-    unsafe impl VZVirtualMachineStartOptions {}
-);
+impl VZVirtualMachineStartOptions {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VZVirtualMachineStartOptions {
+/// Methods declared on superclass `NSObject`.
+impl VZVirtualMachineStartOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -33,5 +33,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

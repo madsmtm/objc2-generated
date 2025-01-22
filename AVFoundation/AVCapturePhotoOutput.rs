@@ -109,9 +109,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureOutputBase")]
 unsafe impl NSObjectProtocol for AVCapturePhotoOutput {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCapturePhotoOutput {
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCapturePhotoOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -877,8 +877,8 @@ extern_methods!(
         #[unsafe(method(isShutterSoundSuppressionSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isShutterSoundSuppressionSupported(&self) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVCapturePhotoOutputReadinessCoordinator notifies its delegate of changes in an AVCapturePhotoOutput's captureReadiness property and can be used to coordinate UI updates on the main queue with use of AVCapturePhotoOutput on a background queue.
@@ -894,8 +894,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCapturePhotoOutputReadinessCoordinator {}
 
-extern_methods!(
-    unsafe impl AVCapturePhotoOutputReadinessCoordinator {
+impl AVCapturePhotoOutputReadinessCoordinator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -966,8 +966,8 @@ extern_methods!(
             &self,
             settings_unique_id: i64,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutputreadinesscoordinatordelegate?language=objc)
@@ -994,10 +994,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// AVCapturePhotoOutputDepthDataDeliverySupport
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCapturePhotoOutput {
+/// AVCapturePhotoOutputDepthDataDeliverySupport.
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCapturePhotoOutput {
+    extern_methods!(
         /// A BOOL value specifying whether depth data delivery is supported.
         ///
         ///
@@ -1073,8 +1073,8 @@ extern_methods!(
             &self,
             enabled_semantic_segmentation_matte_types: &NSArray<AVSemanticSegmentationMatteType>,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A set of delegate callbacks to be implemented by a client who calls AVCapturePhotoOutput's -capturePhotoWithSettings:delegate.
@@ -1289,8 +1289,8 @@ unsafe impl CopyingHelper for AVCapturePhotoSettings {
 
 unsafe impl NSObjectProtocol for AVCapturePhotoSettings {}
 
-extern_methods!(
-    unsafe impl AVCapturePhotoSettings {
+impl AVCapturePhotoSettings {
+    extern_methods!(
         /// Creates a default instance of AVCapturePhotoSettings.
         ///
         ///
@@ -1949,12 +1949,12 @@ extern_methods!(
             &self,
             shutter_sound_suppression_enabled: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCapturePhotoSettings {
+/// Methods declared on superclass `NSObject`.
+impl AVCapturePhotoSettings {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1962,8 +1962,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A concrete subclass of AVCapturePhotoSettings that describes a bracketed capture.
@@ -1989,8 +1989,8 @@ unsafe impl CopyingHelper for AVCapturePhotoBracketSettings {
 
 unsafe impl NSObjectProtocol for AVCapturePhotoBracketSettings {}
 
-extern_methods!(
-    unsafe impl AVCapturePhotoBracketSettings {
+impl AVCapturePhotoBracketSettings {
+    extern_methods!(
         #[cfg(feature = "AVCaptureStillImageOutput")]
         /// Creates an instance of AVCapturePhotoBracketSettings.
         ///
@@ -2072,12 +2072,12 @@ extern_methods!(
         #[unsafe(method(setLensStabilizationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLensStabilizationEnabled(&self, lens_stabilization_enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCapturePhotoSettings`
-    unsafe impl AVCapturePhotoBracketSettings {
+/// Methods declared on superclass `AVCapturePhotoSettings`.
+impl AVCapturePhotoBracketSettings {
+    extern_methods!(
         /// Creates a default instance of AVCapturePhotoSettings.
         ///
         ///
@@ -2176,12 +2176,12 @@ extern_methods!(
         pub unsafe fn photoSettingsFromPhotoSettings(
             photo_settings: &AVCapturePhotoSettings,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCapturePhotoBracketSettings {
+/// Methods declared on superclass `NSObject`.
+impl AVCapturePhotoBracketSettings {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2189,8 +2189,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An immutable object produced by callbacks in each and every AVCapturePhotoCaptureDelegate protocol method.
@@ -2206,8 +2206,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureResolvedPhotoSettings {}
 
-extern_methods!(
-    unsafe impl AVCaptureResolvedPhotoSettings {
+impl AVCaptureResolvedPhotoSettings {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2357,8 +2357,8 @@ extern_methods!(
         #[unsafe(method(isFastCapturePrioritizationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFastCapturePrioritizationEnabled(&self) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object representing a photo in memory, produced by the -captureOutput:didFinishingProcessingPhoto:error: in the AVCapturePhotoCaptureDelegate protocol method.
@@ -2374,8 +2374,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCapturePhoto {}
 
-extern_methods!(
-    unsafe impl AVCapturePhoto {
+impl AVCapturePhoto {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2533,12 +2533,12 @@ extern_methods!(
         #[unsafe(method(isConstantColorFallbackPhoto))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConstantColorFallbackPhoto(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCapturePhotoConversions
-    unsafe impl AVCapturePhoto {
+/// AVCapturePhotoConversions.
+impl AVCapturePhoto {
+    extern_methods!(
         /// Flattens the AVCapturePhoto to an NSData using the file container format (processedFileType or rawFileType) specified in the AVCapturePhotoSettings (e.g. JFIF, HEIF, DNG).
         ///
         ///
@@ -2611,8 +2611,8 @@ extern_methods!(
         #[unsafe(method(previewCGImageRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewCGImageRepresentation(&self) -> Option<Retained<CGImage>>;
-    }
-);
+    );
+}
 
 /// Constants indicating the status of the lens stabilization module (aka OIS).
 ///
@@ -2653,9 +2653,9 @@ unsafe impl RefEncode for AVCaptureLensStabilizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCapturePhotoBracketedCapture
-    unsafe impl AVCapturePhoto {
+/// AVCapturePhotoBracketedCapture.
+impl AVCapturePhoto {
+    extern_methods!(
         #[cfg(feature = "AVCaptureStillImageOutput")]
         /// The AVCaptureBracketedStillImageSettings associated with this photo.
         ///
@@ -2682,8 +2682,8 @@ extern_methods!(
         #[unsafe(method(lensStabilizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn lensStabilizationStatus(&self) -> AVCaptureLensStabilizationStatus;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A lightly-processed photo whose data may be used to process and fetch a higher-resolution asset at a later time.
@@ -2745,8 +2745,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDeferredPhotoProxy {}
 
-extern_methods!(
-    unsafe impl AVCaptureDeferredPhotoProxy {
+impl AVCaptureDeferredPhotoProxy {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2754,8 +2754,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A set of delegate callbacks to be implemented by a client who calls AVCapturePhoto's -fileDataRepresentationWithCustomizer:.

@@ -60,8 +60,8 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSHashTable<ObjectType> {}
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSHashTable<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
+impl<ObjectType: Message> NSHashTable<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSPointerFunctions")]
         #[unsafe(method(initWithOptions:capacity:))]
         #[unsafe(method_family = init)]
@@ -167,12 +167,12 @@ extern_methods!(
         #[unsafe(method(setRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentation(&self) -> Retained<NSSet<ObjectType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> NSHashTable<ObjectType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -180,8 +180,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// **************    (void *) Hash table operations    ***************
 ///

@@ -61,13 +61,13 @@ unsafe impl AVAudioStereoMixing for AVAudioUnitSampler {}
 ))]
 unsafe impl NSObjectProtocol for AVAudioUnitSampler {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitMIDIInstrument"
-    ))]
-    unsafe impl AVAudioUnitSampler {
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitMIDIInstrument"
+))]
+impl AVAudioUnitSampler {
+    extern_methods!(
         /// loads a specific instrument from the specified sound bank
         ///
         /// Parameter `bankURL`: URL for a Soundbank file. The file can be either a DLS bank (.dls) or a SoundFont bank (.sf2).
@@ -178,17 +178,17 @@ extern_methods!(
         #[unsafe(method(setGlobalTuning:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlobalTuning(&self, global_tuning: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAudioUnitMIDIInstrument`
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitMIDIInstrument"
-    ))]
-    unsafe impl AVAudioUnitSampler {
+/// Methods declared on superclass `AVAudioUnitMIDIInstrument`.
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitMIDIInstrument"
+))]
+impl AVAudioUnitSampler {
+    extern_methods!(
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// initialize the node with the component description
@@ -201,17 +201,17 @@ extern_methods!(
             this: Allocated<Self>,
             description: AudioComponentDescription,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitMIDIInstrument"
-    ))]
-    unsafe impl AVAudioUnitSampler {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitMIDIInstrument"
+))]
+impl AVAudioUnitSampler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -219,5 +219,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

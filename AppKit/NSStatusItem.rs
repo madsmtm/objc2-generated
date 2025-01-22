@@ -43,8 +43,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSStatusItem {}
 
-extern_methods!(
-    unsafe impl NSStatusItem {
+impl NSStatusItem {
+    extern_methods!(
         #[cfg(feature = "NSStatusBar")]
         #[unsafe(method(statusBar))]
         #[unsafe(method_family = none)]
@@ -109,12 +109,12 @@ extern_methods!(
         #[unsafe(method(setAutosaveName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSStatusItemAutosaveName>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSStatusItem {
+/// Methods declared on superclass `NSObject`.
+impl NSStatusItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -122,12 +122,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSStatusItemDeprecated
-    unsafe impl NSStatusItem {
+/// NSStatusItemDeprecated.
+impl NSStatusItem {
+    extern_methods!(
         #[deprecated = "Use the receiver's button.action instead"]
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
@@ -276,5 +276,5 @@ extern_methods!(
         #[unsafe(method(popUpStatusItemMenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn popUpStatusItemMenu(&self, menu: &NSMenu);
-    }
-);
+    );
+}

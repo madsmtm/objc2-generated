@@ -38,15 +38,15 @@ unsafe impl CopyingHelper for VNImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSObjectProtocol for VNImageRegistrationRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNImageRegistrationRequest {}
-);
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNImageRegistrationRequest {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNTargetedImageRequest`
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNImageRegistrationRequest {
+/// Methods declared on superclass `VNTargetedImageRequest`.
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNImageRegistrationRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -272,18 +272,18 @@ extern_methods!(
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNImageRegistrationRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNImageRegistrationRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An image registration request that will calculate a translational transformation for morphing a "floating" image onto an unchanging "reference" image.
@@ -315,9 +315,9 @@ unsafe impl CopyingHelper for VNTranslationalImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSObjectProtocol for VNTranslationalImageRegistrationRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNTranslationalImageRegistrationRequest {
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNTranslationalImageRegistrationRequest {
+    extern_methods!(
         #[cfg(feature = "VNObservation")]
         /// VNImageTranslationAlignmentObservation results.
         #[unsafe(method(results))]
@@ -325,13 +325,13 @@ extern_methods!(
         pub unsafe fn results(
             &self,
         ) -> Option<Retained<NSArray<VNImageTranslationAlignmentObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNTargetedImageRequest`
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNTranslationalImageRegistrationRequest {
+/// Methods declared on superclass `VNTargetedImageRequest`.
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNTranslationalImageRegistrationRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -557,18 +557,18 @@ extern_methods!(
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNTranslationalImageRegistrationRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNTranslationalImageRegistrationRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequestrevision1?language=objc)
 pub static VNTranslationalImageRegistrationRequestRevision1: NSUInteger = 1;
@@ -604,9 +604,9 @@ unsafe impl CopyingHelper for VNHomographicImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSObjectProtocol for VNHomographicImageRegistrationRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNHomographicImageRegistrationRequest {
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNHomographicImageRegistrationRequest {
+    extern_methods!(
         #[cfg(feature = "VNObservation")]
         /// VNImageHomographicAlignmentObservation results.
         #[unsafe(method(results))]
@@ -614,13 +614,13 @@ extern_methods!(
         pub unsafe fn results(
             &self,
         ) -> Option<Retained<NSArray<VNImageHomographicAlignmentObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNTargetedImageRequest`
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNHomographicImageRegistrationRequest {
+/// Methods declared on superclass `VNTargetedImageRequest`.
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNHomographicImageRegistrationRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -846,18 +846,18 @@ extern_methods!(
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNHomographicImageRegistrationRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNHomographicImageRegistrationRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequestrevision1?language=objc)
 pub static VNHomographicImageRegistrationRequestRevision1: NSUInteger = 1;

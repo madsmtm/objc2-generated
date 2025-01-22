@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTypesetter {}
 
-extern_methods!(
-    unsafe impl NSTypesetter {
+impl NSTypesetter {
+    extern_methods!(
         #[unsafe(method(usesFontLeading))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesFontLeading(&self) -> bool;
@@ -266,12 +266,12 @@ extern_methods!(
         #[unsafe(method(defaultTypesetterBehavior))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultTypesetterBehavior() -> NSTypesetterBehavior;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTypesetter {
+/// Methods declared on superclass `NSObject`.
+impl NSTypesetter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -279,12 +279,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSLayoutPhaseInterface
-    unsafe impl NSTypesetter {
+/// NSLayoutPhaseInterface.
+impl NSTypesetter {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:))]
         #[unsafe(method_family = none)]
@@ -329,12 +329,12 @@ extern_methods!(
             glyph_position: NSPoint,
             char_index: NSUInteger,
         ) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSGlyphStorageInterface
-    unsafe impl NSTypesetter {
+/// NSGlyphStorageInterface.
+impl NSTypesetter {
+    extern_methods!(
         #[unsafe(method(characterRangeForGlyphRange:actualGlyphRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterRangeForGlyphRange_actualGlyphRange(
@@ -410,8 +410,8 @@ extern_methods!(
         #[unsafe(method(setBidiLevels:forGlyphRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBidiLevels_forGlyphRange(&self, levels: *const u8, glyph_range: NSRange);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction?language=objc)
 // NS_OPTIONS
@@ -443,9 +443,9 @@ unsafe impl RefEncode for NSTypesetterControlCharacterAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSTypesetter_Deprecated
-    unsafe impl NSTypesetter {
+/// NSTypesetter_Deprecated.
+impl NSTypesetter {
+    extern_methods!(
         #[unsafe(method(actionForControlCharacterAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionForControlCharacterAtIndex(
@@ -492,5 +492,5 @@ extern_methods!(
         #[unsafe(method(deleteGlyphsInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteGlyphsInRange(&self, glyph_range: NSRange);
-    }
-);
+    );
+}

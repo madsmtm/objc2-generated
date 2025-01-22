@@ -174,8 +174,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CWWiFiClient {}
 
-extern_methods!(
-    unsafe impl CWWiFiClient {
+impl CWWiFiClient {
+    extern_methods!(
         /// Sets the delegate to the specified object, which may implement CWWiFiEventDelegate protocol for Wi-Fi event handling.
         ///
         ///
@@ -302,14 +302,14 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringAllEventsAndReturnError(&self)
             -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CWWiFiClient {
+/// Methods declared on superclass `NSObject`.
+impl CWWiFiClient {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

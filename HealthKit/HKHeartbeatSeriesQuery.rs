@@ -24,9 +24,9 @@ unsafe impl Sync for HKHeartbeatSeriesQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKHeartbeatSeriesQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKHeartbeatSeriesQuery {
+#[cfg(feature = "HKQuery")]
+impl HKHeartbeatSeriesQuery {
+    extern_methods!(
         #[cfg(all(
             feature = "HKHeartbeatSeriesSample",
             feature = "HKObject",
@@ -54,25 +54,25 @@ extern_methods!(
                 dyn Fn(NonNull<HKHeartbeatSeriesQuery>, NSTimeInterval, Bool, Bool, *mut NSError),
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKHeartbeatSeriesQuery {
+/// Methods declared on superclass `HKQuery`.
+#[cfg(feature = "HKQuery")]
+impl HKHeartbeatSeriesQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKHeartbeatSeriesQuery {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKQuery")]
+impl HKHeartbeatSeriesQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

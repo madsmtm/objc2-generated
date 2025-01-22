@@ -99,9 +99,9 @@ unsafe impl UIResponderStandardEditActions for UIActivityIndicatorView {}
 ))]
 unsafe impl UITraitEnvironment for UIActivityIndicatorView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIActivityIndicatorView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIActivityIndicatorView {
+    extern_methods!(
         #[unsafe(method(initWithActivityIndicatorStyle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityIndicatorStyle(
@@ -161,13 +161,13 @@ extern_methods!(
         #[unsafe(method(isAnimating))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAnimating(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIActivityIndicatorView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIActivityIndicatorView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -175,5 +175,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

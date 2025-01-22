@@ -63,8 +63,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKMatch {}
 
-extern_methods!(
-    unsafe impl GKMatch {
+impl GKMatch {
+    extern_methods!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[unsafe(method(players))]
         #[unsafe(method_family = none)]
@@ -149,12 +149,12 @@ extern_methods!(
         #[unsafe(method(voiceChatWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Retained<GKVoiceChat>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKMatch {
+/// Methods declared on superclass `NSObject`.
+impl GKMatch {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -162,8 +162,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchdelegate?language=objc)
@@ -256,9 +256,9 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// Obsoleted
-    unsafe impl GKMatch {
+/// Obsoleted.
+impl GKMatch {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
@@ -285,5 +285,5 @@ extern_methods!(
         #[unsafe(method(playerIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerIDs(&self) -> Option<Retained<NSArray<NSString>>>;
-    }
-);
+    );
+}

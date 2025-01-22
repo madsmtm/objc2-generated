@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPointerLockState {}
 
-extern_methods!(
-    unsafe impl UIPointerLockState {
+impl UIPointerLockState {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -32,18 +32,18 @@ extern_methods!(
         #[unsafe(method(isLocked))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLocked(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// PointerLockState
-    #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-    unsafe impl UIScene {
+/// PointerLockState.
+#[cfg(all(feature = "UIResponder", feature = "UIScene"))]
+impl UIScene {
+    extern_methods!(
         #[unsafe(method(pointerLockState))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointerLockState(&self) -> Option<Retained<UIPointerLockState>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// A notification that is posted when UIPointerLockState.locked changes values for a scene.

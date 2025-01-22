@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHProjectExtensionContext {}
 
-extern_methods!(
-    unsafe impl PHProjectExtensionContext {
+impl PHProjectExtensionContext {
+    extern_methods!(
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(photoLibrary))]
@@ -68,12 +68,12 @@ extern_methods!(
             existing_project_info: Option<&PHProjectInfo>,
             completion: &block2::Block<dyn Fn(*mut PHProjectInfo)>,
         ) -> Retained<NSProgress>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHProjectExtensionContext {
+/// Methods declared on superclass `NSObject`.
+impl PHProjectExtensionContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,5 +81,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

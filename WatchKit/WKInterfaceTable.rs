@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl NSObjectProtocol for WKInterfaceTable {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceTable {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceTable {
+    extern_methods!(
         #[unsafe(method(setRowTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowTypes(&self, row_types: &NSArray<NSString>);
@@ -78,25 +78,25 @@ extern_methods!(
         #[unsafe(method(setCurvesAtBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurvesAtBottom(&self, curves_at_bottom: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `WKInterfaceObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceTable {
+/// Methods declared on superclass `WKInterfaceObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceTable {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceTable {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceTable {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

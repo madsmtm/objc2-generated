@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for MEMessageSigner {}
 
 unsafe impl NSSecureCoding for MEMessageSigner {}
 
-extern_methods!(
-    unsafe impl MEMessageSigner {
+impl MEMessageSigner {
+    extern_methods!(
         #[cfg(feature = "MEEmailAddress")]
         /// Email addresses associated with the signature.
         #[unsafe(method(emailAddresses))]
@@ -57,5 +57,5 @@ extern_methods!(
             label: &NSString,
             context: Option<&NSData>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

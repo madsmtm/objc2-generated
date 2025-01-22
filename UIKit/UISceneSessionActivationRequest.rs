@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for UISceneSessionActivationRequest {
 
 unsafe impl NSObjectProtocol for UISceneSessionActivationRequest {}
 
-extern_methods!(
-    unsafe impl UISceneSessionActivationRequest {
+impl UISceneSessionActivationRequest {
+    extern_methods!(
         #[cfg(feature = "UISceneDefinitions")]
         /// The role to request. If the request was created using `requestWithSession:`, this reflects
         /// the role of the `session`.
@@ -91,5 +91,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

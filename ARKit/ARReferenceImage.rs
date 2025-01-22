@@ -32,9 +32,8 @@ unsafe impl Sync for ARReferenceImage {}
 unsafe impl NSObjectProtocol for ARReferenceImage {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARReferenceImage {
+impl ARReferenceImage {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to identify the image.
         #[unsafe(method(name))]
@@ -101,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

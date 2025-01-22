@@ -20,19 +20,19 @@ extern_class!(
 #[cfg(feature = "NSTypesetter")]
 unsafe impl NSObjectProtocol for NSATSTypesetter {}
 
-extern_methods!(
-    #[cfg(feature = "NSTypesetter")]
-    unsafe impl NSATSTypesetter {
+#[cfg(feature = "NSTypesetter")]
+impl NSATSTypesetter {
+    extern_methods!(
         #[unsafe(method(sharedTypesetter))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedTypesetter() -> Retained<NSATSTypesetter>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSTypesetter")]
-    unsafe impl NSATSTypesetter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSTypesetter")]
+impl NSATSTypesetter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -40,13 +40,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPantherCompatibility
-    #[cfg(feature = "NSTypesetter")]
-    unsafe impl NSATSTypesetter {
+/// NSPantherCompatibility.
+#[cfg(feature = "NSTypesetter")]
+impl NSATSTypesetter {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(lineFragmentRectForProposedRect:remainingRect:))]
         #[unsafe(method_family = none)]
@@ -55,13 +55,13 @@ extern_methods!(
             proposed_rect: NSRect,
             remaining_rect: NSRectPointer,
         ) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPrimitiveInterface
-    #[cfg(feature = "NSTypesetter")]
-    unsafe impl NSATSTypesetter {
+/// NSPrimitiveInterface.
+#[cfg(feature = "NSTypesetter")]
+impl NSATSTypesetter {
+    extern_methods!(
         #[unsafe(method(usesFontLeading))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesFontLeading(&self) -> bool;
@@ -212,13 +212,13 @@ extern_methods!(
             paragraph_separator_glyph_range: NSRange,
             line_origin: NSPoint,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSLayoutPhaseInterface
-    #[cfg(feature = "NSTypesetter")]
-    unsafe impl NSATSTypesetter {
+/// NSLayoutPhaseInterface.
+#[cfg(feature = "NSTypesetter")]
+impl NSATSTypesetter {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:))]
         #[unsafe(method_family = none)]
@@ -263,13 +263,13 @@ extern_methods!(
             glyph_position: NSPoint,
             char_index: NSUInteger,
         ) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSGlyphStorageInterface
-    #[cfg(feature = "NSTypesetter")]
-    unsafe impl NSATSTypesetter {
+/// NSGlyphStorageInterface.
+#[cfg(feature = "NSTypesetter")]
+impl NSATSTypesetter {
+    extern_methods!(
         #[cfg(all(feature = "NSFont", feature = "NSLayoutManager"))]
         #[deprecated]
         #[unsafe(method(getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:))]
@@ -282,5 +282,5 @@ extern_methods!(
             inscribe_buffer: *mut NSGlyphInscription,
             elastic_buffer: *mut Bool,
         ) -> NSUInteger;
-    }
-);
+    );
+}

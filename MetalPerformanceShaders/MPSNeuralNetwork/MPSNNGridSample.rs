@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for MPSNNGridSample {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNGridSample {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNGridSample {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNGridSample {
+    extern_methods!(
         /// This determines whether the pixel locations from the grid are used as the input coordinate (if set to YES) or
         /// is added to the input coordinate (if set to NO).
         /// The default value is YES.
@@ -83,13 +83,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNGridSample {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNGridSample {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -104,13 +104,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNGridSample {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNGridSample {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -118,5 +118,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

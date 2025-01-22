@@ -65,9 +65,9 @@ unsafe impl NSObjectProtocol for UITabBarItem {}
 #[cfg(all(feature = "UIAppearance", feature = "UIBarItem"))]
 unsafe impl UIAppearance for UITabBarItem {}
 
-extern_methods!(
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl UITabBarItem {
+#[cfg(feature = "UIBarItem")]
+impl UITabBarItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -220,24 +220,24 @@ extern_methods!(
             &self,
             scroll_edge_appearance: Option<&UITabBarAppearance>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl UITabBarItem {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIBarItem")]
+impl UITabBarItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SpringLoading
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl UITabBarItem {}
-);
+/// SpringLoading.
+#[cfg(feature = "UIBarItem")]
+impl UITabBarItem {
+    extern_methods!();
+}
 
 #[cfg(all(feature = "UIBarItem", feature = "UISpringLoadedInteractionSupporting"))]
 unsafe impl UISpringLoadedInteractionSupporting for UITabBarItem {}

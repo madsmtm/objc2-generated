@@ -54,10 +54,10 @@ unsafe impl NSObjectProtocol for SKAudioNode {}
 #[cfg(target_os = "macos")]
 unsafe impl NSSecureCoding for SKAudioNode {}
 
-extern_methods!(
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKAudioNode {
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKAudioNode {
+    extern_methods!(
         #[cfg(feature = "objc2-avf-audio")]
         /// Creates a SpriteKit scene graph audio node from the given AVAudioNode.
         ///
@@ -135,14 +135,14 @@ extern_methods!(
         #[unsafe(method(setPositional:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositional(&self, positional: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SKNode`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKAudioNode {
+/// Methods declared on superclass `SKNode`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKAudioNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -165,25 +165,25 @@ extern_methods!(
             classes: &NSSet<AnyClass>,
             mtm: MainThreadMarker,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKAudioNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKAudioNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SKAudioNode
-    /// Actions that are to be used with audio nodes.
-    #[cfg(feature = "SKAction")]
-    unsafe impl SKAction {
+/// SKAudioNode.
+/// Actions that are to be used with audio nodes.
+#[cfg(feature = "SKAction")]
+impl SKAction {
+    extern_methods!(
         #[unsafe(method(stereoPanTo:duration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stereoPanTo_duration(
@@ -239,5 +239,5 @@ extern_methods!(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
-    }
-);
+    );
+}

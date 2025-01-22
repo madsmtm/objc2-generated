@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for UIDocumentInteractionController {}
 #[cfg(feature = "UIActionSheet")]
 unsafe impl UIActionSheetDelegate for UIDocumentInteractionController {}
 
-extern_methods!(
-    unsafe impl UIDocumentInteractionController {
+impl UIDocumentInteractionController {
+    extern_methods!(
         #[unsafe(method(interactionControllerWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interactionControllerWithURL(
@@ -149,12 +149,12 @@ extern_methods!(
         #[unsafe(method(gestureRecognizers))]
         #[unsafe(method_family = none)]
         pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIDocumentInteractionController {
+/// Methods declared on superclass `NSObject`.
+impl UIDocumentInteractionController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -162,8 +162,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentinteractioncontrollerdelegate?language=objc)

@@ -121,8 +121,8 @@ unsafe impl NSObjectProtocol for NSException {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSException {}
 
-extern_methods!(
-    unsafe impl NSException {
+impl NSException {
+    extern_methods!(
         #[cfg(all(
             feature = "NSDictionary",
             feature = "NSObjCRuntime",
@@ -174,22 +174,22 @@ extern_methods!(
         #[unsafe(method(callStackSymbols))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackSymbols(&self) -> Retained<NSArray<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSException {
+/// Methods declared on superclass `NSObject`.
+impl NSException {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExceptionRaisingConveniences
-    unsafe impl NSException {}
-);
+/// NSExceptionRaisingConveniences.
+impl NSException {
+    extern_methods!();
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuncaughtexceptionhandler?language=objc)
 pub type NSUncaughtExceptionHandler = core::ffi::c_void;
@@ -217,17 +217,17 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSAssertionHandler {}
 
-extern_methods!(
-    unsafe impl NSAssertionHandler {
+impl NSAssertionHandler {
+    extern_methods!(
         #[unsafe(method(currentHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentHandler() -> Retained<NSAssertionHandler>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAssertionHandler {
+/// Methods declared on superclass `NSObject`.
+impl NSAssertionHandler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -235,5 +235,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

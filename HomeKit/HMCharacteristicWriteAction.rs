@@ -24,9 +24,9 @@ unsafe impl<TargetValueType: ?Sized> NSObjectProtocol
 {
 }
 
-extern_methods!(
-    #[cfg(feature = "HMAction")]
-    unsafe impl<TargetValueType: Message> HMCharacteristicWriteAction<TargetValueType> {
+#[cfg(feature = "HMAction")]
+impl<TargetValueType: Message> HMCharacteristicWriteAction<TargetValueType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,5 +82,5 @@ extern_methods!(
             target_value: &TargetValueType,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}

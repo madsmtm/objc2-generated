@@ -53,8 +53,8 @@ unsafe impl NSObjectProtocol for NSAttributedString {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSAttributedString {}
 
-extern_methods!(
-    unsafe impl NSAttributedString {
+impl NSAttributedString {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
@@ -68,12 +68,12 @@ extern_methods!(
             location: NSUInteger,
             range: NSRangePointer,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAttributedString {
+/// Methods declared on superclass `NSObject`.
+impl NSAttributedString {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,8 +81,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for NSAttributedString {
     #[inline]
@@ -113,9 +113,9 @@ unsafe impl RefEncode for NSAttributedStringEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSExtendedAttributedString
-    unsafe impl NSAttributedString {
+/// NSExtendedAttributedString.
+impl NSAttributedString {
+    extern_methods!(
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub fn length(&self) -> NSUInteger;
@@ -215,14 +215,14 @@ extern_methods!(
             opts: NSAttributedStringEnumerationOptions,
             block: &block2::Block<dyn Fn(*mut AnyObject, NSRange, NonNull<Bool>) + '_>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSAttributedString`
-    ///
-    /// NSExtendedAttributedString
-    unsafe impl NSMutableAttributedString {
+/// Methods declared on superclass `NSAttributedString`.
+///
+/// NSExtendedAttributedString.
+impl NSMutableAttributedString {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
@@ -243,8 +243,8 @@ extern_methods!(
             this: Allocated<Self>,
             attr_str: &NSAttributedString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableattributedstring?language=objc)
@@ -277,8 +277,8 @@ unsafe impl NSObjectProtocol for NSMutableAttributedString {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMutableAttributedString {}
 
-extern_methods!(
-    unsafe impl NSMutableAttributedString {
+impl NSMutableAttributedString {
+    extern_methods!(
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[unsafe(method(replaceCharactersInRange:withString:))]
         #[unsafe(method_family = none)]
@@ -292,12 +292,12 @@ extern_methods!(
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             range: NSRange,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMutableAttributedString {
+/// Methods declared on superclass `NSObject`.
+impl NSMutableAttributedString {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -305,8 +305,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for NSMutableAttributedString {
     #[inline]
@@ -315,9 +315,9 @@ impl DefaultRetained for NSMutableAttributedString {
     }
 }
 
-extern_methods!(
-    /// NSExtendedMutableAttributedString
-    unsafe impl NSMutableAttributedString {
+/// NSExtendedMutableAttributedString.
+impl NSMutableAttributedString {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(mutableString))]
         #[unsafe(method_family = none)]
@@ -384,8 +384,8 @@ extern_methods!(
         #[unsafe(method(endEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn endEditing(&self);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintent?language=objc)
 // NS_OPTIONS
@@ -516,8 +516,8 @@ unsafe impl NSObjectProtocol for NSAttributedStringMarkdownSourcePosition {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSAttributedStringMarkdownSourcePosition {}
 
-extern_methods!(
-    unsafe impl NSAttributedStringMarkdownSourcePosition {
+impl NSAttributedStringMarkdownSourcePosition {
+    extern_methods!(
         #[unsafe(method(startLine))]
         #[unsafe(method_family = none)]
         pub unsafe fn startLine(&self) -> NSInteger;
@@ -548,12 +548,12 @@ extern_methods!(
         #[unsafe(method(rangeInString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rangeInString(&self, string: &NSString) -> NSRange;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAttributedStringMarkdownSourcePosition {
+/// Methods declared on superclass `NSObject`.
+impl NSAttributedStringMarkdownSourcePosition {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -561,8 +561,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingoptions?language=objc)
@@ -581,8 +581,8 @@ unsafe impl CopyingHelper for NSAttributedStringMarkdownParsingOptions {
 
 unsafe impl NSObjectProtocol for NSAttributedStringMarkdownParsingOptions {}
 
-extern_methods!(
-    unsafe impl NSAttributedStringMarkdownParsingOptions {
+impl NSAttributedStringMarkdownParsingOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -642,21 +642,21 @@ extern_methods!(
             &self,
             applies_source_position_attributes: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAttributedStringMarkdownParsingOptions {
+/// Methods declared on superclass `NSObject`.
+impl NSAttributedStringMarkdownParsingOptions {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSAttributedStringCreateFromMarkdown
-    unsafe impl NSAttributedString {
+/// NSAttributedStringCreateFromMarkdown.
+impl NSAttributedString {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
@@ -686,14 +686,14 @@ extern_methods!(
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSAttributedString`
-    ///
-    /// NSAttributedStringCreateFromMarkdown
-    unsafe impl NSMutableAttributedString {
+/// Methods declared on superclass `NSAttributedString`.
+///
+/// NSAttributedStringCreateFromMarkdown.
+impl NSMutableAttributedString {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
@@ -723,8 +723,8 @@ extern_methods!(
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
             base_url: Option<&NSURL>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingoptions?language=objc)
 // NS_OPTIONS
@@ -748,15 +748,15 @@ unsafe impl RefEncode for NSAttributedStringFormattingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSAttributedStringFormatting
-    unsafe impl NSAttributedString {}
-);
+/// NSAttributedStringFormatting.
+impl NSAttributedString {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// NSMutableAttributedStringFormatting
-    unsafe impl NSMutableAttributedString {}
-);
+/// NSMutableAttributedStringFormatting.
+impl NSMutableAttributedString {
+    extern_methods!();
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreplacementindexattributename?language=objc)
@@ -764,17 +764,17 @@ extern "C" {
     pub static NSReplacementIndexAttributeName: &'static NSAttributedStringKey;
 }
 
-extern_methods!(
-    /// NSMorphology
-    unsafe impl NSAttributedString {
+/// NSMorphology.
+impl NSAttributedString {
+    extern_methods!(
         /// If the string has portions tagged with NSInflectionRuleAttributeName
         /// that have no format specifiers, create a new string with those portions inflected
         /// by following the rule in the attribute.
         #[unsafe(method(attributedStringByInflectingString))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringByInflectingString(&self) -> Retained<NSAttributedString>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologyattributename?language=objc)
@@ -909,8 +909,8 @@ unsafe impl NSObjectProtocol for NSPresentationIntent {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSPresentationIntent {}
 
-extern_methods!(
-    unsafe impl NSPresentationIntent {
+impl NSPresentationIntent {
+    extern_methods!(
         #[unsafe(method(intentKind))]
         #[unsafe(method_family = none)]
         pub unsafe fn intentKind(&self) -> NSPresentationIntentKind;
@@ -1069,14 +1069,14 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn isEquivalentToPresentationIntent(&self, other: &NSPresentationIntent)
             -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPresentationIntent {
+/// Methods declared on superclass `NSObject`.
+impl NSPresentationIntent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

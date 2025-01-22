@@ -63,8 +63,8 @@ unsafe impl NSObjectProtocol for NSXPCConnection {}
 
 unsafe impl NSXPCProxyCreating for NSXPCConnection {}
 
-extern_methods!(
-    unsafe impl NSXPCConnection {
+impl NSXPCConnection {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithServiceName:))]
         #[unsafe(method_family = init)]
@@ -222,12 +222,12 @@ extern_methods!(
         #[unsafe(method(setCodeSigningRequirement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCodeSigningRequirement(&self, requirement: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSXPCConnection {
+/// Methods declared on superclass `NSObject`.
+impl NSXPCConnection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -235,8 +235,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistener?language=objc)
@@ -247,8 +247,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSXPCListener {}
 
-extern_methods!(
-    unsafe impl NSXPCListener {
+impl NSXPCListener {
+    extern_methods!(
         #[unsafe(method(serviceListener))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceListener() -> Retained<NSXPCListener>;
@@ -307,12 +307,12 @@ extern_methods!(
         #[unsafe(method(setConnectionCodeSigningRequirement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConnectionCodeSigningRequirement(&self, requirement: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSXPCListener {
+/// Methods declared on superclass `NSObject`.
+impl NSXPCListener {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -320,8 +320,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistenerdelegate?language=objc)
@@ -346,8 +346,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSXPCInterface {}
 
-extern_methods!(
-    unsafe impl NSXPCInterface {
+impl NSXPCInterface {
+    extern_methods!(
         #[unsafe(method(interfaceWithProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceWithProtocol(protocol: &AnyProtocol) -> Retained<NSXPCInterface>;
@@ -400,12 +400,12 @@ extern_methods!(
             arg: NSUInteger,
             of_reply: bool,
         ) -> Option<Retained<NSXPCInterface>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSXPCInterface {
+/// Methods declared on superclass `NSObject`.
+impl NSXPCInterface {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -413,8 +413,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistenerendpoint?language=objc)
@@ -435,13 +435,13 @@ unsafe impl NSObjectProtocol for NSXPCListenerEndpoint {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSXPCListenerEndpoint {}
 
-extern_methods!(
-    unsafe impl NSXPCListenerEndpoint {}
-);
+impl NSXPCListenerEndpoint {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSXPCListenerEndpoint {
+/// Methods declared on superclass `NSObject`.
+impl NSXPCListenerEndpoint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -449,8 +449,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpccoder?language=objc)
@@ -463,9 +463,9 @@ extern_class!(
 #[cfg(feature = "NSCoder")]
 unsafe impl NSObjectProtocol for NSXPCCoder {}
 
-extern_methods!(
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSXPCCoder {
+#[cfg(feature = "NSCoder")]
+impl NSXPCCoder {
+    extern_methods!(
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
@@ -478,13 +478,13 @@ extern_methods!(
         #[unsafe(method(connection))]
         #[unsafe(method_family = none)]
         pub unsafe fn connection(&self) -> Option<Retained<NSXPCConnection>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSXPCCoder {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCoder")]
+impl NSXPCCoder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -492,5 +492,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

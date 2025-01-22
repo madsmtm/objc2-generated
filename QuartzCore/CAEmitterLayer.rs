@@ -41,9 +41,9 @@ unsafe impl NSObjectProtocol for CAEmitterLayer {}
 #[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAEmitterLayer {}
 
-extern_methods!(
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAEmitterLayer {
+#[cfg(feature = "CALayer")]
+impl CAEmitterLayer {
+    extern_methods!(
         #[cfg(feature = "CAEmitterCell")]
         #[unsafe(method(emitterCells))]
         #[unsafe(method_family = none)]
@@ -188,13 +188,13 @@ extern_methods!(
         #[unsafe(method(setSeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSeed(&self, seed: c_uint);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAEmitterLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "CALayer")]
+impl CAEmitterLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -207,18 +207,18 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAEmitterLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CALayer")]
+impl CAEmitterLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// `emitterShape' values. *

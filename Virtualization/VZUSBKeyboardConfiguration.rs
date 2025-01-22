@@ -29,21 +29,21 @@ unsafe impl CopyingHelper for VZUSBKeyboardConfiguration {
 #[cfg(feature = "VZKeyboardConfiguration")]
 unsafe impl NSObjectProtocol for VZUSBKeyboardConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZKeyboardConfiguration")]
-    unsafe impl VZUSBKeyboardConfiguration {
+#[cfg(feature = "VZKeyboardConfiguration")]
+impl VZUSBKeyboardConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZKeyboardConfiguration`
-    #[cfg(feature = "VZKeyboardConfiguration")]
-    unsafe impl VZUSBKeyboardConfiguration {
+/// Methods declared on superclass `VZKeyboardConfiguration`.
+#[cfg(feature = "VZKeyboardConfiguration")]
+impl VZUSBKeyboardConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

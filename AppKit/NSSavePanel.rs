@@ -80,9 +80,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSSavePanel {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSSavePanel {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSSavePanel {
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSSavePanel {
+    extern_methods!(
         /// Creates a new instance of the NSSavePanel. This class is not a singleton.
         #[unsafe(method(savePanel))]
         #[unsafe(method_family = none)]
@@ -388,13 +388,13 @@ extern_methods!(
         #[unsafe(method(runModal))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModal(&self) -> NSModalResponse;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSWindow`
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSSavePanel {
+/// Methods declared on superclass `NSWindow`.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSSavePanel {
+    extern_methods!(
         #[cfg(feature = "NSGraphics")]
         #[unsafe(method(initWithContentRect:styleMask:backing:defer:))]
         #[unsafe(method_family = init)]
@@ -429,28 +429,28 @@ extern_methods!(
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSSavePanel {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSSavePanel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSSavePanel {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSSavePanel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopensavepaneldelegate?language=objc)
@@ -530,10 +530,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSSavePanel {
+/// NSDeprecated.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSSavePanel {
+    extern_methods!(
         #[deprecated = "Use -URL instead"]
         #[unsafe(method(filename))]
         #[unsafe(method_family = none)]
@@ -598,5 +598,5 @@ extern_methods!(
         #[unsafe(method(setAllowedFileTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedFileTypes(&self, allowed_file_types: Option<&NSArray<NSString>>);
-    }
-);
+    );
+}

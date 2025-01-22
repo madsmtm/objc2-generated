@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTextCheckingController {}
 
-extern_methods!(
-    unsafe impl NSTextCheckingController {
+impl NSTextCheckingController {
+    extern_methods!(
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
         #[unsafe(method(initWithClient:))]
         #[unsafe(method_family = init)]
@@ -120,14 +120,14 @@ extern_methods!(
         #[unsafe(method(setSpellCheckerDocumentTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpellCheckerDocumentTag(&self, spell_checker_document_tag: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextCheckingController {
+/// Methods declared on superclass `NSObject`.
+impl NSTextCheckingController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

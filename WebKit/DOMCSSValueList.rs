@@ -43,13 +43,13 @@ unsafe impl CopyingHelper for DOMCSSValueList {
 ))]
 unsafe impl NSObjectProtocol for DOMCSSValueList {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMCSSValue",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSValueList {
+#[cfg(all(
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSValueList {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
@@ -59,34 +59,34 @@ extern_methods!(
         #[unsafe(method(item:))]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMCSSValue>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMCSSValue",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSValueList {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSValueList {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMCSSValue",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSValueList {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSValueList {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

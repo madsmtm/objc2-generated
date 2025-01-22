@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextDragPreviewRenderer {}
 
-extern_methods!(
-    unsafe impl UITextDragPreviewRenderer {
+impl UITextDragPreviewRenderer {
+    extern_methods!(
         #[cfg(feature = "NSLayoutManager")]
         #[unsafe(method(initWithLayoutManager:range:))]
         #[unsafe(method_family = init)]
@@ -83,5 +83,5 @@ extern_methods!(
             last_line_rect: NonNull<CGRect>,
             origin: CGPoint,
         );
-    }
-);
+    );
+}

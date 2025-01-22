@@ -101,10 +101,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UIAccessibilityInvertColors
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIView {
+/// UIAccessibilityInvertColors.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(accessibilityIgnoresInvertColors))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityIgnoresInvertColors(&self) -> bool;
@@ -116,15 +116,15 @@ extern_methods!(
             &self,
             accessibility_ignores_invert_colors: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIAccessibility
-    #[cfg(feature = "UIColor")]
-    unsafe impl UIColor {
+/// UIAccessibility.
+#[cfg(feature = "UIColor")]
+impl UIColor {
+    extern_methods!(
         #[unsafe(method(accessibilityName))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}

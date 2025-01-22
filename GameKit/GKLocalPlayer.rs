@@ -21,9 +21,9 @@ extern_class!(
 #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
 unsafe impl NSObjectProtocol for GKLocalPlayer {}
 
-extern_methods!(
-    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-    unsafe impl GKLocalPlayer {
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+impl GKLocalPlayer {
+    extern_methods!(
         /// Obtain the primary GKLocalPlayer object.
         /// The player is only available for offline play until logged in.
         /// A temporary player is created if no account is set up.
@@ -123,25 +123,25 @@ extern_methods!(
                 &block2::Block<dyn Fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError)>,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `GKPlayer`
-    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-    unsafe impl GKLocalPlayer {
+/// Methods declared on superclass `GKPlayer`.
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+impl GKLocalPlayer {
+    extern_methods!(
         #[unsafe(method(anonymousGuestPlayerWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn anonymousGuestPlayerWithIdentifier(
             guest_identifier: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-    unsafe impl GKLocalPlayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+impl GKLocalPlayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -149,8 +149,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener?language=objc)
@@ -166,10 +166,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// GKLocalPlayerEvents
-    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-    unsafe impl GKLocalPlayer {
+/// GKLocalPlayerEvents.
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+impl GKLocalPlayer {
+    extern_methods!(
         #[cfg(all(
             feature = "GKEventListener",
             feature = "GKMatchmaker",
@@ -197,8 +197,8 @@ extern_methods!(
         #[unsafe(method(unregisterAllListeners))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterAllListeners(&self);
-    }
-);
+    );
+}
 
 extern "C" {
     /// Notification will be posted whenever authentication status changes.
@@ -207,10 +207,10 @@ extern "C" {
     pub static GKPlayerAuthenticationDidChangeNotificationName: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// Deprecated
-    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-    unsafe impl GKLocalPlayer {
+/// Deprecated.
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+impl GKLocalPlayer {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[unsafe(method(setDefaultLeaderboardCategoryID:completionHandler:))]
@@ -264,13 +264,13 @@ extern_methods!(
                 &block2::Block<dyn Fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError)>,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Obsoleted
-    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-    unsafe impl GKLocalPlayer {
+/// Obsoleted.
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+impl GKLocalPlayer {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
@@ -288,8 +288,8 @@ extern_methods!(
         #[unsafe(method(friends))]
         #[unsafe(method_family = none)]
         pub unsafe fn friends(&self) -> Option<Retained<NSArray<NSString>>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus?language=objc)
 // NS_ENUM
@@ -315,10 +315,10 @@ unsafe impl RefEncode for GKFriendsAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// FriendsList
-    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-    unsafe impl GKLocalPlayer {
+/// FriendsList.
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+impl GKLocalPlayer {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(loadFriendsAuthorizationStatus:))]
         #[unsafe(method_family = none)]
@@ -343,13 +343,13 @@ extern_methods!(
             identifiers: &NSArray<NSString>,
             completion_handler: &block2::Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UI
-    #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-    unsafe impl GKLocalPlayer {
+/// UI.
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+impl GKLocalPlayer {
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[unsafe(method(authenticateHandler))]
@@ -393,5 +393,5 @@ extern_methods!(
             &self,
             window: Option<&NSWindow>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}

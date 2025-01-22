@@ -5,10 +5,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern_methods!(
-    /// UISceneEnhancedStateRestoration
-    #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-    unsafe impl UIScene {
+/// UISceneEnhancedStateRestoration.
+#[cfg(all(feature = "UIResponder", feature = "UIScene"))]
+impl UIScene {
+    extern_methods!(
         #[unsafe(method(extendStateRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendStateRestoration(&self);
@@ -16,5 +16,5 @@ extern_methods!(
         #[unsafe(method(completeStateRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeStateRestoration(&self);
-    }
-);
+    );
+}

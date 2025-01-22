@@ -64,8 +64,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VNImageRequestHandler {}
 
-extern_methods!(
-    unsafe impl VNImageRequestHandler {
+impl VNImageRequestHandler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -187,17 +187,17 @@ extern_methods!(
             &self,
             requests: &NSArray<VNRequest>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNImageRequestHandler {
+/// Methods declared on superclass `NSObject`.
+impl VNImageRequestHandler {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Performs requests on a sequence of images.
@@ -215,8 +215,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VNSequenceRequestHandler {}
 
-extern_methods!(
-    unsafe impl VNSequenceRequestHandler {
+impl VNSequenceRequestHandler {
+    extern_methods!(
         /// Creates a new object.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -335,14 +335,14 @@ extern_methods!(
             requests: &NSArray<VNRequest>,
             sample_buffer: &CMSampleBuffer,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNSequenceRequestHandler {
+/// Methods declared on superclass `NSObject`.
+impl VNSequenceRequestHandler {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

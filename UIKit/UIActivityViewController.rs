@@ -80,9 +80,9 @@ unsafe impl UIResponderStandardEditActions for UIActivityViewController {}
 ))]
 unsafe impl UITraitEnvironment for UIActivityViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIActivityViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIActivityViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -181,23 +181,23 @@ extern_methods!(
         #[unsafe(method(setAllowsProminentActivity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsProminentActivity(&self, allows_prominent_activity: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIActivityViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIActivityViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIActivityItemsConfiguration
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIActivityViewController {
+/// UIActivityItemsConfiguration.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIActivityViewController {
+    extern_methods!(
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         #[unsafe(method(initWithActivityItemsConfiguration:))]
         #[unsafe(method_family = init)]
@@ -205,5 +205,5 @@ extern_methods!(
             this: Allocated<Self>,
             activity_items_configuration: &ProtocolObject<dyn UIActivityItemsConfigurationReading>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

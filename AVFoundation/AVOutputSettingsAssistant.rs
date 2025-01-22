@@ -90,8 +90,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVOutputSettingsAssistant {}
 
-extern_methods!(
-    unsafe impl AVOutputSettingsAssistant {
+impl AVOutputSettingsAssistant {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -147,12 +147,12 @@ extern_methods!(
         #[unsafe(method(outputFileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFileType(&self) -> Retained<AVFileType>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVOutputSettingsAssistant_SourceInformation
-    unsafe impl AVOutputSettingsAssistant {
+/// AVOutputSettingsAssistant_SourceInformation.
+impl AVOutputSettingsAssistant {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// A CMAudioFormatDescription object describing the format of you audio data
         ///
@@ -234,5 +234,5 @@ extern_methods!(
             &self,
             source_video_min_frame_duration: CMTime,
         );
-    }
-);
+    );
+}

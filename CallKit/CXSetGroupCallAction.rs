@@ -32,9 +32,9 @@ unsafe impl NSObjectProtocol for CXSetGroupCallAction {}
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSSecureCoding for CXSetGroupCallAction {}
 
-extern_methods!(
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXSetGroupCallAction {
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXSetGroupCallAction {
+    extern_methods!(
         #[unsafe(method(initWithCallUUID:callUUIDToGroupWith:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID_callUUIDToGroupWith(
@@ -67,25 +67,25 @@ extern_methods!(
         #[unsafe(method(setCallUUIDToGroupWith:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCallUUIDToGroupWith(&self, call_uuid_to_group_with: Option<&NSUUID>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CXCallAction`
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXSetGroupCallAction {
+/// Methods declared on superclass `CXCallAction`.
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXSetGroupCallAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXSetGroupCallAction {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXSetGroupCallAction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

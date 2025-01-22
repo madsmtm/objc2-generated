@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for CIFilterShape {
 
 unsafe impl NSObjectProtocol for CIFilterShape {}
 
-extern_methods!(
-    unsafe impl CIFilterShape {
+impl CIFilterShape {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(shapeWithRect:))]
         #[unsafe(method_family = none)]
@@ -71,12 +71,12 @@ extern_methods!(
         #[unsafe(method(extent))]
         #[unsafe(method_family = none)]
         pub unsafe fn extent(&self) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIFilterShape {
+/// Methods declared on superclass `NSObject`.
+impl CIFilterShape {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,5 +84,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -31,9 +31,8 @@ unsafe impl Sync for ARLightEstimate {}
 unsafe impl NSObjectProtocol for ARLightEstimate {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARLightEstimate {
+impl ARLightEstimate {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Ambient intensity of the lighting.
         ///
@@ -60,8 +59,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -84,9 +83,8 @@ unsafe impl Sync for ARDirectionalLightEstimate {}
 unsafe impl NSObjectProtocol for ARDirectionalLightEstimate {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARDirectionalLightEstimate {
+impl ARDirectionalLightEstimate {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// Second degree spherical harmonics coefficients representing the intensity of light.
         ///
@@ -102,14 +100,13 @@ extern_methods!(
         #[unsafe(method(primaryLightIntensity))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryLightIntensity(&self) -> CGFloat;
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `ARLightEstimate`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `ARLightEstimate`
-    #[cfg(feature = "objc2")]
-    unsafe impl ARDirectionalLightEstimate {
+impl ARDirectionalLightEstimate {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -118,5 +115,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

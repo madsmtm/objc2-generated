@@ -76,8 +76,8 @@ unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCodin
 {
 }
 
-extern_methods!(
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
+impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSPointerFunctions")]
         #[unsafe(method(initWithKeyOptions:valueOptions:capacity:))]
         #[unsafe(method_family = init)]
@@ -192,12 +192,12 @@ extern_methods!(
         pub unsafe fn dictionaryRepresentation(
             &self,
         ) -> Retained<NSDictionary<KeyType, ObjectType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -205,8 +205,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// **************    void * Map table operations    ***************
 ///

@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "NSPersistentStore")]
 unsafe impl NSObjectProtocol for NSAtomicStore {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStore")]
-    unsafe impl NSAtomicStore {
+#[cfg(feature = "NSPersistentStore")]
+impl NSAtomicStore {
+    extern_methods!(
         #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[unsafe(method(initWithPersistentStoreCoordinator:configurationName:URL:options:))]
         #[unsafe(method_family = init)]
@@ -104,25 +104,25 @@ extern_methods!(
             &self,
             object_id: &NSManagedObjectID,
         ) -> Retained<AnyObject>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSPersistentStore`
-    #[cfg(feature = "NSPersistentStore")]
-    unsafe impl NSAtomicStore {
+/// Methods declared on superclass `NSPersistentStore`.
+#[cfg(feature = "NSPersistentStore")]
+impl NSAtomicStore {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStore")]
-    unsafe impl NSAtomicStore {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStore")]
+impl NSAtomicStore {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -37,8 +37,8 @@ unsafe impl NSObjectProtocol for NSLocale {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSLocale {}
 
-extern_methods!(
-    unsafe impl NSLocale {
+impl NSLocale {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(objectForKey:))]
         #[unsafe(method_family = none)]
@@ -68,12 +68,12 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtendedLocale
-    unsafe impl NSLocale {
+/// NSExtendedLocale.
+impl NSLocale {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(localeIdentifier))]
         #[unsafe(method_family = none)]
@@ -249,12 +249,12 @@ extern_methods!(
         #[unsafe(method(alternateQuotationEndDelimiter))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateQuotationEndDelimiter(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSLocaleCreation
-    unsafe impl NSLocale {
+/// NSLocaleCreation.
+impl NSLocale {
+    extern_methods!(
         #[unsafe(method(autoupdatingCurrentLocale))]
         #[unsafe(method_family = none)]
         pub unsafe fn autoupdatingCurrentLocale() -> Retained<NSLocale>;
@@ -271,8 +271,8 @@ extern_methods!(
         #[unsafe(method(localeWithLocaleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localeWithLocaleIdentifier(ident: &NSString) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalelanguagedirection?language=objc)
 // NS_ENUM
@@ -300,9 +300,9 @@ unsafe impl RefEncode for NSLocaleLanguageDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSLocaleGeneralInfo
-    unsafe impl NSLocale {
+/// NSLocaleGeneralInfo.
+impl NSLocale {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(availableLocaleIdentifiers))]
         #[unsafe(method_family = none)]
@@ -384,8 +384,8 @@ extern_methods!(
         pub unsafe fn lineDirectionForLanguage(
             iso_lang_code: &NSString,
         ) -> NSLocaleLanguageDirection;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscurrentlocaledidchangenotification?language=objc)

@@ -7213,10 +7213,10 @@ extern_protocol!(
     pub unsafe trait CIRowAverage: CIAreaReductionFilter {}
 );
 
-extern_methods!(
-    /// Builtins
-    #[cfg(feature = "CIFilter")]
-    unsafe impl CIFilter {
+/// Builtins.
+#[cfg(feature = "CIFilter")]
+impl CIFilter {
+    extern_methods!(
         #[unsafe(method(gaussianGradientFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn gaussianGradientFilter() -> Retained<CIFilter>;
@@ -8148,5 +8148,5 @@ extern_methods!(
         #[unsafe(method(rowAverageFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowAverageFilter() -> Retained<CIFilter>;
-    }
-);
+    );
+}

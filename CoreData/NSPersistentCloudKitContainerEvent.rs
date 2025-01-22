@@ -53,8 +53,8 @@ unsafe impl CopyingHelper for NSPersistentCloudKitContainerEvent {
 
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEvent {}
 
-extern_methods!(
-    unsafe impl NSPersistentCloudKitContainerEvent {
+impl NSPersistentCloudKitContainerEvent {
+    extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
@@ -90,5 +90,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

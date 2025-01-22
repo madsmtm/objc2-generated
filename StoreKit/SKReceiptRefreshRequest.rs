@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "SKRequest")]
 unsafe impl NSObjectProtocol for SKReceiptRefreshRequest {}
 
-extern_methods!(
-    #[cfg(feature = "SKRequest")]
-    unsafe impl SKReceiptRefreshRequest {
+#[cfg(feature = "SKRequest")]
+impl SKReceiptRefreshRequest {
+    extern_methods!(
         #[deprecated = "Use Transaction.all and AppTransaction.shared"]
         #[unsafe(method(initWithReceiptProperties:))]
         #[unsafe(method_family = init)]
@@ -36,13 +36,13 @@ extern_methods!(
         pub unsafe fn receiptProperties(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SKRequest")]
-    unsafe impl SKReceiptRefreshRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SKRequest")]
+impl SKReceiptRefreshRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -50,8 +50,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C-unwind" {
     pub fn SKTerminateForInvalidReceipt();

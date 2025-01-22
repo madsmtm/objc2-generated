@@ -21,8 +21,8 @@ unsafe impl CopyingHelper for NSPersistentHistoryTransaction {
 
 unsafe impl NSObjectProtocol for NSPersistentHistoryTransaction {}
 
-extern_methods!(
-    unsafe impl NSPersistentHistoryTransaction {
+impl NSPersistentHistoryTransaction {
+    extern_methods!(
         #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectContext"))]
         #[unsafe(method(entityDescriptionWithContext:))]
         #[unsafe(method_family = none)]
@@ -81,12 +81,12 @@ extern_methods!(
         #[unsafe(method(objectIDNotification))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectIDNotification(&self) -> Retained<NSNotification>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersistentHistoryTransaction {
+/// Methods declared on superclass `NSObject`.
+impl NSPersistentHistoryTransaction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -94,5 +94,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

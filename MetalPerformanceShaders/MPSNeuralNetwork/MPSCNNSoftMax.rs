@@ -42,15 +42,15 @@ unsafe impl NSObjectProtocol for MPSCNNSoftMax {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNSoftMax {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSoftMax {}
-);
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSoftMax {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSoftMax {
+/// Methods declared on superclass `MPSCNNKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSoftMax {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -85,13 +85,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSoftMax {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSoftMax {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -106,13 +106,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSoftMax {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSoftMax {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -120,8 +120,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -163,9 +163,9 @@ unsafe impl NSObjectProtocol for MPSCNNSoftMaxGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNSoftMaxGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSoftMaxGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSoftMaxGradient {
+    extern_methods!(
         /// Initializes a MPSCNNSoftMaxGradient function
         ///
         /// Parameter `device`: The MTLDevice on which this MPSCNNSoftMaxGradient filter will be used
@@ -199,13 +199,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSoftMaxGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSoftMaxGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -220,13 +220,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSoftMaxGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSoftMaxGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -234,8 +234,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -272,15 +272,15 @@ unsafe impl NSObjectProtocol for MPSCNNLogSoftMax {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNLogSoftMax {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLogSoftMax {}
-);
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLogSoftMax {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLogSoftMax {
+/// Methods declared on superclass `MPSCNNKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLogSoftMax {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -315,13 +315,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLogSoftMax {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLogSoftMax {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -336,13 +336,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLogSoftMax {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLogSoftMax {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -350,8 +350,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -392,9 +392,9 @@ unsafe impl NSObjectProtocol for MPSCNNLogSoftMaxGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNLogSoftMaxGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLogSoftMaxGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLogSoftMaxGradient {
+    extern_methods!(
         /// Initializes a MPSCNNLogSoftMaxGradient function
         ///
         /// Parameter `device`: The MTLDevice on which this MPSCNNLogSoftMaxGradient filter will be used
@@ -428,13 +428,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLogSoftMaxGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLogSoftMaxGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -449,13 +449,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLogSoftMaxGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLogSoftMaxGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -463,5 +463,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

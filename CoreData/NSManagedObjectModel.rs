@@ -26,8 +26,8 @@ unsafe impl NSFastEnumeration for NSManagedObjectModel {}
 
 unsafe impl NSObjectProtocol for NSManagedObjectModel {}
 
-extern_methods!(
-    unsafe impl NSManagedObjectModel {
+impl NSManagedObjectModel {
+    extern_methods!(
         #[unsafe(method(mergedModelFromBundles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mergedModelFromBundles(
@@ -181,14 +181,14 @@ extern_methods!(
         pub unsafe fn checksumsForVersionedModelAtURL_error(
             model_url: &NSURL,
         ) -> Result<Retained<NSDictionary<NSString, NSString>>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSManagedObjectModel {
+/// Methods declared on superclass `NSObject`.
+impl NSManagedObjectModel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

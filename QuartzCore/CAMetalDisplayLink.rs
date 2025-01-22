@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CAMetalDisplayLinkUpdate {}
 
-extern_methods!(
-    unsafe impl CAMetalDisplayLinkUpdate {
+impl CAMetalDisplayLinkUpdate {
+    extern_methods!(
         #[cfg(all(feature = "CAMetalLayer", feature = "objc2-metal"))]
         #[unsafe(method(drawable))]
         #[unsafe(method_family = none)]
@@ -34,12 +34,12 @@ extern_methods!(
         #[unsafe(method(targetPresentationTimestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetPresentationTimestamp(&self) -> CFTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CAMetalDisplayLinkUpdate {
+/// Methods declared on superclass `NSObject`.
+impl CAMetalDisplayLinkUpdate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -47,8 +47,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldisplaylinkdelegate?language=objc)
@@ -72,8 +72,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CAMetalDisplayLink {}
 
-extern_methods!(
-    unsafe impl CAMetalDisplayLink {
+impl CAMetalDisplayLink {
+    extern_methods!(
         #[cfg(all(feature = "CALayer", feature = "CAMetalLayer"))]
         #[unsafe(method(initWithMetalLayer:))]
         #[unsafe(method_family = init)]
@@ -140,12 +140,12 @@ extern_methods!(
         #[unsafe(method(setPaused:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaused(&self, paused: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CAMetalDisplayLink {
+/// Methods declared on superclass `NSObject`.
+impl CAMetalDisplayLink {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -153,5 +153,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

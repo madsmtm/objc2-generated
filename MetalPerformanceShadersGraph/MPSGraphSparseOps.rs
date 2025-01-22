@@ -57,9 +57,9 @@ unsafe impl CopyingHelper for MPSGraphCreateSparseOpDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphCreateSparseOpDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphCreateSparseOpDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphCreateSparseOpDescriptor {
+    extern_methods!(
         /// Defines the storage format of the sparse tensor.
         #[unsafe(method(sparseStorageType))]
         #[unsafe(method_family = none)]
@@ -95,13 +95,13 @@ extern_methods!(
             sparse_storage_type: MPSGraphSparseStorageType,
             data_type: MPSDataType,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphCreateSparseOpDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphCreateSparseOpDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -109,13 +109,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MPSGraphSparseOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphSparseOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(all(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
@@ -175,5 +175,5 @@ extern_methods!(
             shape: &MPSShape,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

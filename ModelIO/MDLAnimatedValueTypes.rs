@@ -42,8 +42,8 @@ unsafe impl CopyingHelper for MDLAnimatedValue {
 
 unsafe impl NSObjectProtocol for MDLAnimatedValue {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedValue {
+impl MDLAnimatedValue {
+    extern_methods!(
         #[unsafe(method(isAnimated))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAnimated(&self) -> bool;
@@ -89,12 +89,12 @@ extern_methods!(
             times_array: NonNull<NSTimeInterval>,
             max_count: NSUInteger,
         ) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedValue {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedValue {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -102,8 +102,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AUTO-GENERATED FROM CodeGenArray.h
@@ -122,8 +122,8 @@ unsafe impl CopyingHelper for MDLAnimatedScalarArray {
 
 unsafe impl NSObjectProtocol for MDLAnimatedScalarArray {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedScalarArray {
+impl MDLAnimatedScalarArray {
+    extern_methods!(
         #[unsafe(method(elementCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> NSUInteger;
@@ -206,12 +206,12 @@ extern_methods!(
             values_array: NonNull<c_double>,
             max_count: NSUInteger,
         ) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedScalarArray {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedScalarArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -219,8 +219,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvector3array?language=objc)
@@ -237,8 +237,8 @@ unsafe impl CopyingHelper for MDLAnimatedVector3Array {
 
 unsafe impl NSObjectProtocol for MDLAnimatedVector3Array {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedVector3Array {
+impl MDLAnimatedVector3Array {
+    extern_methods!(
         #[unsafe(method(elementCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> NSUInteger;
@@ -249,12 +249,12 @@ extern_methods!(
             this: Allocated<Self>,
             array_element_count: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedVector3Array {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedVector3Array {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -262,8 +262,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedquaternionarray?language=objc)
@@ -280,8 +280,8 @@ unsafe impl CopyingHelper for MDLAnimatedQuaternionArray {
 
 unsafe impl NSObjectProtocol for MDLAnimatedQuaternionArray {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedQuaternionArray {
+impl MDLAnimatedQuaternionArray {
+    extern_methods!(
         #[unsafe(method(elementCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> NSUInteger;
@@ -292,12 +292,12 @@ extern_methods!(
             this: Allocated<Self>,
             array_element_count: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedQuaternionArray {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedQuaternionArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -305,8 +305,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AUTO-GENERATED FROM CodeGen.h
@@ -325,8 +325,8 @@ unsafe impl CopyingHelper for MDLAnimatedScalar {
 
 unsafe impl NSObjectProtocol for MDLAnimatedScalar {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedScalar {
+impl MDLAnimatedScalar {
+    extern_methods!(
         #[unsafe(method(setFloat:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFloat_atTime(&self, value: c_float, time: NSTimeInterval);
@@ -376,12 +376,12 @@ extern_methods!(
             values_array: NonNull<c_double>,
             max_count: NSUInteger,
         ) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedScalar {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedScalar {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -389,8 +389,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvector2?language=objc)
@@ -407,13 +407,13 @@ unsafe impl CopyingHelper for MDLAnimatedVector2 {
 
 unsafe impl NSObjectProtocol for MDLAnimatedVector2 {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedVector2 {}
-);
+impl MDLAnimatedVector2 {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedVector2 {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedVector2 {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -421,8 +421,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvector3?language=objc)
@@ -439,13 +439,13 @@ unsafe impl CopyingHelper for MDLAnimatedVector3 {
 
 unsafe impl NSObjectProtocol for MDLAnimatedVector3 {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedVector3 {}
-);
+impl MDLAnimatedVector3 {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedVector3 {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedVector3 {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -453,8 +453,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvector4?language=objc)
@@ -471,13 +471,13 @@ unsafe impl CopyingHelper for MDLAnimatedVector4 {
 
 unsafe impl NSObjectProtocol for MDLAnimatedVector4 {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedVector4 {}
-);
+impl MDLAnimatedVector4 {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedVector4 {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedVector4 {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -485,8 +485,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedquaternion?language=objc)
@@ -503,13 +503,13 @@ unsafe impl CopyingHelper for MDLAnimatedQuaternion {
 
 unsafe impl NSObjectProtocol for MDLAnimatedQuaternion {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedQuaternion {}
-);
+impl MDLAnimatedQuaternion {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedQuaternion {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedQuaternion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -517,8 +517,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedmatrix4x4?language=objc)
@@ -535,13 +535,13 @@ unsafe impl CopyingHelper for MDLAnimatedMatrix4x4 {
 
 unsafe impl NSObjectProtocol for MDLAnimatedMatrix4x4 {}
 
-extern_methods!(
-    unsafe impl MDLAnimatedMatrix4x4 {}
-);
+impl MDLAnimatedMatrix4x4 {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimatedMatrix4x4 {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimatedMatrix4x4 {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -549,5 +549,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

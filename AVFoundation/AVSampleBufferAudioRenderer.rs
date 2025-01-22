@@ -21,8 +21,8 @@ unsafe impl AVQueuedSampleBufferRendering for AVSampleBufferAudioRenderer {}
 
 unsafe impl NSObjectProtocol for AVSampleBufferAudioRenderer {}
 
-extern_methods!(
-    unsafe impl AVSampleBufferAudioRenderer {
+impl AVSampleBufferAudioRenderer {
+    extern_methods!(
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
@@ -95,12 +95,12 @@ extern_methods!(
             &self,
             allowed_audio_spatialization_formats: AVAudioSpatializationFormats,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVSampleBufferAudioRenderer {
+/// Methods declared on superclass `NSObject`.
+impl AVSampleBufferAudioRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,12 +108,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferAudioRendererVolumeControl
-    unsafe impl AVSampleBufferAudioRenderer {
+/// AVSampleBufferAudioRendererVolumeControl.
+impl AVSampleBufferAudioRenderer {
+    extern_methods!(
         #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
@@ -131,8 +131,8 @@ extern_methods!(
         #[unsafe(method(setMuted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMuted(&self, muted: bool);
-    }
-);
+    );
+}
 
 extern "C" {
     /// A notification that fires whenever the receiver's enqueued media data has been flushed for a reason other than a call to the -flush method.
@@ -167,9 +167,9 @@ extern "C" {
     pub static AVSampleBufferAudioRendererFlushTimeKey: &'static NSString;
 }
 
-extern_methods!(
-    /// AVSampleBufferAudioRendererQueueManagement
-    unsafe impl AVSampleBufferAudioRenderer {
+/// AVSampleBufferAudioRendererQueueManagement.
+impl AVSampleBufferAudioRenderer {
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Flushes enqueued sample buffers with presentation time stamps later than or equal to the specified time.
         ///
@@ -185,5 +185,5 @@ extern_methods!(
             time: CMTime,
             completion_handler: &block2::Block<dyn Fn(Bool)>,
         );
-    }
-);
+    );
+}

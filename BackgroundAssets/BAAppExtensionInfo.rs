@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for BAAppExtensionInfo {}
 
 unsafe impl NSSecureCoding for BAAppExtensionInfo {}
 
-extern_methods!(
-    unsafe impl BAAppExtensionInfo {
+impl BAAppExtensionInfo {
+    extern_methods!(
         /// The number of bytes remaining that can be scheduled if the total download size is restricted.
         ///
         /// When a download is restricted, your extension can only schedule up to its `BADownloadAllowance`
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

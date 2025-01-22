@@ -57,8 +57,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UNUserNotificationCenter {}
 
-extern_methods!(
-    unsafe impl UNUserNotificationCenter {
+impl UNUserNotificationCenter {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -171,17 +171,17 @@ extern_methods!(
             new_badge_count: NSInteger,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UNUserNotificationCenter {
+/// Methods declared on superclass `NSObject`.
+impl UNUserNotificationCenter {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions?language=objc)
 // NS_OPTIONS

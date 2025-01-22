@@ -57,8 +57,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ACAccountStore {}
 
-extern_methods!(
-    unsafe impl ACAccountStore {
+impl ACAccountStore {
+    extern_methods!(
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(accounts))]
         #[unsafe(method_family = none)]
@@ -141,12 +141,12 @@ extern_methods!(
             account: Option<&ACAccount>,
             completion_handler: ACAccountStoreRemoveCompletionHandler,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ACAccountStore {
+/// Methods declared on superclass `NSObject`.
+impl ACAccountStore {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -154,8 +154,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoredidchangenotification?language=objc)

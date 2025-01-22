@@ -34,8 +34,8 @@ unsafe impl NSLocking for NSLock {}
 
 unsafe impl NSObjectProtocol for NSLock {}
 
-extern_methods!(
-    unsafe impl NSLock {
+impl NSLock {
+    extern_methods!(
         #[unsafe(method(tryLock))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryLock(&self) -> bool;
@@ -55,12 +55,12 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub fn setName(&self, name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLock {
+/// Methods declared on superclass `NSObject`.
+impl NSLock {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,8 +68,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for NSLock {
     #[inline]
@@ -93,8 +93,8 @@ unsafe impl NSLocking for NSConditionLock {}
 
 unsafe impl NSObjectProtocol for NSConditionLock {}
 
-extern_methods!(
-    unsafe impl NSConditionLock {
+impl NSConditionLock {
+    extern_methods!(
         #[unsafe(method(initWithCondition:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCondition(
@@ -146,12 +146,12 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSConditionLock {
+/// Methods declared on superclass `NSObject`.
+impl NSConditionLock {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -159,8 +159,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecursivelock?language=objc)
@@ -177,8 +177,8 @@ unsafe impl NSLocking for NSRecursiveLock {}
 
 unsafe impl NSObjectProtocol for NSRecursiveLock {}
 
-extern_methods!(
-    unsafe impl NSRecursiveLock {
+impl NSRecursiveLock {
+    extern_methods!(
         #[unsafe(method(tryLock))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryLock(&self) -> bool;
@@ -198,12 +198,12 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSRecursiveLock {
+/// Methods declared on superclass `NSObject`.
+impl NSRecursiveLock {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -211,8 +211,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscondition?language=objc)
@@ -229,8 +229,8 @@ unsafe impl NSLocking for NSCondition {}
 
 unsafe impl NSObjectProtocol for NSCondition {}
 
-extern_methods!(
-    unsafe impl NSCondition {
+impl NSCondition {
+    extern_methods!(
         #[unsafe(method(wait))]
         #[unsafe(method_family = none)]
         pub unsafe fn wait(&self);
@@ -258,12 +258,12 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCondition {
+/// Methods declared on superclass `NSObject`.
+impl NSCondition {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -271,5 +271,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

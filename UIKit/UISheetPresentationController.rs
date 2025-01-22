@@ -58,8 +58,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISheetPresentationControllerDetent {}
 
-extern_methods!(
-    unsafe impl UISheetPresentationControllerDetent {
+impl UISheetPresentationControllerDetent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -102,8 +102,8 @@ extern_methods!(
             &self,
             context: &ProtocolObject<dyn UISheetPresentationControllerDetentResolutionContext>,
         ) -> CGFloat;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerautomaticdimension?language=objc)
@@ -151,9 +151,9 @@ unsafe impl UIFocusEnvironment for UISheetPresentationController {}
 #[cfg(all(feature = "UIPresentationController", feature = "UITraitCollection"))]
 unsafe impl UITraitEnvironment for UISheetPresentationController {}
 
-extern_methods!(
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl UISheetPresentationController {
+#[cfg(feature = "UIPresentationController")]
+impl UISheetPresentationController {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -292,13 +292,13 @@ extern_methods!(
         #[unsafe(method(animateChanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animateChanges(&self, changes: &block2::Block<dyn Fn() + '_>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIPresentationController`
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl UISheetPresentationController {
+/// Methods declared on superclass `UIPresentationController`.
+#[cfg(feature = "UIPresentationController")]
+impl UISheetPresentationController {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(initWithPresentedViewController:presentingViewController:))]
         #[unsafe(method_family = init)]
@@ -311,15 +311,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl UISheetPresentationController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIPresentationController")]
+impl UISheetPresentationController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -56,9 +56,9 @@ unsafe impl NSObjectProtocol for VNRecognizeTextRequest {}
 #[cfg(feature = "VNRequest")]
 unsafe impl VNRequestProgressProviding for VNRecognizeTextRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNRecognizeTextRequest {
+#[cfg(feature = "VNRequest")]
+impl VNRecognizeTextRequest {
+    extern_methods!(
         /// Returns all the supported languages for a given text recognition level. Note that a language supported in one recognition level might not be available in another.
         #[deprecated]
         #[unsafe(method(supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:_))]
@@ -148,13 +148,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub fn results(&self) -> Option<Retained<NSArray<VNRecognizedTextObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNRecognizeTextRequest {
+/// Methods declared on superclass `VNRequest`.
+#[cfg(feature = "VNRequest")]
+impl VNRecognizeTextRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -171,18 +171,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNRecognizeTextRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNRecognizeTextRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "VNRequest")]
 impl DefaultRetained for VNRecognizeTextRequest {

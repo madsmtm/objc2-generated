@@ -50,9 +50,9 @@ unsafe impl NSObjectProtocol for MPSMatrixSolveTriangular {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSSecureCoding for MPSMatrixSolveTriangular {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-    unsafe impl MPSMatrixSolveTriangular {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+impl MPSMatrixSolveTriangular {
+    extern_methods!(
         /// Initialize an MPSMatrixSolveTriangular object on a device
         ///
         ///
@@ -151,13 +151,13 @@ extern_methods!(
             right_hand_side_matrix: &MPSMatrix,
             solution_matrix: &MPSMatrix,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-    unsafe impl MPSMatrixSolveTriangular {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+impl MPSMatrixSolveTriangular {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -207,13 +207,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-    unsafe impl MPSMatrixSolveTriangular {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+impl MPSMatrixSolveTriangular {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -221,8 +221,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -264,9 +264,9 @@ unsafe impl NSObjectProtocol for MPSMatrixSolveLU {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSSecureCoding for MPSMatrixSolveLU {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-    unsafe impl MPSMatrixSolveLU {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+impl MPSMatrixSolveLU {
+    extern_methods!(
         /// Initialize an MPSMatrixSolveLU object on a device
         ///
         ///
@@ -340,13 +340,13 @@ extern_methods!(
             pivot_indices: &MPSMatrix,
             solution_matrix: &MPSMatrix,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-    unsafe impl MPSMatrixSolveLU {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+impl MPSMatrixSolveLU {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -396,13 +396,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-    unsafe impl MPSMatrixSolveLU {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+impl MPSMatrixSolveLU {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -410,8 +410,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -454,9 +454,9 @@ unsafe impl NSObjectProtocol for MPSMatrixSolveCholesky {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSSecureCoding for MPSMatrixSolveCholesky {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-    unsafe impl MPSMatrixSolveCholesky {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+impl MPSMatrixSolveCholesky {
+    extern_methods!(
         /// Initialize an MPSMatrixSolveCholesky object on a device
         ///
         ///
@@ -523,13 +523,13 @@ extern_methods!(
             right_hand_side_matrix: &MPSMatrix,
             solution_matrix: &MPSMatrix,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-    unsafe impl MPSMatrixSolveCholesky {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+impl MPSMatrixSolveCholesky {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -579,13 +579,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-    unsafe impl MPSMatrixSolveCholesky {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+impl MPSMatrixSolveCholesky {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -593,5 +593,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

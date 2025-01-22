@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MDLVertexAttributeData {}
 
-extern_methods!(
-    unsafe impl MDLVertexAttributeData {
+impl MDLVertexAttributeData {
+    extern_methods!(
         #[cfg(feature = "MDLMeshBuffer")]
         #[unsafe(method(map))]
         #[unsafe(method_family = none)]
@@ -72,12 +72,12 @@ extern_methods!(
         #[unsafe(method(setBufferSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBufferSize(&self, buffer_size: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLVertexAttributeData {
+/// Methods declared on superclass `NSObject`.
+impl MDLVertexAttributeData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -85,8 +85,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A vertex buffer with info to interpret vertex data
@@ -107,9 +107,9 @@ unsafe impl MDLNamed for MDLMesh {}
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLMesh {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLMesh {
+#[cfg(feature = "MDLObject")]
+impl MDLMesh {
+    extern_methods!(
         #[cfg(feature = "MDLMeshBuffer")]
         /// Initialize a mesh with an allocator
         ///
@@ -281,13 +281,13 @@ extern_methods!(
         #[unsafe(method(allocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn allocator(&self) -> Retained<ProtocolObject<dyn MDLMeshBufferAllocator>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLMesh {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLMesh {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -295,13 +295,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Modifiers
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLMesh {
+/// Modifiers.
+#[cfg(feature = "MDLObject")]
+impl MDLMesh {
+    extern_methods!(
         #[cfg(feature = "MDLVertexDescriptor")]
         /// Convenience method to add an attribute
         ///
@@ -526,13 +526,13 @@ extern_methods!(
         #[unsafe(method(removeAttributeNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAttributeNamed(&self, name: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Generators
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLMesh {
+/// Generators.
+#[cfg(feature = "MDLObject")]
+impl MDLMesh {
+    extern_methods!(
         #[cfg(feature = "MDLMeshBuffer")]
         /// Factory method that generates a subdivided mesh from a source mesh
         ///
@@ -587,13 +587,13 @@ extern_methods!(
             submesh_index: NSUInteger,
             subdivision_levels: NSUInteger,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MDLLightBaking
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLMesh {
+/// MDLLightBaking.
+#[cfg(feature = "MDLObject")]
+impl MDLMesh {
+    extern_methods!(
         /// Creates an Ambient Occlusion texture, returns true upon success, false
         /// upon failure
         ///
@@ -668,5 +668,5 @@ extern_methods!(
             objects_to_consider: &NSArray<MDLObject>,
             vertex_attribute_name: &NSString,
         ) -> bool;
-    }
-);
+    );
+}

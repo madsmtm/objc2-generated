@@ -33,9 +33,9 @@ unsafe impl Sync for HKWorkoutRouteBuilder {}
 #[cfg(feature = "HKSeriesBuilder")]
 unsafe impl NSObjectProtocol for HKWorkoutRouteBuilder {}
 
-extern_methods!(
-    #[cfg(feature = "HKSeriesBuilder")]
-    unsafe impl HKWorkoutRouteBuilder {
+#[cfg(feature = "HKSeriesBuilder")]
+impl HKWorkoutRouteBuilder {
+    extern_methods!(
         #[cfg(all(feature = "HKDevice", feature = "HKHealthStore"))]
         /// The designated initializer to create an HKWorkoutRouteBuilder. If you are using an HKWorkoutBuilder , you
         /// should not create an HKWorkoutRouteBuilder, instead use -[HKWorkoutBuilder seriesBuilderForType:]
@@ -134,26 +134,26 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
             completion: &block2::Block<dyn Fn(*mut HKWorkoutRoute, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKSeriesBuilder`
-    #[cfg(feature = "HKSeriesBuilder")]
-    unsafe impl HKWorkoutRouteBuilder {
+/// Methods declared on superclass `HKSeriesBuilder`.
+#[cfg(feature = "HKSeriesBuilder")]
+impl HKWorkoutRouteBuilder {
+    extern_methods!(
         /// Use only subclass initializer methods.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKSeriesBuilder")]
-    unsafe impl HKWorkoutRouteBuilder {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKSeriesBuilder")]
+impl HKWorkoutRouteBuilder {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

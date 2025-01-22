@@ -23,8 +23,8 @@ unsafe impl Sync for HMCharacteristicMetadata {}
 
 unsafe impl NSObjectProtocol for HMCharacteristicMetadata {}
 
-extern_methods!(
-    unsafe impl HMCharacteristicMetadata {
+impl HMCharacteristicMetadata {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,17 +68,17 @@ extern_methods!(
         #[unsafe(method(validValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn validValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMCharacteristicMetadata {
+/// Methods declared on superclass `NSObject`.
+impl HMCharacteristicMetadata {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Describes that the value format is boolean.

@@ -44,9 +44,9 @@ unsafe impl NSObjectProtocol for MPSImageReduceUnary {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageReduceUnary {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceUnary {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceUnary {
+    extern_methods!(
         /// The source rectangle to use when reading data.
         ///
         /// A MTLRegion that indicates which part of the source to read. If the clipRectSource does not lie
@@ -71,13 +71,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSUnaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceUnary {
+/// Methods declared on superclass `MPSUnaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceUnary {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -98,13 +98,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceUnary {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceUnary {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -119,13 +119,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceUnary {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceUnary {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -133,8 +133,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSImageReduceRowMin performs a reduction operation returning the mininmum value for each row of an image
@@ -163,9 +163,9 @@ unsafe impl NSObjectProtocol for MPSImageReduceRowMin {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageReduceRowMin {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMin {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMin {
+    extern_methods!(
         /// Specifies information to apply the reduction operation on an image.
         ///
         /// Parameter `device`: The device the filter will run on
@@ -177,13 +177,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSUnaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMin {
+/// Methods declared on superclass `MPSUnaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMin {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -204,13 +204,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMin {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMin {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -225,13 +225,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMin {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMin {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -239,8 +239,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSImageReduceColumnMin performs a reduction operation returning the mininmum value for each column of an image
@@ -269,9 +269,9 @@ unsafe impl NSObjectProtocol for MPSImageReduceColumnMin {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageReduceColumnMin {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMin {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMin {
+    extern_methods!(
         /// Specifies information to apply the reduction operation on an image.
         ///
         /// Parameter `device`: The device the filter will run on
@@ -283,13 +283,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSUnaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMin {
+/// Methods declared on superclass `MPSUnaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMin {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -310,13 +310,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMin {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMin {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -331,13 +331,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMin {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMin {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -345,8 +345,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSImageReduceRowMax performs a reduction operation returning the maximum value for each row of an image
@@ -375,9 +375,9 @@ unsafe impl NSObjectProtocol for MPSImageReduceRowMax {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageReduceRowMax {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMax {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMax {
+    extern_methods!(
         /// Specifies information to apply the reduction operation on an image.
         ///
         /// Parameter `device`: The device the filter will run on
@@ -389,13 +389,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSUnaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMax {
+/// Methods declared on superclass `MPSUnaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMax {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -416,13 +416,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMax {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMax {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -437,13 +437,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMax {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMax {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -451,8 +451,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSImageReduceColumnMax performs a reduction operation returning the maximum value for each column of an image
@@ -481,9 +481,9 @@ unsafe impl NSObjectProtocol for MPSImageReduceColumnMax {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageReduceColumnMax {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMax {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMax {
+    extern_methods!(
         /// Specifies information to apply the reduction operation on an image.
         ///
         /// Parameter `device`: The device the filter will run on
@@ -495,13 +495,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSUnaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMax {
+/// Methods declared on superclass `MPSUnaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMax {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -522,13 +522,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMax {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMax {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -543,13 +543,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMax {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMax {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -557,8 +557,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSImageReduceRowMean performs a reduction operation returning the mean value for each row of an image
@@ -587,9 +587,9 @@ unsafe impl NSObjectProtocol for MPSImageReduceRowMean {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageReduceRowMean {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMean {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMean {
+    extern_methods!(
         /// Specifies information to apply the reduction operation on an image.
         ///
         /// Parameter `device`: The device the filter will run on
@@ -601,13 +601,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSUnaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMean {
+/// Methods declared on superclass `MPSUnaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMean {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -628,13 +628,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMean {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMean {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -649,13 +649,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowMean {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowMean {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -663,8 +663,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSImageReduceColumnMean performs a reduction operation returning the mean value for each column of an image
@@ -693,9 +693,9 @@ unsafe impl NSObjectProtocol for MPSImageReduceColumnMean {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageReduceColumnMean {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMean {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMean {
+    extern_methods!(
         /// Specifies information to apply the reduction operation on an image.
         ///
         /// Parameter `device`: The device the filter will run on
@@ -707,13 +707,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSUnaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMean {
+/// Methods declared on superclass `MPSUnaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMean {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -734,13 +734,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMean {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMean {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -755,13 +755,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnMean {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnMean {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -769,8 +769,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSImageReduceRowSum performs a reduction operation returning the sum for each row of an image
@@ -799,9 +799,9 @@ unsafe impl NSObjectProtocol for MPSImageReduceRowSum {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageReduceRowSum {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowSum {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowSum {
+    extern_methods!(
         /// Specifies information to apply the reduction operation on an image.
         ///
         /// Parameter `device`: The device the filter will run on
@@ -813,13 +813,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSUnaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowSum {
+/// Methods declared on superclass `MPSUnaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowSum {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -840,13 +840,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowSum {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowSum {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -861,13 +861,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceRowSum {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceRowSum {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -875,8 +875,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSImageReduceColumnSum performs a reduction operation returning the sum for each column of an image
@@ -905,9 +905,9 @@ unsafe impl NSObjectProtocol for MPSImageReduceColumnSum {}
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageReduceColumnSum {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnSum {
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnSum {
+    extern_methods!(
         /// Specifies information to apply the reduction operation on an image.
         ///
         /// Parameter `device`: The device the filter will run on
@@ -919,13 +919,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSUnaryImageKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnSum {
+/// Methods declared on superclass `MPSUnaryImageKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnSum {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -946,13 +946,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnSum {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnSum {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -967,13 +967,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-    unsafe impl MPSImageReduceColumnSum {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
+impl MPSImageReduceColumnSum {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -981,5 +981,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

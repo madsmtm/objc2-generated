@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIDetector {}
 
-extern_methods!(
-    unsafe impl CIDetector {
+impl CIDetector {
+    extern_methods!(
         #[cfg(feature = "CIContext")]
         /// Returns a new detector instance of the given type.
         ///
@@ -60,12 +60,12 @@ extern_methods!(
             image: &CIImage,
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<NSArray<CIFeature>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIDetector {
+/// Methods declared on superclass `NSObject`.
+impl CIDetector {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -73,8 +73,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortypeface?language=objc)

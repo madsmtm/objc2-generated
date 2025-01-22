@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for HKAudiogramSensitivityPoint {}
 
 unsafe impl NSSecureCoding for HKAudiogramSensitivityPoint {}
 
-extern_methods!(
-    unsafe impl HKAudiogramSensitivityPoint {
+impl HKAudiogramSensitivityPoint {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// is [HKUnit hertzUnit] or "Hz".
         #[unsafe(method(frequency))]
@@ -96,14 +96,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKAudiogramSensitivityPoint {
+/// Methods declared on superclass `NSObject`.
+impl HKAudiogramSensitivityPoint {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

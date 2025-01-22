@@ -45,10 +45,10 @@ unsafe impl NSObjectProtocol for SKTileMapNode {}
 #[cfg(target_os = "macos")]
 unsafe impl NSSecureCoding for SKTileMapNode {}
 
-extern_methods!(
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKTileMapNode {
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKTileMapNode {
+    extern_methods!(
         #[cfg(all(feature = "SKTileSet", feature = "objc2-core-foundation"))]
         /// Create a tile map node with the specified tile set and dimensions. The tiles of the map will be empty, equivalent to the nil tile definition/group.
         ///
@@ -444,14 +444,14 @@ extern_methods!(
             column: NSUInteger,
             row: NSUInteger,
         ) -> CGPoint;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SKNode`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKTileMapNode {
+/// Methods declared on superclass `SKNode`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKTileMapNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -482,16 +482,16 @@ extern_methods!(
             classes: &NSSet<AnyClass>,
             mtm: MainThreadMarker,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKTileMapNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKTileMapNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

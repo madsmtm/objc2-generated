@@ -18,8 +18,8 @@ unsafe impl ASAuthorizationProvider for ASAuthorizationPlatformPublicKeyCredenti
 
 unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialProvider {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationPlatformPublicKeyCredentialProvider {
+impl ASAuthorizationPlatformPublicKeyCredentialProvider {
+    extern_methods!(
         #[unsafe(method(initWithRelyingPartyIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRelyingPartyIdentifier(
@@ -96,12 +96,12 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl ASAuthorizationPlatformPublicKeyCredentialProvider {}
-);
+impl ASAuthorizationPlatformPublicKeyCredentialProvider {
+    extern_methods!();
+}
 
 #[cfg(feature = "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider")]
 unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider

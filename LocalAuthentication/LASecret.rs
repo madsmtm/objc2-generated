@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LASecret {}
 
-extern_methods!(
-    unsafe impl LASecret {
+impl LASecret {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Fetch stored data if any
         ///
@@ -44,5 +44,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

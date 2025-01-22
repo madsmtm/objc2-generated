@@ -86,9 +86,8 @@ unsafe impl Sync for ARSkeletonDefinition {}
 unsafe impl NSObjectProtocol for ARSkeletonDefinition {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARSkeletonDefinition {
+impl ARSkeletonDefinition {
+    extern_methods!(
         /// Default skeleton definition for bodies defined in 3D.
         ///
         /// Note: The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be 1.71 meters.
@@ -155,5 +154,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

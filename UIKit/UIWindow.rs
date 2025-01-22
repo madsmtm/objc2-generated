@@ -75,9 +75,9 @@ unsafe impl UIResponderStandardEditActions for UIWindow {}
 ))]
 unsafe impl UITraitEnvironment for UIWindow {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIWindow {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIWindow {
+    extern_methods!(
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
         #[unsafe(method(initWithWindowScene:))]
         #[unsafe(method_family = init)]
@@ -204,13 +204,13 @@ extern_methods!(
             rect: CGRect,
             window: Option<&UIWindow>,
         ) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIWindow {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIWindow {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -222,13 +222,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIWindow {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIWindow {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -236,8 +236,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutguideaspectfitting?language=objc)
@@ -257,10 +257,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UIWindowLayout
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIWindow {
+/// UIWindowLayout.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIWindow {
+    extern_methods!(
         #[cfg(feature = "UILayoutGuide")]
         /// This layout guide is designed specifically for full-screen media content, and attaching constraints from deep in the window's view hierarchy will raise an exception.
         ///
@@ -277,8 +277,8 @@ extern_methods!(
         #[unsafe(method(safeAreaAspectFitLayoutGuide))]
         #[unsafe(method_family = none)]
         pub unsafe fn safeAreaAspectFitLayoutGuide(&self) -> Retained<UILayoutGuide>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowlevelnormal?language=objc)

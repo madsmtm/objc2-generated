@@ -34,8 +34,8 @@ unsafe impl NSObjectProtocol for HKAudiogramSensitivityPointClampingRange {}
 
 unsafe impl NSSecureCoding for HKAudiogramSensitivityPointClampingRange {}
 
-extern_methods!(
-    unsafe impl HKAudiogramSensitivityPointClampingRange {
+impl HKAudiogramSensitivityPointClampingRange {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// The lower bound of the clamping range, if any, in dBHL.
         #[unsafe(method(lowerBound))]
@@ -68,14 +68,14 @@ extern_methods!(
             lower_bound: Option<&NSNumber>,
             upper_bound: Option<&NSNumber>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKAudiogramSensitivityPointClampingRange {
+/// Methods declared on superclass `NSObject`.
+impl HKAudiogramSensitivityPointClampingRange {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

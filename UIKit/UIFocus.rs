@@ -315,8 +315,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIFocusUpdateContext {}
 
-extern_methods!(
-    unsafe impl UIFocusUpdateContext {
+impl UIFocusUpdateContext {
+    extern_methods!(
         /// The item that was focused before the update, i.e. where focus is updating from. May be nil if no item was focused, such as when focus is initially set.
         #[unsafe(method(previouslyFocusedItem))]
         #[unsafe(method_family = none)]
@@ -349,12 +349,12 @@ extern_methods!(
         #[unsafe(method(focusHeading))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusHeading(&self) -> UIFocusHeading;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIFocusUpdateContext {
+/// Methods declared on superclass `NSObject`.
+impl UIFocusUpdateContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -362,8 +362,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusdidupdatenotification?language=objc)

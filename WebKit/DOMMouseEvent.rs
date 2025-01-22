@@ -47,14 +47,14 @@ unsafe impl CopyingHelper for DOMMouseEvent {
 ))]
 unsafe impl NSObjectProtocol for DOMMouseEvent {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMMouseEvent {
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMMouseEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(screenX))]
         #[unsafe(method_family = none)]
@@ -153,49 +153,49 @@ extern_methods!(
             button: c_ushort,
             related_target: Option<&ProtocolObject<dyn DOMEventTarget>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMMouseEvent {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMMouseEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMMouseEvent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMMouseEvent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMMouseEventDeprecated
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMMouseEvent {
+/// DOMMouseEventDeprecated.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMMouseEvent {
+    extern_methods!(
         #[cfg(all(feature = "DOMAbstractView", feature = "DOMEventTarget"))]
         #[deprecated]
         #[unsafe(method(initMouseEvent:::::::::::::::))]
@@ -218,5 +218,5 @@ extern_methods!(
             button: c_ushort,
             related_target: Option<&ProtocolObject<dyn DOMEventTarget>>,
         );
-    }
-);
+    );
+}

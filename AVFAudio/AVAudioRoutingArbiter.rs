@@ -55,8 +55,8 @@ unsafe impl Sync for AVAudioRoutingArbiter {}
 
 unsafe impl NSObjectProtocol for AVAudioRoutingArbiter {}
 
-extern_methods!(
-    unsafe impl AVAudioRoutingArbiter {
+impl AVAudioRoutingArbiter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -106,5 +106,5 @@ extern_methods!(
         #[unsafe(method(leaveArbitration))]
         #[unsafe(method_family = none)]
         pub unsafe fn leaveArbitration(&self);
-    }
-);
+    );
+}

@@ -25,9 +25,9 @@ unsafe impl CopyingHelper for NSSaveChangesRequest {
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSSaveChangesRequest {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSSaveChangesRequest {
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSSaveChangesRequest {
+    extern_methods!(
         #[cfg(feature = "NSManagedObject")]
         #[unsafe(method(initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:))]
         #[unsafe(method_family = init)]
@@ -58,13 +58,13 @@ extern_methods!(
         #[unsafe(method(lockedObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn lockedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSSaveChangesRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSSaveChangesRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,5 +72,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

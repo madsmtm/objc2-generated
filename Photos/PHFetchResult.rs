@@ -24,8 +24,8 @@ unsafe impl<ObjectType: ?Sized> NSFastEnumeration for PHFetchResult<ObjectType> 
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResult<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
+impl<ObjectType: Message> PHFetchResult<ObjectType> {
+    extern_methods!(
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
@@ -101,12 +101,12 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn countOfAssetsWithMediaType(&self, media_type: PHAssetMediaType)
             -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> PHFetchResult<ObjectType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -114,5 +114,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -68,8 +68,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetWriter {}
 
-extern_methods!(
-    unsafe impl AVAssetWriter {
+impl AVAssetWriter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -405,12 +405,12 @@ extern_methods!(
         #[unsafe(method(finishWritingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWritingWithCompletionHandler(&self, handler: &block2::Block<dyn Fn()>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetWriterFileTypeSpecificProperties
-    unsafe impl AVAssetWriter {
+/// AVAssetWriterFileTypeSpecificProperties.
+impl AVAssetWriter {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// For file types that support movie fragments, specifies the frequency at which movie fragments should be written.
         ///
@@ -524,12 +524,12 @@ extern_methods!(
         #[unsafe(method(setMovieTimeScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMovieTimeScale(&self, movie_time_scale: CMTimeScale);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetWriterInputGroups
-    unsafe impl AVAssetWriter {
+/// AVAssetWriterInputGroups.
+impl AVAssetWriter {
+    extern_methods!(
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Tests whether an input group can be added to the receiver.
         ///
@@ -561,8 +561,8 @@ extern_methods!(
         #[unsafe(method(inputGroups))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputGroups(&self) -> Retained<NSArray<AVAssetWriterInputGroup>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputgroup?language=objc)
@@ -583,9 +583,9 @@ unsafe impl CopyingHelper for AVAssetWriterInputGroup {
 #[cfg(feature = "AVMediaSelectionGroup")]
 unsafe impl NSObjectProtocol for AVAssetWriterInputGroup {}
 
-extern_methods!(
-    #[cfg(feature = "AVMediaSelectionGroup")]
-    unsafe impl AVAssetWriterInputGroup {
+#[cfg(feature = "AVMediaSelectionGroup")]
+impl AVAssetWriterInputGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -628,12 +628,12 @@ extern_methods!(
         #[unsafe(method(defaultInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultInput(&self) -> Option<Retained<AVAssetWriterInput>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetWriterSegmentation
-    unsafe impl AVAssetWriter {
+/// AVAssetWriterSegmentation.
+impl AVAssetWriter {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Specifies preferred segment interval.
         ///
@@ -722,8 +722,8 @@ extern_methods!(
         #[unsafe(method(flushSegment))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushSegment(&self);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterdelegate?language=objc)

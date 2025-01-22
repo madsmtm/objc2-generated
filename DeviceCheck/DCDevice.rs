@@ -52,8 +52,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for DCDevice {}
 
-extern_methods!(
-    unsafe impl DCDevice {
+impl DCDevice {
+    extern_methods!(
         /// A representation of the device for which you want to query the two bits of
         /// data.
         #[unsafe(method(currentDevice))]
@@ -104,12 +104,12 @@ extern_methods!(
             &self,
             completion: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl DCDevice {
+/// Methods declared on superclass `NSObject`.
+impl DCDevice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -117,5 +117,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

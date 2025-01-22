@@ -66,9 +66,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for ARHitTestResult {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARHitTestResult {
+impl ARHitTestResult {
+    extern_methods!(
         /// The type of the hit-test result.
         #[deprecated = "Use raycasting"]
         #[unsafe(method(type))]
@@ -102,5 +101,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

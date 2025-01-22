@@ -72,8 +72,8 @@ unsafe impl Sync for UIWritingToolsCoordinatorContext {}
 
 unsafe impl NSObjectProtocol for UIWritingToolsCoordinatorContext {}
 
-extern_methods!(
-    unsafe impl UIWritingToolsCoordinatorContext {
+impl UIWritingToolsCoordinatorContext {
+    extern_methods!(
         /// Creates a context object with the specified attributed string and range
         /// information.
         ///
@@ -162,14 +162,14 @@ extern_methods!(
         #[unsafe(method(resolvedRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedRange(&self) -> NSRange;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIWritingToolsCoordinatorContext {
+/// Methods declared on superclass `NSObject`.
+impl UIWritingToolsCoordinatorContext {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

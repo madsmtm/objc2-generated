@@ -26,8 +26,8 @@ unsafe impl CopyingHelper for NSRulerMarker {
 
 unsafe impl NSObjectProtocol for NSRulerMarker {}
 
-extern_methods!(
-    unsafe impl NSRulerMarker {
+impl NSRulerMarker {
+    extern_methods!(
         #[cfg(all(
             feature = "NSImage",
             feature = "NSResponder",
@@ -144,14 +144,14 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn trackMouse_adding(&self, mouse_down_event: &NSEvent, is_adding: bool)
             -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSRulerMarker {
+/// Methods declared on superclass `NSObject`.
+impl NSRulerMarker {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

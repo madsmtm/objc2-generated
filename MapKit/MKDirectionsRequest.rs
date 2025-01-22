@@ -36,8 +36,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKDirectionsRequest {}
 
-extern_methods!(
-    unsafe impl MKDirectionsRequest {
+impl MKDirectionsRequest {
+    extern_methods!(
         #[cfg(feature = "MKMapItem")]
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
@@ -59,12 +59,12 @@ extern_methods!(
         #[unsafe(method(setDestination:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestination(&self, destination: Option<&MKMapItem>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKDirectionsRequest {
+/// Methods declared on superclass `NSObject`.
+impl MKDirectionsRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,12 +72,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MKRequestOptions
-    unsafe impl MKDirectionsRequest {
+/// MKRequestOptions.
+impl MKDirectionsRequest {
+    extern_methods!(
         #[cfg(feature = "MKDirectionsTypes")]
         #[unsafe(method(transportType))]
         #[unsafe(method_family = none)]
@@ -133,12 +133,12 @@ extern_methods!(
         #[unsafe(method(setHighwayPreference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighwayPreference(&self, highway_preference: MKDirectionsRoutePreference);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MKDirectionsURL
-    unsafe impl MKDirectionsRequest {
+/// MKDirectionsURL.
+impl MKDirectionsRequest {
+    extern_methods!(
         #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
@@ -146,5 +146,5 @@ extern_methods!(
         #[unsafe(method(isDirectionsRequestURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDirectionsRequestURL(url: &NSURL) -> bool;
-    }
-);
+    );
+}

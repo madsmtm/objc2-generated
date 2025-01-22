@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for MTLResidencySetDescriptor {
 
 unsafe impl NSObjectProtocol for MTLResidencySetDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLResidencySetDescriptor {
+impl MTLResidencySetDescriptor {
+    extern_methods!(
         /// An optional label for the MTLResidencySet.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
@@ -45,12 +45,12 @@ extern_methods!(
         #[unsafe(method(setInitialCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialCapacity(&self, initial_capacity: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLResidencySetDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLResidencySetDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -58,8 +58,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A residency set is responsible for managing resource and heap residency and is referenced

@@ -91,10 +91,10 @@ unsafe impl NSObjectProtocol for SKLabelNode {}
 #[cfg(target_os = "macos")]
 unsafe impl NSSecureCoding for SKLabelNode {}
 
-extern_methods!(
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKLabelNode {
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKLabelNode {
+    extern_methods!(
         #[unsafe(method(labelNodeWithText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn labelNodeWithText(
@@ -263,14 +263,14 @@ extern_methods!(
         #[unsafe(method(setBlendMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: SKBlendMode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SKNode`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKLabelNode {
+/// Methods declared on superclass `SKNode`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKLabelNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -301,16 +301,16 @@ extern_methods!(
             classes: &NSSet<AnyClass>,
             mtm: MainThreadMarker,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKLabelNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKLabelNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

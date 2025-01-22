@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISceneWindowingBehaviors {}
 
-extern_methods!(
-    unsafe impl UISceneWindowingBehaviors {
+impl UISceneWindowingBehaviors {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -43,5 +43,5 @@ extern_methods!(
         #[unsafe(method(setMiniaturizable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMiniaturizable(&self, miniaturizable: bool);
-    }
-);
+    );
+}

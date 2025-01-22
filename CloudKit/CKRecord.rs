@@ -95,8 +95,8 @@ unsafe impl NSObjectProtocol for CKRecord {}
 
 unsafe impl NSSecureCoding for CKRecord {}
 
-extern_methods!(
-    unsafe impl CKRecord {
+impl CKRecord {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -348,8 +348,8 @@ extern_methods!(
         #[unsafe(method(setParentReferenceFromRecordID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParentReferenceFromRecordID(&self, parent_record_id: Option<&CKRecordID>);
-    }
-);
+    );
+}
 
 unsafe impl CKRecordValue for NSString {}
 
@@ -361,20 +361,20 @@ unsafe impl CKRecordValue for NSDate {}
 
 unsafe impl CKRecordValue for NSData {}
 
-extern_methods!(
-    /// CKRecordValue
-    #[cfg(feature = "CKReference")]
-    unsafe impl CKReference {}
-);
+/// CKRecordValue.
+#[cfg(feature = "CKReference")]
+impl CKReference {
+    extern_methods!();
+}
 
 #[cfg(feature = "CKReference")]
 unsafe impl CKRecordValue for CKReference {}
 
-extern_methods!(
-    /// CKRecordValue
-    #[cfg(feature = "CKAsset")]
-    unsafe impl CKAsset {}
-);
+/// CKRecordValue.
+#[cfg(feature = "CKAsset")]
+impl CKAsset {
+    extern_methods!();
+}
 
 #[cfg(feature = "CKAsset")]
 unsafe impl CKRecordValue for CKAsset {}
@@ -427,9 +427,9 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// CKRecordKeyValueSettingConformance
-    unsafe impl CKRecord {
+/// CKRecordKeyValueSettingConformance.
+impl CKRecord {
+    extern_methods!(
         /// Any values set here will be locally encrypted before being saved to the server and locally decrypted when fetched from the server. Encryption and decryption is handled by the CloudKit framework.
         /// Key material necessary for decryption are available to the owner of the record, as well as any users that can access this record via a CKShare.
         /// All CKRecordValue types can be set here except CKAsset and CKReference.
@@ -438,7 +438,7 @@ extern_methods!(
         pub unsafe fn encryptedValues(
             &self,
         ) -> Retained<ProtocolObject<dyn CKRecordKeyValueSetting>>;
-    }
-);
+    );
+}
 
 unsafe impl CKRecordKeyValueSetting for CKRecord {}

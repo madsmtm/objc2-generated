@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LAEnvironment {}
 
-extern_methods!(
-    unsafe impl LAEnvironment {
+impl LAEnvironment {
+    extern_methods!(
         /// The clients should use
         /// `currentUser`class property.
         #[unsafe(method(new))]
@@ -53,8 +53,8 @@ extern_methods!(
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> Retained<LAEnvironmentState>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laenvironmentobserver?language=objc)

@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for MXForegroundExitData {}
 
 unsafe impl NSSecureCoding for MXForegroundExitData {}
 
-extern_methods!(
-    unsafe impl MXForegroundExitData {
+impl MXForegroundExitData {
+    extern_methods!(
         /// Cumulative number of times the application exited normally, or was gracefully terminated by the system.
         #[unsafe(method(cumulativeNormalAppExitCount))]
         #[unsafe(method_family = none)]
@@ -62,12 +62,12 @@ extern_methods!(
         #[unsafe(method(cumulativeAppWatchdogExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeAppWatchdogExitCount(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MXForegroundExitData {
+/// Methods declared on superclass `NSObject`.
+impl MXForegroundExitData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -75,8 +75,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A class that encapsulates cumulative application exit metrics when the application is off screen.
@@ -97,8 +97,8 @@ unsafe impl NSObjectProtocol for MXBackgroundExitData {}
 
 unsafe impl NSSecureCoding for MXBackgroundExitData {}
 
-extern_methods!(
-    unsafe impl MXBackgroundExitData {
+impl MXBackgroundExitData {
+    extern_methods!(
         /// Cumulative number of times the application exited normally, or was gracefully terminated by the system.
         #[unsafe(method(cumulativeNormalAppExitCount))]
         #[unsafe(method_family = none)]
@@ -158,12 +158,12 @@ extern_methods!(
         #[unsafe(method(cumulativeBackgroundTaskAssertionTimeoutExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundTaskAssertionTimeoutExitCount(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MXBackgroundExitData {
+/// Methods declared on superclass `NSObject`.
+impl MXBackgroundExitData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -171,8 +171,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A class that encapsulates application exit metrics for both on screen and off screen exits.
@@ -197,9 +197,9 @@ unsafe impl NSObjectProtocol for MXAppExitMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXAppExitMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXAppExitMetric {
+#[cfg(feature = "MXMetric")]
+impl MXAppExitMetric {
+    extern_methods!(
         /// Cumulative foreground exit data.
         ///
         /// This includes application exit data when the application was on screen and visible to the user.
@@ -213,13 +213,13 @@ extern_methods!(
         #[unsafe(method(backgroundExitData))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundExitData(&self) -> Retained<MXBackgroundExitData>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXAppExitMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXAppExitMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -227,5 +227,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

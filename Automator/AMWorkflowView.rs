@@ -41,9 +41,9 @@ unsafe impl NSObjectProtocol for AMWorkflowView {}
 #[cfg(feature = "objc2-app-kit")]
 unsafe impl NSUserInterfaceItemIdentification for AMWorkflowView {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl AMWorkflowView {
+#[cfg(feature = "objc2-app-kit")]
+impl AMWorkflowView {
+    extern_methods!(
         #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditable(&self) -> bool;
@@ -67,13 +67,13 @@ extern_methods!(
             &self,
             workflow_controller: Option<&AMWorkflowController>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl AMWorkflowView {
+/// Methods declared on superclass `NSView`.
+#[cfg(feature = "objc2-app-kit")]
+impl AMWorkflowView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -84,25 +84,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl AMWorkflowView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+impl AMWorkflowView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl AMWorkflowView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+impl AMWorkflowView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

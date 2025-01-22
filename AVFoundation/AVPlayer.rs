@@ -52,8 +52,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayer {}
 
-extern_methods!(
-    unsafe impl AVPlayer {
+impl AVPlayer {
+    extern_methods!(
         /// Initializes an AVPlayer with no player items.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -128,17 +128,17 @@ extern_methods!(
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayer {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Indicates a player rate change.
@@ -270,9 +270,9 @@ extern "C" {
     pub static AVPlayerWaitingForCoordinatedPlaybackReason: &'static AVPlayerWaitingReason;
 }
 
-extern_methods!(
-    /// AVPlayerPlaybackControl
-    unsafe impl AVPlayer {
+/// AVPlayerPlaybackControl.
+impl AVPlayer {
+    extern_methods!(
         /// Indicates the desired rate of playback; 0.0 means "paused", 1.0 indicates a desire to play at the natural rate of the current item.
         ///
         /// Setting the value of rate to 0.0 pauses playback, causing the value of timeControlStatus to change to AVPlayerTimeControlStatusPaused.
@@ -352,8 +352,8 @@ extern_methods!(
         #[unsafe(method(playImmediatelyAtRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playImmediatelyAtRate(&self, rate: c_float);
-    }
-);
+    );
+}
 
 /// These constants are the allowable values of AVPlayer's actionAtItemEnd property.
 ///
@@ -391,9 +391,9 @@ unsafe impl RefEncode for AVPlayerActionAtItemEnd {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVPlayerItemControl
-    unsafe impl AVPlayer {
+/// AVPlayerItemControl.
+impl AVPlayer {
+    extern_methods!(
         #[cfg(feature = "AVPlayerItem")]
         #[unsafe(method(currentItem))]
         #[unsafe(method_family = none)]
@@ -421,12 +421,12 @@ extern_methods!(
         #[unsafe(method(setActionAtItemEnd:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionAtItemEnd(&self, action_at_item_end: AVPlayerActionAtItemEnd);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerTimeControl
-    unsafe impl AVPlayer {
+/// AVPlayerTimeControl.
+impl AVPlayer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Returns the current time of the current item.
         ///
@@ -533,12 +533,12 @@ extern_methods!(
             tolerance_after: CMTime,
             completion_handler: &block2::Block<dyn Fn(Bool)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerAdvancedRateControl
-    unsafe impl AVPlayer {
+/// AVPlayerAdvancedRateControl.
+impl AVPlayer {
+    extern_methods!(
         /// Indicates that the player is allowed to delay playback at the specified rate in order to minimize stalling
         ///
         ///
@@ -637,12 +637,12 @@ extern_methods!(
         #[unsafe(method(setSourceClock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceClock(&self, source_clock: Option<&CMClock>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerTimeObservation
-    unsafe impl AVPlayer {
+/// AVPlayerTimeObservation.
+impl AVPlayer {
+    extern_methods!(
         /// Cancels a previously registered time observer.
         ///
         /// Parameter `observer`: An object returned by a previous call to -addPeriodicTimeObserverForInterval:queue:usingBlock: or -addBoundaryTimeObserverForTimes:queue:usingBlock:.
@@ -661,12 +661,12 @@ extern_methods!(
         #[unsafe(method(removeTimeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeObserver(&self, observer: &AnyObject);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerMediaControl
-    unsafe impl AVPlayer {
+/// AVPlayerMediaControl.
+impl AVPlayer {
+    extern_methods!(
         #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
@@ -684,12 +684,12 @@ extern_methods!(
         #[unsafe(method(setMuted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMuted(&self, muted: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerAutomaticMediaSelection
-    unsafe impl AVPlayer {
+/// AVPlayerAutomaticMediaSelection.
+impl AVPlayer {
+    extern_methods!(
         #[unsafe(method(appliesMediaSelectionCriteriaAutomatically))]
         #[unsafe(method_family = none)]
         pub unsafe fn appliesMediaSelectionCriteriaAutomatically(&self) -> bool;
@@ -737,12 +737,12 @@ extern_methods!(
             &self,
             media_characteristic: &AVMediaCharacteristic,
         ) -> Option<Retained<AVPlayerMediaSelectionCriteria>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerAudioDeviceSupport
-    unsafe impl AVPlayer {
+/// AVPlayerAudioDeviceSupport.
+impl AVPlayer {
+    extern_methods!(
         /// Specifies the unique ID of the Core Audio output device used to play audio.
         ///
         /// By default, the value of this property is nil, indicating that the default audio output device is used. Otherwise the value of this property is an NSString containing the unique ID of the Core Audio output device to be used for audio output.
@@ -759,12 +759,12 @@ extern_methods!(
             &self,
             audio_output_device_unique_id: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerExternalPlaybackSupport
-    unsafe impl AVPlayer {
+/// AVPlayerExternalPlaybackSupport.
+impl AVPlayer {
+    extern_methods!(
         #[unsafe(method(allowsExternalPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsExternalPlayback(&self) -> bool;
@@ -803,12 +803,12 @@ extern_methods!(
             &self,
             external_playback_video_gravity: &AVLayerVideoGravity,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerProtectedContent
-    unsafe impl AVPlayer {
+/// AVPlayerProtectedContent.
+impl AVPlayer {
+    extern_methods!(
         /// Whether or not decoded output is being obscured due to insufficient external protection.
         ///
         ///
@@ -824,8 +824,8 @@ extern_methods!(
         #[unsafe(method(outputObscuredDueToInsufficientExternalProtection))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputObscuredDueToInsufficientExternalProtection(&self) -> bool;
-    }
-);
+    );
+}
 
 /// A bitfield type that specifies an HDR mode.
 ///
@@ -887,9 +887,9 @@ extern "C" {
     pub static AVPlayerEligibleForHDRPlaybackDidChangeNotification: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// AVPlayerPlaybackCapabilities
-    unsafe impl AVPlayer {
+/// AVPlayerPlaybackCapabilities.
+impl AVPlayer {
+    extern_methods!(
         /// An AVPlayerHDRMode value that indicates the HDR modes the device can play to an appropriate display.   A value of 0 indicates that no HDR modes are supported.
         ///
         ///
@@ -906,12 +906,12 @@ extern_methods!(
         #[unsafe(method(eligibleForHDRPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn eligibleForHDRPlayback(mtm: MainThreadMarker) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerVideoDecoderGPUSupport
-    unsafe impl AVPlayer {
+/// AVPlayerVideoDecoderGPUSupport.
+impl AVPlayer {
+    extern_methods!(
         /// Specifies a registryID associated with a GPU that should be used for video decode.
         ///
         ///
@@ -929,12 +929,12 @@ extern_methods!(
             &self,
             preferred_video_decoder_gpu_registry_id: u64,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerVideoDisplaySleepPrevention
-    unsafe impl AVPlayer {
+/// AVPlayerVideoDisplaySleepPrevention.
+impl AVPlayer {
+    extern_methods!(
         /// Indicates whether video playback prevents display and device sleep.
         ///
         /// Default is YES on iOS, tvOS and in Mac Catalyst apps.  Default is NO on macOS.
@@ -952,12 +952,12 @@ extern_methods!(
             &self,
             prevents_display_sleep_during_video_playback: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerAutomaticBackgroundPrevention
-    unsafe impl AVPlayer {
+/// AVPlayerAutomaticBackgroundPrevention.
+impl AVPlayer {
+    extern_methods!(
         /// Indicates whether video playback prevents the app from automatically getting backgrounded.
         ///
         /// Default value is YES.
@@ -973,8 +973,8 @@ extern_methods!(
             &self,
             prevents_automatic_backgrounding_during_video_playback: bool,
         );
-    }
-);
+    );
+}
 
 /// This policy describes how AVPlayer behaves when the application transitions to UIApplicationStateBackground while playing video.
 ///
@@ -1009,9 +1009,9 @@ unsafe impl RefEncode for AVPlayerAudiovisualBackgroundPlaybackPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVPlayerBackgroundSupport
-    unsafe impl AVPlayer {
+/// AVPlayerBackgroundSupport.
+impl AVPlayer {
+    extern_methods!(
         /// Controls the policy to be used in deciding how playback of audiovisual content should continue while the application transitions to background.
         ///
         /// By default, the system is free to decide the background playback policy (AVPlayerAudiovisualBackgroundPlaybackPolicyAutomatic).
@@ -1030,12 +1030,12 @@ extern_methods!(
             &self,
             audiovisual_background_playback_policy: AVPlayerAudiovisualBackgroundPlaybackPolicy,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// PlaybackCoordination
-    unsafe impl AVPlayer {
+/// PlaybackCoordination.
+impl AVPlayer {
+    extern_methods!(
         #[cfg(feature = "AVPlaybackCoordinator")]
         /// The playback coordinator for this player.
         ///
@@ -1049,12 +1049,12 @@ extern_methods!(
         #[unsafe(method(playbackCoordinator))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackCoordinator(&self) -> Retained<AVPlayerPlaybackCoordinator>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerOutputSupport
-    unsafe impl AVPlayer {
+/// AVPlayerOutputSupport.
+impl AVPlayer {
+    extern_methods!(
         #[cfg(feature = "AVPlayerOutput")]
         /// The video output for this player, if one was set.
         ///
@@ -1071,12 +1071,12 @@ extern_methods!(
         #[unsafe(method(setVideoOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoOutput(&self, video_output: Option<&AVPlayerVideoOutput>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerDeprecated
-    unsafe impl AVPlayer {
+/// AVPlayerDeprecated.
+impl AVPlayer {
+    extern_methods!(
         /// Indicates whether display of closed captions is enabled.
         ///
         ///
@@ -1112,8 +1112,8 @@ extern_methods!(
         #[unsafe(method(setMasterClock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMasterClock(&self, master_clock: Option<&CMClock>);
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueueplayer?language=objc)
@@ -1124,8 +1124,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVQueuePlayer {}
 
-extern_methods!(
-    unsafe impl AVQueuePlayer {
+impl AVQueuePlayer {
+    extern_methods!(
         #[cfg(feature = "AVPlayerItem")]
         /// Creates an instance of AVQueuePlayer and enqueues the AVPlayerItems from the specified array.
         ///
@@ -1219,12 +1219,12 @@ extern_methods!(
         #[unsafe(method(removeAllItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllItems(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVPlayer`
-    unsafe impl AVQueuePlayer {
+/// Methods declared on superclass `AVPlayer`.
+impl AVQueuePlayer {
+    extern_methods!(
         /// Initializes an AVPlayer with no player items.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -1279,14 +1279,14 @@ extern_methods!(
             this: Allocated<Self>,
             item: Option<&AVPlayerItem>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVQueuePlayer {
+/// Methods declared on superclass `NSObject`.
+impl AVQueuePlayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

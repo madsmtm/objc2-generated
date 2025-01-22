@@ -124,8 +124,8 @@ unsafe impl NSObjectProtocol for NSBezierPath {}
 
 unsafe impl NSSecureCoding for NSBezierPath {}
 
-extern_methods!(
-    unsafe impl NSBezierPath {
+impl NSBezierPath {
+    extern_methods!(
         #[unsafe(method(bezierPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezierPath() -> Retained<NSBezierPath>;
@@ -527,12 +527,12 @@ extern_methods!(
         #[unsafe(method(containsPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSBezierPath {
+/// Methods declared on superclass `NSObject`.
+impl NSBezierPath {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -540,12 +540,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSBezierPathDeprecated
-    unsafe impl NSBezierPath {
+/// NSBezierPathDeprecated.
+impl NSBezierPath {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(cachesBezierPath))]
         #[unsafe(method_family = none)]
@@ -577,8 +577,8 @@ extern_methods!(
         #[unsafe(method(appendBezierPathWithPackedGlyphs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithPackedGlyphs(&self, packed_glyphs: NonNull<c_char>);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbuttlinecapstyle?language=objc)
 pub static NSButtLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Butt.0);

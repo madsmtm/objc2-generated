@@ -47,8 +47,8 @@ unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSOrderedCollectionDiffere
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionDifference<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
+impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
         /// Creates a new difference representing the changes in the parameter.
         ///
@@ -127,12 +127,12 @@ extern_methods!(
         #[unsafe(method(inverseDifference))]
         #[unsafe(method_family = none)]
         pub unsafe fn inverseDifference(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -140,5 +140,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

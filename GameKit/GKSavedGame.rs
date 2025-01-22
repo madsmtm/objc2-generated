@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for GKSavedGame {
 
 unsafe impl NSObjectProtocol for GKSavedGame {}
 
-extern_methods!(
-    unsafe impl GKSavedGame {
+impl GKSavedGame {
+    extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
@@ -46,12 +46,12 @@ extern_methods!(
             &self,
             handler: Option<&block2::Block<dyn Fn(*mut NSData, *mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKSavedGame {
+/// Methods declared on superclass `NSObject`.
+impl GKSavedGame {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -59,17 +59,17 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// GKSavedGame
-    #[cfg(all(
-        feature = "GKBasePlayer",
-        feature = "GKLocalPlayer",
-        feature = "GKPlayer"
-    ))]
-    unsafe impl GKLocalPlayer {
+/// GKSavedGame.
+#[cfg(all(
+    feature = "GKBasePlayer",
+    feature = "GKLocalPlayer",
+    feature = "GKPlayer"
+))]
+impl GKLocalPlayer {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously fetch saved games. The handler is called with an array of GKSavedGame objects or an error.
         /// If there is more than one saved game with the same name then a conflict exists. The application should determine the correct data to use and call resolveConflictingSavedGames:withData:completionHandler:. This may require data merging or asking the user.
@@ -112,8 +112,8 @@ extern_methods!(
             data: &NSData,
             handler: Option<&block2::Block<dyn Fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
         );
-    }
-);
+    );
+}
 
 #[cfg(all(
     feature = "GKBasePlayer",

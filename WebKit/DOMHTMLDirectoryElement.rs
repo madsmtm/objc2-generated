@@ -68,15 +68,15 @@ unsafe impl CopyingHelper for DOMHTMLDirectoryElement {
 ))]
 unsafe impl NSObjectProtocol for DOMHTMLDirectoryElement {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLDirectoryElement {
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLDirectoryElement {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(compact))]
         #[unsafe(method_family = none)]
@@ -87,38 +87,38 @@ extern_methods!(
         #[unsafe(method(setCompact:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompact(&self, compact: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLDirectoryElement {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLDirectoryElement {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLDirectoryElement {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLDirectoryElement {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

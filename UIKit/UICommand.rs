@@ -61,8 +61,8 @@ unsafe impl NSObjectProtocol for UICommandAlternate {}
 
 unsafe impl NSSecureCoding for UICommandAlternate {}
 
-extern_methods!(
-    unsafe impl UICommandAlternate {
+impl UICommandAlternate {
+    extern_methods!(
         /// Short display title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -111,8 +111,8 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents an action to take.
@@ -145,9 +145,9 @@ unsafe impl NSSecureCoding for UICommand {}
 #[cfg(all(feature = "UIMenuElement", feature = "UIMenuLeaf"))]
 unsafe impl UIMenuLeaf for UICommand {}
 
-extern_methods!(
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl UICommand {
+#[cfg(feature = "UIMenuElement")]
+impl UICommand {
+    extern_methods!(
         /// Short display title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -278,8 +278,8 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicommandtagshare?language=objc)

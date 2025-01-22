@@ -65,8 +65,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for EKEventStore {}
 
-extern_methods!(
-    unsafe impl EKEventStore {
+impl EKEventStore {
+    extern_methods!(
         #[cfg(feature = "EKTypes")]
         /// Returns the authorization status for the given entity type
         #[unsafe(method(authorizationStatusForEntityType:))]
@@ -627,17 +627,17 @@ extern_methods!(
         #[unsafe(method(refreshSourcesIfNecessary))]
         #[unsafe(method_family = none)]
         pub unsafe fn refreshSourcesIfNecessary(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl EKEventStore {
+/// Methods declared on superclass `NSObject`.
+impl EKEventStore {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Notification name sent out when the database is changed by either an external process,

@@ -33,9 +33,9 @@ unsafe impl CopyingHelper for VNDetectTrajectoriesRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNDetectTrajectoriesRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl VNDetectTrajectoriesRequest {
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+impl VNDetectTrajectoriesRequest {
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
         #[unsafe(method_family = init)]
@@ -133,13 +133,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNTrajectoryObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNStatefulRequest`
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl VNDetectTrajectoriesRequest {
+/// Methods declared on superclass `VNStatefulRequest`.
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+impl VNDetectTrajectoriesRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -155,8 +155,8 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequestrevision1?language=objc)
 pub static VNDetectTrajectoriesRequestRevision1: NSUInteger = 1;

@@ -26,8 +26,8 @@ unsafe impl NSObjectProtocol for CMPedometerData {}
 
 unsafe impl NSSecureCoding for CMPedometerData {}
 
-extern_methods!(
-    unsafe impl CMPedometerData {
+impl CMPedometerData {
+    extern_methods!(
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
@@ -63,12 +63,12 @@ extern_methods!(
         #[unsafe(method(averageActivePace))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageActivePace(&self) -> Option<Retained<NSNumber>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMPedometerData {
+/// Methods declared on superclass `NSObject`.
+impl CMPedometerData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,8 +76,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventtype?language=objc)
 // NS_ENUM
@@ -118,8 +118,8 @@ unsafe impl NSObjectProtocol for CMPedometerEvent {}
 
 unsafe impl NSSecureCoding for CMPedometerEvent {}
 
-extern_methods!(
-    unsafe impl CMPedometerEvent {
+impl CMPedometerEvent {
+    extern_methods!(
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
@@ -127,12 +127,12 @@ extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CMPedometerEventType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMPedometerEvent {
+/// Methods declared on superclass `NSObject`.
+impl CMPedometerEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -140,8 +140,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometerhandler?language=objc)
 #[cfg(feature = "block2")]
@@ -160,8 +160,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CMPedometer {}
 
-extern_methods!(
-    unsafe impl CMPedometer {
+impl CMPedometer {
+    extern_methods!(
         #[unsafe(method(isStepCountingAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStepCountingAvailable() -> bool;
@@ -225,12 +225,12 @@ extern_methods!(
         #[unsafe(method(stopPedometerEventUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopPedometerEventUpdates(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMPedometer {
+/// Methods declared on superclass `NSObject`.
+impl CMPedometer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -238,5 +238,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

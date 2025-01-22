@@ -26,8 +26,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSStoryboard {}
 
-extern_methods!(
-    unsafe impl NSStoryboard {
+impl NSStoryboard {
+    extern_methods!(
         #[unsafe(method(mainStoryboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainStoryboard() -> Option<Retained<NSStoryboard>>;
@@ -66,12 +66,12 @@ extern_methods!(
             identifier: &NSStoryboardSceneIdentifier,
             block: NSStoryboardControllerCreator,
         ) -> Retained<AnyObject>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSStoryboard {
+/// Methods declared on superclass `NSObject`.
+impl NSStoryboard {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,5 +79,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

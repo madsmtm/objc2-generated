@@ -135,9 +135,9 @@ unsafe impl NSObjectProtocol for MPSSVGF {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSSVGF {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSSVGF {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSSVGF {
+    extern_methods!(
         /// Controls how samples' depths are compared during reprojection, variance estimation, and
         /// bilateral filtering. The final weight is given by exp(-abs(Z1 - Z2) / depthWeight). Must be
         /// greater than zero. Defaults to 1.0.
@@ -804,13 +804,13 @@ extern_methods!(
             destination_texture2: Option<&ProtocolObject<dyn MTLTexture>>,
             depth_normal_texture: &ProtocolObject<dyn MTLTexture>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSSVGF {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSSVGF {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -825,13 +825,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSSVGF {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSSVGF {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -839,8 +839,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Protocol dictating how texture allocator objects should operate so that they can be used
@@ -883,8 +883,8 @@ unsafe impl MPSSVGFTextureAllocator for MPSSVGFDefaultTextureAllocator {}
 
 unsafe impl NSObjectProtocol for MPSSVGFDefaultTextureAllocator {}
 
-extern_methods!(
-    unsafe impl MPSSVGFDefaultTextureAllocator {
+impl MPSSVGFDefaultTextureAllocator {
+    extern_methods!(
         /// Metal device this object was allocated from
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
@@ -920,12 +920,12 @@ extern_methods!(
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSSVGFDefaultTextureAllocator {
+/// Methods declared on superclass `NSObject`.
+impl MPSSVGFDefaultTextureAllocator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -933,8 +933,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A convenience object which uses an MPSSVGF object to manage the denoising process
@@ -986,8 +986,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSSVGFDenoiser {}
 
-extern_methods!(
-    unsafe impl MPSSVGFDenoiser {
+impl MPSSVGFDenoiser {
+    extern_methods!(
         #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
         /// The underlying MPSSVGF kernels object which will be used for denoising. Use this object
         /// to customize the denoising process.
@@ -1128,12 +1128,12 @@ extern_methods!(
             depth_normal_texture: &ProtocolObject<dyn MTLTexture>,
             previous_depth_normal_texture: Option<&ProtocolObject<dyn MTLTexture>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSSVGFDenoiser {
+/// Methods declared on superclass `NSObject`.
+impl MPSSVGFDenoiser {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1141,5 +1141,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

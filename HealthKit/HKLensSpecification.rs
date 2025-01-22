@@ -20,8 +20,8 @@ unsafe impl Sync for HKLensSpecification {}
 
 unsafe impl NSObjectProtocol for HKLensSpecification {}
 
-extern_methods!(
-    unsafe impl HKLensSpecification {
+impl HKLensSpecification {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// The lens power to correct nearsightedness or farsightedness. (-) means nearsighted while (+) farsighted.
         #[unsafe(method(sphere))]
@@ -53,5 +53,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

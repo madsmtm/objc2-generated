@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for CWNetwork {}
 
 unsafe impl NSSecureCoding for CWNetwork {}
 
-extern_methods!(
-    unsafe impl CWNetwork {
+impl CWNetwork {
+    extern_methods!(
         /// Returns the service set identifier (SSID) for the Wi-Fi network device, encoded as a string.
         ///
         ///
@@ -168,12 +168,12 @@ extern_methods!(
         #[unsafe(method(supportsPHYMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsPHYMode(&self, phy_mode: CWPHYMode) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CWNetwork {
+/// Methods declared on superclass `NSObject`.
+impl CWNetwork {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -181,5 +181,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

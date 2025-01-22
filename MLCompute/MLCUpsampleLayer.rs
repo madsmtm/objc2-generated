@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCUpsampleLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCUpsampleLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCUpsampleLayer {
+    extern_methods!(
         /// A NSArray
         /// <NSNumber
         /// *> representing just the width if number of entries in shape array is 1 or
@@ -80,13 +80,13 @@ extern_methods!(
             sample_mode: MLCSampleMode,
             aligns_corners: bool,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCUpsampleLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCUpsampleLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -96,5 +96,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

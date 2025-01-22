@@ -35,8 +35,8 @@ unsafe impl NSSecureCoding for UIListContentConfiguration {}
 #[cfg(feature = "UIContentConfiguration")]
 unsafe impl UIContentConfiguration for UIListContentConfiguration {}
 
-extern_methods!(
-    unsafe impl UIListContentConfiguration {
+impl UIListContentConfiguration {
+    extern_methods!(
         /// Returns the default configuration for a list cell.
         /// From iOS 18 onwards, the configuration will automatically adopt the appropriate style for a list when updating for a
         /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
@@ -320,8 +320,8 @@ extern_methods!(
         #[unsafe(method(sidebarHeaderConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn sidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontentview?language=objc)
@@ -388,9 +388,9 @@ unsafe impl UIResponderStandardEditActions for UIListContentView {}
 ))]
 unsafe impl UITraitEnvironment for UIListContentView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIListContentView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIListContentView {
+    extern_methods!(
         #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
@@ -453,5 +453,5 @@ extern_methods!(
         #[unsafe(method(imageLayoutGuide))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
-    }
-);
+    );
+}

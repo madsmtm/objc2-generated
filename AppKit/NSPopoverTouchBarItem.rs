@@ -21,9 +21,9 @@ unsafe impl NSCoding for NSPopoverTouchBarItem {}
 #[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSPopoverTouchBarItem {}
 
-extern_methods!(
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl NSPopoverTouchBarItem {
+#[cfg(feature = "NSTouchBarItem")]
+impl NSPopoverTouchBarItem {
+    extern_methods!(
         #[cfg(feature = "NSTouchBar")]
         #[unsafe(method(popoverTouchBar))]
         #[unsafe(method_family = none)]
@@ -115,13 +115,13 @@ extern_methods!(
         pub unsafe fn makeStandardActivatePopoverGestureRecognizer(
             &self,
         ) -> Retained<NSGestureRecognizer>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl NSPopoverTouchBarItem {
+/// Methods declared on superclass `NSTouchBarItem`.
+#[cfg(feature = "NSTouchBarItem")]
+impl NSPopoverTouchBarItem {
+    extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
@@ -139,15 +139,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl NSPopoverTouchBarItem {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSTouchBarItem")]
+impl NSPopoverTouchBarItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

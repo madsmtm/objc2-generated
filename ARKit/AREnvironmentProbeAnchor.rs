@@ -50,10 +50,9 @@ unsafe impl NSObjectProtocol for AREnvironmentProbeAnchor {}
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl NSSecureCoding for AREnvironmentProbeAnchor {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl AREnvironmentProbeAnchor {
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl AREnvironmentProbeAnchor {
+    extern_methods!(
         #[cfg(feature = "objc2-metal")]
         /// The environment texture of the probe.
         ///
@@ -62,14 +61,13 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn environmentTexture(&self)
             -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `ARAnchor`
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl AREnvironmentProbeAnchor {
+/// Methods declared on superclass `ARAnchor`.
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl AREnvironmentProbeAnchor {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -78,5 +76,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

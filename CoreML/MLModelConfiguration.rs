@@ -55,8 +55,8 @@ unsafe impl NSObjectProtocol for MLModelConfiguration {}
 
 unsafe impl NSSecureCoding for MLModelConfiguration {}
 
-extern_methods!(
-    unsafe impl MLModelConfiguration {
+impl MLModelConfiguration {
+    extern_methods!(
         /// A human readable name of a MLModel instance for display purposes.
         ///
         /// Use this property to set a name of a model instance so that runtime analysis tools (e.g. Instruments and os_log)
@@ -95,12 +95,12 @@ extern_methods!(
         #[unsafe(method(setOptimizationHints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptimizationHints(&self, optimization_hints: &MLOptimizationHints);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLModelConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl MLModelConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,13 +108,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MLGPUConfigurationOptions
-    /// Allows app to specify  GPU configuration options
-    unsafe impl MLModelConfiguration {
+/// MLGPUConfigurationOptions.
+/// Allows app to specify  GPU configuration options
+impl MLModelConfiguration {
+    extern_methods!(
         /// Set to YES to allow low precision accumulation on GPU when available. Defaults to NO
         #[unsafe(method(allowLowPrecisionAccumulationOnGPU))]
         #[unsafe(method_family = none)]
@@ -146,13 +146,13 @@ extern_methods!(
             &self,
             preferred_metal_device: Option<&ProtocolObject<dyn MTLDevice>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MLModelParameterAdditions
-    /// Allows app to set model or update parameters as a dictionary.
-    unsafe impl MLModelConfiguration {
+/// MLModelParameterAdditions.
+/// Allows app to set model or update parameters as a dictionary.
+impl MLModelConfiguration {
+    extern_methods!(
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
         #[unsafe(method(parameters))]
         #[unsafe(method_family = none)]
@@ -168,12 +168,12 @@ extern_methods!(
             &self,
             parameters: Option<&NSDictionary<MLParameterKey, AnyObject>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MultiFunctions
-    unsafe impl MLModelConfiguration {
+/// MultiFunctions.
+impl MLModelConfiguration {
+    extern_methods!(
         /// Function name that `MLModel` will use.
         ///
         /// Some model types (e.g. ML Program) supports multiple functions in a model asset, where each `MLModel` instance is associated with a particular function.
@@ -192,5 +192,5 @@ extern_methods!(
         #[unsafe(method(setFunctionName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctionName(&self, function_name: Option<&NSString>);
-    }
-);
+    );
+}

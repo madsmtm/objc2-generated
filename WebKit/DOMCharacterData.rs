@@ -51,13 +51,13 @@ unsafe impl CopyingHelper for DOMCharacterData {
 ))]
 unsafe impl NSObjectProtocol for DOMCharacterData {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCharacterData {
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCharacterData {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
@@ -103,46 +103,46 @@ extern_methods!(
             length: c_uint,
             data: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCharacterData {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCharacterData {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCharacterData {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCharacterData {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMCharacterDataDeprecated
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCharacterData {
+/// DOMCharacterDataDeprecated.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCharacterData {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(substringData::))]
         #[unsafe(method_family = none)]
@@ -166,5 +166,5 @@ extern_methods!(
         #[unsafe(method(replaceData:::))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceData(&self, offset: c_uint, length: c_uint, data: Option<&NSString>);
-    }
-);
+    );
+}

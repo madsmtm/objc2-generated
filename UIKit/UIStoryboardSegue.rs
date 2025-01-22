@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIStoryboardSegue {}
 
-extern_methods!(
-    unsafe impl UIStoryboardSegue {
+impl UIStoryboardSegue {
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UIViewController",
@@ -73,17 +73,17 @@ extern_methods!(
         #[unsafe(method(perform))]
         #[unsafe(method_family = none)]
         pub unsafe fn perform(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIStoryboardSegue {
+/// Methods declared on superclass `NSObject`.
+impl UIStoryboardSegue {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Encapsulates the source of a prospective unwind segue.
@@ -98,8 +98,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIStoryboardUnwindSegueSource {}
 
-extern_methods!(
-    unsafe impl UIStoryboardUnwindSegueSource {
+impl UIStoryboardUnwindSegueSource {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -116,14 +116,14 @@ extern_methods!(
         #[unsafe(method(sender))]
         #[unsafe(method_family = none)]
         pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIStoryboardUnwindSegueSource {
+/// Methods declared on superclass `NSObject`.
+impl UIStoryboardUnwindSegueSource {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

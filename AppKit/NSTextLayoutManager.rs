@@ -77,8 +77,8 @@ unsafe impl NSSecureCoding for NSTextLayoutManager {}
 #[cfg(feature = "NSTextSelectionNavigation")]
 unsafe impl NSTextSelectionDataSource for NSTextLayoutManager {}
 
-extern_methods!(
-    unsafe impl NSTextLayoutManager {
+impl NSTextLayoutManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -364,17 +364,17 @@ extern_methods!(
             range: &NSTextRange,
             attributed_string: &NSAttributedString,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextLayoutManager {
+/// Methods declared on superclass `NSObject`.
+impl NSTextLayoutManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanagerdelegate?language=objc)

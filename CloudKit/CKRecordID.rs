@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for CKRecordID {}
 
 unsafe impl NSSecureCoding for CKRecordID {}
 
-extern_methods!(
-    unsafe impl CKRecordID {
+impl CKRecordID {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -64,5 +64,5 @@ extern_methods!(
         #[unsafe(method(zoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
-    }
-);
+    );
+}

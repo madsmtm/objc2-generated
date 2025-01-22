@@ -9,10 +9,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// CIImageProvider
-    #[cfg(feature = "CIImage")]
-    unsafe impl CIImage {
+/// CIImageProvider.
+#[cfg(feature = "CIImage")]
+impl CIImage {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(imageWithImageProvider:size::format:colorSpace:options:))]
         #[unsafe(method_family = none)]
@@ -37,8 +37,8 @@ extern_methods!(
             cs: Option<&CGColorSpace>,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "CIImageProvider" on [`NSObject`].

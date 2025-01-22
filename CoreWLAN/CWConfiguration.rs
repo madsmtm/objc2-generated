@@ -38,8 +38,8 @@ unsafe impl NSObjectProtocol for CWConfiguration {}
 
 unsafe impl NSSecureCoding for CWConfiguration {}
 
-extern_methods!(
-    unsafe impl CWConfiguration {
+impl CWConfiguration {
+    extern_methods!(
         #[cfg(feature = "CWNetworkProfile")]
         /// Returns: An NSOrderedSet of CWNetworkProfile objects.
         ///
@@ -146,17 +146,17 @@ extern_methods!(
         #[unsafe(method(isEqualToConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToConfiguration(&self, configuration: &CWConfiguration) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CWConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl CWConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Mutable subclass of CWConfiguration.  Use this class for changing configuration settings and/or the preferred networks list.
@@ -188,8 +188,8 @@ unsafe impl NSObjectProtocol for CWMutableConfiguration {}
 
 unsafe impl NSSecureCoding for CWMutableConfiguration {}
 
-extern_methods!(
-    unsafe impl CWMutableConfiguration {
+impl CWMutableConfiguration {
+    extern_methods!(
         #[cfg(feature = "CWNetworkProfile")]
         /// Add, remove, or update the preferred networks list.
         #[unsafe(method(networkProfiles))]
@@ -249,12 +249,12 @@ extern_methods!(
         #[unsafe(method(setRememberJoinedNetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRememberJoinedNetworks(&self, remember_joined_networks: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CWConfiguration`
-    unsafe impl CWMutableConfiguration {
+/// Methods declared on superclass `CWConfiguration`.
+impl CWMutableConfiguration {
+    extern_methods!(
         /// Convenience method for getting a CWConfiguration object.
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
@@ -291,14 +291,14 @@ extern_methods!(
         pub unsafe fn configurationWithConfiguration(
             configuration: &CWConfiguration,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CWMutableConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl CWMutableConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -68,15 +68,15 @@ unsafe impl CopyingHelper for DOMHTMLLIElement {
 ))]
 unsafe impl NSObjectProtocol for DOMHTMLLIElement {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLLIElement {
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLLIElement {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
@@ -98,38 +98,38 @@ extern_methods!(
         #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: c_int);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLLIElement {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLLIElement {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLLIElement {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLLIElement {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for ASPasswordCredentialRequest {}
 
 unsafe impl NSSecureCoding for ASPasswordCredentialRequest {}
 
-extern_methods!(
-    unsafe impl ASPasswordCredentialRequest {
+impl ASPasswordCredentialRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -54,14 +54,14 @@ extern_methods!(
         pub unsafe fn requestWithCredentialIdentity(
             credential_identity: &ASPasswordCredentialIdentity,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASPasswordCredentialRequest {
+/// Methods declared on superclass `NSObject`.
+impl ASPasswordCredentialRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

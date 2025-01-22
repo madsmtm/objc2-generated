@@ -20,8 +20,8 @@ unsafe impl NSObjectProtocol for UIDropInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIDropInteraction {}
 
-extern_methods!(
-    unsafe impl UIDropInteraction {
+impl UIDropInteraction {
+    extern_methods!(
         #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
@@ -54,8 +54,8 @@ extern_methods!(
             &self,
             allows_simultaneous_drop_sessions: bool,
         );
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation?language=objc)
 // NS_ENUM
@@ -97,8 +97,8 @@ unsafe impl CopyingHelper for UIDropProposal {
 
 unsafe impl NSObjectProtocol for UIDropProposal {}
 
-extern_methods!(
-    unsafe impl UIDropProposal {
+impl UIDropProposal {
+    extern_methods!(
         #[unsafe(method(initWithDropOperation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation(
@@ -135,8 +135,8 @@ extern_methods!(
         #[unsafe(method(setPrefersFullSizePreview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrefersFullSizePreview(&self, prefers_full_size_preview: bool);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropinteractiondelegate?language=objc)

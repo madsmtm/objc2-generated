@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for GKScore {}
 
 unsafe impl NSSecureCoding for GKScore {}
 
-extern_methods!(
-    unsafe impl GKScore {
+impl GKScore {
+    extern_methods!(
         /// Initialize the score with the local player and current date.
         #[deprecated]
         #[unsafe(method(initWithLeaderboardIdentifier:))]
@@ -123,12 +123,12 @@ extern_methods!(
             scores: &NSArray<GKScore>,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKScore {
+/// Methods declared on superclass `NSObject`.
+impl GKScore {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -136,12 +136,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Deprecated
-    unsafe impl GKScore {
+/// Deprecated.
+impl GKScore {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[unsafe(method(reportScoreWithCompletionHandler:))]
@@ -169,12 +169,12 @@ extern_methods!(
         #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Obsoleted
-    unsafe impl GKScore {
+/// Obsoleted.
+impl GKScore {
+    extern_methods!(
         /// * This method is obsolete. Calling this initialiser does nothing and will return nil **
         #[deprecated]
         #[unsafe(method(initWithLeaderboardIdentifier:forPlayer:))]
@@ -190,5 +190,5 @@ extern_methods!(
         #[unsafe(method(playerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}

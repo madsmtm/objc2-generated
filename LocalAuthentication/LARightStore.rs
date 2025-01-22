@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LARightStore {}
 
-extern_methods!(
-    unsafe impl LARightStore {
+impl LARightStore {
+    extern_methods!(
         /// Shared instance of
         /// `LARightStore.`
         #[unsafe(method(sharedStore))]
@@ -129,5 +129,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

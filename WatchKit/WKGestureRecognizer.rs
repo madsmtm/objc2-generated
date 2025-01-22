@@ -73,8 +73,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKGestureRecognizer {}
 
-extern_methods!(
-    unsafe impl WKGestureRecognizer {
+impl WKGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> WKGestureRecognizerState;
@@ -97,12 +97,12 @@ extern_methods!(
         #[unsafe(method(objectBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectBounds(&self) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl WKGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -110,8 +110,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktapgesturerecognizer?language=objc)
@@ -122,8 +122,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKTapGestureRecognizer {}
 
-extern_methods!(
-    unsafe impl WKTapGestureRecognizer {
+impl WKTapGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(numberOfTapsRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfTapsRequired(&self) -> NSUInteger;
@@ -132,12 +132,12 @@ extern_methods!(
         #[unsafe(method(setNumberOfTapsRequired:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKTapGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl WKTapGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -145,8 +145,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wklongpressgesturerecognizer?language=objc)
@@ -157,8 +157,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKLongPressGestureRecognizer {}
 
-extern_methods!(
-    unsafe impl WKLongPressGestureRecognizer {
+impl WKLongPressGestureRecognizer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(minimumPressDuration))]
         #[unsafe(method_family = none)]
@@ -189,12 +189,12 @@ extern_methods!(
         #[unsafe(method(setAllowableMovement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKLongPressGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl WKLongPressGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -202,8 +202,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkswipegesturerecognizer?language=objc)
@@ -214,8 +214,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKSwipeGestureRecognizer {}
 
-extern_methods!(
-    unsafe impl WKSwipeGestureRecognizer {
+impl WKSwipeGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(direction))]
         #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> WKSwipeGestureRecognizerDirection;
@@ -224,12 +224,12 @@ extern_methods!(
         #[unsafe(method(setDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirection(&self, direction: WKSwipeGestureRecognizerDirection);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKSwipeGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl WKSwipeGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -237,8 +237,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkpangesturerecognizer?language=objc)
@@ -249,8 +249,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKPanGestureRecognizer {}
 
-extern_methods!(
-    unsafe impl WKPanGestureRecognizer {
+impl WKPanGestureRecognizer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(translationInObject))]
         #[unsafe(method_family = none)]
@@ -260,12 +260,12 @@ extern_methods!(
         #[unsafe(method(velocityInObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn velocityInObject(&self) -> CGPoint;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKPanGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl WKPanGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -273,5 +273,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

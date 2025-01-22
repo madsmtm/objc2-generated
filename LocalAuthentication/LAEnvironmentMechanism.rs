@@ -19,8 +19,8 @@ unsafe impl Sync for LAEnvironmentMechanism {}
 
 unsafe impl NSObjectProtocol for LAEnvironmentMechanism {}
 
-extern_methods!(
-    unsafe impl LAEnvironmentMechanism {
+impl LAEnvironmentMechanism {
+    extern_methods!(
         /// Clients should only consume environment mechanisms..
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -51,5 +51,5 @@ extern_methods!(
         #[unsafe(method(iconSystemName))]
         #[unsafe(method_family = none)]
         pub unsafe fn iconSystemName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}

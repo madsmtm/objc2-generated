@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKAudioFileAsset {}
 
-extern_methods!(
-    unsafe impl WKAudioFileAsset {
+impl WKAudioFileAsset {
+    extern_methods!(
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -88,14 +88,14 @@ extern_methods!(
         #[unsafe(method(artist))]
         #[unsafe(method_family = none)]
         pub unsafe fn artist(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKAudioFileAsset {
+/// Methods declared on superclass `NSObject`.
+impl WKAudioFileAsset {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

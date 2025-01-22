@@ -148,8 +148,8 @@ unsafe impl NSObjectProtocol for NSString {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSString {}
 
-extern_methods!(
-    unsafe impl NSString {
+impl NSString {
+    extern_methods!(
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub fn length(&self) -> NSUInteger;
@@ -169,17 +169,17 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSString {
+/// Methods declared on superclass `NSObject`.
+impl NSString {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for NSString {
     #[inline]
@@ -310,9 +310,9 @@ extern "C" {
     pub static NSStringTransformStripDiacritics: &'static NSStringTransform;
 }
 
-extern_methods!(
-    /// NSStringExtensionMethods
-    unsafe impl NSString {
+/// NSStringExtensionMethods.
+impl NSString {
+    extern_methods!(
         #[unsafe(method(substringFromIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn substringFromIndex(&self, from: NSUInteger) -> Retained<NSString>;
@@ -1006,14 +1006,14 @@ extern_methods!(
             path: &NSString,
             enc: *mut NSStringEncoding,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSString`
-    ///
-    /// NSStringExtensionMethods
-    unsafe impl NSMutableString {
+/// Methods declared on superclass `NSString`.
+///
+/// NSStringExtensionMethods.
+impl NSMutableString {
+    extern_methods!(
         #[unsafe(method(initWithCharactersNoCopy:length:freeWhenDone:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharactersNoCopy_length_freeWhenDone(
@@ -1194,8 +1194,8 @@ extern_methods!(
             path: &NSString,
             enc: *mut NSStringEncoding,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionoptionskey?language=objc)
 // NS_TYPED_ENUM
@@ -1242,9 +1242,9 @@ extern "C" {
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
-extern_methods!(
-    /// NSStringEncodingDetection
-    unsafe impl NSString {
+/// NSStringEncodingDetection.
+impl NSString {
+    extern_methods!(
         #[cfg(all(feature = "NSData", feature = "NSDictionary"))]
         #[unsafe(method(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:))]
         #[unsafe(method_family = none)]
@@ -1254,13 +1254,13 @@ extern_methods!(
             string: Option<&mut Option<Retained<NSString>>>,
             used_lossy_conversion: *mut Bool,
         ) -> NSStringEncoding;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSItemProvider
-    unsafe impl NSString {}
-);
+/// NSItemProvider.
+impl NSString {
+    extern_methods!();
+}
 
 #[cfg(feature = "NSItemProvider")]
 unsafe impl NSItemProviderReading for NSString {}
@@ -1299,8 +1299,8 @@ unsafe impl NSObjectProtocol for NSMutableString {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMutableString {}
 
-extern_methods!(
-    unsafe impl NSMutableString {
+impl NSMutableString {
+    extern_methods!(
         #[cfg(feature = "NSRange")]
         #[unsafe(method(replaceCharactersInRange:withString:))]
         #[unsafe(method_family = none)]
@@ -1309,12 +1309,12 @@ extern_methods!(
             range: NSRange,
             a_string: &NSString,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSString`
-    unsafe impl NSMutableString {
+/// Methods declared on superclass `NSString`.
+impl NSMutableString {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1326,17 +1326,17 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMutableString {
+/// Methods declared on superclass `NSObject`.
+impl NSMutableString {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for NSMutableString {
     #[inline]
@@ -1345,9 +1345,9 @@ impl DefaultRetained for NSMutableString {
     }
 }
 
-extern_methods!(
-    /// NSMutableStringExtensionMethods
-    unsafe impl NSMutableString {
+/// NSMutableStringExtensionMethods.
+impl NSMutableString {
+    extern_methods!(
         #[unsafe(method(insertString:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertString_atIndex(&self, a_string: &NSString, loc: NSUInteger);
@@ -1397,8 +1397,8 @@ extern_methods!(
         #[unsafe(method(stringWithCapacity:))]
         #[unsafe(method_family = none)]
         pub fn stringWithCapacity(capacity: NSUInteger) -> Retained<NSMutableString>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscharacterconversionexception?language=objc)
@@ -1412,9 +1412,9 @@ extern "C" {
     pub static NSParseErrorException: &'static NSExceptionName;
 }
 
-extern_methods!(
-    /// NSExtendedStringPropertyListParsing
-    unsafe impl NSString {
+/// NSExtendedStringPropertyListParsing.
+impl NSString {
+    extern_methods!(
         #[unsafe(method(propertyList))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyList(&self) -> Retained<AnyObject>;
@@ -1423,12 +1423,12 @@ extern_methods!(
         #[unsafe(method(propertyListFromStringsFileFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyListFromStringsFileFormat(&self) -> Option<Retained<NSDictionary>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSStringDeprecated
-    unsafe impl NSString {
+/// NSStringDeprecated.
+impl NSString {
+    extern_methods!(
         #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[unsafe(method(cString))]
         #[unsafe(method_family = none)]
@@ -1552,14 +1552,14 @@ extern_methods!(
         #[unsafe(method(getCharacters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCharacters(&self, buffer: NonNull<unichar>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSString`
-    ///
-    /// NSStringDeprecated
-    unsafe impl NSMutableString {
+/// Methods declared on superclass `NSString`.
+///
+/// NSStringDeprecated.
+impl NSMutableString {
+    extern_methods!(
         #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
         #[unsafe(method(initWithContentsOfFile:))]
         #[unsafe(method_family = init)]
@@ -1603,8 +1603,8 @@ extern_methods!(
             this: Allocated<Self>,
             bytes: NonNull<c_char>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssimplecstring?language=objc)
@@ -1621,13 +1621,13 @@ unsafe impl NSObjectProtocol for NSSimpleCString {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSSimpleCString {}
 
-extern_methods!(
-    unsafe impl NSSimpleCString {}
-);
+impl NSSimpleCString {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSString`
-    unsafe impl NSSimpleCString {
+/// Methods declared on superclass `NSString`.
+impl NSSimpleCString {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1639,17 +1639,17 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSimpleCString {
+/// Methods declared on superclass `NSObject`.
+impl NSSimpleCString {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconstantstring?language=objc)
@@ -1666,13 +1666,13 @@ unsafe impl NSObjectProtocol for NSConstantString {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSConstantString {}
 
-extern_methods!(
-    unsafe impl NSConstantString {}
-);
+impl NSConstantString {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSString`
-    unsafe impl NSConstantString {
+/// Methods declared on superclass `NSString`.
+impl NSConstantString {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1684,14 +1684,14 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSConstantString {
+/// Methods declared on superclass `NSObject`.
+impl NSConstantString {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

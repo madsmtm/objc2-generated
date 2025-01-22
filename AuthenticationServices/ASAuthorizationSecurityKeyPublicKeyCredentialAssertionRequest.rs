@@ -41,9 +41,9 @@ unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialAs
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
+    extern_methods!(
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// A list of descriptors indicating credentials that may be used to sign in. If this is non-empty, only credentials matching the provided descriptors can be used when authenticating.
         #[unsafe(method(allowedCredentials))]
@@ -70,13 +70,13 @@ extern_methods!(
         #[unsafe(method(setAppID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppID(&self, app_id: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
+/// Methods declared on superclass `ASAuthorizationRequest`.
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -84,13 +84,13 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {}
-);
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "ASAuthorizationRequest",

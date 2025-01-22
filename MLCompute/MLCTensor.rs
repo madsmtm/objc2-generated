@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for MLCTensor {
 
 unsafe impl NSObjectProtocol for MLCTensor {}
 
-extern_methods!(
-    unsafe impl MLCTensor {
+impl MLCTensor {
+    extern_methods!(
         /// The tensor ID
         ///
         /// A unique number to identify each tensor.  Assigned when the tensor is created.
@@ -716,5 +716,5 @@ extern_methods!(
             bias: &MLCTensor,
             axis: NSInteger,
         ) -> Option<Retained<MLCTensor>>;
-    }
-);
+    );
+}

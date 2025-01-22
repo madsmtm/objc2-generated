@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNFetchResult<ValueType> {}
 
-extern_methods!(
-    unsafe impl<ValueType: Message> CNFetchResult<ValueType> {
+impl<ValueType: Message> CNFetchResult<ValueType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -32,5 +32,5 @@ extern_methods!(
         #[unsafe(method(currentHistoryToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentHistoryToken(&self) -> Retained<NSData>;
-    }
-);
+    );
+}

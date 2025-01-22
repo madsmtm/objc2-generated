@@ -34,8 +34,8 @@ extern_class!(
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionChange<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
+impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
+    extern_methods!(
         #[unsafe(method(changeWithObject:type:index:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeWithObject_type_index(
@@ -91,14 +91,14 @@ extern_methods!(
             index: NSUInteger,
             associated_index: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

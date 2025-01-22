@@ -80,9 +80,9 @@ unsafe impl CopyingHelper for NSPersonNameComponentsFormatter {
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSPersonNameComponentsFormatter {}
 
-extern_methods!(
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSPersonNameComponentsFormatter {
+#[cfg(feature = "NSFormatter")]
+impl NSPersonNameComponentsFormatter {
+    extern_methods!(
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> NSPersonNameComponentsFormatterStyle;
@@ -154,13 +154,13 @@ extern_methods!(
             string: &NSString,
             error: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSPersonNameComponentsFormatter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSFormatter")]
+impl NSPersonNameComponentsFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -168,8 +168,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentkey?language=objc)

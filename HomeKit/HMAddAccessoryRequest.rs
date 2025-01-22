@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for HMAddAccessoryRequest {}
 
-extern_methods!(
-    unsafe impl HMAddAccessoryRequest {
+impl HMAddAccessoryRequest {
+    extern_methods!(
         #[cfg(feature = "HMHome")]
         /// Home that the accessory is to be added to.
         #[unsafe(method(home))]
@@ -90,14 +90,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMAddAccessoryRequest {
+/// Methods declared on superclass `NSObject`.
+impl HMAddAccessoryRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -42,9 +42,9 @@ extern_class!(
 #[cfg(feature = "UIFeedbackGenerator")]
 unsafe impl NSObjectProtocol for UINotificationFeedbackGenerator {}
 
-extern_methods!(
-    #[cfg(feature = "UIFeedbackGenerator")]
-    unsafe impl UINotificationFeedbackGenerator {
+#[cfg(feature = "UIFeedbackGenerator")]
+impl UINotificationFeedbackGenerator {
+    extern_methods!(
         /// call when a notification is displayed, passing the corresponding type
         #[unsafe(method(notificationOccurred:))]
         #[unsafe(method_family = none)]
@@ -58,13 +58,13 @@ extern_methods!(
             notification_type: UINotificationFeedbackType,
             location: CGPoint,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIFeedbackGenerator`
-    #[cfg(feature = "UIFeedbackGenerator")]
-    unsafe impl UINotificationFeedbackGenerator {
+/// Methods declared on superclass `UIFeedbackGenerator`.
+#[cfg(feature = "UIFeedbackGenerator")]
+impl UINotificationFeedbackGenerator {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// initalize the generator with a view to attach it to the provided view as an interaction.
         #[unsafe(method(feedbackGeneratorForView:))]
@@ -75,15 +75,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIFeedbackGenerator")]
-    unsafe impl UINotificationFeedbackGenerator {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIFeedbackGenerator")]
+impl UINotificationFeedbackGenerator {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

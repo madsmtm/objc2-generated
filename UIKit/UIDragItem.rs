@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIDragItem {}
 
-extern_methods!(
-    unsafe impl UIDragItem {
+impl UIDragItem {
+    extern_methods!(
         #[unsafe(method(initWithItemProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItemProvider(
@@ -80,5 +80,5 @@ extern_methods!(
         #[unsafe(method(setNeedsDropPreviewUpdate))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsDropPreviewUpdate(&self);
-    }
-);
+    );
+}

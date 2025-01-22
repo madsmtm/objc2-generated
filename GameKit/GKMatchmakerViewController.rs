@@ -67,10 +67,10 @@ unsafe impl NSSeguePerforming for GKMatchmakerViewController {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for GKMatchmakerViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKMatchmakerViewController {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKMatchmakerViewController {
+    extern_methods!(
         #[unsafe(method(matchmakerDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchmakerDelegate(
@@ -167,14 +167,14 @@ extern_methods!(
             &self,
             default_invitation_message: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKMatchmakerViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKMatchmakerViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -189,43 +189,43 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKMatchmakerViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKMatchmakerViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKMatchmakerViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKMatchmakerViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Obsoleted
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKMatchmakerViewController {
+/// Obsoleted.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKMatchmakerViewController {
+    extern_methods!(
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[unsafe(method(setHostedPlayer:connected:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHostedPlayer_connected(&self, player_id: &NSString, connected: bool);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontrollerdelegate?language=objc)

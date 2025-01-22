@@ -28,10 +28,10 @@ extern "C" {
     pub static MLFeatureValueImageOptionCropAndScale: &'static MLFeatureValueImageOption;
 }
 
-extern_methods!(
-    /// MLImageConversion
-    #[cfg(feature = "MLFeatureValue")]
-    unsafe impl MLFeatureValue {
+/// MLImageConversion.
+#[cfg(feature = "MLFeatureValue")]
+impl MLFeatureValue {
+    extern_methods!(
         /// Construct image feature value from an image on disk. Orientation is read from Exif if avaiable
         #[unsafe(method(featureValueWithImageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:error:_))]
         #[unsafe(method_family = none)]
@@ -74,5 +74,5 @@ extern_methods!(
             constraint: &MLImageConstraint,
             options: Option<&NSDictionary<MLFeatureValueImageOption, AnyObject>>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}

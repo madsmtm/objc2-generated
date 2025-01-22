@@ -39,8 +39,8 @@ unsafe impl Sync for NSTask {}
 
 unsafe impl NSObjectProtocol for NSTask {}
 
-extern_methods!(
-    unsafe impl NSTask {
+impl NSTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -188,21 +188,21 @@ extern_methods!(
         #[unsafe(method(setQualityOfService:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTask {
+/// Methods declared on superclass `NSObject`.
+impl NSTask {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTaskConveniences
-    unsafe impl NSTask {
+/// NSTaskConveniences.
+impl NSTask {
+    extern_methods!(
         #[cfg(all(
             feature = "NSArray",
             feature = "NSError",
@@ -222,12 +222,12 @@ extern_methods!(
         #[unsafe(method(waitUntilExit))]
         #[unsafe(method_family = none)]
         pub unsafe fn waitUntilExit(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSTask {
+/// NSDeprecated.
+impl NSTask {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated]
         #[unsafe(method(launchPath))]
@@ -267,8 +267,8 @@ extern_methods!(
             path: &NSString,
             arguments: &NSArray<NSString>,
         ) -> Retained<NSTask>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstaskdidterminatenotification?language=objc)

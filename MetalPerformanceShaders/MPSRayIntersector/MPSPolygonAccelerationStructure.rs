@@ -88,13 +88,13 @@ unsafe impl NSObjectProtocol for MPSPolygonAccelerationStructure {}
 ))]
 unsafe impl NSSecureCoding for MPSPolygonAccelerationStructure {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel"
-    ))]
-    unsafe impl MPSPolygonAccelerationStructure {
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
+impl MPSPolygonAccelerationStructure {
+    extern_methods!(
         /// The type of polygon. Defaults to MPSPolygonTypeTriangle. Changes to this property require
         /// rebuilding the acceleration structure.
         #[deprecated]
@@ -301,17 +301,17 @@ extern_methods!(
         #[unsafe(method(setPolygonBuffers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolygonBuffers(&self, polygon_buffers: Option<&NSArray<MPSPolygonBuffer>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSAccelerationStructure`
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel"
-    ))]
-    unsafe impl MPSPolygonAccelerationStructure {
+/// Methods declared on superclass `MPSAccelerationStructure`.
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
+impl MPSPolygonAccelerationStructure {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -367,17 +367,17 @@ extern_methods!(
             a_decoder: &NSCoder,
             group: &MPSAccelerationStructureGroup,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel"
-    ))]
-    unsafe impl MPSPolygonAccelerationStructure {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
+impl MPSPolygonAccelerationStructure {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -392,19 +392,19 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel"
-    ))]
-    unsafe impl MPSPolygonAccelerationStructure {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
+impl MPSPolygonAccelerationStructure {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

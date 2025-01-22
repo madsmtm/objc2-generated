@@ -133,9 +133,9 @@ unsafe impl UIResponderStandardEditActions for UICloudSharingController {}
 ))]
 unsafe impl UITraitEnvironment for UICloudSharingController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UICloudSharingController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UICloudSharingController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -212,13 +212,13 @@ extern_methods!(
         pub unsafe fn activityItemSource(
             &self,
         ) -> Retained<ProtocolObject<dyn UIActivityItemSource>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UICloudSharingController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UICloudSharingController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -226,5 +226,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

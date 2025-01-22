@@ -146,8 +146,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSURLHandle {}
 
-extern_methods!(
-    unsafe impl NSURLHandle {
+impl NSURLHandle {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(registerURLHandleClass:))]
         #[unsafe(method_family = none)]
@@ -295,12 +295,12 @@ extern_methods!(
         #[unsafe(method(endLoadInBackground))]
         #[unsafe(method_family = none)]
         pub unsafe fn endLoadInBackground(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLHandle {
+/// Methods declared on superclass `NSObject`.
+impl NSURLHandle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -308,5 +308,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

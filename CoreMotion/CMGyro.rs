@@ -56,19 +56,19 @@ unsafe impl NSObjectProtocol for CMGyroData {}
 #[cfg(feature = "CMLogItem")]
 unsafe impl NSSecureCoding for CMGyroData {}
 
-extern_methods!(
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMGyroData {
+#[cfg(feature = "CMLogItem")]
+impl CMGyroData {
+    extern_methods!(
         #[unsafe(method(rotationRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotationRate(&self) -> CMRotationRate;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMGyroData {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CMLogItem")]
+impl CMGyroData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,5 +76,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

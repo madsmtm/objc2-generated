@@ -35,8 +35,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {
+impl ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {
+    extern_methods!(
         #[unsafe(method(initWithSupportRequirement:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSupportRequirement(
@@ -65,5 +65,5 @@ extern_methods!(
             &self,
             support_requirement: ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement,
         );
-    }
-);
+    );
+}

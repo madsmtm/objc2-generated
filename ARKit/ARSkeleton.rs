@@ -33,9 +33,8 @@ unsafe impl Sync for ARSkeleton {}
 unsafe impl NSObjectProtocol for ARSkeleton {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARSkeleton {
+impl ARSkeleton {
+    extern_methods!(
         #[cfg(feature = "ARSkeletonDefinition")]
         /// Skeleton definition.
         #[unsafe(method(definition))]
@@ -65,8 +64,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -89,9 +88,8 @@ unsafe impl Sync for ARSkeleton3D {}
 unsafe impl NSObjectProtocol for ARSkeleton3D {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARSkeleton3D {
+impl ARSkeleton3D {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -100,8 +98,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -124,9 +122,8 @@ unsafe impl Sync for ARSkeleton2D {}
 unsafe impl NSObjectProtocol for ARSkeleton2D {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARSkeleton2D {
+impl ARSkeleton2D {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -135,8 +132,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Returns the landmark joint name that corresponds to a key point defined in Vision framework.
 ///

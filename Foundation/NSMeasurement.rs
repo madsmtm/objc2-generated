@@ -29,8 +29,8 @@ unsafe impl<UnitType: ?Sized> NSObjectProtocol for NSMeasurement<UnitType> {}
 #[cfg(feature = "NSObject")]
 unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for NSMeasurement<UnitType> {}
 
-extern_methods!(
-    unsafe impl<UnitType: Message> NSMeasurement<UnitType> {
+impl<UnitType: Message> NSMeasurement<UnitType> {
+    extern_methods!(
         #[unsafe(method(unit))]
         #[unsafe(method_family = none)]
         pub unsafe fn unit(&self) -> Retained<UnitType>;
@@ -77,14 +77,14 @@ extern_methods!(
             &self,
             measurement: &NSMeasurement<UnitType>,
         ) -> Retained<NSMeasurement<UnitType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<UnitType: Message> NSMeasurement<UnitType> {
+/// Methods declared on superclass `NSObject`.
+impl<UnitType: Message> NSMeasurement<UnitType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

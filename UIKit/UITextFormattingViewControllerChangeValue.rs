@@ -160,8 +160,8 @@ unsafe impl NSObjectProtocol for UITextFormattingViewControllerChangeValue {}
 
 unsafe impl NSSecureCoding for UITextFormattingViewControllerChangeValue {}
 
-extern_methods!(
-    unsafe impl UITextFormattingViewControllerChangeValue {
+impl UITextFormattingViewControllerChangeValue {
+    extern_methods!(
         /// Type of change.
         #[unsafe(method(changeType))]
         #[unsafe(method_family = none)]
@@ -220,5 +220,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

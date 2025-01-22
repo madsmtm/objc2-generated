@@ -23,9 +23,9 @@ unsafe impl MKOverlay for MKMultiPolygon {}
 #[cfg(feature = "MKShape")]
 unsafe impl NSObjectProtocol for MKMultiPolygon {}
 
-extern_methods!(
-    #[cfg(feature = "MKShape")]
-    unsafe impl MKMultiPolygon {
+#[cfg(feature = "MKShape")]
+impl MKMultiPolygon {
+    extern_methods!(
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon"))]
         #[unsafe(method(initWithPolygons:))]
         #[unsafe(method_family = init)]
@@ -38,13 +38,13 @@ extern_methods!(
         #[unsafe(method(polygons))]
         #[unsafe(method_family = none)]
         pub unsafe fn polygons(&self) -> Retained<NSArray<MKPolygon>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MKShape")]
-    unsafe impl MKMultiPolygon {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MKShape")]
+impl MKMultiPolygon {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -52,5 +52,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

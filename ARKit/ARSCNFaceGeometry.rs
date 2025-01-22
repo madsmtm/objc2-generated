@@ -66,10 +66,9 @@ unsafe impl SCNBoundingVolume for ARSCNFaceGeometry {}
 #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
 unsafe impl SCNShadable for ARSCNFaceGeometry {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
-    unsafe impl ARSCNFaceGeometry {
+#[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
+impl ARSCNFaceGeometry {
+    extern_methods!(
         #[cfg(feature = "objc2-metal")]
         /// Creates a new face geometry using a Metal device.
         ///
@@ -123,14 +122,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
-    unsafe impl ARSCNFaceGeometry {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
+impl ARSCNFaceGeometry {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -228,5 +226,5 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

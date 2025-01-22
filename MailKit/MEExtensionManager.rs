@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MEExtensionManager {}
 
-extern_methods!(
-    unsafe impl MEExtensionManager {
+impl MEExtensionManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -44,5 +44,5 @@ extern_methods!(
         pub unsafe fn reloadVisibleMessagesWithCompletionHandler(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}

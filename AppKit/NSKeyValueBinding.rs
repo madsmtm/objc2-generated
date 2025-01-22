@@ -33,8 +33,8 @@ unsafe impl CopyingHelper for NSBindingSelectionMarker {
 
 unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}
 
-extern_methods!(
-    unsafe impl NSBindingSelectionMarker {
+impl NSBindingSelectionMarker {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -67,17 +67,17 @@ extern_methods!(
             object_class: &AnyClass,
             binding: &NSBindingName,
         ) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSBindingSelectionMarker {
+/// Methods declared on superclass `NSObject`.
+impl NSBindingSelectionMarker {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultiplevaluesmarker?language=objc)

@@ -26,8 +26,8 @@ unsafe impl NSObjectProtocol for CXAction {}
 
 unsafe impl NSSecureCoding for CXAction {}
 
-extern_methods!(
-    unsafe impl CXAction {
+impl CXAction {
+    extern_methods!(
         /// Unique ID
         #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
@@ -62,14 +62,14 @@ extern_methods!(
         #[unsafe(method(fail))]
         #[unsafe(method_family = none)]
         pub unsafe fn fail(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CXAction {
+/// Methods declared on superclass `NSObject`.
+impl CXAction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

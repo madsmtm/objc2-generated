@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPersistentStore {}
 
-extern_methods!(
-    unsafe impl NSPersistentStore {
+impl NSPersistentStore {
+    extern_methods!(
         #[unsafe(method(metadataForPersistentStoreWithURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataForPersistentStoreWithURL_error(
@@ -129,14 +129,14 @@ extern_methods!(
         #[unsafe(method(coreSpotlightExporter))]
         #[unsafe(method_family = none)]
         pub unsafe fn coreSpotlightExporter(&self) -> Retained<NSCoreDataCoreSpotlightDelegate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersistentStore {
+/// Methods declared on superclass `NSObject`.
+impl NSPersistentStore {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -39,9 +39,9 @@ extern_class!(
 #[cfg(feature = "UISceneOptions")]
 unsafe impl NSObjectProtocol for UIWindowSceneActivationRequestOptions {}
 
-extern_methods!(
-    #[cfg(feature = "UISceneOptions")]
-    unsafe impl UIWindowSceneActivationRequestOptions {
+#[cfg(feature = "UISceneOptions")]
+impl UIWindowSceneActivationRequestOptions {
+    extern_methods!(
         #[deprecated = "Place use .placement with an appropriate UIWindowScenePlacement."]
         #[unsafe(method(preferredPresentationStyle))]
         #[unsafe(method_family = none)]
@@ -69,13 +69,13 @@ extern_methods!(
         #[unsafe(method(setPlacement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlacement(&self, placement: Option<&UIWindowScenePlacement>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UISceneOptions")]
-    unsafe impl UIWindowSceneActivationRequestOptions {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UISceneOptions")]
+impl UIWindowSceneActivationRequestOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -83,5 +83,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

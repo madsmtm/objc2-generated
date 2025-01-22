@@ -27,20 +27,20 @@ unsafe impl CopyingHelper for UIWindowSceneProminentPlacement {
 #[cfg(feature = "UIWindowScenePlacement")]
 unsafe impl NSObjectProtocol for UIWindowSceneProminentPlacement {}
 
-extern_methods!(
-    #[cfg(feature = "UIWindowScenePlacement")]
-    unsafe impl UIWindowSceneProminentPlacement {
+#[cfg(feature = "UIWindowScenePlacement")]
+impl UIWindowSceneProminentPlacement {
+    extern_methods!(
         /// Creates a prominent placement.
         #[unsafe(method(prominentPlacement))]
         #[unsafe(method_family = none)]
         pub unsafe fn prominentPlacement() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIWindowScenePlacement`
-    #[cfg(feature = "UIWindowScenePlacement")]
-    unsafe impl UIWindowSceneProminentPlacement {
+/// Methods declared on superclass `UIWindowScenePlacement`.
+#[cfg(feature = "UIWindowScenePlacement")]
+impl UIWindowSceneProminentPlacement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -48,5 +48,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for UIPointerRegion {
 
 unsafe impl NSObjectProtocol for UIPointerRegion {}
 
-extern_methods!(
-    unsafe impl UIPointerRegion {
+impl UIPointerRegion {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
@@ -71,5 +71,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -82,9 +82,9 @@ extern_class!(
 #[cfg(feature = "NSNotification")]
 unsafe impl NSObjectProtocol for NSDistributedNotificationCenter {}
 
-extern_methods!(
-    #[cfg(feature = "NSNotification")]
-    unsafe impl NSDistributedNotificationCenter {
+#[cfg(feature = "NSNotification")]
+impl NSDistributedNotificationCenter {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(notificationCenterForType:))]
         #[unsafe(method_family = none)]
@@ -178,13 +178,13 @@ extern_methods!(
             a_name: Option<&NSNotificationName>,
             an_object: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSNotification")]
-    unsafe impl NSDistributedNotificationCenter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSNotification")]
+impl NSDistributedNotificationCenter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -192,5 +192,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

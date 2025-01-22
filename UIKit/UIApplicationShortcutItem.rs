@@ -96,8 +96,8 @@ unsafe impl CopyingHelper for UIApplicationShortcutIcon {
 
 unsafe impl NSObjectProtocol for UIApplicationShortcutIcon {}
 
-extern_methods!(
-    unsafe impl UIApplicationShortcutIcon {
+impl UIApplicationShortcutIcon {
+    extern_methods!(
         #[unsafe(method(iconWithType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn iconWithType(r#type: UIApplicationShortcutIconType) -> Retained<Self>;
@@ -109,12 +109,12 @@ extern_methods!(
         #[unsafe(method(iconWithSystemImageName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn iconWithSystemImageName(system_image_name: &NSString) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIApplicationShortcutIcon {
+/// Methods declared on superclass `NSObject`.
+impl UIApplicationShortcutIcon {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -122,8 +122,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem?language=objc)
@@ -146,8 +146,8 @@ unsafe impl MutableCopyingHelper for UIApplicationShortcutItem {
 
 unsafe impl NSObjectProtocol for UIApplicationShortcutItem {}
 
-extern_methods!(
-    unsafe impl UIApplicationShortcutItem {
+impl UIApplicationShortcutItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -196,17 +196,17 @@ extern_methods!(
         #[unsafe(method(targetContentIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIApplicationShortcutItem {
+/// Methods declared on superclass `NSObject`.
+impl UIApplicationShortcutItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutableapplicationshortcutitem?language=objc)
@@ -229,8 +229,8 @@ unsafe impl MutableCopyingHelper for UIMutableApplicationShortcutItem {
 
 unsafe impl NSObjectProtocol for UIMutableApplicationShortcutItem {}
 
-extern_methods!(
-    unsafe impl UIMutableApplicationShortcutItem {
+impl UIMutableApplicationShortcutItem {
+    extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
@@ -292,12 +292,12 @@ extern_methods!(
             &self,
             target_content_identifier: Option<&AnyObject>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIApplicationShortcutItem`
-    unsafe impl UIMutableApplicationShortcutItem {
+/// Methods declared on superclass `UIApplicationShortcutItem`.
+impl UIMutableApplicationShortcutItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -320,14 +320,14 @@ extern_methods!(
             r#type: &NSString,
             localized_title: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIMutableApplicationShortcutItem {
+/// Methods declared on superclass `NSObject`.
+impl UIMutableApplicationShortcutItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

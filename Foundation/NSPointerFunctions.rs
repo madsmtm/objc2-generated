@@ -68,8 +68,8 @@ unsafe impl CopyingHelper for NSPointerFunctions {
 
 unsafe impl NSObjectProtocol for NSPointerFunctions {}
 
-extern_methods!(
-    unsafe impl NSPointerFunctions {
+impl NSPointerFunctions {
+    extern_methods!(
         #[unsafe(method(initWithOptions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions(
@@ -239,12 +239,12 @@ extern_methods!(
             &self,
             uses_weak_read_and_write_barriers: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPointerFunctions {
+/// Methods declared on superclass `NSObject`.
+impl NSPointerFunctions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -252,5 +252,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

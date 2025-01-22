@@ -252,8 +252,8 @@ unsafe impl NSObjectProtocol for HKWorkoutEvent {}
 
 unsafe impl NSSecureCoding for HKWorkoutEvent {}
 
-extern_methods!(
-    unsafe impl HKWorkoutEvent {
+impl HKWorkoutEvent {
+    extern_methods!(
         /// Represents the type of event that occurred during a workout.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
@@ -315,17 +315,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKWorkoutEvent {
+/// Methods declared on superclass `NSObject`.
+impl HKWorkoutEvent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An HKObject subclass representing a workout or activity
@@ -352,9 +352,9 @@ unsafe impl NSObjectProtocol for HKWorkout {}
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKWorkout {}
 
-extern_methods!(
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKWorkout {
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKWorkout {
+    extern_methods!(
         /// Represents the activity that the user was performing during a workout
         #[unsafe(method(workoutActivityType))]
         #[unsafe(method_family = none)]
@@ -666,28 +666,28 @@ extern_methods!(
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObject`
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKWorkout {
+/// Methods declared on superclass `HKObject`.
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKWorkout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKWorkout {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKWorkout {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutduration?language=objc)

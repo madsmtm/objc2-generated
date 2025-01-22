@@ -23,9 +23,9 @@ unsafe impl Sync for LAEnvironmentMechanismBiometry {}
 #[cfg(feature = "LAEnvironmentMechanism")]
 unsafe impl NSObjectProtocol for LAEnvironmentMechanismBiometry {}
 
-extern_methods!(
-    #[cfg(feature = "LAEnvironmentMechanism")]
-    unsafe impl LAEnvironmentMechanismBiometry {
+#[cfg(feature = "LAEnvironmentMechanism")]
+impl LAEnvironmentMechanismBiometry {
+    extern_methods!(
         #[cfg(feature = "LABiometryType")]
         /// Type of biometry supported by the device.
         ///
@@ -71,13 +71,13 @@ extern_methods!(
         #[unsafe(method(builtInSensorInaccessible))]
         #[unsafe(method_family = none)]
         pub unsafe fn builtInSensorInaccessible(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `LAEnvironmentMechanism`
-    #[cfg(feature = "LAEnvironmentMechanism")]
-    unsafe impl LAEnvironmentMechanismBiometry {
+/// Methods declared on superclass `LAEnvironmentMechanism`.
+#[cfg(feature = "LAEnvironmentMechanism")]
+impl LAEnvironmentMechanismBiometry {
+    extern_methods!(
         /// Clients should only consume environment mechanisms..
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -87,5 +87,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

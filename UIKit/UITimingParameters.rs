@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for UICubicTimingParameters {}
 #[cfg(feature = "UITimingCurveProvider")]
 unsafe impl UITimingCurveProvider for UICubicTimingParameters {}
 
-extern_methods!(
-    unsafe impl UICubicTimingParameters {
+impl UICubicTimingParameters {
+    extern_methods!(
         #[cfg(feature = "UIView")]
         #[unsafe(method(animationCurve))]
         #[unsafe(method_family = none)]
@@ -73,17 +73,17 @@ extern_methods!(
             point1: CGPoint,
             point2: CGPoint,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICubicTimingParameters {
+/// Methods declared on superclass `NSObject`.
+impl UICubicTimingParameters {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringtimingparameters?language=objc)
@@ -106,8 +106,8 @@ unsafe impl NSObjectProtocol for UISpringTimingParameters {}
 #[cfg(feature = "UITimingCurveProvider")]
 unsafe impl UITimingCurveProvider for UISpringTimingParameters {}
 
-extern_methods!(
-    unsafe impl UISpringTimingParameters {
+impl UISpringTimingParameters {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initialVelocity))]
         #[unsafe(method_family = none)]
@@ -168,14 +168,14 @@ extern_methods!(
             duration: NSTimeInterval,
             bounce: CGFloat,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UISpringTimingParameters {
+/// Methods declared on superclass `NSObject`.
+impl UISpringTimingParameters {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

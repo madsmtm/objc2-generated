@@ -31,13 +31,13 @@ unsafe impl Sync for AVPlayerItemMediaDataCollector {}
 
 unsafe impl NSObjectProtocol for AVPlayerItemMediaDataCollector {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemMediaDataCollector {}
-);
+impl AVPlayerItemMediaDataCollector {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerItemMediaDataCollector {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerItemMediaDataCollector {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -45,8 +45,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A subclass of AVPlayerItemMediaDataCollector that provides AVMetadataGroups for an AVPlayerItem.
@@ -67,8 +67,8 @@ unsafe impl Sync for AVPlayerItemMetadataCollector {}
 
 unsafe impl NSObjectProtocol for AVPlayerItemMetadataCollector {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemMetadataCollector {
+impl AVPlayerItemMetadataCollector {
+    extern_methods!(
         /// Returns an instance of AVPlayerItemMetadataCollector that can provide all available AVMetadataGroups matching a set of criteria.
         ///
         /// Parameter `identifiers`: A array of metadata identifiers indicating the metadata items that the output should provide. See AVMetadataIdentifiers.h for publicly defined metadata identifiers. Pass nil to include metadata with any identifier.
@@ -95,12 +95,12 @@ extern_methods!(
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemMetadataCollectorPushDelegate>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerItemMetadataCollector {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerItemMetadataCollector {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,8 +108,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadatacollectorpushdelegate?language=objc)

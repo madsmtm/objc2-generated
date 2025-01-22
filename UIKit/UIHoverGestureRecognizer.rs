@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "UIGestureRecognizer")]
 unsafe impl NSObjectProtocol for UIHoverGestureRecognizer {}
 
-extern_methods!(
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UIHoverGestureRecognizer {
+#[cfg(feature = "UIGestureRecognizer")]
+impl UIHoverGestureRecognizer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The normalized distance from the screen of the hovering device. This value will be 1 at the maximum distance
         /// from the screen and will approach 0 as the device gets closer to the screen. Will always return 0 for devices that
@@ -62,13 +62,13 @@ extern_methods!(
         #[unsafe(method(rollAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn rollAngle(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIGestureRecognizer`
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UIHoverGestureRecognizer {
+/// Methods declared on superclass `UIGestureRecognizer`.
+#[cfg(feature = "UIGestureRecognizer")]
+impl UIHoverGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
@@ -87,15 +87,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UIHoverGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIGestureRecognizer")]
+impl UIHoverGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

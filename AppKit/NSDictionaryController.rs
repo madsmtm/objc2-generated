@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSDictionaryControllerKeyValuePair {}
 
-extern_methods!(
-    unsafe impl NSDictionaryControllerKeyValuePair {
+impl NSDictionaryControllerKeyValuePair {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -52,17 +52,17 @@ extern_methods!(
         #[unsafe(method(isExplicitlyIncluded))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExplicitlyIncluded(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDictionaryControllerKeyValuePair {
+/// Methods declared on superclass `NSObject`.
+impl NSDictionaryControllerKeyValuePair {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdictionarycontroller?language=objc)
@@ -107,13 +107,13 @@ unsafe impl NSEditorRegistration for NSDictionaryController {}
 ))]
 unsafe impl NSObjectProtocol for NSDictionaryController {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSArrayController",
-        feature = "NSController",
-        feature = "NSObjectController"
-    ))]
-    unsafe impl NSDictionaryController {
+#[cfg(all(
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSObjectController"
+))]
+impl NSDictionaryController {
+    extern_methods!(
         #[unsafe(method(newObject))]
         #[unsafe(method_family = new)]
         pub unsafe fn newObject(&self) -> Retained<NSDictionaryControllerKeyValuePair>;
@@ -174,17 +174,17 @@ extern_methods!(
         #[unsafe(method(setLocalizedKeyTable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedKeyTable(&self, localized_key_table: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObjectController`
-    #[cfg(all(
-        feature = "NSArrayController",
-        feature = "NSController",
-        feature = "NSObjectController"
-    ))]
-    unsafe impl NSDictionaryController {
+/// Methods declared on superclass `NSObjectController`.
+#[cfg(all(
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSObjectController"
+))]
+impl NSDictionaryController {
+    extern_methods!(
         #[unsafe(method(initWithContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(
@@ -198,33 +198,33 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSController`
-    #[cfg(all(
-        feature = "NSArrayController",
-        feature = "NSController",
-        feature = "NSObjectController"
-    ))]
-    unsafe impl NSDictionaryController {
+/// Methods declared on superclass `NSController`.
+#[cfg(all(
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSObjectController"
+))]
+impl NSDictionaryController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSArrayController",
-        feature = "NSController",
-        feature = "NSObjectController"
-    ))]
-    unsafe impl NSDictionaryController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSArrayController",
+    feature = "NSController",
+    feature = "NSObjectController"
+))]
+impl NSDictionaryController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -57,9 +57,9 @@ unsafe impl CopyingHelper for UIGraphicsImageRendererFormat {
 #[cfg(feature = "UIGraphicsRenderer")]
 unsafe impl NSObjectProtocol for UIGraphicsImageRendererFormat {}
 
-extern_methods!(
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl UIGraphicsImageRendererFormat {
+#[cfg(feature = "UIGraphicsRenderer")]
+impl UIGraphicsImageRendererFormat {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scale))]
         #[unsafe(method_family = none)]
@@ -111,13 +111,13 @@ extern_methods!(
         pub unsafe fn formatForTraitCollection(
             trait_collection: &UITraitCollection,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIGraphicsRendererFormat`
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl UIGraphicsImageRendererFormat {
+/// Methods declared on superclass `UIGraphicsRendererFormat`.
+#[cfg(feature = "UIGraphicsRenderer")]
+impl UIGraphicsImageRendererFormat {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(defaultFormat))]
         #[unsafe(method_family = none)]
@@ -126,13 +126,13 @@ extern_methods!(
         #[unsafe(method(preferredFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFormat() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl UIGraphicsImageRendererFormat {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIGraphicsRenderer")]
+impl UIGraphicsImageRendererFormat {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -140,8 +140,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderercontext?language=objc)
@@ -154,20 +154,20 @@ extern_class!(
 #[cfg(feature = "UIGraphicsRenderer")]
 unsafe impl NSObjectProtocol for UIGraphicsImageRendererContext {}
 
-extern_methods!(
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl UIGraphicsImageRendererContext {
+#[cfg(feature = "UIGraphicsRenderer")]
+impl UIGraphicsImageRendererContext {
+    extern_methods!(
         #[cfg(feature = "UIImage")]
         #[unsafe(method(currentImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentImage(&self) -> Retained<UIImage>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl UIGraphicsImageRendererContext {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIGraphicsRenderer")]
+impl UIGraphicsImageRendererContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -175,8 +175,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer?language=objc)
@@ -189,9 +189,9 @@ extern_class!(
 #[cfg(feature = "UIGraphicsRenderer")]
 unsafe impl NSObjectProtocol for UIGraphicsImageRenderer {}
 
-extern_methods!(
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl UIGraphicsImageRenderer {
+#[cfg(feature = "UIGraphicsRenderer")]
+impl UIGraphicsImageRenderer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithSize:))]
         #[unsafe(method_family = init)]
@@ -239,24 +239,24 @@ extern_methods!(
             compression_quality: CGFloat,
             actions: UIGraphicsImageDrawingActions,
         ) -> Retained<NSData>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIGraphicsRenderer`
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl UIGraphicsImageRenderer {
+/// Methods declared on superclass `UIGraphicsRenderer`.
+#[cfg(feature = "UIGraphicsRenderer")]
+impl UIGraphicsImageRenderer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithBounds:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIGraphicsRenderer")]
-    unsafe impl UIGraphicsImageRenderer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIGraphicsRenderer")]
+impl UIGraphicsImageRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -264,5 +264,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

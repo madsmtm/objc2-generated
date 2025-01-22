@@ -105,8 +105,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSAccessibilityCustomRotor {}
 
-extern_methods!(
-    unsafe impl NSAccessibilityCustomRotor {
+impl NSAccessibilityCustomRotor {
+    extern_methods!(
         /// Convenience initializer that uses
         /// NSAccessibilityCustomRotorTypeCustom as the default rotor type. Use this
         /// initializer for custom rotors that are not one of the common types.
@@ -196,12 +196,12 @@ extern_methods!(
             &self,
             item_loading_delegate: Option<&ProtocolObject<dyn NSAccessibilityElementLoading>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAccessibilityCustomRotor {
+/// Methods declared on superclass `NSObject`.
+impl NSAccessibilityCustomRotor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -209,8 +209,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// NSAccessibilityCustomRotorSearchParameters is a container for
@@ -225,8 +225,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorSearchParameters {}
 
-extern_methods!(
-    unsafe impl NSAccessibilityCustomRotorSearchParameters {
+impl NSAccessibilityCustomRotorSearchParameters {
+    extern_methods!(
         /// The currentItem determines where the search will start from. If
         /// it is nil, the search should begin from, and include, the first or last
         /// item, depending on which search direction is used (e.g. search direction
@@ -268,12 +268,12 @@ extern_methods!(
         #[unsafe(method(setFilterString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterString(&self, filter_string: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAccessibilityCustomRotorSearchParameters {
+/// Methods declared on superclass `NSObject`.
+impl NSAccessibilityCustomRotorSearchParameters {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -281,8 +281,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// NSAccessibilityCustomRotorItemResults are the objects returned
@@ -296,8 +296,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorItemResult {}
 
-extern_methods!(
-    unsafe impl NSAccessibilityCustomRotorItemResult {
+impl NSAccessibilityCustomRotorItemResult {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -371,8 +371,8 @@ extern_methods!(
         #[unsafe(method(setCustomLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomLabel(&self, custom_label: Option<&NSString>);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotoritemsearchdelegate?language=objc)

@@ -21,8 +21,8 @@ unsafe impl Sync for HMNumberRange {}
 
 unsafe impl NSObjectProtocol for HMNumberRange {}
 
-extern_methods!(
-    unsafe impl HMNumberRange {
+impl HMNumberRange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,14 +66,14 @@ extern_methods!(
         #[unsafe(method(maxValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxValue(&self) -> Option<Retained<NSNumber>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMNumberRange {
+/// Methods declared on superclass `NSObject`.
+impl HMNumberRange {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

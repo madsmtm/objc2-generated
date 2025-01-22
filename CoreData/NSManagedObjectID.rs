@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for NSManagedObjectID {
 
 unsafe impl NSObjectProtocol for NSManagedObjectID {}
 
-extern_methods!(
-    unsafe impl NSManagedObjectID {
+impl NSManagedObjectID {
+    extern_methods!(
         #[cfg(feature = "NSEntityDescription")]
         #[unsafe(method(entity))]
         #[unsafe(method_family = none)]
@@ -44,12 +44,12 @@ extern_methods!(
         #[unsafe(method(URIRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn URIRepresentation(&self) -> Retained<NSURL>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSManagedObjectID {
+/// Methods declared on superclass `NSObject`.
+impl NSManagedObjectID {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,5 +57,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

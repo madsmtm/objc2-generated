@@ -43,13 +43,13 @@ unsafe impl CopyingHelper for DOMCSSMediaRule {
 ))]
 unsafe impl NSObjectProtocol for DOMCSSMediaRule {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSMediaRule {
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSMediaRule {
+    extern_methods!(
         #[cfg(feature = "DOMMediaList")]
         #[deprecated]
         #[unsafe(method(media))]
@@ -70,49 +70,49 @@ extern_methods!(
         #[unsafe(method(deleteRule:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteRule(&self, index: c_uint);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSMediaRule {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSMediaRule {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSMediaRule {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSMediaRule {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMCSSMediaRuleDeprecated
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSMediaRule {
+/// DOMCSSMediaRuleDeprecated.
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSMediaRule {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(insertRule::))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertRule(&self, rule: Option<&NSString>, index: c_uint) -> c_uint;
-    }
-);
+    );
+}

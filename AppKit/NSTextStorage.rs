@@ -42,8 +42,8 @@ unsafe impl NSObjectProtocol for NSTextStorage {}
 
 unsafe impl NSSecureCoding for NSTextStorage {}
 
-extern_methods!(
-    unsafe impl NSTextStorage {
+impl NSTextStorage {
+    extern_methods!(
         #[cfg(feature = "NSLayoutManager")]
         /// ************************** Layout manager ***************************
         #[unsafe(method(layoutManagers))]
@@ -131,12 +131,12 @@ extern_methods!(
             &self,
             text_storage_observer: Option<&ProtocolObject<dyn NSTextStorageObserving>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextStorage {
+/// Methods declared on superclass `NSObject`.
+impl NSTextStorage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -144,8 +144,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// **  NSTextStorage delegate methods ***

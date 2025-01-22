@@ -8,14 +8,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// DOMNodeExtensions
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMNode {
+/// DOMNodeExtensions.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMNode {
+    extern_methods!(
         #[unsafe(method(boundingBox))]
         #[unsafe(method_family = none)]
         pub unsafe fn boundingBox(&self) -> NSRect;
@@ -23,36 +23,36 @@ extern_methods!(
         #[unsafe(method(lineBoxRects))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineBoxRects(&self) -> Option<Retained<NSArray>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMElementAppKitExtensions
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMElement {
+/// DOMElementAppKitExtensions.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMElement {
+    extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMHTMLDocumentExtensions
-    #[cfg(all(
-        feature = "DOMDocument",
-        feature = "DOMHTMLDocument",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLDocument {
+/// DOMHTMLDocumentExtensions.
+#[cfg(all(
+    feature = "DOMDocument",
+    feature = "DOMHTMLDocument",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLDocument {
+    extern_methods!(
         #[cfg(feature = "DOMDocumentFragment")]
         #[unsafe(method(createDocumentFragmentWithMarkupString:baseURL:))]
         #[unsafe(method_family = none)]
@@ -69,5 +69,5 @@ extern_methods!(
             &self,
             text: Option<&NSString>,
         ) -> Option<Retained<DOMDocumentFragment>>;
-    }
-);
+    );
+}

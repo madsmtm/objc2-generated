@@ -56,8 +56,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITab {}
 
-extern_methods!(
-    unsafe impl UITab {
+impl UITab {
+    extern_methods!(
         /// The identifier associated with the tab, must be unique across the tab bar controller.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -220,40 +220,40 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIPopoverPresentationControllerSourceItem
-    unsafe impl UITab {}
-);
+/// UIPopoverPresentationControllerSourceItem.
+impl UITab {
+    extern_methods!();
+}
 
 #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
 unsafe impl UIPopoverPresentationControllerSourceItem for UITab {}
 
-extern_methods!(
-    /// UISpringLoadedInteractionSupporting
-    unsafe impl UITab {}
-);
+/// UISpringLoadedInteractionSupporting.
+impl UITab {
+    extern_methods!();
+}
 
 #[cfg(feature = "UISpringLoadedInteractionSupporting")]
 unsafe impl UISpringLoadedInteractionSupporting for UITab {}
 
-extern_methods!(
-    /// UIAccessibility
-    unsafe impl UITab {}
-);
+/// UIAccessibility.
+impl UITab {
+    extern_methods!();
+}
 
 #[cfg(feature = "UIAccessibilityIdentification")]
 unsafe impl UIAccessibilityIdentification for UITab {}
 
-extern_methods!(
-    /// UITab
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIViewController {
+/// UITab.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIViewController {
+    extern_methods!(
         /// The `UITab` instance that was used to create the receiver, and represents the view controller. Default is nil.
         #[unsafe(method(tab))]
         #[unsafe(method_family = none)]
         pub unsafe fn tab(&self) -> Option<Retained<UITab>>;
-    }
-);
+    );
+}

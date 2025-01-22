@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHAssetCollectionChangeRequest {}
 
-extern_methods!(
-    #[cfg(feature = "PHChangeRequest")]
-    unsafe impl PHAssetCollectionChangeRequest {
+#[cfg(feature = "PHChangeRequest")]
+impl PHAssetCollectionChangeRequest {
+    extern_methods!(
         #[unsafe(method(creationRequestForAssetCollectionWithTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetCollectionWithTitle(
@@ -102,13 +102,13 @@ extern_methods!(
             from_indexes: &NSIndexSet,
             to_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PHChangeRequest")]
-    unsafe impl PHAssetCollectionChangeRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "PHChangeRequest")]
+impl PHAssetCollectionChangeRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -116,5 +116,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

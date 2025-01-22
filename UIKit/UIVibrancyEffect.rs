@@ -32,21 +32,21 @@ unsafe impl NSObjectProtocol for UIVibrancyEffect {}
 #[cfg(feature = "UIVisualEffect")]
 unsafe impl NSSecureCoding for UIVibrancyEffect {}
 
-extern_methods!(
-    #[cfg(feature = "UIVisualEffect")]
-    unsafe impl UIVibrancyEffect {
+#[cfg(feature = "UIVisualEffect")]
+impl UIVibrancyEffect {
+    extern_methods!(
         #[cfg(feature = "UIBlurEffect")]
         #[unsafe(method(effectForBlurEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectForBlurEffect(blur_effect: &UIBlurEffect)
             -> Retained<UIVibrancyEffect>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIVisualEffect")]
-    unsafe impl UIVibrancyEffect {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIVisualEffect")]
+impl UIVibrancyEffect {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -54,8 +54,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle?language=objc)
 // NS_ENUM
@@ -89,10 +89,10 @@ unsafe impl RefEncode for UIVibrancyEffectStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AdditionalStyles
-    #[cfg(feature = "UIVisualEffect")]
-    unsafe impl UIVibrancyEffect {
+/// AdditionalStyles.
+#[cfg(feature = "UIVisualEffect")]
+impl UIVibrancyEffect {
+    extern_methods!(
         #[cfg(feature = "UIBlurEffect")]
         #[unsafe(method(effectForBlurEffect:style:))]
         #[unsafe(method_family = none)]
@@ -100,5 +100,5 @@ extern_methods!(
             blur_effect: &UIBlurEffect,
             style: UIVibrancyEffectStyle,
         ) -> Retained<UIVibrancyEffect>;
-    }
-);
+    );
+}

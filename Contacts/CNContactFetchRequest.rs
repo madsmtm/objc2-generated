@@ -29,9 +29,9 @@ unsafe impl NSObjectProtocol for CNContactFetchRequest {}
 #[cfg(feature = "CNFetchRequest")]
 unsafe impl NSSecureCoding for CNContactFetchRequest {}
 
-extern_methods!(
-    #[cfg(feature = "CNFetchRequest")]
-    unsafe impl CNContactFetchRequest {
+#[cfg(feature = "CNFetchRequest")]
+impl CNContactFetchRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -126,5 +126,5 @@ extern_methods!(
         #[unsafe(method(setSortOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortOrder(&self, sort_order: CNContactSortOrder);
-    }
-);
+    );
+}

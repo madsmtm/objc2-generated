@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CMFallDetectionManager {}
 
-extern_methods!(
-    unsafe impl CMFallDetectionManager {
+impl CMFallDetectionManager {
+    extern_methods!(
         /// available
         ///
         /// Returns a  value indicating whether the current device supports Fall Detection.
@@ -66,12 +66,12 @@ extern_methods!(
             &self,
             handler: &block2::Block<dyn Fn(CMAuthorizationStatus)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMFallDetectionManager {
+/// Methods declared on superclass `NSObject`.
+impl CMFallDetectionManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,8 +79,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// CMFallDetectionDelegate

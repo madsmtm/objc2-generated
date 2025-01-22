@@ -258,10 +258,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSFileProviderEnumeration
-    #[cfg(feature = "Extension")]
-    unsafe impl NSFileProviderExtension {
+/// NSFileProviderEnumeration.
+#[cfg(feature = "Extension")]
+impl NSFileProviderExtension {
+    extern_methods!(
         #[cfg(feature = "NSFileProviderItem")]
         /// Create an enumerator for an item.
         ///
@@ -294,5 +294,5 @@ extern_methods!(
             &self,
             container_item_identifier: &NSFileProviderItemIdentifier,
         ) -> Result<Retained<ProtocolObject<dyn NSFileProviderEnumerator>>, Retained<NSError>>;
-    }
-);
+    );
+}

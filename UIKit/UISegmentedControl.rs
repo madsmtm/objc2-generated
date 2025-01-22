@@ -156,9 +156,9 @@ unsafe impl UIResponderStandardEditActions for UISegmentedControl {}
 ))]
 unsafe impl UITraitEnvironment for UISegmentedControl {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UISegmentedControl {
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UISegmentedControl {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -462,13 +462,13 @@ extern_methods!(
             left_center_right_or_alone: UISegmentedControlSegment,
             bar_metrics: UIBarMetrics,
         ) -> UIOffset;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIControl`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UISegmentedControl {
+/// Methods declared on superclass `UIControl`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UISegmentedControl {
+    extern_methods!(
         #[cfg(all(
             feature = "UIAction",
             feature = "UIMenuElement",
@@ -482,13 +482,13 @@ extern_methods!(
             frame: CGRect,
             primary_action: Option<&UIAction>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UISegmentedControl {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UISegmentedControl {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -496,14 +496,14 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SpringLoading
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UISegmentedControl {}
-);
+/// SpringLoading.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UISegmentedControl {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "UIControl",

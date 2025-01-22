@@ -70,9 +70,9 @@ extern_class!(
 #[cfg(feature = "VZConsoleDevice")]
 unsafe impl NSObjectProtocol for VZVirtioConsoleDevice {}
 
-extern_methods!(
-    #[cfg(feature = "VZConsoleDevice")]
-    unsafe impl VZVirtioConsoleDevice {
+#[cfg(feature = "VZConsoleDevice")]
+impl VZVirtioConsoleDevice {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -102,5 +102,5 @@ extern_methods!(
         #[unsafe(method(ports))]
         #[unsafe(method_family = none)]
         pub unsafe fn ports(&self) -> Retained<VZVirtioConsolePortArray>;
-    }
-);
+    );
+}

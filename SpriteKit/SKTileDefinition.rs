@@ -56,8 +56,8 @@ unsafe impl NSObjectProtocol for SKTileDefinition {}
 
 unsafe impl NSSecureCoding for SKTileDefinition {}
 
-extern_methods!(
-    unsafe impl SKTileDefinition {
+impl SKTileDefinition {
+    extern_methods!(
         #[cfg(feature = "SKTexture")]
         /// Create a tile definition with an SKTexture, and set its size to the SKTexture's width/height.
         ///
@@ -314,12 +314,12 @@ extern_methods!(
         #[unsafe(method(setFlipHorizontally:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFlipHorizontally(&self, flip_horizontally: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKTileDefinition {
+/// Methods declared on superclass `NSObject`.
+impl SKTileDefinition {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -327,5 +327,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

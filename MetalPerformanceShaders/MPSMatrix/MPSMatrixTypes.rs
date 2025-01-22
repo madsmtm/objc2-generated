@@ -37,9 +37,9 @@ unsafe impl NSObjectProtocol for MPSMatrixUnaryKernel {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixUnaryKernel {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixUnaryKernel {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixUnaryKernel {
+    extern_methods!(
         /// The origin, relative to [0, 0] in the source matrix, at which to
         /// start reading values.  This property is modifiable and defaults to
         /// [0, 0] at initialization time.  If a different origin is desired then
@@ -93,13 +93,13 @@ extern_methods!(
         #[unsafe(method(setBatchSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBatchSize(&self, batch_size: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixUnaryKernel {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixUnaryKernel {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -149,13 +149,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixUnaryKernel {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixUnaryKernel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -163,8 +163,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -196,9 +196,9 @@ unsafe impl NSObjectProtocol for MPSMatrixBinaryKernel {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixBinaryKernel {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixBinaryKernel {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixBinaryKernel {
+    extern_methods!(
         /// The origin, relative to [0, 0] in the primary source matrix, at which to
         /// start reading values.  This property is modifiable and defaults to
         /// [0, 0] at initialization time.  If a different origin is desired then
@@ -269,13 +269,13 @@ extern_methods!(
         #[unsafe(method(setBatchSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBatchSize(&self, batch_size: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixBinaryKernel {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixBinaryKernel {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -325,13 +325,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixBinaryKernel {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixBinaryKernel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -339,5 +339,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for NSIndexPath {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSIndexPath {}
 
-extern_methods!(
-    unsafe impl NSIndexPath {
+impl NSIndexPath {
+    extern_methods!(
         #[unsafe(method(indexPathWithIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathWithIndex(index: NSUInteger) -> Retained<Self>;
@@ -90,12 +90,12 @@ extern_methods!(
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compare(&self, other_object: &NSIndexPath) -> NSComparisonResult;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSIndexPath {
+/// Methods declared on superclass `NSObject`.
+impl NSIndexPath {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -103,16 +103,16 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSIndexPath {
+/// NSDeprecated.
+impl NSIndexPath {
+    extern_methods!(
         /// This method is unsafe because it could potentially cause buffer overruns. You should use -getIndexes:range: instead.
         #[deprecated]
         #[unsafe(method(getIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getIndexes(&self, indexes: NonNull<NSUInteger>);
-    }
-);
+    );
+}

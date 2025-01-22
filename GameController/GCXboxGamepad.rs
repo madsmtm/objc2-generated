@@ -21,9 +21,9 @@ extern_class!(
 #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
 unsafe impl NSObjectProtocol for GCXboxGamepad {}
 
-extern_methods!(
-    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
-    unsafe impl GCXboxGamepad {
+#[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
+impl GCXboxGamepad {
+    extern_methods!(
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Some Xbox controller variants can support up to four additional buttons.
         ///
@@ -64,13 +64,13 @@ extern_methods!(
         #[unsafe(method(buttonShare))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonShare(&self) -> Option<Retained<GCControllerButtonInput>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
-    unsafe impl GCXboxGamepad {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
+impl GCXboxGamepad {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -78,5 +78,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

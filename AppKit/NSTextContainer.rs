@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for NSTextContainer {}
 
 unsafe impl NSSecureCoding for NSTextContainer {}
 
-extern_methods!(
-    unsafe impl NSTextContainer {
+impl NSTextContainer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// ************************** Initialization ***************************
         #[unsafe(method(initWithSize:))]
@@ -117,12 +117,12 @@ extern_methods!(
         #[unsafe(method(setHeightTracksTextView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightTracksTextView(&self, height_tracks_text_view: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextContainer {
+/// Methods declared on superclass `NSObject`.
+impl NSTextContainer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -130,11 +130,11 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSTextContainer {
+impl NSTextContainer {
+    extern_methods!(
         #[cfg(feature = "NSLayoutManager")]
         #[unsafe(method(layoutManager))]
         #[unsafe(method_family = none)]
@@ -183,8 +183,8 @@ extern_methods!(
         #[unsafe(method(setTextView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextView(&self, text_view: Option<&NSTextView>);
-    }
-);
+    );
+}
 
 #[cfg(feature = "NSLayoutManager")]
 unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
@@ -241,9 +241,9 @@ unsafe impl RefEncode for NSLineMovementDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSTextContainerDeprecated
-    unsafe impl NSTextContainer {
+/// NSTextContainerDeprecated.
+impl NSTextContainer {
+    extern_methods!(
         #[unsafe(method(initWithContainerSize:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainerSize(
@@ -274,5 +274,5 @@ extern_methods!(
         #[unsafe(method(containsPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;
-    }
-);
+    );
+}

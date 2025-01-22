@@ -47,9 +47,9 @@ unsafe impl Sync for NSPersistentCloudKitContainer {}
 #[cfg(feature = "NSPersistentContainer")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainer {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentContainer")]
-    unsafe impl NSPersistentCloudKitContainer {
+#[cfg(feature = "NSPersistentContainer")]
+impl NSPersistentCloudKitContainer {
+    extern_methods!(
         #[unsafe(method(initializeCloudKitSchemaWithOptions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn initializeCloudKitSchemaWithOptions_error(
@@ -77,13 +77,13 @@ extern_methods!(
         #[unsafe(method(canModifyManagedObjectsInStore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canModifyManagedObjectsInStore(&self, store: &NSPersistentStore) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSPersistentContainer`
-    #[cfg(feature = "NSPersistentContainer")]
-    unsafe impl NSPersistentCloudKitContainer {
+/// Methods declared on superclass `NSPersistentContainer`.
+#[cfg(feature = "NSPersistentContainer")]
+impl NSPersistentCloudKitContainer {
+    extern_methods!(
         #[unsafe(method(persistentContainerWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentContainerWithName(name: &NSString) -> Retained<Self>;
@@ -108,13 +108,13 @@ extern_methods!(
             name: &NSString,
             model: &NSManagedObjectModel,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentContainer")]
-    unsafe impl NSPersistentCloudKitContainer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentContainer")]
+impl NSPersistentCloudKitContainer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -122,5 +122,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

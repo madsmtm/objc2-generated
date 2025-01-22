@@ -31,8 +31,8 @@ unsafe impl CopyingHelper for NSDataAsset {
 
 unsafe impl NSObjectProtocol for NSDataAsset {}
 
-extern_methods!(
-    unsafe impl NSDataAsset {
+impl NSDataAsset {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,14 +68,14 @@ extern_methods!(
         #[unsafe(method(typeIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn typeIdentifier(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDataAsset {
+/// Methods declared on superclass `NSObject`.
+impl NSDataAsset {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

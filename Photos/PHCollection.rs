@@ -33,9 +33,9 @@ unsafe impl CopyingHelper for PHCollection {
 #[cfg(feature = "PHObject")]
 unsafe impl NSObjectProtocol for PHCollection {}
 
-extern_methods!(
-    #[cfg(feature = "PHObject")]
-    unsafe impl PHCollection {
+#[cfg(feature = "PHObject")]
+impl PHCollection {
+    extern_methods!(
         #[unsafe(method(canContainAssets))]
         #[unsafe(method_family = none)]
         pub unsafe fn canContainAssets(&self) -> bool;
@@ -70,13 +70,13 @@ extern_methods!(
         pub unsafe fn fetchTopLevelUserCollectionsWithOptions(
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHCollection>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PHObject")]
-    unsafe impl PHCollection {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "PHObject")]
+impl PHCollection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,8 +84,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollection?language=objc)
@@ -112,9 +112,9 @@ unsafe impl CopyingHelper for PHAssetCollection {
 #[cfg(feature = "PHObject")]
 unsafe impl NSObjectProtocol for PHAssetCollection {}
 
-extern_methods!(
-    #[cfg(feature = "PHObject")]
-    unsafe impl PHAssetCollection {
+#[cfg(feature = "PHObject")]
+impl PHAssetCollection {
+    extern_methods!(
         #[cfg(feature = "PhotosTypes")]
         #[unsafe(method(assetCollectionType))]
         #[unsafe(method_family = none)]
@@ -222,13 +222,13 @@ extern_methods!(
             fetch_result: &PHFetchResult<PHAsset>,
             title: Option<&NSString>,
         ) -> Retained<PHAssetCollection>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PHObject")]
-    unsafe impl PHAssetCollection {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "PHObject")]
+impl PHAssetCollection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -236,8 +236,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlist?language=objc)
@@ -264,9 +264,9 @@ unsafe impl CopyingHelper for PHCollectionList {
 #[cfg(feature = "PHObject")]
 unsafe impl NSObjectProtocol for PHCollectionList {}
 
-extern_methods!(
-    #[cfg(feature = "PHObject")]
-    unsafe impl PHCollectionList {
+#[cfg(feature = "PHObject")]
+impl PHCollectionList {
+    extern_methods!(
         #[cfg(feature = "PhotosTypes")]
         #[unsafe(method(collectionListType))]
         #[unsafe(method_family = none)]
@@ -359,13 +359,13 @@ extern_methods!(
             fetch_result: &PHFetchResult<PHCollection>,
             title: Option<&NSString>,
         ) -> Retained<PHCollectionList>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PHObject")]
-    unsafe impl PHCollectionList {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "PHObject")]
+impl PHCollectionList {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -373,5 +373,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

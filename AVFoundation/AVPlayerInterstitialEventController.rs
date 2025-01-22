@@ -158,8 +158,8 @@ unsafe impl CopyingHelper for AVPlayerInterstitialEvent {
 
 unsafe impl NSObjectProtocol for AVPlayerInterstitialEvent {}
 
-extern_methods!(
-    unsafe impl AVPlayerInterstitialEvent {
+impl AVPlayerInterstitialEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -384,8 +384,8 @@ extern_methods!(
         #[unsafe(method(contentMayVary))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentMayVary(&self) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVPlayerInterstitialEventMonitor allows you to observe the scheduling and progress of interstitial events, specified either intrinsically within the content of primary items, such as via use of directives carried by HLS media playlists, or via use of an AVPlayerInterstitialEventController.
@@ -407,8 +407,8 @@ unsafe impl Sync for AVPlayerInterstitialEventMonitor {}
 
 unsafe impl NSObjectProtocol for AVPlayerInterstitialEventMonitor {}
 
-extern_methods!(
-    unsafe impl AVPlayerInterstitialEventMonitor {
+impl AVPlayerInterstitialEventMonitor {
+    extern_methods!(
         #[cfg(feature = "AVPlayer")]
         /// Returns an instance of AVPlayerInterstitialEvent for use in observing and scheduling interstitial playback.
         ///
@@ -454,12 +454,12 @@ extern_methods!(
         #[unsafe(method(currentEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentEvent(&self) -> Option<Retained<AVPlayerInterstitialEvent>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerInterstitialEventMonitor {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerInterstitialEventMonitor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -467,8 +467,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// A notification that's posted whenever the value of events of an AVPlayerInterstitialEventMonitor is changed.
@@ -546,8 +546,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerInterstitialEventController {}
 
-extern_methods!(
-    unsafe impl AVPlayerInterstitialEventController {
+impl AVPlayerInterstitialEventController {
+    extern_methods!(
         #[cfg(feature = "AVPlayer")]
         /// Returns an instance of AVPlayerInterstitialEvent for use in observing and scheduling interstitial playback.
         ///
@@ -604,12 +604,12 @@ extern_methods!(
         #[unsafe(method(cancelCurrentEventWithResumptionOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelCurrentEventWithResumptionOffset(&self, resumption_offset: CMTime);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVPlayerInterstitialEventMonitor`
-    unsafe impl AVPlayerInterstitialEventController {
+/// Methods declared on superclass `AVPlayerInterstitialEventMonitor`.
+impl AVPlayerInterstitialEventController {
+    extern_methods!(
         #[cfg(feature = "AVPlayer")]
         /// Returns an instance of AVPlayerInterstitialEvent for use in observing and scheduling interstitial playback.
         ///
@@ -621,12 +621,12 @@ extern_methods!(
         pub unsafe fn interstitialEventMonitorWithPrimaryPlayer(
             primary_player: &AVPlayer,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerInterstitialEventController {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerInterstitialEventController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -634,8 +634,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Indicates that the player is waiting for the completion of an interstitial event.
@@ -647,16 +647,16 @@ extern "C" {
     pub static AVPlayerWaitingDuringInterstitialEventReason: &'static AVPlayerWaitingReason;
 }
 
-extern_methods!(
-    /// AVPlayerInterstitialSupport
-    #[cfg(feature = "AVPlayer")]
-    unsafe impl AVPlayer {}
-);
+/// AVPlayerInterstitialSupport.
+#[cfg(feature = "AVPlayer")]
+impl AVPlayer {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// AVPlayerInterstitialSupport
-    #[cfg(feature = "AVPlayerItem")]
-    unsafe impl AVPlayerItem {
+/// AVPlayerInterstitialSupport.
+#[cfg(feature = "AVPlayerItem")]
+impl AVPlayerItem {
+    extern_methods!(
         /// Allows interstitials to be played according to a schedule that's specified by server-side directives. The default value is YES. A value of NO prevents automatic scheduling of future server-side interstitial events. Events specified by an AVPlayerInterstitialEventController override server-side events, regardless of the value of this property.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
@@ -676,5 +676,5 @@ extern_methods!(
         #[unsafe(method(templatePlayerItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn templatePlayerItem(&self) -> Option<Retained<AVPlayerItem>>;
-    }
-);
+    );
+}

@@ -43,8 +43,8 @@ unsafe impl NSSecureCoding for VNObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNObservation {}
 
-extern_methods!(
-    unsafe impl VNObservation {
+impl VNObservation {
+    extern_methods!(
         /// The unique identifier assigned to an observation.
         #[unsafe(method(uuid))]
         #[unsafe(method_family = none)]
@@ -65,12 +65,12 @@ extern_methods!(
         #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -78,8 +78,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNDetectedObjectObservation is VNObservation in an image that has a location and/or dimension. Further attributes depend on the specific detected object.
@@ -107,8 +107,8 @@ unsafe impl NSSecureCoding for VNDetectedObjectObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNDetectedObjectObservation {}
 
-extern_methods!(
-    unsafe impl VNDetectedObjectObservation {
+impl VNDetectedObjectObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[unsafe(method(observationWithBoundingBox:))]
@@ -133,12 +133,12 @@ extern_methods!(
         #[unsafe(method(globalSegmentationMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn globalSegmentationMask(&self) -> Option<Retained<VNPixelBufferObservation>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNDetectedObjectObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNDetectedObjectObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -146,8 +146,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNFaceObservation is the result of a face detection request or derivatives like a face landmark request.
@@ -175,8 +175,8 @@ unsafe impl NSSecureCoding for VNFaceObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNFaceObservation {}
 
-extern_methods!(
-    unsafe impl VNFaceObservation {
+impl VNFaceObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a new VNFaceObservation with a normalized bounding box, roll and yaw.
         ///
@@ -233,12 +233,12 @@ extern_methods!(
         #[unsafe(method(pitch))]
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> Option<Retained<NSNumber>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNDetectedObjectObservation`
-    unsafe impl VNFaceObservation {
+/// Methods declared on superclass `VNDetectedObjectObservation`.
+impl VNFaceObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[unsafe(method(observationWithBoundingBox:))]
@@ -252,12 +252,12 @@ extern_methods!(
             request_revision: NSUInteger,
             bounding_box: CGRect,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNFaceObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNFaceObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -265,8 +265,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNClassificationObservation returns the classifcation in form of a string.
@@ -294,18 +294,18 @@ unsafe impl NSSecureCoding for VNClassificationObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNClassificationObservation {}
 
-extern_methods!(
-    unsafe impl VNClassificationObservation {
+impl VNClassificationObservation {
+    extern_methods!(
         /// The is the label or identifier of a classification request. An example classification could be a string like 'cat' or 'hotdog'. The string is defined in the model that was used for the classification. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNClassificationObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNClassificationObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -313,15 +313,15 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// PrecisionRecallAdditions
-    /// VNClassificationObservation mave have precision/recall curves which can be used to decide on an "optimal" operation point.
-    /// Precision is a value in the range of [0..1] which represents the fraction of relevant instances among the retrieved instances.
-    /// Recall is a value in the range of [0..1] which represents the fraction of relevant instances that have been retrieved over the total amount of relevant instances.
-    unsafe impl VNClassificationObservation {
+/// PrecisionRecallAdditions.
+/// VNClassificationObservation mave have precision/recall curves which can be used to decide on an "optimal" operation point.
+/// Precision is a value in the range of [0..1] which represents the fraction of relevant instances among the retrieved instances.
+/// Recall is a value in the range of [0..1] which represents the fraction of relevant instances that have been retrieved over the total amount of relevant instances.
+impl VNClassificationObservation {
+    extern_methods!(
         /// Determine whether or not precision/recall curves are available with the observation.
         ///
         /// If this property is YES, then all other precision/recall related methods in this addition can be called.
@@ -364,8 +364,8 @@ extern_methods!(
             minimum_precision: c_float,
             recall: c_float,
         ) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNRecognizedObjectObservation is a VNDetectedObjectObservation with an array of classifications that classify the recognized object. The confidence of the classifications sum up to 1.0. It is common practice to multiply the classification confidence with the confidence of this observation.
@@ -391,17 +391,17 @@ unsafe impl NSSecureCoding for VNRecognizedObjectObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNRecognizedObjectObservation {}
 
-extern_methods!(
-    unsafe impl VNRecognizedObjectObservation {
+impl VNRecognizedObjectObservation {
+    extern_methods!(
         #[unsafe(method(labels))]
         #[unsafe(method_family = none)]
         pub unsafe fn labels(&self) -> Retained<NSArray<VNClassificationObservation>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNDetectedObjectObservation`
-    unsafe impl VNRecognizedObjectObservation {
+/// Methods declared on superclass `VNDetectedObjectObservation`.
+impl VNRecognizedObjectObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[unsafe(method(observationWithBoundingBox:))]
@@ -415,12 +415,12 @@ extern_methods!(
             request_revision: NSUInteger,
             bounding_box: CGRect,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNRecognizedObjectObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNRecognizedObjectObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -428,8 +428,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNCoreMLFeatureValueObservation returns the prediction of a model as an MLFeatureValue.
@@ -457,8 +457,8 @@ unsafe impl NSSecureCoding for VNCoreMLFeatureValueObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNCoreMLFeatureValueObservation {}
 
-extern_methods!(
-    unsafe impl VNCoreMLFeatureValueObservation {
+impl VNCoreMLFeatureValueObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-ml")]
         /// The result VNCoreMLRequest where the model produces an MLFeatureValue that is neither a classification or image. Refer to the Core ML documentation and the model itself for the handling of the content of the featureValue.
         #[unsafe(method(featureValue))]
@@ -469,12 +469,12 @@ extern_methods!(
         #[unsafe(method(featureName))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNCoreMLFeatureValueObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNCoreMLFeatureValueObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -482,8 +482,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNPixelBufferObservation returns the prediction of a model as a CVPixelBufferRef.
@@ -511,8 +511,8 @@ unsafe impl NSSecureCoding for VNPixelBufferObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNPixelBufferObservation {}
 
-extern_methods!(
-    unsafe impl VNPixelBufferObservation {
+impl VNPixelBufferObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         /// The resulting image from a request like VNCoreMLRequest where the model produces an image as an output.
         #[unsafe(method(pixelBuffer))]
@@ -523,12 +523,12 @@ extern_methods!(
         #[unsafe(method(featureName))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureName(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNPixelBufferObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNPixelBufferObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -536,8 +536,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNRectangleObservation is the result of a rectangle detector
@@ -565,8 +565,8 @@ unsafe impl NSSecureCoding for VNRectangleObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNRectangleObservation {}
 
-extern_methods!(
-    unsafe impl VNRectangleObservation {
+impl VNRectangleObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a synthesized `VNRectangleObservation`.
         ///
@@ -635,12 +635,12 @@ extern_methods!(
         #[unsafe(method(bottomRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomRight(&self) -> CGPoint;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNDetectedObjectObservation`
-    unsafe impl VNRectangleObservation {
+/// Methods declared on superclass `VNDetectedObjectObservation`.
+impl VNRectangleObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[unsafe(method(observationWithBoundingBox:))]
@@ -654,12 +654,12 @@ extern_methods!(
             request_revision: NSUInteger,
             bounding_box: CGRect,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNRectangleObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNRectangleObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -667,8 +667,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The VNTrajectoryObservation describes a detected trajectory with the points on the trajectory and the equation describing the trajectory. The observation also reprorts the duration describing when the trajectory was first detected (which will be in the past).
@@ -694,8 +694,8 @@ unsafe impl NSSecureCoding for VNTrajectoryObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNTrajectoryObservation {}
 
-extern_methods!(
-    unsafe impl VNTrajectoryObservation {
+impl VNTrajectoryObservation {
+    extern_methods!(
         #[cfg(feature = "VNGeometry")]
         /// The centroids of the contour being detected along the trajectory.
         ///
@@ -719,12 +719,12 @@ extern_methods!(
         #[unsafe(method(movingAverageRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn movingAverageRadius(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNTrajectoryObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNTrajectoryObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -732,8 +732,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNTextObservation Describes a text area detected by the VNRequestNameDetectTextRectangles request.
@@ -764,8 +764,8 @@ unsafe impl NSSecureCoding for VNTextObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNTextObservation {}
 
-extern_methods!(
-    unsafe impl VNTextObservation {
+impl VNTextObservation {
+    extern_methods!(
         /// Array of individual character bounding boxes found within the observation's boundingBox.
         ///
         /// If the associated request indicated that it is interested in character boxes by setting the VNDetectTextRectanglesRequest reportCharacterBoxes property to
@@ -773,12 +773,12 @@ extern_methods!(
         #[unsafe(method(characterBoxes))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterBoxes(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRectangleObservation`
-    unsafe impl VNTextObservation {
+/// Methods declared on superclass `VNRectangleObservation`.
+impl VNTextObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a synthesized `VNRectangleObservation`.
         ///
@@ -827,12 +827,12 @@ extern_methods!(
             bottom_right: CGPoint,
             bottom_left: CGPoint,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNDetectedObjectObservation`
-    unsafe impl VNTextObservation {
+/// Methods declared on superclass `VNDetectedObjectObservation`.
+impl VNTextObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[unsafe(method(observationWithBoundingBox:))]
@@ -846,12 +846,12 @@ extern_methods!(
             request_revision: NSUInteger,
             bounding_box: CGRect,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNTextObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNTextObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -859,8 +859,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNRecognizedText A block of recognized text. There can be multiple VNRecognizedText objects returned in a VNRecognizedTextObservation - one for each candidate.
@@ -886,8 +886,8 @@ unsafe impl NSSecureCoding for VNRecognizedText {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNRecognizedText {}
 
-extern_methods!(
-    unsafe impl VNRecognizedText {
+impl VNRecognizedText {
+    extern_methods!(
         /// Field that contains recognized text.
         ///
         /// This is the top candidate of the recognized text.
@@ -900,12 +900,12 @@ extern_methods!(
         #[unsafe(method(confidence))]
         #[unsafe(method_family = none)]
         pub fn confidence(&self) -> VNConfidence;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNRecognizedText {
+/// Methods declared on superclass `NSObject`.
+impl VNRecognizedText {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -913,8 +913,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNRecognizedTextObservation Describes a text area detected and recognized by the VNRecognizeTextRequest request.
@@ -945,8 +945,8 @@ unsafe impl NSSecureCoding for VNRecognizedTextObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNRecognizedTextObservation {}
 
-extern_methods!(
-    unsafe impl VNRecognizedTextObservation {
+impl VNRecognizedTextObservation {
+    extern_methods!(
         /// Returns the top N candidates sorted by decreasing confidence score
         ///
         /// This will return no more than N but can be less than N candidates. The maximum number of candidates returned cannot exceed 10 candidates.
@@ -956,12 +956,12 @@ extern_methods!(
             &self,
             max_candidate_count: NSUInteger,
         ) -> Retained<NSArray<VNRecognizedText>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRectangleObservation`
-    unsafe impl VNRecognizedTextObservation {
+/// Methods declared on superclass `VNRectangleObservation`.
+impl VNRecognizedTextObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a synthesized `VNRectangleObservation`.
         ///
@@ -1010,12 +1010,12 @@ extern_methods!(
             bottom_right: CGPoint,
             bottom_left: CGPoint,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNDetectedObjectObservation`
-    unsafe impl VNRecognizedTextObservation {
+/// Methods declared on superclass `VNDetectedObjectObservation`.
+impl VNRecognizedTextObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[unsafe(method(observationWithBoundingBox:))]
@@ -1029,12 +1029,12 @@ extern_methods!(
             request_revision: NSUInteger,
             bounding_box: CGRect,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNRecognizedTextObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNRecognizedTextObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1042,8 +1042,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNBarcodeObservation Describes an area containing a barcode detected by the VNRequestNameDetectBarcodes request.
@@ -1074,8 +1074,8 @@ unsafe impl NSSecureCoding for VNBarcodeObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNBarcodeObservation {}
 
-extern_methods!(
-    unsafe impl VNBarcodeObservation {
+impl VNBarcodeObservation {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// The symbology of the detected barcode.
         #[unsafe(method(symbology))]
@@ -1126,12 +1126,12 @@ extern_methods!(
         #[unsafe(method(supplementalPayloadData))]
         #[unsafe(method_family = none)]
         pub unsafe fn supplementalPayloadData(&self) -> Option<Retained<NSData>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRectangleObservation`
-    unsafe impl VNBarcodeObservation {
+/// Methods declared on superclass `VNRectangleObservation`.
+impl VNBarcodeObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a synthesized `VNRectangleObservation`.
         ///
@@ -1180,12 +1180,12 @@ extern_methods!(
             bottom_right: CGPoint,
             bottom_left: CGPoint,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNDetectedObjectObservation`
-    unsafe impl VNBarcodeObservation {
+/// Methods declared on superclass `VNDetectedObjectObservation`.
+impl VNBarcodeObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[unsafe(method(observationWithBoundingBox:))]
@@ -1199,12 +1199,12 @@ extern_methods!(
             request_revision: NSUInteger,
             bounding_box: CGRect,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNBarcodeObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNBarcodeObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1212,8 +1212,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNHorizonObservation is the result of a VNDetectHorizonRequest
@@ -1241,8 +1241,8 @@ unsafe impl NSSecureCoding for VNHorizonObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNHorizonObservation {}
 
-extern_methods!(
-    unsafe impl VNHorizonObservation {
+impl VNHorizonObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Transform applied to the detected horizon in image coordinates.
         ///
@@ -1266,12 +1266,12 @@ extern_methods!(
             width: usize,
             height: usize,
         ) -> CGAffineTransform;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNHorizonObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNHorizonObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1279,8 +1279,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNImageAlignmentObservation is generated from an image registration. This is an abstract base class. The type of registration request used defines which subclass describes the result.
@@ -1306,13 +1306,13 @@ unsafe impl NSSecureCoding for VNImageAlignmentObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNImageAlignmentObservation {}
 
-extern_methods!(
-    unsafe impl VNImageAlignmentObservation {}
-);
+impl VNImageAlignmentObservation {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNImageAlignmentObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNImageAlignmentObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1320,8 +1320,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An observation describing the results of performing a translational image alignment.
@@ -1347,18 +1347,18 @@ unsafe impl NSSecureCoding for VNImageTranslationAlignmentObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNImageTranslationAlignmentObservation {}
 
-extern_methods!(
-    unsafe impl VNImageTranslationAlignmentObservation {
+impl VNImageTranslationAlignmentObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(alignmentTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentTransform(&self) -> CGAffineTransform;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNImageTranslationAlignmentObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNImageTranslationAlignmentObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1366,8 +1366,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An observation describing the results of performing a homographic image alignment.
@@ -1393,13 +1393,13 @@ unsafe impl NSSecureCoding for VNImageHomographicAlignmentObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNImageHomographicAlignmentObservation {}
 
-extern_methods!(
-    unsafe impl VNImageHomographicAlignmentObservation {}
-);
+impl VNImageHomographicAlignmentObservation {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNImageHomographicAlignmentObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNImageHomographicAlignmentObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1407,8 +1407,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNSaliencyImageObservation provides a grayscale "heat" map of important areas of an image.
@@ -1436,18 +1436,18 @@ unsafe impl NSSecureCoding for VNSaliencyImageObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNSaliencyImageObservation {}
 
-extern_methods!(
-    unsafe impl VNSaliencyImageObservation {
+impl VNSaliencyImageObservation {
+    extern_methods!(
         /// An array of bounds of salient objects within the image. Each box represents a distinct mode of the heat map.
         #[unsafe(method(salientObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn salientObjects(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNSaliencyImageObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNSaliencyImageObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1455,8 +1455,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfeatureprintobservation?language=objc)
@@ -1480,8 +1480,8 @@ unsafe impl NSSecureCoding for VNFeaturePrintObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNFeaturePrintObservation {}
 
-extern_methods!(
-    unsafe impl VNFeaturePrintObservation {
+impl VNFeaturePrintObservation {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// The type of each element in the data.
         #[unsafe(method(elementType))]
@@ -1508,12 +1508,12 @@ extern_methods!(
             out_distance: NonNull<c_float>,
             feature_print: &VNFeaturePrintObservation,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNFeaturePrintObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNFeaturePrintObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1521,8 +1521,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncontoursobservation?language=objc)
@@ -1546,8 +1546,8 @@ unsafe impl NSSecureCoding for VNContoursObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNContoursObservation {}
 
-extern_methods!(
-    unsafe impl VNContoursObservation {
+impl VNContoursObservation {
+    extern_methods!(
         /// The total number of contours detected.
         #[unsafe(method(contourCount))]
         #[unsafe(method_family = none)]
@@ -1607,12 +1607,12 @@ extern_methods!(
         #[unsafe(method(normalizedPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn normalizedPath(&self) -> Retained<CGPath>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNContoursObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNContoursObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1620,8 +1620,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointgroupkeyall?language=objc)
@@ -1653,8 +1653,8 @@ unsafe impl NSSecureCoding for VNRecognizedPointsObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNRecognizedPointsObservation {}
 
-extern_methods!(
-    unsafe impl VNRecognizedPointsObservation {
+impl VNRecognizedPointsObservation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -1740,8 +1740,8 @@ extern_methods!(
         pub unsafe fn keypointsMultiArrayAndReturnError(
             &self,
         ) -> Result<Retained<MLMultiArray>, Retained<NSError>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNHumanObservation is the result of a Human rectangles detection request
@@ -1767,18 +1767,18 @@ unsafe impl NSSecureCoding for VNHumanObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNHumanObservation {}
 
-extern_methods!(
-    unsafe impl VNHumanObservation {
+impl VNHumanObservation {
+    extern_methods!(
         /// Boolean property to specify whether the human upper body or full body detection is recorded in the observation. This setting is propagated from [VNDetectHumanRectanglesRequest -upperBodyOnly]
         #[unsafe(method(upperBodyOnly))]
         #[unsafe(method_family = none)]
         pub unsafe fn upperBodyOnly(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNDetectedObjectObservation`
-    unsafe impl VNHumanObservation {
+/// Methods declared on superclass `VNDetectedObjectObservation`.
+impl VNHumanObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[unsafe(method(observationWithBoundingBox:))]
@@ -1792,12 +1792,12 @@ extern_methods!(
             request_revision: NSUInteger,
             bounding_box: CGRect,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNHumanObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNHumanObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1805,8 +1805,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An observation resulting from an instance mask generation request. It contains an instance mask that labels instances in the mask that labels per pixel an instance.
@@ -1832,8 +1832,8 @@ unsafe impl NSSecureCoding for VNInstanceMaskObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNInstanceMaskObservation {}
 
-extern_methods!(
-    unsafe impl VNInstanceMaskObservation {
+impl VNInstanceMaskObservation {
+    extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         /// The resulting mask represents all instances in a mask image where 0 represents the background and all other values represent the indices of the instances identified.
         /// Note that a pixel can only correspond to one instance and not multiple instances.
@@ -1845,12 +1845,12 @@ extern_methods!(
         #[unsafe(method(allInstances))]
         #[unsafe(method_family = none)]
         pub unsafe fn allInstances(&self) -> Retained<NSIndexSet>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNInstanceMaskObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNInstanceMaskObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1858,8 +1858,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation?language=objc)
@@ -1883,8 +1883,8 @@ unsafe impl NSSecureCoding for VNAnimalBodyPoseObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNAnimalBodyPoseObservation {}
 
-extern_methods!(
-    unsafe impl VNAnimalBodyPoseObservation {
+impl VNAnimalBodyPoseObservation {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// All animal joint names available in the observation.
         #[unsafe(method(availableJointNames))]
@@ -1946,12 +1946,12 @@ extern_methods!(
             Retained<NSDictionary<VNAnimalBodyPoseObservationJointName, VNRecognizedPoint>>,
             Retained<NSError>,
         >;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRecognizedPointsObservation`
-    unsafe impl VNAnimalBodyPoseObservation {
+/// Methods declared on superclass `VNRecognizedPointsObservation`.
+impl VNAnimalBodyPoseObservation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -1959,8 +1959,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoint3dgroupkeyall?language=objc)
@@ -1994,8 +1994,8 @@ unsafe impl NSSecureCoding for VNRecognizedPoints3DObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNRecognizedPoints3DObservation {}
 
-extern_methods!(
-    unsafe impl VNRecognizedPoints3DObservation {
+impl VNRecognizedPoints3DObservation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -2058,8 +2058,8 @@ extern_methods!(
             Retained<NSDictionary<VNRecognizedPointKey, VNRecognizedPoint3D>>,
             Retained<NSError>,
         >;
-    }
-);
+    );
+}
 
 /// Height estimation technique used in observation based on available metadata
 /// VNHumanBodyPose3DObservationHeightEstimationReference is the default if no LiDAR depth is present
@@ -2109,8 +2109,8 @@ unsafe impl NSSecureCoding for VNHumanBodyPose3DObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNHumanBodyPose3DObservation {}
 
-extern_methods!(
-    unsafe impl VNHumanBodyPose3DObservation {
+impl VNHumanBodyPose3DObservation {
+    extern_methods!(
         /// Technique used to estimate body height.   `VNHumanBodyPose3DObservationHeightEstimationMeasured`   indicates`bodyHeight` returns measured height in meters more accurate to true world height.
         /// `VNHumanBodyPose3DObservationHeightEstimationReference` indicates `bodyHeight` returns reference height of 1.8 m
         #[unsafe(method(heightEstimation))]
@@ -2215,12 +2215,12 @@ extern_methods!(
             &self,
             joint_name: &VNHumanBodyPose3DObservationJointName,
         ) -> Option<Retained<VNHumanBodyPose3DObservationJointName>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRecognizedPoints3DObservation`
-    unsafe impl VNHumanBodyPose3DObservation {
+/// Methods declared on superclass `VNRecognizedPoints3DObservation`.
+impl VNHumanBodyPose3DObservation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -2228,8 +2228,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNImageAestheticsScoresObservation provides an overall score of aesthetic attributes for an image.
@@ -2255,8 +2255,8 @@ unsafe impl NSSecureCoding for VNImageAestheticsScoresObservation {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNImageAestheticsScoresObservation {}
 
-extern_methods!(
-    unsafe impl VNImageAestheticsScoresObservation {
+impl VNImageAestheticsScoresObservation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2270,14 +2270,14 @@ extern_methods!(
         #[unsafe(method(overallScore))]
         #[unsafe(method_family = none)]
         pub unsafe fn overallScore(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNImageAestheticsScoresObservation {
+/// Methods declared on superclass `NSObject`.
+impl VNImageAestheticsScoresObservation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

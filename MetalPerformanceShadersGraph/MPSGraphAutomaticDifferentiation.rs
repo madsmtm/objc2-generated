@@ -6,10 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MPSGraphGradientOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphGradientOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Calculates a partial derivative of primaryTensor with respect to the tensors.
         ///
@@ -26,5 +26,5 @@ extern_methods!(
             tensors: &NSArray<MPSGraphTensor>,
             name: Option<&NSString>,
         ) -> Retained<NSDictionary<MPSGraphTensor, MPSGraphTensor>>;
-    }
-);
+    );
+}

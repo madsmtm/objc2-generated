@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for EKVirtualConferenceRoomTypeDescriptor {}
 
-extern_methods!(
-    unsafe impl EKVirtualConferenceRoomTypeDescriptor {
+impl EKVirtualConferenceRoomTypeDescriptor {
+    extern_methods!(
         /// Initializes an instance of EKVirtualConferenceRoomTypeDescriptor.
         ///
         /// Parameter `title`: A user-readable title describing this room type. This string will be
@@ -55,8 +55,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Describes a URL that can be used to join a virtual conference.
@@ -69,8 +69,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for EKVirtualConferenceURLDescriptor {}
 
-extern_methods!(
-    unsafe impl EKVirtualConferenceURLDescriptor {
+impl EKVirtualConferenceURLDescriptor {
+    extern_methods!(
         /// Initializes an instance of EKVirtualConferenceURLDescriptor.
         ///
         /// Parameter `title`: A user-readable title describing this URL. This string may be displayed
@@ -104,8 +104,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Describes a virtual conference.
@@ -118,8 +118,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for EKVirtualConferenceDescriptor {}
 
-extern_methods!(
-    unsafe impl EKVirtualConferenceDescriptor {
+impl EKVirtualConferenceDescriptor {
+    extern_methods!(
         /// Initializes an instance of EKVirtualConferenceDescriptor.
         ///
         /// Parameter `title`: A user-readable title describing this virtual conference. This string
@@ -162,5 +162,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -79,8 +79,8 @@ unsafe impl NSSecureCoding for NSTextAttachment {}
 
 unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
 
-extern_methods!(
-    unsafe impl NSTextAttachment {
+impl NSTextAttachment {
+    extern_methods!(
         /// ************************** Initialization ***************************
         #[unsafe(method(initWithData:ofType:))]
         #[unsafe(method_family = init)]
@@ -201,12 +201,12 @@ extern_methods!(
         #[unsafe(method(usesTextAttachmentView))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesTextAttachmentView(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextAttachment {
+/// Methods declared on superclass `NSObject`.
+impl NSTextAttachment {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -214,8 +214,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category on [`NSAttributedString`].
@@ -246,8 +246,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTextAttachmentViewProvider {}
 
-extern_methods!(
-    unsafe impl NSTextAttachmentViewProvider {
+impl NSTextAttachmentViewProvider {
+    extern_methods!(
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSTextLayoutManager",
@@ -328,8 +328,8 @@ extern_methods!(
             proposed_line_fragment: CGRect,
             position: CGPoint,
         ) -> CGRect;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
@@ -372,9 +372,9 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSTextAttachment_Deprecation
-    unsafe impl NSTextAttachment {}
-);
+/// NSTextAttachment_Deprecation.
+impl NSTextAttachment {
+    extern_methods!();
+}
 
 unsafe impl NSTextAttachmentContainer for NSTextAttachment {}

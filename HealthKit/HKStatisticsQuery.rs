@@ -24,9 +24,9 @@ unsafe impl Sync for HKStatisticsQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKStatisticsQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKStatisticsQuery {
+#[cfg(feature = "HKQuery")]
+impl HKStatisticsQuery {
+    extern_methods!(
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics", feature = "block2"))]
         #[unsafe(method(initWithQuantityType:quantitySamplePredicate:options:completionHandler:))]
         #[unsafe(method_family = init)]
@@ -39,25 +39,25 @@ extern_methods!(
                 dyn Fn(NonNull<HKStatisticsQuery>, *mut HKStatistics, *mut NSError),
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKStatisticsQuery {
+/// Methods declared on superclass `HKQuery`.
+#[cfg(feature = "HKQuery")]
+impl HKStatisticsQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKStatisticsQuery {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKQuery")]
+impl HKStatisticsQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

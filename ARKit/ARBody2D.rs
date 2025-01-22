@@ -27,9 +27,8 @@ unsafe impl Sync for ARBody2D {}
 unsafe impl NSObjectProtocol for ARBody2D {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARBody2D {
+impl ARBody2D {
+    extern_methods!(
         #[cfg(feature = "ARSkeleton")]
         /// The body's skeleton.
         #[unsafe(method(skeleton))]
@@ -44,5 +43,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

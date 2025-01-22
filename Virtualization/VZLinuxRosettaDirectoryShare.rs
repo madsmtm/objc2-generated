@@ -53,9 +53,9 @@ extern_class!(
 #[cfg(feature = "VZDirectoryShare")]
 unsafe impl NSObjectProtocol for VZLinuxRosettaDirectoryShare {}
 
-extern_methods!(
-    #[cfg(feature = "VZDirectoryShare")]
-    unsafe impl VZLinuxRosettaDirectoryShare {
+#[cfg(feature = "VZDirectoryShare")]
+impl VZLinuxRosettaDirectoryShare {
+    extern_methods!(
         /// Initialize a Rosetta directory share if Rosetta support for Linux binaries is installed.
         ///
         /// Parameter `error`: Error object to store the error, if an error exists.
@@ -99,13 +99,13 @@ extern_methods!(
         #[unsafe(method(availability))]
         #[unsafe(method_family = none)]
         pub unsafe fn availability() -> VZLinuxRosettaAvailability;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZDirectoryShare`
-    #[cfg(feature = "VZDirectoryShare")]
-    unsafe impl VZLinuxRosettaDirectoryShare {
+/// Methods declared on superclass `VZDirectoryShare`.
+#[cfg(feature = "VZDirectoryShare")]
+impl VZLinuxRosettaDirectoryShare {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -113,5 +113,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

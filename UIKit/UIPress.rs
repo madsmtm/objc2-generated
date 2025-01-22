@@ -86,8 +86,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPress {}
 
-extern_methods!(
-    unsafe impl UIPress {
+impl UIPress {
+    extern_methods!(
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
@@ -129,12 +129,12 @@ extern_methods!(
         #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self, mtm: MainThreadMarker) -> Option<Retained<UIKey>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPress {
+/// Methods declared on superclass `NSObject`.
+impl UIPress {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -142,5 +142,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

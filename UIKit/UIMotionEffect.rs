@@ -31,8 +31,8 @@ unsafe impl CopyingHelper for UIMotionEffect {
 
 unsafe impl NSObjectProtocol for UIMotionEffect {}
 
-extern_methods!(
-    unsafe impl UIMotionEffect {
+impl UIMotionEffect {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -74,17 +74,17 @@ extern_methods!(
             &self,
             viewer_offset: UIOffset,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIMotionEffect {
+/// Methods declared on superclass `NSObject`.
+impl UIMotionEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffecttype?language=objc)
 // NS_ENUM
@@ -136,8 +136,8 @@ unsafe impl CopyingHelper for UIInterpolatingMotionEffect {
 
 unsafe impl NSObjectProtocol for UIInterpolatingMotionEffect {}
 
-extern_methods!(
-    unsafe impl UIInterpolatingMotionEffect {
+impl UIInterpolatingMotionEffect {
+    extern_methods!(
         #[unsafe(method(initWithKeyPath:type:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyPath_type(
@@ -178,26 +178,26 @@ extern_methods!(
         #[unsafe(method(setMaximumRelativeValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumRelativeValue(&self, maximum_relative_value: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIMotionEffect`
-    unsafe impl UIInterpolatingMotionEffect {
+/// Methods declared on superclass `UIMotionEffect`.
+impl UIInterpolatingMotionEffect {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIInterpolatingMotionEffect {
+/// Methods declared on superclass `NSObject`.
+impl UIInterpolatingMotionEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Behaves like CAAnimationGroup. Merges key/value pairs of constituent
@@ -220,8 +220,8 @@ unsafe impl CopyingHelper for UIMotionEffectGroup {
 
 unsafe impl NSObjectProtocol for UIMotionEffectGroup {}
 
-extern_methods!(
-    unsafe impl UIMotionEffectGroup {
+impl UIMotionEffectGroup {
+    extern_methods!(
         #[unsafe(method(motionEffects))]
         #[unsafe(method_family = none)]
         pub unsafe fn motionEffects(&self) -> Option<Retained<NSArray<UIMotionEffect>>>;
@@ -230,12 +230,12 @@ extern_methods!(
         #[unsafe(method(setMotionEffects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMotionEffects(&self, motion_effects: Option<&NSArray<UIMotionEffect>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIMotionEffect`
-    unsafe impl UIMotionEffectGroup {
+/// Methods declared on superclass `UIMotionEffect`.
+impl UIMotionEffectGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -246,14 +246,14 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIMotionEffectGroup {
+/// Methods declared on superclass `NSObject`.
+impl UIMotionEffectGroup {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

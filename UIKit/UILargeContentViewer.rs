@@ -45,10 +45,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UILargeContentViewer
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIView {
+/// UILargeContentViewer.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(showsLargeContentViewer))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsLargeContentViewer(&self) -> bool;
@@ -97,8 +97,8 @@ extern_methods!(
         #[unsafe(method(setLargeContentImageInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLargeContentImageInsets(&self, large_content_image_insets: UIEdgeInsets);
-    }
-);
+    );
+}
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 unsafe impl UILargeContentViewerItem for UIView {}
@@ -121,8 +121,8 @@ unsafe impl NSObjectProtocol for UILargeContentViewerInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UILargeContentViewerInteraction {}
 
-extern_methods!(
-    unsafe impl UILargeContentViewerInteraction {
+impl UILargeContentViewerInteraction {
+    extern_methods!(
         #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
@@ -152,12 +152,12 @@ extern_methods!(
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(mtm: MainThreadMarker) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UILargeContentViewerInteraction {
+/// Methods declared on superclass `NSObject`.
+impl UILargeContentViewerInteraction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -165,8 +165,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteractiondelegate?language=objc)

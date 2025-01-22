@@ -68,15 +68,15 @@ unsafe impl CopyingHelper for DOMHTMLSelectElement {
 ))]
 unsafe impl NSObjectProtocol for DOMHTMLSelectElement {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLSelectElement {
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLSelectElement {
+    extern_methods!(
         #[unsafe(method(autofocus))]
         #[unsafe(method_family = none)]
         pub unsafe fn autofocus(&self) -> bool;
@@ -198,55 +198,55 @@ extern_methods!(
         #[unsafe(method(remove:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remove(&self, index: c_int);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLSelectElement {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLSelectElement {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLSelectElement {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLSelectElement {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMHTMLSelectElementDeprecated
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLSelectElement {
+/// DOMHTMLSelectElementDeprecated.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLSelectElement {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(add::))]
         #[unsafe(method_family = none)]
         pub unsafe fn add(&self, element: Option<&DOMHTMLElement>, before: Option<&DOMHTMLElement>);
-    }
-);
+    );
+}

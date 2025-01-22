@@ -334,8 +334,8 @@ unsafe impl NSObjectProtocol for SCNProgram {}
 
 unsafe impl NSSecureCoding for SCNProgram {}
 
-extern_methods!(
-    unsafe impl SCNProgram {
+impl SCNProgram {
+    extern_methods!(
         /// Creates and initialize a program instance.
         #[unsafe(method(program))]
         #[unsafe(method_family = none)]
@@ -500,12 +500,12 @@ extern_methods!(
         #[unsafe(method(setLibrary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLibrary(&self, library: Option<&ProtocolObject<dyn MTLLibrary>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNProgram {
+/// Methods declared on superclass `NSObject`.
+impl SCNProgram {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -513,8 +513,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The SCNProgramDelegate protocol declares the methods that an instance of SCNProgram invokes to delegate the binding of parameters.

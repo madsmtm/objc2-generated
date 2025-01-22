@@ -32,9 +32,9 @@ extern_class!(
 #[cfg(feature = "VZDirectorySharingDevice")]
 unsafe impl NSObjectProtocol for VZVirtioFileSystemDevice {}
 
-extern_methods!(
-    #[cfg(feature = "VZDirectorySharingDevice")]
-    unsafe impl VZVirtioFileSystemDevice {
+#[cfg(feature = "VZDirectorySharingDevice")]
+impl VZVirtioFileSystemDevice {
+    extern_methods!(
         /// The tag is a string identifying the device.
         ///
         /// The tag is presented as a label in the guest identifying this device for mounting.
@@ -59,13 +59,13 @@ extern_methods!(
         #[unsafe(method(setShare:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShare(&self, share: Option<&VZDirectoryShare>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZDirectorySharingDevice`
-    #[cfg(feature = "VZDirectorySharingDevice")]
-    unsafe impl VZVirtioFileSystemDevice {
+/// Methods declared on superclass `VZDirectorySharingDevice`.
+#[cfg(feature = "VZDirectorySharingDevice")]
+impl VZVirtioFileSystemDevice {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -73,5 +73,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

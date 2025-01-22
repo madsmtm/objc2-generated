@@ -77,10 +77,10 @@ unsafe impl NSObjectProtocol for LPLinkView {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for LPLinkView {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl LPLinkView {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl LPLinkView {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
@@ -117,38 +117,38 @@ extern_methods!(
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &LPLinkMetadata);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl LPLinkView {
+/// Methods declared on superclass `NSView`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl LPLinkView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl LPLinkView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl LPLinkView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl LPLinkView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl LPLinkView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

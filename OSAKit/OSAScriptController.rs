@@ -45,8 +45,8 @@ unsafe impl NSEditorRegistration for OSAScriptController {}
 
 unsafe impl NSObjectProtocol for OSAScriptController {}
 
-extern_methods!(
-    unsafe impl OSAScriptController {
+impl OSAScriptController {
+    extern_methods!(
         #[cfg(feature = "OSAScriptView")]
         #[unsafe(method(scriptView))]
         #[unsafe(method_family = none)]
@@ -112,12 +112,12 @@ extern_methods!(
         #[unsafe(method(stopScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopScript(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSController`
-    unsafe impl OSAScriptController {
+/// Methods declared on superclass `NSController`.
+impl OSAScriptController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -128,14 +128,14 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl OSAScriptController {
+/// Methods declared on superclass `NSObject`.
+impl OSAScriptController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

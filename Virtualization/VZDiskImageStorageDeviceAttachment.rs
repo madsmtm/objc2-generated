@@ -91,9 +91,9 @@ extern_class!(
 #[cfg(feature = "VZStorageDeviceAttachment")]
 unsafe impl NSObjectProtocol for VZDiskImageStorageDeviceAttachment {}
 
-extern_methods!(
-    #[cfg(feature = "VZStorageDeviceAttachment")]
-    unsafe impl VZDiskImageStorageDeviceAttachment {
+#[cfg(feature = "VZStorageDeviceAttachment")]
+impl VZDiskImageStorageDeviceAttachment {
+    extern_methods!(
         /// Initialize the attachment from a local file url.
         ///
         /// Parameter `url`: Local file URL to the disk image in RAW format.
@@ -157,13 +157,13 @@ extern_methods!(
         #[unsafe(method(synchronizationMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizationMode(&self) -> VZDiskImageSynchronizationMode;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZStorageDeviceAttachment`
-    #[cfg(feature = "VZStorageDeviceAttachment")]
-    unsafe impl VZDiskImageStorageDeviceAttachment {
+/// Methods declared on superclass `VZStorageDeviceAttachment`.
+#[cfg(feature = "VZStorageDeviceAttachment")]
+impl VZDiskImageStorageDeviceAttachment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -171,5 +171,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

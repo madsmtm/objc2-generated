@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for UIActivityItemsConfiguration {}
 #[cfg(feature = "UIActivityItemsConfigurationReading")]
 unsafe impl UIActivityItemsConfigurationReading for UIActivityItemsConfiguration {}
 
-extern_methods!(
-    unsafe impl UIActivityItemsConfiguration {
+impl UIActivityItemsConfiguration {
+    extern_methods!(
         #[unsafe(method(localObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
@@ -187,5 +187,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

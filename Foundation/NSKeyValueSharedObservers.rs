@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSKeyValueSharedObserversSnapshot {}
 
-extern_methods!(
-    unsafe impl NSKeyValueSharedObserversSnapshot {
+impl NSKeyValueSharedObserversSnapshot {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -27,8 +27,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A collection of key-value observations which may be registered with multiple
@@ -42,8 +42,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSKeyValueSharedObservers {}
 
-extern_methods!(
-    unsafe impl NSKeyValueSharedObservers {
+impl NSKeyValueSharedObservers {
+    extern_methods!(
         /// A new collection of observables for an observable object of the given class
         #[unsafe(method(initWithObservableClass:))]
         #[unsafe(method_family = init)]
@@ -102,8 +102,8 @@ extern_methods!(
         #[unsafe(method(snapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshot(&self) -> Retained<NSKeyValueSharedObserversSnapshot>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSKeyValueSharedObserverRegistration" on [`NSObject`].

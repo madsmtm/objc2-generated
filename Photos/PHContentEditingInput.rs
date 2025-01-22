@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHContentEditingInput {}
 
-extern_methods!(
-    unsafe impl PHContentEditingInput {
+impl PHContentEditingInput {
+    extern_methods!(
         #[cfg(feature = "PhotosTypes")]
         #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
@@ -87,12 +87,12 @@ extern_methods!(
         #[unsafe(method(livePhoto))]
         #[unsafe(method_family = none)]
         pub unsafe fn livePhoto(&self) -> Option<Retained<PHLivePhoto>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHContentEditingInput {
+/// Methods declared on superclass `NSObject`.
+impl PHContentEditingInput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

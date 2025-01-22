@@ -21,8 +21,8 @@ unsafe impl Sync for HMAction {}
 
 unsafe impl NSObjectProtocol for HMAction {}
 
-extern_methods!(
-    unsafe impl HMAction {
+impl HMAction {
+    extern_methods!(
         #[deprecated = "HMAction is abstract"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -37,5 +37,5 @@ extern_methods!(
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
-    }
-);
+    );
+}

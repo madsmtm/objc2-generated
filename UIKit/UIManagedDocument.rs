@@ -27,9 +27,9 @@ unsafe impl NSObjectProtocol for UIManagedDocument {}
 #[cfg(feature = "UIDocument")]
 unsafe impl NSProgressReporting for UIManagedDocument {}
 
-extern_methods!(
-    #[cfg(feature = "UIDocument")]
-    unsafe impl UIManagedDocument {
+#[cfg(feature = "UIDocument")]
+impl UIManagedDocument {
+    extern_methods!(
         #[unsafe(method(persistentStoreName))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentStoreName(mtm: MainThreadMarker) -> Retained<NSString>;
@@ -104,23 +104,23 @@ extern_methods!(
             absolute_url: &NSURL,
             absolute_original_contents_url: Option<&NSURL>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIDocument`
-    #[cfg(feature = "UIDocument")]
-    unsafe impl UIManagedDocument {
+/// Methods declared on superclass `UIDocument`.
+#[cfg(feature = "UIDocument")]
+impl UIManagedDocument {
+    extern_methods!(
         #[unsafe(method(initWithFileURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIDocument")]
-    unsafe impl UIManagedDocument {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIDocument")]
+impl UIManagedDocument {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -128,5 +128,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

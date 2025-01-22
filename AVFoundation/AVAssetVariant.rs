@@ -28,8 +28,8 @@ unsafe impl Sync for AVAssetVariant {}
 
 unsafe impl NSObjectProtocol for AVAssetVariant {}
 
-extern_methods!(
-    unsafe impl AVAssetVariant {
+impl AVAssetVariant {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,8 +57,8 @@ extern_methods!(
         #[unsafe(method(audioAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioAttributes(&self) -> Option<Retained<AVAssetVariantAudioAttributes>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Video attributes for an asset variant.
@@ -73,8 +73,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetVariantVideoAttributes {}
 
-extern_methods!(
-    unsafe impl AVAssetVariantVideoAttributes {
+impl AVAssetVariantVideoAttributes {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -113,8 +113,8 @@ extern_methods!(
         pub unsafe fn videoLayoutAttributes(
             &self,
         ) -> Retained<NSArray<AVAssetVariantVideoLayoutAttributes>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
@@ -131,8 +131,8 @@ unsafe impl Sync for AVAssetVariantVideoLayoutAttributes {}
 
 unsafe impl NSObjectProtocol for AVAssetVariantVideoLayoutAttributes {}
 
-extern_methods!(
-    unsafe impl AVAssetVariantVideoLayoutAttributes {
+impl AVAssetVariantVideoLayoutAttributes {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -147,8 +147,8 @@ extern_methods!(
         #[unsafe(method(stereoViewComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn stereoViewComponents(&self) -> CMStereoViewComponents;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Audio attributes for an asset variant.
@@ -167,8 +167,8 @@ unsafe impl Sync for AVAssetVariantAudioAttributes {}
 
 unsafe impl NSObjectProtocol for AVAssetVariantAudioAttributes {}
 
-extern_methods!(
-    unsafe impl AVAssetVariantAudioAttributes {
+impl AVAssetVariantAudioAttributes {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -192,8 +192,8 @@ extern_methods!(
             &self,
             media_selection_option: &AVMediaSelectionOption,
         ) -> Option<Retained<AVAssetVariantAudioRenditionSpecificAttributes>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Audio rendition attributes for an asset variant.
@@ -212,8 +212,8 @@ unsafe impl Sync for AVAssetVariantAudioRenditionSpecificAttributes {}
 
 unsafe impl NSObjectProtocol for AVAssetVariantAudioRenditionSpecificAttributes {}
 
-extern_methods!(
-    unsafe impl AVAssetVariantAudioRenditionSpecificAttributes {
+impl AVAssetVariantAudioRenditionSpecificAttributes {
+    extern_methods!(
         /// If it is not declared, the value will be negative.
         ///
         /// A channel count greater than two indicates that the variant offers a rich multichannel authoring.
@@ -241,12 +241,12 @@ extern_methods!(
         #[unsafe(method(isDownmix))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDownmix(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAssetVariantAudioRenditionSpecificAttributes {
+/// Methods declared on superclass `NSObject`.
+impl AVAssetVariantAudioRenditionSpecificAttributes {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -254,8 +254,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The qualifier of an asset variant.
@@ -280,8 +280,8 @@ unsafe impl CopyingHelper for AVAssetVariantQualifier {
 
 unsafe impl NSObjectProtocol for AVAssetVariantQualifier {}
 
-extern_methods!(
-    unsafe impl AVAssetVariantQualifier {
+impl AVAssetVariantQualifier {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -419,5 +419,5 @@ extern_methods!(
             media_selection_option: &AVMediaSelectionOption,
             operator_type: NSPredicateOperatorType,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}

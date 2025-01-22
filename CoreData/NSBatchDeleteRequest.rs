@@ -26,9 +26,9 @@ unsafe impl CopyingHelper for NSBatchDeleteRequest {
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSBatchDeleteRequest {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSBatchDeleteRequest {
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSBatchDeleteRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -64,15 +64,15 @@ extern_methods!(
         #[unsafe(method(fetchRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSBatchDeleteRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSBatchDeleteRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -93,8 +93,8 @@ unsafe impl NSObjectProtocol for UIPencilInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIPencilInteraction {}
 
-extern_methods!(
-    unsafe impl UIPencilInteraction {
+impl UIPencilInteraction {
+    extern_methods!(
         /// The user’s preferred double-tap action as set in Settings app
         #[unsafe(method(preferredTapAction))]
         #[unsafe(method_family = none)]
@@ -148,12 +148,12 @@ extern_methods!(
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPencilInteraction {
+/// Methods declared on superclass `NSObject`.
+impl UIPencilInteraction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -161,8 +161,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object that describes the hover pose of the pencil while performing a gesture on the pencil
@@ -176,8 +176,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPencilHoverPose {}
 
-extern_methods!(
-    unsafe impl UIPencilHoverPose {
+impl UIPencilHoverPose {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -224,8 +224,8 @@ extern_methods!(
         #[unsafe(method(rollAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn rollAngle(&self) -> CGFloat;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object that describes a tap performed on the pencil
@@ -239,8 +239,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPencilInteractionTap {}
 
-extern_methods!(
-    unsafe impl UIPencilInteractionTap {
+impl UIPencilInteractionTap {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -258,8 +258,8 @@ extern_methods!(
         #[unsafe(method(hoverPose))]
         #[unsafe(method_family = none)]
         pub unsafe fn hoverPose(&self) -> Option<Retained<UIPencilHoverPose>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object that describes a squeeze performed on the pencil
@@ -273,8 +273,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPencilInteractionSqueeze {}
 
-extern_methods!(
-    unsafe impl UIPencilInteractionSqueeze {
+impl UIPencilInteractionSqueeze {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -297,8 +297,8 @@ extern_methods!(
         #[unsafe(method(hoverPose))]
         #[unsafe(method_family = none)]
         pub unsafe fn hoverPose(&self) -> Option<Retained<UIPencilHoverPose>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractiondelegate?language=objc)

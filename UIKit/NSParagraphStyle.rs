@@ -91,8 +91,8 @@ unsafe impl NSObjectProtocol for NSTextTab {}
 
 unsafe impl NSSecureCoding for NSTextTab {}
 
-extern_methods!(
-    unsafe impl NSTextTab {
+impl NSTextTab {
+    extern_methods!(
         #[unsafe(method(columnTerminatorsForLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn columnTerminatorsForLocale(
@@ -107,12 +107,12 @@ extern_methods!(
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<NSDictionary<NSTextTabOptionKey, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextTab {
+/// Methods declared on superclass `NSObject`.
+impl NSTextTab {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -120,8 +120,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsparagraphstyle?language=objc)
@@ -148,8 +148,8 @@ unsafe impl NSObjectProtocol for NSParagraphStyle {}
 
 unsafe impl NSSecureCoding for NSParagraphStyle {}
 
-extern_methods!(
-    unsafe impl NSParagraphStyle {
+impl NSParagraphStyle {
+    extern_methods!(
         #[unsafe(method(defaultParagraphStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultParagraphStyle() -> Retained<NSParagraphStyle>;
@@ -244,12 +244,12 @@ extern_methods!(
         #[unsafe(method(lineBreakStrategy))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSParagraphStyle {
+/// Methods declared on superclass `NSObject`.
+impl NSParagraphStyle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -257,8 +257,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsmutableparagraphstyle?language=objc)
@@ -285,8 +285,8 @@ unsafe impl NSObjectProtocol for NSMutableParagraphStyle {}
 
 unsafe impl NSSecureCoding for NSMutableParagraphStyle {}
 
-extern_methods!(
-    unsafe impl NSMutableParagraphStyle {
+impl NSMutableParagraphStyle {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(lineSpacing))]
         #[unsafe(method_family = none)]
@@ -487,12 +487,12 @@ extern_methods!(
         #[unsafe(method(setParagraphStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParagraphStyle(&self, obj: &NSParagraphStyle);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMutableParagraphStyle {
+/// Methods declared on superclass `NSObject`.
+impl NSMutableParagraphStyle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -500,11 +500,11 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSTextTab {
+impl NSTextTab {
+    extern_methods!(
         #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
         #[unsafe(method(initWithTextAlignment:location:options:))]
         #[unsafe(method_family = init)]
@@ -519,20 +519,20 @@ extern_methods!(
         #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSParagraphStyle {
+impl NSParagraphStyle {
+    extern_methods!(
         #[cfg(feature = "NSText")]
         #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSMutableParagraphStyle {
+impl NSMutableParagraphStyle {
+    extern_methods!(
         #[cfg(feature = "NSText")]
         #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
@@ -543,5 +543,5 @@ extern_methods!(
         #[unsafe(method(setAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
-    }
-);
+    );
+}

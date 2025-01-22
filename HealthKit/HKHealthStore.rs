@@ -22,8 +22,8 @@ unsafe impl Sync for HKHealthStore {}
 
 unsafe impl NSObjectProtocol for HKHealthStore {}
 
-extern_methods!(
-    unsafe impl HKHealthStore {
+impl HKHealthStore {
+    extern_methods!(
         /// Returns YES if HealthKit is supported on the device.
         ///
         /// HealthKit is not supported on all iOS devices.  Using HKHealthStore APIs on devices which are not
@@ -328,12 +328,12 @@ extern_methods!(
         pub unsafe fn activityMoveModeWithError(
             &self,
         ) -> Result<Retained<HKActivityMoveModeObject>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKHealthStore {
+/// Methods declared on superclass `NSObject`.
+impl HKHealthStore {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -341,12 +341,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKWorkout
-    unsafe impl HKHealthStore {
+/// HKWorkout.
+impl HKHealthStore {
+    extern_methods!(
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         /// Called when a session has started mirroring.
         ///
@@ -462,12 +462,12 @@ extern_methods!(
             &self,
             completion: &block2::Block<dyn Fn(*mut HKWorkoutSession, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKBackgroundDelivery
-    unsafe impl HKHealthStore {
+/// HKBackgroundDelivery.
+impl HKHealthStore {
+    extern_methods!(
         #[cfg(all(feature = "HKDefines", feature = "HKObjectType", feature = "block2"))]
         /// This method enables activation of your app when data of the type is recorded at the cadence specified.
         ///
@@ -501,8 +501,8 @@ extern_methods!(
             &self,
             completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
 extern "C" {
     /// A notification posted every time the user updates their preferred units.
@@ -516,9 +516,9 @@ extern "C" {
     pub static HKUserPreferencesDidChangeNotification: &'static NSString;
 }
 
-extern_methods!(
-    /// HKUserPreferences
-    unsafe impl HKHealthStore {
+/// HKUserPreferences.
+impl HKHealthStore {
+    extern_methods!(
         #[cfg(all(feature = "HKObjectType", feature = "HKUnit", feature = "block2"))]
         /// Calls the completion with the preferred HKUnits for a given set of HKQuantityTypes.
         ///
@@ -541,12 +541,12 @@ extern_methods!(
                 dyn Fn(NonNull<NSDictionary<HKQuantityType, HKUnit>>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKRecalibrateEstimates
-    unsafe impl HKHealthStore {
+/// HKRecalibrateEstimates.
+impl HKHealthStore {
+    extern_methods!(
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
         /// Recalibrates the prediction algorithm used for this sample type.
         ///
@@ -560,12 +560,12 @@ extern_methods!(
             date: &NSDate,
             completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKWorkoutRelationship
-    unsafe impl HKHealthStore {
+/// HKWorkoutRelationship.
+impl HKHealthStore {
+    extern_methods!(
         #[cfg(all(
             feature = "HKObject",
             feature = "HKSample",
@@ -619,5 +619,5 @@ extern_methods!(
             activity: Option<&HKWorkoutActivity>,
             completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
-    }
-);
+    );
+}

@@ -42,8 +42,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SKProductStorePromotionController {}
 
-extern_methods!(
-    unsafe impl SKProductStorePromotionController {
+impl SKProductStorePromotionController {
+    extern_methods!(
         #[deprecated = "Use Product.PromotionInfo"]
         #[unsafe(method(defaultController))]
         #[unsafe(method_family = none)]
@@ -92,12 +92,12 @@ extern_methods!(
             promotion_order: &NSArray<SKProduct>,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKProductStorePromotionController {
+/// Methods declared on superclass `NSObject`.
+impl SKProductStorePromotionController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -105,5 +105,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

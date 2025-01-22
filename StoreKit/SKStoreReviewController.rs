@@ -22,8 +22,8 @@ unsafe impl Sync for SKStoreReviewController {}
 
 unsafe impl NSObjectProtocol for SKStoreReviewController {}
 
-extern_methods!(
-    unsafe impl SKStoreReviewController {
+impl SKStoreReviewController {
+    extern_methods!(
         /// Request StoreKit to ask the user for an app review. Uses the keyWindow's UIWindowScene which may or may not be the scene a user is interacting with.
         ///
         /// This may or may not show any UI.
@@ -35,12 +35,12 @@ extern_methods!(
         #[unsafe(method(requestReview))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestReview();
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKStoreReviewController {
+/// Methods declared on superclass `NSObject`.
+impl SKStoreReviewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -48,5 +48,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

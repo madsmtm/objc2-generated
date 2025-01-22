@@ -93,9 +93,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSButton {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSButton {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSButton {
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSButton {
+    extern_methods!(
         #[cfg(feature = "NSImage")]
         /// Creates a standard push button with a title and image.
         ///
@@ -522,13 +522,13 @@ extern_methods!(
         pub unsafe fn activeCompressionOptions(
             &self,
         ) -> Retained<NSUserInterfaceCompressionOptions>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSButton {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSButton {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -539,36 +539,36 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSButton {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSButton {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSButton {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSButton {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSButtonDeprecated
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSButton {
+/// NSButtonDeprecated.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSButton {
+    extern_methods!(
         #[deprecated = "Mnemonics are not used on macOS. Set the title property directly instead."]
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
-    }
-);
+    );
+}

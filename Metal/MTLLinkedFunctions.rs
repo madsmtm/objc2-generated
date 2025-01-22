@@ -26,8 +26,8 @@ unsafe impl CopyingHelper for MTLLinkedFunctions {
 
 unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
 
-extern_methods!(
-    unsafe impl MTLLinkedFunctions {
+impl MTLLinkedFunctions {
+    extern_methods!(
         /// Create an autoreleased MTLLinkedFunctions object.
         #[unsafe(method(linkedFunctions))]
         #[unsafe(method_family = none)]
@@ -97,12 +97,12 @@ extern_methods!(
             &self,
             private_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLLinkedFunctions {
+/// Methods declared on superclass `NSObject`.
+impl MTLLinkedFunctions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -110,8 +110,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLLinkedFunctions {
     #[inline]

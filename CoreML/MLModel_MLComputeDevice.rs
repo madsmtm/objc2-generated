@@ -6,13 +6,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MLComputeDevice
-    /// MLModel (MLComputeDevice)
-    ///
-    /// Class with utilties for getting the available compute devices.
-    #[cfg(feature = "MLModel")]
-    unsafe impl MLModel {
+/// MLComputeDevice.
+/// MLModel (MLComputeDevice)
+///
+/// Class with utilties for getting the available compute devices.
+#[cfg(feature = "MLModel")]
+impl MLModel {
+    extern_methods!(
         #[cfg(feature = "MLComputeDeviceProtocol")]
         /// The list of available compute devices for CoreML.
         ///
@@ -24,5 +24,5 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn availableComputeDevices(
         ) -> Retained<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
-    }
-);
+    );
+}

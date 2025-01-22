@@ -60,9 +60,9 @@ extern_class!(
 #[cfg(feature = "VZStorageDeviceAttachment")]
 unsafe impl NSObjectProtocol for VZDiskBlockDeviceStorageDeviceAttachment {}
 
-extern_methods!(
-    #[cfg(feature = "VZStorageDeviceAttachment")]
-    unsafe impl VZDiskBlockDeviceStorageDeviceAttachment {
+#[cfg(feature = "VZStorageDeviceAttachment")]
+impl VZDiskBlockDeviceStorageDeviceAttachment {
+    extern_methods!(
         #[cfg(feature = "VZDiskSynchronizationMode")]
         /// Initialize the disk attachment from a file handle.
         ///
@@ -106,13 +106,13 @@ extern_methods!(
         #[unsafe(method(synchronizationMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizationMode(&self) -> VZDiskSynchronizationMode;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZStorageDeviceAttachment`
-    #[cfg(feature = "VZStorageDeviceAttachment")]
-    unsafe impl VZDiskBlockDeviceStorageDeviceAttachment {
+/// Methods declared on superclass `VZStorageDeviceAttachment`.
+#[cfg(feature = "VZStorageDeviceAttachment")]
+impl VZDiskBlockDeviceStorageDeviceAttachment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -120,5 +120,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

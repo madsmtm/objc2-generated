@@ -21,9 +21,9 @@ unsafe impl NSCoding for NSSharingServicePickerTouchBarItem {}
 #[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSSharingServicePickerTouchBarItem {}
 
-extern_methods!(
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl NSSharingServicePickerTouchBarItem {
+#[cfg(feature = "NSTouchBarItem")]
+impl NSSharingServicePickerTouchBarItem {
+    extern_methods!(
         #[cfg(feature = "NSSharingService")]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -69,13 +69,13 @@ extern_methods!(
         #[unsafe(method(setButtonImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setButtonImage(&self, button_image: Option<&NSImage>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl NSSharingServicePickerTouchBarItem {
+/// Methods declared on superclass `NSTouchBarItem`.
+#[cfg(feature = "NSTouchBarItem")]
+impl NSSharingServicePickerTouchBarItem {
+    extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
@@ -93,18 +93,18 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl NSSharingServicePickerTouchBarItem {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSTouchBarItem")]
+impl NSSharingServicePickerTouchBarItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritemdelegate?language=objc)

@@ -121,9 +121,9 @@ unsafe impl NSObjectProtocol for UIBarButtonItem {}
 #[cfg(all(feature = "UIAppearance", feature = "UIBarItem"))]
 unsafe impl UIAppearance for UIBarButtonItem {}
 
-extern_methods!(
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl UIBarButtonItem {
+#[cfg(feature = "UIBarItem")]
+impl UIBarButtonItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -624,31 +624,31 @@ extern_methods!(
             &self,
             bar_metrics: UIBarMetrics,
         ) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl UIBarButtonItem {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIBarItem")]
+impl UIBarButtonItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SpringLoading
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl UIBarButtonItem {}
-);
+/// SpringLoading.
+#[cfg(feature = "UIBarItem")]
+impl UIBarButtonItem {
+    extern_methods!();
+}
 
 #[cfg(all(feature = "UIBarItem", feature = "UISpringLoadedInteractionSupporting"))]
 unsafe impl UISpringLoadedInteractionSupporting for UIBarButtonItem {}
 
-extern_methods!(
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl UIBarButtonItem {
+#[cfg(feature = "UIBarItem")]
+impl UIBarButtonItem {
+    extern_methods!(
         #[cfg(feature = "objc2-symbols")]
         /// Adds a symbol effect to the bar button item with default options and animation.
         /// Only a subset of symbol effects are supported; Appear and Disappear effects, for example, are unsupported, and will assert.
@@ -749,5 +749,5 @@ extern_methods!(
             transition: &NSSymbolContentTransition,
             options: &NSSymbolEffectOptions,
         );
-    }
-);
+    );
+}

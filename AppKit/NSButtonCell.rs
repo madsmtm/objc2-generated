@@ -176,9 +176,9 @@ unsafe impl NSObjectProtocol for NSButtonCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSButtonCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSButtonCell {
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSButtonCell {
+    extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
@@ -423,28 +423,28 @@ extern_methods!(
             frame: NSRect,
             control_view: &NSView,
         ) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSButtonCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSButtonCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSButtonCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSButtonCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgradienttype?language=objc)
 // NS_ENUM
@@ -560,10 +560,10 @@ pub static NSThickSquareBezelStyle: NSBezelStyle = NSBezelStyle(3);
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsthickersquarebezelstyle?language=objc)
 pub static NSThickerSquareBezelStyle: NSBezelStyle = NSBezelStyle(4);
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSButtonCell {
+/// NSDeprecated.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSButtonCell {
+    extern_methods!(
         #[deprecated = "The gradientType property is unused, and setting it has no effect."]
         #[unsafe(method(gradientType))]
         #[unsafe(method_family = none)]
@@ -621,5 +621,5 @@ extern_methods!(
         #[unsafe(method(setKeyEquivalentFont:size:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyEquivalentFont_size(&self, font_name: &NSString, font_size: CGFloat);
-    }
-);
+    );
+}

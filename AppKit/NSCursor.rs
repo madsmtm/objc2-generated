@@ -94,8 +94,8 @@ unsafe impl NSObjectProtocol for NSCursor {}
 
 unsafe impl NSSecureCoding for NSCursor {}
 
-extern_methods!(
-    unsafe impl NSCursor {
+impl NSCursor {
+    extern_methods!(
         #[cfg(feature = "NSImage")]
         #[unsafe(method(initWithImage:hotSpot:))]
         #[unsafe(method_family = init)]
@@ -252,12 +252,12 @@ extern_methods!(
             position: NSCursorFrameResizePosition,
             directions: NSCursorFrameResizeDirections,
         ) -> Retained<NSCursor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCursor {
+/// Methods declared on superclass `NSObject`.
+impl NSCursor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -265,16 +265,16 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithcursorsizesupport?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithCursorSizeSupport: NSAppKitVersion = 682.0 as _;
 
-extern_methods!(
-    /// Deprecated
-    unsafe impl NSCursor {
+/// Deprecated.
+impl NSCursor {
+    extern_methods!(
         /// This property will always be `nil` in a future version of macOS.
         #[deprecated = "No longer recommended. Use ScreenCaptureKit to capture the screen. Use the `showsCursor` property on `SCStreamConfiguration` to control whether or not to include the cursor in the capture. Or, use `NSCursor.currentCursor` if needing to just get the current cursor for this application."]
         #[unsafe(method(currentSystemCursor))]
@@ -310,12 +310,12 @@ extern_methods!(
         #[unsafe(method(resizeUpDownCursor))]
         #[unsafe(method_family = none)]
         pub fn resizeUpDownCursor() -> Retained<NSCursor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSCursor {
+/// NSDeprecated.
+impl NSCursor {
+    extern_methods!(
         #[cfg(all(feature = "NSColor", feature = "NSImage"))]
         #[deprecated = "Color hints are ignored. Use -initWithImage:hotSpot: instead"]
         #[unsafe(method(initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:))]
@@ -359,5 +359,5 @@ extern_methods!(
         #[unsafe(method(mouseExited:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);
-    }
-);
+    );
+}

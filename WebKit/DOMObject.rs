@@ -30,33 +30,33 @@ unsafe impl CopyingHelper for DOMObject {
 #[cfg(feature = "WebScriptObject")]
 unsafe impl NSObjectProtocol for DOMObject {}
 
-extern_methods!(
-    #[cfg(feature = "WebScriptObject")]
-    unsafe impl DOMObject {
+#[cfg(feature = "WebScriptObject")]
+impl DOMObject {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WebScriptObject")]
-    unsafe impl DOMObject {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WebScriptObject")]
+impl DOMObject {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMLinkStyle
-    #[cfg(feature = "WebScriptObject")]
-    unsafe impl DOMObject {
+/// DOMLinkStyle.
+#[cfg(feature = "WebScriptObject")]
+impl DOMObject {
+    extern_methods!(
         #[cfg(feature = "DOMStyleSheet")]
         #[unsafe(method(sheet))]
         #[unsafe(method_family = none)]
         pub unsafe fn sheet(&self) -> Option<Retained<DOMStyleSheet>>;
-    }
-);
+    );
+}

@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for CAGradientLayer {}
 #[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAGradientLayer {}
 
-extern_methods!(
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAGradientLayer {
+#[cfg(feature = "CALayer")]
+impl CAGradientLayer {
+    extern_methods!(
         #[unsafe(method(colors))]
         #[unsafe(method_family = none)]
         pub unsafe fn colors(&self) -> Option<Retained<NSArray>>;
@@ -84,13 +84,13 @@ extern_methods!(
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &CAGradientLayerType);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAGradientLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "CALayer")]
+impl CAGradientLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -103,18 +103,18 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAGradientLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CALayer")]
+impl CAGradientLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// `type' values. *

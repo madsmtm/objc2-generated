@@ -90,8 +90,8 @@ unsafe impl NSObjectProtocol for MPSKernel {}
 
 unsafe impl NSSecureCoding for MPSKernel {}
 
-extern_methods!(
-    unsafe impl MPSKernel {
+impl MPSKernel {
+    extern_methods!(
         #[cfg(feature = "MPSCoreTypes")]
         /// The set of options used to run the kernel.
         /// subsubsection_options
@@ -198,12 +198,12 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSKernel {
+/// Methods declared on superclass `NSObject`.
+impl MPSKernel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -211,5 +211,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

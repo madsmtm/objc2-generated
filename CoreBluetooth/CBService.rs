@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "CBAttribute")]
 unsafe impl NSObjectProtocol for CBService {}
 
-extern_methods!(
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBService {
+#[cfg(feature = "CBAttribute")]
+impl CBService {
+    extern_methods!(
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
         /// A back-pointer to the peripheral this service belongs to.
         #[unsafe(method(peripheral))]
@@ -44,28 +44,28 @@ extern_methods!(
         #[unsafe(method(characteristics))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristics(&self) -> Option<Retained<NSArray<CBCharacteristic>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CBAttribute`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBService {
+/// Methods declared on superclass `CBAttribute`.
+#[cfg(feature = "CBAttribute")]
+impl CBService {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBService {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBAttribute")]
+impl CBService {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Used to create a local service or included service, which can be added to the local database via
@@ -91,9 +91,9 @@ extern_class!(
 #[cfg(feature = "CBAttribute")]
 unsafe impl NSObjectProtocol for CBMutableService {}
 
-extern_methods!(
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBMutableService {
+#[cfg(feature = "CBAttribute")]
+impl CBMutableService {
+    extern_methods!(
         #[unsafe(method(includedServices))]
         #[unsafe(method_family = none)]
         pub unsafe fn includedServices(&self) -> Option<Retained<NSArray<CBService>>>;
@@ -131,25 +131,25 @@ extern_methods!(
             uuid: &CBUUID,
             is_primary: bool,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CBAttribute`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBMutableService {
+/// Methods declared on superclass `CBAttribute`.
+#[cfg(feature = "CBAttribute")]
+impl CBMutableService {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBMutableService {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBAttribute")]
+impl CBMutableService {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

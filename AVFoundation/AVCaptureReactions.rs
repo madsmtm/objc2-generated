@@ -102,8 +102,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureReactionEffectState {}
 
-extern_methods!(
-    unsafe impl AVCaptureReactionEffectState {
+impl AVCaptureReactionEffectState {
+    extern_methods!(
         /// Indicates the reaction which is running.
         ///
         ///
@@ -126,12 +126,12 @@ extern_methods!(
         #[unsafe(method(endTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn endTime(&self) -> CMTime;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCaptureReactionEffectState {
+/// Methods declared on superclass `NSObject`.
+impl AVCaptureReactionEffectState {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -139,5 +139,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

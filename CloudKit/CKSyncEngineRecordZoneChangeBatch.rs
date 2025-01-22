@@ -22,8 +22,8 @@ unsafe impl Sync for CKSyncEngineRecordZoneChangeBatch {}
 
 unsafe impl NSObjectProtocol for CKSyncEngineRecordZoneChangeBatch {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineRecordZoneChangeBatch {
+impl CKSyncEngineRecordZoneChangeBatch {
+    extern_methods!(
         #[cfg(all(
             feature = "CKRecord",
             feature = "CKRecordID",
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(setAtomicByZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAtomicByZone(&self, atomic_by_zone: bool);
-    }
-);
+    );
+}

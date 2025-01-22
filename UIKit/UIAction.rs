@@ -66,9 +66,9 @@ unsafe impl NSSecureCoding for UIAction {}
 #[cfg(all(feature = "UIMenuElement", feature = "UIMenuLeaf"))]
 unsafe impl UIMenuLeaf for UIAction {}
 
-extern_methods!(
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl UIAction {
+#[cfg(feature = "UIMenuElement")]
+impl UIAction {
+    extern_methods!(
         /// Short display title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -177,26 +177,26 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIMenuElement`
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl UIAction {
+/// Methods declared on superclass `UIMenuElement`.
+#[cfg(feature = "UIMenuElement")]
+impl UIAction {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UICaptureTextFromCameraSupporting
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl UIAction {
+/// UICaptureTextFromCameraSupporting.
+#[cfg(feature = "UIMenuElement")]
+impl UIAction {
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UITextInput",
@@ -217,5 +217,5 @@ extern_methods!(
             responder: &UIResponder,
             identifier: Option<&UIActionIdentifier>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

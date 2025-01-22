@@ -14,8 +14,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CBAttribute {}
 
-extern_methods!(
-    unsafe impl CBAttribute {
+impl CBAttribute {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -25,14 +25,14 @@ extern_methods!(
         #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<CBUUID>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CBAttribute {
+/// Methods declared on superclass `NSObject`.
+impl CBAttribute {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for MLImageSize {}
 
 unsafe impl NSSecureCoding for MLImageSize {}
 
-extern_methods!(
-    unsafe impl MLImageSize {
+impl MLImageSize {
+    extern_methods!(
         #[unsafe(method(pixelsWide))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelsWide(&self) -> NSInteger;
@@ -28,12 +28,12 @@ extern_methods!(
         #[unsafe(method(pixelsHigh))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelsHigh(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLImageSize {
+/// Methods declared on superclass `NSObject`.
+impl MLImageSize {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -41,5 +41,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

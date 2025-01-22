@@ -32,8 +32,8 @@ unsafe impl NSObjectProtocol for AVAudioChannelLayout {}
 
 unsafe impl NSSecureCoding for AVAudioChannelLayout {}
 
-extern_methods!(
-    unsafe impl AVAudioChannelLayout {
+impl AVAudioChannelLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -104,14 +104,14 @@ extern_methods!(
         #[unsafe(method(channelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelCount(&self) -> AVAudioChannelCount;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioChannelLayout {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioChannelLayout {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

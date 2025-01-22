@@ -36,8 +36,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIUpdateActionPhase {}
 
-extern_methods!(
-    unsafe impl UIUpdateActionPhase {
+impl UIUpdateActionPhase {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -141,5 +141,5 @@ extern_methods!(
         #[unsafe(method(afterUpdateComplete))]
         #[unsafe(method_family = none)]
         pub unsafe fn afterUpdateComplete(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
-    }
-);
+    );
+}

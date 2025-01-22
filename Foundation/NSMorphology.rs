@@ -267,8 +267,8 @@ unsafe impl NSObjectProtocol for NSMorphology {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMorphology {}
 
-extern_methods!(
-    unsafe impl NSMorphology {
+impl NSMorphology {
+    extern_methods!(
         #[unsafe(method(grammaticalGender))]
         #[unsafe(method_family = none)]
         pub unsafe fn grammaticalGender(&self) -> NSGrammaticalGender;
@@ -340,12 +340,12 @@ extern_methods!(
         #[unsafe(method(setDefiniteness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefiniteness(&self, definiteness: NSGrammaticalDefiniteness);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMorphology {
+/// Methods declared on superclass `NSObject`.
+impl NSMorphology {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -353,8 +353,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologypronoun?language=objc)
@@ -379,8 +379,8 @@ unsafe impl NSObjectProtocol for NSMorphologyPronoun {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMorphologyPronoun {}
 
-extern_methods!(
-    unsafe impl NSMorphologyPronoun {
+impl NSMorphologyPronoun {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -411,12 +411,12 @@ extern_methods!(
         #[unsafe(method(dependentMorphology))]
         #[unsafe(method_family = none)]
         pub unsafe fn dependentMorphology(&self) -> Option<Retained<NSMorphology>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSCustomPronouns
-    unsafe impl NSMorphology {
+/// NSCustomPronouns.
+impl NSMorphology {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(customPronounForLanguage:))]
@@ -435,8 +435,8 @@ extern_methods!(
             features: Option<&NSMorphologyCustomPronoun>,
             language: &NSString,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologycustompronoun?language=objc)
@@ -462,8 +462,8 @@ unsafe impl NSObjectProtocol for NSMorphologyCustomPronoun {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMorphologyCustomPronoun {}
 
-extern_methods!(
-    unsafe impl NSMorphologyCustomPronoun {
+impl NSMorphologyCustomPronoun {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(isSupportedForLanguage:))]
@@ -543,12 +543,12 @@ extern_methods!(
         #[unsafe(method(setReflexiveForm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReflexiveForm(&self, reflexive_form: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMorphologyCustomPronoun {
+/// Methods declared on superclass `NSObject`.
+impl NSMorphologyCustomPronoun {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -556,12 +556,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSMorphologyUserSettings
-    unsafe impl NSMorphology {
+/// NSMorphologyUserSettings.
+impl NSMorphology {
+    extern_methods!(
         #[unsafe(method(isUnspecified))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUnspecified(&self) -> bool;
@@ -569,5 +569,5 @@ extern_methods!(
         #[unsafe(method(userMorphology))]
         #[unsafe(method_family = none)]
         pub unsafe fn userMorphology() -> Retained<NSMorphology>;
-    }
-);
+    );
+}

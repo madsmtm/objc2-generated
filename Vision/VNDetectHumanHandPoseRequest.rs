@@ -234,9 +234,9 @@ unsafe impl NSSecureCoding for VNHumanHandPoseObservation {}
 #[cfg(all(feature = "VNObservation", feature = "VNRequestRevisionProviding"))]
 unsafe impl VNRequestRevisionProviding for VNHumanHandPoseObservation {}
 
-extern_methods!(
-    #[cfg(feature = "VNObservation")]
-    unsafe impl VNHumanHandPoseObservation {
+#[cfg(feature = "VNObservation")]
+impl VNHumanHandPoseObservation {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// All of the joint names available in the observation.
         #[unsafe(method(availableJointNames))]
@@ -304,13 +304,13 @@ extern_methods!(
         #[unsafe(method(chirality))]
         #[unsafe(method_family = none)]
         pub unsafe fn chirality(&self) -> VNChirality;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRecognizedPointsObservation`
-    #[cfg(feature = "VNObservation")]
-    unsafe impl VNHumanHandPoseObservation {
+/// Methods declared on superclass `VNRecognizedPointsObservation`.
+#[cfg(feature = "VNObservation")]
+impl VNHumanHandPoseObservation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -318,8 +318,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Detects specific landmark points on human hands.
@@ -344,9 +344,9 @@ unsafe impl CopyingHelper for VNDetectHumanHandPoseRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectHumanHandPoseRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectHumanHandPoseRequest {
+#[cfg(feature = "VNRequest")]
+impl VNDetectHumanHandPoseRequest {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// Obtain the collection of human hand joint names that are supported by a given request revision.
         ///
@@ -418,13 +418,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanHandPoseObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectHumanHandPoseRequest {
+/// Methods declared on superclass `VNRequest`.
+#[cfg(feature = "VNRequest")]
+impl VNDetectHumanHandPoseRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -441,18 +441,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectHumanHandPoseRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNDetectHumanHandPoseRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanhandposerequestrevision1?language=objc)
 pub static VNDetectHumanHandPoseRequestRevision1: NSUInteger = 1;

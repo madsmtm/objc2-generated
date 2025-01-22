@@ -27,9 +27,9 @@ unsafe impl CopyingHelper for DOMMediaList {
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMMediaList {}
 
-extern_methods!(
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMMediaList {
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMMediaList {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(mediaText))]
         #[unsafe(method_family = none)]
@@ -60,26 +60,26 @@ extern_methods!(
         #[unsafe(method(appendMedium:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendMedium(&self, new_medium: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMMediaList {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMMediaList {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMMediaList {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMMediaList {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

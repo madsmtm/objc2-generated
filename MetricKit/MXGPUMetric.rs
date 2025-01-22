@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXGPUMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXGPUMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXGPUMetric {
+#[cfg(feature = "MXMetric")]
+impl MXGPUMetric {
+    extern_methods!(
         /// GPU time aggregated cumulatively.
         ///
         /// The data here represents the total GPU time an application consumed over the date range of the containing payload.
@@ -36,13 +36,13 @@ extern_methods!(
         #[unsafe(method(cumulativeGPUTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeGPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXGPUMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXGPUMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -50,5 +50,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

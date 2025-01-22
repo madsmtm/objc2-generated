@@ -35,9 +35,9 @@ unsafe impl CopyingHelper for VZEFIBootLoader {
 #[cfg(feature = "VZBootLoader")]
 unsafe impl NSObjectProtocol for VZEFIBootLoader {}
 
-extern_methods!(
-    #[cfg(feature = "VZBootLoader")]
-    unsafe impl VZEFIBootLoader {
+#[cfg(feature = "VZBootLoader")]
+impl VZEFIBootLoader {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -53,15 +53,15 @@ extern_methods!(
         #[unsafe(method(setVariableStore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariableStore(&self, variable_store: Option<&VZEFIVariableStore>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZBootLoader`
-    #[cfg(feature = "VZBootLoader")]
-    unsafe impl VZEFIBootLoader {
+/// Methods declared on superclass `VZBootLoader`.
+#[cfg(feature = "VZBootLoader")]
+impl VZEFIBootLoader {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

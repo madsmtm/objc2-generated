@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCBatchNormalizationLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCBatchNormalizationLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCBatchNormalizationLayer {
+    extern_methods!(
         /// The number of feature channels
         #[deprecated]
         #[unsafe(method(featureChannelCount))]
@@ -143,13 +143,13 @@ extern_methods!(
             variance_epsilon: c_float,
             momentum: c_float,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCBatchNormalizationLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCBatchNormalizationLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -159,5 +159,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

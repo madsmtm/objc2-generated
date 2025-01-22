@@ -81,8 +81,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKWebpagePreferences {}
 
-extern_methods!(
-    unsafe impl WKWebpagePreferences {
+impl WKWebpagePreferences {
+    extern_methods!(
         /// A WKContentMode indicating the content mode to prefer
         /// when loading and rendering a webpage.
         ///
@@ -139,12 +139,12 @@ extern_methods!(
             &self,
             preferred_https_navigation_policy: WKWebpagePreferencesUpgradeToHTTPSPolicy,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKWebpagePreferences {
+/// Methods declared on superclass `NSObject`.
+impl WKWebpagePreferences {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -152,5 +152,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

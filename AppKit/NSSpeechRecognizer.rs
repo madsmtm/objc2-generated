@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSSpeechRecognizer {}
 
-extern_methods!(
-    unsafe impl NSSpeechRecognizer {
+impl NSSpeechRecognizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
@@ -81,17 +81,17 @@ extern_methods!(
         #[unsafe(method(setBlocksOtherRecognizers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlocksOtherRecognizers(&self, blocks_other_recognizers: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSpeechRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl NSSpeechRecognizer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechrecognizerdelegate?language=objc)

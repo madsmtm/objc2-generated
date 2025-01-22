@@ -226,8 +226,8 @@ unsafe impl NSObjectProtocol for NSURLRequest {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLRequest {}
 
-extern_methods!(
-    unsafe impl NSURLRequest {
+impl NSURLRequest {
+    extern_methods!(
         #[cfg(feature = "NSURL")]
         /// Allocates and initializes an NSURLRequest with the given
         /// URL.
@@ -443,12 +443,12 @@ extern_methods!(
         #[unsafe(method(cookiePartitionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn cookiePartitionIdentifier(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLRequest {
+/// Methods declared on superclass `NSObject`.
+impl NSURLRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -456,8 +456,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An NSMutableURLRequest object represents a mutable URL load
@@ -520,8 +520,8 @@ unsafe impl NSObjectProtocol for NSMutableURLRequest {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMutableURLRequest {}
 
-extern_methods!(
-    unsafe impl NSMutableURLRequest {
+impl NSMutableURLRequest {
+    extern_methods!(
         #[cfg(feature = "NSURL")]
         /// The URL of the receiver.
         #[unsafe(method(URL))]
@@ -716,12 +716,12 @@ extern_methods!(
             &self,
             cookie_partition_identifier: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSURLRequest`
-    unsafe impl NSMutableURLRequest {
+/// Methods declared on superclass `NSURLRequest`.
+impl NSMutableURLRequest {
+    extern_methods!(
         #[cfg(feature = "NSURL")]
         /// Allocates and initializes an NSURLRequest with the given
         /// URL.
@@ -804,12 +804,12 @@ extern_methods!(
             cache_policy: NSURLRequestCachePolicy,
             timeout_interval: NSTimeInterval,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMutableURLRequest {
+/// Methods declared on superclass `NSObject`.
+impl NSMutableURLRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -817,14 +817,14 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSHTTPURLRequest
-    /// The NSHTTPURLRequest on NSURLRequest provides methods for accessing
-    /// information specific to HTTP protocol requests.
-    unsafe impl NSURLRequest {
+/// NSHTTPURLRequest.
+/// The NSHTTPURLRequest on NSURLRequest provides methods for accessing
+/// information specific to HTTP protocol requests.
+impl NSURLRequest {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         /// Returns the HTTP request method of the receiver.
         ///
@@ -909,14 +909,14 @@ extern_methods!(
         #[unsafe(method(HTTPShouldUsePipelining))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSMutableHTTPURLRequest
-    /// The NSMutableHTTPURLRequest on NSMutableURLRequest provides methods
-    /// for configuring information specific to HTTP protocol requests.
-    unsafe impl NSMutableURLRequest {
+/// NSMutableHTTPURLRequest.
+/// The NSMutableHTTPURLRequest on NSMutableURLRequest provides methods
+/// for configuring information specific to HTTP protocol requests.
+impl NSMutableURLRequest {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         /// Sets the HTTP request method of the receiver.
         #[unsafe(method(HTTPMethod))]
@@ -1070,5 +1070,5 @@ extern_methods!(
         #[unsafe(method(setHTTPShouldUsePipelining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPShouldUsePipelining(&self, http_should_use_pipelining: bool);
-    }
-);
+    );
+}

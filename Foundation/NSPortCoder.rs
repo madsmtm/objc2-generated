@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "NSCoder")]
 unsafe impl NSObjectProtocol for NSPortCoder {}
 
-extern_methods!(
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSPortCoder {
+#[cfg(feature = "NSCoder")]
+impl NSPortCoder {
+    extern_methods!(
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(isBycopy))]
         #[unsafe(method_family = none)]
@@ -74,13 +74,13 @@ extern_methods!(
         #[unsafe(method(dispatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatch(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSPortCoder {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCoder")]
+impl NSPortCoder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -88,5 +88,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

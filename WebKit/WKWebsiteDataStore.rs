@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for WKWebsiteDataStore {}
 
 unsafe impl NSSecureCoding for WKWebsiteDataStore {}
 
-extern_methods!(
-    unsafe impl WKWebsiteDataStore {
+impl WKWebsiteDataStore {
+    extern_methods!(
         #[unsafe(method(defaultDataStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultDataStore(mtm: MainThreadMarker) -> Retained<WKWebsiteDataStore>;
@@ -161,14 +161,14 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<NSUUID>>)>,
             mtm: MainThreadMarker,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKWebsiteDataStore {
+/// Methods declared on superclass `NSObject`.
+impl WKWebsiteDataStore {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

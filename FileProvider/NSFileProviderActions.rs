@@ -11,11 +11,11 @@ use crate::*;
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderExtensionActionIdentifier = NSString;
 
-extern_methods!(
-    /// NSFileProviderActions
-    /// This category encapsulates common user-driven actions on FileProvider's items.
-    #[cfg(feature = "Extension")]
-    unsafe impl NSFileProviderExtension {
+/// NSFileProviderActions.
+/// This category encapsulates common user-driven actions on FileProvider's items.
+#[cfg(feature = "Extension")]
+impl NSFileProviderExtension {
+    extern_methods!(
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         /// Import a document.
         ///
@@ -295,5 +295,5 @@ extern_methods!(
             item_identifier: &NSFileProviderItemIdentifier,
             completion_handler: &block2::Block<dyn Fn(*mut NSFileProviderItem, *mut NSError)>,
         );
-    }
-);
+    );
+}

@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIDocumentProperties {}
 
-extern_methods!(
-    unsafe impl UIDocumentProperties {
+impl UIDocumentProperties {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -97,5 +97,5 @@ extern_methods!(
         #[unsafe(method(setWantsIconRepresentation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWantsIconRepresentation(&self, wants_icon_representation: bool);
-    }
-);
+    );
+}

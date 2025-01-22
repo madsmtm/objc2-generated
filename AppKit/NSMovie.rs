@@ -18,8 +18,8 @@ unsafe impl NSCoding for NSMovie {}
 
 unsafe impl NSObjectProtocol for NSMovie {}
 
-extern_methods!(
-    unsafe impl NSMovie {
+impl NSMovie {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -31,14 +31,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMovie {
+/// Methods declared on superclass `NSObject`.
+impl NSMovie {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

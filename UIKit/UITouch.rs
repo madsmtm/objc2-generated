@@ -126,8 +126,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITouch {}
 
-extern_methods!(
-    unsafe impl UITouch {
+impl UITouch {
+    extern_methods!(
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub fn timestamp(&self) -> NSTimeInterval;
@@ -254,12 +254,12 @@ extern_methods!(
         #[unsafe(method(rollAngle))]
         #[unsafe(method_family = none)]
         pub fn rollAngle(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITouch {
+/// Methods declared on superclass `NSObject`.
+impl UITouch {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -267,5 +267,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

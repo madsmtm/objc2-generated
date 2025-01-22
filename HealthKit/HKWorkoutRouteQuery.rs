@@ -26,9 +26,9 @@ unsafe impl Sync for HKWorkoutRouteQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKWorkoutRouteQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKWorkoutRouteQuery {
+#[cfg(feature = "HKQuery")]
+impl HKWorkoutRouteQuery {
+    extern_methods!(
         #[cfg(all(
             feature = "HKObject",
             feature = "HKSample",
@@ -90,25 +90,25 @@ extern_methods!(
                 dyn Fn(NonNull<HKWorkoutRouteQuery>, *mut NSArray<CLLocation>, Bool, *mut NSError),
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKWorkoutRouteQuery {
+/// Methods declared on superclass `HKQuery`.
+#[cfg(feature = "HKQuery")]
+impl HKWorkoutRouteQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKWorkoutRouteQuery {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKQuery")]
+impl HKWorkoutRouteQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

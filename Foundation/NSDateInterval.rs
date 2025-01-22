@@ -32,8 +32,8 @@ unsafe impl NSObjectProtocol for NSDateInterval {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSDateInterval {}
 
-extern_methods!(
-    unsafe impl NSDateInterval {
+impl NSDateInterval {
+    extern_methods!(
         #[cfg(feature = "NSDate")]
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
@@ -100,14 +100,14 @@ extern_methods!(
         #[unsafe(method(containsDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsDate(&self, date: &NSDate) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDateInterval {
+/// Methods declared on superclass `NSObject`.
+impl NSDateInterval {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

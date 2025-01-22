@@ -30,8 +30,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVSampleBufferRenderSynchronizer {}
 
-extern_methods!(
-    unsafe impl AVSampleBufferRenderSynchronizer {
+impl AVSampleBufferRenderSynchronizer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The synchronizer's rendering timebase, which governs how time stamps are interpreted.
         ///
@@ -133,12 +133,12 @@ extern_methods!(
             &self,
             delays_rate_change_until_has_sufficient_media_data: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVSampleBufferRenderSynchronizer {
+/// Methods declared on superclass `NSObject`.
+impl AVSampleBufferRenderSynchronizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -146,12 +146,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferRenderSynchronizerRendererManagement
-    unsafe impl AVSampleBufferRenderSynchronizer {
+/// AVSampleBufferRenderSynchronizerRendererManagement.
+impl AVSampleBufferRenderSynchronizer {
+    extern_methods!(
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
         /// Array of id
         /// <AVQueuedSampleBufferRendering
@@ -213,12 +213,12 @@ extern_methods!(
             time: CMTime,
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferRenderSynchronizerTimeObservation
-    unsafe impl AVSampleBufferRenderSynchronizer {
+/// AVSampleBufferRenderSynchronizerTimeObservation.
+impl AVSampleBufferRenderSynchronizer {
+    extern_methods!(
         /// Cancels a previously registered time observer.
         ///
         /// Parameter `observer`: An object returned by a previous call to -addPeriodicTimeObserverForInterval:queue:usingBlock: or -addBoundaryTimeObserverForTimes:queue:usingBlock:.
@@ -233,5 +233,5 @@ extern_methods!(
         #[unsafe(method(removeTimeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeObserver(&self, observer: &AnyObject);
-    }
-);
+    );
+}

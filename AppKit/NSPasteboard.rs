@@ -164,8 +164,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPasteboard {}
 
-extern_methods!(
-    unsafe impl NSPasteboard {
+impl NSPasteboard {
+    extern_methods!(
         #[unsafe(method(generalPasteboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn generalPasteboard() -> Retained<NSPasteboard>;
@@ -308,12 +308,12 @@ extern_methods!(
             &self,
             data_type: &NSPasteboardType,
         ) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPasteboard {
+/// Methods declared on superclass `NSObject`.
+impl NSPasteboard {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -321,12 +321,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// FilterServices
-    unsafe impl NSPasteboard {
+/// FilterServices.
+impl NSPasteboard {
+    extern_methods!(
         #[unsafe(method(typesFilterableTo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn typesFilterableTo(
@@ -349,8 +349,8 @@ extern_methods!(
         pub unsafe fn pasteboardByFilteringTypesInPasteboard(
             pboard: &NSPasteboard,
         ) -> Retained<NSPasteboard>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypeowner?language=objc)
@@ -498,10 +498,10 @@ unsafe impl NSPasteboardReading for NSString {}
 
 unsafe impl NSPasteboardWriting for NSString {}
 
-extern_methods!(
-    /// NSFileContents
-    /// * File Contents **
-    unsafe impl NSPasteboard {
+/// NSFileContents.
+/// * File Contents **
+impl NSPasteboard {
+    extern_methods!(
         #[unsafe(method(writeFileContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeFileContents(&self, filename: &NSString) -> bool;
@@ -521,8 +521,8 @@ extern_methods!(
         #[unsafe(method(readFileWrapper))]
         #[unsafe(method_family = none)]
         pub unsafe fn readFileWrapper(&self) -> Option<Retained<NSFileWrapper>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilecontentspboardtype?language=objc)

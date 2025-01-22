@@ -20,19 +20,19 @@ unsafe impl Sync for HMAccessControl {}
 
 unsafe impl NSObjectProtocol for HMAccessControl {}
 
-extern_methods!(
-    unsafe impl HMAccessControl {
+impl HMAccessControl {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMAccessControl {
+/// Methods declared on superclass `NSObject`.
+impl HMAccessControl {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

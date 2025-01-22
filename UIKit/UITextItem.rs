@@ -48,8 +48,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextItem {}
 
-extern_methods!(
-    unsafe impl UITextItem {
+impl UITextItem {
+    extern_methods!(
         /// The content type of the text item.
         #[unsafe(method(contentType))]
         #[unsafe(method_family = none)]
@@ -83,8 +83,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object representing the preview for a text item.
@@ -98,8 +98,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextItemMenuPreview {}
 
-extern_methods!(
-    unsafe impl UITextItemMenuPreview {
+impl UITextItemMenuPreview {
+    extern_methods!(
         /// Show the default system preview for the given text item.
         #[unsafe(method(defaultPreview))]
         #[unsafe(method_family = none)]
@@ -118,8 +118,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemmenuconfiguration?language=objc)
@@ -131,8 +131,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextItemMenuConfiguration {}
 
-extern_methods!(
-    unsafe impl UITextItemMenuConfiguration {
+impl UITextItemMenuConfiguration {
+    extern_methods!(
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a menu configuration with the specified menu and a default preview.
         ///
@@ -164,5 +164,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

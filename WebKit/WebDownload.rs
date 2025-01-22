@@ -26,13 +26,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WebDownload {}
 
-extern_methods!(
-    unsafe impl WebDownload {}
-);
+impl WebDownload {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSURLDownload`
-    unsafe impl WebDownload {
+/// Methods declared on superclass `NSURLDownload`.
+impl WebDownload {
+    extern_methods!(
         /// Initializes a NSURLDownload object and starts the download.
         ///
         /// Parameter `request`: The request to download. Must not be nil.
@@ -67,12 +67,12 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
             path: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WebDownload {
+/// Methods declared on superclass `NSObject`.
+impl WebDownload {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -80,8 +80,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The WebDownloadDelegate delegate has one extra method used to choose

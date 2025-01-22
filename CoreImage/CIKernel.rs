@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIKernel {}
 
-extern_methods!(
-    unsafe impl CIKernel {
+impl CIKernel {
+    extern_methods!(
         #[deprecated = "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(kernelsWithString:))]
         #[unsafe(method_family = none)]
@@ -84,12 +84,12 @@ extern_methods!(
             callback: CIKernelROICallback,
             args: &NSArray<AnyObject>,
         ) -> Option<Retained<CIImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIKernel {
+/// Methods declared on superclass `NSObject`.
+impl CIKernel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -97,8 +97,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorkernel?language=objc)
@@ -109,8 +109,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIColorKernel {}
 
-extern_methods!(
-    unsafe impl CIColorKernel {
+impl CIColorKernel {
+    extern_methods!(
         #[deprecated = "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(kernelWithString:))]
         #[unsafe(method_family = none)]
@@ -124,12 +124,12 @@ extern_methods!(
             extent: CGRect,
             args: &NSArray<AnyObject>,
         ) -> Option<Retained<CIImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CIKernel`
-    unsafe impl CIColorKernel {
+/// Methods declared on superclass `CIKernel`.
+impl CIColorKernel {
+    extern_methods!(
         #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_error(
@@ -145,12 +145,12 @@ extern_methods!(
             data: &NSData,
             format: CIFormat,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIColorKernel {
+/// Methods declared on superclass `NSObject`.
+impl CIColorKernel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -158,8 +158,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciwarpkernel?language=objc)
@@ -170,8 +170,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIWarpKernel {}
 
-extern_methods!(
-    unsafe impl CIWarpKernel {
+impl CIWarpKernel {
+    extern_methods!(
         #[deprecated = "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(kernelWithString:))]
         #[unsafe(method_family = none)]
@@ -191,12 +191,12 @@ extern_methods!(
             image: &CIImage,
             args: &NSArray<AnyObject>,
         ) -> Option<Retained<CIImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CIKernel`
-    unsafe impl CIWarpKernel {
+/// Methods declared on superclass `CIKernel`.
+impl CIWarpKernel {
+    extern_methods!(
         #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_error(
@@ -212,12 +212,12 @@ extern_methods!(
             data: &NSData,
             format: CIFormat,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIWarpKernel {
+/// Methods declared on superclass `NSObject`.
+impl CIWarpKernel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -225,8 +225,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciblendkernel?language=objc)
@@ -237,8 +237,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIBlendKernel {}
 
-extern_methods!(
-    unsafe impl CIBlendKernel {
+impl CIBlendKernel {
+    extern_methods!(
         #[deprecated = "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(kernelWithString:))]
         #[unsafe(method_family = none)]
@@ -262,12 +262,12 @@ extern_methods!(
             background: &CIImage,
             color_space: &CGColorSpace,
         ) -> Option<Retained<CIImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CIKernel`
-    unsafe impl CIBlendKernel {
+/// Methods declared on superclass `CIKernel`.
+impl CIBlendKernel {
+    extern_methods!(
         #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_error(
@@ -283,12 +283,12 @@ extern_methods!(
             data: &NSData,
             format: CIFormat,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIBlendKernel {
+/// Methods declared on superclass `NSObject`.
+impl CIBlendKernel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -296,12 +296,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// BuiltIn
-    unsafe impl CIBlendKernel {
+/// BuiltIn.
+impl CIBlendKernel {
+    extern_methods!(
         #[unsafe(method(componentAdd))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentAdd() -> Retained<CIBlendKernel>;
@@ -465,5 +465,5 @@ extern_methods!(
         #[unsafe(method(lighterColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn lighterColor() -> Retained<CIBlendKernel>;
-    }
-);
+    );
+}

@@ -163,8 +163,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFileManager {}
 
-extern_methods!(
-    unsafe impl NSFileManager {
+impl NSFileManager {
+    extern_methods!(
         #[unsafe(method(defaultManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultManager() -> Retained<NSFileManager>;
@@ -754,12 +754,12 @@ extern_methods!(
             &self,
             group_identifier: &NSString,
         ) -> Option<Retained<NSURL>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileManager {
+/// Methods declared on superclass `NSObject`.
+impl NSFileManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -767,12 +767,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSUserInformation
-    unsafe impl NSFileManager {
+/// NSUserInformation.
+impl NSFileManager {
+    extern_methods!(
         #[cfg(feature = "NSURL")]
         #[unsafe(method(homeDirectoryForCurrentUser))]
         #[unsafe(method_family = none)]
@@ -787,8 +787,8 @@ extern_methods!(
         #[unsafe(method(homeDirectoryForUser:))]
         #[unsafe(method_family = none)]
         pub unsafe fn homeDirectoryForUser(&self, user_name: &NSString) -> Option<Retained<NSURL>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerdelegate?language=objc)
@@ -989,9 +989,9 @@ unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSDirectoryEnumerator<Obje
 #[cfg(feature = "NSEnumerator")]
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSDirectoryEnumerator<ObjectType> {}
 
-extern_methods!(
-    #[cfg(feature = "NSEnumerator")]
-    unsafe impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
+#[cfg(feature = "NSEnumerator")]
+impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
+    extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(fileAttributes))]
         #[unsafe(method_family = none)]
@@ -1021,13 +1021,13 @@ extern_methods!(
         #[unsafe(method(skipDescendants))]
         #[unsafe(method_family = none)]
         pub unsafe fn skipDescendants(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSEnumerator")]
-    unsafe impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSEnumerator")]
+impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1035,8 +1035,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileproviderservice?language=objc)
@@ -1047,8 +1047,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFileProviderService {}
 
-extern_methods!(
-    unsafe impl NSFileProviderService {
+impl NSFileProviderService {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSXPCConnection", feature = "block2"))]
         #[unsafe(method(getFileProviderConnectionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -1061,12 +1061,12 @@ extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSFileProviderServiceName>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileProviderService {
+/// Methods declared on superclass `NSObject`.
+impl NSFileProviderService {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1074,8 +1074,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletype?language=objc)
@@ -1293,10 +1293,10 @@ extern "C" {
     pub static NSFileSystemFreeNodes: &'static NSFileAttributeKey;
 }
 
-extern_methods!(
-    /// NSFileAttributes
-    #[cfg(feature = "NSDictionary")]
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+/// NSFileAttributes.
+#[cfg(feature = "NSDictionary")]
+impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(fileSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileSize(&self) -> c_ulonglong;
@@ -1367,5 +1367,5 @@ extern_methods!(
         #[unsafe(method(fileGroupOwnerAccountID))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileGroupOwnerAccountID(&self) -> Option<Retained<NSNumber>>;
-    }
-);
+    );
+}

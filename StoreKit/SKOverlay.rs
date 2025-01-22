@@ -66,8 +66,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SKOverlay {}
 
-extern_methods!(
-    unsafe impl SKOverlay {
+impl SKOverlay {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -103,5 +103,5 @@ extern_methods!(
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<SKOverlayConfiguration>;
-    }
-);
+    );
+}

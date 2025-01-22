@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSNDArrayDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSNDArrayDescriptor {
+impl MPSNDArrayDescriptor {
+    extern_methods!(
         #[cfg(feature = "MPSCoreTypes")]
         /// Data Type of the MPSNDArray elements
         #[unsafe(method(dataType))]
@@ -238,17 +238,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSNDArrayDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSNDArrayDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayallocator?language=objc)
@@ -327,8 +327,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSNDArray {}
 
-extern_methods!(
-    unsafe impl MPSNDArray {
+impl MPSNDArray {
+    extern_methods!(
         /// Get a well known
         /// <MPSNDArrayAllocator
         /// > that makes standard MTLBuffers
@@ -713,17 +713,17 @@ extern_methods!(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSNDArray {
+/// Methods declared on superclass `NSObject`.
+impl MPSNDArray {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A MPSNDArray that uses command buffer specific memory to store the array data
@@ -742,8 +742,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSTemporaryNDArray {}
 
-extern_methods!(
-    unsafe impl MPSTemporaryNDArray {
+impl MPSTemporaryNDArray {
+    extern_methods!(
         /// Get a well known
         /// <MPSNDArrayAllocator
         /// > that makes temporary MTLBuffers
@@ -811,12 +811,12 @@ extern_methods!(
         #[unsafe(method(setReadCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSNDArray`
-    unsafe impl MPSTemporaryNDArray {
+/// Methods declared on superclass `MPSNDArray`.
+impl MPSTemporaryNDArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -849,14 +849,14 @@ extern_methods!(
             offset: NSUInteger,
             descriptor: &MPSNDArrayDescriptor,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSTemporaryNDArray {
+/// Methods declared on superclass `NSObject`.
+impl MPSTemporaryNDArray {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

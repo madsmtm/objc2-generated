@@ -100,10 +100,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// GKGameSessionEventListener
-    #[cfg(feature = "GKGameSession")]
-    unsafe impl GKGameSession {
+/// GKGameSessionEventListener.
+#[cfg(feature = "GKGameSession")]
+impl GKGameSession {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(addEventListener:))]
         #[unsafe(method_family = none)]
@@ -113,5 +113,5 @@ extern_methods!(
         #[unsafe(method(removeEventListener:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeEventListener(listener: &NSObject);
-    }
-);
+    );
+}

@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSAtomicStoreCacheNode {}
 
-extern_methods!(
-    unsafe impl NSAtomicStoreCacheNode {
+impl NSAtomicStoreCacheNode {
+    extern_methods!(
         #[cfg(feature = "NSManagedObjectID")]
         #[unsafe(method(initWithObjectID:))]
         #[unsafe(method_family = init)]
@@ -52,12 +52,12 @@ extern_methods!(
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAtomicStoreCacheNode {
+/// Methods declared on superclass `NSObject`.
+impl NSAtomicStoreCacheNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -65,5 +65,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

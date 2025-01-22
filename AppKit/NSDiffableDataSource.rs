@@ -33,10 +33,10 @@ unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectP
 {
 }
 
-extern_methods!(
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
-    {
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[unsafe(method(numberOfItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
@@ -196,14 +196,14 @@ extern_methods!(
             &self,
             section_identifiers: &NSArray<SectionIdentifierType>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
-    {
+/// Methods declared on superclass `NSObject`.
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -211,8 +211,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasourcesupplementaryviewprovider?language=objc)
 #[cfg(all(
@@ -240,10 +240,10 @@ unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectP
 {
 }
 
-extern_methods!(
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-    {
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -306,5 +306,5 @@ extern_methods!(
             &self,
             supplementary_view_provider: NSCollectionViewDiffableDataSourceSupplementaryViewProvider,
         );
-    }
-);
+    );
+}

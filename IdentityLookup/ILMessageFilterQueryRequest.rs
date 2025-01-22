@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for ILMessageFilterQueryRequest {}
 
 unsafe impl NSSecureCoding for ILMessageFilterQueryRequest {}
 
-extern_methods!(
-    unsafe impl ILMessageFilterQueryRequest {
+impl ILMessageFilterQueryRequest {
+    extern_methods!(
         /// The sender of the message the receiver relates to.
         #[unsafe(method(sender))]
         #[unsafe(method_family = none)]
@@ -45,5 +45,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

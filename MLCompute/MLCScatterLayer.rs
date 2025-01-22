@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCScatterLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCScatterLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCScatterLayer {
+    extern_methods!(
         /// The dimension along which to index
         #[deprecated]
         #[unsafe(method(dimension))]
@@ -51,13 +51,13 @@ extern_methods!(
             dimension: NSUInteger,
             reduction_type: MLCReductionType,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCScatterLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCScatterLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -67,5 +67,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

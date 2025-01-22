@@ -58,8 +58,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginManager {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationProviderExtensionLoginManager {
+impl ASAuthorizationProviderExtensionLoginManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -256,5 +256,5 @@ extern_methods!(
             &self,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}

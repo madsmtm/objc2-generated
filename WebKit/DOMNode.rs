@@ -89,9 +89,9 @@ unsafe impl CopyingHelper for DOMNode {
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMNode {}
 
-extern_methods!(
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMNode {
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMNode {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(nodeName))]
         #[unsafe(method_family = none)]
@@ -286,34 +286,34 @@ extern_methods!(
         #[unsafe(method(contains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contains(&self, other: Option<&DOMNode>) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMNode {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMNode {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMNodeDeprecated
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMNode {
+/// DOMNodeDeprecated.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMNode {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(insertBefore::))]
         #[unsafe(method_family = none)]
@@ -340,5 +340,5 @@ extern_methods!(
             feature: Option<&NSString>,
             version: Option<&NSString>,
         ) -> bool;
-    }
-);
+    );
+}

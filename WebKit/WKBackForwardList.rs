@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKBackForwardList {}
 
-extern_methods!(
-    unsafe impl WKBackForwardList {
+impl WKBackForwardList {
+    extern_methods!(
         #[cfg(feature = "WKBackForwardListItem")]
         /// The current item.
         #[unsafe(method(currentItem))]
@@ -75,12 +75,12 @@ extern_methods!(
         #[unsafe(method(forwardList))]
         #[unsafe(method_family = none)]
         pub unsafe fn forwardList(&self) -> Retained<NSArray<WKBackForwardListItem>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKBackForwardList {
+/// Methods declared on superclass `NSObject`.
+impl WKBackForwardList {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -88,5 +88,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

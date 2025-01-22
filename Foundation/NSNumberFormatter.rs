@@ -146,9 +146,9 @@ unsafe impl CopyingHelper for NSNumberFormatter {
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSNumberFormatter {}
 
-extern_methods!(
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSNumberFormatter {
+#[cfg(feature = "NSFormatter")]
+impl NSNumberFormatter {
+    extern_methods!(
         #[unsafe(method(formattingContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
@@ -825,13 +825,13 @@ extern_methods!(
             &self,
             partial_string_validation_enabled: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSNumberFormatter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSFormatter")]
+impl NSNumberFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -839,13 +839,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSNumberFormatterCompatibility
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSNumberFormatter {
+/// NSNumberFormatterCompatibility.
+#[cfg(feature = "NSFormatter")]
+impl NSNumberFormatter {
+    extern_methods!(
         #[unsafe(method(hasThousandSeparators))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasThousandSeparators(&self) -> bool;
@@ -938,5 +938,5 @@ extern_methods!(
         #[unsafe(method(setRoundingBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoundingBehavior(&self, rounding_behavior: &NSDecimalNumberHandler);
-    }
-);
+    );
+}

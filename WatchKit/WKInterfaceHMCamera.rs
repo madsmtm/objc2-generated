@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl NSObjectProtocol for WKInterfaceHMCamera {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceHMCamera {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceHMCamera {
+    extern_methods!(
         #[deprecated = "Use HomeKit.CameraView instead."]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -31,15 +31,15 @@ extern_methods!(
         #[unsafe(method(setCameraSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraSource(&self, camera_source: Option<&HMCameraSource>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceHMCamera {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceHMCamera {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

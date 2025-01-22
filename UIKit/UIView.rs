@@ -404,9 +404,9 @@ unsafe impl UIResponderStandardEditActions for UIView {}
 #[cfg(all(feature = "UIResponder", feature = "UITraitCollection"))]
 unsafe impl UITraitEnvironment for UIView {}
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(layerClass))]
         #[unsafe(method_family = none)]
         pub fn layerClass(mtm: MainThreadMarker) -> &'static AnyClass;
@@ -525,13 +525,13 @@ extern_methods!(
         pub unsafe fn effectiveUserInterfaceLayoutDirection(
             &self,
         ) -> UIUserInterfaceLayoutDirection;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -539,13 +539,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewGeometry
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIViewGeometry.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
@@ -708,13 +708,13 @@ extern_methods!(
         #[unsafe(method(sizeToFit))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeToFit(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewHierarchy
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIViewHierarchy.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(superview))]
         #[unsafe(method_family = none)]
         pub fn superview(&self) -> Option<Retained<UIView>>;
@@ -896,13 +896,13 @@ extern_methods!(
         #[unsafe(method(keyboardLayoutGuide))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyboardLayoutGuide(&self) -> Retained<UIKeyboardLayoutGuide>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewRendering
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIViewRendering.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawRect:))]
         #[unsafe(method_family = none)]
@@ -1029,13 +1029,13 @@ extern_methods!(
         #[unsafe(method(tintColorDidChange))]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColorDidChange(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewAnimation
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIViewAnimation.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(setAnimationsEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationsEnabled(enabled: bool, mtm: MainThreadMarker);
@@ -1055,13 +1055,13 @@ extern_methods!(
         #[unsafe(method(inheritedAnimationDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn inheritedAnimationDuration(mtm: MainThreadMarker) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewAnimationWithBlocks
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIViewAnimationWithBlocks.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(animateWithDuration:delay:options:animations:completion:))]
         #[unsafe(method_family = none)]
@@ -1164,13 +1164,13 @@ extern_methods!(
             animations: &block2::Block<dyn Fn() + '_>,
             mtm: MainThreadMarker,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewKeyframeAnimations
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIViewKeyframeAnimations.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(animateKeyframesWithDuration:delay:options:animations:completion:))]
         #[unsafe(method_family = none)]
@@ -1192,13 +1192,13 @@ extern_methods!(
             animations: &block2::Block<dyn Fn()>,
             mtm: MainThreadMarker,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewGestureRecognizers
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIViewGestureRecognizers.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "UIGestureRecognizer")]
         #[unsafe(method(gestureRecognizers))]
         #[unsafe(method_family = none)]
@@ -1230,13 +1230,13 @@ extern_methods!(
             &self,
             gesture_recognizer: &UIGestureRecognizer,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewMotionEffects
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIViewMotionEffects.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "UIMotionEffect")]
         /// Begins applying `effect` to the receiver. The effect's emitted keyPath/value pairs will be
         /// applied to the view's presentation layer.
@@ -1264,8 +1264,8 @@ extern_methods!(
         #[unsafe(method(setMotionEffects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMotionEffects(&self, motion_effects: &NSArray<UIMotionEffect>);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutconstraintaxis?language=objc)
 // NS_ENUM
@@ -1287,10 +1287,10 @@ unsafe impl RefEncode for UILayoutConstraintAxis {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// UIConstraintBasedLayoutInstallingConstraints
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIConstraintBasedLayoutInstallingConstraints.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(constraints))]
         #[unsafe(method_family = none)]
@@ -1315,13 +1315,13 @@ extern_methods!(
         #[unsafe(method(removeConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIConstraintBasedLayoutCoreMethods
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIConstraintBasedLayoutCoreMethods.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(updateConstraintsIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateConstraintsIfNeeded(&self);
@@ -1337,13 +1337,13 @@ extern_methods!(
         #[unsafe(method(setNeedsUpdateConstraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsUpdateConstraints(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIConstraintBasedCompatibility
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIConstraintBasedCompatibility.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(translatesAutoresizingMaskIntoConstraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
@@ -1359,8 +1359,8 @@ extern_methods!(
         #[unsafe(method(requiresConstraintBasedLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresConstraintBasedLayout(mtm: MainThreadMarker) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewnointrinsicmetric?language=objc)
@@ -1368,10 +1368,10 @@ extern "C" {
     pub static UIViewNoIntrinsicMetric: CGFloat;
 }
 
-extern_methods!(
-    /// UIConstraintBasedLayoutLayering
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIConstraintBasedLayoutLayering.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(alignmentRectForFrame:))]
         #[unsafe(method_family = none)]
@@ -1442,8 +1442,8 @@ extern_methods!(
             priority: UILayoutPriority,
             axis: UILayoutConstraintAxis,
         );
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutfittingcompressedsize?language=objc)
@@ -1457,10 +1457,10 @@ extern "C" {
     pub static UILayoutFittingExpandedSize: CGSize;
 }
 
-extern_methods!(
-    /// UIConstraintBasedLayoutFittingSize
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIConstraintBasedLayoutFittingSize.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(systemLayoutSizeFittingSize:))]
         #[unsafe(method_family = none)]
@@ -1475,13 +1475,13 @@ extern_methods!(
             horizontal_fitting_priority: UILayoutPriority,
             vertical_fitting_priority: UILayoutPriority,
         ) -> CGSize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UILayoutGuideSupport
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UILayoutGuideSupport.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "UILayoutGuide")]
         #[unsafe(method(layoutGuides))]
         #[unsafe(method_family = none)]
@@ -1496,13 +1496,13 @@ extern_methods!(
         #[unsafe(method(removeLayoutGuide:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeLayoutGuide(&self, layout_guide: &UILayoutGuide);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIViewLayoutConstraintCreation
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIViewLayoutConstraintCreation.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(leadingAnchor))]
         #[unsafe(method_family = none)]
@@ -1562,13 +1562,13 @@ extern_methods!(
         #[unsafe(method(lastBaselineAnchor))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIConstraintBasedLayoutDebugging
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIConstraintBasedLayoutDebugging.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(constraintsAffectingLayoutForAxis:))]
         #[unsafe(method_family = none)]
@@ -1584,13 +1584,13 @@ extern_methods!(
         #[unsafe(method(exerciseAmbiguityInLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn exerciseAmbiguityInLayout(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIConstraintBasedLayoutDebugging
-    #[cfg(feature = "UILayoutGuide")]
-    unsafe impl UILayoutGuide {
+/// UIConstraintBasedLayoutDebugging.
+#[cfg(feature = "UILayoutGuide")]
+impl UILayoutGuide {
+    extern_methods!(
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(constraintsAffectingLayoutForAxis:))]
         #[unsafe(method_family = none)]
@@ -1602,13 +1602,13 @@ extern_methods!(
         #[unsafe(method(hasAmbiguousLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIStateRestoration
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIStateRestoration.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(restorationIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
@@ -1625,13 +1625,13 @@ extern_methods!(
         #[unsafe(method(decodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRestorableStateWithCoder(&self, coder: &NSCoder);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UISnapshotting
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UISnapshotting.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(snapshotViewAfterScreenUpdates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotViewAfterScreenUpdates(
@@ -1657,13 +1657,13 @@ extern_methods!(
             rect: CGRect,
             after_updates: bool,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DeprecatedAnimations
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// DeprecatedAnimations.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(beginAnimations:context:))]
         #[unsafe(method_family = none)]
@@ -1742,13 +1742,13 @@ extern_methods!(
             view: &UIView,
             cache: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UserInterfaceStyle
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UserInterfaceStyle.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "UIInterface")]
         #[unsafe(method(overrideUserInterfaceStyle))]
         #[unsafe(method_family = none)]
@@ -1762,13 +1762,13 @@ extern_methods!(
             &self,
             override_user_interface_style: UIUserInterfaceStyle,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIContentSizeCategoryLimit
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+/// UIContentSizeCategoryLimit.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "UIContentSizeCategory")]
         /// Specify content size category limits. Setting one or both of these properties will limit the
         /// content size category for this view (and its subviews) to a minimum or a maximum value.
@@ -1817,12 +1817,12 @@ extern_methods!(
         #[unsafe(method(appliedContentSizeCategoryLimitsDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn appliedContentSizeCategoryLimitsDescription(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIView {
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(traitOverrides))]
         #[unsafe(method_family = none)]
@@ -1833,8 +1833,8 @@ extern_methods!(
         #[unsafe(method(updateTraitsIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateTraitsIfNeeded(&self);
-    }
-);
+    );
+}
 
 #[cfg(all(feature = "UIResponder", feature = "UITraitCollection"))]
 unsafe impl UITraitChangeObservable for UIView {}

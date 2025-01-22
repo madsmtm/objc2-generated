@@ -100,9 +100,9 @@ unsafe impl UIResponderStandardEditActions for UIDocumentMenuViewController {}
 ))]
 unsafe impl UITraitEnvironment for UIDocumentMenuViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentMenuViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentMenuViewController {
+    extern_methods!(
         #[cfg(feature = "UIDocumentPickerViewController")]
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(initWithDocumentTypes:inMode:))]
@@ -159,13 +159,13 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn UIDocumentMenuDelegate>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentMenuViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentMenuViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -173,13 +173,13 @@ extern_methods!(
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentMenuViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentMenuViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -187,5 +187,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

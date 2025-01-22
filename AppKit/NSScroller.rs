@@ -168,9 +168,9 @@ unsafe impl NSObjectProtocol for NSScroller {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSScroller {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScroller {
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSScroller {
+    extern_methods!(
         #[unsafe(method(isCompatibleWithOverlayScrollers))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompatibleWithOverlayScrollers(mtm: MainThreadMarker) -> bool;
@@ -260,13 +260,13 @@ extern_methods!(
         #[unsafe(method(setKnobProportion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKnobProportion(&self, knob_proportion: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScroller {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSScroller {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -277,28 +277,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScroller {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSScroller {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScroller {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSScroller {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspreferredscrollerstyledidchangenotification?language=objc)
@@ -351,10 +351,10 @@ unsafe impl RefEncode for NSScrollerArrow {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScroller {
+/// NSDeprecated.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSScroller {
+    extern_methods!(
         #[cfg(all(feature = "NSCell", feature = "objc2-core-foundation"))]
         #[deprecated = "Use +scrollerWidthForControlSize:scrollerStyle: instead"]
         #[unsafe(method(scrollerWidthForControlSize:))]
@@ -420,5 +420,5 @@ extern_methods!(
         #[unsafe(method(drawArrow:highlight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawArrow_highlight(&self, which_arrow: NSScrollerArrow, flag: bool);
-    }
-);
+    );
+}

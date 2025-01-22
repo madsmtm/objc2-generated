@@ -97,8 +97,8 @@ unsafe impl CopyingHelper for AXNumericDataAxisDescriptor {
 
 unsafe impl NSObjectProtocol for AXNumericDataAxisDescriptor {}
 
-extern_methods!(
-    unsafe impl AXNumericDataAxisDescriptor {
+impl AXNumericDataAxisDescriptor {
+    extern_methods!(
         /// The scale to use for this axis. This should match the visual representation in the chart.
         /// If not set explicitly, this will default to `linear`.
         #[unsafe(method(scaleType))]
@@ -189,8 +189,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcategoricaldataaxisdescriptor?language=objc)
@@ -209,8 +209,8 @@ unsafe impl CopyingHelper for AXCategoricalDataAxisDescriptor {
 
 unsafe impl NSObjectProtocol for AXCategoricalDataAxisDescriptor {}
 
-extern_methods!(
-    unsafe impl AXCategoricalDataAxisDescriptor {
+impl AXCategoricalDataAxisDescriptor {
+    extern_methods!(
         /// The order of the category values for this axis.
         /// This list should contain every possible category value for this axis, in the order they are displayed visually in the graph or legend.
         /// For example, if your categorical axis represented 'blood type', and the legend contained 'AB, A, B, O' in that order,
@@ -247,8 +247,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Describes a single data value, either numeric or categorical. Only the `number`
@@ -269,8 +269,8 @@ unsafe impl CopyingHelper for AXDataPointValue {
 
 unsafe impl NSObjectProtocol for AXDataPointValue {}
 
-extern_methods!(
-    unsafe impl AXDataPointValue {
+impl AXDataPointValue {
+    extern_methods!(
         #[unsafe(method(number))]
         #[unsafe(method_family = none)]
         pub unsafe fn number(&self) -> c_double;
@@ -304,8 +304,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Provides axis values for a single data point within a series.
@@ -324,8 +324,8 @@ unsafe impl CopyingHelper for AXDataPoint {
 
 unsafe impl NSObjectProtocol for AXDataPoint {}
 
-extern_methods!(
-    unsafe impl AXDataPoint {
+impl AXDataPoint {
+    extern_methods!(
         /// The x-axis value for this data point.
         /// Should be a Double for a numeric x-axis or a String for a categorical x-axis.
         #[unsafe(method(xValue))]
@@ -413,8 +413,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Provides information about a data series. A chart may have one or many data series.
@@ -433,8 +433,8 @@ unsafe impl CopyingHelper for AXDataSeriesDescriptor {
 
 unsafe impl NSObjectProtocol for AXDataSeriesDescriptor {}
 
-extern_methods!(
-    unsafe impl AXDataSeriesDescriptor {
+impl AXDataSeriesDescriptor {
+    extern_methods!(
         /// The name or title of this data series.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -501,8 +501,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Describes the content direction of the chart (i.e. the direction in which the X axis is rendered).
 /// For example, a bar chart might be leftToRight, while a pie chart might be radialClockwise.
@@ -552,8 +552,8 @@ unsafe impl CopyingHelper for AXChartDescriptor {
 
 unsafe impl NSObjectProtocol for AXChartDescriptor {}
 
-extern_methods!(
-    unsafe impl AXChartDescriptor {
+impl AXChartDescriptor {
+    extern_methods!(
         /// The title of the chart.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -711,8 +711,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axliveaudiograph?language=objc)
@@ -723,8 +723,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AXLiveAudioGraph {}
 
-extern_methods!(
-    unsafe impl AXLiveAudioGraph {
+impl AXLiveAudioGraph {
+    extern_methods!(
         /// Begins a live audio graph session.
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
@@ -740,12 +740,12 @@ extern_methods!(
         #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop();
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AXLiveAudioGraph {
+/// Methods declared on superclass `NSObject`.
+impl AXLiveAudioGraph {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -753,5 +753,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

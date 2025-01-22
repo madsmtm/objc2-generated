@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPictureInPictureController {}
 
-extern_methods!(
-    unsafe impl AVPictureInPictureController {
+impl AVPictureInPictureController {
+    extern_methods!(
         /// Whether or not Picture in Picture is supported on the current device.
         ///
         /// When NO, all initializers will return nil.
@@ -168,12 +168,12 @@ extern_methods!(
             &self,
             can_start_picture_in_picture_automatically_from_inline: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPictureInPictureController {
+/// Methods declared on superclass `NSObject`.
+impl AVPictureInPictureController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -181,8 +181,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A content source for AVPictureInPictureController.
@@ -197,8 +197,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPictureInPictureControllerContentSource {}
 
-extern_methods!(
-    unsafe impl AVPictureInPictureControllerContentSource {
+impl AVPictureInPictureControllerContentSource {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -225,8 +225,8 @@ extern_methods!(
         #[unsafe(method(playerLayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerLayer(&self) -> Option<Retained<AVPlayerLayer>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A protocol for delegates of AVPictureInPictureController.

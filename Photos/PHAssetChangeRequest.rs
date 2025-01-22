@@ -23,9 +23,9 @@ extern_class!(
 #[cfg(feature = "PHChangeRequest")]
 unsafe impl NSObjectProtocol for PHAssetChangeRequest {}
 
-extern_methods!(
-    #[cfg(feature = "PHChangeRequest")]
-    unsafe impl PHAssetChangeRequest {
+#[cfg(feature = "PHChangeRequest")]
+impl PHAssetChangeRequest {
+    extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[unsafe(method(creationRequestForAssetFromImage:))]
@@ -113,13 +113,13 @@ extern_methods!(
         #[unsafe(method(revertAssetContentToOriginal))]
         #[unsafe(method_family = none)]
         pub unsafe fn revertAssetContentToOriginal(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PHChangeRequest")]
-    unsafe impl PHAssetChangeRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "PHChangeRequest")]
+impl PHAssetChangeRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -127,8 +127,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputrequestid?language=objc)
 pub type PHContentEditingInputRequestID = NSUInteger;
@@ -142,8 +142,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHContentEditingInputRequestOptions {}
 
-extern_methods!(
-    unsafe impl PHContentEditingInputRequestOptions {
+impl PHContentEditingInputRequestOptions {
+    extern_methods!(
         #[cfg(all(feature = "PHAdjustmentData", feature = "block2"))]
         #[unsafe(method(canHandleAdjustmentData))]
         #[unsafe(method_family = none)]
@@ -183,12 +183,12 @@ extern_methods!(
             &self,
             progress_handler: Option<&block2::Block<dyn Fn(c_double, NonNull<Bool>)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHContentEditingInputRequestOptions {
+/// Methods declared on superclass `NSObject`.
+impl PHContentEditingInputRequestOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -196,13 +196,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// PHContentEditingInput
-    #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
-    unsafe impl PHAsset {
+/// PHContentEditingInput.
+#[cfg(all(feature = "PHAsset", feature = "PHObject"))]
+impl PHAsset {
+    extern_methods!(
         #[cfg(all(feature = "PHContentEditingInput", feature = "block2"))]
         #[unsafe(method(requestContentEditingInputWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -220,8 +220,8 @@ extern_methods!(
             &self,
             request_id: PHContentEditingInputRequestID,
         );
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputresultisincloudkey?language=objc)
@@ -238,10 +238,10 @@ extern "C" {
     pub static PHContentEditingInputErrorKey: &'static NSString;
 }
 
-extern_methods!(
-    /// PHAssetChangeRequest
-    #[cfg(feature = "PHContentEditingOutput")]
-    unsafe impl PHContentEditingOutput {
+/// PHAssetChangeRequest.
+#[cfg(feature = "PHContentEditingOutput")]
+impl PHContentEditingOutput {
+    extern_methods!(
         #[cfg(feature = "PHObject")]
         #[unsafe(method(initWithPlaceholderForCreatedAsset:))]
         #[unsafe(method_family = init)]
@@ -249,5 +249,5 @@ extern_methods!(
             this: Allocated<Self>,
             placeholder_for_created_asset: &PHObjectPlaceholder,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LAAuthenticationRequirement {}
 
-extern_methods!(
-    unsafe impl LAAuthenticationRequirement {
+impl LAAuthenticationRequirement {
+    extern_methods!(
         /// Requires user authentication
         ///
         /// Returns: `LAAuthenticationRequirement`instance
@@ -65,12 +65,12 @@ extern_methods!(
         pub unsafe fn biometryRequirementWithFallback(
             fallback: &LABiometryFallbackRequirement,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl LAAuthenticationRequirement {
+/// Methods declared on superclass `NSObject`.
+impl LAAuthenticationRequirement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -78,8 +78,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Builds authentication requirements that can be used as fallbacks for  biometric authentication
@@ -92,8 +92,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LABiometryFallbackRequirement {}
 
-extern_methods!(
-    unsafe impl LABiometryFallbackRequirement {
+impl LABiometryFallbackRequirement {
+    extern_methods!(
         /// Use default biometric fallback
         ///
         /// Returns: `LABiometryFallbackRequirement`instance
@@ -107,12 +107,12 @@ extern_methods!(
         #[unsafe(method(devicePasscodeRequirement))]
         #[unsafe(method_family = none)]
         pub unsafe fn devicePasscodeRequirement() -> Retained<LABiometryFallbackRequirement>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl LABiometryFallbackRequirement {
+/// Methods declared on superclass `NSObject`.
+impl LABiometryFallbackRequirement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -120,5 +120,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

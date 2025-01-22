@@ -65,8 +65,8 @@ unsafe impl NSObjectProtocol for NSFileWrapper {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSFileWrapper {}
 
-extern_methods!(
-    unsafe impl NSFileWrapper {
+impl NSFileWrapper {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithURL:options:error:_))]
         #[unsafe(method_family = init)]
@@ -230,12 +230,12 @@ extern_methods!(
         #[unsafe(method(symbolicLinkDestinationURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolicLinkDestinationURL(&self) -> Option<Retained<NSURL>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileWrapper {
+/// Methods declared on superclass `NSObject`.
+impl NSFileWrapper {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -243,12 +243,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSFileWrapper {
+/// NSDeprecated.
+impl NSFileWrapper {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -initWithURL:options:error: instead."]
         #[unsafe(method(initWithPath:))]
@@ -311,5 +311,5 @@ extern_methods!(
         #[unsafe(method(symbolicLinkDestination))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolicLinkDestination(&self) -> Retained<NSString>;
-    }
-);
+    );
+}

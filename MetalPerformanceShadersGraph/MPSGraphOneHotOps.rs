@@ -9,10 +9,10 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MPSGraphOneHotOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphOneHotOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(all(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
@@ -178,5 +178,5 @@ extern_methods!(
             depth: NSUInteger,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for MLMetricKey {}
 #[cfg(feature = "MLKey")]
 unsafe impl NSSecureCoding for MLMetricKey {}
 
-extern_methods!(
-    #[cfg(feature = "MLKey")]
-    unsafe impl MLMetricKey {
+#[cfg(feature = "MLKey")]
+impl MLMetricKey {
+    extern_methods!(
         #[unsafe(method(lossValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossValue() -> Retained<MLMetricKey>;
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for IMKServer {}
 
-extern_methods!(
-    unsafe impl IMKServer {
+impl IMKServer {
+    extern_methods!(
         /// Create a IMKServer from information in the bundle's Info.plist.
         ///
         /// This method will look into the info.plist for a controller class and delegate class.  The class names will be loaded, no classes will be instantiated.  Additionally, an NSConnection will be allocated and registered with the name parameter.
@@ -68,12 +68,12 @@ extern_methods!(
         #[unsafe(method(lastKeyEventWasDeadKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastKeyEventWasDeadKey(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl IMKServer {
+/// Methods declared on superclass `NSObject`.
+impl IMKServer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,5 +81,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -49,9 +49,9 @@ unsafe impl NSObjectProtocol for MPSTemporalAA {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSTemporalAA {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSTemporalAA {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSTemporalAA {
+    extern_methods!(
         /// How much to blend the current frame with the previous frame during temporal antialiasing.
         /// The final value is given by
         /// current * blendFactor + previous * (1 - blendFactor). Must be between zero
@@ -131,13 +131,13 @@ extern_methods!(
             motion_vector_texture: Option<&ProtocolObject<dyn MTLTexture>>,
             depth_texture: Option<&ProtocolObject<dyn MTLTexture>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSTemporalAA {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSTemporalAA {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -152,13 +152,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSTemporalAA {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSTemporalAA {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -166,5 +166,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

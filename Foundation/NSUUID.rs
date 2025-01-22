@@ -32,8 +32,8 @@ unsafe impl NSObjectProtocol for NSUUID {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSUUID {}
 
-extern_methods!(
-    unsafe impl NSUUID {
+impl NSUUID {
+    extern_methods!(
         #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub fn UUID() -> Retained<Self>;
@@ -59,17 +59,17 @@ extern_methods!(
         #[unsafe(method(UUIDString))]
         #[unsafe(method_family = none)]
         pub fn UUIDString(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUUID {
+/// Methods declared on superclass `NSObject`.
+impl NSUUID {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for NSUUID {
     #[inline]

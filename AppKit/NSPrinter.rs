@@ -54,8 +54,8 @@ unsafe impl CopyingHelper for NSPrinter {
 
 unsafe impl NSObjectProtocol for NSPrinter {}
 
-extern_methods!(
-    unsafe impl NSPrinter {
+impl NSPrinter {
+    extern_methods!(
         #[unsafe(method(printerNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn printerNames() -> Retained<NSArray<NSString>>;
@@ -94,12 +94,12 @@ extern_methods!(
         pub unsafe fn deviceDescription(
             &self,
         ) -> Retained<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPrinter {
+/// Methods declared on superclass `NSObject`.
+impl NSPrinter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -107,12 +107,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSPrinter {
+/// NSDeprecated.
+impl NSPrinter {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(statusForTable:))]
         #[unsafe(method_family = none)]
@@ -224,5 +224,5 @@ extern_methods!(
         #[unsafe(method(note))]
         #[unsafe(method_family = none)]
         pub unsafe fn note(&self) -> Retained<NSString>;
-    }
-);
+    );
+}

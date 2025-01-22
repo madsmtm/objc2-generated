@@ -71,8 +71,8 @@ unsafe impl NSObjectProtocol for HKAudiogramSensitivityTest {}
 
 unsafe impl NSSecureCoding for HKAudiogramSensitivityTest {}
 
-extern_methods!(
-    unsafe impl HKAudiogramSensitivityTest {
+impl HKAudiogramSensitivityTest {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// Ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
@@ -141,5 +141,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

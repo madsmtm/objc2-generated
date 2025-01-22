@@ -122,8 +122,8 @@ unsafe impl CopyingHelper for MTLRenderPassAttachmentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRenderPassAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRenderPassAttachmentDescriptor {
+impl MTLRenderPassAttachmentDescriptor {
+    extern_methods!(
         #[cfg(all(
             feature = "MTLAllocation",
             feature = "MTLResource",
@@ -257,12 +257,12 @@ extern_methods!(
         #[unsafe(method(setStoreActionOptions:))]
         #[unsafe(method_family = none)]
         pub fn setStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPassAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPassAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -270,8 +270,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasscolorattachmentdescriptor?language=objc)
@@ -288,8 +288,8 @@ unsafe impl CopyingHelper for MTLRenderPassColorAttachmentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRenderPassColorAttachmentDescriptor {
+impl MTLRenderPassColorAttachmentDescriptor {
+    extern_methods!(
         /// The clear color to be used if the loadAction property is MTLLoadActionClear
         #[unsafe(method(clearColor))]
         #[unsafe(method_family = none)]
@@ -299,12 +299,12 @@ extern_methods!(
         #[unsafe(method(setClearColor:))]
         #[unsafe(method_family = none)]
         pub fn setClearColor(&self, clear_color: MTLClearColor);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPassColorAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPassColorAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -312,8 +312,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLRenderPassColorAttachmentDescriptor {
     #[inline]
@@ -361,8 +361,8 @@ unsafe impl CopyingHelper for MTLRenderPassDepthAttachmentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRenderPassDepthAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRenderPassDepthAttachmentDescriptor {
+impl MTLRenderPassDepthAttachmentDescriptor {
+    extern_methods!(
         /// The clear depth value to be used if the loadAction property is MTLLoadActionClear
         #[unsafe(method(clearDepth))]
         #[unsafe(method_family = none)]
@@ -382,12 +382,12 @@ extern_methods!(
         #[unsafe(method(setDepthResolveFilter:))]
         #[unsafe(method_family = none)]
         pub fn setDepthResolveFilter(&self, depth_resolve_filter: MTLMultisampleDepthResolveFilter);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPassDepthAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPassDepthAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -395,8 +395,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Controls the MSAA stencil resolve operation.
 ///
@@ -437,8 +437,8 @@ unsafe impl CopyingHelper for MTLRenderPassStencilAttachmentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRenderPassStencilAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRenderPassStencilAttachmentDescriptor {
+impl MTLRenderPassStencilAttachmentDescriptor {
+    extern_methods!(
         /// The clear stencil value to be used if the loadAction property is MTLLoadActionClear
         #[unsafe(method(clearStencil))]
         #[unsafe(method_family = none)]
@@ -461,12 +461,12 @@ extern_methods!(
             &self,
             stencil_resolve_filter: MTLMultisampleStencilResolveFilter,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPassStencilAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPassStencilAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -474,8 +474,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasscolorattachmentdescriptorarray?language=objc)
@@ -486,8 +486,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLRenderPassColorAttachmentDescriptorArray {
+impl MTLRenderPassColorAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -502,12 +502,12 @@ extern_methods!(
             attachment: Option<&MTLRenderPassColorAttachmentDescriptor>,
             attachment_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPassColorAttachmentDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPassColorAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -515,8 +515,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasssamplebufferattachmentdescriptor?language=objc)
@@ -533,8 +533,8 @@ unsafe impl CopyingHelper for MTLRenderPassSampleBufferAttachmentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRenderPassSampleBufferAttachmentDescriptor {
+impl MTLRenderPassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLCounters")]
         /// The sample buffer to store samples for the render-pass defined samples.
         /// If sampleBuffer is non-nil, the sample indices will be used to store samples into
@@ -616,12 +616,12 @@ extern_methods!(
         #[unsafe(method(setEndOfFragmentSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfFragmentSampleIndex(&self, end_of_fragment_sample_index: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPassSampleBufferAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -629,8 +629,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasssamplebufferattachmentdescriptorarray?language=objc)
@@ -641,8 +641,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
+impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -657,12 +657,12 @@ extern_methods!(
             attachment: Option<&MTLRenderPassSampleBufferAttachmentDescriptor>,
             attachment_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -670,8 +670,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MTLRenderPassDescriptor represents a collection of attachments to be used to create a concrete render command encoder
@@ -690,8 +690,8 @@ unsafe impl CopyingHelper for MTLRenderPassDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRenderPassDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRenderPassDescriptor {
+impl MTLRenderPassDescriptor {
+    extern_methods!(
         /// Create an autoreleased default frame buffer descriptor
         #[unsafe(method(renderPassDescriptor))]
         #[unsafe(method_family = none)]
@@ -891,12 +891,12 @@ extern_methods!(
         pub fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLRenderPassSampleBufferAttachmentDescriptorArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPassDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPassDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -904,7 +904,7 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 // TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;

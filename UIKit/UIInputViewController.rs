@@ -98,9 +98,9 @@ unsafe impl UITextInputDelegate for UIInputViewController {}
 ))]
 unsafe impl UITraitEnvironment for UIInputViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIInputViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIInputViewController {
+    extern_methods!(
         #[cfg(all(feature = "UIInputView", feature = "UIView"))]
         #[unsafe(method(inputView))]
         #[unsafe(method_family = none)]
@@ -164,13 +164,13 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(NonNull<UILexicon>)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIInputViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIInputViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -185,13 +185,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIInputViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIInputViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -199,5 +199,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -75,8 +75,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GCDeviceHaptics {}
 
-extern_methods!(
-    unsafe impl GCDeviceHaptics {
+impl GCDeviceHaptics {
+    extern_methods!(
         /// The set of supported haptic localities for this device - representing the locations of its haptic actuators.
         ///
         ///
@@ -91,14 +91,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCDeviceHaptics {
+/// Methods declared on superclass `NSObject`.
+impl GCDeviceHaptics {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

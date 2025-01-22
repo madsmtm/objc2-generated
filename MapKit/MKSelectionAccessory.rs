@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKSelectionAccessory {}
 
-extern_methods!(
-    unsafe impl MKSelectionAccessory {
+impl MKSelectionAccessory {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -32,8 +32,8 @@ extern_methods!(
         pub unsafe fn mapItemDetailWithPresentationStyle(
             presentation_style: &MKMapItemDetailSelectionAccessoryPresentationStyle,
         ) -> Retained<MKSelectionAccessory>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemdetailselectionaccessorycalloutstyle?language=objc)
 // NS_ENUM
@@ -66,8 +66,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKMapItemDetailSelectionAccessoryPresentationStyle {}
 
-extern_methods!(
-    unsafe impl MKMapItemDetailSelectionAccessoryPresentationStyle {
+impl MKMapItemDetailSelectionAccessoryPresentationStyle {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -105,5 +105,5 @@ extern_methods!(
         #[unsafe(method(openInMaps))]
         #[unsafe(method_family = none)]
         pub unsafe fn openInMaps() -> Retained<MKMapItemDetailSelectionAccessoryPresentationStyle>;
-    }
-);
+    );
+}

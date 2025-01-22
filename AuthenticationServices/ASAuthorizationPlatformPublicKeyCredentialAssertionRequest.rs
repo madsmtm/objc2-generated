@@ -41,9 +41,9 @@ unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialAsser
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
+    extern_methods!(
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         /// A list of credentials to allow for this request. If this ilist is nonempty, only credentials matching the provided descriptors can be used to sign in.
         #[unsafe(method(allowedCredentials))]
@@ -100,13 +100,13 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
-);
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "ASAuthorizationRequest",
@@ -117,10 +117,10 @@ unsafe impl ASAuthorizationWebBrowserExternallyAuthenticatableRequest
 {
 }
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
-);
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "ASAuthorizationRequest",

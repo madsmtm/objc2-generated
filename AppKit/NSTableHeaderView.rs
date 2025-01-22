@@ -56,9 +56,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableHeaderView {}
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 unsafe impl NSViewToolTipOwner for NSTableHeaderView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTableHeaderView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSTableHeaderView {
+    extern_methods!(
         #[cfg(all(feature = "NSControl", feature = "NSTableView"))]
         #[unsafe(method(tableView))]
         #[unsafe(method_family = none)]
@@ -91,13 +91,13 @@ extern_methods!(
         #[unsafe(method(columnAtPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTableHeaderView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSTableHeaderView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -108,25 +108,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTableHeaderView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSTableHeaderView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTableHeaderView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSTableHeaderView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

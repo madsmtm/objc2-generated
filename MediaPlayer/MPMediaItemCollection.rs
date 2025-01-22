@@ -23,9 +23,9 @@ unsafe impl NSObjectProtocol for MPMediaItemCollection {}
 #[cfg(feature = "MPMediaEntity")]
 unsafe impl NSSecureCoding for MPMediaItemCollection {}
 
-extern_methods!(
-    #[cfg(feature = "MPMediaEntity")]
-    unsafe impl MPMediaItemCollection {
+#[cfg(feature = "MPMediaEntity")]
+impl MPMediaItemCollection {
+    extern_methods!(
         #[cfg(feature = "MPMediaItem")]
         #[unsafe(method(collectionWithItems:))]
         #[unsafe(method_family = none)]
@@ -59,13 +59,13 @@ extern_methods!(
         #[unsafe(method(mediaTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaTypes(&self) -> MPMediaType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPMediaEntity")]
-    unsafe impl MPMediaItemCollection {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPMediaEntity")]
+impl MPMediaItemCollection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -73,5 +73,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

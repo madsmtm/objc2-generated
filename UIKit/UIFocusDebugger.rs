@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIFocusDebugger {}
 
-extern_methods!(
-    unsafe impl UIFocusDebugger {
+impl UIFocusDebugger {
+    extern_methods!(
         /// Outputs an overview of all supported debugging utilities and other relevant information.
         /// - To use in Swift, enter `po UIFocusDebugger.help()` when paused in lldb.
         /// - To use in Objective-C, enter `po [UIFocusDebugger help]` when paused in lldb.
@@ -93,12 +93,12 @@ extern_methods!(
         pub unsafe fn preferredFocusEnvironmentsForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIFocusDebugger {
+/// Methods declared on superclass `NSObject`.
+impl UIFocusDebugger {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -106,8 +106,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusdebuggeroutput?language=objc)

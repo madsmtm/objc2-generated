@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CKOperation {}
 
-extern_methods!(
-    unsafe impl CKOperation {
+impl CKOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,17 +79,17 @@ extern_methods!(
             &self,
             long_lived_operation_was_persisted_block: Option<&block2::Block<dyn Fn()>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKOperation {
+/// Methods declared on superclass `NSObject`.
+impl CKOperation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An operation configuration is a set of properties that describes how your operation should behave.  All properties have a default value.  When determining what properties to apply to an operation, we consult the operation's configuration property, as well as the operation->group->defaultConfiguration property.  We combine them following these rules:
@@ -120,8 +120,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CKOperationConfiguration {}
 
-extern_methods!(
-    unsafe impl CKOperationConfiguration {
+impl CKOperationConfiguration {
+    extern_methods!(
         #[cfg(feature = "CKContainer")]
         /// If no container is set, [CKContainer defaultContainer] is used
         #[unsafe(method(container))]
@@ -231,12 +231,12 @@ extern_methods!(
             &self,
             timeout_interval_for_resource: NSTimeInterval,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKOperationConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl CKOperationConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -244,13 +244,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// CKOperationDeprecated
-    /// These deprecated properties now read and write from the CKOperation's configuration
-    unsafe impl CKOperation {
+/// CKOperationDeprecated.
+/// These deprecated properties now read and write from the CKOperation's configuration
+impl CKOperation {
+    extern_methods!(
         #[cfg(feature = "CKContainer")]
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(container))]
@@ -313,5 +313,5 @@ extern_methods!(
             &self,
             timeout_interval_for_resource: NSTimeInterval,
         );
-    }
-);
+    );
+}

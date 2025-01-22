@@ -6,10 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MPSGraphReductionOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphReductionOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a reduction sum operation and returns the result tensor.
         ///
@@ -315,5 +315,5 @@ extern_methods!(
             axes: Option<&NSArray<NSNumber>>,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

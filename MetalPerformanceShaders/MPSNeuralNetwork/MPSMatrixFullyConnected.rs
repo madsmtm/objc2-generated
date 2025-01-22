@@ -82,14 +82,14 @@ unsafe impl NSObjectProtocol for MPSMatrixFullyConnected {}
 ))]
 unsafe impl NSSecureCoding for MPSMatrixFullyConnected {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixFullyConnected {
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixFullyConnected {
+    extern_methods!(
         /// The number of input vectors which make up the input array.  This
         /// is equivalent to the number of rows to consider from the primary
         /// source matrix.
@@ -301,18 +301,18 @@ extern_methods!(
             zone: *mut NSZone,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixFullyConnected {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixFullyConnected {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -327,18 +327,18 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixFullyConnected {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixFullyConnected {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -346,8 +346,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -420,14 +420,14 @@ unsafe impl NSObjectProtocol for MPSMatrixFullyConnectedGradient {}
 ))]
 unsafe impl NSSecureCoding for MPSMatrixFullyConnectedGradient {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixFullyConnectedGradient {
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixFullyConnectedGradient {
+    extern_methods!(
         /// The number of input vectors which make up the input array.
         /// This is equivalent to the number of rows in both the input
         /// matrix and the source gradient matrix.
@@ -603,18 +603,18 @@ extern_methods!(
             zone: *mut NSZone,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixFullyConnectedGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixFullyConnectedGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -629,18 +629,18 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixFullyConnectedGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixFullyConnectedGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -648,5 +648,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

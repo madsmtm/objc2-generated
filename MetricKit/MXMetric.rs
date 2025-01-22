@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for MXMetric {}
 
 unsafe impl NSSecureCoding for MXMetric {}
 
-extern_methods!(
-    unsafe impl MXMetric {
+impl MXMetric {
+    extern_methods!(
         /// Convenience method to return a JSON representation of this metric.
         ///
         /// Returns: An NSData object containing the JSON representation
@@ -46,12 +46,12 @@ extern_methods!(
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MXMetric {
+/// Methods declared on superclass `NSObject`.
+impl MXMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -59,5 +59,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

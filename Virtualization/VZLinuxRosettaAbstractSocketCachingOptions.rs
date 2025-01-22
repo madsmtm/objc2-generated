@@ -23,9 +23,9 @@ extern_class!(
 #[cfg(feature = "VZLinuxRosettaCachingOptions")]
 unsafe impl NSObjectProtocol for VZLinuxRosettaAbstractSocketCachingOptions {}
 
-extern_methods!(
-    #[cfg(feature = "VZLinuxRosettaCachingOptions")]
-    unsafe impl VZLinuxRosettaAbstractSocketCachingOptions {
+#[cfg(feature = "VZLinuxRosettaCachingOptions")]
+impl VZLinuxRosettaAbstractSocketCachingOptions {
+    extern_methods!(
         /// Initialize options to be set on a VZLinuxRosettaDirectoryShare.
         ///
         /// Parameter `name`: The name of the Abstract Socket to be used to communicate with the Rosetta translation daemon. This cannot exceed maximumNameLength UTF-8 bytes long.
@@ -52,13 +52,13 @@ extern_methods!(
         #[unsafe(method(maximumNameLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumNameLength() -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZLinuxRosettaCachingOptions`
-    #[cfg(feature = "VZLinuxRosettaCachingOptions")]
-    unsafe impl VZLinuxRosettaAbstractSocketCachingOptions {
+/// Methods declared on superclass `VZLinuxRosettaCachingOptions`.
+#[cfg(feature = "VZLinuxRosettaCachingOptions")]
+impl VZLinuxRosettaAbstractSocketCachingOptions {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -66,5 +66,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

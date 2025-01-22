@@ -337,8 +337,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCNSceneSource {}
 
-extern_methods!(
-    unsafe impl SCNSceneSource {
+impl SCNSceneSource {
+    extern_methods!(
         /// Creates and initialize a SCNSceneSource instance.
         ///
         /// Parameter `url`: The URL to read scenes from.
@@ -479,12 +479,12 @@ extern_methods!(
                 dyn Fn(NonNull<AnyObject>, NonNull<NSString>, NonNull<Bool>) -> Bool + '_,
             >,
         ) -> Retained<NSArray<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNSceneSource {
+/// Methods declared on superclass `NSObject`.
+impl SCNSceneSource {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -492,5 +492,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

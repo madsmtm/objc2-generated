@@ -37,8 +37,8 @@ unsafe impl NSObjectProtocol for CNGroup {}
 
 unsafe impl NSSecureCoding for CNGroup {}
 
-extern_methods!(
-    unsafe impl CNGroup {
+impl CNGroup {
+    extern_methods!(
         /// The identifier is unique among groups on the device. It can be saved and used for fetching groups next application launch.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -47,12 +47,12 @@ extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNGroup {
+/// Methods declared on superclass `NSObject`.
+impl CNGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,8 +60,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cngroupidentifierkey?language=objc)

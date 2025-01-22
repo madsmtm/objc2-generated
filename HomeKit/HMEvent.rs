@@ -21,8 +21,8 @@ unsafe impl Sync for HMEvent {}
 
 unsafe impl NSObjectProtocol for HMEvent {}
 
-extern_methods!(
-    unsafe impl HMEvent {
+impl HMEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -43,5 +43,5 @@ extern_methods!(
         #[unsafe(method(isSupportedForHome:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupportedForHome(home: &HMHome) -> bool;
-    }
-);
+    );
+}

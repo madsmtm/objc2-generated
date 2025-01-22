@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for WKPDFConfiguration {
 
 unsafe impl NSObjectProtocol for WKPDFConfiguration {}
 
-extern_methods!(
-    unsafe impl WKPDFConfiguration {
+impl WKPDFConfiguration {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The rect to capture in web page coordinates
         ///
@@ -53,12 +53,12 @@ extern_methods!(
         #[unsafe(method(setAllowTransparentBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowTransparentBackground(&self, allow_transparent_background: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKPDFConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl WKPDFConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,5 +66,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

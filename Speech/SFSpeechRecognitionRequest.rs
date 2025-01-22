@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SFSpeechRecognitionRequest {}
 
-extern_methods!(
-    unsafe impl SFSpeechRecognitionRequest {
+impl SFSpeechRecognitionRequest {
+    extern_methods!(
         #[cfg(feature = "SFSpeechRecognitionTaskHint")]
         #[unsafe(method(taskHint))]
         #[unsafe(method_family = none)]
@@ -95,12 +95,12 @@ extern_methods!(
             &self,
             customized_language_model: Option<&SFSpeechLanguageModelConfiguration>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFSpeechRecognitionRequest {
+/// Methods declared on superclass `NSObject`.
+impl SFSpeechRecognitionRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,8 +108,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest?language=objc)
@@ -120,8 +120,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SFSpeechURLRecognitionRequest {}
 
-extern_methods!(
-    unsafe impl SFSpeechURLRecognitionRequest {
+impl SFSpeechURLRecognitionRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -133,17 +133,17 @@ extern_methods!(
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFSpeechURLRecognitionRequest {
+/// Methods declared on superclass `NSObject`.
+impl SFSpeechURLRecognitionRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest?language=objc)
@@ -154,8 +154,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SFSpeechAudioBufferRecognitionRequest {}
 
-extern_methods!(
-    unsafe impl SFSpeechAudioBufferRecognitionRequest {
+impl SFSpeechAudioBufferRecognitionRequest {
+    extern_methods!(
         #[cfg(feature = "objc2-avf-audio")]
         #[unsafe(method(nativeAudioFormat))]
         #[unsafe(method_family = none)]
@@ -174,12 +174,12 @@ extern_methods!(
         #[unsafe(method(endAudio))]
         #[unsafe(method_family = none)]
         pub unsafe fn endAudio(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFSpeechAudioBufferRecognitionRequest {
+/// Methods declared on superclass `NSObject`.
+impl SFSpeechAudioBufferRecognitionRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -187,5 +187,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

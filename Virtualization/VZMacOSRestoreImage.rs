@@ -30,8 +30,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZMacOSRestoreImage {}
 
-extern_methods!(
-    unsafe impl VZMacOSRestoreImage {
+impl VZMacOSRestoreImage {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -113,5 +113,5 @@ extern_methods!(
         pub unsafe fn mostFeaturefulSupportedConfiguration(
             &self,
         ) -> Option<Retained<VZMacOSConfigurationRequirements>>;
-    }
-);
+    );
+}

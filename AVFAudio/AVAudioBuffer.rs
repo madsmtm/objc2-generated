@@ -28,8 +28,8 @@ unsafe impl CopyingHelper for AVAudioBuffer {
 
 unsafe impl NSObjectProtocol for AVAudioBuffer {}
 
-extern_methods!(
-    unsafe impl AVAudioBuffer {
+impl AVAudioBuffer {
+    extern_methods!(
         #[cfg(feature = "AVAudioFormat")]
         /// The format of the audio in the buffer.
         #[unsafe(method(format))]
@@ -59,12 +59,12 @@ extern_methods!(
         #[unsafe(method(mutableAudioBufferList))]
         #[unsafe(method_family = none)]
         pub unsafe fn mutableAudioBufferList(&self) -> NonNull<AudioBufferList>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioBuffer {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioBuffer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,8 +72,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A subclass of AVAudioBuffer for use with PCM audio formats.
@@ -95,8 +95,8 @@ unsafe impl CopyingHelper for AVAudioPCMBuffer {
 
 unsafe impl NSObjectProtocol for AVAudioPCMBuffer {}
 
-extern_methods!(
-    unsafe impl AVAudioPCMBuffer {
+impl AVAudioPCMBuffer {
+    extern_methods!(
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
         /// Initialize a buffer that is to contain PCM audio samples.
         ///
@@ -223,12 +223,12 @@ extern_methods!(
         #[unsafe(method(int32ChannelData))]
         #[unsafe(method_family = none)]
         pub unsafe fn int32ChannelData(&self) -> *mut NonNull<i32>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioPCMBuffer {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioPCMBuffer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -236,8 +236,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A subclass of AVAudioBuffer for use with compressed audio formats.
@@ -256,8 +256,8 @@ unsafe impl CopyingHelper for AVAudioCompressedBuffer {
 
 unsafe impl NSObjectProtocol for AVAudioCompressedBuffer {}
 
-extern_methods!(
-    unsafe impl AVAudioCompressedBuffer {
+impl AVAudioCompressedBuffer {
+    extern_methods!(
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
         /// Initialize a buffer that is to contain compressed audio data.
         ///
@@ -349,12 +349,12 @@ extern_methods!(
         #[unsafe(method(packetDescriptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn packetDescriptions(&self) -> *mut AudioStreamPacketDescription;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioCompressedBuffer {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioCompressedBuffer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -362,5 +362,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

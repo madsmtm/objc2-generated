@@ -116,8 +116,8 @@ unsafe impl NSObjectProtocol for MTLSharedTextureHandle {}
 
 unsafe impl NSSecureCoding for MTLSharedTextureHandle {}
 
-extern_methods!(
-    unsafe impl MTLSharedTextureHandle {
+impl MTLSharedTextureHandle {
+    extern_methods!(
         #[cfg(feature = "MTLDevice")]
         /// The device this texture was created against.
         ///
@@ -130,12 +130,12 @@ extern_methods!(
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub fn label(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLSharedTextureHandle {
+/// Methods declared on superclass `NSObject`.
+impl MTLSharedTextureHandle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -143,8 +143,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// MTLTextureUsage declares how the texture will be used over its lifetime (bitwise OR for multiple uses).
 ///
@@ -215,8 +215,8 @@ unsafe impl CopyingHelper for MTLTextureDescriptor {
 
 unsafe impl NSObjectProtocol for MTLTextureDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLTextureDescriptor {
+impl MTLTextureDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLPixelFormat")]
         /// Create a TextureDescriptor for a common 2D texture.
         #[unsafe(method(texture2DDescriptorWithPixelFormat:width:height:mipmapped:))]
@@ -446,12 +446,12 @@ extern_methods!(
         #[unsafe(method(setSwizzle:))]
         #[unsafe(method_family = none)]
         pub fn setSwizzle(&self, swizzle: MTLTextureSwizzleChannels);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLTextureDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLTextureDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -459,8 +459,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// MTLTexture represents a collection of 1D, 2D, or 3D images.

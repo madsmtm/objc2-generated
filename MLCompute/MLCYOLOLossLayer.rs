@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
 unsafe impl NSObjectProtocol for MLCYOLOLossLayer {}
 
-extern_methods!(
-    #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
-    unsafe impl MLCYOLOLossLayer {
+#[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
+impl MLCYOLOLossLayer {
+    extern_methods!(
         #[cfg(feature = "MLCYOLOLossDescriptor")]
         /// The YOLO loss descriptor
         #[deprecated]
@@ -42,13 +42,13 @@ extern_methods!(
         pub unsafe fn layerWithDescriptor(
             loss_descriptor: &MLCYOLOLossDescriptor,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLossLayer`
-    #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
-    unsafe impl MLCYOLOLossLayer {
+/// Methods declared on superclass `MLCLossLayer`.
+#[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
+impl MLCYOLOLossLayer {
+    extern_methods!(
         #[cfg(all(feature = "MLCLossDescriptor", feature = "MLCTensor"))]
         /// Create a MLComputeLoss layer
         ///
@@ -394,13 +394,13 @@ extern_methods!(
             reduction_type: MLCReductionType,
             weights: Option<&MLCTensor>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
-    unsafe impl MLCYOLOLossLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
+impl MLCYOLOLossLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -410,5 +410,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

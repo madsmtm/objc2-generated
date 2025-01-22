@@ -124,25 +124,25 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// TestingModeInteractive
-    /// Control the scheduling of operation.
-    ///
-    /// These methods are available on domain with the NSFileProviderDomainTestingModeInteractive
-    /// enabled.
-    ///
-    /// In order to manually schedule the operation, the testing harness will first call
-    /// -listAvailableTestingOperationWithError and get a list of operations that can be scheduled.
-    /// It can pick one or more operations from that list and call -runTestingOperations:error: to
-    /// schedule those operations.
-    ///
-    /// From that point, it should get the new list of available operations and iterate between listing,
-    /// picking operation, running those operation and so on.
-    ///
-    /// A process must have the com.apple.developer.fileprovider.testing-mode entitlement in order to
-    /// call the methods from this category.
-    #[cfg(feature = "Extension")]
-    unsafe impl NSFileProviderManager {
+/// TestingModeInteractive.
+/// Control the scheduling of operation.
+///
+/// These methods are available on domain with the NSFileProviderDomainTestingModeInteractive
+/// enabled.
+///
+/// In order to manually schedule the operation, the testing harness will first call
+/// -listAvailableTestingOperationWithError and get a list of operations that can be scheduled.
+/// It can pick one or more operations from that list and call -runTestingOperations:error: to
+/// schedule those operations.
+///
+/// From that point, it should get the new list of available operations and iterate between listing,
+/// picking operation, running those operation and so on.
+///
+/// A process must have the com.apple.developer.fileprovider.testing-mode entitlement in order to
+/// call the methods from this category.
+#[cfg(feature = "Extension")]
+impl NSFileProviderManager {
+    extern_methods!(
         /// List the available operations.
         ///
         /// This lists all of the operations that are ready to be scheduled by the system. The system waits
@@ -172,8 +172,8 @@ extern_methods!(
             Retained<NSDictionary<ProtocolObject<dyn NSFileProviderTestingOperation>, NSError>>,
             Retained<NSError>,
         >;
-    }
-);
+    );
+}
 
 /// Side affected by the operation.
 ///

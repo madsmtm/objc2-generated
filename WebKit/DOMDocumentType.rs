@@ -50,13 +50,13 @@ unsafe impl CopyingHelper for DOMDocumentType {
 ))]
 unsafe impl NSObjectProtocol for DOMDocumentType {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMDocumentType {
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMDocumentType {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -88,34 +88,34 @@ extern_methods!(
         #[unsafe(method(internalSubset))]
         #[unsafe(method_family = none)]
         pub unsafe fn internalSubset(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMDocumentType {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMDocumentType {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMDocumentType {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMDocumentType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

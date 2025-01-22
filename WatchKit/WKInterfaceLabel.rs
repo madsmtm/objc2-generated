@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl NSObjectProtocol for WKInterfaceLabel {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceLabel {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceLabel {
+    extern_methods!(
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
@@ -35,25 +35,25 @@ extern_methods!(
         #[unsafe(method(setAttributedText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `WKInterfaceObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceLabel {
+/// Methods declared on superclass `WKInterfaceObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceLabel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceLabel {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceLabel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

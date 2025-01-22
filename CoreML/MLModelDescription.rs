@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for MLModelDescription {}
 
 unsafe impl NSSecureCoding for MLModelDescription {}
 
-extern_methods!(
-    unsafe impl MLModelDescription {
+impl MLModelDescription {
+    extern_methods!(
         #[cfg(feature = "MLFeatureDescription")]
         /// Description of the inputs to the model
         #[unsafe(method(inputDescriptionsByName))]
@@ -76,12 +76,12 @@ extern_methods!(
         #[unsafe(method(classLabels))]
         #[unsafe(method_family = none)]
         pub unsafe fn classLabels(&self) -> Option<Retained<NSArray<AnyObject>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLModelDescription {
+/// Methods declared on superclass `NSObject`.
+impl MLModelDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -89,13 +89,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MLUpdateAdditions
-    /// Additions to model descriptions related to model update API.
-    unsafe impl MLModelDescription {
+/// MLUpdateAdditions.
+/// Additions to model descriptions related to model update API.
+impl MLModelDescription {
+    extern_methods!(
         #[unsafe(method(isUpdatable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUpdatable(&self) -> bool;
@@ -106,13 +106,13 @@ extern_methods!(
         pub unsafe fn trainingInputDescriptionsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MLParameters
-    /// Additions to model descriptions related to model parameters
-    unsafe impl MLModelDescription {
+/// MLParameters.
+/// Additions to model descriptions related to model parameters
+impl MLModelDescription {
+    extern_methods!(
         #[cfg(all(
             feature = "MLKey",
             feature = "MLParameterDescription",
@@ -123,5 +123,5 @@ extern_methods!(
         pub unsafe fn parameterDescriptionsByKey(
             &self,
         ) -> Retained<NSDictionary<MLParameterKey, MLParameterDescription>>;
-    }
-);
+    );
+}

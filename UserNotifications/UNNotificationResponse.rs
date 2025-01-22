@@ -35,8 +35,8 @@ unsafe impl NSObjectProtocol for UNNotificationResponse {}
 
 unsafe impl NSSecureCoding for UNNotificationResponse {}
 
-extern_methods!(
-    unsafe impl UNNotificationResponse {
+impl UNNotificationResponse {
+    extern_methods!(
         #[cfg(feature = "UNNotification")]
         #[unsafe(method(notification))]
         #[unsafe(method_family = none)]
@@ -49,17 +49,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UNNotificationResponse {
+/// Methods declared on superclass `NSObject`.
+impl UNNotificationResponse {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/untextinputnotificationresponse?language=objc)
@@ -80,28 +80,28 @@ unsafe impl NSObjectProtocol for UNTextInputNotificationResponse {}
 
 unsafe impl NSSecureCoding for UNTextInputNotificationResponse {}
 
-extern_methods!(
-    unsafe impl UNTextInputNotificationResponse {
+impl UNTextInputNotificationResponse {
+    extern_methods!(
         #[unsafe(method(userText))]
         #[unsafe(method_family = none)]
         pub unsafe fn userText(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UNNotificationResponse`
-    unsafe impl UNTextInputNotificationResponse {
+/// Methods declared on superclass `UNNotificationResponse`.
+impl UNTextInputNotificationResponse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UNTextInputNotificationResponse {
+/// Methods declared on superclass `NSObject`.
+impl UNTextInputNotificationResponse {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

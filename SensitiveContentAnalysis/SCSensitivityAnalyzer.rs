@@ -53,8 +53,8 @@ unsafe impl Sync for SCSensitivityAnalyzer {}
 
 unsafe impl NSObjectProtocol for SCSensitivityAnalyzer {}
 
-extern_methods!(
-    unsafe impl SCSensitivityAnalyzer {
+impl SCSensitivityAnalyzer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -111,14 +111,14 @@ extern_methods!(
             file_url: &NSURL,
             completion_handler: &block2::Block<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>,
         ) -> Retained<NSProgress>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCSensitivityAnalyzer {
+/// Methods declared on superclass `NSObject`.
+impl SCSensitivityAnalyzer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

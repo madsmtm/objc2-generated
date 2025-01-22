@@ -32,9 +32,9 @@ unsafe impl CopyingHelper for MPSGraphTensor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphTensor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphTensor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphTensor {
+    extern_methods!(
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The shape of the tensor.
         ///
@@ -60,15 +60,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphTensor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphTensor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

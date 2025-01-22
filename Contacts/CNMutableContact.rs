@@ -48,9 +48,9 @@ unsafe impl NSObjectProtocol for CNMutableContact {}
 #[cfg(feature = "CNContact")]
 unsafe impl NSSecureCoding for CNMutableContact {}
 
-extern_methods!(
-    #[cfg(feature = "CNContact")]
-    unsafe impl CNMutableContact {
+#[cfg(feature = "CNContact")]
+impl CNMutableContact {
+    extern_methods!(
         #[unsafe(method(contactType))]
         #[unsafe(method_family = none)]
         pub unsafe fn contactType(&self) -> CNContactType;
@@ -340,13 +340,13 @@ extern_methods!(
         #[unsafe(method(setDates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDates(&self, dates: &NSArray<CNLabeledValue<NSDateComponents>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CNContact")]
-    unsafe impl CNMutableContact {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CNContact")]
+impl CNMutableContact {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -354,5 +354,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

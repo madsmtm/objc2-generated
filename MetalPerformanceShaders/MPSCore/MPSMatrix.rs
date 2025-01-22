@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSMatrixDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSMatrixDescriptor {
+impl MPSMatrixDescriptor {
+    extern_methods!(
         /// The number of rows in a matrix.
         #[unsafe(method(rows))]
         #[unsafe(method_family = none)]
@@ -193,12 +193,12 @@ extern_methods!(
             columns: NSUInteger,
             data_type: MPSDataType,
         ) -> usize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSMatrixDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSMatrixDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -206,8 +206,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -225,8 +225,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSVectorDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSVectorDescriptor {
+impl MPSVectorDescriptor {
+    extern_methods!(
         /// The number of elements in the vector.
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
@@ -330,12 +330,12 @@ extern_methods!(
             length: NSUInteger,
             data_type: MPSDataType,
         ) -> usize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSVectorDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSVectorDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -343,8 +343,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -373,8 +373,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSMatrix {}
 
-extern_methods!(
-    unsafe impl MPSMatrix {
+impl MPSMatrix {
+    extern_methods!(
         /// The device on which the MPSMatrix will be used.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
@@ -537,17 +537,17 @@ extern_methods!(
         #[unsafe(method(resourceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceSize(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSMatrix {
+/// Methods declared on superclass `NSObject`.
+impl MPSMatrix {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -565,8 +565,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSVector {}
 
-extern_methods!(
-    unsafe impl MPSVector {
+impl MPSVector {
+    extern_methods!(
         /// The device on which the MPSVector will be used.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
@@ -717,17 +717,17 @@ extern_methods!(
         #[unsafe(method(resourceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceSize(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSVector {
+/// Methods declared on superclass `NSObject`.
+impl MPSVector {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A MPSMatrix allocated on GPU private memory.
@@ -743,8 +743,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSTemporaryMatrix {}
 
-extern_methods!(
-    unsafe impl MPSTemporaryMatrix {
+impl MPSTemporaryMatrix {
+    extern_methods!(
         /// Initialize a MPSTemporaryMatrix for use on a MTLCommandBuffer
         ///
         /// Parameter `commandBuffer`: The MTLCommandBuffer on which the MPSTemporaryMatrix will be exclusively used
@@ -825,12 +825,12 @@ extern_methods!(
         #[unsafe(method(setReadCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSMatrix`
-    unsafe impl MPSTemporaryMatrix {
+/// Methods declared on superclass `MPSMatrix`.
+impl MPSTemporaryMatrix {
+    extern_methods!(
         /// Initialize a MPSMatrix object with a MTLBuffer at a given offset.
         ///
         ///
@@ -875,17 +875,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSTemporaryMatrix {
+/// Methods declared on superclass `NSObject`.
+impl MPSTemporaryMatrix {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A MPSVector allocated on GPU private memory.
@@ -901,8 +901,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSTemporaryVector {}
 
-extern_methods!(
-    unsafe impl MPSTemporaryVector {
+impl MPSTemporaryVector {
+    extern_methods!(
         /// Initialize a MPSTemporaryVector for use on a MTLCommandBuffer
         ///
         /// Parameter `commandBuffer`: The MTLCommandBuffer on which the MPSTemporaryMatrix will be exclusively used
@@ -983,12 +983,12 @@ extern_methods!(
         #[unsafe(method(setReadCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSVector`
-    unsafe impl MPSTemporaryVector {
+/// Methods declared on superclass `MPSVector`.
+impl MPSTemporaryVector {
+    extern_methods!(
         /// Initialize a MPSVector object with a MTLBuffer and an offset.
         ///
         ///
@@ -1032,14 +1032,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSTemporaryVector {
+/// Methods declared on superclass `NSObject`.
+impl MPSTemporaryVector {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -33,10 +33,10 @@ unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectP
 {
 }
 
-extern_methods!(
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
-    {
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[unsafe(method(numberOfItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
@@ -216,14 +216,14 @@ extern_methods!(
             &self,
             section_identifiers: &NSArray<SectionIdentifierType>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
-    {
+/// Methods declared on superclass `NSObject`.
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -231,8 +231,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcecellprovider?language=objc)
 #[cfg(all(
@@ -283,10 +283,10 @@ unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectP
 {
 }
 
-extern_methods!(
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
-    {
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[unsafe(method(sectionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIdentifier(&self) -> Retained<SectionIdentifierType>;
@@ -310,14 +310,14 @@ extern_methods!(
         pub unsafe fn difference(
             &self,
         ) -> Retained<NSOrderedCollectionDifference<ItemIdentifierType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
-    {
+/// Methods declared on superclass `NSObject`.
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -325,8 +325,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcetransaction?language=objc)
@@ -343,10 +343,10 @@ unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectP
 {
 }
 
-extern_methods!(
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
-    {
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[unsafe(method(initialSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialSnapshot(
@@ -374,14 +374,14 @@ extern_methods!(
                 NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>,
             >,
         >;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
-    {
+/// Methods declared on superclass `NSObject`.
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -389,8 +389,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereorderinghandlers?language=objc)
@@ -419,10 +419,10 @@ unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSObjectProtocol
 {
 }
 
-extern_methods!(
-    unsafe impl<SectionType: Message, ItemType: Message>
-        UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
-    {
+impl<SectionType: Message, ItemType: Message>
+    UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
+{
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(canReorderItemHandler))]
         #[unsafe(method_family = none)]
@@ -482,14 +482,14 @@ extern_methods!(
                 >,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<SectionType: Message, ItemType: Message>
-        UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
-    {
+/// Methods declared on superclass `NSObject`.
+impl<SectionType: Message, ItemType: Message>
+    UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
+{
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -497,8 +497,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcesectionsnapshothandlers?language=objc)
@@ -526,8 +526,8 @@ unsafe impl<ItemType: ?Sized> NSObjectProtocol
 {
 }
 
-extern_methods!(
-    unsafe impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType> {
+impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType> {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(shouldExpandItemHandler))]
         #[unsafe(method_family = none)]
@@ -619,12 +619,12 @@ extern_methods!(
                 >,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType> {
+/// Methods declared on superclass `NSObject`.
+impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -632,8 +632,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource?language=objc)
@@ -658,10 +658,10 @@ unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized 
 {
 }
 
-extern_methods!(
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-    {
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[cfg(all(
             feature = "UICollectionView",
             feature = "UICollectionViewCell",
@@ -850,8 +850,8 @@ extern_methods!(
                 ItemIdentifierType,
             >,
         );
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasourcecellprovider?language=objc)
 #[cfg(all(
@@ -889,10 +889,10 @@ unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized 
 {
 }
 
-extern_methods!(
-    unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
-        UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-    {
+impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
+    UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+{
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UIScrollView",
@@ -995,5 +995,5 @@ extern_methods!(
         #[unsafe(method(setDefaultRowAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultRowAnimation(&self, default_row_animation: UITableViewRowAnimation);
-    }
-);
+    );
+}

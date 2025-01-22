@@ -26,9 +26,9 @@ unsafe impl CopyingHelper for NSPersistentHistoryChangeRequest {
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSPersistentHistoryChangeRequest {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSPersistentHistoryChangeRequest {
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSPersistentHistoryChangeRequest {
+    extern_methods!(
         #[unsafe(method(fetchHistoryAfterDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchHistoryAfterDate(date: &NSDate) -> Retained<Self>;
@@ -98,13 +98,13 @@ extern_methods!(
         #[unsafe(method(setFetchRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRequest(&self, fetch_request: Option<&NSFetchRequest>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSPersistentHistoryChangeRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSPersistentHistoryChangeRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -112,5 +112,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

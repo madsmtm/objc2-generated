@@ -21,8 +21,8 @@ unsafe impl Sync for HMUser {}
 
 unsafe impl NSObjectProtocol for HMUser {}
 
-extern_methods!(
-    unsafe impl HMUser {
+impl HMUser {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -36,14 +36,14 @@ extern_methods!(
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMUser {
+/// Methods declared on superclass `NSObject`.
+impl HMUser {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

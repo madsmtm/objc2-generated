@@ -122,9 +122,9 @@ unsafe impl NSObjectProtocol for NSDatePickerCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSDatePickerCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSDatePickerCell {
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSDatePickerCell {
+    extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
@@ -276,28 +276,28 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn NSDatePickerCellDelegate>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSDatePickerCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSDatePickerCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSDatePickerCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSDatePickerCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepickercelldelegate?language=objc)

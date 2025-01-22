@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for MLFeatureDescription {}
 
 unsafe impl NSSecureCoding for MLFeatureDescription {}
 
-extern_methods!(
-    unsafe impl MLFeatureDescription {
+impl MLFeatureDescription {
+    extern_methods!(
         /// Name of feature
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -50,12 +50,12 @@ extern_methods!(
         #[unsafe(method(isAllowedValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAllowedValue(&self, value: &MLFeatureValue) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLFeatureDescription {
+/// Methods declared on superclass `NSObject`.
+impl MLFeatureDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -63,13 +63,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MLFeatureValueConstraints
-    /// Feature value constraints for specific types
-    unsafe impl MLFeatureDescription {
+/// MLFeatureValueConstraints.
+/// Feature value constraints for specific types
+impl MLFeatureDescription {
+    extern_methods!(
         #[cfg(feature = "MLMultiArrayConstraint")]
         /// Constraint when type == MLFeatureTypeMultiArray, nil otherwise
         #[unsafe(method(multiArrayConstraint))]
@@ -101,5 +101,5 @@ extern_methods!(
         #[unsafe(method(stateConstraint))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateConstraint(&self) -> Option<Retained<MLStateConstraint>>;
-    }
-);
+    );
+}

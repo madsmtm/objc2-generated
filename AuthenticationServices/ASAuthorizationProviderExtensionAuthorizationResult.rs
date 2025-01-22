@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationResult {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
+impl ASAuthorizationProviderExtensionAuthorizationResult {
+    extern_methods!(
         /// Authorization succeeded with an authorization tokens stored in HTTP headers.
         #[unsafe(method(initWithHTTPAuthorizationHeaders:))]
         #[unsafe(method_family = init)]
@@ -79,12 +79,12 @@ extern_methods!(
         #[unsafe(method(setPrivateKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrivateKeys(&self, private_keys: &NSArray);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
+/// Methods declared on superclass `NSObject`.
+impl ASAuthorizationProviderExtensionAuthorizationResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -92,5 +92,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

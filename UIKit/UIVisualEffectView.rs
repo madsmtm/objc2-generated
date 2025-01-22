@@ -73,9 +73,9 @@ unsafe impl UIResponderStandardEditActions for UIVisualEffectView {}
 ))]
 unsafe impl UITraitEnvironment for UIVisualEffectView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIVisualEffectView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIVisualEffectView {
+    extern_methods!(
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Retained<UIView>;
@@ -105,24 +105,24 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIVisualEffectView {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIVisualEffectView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIVisualEffectView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIVisualEffectView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -130,5 +130,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

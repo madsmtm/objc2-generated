@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKModifySubscriptionsOperation {}
 
-extern_methods!(
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl CKModifySubscriptionsOperation {
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
+impl CKModifySubscriptionsOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -160,15 +160,15 @@ extern_methods!(
                 >,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl CKModifySubscriptionsOperation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
+impl CKModifySubscriptionsOperation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

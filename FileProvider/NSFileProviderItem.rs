@@ -74,8 +74,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFileProviderItemVersion {}
 
-extern_methods!(
-    unsafe impl NSFileProviderItemVersion {
+impl NSFileProviderItemVersion {
+    extern_methods!(
         /// Version component exposed by the system to denote a state that predates a version returned by the provider.
         ///
         /// In case an item was created by calling `createItemBasedOnTemplate` and the item returned by the provider in
@@ -129,12 +129,12 @@ extern_methods!(
         #[unsafe(method(metadataVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataVersion(&self) -> Retained<NSData>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileProviderItemVersion {
+/// Methods declared on superclass `NSObject`.
+impl NSFileProviderItemVersion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -142,8 +142,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// A special value for favorite ranks, to use when no rank was set when the item

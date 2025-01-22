@@ -26,8 +26,8 @@ unsafe impl CopyingHelper for MPAdTimeRange {
 
 unsafe impl NSObjectProtocol for MPAdTimeRange {}
 
-extern_methods!(
-    unsafe impl MPAdTimeRange {
+impl MPAdTimeRange {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Represents a time range where an ad break exists in the current player item.
         /// This value must be in bounds of the duration of the current player item.
@@ -56,8 +56,8 @@ extern_methods!(
             this: Allocated<Self>,
             time_range: CMTimeRange,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingsession?language=objc)
@@ -68,8 +68,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPNowPlayingSession {}
 
-extern_methods!(
-    unsafe impl MPNowPlayingSession {
+impl MPNowPlayingSession {
+    extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         /// Creates a session associated with a given AVPlayer instance. This will assert if players is nil or empty.
         #[unsafe(method(initWithPlayers:))]
@@ -164,8 +164,8 @@ extern_methods!(
         #[unsafe(method(removePlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removePlayer(&self, player: &AVPlayer);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingsessiondelegate?language=objc)

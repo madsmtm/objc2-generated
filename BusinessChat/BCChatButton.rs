@@ -66,9 +66,9 @@ unsafe impl NSObjectProtocol for BCChatButton {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for BCChatButton {}
 
-extern_methods!(
-    #[cfg(target_os = "macos")]
-    unsafe impl BCChatButton {
+#[cfg(target_os = "macos")]
+impl BCChatButton {
+    extern_methods!(
         /// Creates and returns a BCChatButton configured for a given style.
         ///
         ///
@@ -91,35 +91,35 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(target_os = "macos")]
-    unsafe impl BCChatButton {
+/// Methods declared on superclass `NSControl`.
+#[cfg(target_os = "macos")]
+impl BCChatButton {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(target_os = "macos")]
-    unsafe impl BCChatButton {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(target_os = "macos")]
+impl BCChatButton {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(target_os = "macos")]
-    unsafe impl BCChatButton {
+/// Methods declared on superclass `NSObject`.
+#[cfg(target_os = "macos")]
+impl BCChatButton {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

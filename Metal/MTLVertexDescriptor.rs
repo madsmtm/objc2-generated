@@ -181,8 +181,8 @@ unsafe impl CopyingHelper for MTLVertexBufferLayoutDescriptor {
 
 unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLVertexBufferLayoutDescriptor {
+impl MTLVertexBufferLayoutDescriptor {
+    extern_methods!(
         #[unsafe(method(stride))]
         #[unsafe(method_family = none)]
         pub fn stride(&self) -> NSUInteger;
@@ -209,12 +209,12 @@ extern_methods!(
         #[unsafe(method(setStepRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStepRate(&self, step_rate: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLVertexBufferLayoutDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLVertexBufferLayoutDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -222,8 +222,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLVertexBufferLayoutDescriptor {
     #[inline]
@@ -241,8 +241,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLVertexBufferLayoutDescriptorArray {
+impl MTLVertexBufferLayoutDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -257,12 +257,12 @@ extern_methods!(
             buffer_desc: Option<&MTLVertexBufferLayoutDescriptor>,
             index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLVertexBufferLayoutDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLVertexBufferLayoutDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -270,8 +270,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexattributedescriptor?language=objc)
@@ -288,8 +288,8 @@ unsafe impl CopyingHelper for MTLVertexAttributeDescriptor {
 
 unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLVertexAttributeDescriptor {
+impl MTLVertexAttributeDescriptor {
+    extern_methods!(
         #[unsafe(method(format))]
         #[unsafe(method_family = none)]
         pub fn format(&self) -> MTLVertexFormat;
@@ -316,12 +316,12 @@ extern_methods!(
         #[unsafe(method(setBufferIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLVertexAttributeDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLVertexAttributeDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -329,8 +329,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLVertexAttributeDescriptor {
     #[inline]
@@ -348,8 +348,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLVertexAttributeDescriptorArray {
+impl MTLVertexAttributeDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -364,12 +364,12 @@ extern_methods!(
             attribute_desc: Option<&MTLVertexAttributeDescriptor>,
             index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLVertexAttributeDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLVertexAttributeDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -377,8 +377,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexdescriptor?language=objc)
@@ -395,8 +395,8 @@ unsafe impl CopyingHelper for MTLVertexDescriptor {
 
 unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLVertexDescriptor {
+impl MTLVertexDescriptor {
+    extern_methods!(
         #[unsafe(method(vertexDescriptor))]
         #[unsafe(method_family = none)]
         pub fn vertexDescriptor() -> Retained<MTLVertexDescriptor>;
@@ -412,12 +412,12 @@ extern_methods!(
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub fn reset(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLVertexDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLVertexDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -425,5 +425,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

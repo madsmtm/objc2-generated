@@ -17,27 +17,27 @@ extern_class!(
 #[cfg(feature = "CKOperation")]
 unsafe impl NSObjectProtocol for CKMarkNotificationsReadOperation {}
 
-extern_methods!(
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKMarkNotificationsReadOperation {}
-);
+#[cfg(feature = "CKOperation")]
+impl CKMarkNotificationsReadOperation {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CKOperation`
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKMarkNotificationsReadOperation {
+/// Methods declared on superclass `CKOperation`.
+#[cfg(feature = "CKOperation")]
+impl CKMarkNotificationsReadOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKMarkNotificationsReadOperation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CKOperation")]
+impl CKMarkNotificationsReadOperation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

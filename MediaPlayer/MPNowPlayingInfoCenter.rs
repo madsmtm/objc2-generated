@@ -64,8 +64,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPNowPlayingInfoCenter {}
 
-extern_methods!(
-    unsafe impl MPNowPlayingInfoCenter {
+impl MPNowPlayingInfoCenter {
+    extern_methods!(
         /// Returns the default now playing info center.
         /// The default center holds now playing info about the current application.
         #[unsafe(method(defaultCenter))]
@@ -107,8 +107,8 @@ extern_methods!(
         #[unsafe(method(setPlaybackState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaybackState(&self, playback_state: MPNowPlayingPlaybackState);
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyelapsedplaybacktime?language=objc)

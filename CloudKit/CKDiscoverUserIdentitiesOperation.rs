@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "CKOperation")]
 unsafe impl NSObjectProtocol for CKDiscoverUserIdentitiesOperation {}
 
-extern_methods!(
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKDiscoverUserIdentitiesOperation {
+#[cfg(feature = "CKOperation")]
+impl CKDiscoverUserIdentitiesOperation {
+    extern_methods!(
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -119,15 +119,15 @@ extern_methods!(
             &self,
             discover_user_identities_completion_block: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKDiscoverUserIdentitiesOperation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CKOperation")]
+impl CKDiscoverUserIdentitiesOperation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -66,10 +66,9 @@ unsafe impl SCNBoundingVolume for ARSCNPlaneGeometry {}
 #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
 unsafe impl SCNShadable for ARSCNPlaneGeometry {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
-    unsafe impl ARSCNPlaneGeometry {
+#[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
+impl ARSCNPlaneGeometry {
+    extern_methods!(
         #[cfg(feature = "objc2-metal")]
         /// Creates a new plane geometry using a Metal device.
         ///
@@ -91,14 +90,13 @@ extern_methods!(
         #[unsafe(method(updateFromPlaneGeometry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateFromPlaneGeometry(&self, plane_geometry: &ARPlaneGeometry);
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
-    unsafe impl ARSCNPlaneGeometry {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
+impl ARSCNPlaneGeometry {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -196,14 +194,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
-    unsafe impl ARSCNPlaneGeometry {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
+impl ARSCNPlaneGeometry {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -211,5 +208,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

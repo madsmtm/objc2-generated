@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for ILCommunication {}
 
 unsafe impl NSSecureCoding for ILCommunication {}
 
-extern_methods!(
-    unsafe impl ILCommunication {
+impl ILCommunication {
+    extern_methods!(
         /// The phone number or e-mail address of the sender.  The value will be nil if the sender is unknown.
         #[unsafe(method(sender))]
         #[unsafe(method_family = none)]
@@ -39,14 +39,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ILCommunication {
+/// Methods declared on superclass `NSObject`.
+impl ILCommunication {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

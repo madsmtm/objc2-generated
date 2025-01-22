@@ -32,9 +32,9 @@ extern_class!(
 #[cfg(feature = "VZNetworkDeviceAttachment")]
 unsafe impl NSObjectProtocol for VZBridgedNetworkDeviceAttachment {}
 
-extern_methods!(
-    #[cfg(feature = "VZNetworkDeviceAttachment")]
-    unsafe impl VZBridgedNetworkDeviceAttachment {
+#[cfg(feature = "VZNetworkDeviceAttachment")]
+impl VZBridgedNetworkDeviceAttachment {
+    extern_methods!(
         #[cfg(feature = "VZBridgedNetworkInterface")]
         /// Initialize a VZBridgedNetworkDeviceAttachment with a host network interface.
         ///
@@ -51,13 +51,13 @@ extern_methods!(
         #[unsafe(method(interface))]
         #[unsafe(method_family = none)]
         pub unsafe fn interface(&self) -> Retained<VZBridgedNetworkInterface>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZNetworkDeviceAttachment`
-    #[cfg(feature = "VZNetworkDeviceAttachment")]
-    unsafe impl VZBridgedNetworkDeviceAttachment {
+/// Methods declared on superclass `VZNetworkDeviceAttachment`.
+#[cfg(feature = "VZNetworkDeviceAttachment")]
+impl VZBridgedNetworkDeviceAttachment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -65,5 +65,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

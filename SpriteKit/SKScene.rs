@@ -167,14 +167,14 @@ unsafe impl NSSecureCoding for SKScene {}
 #[cfg(target_os = "macos")]
 unsafe impl SKWarpable for SKScene {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "SKEffectNode",
-        feature = "SKNode",
-        feature = "objc2-app-kit"
-    ))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKScene {
+#[cfg(all(
+    feature = "SKEffectNode",
+    feature = "SKNode",
+    feature = "objc2-app-kit"
+))]
+#[cfg(target_os = "macos")]
+impl SKScene {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// A scene is infinitely large, but it has a viewport that is the frame through which you present the content of the scene.
         /// The passed in size defines the size of this viewport that you use to present the scene.
@@ -344,18 +344,18 @@ extern_methods!(
         #[unsafe(method(didChangeSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didChangeSize(&self, old_size: CGSize);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SKNode`
-    #[cfg(all(
-        feature = "SKEffectNode",
-        feature = "SKNode",
-        feature = "objc2-app-kit"
-    ))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKScene {
+/// Methods declared on superclass `SKNode`.
+#[cfg(all(
+    feature = "SKEffectNode",
+    feature = "SKNode",
+    feature = "objc2-app-kit"
+))]
+#[cfg(target_os = "macos")]
+impl SKScene {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -386,20 +386,20 @@ extern_methods!(
             classes: &NSSet<AnyClass>,
             mtm: MainThreadMarker,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "SKEffectNode",
-        feature = "SKNode",
-        feature = "objc2-app-kit"
-    ))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKScene {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "SKEffectNode",
+    feature = "SKNode",
+    feature = "objc2-app-kit"
+))]
+#[cfg(target_os = "macos")]
+impl SKScene {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

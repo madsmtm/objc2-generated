@@ -26,9 +26,9 @@ unsafe impl NSObjectProtocol for CLSActivityItem {}
 #[cfg(feature = "CLSObject")]
 unsafe impl NSSecureCoding for CLSActivityItem {}
 
-extern_methods!(
-    #[cfg(feature = "CLSObject")]
-    unsafe impl CLSActivityItem {
+#[cfg(feature = "CLSObject")]
+impl CLSActivityItem {
+    extern_methods!(
         /// Title of what this ActivityItem represents.
         ///
         /// This will be the title associated with the activity item in the generated progress report.
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

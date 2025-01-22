@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CLBackgroundActivitySessionDiagnostic {}
 
-extern_methods!(
-    unsafe impl CLBackgroundActivitySessionDiagnostic {
+impl CLBackgroundActivitySessionDiagnostic {
+    extern_methods!(
         #[unsafe(method(authorizationDenied))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDenied(&self) -> bool;
@@ -40,12 +40,12 @@ extern_methods!(
         #[unsafe(method(authorizationRequestInProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRequestInProgress(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CLBackgroundActivitySessionDiagnostic {
+/// Methods declared on superclass `NSObject`.
+impl CLBackgroundActivitySessionDiagnostic {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -53,8 +53,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbackgroundactivitysession?language=objc)
@@ -65,8 +65,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CLBackgroundActivitySession {}
 
-extern_methods!(
-    unsafe impl CLBackgroundActivitySession {
+impl CLBackgroundActivitySession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,5 +82,5 @@ extern_methods!(
         #[unsafe(method(backgroundActivitySession))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundActivitySession() -> Retained<Self>;
-    }
-);
+    );
+}

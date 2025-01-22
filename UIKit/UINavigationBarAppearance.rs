@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for UINavigationBarAppearance {}
 #[cfg(feature = "UIBarAppearance")]
 unsafe impl NSSecureCoding for UINavigationBarAppearance {}
 
-extern_methods!(
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl UINavigationBarAppearance {
+#[cfg(feature = "UIBarAppearance")]
+impl UINavigationBarAppearance {
+    extern_methods!(
         /// Inline Title text attributes. If the font or color are unspecified, appropriate defaults are supplied.
         #[unsafe(method(titleTextAttributes))]
         #[unsafe(method_family = none)]
@@ -145,13 +145,13 @@ extern_methods!(
             back_indicator_image: Option<&UIImage>,
             back_indicator_transition_mask_image: Option<&UIImage>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIBarAppearance`
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl UINavigationBarAppearance {
+/// Methods declared on superclass `UIBarAppearance`.
+#[cfg(feature = "UIBarAppearance")]
+impl UINavigationBarAppearance {
+    extern_methods!(
         /// Constructs a new bar appearance, configured with default values and targeting the device idiom.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -177,15 +177,15 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl UINavigationBarAppearance {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIBarAppearance")]
+impl UINavigationBarAppearance {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

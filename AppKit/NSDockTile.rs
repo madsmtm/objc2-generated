@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSDockTile {}
 
-extern_methods!(
-    unsafe impl NSDockTile {
+impl NSDockTile {
+    extern_methods!(
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> NSSize;
@@ -62,12 +62,12 @@ extern_methods!(
         #[unsafe(method(owner))]
         #[unsafe(method_family = none)]
         pub unsafe fn owner(&self) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDockTile {
+/// Methods declared on superclass `NSObject`.
+impl NSDockTile {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -75,8 +75,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocktileplugin?language=objc)

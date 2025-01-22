@@ -28,9 +28,9 @@ unsafe impl CopyingHelper for NSListFormatter {
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSListFormatter {}
 
-extern_methods!(
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSListFormatter {
+#[cfg(feature = "NSFormatter")]
+impl NSListFormatter {
+    extern_methods!(
         #[cfg(feature = "NSLocale")]
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
@@ -70,13 +70,13 @@ extern_methods!(
             &self,
             obj: Option<&AnyObject>,
         ) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSListFormatter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSFormatter")]
+impl NSListFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,5 +84,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

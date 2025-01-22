@@ -92,9 +92,9 @@ unsafe impl NSObjectProtocol for UIMenu {}
 #[cfg(feature = "UIMenuElement")]
 unsafe impl NSSecureCoding for UIMenu {}
 
-extern_methods!(
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl UIMenu {
+#[cfg(feature = "UIMenuElement")]
+impl UIMenu {
+    extern_methods!(
         /// Unique identifier.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -227,8 +227,8 @@ extern_methods!(
             &self,
             new_children: &NSArray<UIMenuElement>,
         ) -> Retained<UIMenu>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Application menu top-level menu

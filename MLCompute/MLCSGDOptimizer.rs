@@ -29,9 +29,9 @@ unsafe impl CopyingHelper for MLCSGDOptimizer {
 #[cfg(feature = "MLCOptimizer")]
 unsafe impl NSObjectProtocol for MLCSGDOptimizer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCOptimizer")]
-    unsafe impl MLCSGDOptimizer {
+#[cfg(feature = "MLCOptimizer")]
+impl MLCSGDOptimizer {
+    extern_methods!(
         /// The momentum factor.  A hyper-parameter.
         ///
         /// The default is 0.0.
@@ -77,13 +77,13 @@ extern_methods!(
             momentum_scale: c_float,
             uses_nesterov_momentum: bool,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCOptimizer`
-    #[cfg(feature = "MLCOptimizer")]
-    unsafe impl MLCSGDOptimizer {
+/// Methods declared on superclass `MLCOptimizer`.
+#[cfg(feature = "MLCOptimizer")]
+impl MLCSGDOptimizer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -93,5 +93,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

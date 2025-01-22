@@ -5,11 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// Camera
-    /// Category implementing methods related to camera profile.
-    #[cfg(feature = "HMAccessory")]
-    unsafe impl HMAccessory {
+/// Camera.
+/// Category implementing methods related to camera profile.
+#[cfg(feature = "HMAccessory")]
+impl HMAccessory {
+    extern_methods!(
         #[cfg(all(feature = "HMAccessoryProfile", feature = "HMCameraProfile"))]
         /// Returns array of camera profiles implemented by the accessory.
         ///
@@ -20,5 +20,5 @@ extern_methods!(
         #[unsafe(method(cameraProfiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraProfiles(&self) -> Option<Retained<NSArray<HMCameraProfile>>>;
-    }
-);
+    );
+}

@@ -1017,8 +1017,8 @@ unsafe impl NSObjectProtocol for NSURL {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURL {}
 
-extern_methods!(
-    unsafe impl NSURL {
+impl NSURL {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings."]
         #[unsafe(method(initWithScheme:host:path:))]
@@ -1458,12 +1458,12 @@ extern_methods!(
         #[unsafe(method(stopAccessingSecurityScopedResource))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopAccessingSecurityScopedResource(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURL {
+/// Methods declared on superclass `NSObject`.
+impl NSURL {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1471,12 +1471,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPromisedItems
-    unsafe impl NSURL {
+/// NSPromisedItems.
+impl NSURL {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[unsafe(method(getPromisedItemResourceValue:forKey:error:_))]
         #[unsafe(method_family = none)]
@@ -1505,13 +1505,13 @@ extern_methods!(
         pub unsafe fn checkPromisedItemIsReachableAndReturnError(
             &self,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSItemProvider
-    unsafe impl NSURL {}
-);
+/// NSItemProvider.
+impl NSURL {
+    extern_methods!();
+}
 
 #[cfg(feature = "NSItemProvider")]
 unsafe impl NSItemProviderReading for NSURL {}
@@ -1546,8 +1546,8 @@ unsafe impl NSObjectProtocol for NSURLQueryItem {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLQueryItem {}
 
-extern_methods!(
-    unsafe impl NSURLQueryItem {
+impl NSURLQueryItem {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithName:value:))]
         #[unsafe(method_family = init)]
@@ -1574,12 +1574,12 @@ extern_methods!(
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLQueryItem {
+/// Methods declared on superclass `NSObject`.
+impl NSURLQueryItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1587,8 +1587,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcomponents?language=objc)
@@ -1607,8 +1607,8 @@ unsafe impl CopyingHelper for NSURLComponents {
 
 unsafe impl NSObjectProtocol for NSURLComponents {}
 
-extern_methods!(
-    unsafe impl NSURLComponents {
+impl NSURLComponents {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1918,22 +1918,22 @@ extern_methods!(
             &self,
             percent_encoded_query_items: Option<&NSArray<NSURLQueryItem>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLComponents {
+/// Methods declared on superclass `NSObject`.
+impl NSURLComponents {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLUtilities
-    #[cfg(feature = "NSCharacterSet")]
-    unsafe impl NSCharacterSet {
+/// NSURLUtilities.
+#[cfg(feature = "NSCharacterSet")]
+impl NSCharacterSet {
+    extern_methods!(
         #[unsafe(method(URLUserAllowedCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLUserAllowedCharacterSet() -> Retained<NSCharacterSet>;
@@ -1957,13 +1957,13 @@ extern_methods!(
         #[unsafe(method(URLFragmentAllowedCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLFragmentAllowedCharacterSet() -> Retained<NSCharacterSet>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLUtilities
-    #[cfg(feature = "NSString")]
-    unsafe impl NSString {
+/// NSURLUtilities.
+#[cfg(feature = "NSString")]
+impl NSString {
+    extern_methods!(
         #[cfg(feature = "NSCharacterSet")]
         #[unsafe(method(stringByAddingPercentEncodingWithAllowedCharacters:))]
         #[unsafe(method_family = none)]
@@ -1991,12 +1991,12 @@ extern_methods!(
             &self,
             enc: NSStringEncoding,
         ) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLPathUtilities
-    unsafe impl NSURL {
+/// NSURLPathUtilities.
+impl NSURL {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(fileURLWithPathComponents:))]
         #[unsafe(method_family = none)]
@@ -2066,8 +2066,8 @@ extern_methods!(
         #[unsafe(method(URLByResolvingSymlinksInPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLByResolvingSymlinksInPath(&self) -> Option<Retained<NSURL>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesecurity?language=objc)
@@ -2092,8 +2092,8 @@ unsafe impl NSObjectProtocol for NSFileSecurity {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSFileSecurity {}
 
-extern_methods!(
-    unsafe impl NSFileSecurity {
+impl NSFileSecurity {
+    extern_methods!(
         #[cfg(feature = "NSCoder")]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
@@ -2101,12 +2101,12 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileSecurity {
+/// Methods declared on superclass `NSObject`.
+impl NSFileSecurity {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2114,12 +2114,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLLoading
-    unsafe impl NSURL {
+/// NSURLLoading.
+impl NSURL {
+    extern_methods!(
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSURLConnection instead"]
         #[unsafe(method(resourceDataUsingCache:))]
@@ -2169,5 +2169,5 @@ extern_methods!(
             &self,
             should_use_cache: bool,
         ) -> Option<Retained<NSURLHandle>>;
-    }
-);
+    );
+}

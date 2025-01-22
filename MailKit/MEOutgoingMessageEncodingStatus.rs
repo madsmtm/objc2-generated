@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for MEOutgoingMessageEncodingStatus {}
 
 unsafe impl NSSecureCoding for MEOutgoingMessageEncodingStatus {}
 
-extern_methods!(
-    unsafe impl MEOutgoingMessageEncodingStatus {
+impl MEOutgoingMessageEncodingStatus {
+    extern_methods!(
         /// Whether or not the message can be signed.
         #[unsafe(method(canSign))]
         #[unsafe(method_family = none)]
@@ -62,5 +62,5 @@ extern_methods!(
             security_error: Option<&NSError>,
             addresses_failing_encryption: &NSArray<MEEmailAddress>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -90,8 +90,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSToolbar {}
 
-extern_methods!(
-    unsafe impl NSToolbar {
+impl NSToolbar {
+    extern_methods!(
         /// The identifier is used to form the toolbar's autosave name.
         /// Toolbars with the same identifier are implicitly synchronized so that they maintain the same state.
         #[unsafe(method(initWithIdentifier:))]
@@ -312,17 +312,17 @@ extern_methods!(
         #[unsafe(method(setAllowsExtensionItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsExtensionItems(&self, allows_extension_items: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSToolbar {
+/// Methods declared on superclass `NSObject`.
+impl NSToolbar {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbardelegate?language=objc)
@@ -436,9 +436,9 @@ extern "C" {
     pub static NSToolbarDidRemoveItemNotification: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSToolbar {
+/// NSDeprecated.
+impl NSToolbar {
+    extern_methods!(
         #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
         #[unsafe(method(sizeMode))]
         #[unsafe(method_family = none)]
@@ -536,5 +536,5 @@ extern_methods!(
             &self,
             config_dict: &NSDictionary<NSString, AnyObject>,
         );
-    }
-);
+    );
+}

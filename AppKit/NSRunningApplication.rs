@@ -87,8 +87,8 @@ unsafe impl Sync for NSRunningApplication {}
 
 unsafe impl NSObjectProtocol for NSRunningApplication {}
 
-extern_methods!(
-    unsafe impl NSRunningApplication {
+impl NSRunningApplication {
+    extern_methods!(
         /// Indicates that the process is an exited application.
         /// This is observable through KVO.
         #[unsafe(method(isTerminated))]
@@ -264,12 +264,12 @@ extern_methods!(
         #[unsafe(method(terminateAutomaticallyTerminableApplications))]
         #[unsafe(method_family = none)]
         pub unsafe fn terminateAutomaticallyTerminableApplications();
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSRunningApplication {
+/// Methods declared on superclass `NSObject`.
+impl NSRunningApplication {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -277,13 +277,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSWorkspaceRunningApplications
-    #[cfg(feature = "NSWorkspace")]
-    unsafe impl NSWorkspace {
+/// NSWorkspaceRunningApplications.
+#[cfg(feature = "NSWorkspace")]
+impl NSWorkspace {
+    extern_methods!(
         /// Returns: An array of `NSRunningApplication`s representing currently running applications.
         /// The order of the array is unspecified, but it is stable, meaning that the relative order of particular applications will not change across multiple calls to `runningApplications`.
         /// Similar to `NSRunningApplication`'s properties, this property will only change when the main run loop is run in a common mode.  Instead of polling, use key-value observing to be notified of changes to this array property.
@@ -291,5 +291,5 @@ extern_methods!(
         #[unsafe(method(runningApplications))]
         #[unsafe(method_family = none)]
         pub unsafe fn runningApplications(&self) -> Retained<NSArray<NSRunningApplication>>;
-    }
-);
+    );
+}

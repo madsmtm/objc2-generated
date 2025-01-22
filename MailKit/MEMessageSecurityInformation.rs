@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for MEMessageSecurityInformation {}
 
 unsafe impl NSSecureCoding for MEMessageSecurityInformation {}
 
-extern_methods!(
-    unsafe impl MEMessageSecurityInformation {
+impl MEMessageSecurityInformation {
+    extern_methods!(
         #[cfg(feature = "MEMessageSigner")]
         /// The signers of the message
         #[unsafe(method(signers))]
@@ -85,5 +85,5 @@ extern_methods!(
             should_block_remote_content: bool,
             localized_remote_content_blocking_reason: Option<&NSString>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

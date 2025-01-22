@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for BGTaskRequest {
 
 unsafe impl NSObjectProtocol for BGTaskRequest {}
 
-extern_methods!(
-    unsafe impl BGTaskRequest {
+impl BGTaskRequest {
+    extern_methods!(
         /// The identifier of the task associated with the request.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -54,8 +54,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A request to launch your app in the background to execute a short refresh task.
@@ -74,8 +74,8 @@ unsafe impl CopyingHelper for BGAppRefreshTaskRequest {
 
 unsafe impl NSObjectProtocol for BGAppRefreshTaskRequest {}
 
-extern_methods!(
-    unsafe impl BGAppRefreshTaskRequest {
+impl BGAppRefreshTaskRequest {
+    extern_methods!(
         /// Return a new refresh task request for the specified identifier.
         ///
         /// - Parameters:
@@ -86,12 +86,12 @@ extern_methods!(
             this: Allocated<Self>,
             identifier: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `BGTaskRequest`
-    unsafe impl BGAppRefreshTaskRequest {
+/// Methods declared on superclass `BGTaskRequest`.
+impl BGAppRefreshTaskRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -99,8 +99,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A request to launch your app in the background to execute a processing task
@@ -120,8 +120,8 @@ unsafe impl CopyingHelper for BGProcessingTaskRequest {
 
 unsafe impl NSObjectProtocol for BGProcessingTaskRequest {}
 
-extern_methods!(
-    unsafe impl BGProcessingTaskRequest {
+impl BGProcessingTaskRequest {
+    extern_methods!(
         /// Return a new processing task request for the specified identifier.
         ///
         /// - Parameters:
@@ -152,12 +152,12 @@ extern_methods!(
         #[unsafe(method(setRequiresExternalPower:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresExternalPower(&self, requires_external_power: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `BGTaskRequest`
-    unsafe impl BGProcessingTaskRequest {
+/// Methods declared on superclass `BGTaskRequest`.
+impl BGProcessingTaskRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -165,8 +165,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A request to launch your app in the background to execute a health research task for studies a user has opted into and
@@ -186,8 +186,8 @@ unsafe impl CopyingHelper for BGHealthResearchTaskRequest {
 
 unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
 
-extern_methods!(
-    unsafe impl BGHealthResearchTaskRequest {
+impl BGHealthResearchTaskRequest {
+    extern_methods!(
         /// A String indicating file protection availability required for processing.
         #[unsafe(method(protectionTypeOfRequiredData))]
         #[unsafe(method_family = none)]
@@ -200,12 +200,12 @@ extern_methods!(
             &self,
             protection_type_of_required_data: &NSFileProtectionType,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `BGProcessingTaskRequest`
-    unsafe impl BGHealthResearchTaskRequest {
+/// Methods declared on superclass `BGProcessingTaskRequest`.
+impl BGHealthResearchTaskRequest {
+    extern_methods!(
         /// Return a new processing task request for the specified identifier.
         ///
         /// - Parameters:
@@ -216,12 +216,12 @@ extern_methods!(
             this: Allocated<Self>,
             identifier: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `BGTaskRequest`
-    unsafe impl BGHealthResearchTaskRequest {
+/// Methods declared on superclass `BGTaskRequest`.
+impl BGHealthResearchTaskRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -229,5 +229,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

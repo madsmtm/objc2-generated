@@ -7,10 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// NSScripting
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSWindow {
+/// NSScripting.
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSWindow {
+    extern_methods!(
         #[unsafe(method(hasCloseBox))]
         #[unsafe(method_family = none)]
         pub fn hasCloseBox(&self) -> bool;
@@ -80,5 +80,5 @@ extern_methods!(
             &self,
             command: &NSScriptCommand,
         ) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}

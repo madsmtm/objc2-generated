@@ -131,8 +131,8 @@ unsafe impl NSObjectProtocol for NSFontDescriptor {}
 
 unsafe impl NSSecureCoding for NSFontDescriptor {}
 
-extern_methods!(
-    unsafe impl NSFontDescriptor {
+impl NSFontDescriptor {
+    extern_methods!(
         #[unsafe(method(postscriptName))]
         #[unsafe(method_family = none)]
         pub unsafe fn postscriptName(&self) -> Option<Retained<NSString>>;
@@ -258,12 +258,12 @@ extern_methods!(
             &self,
             design: &NSFontDescriptorSystemDesign,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFontDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl NSFontDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -271,8 +271,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfamilyattribute?language=objc)
@@ -591,14 +591,14 @@ extern "C" {
     pub static NSFontColorAttribute: &'static NSString;
 }
 
-extern_methods!(
-    /// NSFontDescriptor_TextStyles
-    unsafe impl NSFontDescriptor {
+/// NSFontDescriptor_TextStyles.
+impl NSFontDescriptor {
+    extern_methods!(
         #[unsafe(method(preferredFontDescriptorForTextStyle:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFontDescriptorForTextStyle_options(
             style: &NSFontTextStyle,
             options: &NSDictionary<NSFontTextStyleOptionKey, AnyObject>,
         ) -> Retained<NSFontDescriptor>;
-    }
-);
+    );
+}

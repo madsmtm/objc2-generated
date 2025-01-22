@@ -53,13 +53,13 @@ unsafe impl CopyingHelper for DOMOverflowEvent {
 ))]
 unsafe impl NSObjectProtocol for DOMOverflowEvent {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMOverflowEvent {
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMOverflowEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(orient))]
         #[unsafe(method_family = none)]
@@ -84,34 +84,34 @@ extern_methods!(
             horizontal_overflow: bool,
             vertical_overflow: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMOverflowEvent {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMOverflowEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMOverflowEvent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMOverflowEvent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

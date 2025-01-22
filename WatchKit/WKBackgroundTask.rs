@@ -20,8 +20,8 @@ unsafe impl Sync for WKRefreshBackgroundTask {}
 
 unsafe impl NSObjectProtocol for WKRefreshBackgroundTask {}
 
-extern_methods!(
-    unsafe impl WKRefreshBackgroundTask {
+impl WKRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(
@@ -69,12 +69,12 @@ extern_methods!(
         #[unsafe(method(setTaskCompletedWithSnapshot:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTaskCompletedWithSnapshot(&self, refresh_snapshot: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKRefreshBackgroundTask {
+/// Methods declared on superclass `NSObject`.
+impl WKRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,8 +82,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationrefreshbackgroundtask?language=objc)
@@ -94,13 +94,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKApplicationRefreshBackgroundTask {}
 
-extern_methods!(
-    unsafe impl WKApplicationRefreshBackgroundTask {}
-);
+impl WKApplicationRefreshBackgroundTask {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKApplicationRefreshBackgroundTask {
+/// Methods declared on superclass `NSObject`.
+impl WKApplicationRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,8 +108,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason?language=objc)
 // NS_ENUM
@@ -146,8 +146,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKSnapshotRefreshBackgroundTask {}
 
-extern_methods!(
-    unsafe impl WKSnapshotRefreshBackgroundTask {
+impl WKSnapshotRefreshBackgroundTask {
+    extern_methods!(
         #[deprecated = "Use reasonForSnapshot instead, WKSnapshotReasonReturnToPrimaryUI is equivalent to returnToDefaultState=true"]
         #[unsafe(method(returnToDefaultState))]
         #[unsafe(method_family = none)]
@@ -165,12 +165,12 @@ extern_methods!(
             estimated_snapshot_expiration: Option<&NSDate>,
             user_info: Option<&AnyObject /* NSSecureCoding+ NSObjectProtocol */>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKSnapshotRefreshBackgroundTask {
+/// Methods declared on superclass `NSObject`.
+impl WKSnapshotRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -178,8 +178,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkurlsessionrefreshbackgroundtask?language=objc)
@@ -190,17 +190,17 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKURLSessionRefreshBackgroundTask {}
 
-extern_methods!(
-    unsafe impl WKURLSessionRefreshBackgroundTask {
+impl WKURLSessionRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(sessionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionIdentifier(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKURLSessionRefreshBackgroundTask {
+/// Methods declared on superclass `NSObject`.
+impl WKURLSessionRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -208,8 +208,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwatchconnectivityrefreshbackgroundtask?language=objc)
@@ -220,13 +220,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKWatchConnectivityRefreshBackgroundTask {}
 
-extern_methods!(
-    unsafe impl WKWatchConnectivityRefreshBackgroundTask {}
-);
+impl WKWatchConnectivityRefreshBackgroundTask {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKWatchConnectivityRefreshBackgroundTask {
+/// Methods declared on superclass `NSObject`.
+impl WKWatchConnectivityRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -234,8 +234,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkrelevantshortcutrefreshbackgroundtask?language=objc)
@@ -246,13 +246,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKRelevantShortcutRefreshBackgroundTask {}
 
-extern_methods!(
-    unsafe impl WKRelevantShortcutRefreshBackgroundTask {}
-);
+impl WKRelevantShortcutRefreshBackgroundTask {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKRelevantShortcutRefreshBackgroundTask {
+/// Methods declared on superclass `NSObject`.
+impl WKRelevantShortcutRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -260,8 +260,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkintentdidrunrefreshbackgroundtask?language=objc)
@@ -272,13 +272,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKIntentDidRunRefreshBackgroundTask {}
 
-extern_methods!(
-    unsafe impl WKIntentDidRunRefreshBackgroundTask {}
-);
+impl WKIntentDidRunRefreshBackgroundTask {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKIntentDidRunRefreshBackgroundTask {
+/// Methods declared on superclass `NSObject`.
+impl WKIntentDidRunRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -286,8 +286,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Updates from Bluetooth are available to the application.
@@ -302,13 +302,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKBluetoothAlertRefreshBackgroundTask {}
 
-extern_methods!(
-    unsafe impl WKBluetoothAlertRefreshBackgroundTask {}
-);
+impl WKBluetoothAlertRefreshBackgroundTask {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKBluetoothAlertRefreshBackgroundTask {
+/// Methods declared on superclass `NSObject`.
+impl WKBluetoothAlertRefreshBackgroundTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -316,13 +316,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WKBackgroundTasks
-    #[cfg(feature = "WKExtension")]
-    unsafe impl WKExtension {
+/// WKBackgroundTasks.
+#[cfg(feature = "WKExtension")]
+impl WKExtension {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
@@ -342,13 +342,13 @@ extern_methods!(
             user_info: Option<&AnyObject /* NSSecureCoding+ NSObjectProtocol */>,
             scheduled_completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WKBackgroundTasks
-    #[cfg(feature = "WKApplication")]
-    unsafe impl WKApplication {
+/// WKBackgroundTasks.
+#[cfg(feature = "WKApplication")]
+impl WKApplication {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
@@ -368,5 +368,5 @@ extern_methods!(
             user_info: Option<&AnyObject /* NSSecureCoding+ NSObjectProtocol */>,
             scheduled_completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}

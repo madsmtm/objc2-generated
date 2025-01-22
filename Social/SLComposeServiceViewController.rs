@@ -47,10 +47,10 @@ unsafe impl NSTextViewDelegate for SLComposeServiceViewController {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for SLComposeServiceViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl SLComposeServiceViewController {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl SLComposeServiceViewController {
+    extern_methods!(
         #[unsafe(method(presentationAnimationDidFinish))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationAnimationDidFinish(&self);
@@ -100,14 +100,14 @@ extern_methods!(
         #[unsafe(method(setCharactersRemaining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharactersRemaining(&self, characters_remaining: Option<&NSNumber>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl SLComposeServiceViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl SLComposeServiceViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -122,27 +122,27 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl SLComposeServiceViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl SLComposeServiceViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl SLComposeServiceViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl SLComposeServiceViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

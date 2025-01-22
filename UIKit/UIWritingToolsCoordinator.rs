@@ -175,8 +175,8 @@ unsafe impl NSObjectProtocol for UIWritingToolsCoordinator {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIWritingToolsCoordinator {}
 
-extern_methods!(
-    unsafe impl UIWritingToolsCoordinator {
+impl UIWritingToolsCoordinator {
+    extern_methods!(
         /// A Boolean value that indicates whether Writing Tools features are
         /// currently available.
         ///
@@ -426,12 +426,12 @@ extern_methods!(
         #[unsafe(method(updateForReflowedTextInContextWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateForReflowedTextInContextWithIdentifier(&self, context_id: &NSUUID);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIWritingToolsCoordinator {
+/// Methods declared on superclass `NSObject`.
+impl UIWritingToolsCoordinator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -439,8 +439,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Options that indicate whether Writing Tools is animating changes to
 /// your view’s text.

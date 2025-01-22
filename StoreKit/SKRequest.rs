@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SKRequest {}
 
-extern_methods!(
-    unsafe impl SKRequest {
+impl SKRequest {
+    extern_methods!(
         #[deprecated = "No longer supported"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -40,12 +40,12 @@ extern_methods!(
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKRequest {
+/// Methods declared on superclass `NSObject`.
+impl SKRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -53,8 +53,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skrequestdelegate?language=objc)

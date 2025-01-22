@@ -82,9 +82,8 @@ unsafe impl NSObjectProtocol for ARAnchor {}
 unsafe impl NSSecureCoding for ARAnchor {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARAnchor {
+impl ARAnchor {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// Unique identifier of the anchor.
         #[unsafe(method(identifier))]
@@ -114,5 +113,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

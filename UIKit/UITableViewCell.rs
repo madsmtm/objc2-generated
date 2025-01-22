@@ -273,9 +273,9 @@ unsafe impl UIResponderStandardEditActions for UITableViewCell {}
 ))]
 unsafe impl UITraitEnvironment for UITableViewCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITableViewCell {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UITableViewCell {
+    extern_methods!(
         #[unsafe(method(initWithStyle:reuseIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle_reuseIdentifier(
@@ -657,24 +657,24 @@ extern_methods!(
             &self,
             user_interaction_enabled_while_dragging: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITableViewCell {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UITableViewCell {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITableViewCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UITableViewCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -682,13 +682,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIDeprecated
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITableViewCell {
+/// UIDeprecated.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UITableViewCell {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[unsafe(method(initWithFrame:reuseIdentifier:))]
@@ -844,5 +844,5 @@ extern_methods!(
         #[unsafe(method(setAccessoryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryAction(&self, accessory_action: Option<Sel>);
-    }
-);
+    );
+}

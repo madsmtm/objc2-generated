@@ -51,8 +51,8 @@ unsafe impl Sync for HMHomeManager {}
 
 unsafe impl NSObjectProtocol for HMHomeManager {}
 
-extern_methods!(
-    unsafe impl HMHomeManager {
+impl HMHomeManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -152,17 +152,17 @@ extern_methods!(
             home: &HMHome,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMHomeManager {
+/// Methods declared on superclass `NSObject`.
+impl HMHomeManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// This delegate receives updates on homes being managed via the home manager.

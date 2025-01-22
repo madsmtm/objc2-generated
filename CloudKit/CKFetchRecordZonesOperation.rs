@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchRecordZonesOperation {}
 
-extern_methods!(
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl CKFetchRecordZonesOperation {
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
+impl CKFetchRecordZonesOperation {
+    extern_methods!(
         #[unsafe(method(fetchAllRecordZonesOperation))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllRecordZonesOperation() -> Retained<Self>;
@@ -127,15 +127,15 @@ extern_methods!(
                 >,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl CKFetchRecordZonesOperation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
+impl CKFetchRecordZonesOperation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

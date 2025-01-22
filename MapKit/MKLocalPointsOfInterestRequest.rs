@@ -30,8 +30,8 @@ unsafe impl CopyingHelper for MKLocalPointsOfInterestRequest {
 
 unsafe impl NSObjectProtocol for MKLocalPointsOfInterestRequest {}
 
-extern_methods!(
-    unsafe impl MKLocalPointsOfInterestRequest {
+impl MKLocalPointsOfInterestRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,14 +81,14 @@ extern_methods!(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKLocalPointsOfInterestRequest {
+/// Methods declared on superclass `NSObject`.
+impl MKLocalPointsOfInterestRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

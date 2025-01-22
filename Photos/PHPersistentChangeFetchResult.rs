@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHPersistentChangeFetchResult {}
 
-extern_methods!(
-    unsafe impl PHPersistentChangeFetchResult {
+impl PHPersistentChangeFetchResult {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -32,5 +32,5 @@ extern_methods!(
             &self,
             block: &block2::Block<dyn Fn(NonNull<PHPersistentChange>, NonNull<Bool>) + '_>,
         );
-    }
-);
+    );
+}

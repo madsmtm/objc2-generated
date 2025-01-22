@@ -28,9 +28,9 @@ unsafe impl CopyingHelper for NSPICTImageRep {
 #[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSPICTImageRep {}
 
-extern_methods!(
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSPICTImageRep {
+#[cfg(feature = "NSImageRep")]
+impl NSPICTImageRep {
+    extern_methods!(
         #[unsafe(method(imageRepWithData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRepWithData(pict_data: &NSData) -> Option<Retained<Self>>;
@@ -49,13 +49,13 @@ extern_methods!(
         #[unsafe(method(boundingBox))]
         #[unsafe(method_family = none)]
         pub unsafe fn boundingBox(&self) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSPICTImageRep {
+/// Methods declared on superclass `NSImageRep`.
+#[cfg(feature = "NSImageRep")]
+impl NSPICTImageRep {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,15 +66,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSPICTImageRep {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSImageRep")]
+impl NSPICTImageRep {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

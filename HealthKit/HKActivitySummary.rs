@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for HKActivitySummary {}
 
 unsafe impl NSSecureCoding for HKActivitySummary {}
 
-extern_methods!(
-    unsafe impl HKActivitySummary {
+impl HKActivitySummary {
+    extern_methods!(
         /// The date components representing the day for this particular HKActivitySummary.
         ///
         /// These date components will contain era, year, month, and day components in the provided calendar.
@@ -212,12 +212,12 @@ extern_methods!(
         #[unsafe(method(setStandHoursGoal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandHoursGoal(&self, stand_hours_goal: Option<&HKQuantity>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKActivitySummary {
+/// Methods declared on superclass `NSObject`.
+impl HKActivitySummary {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -225,8 +225,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdatecomponents?language=objc)

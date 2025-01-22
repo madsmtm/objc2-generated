@@ -34,8 +34,8 @@ unsafe impl NSObjectProtocol for UITraitCollection {}
 
 unsafe impl NSSecureCoding for UITraitCollection {}
 
-extern_methods!(
-    unsafe impl UITraitCollection {
+impl UITraitCollection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -281,17 +281,17 @@ extern_methods!(
         #[unsafe(method(listEnvironment))]
         #[unsafe(method_family = none)]
         pub unsafe fn listEnvironment(&self) -> UIListEnvironment;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitCollection {
+/// Methods declared on superclass `NSObject`.
+impl UITraitCollection {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutabletraits?language=objc)
@@ -542,8 +542,8 @@ extern_protocol!(
 pub type UITraitMutations =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn UIMutableTraits>>)>;
 
-extern_methods!(
-    unsafe impl UITraitCollection {
+impl UITraitCollection {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(traitCollectionWithTraits:))]
         #[unsafe(method_family = none)]
@@ -627,8 +627,8 @@ extern_methods!(
             &self,
             r#trait: &UIObjectTrait,
         ) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Trait environments expose a trait collection that describes their environment.
@@ -691,9 +691,9 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// CurrentTraitCollection
-    unsafe impl UITraitCollection {
+/// CurrentTraitCollection.
+impl UITraitCollection {
+    extern_methods!(
         #[unsafe(method(currentTraitCollection))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTraitCollection() -> Retained<UITraitCollection>;
@@ -710,27 +710,27 @@ extern_methods!(
             &self,
             actions: &block2::Block<dyn Fn() + '_>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DynamicAppearance
-    unsafe impl UITraitCollection {
+/// DynamicAppearance.
+impl UITraitCollection {
+    extern_methods!(
         #[unsafe(method(hasDifferentColorAppearanceComparedToTraitCollection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasDifferentColorAppearanceComparedToTraitCollection(
             &self,
             trait_collection: Option<&UITraitCollection>,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// ImageConfiguration
-    unsafe impl UITraitCollection {
+/// ImageConfiguration.
+impl UITraitCollection {
+    extern_methods!(
         #[cfg(feature = "UIImageConfiguration")]
         #[unsafe(method(imageConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageConfiguration(&self) -> Retained<UIImageConfiguration>;
-    }
-);
+    );
+}

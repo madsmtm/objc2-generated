@@ -37,8 +37,8 @@ unsafe impl NSUserInterfaceItemIdentification for NSMenuItem {}
 #[cfg(feature = "NSUserInterfaceValidation")]
 unsafe impl NSValidatedUserInterfaceItem for NSMenuItem {}
 
-extern_methods!(
-    unsafe impl NSMenuItem {
+impl NSMenuItem {
+    extern_methods!(
         #[unsafe(method(usesUserKeyEquivalents))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesUserKeyEquivalents(mtm: MainThreadMarker) -> bool;
@@ -393,12 +393,12 @@ extern_methods!(
         #[unsafe(method(setBadge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadge(&self, badge: Option<&NSMenuItemBadge>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMenuItem {
+/// Methods declared on superclass `NSObject`.
+impl NSMenuItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -406,18 +406,18 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSViewEnclosingMenuItem
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSViewEnclosingMenuItem.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(enclosingMenuItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn enclosingMenuItem(&self) -> Option<Retained<NSMenuItem>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitemimportfromdeviceidentifier?language=objc)
@@ -425,9 +425,9 @@ extern "C" {
     pub static NSMenuItemImportFromDeviceIdentifier: &'static NSUserInterfaceItemIdentifier;
 }
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSMenuItem {
+/// NSDeprecated.
+impl NSMenuItem {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setMnemonicLocation:))]
         #[unsafe(method_family = none)]
@@ -447,5 +447,5 @@ extern_methods!(
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: &NSString);
-    }
-);
+    );
+}

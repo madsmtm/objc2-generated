@@ -27,9 +27,9 @@ unsafe impl NSObjectProtocol for MXDiskWriteExceptionDiagnostic {}
 #[cfg(feature = "MXDiagnostic")]
 unsafe impl NSSecureCoding for MXDiskWriteExceptionDiagnostic {}
 
-extern_methods!(
-    #[cfg(feature = "MXDiagnostic")]
-    unsafe impl MXDiskWriteExceptionDiagnostic {
+#[cfg(feature = "MXDiagnostic")]
+impl MXDiskWriteExceptionDiagnostic {
+    extern_methods!(
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the excessive disk writes.
         #[unsafe(method(callStackTree))]
@@ -43,13 +43,13 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn totalWritesCaused(&self)
             -> Retained<NSMeasurement<NSUnitInformationStorage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXDiagnostic")]
-    unsafe impl MXDiskWriteExceptionDiagnostic {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXDiagnostic")]
+impl MXDiskWriteExceptionDiagnostic {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,5 +57,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

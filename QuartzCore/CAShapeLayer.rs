@@ -43,9 +43,9 @@ unsafe impl NSObjectProtocol for CAShapeLayer {}
 #[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAShapeLayer {}
 
-extern_methods!(
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAShapeLayer {
+#[cfg(feature = "CALayer")]
+impl CAShapeLayer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(path))]
         #[unsafe(method_family = none)]
@@ -169,13 +169,13 @@ extern_methods!(
         #[unsafe(method(setLineDashPattern:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAShapeLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "CALayer")]
+impl CAShapeLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -188,18 +188,18 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAShapeLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CALayer")]
+impl CAShapeLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillrulenonzero?language=objc)

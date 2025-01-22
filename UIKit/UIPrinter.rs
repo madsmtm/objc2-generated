@@ -58,8 +58,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPrinter {}
 
-extern_methods!(
-    unsafe impl UIPrinter {
+impl UIPrinter {
+    extern_methods!(
         /// Create a printer from its URL
         ///
         /// This method creates a new printer object from the printer's URL.
@@ -149,12 +149,12 @@ extern_methods!(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPrinter {
+/// Methods declared on superclass `NSObject`.
+impl UIPrinter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -162,5 +162,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

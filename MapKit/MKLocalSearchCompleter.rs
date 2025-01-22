@@ -65,8 +65,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKLocalSearchCompleter {}
 
-extern_methods!(
-    unsafe impl MKLocalSearchCompleter {
+impl MKLocalSearchCompleter {
+    extern_methods!(
         #[unsafe(method(queryFragment))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryFragment(&self) -> Retained<NSString>;
@@ -169,12 +169,12 @@ extern_methods!(
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKLocalSearchCompleter {
+/// Methods declared on superclass `NSObject`.
+impl MKLocalSearchCompleter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -182,8 +182,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleterdelegate?language=objc)
@@ -213,8 +213,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKLocalSearchCompletion {}
 
-extern_methods!(
-    unsafe impl MKLocalSearchCompletion {
+impl MKLocalSearchCompletion {
+    extern_methods!(
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
@@ -230,12 +230,12 @@ extern_methods!(
         #[unsafe(method(subtitleHighlightRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleHighlightRanges(&self) -> Retained<NSArray<NSValue>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKLocalSearchCompletion {
+/// Methods declared on superclass `NSObject`.
+impl MKLocalSearchCompletion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -243,17 +243,17 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "MKLocalSearchRequest")]
-    unsafe impl MKLocalSearchRequest {
+#[cfg(feature = "MKLocalSearchRequest")]
+impl MKLocalSearchRequest {
+    extern_methods!(
         #[unsafe(method(initWithCompletion:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletion(
             this: Allocated<Self>,
             completion: &MKLocalSearchCompletion,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

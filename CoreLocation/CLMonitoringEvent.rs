@@ -43,8 +43,8 @@ unsafe impl NSObjectProtocol for CLMonitoringEvent {}
 
 unsafe impl NSSecureCoding for CLMonitoringEvent {}
 
-extern_methods!(
-    unsafe impl CLMonitoringEvent {
+impl CLMonitoringEvent {
+    extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -109,5 +109,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

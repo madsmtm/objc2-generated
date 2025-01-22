@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for MLCMatMulDescriptor {
 
 unsafe impl NSObjectProtocol for MLCMatMulDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCMatMulDescriptor {
+impl MLCMatMulDescriptor {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -78,5 +78,5 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}

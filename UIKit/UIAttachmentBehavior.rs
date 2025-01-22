@@ -91,9 +91,9 @@ extern_class!(
 #[cfg(feature = "UIDynamicBehavior")]
 unsafe impl NSObjectProtocol for UIAttachmentBehavior {}
 
-extern_methods!(
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UIAttachmentBehavior {
+#[cfg(feature = "UIDynamicBehavior")]
+impl UIAttachmentBehavior {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithItem:attachedToAnchor:))]
         #[unsafe(method_family = init)]
@@ -303,13 +303,13 @@ extern_methods!(
         #[unsafe(method(setAttachmentRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachmentRange(&self, attachment_range: UIFloatRange);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UIAttachmentBehavior {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIDynamicBehavior")]
+impl UIAttachmentBehavior {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -317,5 +317,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

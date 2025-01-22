@@ -26,8 +26,8 @@ unsafe impl NSFastEnumeration for NSEntityDescription {}
 
 unsafe impl NSObjectProtocol for NSEntityDescription {}
 
-extern_methods!(
-    unsafe impl NSEntityDescription {
+impl NSEntityDescription {
+    extern_methods!(
         #[cfg(feature = "NSManagedObjectContext")]
         #[unsafe(method(entityForName:inManagedObjectContext:))]
         #[unsafe(method_family = none)]
@@ -224,12 +224,12 @@ extern_methods!(
             &self,
             core_spotlight_display_name_expression: &NSExpression,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSEntityDescription {
+/// Methods declared on superclass `NSObject`.
+impl NSEntityDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -237,5 +237,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -43,13 +43,13 @@ unsafe impl CopyingHelper for DOMCSSPageRule {
 ))]
 unsafe impl NSObjectProtocol for DOMCSSPageRule {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSPageRule {
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSPageRule {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(selectorText))]
         #[unsafe(method_family = none)]
@@ -66,34 +66,34 @@ extern_methods!(
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSPageRule {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSPageRule {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSPageRule {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSPageRule {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -45,9 +45,9 @@ unsafe impl MutableCopyingHelper for HMLocationEvent {
 #[cfg(feature = "HMEvent")]
 unsafe impl NSObjectProtocol for HMLocationEvent {}
 
-extern_methods!(
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMLocationEvent {
+#[cfg(feature = "HMEvent")]
+impl HMLocationEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -89,19 +89,19 @@ extern_methods!(
             region: &CLRegion,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMLocationEvent {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMLocationEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// This class represents an event that is evaluated based on entry to and/or
@@ -139,9 +139,9 @@ unsafe impl MutableCopyingHelper for HMMutableLocationEvent {
 #[cfg(feature = "HMEvent")]
 unsafe impl NSObjectProtocol for HMMutableLocationEvent {}
 
-extern_methods!(
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMMutableLocationEvent {
+#[cfg(feature = "HMEvent")]
+impl HMMutableLocationEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -158,13 +158,13 @@ extern_methods!(
         #[unsafe(method(setRegion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRegion(&self, region: Option<&CLRegion>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMLocationEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMMutableLocationEvent {
+/// Methods declared on superclass `HMLocationEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMMutableLocationEvent {
+    extern_methods!(
         #[cfg(feature = "objc2-core-location")]
         /// Initializes a new location event object
         ///
@@ -176,16 +176,16 @@ extern_methods!(
         #[unsafe(method(initWithRegion:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRegion(this: Allocated<Self>, region: &CLRegion) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMMutableLocationEvent {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMMutableLocationEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -40,10 +40,10 @@ extern "C-unwind" {
     pub fn NSRangeFromString(a_string: &NSString) -> NSRange;
 }
 
-extern_methods!(
-    /// NSValueRangeExtensions
-    #[cfg(feature = "NSValue")]
-    unsafe impl NSValue {
+/// NSValueRangeExtensions.
+#[cfg(feature = "NSValue")]
+impl NSValue {
+    extern_methods!(
         #[unsafe(method(valueWithRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithRange(range: NSRange) -> Retained<NSValue>;
@@ -51,5 +51,5 @@ extern_methods!(
         #[unsafe(method(rangeValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn rangeValue(&self) -> NSRange;
-    }
-);
+    );
+}

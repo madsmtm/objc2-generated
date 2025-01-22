@@ -30,8 +30,8 @@ unsafe impl Sync for NSBundle {}
 
 unsafe impl NSObjectProtocol for NSBundle {}
 
-extern_methods!(
-    unsafe impl NSBundle {
+impl NSBundle {
+    extern_methods!(
         #[unsafe(method(mainBundle))]
         #[unsafe(method_family = none)]
         pub fn mainBundle() -> Retained<NSBundle>;
@@ -403,12 +403,12 @@ extern_methods!(
         #[unsafe(method(executableArchitectures))]
         #[unsafe(method_family = none)]
         pub unsafe fn executableArchitectures(&self) -> Option<Retained<NSArray<NSNumber>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSBundle {
+/// Methods declared on superclass `NSObject`.
+impl NSBundle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -416,21 +416,21 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSBundleExtensionMethods
-    #[cfg(feature = "NSString")]
-    unsafe impl NSString {
+/// NSBundleExtensionMethods.
+#[cfg(feature = "NSString")]
+impl NSString {
+    extern_methods!(
         #[unsafe(method(variantFittingPresentationWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn variantFittingPresentationWidth(
             &self,
             width: NSInteger,
         ) -> Retained<NSString>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundledidloadnotification?language=objc)
@@ -456,8 +456,8 @@ unsafe impl NSObjectProtocol for NSBundleResourceRequest {}
 #[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSBundleResourceRequest {}
 
-extern_methods!(
-    unsafe impl NSBundleResourceRequest {
+impl NSBundleResourceRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -519,21 +519,21 @@ extern_methods!(
         #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSBundleResourceRequest {
+/// Methods declared on superclass `NSObject`.
+impl NSBundleResourceRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSBundleResourceRequestAdditions
-    unsafe impl NSBundle {
+/// NSBundleResourceRequestAdditions.
+impl NSBundle {
+    extern_methods!(
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
         #[unsafe(method(setPreservationPriority:forTags:))]
         #[unsafe(method_family = none)]
@@ -547,8 +547,8 @@ extern_methods!(
         #[unsafe(method(preservationPriorityForTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preservationPriorityForTag(&self, tag: &NSString) -> c_double;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequestlowdiskspacenotification?language=objc)

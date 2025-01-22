@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for UIImageReaderConfiguration {
 
 unsafe impl NSObjectProtocol for UIImageReaderConfiguration {}
 
-extern_methods!(
-    unsafe impl UIImageReaderConfiguration {
+impl UIImageReaderConfiguration {
+    extern_methods!(
         /// For image types that may decode as either SDR or HDR, prefer the HDR variant. Images that may only decode as either SDR or HDR are unaffected. Default depends on system capabilities.
         #[unsafe(method(prefersHighDynamicRange))]
         #[unsafe(method_family = none)]
@@ -69,12 +69,12 @@ extern_methods!(
         #[unsafe(method(setPixelsPerInch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPixelsPerInch(&self, pixels_per_inch: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIImageReaderConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl UIImageReaderConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,8 +82,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagereader?language=objc)
@@ -94,8 +94,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIImageReader {}
 
-extern_methods!(
-    unsafe impl UIImageReader {
+impl UIImageReader {
+    extern_methods!(
         /// Returns a reader that uses the default configuration options. This method is thread safe.
         #[unsafe(method(defaultReader))]
         #[unsafe(method_family = none)]
@@ -143,12 +143,12 @@ extern_methods!(
             data: &NSData,
             completion: &block2::Block<dyn Fn(*mut UIImage)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIImageReader {
+/// Methods declared on superclass `NSObject`.
+impl UIImageReader {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -156,5 +156,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

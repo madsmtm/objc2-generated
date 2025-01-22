@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for UIIndirectScribbleInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIIndirectScribbleInteraction {}
 
-extern_methods!(
-    unsafe impl UIIndirectScribbleInteraction {
+impl UIIndirectScribbleInteraction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -55,8 +55,8 @@ extern_methods!(
         #[unsafe(method(isHandlingWriting))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHandlingWriting(&self) -> bool;
-    }
-);
+    );
+}
 
 /// Element identifiers are used to identify writable elements in the interaction's view, and will be supplied in every delegate callback. Any object that conforms to NSCopying and that can be compared for equality can be used. It is recommended to use simple immutable values, like NSString, NSNumber, or NSUUID.
 ///

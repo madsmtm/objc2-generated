@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for NSSymbolEffectOptionsRepeatBehavior {}
 
 unsafe impl NSSecureCoding for NSSymbolEffectOptionsRepeatBehavior {}
 
-extern_methods!(
-    unsafe impl NSSymbolEffectOptionsRepeatBehavior {
+impl NSSymbolEffectOptionsRepeatBehavior {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -99,8 +99,8 @@ extern_methods!(
         #[unsafe(method(behaviorContinuous))]
         #[unsafe(method_family = none)]
         pub unsafe fn behaviorContinuous() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Options configuring how symbol effects apply to symbol views.
@@ -123,8 +123,8 @@ unsafe impl NSObjectProtocol for NSSymbolEffectOptions {}
 
 unsafe impl NSSecureCoding for NSSymbolEffectOptions {}
 
-extern_methods!(
-    unsafe impl NSSymbolEffectOptions {
+impl NSSymbolEffectOptions {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -226,8 +226,8 @@ extern_methods!(
             &self,
             behavior: &NSSymbolEffectOptionsRepeatBehavior,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An abstract base class for effects that can be applied to both NSImageViews and UIImageViews that have symbol-based images.
@@ -252,8 +252,8 @@ unsafe impl NSObjectProtocol for NSSymbolEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolEffect {
+impl NSSymbolEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -261,8 +261,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that applies the Pulse animation to
@@ -289,8 +289,8 @@ unsafe impl NSObjectProtocol for NSSymbolPulseEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolPulseEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolPulseEffect {
+impl NSSymbolPulseEffect {
+    extern_methods!(
         /// The default pulse effect, determined by the system.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -305,12 +305,12 @@ extern_methods!(
         #[unsafe(method(effectWithWholeSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolEffect`
-    unsafe impl NSSymbolPulseEffect {
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolPulseEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -318,8 +318,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that applies the Bounce animation to
@@ -345,8 +345,8 @@ unsafe impl NSObjectProtocol for NSSymbolBounceEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolBounceEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolBounceEffect {
+impl NSSymbolBounceEffect {
+    extern_methods!(
         /// The default bounce effect, determined by the system.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -371,12 +371,12 @@ extern_methods!(
         #[unsafe(method(effectWithWholeSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolEffect`
-    unsafe impl NSSymbolBounceEffect {
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolBounceEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -384,8 +384,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that applies the Variable Color
@@ -414,8 +414,8 @@ unsafe impl NSObjectProtocol for NSSymbolVariableColorEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolVariableColorEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolVariableColorEffect {
+impl NSSymbolVariableColorEffect {
+    extern_methods!(
         /// The default variable color effect, determined by the system.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -451,12 +451,12 @@ extern_methods!(
         #[unsafe(method(effectWithDimInactiveLayers))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithDimInactiveLayers(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolEffect`
-    unsafe impl NSSymbolVariableColorEffect {
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolVariableColorEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -464,8 +464,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that scales symbol images.
@@ -488,8 +488,8 @@ unsafe impl NSObjectProtocol for NSSymbolScaleEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolScaleEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolScaleEffect {
+impl NSSymbolScaleEffect {
+    extern_methods!(
         /// The default scaling effect, determined by the system.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -514,12 +514,12 @@ extern_methods!(
         #[unsafe(method(effectWithWholeSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolEffect`
-    unsafe impl NSSymbolScaleEffect {
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolScaleEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -527,8 +527,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that applies the Appear animation to
@@ -555,8 +555,8 @@ unsafe impl NSObjectProtocol for NSSymbolAppearEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolAppearEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolAppearEffect {
+impl NSSymbolAppearEffect {
+    extern_methods!(
         /// The default appear effect, determined by the system.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -581,12 +581,12 @@ extern_methods!(
         #[unsafe(method(effectWithWholeSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolEffect`
-    unsafe impl NSSymbolAppearEffect {
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolAppearEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -594,8 +594,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that applies the Disappear animation to
@@ -622,8 +622,8 @@ unsafe impl NSObjectProtocol for NSSymbolDisappearEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolDisappearEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolDisappearEffect {
+impl NSSymbolDisappearEffect {
+    extern_methods!(
         /// The default disappear effect, determined by the system.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -648,12 +648,12 @@ extern_methods!(
         #[unsafe(method(effectWithWholeSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolEffect`
-    unsafe impl NSSymbolDisappearEffect {
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolDisappearEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -661,8 +661,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that applies the Wiggle animation to symbol images.
@@ -688,8 +688,8 @@ unsafe impl NSObjectProtocol for NSSymbolWiggleEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolWiggleEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolWiggleEffect {
+impl NSSymbolWiggleEffect {
+    extern_methods!(
         /// The default wiggle effect, determined by the system.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -760,12 +760,12 @@ extern_methods!(
         #[unsafe(method(effectWithWholeSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolEffect`
-    unsafe impl NSSymbolWiggleEffect {
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolWiggleEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -773,8 +773,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that applies the Rotate animation to
@@ -801,8 +801,8 @@ unsafe impl NSObjectProtocol for NSSymbolRotateEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolRotateEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolRotateEffect {
+impl NSSymbolRotateEffect {
+    extern_methods!(
         /// The default rotate effect, determined by the system.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -827,12 +827,12 @@ extern_methods!(
         #[unsafe(method(effectWithWholeSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolEffect`
-    unsafe impl NSSymbolRotateEffect {
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolRotateEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -840,8 +840,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that applies the Breathe animation to
@@ -867,8 +867,8 @@ unsafe impl NSObjectProtocol for NSSymbolBreatheEffect {}
 
 unsafe impl NSSecureCoding for NSSymbolBreatheEffect {}
 
-extern_methods!(
-    unsafe impl NSSymbolBreatheEffect {
+impl NSSymbolBreatheEffect {
+    extern_methods!(
         /// The default breathe effect, determined by the system.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -895,12 +895,12 @@ extern_methods!(
         #[unsafe(method(effectWithWholeSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolEffect`
-    unsafe impl NSSymbolBreatheEffect {
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolBreatheEffect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -908,8 +908,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An abstract base class for transitions that can be applied to both NSImageViews and
@@ -935,8 +935,8 @@ unsafe impl NSObjectProtocol for NSSymbolContentTransition {}
 
 unsafe impl NSSecureCoding for NSSymbolContentTransition {}
 
-extern_methods!(
-    unsafe impl NSSymbolContentTransition {
+impl NSSymbolContentTransition {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -944,8 +944,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect applies the MagicReplace animation to
@@ -972,13 +972,13 @@ unsafe impl NSObjectProtocol for NSSymbolMagicReplaceContentTransition {}
 
 unsafe impl NSSecureCoding for NSSymbolMagicReplaceContentTransition {}
 
-extern_methods!(
-    unsafe impl NSSymbolMagicReplaceContentTransition {}
-);
+impl NSSymbolMagicReplaceContentTransition {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolContentTransition`
-    unsafe impl NSSymbolMagicReplaceContentTransition {
+/// Methods declared on superclass `NSSymbolContentTransition`.
+impl NSSymbolMagicReplaceContentTransition {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -986,8 +986,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A symbol effect that animates the replacement of one symbol image
@@ -1011,8 +1011,8 @@ unsafe impl NSObjectProtocol for NSSymbolReplaceContentTransition {}
 
 unsafe impl NSSecureCoding for NSSymbolReplaceContentTransition {}
 
-extern_methods!(
-    unsafe impl NSSymbolReplaceContentTransition {
+impl NSSymbolReplaceContentTransition {
+    extern_methods!(
         /// The default replace transition, determined by the system.
         #[unsafe(method(transition))]
         #[unsafe(method_family = none)]
@@ -1052,12 +1052,12 @@ extern_methods!(
         pub unsafe fn magicTransitionWithFallback(
             fallback: &NSSymbolReplaceContentTransition,
         ) -> Retained<NSSymbolMagicReplaceContentTransition>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolContentTransition`
-    unsafe impl NSSymbolReplaceContentTransition {
+/// Methods declared on superclass `NSSymbolContentTransition`.
+impl NSSymbolReplaceContentTransition {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -1065,8 +1065,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The default symbol transition, resolves to a particular transition in a
@@ -1090,18 +1090,18 @@ unsafe impl NSObjectProtocol for NSSymbolAutomaticContentTransition {}
 
 unsafe impl NSSecureCoding for NSSymbolAutomaticContentTransition {}
 
-extern_methods!(
-    unsafe impl NSSymbolAutomaticContentTransition {
+impl NSSymbolAutomaticContentTransition {
+    extern_methods!(
         /// The default automatic transition, determined by the system.
         #[unsafe(method(transition))]
         #[unsafe(method_family = none)]
         pub unsafe fn transition() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSymbolContentTransition`
-    unsafe impl NSSymbolAutomaticContentTransition {
+/// Methods declared on superclass `NSSymbolContentTransition`.
+impl NSSymbolAutomaticContentTransition {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -1109,5 +1109,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

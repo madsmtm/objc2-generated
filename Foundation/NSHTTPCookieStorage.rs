@@ -53,8 +53,8 @@ unsafe impl Sync for NSHTTPCookieStorage {}
 
 unsafe impl NSObjectProtocol for NSHTTPCookieStorage {}
 
-extern_methods!(
-    unsafe impl NSHTTPCookieStorage {
+impl NSHTTPCookieStorage {
+    extern_methods!(
         /// Get the shared cookie storage in the default location.
         ///
         /// Returns: The shared cookie storage
@@ -189,12 +189,12 @@ extern_methods!(
             &self,
             sort_order: &NSArray<NSSortDescriptor>,
         ) -> Retained<NSArray<NSHTTPCookie>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSHTTPCookieStorage {
+/// Methods declared on superclass `NSObject`.
+impl NSHTTPCookieStorage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -202,12 +202,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLSessionTaskAdditions
-    unsafe impl NSHTTPCookieStorage {
+/// NSURLSessionTaskAdditions.
+impl NSHTTPCookieStorage {
+    extern_methods!(
         #[cfg(all(
             feature = "NSArray",
             feature = "NSHTTPCookie",
@@ -234,8 +234,8 @@ extern_methods!(
             task: &NSURLSessionTask,
             completion_handler: &block2::Block<dyn Fn(*mut NSArray<NSHTTPCookie>)>,
         );
-    }
-);
+    );
+}
 
 extern "C" {
     /// Name of notification that should be posted to the

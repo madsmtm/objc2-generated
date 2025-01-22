@@ -30,8 +30,8 @@ unsafe impl NSSecureCoding for UIContentUnavailableConfigurationState {}
 #[cfg(feature = "UIConfigurationState")]
 unsafe impl UIConfigurationState for UIContentUnavailableConfigurationState {}
 
-extern_methods!(
-    unsafe impl UIContentUnavailableConfigurationState {
+impl UIContentUnavailableConfigurationState {
+    extern_methods!(
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(initWithTraitCollection:))]
         #[unsafe(method_family = init)]
@@ -76,5 +76,5 @@ extern_methods!(
         #[unsafe(method(setSearchText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchText(&self, search_text: Option<&NSString>);
-    }
-);
+    );
+}

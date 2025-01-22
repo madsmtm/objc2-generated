@@ -85,9 +85,9 @@ unsafe impl NSObjectProtocol for NSProgressIndicator {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSProgressIndicator {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSProgressIndicator {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSProgressIndicator {
+    extern_methods!(
         #[unsafe(method(isIndeterminate))]
         #[unsafe(method_family = none)]
         pub unsafe fn isIndeterminate(&self) -> bool;
@@ -186,13 +186,13 @@ extern_methods!(
         #[unsafe(method(setDisplayedWhenStopped:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayedWhenStopped(&self, displayed_when_stopped: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSProgressIndicator {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSProgressIndicator {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -203,28 +203,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSProgressIndicator {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSProgressIndicator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSProgressIndicator {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSProgressIndicator {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness?language=objc)
 // NS_ENUM
@@ -263,10 +263,10 @@ pub static NSProgressIndicatorBarStyle: NSProgressIndicatorStyle =
 pub static NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle =
     NSProgressIndicatorStyle(NSProgressIndicatorStyle::Spinning.0);
 
-extern_methods!(
-    /// NSProgressIndicatorDeprecated
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSProgressIndicator {
+/// NSProgressIndicatorDeprecated.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSProgressIndicator {
+    extern_methods!(
         #[deprecated = "The animationDelay property does nothing."]
         #[unsafe(method(animationDelay))]
         #[unsafe(method_family = none)]
@@ -305,5 +305,5 @@ extern_methods!(
         #[unsafe(method(setControlTint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
-    }
-);
+    );
+}

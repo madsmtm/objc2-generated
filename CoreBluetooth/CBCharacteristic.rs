@@ -67,9 +67,9 @@ extern_class!(
 #[cfg(feature = "CBAttribute")]
 unsafe impl NSObjectProtocol for CBCharacteristic {}
 
-extern_methods!(
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBCharacteristic {
+#[cfg(feature = "CBAttribute")]
+impl CBCharacteristic {
+    extern_methods!(
         #[cfg(feature = "CBService")]
         /// A back-pointer to the service this characteristic belongs to.
         #[unsafe(method(service))]
@@ -102,28 +102,28 @@ extern_methods!(
         #[unsafe(method(isNotifying))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNotifying(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CBAttribute`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBCharacteristic {
+/// Methods declared on superclass `CBAttribute`.
+#[cfg(feature = "CBAttribute")]
+impl CBCharacteristic {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBCharacteristic {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBAttribute")]
+impl CBCharacteristic {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Read, write, and encryption permissions for an ATT attribute. Can be combined.
 ///
@@ -193,9 +193,9 @@ extern_class!(
 #[cfg(feature = "CBAttribute")]
 unsafe impl NSObjectProtocol for CBMutableCharacteristic {}
 
-extern_methods!(
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBMutableCharacteristic {
+#[cfg(feature = "CBAttribute")]
+impl CBMutableCharacteristic {
+    extern_methods!(
         /// The permissions of the characteristic value.
         ///
         ///
@@ -268,25 +268,25 @@ extern_methods!(
             value: Option<&NSData>,
             permissions: CBAttributePermissions,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CBAttribute`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBMutableCharacteristic {
+/// Methods declared on superclass `CBAttribute`.
+#[cfg(feature = "CBAttribute")]
+impl CBMutableCharacteristic {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBMutableCharacteristic {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBAttribute")]
+impl CBMutableCharacteristic {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

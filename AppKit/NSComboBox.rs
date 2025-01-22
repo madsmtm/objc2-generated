@@ -235,14 +235,14 @@ unsafe impl NSUserInterfaceItemIdentification for NSComboBox {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSComboBox {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSComboBox {
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSComboBox {
+    extern_methods!(
         #[unsafe(method(hasVerticalScroller))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
@@ -411,18 +411,18 @@ extern_methods!(
         #[unsafe(method(objectValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectValues(&self) -> Retained<NSArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSComboBox {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSComboBox {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -433,35 +433,35 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSComboBox {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSComboBox {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSComboBox {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSComboBox {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

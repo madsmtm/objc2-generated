@@ -43,13 +43,13 @@ unsafe impl CopyingHelper for DOMProgressEvent {
 ))]
 unsafe impl NSObjectProtocol for DOMProgressEvent {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMProgressEvent {
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMProgressEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(lengthComputable))]
         #[unsafe(method_family = none)]
@@ -64,34 +64,34 @@ extern_methods!(
         #[unsafe(method(total))]
         #[unsafe(method_family = none)]
         pub unsafe fn total(&self) -> c_ulonglong;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMProgressEvent {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMProgressEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMProgressEvent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMProgressEvent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

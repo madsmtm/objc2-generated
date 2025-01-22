@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for UIListContentImageProperties {}
 
 unsafe impl NSSecureCoding for UIListContentImageProperties {}
 
-extern_methods!(
-    unsafe impl UIListContentImageProperties {
+impl UIListContentImageProperties {
+    extern_methods!(
         #[cfg(all(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
@@ -224,12 +224,12 @@ extern_methods!(
             &self,
             tint_color: &UIColor,
         ) -> Retained<UIColor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIListContentImageProperties {
+/// Methods declared on superclass `NSObject`.
+impl UIListContentImageProperties {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -237,8 +237,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// A special constant that can be set to the `reservedLayoutSize` width or height. This

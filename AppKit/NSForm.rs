@@ -110,14 +110,14 @@ unsafe impl NSUserInterfaceValidations for NSForm {}
 ))]
 unsafe impl NSViewToolTipOwner for NSForm {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSMatrix",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSForm {
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSForm {
+    extern_methods!(
         #[unsafe(method(indexOfSelectedItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
@@ -217,18 +217,18 @@ extern_methods!(
         #[unsafe(method(preferredTextFieldWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTextFieldWidth(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSMatrix`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSMatrix",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSForm {
+/// Methods declared on superclass `NSMatrix`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSForm {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -255,53 +255,53 @@ extern_methods!(
             rows_high: NSInteger,
             cols_wide: NSInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSMatrix",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSForm {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSForm {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSMatrix",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSForm {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSForm {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSMatrix",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSForm {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSMatrix",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSForm {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -24,9 +24,9 @@ unsafe impl NSCoding for UIFocusGuide {}
 #[cfg(feature = "UILayoutGuide")]
 unsafe impl NSObjectProtocol for UIFocusGuide {}
 
-extern_methods!(
-    #[cfg(feature = "UILayoutGuide")]
-    unsafe impl UIFocusGuide {
+#[cfg(feature = "UILayoutGuide")]
+impl UIFocusGuide {
+    extern_methods!(
         /// If disabled, UIFocusGuides are ignored by the focus engine, but still participate in layout. Modifying this flag allows you to conditionally enable or disable certain focus behaviors. YES by default.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
@@ -69,13 +69,13 @@ extern_methods!(
         #[unsafe(method(setPreferredFocusedView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFocusedView(&self, preferred_focused_view: Option<&UIView>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UILayoutGuide")]
-    unsafe impl UIFocusGuide {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UILayoutGuide")]
+impl UIFocusGuide {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -83,5 +83,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

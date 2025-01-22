@@ -49,8 +49,8 @@ unsafe impl Sync for SKProductSubscriptionPeriod {}
 
 unsafe impl NSObjectProtocol for SKProductSubscriptionPeriod {}
 
-extern_methods!(
-    unsafe impl SKProductSubscriptionPeriod {
+impl SKProductSubscriptionPeriod {
+    extern_methods!(
         #[deprecated = "Use Product.SubscriptionPeriod"]
         #[unsafe(method(numberOfUnits))]
         #[unsafe(method_family = none)]
@@ -60,12 +60,12 @@ extern_methods!(
         #[unsafe(method(unit))]
         #[unsafe(method_family = none)]
         pub unsafe fn unit(&self) -> SKProductPeriodUnit;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKProductSubscriptionPeriod {
+/// Methods declared on superclass `NSObject`.
+impl SKProductSubscriptionPeriod {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -73,8 +73,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct?language=objc)
@@ -90,8 +90,8 @@ unsafe impl Sync for SKProduct {}
 
 unsafe impl NSObjectProtocol for SKProduct {}
 
-extern_methods!(
-    unsafe impl SKProduct {
+impl SKProduct {
+    extern_methods!(
         #[deprecated = "Use Product.description"]
         #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
@@ -173,12 +173,12 @@ extern_methods!(
         #[unsafe(method(discounts))]
         #[unsafe(method_family = none)]
         pub unsafe fn discounts(&self) -> Retained<NSArray<SKProductDiscount>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKProduct {
+/// Methods declared on superclass `NSObject`.
+impl SKProduct {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -186,5 +186,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

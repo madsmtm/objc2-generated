@@ -41,11 +41,11 @@ unsafe impl RefEncode for CAConstraintAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// CAConstraintLayoutManager
-    /// The additions to CALayer for constraint layout. *
-    #[cfg(feature = "CALayer")]
-    unsafe impl CALayer {
+/// CAConstraintLayoutManager.
+/// The additions to CALayer for constraint layout. *
+#[cfg(feature = "CALayer")]
+impl CALayer {
+    extern_methods!(
         #[unsafe(method(constraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraints(&self) -> Option<Retained<NSArray<CAConstraint>>>;
@@ -58,8 +58,8 @@ extern_methods!(
         #[unsafe(method(addConstraint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addConstraint(&self, c: &CAConstraint);
-    }
-);
+    );
+}
 
 extern_class!(
     /// The constraint-based layout manager. *
@@ -75,17 +75,17 @@ unsafe impl CALayoutManager for CAConstraintLayoutManager {}
 
 unsafe impl NSObjectProtocol for CAConstraintLayoutManager {}
 
-extern_methods!(
-    unsafe impl CAConstraintLayoutManager {
+impl CAConstraintLayoutManager {
+    extern_methods!(
         #[unsafe(method(layoutManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutManager() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CAConstraintLayoutManager {
+/// Methods declared on superclass `NSObject`.
+impl CAConstraintLayoutManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -93,8 +93,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The class representing a single layout constraint. *
@@ -111,8 +111,8 @@ unsafe impl NSObjectProtocol for CAConstraint {}
 
 unsafe impl NSSecureCoding for CAConstraint {}
 
-extern_methods!(
-    unsafe impl CAConstraint {
+impl CAConstraint {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(constraintWithAttribute:relativeTo:attribute:scale:offset:))]
         #[unsafe(method_family = none)]
@@ -175,12 +175,12 @@ extern_methods!(
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CAConstraint {
+/// Methods declared on superclass `NSObject`.
+impl CAConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -188,5 +188,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

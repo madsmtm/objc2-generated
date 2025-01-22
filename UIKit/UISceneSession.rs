@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for UISceneConfiguration {}
 
 unsafe impl NSSecureCoding for UISceneConfiguration {}
 
-extern_methods!(
-    unsafe impl UISceneConfiguration {
+impl UISceneConfiguration {
+    extern_methods!(
         #[cfg(feature = "UISceneDefinitions")]
         #[unsafe(method(configurationWithName:sessionRole:))]
         #[unsafe(method_family = none)]
@@ -84,12 +84,12 @@ extern_methods!(
         #[unsafe(method(setStoryboard:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStoryboard(&self, storyboard: Option<&UIStoryboard>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UISceneConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl UISceneConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -97,8 +97,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession?language=objc)
@@ -114,8 +114,8 @@ unsafe impl NSObjectProtocol for UISceneSession {}
 
 unsafe impl NSSecureCoding for UISceneSession {}
 
-extern_methods!(
-    unsafe impl UISceneSession {
+impl UISceneSession {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -162,5 +162,5 @@ extern_methods!(
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);
-    }
-);
+    );
+}

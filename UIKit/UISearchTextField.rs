@@ -187,14 +187,14 @@ unsafe impl UITextInputTraits for UISearchTextField {}
 ))]
 unsafe impl UITraitEnvironment for UISearchTextField {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "UIControl",
-        feature = "UIResponder",
-        feature = "UITextField",
-        feature = "UIView"
-    ))]
-    unsafe impl UISearchTextField {
+#[cfg(all(
+    feature = "UIControl",
+    feature = "UIResponder",
+    feature = "UITextField",
+    feature = "UIView"
+))]
+impl UISearchTextField {
+    extern_methods!(
         /// Simple access to the collection of tokens.
         #[unsafe(method(tokens))]
         #[unsafe(method_family = none)]
@@ -317,18 +317,18 @@ extern_methods!(
             &self,
             search_suggestions: Option<&NSArray<ProtocolObject<dyn UISearchSuggestion>>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIControl`
-    #[cfg(all(
-        feature = "UIControl",
-        feature = "UIResponder",
-        feature = "UITextField",
-        feature = "UIView"
-    ))]
-    unsafe impl UISearchTextField {
+/// Methods declared on superclass `UIControl`.
+#[cfg(all(
+    feature = "UIControl",
+    feature = "UIResponder",
+    feature = "UITextField",
+    feature = "UIView"
+))]
+impl UISearchTextField {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -354,18 +354,18 @@ extern_methods!(
             frame: CGRect,
             primary_action: Option<&UIAction>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "UIControl",
-        feature = "UIResponder",
-        feature = "UITextField",
-        feature = "UIView"
-    ))]
-    unsafe impl UISearchTextField {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "UIControl",
+    feature = "UIResponder",
+    feature = "UITextField",
+    feature = "UIView"
+))]
+impl UISearchTextField {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -373,8 +373,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An individual token in a UISearchTextField.
@@ -388,8 +388,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISearchToken {}
 
-extern_methods!(
-    unsafe impl UISearchToken {
+impl UISearchToken {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -421,8 +421,8 @@ extern_methods!(
         #[unsafe(method(setRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchtextfielddelegate?language=objc)

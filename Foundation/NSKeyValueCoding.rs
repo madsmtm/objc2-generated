@@ -203,10 +203,10 @@ extern_category!(
     unsafe impl NSObjectNSKeyValueCoding for NSObject {}
 );
 
-extern_methods!(
-    /// NSKeyValueCoding
-    #[cfg(feature = "NSArray")]
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+/// NSKeyValueCoding.
+#[cfg(feature = "NSArray")]
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
@@ -216,35 +216,35 @@ extern_methods!(
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSKeyValueCoding
-    #[cfg(feature = "NSDictionary")]
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+/// NSKeyValueCoding.
+#[cfg(feature = "NSDictionary")]
+impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<ObjectType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSKeyValueCoding
-    #[cfg(feature = "NSDictionary")]
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+/// NSKeyValueCoding.
+#[cfg(feature = "NSDictionary")]
+impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&ObjectType>, key: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSKeyValueCoding
-    #[cfg(feature = "NSOrderedSet")]
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+/// NSKeyValueCoding.
+#[cfg(feature = "NSOrderedSet")]
+impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
@@ -254,13 +254,13 @@ extern_methods!(
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSKeyValueCoding
-    #[cfg(feature = "NSSet")]
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+/// NSKeyValueCoding.
+#[cfg(feature = "NSSet")]
+impl<ObjectType: Message> NSSet<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
@@ -270,5 +270,5 @@ extern_methods!(
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
-    }
-);
+    );
+}

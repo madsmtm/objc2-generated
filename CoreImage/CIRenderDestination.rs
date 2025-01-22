@@ -48,8 +48,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIRenderDestination {}
 
-extern_methods!(
-    unsafe impl CIRenderDestination {
+impl CIRenderDestination {
+    extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         #[unsafe(method(initWithPixelBuffer:))]
         #[unsafe(method_family = init)]
@@ -186,12 +186,12 @@ extern_methods!(
             &self,
             blends_in_destination_color_space: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIRenderDestination {
+/// Methods declared on superclass `NSObject`.
+impl CIRenderDestination {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -199,8 +199,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderinfo?language=objc)
@@ -211,8 +211,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIRenderInfo {}
 
-extern_methods!(
-    unsafe impl CIRenderInfo {
+impl CIRenderInfo {
+    extern_methods!(
         #[unsafe(method(kernelExecutionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelExecutionTime(&self) -> NSTimeInterval;
@@ -228,12 +228,12 @@ extern_methods!(
         #[unsafe(method(pixelsProcessed))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelsProcessed(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIRenderInfo {
+/// Methods declared on superclass `NSObject`.
+impl CIRenderInfo {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -241,8 +241,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirendertask?language=objc)
@@ -253,19 +253,19 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIRenderTask {}
 
-extern_methods!(
-    unsafe impl CIRenderTask {
+impl CIRenderTask {
+    extern_methods!(
         #[unsafe(method(waitUntilCompletedAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn waitUntilCompletedAndReturnError(
             &self,
         ) -> Result<Retained<CIRenderInfo>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIRenderTask {
+/// Methods declared on superclass `NSObject`.
+impl CIRenderTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -273,13 +273,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// CIRenderDestination
-    #[cfg(feature = "CIContext")]
-    unsafe impl CIContext {
+/// CIRenderDestination.
+#[cfg(feature = "CIContext")]
+impl CIContext {
+    extern_methods!(
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
         #[unsafe(method(startTaskToRender:fromRect:toDestination:atPoint:error:_))]
         #[unsafe(method_family = none)]
@@ -317,5 +317,5 @@ extern_methods!(
             &self,
             destination: &CIRenderDestination,
         ) -> Result<Retained<CIRenderTask>, Retained<NSError>>;
-    }
-);
+    );
+}

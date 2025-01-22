@@ -43,8 +43,8 @@ unsafe impl NSObjectProtocol for NSURLResponse {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLResponse {}
 
-extern_methods!(
-    unsafe impl NSURLResponse {
+impl NSURLResponse {
+    extern_methods!(
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         /// Initialize an NSURLResponse with the provided values.
         ///
@@ -138,12 +138,12 @@ extern_methods!(
         #[unsafe(method(suggestedFilename))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedFilename(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLResponse {
+/// Methods declared on superclass `NSObject`.
+impl NSURLResponse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -151,8 +151,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An NSHTTPURLResponse object represents a response to an
@@ -186,8 +186,8 @@ unsafe impl NSObjectProtocol for NSHTTPURLResponse {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSHTTPURLResponse {}
 
-extern_methods!(
-    unsafe impl NSHTTPURLResponse {
+impl NSHTTPURLResponse {
+    extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSURL"))]
         /// initializer for NSHTTPURLResponse objects.
         ///
@@ -261,12 +261,12 @@ extern_methods!(
         #[unsafe(method(localizedStringForStatusCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringForStatusCode(status_code: NSInteger) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSURLResponse`
-    unsafe impl NSHTTPURLResponse {
+/// Methods declared on superclass `NSURLResponse`.
+impl NSHTTPURLResponse {
+    extern_methods!(
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         /// Initialize an NSURLResponse with the provided values.
         ///
@@ -290,12 +290,12 @@ extern_methods!(
             length: NSInteger,
             name: Option<&NSString>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSHTTPURLResponse {
+/// Methods declared on superclass `NSObject`.
+impl NSHTTPURLResponse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -303,5 +303,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

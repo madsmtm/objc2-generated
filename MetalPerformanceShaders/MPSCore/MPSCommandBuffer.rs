@@ -33,8 +33,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSPredicate {}
 
-extern_methods!(
-    unsafe impl MPSPredicate {
+impl MPSPredicate {
+    extern_methods!(
         /// The buffer that is used as the predicate
         #[unsafe(method(predicateBuffer))]
         #[unsafe(method_family = none)]
@@ -99,12 +99,12 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSPredicate {
+/// Methods declared on superclass `NSObject`.
+impl MPSPredicate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -112,8 +112,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsheapprovider?language=objc)
@@ -179,8 +179,8 @@ unsafe impl MTLCommandBuffer for MPSCommandBuffer {}
 
 unsafe impl NSObjectProtocol for MPSCommandBuffer {}
 
-extern_methods!(
-    unsafe impl MPSCommandBuffer {
+impl MPSCommandBuffer {
+    extern_methods!(
         /// The Metal Command Buffer that was used to initialize this object.
         #[unsafe(method(commandBuffer))]
         #[unsafe(method_family = none)]
@@ -322,14 +322,14 @@ extern_methods!(
         #[unsafe(method(prefetchHeapForWorkloadSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefetchHeapForWorkloadSize(&self, size: usize);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSCommandBuffer {
+/// Methods declared on superclass `NSObject`.
+impl MPSCommandBuffer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

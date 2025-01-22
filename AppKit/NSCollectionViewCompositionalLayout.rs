@@ -132,8 +132,8 @@ unsafe impl CopyingHelper for NSCollectionViewCompositionalLayoutConfiguration {
 
 unsafe impl NSObjectProtocol for NSCollectionViewCompositionalLayoutConfiguration {}
 
-extern_methods!(
-    unsafe impl NSCollectionViewCompositionalLayoutConfiguration {
+impl NSCollectionViewCompositionalLayoutConfiguration {
+    extern_methods!(
         #[cfg(feature = "NSCollectionViewFlowLayout")]
         #[unsafe(method(scrollDirection))]
         #[unsafe(method_family = none)]
@@ -169,12 +169,12 @@ extern_methods!(
             &self,
             boundary_supplementary_items: &NSArray<NSCollectionLayoutBoundarySupplementaryItem>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCollectionViewCompositionalLayoutConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl NSCollectionViewCompositionalLayoutConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -182,8 +182,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewcompositionallayoutsectionprovider?language=objc)
 #[cfg(feature = "block2")]
@@ -208,9 +208,9 @@ unsafe impl NSCoding for NSCollectionViewCompositionalLayout {}
 #[cfg(feature = "NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewCompositionalLayout {}
 
-extern_methods!(
-    #[cfg(feature = "NSCollectionViewLayout")]
-    unsafe impl NSCollectionViewCompositionalLayout {
+#[cfg(feature = "NSCollectionViewLayout")]
+impl NSCollectionViewCompositionalLayout {
+    extern_methods!(
         #[unsafe(method(initWithSection:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSection(
@@ -264,8 +264,8 @@ extern_methods!(
             &self,
             configuration: &NSCollectionViewCompositionalLayoutConfiguration,
         );
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionorthogonalscrollingbehavior?language=objc)
 // NS_ENUM
@@ -323,8 +323,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutSection {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutSection {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutSection {
+impl NSCollectionLayoutSection {
+    extern_methods!(
         #[unsafe(method(sectionWithGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionWithGroup(group: &NSCollectionLayoutGroup) -> Retained<Self>;
@@ -427,8 +427,8 @@ extern_methods!(
             &self,
             decoration_items: &NSArray<NSCollectionLayoutDecorationItem>,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutitem?language=objc)
@@ -446,8 +446,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutItem {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutItem {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutItem {
+impl NSCollectionLayoutItem {
+    extern_methods!(
         #[unsafe(method(itemWithLayoutSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
@@ -496,8 +496,8 @@ extern_methods!(
         pub unsafe fn supplementaryItems(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutSupplementaryItem>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutgroupcustomitem?language=objc)
@@ -515,8 +515,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutGroupCustomItem {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutGroupCustomItem {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutGroupCustomItem {
+impl NSCollectionLayoutGroupCustomItem {
+    extern_methods!(
         #[unsafe(method(customItemWithFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customItemWithFrame(frame: NSRect, mtm: MainThreadMarker) -> Retained<Self>;
@@ -544,8 +544,8 @@ extern_methods!(
         #[unsafe(method(zIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn zIndex(&self) -> NSInteger;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutgroupcustomitemprovider?language=objc)
 #[cfg(feature = "block2")]
@@ -570,8 +570,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutGroup {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutGroup {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutGroup {
+impl NSCollectionLayoutGroup {
+    extern_methods!(
         #[unsafe(method(horizontalGroupWithLayoutSize:subitem:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontalGroupWithLayoutSize_subitem_count(
@@ -651,12 +651,12 @@ extern_methods!(
         #[unsafe(method(visualDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn visualDescription(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCollectionLayoutItem`
-    unsafe impl NSCollectionLayoutGroup {
+/// Methods declared on superclass `NSCollectionLayoutItem`.
+impl NSCollectionLayoutGroup {
+    extern_methods!(
         #[unsafe(method(itemWithLayoutSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
@@ -667,8 +667,8 @@ extern_methods!(
             layout_size: &NSCollectionLayoutSize,
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutdimension?language=objc)
@@ -686,8 +686,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutDimension {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutDimension {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutDimension {
+impl NSCollectionLayoutDimension {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(fractionalWidthDimension:))]
         #[unsafe(method_family = none)]
@@ -748,8 +748,8 @@ extern_methods!(
         #[unsafe(method(dimension))]
         #[unsafe(method_family = none)]
         pub unsafe fn dimension(&self) -> CGFloat;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsize?language=objc)
@@ -767,8 +767,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutSize {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutSize {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutSize {
+impl NSCollectionLayoutSize {
+    extern_methods!(
         #[unsafe(method(sizeWithWidthDimension:heightDimension:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeWithWidthDimension_heightDimension(
@@ -791,8 +791,8 @@ extern_methods!(
         #[unsafe(method(heightDimension))]
         #[unsafe(method_family = none)]
         pub unsafe fn heightDimension(&self) -> Retained<NSCollectionLayoutDimension>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutspacing?language=objc)
@@ -810,8 +810,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutSpacing {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutSpacing {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutSpacing {
+impl NSCollectionLayoutSpacing {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(flexibleSpacing:))]
         #[unsafe(method_family = none)]
@@ -846,8 +846,8 @@ extern_methods!(
         #[unsafe(method(isFixedSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFixedSpacing(&self) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing?language=objc)
@@ -865,8 +865,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutEdgeSpacing {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutEdgeSpacing {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutEdgeSpacing {
+impl NSCollectionLayoutEdgeSpacing {
+    extern_methods!(
         #[unsafe(method(spacingForLeading:top:trailing:bottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn spacingForLeading_top_trailing_bottom(
@@ -900,8 +900,8 @@ extern_methods!(
         #[unsafe(method(bottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottom(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsupplementaryitem?language=objc)
@@ -918,8 +918,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutSupplementaryItem {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutSupplementaryItem {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutSupplementaryItem {
+impl NSCollectionLayoutSupplementaryItem {
+    extern_methods!(
         #[unsafe(method(supplementaryItemWithLayoutSize:elementKind:containerAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supplementaryItemWithLayoutSize_elementKind_containerAnchor(
@@ -965,12 +965,12 @@ extern_methods!(
         #[unsafe(method(itemAnchor))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemAnchor(&self) -> Option<Retained<NSCollectionLayoutAnchor>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCollectionLayoutItem`
-    unsafe impl NSCollectionLayoutSupplementaryItem {
+/// Methods declared on superclass `NSCollectionLayoutItem`.
+impl NSCollectionLayoutSupplementaryItem {
+    extern_methods!(
         #[unsafe(method(itemWithLayoutSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
@@ -981,8 +981,8 @@ extern_methods!(
             layout_size: &NSCollectionLayoutSize,
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutboundarysupplementaryitem?language=objc)
@@ -999,8 +999,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutBoundarySupplementaryItem {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutBoundarySupplementaryItem {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutBoundarySupplementaryItem {
+impl NSCollectionLayoutBoundarySupplementaryItem {
+    extern_methods!(
         #[unsafe(method(boundarySupplementaryItemWithLayoutSize:elementKind:alignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn boundarySupplementaryItemWithLayoutSize_elementKind_alignment(
@@ -1051,12 +1051,12 @@ extern_methods!(
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSPoint;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCollectionLayoutSupplementaryItem`
-    unsafe impl NSCollectionLayoutBoundarySupplementaryItem {
+/// Methods declared on superclass `NSCollectionLayoutSupplementaryItem`.
+impl NSCollectionLayoutBoundarySupplementaryItem {
+    extern_methods!(
         #[unsafe(method(supplementaryItemWithLayoutSize:elementKind:containerAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supplementaryItemWithLayoutSize_elementKind_containerAnchor(
@@ -1073,12 +1073,12 @@ extern_methods!(
             container_anchor: &NSCollectionLayoutAnchor,
             item_anchor: &NSCollectionLayoutAnchor,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCollectionLayoutItem`
-    unsafe impl NSCollectionLayoutBoundarySupplementaryItem {
+/// Methods declared on superclass `NSCollectionLayoutItem`.
+impl NSCollectionLayoutBoundarySupplementaryItem {
+    extern_methods!(
         #[unsafe(method(itemWithLayoutSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
@@ -1089,8 +1089,8 @@ extern_methods!(
             layout_size: &NSCollectionLayoutSize,
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutdecorationitem?language=objc)
@@ -1107,8 +1107,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutDecorationItem {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutDecorationItem {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutDecorationItem {
+impl NSCollectionLayoutDecorationItem {
+    extern_methods!(
         #[unsafe(method(backgroundDecorationItemWithElementKind:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundDecorationItemWithElementKind(
@@ -1136,12 +1136,12 @@ extern_methods!(
         #[unsafe(method(elementKind))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementKind(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCollectionLayoutItem`
-    unsafe impl NSCollectionLayoutDecorationItem {
+/// Methods declared on superclass `NSCollectionLayoutItem`.
+impl NSCollectionLayoutDecorationItem {
+    extern_methods!(
         #[unsafe(method(itemWithLayoutSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
@@ -1152,8 +1152,8 @@ extern_methods!(
             layout_size: &NSCollectionLayoutSize,
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor?language=objc)
@@ -1171,8 +1171,8 @@ unsafe impl CopyingHelper for NSCollectionLayoutAnchor {
 
 unsafe impl NSObjectProtocol for NSCollectionLayoutAnchor {}
 
-extern_methods!(
-    unsafe impl NSCollectionLayoutAnchor {
+impl NSCollectionLayoutAnchor {
+    extern_methods!(
         #[unsafe(method(layoutAnchorWithEdges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAnchorWithEdges(
@@ -1219,8 +1219,8 @@ extern_methods!(
         #[unsafe(method(isFractionalOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFractionalOffset(&self) -> bool;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutcontainer?language=objc)

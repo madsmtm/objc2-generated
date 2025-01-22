@@ -28,9 +28,9 @@ unsafe impl CopyingHelper for NSCustomImageRep {
 #[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSCustomImageRep {}
 
-extern_methods!(
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSCustomImageRep {
+#[cfg(feature = "NSImageRep")]
+impl NSCustomImageRep {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(initWithSize:flipped:drawingHandler:))]
         #[unsafe(method_family = init)]
@@ -61,13 +61,13 @@ extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSCustomImageRep {
+/// Methods declared on superclass `NSImageRep`.
+#[cfg(feature = "NSImageRep")]
+impl NSCustomImageRep {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -78,15 +78,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSCustomImageRep {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSImageRep")]
+impl NSCustomImageRep {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

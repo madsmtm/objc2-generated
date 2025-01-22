@@ -81,9 +81,9 @@ unsafe impl UIResponderStandardEditActions for UITableViewHeaderFooterView {}
 ))]
 unsafe impl UITraitEnvironment for UITableViewHeaderFooterView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITableViewHeaderFooterView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UITableViewHeaderFooterView {
+    extern_methods!(
         #[unsafe(method(initWithReuseIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithReuseIdentifier(
@@ -246,24 +246,24 @@ extern_methods!(
         #[unsafe(method(prepareForReuse))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareForReuse(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITableViewHeaderFooterView {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UITableViewHeaderFooterView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITableViewHeaderFooterView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UITableViewHeaderFooterView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -271,5 +271,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

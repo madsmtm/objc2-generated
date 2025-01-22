@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlaybackSpeed {}
 
-extern_methods!(
-    unsafe impl AVPlaybackSpeed {
+impl AVPlaybackSpeed {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -64,5 +64,5 @@ extern_methods!(
         #[unsafe(method(localizedNumericName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedNumericName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}

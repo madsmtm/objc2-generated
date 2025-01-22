@@ -49,9 +49,9 @@ extern_class!(
 #[cfg(feature = "UICollectionViewLayout")]
 unsafe impl NSObjectProtocol for UICollectionViewFlowLayoutInvalidationContext {}
 
-extern_methods!(
-    #[cfg(feature = "UICollectionViewLayout")]
-    unsafe impl UICollectionViewFlowLayoutInvalidationContext {
+#[cfg(feature = "UICollectionViewLayout")]
+impl UICollectionViewFlowLayoutInvalidationContext {
+    extern_methods!(
         #[unsafe(method(invalidateFlowLayoutDelegateMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateFlowLayoutDelegateMetrics(&self) -> bool;
@@ -75,13 +75,13 @@ extern_methods!(
             &self,
             invalidate_flow_layout_attributes: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UICollectionViewLayout")]
-    unsafe impl UICollectionViewFlowLayoutInvalidationContext {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UICollectionViewLayout")]
+impl UICollectionViewFlowLayoutInvalidationContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -89,8 +89,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdelegateflowlayout?language=objc)
@@ -212,9 +212,9 @@ unsafe impl NSCoding for UICollectionViewFlowLayout {}
 #[cfg(feature = "UICollectionViewLayout")]
 unsafe impl NSObjectProtocol for UICollectionViewFlowLayout {}
 
-extern_methods!(
-    #[cfg(feature = "UICollectionViewLayout")]
-    unsafe impl UICollectionViewFlowLayout {
+#[cfg(feature = "UICollectionViewLayout")]
+impl UICollectionViewFlowLayout {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(minimumLineSpacing))]
         #[unsafe(method_family = none)]
@@ -340,13 +340,13 @@ extern_methods!(
             &self,
             section_footers_pin_to_visible_bounds: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICollectionViewLayout`
-    #[cfg(feature = "UICollectionViewLayout")]
-    unsafe impl UICollectionViewFlowLayout {
+/// Methods declared on superclass `UICollectionViewLayout`.
+#[cfg(feature = "UICollectionViewLayout")]
+impl UICollectionViewFlowLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -357,15 +357,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UICollectionViewLayout")]
-    unsafe impl UICollectionViewFlowLayout {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UICollectionViewLayout")]
+impl UICollectionViewFlowLayout {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

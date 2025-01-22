@@ -28,8 +28,8 @@ unsafe impl CopyingHelper for UILocalNotification {
 
 unsafe impl NSObjectProtocol for UILocalNotification {}
 
-extern_methods!(
-    unsafe impl UILocalNotification {
+impl UILocalNotification {
+    extern_methods!(
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -204,17 +204,17 @@ extern_methods!(
         #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UILocalNotification {
+/// Methods declared on superclass `NSObject`.
+impl UILocalNotification {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilocalnotificationdefaultsoundname?language=objc)

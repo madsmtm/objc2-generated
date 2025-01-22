@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLUpdateProgressHandlers {}
 
-extern_methods!(
-    unsafe impl MLUpdateProgressHandlers {
+impl MLUpdateProgressHandlers {
+    extern_methods!(
         #[cfg(all(
             feature = "MLUpdateContext",
             feature = "MLUpdateProgressEvent",
@@ -40,5 +40,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

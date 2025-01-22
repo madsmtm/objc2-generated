@@ -30,8 +30,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKContentWorld {}
 
-extern_methods!(
-    unsafe impl WKContentWorld {
+impl WKContentWorld {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -77,5 +77,5 @@ extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}

@@ -50,10 +50,10 @@ extern "C" {
     pub static SCNLightShadowFarClippingKey: &'static NSString;
 }
 
-extern_methods!(
-    /// SCNDeprecated
-    #[cfg(feature = "SCNLight")]
-    unsafe impl SCNLight {
+/// SCNDeprecated.
+#[cfg(feature = "SCNLight")]
+impl SCNLight {
+    extern_methods!(
         /// Parameter `key`: The key for which to return the corresponding attribute.
         ///
         /// Returns the attribute for the specified key. The valid keys are described in the "Light Attributes" constants.
@@ -71,16 +71,16 @@ extern_methods!(
         #[unsafe(method(setAttribute:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttribute_forKey(&self, attribute: Option<&AnyObject>, key: &NSString);
-    }
-);
+    );
+}
 
 #[cfg(all(feature = "SCNLight", feature = "SCNTechnique"))]
 unsafe impl SCNTechniqueSupport for SCNLight {}
 
-extern_methods!(
-    /// SCNDeprecated
-    #[cfg(feature = "SCNCamera")]
-    unsafe impl SCNCamera {
+/// SCNDeprecated.
+#[cfg(feature = "SCNCamera")]
+impl SCNCamera {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the receiver's focal radius. Animatable.
         ///
@@ -172,13 +172,13 @@ extern_methods!(
         #[unsafe(method(setFocalDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocalDistance(&self, focal_distance: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SCNDeprecated
-    #[cfg(feature = "SCNRenderer")]
-    unsafe impl SCNRenderer {
+/// SCNDeprecated.
+#[cfg(feature = "SCNRenderer")]
+impl SCNRenderer {
+    extern_methods!(
         /// renders the receiver's scene at the current system time.
         ///
         /// This method only work if the receiver was allocated with an OpenGL context and it is deprecated (use renderAtTime: instead). Use renderAtTime:withEncoder:pass:commandQueue: to render with Metal.
@@ -186,13 +186,13 @@ extern_methods!(
         #[unsafe(method(render))]
         #[unsafe(method_family = none)]
         pub unsafe fn render(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SCNDeprecated
-    #[cfg(feature = "SCNMaterialProperty")]
-    unsafe impl SCNMaterialProperty {
+/// SCNDeprecated.
+#[cfg(feature = "SCNMaterialProperty")]
+impl SCNMaterialProperty {
+    extern_methods!(
         /// Determines the receiver's border color (CGColorRef or NSColor). Animatable.
         ///
         /// The border color is ignored on iOS and is always considered as clear color (0,0,0,0) when the texture has an alpha channel and opaque back (0,0,0,1) otherwise.
@@ -206,5 +206,5 @@ extern_methods!(
         #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderColor(&self, border_color: Option<&AnyObject>);
-    }
-);
+    );
+}

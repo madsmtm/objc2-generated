@@ -47,10 +47,10 @@ unsafe impl RefEncode for MPSGraphNonMaximumSuppressionCoordinateMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// MPSGraphNonMaximumSuppressionOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphNonMaximumSuppressionOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a nonMaximumumSuppression operation and returns the result tensor.
         /// - Parameters:
@@ -98,5 +98,5 @@ extern_methods!(
             coordinate_mode: MPSGraphNonMaximumSuppressionCoordinateMode,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

@@ -33,9 +33,8 @@ unsafe impl CopyingHelper for ARVideoFormat {
 unsafe impl NSObjectProtocol for ARVideoFormat {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARVideoFormat {
+impl ARVideoFormat {
+    extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         /// Indicates the physical position of an AVCaptureDevice's hardware on the system.
         #[unsafe(method(captureDevicePosition))]
@@ -77,5 +76,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

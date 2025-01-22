@@ -30,9 +30,9 @@ unsafe impl CopyingHelper for NSSearchToolbarItem {
 #[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSSearchToolbarItem {}
 
-extern_methods!(
-    #[cfg(feature = "NSToolbarItem")]
-    unsafe impl NSSearchToolbarItem {
+#[cfg(feature = "NSToolbarItem")]
+impl NSSearchToolbarItem {
+    extern_methods!(
         #[cfg(all(
             feature = "NSControl",
             feature = "NSResponder",
@@ -116,13 +116,13 @@ extern_methods!(
         #[unsafe(method(endSearchInteraction))]
         #[unsafe(method_family = none)]
         pub unsafe fn endSearchInteraction(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "NSToolbarItem")]
-    unsafe impl NSSearchToolbarItem {
+/// Methods declared on superclass `NSToolbarItem`.
+#[cfg(feature = "NSToolbarItem")]
+impl NSSearchToolbarItem {
+    extern_methods!(
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[unsafe(method(initWithItemIdentifier:))]
@@ -131,13 +131,13 @@ extern_methods!(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSToolbarItem")]
-    unsafe impl NSSearchToolbarItem {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSToolbarItem")]
+impl NSSearchToolbarItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -145,5 +145,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

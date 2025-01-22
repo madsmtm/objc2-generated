@@ -51,9 +51,9 @@ unsafe impl NSObjectProtocol for NSControl {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSControl {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSControl {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSControl {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -341,33 +341,33 @@ extern_methods!(
         #[unsafe(method(drawWithExpansionFrame:inView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawWithExpansionFrame_inView(&self, content_frame: NSRect, view: &NSView);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSControl {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSControl {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSControl {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSControl {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSControlEditableTextMethods
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSControl {
+/// NSControlEditableTextMethods.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSControl {
+    extern_methods!(
         #[cfg(feature = "NSText")]
         #[unsafe(method(currentEditor))]
         #[unsafe(method_family = none)]
@@ -408,8 +408,8 @@ extern_methods!(
         #[unsafe(method(endEditing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endEditing(&self, text_obj: &NSText);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltexteditingdelegate?language=objc)
@@ -534,10 +534,10 @@ extern "C" {
     pub static NSControlTextDidChangeNotification: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSControl {
+/// NSDeprecated.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSControl {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setFloatingPointFormat:left:right:))]
         #[unsafe(method_family = none)]
@@ -611,5 +611,5 @@ extern_methods!(
         #[unsafe(method(selectCell:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectCell(&self, cell: &NSCell);
-    }
-);
+    );
+}

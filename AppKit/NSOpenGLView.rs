@@ -5,10 +5,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern_methods!(
-    /// NSOpenGLSurfaceResolution
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSOpenGLSurfaceResolution.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[deprecated = "Use NSOpenGLView instead."]
         #[unsafe(method(wantsBestResolutionOpenGLSurface))]
         #[unsafe(method_family = none)]
@@ -22,13 +22,13 @@ extern_methods!(
             &self,
             wants_best_resolution_open_gl_surface: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtendedDynamicRange
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSExtendedDynamicRange.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[deprecated = "Use NSOpenGLView instead."]
         #[unsafe(method(wantsExtendedDynamicRangeOpenGLSurface))]
         #[unsafe(method_family = none)]
@@ -42,5 +42,5 @@ extern_methods!(
             &self,
             wants_extended_dynamic_range_open_gl_surface: bool,
         );
-    }
-);
+    );
+}

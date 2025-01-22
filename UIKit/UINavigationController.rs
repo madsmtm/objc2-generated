@@ -89,9 +89,9 @@ unsafe impl UIResponderStandardEditActions for UINavigationController {}
 ))]
 unsafe impl UITraitEnvironment for UINavigationController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UINavigationController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UINavigationController {
+    extern_methods!(
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
@@ -304,13 +304,13 @@ extern_methods!(
         #[unsafe(method(barHideOnTapGestureRecognizer))]
         #[unsafe(method_family = none)]
         pub unsafe fn barHideOnTapGestureRecognizer(&self) -> Retained<UITapGestureRecognizer>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UINavigationController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UINavigationController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -318,8 +318,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontrollerdelegate?language=objc)
@@ -406,10 +406,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UINavigationControllerItem
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIViewController {
+/// UINavigationControllerItem.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIViewController {
+    extern_methods!(
         #[cfg(feature = "UINavigationItem")]
         #[unsafe(method(navigationItem))]
         #[unsafe(method_family = none)]
@@ -427,13 +427,13 @@ extern_methods!(
         #[unsafe(method(navigationController))]
         #[unsafe(method_family = none)]
         pub unsafe fn navigationController(&self) -> Option<Retained<UINavigationController>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UINavigationControllerContextualToolbarItems
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIViewController {
+/// UINavigationControllerContextualToolbarItems.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIViewController {
+    extern_methods!(
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[unsafe(method(toolbarItems))]
         #[unsafe(method_family = none)]
@@ -453,5 +453,5 @@ extern_methods!(
             toolbar_items: Option<&NSArray<UIBarButtonItem>>,
             animated: bool,
         );
-    }
-);
+    );
+}

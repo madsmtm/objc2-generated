@@ -25,8 +25,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CNSaveRequest {}
 
-extern_methods!(
-    unsafe impl CNSaveRequest {
+impl CNSaveRequest {
+    extern_methods!(
         #[cfg(all(feature = "CNContact", feature = "CNMutableContact"))]
         /// Add a new contact to the contact store.
         ///
@@ -185,12 +185,12 @@ extern_methods!(
         #[unsafe(method(setShouldRefetchContacts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldRefetchContacts(&self, should_refetch_contacts: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNSaveRequest {
+/// Methods declared on superclass `NSObject`.
+impl CNSaveRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -198,5 +198,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

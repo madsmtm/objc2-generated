@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSScreen {}
 
-extern_methods!(
-    unsafe impl NSScreen {
+impl NSScreen {
+    extern_methods!(
         #[unsafe(method(screens))]
         #[unsafe(method_family = none)]
         pub fn screens(mtm: MainThreadMarker) -> Retained<NSArray<NSScreen>>;
@@ -110,12 +110,12 @@ extern_methods!(
         #[unsafe(method(auxiliaryTopRightArea))]
         #[unsafe(method_family = none)]
         pub unsafe fn auxiliaryTopRightArea(&self) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScreen {
+/// Methods declared on superclass `NSObject`.
+impl NSScreen {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -123,16 +123,16 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreencolorspacedidchangenotification?language=objc)
     pub static NSScreenColorSpaceDidChangeNotification: &'static NSNotificationName;
 }
 
-extern_methods!(
-    unsafe impl NSScreen {
+impl NSScreen {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(maximumExtendedDynamicRangeColorComponentValue))]
         #[unsafe(method_family = none)]
@@ -147,11 +147,11 @@ extern_methods!(
         #[unsafe(method(maximumReferenceExtendedDynamicRangeColorComponentValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumReferenceExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSScreen {
+impl NSScreen {
+    extern_methods!(
         /// The maximum frames per second this screen supports.
         #[unsafe(method(maximumFramesPerSecond))]
         #[unsafe(method_family = none)]
@@ -183,12 +183,12 @@ extern_methods!(
         #[unsafe(method(lastDisplayUpdateTimestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastDisplayUpdateTimestamp(&self) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDisplayLink
-    unsafe impl NSScreen {
+/// NSDisplayLink.
+impl NSScreen {
+    extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(displayLinkWithTarget:selector:))]
@@ -198,16 +198,16 @@ extern_methods!(
             target: &AnyObject,
             selector: Sel,
         ) -> Retained<CADisplayLink>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSScreen {
+/// NSDeprecated.
+impl NSScreen {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use -convertRectToBacking: or -backingScaleFactor instead"]
         #[unsafe(method(userSpaceScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn userSpaceScaleFactor(&self) -> CGFloat;
-    }
-);
+    );
+}

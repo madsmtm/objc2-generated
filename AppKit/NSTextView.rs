@@ -217,9 +217,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSTextView {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSTextView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         #[cfg(feature = "NSTextContainer")]
         /// ************************** Initializing ***************************
         #[unsafe(method(initWithFrame:textContainer:))]
@@ -588,33 +588,33 @@ extern_methods!(
             &self,
             uses_adaptive_color_mapping_for_dark_appearance: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSCompletion
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSCompletion.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         /// *********************** Completion support ********************
         #[unsafe(method(complete:))]
         #[unsafe(method_family = none)]
@@ -641,13 +641,13 @@ extern_methods!(
             movement: NSInteger,
             flag: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPasteboard
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSPasteboard.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         #[cfg(feature = "NSPasteboard")]
         /// ***************** Pasteboard support (mainly for subclassers) ******************
         #[unsafe(method(writablePasteboardTypes))]
@@ -720,13 +720,13 @@ extern_methods!(
         #[unsafe(method(pasteAsRichText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pasteAsRichText(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDragging
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSDragging.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(dragSelectionWithEvent:offset:slideBack:))]
         #[unsafe(method_family = none)]
@@ -763,13 +763,13 @@ extern_methods!(
         #[unsafe(method(cleanUpAfterDragOperation))]
         #[unsafe(method_family = none)]
         pub unsafe fn cleanUpAfterDragOperation(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSharing
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSSharing.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         /// ************************* Selected/Marked range **************************
         #[unsafe(method(selectedRanges))]
         #[unsafe(method_family = none)]
@@ -1215,13 +1215,13 @@ extern_methods!(
             &self,
             allowed_writing_tools_result_options: NSWritingToolsResultOptions,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTextChecking
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSTextChecking.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         /// ************************* Smart copy/paste/delete/substitution support **************************
         #[unsafe(method(smartInsertDeleteEnabled))]
         #[unsafe(method_family = none)]
@@ -1463,13 +1463,13 @@ extern_methods!(
             &self,
             math_expression_completion_type: NSTextInputTraitType,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSQuickLookPreview
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSQuickLookPreview.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         /// ************************* Quick Look support **************************
         #[unsafe(method(toggleQuickLookPreviewPanel:))]
         #[unsafe(method_family = none)]
@@ -1478,24 +1478,24 @@ extern_methods!(
         #[unsafe(method(updateQuickLookPreviewPanel))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateQuickLookPreviewPanel(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTextView_SharingService
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSTextView_SharingService.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         /// ************************* NSSharingService support **************************
         #[unsafe(method(orderFrontSharingServicePicker:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontSharingServicePicker(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTextView_TouchBar
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSTextView_TouchBar.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         #[unsafe(method(isAutomaticTextCompletionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticTextCompletionEnabled(&self) -> bool;
@@ -1542,8 +1542,8 @@ extern_methods!(
         pub unsafe fn candidateListTouchBarItem(
             &self,
         ) -> Option<Retained<NSCandidateListTouchBarItem>>;
-    }
-);
+    );
+}
 
 #[cfg(all(
     feature = "NSCandidateListTouchBarItem",
@@ -1561,10 +1561,10 @@ unsafe impl NSCandidateListTouchBarItemDelegate for NSTextView {}
 ))]
 unsafe impl NSTouchBarDelegate for NSTextView {}
 
-extern_methods!(
-    /// NSTextView_Factory
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSTextView_Factory.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         #[cfg(feature = "NSScrollView")]
         #[unsafe(method(scrollableTextView))]
         #[unsafe(method_family = none)]
@@ -1587,13 +1587,13 @@ extern_methods!(
         pub unsafe fn scrollablePlainDocumentContentTextView(
             mtm: MainThreadMarker,
         ) -> Retained<NSScrollView>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTextView_TextHighlight
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSTextView_TextHighlight.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         /// ************************* Text Highlight  support **************************
         #[unsafe(method(textHighlightAttributes))]
         #[unsafe(method_family = none)]
@@ -1623,19 +1623,19 @@ extern_methods!(
         #[unsafe(method(highlight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn highlight(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-    unsafe impl NSTextView {
+/// NSDeprecated.
+#[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+impl NSTextView {
+    extern_methods!(
         #[deprecated = "Use NSResponder's makeBaseWritingDirectionNatural:, makeBaseWritingDirectionLeftToRight:, and makeBaseWritingDirectionRightToLeft: instead"]
         #[unsafe(method(toggleBaseWritingDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleBaseWritingDirection(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewdelegate?language=objc)

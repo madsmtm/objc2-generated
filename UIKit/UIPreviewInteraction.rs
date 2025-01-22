@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPreviewInteraction {}
 
-extern_methods!(
-    unsafe impl UIPreviewInteraction {
+impl UIPreviewInteraction {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(initWithView:))]
         #[unsafe(method_family = init)]
@@ -60,17 +60,17 @@ extern_methods!(
         #[unsafe(method(cancelInteraction))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelInteraction(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPreviewInteraction {
+/// Methods declared on superclass `NSObject`.
+impl UIPreviewInteraction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate?language=objc)

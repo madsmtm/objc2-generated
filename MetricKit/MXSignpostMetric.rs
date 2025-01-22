@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for MXSignpostIntervalData {}
 
 unsafe impl NSSecureCoding for MXSignpostIntervalData {}
 
-extern_methods!(
-    unsafe impl MXSignpostIntervalData {
+impl MXSignpostIntervalData {
+    extern_methods!(
         #[cfg(feature = "MXHistogram")]
         /// A histogram of signpost intervals durations associated with the given signposts with signpostName and signpostCategory.
         #[unsafe(method(histogrammedSignpostDuration))]
@@ -66,12 +66,12 @@ extern_methods!(
         #[unsafe(method(cumulativeHitchTimeRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeHitchTimeRatio(&self) -> Option<Retained<NSMeasurement<NSUnit>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MXSignpostIntervalData {
+/// Methods declared on superclass `NSObject`.
+impl MXSignpostIntervalData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,8 +79,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An MXMetric subclass that encapsulates signpost metrics.
@@ -103,9 +103,9 @@ unsafe impl NSObjectProtocol for MXSignpostMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXSignpostMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXSignpostMetric {
+#[cfg(feature = "MXMetric")]
+impl MXSignpostMetric {
+    extern_methods!(
         /// The name associated with this aggregated signpost.
         #[unsafe(method(signpostName))]
         #[unsafe(method_family = none)]
@@ -127,13 +127,13 @@ extern_methods!(
         #[unsafe(method(totalCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCount(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXSignpostMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXSignpostMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -141,5 +141,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

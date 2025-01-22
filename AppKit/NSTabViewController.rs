@@ -93,9 +93,9 @@ unsafe impl NSToolbarDelegate for NSTabViewController {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSTabViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSTabViewController {
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSTabViewController {
+    extern_methods!(
         /// The style that this NSTabViewController displays its UI as. Defaults to
         /// `NSTabViewControllerTabStyleSegmentedControlOnTop.`
         #[unsafe(method(tabStyle))]
@@ -298,13 +298,13 @@ extern_methods!(
             &self,
             toolbar: &NSToolbar,
         ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSTabViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSTabViewController {
+    extern_methods!(
         #[cfg(feature = "NSNib")]
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
@@ -320,25 +320,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSTabViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSTabViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSTabViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSTabViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

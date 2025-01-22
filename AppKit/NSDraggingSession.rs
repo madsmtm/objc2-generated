@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSDraggingSession {}
 
-extern_methods!(
-    unsafe impl NSDraggingSession {
+impl NSDraggingSession {
+    extern_methods!(
         #[cfg(feature = "NSDragging")]
         #[unsafe(method(draggingFormation))]
         #[unsafe(method_family = none)]
@@ -81,12 +81,12 @@ extern_methods!(
             search_options: &NSDictionary<NSPasteboardReadingOptionKey, AnyObject>,
             block: &block2::Block<dyn Fn(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>) + '_>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDraggingSession {
+/// Methods declared on superclass `NSObject`.
+impl NSDraggingSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -94,5 +94,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

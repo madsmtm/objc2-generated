@@ -33,8 +33,8 @@ unsafe impl NSSecureCoding for SCNConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNConstraint {}
 
-extern_methods!(
-    unsafe impl SCNConstraint {
+impl SCNConstraint {
+    extern_methods!(
         /// Determines whether the constraint is enabled or not. Defaults to YES.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
@@ -66,12 +66,12 @@ extern_methods!(
         #[unsafe(method(setIncremental:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncremental(&self, incremental: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,8 +79,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A SCNLookAtConstraint applies on a node's orientation so that it always look at another node.
@@ -106,8 +106,8 @@ unsafe impl NSSecureCoding for SCNLookAtConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNLookAtConstraint {}
 
-extern_methods!(
-    unsafe impl SCNLookAtConstraint {
+impl SCNLookAtConstraint {
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNLookAtConstraint object with the specified target.
         ///
@@ -175,12 +175,12 @@ extern_methods!(
         #[unsafe(method(setGimbalLockEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGimbalLockEnabled(&self, gimbal_lock_enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNLookAtConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNLookAtConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -188,8 +188,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis?language=objc)
 // NS_OPTIONS
@@ -239,8 +239,8 @@ unsafe impl NSSecureCoding for SCNBillboardConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNBillboardConstraint {}
 
-extern_methods!(
-    unsafe impl SCNBillboardConstraint {
+impl SCNBillboardConstraint {
+    extern_methods!(
         /// Creates and returns a SCNBillboardConstraint constraint.
         ///
         /// A billboard constraint forces the receiver to look into the direction of the current point of view.
@@ -257,12 +257,12 @@ extern_methods!(
         #[unsafe(method(setFreeAxes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFreeAxes(&self, free_axes: SCNBillboardAxis);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNBillboardConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNBillboardConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -270,8 +270,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A SCNTransformConstraint applies on the transform of a node via a custom block.
@@ -297,8 +297,8 @@ unsafe impl NSSecureCoding for SCNTransformConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNTransformConstraint {}
 
-extern_methods!(
-    unsafe impl SCNTransformConstraint {
+impl SCNTransformConstraint {
+    extern_methods!(
         #[cfg(all(
             feature = "SCNNode",
             feature = "SceneKitTypes",
@@ -359,12 +359,12 @@ extern_methods!(
             world: bool,
             block: &block2::Block<dyn Fn(NonNull<SCNNode>, SCNQuaternion) -> SCNQuaternion>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNTransformConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNTransformConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -372,8 +372,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A SCNIKConstraint applies an inverse kinematics constraint
@@ -399,8 +399,8 @@ unsafe impl NSSecureCoding for SCNIKConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNIKConstraint {}
 
-extern_methods!(
-    unsafe impl SCNIKConstraint {
+impl SCNIKConstraint {
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNIKConstraint object with the specified parameter.
         ///
@@ -454,12 +454,12 @@ extern_methods!(
         #[unsafe(method(maxAllowedRotationAngleForJoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxAllowedRotationAngleForJoint(&self, node: &SCNNode) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNIKConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNIKConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -467,8 +467,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A SCNDistanceConstraint ensure a minimum/maximum distance with a target node.
@@ -494,8 +494,8 @@ unsafe impl NSSecureCoding for SCNDistanceConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNDistanceConstraint {}
 
-extern_methods!(
-    unsafe impl SCNDistanceConstraint {
+impl SCNDistanceConstraint {
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNDistanceConstraint constraint.
         #[unsafe(method(distanceConstraintWithTarget:))]
@@ -537,12 +537,12 @@ extern_methods!(
         #[unsafe(method(setMaximumDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumDistance(&self, maximum_distance: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNDistanceConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNDistanceConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -550,8 +550,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A SCNReplicatorConstraint replicates the position/orientation/scale of a target node
@@ -577,8 +577,8 @@ unsafe impl NSSecureCoding for SCNReplicatorConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNReplicatorConstraint {}
 
-extern_methods!(
-    unsafe impl SCNReplicatorConstraint {
+impl SCNReplicatorConstraint {
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNReplicatorConstraint constraint.
         #[unsafe(method(replicatorConstraintWithTarget:))]
@@ -662,12 +662,12 @@ extern_methods!(
         #[unsafe(method(setScaleOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleOffset(&self, scale_offset: SCNVector3);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNReplicatorConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNReplicatorConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -675,8 +675,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A SCNAccelerationConstraint caps the acceleration and velocity of a node
@@ -702,8 +702,8 @@ unsafe impl NSSecureCoding for SCNAccelerationConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNAccelerationConstraint {}
 
-extern_methods!(
-    unsafe impl SCNAccelerationConstraint {
+impl SCNAccelerationConstraint {
+    extern_methods!(
         /// Creates and returns a SCNAccelerationConstraint object.
         #[unsafe(method(accelerationConstraint))]
         #[unsafe(method_family = none)]
@@ -760,12 +760,12 @@ extern_methods!(
         #[unsafe(method(setDamping:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDamping(&self, damping: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNAccelerationConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNAccelerationConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -773,8 +773,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A SCNSliderConstraint constraint makes a node to collide and slide against a category of nodes
@@ -800,8 +800,8 @@ unsafe impl NSSecureCoding for SCNSliderConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNSliderConstraint {}
 
-extern_methods!(
-    unsafe impl SCNSliderConstraint {
+impl SCNSliderConstraint {
+    extern_methods!(
         /// Creates and returns a SCNSliderConstraint object.
         #[unsafe(method(sliderConstraint))]
         #[unsafe(method_family = none)]
@@ -840,12 +840,12 @@ extern_methods!(
         #[unsafe(method(setOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffset(&self, offset: SCNVector3);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNSliderConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNSliderConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -853,8 +853,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnavoidoccluderconstraintdelegate?language=objc)
@@ -909,8 +909,8 @@ unsafe impl NSSecureCoding for SCNAvoidOccluderConstraint {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNAvoidOccluderConstraint {}
 
-extern_methods!(
-    unsafe impl SCNAvoidOccluderConstraint {
+impl SCNAvoidOccluderConstraint {
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNAvoidOccluderConstraint object.
         #[unsafe(method(avoidOccluderConstraintWithTarget:))]
@@ -968,12 +968,12 @@ extern_methods!(
         #[unsafe(method(setBias:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBias(&self, bias: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNAvoidOccluderConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SCNAvoidOccluderConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -981,5 +981,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

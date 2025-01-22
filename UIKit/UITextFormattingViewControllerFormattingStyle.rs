@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for UITextFormattingViewControllerFormattingStyle {
 
 unsafe impl NSSecureCoding for UITextFormattingViewControllerFormattingStyle {}
 
-extern_methods!(
-    unsafe impl UITextFormattingViewControllerFormattingStyle {
+impl UITextFormattingViewControllerFormattingStyle {
+    extern_methods!(
         /// Formatting style key.
         #[unsafe(method(styleKey))]
         #[unsafe(method_family = none)]
@@ -55,12 +55,12 @@ extern_methods!(
             string: &NSString,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextFormattingViewControllerFormattingStyle {
+/// Methods declared on superclass `NSObject`.
+impl UITextFormattingViewControllerFormattingStyle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,5 +68,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

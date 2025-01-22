@@ -42,9 +42,9 @@ unsafe impl MutableCopyingHelper for HMPresenceEvent {
 #[cfg(feature = "HMEvent")]
 unsafe impl NSObjectProtocol for HMPresenceEvent {}
 
-extern_methods!(
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMPresenceEvent {
+#[cfg(feature = "HMEvent")]
+impl HMPresenceEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,19 +79,19 @@ extern_methods!(
         #[unsafe(method(presenceUserType))]
         #[unsafe(method_family = none)]
         pub unsafe fn presenceUserType(&self) -> HMPresenceEventUserType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMPresenceEvent {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMPresenceEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// This class is used to represent the presence of users in a home.
@@ -128,9 +128,9 @@ unsafe impl MutableCopyingHelper for HMMutablePresenceEvent {
 #[cfg(feature = "HMEvent")]
 unsafe impl NSObjectProtocol for HMMutablePresenceEvent {}
 
-extern_methods!(
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMMutablePresenceEvent {
+#[cfg(feature = "HMEvent")]
+impl HMMutablePresenceEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -158,13 +158,13 @@ extern_methods!(
         #[unsafe(method(setPresenceUserType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPresenceUserType(&self, presence_user_type: HMPresenceEventUserType);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMPresenceEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMMutablePresenceEvent {
+/// Methods declared on superclass `HMPresenceEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMMutablePresenceEvent {
+    extern_methods!(
         #[cfg(feature = "HMPresenceEventDefines")]
         /// Creates a presence based event.
         ///
@@ -183,16 +183,16 @@ extern_methods!(
             presence_event_type: HMPresenceEventType,
             presence_user_type: HMPresenceEventUserType,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMMutablePresenceEvent {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMMutablePresenceEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

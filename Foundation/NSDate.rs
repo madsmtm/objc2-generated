@@ -42,8 +42,8 @@ unsafe impl NSObjectProtocol for NSDate {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSDate {}
 
-extern_methods!(
-    unsafe impl NSDate {
+impl NSDate {
+    extern_methods!(
         #[unsafe(method(timeIntervalSinceReferenceDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeIntervalSinceReferenceDate(&self) -> NSTimeInterval;
@@ -66,21 +66,21 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDate {
+/// Methods declared on superclass `NSObject`.
+impl NSDate {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtendedDate
-    unsafe impl NSDate {
+/// NSExtendedDate.
+impl NSDate {
+    extern_methods!(
         #[unsafe(method(timeIntervalSinceDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeIntervalSinceDate(&self, another_date: &NSDate) -> NSTimeInterval;
@@ -135,12 +135,12 @@ extern_methods!(
         #[unsafe(method(timeIntervalSinceReferenceDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeIntervalSinceReferenceDate_class() -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDateCreation
-    unsafe impl NSDate {
+/// NSDateCreation.
+impl NSDate {
+    extern_methods!(
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date() -> Retained<Self>;
@@ -197,5 +197,5 @@ extern_methods!(
             secs_to_be_added: NSTimeInterval,
             date: &NSDate,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

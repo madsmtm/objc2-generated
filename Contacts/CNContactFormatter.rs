@@ -79,8 +79,8 @@ unsafe impl NSObjectProtocol for CNContactFormatter {}
 
 unsafe impl NSSecureCoding for CNContactFormatter {}
 
-extern_methods!(
-    unsafe impl CNContactFormatter {
+impl CNContactFormatter {
+    extern_methods!(
         #[cfg(feature = "CNContact")]
         /// The contact key descriptor required for the formatter.
         ///
@@ -216,12 +216,12 @@ extern_methods!(
             contact: &CNContact,
             attributes: Option<&NSDictionary>,
         ) -> Option<Retained<NSAttributedString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNContactFormatter {
+/// Methods declared on superclass `NSObject`.
+impl CNContactFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -229,8 +229,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactpropertyattribute?language=objc)

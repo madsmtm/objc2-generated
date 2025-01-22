@@ -7,10 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MLState
-    #[cfg(feature = "MLModel")]
-    unsafe impl MLModel {
+/// MLState.
+#[cfg(feature = "MLModel")]
+impl MLModel {
+    extern_methods!(
         #[cfg(feature = "MLState")]
         /// Creates a new state object.
         ///
@@ -118,5 +118,5 @@ extern_methods!(
                 dyn Fn(*mut ProtocolObject<dyn MLFeatureProvider>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}

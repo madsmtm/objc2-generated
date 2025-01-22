@@ -154,9 +154,9 @@ unsafe impl NSObjectProtocol for NSRuleEditor {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSRuleEditor {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSRuleEditor {
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSRuleEditor {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
@@ -370,13 +370,13 @@ extern_methods!(
         #[unsafe(method(setDisplayValuesKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayValuesKeyPath(&self, display_values_key_path: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSRuleEditor {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSRuleEditor {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -387,28 +387,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSRuleEditor {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSRuleEditor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSRuleEditor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSRuleEditor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditordelegate?language=objc)

@@ -23,9 +23,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureControl")]
 unsafe impl NSObjectProtocol for AVCaptureSlider {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureControl")]
-    unsafe impl AVCaptureSlider {
+#[cfg(feature = "AVCaptureControl")]
+impl AVCaptureSlider {
+    extern_methods!(
         /// Initializes an `AVCaptureSlider` as a continuous slider between `minValue` and `maxValue`.
         ///
         ///
@@ -175,13 +175,13 @@ extern_methods!(
             &self,
             accessibility_identifier: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureControl`
-    #[cfg(feature = "AVCaptureControl")]
-    unsafe impl AVCaptureSlider {
+/// Methods declared on superclass `AVCaptureControl`.
+#[cfg(feature = "AVCaptureControl")]
+impl AVCaptureSlider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -189,5 +189,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

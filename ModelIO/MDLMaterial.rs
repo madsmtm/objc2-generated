@@ -292,8 +292,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MDLTextureFilter {}
 
-extern_methods!(
-    unsafe impl MDLTextureFilter {
+impl MDLTextureFilter {
+    extern_methods!(
         #[unsafe(method(sWrapMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn sWrapMode(&self) -> MDLMaterialTextureWrapMode;
@@ -347,12 +347,12 @@ extern_methods!(
         #[unsafe(method(setMipFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMipFilter(&self, mip_filter: MDLMaterialMipMapFilterMode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLTextureFilter {
+/// Methods declared on superclass `NSObject`.
+impl MDLTextureFilter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -360,8 +360,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturesampler?language=objc)
@@ -372,8 +372,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MDLTextureSampler {}
 
-extern_methods!(
-    unsafe impl MDLTextureSampler {
+impl MDLTextureSampler {
+    extern_methods!(
         #[cfg(feature = "MDLTexture")]
         #[unsafe(method(texture))]
         #[unsafe(method_family = none)]
@@ -404,12 +404,12 @@ extern_methods!(
         #[unsafe(method(setTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransform(&self, transform: Option<&MDLTransform>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLTextureSampler {
+/// Methods declared on superclass `NSObject`.
+impl MDLTextureSampler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -417,8 +417,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// If a color is encoded in a floatN property, it is to be interpreted as
@@ -441,8 +441,8 @@ unsafe impl CopyingHelper for MDLMaterialProperty {
 
 unsafe impl NSObjectProtocol for MDLMaterialProperty {}
 
-extern_methods!(
-    unsafe impl MDLMaterialProperty {
+impl MDLMaterialProperty {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -591,17 +591,17 @@ extern_methods!(
         #[unsafe(method(setLuminance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLuminance(&self, luminance: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLMaterialProperty {
+/// Methods declared on superclass `NSObject`.
+impl MDLMaterialProperty {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertyconnection?language=objc)
@@ -615,8 +615,8 @@ unsafe impl MDLNamed for MDLMaterialPropertyConnection {}
 
 unsafe impl NSObjectProtocol for MDLMaterialPropertyConnection {}
 
-extern_methods!(
-    unsafe impl MDLMaterialPropertyConnection {
+impl MDLMaterialPropertyConnection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -637,17 +637,17 @@ extern_methods!(
         #[unsafe(method(input))]
         #[unsafe(method_family = none)]
         pub unsafe fn input(&self) -> Option<Retained<MDLMaterialProperty>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLMaterialPropertyConnection {
+/// Methods declared on superclass `NSObject`.
+impl MDLMaterialPropertyConnection {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertynode?language=objc)
@@ -661,8 +661,8 @@ unsafe impl MDLNamed for MDLMaterialPropertyNode {}
 
 unsafe impl NSObjectProtocol for MDLMaterialPropertyNode {}
 
-extern_methods!(
-    unsafe impl MDLMaterialPropertyNode {
+impl MDLMaterialPropertyNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -700,17 +700,17 @@ extern_methods!(
         #[unsafe(method(outputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<MDLMaterialProperty>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLMaterialPropertyNode {
+/// Methods declared on superclass `NSObject`.
+impl MDLMaterialPropertyNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// inputs and outputs will contain all of the inputs and outputs
@@ -728,8 +728,8 @@ unsafe impl MDLNamed for MDLMaterialPropertyGraph {}
 
 unsafe impl NSObjectProtocol for MDLMaterialPropertyGraph {}
 
-extern_methods!(
-    unsafe impl MDLMaterialPropertyGraph {
+impl MDLMaterialPropertyGraph {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -753,12 +753,12 @@ extern_methods!(
         #[unsafe(method(connections))]
         #[unsafe(method_family = none)]
         pub unsafe fn connections(&self) -> Retained<NSArray<MDLMaterialPropertyConnection>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MDLMaterialPropertyNode`
-    unsafe impl MDLMaterialPropertyGraph {
+/// Methods declared on superclass `MDLMaterialPropertyNode`.
+impl MDLMaterialPropertyGraph {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(initWithInputs:outputs:evaluationFunction:))]
         #[unsafe(method_family = init)]
@@ -768,17 +768,17 @@ extern_methods!(
             outputs: &NSArray<MDLMaterialProperty>,
             function: &block2::Block<dyn Fn(NonNull<MDLMaterialPropertyNode>)>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLMaterialPropertyGraph {
+/// Methods declared on superclass `NSObject`.
+impl MDLMaterialPropertyGraph {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The base scattering function is Lambertian, with a Blinn-Phong specular response.
@@ -796,8 +796,8 @@ unsafe impl MDLNamed for MDLScatteringFunction {}
 
 unsafe impl NSObjectProtocol for MDLScatteringFunction {}
 
-extern_methods!(
-    unsafe impl MDLScatteringFunction {
+impl MDLScatteringFunction {
+    extern_methods!(
         /// See: MDLNamed
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -839,12 +839,12 @@ extern_methods!(
         #[unsafe(method(ambientOcclusionScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn ambientOcclusionScale(&self) -> Retained<MDLMaterialProperty>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLScatteringFunction {
+/// Methods declared on superclass `NSObject`.
+impl MDLScatteringFunction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -852,8 +852,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlphysicallyplausiblescatteringfunction?language=objc)
@@ -867,8 +867,8 @@ unsafe impl MDLNamed for MDLPhysicallyPlausibleScatteringFunction {}
 
 unsafe impl NSObjectProtocol for MDLPhysicallyPlausibleScatteringFunction {}
 
-extern_methods!(
-    unsafe impl MDLPhysicallyPlausibleScatteringFunction {
+impl MDLPhysicallyPlausibleScatteringFunction {
+    extern_methods!(
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> NSInteger;
@@ -916,12 +916,12 @@ extern_methods!(
         #[unsafe(method(clearcoatGloss))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearcoatGloss(&self) -> Retained<MDLMaterialProperty>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLPhysicallyPlausibleScatteringFunction {
+/// Methods declared on superclass `NSObject`.
+impl MDLPhysicallyPlausibleScatteringFunction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -929,8 +929,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialface?language=objc)
 // NS_ENUM
@@ -968,8 +968,8 @@ unsafe impl NSFastEnumeration for MDLMaterial {}
 
 unsafe impl NSObjectProtocol for MDLMaterial {}
 
-extern_methods!(
-    unsafe impl MDLMaterial {
+impl MDLMaterial {
+    extern_methods!(
         #[unsafe(method(initWithName:scatteringFunction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_scatteringFunction(
@@ -1076,12 +1076,12 @@ extern_methods!(
         #[unsafe(method(setMaterialFace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaterialFace(&self, material_face: MDLMaterialFace);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLMaterial {
+/// Methods declared on superclass `NSObject`.
+impl MDLMaterial {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1089,5 +1089,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

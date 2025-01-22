@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSConnection {}
 
-extern_methods!(
-    unsafe impl NSConnection {
+impl NSConnection {
+    extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSValue"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(statistics))]
@@ -290,12 +290,12 @@ extern_methods!(
         #[unsafe(method(dispatchWithComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchWithComponents(&self, components: &NSArray);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSConnection {
+/// Methods declared on superclass `NSObject`.
+impl NSConnection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -303,8 +303,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectionreplymode?language=objc)
@@ -403,8 +403,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSDistantObjectRequest {}
 
-extern_methods!(
-    unsafe impl NSDistantObjectRequest {
+impl NSDistantObjectRequest {
+    extern_methods!(
         #[cfg(feature = "NSInvocation")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(invocation))]
@@ -426,12 +426,12 @@ extern_methods!(
         #[unsafe(method(replyWithException:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replyWithException(&self, exception: Option<&NSException>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDistantObjectRequest {
+/// Methods declared on superclass `NSObject`.
+impl NSDistantObjectRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -439,5 +439,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

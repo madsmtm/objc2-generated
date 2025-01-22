@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordSubject {}
 
 unsafe impl NSSecureCoding for HKVerifiableClinicalRecordSubject {}
 
-extern_methods!(
-    unsafe impl HKVerifiableClinicalRecordSubject {
+impl HKVerifiableClinicalRecordSubject {
+    extern_methods!(
         /// The subject's full name.
         #[unsafe(method(fullName))]
         #[unsafe(method_family = none)]
@@ -50,5 +50,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

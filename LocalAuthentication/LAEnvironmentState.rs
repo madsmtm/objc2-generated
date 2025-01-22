@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for LAEnvironmentState {
 
 unsafe impl NSObjectProtocol for LAEnvironmentState {}
 
-extern_methods!(
-    unsafe impl LAEnvironmentState {
+impl LAEnvironmentState {
+    extern_methods!(
         /// Clients shall not create environment state.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -85,5 +85,5 @@ extern_methods!(
         #[unsafe(method(allMechanisms))]
         #[unsafe(method_family = none)]
         pub unsafe fn allMechanisms(&self) -> Retained<NSArray<LAEnvironmentMechanism>>;
-    }
-);
+    );
+}

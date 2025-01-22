@@ -22,9 +22,9 @@ unsafe impl NSCoding for UITrackingLayoutGuide {}
 #[cfg(feature = "UILayoutGuide")]
 unsafe impl NSObjectProtocol for UITrackingLayoutGuide {}
 
-extern_methods!(
-    #[cfg(feature = "UILayoutGuide")]
-    unsafe impl UITrackingLayoutGuide {
+#[cfg(feature = "UILayoutGuide")]
+impl UITrackingLayoutGuide {
+    extern_methods!(
         #[cfg(all(feature = "NSLayoutConstraint", feature = "UIGeometry"))]
         /// Parameter `trackingConstraints`: Constraints to activate when the guide is close to the specified edge, and deactivate when it moves away. Sending nil will deactivate any currently active constraints associated with this edge and remove them from tracking.
         ///
@@ -69,13 +69,13 @@ extern_methods!(
         #[unsafe(method(removeAllTrackedConstraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllTrackedConstraints(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UILayoutGuide")]
-    unsafe impl UITrackingLayoutGuide {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UILayoutGuide")]
+impl UITrackingLayoutGuide {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -83,5 +83,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

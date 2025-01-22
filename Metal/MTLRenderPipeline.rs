@@ -244,8 +244,8 @@ unsafe impl CopyingHelper for MTLRenderPipelineColorAttachmentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRenderPipelineColorAttachmentDescriptor {
+impl MTLRenderPipelineColorAttachmentDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLPixelFormat")]
         /// Pixel format.  Defaults to MTLPixelFormatInvalid
         #[unsafe(method(pixelFormat))]
@@ -340,12 +340,12 @@ extern_methods!(
         #[unsafe(method(setWriteMask:))]
         #[unsafe(method_family = none)]
         pub fn setWriteMask(&self, write_mask: MTLColorWriteMask);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPipelineColorAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPipelineColorAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -353,8 +353,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinereflection?language=objc)
@@ -365,8 +365,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLRenderPipelineReflection {}
 
-extern_methods!(
-    unsafe impl MTLRenderPipelineReflection {
+impl MTLRenderPipelineReflection {
+    extern_methods!(
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(vertexBindings))]
         #[unsafe(method_family = none)]
@@ -409,12 +409,12 @@ extern_methods!(
         #[unsafe(method(tileArguments))]
         #[unsafe(method_family = none)]
         pub fn tileArguments(&self) -> Option<Retained<NSArray<MTLArgument>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPipelineReflection {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPipelineReflection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -422,8 +422,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor?language=objc)
@@ -440,8 +440,8 @@ unsafe impl CopyingHelper for MTLRenderPipelineDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRenderPipelineDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRenderPipelineDescriptor {
+impl MTLRenderPipelineDescriptor {
+    extern_methods!(
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub fn label(&self) -> Option<Retained<NSString>>;
@@ -852,12 +852,12 @@ extern_methods!(
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPipelineDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPipelineDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -865,8 +865,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLRenderPipelineDescriptor {
     #[inline]
@@ -890,8 +890,8 @@ unsafe impl CopyingHelper for MTLRenderPipelineFunctionsDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRenderPipelineFunctionsDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRenderPipelineFunctionsDescriptor {
+impl MTLRenderPipelineFunctionsDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLLibrary")]
         /// The set of additional binary functions to be accessed from the vertex function in an incrementally created pipeline state.
         #[unsafe(method(vertexAdditionalBinaryFunctions))]
@@ -942,12 +942,12 @@ extern_methods!(
             &self,
             tile_additional_binary_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPipelineFunctionsDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPipelineFunctionsDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -955,8 +955,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// MTLRenderPipelineState represents a compiled render pipeline
@@ -1113,8 +1113,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLRenderPipelineColorAttachmentDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLRenderPipelineColorAttachmentDescriptorArray {
+impl MTLRenderPipelineColorAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -1129,12 +1129,12 @@ extern_methods!(
             attachment: Option<&MTLRenderPipelineColorAttachmentDescriptor>,
             attachment_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRenderPipelineColorAttachmentDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLRenderPipelineColorAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1142,8 +1142,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltilerenderpipelinecolorattachmentdescriptor?language=objc)
@@ -1160,8 +1160,8 @@ unsafe impl CopyingHelper for MTLTileRenderPipelineColorAttachmentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLTileRenderPipelineColorAttachmentDescriptor {
+impl MTLTileRenderPipelineColorAttachmentDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLPixelFormat")]
         /// Pixel format.  Defaults to MTLPixelFormatInvalid
         #[unsafe(method(pixelFormat))]
@@ -1173,12 +1173,12 @@ extern_methods!(
         #[unsafe(method(setPixelFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLTileRenderPipelineColorAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLTileRenderPipelineColorAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1186,8 +1186,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltilerenderpipelinecolorattachmentdescriptorarray?language=objc)
@@ -1198,8 +1198,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineColorAttachmentDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
+impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -1214,12 +1214,12 @@ extern_methods!(
             attachment: &MTLTileRenderPipelineColorAttachmentDescriptor,
             attachment_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1227,8 +1227,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltilerenderpipelinedescriptor?language=objc)
@@ -1245,8 +1245,8 @@ unsafe impl CopyingHelper for MTLTileRenderPipelineDescriptor {
 
 unsafe impl NSObjectProtocol for MTLTileRenderPipelineDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLTileRenderPipelineDescriptor {
+impl MTLTileRenderPipelineDescriptor {
+    extern_methods!(
         /// The descriptor label.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
@@ -1416,12 +1416,12 @@ extern_methods!(
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLTileRenderPipelineDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLTileRenderPipelineDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1429,8 +1429,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// As an alternative to a vertex + fragment shader render pipeline, this render pipeline uses a (object +) mesh + fragment shader for rendering geometry.
@@ -1449,8 +1449,8 @@ unsafe impl CopyingHelper for MTLMeshRenderPipelineDescriptor {
 
 unsafe impl NSObjectProtocol for MTLMeshRenderPipelineDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLMeshRenderPipelineDescriptor {
+impl MTLMeshRenderPipelineDescriptor {
+    extern_methods!(
         /// A name or description provided by the application that will be displayed in debugging tools.
         /// The default value is nil.
         #[unsafe(method(label))]
@@ -1835,12 +1835,12 @@ extern_methods!(
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLMeshRenderPipelineDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLMeshRenderPipelineDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1848,5 +1848,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -17,13 +17,13 @@ unsafe impl GCDevicePhysicalInputState for GCControllerInputState {}
 
 unsafe impl NSObjectProtocol for GCControllerInputState {}
 
-extern_methods!(
-    unsafe impl GCControllerInputState {}
-);
+impl GCControllerInputState {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCControllerInputState {
+/// Methods declared on superclass `NSObject`.
+impl GCControllerInputState {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -31,8 +31,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput?language=objc)
@@ -52,8 +52,8 @@ unsafe impl GCDevicePhysicalInputState for GCControllerLiveInput {}
 
 unsafe impl NSObjectProtocol for GCControllerLiveInput {}
 
-extern_methods!(
-    unsafe impl GCControllerLiveInput {
+impl GCControllerLiveInput {
+    extern_methods!(
         /// Get a view of the controller's input without any system-level control
         /// remapping applied.
         ///
@@ -75,12 +75,12 @@ extern_methods!(
         #[unsafe(method(nextInputState))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextInputState(&self) -> Option<Retained<GCControllerInputState>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCControllerLiveInput {
+/// Methods declared on superclass `NSObject`.
+impl GCControllerLiveInput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -88,5 +88,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

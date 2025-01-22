@@ -51,13 +51,13 @@ unsafe impl CopyingHelper for DOMDocument {
 ))]
 unsafe impl NSObjectProtocol for DOMDocument {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMDocument {
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMDocument {
+    extern_methods!(
         #[cfg(feature = "DOMDocumentType")]
         #[deprecated]
         #[unsafe(method(doctype))]
@@ -566,46 +566,46 @@ extern_methods!(
             &self,
             selectors: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMDocument {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMDocument {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMDocument {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMDocument {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMDocumentDeprecated
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMDocument {
+/// DOMDocumentDeprecated.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMDocument {
+    extern_methods!(
         #[cfg(all(feature = "DOMCharacterData", feature = "DOMProcessingInstruction"))]
         #[deprecated]
         #[unsafe(method(createProcessingInstruction::))]
@@ -721,5 +721,5 @@ extern_methods!(
             element: Option<&DOMElement>,
             pseudo_element: Option<&NSString>,
         ) -> Option<Retained<DOMCSSStyleDeclaration>>;
-    }
-);
+    );
+}

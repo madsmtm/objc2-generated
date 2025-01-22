@@ -54,8 +54,8 @@ unsafe impl Sync for AVAssetSegmentReport {}
 
 unsafe impl NSObjectProtocol for AVAssetSegmentReport {}
 
-extern_methods!(
-    unsafe impl AVAssetSegmentReport {
+impl AVAssetSegmentReport {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -73,8 +73,8 @@ extern_methods!(
         #[unsafe(method(trackReports))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackReports(&self) -> Retained<NSArray<AVAssetSegmentTrackReport>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// This class is vended by AVAssetSegmentReport. It will provide information on a track in a segment data.
@@ -93,8 +93,8 @@ unsafe impl Sync for AVAssetSegmentTrackReport {}
 
 unsafe impl NSObjectProtocol for AVAssetSegmentTrackReport {}
 
-extern_methods!(
-    unsafe impl AVAssetSegmentTrackReport {
+impl AVAssetSegmentTrackReport {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -133,8 +133,8 @@ extern_methods!(
         pub unsafe fn firstVideoSampleInformation(
             &self,
         ) -> Option<Retained<AVAssetSegmentReportSampleInformation>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// This class is vended by AVAssetSegmentTrackReport. It will provide information on a sample in a track.
@@ -153,8 +153,8 @@ unsafe impl Sync for AVAssetSegmentReportSampleInformation {}
 
 unsafe impl NSObjectProtocol for AVAssetSegmentReportSampleInformation {}
 
-extern_methods!(
-    unsafe impl AVAssetSegmentReportSampleInformation {
+impl AVAssetSegmentReportSampleInformation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -185,5 +185,5 @@ extern_methods!(
         #[unsafe(method(isSyncSample))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSyncSample(&self) -> bool;
-    }
-);
+    );
+}

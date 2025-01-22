@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for VNHumanBodyRecognizedPoint3D {}
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
 unsafe impl NSSecureCoding for VNHumanBodyRecognizedPoint3D {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
-    unsafe impl VNHumanBodyRecognizedPoint3D {
+#[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
+impl VNHumanBodyRecognizedPoint3D {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         #[unsafe(method(parentJoint))]
         #[unsafe(method_family = none)]
@@ -46,5 +46,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

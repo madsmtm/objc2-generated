@@ -25,9 +25,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureOutputBase")]
 unsafe impl NSObjectProtocol for AVCaptureMetadataOutput {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureMetadataOutput {
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureMetadataOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -91,8 +91,8 @@ extern_methods!(
         #[unsafe(method(setRectOfInterest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRectOfInterest(&self, rect_of_interest: CGRect);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines an interface for delegates of AVCaptureMetadataOutput to receive emitted objects.

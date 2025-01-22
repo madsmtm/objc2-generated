@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ODNode {}
 
-extern_methods!(
-    unsafe impl ODNode {
+impl ODNode {
+    extern_methods!(
         #[cfg(all(
             feature = "CFOpenDirectory",
             feature = "CFOpenDirectoryConstants",
@@ -465,12 +465,12 @@ extern_methods!(
             record_name: Option<&NSString>,
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ODNode {
+/// Methods declared on superclass `NSObject`.
+impl ODNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -478,5 +478,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

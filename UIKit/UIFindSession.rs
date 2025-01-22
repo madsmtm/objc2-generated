@@ -67,8 +67,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextSearchOptions {}
 
-extern_methods!(
-    unsafe impl UITextSearchOptions {
+impl UITextSearchOptions {
+    extern_methods!(
         /// See UITextSearchMatchMethod above.
         #[unsafe(method(wordMatchMethod))]
         #[unsafe(method_family = none)]
@@ -78,12 +78,12 @@ extern_methods!(
         #[unsafe(method(stringCompareOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringCompareOptions(&self) -> NSStringCompareOptions;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextSearchOptions {
+/// Methods declared on superclass `NSObject`.
+impl UITextSearchOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -91,8 +91,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An abstract base class for managing a find session.
@@ -113,8 +113,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIFindSession {}
 
-extern_methods!(
-    unsafe impl UIFindSession {
+impl UIFindSession {
+    extern_methods!(
         /// Returns the total number of results.
         /// You may call UIFindInteraction's
         /// `updateResultCount`to update the system find panel's UI if already visible.
@@ -225,12 +225,12 @@ extern_methods!(
         #[unsafe(method(allowsReplacement))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsReplacement(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIFindSession {
+/// Methods declared on superclass `NSObject`.
+impl UIFindSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -238,8 +238,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A
@@ -264,8 +264,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextSearchingFindSession {}
 
-extern_methods!(
-    unsafe impl UITextSearchingFindSession {
+impl UITextSearchingFindSession {
+    extern_methods!(
         #[cfg(feature = "UITextSearching")]
         /// The object responsible for actually performing the search operation and decorating found text results.
         /// See `UITextSearching.h` for more information.
@@ -290,5 +290,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

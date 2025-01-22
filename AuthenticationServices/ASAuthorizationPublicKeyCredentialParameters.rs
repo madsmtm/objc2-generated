@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialParameters {}
 
 unsafe impl NSSecureCoding for ASAuthorizationPublicKeyCredentialParameters {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationPublicKeyCredentialParameters {
+impl ASAuthorizationPublicKeyCredentialParameters {
+    extern_methods!(
         #[cfg(feature = "ASCOSEConstants")]
         #[unsafe(method(initWithAlgorithm:))]
         #[unsafe(method_family = init)]
@@ -48,5 +48,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

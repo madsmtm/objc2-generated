@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIFocusSystem {}
 
-extern_methods!(
-    unsafe impl UIFocusSystem {
+impl UIFocusSystem {
+    extern_methods!(
         #[cfg(feature = "UIFocus")]
         /// The currently focused item in this focus system.
         #[unsafe(method(focusedItem))]
@@ -65,12 +65,12 @@ extern_methods!(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
             other_environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Sound
-    unsafe impl UIFocusSystem {
+/// Sound.
+impl UIFocusSystem {
+    extern_methods!(
         #[cfg(feature = "UIFocus")]
         /// Registers a sound file for a given identifier.
         #[unsafe(method(registerURL:forSoundIdentifier:))]
@@ -80,20 +80,20 @@ extern_methods!(
             identifier: &UIFocusSoundIdentifier,
             mtm: MainThreadMarker,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIFocusSystem
-    #[cfg(all(
-        feature = "UIResponder",
-        feature = "UIScene",
-        feature = "UIWindowScene"
-    ))]
-    unsafe impl UIWindowScene {
+/// UIFocusSystem.
+#[cfg(all(
+    feature = "UIResponder",
+    feature = "UIScene",
+    feature = "UIWindowScene"
+))]
+impl UIWindowScene {
+    extern_methods!(
         /// Returns the focus system that is responsible for this scene or nil if this scene does not support focus.
         #[unsafe(method(focusSystem))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusSystem(&self) -> Option<Retained<UIFocusSystem>>;
-    }
-);
+    );
+}

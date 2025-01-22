@@ -110,13 +110,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPersistentStoreResult {}
 
-extern_methods!(
-    unsafe impl NSPersistentStoreResult {}
-);
+impl NSPersistentStoreResult {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersistentStoreResult {
+/// Methods declared on superclass `NSObject`.
+impl NSPersistentStoreResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -124,8 +124,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreasynchronousresult?language=objc)
@@ -136,8 +136,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPersistentStoreAsynchronousResult {}
 
-extern_methods!(
-    unsafe impl NSPersistentStoreAsynchronousResult {
+impl NSPersistentStoreAsynchronousResult {
+    extern_methods!(
         #[cfg(feature = "NSManagedObjectContext")]
         #[unsafe(method(managedObjectContext))]
         #[unsafe(method_family = none)]
@@ -154,12 +154,12 @@ extern_methods!(
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersistentStoreAsynchronousResult {
+/// Methods declared on superclass `NSObject`.
+impl NSPersistentStoreAsynchronousResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -167,8 +167,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsasynchronousfetchresult?language=objc)
@@ -179,8 +179,8 @@ extern_class!(
 
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchResult<ResultType> {}
 
-extern_methods!(
-    unsafe impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
+impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
+    extern_methods!(
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         #[unsafe(method(fetchRequest))]
         #[unsafe(method_family = none)]
@@ -189,12 +189,12 @@ extern_methods!(
         #[unsafe(method(finalResult))]
         #[unsafe(method_family = none)]
         pub unsafe fn finalResult(&self) -> Option<Retained<NSArray<ResultType>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
+/// Methods declared on superclass `NSObject`.
+impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -202,8 +202,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchinsertresult?language=objc)
@@ -214,8 +214,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSBatchInsertResult {}
 
-extern_methods!(
-    unsafe impl NSBatchInsertResult {
+impl NSBatchInsertResult {
+    extern_methods!(
         #[unsafe(method(result))]
         #[unsafe(method_family = none)]
         pub unsafe fn result(&self) -> Option<Retained<AnyObject>>;
@@ -223,12 +223,12 @@ extern_methods!(
         #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSBatchInsertResult {
+/// Methods declared on superclass `NSObject`.
+impl NSBatchInsertResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -236,8 +236,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchupdateresult?language=objc)
@@ -248,8 +248,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSBatchUpdateResult {}
 
-extern_methods!(
-    unsafe impl NSBatchUpdateResult {
+impl NSBatchUpdateResult {
+    extern_methods!(
         #[unsafe(method(result))]
         #[unsafe(method_family = none)]
         pub unsafe fn result(&self) -> Option<Retained<AnyObject>>;
@@ -257,12 +257,12 @@ extern_methods!(
         #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultType(&self) -> NSBatchUpdateRequestResultType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSBatchUpdateResult {
+/// Methods declared on superclass `NSObject`.
+impl NSBatchUpdateResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -270,8 +270,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchdeleteresult?language=objc)
@@ -282,8 +282,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSBatchDeleteResult {}
 
-extern_methods!(
-    unsafe impl NSBatchDeleteResult {
+impl NSBatchDeleteResult {
+    extern_methods!(
         #[unsafe(method(result))]
         #[unsafe(method_family = none)]
         pub unsafe fn result(&self) -> Option<Retained<AnyObject>>;
@@ -291,12 +291,12 @@ extern_methods!(
         #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultType(&self) -> NSBatchDeleteRequestResultType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSBatchDeleteResult {
+/// Methods declared on superclass `NSObject`.
+impl NSBatchDeleteResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -304,8 +304,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresult?language=objc)
@@ -316,8 +316,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPersistentHistoryResult {}
 
-extern_methods!(
-    unsafe impl NSPersistentHistoryResult {
+impl NSPersistentHistoryResult {
+    extern_methods!(
         #[unsafe(method(result))]
         #[unsafe(method_family = none)]
         pub unsafe fn result(&self) -> Option<Retained<AnyObject>>;
@@ -325,12 +325,12 @@ extern_methods!(
         #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultType(&self) -> NSPersistentHistoryResultType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersistentHistoryResult {
+/// Methods declared on superclass `NSObject`.
+impl NSPersistentHistoryResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -338,8 +338,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainereventresulttype?language=objc)
 // NS_ENUM
@@ -370,8 +370,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventResult {}
 
-extern_methods!(
-    unsafe impl NSPersistentCloudKitContainerEventResult {
+impl NSPersistentCloudKitContainerEventResult {
+    extern_methods!(
         #[unsafe(method(result))]
         #[unsafe(method_family = none)]
         pub unsafe fn result(&self) -> Option<Retained<AnyObject>>;
@@ -387,5 +387,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

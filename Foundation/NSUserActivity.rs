@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSUserActivity {}
 
-extern_methods!(
-    unsafe impl NSUserActivity {
+impl NSUserActivity {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithActivityType:))]
         #[unsafe(method_family = init)]
@@ -259,17 +259,17 @@ extern_methods!(
         pub unsafe fn deleteAllSavedUserActivitiesWithCompletionHandler(
             handler: &block2::Block<dyn Fn()>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUserActivity {
+/// Methods declared on superclass `NSObject`.
+impl NSUserActivity {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb?language=objc)

@@ -20,8 +20,8 @@ unsafe impl Sync for HKQuery {}
 
 unsafe impl NSObjectProtocol for HKQuery {}
 
-extern_methods!(
-    unsafe impl HKQuery {
+impl HKQuery {
+    extern_methods!(
         #[cfg(feature = "HKObjectType")]
         #[unsafe(method(objectType))]
         #[unsafe(method_family = none)]
@@ -40,17 +40,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKQuery {
+/// Methods declared on superclass `NSObject`.
+impl HKQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Time interval options are used to describe how an HKSample's time period overlaps with a given time period.
 ///
@@ -78,9 +78,9 @@ unsafe impl RefEncode for HKQueryOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// HKObjectPredicates
-    unsafe impl HKQuery {
+/// HKObjectPredicates.
+impl HKQuery {
+    extern_methods!(
         /// Creates a predicate for use with HKQuery subclasses.
         ///
         /// Creates a query predicate that matches objects with metadata that contains a given key.
@@ -272,12 +272,12 @@ extern_methods!(
             workout: &HKWorkout,
             activity: Option<&HKWorkoutActivity>,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKSamplePredicates
-    unsafe impl HKQuery {
+/// HKSamplePredicates.
+impl HKQuery {
+    extern_methods!(
         /// Creates a predicate for use with HKQuery subclasses.
         ///
         /// Creates a query predicate that matches samples with a startDate and an endDate that lie inside of a
@@ -296,12 +296,12 @@ extern_methods!(
             end_date: Option<&NSDate>,
             options: HKQueryOptions,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKQuantitySamplePredicates
-    unsafe impl HKQuery {
+/// HKQuantitySamplePredicates.
+impl HKQuery {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// Creates a predicate for use with HKQuery subclasses.
         ///
@@ -319,12 +319,12 @@ extern_methods!(
             operator_type: NSPredicateOperatorType,
             quantity: &HKQuantity,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKCategorySamplePredicates
-    unsafe impl HKQuery {
+/// HKCategorySamplePredicates.
+impl HKQuery {
+    extern_methods!(
         #[unsafe(method(predicateForCategorySamplesWithOperatorType:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForCategorySamplesWithOperatorType_value(
@@ -340,12 +340,12 @@ extern_methods!(
         pub unsafe fn predicateForCategorySamplesEqualToValues(
             values: &NSSet<NSNumber>,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKWorkoutPredicates
-    unsafe impl HKQuery {
+/// HKWorkoutPredicates.
+impl HKQuery {
+    extern_methods!(
         #[cfg(feature = "HKWorkout")]
         /// Creates a predicate for use with HKQuery subclasses.
         ///
@@ -532,12 +532,12 @@ extern_methods!(
             quantity_type: &HKQuantityType,
             average_quantity: &HKQuantity,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKWorkoutActivityPredicates
-    unsafe impl HKQuery {
+/// HKWorkoutActivityPredicates.
+impl HKQuery {
+    extern_methods!(
         #[cfg(feature = "HKWorkout")]
         /// Creates a predicate for use with HKQuery subclasses.
         ///
@@ -688,12 +688,12 @@ extern_methods!(
         pub unsafe fn predicateForWorkoutsWithActivityPredicate(
             activity_predicate: &NSPredicate,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKActivitySummaryPredicates
-    unsafe impl HKQuery {
+/// HKActivitySummaryPredicates.
+impl HKQuery {
+    extern_methods!(
         /// Creates a predicate for use with HKActivitySummaryQuery
         ///
         /// Creates a query predicate that matches HKActivitySummaries with the given date components.
@@ -724,12 +724,12 @@ extern_methods!(
             start_date_components: &NSDateComponents,
             end_date_components: &NSDateComponents,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKClinicalRecordPredicates
-    unsafe impl HKQuery {
+/// HKClinicalRecordPredicates.
+impl HKQuery {
+    extern_methods!(
         #[cfg(feature = "HKFHIRResource")]
         /// Creates a predicate for use with HKQuery subclasses.
         ///
@@ -761,12 +761,12 @@ extern_methods!(
             resource_type: &HKFHIRResourceType,
             identifier: &NSString,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKElectrocardiogramPredicates
-    unsafe impl HKQuery {
+/// HKElectrocardiogramPredicates.
+impl HKQuery {
+    extern_methods!(
         #[cfg(feature = "HKElectrocardiogram")]
         /// Creates a predicate for use with HKQuery subclasses.
         ///
@@ -792,12 +792,12 @@ extern_methods!(
         pub unsafe fn predicateForElectrocardiogramsWithSymptomsStatus(
             symptoms_status: HKElectrocardiogramSymptomsStatus,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKVerifiableClinicalRecordPredicates
-    unsafe impl HKQuery {
+/// HKVerifiableClinicalRecordPredicates.
+impl HKQuery {
+    extern_methods!(
         /// Creates a predicate for use with HKQuery subclasses.
         ///
         /// Creates a predicate that matches HKVerifiableClinicalRecords with a relevant date within a date interval.
@@ -809,12 +809,12 @@ extern_methods!(
         pub unsafe fn predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval(
             date_interval: &NSDateInterval,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// HKStateOfMind
-    unsafe impl HKQuery {
+/// HKStateOfMind.
+impl HKQuery {
+    extern_methods!(
         /// Creates a predicate for use with HKStateOfMind
         ///
         /// Creates a query predicate that matches HKStateOfMind samples that have a valence property matching the operator type and valence.
@@ -868,5 +868,5 @@ extern_methods!(
         pub unsafe fn predicateForStatesOfMindWithAssociation(
             association: HKStateOfMindAssociation,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}

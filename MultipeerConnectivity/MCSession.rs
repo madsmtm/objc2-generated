@@ -90,8 +90,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MCSession {}
 
-extern_methods!(
-    unsafe impl MCSession {
+impl MCSession {
+    extern_methods!(
         #[cfg(feature = "MCPeerID")]
         #[unsafe(method(initWithPeer:))]
         #[unsafe(method_family = init)]
@@ -168,12 +168,12 @@ extern_methods!(
         #[unsafe(method(connectedPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedPeers(&self) -> Retained<NSArray<MCPeerID>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MCSession {
+/// Methods declared on superclass `NSObject`.
+impl MCSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -181,8 +181,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessiondelegate?language=objc)
@@ -255,9 +255,9 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// MCSessionCustomDiscovery
-    unsafe impl MCSession {
+/// MCSessionCustomDiscovery.
+impl MCSession {
+    extern_methods!(
         #[cfg(all(feature = "MCPeerID", feature = "block2"))]
         #[unsafe(method(nearbyConnectionDataForPeer:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -280,5 +280,5 @@ extern_methods!(
         #[unsafe(method(cancelConnectPeer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelConnectPeer(&self, peer_id: &MCPeerID);
-    }
-);
+    );
+}

@@ -62,8 +62,8 @@ unsafe impl<Key: ?Sized, Element: ?Sized> NSObjectProtocol
 {
 }
 
-extern_methods!(
-    unsafe impl<Key: Message, Element: Message> GCPhysicalInputElementCollection<Key, Element> {
+impl<Key: Message, Element: Message> GCPhysicalInputElementCollection<Key, Element> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -98,5 +98,5 @@ extern_methods!(
         #[unsafe(method(elementEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementEnumerator(&self) -> Retained<NSEnumerator<Element>>;
-    }
-);
+    );
+}

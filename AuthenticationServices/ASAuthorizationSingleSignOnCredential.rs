@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnCredential {}
 
 unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnCredential {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationSingleSignOnCredential {
+impl ASAuthorizationSingleSignOnCredential {
+    extern_methods!(
         /// A state returned from the AuthenticationServices extension.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
@@ -72,5 +72,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

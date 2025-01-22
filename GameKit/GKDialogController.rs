@@ -32,10 +32,10 @@ unsafe impl NSCoding for GKDialogController {}
 #[cfg(target_os = "macos")]
 unsafe impl NSObjectProtocol for GKDialogController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKDialogController {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKDialogController {
+    extern_methods!(
         #[unsafe(method(parentWindow))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
@@ -53,14 +53,14 @@ extern_methods!(
         #[unsafe(method(dismiss:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismiss(&self, sender: &AnyObject);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKDialogController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKDialogController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -71,28 +71,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKDialogController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKDialogController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SharedDialogController
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKDialogController {
+/// SharedDialogController.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl GKDialogController {
+    extern_methods!(
         #[unsafe(method(sharedDialogController))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedDialogController(mtm: MainThreadMarker)
             -> Retained<GKDialogController>;
-    }
-);
+    );
+}

@@ -92,9 +92,9 @@ unsafe impl UIResponderStandardEditActions for UICollectionReusableView {}
 ))]
 unsafe impl UITraitEnvironment for UICollectionReusableView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UICollectionReusableView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UICollectionReusableView {
+    extern_methods!(
         #[unsafe(method(reuseIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
@@ -136,13 +136,13 @@ extern_methods!(
             &self,
             layout_attributes: &UICollectionViewLayoutAttributes,
         ) -> Retained<UICollectionViewLayoutAttributes>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UICollectionReusableView {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UICollectionReusableView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -154,13 +154,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UICollectionReusableView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UICollectionReusableView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -168,8 +168,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcellconfigurationupdatehandler?language=objc)
 #[cfg(all(
@@ -240,9 +240,9 @@ unsafe impl UIResponderStandardEditActions for UICollectionViewCell {}
 ))]
 unsafe impl UITraitEnvironment for UICollectionViewCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UICollectionViewCell {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UICollectionViewCell {
+    extern_methods!(
         #[cfg(all(
             feature = "UICellConfigurationState",
             feature = "UIViewConfigurationState"
@@ -410,13 +410,13 @@ extern_methods!(
         #[unsafe(method(setSelectedBackgroundView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedBackgroundView(&self, selected_background_view: Option<&UIView>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UICollectionViewCell {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UICollectionViewCell {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -428,13 +428,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UICollectionViewCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UICollectionViewCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -442,5 +442,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

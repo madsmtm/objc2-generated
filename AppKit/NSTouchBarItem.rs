@@ -36,8 +36,8 @@ unsafe impl NSCoding for NSTouchBarItem {}
 
 unsafe impl NSObjectProtocol for NSTouchBarItem {}
 
-extern_methods!(
-    unsafe impl NSTouchBarItem {
+impl NSTouchBarItem {
+    extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
@@ -86,17 +86,17 @@ extern_methods!(
         #[unsafe(method(isVisible))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVisible(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTouchBarItem {
+/// Methods declared on superclass `NSObject`.
+impl NSTouchBarItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifierfixedspacesmall?language=objc)

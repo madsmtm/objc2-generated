@@ -26,8 +26,8 @@ unsafe impl NSObjectProtocol for SFTranscription {}
 
 unsafe impl NSSecureCoding for SFTranscription {}
 
-extern_methods!(
-    unsafe impl SFTranscription {
+impl SFTranscription {
+    extern_methods!(
         #[unsafe(method(formattedString))]
         #[unsafe(method_family = none)]
         pub unsafe fn formattedString(&self) -> Retained<NSString>;
@@ -46,12 +46,12 @@ extern_methods!(
         #[unsafe(method(averagePauseDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn averagePauseDuration(&self) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFTranscription {
+/// Methods declared on superclass `NSObject`.
+impl SFTranscription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -59,5 +59,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

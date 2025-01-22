@@ -75,8 +75,8 @@ unsafe impl NSObjectProtocol for NSCachedURLResponse {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSCachedURLResponse {}
 
-extern_methods!(
-    unsafe impl NSCachedURLResponse {
+impl NSCachedURLResponse {
+    extern_methods!(
         #[cfg(all(feature = "NSData", feature = "NSURLResponse"))]
         /// Initializes an NSCachedURLResponse with the given
         /// response and data.
@@ -158,12 +158,12 @@ extern_methods!(
         #[unsafe(method(storagePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn storagePolicy(&self) -> NSURLCacheStoragePolicy;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCachedURLResponse {
+/// Methods declared on superclass `NSObject`.
+impl NSCachedURLResponse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -171,8 +171,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcache?language=objc)
@@ -187,8 +187,8 @@ unsafe impl Sync for NSURLCache {}
 
 unsafe impl NSObjectProtocol for NSURLCache {}
 
-extern_methods!(
-    unsafe impl NSURLCache {
+impl NSURLCache {
+    extern_methods!(
         /// Returns the shared NSURLCache instance or
         /// sets the NSURLCache instance shared by all clients of
         /// the current process. This will be the new object returned when
@@ -392,12 +392,12 @@ extern_methods!(
         #[unsafe(method(currentDiskUsage))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentDiskUsage(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLCache {
+/// Methods declared on superclass `NSObject`.
+impl NSURLCache {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -405,12 +405,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLSessionTaskAdditions
-    unsafe impl NSURLCache {
+/// NSURLSessionTaskAdditions.
+impl NSURLCache {
+    extern_methods!(
         #[cfg(feature = "NSURLSession")]
         #[unsafe(method(storeCachedResponse:forDataTask:))]
         #[unsafe(method_family = none)]
@@ -433,5 +433,5 @@ extern_methods!(
         #[unsafe(method(removeCachedResponseForDataTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCachedResponseForDataTask(&self, data_task: &NSURLSessionDataTask);
-    }
-);
+    );
+}

@@ -24,9 +24,9 @@ unsafe impl Sync for HMHomeAccessControl {}
 #[cfg(feature = "HMAccessControl")]
 unsafe impl NSObjectProtocol for HMHomeAccessControl {}
 
-extern_methods!(
-    #[cfg(feature = "HMAccessControl")]
-    unsafe impl HMHomeAccessControl {
+#[cfg(feature = "HMAccessControl")]
+impl HMHomeAccessControl {
+    extern_methods!(
         /// Specifies if the user has administrative privileges for the home.
         #[unsafe(method(isAdministrator))]
         #[unsafe(method_family = none)]
@@ -35,15 +35,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HMAccessControl")]
-    unsafe impl HMHomeAccessControl {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HMAccessControl")]
+impl HMHomeAccessControl {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

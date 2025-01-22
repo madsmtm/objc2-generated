@@ -30,8 +30,8 @@ unsafe impl CopyingHelper for HKElectrocardiogramVoltageMeasurement {
 
 unsafe impl NSObjectProtocol for HKElectrocardiogramVoltageMeasurement {}
 
-extern_methods!(
-    unsafe impl HKElectrocardiogramVoltageMeasurement {
+impl HKElectrocardiogramVoltageMeasurement {
+    extern_methods!(
         /// The time interval between this voltage measurement and the start of the sample.
         #[unsafe(method(timeSinceSampleStart))]
         #[unsafe(method_family = none)]
@@ -47,12 +47,12 @@ extern_methods!(
             &self,
             lead: HKElectrocardiogramLead,
         ) -> Option<Retained<HKQuantity>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKElectrocardiogramVoltageMeasurement {
+/// Methods declared on superclass `NSObject`.
+impl HKElectrocardiogramVoltageMeasurement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,8 +60,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramquery?language=objc)
@@ -80,9 +80,9 @@ unsafe impl Sync for HKElectrocardiogramQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKElectrocardiogramQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKElectrocardiogramQuery {
+#[cfg(feature = "HKQuery")]
+impl HKElectrocardiogramQuery {
+    extern_methods!(
         #[cfg(all(
             feature = "HKElectrocardiogram",
             feature = "HKObject",
@@ -110,25 +110,25 @@ extern_methods!(
                 ),
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKElectrocardiogramQuery {
+/// Methods declared on superclass `HKQuery`.
+#[cfg(feature = "HKQuery")]
+impl HKElectrocardiogramQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKElectrocardiogramQuery {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKQuery")]
+impl HKElectrocardiogramQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -61,9 +61,9 @@ extern_class!(
 #[cfg(feature = "VZStorageDeviceAttachment")]
 unsafe impl NSObjectProtocol for VZNetworkBlockDeviceStorageDeviceAttachment {}
 
-extern_methods!(
-    #[cfg(feature = "VZStorageDeviceAttachment")]
-    unsafe impl VZNetworkBlockDeviceStorageDeviceAttachment {
+#[cfg(feature = "VZStorageDeviceAttachment")]
+impl VZNetworkBlockDeviceStorageDeviceAttachment {
+    extern_methods!(
         #[cfg(feature = "VZDiskSynchronizationMode")]
         /// Initialize the attachment from an NBD Uniform Resource Indicator (URI) represented as an URL.
         ///
@@ -167,13 +167,13 @@ extern_methods!(
                 &ProtocolObject<dyn VZNetworkBlockDeviceStorageDeviceAttachmentDelegate>,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZStorageDeviceAttachment`
-    #[cfg(feature = "VZStorageDeviceAttachment")]
-    unsafe impl VZNetworkBlockDeviceStorageDeviceAttachment {
+/// Methods declared on superclass `VZStorageDeviceAttachment`.
+#[cfg(feature = "VZStorageDeviceAttachment")]
+impl VZNetworkBlockDeviceStorageDeviceAttachment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -181,8 +181,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A class conforming to VZNetworkBlockDeviceStorageDeviceAttachmentDelegate can provide

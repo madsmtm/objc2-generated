@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for NSPredicate {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSPredicate {}
 
-extern_methods!(
-    unsafe impl NSPredicate {
+impl NSPredicate {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(predicateWithFormat:argumentArray:))]
         #[unsafe(method_family = none)]
@@ -88,12 +88,12 @@ extern_methods!(
         #[unsafe(method(allowEvaluation))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowEvaluation(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPredicate {
+/// Methods declared on superclass `NSObject`.
+impl NSPredicate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -101,74 +101,74 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPredicateSupport
-    #[cfg(feature = "NSArray")]
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+/// NSPredicateSupport.
+#[cfg(feature = "NSArray")]
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(filteredArrayUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filteredArrayUsingPredicate(
             &self,
             predicate: &NSPredicate,
         ) -> Retained<NSArray<ObjectType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPredicateSupport
-    #[cfg(feature = "NSArray")]
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+/// NSPredicateSupport.
+#[cfg(feature = "NSArray")]
+impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(filterUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterUsingPredicate(&self, predicate: &NSPredicate);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPredicateSupport
-    #[cfg(feature = "NSSet")]
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+/// NSPredicateSupport.
+#[cfg(feature = "NSSet")]
+impl<ObjectType: Message> NSSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(filteredSetUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filteredSetUsingPredicate(
             &self,
             predicate: &NSPredicate,
         ) -> Retained<NSSet<ObjectType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPredicateSupport
-    #[cfg(feature = "NSSet")]
-    unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
+/// NSPredicateSupport.
+#[cfg(feature = "NSSet")]
+impl<ObjectType: Message> NSMutableSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(filterUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterUsingPredicate(&self, predicate: &NSPredicate);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPredicateSupport
-    #[cfg(feature = "NSOrderedSet")]
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+/// NSPredicateSupport.
+#[cfg(feature = "NSOrderedSet")]
+impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(filteredOrderedSetUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filteredOrderedSetUsingPredicate(
             &self,
             p: &NSPredicate,
         ) -> Retained<NSOrderedSet<ObjectType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPredicateSupport
-    #[cfg(feature = "NSOrderedSet")]
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+/// NSPredicateSupport.
+#[cfg(feature = "NSOrderedSet")]
+impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(filterUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterUsingPredicate(&self, p: &NSPredicate);
-    }
-);
+    );
+}

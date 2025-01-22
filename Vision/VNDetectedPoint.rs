@@ -38,9 +38,9 @@ unsafe impl NSObjectProtocol for VNDetectedPoint {}
 #[cfg(feature = "VNGeometry")]
 unsafe impl NSSecureCoding for VNDetectedPoint {}
 
-extern_methods!(
-    #[cfg(feature = "VNGeometry")]
-    unsafe impl VNDetectedPoint {
+#[cfg(feature = "VNGeometry")]
+impl VNDetectedPoint {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -67,8 +67,8 @@ extern_methods!(
         #[unsafe(method(confidence))]
         #[unsafe(method_family = none)]
         pub unsafe fn confidence(&self) -> VNConfidence;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An extension of VNDetectedPoint that associates an identifier to the point.
@@ -99,9 +99,9 @@ unsafe impl NSObjectProtocol for VNRecognizedPoint {}
 #[cfg(feature = "VNGeometry")]
 unsafe impl NSSecureCoding for VNRecognizedPoint {}
 
-extern_methods!(
-    #[cfg(feature = "VNGeometry")]
-    unsafe impl VNRecognizedPoint {
+#[cfg(feature = "VNGeometry")]
+impl VNRecognizedPoint {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// The is the identifier that provides context as to the kind of point that was recognized.
         ///
@@ -109,13 +109,13 @@ extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<VNRecognizedPointKey>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNDetectedPoint`
-    #[cfg(feature = "VNGeometry")]
-    unsafe impl VNRecognizedPoint {
+/// Methods declared on superclass `VNDetectedPoint`.
+#[cfg(feature = "VNGeometry")]
+impl VNRecognizedPoint {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -136,5 +136,5 @@ extern_methods!(
         #[unsafe(method(initWithLocation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
-    }
-);
+    );
+}

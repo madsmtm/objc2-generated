@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for NSFetchIndexDescription {
 
 unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
 
-extern_methods!(
-    unsafe impl NSFetchIndexDescription {
+impl NSFetchIndexDescription {
+    extern_methods!(
         #[cfg(feature = "NSFetchIndexElementDescription")]
         #[unsafe(method(initWithName:elements:))]
         #[unsafe(method_family = init)]
@@ -71,12 +71,12 @@ extern_methods!(
             &self,
             partial_index_predicate: Option<&NSPredicate>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFetchIndexDescription {
+/// Methods declared on superclass `NSObject`.
+impl NSFetchIndexDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,5 +84,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

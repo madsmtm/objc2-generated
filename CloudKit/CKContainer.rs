@@ -39,8 +39,8 @@ unsafe impl Sync for CKContainer {}
 
 unsafe impl NSObjectProtocol for CKContainer {}
 
-extern_methods!(
-    unsafe impl CKContainer {
+impl CKContainer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -83,26 +83,26 @@ extern_methods!(
         #[unsafe(method(addOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOperation(&self, operation: &CKOperation);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Database
-    /// Database properties:
-    /// Records in a public database
-    /// - By default are world readable, owner writable.
-    /// - Can be locked down by Roles, a process done in the Developer Portal, a web interface.  Roles are not present in the client API.
-    /// - Are visible to the application developer via the Developer Portal.
-    /// - Do not contribute to the owner's iCloud account storage quota.
-    /// Records in a private database
-    /// - By default are only owner readable and owner writable.
-    /// - Are not visible to the application developer via the Developer Portal.
-    /// - Are counted towards the owner's iCloud account storage quota.
-    /// Records in a shared database
-    /// - Are available to share participants based on the permissions of the enclosing CKShare
-    /// - Are not visible to the application developer via the Developer Portal.
-    /// - Are counted towards the originating owner's iCloud account storage quota.
-    unsafe impl CKContainer {
+/// Database.
+/// Database properties:
+/// Records in a public database
+/// - By default are world readable, owner writable.
+/// - Can be locked down by Roles, a process done in the Developer Portal, a web interface.  Roles are not present in the client API.
+/// - Are visible to the application developer via the Developer Portal.
+/// - Do not contribute to the owner's iCloud account storage quota.
+/// Records in a private database
+/// - By default are only owner readable and owner writable.
+/// - Are not visible to the application developer via the Developer Portal.
+/// - Are counted towards the owner's iCloud account storage quota.
+/// Records in a shared database
+/// - Are available to share participants based on the permissions of the enclosing CKShare
+/// - Are not visible to the application developer via the Developer Portal.
+/// - Are counted towards the originating owner's iCloud account storage quota.
+impl CKContainer {
+    extern_methods!(
         #[cfg(feature = "CKDatabase")]
         #[unsafe(method(privateCloudDatabase))]
         #[unsafe(method_family = none)]
@@ -129,8 +129,8 @@ extern_methods!(
             &self,
             database_scope: CKDatabaseScope,
         ) -> Retained<CKDatabase>;
-    }
-);
+    );
+}
 
 /// credentials in Settings app.
 ///
@@ -171,9 +171,9 @@ extern "C" {
     pub static CKAccountChangedNotification: &'static NSString;
 }
 
-extern_methods!(
-    /// AccountStatus
-    unsafe impl CKContainer {
+/// AccountStatus.
+impl CKContainer {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(accountStatusWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -181,8 +181,8 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(CKAccountStatus, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckapplicationpermissions?language=objc)
 // NS_OPTIONS
@@ -240,9 +240,9 @@ unsafe impl RefEncode for CKApplicationPermissionStatus {
 pub type CKApplicationPermissionBlock =
     *mut block2::Block<dyn Fn(CKApplicationPermissionStatus, *mut NSError)>;
 
-extern_methods!(
-    /// ApplicationPermission
-    unsafe impl CKContainer {
+/// ApplicationPermission.
+impl CKContainer {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(statusForApplicationPermission:completionHandler:))]
@@ -262,12 +262,12 @@ extern_methods!(
             application_permission: CKApplicationPermissions,
             completion_handler: CKApplicationPermissionBlock,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UserRecords
-    unsafe impl CKContainer {
+/// UserRecords.
+impl CKContainer {
+    extern_methods!(
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// If there is no iCloud account configured, or if access is restricted, a
         /// `CKErrorNotAuthenticated`error will be returned.
@@ -342,12 +342,12 @@ extern_methods!(
             user_record_id: &CKRecordID,
             completion_handler: &block2::Block<dyn Fn(*mut CKUserIdentity, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Sharing
-    unsafe impl CKContainer {
+/// Sharing.
+impl CKContainer {
+    extern_methods!(
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
         /// Fetches share participants matching the provided info.
         ///
@@ -406,12 +406,12 @@ extern_methods!(
             metadata: &CKShareMetadata,
             completion_handler: &block2::Block<dyn Fn(*mut CKShare, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// CKLongLivedOperations
-    unsafe impl CKContainer {
+/// CKLongLivedOperations.
+impl CKContainer {
+    extern_methods!(
         #[cfg(all(feature = "CKOperation", feature = "block2"))]
         /// Long lived CKOperations returned by this call must be started on an operation queue.
         /// Remember to set the callback blocks before starting the operation.
@@ -432,5 +432,5 @@ extern_methods!(
             operation_id: &CKOperationID,
             completion_handler: &block2::Block<dyn Fn(*mut CKOperation, *mut NSError)>,
         );
-    }
-);
+    );
+}

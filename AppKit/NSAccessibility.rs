@@ -130,10 +130,10 @@ extern_category!(
     unsafe impl NSObjectNSAccessibility for NSObject {}
 );
 
-extern_methods!(
-    /// NSWorkspaceAccessibilityDisplay
-    #[cfg(feature = "NSWorkspace")]
-    unsafe impl NSWorkspace {
+/// NSWorkspaceAccessibilityDisplay.
+#[cfg(feature = "NSWorkspace")]
+impl NSWorkspace {
+    extern_methods!(
         #[unsafe(method(accessibilityDisplayShouldIncreaseContrast))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityDisplayShouldIncreaseContrast(&self) -> bool;
@@ -153,13 +153,13 @@ extern_methods!(
         #[unsafe(method(accessibilityDisplayShouldInvertColors))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityDisplayShouldInvertColors(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSWorkspaceAccessibility
-    #[cfg(feature = "NSWorkspace")]
-    unsafe impl NSWorkspace {
+/// NSWorkspaceAccessibility.
+#[cfg(feature = "NSWorkspace")]
+impl NSWorkspace {
+    extern_methods!(
         #[unsafe(method(isVoiceOverEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoiceOverEnabled(&self) -> bool;
@@ -167,8 +167,8 @@ extern_methods!(
         #[unsafe(method(isSwitchControlEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSwitchControlEnabled(&self) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceaccessibilitydisplayoptionsdidchangenotification?language=objc)

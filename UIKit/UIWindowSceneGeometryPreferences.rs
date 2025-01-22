@@ -14,8 +14,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferences {}
 
-extern_methods!(
-    unsafe impl UIWindowSceneGeometryPreferences {
+impl UIWindowSceneGeometryPreferences {
+    extern_methods!(
         /// UIWindowSceneGeometryPreferences is an empty base class and should not be initialized on its own.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -24,5 +24,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

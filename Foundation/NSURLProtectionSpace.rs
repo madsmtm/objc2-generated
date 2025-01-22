@@ -155,8 +155,8 @@ unsafe impl NSObjectProtocol for NSURLProtectionSpace {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLProtectionSpace {}
 
-extern_methods!(
-    unsafe impl NSURLProtectionSpace {
+impl NSURLProtectionSpace {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         /// Initialize a protection space representing an origin server, or a realm on one
         ///
@@ -283,12 +283,12 @@ extern_methods!(
         #[unsafe(method(authenticationMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticationMethod(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLProtectionSpace {
+/// Methods declared on superclass `NSObject`.
+impl NSURLProtectionSpace {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -296,13 +296,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSClientCertificateSpace
-    /// This category supplies additional information for use when a client certificate is required by the server in order to complete authentication.
-    unsafe impl NSURLProtectionSpace {
+/// NSClientCertificateSpace.
+/// This category supplies additional information for use when a client certificate is required by the server in order to complete authentication.
+impl NSURLProtectionSpace {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
         /// Returns an array of acceptable certificate issuing authorities for client certification authentication. Issuers are identified by their distinguished name and returned as a DER encoded data.
         ///
@@ -310,11 +310,11 @@ extern_methods!(
         #[unsafe(method(distinguishedNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn distinguishedNames(&self) -> Option<Retained<NSArray<NSData>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSServerTrustValidationSpace
-    /// This category supplies additional information for use by the client to evaluate whether to trust a given server during a security handshake.
-    unsafe impl NSURLProtectionSpace {}
-);
+/// NSServerTrustValidationSpace.
+/// This category supplies additional information for use by the client to evaluate whether to trust a given server during a security handshake.
+impl NSURLProtectionSpace {
+    extern_methods!();
+}

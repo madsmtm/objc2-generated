@@ -31,9 +31,9 @@ unsafe impl CopyingHelper for VNGenerateImageFeaturePrintRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNGenerateImageFeaturePrintRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNGenerateImageFeaturePrintRequest {
+#[cfg(feature = "VNRequest")]
+impl VNGenerateImageFeaturePrintRequest {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// Determine what type of croping and scaling action should be applied to the image before generating the feature print.
         ///
@@ -57,13 +57,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNFeaturePrintObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNGenerateImageFeaturePrintRequest {
+/// Methods declared on superclass `VNRequest`.
+#[cfg(feature = "VNRequest")]
+impl VNGenerateImageFeaturePrintRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -80,18 +80,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNGenerateImageFeaturePrintRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNGenerateImageFeaturePrintRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The feature print produced by the `VNClassifyImageRequestRevision1` classifier.
 ///

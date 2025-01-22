@@ -36,9 +36,9 @@ unsafe impl NSEditorRegistration for NSArrayController {}
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 unsafe impl NSObjectProtocol for NSArrayController {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-    unsafe impl NSArrayController {
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
+impl NSArrayController {
+    extern_methods!(
         #[unsafe(method(rearrangeObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn rearrangeObjects(&self);
@@ -251,13 +251,13 @@ extern_methods!(
         #[unsafe(method(removeObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObjects(&self, objects: &NSArray);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObjectController`
-    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-    unsafe impl NSArrayController {
+/// Methods declared on superclass `NSObjectController`.
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
+impl NSArrayController {
+    extern_methods!(
         #[unsafe(method(initWithContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(
@@ -271,25 +271,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSController`
-    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-    unsafe impl NSArrayController {
+/// Methods declared on superclass `NSController`.
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
+impl NSArrayController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-    unsafe impl NSArrayController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
+impl NSArrayController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

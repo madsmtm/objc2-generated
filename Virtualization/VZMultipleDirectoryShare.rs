@@ -25,9 +25,9 @@ extern_class!(
 #[cfg(feature = "VZDirectoryShare")]
 unsafe impl NSObjectProtocol for VZMultipleDirectoryShare {}
 
-extern_methods!(
-    #[cfg(feature = "VZDirectoryShare")]
-    unsafe impl VZMultipleDirectoryShare {
+#[cfg(feature = "VZDirectoryShare")]
+impl VZMultipleDirectoryShare {
+    extern_methods!(
         /// Initialize the directory share with an empty set of directories.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -81,15 +81,15 @@ extern_methods!(
         #[unsafe(method(canonicalizedNameFromName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canonicalizedNameFromName(name: &NSString) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZDirectoryShare`
-    #[cfg(feature = "VZDirectoryShare")]
-    unsafe impl VZMultipleDirectoryShare {
+/// Methods declared on superclass `VZDirectoryShare`.
+#[cfg(feature = "VZDirectoryShare")]
+impl VZMultipleDirectoryShare {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

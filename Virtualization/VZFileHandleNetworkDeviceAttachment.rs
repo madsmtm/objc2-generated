@@ -30,9 +30,9 @@ extern_class!(
 #[cfg(feature = "VZNetworkDeviceAttachment")]
 unsafe impl NSObjectProtocol for VZFileHandleNetworkDeviceAttachment {}
 
-extern_methods!(
-    #[cfg(feature = "VZNetworkDeviceAttachment")]
-    unsafe impl VZFileHandleNetworkDeviceAttachment {
+#[cfg(feature = "VZNetworkDeviceAttachment")]
+impl VZFileHandleNetworkDeviceAttachment {
+    extern_methods!(
         /// Initialize the attachment with a file handle.
         ///
         /// Parameter `fileHandle`: File handle holding a connected datagram socket.
@@ -66,13 +66,13 @@ extern_methods!(
         #[unsafe(method(setMaximumTransmissionUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumTransmissionUnit(&self, maximum_transmission_unit: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZNetworkDeviceAttachment`
-    #[cfg(feature = "VZNetworkDeviceAttachment")]
-    unsafe impl VZFileHandleNetworkDeviceAttachment {
+/// Methods declared on superclass `VZNetworkDeviceAttachment`.
+#[cfg(feature = "VZNetworkDeviceAttachment")]
+impl VZFileHandleNetworkDeviceAttachment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -80,5 +80,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

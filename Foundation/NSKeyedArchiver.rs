@@ -35,9 +35,9 @@ extern_class!(
 #[cfg(feature = "NSCoder")]
 unsafe impl NSObjectProtocol for NSKeyedArchiver {}
 
-extern_methods!(
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSKeyedArchiver {
+#[cfg(feature = "NSCoder")]
+impl NSKeyedArchiver {
+    extern_methods!(
         /// Initializes the receiver for encoding an archive, optionally disabling secure coding.
         ///
         /// If
@@ -222,18 +222,18 @@ extern_methods!(
         #[unsafe(method(setRequiresSecureCoding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresSecureCoding(&self, requires_secure_coding: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSKeyedArchiver {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCoder")]
+impl NSKeyedArchiver {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchiver?language=objc)
@@ -246,9 +246,9 @@ extern_class!(
 #[cfg(feature = "NSCoder")]
 unsafe impl NSObjectProtocol for NSKeyedUnarchiver {}
 
-extern_methods!(
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSKeyedUnarchiver {
+#[cfg(feature = "NSCoder")]
+impl NSKeyedUnarchiver {
+    extern_methods!(
         #[cfg(all(feature = "NSData", feature = "NSError"))]
         /// Initializes the receiver for decoding an archive previously encoded by
         /// `NSKeyedUnarchiver.`
@@ -542,18 +542,18 @@ extern_methods!(
             &self,
             decoding_failure_policy: NSDecodingFailurePolicy,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSKeyedUnarchiver {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCoder")]
+impl NSKeyedUnarchiver {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedarchiverdelegate?language=objc)

@@ -128,8 +128,8 @@ unsafe impl SCNAnimatable for SCNNode {}
 #[cfg(feature = "SCNBoundingVolume")]
 unsafe impl SCNBoundingVolume for SCNNode {}
 
-extern_methods!(
-    unsafe impl SCNNode {
+impl SCNNode {
+    extern_methods!(
         /// Creates and initializes a node instance.
         #[unsafe(method(node))]
         #[unsafe(method_family = none)]
@@ -742,12 +742,12 @@ extern_methods!(
         #[unsafe(method(setCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNNode {
+/// Methods declared on superclass `NSObject`.
+impl SCNNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -755,12 +755,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Transforms
-    unsafe impl SCNNode {
+/// Transforms.
+impl SCNNode {
+    extern_methods!(
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// The local unit Y axis (0, 1, 0).
         #[unsafe(method(localUp))]
@@ -858,8 +858,8 @@ extern_methods!(
             world_rotation: SCNQuaternion,
             world_target: SCNVector3,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The SCNNodeRendererDelegate protocol declares the methods that an instance of SCNNode invokes to let a delegate customize its rendering.
@@ -890,14 +890,14 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// SIMD
-    unsafe impl SCNNode {}
-);
+/// SIMD.
+impl SCNNode {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Focus
-    unsafe impl SCNNode {
+/// Focus.
+impl SCNNode {
+    extern_methods!(
         /// Controls the behavior of the receiver regarding the UIFocus system. Defaults to SCNNodeFocusBehaviorNone.
         #[unsafe(method(focusBehavior))]
         #[unsafe(method_family = none)]
@@ -907,5 +907,5 @@ extern_methods!(
         #[unsafe(method(setFocusBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusBehavior(&self, focus_behavior: SCNNodeFocusBehavior);
-    }
-);
+    );
+}

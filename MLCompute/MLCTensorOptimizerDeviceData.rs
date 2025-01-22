@@ -22,20 +22,20 @@ unsafe impl CopyingHelper for MLCTensorOptimizerDeviceData {
 
 unsafe impl NSObjectProtocol for MLCTensorOptimizerDeviceData {}
 
-extern_methods!(
-    unsafe impl MLCTensorOptimizerDeviceData {
+impl MLCTensorOptimizerDeviceData {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLCTensorOptimizerDeviceData {
+/// Methods declared on superclass `NSObject`.
+impl MLCTensorOptimizerDeviceData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

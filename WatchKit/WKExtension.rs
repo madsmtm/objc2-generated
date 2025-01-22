@@ -67,8 +67,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKExtension {}
 
-extern_methods!(
-    unsafe impl WKExtension {
+impl WKExtension {
+    extern_methods!(
         #[unsafe(method(sharedExtension))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedExtension(mtm: MainThreadMarker) -> Retained<WKExtension>;
@@ -152,17 +152,17 @@ extern_methods!(
         #[unsafe(method(globalTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn globalTintColor(&self) -> Retained<UIColor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKExtension {
+/// Methods declared on superclass `NSObject`.
+impl WKExtension {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationdidfinishlaunchingnotification?language=objc)

@@ -40,8 +40,8 @@ unsafe impl NSCoding for NSTabViewItem {}
 
 unsafe impl NSObjectProtocol for NSTabViewItem {}
 
-extern_methods!(
-    unsafe impl NSTabViewItem {
+impl NSTabViewItem {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// Creates an autoreleased TabViewItem that wraps the provided ViewController. The viewController is set as the tab view item’s
         /// `-viewController`property, which sets several of the tab view item’s other properties.
@@ -177,12 +177,12 @@ extern_methods!(
         #[unsafe(method(sizeOfLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeOfLabel(&self, compute_min: bool) -> NSSize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTabViewItem {
+/// Methods declared on superclass `NSObject`.
+impl NSTabViewItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -190,5 +190,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

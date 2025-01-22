@@ -32,9 +32,9 @@ unsafe impl CopyingHelper for VZVirtioGraphicsScanoutConfiguration {
 #[cfg(feature = "VZGraphicsDisplayConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioGraphicsScanoutConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZGraphicsDisplayConfiguration")]
-    unsafe impl VZVirtioGraphicsScanoutConfiguration {
+#[cfg(feature = "VZGraphicsDisplayConfiguration")]
+impl VZVirtioGraphicsScanoutConfiguration {
+    extern_methods!(
         /// Create a scanout configuration with the specified pixel dimensions.
         ///
         /// Parameter `widthInPixels`: The width of the scanout, in pixels.
@@ -67,13 +67,13 @@ extern_methods!(
         #[unsafe(method(setHeightInPixels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightInPixels(&self, height_in_pixels: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZGraphicsDisplayConfiguration`
-    #[cfg(feature = "VZGraphicsDisplayConfiguration")]
-    unsafe impl VZVirtioGraphicsScanoutConfiguration {
+/// Methods declared on superclass `VZGraphicsDisplayConfiguration`.
+#[cfg(feature = "VZGraphicsDisplayConfiguration")]
+impl VZVirtioGraphicsScanoutConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -81,5 +81,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

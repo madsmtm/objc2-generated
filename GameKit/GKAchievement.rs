@@ -20,8 +20,8 @@ unsafe impl NSObjectProtocol for GKAchievement {}
 
 unsafe impl NSSecureCoding for GKAchievement {}
 
-extern_methods!(
-    unsafe impl GKAchievement {
+impl GKAchievement {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously load all achievements for the local player
         #[unsafe(method(loadAchievementsWithCompletionHandler:))]
@@ -119,12 +119,12 @@ extern_methods!(
         #[unsafe(method(player))]
         #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKAchievement {
+/// Methods declared on superclass `NSObject`.
+impl GKAchievement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -132,12 +132,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Deprecated
-    unsafe impl GKAchievement {
+/// Deprecated.
+impl GKAchievement {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[unsafe(method(reportAchievementWithCompletionHandler:))]
@@ -151,12 +151,12 @@ extern_methods!(
         #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Obsoleted
-    unsafe impl GKAchievement {
+/// Obsoleted.
+impl GKAchievement {
+    extern_methods!(
         /// * This method is obsolete. Calling this initialiser does nothing and will return nil **
         #[deprecated]
         #[unsafe(method(initWithIdentifier:forPlayer:))]
@@ -172,5 +172,5 @@ extern_methods!(
         #[unsafe(method(playerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}

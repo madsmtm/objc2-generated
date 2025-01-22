@@ -92,8 +92,8 @@ unsafe impl NSObjectProtocol for LPLinkMetadata {}
 
 unsafe impl NSSecureCoding for LPLinkMetadata {}
 
-extern_methods!(
-    unsafe impl LPLinkMetadata {
+impl LPLinkMetadata {
+    extern_methods!(
         /// The original URL of the metadata request.
         #[unsafe(method(originalURL))]
         #[unsafe(method_family = none)]
@@ -181,12 +181,12 @@ extern_methods!(
         #[unsafe(method(setRemoteVideoURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemoteVideoURL(&self, remote_video_url: Option<&NSURL>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl LPLinkMetadata {
+/// Methods declared on superclass `NSObject`.
+impl LPLinkMetadata {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -194,5 +194,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

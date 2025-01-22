@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for UISceneActivationConditions {}
 
 unsafe impl NSSecureCoding for UISceneActivationConditions {}
 
-extern_methods!(
-    unsafe impl UISceneActivationConditions {
+impl UISceneActivationConditions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -61,17 +61,17 @@ extern_methods!(
             &self,
             prefers_to_activate_for_target_content_identifier_predicate: &NSPredicate,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UISceneActivationConditions {
+/// Methods declared on superclass `NSObject`.
+impl UISceneActivationConditions {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "UISceneActivationConditions" on [`NSUserActivity`].

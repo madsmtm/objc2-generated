@@ -42,8 +42,8 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedSet<ObjectType> {}
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSOrderedSet<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
@@ -75,21 +75,21 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtendedOrderedSet
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+/// NSExtendedOrderedSet.
+impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSRange")]
         #[unsafe(method(getObjects:range:))]
         #[unsafe(method_family = none)]
@@ -312,12 +312,12 @@ extern_methods!(
             locale: Option<&AnyObject>,
             level: NSUInteger,
         ) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSOrderedSetCreation
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+/// NSOrderedSetCreation.
+impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(orderedSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSet() -> Retained<Self>;
@@ -443,14 +443,14 @@ extern_methods!(
             set: &NSSet<ObjectType>,
             flag: bool,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSOrderedSet`
-    ///
-    /// NSOrderedSetCreation
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+/// Methods declared on superclass `NSOrderedSet`.
+///
+/// NSOrderedSetCreation.
+impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(orderedSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSet() -> Retained<Self>;
@@ -576,12 +576,12 @@ extern_methods!(
             set: &NSSet<ObjectType>,
             flag: bool,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSOrderedSetDiffing
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+/// NSOrderedSetDiffing.
+impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    extern_methods!(
         #[cfg(all(feature = "NSOrderedCollectionDifference", feature = "block2"))]
         #[unsafe(method(differenceFromOrderedSet:withOptions:usingEquivalenceTest:))]
         #[unsafe(method_family = none)]
@@ -616,8 +616,8 @@ extern_methods!(
             &self,
             difference: &NSOrderedCollectionDifference<ObjectType>,
         ) -> Option<Retained<NSOrderedSet<ObjectType>>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// **************       Mutable Ordered Set     ***************
@@ -658,8 +658,8 @@ unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
 {
 }
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(insertObject:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertObject_atIndex(&self, object: &ObjectType, idx: NSUInteger);
@@ -690,12 +690,12 @@ extern_methods!(
             this: Allocated<Self>,
             num_items: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSOrderedSet`
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+/// Methods declared on superclass `NSOrderedSet`.
+impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(initWithObjects:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(
@@ -703,21 +703,21 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtendedMutableOrderedSet
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+/// NSExtendedMutableOrderedSet.
+impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObject(&self, object: &ObjectType);
@@ -853,21 +853,21 @@ extern_methods!(
             opts: NSSortOptions,
             cmptr: NSComparator,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSMutableOrderedSetCreation
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+/// NSMutableOrderedSetCreation.
+impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    extern_methods!(
         #[unsafe(method(orderedSetWithCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithCapacity(num_items: NSUInteger) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSMutableOrderedSetDiffing
-    unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+/// NSMutableOrderedSetDiffing.
+impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSOrderedCollectionDifference")]
         #[unsafe(method(applyDifference:))]
         #[unsafe(method_family = none)]
@@ -875,5 +875,5 @@ extern_methods!(
             &self,
             difference: &NSOrderedCollectionDifference<ObjectType>,
         );
-    }
-);
+    );
+}

@@ -32,8 +32,8 @@ unsafe impl NSObjectProtocol for PHProjectTypeDescription {}
 
 unsafe impl NSSecureCoding for PHProjectTypeDescription {}
 
-extern_methods!(
-    unsafe impl PHProjectTypeDescription {
+impl PHProjectTypeDescription {
+    extern_methods!(
         #[cfg(feature = "PhotosUITypes")]
         /// Identifier for the project type info. These should be added to the extensible string enum defined in PhotosUITypes.h.
         #[unsafe(method(projectType))]
@@ -150,5 +150,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

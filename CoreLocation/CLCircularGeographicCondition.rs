@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for CLCircularGeographicCondition {}
 #[cfg(feature = "CLCondition")]
 unsafe impl NSSecureCoding for CLCircularGeographicCondition {}
 
-extern_methods!(
-    #[cfg(feature = "CLCondition")]
-    unsafe impl CLCircularGeographicCondition {
+#[cfg(feature = "CLCondition")]
+impl CLCircularGeographicCondition {
+    extern_methods!(
         #[cfg(feature = "CLLocation")]
         #[unsafe(method(center))]
         #[unsafe(method_family = none)]
@@ -52,13 +52,13 @@ extern_methods!(
             center: CLLocationCoordinate2D,
             radius: CLLocationDistance,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLCondition`
-    #[cfg(feature = "CLCondition")]
-    unsafe impl CLCircularGeographicCondition {
+/// Methods declared on superclass `CLCondition`.
+#[cfg(feature = "CLCondition")]
+impl CLCircularGeographicCondition {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,5 +66,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

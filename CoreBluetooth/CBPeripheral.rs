@@ -76,9 +76,9 @@ unsafe impl CopyingHelper for CBPeripheral {
 #[cfg(feature = "CBPeer")]
 unsafe impl NSObjectProtocol for CBPeripheral {}
 
-extern_methods!(
-    #[cfg(feature = "CBPeer")]
-    unsafe impl CBPeripheral {
+#[cfg(feature = "CBPeer")]
+impl CBPeripheral {
+    extern_methods!(
         /// The delegate object that will receive peripheral events.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -429,28 +429,28 @@ extern_methods!(
         #[unsafe(method(openL2CAPChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openL2CAPChannel(&self, psm: CBL2CAPPSM);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CBPeer`
-    #[cfg(feature = "CBPeer")]
-    unsafe impl CBPeripheral {
+/// Methods declared on superclass `CBPeer`.
+#[cfg(feature = "CBPeer")]
+impl CBPeripheral {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBPeer")]
-    unsafe impl CBPeripheral {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBPeer")]
+impl CBPeripheral {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Delegate for CBPeripheral.

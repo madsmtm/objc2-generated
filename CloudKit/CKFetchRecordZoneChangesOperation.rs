@@ -27,9 +27,9 @@ extern_class!(
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOperation {}
 
-extern_methods!(
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl CKFetchRecordZoneChangesOperation {
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
+impl CKFetchRecordZoneChangesOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -282,23 +282,23 @@ extern_methods!(
                 &block2::Block<dyn Fn(*mut NSError)>,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl CKFetchRecordZoneChangesOperation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
+impl CKFetchRecordZoneChangesOperation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Deprecated
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl CKFetchRecordZoneChangesOperation {
+/// Deprecated.
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
+impl CKFetchRecordZoneChangesOperation {
+    extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
         #[unsafe(method(initWithRecordZoneIDs:optionsByRecordZoneID:))]
@@ -330,8 +330,8 @@ extern_methods!(
                 &NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions>,
             >,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesconfiguration?language=objc)
@@ -352,8 +352,8 @@ unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesConfiguration {}
 
 unsafe impl NSSecureCoding for CKFetchRecordZoneChangesConfiguration {}
 
-extern_methods!(
-    unsafe impl CKFetchRecordZoneChangesConfiguration {
+impl CKFetchRecordZoneChangesConfiguration {
+    extern_methods!(
         #[cfg(feature = "CKServerChangeToken")]
         #[unsafe(method(previousServerChangeToken))]
         #[unsafe(method_family = none)]
@@ -393,12 +393,12 @@ extern_methods!(
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKFetchRecordZoneChangesConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl CKFetchRecordZoneChangesConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -406,8 +406,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoptions?language=objc)
@@ -429,8 +429,8 @@ unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOptions {}
 
 unsafe impl NSSecureCoding for CKFetchRecordZoneChangesOptions {}
 
-extern_methods!(
-    unsafe impl CKFetchRecordZoneChangesOptions {
+impl CKFetchRecordZoneChangesOptions {
+    extern_methods!(
         #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
         #[unsafe(method(previousServerChangeToken))]
@@ -470,12 +470,12 @@ extern_methods!(
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKFetchRecordZoneChangesOptions {
+/// Methods declared on superclass `NSObject`.
+impl CKFetchRecordZoneChangesOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -483,5 +483,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

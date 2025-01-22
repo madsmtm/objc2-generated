@@ -69,8 +69,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASCredentialIdentityStore {}
 
-extern_methods!(
-    unsafe impl ASCredentialIdentityStore {
+impl ASCredentialIdentityStore {
+    extern_methods!(
         #[unsafe(method(sharedStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedStore() -> Retained<ASCredentialIdentityStore>;
@@ -254,14 +254,14 @@ extern_methods!(
             new_credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
             completion: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASCredentialIdentityStore {
+/// Methods declared on superclass `NSObject`.
+impl ASCredentialIdentityStore {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

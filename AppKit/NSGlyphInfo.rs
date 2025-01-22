@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for NSGlyphInfo {}
 
 unsafe impl NSSecureCoding for NSGlyphInfo {}
 
-extern_methods!(
-    unsafe impl NSGlyphInfo {
+impl NSGlyphInfo {
+    extern_methods!(
         #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(glyphInfoWithCGGlyph:forFont:baseString:))]
@@ -49,12 +49,12 @@ extern_methods!(
         #[unsafe(method(baseString))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseString(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSGlyphInfo {
+/// Methods declared on superclass `NSObject`.
+impl NSGlyphInfo {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -62,8 +62,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection?language=objc)
 // NS_ENUM
@@ -93,9 +93,9 @@ unsafe impl RefEncode for NSCharacterCollection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSGlyphInfo_Deprecated
-    unsafe impl NSGlyphInfo {
+/// NSGlyphInfo_Deprecated.
+impl NSGlyphInfo {
+    extern_methods!(
         #[cfg(feature = "NSFont")]
         #[unsafe(method(glyphInfoWithGlyphName:forFont:baseString:))]
         #[unsafe(method_family = none)]
@@ -133,5 +133,5 @@ extern_methods!(
         #[unsafe(method(characterCollection))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterCollection(&self) -> NSCharacterCollection;
-    }
-);
+    );
+}

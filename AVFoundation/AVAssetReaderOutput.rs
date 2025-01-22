@@ -25,8 +25,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetReaderOutput {}
 
-extern_methods!(
-    unsafe impl AVAssetReaderOutput {
+impl AVAssetReaderOutput {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         /// The media type of the samples that can be read from the receiver.
         ///
@@ -68,12 +68,12 @@ extern_methods!(
         #[unsafe(method(copyNextSampleBuffer))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyNextSampleBuffer(&self) -> Option<Retained<CMSampleBuffer>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAssetReaderOutput {
+/// Methods declared on superclass `NSObject`.
+impl AVAssetReaderOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,12 +81,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetReaderOutputRandomAccess
-    unsafe impl AVAssetReaderOutput {
+/// AVAssetReaderOutputRandomAccess.
+impl AVAssetReaderOutput {
+    extern_methods!(
         /// Indicates whether the asset reader output supports reconfiguration of the time ranges to read.
         ///
         ///
@@ -144,8 +144,8 @@ extern_methods!(
         #[unsafe(method(markConfigurationAsFinal))]
         #[unsafe(method_family = none)]
         pub unsafe fn markConfigurationAsFinal(&self);
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVAssetReaderTrackOutput is a concrete subclass of AVAssetReaderOutput that defines an interface for reading media data from a single AVAssetTrack of an AVAssetReader's AVAsset.
@@ -161,8 +161,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetReaderTrackOutput {}
 
-extern_methods!(
-    unsafe impl AVAssetReaderTrackOutput {
+impl AVAssetReaderTrackOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -292,8 +292,8 @@ extern_methods!(
             &self,
             audio_time_pitch_algorithm: &AVAudioTimePitchAlgorithm,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVAssetReaderAudioMixOutput is a concrete subclass of AVAssetReaderOutput that defines an interface for reading audio samples that result from mixing the audio from one or more AVAssetTracks of an AVAssetReader's AVAsset.
@@ -309,8 +309,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetReaderAudioMixOutput {}
 
-extern_methods!(
-    unsafe impl AVAssetReaderAudioMixOutput {
+impl AVAssetReaderAudioMixOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -428,8 +428,8 @@ extern_methods!(
             &self,
             audio_time_pitch_algorithm: &AVAudioTimePitchAlgorithm,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVAssetReaderVideoCompositionOutput is a concrete subclass of AVAssetReaderOutput that defines an interface for reading video frames that have been composited together from the frames in one or more AVAssetTracks of an AVAssetReader's AVAsset.
@@ -445,8 +445,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetReaderVideoCompositionOutput {}
 
-extern_methods!(
-    unsafe impl AVAssetReaderVideoCompositionOutput {
+impl AVAssetReaderVideoCompositionOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -561,8 +561,8 @@ extern_methods!(
         pub unsafe fn customVideoCompositor(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVVideoCompositing>>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Defines an interface for reading metadata, packaged as instances of AVTimedMetadataGroup, from a single AVAssetReaderTrackOutput object.
@@ -575,8 +575,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetReaderOutputMetadataAdaptor {}
 
-extern_methods!(
-    unsafe impl AVAssetReaderOutputMetadataAdaptor {
+impl AVAssetReaderOutputMetadataAdaptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -644,8 +644,8 @@ extern_methods!(
         #[unsafe(method(nextTimedMetadataGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextTimedMetadataGroup(&self) -> Option<Retained<AVTimedMetadataGroup>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An adaptor class for reading instances of AVCaptionGroup from a track containing timed text (i.e. subtitles or closed captions).
@@ -658,8 +658,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetReaderOutputCaptionAdaptor {}
 
-extern_methods!(
-    unsafe impl AVAssetReaderOutputCaptionAdaptor {
+impl AVAssetReaderOutputCaptionAdaptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -726,13 +726,13 @@ extern_methods!(
             &self,
             caption_group: &AVCaptionGroup,
         ) -> Retained<NSArray<AVCaption>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetReaderCaptionValidation
-    /// Category of AVAssetReaderOutputCaptionAdaptor for caption validation handling
-    unsafe impl AVAssetReaderOutputCaptionAdaptor {
+/// AVAssetReaderCaptionValidation.
+/// Category of AVAssetReaderOutputCaptionAdaptor for caption validation handling
+impl AVAssetReaderOutputCaptionAdaptor {
+    extern_methods!(
         /// Register caption validation handling callback protocol to the caption adaptor.
         #[unsafe(method(validationDelegate))]
         #[unsafe(method_family = none)]
@@ -750,8 +750,8 @@ extern_methods!(
                 &ProtocolObject<dyn AVAssetReaderCaptionValidationHandling>,
             >,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A protocol to receive caption validation notifications
@@ -801,8 +801,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetReaderSampleReferenceOutput {}
 
-extern_methods!(
-    unsafe impl AVAssetReaderSampleReferenceOutput {
+impl AVAssetReaderSampleReferenceOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -849,5 +849,5 @@ extern_methods!(
         #[unsafe(method(track))]
         #[unsafe(method_family = none)]
         pub unsafe fn track(&self) -> Retained<AVAssetTrack>;
-    }
-);
+    );
+}

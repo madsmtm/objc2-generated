@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPRemoteCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPRemoteCommandEvent {
+impl MPRemoteCommandEvent {
+    extern_methods!(
         #[cfg(feature = "MPRemoteCommand")]
         /// The command that sent the event.
         #[unsafe(method(command))]
@@ -28,12 +28,12 @@ extern_methods!(
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPRemoteCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPRemoteCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -41,8 +41,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommandevent?language=objc)
@@ -53,18 +53,18 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSkipIntervalCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPSkipIntervalCommandEvent {
+impl MPSkipIntervalCommandEvent {
+    extern_methods!(
         /// The chosen interval for this skip command event.
         #[unsafe(method(interval))]
         #[unsafe(method_family = none)]
         pub unsafe fn interval(&self) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSkipIntervalCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPSkipIntervalCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,8 +72,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpseekcommandeventtype?language=objc)
 // NS_ENUM
@@ -104,19 +104,19 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSeekCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPSeekCommandEvent {
+impl MPSeekCommandEvent {
+    extern_methods!(
         /// The type of seek command event, which specifies whether an external player
         /// began or ended seeking.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> MPSeekCommandEventType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSeekCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPSeekCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -124,8 +124,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpratingcommandevent?language=objc)
@@ -136,19 +136,19 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPRatingCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPRatingCommandEvent {
+impl MPRatingCommandEvent {
+    extern_methods!(
         /// The chosen rating for this command event. This value will be within the
         /// minimumRating and maximumRating values set for the MPRatingCommand object.
         #[unsafe(method(rating))]
         #[unsafe(method_family = none)]
         pub unsafe fn rating(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPRatingCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPRatingCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -156,8 +156,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommandevent?language=objc)
@@ -168,20 +168,20 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPChangePlaybackRateCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPChangePlaybackRateCommandEvent {
+impl MPChangePlaybackRateCommandEvent {
+    extern_methods!(
         /// The chosen playback rate for this command event. This value will be equal
         /// to one of the values specified in the supportedPlaybackRates array for the
         /// MPChangePlaybackRateCommand object.
         #[unsafe(method(playbackRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackRate(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPChangePlaybackRateCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPChangePlaybackRateCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -189,8 +189,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommandevent?language=objc)
@@ -201,8 +201,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPFeedbackCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPFeedbackCommandEvent {
+impl MPFeedbackCommandEvent {
+    extern_methods!(
         /// Whether the command event is a negative operation. For example, the command
         /// might ask that the app remove a bookmark for a particular track, rather than
         /// add it. In this case, the handler for the bookmark command should check this
@@ -214,12 +214,12 @@ extern_methods!(
         #[unsafe(method(isNegative))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNegative(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPFeedbackCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPFeedbackCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -227,8 +227,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent?language=objc)
@@ -239,8 +239,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPChangeLanguageOptionCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPChangeLanguageOptionCommandEvent {
+impl MPChangeLanguageOptionCommandEvent {
+    extern_methods!(
         #[cfg(feature = "MPNowPlayingInfoLanguageOption")]
         /// The requested language option to change.
         /// The supplied language option may be the Automatic Legible Language Option
@@ -255,12 +255,12 @@ extern_methods!(
         #[unsafe(method(setting))]
         #[unsafe(method_family = none)]
         pub unsafe fn setting(&self) -> MPChangeLanguageOptionSetting;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPChangeLanguageOptionCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPChangeLanguageOptionCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -268,8 +268,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackpositioncommandevent?language=objc)
@@ -280,18 +280,18 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPChangePlaybackPositionCommandEvent {
+impl MPChangePlaybackPositionCommandEvent {
+    extern_methods!(
         /// The desired playback position to use when setting the current time of the player.
         #[unsafe(method(positionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn positionTime(&self) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPChangePlaybackPositionCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPChangePlaybackPositionCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -299,8 +299,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent?language=objc)
@@ -311,8 +311,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPChangeShuffleModeCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPChangeShuffleModeCommandEvent {
+impl MPChangeShuffleModeCommandEvent {
+    extern_methods!(
         #[cfg(feature = "MPRemoteControlTypes")]
         /// The desired shuffle type to use when fulfilling the request.
         #[unsafe(method(shuffleType))]
@@ -323,12 +323,12 @@ extern_methods!(
         #[unsafe(method(preservesShuffleMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn preservesShuffleMode(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPChangeShuffleModeCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPChangeShuffleModeCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -336,8 +336,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommandevent?language=objc)
@@ -348,8 +348,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPChangeRepeatModeCommandEvent {}
 
-extern_methods!(
-    unsafe impl MPChangeRepeatModeCommandEvent {
+impl MPChangeRepeatModeCommandEvent {
+    extern_methods!(
         #[cfg(feature = "MPRemoteControlTypes")]
         /// The desired repeat type to use when fulfilling the request.
         #[unsafe(method(repeatType))]
@@ -360,12 +360,12 @@ extern_methods!(
         #[unsafe(method(preservesRepeatMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn preservesRepeatMode(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPChangeRepeatModeCommandEvent {
+/// Methods declared on superclass `NSObject`.
+impl MPChangeRepeatModeCommandEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -373,5 +373,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

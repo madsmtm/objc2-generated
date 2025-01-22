@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for SKRange {}
 
 unsafe impl NSSecureCoding for SKRange {}
 
-extern_methods!(
-    unsafe impl SKRange {
+impl SKRange {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithLowerLimit:upperLimit:))]
         #[unsafe(method_family = init)]
@@ -94,12 +94,12 @@ extern_methods!(
         #[unsafe(method(setUpperLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpperLimit(&self, upper_limit: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKRange {
+/// Methods declared on superclass `NSObject`.
+impl SKRange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -107,8 +107,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SKConstraints are evaluated each frame after actions and physics.
@@ -132,8 +132,8 @@ unsafe impl NSObjectProtocol for SKConstraint {}
 
 unsafe impl NSSecureCoding for SKConstraint {}
 
-extern_methods!(
-    unsafe impl SKConstraint {
+impl SKConstraint {
+    extern_methods!(
         #[unsafe(method(enabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabled(&self) -> bool;
@@ -225,12 +225,12 @@ extern_methods!(
             node: &SKNode,
             radians: &SKRange,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKConstraint {
+/// Methods declared on superclass `NSObject`.
+impl SKConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -238,5 +238,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

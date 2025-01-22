@@ -148,9 +148,9 @@ unsafe impl UIResponderStandardEditActions for MFMessageComposeViewController {}
 #[cfg(feature = "objc2-ui-kit")]
 unsafe impl UITraitEnvironment for MFMessageComposeViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MFMessageComposeViewController {
+#[cfg(feature = "objc2-ui-kit")]
+impl MFMessageComposeViewController {
+    extern_methods!(
         /// Returns
         /// <tt>
         /// YES
@@ -350,13 +350,13 @@ extern_methods!(
             &self,
             item_provider: &NSItemProvider,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UINavigationController`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MFMessageComposeViewController {
+/// Methods declared on superclass `UINavigationController`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MFMessageComposeViewController {
+    extern_methods!(
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
@@ -386,13 +386,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MFMessageComposeViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MFMessageComposeViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -400,8 +400,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Protocol for delegate callbacks to MFMessageComposeViewControllerDelegate instances.

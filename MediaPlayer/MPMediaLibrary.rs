@@ -44,8 +44,8 @@ unsafe impl NSObjectProtocol for MPMediaLibrary {}
 
 unsafe impl NSSecureCoding for MPMediaLibrary {}
 
-extern_methods!(
-    unsafe impl MPMediaLibrary {
+impl MPMediaLibrary {
+    extern_methods!(
         #[unsafe(method(defaultMediaLibrary))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultMediaLibrary() -> Retained<MPMediaLibrary>;
@@ -104,12 +104,12 @@ extern_methods!(
             creation_metadata: Option<&MPMediaPlaylistCreationMetadata>,
             completion_handler: &block2::Block<dyn Fn(*mut MPMediaPlaylist, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPMediaLibrary {
+/// Methods declared on superclass `NSObject`.
+impl MPMediaLibrary {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -117,8 +117,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibrarydidchangenotification?language=objc)

@@ -49,8 +49,8 @@ unsafe impl NSObjectProtocol for ASWebAuthenticationSessionRequest {}
 
 unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}
 
-extern_methods!(
-    unsafe impl ASWebAuthenticationSessionRequest {
+impl ASWebAuthenticationSessionRequest {
+    extern_methods!(
         #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
@@ -116,5 +116,5 @@ extern_methods!(
         #[unsafe(method(completeWithCallbackURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeWithCallbackURL(&self, url: &NSURL);
-    }
-);
+    );
+}

@@ -14,13 +14,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CNFetchRequest {}
 
-extern_methods!(
-    unsafe impl CNFetchRequest {}
-);
+impl CNFetchRequest {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNFetchRequest {
+/// Methods declared on superclass `NSObject`.
+impl CNFetchRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -28,5 +28,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

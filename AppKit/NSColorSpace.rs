@@ -59,8 +59,8 @@ unsafe impl NSObjectProtocol for NSColorSpace {}
 
 unsafe impl NSSecureCoding for NSColorSpace {}
 
-extern_methods!(
-    unsafe impl NSColorSpace {
+impl NSColorSpace {
+    extern_methods!(
         #[unsafe(method(initWithICCProfileData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithICCProfileData(
@@ -163,12 +163,12 @@ extern_methods!(
         pub unsafe fn availableColorSpacesWithModel(
             model: NSColorSpaceModel,
         ) -> Retained<NSArray<NSColorSpace>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSColorSpace {
+/// Methods declared on superclass `NSObject`.
+impl NSColorSpace {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -176,8 +176,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunknowncolorspacemodel?language=objc)
 pub static NSUnknownColorSpaceModel: NSColorSpaceModel =

@@ -31,15 +31,15 @@ unsafe impl NSSeguePerforming for MEExtensionViewController {}
 #[cfg(feature = "objc2-app-kit")]
 unsafe impl NSUserInterfaceItemIdentification for MEExtensionViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl MEExtensionViewController {}
-);
+#[cfg(feature = "objc2-app-kit")]
+impl MEExtensionViewController {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl MEExtensionViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(feature = "objc2-app-kit")]
+impl MEExtensionViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -54,25 +54,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl MEExtensionViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+impl MEExtensionViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl MEExtensionViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+impl MEExtensionViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -78,8 +78,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASWebAuthenticationSession {}
 
-extern_methods!(
-    unsafe impl ASWebAuthenticationSession {
+impl ASWebAuthenticationSession {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Returns an ASWebAuthenticationSession object.
         ///
@@ -190,8 +190,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Provides context to target where in an application's UI the authorization view should be shown.

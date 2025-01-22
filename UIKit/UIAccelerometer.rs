@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIAcceleration {}
 
-extern_methods!(
-    unsafe impl UIAcceleration {
+impl UIAcceleration {
+    extern_methods!(
         #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
@@ -42,12 +42,12 @@ extern_methods!(
         #[unsafe(method(z))]
         #[unsafe(method_family = none)]
         pub unsafe fn z(&self) -> UIAccelerationValue;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIAcceleration {
+/// Methods declared on superclass `NSObject`.
+impl UIAcceleration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -55,8 +55,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccelerometer?language=objc)
@@ -69,8 +69,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIAccelerometer {}
 
-extern_methods!(
-    unsafe impl UIAccelerometer {
+impl UIAccelerometer {
+    extern_methods!(
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[unsafe(method(sharedAccelerometer))]
         #[unsafe(method_family = none)]
@@ -103,12 +103,12 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn UIAccelerometerDelegate>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIAccelerometer {
+/// Methods declared on superclass `NSObject`.
+impl UIAccelerometer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -116,8 +116,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccelerometerdelegate?language=objc)

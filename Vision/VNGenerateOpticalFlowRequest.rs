@@ -91,9 +91,9 @@ unsafe impl CopyingHelper for VNGenerateOpticalFlowRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl NSObjectProtocol for VNGenerateOpticalFlowRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNGenerateOpticalFlowRequest {
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNGenerateOpticalFlowRequest {
+    extern_methods!(
         /// The level of accuracy used to compute the optical flow. Default is VNGenerateOpticalFlowRequestComputationAccuracyMedium.
         ///
         /// The computational time typically trends with the accuracy level.  This parameter allows for selective tuning by the client application.
@@ -138,13 +138,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNTargetedImageRequest`
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNGenerateOpticalFlowRequest {
+/// Methods declared on superclass `VNTargetedImageRequest`.
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNGenerateOpticalFlowRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -370,18 +370,18 @@ extern_methods!(
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-    unsafe impl VNGenerateOpticalFlowRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
+impl VNGenerateOpticalFlowRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision1?language=objc)
 pub static VNGenerateOpticalFlowRequestRevision1: NSUInteger = 1;

@@ -62,8 +62,8 @@ unsafe impl NSObjectProtocol for UIFindInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIFindInteraction {}
 
-extern_methods!(
-    unsafe impl UIFindInteraction {
+impl UIFindInteraction {
+    extern_methods!(
         /// Returns YES if the find navigator panel is currently visible.
         #[unsafe(method(isFindNavigatorVisible))]
         #[unsafe(method_family = none)]
@@ -167,5 +167,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

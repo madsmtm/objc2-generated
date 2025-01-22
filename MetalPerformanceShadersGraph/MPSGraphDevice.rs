@@ -40,9 +40,9 @@ extern_class!(
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphDevice {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphDevice {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphDevice {
+    extern_methods!(
         /// Device of the MPSGraphDevice.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
@@ -63,13 +63,13 @@ extern_methods!(
         pub unsafe fn deviceWithMTLDevice(
             metal_device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphDevice {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphDevice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -77,5 +77,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -63,9 +63,9 @@ extern_class!(
 #[cfg(feature = "GCControllerElement")]
 unsafe impl NSObjectProtocol for GCControllerTouchpad {}
 
-extern_methods!(
-    #[cfg(feature = "GCControllerElement")]
-    unsafe impl GCControllerTouchpad {
+#[cfg(feature = "GCControllerElement")]
+impl GCControllerTouchpad {
+    extern_methods!(
         #[cfg(feature = "GCControllerButtonInput")]
         /// Button is the button built into the touch surface.
         #[unsafe(method(button))]
@@ -161,13 +161,13 @@ extern_methods!(
             touch_down: bool,
             button_value: c_float,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GCControllerElement")]
-    unsafe impl GCControllerTouchpad {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "GCControllerElement")]
+impl GCControllerTouchpad {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -175,5 +175,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

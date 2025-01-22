@@ -125,8 +125,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIEvent {}
 
-extern_methods!(
-    unsafe impl UIEvent {
+impl UIEvent {
+    extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> UIEventType;
@@ -194,12 +194,12 @@ extern_methods!(
             &self,
             touch: &UITouch,
         ) -> Option<Retained<NSArray<UITouch>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIEvent {
+/// Methods declared on superclass `NSObject`.
+impl UIEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -207,5 +207,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

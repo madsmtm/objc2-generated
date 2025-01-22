@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKApplication {}
 
-extern_methods!(
-    unsafe impl WKApplication {
+impl WKApplication {
+    extern_methods!(
         #[unsafe(method(sharedApplication))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedApplication(mtm: MainThreadMarker) -> Retained<WKApplication>;
@@ -95,17 +95,17 @@ extern_methods!(
         #[unsafe(method(globalTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn globalTintColor(&self) -> Retained<UIColor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKApplication {
+/// Methods declared on superclass `NSObject`.
+impl WKApplication {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate?language=objc)

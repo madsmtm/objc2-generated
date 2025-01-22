@@ -5,10 +5,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern_methods!(
-    /// UIActivityItemsConfiguration
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIResponder {
+/// UIActivityItemsConfiguration.
+#[cfg(feature = "UIResponder")]
+impl UIResponder {
+    extern_methods!(
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         #[unsafe(method(activityItemsConfiguration))]
         #[unsafe(method_family = none)]
@@ -26,8 +26,8 @@ extern_methods!(
                 &ProtocolObject<dyn UIActivityItemsConfigurationReading>,
             >,
         );
-    }
-);
+    );
+}
 
 #[cfg(all(
     feature = "UIActivityItemsConfigurationReading",

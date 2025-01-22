@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for MLImageSizeConstraint {}
 
 unsafe impl NSSecureCoding for MLImageSizeConstraint {}
 
-extern_methods!(
-    unsafe impl MLImageSizeConstraint {
+impl MLImageSizeConstraint {
+    extern_methods!(
         #[cfg(feature = "MLImageSizeConstraintType")]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
@@ -38,12 +38,12 @@ extern_methods!(
         #[unsafe(method(enumeratedImageSizes))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumeratedImageSizes(&self) -> Retained<NSArray<MLImageSize>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLImageSizeConstraint {
+/// Methods declared on superclass `NSObject`.
+impl MLImageSizeConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -51,5 +51,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

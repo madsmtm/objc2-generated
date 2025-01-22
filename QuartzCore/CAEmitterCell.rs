@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for CAEmitterCell {}
 
 unsafe impl NSSecureCoding for CAEmitterCell {}
 
-extern_methods!(
-    unsafe impl CAEmitterCell {
+impl CAEmitterCell {
+    extern_methods!(
         #[unsafe(method(emitterCell))]
         #[unsafe(method_family = none)]
         pub unsafe fn emitterCell() -> Retained<Self>;
@@ -387,12 +387,12 @@ extern_methods!(
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CAEmitterCell {
+/// Methods declared on superclass `NSObject`.
+impl CAEmitterCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -400,5 +400,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

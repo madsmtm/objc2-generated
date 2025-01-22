@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UNNotificationServiceExtension {}
 
-extern_methods!(
-    unsafe impl UNNotificationServiceExtension {
+impl UNNotificationServiceExtension {
+    extern_methods!(
         #[cfg(all(
             feature = "UNNotificationContent",
             feature = "UNNotificationRequest",
@@ -33,12 +33,12 @@ extern_methods!(
         #[unsafe(method(serviceExtensionTimeWillExpire))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceExtensionTimeWillExpire(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UNNotificationServiceExtension {
+/// Methods declared on superclass `NSObject`.
+impl UNNotificationServiceExtension {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -46,5 +46,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

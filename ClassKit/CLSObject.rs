@@ -24,8 +24,8 @@ unsafe impl NSObjectProtocol for CLSObject {}
 
 unsafe impl NSSecureCoding for CLSObject {}
 
-extern_methods!(
-    unsafe impl CLSObject {
+impl CLSObject {
+    extern_methods!(
         /// The date this object was created.
         #[unsafe(method(dateCreated))]
         #[unsafe(method_family = none)]
@@ -43,5 +43,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

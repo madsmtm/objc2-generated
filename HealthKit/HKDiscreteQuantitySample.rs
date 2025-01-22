@@ -56,13 +56,13 @@ unsafe impl NSObjectProtocol for HKDiscreteQuantitySample {}
 ))]
 unsafe impl NSSecureCoding for HKDiscreteQuantitySample {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "HKObject",
-        feature = "HKQuantitySample",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKDiscreteQuantitySample {
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
+impl HKDiscreteQuantitySample {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// The minimum of the receiver's quantities
         #[unsafe(method(minimumQuantity))]
@@ -91,17 +91,17 @@ extern_methods!(
         #[unsafe(method(mostRecentQuantityDateInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn mostRecentQuantityDateInterval(&self) -> Retained<NSDateInterval>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuantitySample`
-    #[cfg(all(
-        feature = "HKObject",
-        feature = "HKQuantitySample",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKDiscreteQuantitySample {
+/// Methods declared on superclass `HKQuantitySample`.
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
+impl HKDiscreteQuantitySample {
+    extern_methods!(
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         /// Creates a new HKQuantitySample with the given type, quantity, start date, and end date.
         ///
@@ -156,36 +156,36 @@ extern_methods!(
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObject`
-    #[cfg(all(
-        feature = "HKObject",
-        feature = "HKQuantitySample",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKDiscreteQuantitySample {
+/// Methods declared on superclass `HKObject`.
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
+impl HKDiscreteQuantitySample {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "HKObject",
-        feature = "HKQuantitySample",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKDiscreteQuantitySample {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
+impl HKDiscreteQuantitySample {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmin?language=objc)

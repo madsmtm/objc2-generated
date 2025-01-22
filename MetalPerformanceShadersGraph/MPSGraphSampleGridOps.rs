@@ -7,10 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MPSGraphSampleGrid
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphSampleGrid.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(all(feature = "MPSGraphResizeOps", feature = "MPSGraphTensor"))]
         /// Samples a tensor using the coordinates provided.
         ///
@@ -78,5 +78,5 @@ extern_methods!(
             constant_value: c_double,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

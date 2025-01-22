@@ -141,8 +141,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WebScriptObject {}
 
-extern_methods!(
-    unsafe impl WebScriptObject {
+impl WebScriptObject {
+    extern_methods!(
         /// Throws an exception in the current script execution context.
         ///
         /// Returns: Either NO if an exception could not be raised, YES otherwise.
@@ -234,12 +234,12 @@ extern_methods!(
         #[unsafe(method(setException:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setException(&self, description: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WebScriptObject {
+/// Methods declared on superclass `NSObject`.
+impl WebScriptObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -247,8 +247,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webundefined?language=objc)
@@ -268,19 +268,19 @@ unsafe impl CopyingHelper for WebUndefined {
 
 unsafe impl NSObjectProtocol for WebUndefined {}
 
-extern_methods!(
-    unsafe impl WebUndefined {
+impl WebUndefined {
+    extern_methods!(
         /// Returns: The WebUndefined shared instance.
         #[deprecated]
         #[unsafe(method(undefined))]
         #[unsafe(method_family = none)]
         pub unsafe fn undefined() -> Option<Retained<WebUndefined>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WebUndefined {
+/// Methods declared on superclass `NSObject`.
+impl WebUndefined {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -288,5 +288,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

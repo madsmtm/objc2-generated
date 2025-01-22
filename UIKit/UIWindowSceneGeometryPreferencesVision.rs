@@ -27,9 +27,9 @@ extern_class!(
 #[cfg(feature = "UIWindowSceneGeometryPreferences")]
 unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferencesVision {}
 
-extern_methods!(
-    #[cfg(feature = "UIWindowSceneGeometryPreferences")]
-    unsafe impl UIWindowSceneGeometryPreferencesVision {
+#[cfg(feature = "UIWindowSceneGeometryPreferences")]
+impl UIWindowSceneGeometryPreferencesVision {
+    extern_methods!(
         /// Creates a geometry preference with no changes. Update the properties who's preference should change
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -94,15 +94,15 @@ extern_methods!(
             &self,
             resizing_restrictions: UIWindowSceneResizingRestrictions,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIWindowSceneGeometryPreferences`
-    #[cfg(feature = "UIWindowSceneGeometryPreferences")]
-    unsafe impl UIWindowSceneGeometryPreferencesVision {
+/// Methods declared on superclass `UIWindowSceneGeometryPreferences`.
+#[cfg(feature = "UIWindowSceneGeometryPreferences")]
+impl UIWindowSceneGeometryPreferencesVision {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

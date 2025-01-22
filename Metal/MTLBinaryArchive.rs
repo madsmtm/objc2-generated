@@ -55,8 +55,8 @@ unsafe impl CopyingHelper for MTLBinaryArchiveDescriptor {
 
 unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLBinaryArchiveDescriptor {
+impl MTLBinaryArchiveDescriptor {
+    extern_methods!(
         /// The file URL from which to open a MTLBinaryArchive, or nil to create an empty MTLBinaryArchive.
         #[unsafe(method(url))]
         #[unsafe(method_family = none)]
@@ -66,12 +66,12 @@ extern_methods!(
         #[unsafe(method(setUrl:))]
         #[unsafe(method_family = none)]
         pub fn setUrl(&self, url: Option<&NSURL>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLBinaryArchiveDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLBinaryArchiveDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,8 +79,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLBinaryArchiveDescriptor {
     #[inline]

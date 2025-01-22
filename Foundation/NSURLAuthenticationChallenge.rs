@@ -77,8 +77,8 @@ unsafe impl NSObjectProtocol for NSURLAuthenticationChallenge {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLAuthenticationChallenge {}
 
-extern_methods!(
-    unsafe impl NSURLAuthenticationChallenge {
+impl NSURLAuthenticationChallenge {
+    extern_methods!(
         #[cfg(all(
             feature = "NSError",
             feature = "NSURLCredential",
@@ -189,12 +189,12 @@ extern_methods!(
         pub unsafe fn sender(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSURLAuthenticationChallengeSender>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLAuthenticationChallenge {
+/// Methods declared on superclass `NSObject`.
+impl NSURLAuthenticationChallenge {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -202,5 +202,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

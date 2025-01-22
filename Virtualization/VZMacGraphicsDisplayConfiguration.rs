@@ -32,9 +32,9 @@ unsafe impl CopyingHelper for VZMacGraphicsDisplayConfiguration {
 #[cfg(feature = "VZGraphicsDisplayConfiguration")]
 unsafe impl NSObjectProtocol for VZMacGraphicsDisplayConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZGraphicsDisplayConfiguration")]
-    unsafe impl VZMacGraphicsDisplayConfiguration {
+#[cfg(feature = "VZGraphicsDisplayConfiguration")]
+impl VZMacGraphicsDisplayConfiguration {
+    extern_methods!(
         /// Create a display configuration with the specified pixel dimensions and pixel density.
         ///
         /// Parameter `widthInPixels`: The width of the display, in pixels.
@@ -98,13 +98,13 @@ extern_methods!(
         #[unsafe(method(setPixelsPerInch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPixelsPerInch(&self, pixels_per_inch: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZGraphicsDisplayConfiguration`
-    #[cfg(feature = "VZGraphicsDisplayConfiguration")]
-    unsafe impl VZMacGraphicsDisplayConfiguration {
+/// Methods declared on superclass `VZGraphicsDisplayConfiguration`.
+#[cfg(feature = "VZGraphicsDisplayConfiguration")]
+impl VZMacGraphicsDisplayConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -112,5 +112,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

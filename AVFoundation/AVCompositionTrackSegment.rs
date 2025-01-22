@@ -25,9 +25,9 @@ unsafe impl Sync for AVCompositionTrackSegment {}
 #[cfg(feature = "AVAssetTrackSegment")]
 unsafe impl NSObjectProtocol for AVCompositionTrackSegment {}
 
-extern_methods!(
-    #[cfg(feature = "AVAssetTrackSegment")]
-    unsafe impl AVCompositionTrackSegment {
+#[cfg(feature = "AVAssetTrackSegment")]
+impl AVCompositionTrackSegment {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Returns an instance of AVCompositionTrackSegment that presents a portion of a file referenced by URL.
         ///
@@ -114,13 +114,13 @@ extern_methods!(
         #[unsafe(method(sourceTrackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTrackID(&self) -> CMPersistentTrackID;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAssetTrackSegment`
-    #[cfg(feature = "AVAssetTrackSegment")]
-    unsafe impl AVCompositionTrackSegment {
+/// Methods declared on superclass `AVAssetTrackSegment`.
+#[cfg(feature = "AVAssetTrackSegment")]
+impl AVCompositionTrackSegment {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -128,5 +128,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

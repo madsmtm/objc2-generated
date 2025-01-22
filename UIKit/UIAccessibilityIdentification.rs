@@ -22,44 +22,44 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UIAccessibility
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIView {}
-);
+/// UIAccessibility.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIView {
+    extern_methods!();
+}
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 unsafe impl UIAccessibilityIdentification for UIView {}
 
-extern_methods!(
-    /// UIAccessibility
-    #[cfg(feature = "UIBarItem")]
-    unsafe impl UIBarItem {}
-);
+/// UIAccessibility.
+#[cfg(feature = "UIBarItem")]
+impl UIBarItem {
+    extern_methods!();
+}
 
 #[cfg(feature = "UIBarItem")]
 unsafe impl UIAccessibilityIdentification for UIBarItem {}
 
-extern_methods!(
-    /// UIAccessibility
-    #[cfg(feature = "UIAlertController")]
-    unsafe impl UIAlertAction {}
-);
+/// UIAccessibility.
+#[cfg(feature = "UIAlertController")]
+impl UIAlertAction {
+    extern_methods!();
+}
 
 #[cfg(feature = "UIAlertController")]
 unsafe impl UIAccessibilityIdentification for UIAlertAction {}
 
-extern_methods!(
-    /// UIAccessibility
-    #[cfg(feature = "UIMenuElement")]
-    unsafe impl UIMenuElement {}
-);
+/// UIAccessibility.
+#[cfg(feature = "UIMenuElement")]
+impl UIMenuElement {
+    extern_methods!();
+}
 
 #[cfg(feature = "UIMenuElement")]
 unsafe impl UIAccessibilityIdentification for UIMenuElement {}
 
-extern_methods!(
-    /// UIAccessibility
-    #[cfg(feature = "UIImage")]
-    unsafe impl UIImage {}
-);
+/// UIAccessibility.
+#[cfg(feature = "UIImage")]
+impl UIImage {
+    extern_methods!();
+}

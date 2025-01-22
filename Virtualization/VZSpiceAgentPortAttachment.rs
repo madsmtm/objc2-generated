@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "VZSerialPortAttachment")]
 unsafe impl NSObjectProtocol for VZSpiceAgentPortAttachment {}
 
-extern_methods!(
-    #[cfg(feature = "VZSerialPortAttachment")]
-    unsafe impl VZSpiceAgentPortAttachment {
+#[cfg(feature = "VZSerialPortAttachment")]
+impl VZSpiceAgentPortAttachment {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -49,15 +49,15 @@ extern_methods!(
         #[unsafe(method(spiceAgentPortName))]
         #[unsafe(method_family = none)]
         pub unsafe fn spiceAgentPortName() -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZSerialPortAttachment`
-    #[cfg(feature = "VZSerialPortAttachment")]
-    unsafe impl VZSpiceAgentPortAttachment {
+/// Methods declared on superclass `VZSerialPortAttachment`.
+#[cfg(feature = "VZSerialPortAttachment")]
+impl VZSpiceAgentPortAttachment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

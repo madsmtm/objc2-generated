@@ -31,21 +31,21 @@ unsafe impl CopyingHelper for VZVirtioConsoleDeviceSerialPortConfiguration {
 #[cfg(feature = "VZSerialPortConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioConsoleDeviceSerialPortConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZSerialPortConfiguration")]
-    unsafe impl VZVirtioConsoleDeviceSerialPortConfiguration {
+#[cfg(feature = "VZSerialPortConfiguration")]
+impl VZVirtioConsoleDeviceSerialPortConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZSerialPortConfiguration`
-    #[cfg(feature = "VZSerialPortConfiguration")]
-    unsafe impl VZVirtioConsoleDeviceSerialPortConfiguration {
+/// Methods declared on superclass `VZSerialPortConfiguration`.
+#[cfg(feature = "VZSerialPortConfiguration")]
+impl VZVirtioConsoleDeviceSerialPortConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

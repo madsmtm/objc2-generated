@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for MEEncodedOutgoingMessage {}
 
 unsafe impl NSSecureCoding for MEEncodedOutgoingMessage {}
 
-extern_methods!(
-    unsafe impl MEEncodedOutgoingMessage {
+impl MEEncodedOutgoingMessage {
+    extern_methods!(
         #[unsafe(method(initWithRawData:isSigned:isEncrypted:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRawData_isSigned_isEncrypted(
@@ -44,12 +44,12 @@ extern_methods!(
         #[unsafe(method(isEncrypted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEncrypted(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MEEncodedOutgoingMessage {
+/// Methods declared on superclass `NSObject`.
+impl MEEncodedOutgoingMessage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,5 +57,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

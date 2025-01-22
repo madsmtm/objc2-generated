@@ -56,19 +56,19 @@ unsafe impl NSObjectProtocol for CMMagnetometerData {}
 #[cfg(feature = "CMLogItem")]
 unsafe impl NSSecureCoding for CMMagnetometerData {}
 
-extern_methods!(
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMMagnetometerData {
+#[cfg(feature = "CMLogItem")]
+impl CMMagnetometerData {
+    extern_methods!(
         #[unsafe(method(magneticField))]
         #[unsafe(method_family = none)]
         pub unsafe fn magneticField(&self) -> CMMagneticField;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMMagnetometerData {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CMLogItem")]
+impl CMMagnetometerData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,5 +76,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -49,8 +49,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIGestureRecognizer {}
 
-extern_methods!(
-    unsafe impl UIGestureRecognizer {
+impl UIGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
@@ -211,17 +211,17 @@ extern_methods!(
         #[unsafe(method(buttonMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonMask(&self) -> UIEventButtonMask;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl UIGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigesturerecognizerdelegate?language=objc)

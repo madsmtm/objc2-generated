@@ -45,8 +45,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIEditMenuConfiguration {}
 
-extern_methods!(
-    unsafe impl UIEditMenuConfiguration {
+impl UIEditMenuConfiguration {
+    extern_methods!(
         /// The unique identifier of the configuration.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -92,8 +92,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuinteraction?language=objc)
@@ -108,8 +108,8 @@ unsafe impl NSObjectProtocol for UIEditMenuInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIEditMenuInteraction {}
 
-extern_methods!(
-    unsafe impl UIEditMenuInteraction {
+impl UIEditMenuInteraction {
+    extern_methods!(
         /// The object that defines the delegate of the interaction.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -174,8 +174,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuinteractionanimating?language=objc)

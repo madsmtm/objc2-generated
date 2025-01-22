@@ -52,9 +52,9 @@ unsafe impl NSObjectProtocol for NSSegmentedCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSegmentedCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSegmentedCell {
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSegmentedCell {
+    extern_methods!(
         #[unsafe(method(segmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
@@ -198,13 +198,13 @@ extern_methods!(
             frame: NSRect,
             control_view: &NSView,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSegmentedCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSegmentedCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -224,28 +224,28 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSegmentedCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSegmentedCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSegmentBackgroundStyle
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSegmentedCell {
+/// NSSegmentBackgroundStyle.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSegmentedCell {
+    extern_methods!(
         #[unsafe(method(interiorBackgroundStyleForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interiorBackgroundStyleForSegment(
             &self,
             segment: NSInteger,
         ) -> NSBackgroundStyle;
-    }
-);
+    );
+}

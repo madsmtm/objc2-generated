@@ -36,8 +36,8 @@ unsafe impl NSSecureCoding for SCNTechnique {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNTechnique {}
 
-extern_methods!(
-    unsafe impl SCNTechnique {
+impl SCNTechnique {
+    extern_methods!(
         /// Creates and returns a technique instance initialized with the specified dictionary.
         ///
         /// Parameter `dictionary`: The dictionary representation of the technique.
@@ -438,12 +438,12 @@ extern_methods!(
         #[unsafe(method(setLibrary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLibrary(&self, library: Option<&ProtocolObject<dyn MTLLibrary>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNTechnique {
+/// Methods declared on superclass `NSObject`.
+impl SCNTechnique {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -451,8 +451,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The SCNTechniqueSupport protocol describes an object that supports single or multi-pass techniques

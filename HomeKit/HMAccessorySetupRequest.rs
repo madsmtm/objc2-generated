@@ -26,8 +26,8 @@ unsafe impl CopyingHelper for HMAccessorySetupRequest {
 
 unsafe impl NSObjectProtocol for HMAccessorySetupRequest {}
 
-extern_methods!(
-    unsafe impl HMAccessorySetupRequest {
+impl HMAccessorySetupRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -88,14 +88,14 @@ extern_methods!(
         #[unsafe(method(setSuggestedAccessoryName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedAccessoryName(&self, suggested_accessory_name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMAccessorySetupRequest {
+/// Methods declared on superclass `NSObject`.
+impl HMAccessorySetupRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -23,8 +23,8 @@ unsafe impl MLComputeDeviceProtocol for MLNeuralEngineComputeDevice {}
 
 unsafe impl NSObjectProtocol for MLNeuralEngineComputeDevice {}
 
-extern_methods!(
-    unsafe impl MLNeuralEngineComputeDevice {
+impl MLNeuralEngineComputeDevice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -37,5 +37,5 @@ extern_methods!(
         #[unsafe(method(totalCoreCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCoreCount(&self) -> NSInteger;
-    }
-);
+    );
+}

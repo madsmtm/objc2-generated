@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for UIBezierPath {}
 
 unsafe impl NSSecureCoding for UIBezierPath {}
 
-extern_methods!(
-    unsafe impl UIBezierPath {
+impl UIBezierPath {
+    extern_methods!(
         #[unsafe(method(bezierPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezierPath() -> Retained<Self>;
@@ -287,14 +287,14 @@ extern_methods!(
         #[unsafe(method(addClip))]
         #[unsafe(method_family = none)]
         pub unsafe fn addClip(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIBezierPath {
+/// Methods declared on superclass `NSObject`.
+impl UIBezierPath {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

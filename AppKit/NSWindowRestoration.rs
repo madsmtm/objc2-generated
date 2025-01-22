@@ -27,19 +27,19 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSWindowRestoration
-    #[cfg(feature = "NSDocumentController")]
-    unsafe impl NSDocumentController {}
-);
+/// NSWindowRestoration.
+#[cfg(feature = "NSDocumentController")]
+impl NSDocumentController {
+    extern_methods!();
+}
 
 #[cfg(feature = "NSDocumentController")]
 unsafe impl NSWindowRestoration for NSDocumentController {}
 
-extern_methods!(
-    /// NSWindowRestoration
-    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
-    unsafe impl NSApplication {
+/// NSWindowRestoration.
+#[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
+impl NSApplication {
+    extern_methods!(
         #[cfg(all(
             feature = "NSUserInterfaceItemIdentification",
             feature = "NSWindow",
@@ -53,18 +53,18 @@ extern_methods!(
             state: &NSCoder,
             completion_handler: &block2::Block<dyn Fn(*mut NSWindow, *mut NSError)>,
         ) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidfinishrestoringwindowsnotification?language=objc)
     pub static NSApplicationDidFinishRestoringWindowsNotification: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// NSUserInterfaceRestoration
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSWindow {
+/// NSUserInterfaceRestoration.
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSWindow {
+    extern_methods!(
         #[unsafe(method(isRestorable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRestorable(&self) -> bool;
@@ -90,13 +90,13 @@ extern_methods!(
         #[unsafe(method(enableSnapshotRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableSnapshotRestoration(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSRestorableState
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSResponder {
+/// NSRestorableState.
+#[cfg(feature = "NSResponder")]
+impl NSResponder {
+    extern_methods!(
         #[unsafe(method(encodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
@@ -129,13 +129,13 @@ extern_methods!(
             key_path: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<NSArray<AnyClass>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSRestorableStateExtension
-    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
-    unsafe impl NSApplication {
+/// NSRestorableStateExtension.
+#[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(extendStateRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendStateRestoration(&self);
@@ -143,13 +143,13 @@ extern_methods!(
         #[unsafe(method(completeStateRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeStateRestoration(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSRestorableState
-    #[cfg(feature = "NSDocument")]
-    unsafe impl NSDocument {
+/// NSRestorableState.
+#[cfg(feature = "NSDocument")]
+impl NSDocument {
+    extern_methods!(
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSUserInterfaceItemIdentification",
@@ -196,5 +196,5 @@ extern_methods!(
             key_path: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<NSArray<AnyClass>>;
-    }
-);
+    );
+}

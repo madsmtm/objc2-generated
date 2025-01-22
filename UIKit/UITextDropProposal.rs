@@ -89,9 +89,9 @@ unsafe impl CopyingHelper for UITextDropProposal {
 #[cfg(feature = "UIDropInteraction")]
 unsafe impl NSObjectProtocol for UITextDropProposal {}
 
-extern_methods!(
-    #[cfg(feature = "UIDropInteraction")]
-    unsafe impl UITextDropProposal {
+#[cfg(feature = "UIDropInteraction")]
+impl UITextDropProposal {
+    extern_methods!(
         #[unsafe(method(dropAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn dropAction(&self) -> UITextDropAction;
@@ -127,13 +127,13 @@ extern_methods!(
         #[unsafe(method(setDropPerformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDropPerformer(&self, drop_performer: UITextDropPerformer);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIDropProposal`
-    #[cfg(feature = "UIDropInteraction")]
-    unsafe impl UITextDropProposal {
+/// Methods declared on superclass `UIDropProposal`.
+#[cfg(feature = "UIDropInteraction")]
+impl UITextDropProposal {
+    extern_methods!(
         #[unsafe(method(initWithDropOperation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation(
@@ -148,5 +148,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

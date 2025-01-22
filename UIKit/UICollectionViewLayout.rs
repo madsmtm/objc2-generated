@@ -89,8 +89,8 @@ unsafe impl NSObjectProtocol for UICollectionViewLayoutAttributes {}
 #[cfg(feature = "UIDynamicBehavior")]
 unsafe impl UIDynamicItem for UICollectionViewLayoutAttributes {}
 
-extern_methods!(
-    unsafe impl UICollectionViewLayoutAttributes {
+impl UICollectionViewLayoutAttributes {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
@@ -227,12 +227,12 @@ extern_methods!(
             index_path: &NSIndexPath,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICollectionViewLayoutAttributes {
+/// Methods declared on superclass `NSObject`.
+impl UICollectionViewLayoutAttributes {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -240,8 +240,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutinvalidationcontext?language=objc)
@@ -253,8 +253,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UICollectionViewLayoutInvalidationContext {}
 
-extern_methods!(
-    unsafe impl UICollectionViewLayoutInvalidationContext {
+impl UICollectionViewLayoutInvalidationContext {
+    extern_methods!(
         #[unsafe(method(invalidateEverything))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateEverything(&self) -> bool;
@@ -337,12 +337,12 @@ extern_methods!(
         #[unsafe(method(interactiveMovementTarget))]
         #[unsafe(method_family = none)]
         pub unsafe fn interactiveMovementTarget(&self) -> CGPoint;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICollectionViewLayoutInvalidationContext {
+/// Methods declared on superclass `NSObject`.
+impl UICollectionViewLayoutInvalidationContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -350,8 +350,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayout?language=objc)
@@ -365,8 +365,8 @@ unsafe impl NSCoding for UICollectionViewLayout {}
 
 unsafe impl NSObjectProtocol for UICollectionViewLayout {}
 
-extern_methods!(
-    unsafe impl UICollectionViewLayout {
+impl UICollectionViewLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -416,21 +416,21 @@ extern_methods!(
             nib: Option<&UINib>,
             element_kind: &NSString,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICollectionViewLayout {
+/// Methods declared on superclass `NSObject`.
+impl UICollectionViewLayout {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UISubclassingHooks
-    unsafe impl UICollectionViewLayout {
+/// UISubclassingHooks.
+impl UICollectionViewLayout {
+    extern_methods!(
         #[unsafe(method(layoutAttributesClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesClass(mtm: MainThreadMarker) -> &'static AnyClass;
@@ -533,12 +533,12 @@ extern_methods!(
         #[unsafe(method(flipsHorizontallyInOppositeLayoutDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn flipsHorizontallyInOppositeLayoutDirection(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIUpdateSupportHooks
-    unsafe impl UICollectionViewLayout {
+/// UIUpdateSupportHooks.
+impl UICollectionViewLayout {
+    extern_methods!(
         #[cfg(feature = "UICollectionViewUpdateItem")]
         #[unsafe(method(prepareForCollectionViewUpdates:))]
         #[unsafe(method_family = none)]
@@ -645,12 +645,12 @@ extern_methods!(
             &self,
             element_kind: &NSString,
         ) -> Retained<NSArray<NSIndexPath>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIReorderingSupportHooks
-    unsafe impl UICollectionViewLayout {
+/// UIReorderingSupportHooks.
+impl UICollectionViewLayout {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(targetIndexPathForInteractivelyMovingItem:withPosition:))]
         #[unsafe(method_family = none)]
@@ -688,5 +688,5 @@ extern_methods!(
             previous_index_paths: &NSArray<NSIndexPath>,
             movement_cancelled: bool,
         ) -> Retained<UICollectionViewLayoutInvalidationContext>;
-    }
-);
+    );
+}

@@ -46,9 +46,9 @@ unsafe impl NSObjectProtocol for MPSCNNSpatialNormalization {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNSpatialNormalization {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSpatialNormalization {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSpatialNormalization {
+    extern_methods!(
         /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
@@ -126,13 +126,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSpatialNormalization {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSpatialNormalization {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -147,13 +147,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSpatialNormalization {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSpatialNormalization {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -161,8 +161,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -213,9 +213,9 @@ unsafe impl NSObjectProtocol for MPSCNNSpatialNormalizationGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNSpatialNormalizationGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSpatialNormalizationGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSpatialNormalizationGradient {
+    extern_methods!(
         /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
@@ -286,13 +286,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNGradientKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSpatialNormalizationGradient {
+/// Methods declared on superclass `MPSCNNGradientKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSpatialNormalizationGradient {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -306,13 +306,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSpatialNormalizationGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSpatialNormalizationGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -327,13 +327,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNSpatialNormalizationGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNSpatialNormalizationGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -341,8 +341,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -395,9 +395,9 @@ unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalization {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNLocalContrastNormalization {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLocalContrastNormalization {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLocalContrastNormalization {
+    extern_methods!(
         /// The value of alpha.  Default is 0.0
         ///
         /// The default value 0.0 is not recommended and is
@@ -511,13 +511,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLocalContrastNormalization {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLocalContrastNormalization {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -532,13 +532,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLocalContrastNormalization {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLocalContrastNormalization {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -546,8 +546,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -611,9 +611,9 @@ unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalizationGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNLocalContrastNormalizationGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLocalContrastNormalizationGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLocalContrastNormalizationGradient {
+    extern_methods!(
         /// The value of alpha.  Default is 0.0
         ///
         /// The default value 0.0 is not recommended and is
@@ -720,13 +720,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNGradientKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLocalContrastNormalizationGradient {
+/// Methods declared on superclass `MPSCNNGradientKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLocalContrastNormalizationGradient {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -740,13 +740,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLocalContrastNormalizationGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLocalContrastNormalizationGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -761,13 +761,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLocalContrastNormalizationGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLocalContrastNormalizationGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -775,8 +775,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -821,9 +821,9 @@ unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalization {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNCrossChannelNormalization {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNCrossChannelNormalization {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNCrossChannelNormalization {
+    extern_methods!(
         /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
@@ -901,13 +901,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNCrossChannelNormalization {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNCrossChannelNormalization {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -922,13 +922,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNCrossChannelNormalization {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNCrossChannelNormalization {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -936,8 +936,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -989,9 +989,9 @@ unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalizationGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNCrossChannelNormalizationGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNCrossChannelNormalizationGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNCrossChannelNormalizationGradient {
+    extern_methods!(
         /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
@@ -1062,13 +1062,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNGradientKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNCrossChannelNormalizationGradient {
+/// Methods declared on superclass `MPSCNNGradientKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNCrossChannelNormalizationGradient {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -1082,13 +1082,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNCrossChannelNormalizationGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNCrossChannelNormalizationGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1103,13 +1103,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNCrossChannelNormalizationGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNCrossChannelNormalizationGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1117,5 +1117,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -68,8 +68,8 @@ unsafe impl NSObjectProtocol for AVAudioFormat {}
 
 unsafe impl NSSecureCoding for AVAudioFormat {}
 
-extern_methods!(
-    unsafe impl AVAudioFormat {
+impl AVAudioFormat {
+    extern_methods!(
         #[cfg(feature = "objc2-core-audio-types")]
         /// Initialize from an AudioStreamBasicDescription.
         ///
@@ -282,12 +282,12 @@ extern_methods!(
         #[unsafe(method(formatDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatDescription(&self) -> Retained<CMAudioFormatDescription>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioFormat {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioFormat {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -295,5 +295,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

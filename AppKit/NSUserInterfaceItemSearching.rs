@@ -36,10 +36,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSUserInterfaceItemSearching
-    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
-    unsafe impl NSApplication {
+/// NSUserInterfaceItemSearching.
+#[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(registerUserInterfaceItemSearchHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerUserInterfaceItemSearchHandler(
@@ -63,5 +63,5 @@ extern_methods!(
             search_range: NSRange,
             found_range: *mut NSRange,
         ) -> bool;
-    }
-);
+    );
+}

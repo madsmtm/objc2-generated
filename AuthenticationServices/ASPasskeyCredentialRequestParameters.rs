@@ -34,8 +34,8 @@ unsafe impl NSObjectProtocol for ASPasskeyCredentialRequestParameters {}
 
 unsafe impl NSSecureCoding for ASPasskeyCredentialRequestParameters {}
 
-extern_methods!(
-    unsafe impl ASPasskeyCredentialRequestParameters {
+impl ASPasskeyCredentialRequestParameters {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -70,14 +70,14 @@ extern_methods!(
         pub unsafe fn extensionInput(
             &self,
         ) -> Option<Retained<ASPasskeyAssertionCredentialExtensionInput>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASPasskeyCredentialRequestParameters {
+/// Methods declared on superclass `NSObject`.
+impl ASPasskeyCredentialRequestParameters {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

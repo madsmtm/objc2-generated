@@ -77,8 +77,8 @@ unsafe impl NSObjectProtocol for HKStatistics {}
 
 unsafe impl NSSecureCoding for HKStatistics {}
 
-extern_methods!(
-    unsafe impl HKStatistics {
+impl HKStatistics {
+    extern_methods!(
         #[cfg(feature = "HKObjectType")]
         #[unsafe(method(quantityType))]
         #[unsafe(method_family = none)]
@@ -223,14 +223,14 @@ extern_methods!(
         #[unsafe(method(durationForSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn durationForSource(&self, source: &HKSource) -> Option<Retained<HKQuantity>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKStatistics {
+/// Methods declared on superclass `NSObject`.
+impl HKStatistics {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -66,31 +66,31 @@ unsafe impl NSObjectProtocol for HKCumulativeQuantitySeriesSample {}
 ))]
 unsafe impl NSSecureCoding for HKCumulativeQuantitySeriesSample {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "HKCumulativeQuantitySample",
-        feature = "HKObject",
-        feature = "HKQuantitySample",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKCumulativeQuantitySeriesSample {
+#[cfg(all(
+    feature = "HKCumulativeQuantitySample",
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
+impl HKCumulativeQuantitySeriesSample {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         #[deprecated]
         #[unsafe(method(sum))]
         #[unsafe(method_family = none)]
         pub unsafe fn sum(&self) -> Retained<HKQuantity>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuantitySample`
-    #[cfg(all(
-        feature = "HKCumulativeQuantitySample",
-        feature = "HKObject",
-        feature = "HKQuantitySample",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKCumulativeQuantitySeriesSample {
+/// Methods declared on superclass `HKQuantitySample`.
+#[cfg(all(
+    feature = "HKCumulativeQuantitySample",
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
+impl HKCumulativeQuantitySeriesSample {
+    extern_methods!(
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
         /// Creates a new HKQuantitySample with the given type, quantity, start date, and end date.
         ///
@@ -145,35 +145,35 @@ extern_methods!(
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObject`
-    #[cfg(all(
-        feature = "HKCumulativeQuantitySample",
-        feature = "HKObject",
-        feature = "HKQuantitySample",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKCumulativeQuantitySeriesSample {
+/// Methods declared on superclass `HKObject`.
+#[cfg(all(
+    feature = "HKCumulativeQuantitySample",
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
+impl HKCumulativeQuantitySeriesSample {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "HKCumulativeQuantitySample",
-        feature = "HKObject",
-        feature = "HKQuantitySample",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKCumulativeQuantitySeriesSample {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "HKCumulativeQuantitySample",
+    feature = "HKObject",
+    feature = "HKQuantitySample",
+    feature = "HKSample"
+))]
+impl HKCumulativeQuantitySeriesSample {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -26,15 +26,15 @@ unsafe impl NSObjectProtocol for CATransformLayer {}
 #[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CATransformLayer {}
 
-extern_methods!(
-    #[cfg(feature = "CALayer")]
-    unsafe impl CATransformLayer {}
-);
+#[cfg(feature = "CALayer")]
+impl CATransformLayer {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CATransformLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "CALayer")]
+impl CATransformLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -47,15 +47,15 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CATransformLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CALayer")]
+impl CATransformLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

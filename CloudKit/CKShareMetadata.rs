@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for CKShareMetadata {}
 
 unsafe impl NSSecureCoding for CKShareMetadata {}
 
-extern_methods!(
-    unsafe impl CKShareMetadata {
+impl CKShareMetadata {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -87,5 +87,5 @@ extern_methods!(
         #[unsafe(method(rootRecordID))]
         #[unsafe(method_family = none)]
         pub unsafe fn rootRecordID(&self) -> Retained<CKRecordID>;
-    }
-);
+    );
+}

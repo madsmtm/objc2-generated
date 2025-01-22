@@ -129,9 +129,9 @@ unsafe impl NSObjectProtocol for CLSContext {}
 #[cfg(feature = "CLSObject")]
 unsafe impl NSSecureCoding for CLSContext {}
 
-extern_methods!(
-    #[cfg(feature = "CLSObject")]
-    unsafe impl CLSContext {
+#[cfg(feature = "CLSObject")]
+impl CLSContext {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -372,13 +372,13 @@ extern_methods!(
         #[unsafe(method(resetProgressReportingCapabilities))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetProgressReportingCapabilities(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Hierarchy
-    #[cfg(feature = "CLSObject")]
-    unsafe impl CLSContext {
+/// Hierarchy.
+#[cfg(feature = "CLSObject")]
+impl CLSContext {
+    extern_methods!(
         /// Returns the parent of this context.
         #[unsafe(method(parent))]
         #[unsafe(method_family = none)]
@@ -454,5 +454,5 @@ extern_methods!(
         #[unsafe(method(removeNavigationChildContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeNavigationChildContext(&self, child: &CLSContext);
-    }
-);
+    );
+}

@@ -74,9 +74,9 @@ unsafe impl NSObjectProtocol for NSLevelIndicatorCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSLevelIndicatorCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSLevelIndicatorCell {
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSLevelIndicatorCell {
+    extern_methods!(
         #[unsafe(method(initWithLevelIndicatorStyle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLevelIndicatorStyle(
@@ -165,13 +165,13 @@ extern_methods!(
         #[unsafe(method(tickMarkValueAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSLevelIndicatorCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSLevelIndicatorCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -191,18 +191,18 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSLevelIndicatorCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSLevelIndicatorCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrelevancylevelindicatorstyle?language=objc)
 pub static NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle =

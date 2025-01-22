@@ -32,8 +32,8 @@ unsafe impl CopyingHelper for PHAssetResourceRequestOptions {
 
 unsafe impl NSObjectProtocol for PHAssetResourceRequestOptions {}
 
-extern_methods!(
-    unsafe impl PHAssetResourceRequestOptions {
+impl PHAssetResourceRequestOptions {
+    extern_methods!(
         #[unsafe(method(isNetworkAccessAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
@@ -53,12 +53,12 @@ extern_methods!(
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetResourceProgressHandler);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHAssetResourceRequestOptions {
+/// Methods declared on superclass `NSObject`.
+impl PHAssetResourceRequestOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,8 +66,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcemanager?language=objc)
@@ -78,8 +78,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHAssetResourceManager {}
 
-extern_methods!(
-    unsafe impl PHAssetResourceManager {
+impl PHAssetResourceManager {
+    extern_methods!(
         #[unsafe(method(defaultManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultManager() -> Retained<PHAssetResourceManager>;
@@ -109,12 +109,12 @@ extern_methods!(
         #[unsafe(method(cancelDataRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelDataRequest(&self, request_id: PHAssetResourceDataRequestID);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHAssetResourceManager {
+/// Methods declared on superclass `NSObject`.
+impl PHAssetResourceManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -122,5 +122,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

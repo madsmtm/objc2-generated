@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLModelCollection {}
 
-extern_methods!(
-    unsafe impl MLModelCollection {
+impl MLModelCollection {
+    extern_methods!(
         /// The identifier of the model collection you want to access, as configured in the Core ML Model Deployment dashboard.
         #[deprecated = "Use Background Assets or NSURLSession instead."]
         #[unsafe(method(identifier))]
@@ -91,8 +91,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Notification posted when the model collection has changed.

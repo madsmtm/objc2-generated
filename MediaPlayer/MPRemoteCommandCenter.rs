@@ -14,8 +14,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPRemoteCommandCenter {}
 
-extern_methods!(
-    unsafe impl MPRemoteCommandCenter {
+impl MPRemoteCommandCenter {
+    extern_methods!(
         #[cfg(feature = "MPRemoteCommand")]
         #[unsafe(method(pauseCommand))]
         #[unsafe(method_family = none)]
@@ -129,5 +129,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

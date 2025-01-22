@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for SKPhysicsJoint {}
 
 unsafe impl NSSecureCoding for SKPhysicsJoint {}
 
-extern_methods!(
-    unsafe impl SKPhysicsJoint {
+impl SKPhysicsJoint {
+    extern_methods!(
         #[cfg(feature = "SKPhysicsBody")]
         #[unsafe(method(bodyA))]
         #[unsafe(method_family = none)]
@@ -55,12 +55,12 @@ extern_methods!(
         #[unsafe(method(reactionTorque))]
         #[unsafe(method_family = none)]
         pub unsafe fn reactionTorque(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPhysicsJoint {
+/// Methods declared on superclass `NSObject`.
+impl SKPhysicsJoint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,8 +68,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointpin?language=objc)
@@ -84,8 +84,8 @@ unsafe impl NSObjectProtocol for SKPhysicsJointPin {}
 
 unsafe impl NSSecureCoding for SKPhysicsJointPin {}
 
-extern_methods!(
-    unsafe impl SKPhysicsJointPin {
+impl SKPhysicsJointPin {
+    extern_methods!(
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
         #[unsafe(method(jointWithBodyA:bodyB:anchor:))]
         #[unsafe(method_family = none)]
@@ -147,12 +147,12 @@ extern_methods!(
         #[unsafe(method(setRotationSpeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRotationSpeed(&self, rotation_speed: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPhysicsJointPin {
+/// Methods declared on superclass `NSObject`.
+impl SKPhysicsJointPin {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -160,8 +160,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointspring?language=objc)
@@ -176,8 +176,8 @@ unsafe impl NSObjectProtocol for SKPhysicsJointSpring {}
 
 unsafe impl NSSecureCoding for SKPhysicsJointSpring {}
 
-extern_methods!(
-    unsafe impl SKPhysicsJointSpring {
+impl SKPhysicsJointSpring {
+    extern_methods!(
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
         #[unsafe(method(jointWithBodyA:bodyB:anchorA:anchorB:))]
         #[unsafe(method_family = none)]
@@ -209,12 +209,12 @@ extern_methods!(
         #[unsafe(method(setFrequency:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrequency(&self, frequency: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPhysicsJointSpring {
+/// Methods declared on superclass `NSObject`.
+impl SKPhysicsJointSpring {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -222,8 +222,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointfixed?language=objc)
@@ -238,8 +238,8 @@ unsafe impl NSObjectProtocol for SKPhysicsJointFixed {}
 
 unsafe impl NSSecureCoding for SKPhysicsJointFixed {}
 
-extern_methods!(
-    unsafe impl SKPhysicsJointFixed {
+impl SKPhysicsJointFixed {
+    extern_methods!(
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
         #[unsafe(method(jointWithBodyA:bodyB:anchor:))]
         #[unsafe(method_family = none)]
@@ -248,12 +248,12 @@ extern_methods!(
             body_b: &SKPhysicsBody,
             anchor: CGPoint,
         ) -> Retained<SKPhysicsJointFixed>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPhysicsJointFixed {
+/// Methods declared on superclass `NSObject`.
+impl SKPhysicsJointFixed {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -261,8 +261,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointsliding?language=objc)
@@ -277,8 +277,8 @@ unsafe impl NSObjectProtocol for SKPhysicsJointSliding {}
 
 unsafe impl NSSecureCoding for SKPhysicsJointSliding {}
 
-extern_methods!(
-    unsafe impl SKPhysicsJointSliding {
+impl SKPhysicsJointSliding {
+    extern_methods!(
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
         #[unsafe(method(jointWithBodyA:bodyB:anchor:axis:))]
         #[unsafe(method_family = none)]
@@ -319,12 +319,12 @@ extern_methods!(
         #[unsafe(method(setUpperDistanceLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpperDistanceLimit(&self, upper_distance_limit: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPhysicsJointSliding {
+/// Methods declared on superclass `NSObject`.
+impl SKPhysicsJointSliding {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -332,8 +332,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointlimit?language=objc)
@@ -348,8 +348,8 @@ unsafe impl NSObjectProtocol for SKPhysicsJointLimit {}
 
 unsafe impl NSSecureCoding for SKPhysicsJointLimit {}
 
-extern_methods!(
-    unsafe impl SKPhysicsJointLimit {
+impl SKPhysicsJointLimit {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(maxLength))]
         #[unsafe(method_family = none)]
@@ -370,12 +370,12 @@ extern_methods!(
             anchor_a: CGPoint,
             anchor_b: CGPoint,
         ) -> Retained<SKPhysicsJointLimit>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPhysicsJointLimit {
+/// Methods declared on superclass `NSObject`.
+impl SKPhysicsJointLimit {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -383,5 +383,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -74,14 +74,14 @@ unsafe impl NSObjectProtocol for MPSQuadrilateralAccelerationStructure {}
 ))]
 unsafe impl NSSecureCoding for MPSQuadrilateralAccelerationStructure {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSPolygonAccelerationStructure"
-    ))]
-    unsafe impl MPSQuadrilateralAccelerationStructure {
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSPolygonAccelerationStructure"
+))]
+impl MPSQuadrilateralAccelerationStructure {
+    extern_methods!(
         /// Number of quads. Changes to this property require rebuilding the acceleration
         /// structure. This is an alias for the polygonCount property.
         #[deprecated]
@@ -94,18 +94,18 @@ extern_methods!(
         #[unsafe(method(setQuadrilateralCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuadrilateralCount(&self, quadrilateral_count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSAccelerationStructure`
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSPolygonAccelerationStructure"
-    ))]
-    unsafe impl MPSQuadrilateralAccelerationStructure {
+/// Methods declared on superclass `MPSAccelerationStructure`.
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSPolygonAccelerationStructure"
+))]
+impl MPSQuadrilateralAccelerationStructure {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -161,18 +161,18 @@ extern_methods!(
             a_decoder: &NSCoder,
             group: &MPSAccelerationStructureGroup,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSPolygonAccelerationStructure"
-    ))]
-    unsafe impl MPSQuadrilateralAccelerationStructure {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSPolygonAccelerationStructure"
+))]
+impl MPSQuadrilateralAccelerationStructure {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -187,20 +187,20 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSPolygonAccelerationStructure"
-    ))]
-    unsafe impl MPSQuadrilateralAccelerationStructure {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSPolygonAccelerationStructure"
+))]
+impl MPSQuadrilateralAccelerationStructure {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

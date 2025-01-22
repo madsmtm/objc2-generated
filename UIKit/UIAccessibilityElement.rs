@@ -27,9 +27,9 @@ unsafe impl UIAccessibilityIdentification for UIAccessibilityElement {}
 #[cfg(feature = "UIResponder")]
 unsafe impl UIResponderStandardEditActions for UIAccessibilityElement {}
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIAccessibilityElement {
+#[cfg(feature = "UIResponder")]
+impl UIAccessibilityElement {
+    extern_methods!(
         #[unsafe(method(initWithAccessibilityContainer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAccessibilityContainer(
@@ -118,13 +118,13 @@ extern_methods!(
             &self,
             accessibility_frame_in_container_space: CGRect,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIAccessibilityElement {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIResponder")]
+impl UIAccessibilityElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -132,5 +132,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

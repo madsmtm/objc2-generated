@@ -164,8 +164,8 @@ unsafe impl NSSecureCoding for SCNLight {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNLight {}
 
-extern_methods!(
-    unsafe impl SCNLight {
+impl SCNLight {
+    extern_methods!(
         /// Creates and returns a light instance.
         #[unsafe(method(light))]
         #[unsafe(method_family = none)]
@@ -600,12 +600,12 @@ extern_methods!(
         #[unsafe(method(setCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNLight {
+/// Methods declared on superclass `NSObject`.
+impl SCNLight {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -613,5 +613,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

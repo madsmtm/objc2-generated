@@ -24,9 +24,9 @@ extern_class!(
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphTensorData {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphTensorData {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphTensorData {
+    extern_methods!(
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The shape of the tensor data.
         #[unsafe(method(shape))]
@@ -208,13 +208,13 @@ extern_methods!(
         #[unsafe(method(mpsndarray))]
         #[unsafe(method_family = none)]
         pub unsafe fn mpsndarray(&self) -> Retained<MPSNDArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphTensorData {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphTensorData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -222,5 +222,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -70,9 +70,9 @@ unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialRegis
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -126,13 +126,13 @@ extern_methods!(
             &self,
             request_style: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {}
-);
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "ASAuthorizationRequest",

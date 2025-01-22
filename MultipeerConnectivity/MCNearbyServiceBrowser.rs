@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MCNearbyServiceBrowser {}
 
-extern_methods!(
-    unsafe impl MCNearbyServiceBrowser {
+impl MCNearbyServiceBrowser {
+    extern_methods!(
         #[cfg(feature = "MCPeerID")]
         #[unsafe(method(initWithPeer:serviceType:))]
         #[unsafe(method_family = init)]
@@ -69,12 +69,12 @@ extern_methods!(
         #[unsafe(method(serviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MCNearbyServiceBrowser {
+/// Methods declared on superclass `NSObject`.
+impl MCNearbyServiceBrowser {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,8 +82,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyservicebrowserdelegate?language=objc)

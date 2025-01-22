@@ -53,10 +53,9 @@ unsafe impl NSObjectProtocol for ARGeoAnchor {}
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl NSSecureCoding for ARGeoAnchor {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARGeoAnchor {
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARGeoAnchor {
+    extern_methods!(
         #[cfg(feature = "objc2-core-location")]
         /// The coordinate where this anchor will be placed.
         ///
@@ -144,14 +143,13 @@ extern_methods!(
             coordinate: CLLocationCoordinate2D,
             altitude: CLLocationDistance,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `ARAnchor`
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARGeoAnchor {
+/// Methods declared on superclass `ARAnchor`.
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARGeoAnchor {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -160,5 +158,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

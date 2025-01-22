@@ -68,15 +68,15 @@ unsafe impl CopyingHelper for DOMWheelEvent {
 ))]
 unsafe impl NSObjectProtocol for DOMWheelEvent {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMMouseEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMWheelEvent {
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMMouseEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMWheelEvent {
+    extern_methods!(
         #[unsafe(method(wheelDeltaX))]
         #[unsafe(method_family = none)]
         pub unsafe fn wheelDeltaX(&self) -> c_int;
@@ -112,38 +112,38 @@ extern_methods!(
             shift_key: bool,
             meta_key: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMMouseEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMWheelEvent {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMMouseEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMWheelEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMMouseEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMWheelEvent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMMouseEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMWheelEvent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

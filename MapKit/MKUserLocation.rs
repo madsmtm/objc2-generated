@@ -21,8 +21,8 @@ unsafe impl MKAnnotation for MKUserLocation {}
 
 unsafe impl NSObjectProtocol for MKUserLocation {}
 
-extern_methods!(
-    unsafe impl MKUserLocation {
+impl MKUserLocation {
+    extern_methods!(
         #[unsafe(method(isUpdating))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUpdating(&self) -> bool;
@@ -54,12 +54,12 @@ extern_methods!(
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKUserLocation {
+/// Methods declared on superclass `NSObject`.
+impl MKUserLocation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -67,5 +67,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

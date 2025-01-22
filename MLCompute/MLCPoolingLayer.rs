@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCPoolingLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCPoolingLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCPoolingLayer {
+    extern_methods!(
         #[cfg(feature = "MLCPoolingDescriptor")]
         /// The pooling descriptor
         #[deprecated]
@@ -39,13 +39,13 @@ extern_methods!(
         #[unsafe(method(layerWithDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithDescriptor(descriptor: &MLCPoolingDescriptor) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCPoolingLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCPoolingLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

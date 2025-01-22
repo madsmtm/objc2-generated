@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTextElement {}
 
-extern_methods!(
-    unsafe impl NSTextElement {
+impl NSTextElement {
+    extern_methods!(
         #[cfg(feature = "NSTextContentManager")]
         #[unsafe(method(initWithTextContentManager:))]
         #[unsafe(method_family = init)]
@@ -63,12 +63,12 @@ extern_methods!(
         #[unsafe(method(isRepresentedElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRepresentedElement(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextElement {
+/// Methods declared on superclass `NSObject`.
+impl NSTextElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,8 +76,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextparagraph?language=objc)
@@ -88,8 +88,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTextParagraph {}
 
-extern_methods!(
-    unsafe impl NSTextParagraph {
+impl NSTextParagraph {
+    extern_methods!(
         #[unsafe(method(initWithAttributedString:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedString(
@@ -110,12 +110,12 @@ extern_methods!(
         #[unsafe(method(paragraphSeparatorRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphSeparatorRange(&self) -> Option<Retained<NSTextRange>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextElement`
-    unsafe impl NSTextParagraph {
+/// Methods declared on superclass `NSTextElement`.
+impl NSTextParagraph {
+    extern_methods!(
         #[cfg(feature = "NSTextContentManager")]
         #[unsafe(method(initWithTextContentManager:))]
         #[unsafe(method_family = init)]
@@ -123,12 +123,12 @@ extern_methods!(
             this: Allocated<Self>,
             text_content_manager: Option<&NSTextContentManager>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextParagraph {
+/// Methods declared on superclass `NSObject`.
+impl NSTextParagraph {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -136,5 +136,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

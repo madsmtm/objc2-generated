@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for MLImageConstraint {}
 
 unsafe impl NSSecureCoding for MLImageConstraint {}
 
-extern_methods!(
-    unsafe impl MLImageConstraint {
+impl MLImageConstraint {
+    extern_methods!(
         /// The required or default height of the image
         #[unsafe(method(pixelsHigh))]
         #[unsafe(method_family = none)]
@@ -49,14 +49,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLImageConstraint {
+/// Methods declared on superclass `NSObject`.
+impl MLImageConstraint {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

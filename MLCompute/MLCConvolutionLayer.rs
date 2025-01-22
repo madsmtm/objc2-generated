@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCConvolutionLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCConvolutionLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCConvolutionLayer {
+    extern_methods!(
         #[cfg(feature = "MLCConvolutionDescriptor")]
         /// The convolution descriptor
         #[deprecated]
@@ -75,13 +75,13 @@ extern_methods!(
             biases: Option<&MLCTensor>,
             descriptor: &MLCConvolutionDescriptor,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCConvolutionLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCConvolutionLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -91,5 +91,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

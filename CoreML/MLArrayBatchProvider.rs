@@ -20,8 +20,8 @@ unsafe impl MLBatchProvider for MLArrayBatchProvider {}
 
 unsafe impl NSObjectProtocol for MLArrayBatchProvider {}
 
-extern_methods!(
-    unsafe impl MLArrayBatchProvider {
+impl MLArrayBatchProvider {
+    extern_methods!(
         #[cfg(feature = "MLFeatureProvider")]
         #[unsafe(method(array))]
         #[unsafe(method_family = none)]
@@ -45,12 +45,12 @@ extern_methods!(
             this: Allocated<Self>,
             dictionary: &NSDictionary<NSString, NSArray>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLArrayBatchProvider {
+/// Methods declared on superclass `NSObject`.
+impl MLArrayBatchProvider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -58,5 +58,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

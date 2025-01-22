@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "UIEvent")]
 unsafe impl NSObjectProtocol for UIPressesEvent {}
 
-extern_methods!(
-    #[cfg(feature = "UIEvent")]
-    unsafe impl UIPressesEvent {
+#[cfg(feature = "UIEvent")]
+impl UIPressesEvent {
+    extern_methods!(
         #[cfg(feature = "UIPress")]
         #[unsafe(method(allPresses))]
         #[unsafe(method_family = none)]
@@ -33,13 +33,13 @@ extern_methods!(
             &self,
             gesture: &UIGestureRecognizer,
         ) -> Retained<NSSet<UIPress>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIEvent")]
-    unsafe impl UIPressesEvent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIEvent")]
+impl UIPressesEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -47,5 +47,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

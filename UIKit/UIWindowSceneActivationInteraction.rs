@@ -46,8 +46,8 @@ unsafe impl NSObjectProtocol for UIWindowSceneActivationInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIWindowSceneActivationInteraction {}
 
-extern_methods!(
-    unsafe impl UIWindowSceneActivationInteraction {
+impl UIWindowSceneActivationInteraction {
+    extern_methods!(
         #[cfg(all(
             feature = "UIWindowSceneActivationConfiguration",
             feature = "block2",
@@ -75,5 +75,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

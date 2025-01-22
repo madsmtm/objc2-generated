@@ -34,9 +34,9 @@ unsafe impl NSObjectProtocol for AMBundleAction {}
 #[cfg(feature = "AMAction")]
 unsafe impl NSSecureCoding for AMBundleAction {}
 
-extern_methods!(
-    #[cfg(feature = "AMAction")]
-    unsafe impl AMBundleAction {
+#[cfg(feature = "AMAction")]
+impl AMBundleAction {
+    extern_methods!(
         #[unsafe(method(awakeFromBundle))]
         #[unsafe(method_family = none)]
         pub unsafe fn awakeFromBundle(&self);
@@ -67,13 +67,13 @@ extern_methods!(
             &self,
             parameters: Option<&NSMutableDictionary<NSString, AnyObject>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AMAction`
-    #[cfg(feature = "AMAction")]
-    unsafe impl AMBundleAction {
+/// Methods declared on superclass `AMAction`.
+#[cfg(feature = "AMAction")]
+impl AMBundleAction {
+    extern_methods!(
         #[unsafe(method(initWithDefinition:fromArchive:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDefinition_fromArchive(
@@ -88,13 +88,13 @@ extern_methods!(
             this: Allocated<Self>,
             file_url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AMAction")]
-    unsafe impl AMBundleAction {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AMAction")]
+impl AMBundleAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -102,5 +102,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

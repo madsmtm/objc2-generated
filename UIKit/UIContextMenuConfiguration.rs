@@ -63,8 +63,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIContextMenuConfiguration {}
 
-extern_methods!(
-    unsafe impl UIContextMenuConfiguration {
+impl UIContextMenuConfiguration {
+    extern_methods!(
         /// This configuration's identifier. When representing multiple items in your app, this identifier
         /// corresponds to the primary item (i.e. the one with which the user interacted when invoking the menu).
         #[unsafe(method(identifier))]
@@ -134,12 +134,12 @@ extern_methods!(
             action_provider: UIContextMenuActionProvider,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIContextMenuConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl UIContextMenuConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -147,5 +147,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

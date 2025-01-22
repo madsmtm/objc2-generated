@@ -502,9 +502,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSWindow {}
 #[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceValidation"))]
 unsafe impl NSUserInterfaceValidations for NSWindow {}
 
-extern_methods!(
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindow {
+#[cfg(feature = "NSResponder")]
+impl NSWindow {
+    extern_methods!(
         #[unsafe(method(frameRectForContentRect:styleMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameRectForContentRect_styleMask(
@@ -2004,33 +2004,33 @@ extern_methods!(
         #[unsafe(method(windowTitlebarLayoutDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn windowTitlebarLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindow {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "NSResponder")]
+impl NSWindow {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindow {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSResponder")]
+impl NSWindow {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSEvent
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindow {
+/// NSEvent.
+#[cfg(feature = "NSResponder")]
+impl NSWindow {
+    extern_methods!(
         #[cfg(all(feature = "NSEvent", feature = "block2"))]
         /// Tracks events matching the supplied mask with the supplied tracking handler until the tracking handler explicitly terminates tracking. Each event is removed from the event queue then passed to the tracking handler. If a matching event does not exist in the event queue, then the main thread blocks in the specified runloop mode until an event of the requested type is received or the timeout expires. If the timeout expires, the tracking handler is called with a nil event. A negative timeout is interpreted as 0. Use
         /// `NSEventDurationForever`to never timeout. Tracking continues until `*stop` is set to
@@ -2106,13 +2106,13 @@ extern_methods!(
         #[unsafe(method(mouseLocationOutsideOfEventStream))]
         #[unsafe(method_family = none)]
         pub unsafe fn mouseLocationOutsideOfEventStream(&self) -> NSPoint;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSCursorRect
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindow {
+/// NSCursorRect.
+#[cfg(feature = "NSResponder")]
+impl NSWindow {
+    extern_methods!(
         #[unsafe(method(disableCursorRects))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableCursorRects(&self);
@@ -2137,13 +2137,13 @@ extern_methods!(
         #[unsafe(method(resetCursorRects))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetCursorRects(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDrag
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindow {
+/// NSDrag.
+#[cfg(feature = "NSResponder")]
+impl NSWindow {
+    extern_methods!(
         #[cfg(all(
             feature = "NSDragging",
             feature = "NSDraggingItem",
@@ -2182,13 +2182,13 @@ extern_methods!(
         #[unsafe(method(unregisterDraggedTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterDraggedTypes(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDisplayLink
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindow {
+/// NSDisplayLink.
+#[cfg(feature = "NSResponder")]
+impl NSWindow {
+    extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(displayLinkWithTarget:selector:))]
@@ -2198,8 +2198,8 @@ extern_methods!(
             target: &AnyObject,
             selector: Sel,
         ) -> Retained<CADisplayLink>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdelegate?language=objc)
@@ -2790,10 +2790,10 @@ unsafe impl RefEncode for NSWindowBackingLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindow {
+/// NSDeprecated.
+#[cfg(feature = "NSResponder")]
+impl NSWindow {
+    extern_methods!(
         #[deprecated = "This method shouldn’t be used as it doesn’t work in all drawing situations; instead, a subview should be used that implements the desired drawing behavior"]
         #[unsafe(method(cacheImageInRect:))]
         #[unsafe(method_family = none)]
@@ -2946,8 +2946,8 @@ extern_methods!(
         #[unsafe(method(disableScreenUpdatesUntilFlush))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableScreenUpdatesUntilFlush(&self);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsborderlesswindowmask?language=objc)
 pub static NSBorderlessWindowMask: NSWindowStyleMask =

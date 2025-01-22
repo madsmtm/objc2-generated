@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for UIPasteConfiguration {}
 
 unsafe impl NSSecureCoding for UIPasteConfiguration {}
 
-extern_methods!(
-    unsafe impl UIPasteConfiguration {
+impl UIPasteConfiguration {
+    extern_methods!(
         #[unsafe(method(acceptableTypeIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptableTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
@@ -69,14 +69,14 @@ extern_methods!(
         #[unsafe(method(addTypeIdentifiersForAcceptingClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTypeIdentifiersForAcceptingClass(&self, a_class: &AnyClass);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPasteConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl UIPasteConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for CNPhoneNumber {}
 
 unsafe impl NSSecureCoding for CNPhoneNumber {}
 
-extern_methods!(
-    unsafe impl CNPhoneNumber {
+impl CNPhoneNumber {
+    extern_methods!(
         /// These will return nil if the stringValue is nil.
         #[unsafe(method(phoneNumberWithStringValue:))]
         #[unsafe(method_family = none)]
@@ -58,8 +58,8 @@ extern_methods!(
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberiphone?language=objc)

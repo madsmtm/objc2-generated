@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
 unsafe impl NSObjectProtocol for EKReminder {}
 
-extern_methods!(
-    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
-    unsafe impl EKReminder {
+#[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
+impl EKReminder {
+    extern_methods!(
         #[cfg(feature = "EKEventStore")]
         /// Creates a new reminder in the given event store.
         #[unsafe(method(reminderWithEventStore:))]
@@ -99,13 +99,13 @@ extern_methods!(
         #[unsafe(method(setPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPriority(&self, priority: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
-    unsafe impl EKReminder {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
+impl EKReminder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -113,5 +113,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

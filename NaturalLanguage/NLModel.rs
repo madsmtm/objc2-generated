@@ -37,8 +37,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NLModel {}
 
-extern_methods!(
-    unsafe impl NLModel {
+impl NLModel {
+    extern_methods!(
         #[unsafe(method(modelWithContentsOfURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelWithContentsOfURL_error(
@@ -85,12 +85,12 @@ extern_methods!(
             tokens: &NSArray<NSString>,
             maximum_count: NSUInteger,
         ) -> Retained<NSArray<NSDictionary<NSString, NSNumber>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NLModel {
+/// Methods declared on superclass `NSObject`.
+impl NLModel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -98,8 +98,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlmodelconfiguration?language=objc)
@@ -120,8 +120,8 @@ unsafe impl NSObjectProtocol for NLModelConfiguration {}
 
 unsafe impl NSSecureCoding for NLModelConfiguration {}
 
-extern_methods!(
-    unsafe impl NLModelConfiguration {
+impl NLModelConfiguration {
+    extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> NLModelType;
@@ -142,12 +142,12 @@ extern_methods!(
         #[unsafe(method(currentRevisionForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentRevisionForType(r#type: NLModelType) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NLModelConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl NLModelConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -155,5 +155,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -25,8 +25,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSHost {}
 
-extern_methods!(
-    unsafe impl NSHost {
+impl NSHost {
+    extern_methods!(
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(currentHost))]
         #[unsafe(method_family = none)]
@@ -92,12 +92,12 @@ extern_methods!(
         #[unsafe(method(flushHostCache))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushHostCache();
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSHost {
+/// Methods declared on superclass `NSObject`.
+impl NSHost {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -105,5 +105,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

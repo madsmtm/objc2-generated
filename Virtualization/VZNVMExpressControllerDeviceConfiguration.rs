@@ -33,9 +33,9 @@ unsafe impl CopyingHelper for VZNVMExpressControllerDeviceConfiguration {
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZNVMExpressControllerDeviceConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZStorageDeviceConfiguration")]
-    unsafe impl VZNVMExpressControllerDeviceConfiguration {
+#[cfg(feature = "VZStorageDeviceConfiguration")]
+impl VZNVMExpressControllerDeviceConfiguration {
+    extern_methods!(
         #[cfg(feature = "VZStorageDeviceAttachment")]
         /// Initialize a VZNVMExpressControllerDeviceConfiguration with a device attachment.
         ///
@@ -48,13 +48,13 @@ extern_methods!(
             this: Allocated<Self>,
             attachment: &VZStorageDeviceAttachment,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZStorageDeviceConfiguration`
-    #[cfg(feature = "VZStorageDeviceConfiguration")]
-    unsafe impl VZNVMExpressControllerDeviceConfiguration {
+/// Methods declared on superclass `VZStorageDeviceConfiguration`.
+#[cfg(feature = "VZStorageDeviceConfiguration")]
+impl VZNVMExpressControllerDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -62,5 +62,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

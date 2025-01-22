@@ -71,13 +71,13 @@ unsafe impl NSObjectProtocol for HKContactsPrescription {}
 ))]
 unsafe impl NSSecureCoding for HKContactsPrescription {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "HKObject",
-        feature = "HKSample",
-        feature = "HKVisionPrescription"
-    ))]
-    unsafe impl HKContactsPrescription {
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKVisionPrescription"
+))]
+impl HKContactsPrescription {
+    extern_methods!(
         #[cfg(all(
             feature = "HKContactsLensSpecification",
             feature = "HKLensSpecification"
@@ -149,5 +149,5 @@ extern_methods!(
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

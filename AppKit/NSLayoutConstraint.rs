@@ -179,8 +179,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSLayoutConstraint {}
 
-extern_methods!(
-    unsafe impl NSLayoutConstraint {
+impl NSLayoutConstraint {
+    extern_methods!(
         #[unsafe(method(constraintsWithVisualFormat:options:metrics:views:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsWithVisualFormat_options_metrics_views(
@@ -283,12 +283,12 @@ extern_methods!(
         #[unsafe(method(deactivateConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deactivateConstraints(constraints: &NSArray<NSLayoutConstraint>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLayoutConstraint {
+/// Methods declared on superclass `NSObject`.
+impl NSLayoutConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -296,12 +296,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSIdentifier
-    unsafe impl NSLayoutConstraint {
+/// NSIdentifier.
+impl NSLayoutConstraint {
+    extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
@@ -310,20 +310,20 @@ extern_methods!(
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSLayoutConstraint {}
-);
+impl NSLayoutConstraint {
+    extern_methods!();
+}
 
 #[cfg(feature = "NSAnimation")]
 unsafe impl NSAnimatablePropertyContainer for NSLayoutConstraint {}
 
-extern_methods!(
-    /// NSConstraintBasedLayoutInstallingConstraints
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSConstraintBasedLayoutInstallingConstraints.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(leadingAnchor))]
         #[unsafe(method_family = none)]
@@ -403,13 +403,13 @@ extern_methods!(
         #[unsafe(method(removeConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSConstraintBasedLayoutCoreMethods
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSWindow {
+/// NSConstraintBasedLayoutCoreMethods.
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSWindow {
+    extern_methods!(
         #[unsafe(method(updateConstraintsIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateConstraintsIfNeeded(&self);
@@ -417,13 +417,13 @@ extern_methods!(
         #[unsafe(method(layoutIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutIfNeeded(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSConstraintBasedLayoutCoreMethods
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSConstraintBasedLayoutCoreMethods.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(updateConstraintsForSubtreeIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateConstraintsForSubtreeIfNeeded(&self);
@@ -440,13 +440,13 @@ extern_methods!(
         #[unsafe(method(setNeedsUpdateConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsUpdateConstraints(&self, needs_update_constraints: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSConstraintBasedCompatibility
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSConstraintBasedCompatibility.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(translatesAutoresizingMaskIntoConstraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
@@ -462,8 +462,8 @@ extern_methods!(
         #[unsafe(method(requiresConstraintBasedLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresConstraintBasedLayout(mtm: MainThreadMarker) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewnoinstrinsicmetric?language=objc)
@@ -477,10 +477,10 @@ extern "C" {
     pub static NSViewNoIntrinsicMetric: CGFloat;
 }
 
-extern_methods!(
-    /// NSConstraintBasedLayoutLayering
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSConstraintBasedLayoutLayering.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(alignmentRectForFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentRectForFrame(&self, frame: NSRect) -> NSRect;
@@ -569,24 +569,24 @@ extern_methods!(
             &self,
             vertical_content_size_constraint_active: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSConstraintBasedLayoutLayering
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSControl {
+/// NSConstraintBasedLayoutLayering.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSControl {
+    extern_methods!(
         #[cfg(feature = "NSCell")]
         #[unsafe(method(invalidateIntrinsicContentSizeForCell:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateIntrinsicContentSizeForCell(&self, cell: &NSCell);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSConstraintBasedLayoutAnchoring
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSWindow {
+/// NSConstraintBasedLayoutAnchoring.
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSWindow {
+    extern_methods!(
         #[unsafe(method(anchorAttributeForOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchorAttributeForOrientation(
@@ -601,23 +601,23 @@ extern_methods!(
             attr: NSLayoutAttribute,
             orientation: NSLayoutConstraintOrientation,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSConstraintBasedLayoutFittingSize
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSConstraintBasedLayoutFittingSize.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(fittingSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn fittingSize(&self) -> NSSize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSConstraintBasedLayoutDebugging
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSConstraintBasedLayoutDebugging.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(constraintsAffectingLayoutForOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsAffectingLayoutForOrientation(
@@ -632,18 +632,18 @@ extern_methods!(
         #[unsafe(method(exerciseAmbiguityInLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn exerciseAmbiguityInLayout(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSConstraintBasedLayoutDebugging
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSWindow {
+/// NSConstraintBasedLayoutDebugging.
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSWindow {
+    extern_methods!(
         #[unsafe(method(visualizeConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn visualizeConstraints(
             &self,
             constraints: Option<&NSArray<NSLayoutConstraint>>,
         );
-    }
-);
+    );
+}

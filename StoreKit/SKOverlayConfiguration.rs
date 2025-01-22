@@ -36,8 +36,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SKOverlayConfiguration {}
 
-extern_methods!(
-    unsafe impl SKOverlayConfiguration {
+impl SKOverlayConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -45,8 +45,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An overlay configuration that can be used to show any app from the App Store.
@@ -59,8 +59,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SKOverlayAppConfiguration {}
 
-extern_methods!(
-    unsafe impl SKOverlayAppConfiguration {
+impl SKOverlayAppConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -168,8 +168,8 @@ extern_methods!(
         #[unsafe(method(setAdImpression:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdImpression(&self, impression: &SKAdImpression);
-    }
-);
+    );
+}
 
 extern_class!(
     /// An overlay configuration that can be used to show an app clip's full app.
@@ -182,8 +182,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SKOverlayAppClipConfiguration {}
 
-extern_methods!(
-    unsafe impl SKOverlayAppClipConfiguration {
+impl SKOverlayAppClipConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -263,5 +263,5 @@ extern_methods!(
         #[unsafe(method(additionalValueForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}

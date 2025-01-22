@@ -147,14 +147,14 @@ unsafe impl NSUserInterfaceItemIdentification for NSSearchField {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSSearchField {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSSearchField {
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSSearchField {
+    extern_methods!(
         #[unsafe(method(searchTextBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchTextBounds(&self) -> NSRect;
@@ -242,18 +242,18 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSearchFieldDelegate>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSSearchField {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSSearchField {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -264,48 +264,48 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSSearchField {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSSearchField {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSSearchField {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSSearchField {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSearchField_Deprecated
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSSearchField {
+/// NSSearchField_Deprecated.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSSearchField {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(rectForSearchTextWhenCentered:))]
         #[unsafe(method_family = none)]
@@ -331,5 +331,5 @@ extern_methods!(
         #[unsafe(method(setCentersPlaceholder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCentersPlaceholder(&self, centers_placeholder: bool);
-    }
-);
+    );
+}

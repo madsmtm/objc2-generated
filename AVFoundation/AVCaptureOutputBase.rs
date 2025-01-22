@@ -26,8 +26,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureOutput {}
 
-extern_methods!(
-    unsafe impl AVCaptureOutput {
+impl AVCaptureOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -117,8 +117,8 @@ extern_methods!(
             &self,
             rect_in_metadata_output_coordinates: CGRect,
         ) -> CGRect;
-    }
-);
+    );
+}
 
 /// Constants indicating the reason a capture data output dropped data.
 ///

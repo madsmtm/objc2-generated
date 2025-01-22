@@ -30,9 +30,9 @@ unsafe impl NSEditorRegistration for AMWorkflowController {}
 #[cfg(feature = "objc2-app-kit")]
 unsafe impl NSObjectProtocol for AMWorkflowController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl AMWorkflowController {
+#[cfg(feature = "objc2-app-kit")]
+impl AMWorkflowController {
+    extern_methods!(
         #[cfg(feature = "AMWorkflow")]
         #[unsafe(method(workflow))]
         #[unsafe(method_family = none)]
@@ -101,13 +101,13 @@ extern_methods!(
         #[unsafe(method(reset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self, sender: &AnyObject);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSController`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl AMWorkflowController {
+/// Methods declared on superclass `NSController`.
+#[cfg(feature = "objc2-app-kit")]
+impl AMWorkflowController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -118,18 +118,18 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl AMWorkflowController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+impl AMWorkflowController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/automator/amworkflowcontrollerdelegate?language=objc)

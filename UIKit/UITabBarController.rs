@@ -93,9 +93,9 @@ unsafe impl UITabBarDelegate for UITabBarController {}
 ))]
 unsafe impl UITraitEnvironment for UITabBarController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UITabBarController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UITabBarController {
+    extern_methods!(
         /// The object managing the delegate of the tab bar controller. Default is nil.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -277,13 +277,13 @@ extern_methods!(
         #[unsafe(method(tabBar))]
         #[unsafe(method_family = none)]
         pub unsafe fn tabBar(&self) -> Retained<UITabBar>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UITabBarController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UITabBarController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -298,13 +298,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UITabBarController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UITabBarController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -312,8 +312,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollerdelegate?language=objc)
@@ -571,10 +571,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UITabBarControllerItem
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIViewController {
+/// UITabBarControllerItem.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIViewController {
+    extern_methods!(
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         #[unsafe(method(tabBarItem))]
         #[unsafe(method_family = none)]
@@ -605,5 +605,5 @@ extern_methods!(
             &self,
             tab_bar_observed_scroll_view: Option<&UIScrollView>,
         );
-    }
-);
+    );
+}

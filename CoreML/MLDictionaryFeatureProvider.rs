@@ -26,8 +26,8 @@ unsafe impl NSObjectProtocol for MLDictionaryFeatureProvider {}
 
 unsafe impl NSSecureCoding for MLDictionaryFeatureProvider {}
 
-extern_methods!(
-    unsafe impl MLDictionaryFeatureProvider {
+impl MLDictionaryFeatureProvider {
+    extern_methods!(
         #[cfg(feature = "MLFeatureValue")]
         /// Dictionary holding the feature values
         #[unsafe(method(dictionary))]
@@ -53,12 +53,12 @@ extern_methods!(
             &self,
             feature_name: &NSString,
         ) -> Option<Retained<MLFeatureValue>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLDictionaryFeatureProvider {
+/// Methods declared on superclass `NSObject`.
+impl MLDictionaryFeatureProvider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,5 +66,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

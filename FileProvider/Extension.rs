@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFileProviderExtension {}
 
-extern_methods!(
-    unsafe impl NSFileProviderExtension {
+impl NSFileProviderExtension {
+    extern_methods!(
         #[cfg(feature = "NSFileProviderItem")]
         #[unsafe(method(itemForIdentifier:error:_))]
         #[unsafe(method_family = none)]
@@ -89,12 +89,12 @@ extern_methods!(
         #[unsafe(method(itemChangedAtURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemChangedAtURL(&self, url: &NSURL);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileProviderExtension {
+/// Methods declared on superclass `NSObject`.
+impl NSFileProviderExtension {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -102,12 +102,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Deprecated
-    unsafe impl NSFileProviderExtension {
+/// Deprecated.
+impl NSFileProviderExtension {
+    extern_methods!(
         /// Writes out a placeholder at the specified URL. The URL should be one returned
         /// by placeholderURLForURL:; if URL resource values are requested, the system will
         /// consult the placeholder before consulting your app extension.
@@ -148,8 +148,8 @@ extern_methods!(
         #[unsafe(method(documentStorageURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn documentStorageURL(&self) -> Retained<NSURL>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainremovalmode?language=objc)
 // NS_ENUM
@@ -207,8 +207,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFileProviderManager {}
 
-extern_methods!(
-    unsafe impl NSFileProviderManager {
+impl NSFileProviderManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -506,17 +506,17 @@ extern_methods!(
             &self,
             kind: &NSProgressFileOperationKind,
         ) -> Retained<NSProgress>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileProviderManager {
+/// Methods declared on superclass `NSObject`.
+impl NSFileProviderManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Posted when the materialized set has changed.
@@ -529,9 +529,9 @@ extern "C" {
     pub static NSFileProviderMaterializedSetDidChange: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// MaterializedSet
-    unsafe impl NSFileProviderManager {
+/// MaterializedSet.
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(feature = "NSFileProviderEnumerating")]
         /// Returns an enumerator for the set of materialized items.
         ///
@@ -551,8 +551,8 @@ extern_methods!(
         pub unsafe fn enumeratorForMaterializedItems(
             &self,
         ) -> Retained<ProtocolObject<dyn NSFileProviderEnumerator>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Posted when the pending set has changed.
@@ -592,9 +592,9 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// PendingSet
-    unsafe impl NSFileProviderManager {
+/// PendingSet.
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(feature = "NSFileProviderEnumerating")]
         /// Returns an enumerator for the set of pending items.
         ///
@@ -606,12 +606,12 @@ extern_methods!(
         pub unsafe fn enumeratorForPendingItems(
             &self,
         ) -> Retained<ProtocolObject<dyn NSFileProviderPendingSetEnumerator>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Import
-    unsafe impl NSFileProviderManager {
+/// Import.
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         /// Request the creation of a new domain that will take ownership of on-disk data that
         /// were previously managed without a file provider.
@@ -711,12 +711,12 @@ extern_methods!(
             options: NSFileProviderModifyItemOptions,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Eviction
-    unsafe impl NSFileProviderManager {
+/// Eviction.
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         /// Request that the system remove an item from its cache.
         ///
@@ -745,12 +745,12 @@ extern_methods!(
             item_identifier: &NSFileProviderItemIdentifier,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Barrier
-    unsafe impl NSFileProviderManager {
+/// Barrier.
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         /// Wait for all changes on disk in the sub-hierarchy of the item to be acknowledged by the extension.
         ///
@@ -775,12 +775,12 @@ extern_methods!(
             item_identifier: &NSFileProviderItemIdentifier,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Stabilization
-    unsafe impl NSFileProviderManager {
+/// Stabilization.
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Wait for stabilization of the domain.
         ///
@@ -796,8 +796,8 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanagerdisconnectionoptions?language=objc)
 // NS_OPTIONS
@@ -819,9 +819,9 @@ unsafe impl RefEncode for NSFileProviderManagerDisconnectionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// Disconnection
-    unsafe impl NSFileProviderManager {
+/// Disconnection.
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(disconnectWithReason:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -839,12 +839,12 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Materialize
-    unsafe impl NSFileProviderManager {
+/// Materialize.
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         /// Request that the system schedule a download for an item.
         ///
@@ -872,12 +872,12 @@ extern_methods!(
             range_to_materialize: NSRange,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// StateDirectory
-    unsafe impl NSFileProviderManager {
+/// StateDirectory.
+impl NSFileProviderManager {
+    extern_methods!(
         /// A directory suitable for storing state information for the domain.
         ///
         /// The returned URL is guaranteed to be on the same volume as the user visible URL and the temporary URL, making sure
@@ -899,8 +899,8 @@ extern_methods!(
         pub unsafe fn stateDirectoryURLWithError(
             &self,
         ) -> Result<Retained<NSURL>, Retained<NSError>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason?language=objc)
 // NS_OPTIONS
@@ -934,9 +934,9 @@ unsafe impl RefEncode for NSFileProviderVolumeUnsupportedReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// ExternalDomain
-    unsafe impl NSFileProviderManager {
+/// ExternalDomain.
+impl NSFileProviderManager {
+    extern_methods!(
         /// Check if a URL is eligible for storing a domain.
         ///
         /// This returns whether the check has been performed succesfully - NOT whether the drive is eligible.
@@ -959,5 +959,5 @@ extern_methods!(
             url: &NSURL,
             unsupported_reason: *mut NSFileProviderVolumeUnsupportedReason,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}

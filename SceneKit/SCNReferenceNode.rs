@@ -68,9 +68,9 @@ unsafe impl SCNAnimatable for SCNReferenceNode {}
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNNode"))]
 unsafe impl SCNBoundingVolume for SCNReferenceNode {}
 
-extern_methods!(
-    #[cfg(feature = "SCNNode")]
-    unsafe impl SCNReferenceNode {
+#[cfg(feature = "SCNNode")]
+impl SCNReferenceNode {
+    extern_methods!(
         /// Creates a reference node with a url.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
@@ -127,24 +127,24 @@ extern_methods!(
         #[unsafe(method(isLoaded))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLoaded(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNNode`
-    #[cfg(feature = "SCNNode")]
-    unsafe impl SCNReferenceNode {
+/// Methods declared on superclass `SCNNode`.
+#[cfg(feature = "SCNNode")]
+impl SCNReferenceNode {
+    extern_methods!(
         /// Creates and initializes a node instance.
         #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNNode")]
-    unsafe impl SCNReferenceNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNNode")]
+impl SCNReferenceNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -152,5 +152,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

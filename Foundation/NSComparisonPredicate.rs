@@ -120,9 +120,9 @@ unsafe impl NSObjectProtocol for NSComparisonPredicate {}
 #[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSSecureCoding for NSComparisonPredicate {}
 
-extern_methods!(
-    #[cfg(feature = "NSPredicate")]
-    unsafe impl NSComparisonPredicate {
+#[cfg(feature = "NSPredicate")]
+impl NSComparisonPredicate {
+    extern_methods!(
         #[cfg(feature = "NSExpression")]
         #[unsafe(method(predicateWithLeftExpression:rightExpression:modifier:type:options:))]
         #[unsafe(method_family = none)]
@@ -198,13 +198,13 @@ extern_methods!(
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> NSComparisonPredicateOptions;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPredicate")]
-    unsafe impl NSComparisonPredicate {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPredicate")]
+impl NSComparisonPredicate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -212,5 +212,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

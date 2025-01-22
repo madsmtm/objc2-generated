@@ -38,8 +38,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVMetadataObject {}
 
-extern_methods!(
-    unsafe impl AVMetadataObject {
+impl AVMetadataObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,8 +82,8 @@ extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<AVMetadataObjectType>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVMetadataBodyObject is an abstract class that defines an interface for a body metadata object used by AVFoundation.
@@ -105,8 +105,8 @@ unsafe impl CopyingHelper for AVMetadataBodyObject {
 
 unsafe impl NSObjectProtocol for AVMetadataBodyObject {}
 
-extern_methods!(
-    unsafe impl AVMetadataBodyObject {
+impl AVMetadataBodyObject {
+    extern_methods!(
         /// A unique number associated with the receiver.
         ///
         ///
@@ -114,12 +114,12 @@ extern_methods!(
         #[unsafe(method(bodyID))]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyID(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMetadataObject`
-    unsafe impl AVMetadataBodyObject {
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataBodyObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -127,8 +127,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// An identifier for an instance of AVMetadataHumanBodyObject.
@@ -162,13 +162,13 @@ unsafe impl CopyingHelper for AVMetadataHumanBodyObject {
 
 unsafe impl NSObjectProtocol for AVMetadataHumanBodyObject {}
 
-extern_methods!(
-    unsafe impl AVMetadataHumanBodyObject {}
-);
+impl AVMetadataHumanBodyObject {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMetadataObject`
-    unsafe impl AVMetadataHumanBodyObject {
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataHumanBodyObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -176,8 +176,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// An identifier for an instance of AVMetadataHumanFullBodyObject.
@@ -211,13 +211,13 @@ unsafe impl CopyingHelper for AVMetadataHumanFullBodyObject {
 
 unsafe impl NSObjectProtocol for AVMetadataHumanFullBodyObject {}
 
-extern_methods!(
-    unsafe impl AVMetadataHumanFullBodyObject {}
-);
+impl AVMetadataHumanFullBodyObject {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMetadataObject`
-    unsafe impl AVMetadataHumanFullBodyObject {
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataHumanFullBodyObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -225,8 +225,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// An identifier for an instance of AVMetadataCatBodyObject.
@@ -260,13 +260,13 @@ unsafe impl CopyingHelper for AVMetadataCatBodyObject {
 
 unsafe impl NSObjectProtocol for AVMetadataCatBodyObject {}
 
-extern_methods!(
-    unsafe impl AVMetadataCatBodyObject {}
-);
+impl AVMetadataCatBodyObject {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMetadataObject`
-    unsafe impl AVMetadataCatBodyObject {
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataCatBodyObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -274,8 +274,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// An identifier for an instance of AVMetadataDogBodyObject.
@@ -309,13 +309,13 @@ unsafe impl CopyingHelper for AVMetadataDogBodyObject {
 
 unsafe impl NSObjectProtocol for AVMetadataDogBodyObject {}
 
-extern_methods!(
-    unsafe impl AVMetadataDogBodyObject {}
-);
+impl AVMetadataDogBodyObject {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMetadataObject`
-    unsafe impl AVMetadataDogBodyObject {
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataDogBodyObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -323,8 +323,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// An identifier for an instance of AVMetadataSalientObject.
@@ -358,8 +358,8 @@ unsafe impl CopyingHelper for AVMetadataSalientObject {
 
 unsafe impl NSObjectProtocol for AVMetadataSalientObject {}
 
-extern_methods!(
-    unsafe impl AVMetadataSalientObject {
+impl AVMetadataSalientObject {
+    extern_methods!(
         /// A unique number associated with the receiver.
         ///
         ///
@@ -367,12 +367,12 @@ extern_methods!(
         #[unsafe(method(objectID))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectID(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMetadataObject`
-    unsafe impl AVMetadataSalientObject {
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataSalientObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -380,8 +380,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// An identifier for an instance of AVMetadataFaceObject.
@@ -415,8 +415,8 @@ unsafe impl CopyingHelper for AVMetadataFaceObject {
 
 unsafe impl NSObjectProtocol for AVMetadataFaceObject {}
 
-extern_methods!(
-    unsafe impl AVMetadataFaceObject {
+impl AVMetadataFaceObject {
+    extern_methods!(
         /// A unique number associated with the receiver.
         ///
         ///
@@ -452,12 +452,12 @@ extern_methods!(
         #[unsafe(method(yawAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn yawAngle(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMetadataObject`
-    unsafe impl AVMetadataFaceObject {
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataFaceObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -465,8 +465,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeUPCECode.
@@ -674,8 +674,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVMetadataMachineReadableCodeObject {}
 
-extern_methods!(
-    unsafe impl AVMetadataMachineReadableCodeObject {
+impl AVMetadataMachineReadableCodeObject {
+    extern_methods!(
         /// The points defining the (X,Y) locations of the corners of the machine-readable code.
         ///
         ///
@@ -691,12 +691,12 @@ extern_methods!(
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMetadataObject`
-    unsafe impl AVMetadataMachineReadableCodeObject {
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataMachineReadableCodeObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -704,12 +704,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMetadataMachineReadableCodeDescriptor
-    unsafe impl AVMetadataMachineReadableCodeObject {
+/// AVMetadataMachineReadableCodeDescriptor.
+impl AVMetadataMachineReadableCodeObject {
+    extern_methods!(
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
         /// An abstract representation of a machine readable code's symbol attributes.
@@ -719,5 +719,5 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Option<Retained<CIBarcodeDescriptor>>;
-    }
-);
+    );
+}

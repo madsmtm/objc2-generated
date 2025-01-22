@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLCTensorData {}
 
-extern_methods!(
-    unsafe impl MLCTensorData {
+impl MLCTensorData {
+    extern_methods!(
         /// Pointer to memory that contains or will be used for tensor data
         #[deprecated]
         #[unsafe(method(bytes))]
@@ -101,5 +101,5 @@ extern_methods!(
             length: NSUInteger,
             deallocator: &block2::Block<dyn Fn(NonNull<c_void>, NSUInteger)>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

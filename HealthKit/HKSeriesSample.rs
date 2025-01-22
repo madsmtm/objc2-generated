@@ -31,33 +31,33 @@ unsafe impl NSObjectProtocol for HKSeriesSample {}
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKSeriesSample {}
 
-extern_methods!(
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKSeriesSample {
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKSeriesSample {
+    extern_methods!(
         /// The number of individual series datum represented by the receiver and accessible
         /// through the appropriate HKQuery series subclass.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObject`
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKSeriesSample {
+/// Methods declared on superclass `HKObject`.
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKSeriesSample {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKSeriesSample {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKSeriesSample {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

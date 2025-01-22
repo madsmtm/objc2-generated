@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for UNNotificationAttachment {}
 
 unsafe impl NSSecureCoding for UNNotificationAttachment {}
 
-extern_methods!(
-    unsafe impl UNNotificationAttachment {
+impl UNNotificationAttachment {
+    extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -50,17 +50,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UNNotificationAttachment {
+/// Methods declared on superclass `NSObject`.
+impl UNNotificationAttachment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionstypehintkey?language=objc)

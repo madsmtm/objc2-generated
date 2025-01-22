@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKCrownSequencer {}
 
-extern_methods!(
-    unsafe impl WKCrownSequencer {
+impl WKCrownSequencer {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WKCrownDelegate>>>;
@@ -55,17 +55,17 @@ extern_methods!(
         #[unsafe(method(resignFocus))]
         #[unsafe(method_family = none)]
         pub unsafe fn resignFocus(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKCrownSequencer {
+/// Methods declared on superclass `NSObject`.
+impl WKCrownSequencer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkcrowndelegate?language=objc)

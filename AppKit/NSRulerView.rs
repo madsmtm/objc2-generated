@@ -97,9 +97,9 @@ unsafe impl NSObjectProtocol for NSRulerView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSRulerView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSRulerView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSRulerView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// *********************** Registering new units ************************
         #[unsafe(method(registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:))]
@@ -296,43 +296,43 @@ extern_methods!(
         #[unsafe(method(isFlipped))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFlipped(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSRulerView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSRulerView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSRulerView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSRulerView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSRulerView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSRulerView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSRulerMarkerClientViewDelegation
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSRulerMarkerClientViewDelegation.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "NSRulerMarker")]
         #[unsafe(method(rulerView:shouldMoveMarker:))]
         #[unsafe(method_family = none)]
@@ -421,5 +421,5 @@ extern_methods!(
             ruler: &NSRulerView,
             point: CGFloat,
         ) -> NSPoint;
-    }
-);
+    );
+}

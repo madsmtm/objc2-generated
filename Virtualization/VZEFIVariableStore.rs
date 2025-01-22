@@ -43,8 +43,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZEFIVariableStore {}
 
-extern_methods!(
-    unsafe impl VZEFIVariableStore {
+impl VZEFIVariableStore {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -85,5 +85,5 @@ extern_methods!(
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
-    }
-);
+    );
+}

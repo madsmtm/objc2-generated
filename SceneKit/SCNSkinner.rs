@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for SCNSkinner {}
 
 unsafe impl NSSecureCoding for SCNSkinner {}
 
-extern_methods!(
-    unsafe impl SCNSkinner {
+impl SCNSkinner {
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         /// Specifies the skeleton of the receiver.
         ///
@@ -116,12 +116,12 @@ extern_methods!(
         #[unsafe(method(boneIndices))]
         #[unsafe(method_family = none)]
         pub unsafe fn boneIndices(&self) -> Retained<SCNGeometrySource>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNSkinner {
+/// Methods declared on superclass `NSObject`.
+impl SCNSkinner {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -129,5 +129,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

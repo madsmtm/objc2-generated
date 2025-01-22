@@ -50,8 +50,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPrintInteractionController {}
 
-extern_methods!(
-    unsafe impl UIPrintInteractionController {
+impl UIPrintInteractionController {
+    extern_methods!(
         #[unsafe(method(isPrintingAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPrintingAvailable(mtm: MainThreadMarker) -> bool;
@@ -239,12 +239,12 @@ extern_methods!(
         #[unsafe(method(dismissAnimated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissAnimated(&self, animated: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPrintInteractionController {
+/// Methods declared on superclass `NSObject`.
+impl UIPrintInteractionController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -252,8 +252,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinteractioncontrollerdelegate?language=objc)

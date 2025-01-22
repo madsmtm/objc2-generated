@@ -95,9 +95,9 @@ unsafe impl NSObjectProtocol for NSTextInsertionIndicator {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSTextInsertionIndicator {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextInsertionIndicator {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSTextInsertionIndicator {
+    extern_methods!(
         /// Sets-returns the indicator's display mode.
         #[unsafe(method(displayMode))]
         #[unsafe(method_family = none)]
@@ -155,13 +155,13 @@ extern_methods!(
             &self,
             effects_view_inserter: Option<&block2::Block<dyn Fn(NonNull<NSView>)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextInsertionIndicator {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSTextInsertionIndicator {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -172,25 +172,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextInsertionIndicator {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSTextInsertionIndicator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextInsertionIndicator {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSTextInsertionIndicator {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

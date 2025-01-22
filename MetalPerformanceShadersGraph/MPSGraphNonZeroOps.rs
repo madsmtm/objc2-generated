@@ -6,10 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// NonZeroOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// NonZeroOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Computes the indices of the non-zero elements of the input tensor.
         ///
@@ -34,5 +34,5 @@ extern_methods!(
             tensor: &MPSGraphTensor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

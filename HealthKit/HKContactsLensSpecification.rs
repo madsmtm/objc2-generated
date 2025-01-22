@@ -39,9 +39,9 @@ unsafe impl NSObjectProtocol for HKContactsLensSpecification {}
 #[cfg(feature = "HKLensSpecification")]
 unsafe impl NSSecureCoding for HKContactsLensSpecification {}
 
-extern_methods!(
-    #[cfg(feature = "HKLensSpecification")]
-    unsafe impl HKContactsLensSpecification {
+#[cfg(feature = "HKLensSpecification")]
+impl HKContactsLensSpecification {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// The curvature of the back surface of the lens (measured in mm)
         #[unsafe(method(baseCurve))]
@@ -85,5 +85,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

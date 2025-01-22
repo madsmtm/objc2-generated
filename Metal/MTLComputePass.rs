@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for MTLComputePassSampleBufferAttachmentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
+impl MTLComputePassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLCounters")]
         /// The sample buffer to store samples for the compute-pass defined samples.
         /// If sampleBuffer is non-nil, the sample indices will be used to store samples into
@@ -77,12 +77,12 @@ extern_methods!(
         #[unsafe(method(setEndOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLComputePassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -90,8 +90,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepasssamplebufferattachmentdescriptorarray?language=objc)
@@ -102,8 +102,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLComputePassSampleBufferAttachmentDescriptorArray {
+impl MTLComputePassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -118,12 +118,12 @@ extern_methods!(
             attachment: Option<&MTLComputePassSampleBufferAttachmentDescriptor>,
             attachment_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLComputePassSampleBufferAttachmentDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLComputePassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -131,8 +131,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MTLComputePassDescriptor represents a collection of attachments to be used to create a concrete compute command encoder
@@ -151,8 +151,8 @@ unsafe impl CopyingHelper for MTLComputePassDescriptor {
 
 unsafe impl NSObjectProtocol for MTLComputePassDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLComputePassDescriptor {
+impl MTLComputePassDescriptor {
+    extern_methods!(
         /// Create an autoreleased default frame buffer descriptor
         #[unsafe(method(computePassDescriptor))]
         #[unsafe(method_family = none)]
@@ -176,12 +176,12 @@ extern_methods!(
         pub unsafe fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLComputePassSampleBufferAttachmentDescriptorArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLComputePassDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLComputePassDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -189,5 +189,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

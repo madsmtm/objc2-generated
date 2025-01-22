@@ -30,8 +30,8 @@ unsafe impl CopyingHelper for VZSerialPortConfiguration {
 
 unsafe impl NSObjectProtocol for VZSerialPortConfiguration {}
 
-extern_methods!(
-    unsafe impl VZSerialPortConfiguration {
+impl VZSerialPortConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(setAttachment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachment(&self, attachment: Option<&VZSerialPortAttachment>);
-    }
-);
+    );
+}

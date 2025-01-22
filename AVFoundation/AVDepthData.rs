@@ -73,8 +73,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVDepthData {}
 
-extern_methods!(
-    unsafe impl AVDepthData {
+impl AVDepthData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -208,5 +208,5 @@ extern_methods!(
         #[unsafe(method(cameraCalibrationData))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraCalibrationData(&self) -> Option<Retained<AVCameraCalibrationData>>;
-    }
-);
+    );
+}

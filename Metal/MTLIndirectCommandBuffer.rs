@@ -80,8 +80,8 @@ unsafe impl CopyingHelper for MTLIndirectCommandBufferDescriptor {
 
 unsafe impl NSObjectProtocol for MTLIndirectCommandBufferDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLIndirectCommandBufferDescriptor {
+impl MTLIndirectCommandBufferDescriptor {
+    extern_methods!(
         /// A bitfield of the command types that be encoded.
         ///
         /// MTLCommandTypeDispatch cannot be mixed with any other command type.
@@ -218,12 +218,12 @@ extern_methods!(
             &self,
             support_dynamic_attribute_stride: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLIndirectCommandBufferDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLIndirectCommandBufferDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -231,8 +231,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbuffer?language=objc)

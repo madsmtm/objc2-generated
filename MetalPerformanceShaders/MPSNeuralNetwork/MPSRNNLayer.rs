@@ -68,8 +68,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSRNNDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSRNNDescriptor {
+impl MPSRNNDescriptor {
+    extern_methods!(
         /// The number of feature channels per pixel in the input image or number of rows in the input matrix.
         #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
@@ -147,12 +147,12 @@ extern_methods!(
             &self,
             layer_sequence_direction: MPSRNNSequenceDirection,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSRNNDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSRNNDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -160,8 +160,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -203,8 +203,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSRNNSingleGateDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSRNNSingleGateDescriptor {
+impl MPSRNNSingleGateDescriptor {
+    extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'W_ij', bias 'b_i' and neuron 'gi' from the simple RNN layer formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
@@ -254,12 +254,12 @@ extern_methods!(
             input_feature_channels: NSUInteger,
             output_feature_channels: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSRNNSingleGateDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSRNNSingleGateDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -267,8 +267,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -327,8 +327,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSGRUDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSGRUDescriptor {
+impl MPSGRUDescriptor {
+    extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Wz_ij', bias 'bz_i' and neuron 'gz' from the GRU formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
@@ -494,12 +494,12 @@ extern_methods!(
             input_feature_channels: NSUInteger,
             output_feature_channels: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSGRUDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSGRUDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -507,8 +507,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -571,8 +571,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSLSTMDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSLSTMDescriptor {
+impl MPSLSTMDescriptor {
+    extern_methods!(
         /// If YES, then the 'peephole' weight matrices will be diagonal matrices represented as
         /// vectors of length the number of features in memory cells, that will be multiplied pointwise
         /// with the peephole matrix or image in order to achieve the diagonal (nonmixing) update.
@@ -869,12 +869,12 @@ extern_methods!(
             input_feature_channels: NSUInteger,
             output_feature_channels: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSLSTMDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSLSTMDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -882,8 +882,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -900,9 +900,9 @@ extern_class!(
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSRNNRecurrentImageState {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSRNNRecurrentImageState {
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSRNNRecurrentImageState {
+    extern_methods!(
         #[cfg(feature = "MPSImage")]
         /// Access the stored recurrent image data.
         ///
@@ -932,13 +932,13 @@ extern_methods!(
             &self,
             layer_index: NSUInteger,
         ) -> Option<Retained<MPSImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSRNNRecurrentImageState {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSRNNRecurrentImageState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -1038,18 +1038,18 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSRNNRecurrentImageState {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSRNNRecurrentImageState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -1096,9 +1096,9 @@ unsafe impl NSObjectProtocol for MPSRNNImageInferenceLayer {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSRNNImageInferenceLayer {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRNNImageInferenceLayer {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRNNImageInferenceLayer {
+    extern_methods!(
         /// The number of feature channels per pixel in the input image.
         #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
@@ -1341,13 +1341,13 @@ extern_methods!(
             zone: *mut NSZone,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRNNImageInferenceLayer {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRNNImageInferenceLayer {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1362,13 +1362,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRNNImageInferenceLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRNNImageInferenceLayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1376,8 +1376,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -1394,9 +1394,9 @@ extern_class!(
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSRNNRecurrentMatrixState {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSRNNRecurrentMatrixState {
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSRNNRecurrentMatrixState {
+    extern_methods!(
         #[cfg(feature = "MPSMatrix")]
         /// Access the stored recurrent matrix data.
         ///
@@ -1426,13 +1426,13 @@ extern_methods!(
             &self,
             layer_index: NSUInteger,
         ) -> Option<Retained<MPSMatrix>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSRNNRecurrentMatrixState {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSRNNRecurrentMatrixState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -1532,18 +1532,18 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSRNNRecurrentMatrixState {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSRNNRecurrentMatrixState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -1620,9 +1620,9 @@ unsafe impl NSObjectProtocol for MPSRNNMatrixInferenceLayer {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSRNNMatrixInferenceLayer {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRNNMatrixInferenceLayer {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRNNMatrixInferenceLayer {
+    extern_methods!(
         /// The number of feature channels input vector/matrix.
         #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
@@ -1886,13 +1886,13 @@ extern_methods!(
             zone: *mut NSZone,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRNNMatrixInferenceLayer {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRNNMatrixInferenceLayer {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1907,13 +1907,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRNNMatrixInferenceLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRNNMatrixInferenceLayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1921,8 +1921,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -1939,15 +1939,15 @@ extern_class!(
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSRNNMatrixTrainingState {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSRNNMatrixTrainingState {}
-);
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSRNNMatrixTrainingState {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSRNNMatrixTrainingState {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSRNNMatrixTrainingState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -2047,18 +2047,18 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSRNNMatrixTrainingState {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSRNNMatrixTrainingState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid?language=objc)
 // NS_ENUM
@@ -2197,9 +2197,9 @@ unsafe impl NSObjectProtocol for MPSRNNMatrixTrainingLayer {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSRNNMatrixTrainingLayer {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRNNMatrixTrainingLayer {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRNNMatrixTrainingLayer {
+    extern_methods!(
         /// The number of feature channels input vector/matrix.
         #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
@@ -2619,13 +2619,13 @@ extern_methods!(
             zone: *mut NSZone,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRNNMatrixTrainingLayer {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRNNMatrixTrainingLayer {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -2640,13 +2640,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSRNNMatrixTrainingLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSRNNMatrixTrainingLayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2654,5 +2654,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

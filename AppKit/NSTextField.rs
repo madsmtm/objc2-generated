@@ -103,9 +103,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSTextField {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSTextField {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextField {
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTextField {
+    extern_methods!(
         #[unsafe(method(placeholderString))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderString(&self) -> Option<Retained<NSString>>;
@@ -299,13 +299,13 @@ extern_methods!(
         #[unsafe(method(setAllowsWritingTools:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsWritingTools(&self, allows_writing_tools: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextField {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTextField {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -316,33 +316,33 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextField {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTextField {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextField {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTextField {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTouchBar
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextField {
+/// NSTouchBar.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTextField {
+    extern_methods!(
         #[unsafe(method(isAutomaticTextCompletionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticTextCompletionEnabled(&self) -> bool;
@@ -366,13 +366,13 @@ extern_methods!(
             &self,
             allows_character_picker_touch_bar_item: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTextFieldConvenience
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextField {
+/// NSTextFieldConvenience.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTextField {
+    extern_methods!(
         /// Creates a non-wrapping, non-editable, non-selectable text field that displays text in the default system font.
         ///
         /// Parameter `stringValue`: The title text to display in the field.
@@ -421,13 +421,13 @@ extern_methods!(
             string_value: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTextFieldAttributedStringMethods
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextField {
+/// NSTextFieldAttributedStringMethods.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTextField {
+    extern_methods!(
         #[unsafe(method(allowsEditingTextAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsEditingTextAttributes(&self) -> bool;
@@ -445,8 +445,8 @@ extern_methods!(
         #[unsafe(method(setImportsGraphics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImportsGraphics(&self, imports_graphics: bool);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfielddelegate?language=objc)
@@ -515,13 +515,13 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTextField {
+/// NSDeprecated.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTextField {
+    extern_methods!(
         #[deprecated = "Use `-setTitle:` instead"]
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
-    }
-);
+    );
+}

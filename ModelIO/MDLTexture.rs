@@ -92,8 +92,8 @@ unsafe impl MDLNamed for MDLTexture {}
 
 unsafe impl NSObjectProtocol for MDLTexture {}
 
-extern_methods!(
-    unsafe impl MDLTexture {
+impl MDLTexture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -248,17 +248,17 @@ extern_methods!(
         #[unsafe(method(setHasAlphaValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHasAlphaValues(&self, has_alpha_values: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLTexture {
+/// Methods declared on superclass `NSObject`.
+impl MDLTexture {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MDLURLTexture
@@ -279,8 +279,8 @@ unsafe impl MDLNamed for MDLURLTexture {}
 
 unsafe impl NSObjectProtocol for MDLURLTexture {}
 
-extern_methods!(
-    unsafe impl MDLURLTexture {
+impl MDLURLTexture {
+    extern_methods!(
         #[unsafe(method(initWithURL:name:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_name(
@@ -297,12 +297,12 @@ extern_methods!(
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: &NSURL);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MDLTexture`
-    unsafe impl MDLURLTexture {
+/// Methods declared on superclass `MDLTexture`.
+impl MDLURLTexture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -355,17 +355,17 @@ extern_methods!(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLURLTexture {
+/// Methods declared on superclass `NSObject`.
+impl MDLURLTexture {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MDLCheckerboardTexture
@@ -386,8 +386,8 @@ unsafe impl MDLNamed for MDLCheckerboardTexture {}
 
 unsafe impl NSObjectProtocol for MDLCheckerboardTexture {}
 
-extern_methods!(
-    unsafe impl MDLCheckerboardTexture {
+impl MDLCheckerboardTexture {
+    extern_methods!(
         #[unsafe(method(divisions))]
         #[unsafe(method_family = none)]
         pub unsafe fn divisions(&self) -> c_float;
@@ -418,12 +418,12 @@ extern_methods!(
         #[unsafe(method(setColor2:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor2(&self, color2: Option<&CGColor>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MDLTexture`
-    unsafe impl MDLCheckerboardTexture {
+/// Methods declared on superclass `MDLTexture`.
+impl MDLCheckerboardTexture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -476,17 +476,17 @@ extern_methods!(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLCheckerboardTexture {
+/// Methods declared on superclass `NSObject`.
+impl MDLCheckerboardTexture {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MDLSkyCubeTexture
@@ -548,8 +548,8 @@ unsafe impl MDLNamed for MDLSkyCubeTexture {}
 
 unsafe impl NSObjectProtocol for MDLSkyCubeTexture {}
 
-extern_methods!(
-    unsafe impl MDLSkyCubeTexture {
+impl MDLSkyCubeTexture {
+    extern_methods!(
         /// Call updateTexture if parameters have been changed and a new sky is required.
         #[unsafe(method(updateTexture))]
         #[unsafe(method_family = none)]
@@ -664,12 +664,12 @@ extern_methods!(
         #[unsafe(method(setSaturation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSaturation(&self, saturation: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MDLTexture`
-    unsafe impl MDLSkyCubeTexture {
+/// Methods declared on superclass `MDLTexture`.
+impl MDLSkyCubeTexture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -722,17 +722,17 @@ extern_methods!(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLSkyCubeTexture {
+/// Methods declared on superclass `NSObject`.
+impl MDLSkyCubeTexture {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcolorswatchtexture?language=objc)
@@ -746,13 +746,13 @@ unsafe impl MDLNamed for MDLColorSwatchTexture {}
 
 unsafe impl NSObjectProtocol for MDLColorSwatchTexture {}
 
-extern_methods!(
-    unsafe impl MDLColorSwatchTexture {}
-);
+impl MDLColorSwatchTexture {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MDLTexture`
-    unsafe impl MDLColorSwatchTexture {
+/// Methods declared on superclass `MDLTexture`.
+impl MDLColorSwatchTexture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -805,17 +805,17 @@ extern_methods!(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLColorSwatchTexture {
+/// Methods declared on superclass `NSObject`.
+impl MDLColorSwatchTexture {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MDLNoiseTexture
@@ -835,13 +835,13 @@ unsafe impl MDLNamed for MDLNoiseTexture {}
 
 unsafe impl NSObjectProtocol for MDLNoiseTexture {}
 
-extern_methods!(
-    unsafe impl MDLNoiseTexture {}
-);
+impl MDLNoiseTexture {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MDLTexture`
-    unsafe impl MDLNoiseTexture {
+/// Methods declared on superclass `MDLTexture`.
+impl MDLNoiseTexture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -894,17 +894,17 @@ extern_methods!(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLNoiseTexture {
+/// Methods declared on superclass `NSObject`.
+impl MDLNoiseTexture {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlnormalmaptexture?language=objc)
@@ -918,8 +918,8 @@ unsafe impl MDLNamed for MDLNormalMapTexture {}
 
 unsafe impl NSObjectProtocol for MDLNormalMapTexture {}
 
-extern_methods!(
-    unsafe impl MDLNormalMapTexture {
+impl MDLNormalMapTexture {
+    extern_methods!(
         #[unsafe(method(initByGeneratingNormalMapWithTexture:name:smoothness:contrast:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initByGeneratingNormalMapWithTexture_name_smoothness_contrast(
@@ -929,12 +929,12 @@ extern_methods!(
             smoothness: c_float,
             contrast: c_float,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MDLTexture`
-    unsafe impl MDLNormalMapTexture {
+/// Methods declared on superclass `MDLTexture`.
+impl MDLNormalMapTexture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -987,14 +987,14 @@ extern_methods!(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLNormalMapTexture {
+/// Methods declared on superclass `NSObject`.
+impl MDLNormalMapTexture {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

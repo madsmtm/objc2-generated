@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for MKMapCamera {}
 
 unsafe impl NSSecureCoding for MKMapCamera {}
 
-extern_methods!(
-    unsafe impl MKMapCamera {
+impl MKMapCamera {
+    extern_methods!(
         #[cfg(feature = "objc2-core-location")]
         #[unsafe(method(centerCoordinate))]
         #[unsafe(method_family = none)]
@@ -123,12 +123,12 @@ extern_methods!(
             view_size: CGSize,
             allow_pitch: bool,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKMapCamera {
+/// Methods declared on superclass `NSObject`.
+impl MKMapCamera {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -136,5 +136,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

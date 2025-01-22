@@ -55,13 +55,13 @@ unsafe impl NSObjectProtocol for HKCDADocumentSample {}
 ))]
 unsafe impl NSSecureCoding for HKCDADocumentSample {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "HKDocumentSample",
-        feature = "HKObject",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKCDADocumentSample {
+#[cfg(all(
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
+))]
+impl HKCDADocumentSample {
+    extern_methods!(
         /// The contents of the document.
         ///
         /// Access to each CDA instance must be authorized by the user in order for the document data to be
@@ -99,36 +99,36 @@ extern_methods!(
             end_date: &NSDate,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObject`
-    #[cfg(all(
-        feature = "HKDocumentSample",
-        feature = "HKObject",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKCDADocumentSample {
+/// Methods declared on superclass `HKObject`.
+#[cfg(all(
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
+))]
+impl HKCDADocumentSample {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "HKDocumentSample",
-        feature = "HKObject",
-        feature = "HKSample"
-    ))]
-    unsafe impl HKCDADocumentSample {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "HKDocumentSample",
+    feature = "HKObject",
+    feature = "HKSample"
+))]
+impl HKCDADocumentSample {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcdadocument?language=objc)
@@ -143,8 +143,8 @@ unsafe impl Sync for HKCDADocument {}
 
 unsafe impl NSObjectProtocol for HKCDADocument {}
 
-extern_methods!(
-    unsafe impl HKCDADocument {
+impl HKCDADocument {
+    extern_methods!(
         /// The CDA document content in XML format as specified in the CDA standard. This may be nil if the
         /// includeDocumentData option in HKDocumentQuery is specified as NO.
         #[unsafe(method(documentData))]
@@ -178,12 +178,12 @@ extern_methods!(
         #[unsafe(method(custodianName))]
         #[unsafe(method_family = none)]
         pub unsafe fn custodianName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKCDADocument {
+/// Methods declared on superclass `NSObject`.
+impl HKCDADocument {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -191,8 +191,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdatitle?language=objc)

@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for MLKey {}
 
 unsafe impl NSSecureCoding for MLKey {}
 
-extern_methods!(
-    unsafe impl MLKey {
+impl MLKey {
+    extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -44,5 +44,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

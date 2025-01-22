@@ -117,8 +117,8 @@ unsafe impl SCNBoundingVolume for SCNGeometry {}
 #[cfg(feature = "SCNShadable")]
 unsafe impl SCNShadable for SCNGeometry {}
 
-extern_methods!(
-    unsafe impl SCNGeometry {
+impl SCNGeometry {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -408,12 +408,12 @@ extern_methods!(
         #[unsafe(method(setEdgeCreasesSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEdgeCreasesSource(&self, edge_creases_source: Option<&SCNGeometrySource>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNGeometry {
+/// Methods declared on superclass `NSObject`.
+impl SCNGeometry {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -421,8 +421,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A geometry source contains geometry data for a specific semantic. The data format is described by properties.
@@ -439,8 +439,8 @@ unsafe impl NSObjectProtocol for SCNGeometrySource {}
 
 unsafe impl NSSecureCoding for SCNGeometrySource {}
 
-extern_methods!(
-    unsafe impl SCNGeometrySource {
+impl SCNGeometrySource {
+    extern_methods!(
         /// Creates and returns a geometry source from the given data and parameters.
         ///
         /// Parameter `data`: The geometry data.
@@ -608,12 +608,12 @@ extern_methods!(
         #[unsafe(method(dataStride))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataStride(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNGeometrySource {
+/// Methods declared on superclass `NSObject`.
+impl SCNGeometrySource {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -621,8 +621,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A geometry element describes how vertices from a geometry source are connected together.
@@ -639,8 +639,8 @@ unsafe impl NSObjectProtocol for SCNGeometryElement {}
 
 unsafe impl NSSecureCoding for SCNGeometryElement {}
 
-extern_methods!(
-    unsafe impl SCNGeometryElement {
+impl SCNGeometryElement {
+    extern_methods!(
         /// Creates and returns a geometry element from the given data and data format info.
         ///
         /// Parameter `data`: The data that contains element indices. You can pass nil to use an implicit vertex ordering (0,1,2,…).
@@ -797,12 +797,12 @@ extern_methods!(
             &self,
             maximum_point_screen_space_radius: CGFloat,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNGeometryElement {
+/// Methods declared on superclass `NSObject`.
+impl SCNGeometryElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -810,8 +810,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntessellationsmoothingmode?language=objc)
 // NS_ENUM
@@ -856,8 +856,8 @@ unsafe impl NSObjectProtocol for SCNGeometryTessellator {}
 
 unsafe impl NSSecureCoding for SCNGeometryTessellator {}
 
-extern_methods!(
-    unsafe impl SCNGeometryTessellator {
+impl SCNGeometryTessellator {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the scale factor applied to the per-patch tessellation factors. Defaults to 1.
         #[unsafe(method(tessellationFactorScale))]
@@ -958,12 +958,12 @@ extern_methods!(
         #[unsafe(method(setSmoothingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSmoothingMode(&self, smoothing_mode: SCNTessellationSmoothingMode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNGeometryTessellator {
+/// Methods declared on superclass `NSObject`.
+impl SCNGeometryTessellator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -971,5 +971,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

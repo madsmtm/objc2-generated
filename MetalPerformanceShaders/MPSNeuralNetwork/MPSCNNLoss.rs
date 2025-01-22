@@ -29,8 +29,8 @@ unsafe impl CopyingHelper for MPSCNNLossDataDescriptor {
 
 unsafe impl NSObjectProtocol for MPSCNNLossDataDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSCNNLossDataDescriptor {
+impl MPSCNNLossDataDescriptor {
+    extern_methods!(
         #[cfg(all(feature = "MPSCore", feature = "MPSImage"))]
         /// Data layout of loss data. See MPSImage.h for more information.
         ///
@@ -94,17 +94,17 @@ extern_methods!(
             layout: MPSDataLayout,
             size: MTLSize,
         ) -> Option<Retained<MPSCNNLossDataDescriptor>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSCNNLossDataDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSCNNLossDataDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -124,9 +124,9 @@ extern_class!(
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSCNNLossLabels {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSCNNLossLabels {
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSCNNLossLabels {
+    extern_methods!(
         /// Use one of the interfaces below instead.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -264,13 +264,13 @@ extern_methods!(
         #[unsafe(method(weightsImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn weightsImage(&self) -> Retained<MPSImage>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSCNNLossLabels {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSCNNLossLabels {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -366,18 +366,18 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSCNNLossLabels {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSCNNLossLabels {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosslabelsbatch?language=objc)
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -404,8 +404,8 @@ unsafe impl CopyingHelper for MPSCNNLossDescriptor {
 
 unsafe impl NSObjectProtocol for MPSCNNLossDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSCNNLossDescriptor {
+impl MPSCNNLossDescriptor {
+    extern_methods!(
         #[cfg(feature = "MPSCNNTypes")]
         /// The type of a loss filter.
         ///
@@ -557,17 +557,17 @@ extern_methods!(
             loss_type: MPSCNNLossType,
             reduction_type: MPSCNNReductionType,
         ) -> Retained<MPSCNNLossDescriptor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSCNNLossDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSCNNLossDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -782,9 +782,9 @@ unsafe impl NSObjectProtocol for MPSCNNLoss {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNLoss {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLoss {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLoss {
+    extern_methods!(
         #[cfg(feature = "MPSCNNTypes")]
         /// See MPSCNNLossDescriptor for information about the following properties.
         #[unsafe(method(lossType))]
@@ -922,13 +922,13 @@ extern_methods!(
             source_image: &MPSImageBatch,
             labels: &MPSCNNLossLabelsBatch,
         ) -> Retained<MPSImageBatch>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLoss {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLoss {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -943,13 +943,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNLoss {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNLoss {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -957,8 +957,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -1013,8 +1013,8 @@ unsafe impl CopyingHelper for MPSCNNYOLOLossDescriptor {
 
 unsafe impl NSObjectProtocol for MPSCNNYOLOLossDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSCNNYOLOLossDescriptor {
+impl MPSCNNYOLOLossDescriptor {
+    extern_methods!(
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
@@ -1252,17 +1252,17 @@ extern_methods!(
             anchor_boxes: &NSData,
             number_of_anchor_boxes: NSUInteger,
         ) -> Retained<MPSCNNYOLOLossDescriptor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSCNNYOLOLossDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSCNNYOLOLossDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololoss?language=objc)
@@ -1289,9 +1289,9 @@ unsafe impl NSObjectProtocol for MPSCNNYOLOLoss {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNYOLOLoss {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNYOLOLoss {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNYOLOLoss {
+    extern_methods!(
         /// loss filter for prediction of bounding box position
         #[unsafe(method(lossXY))]
         #[unsafe(method_family = none)]
@@ -1460,13 +1460,13 @@ extern_methods!(
             source_image: &MPSImageBatch,
             labels: &MPSCNNLossLabelsBatch,
         ) -> Retained<MPSImageBatch>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNYOLOLoss {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNYOLOLoss {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1481,13 +1481,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNYOLOLoss {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNYOLOLoss {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1495,8 +1495,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -1534,9 +1534,9 @@ unsafe impl NSObjectProtocol for MPSNNForwardLoss {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNForwardLoss {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNForwardLoss {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNForwardLoss {
+    extern_methods!(
         #[cfg(feature = "MPSCNNTypes")]
         /// See MPSCNNLossDescriptor for information about the following properties.
         #[unsafe(method(lossType))]
@@ -1685,13 +1685,13 @@ extern_methods!(
             out_states: Option<&mut Option<Retained<MPSStateBatch>>>,
             is_temporary: bool,
         ) -> Retained<MPSImageBatch>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNForwardLoss {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNForwardLoss {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1706,13 +1706,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNForwardLoss {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNForwardLoss {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1720,8 +1720,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -1753,9 +1753,9 @@ unsafe impl NSObjectProtocol for MPSNNLossGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNLossGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNLossGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNLossGradient {
+    extern_methods!(
         #[cfg(feature = "MPSCNNTypes")]
         /// See MPSCNNLossDescriptor for information about the following properties.
         #[unsafe(method(lossType))]
@@ -1911,13 +1911,13 @@ extern_methods!(
             source_states: Option<&MPSStateBatch>,
             destination_gradients: &MPSImageBatch,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNLossGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNLossGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1932,13 +1932,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNLossGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNLossGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1946,8 +1946,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -2007,9 +2007,9 @@ unsafe impl NSObjectProtocol for MPSNNInitialGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNInitialGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNInitialGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNInitialGradient {
+    extern_methods!(
         /// Initializes a MPSNNInitialGradient kernel.
         ///
         ///
@@ -2022,13 +2022,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNInitialGradient {
+/// Methods declared on superclass `MPSCNNKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNInitialGradient {
+    extern_methods!(
         /// NSSecureCoding compatability
         ///
         /// While the standard NSSecureCoding/NSCoding method
@@ -2049,13 +2049,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNInitialGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNInitialGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -2070,13 +2070,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNInitialGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNInitialGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2084,5 +2084,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

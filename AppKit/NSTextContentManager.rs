@@ -111,8 +111,8 @@ unsafe impl NSSecureCoding for NSTextContentManager {}
 
 unsafe impl NSTextElementProvider for NSTextContentManager {}
 
-extern_methods!(
-    unsafe impl NSTextContentManager {
+impl NSTextContentManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -228,17 +228,17 @@ extern_methods!(
             &self,
             automatically_synchronizes_to_backing_store: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextContentManager {
+/// Methods declared on superclass `NSObject`.
+impl NSTextContentManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentmanagerdelegate?language=objc)
@@ -299,8 +299,8 @@ unsafe impl NSTextElementProvider for NSTextContentStorage {}
 #[cfg(feature = "NSTextStorage")]
 unsafe impl NSTextStorageObserving for NSTextContentStorage {}
 
-extern_methods!(
-    unsafe impl NSTextContentStorage {
+impl NSTextContentStorage {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -367,12 +367,12 @@ extern_methods!(
             text_range: &NSTextRange,
             for_editing_text_selection: bool,
         ) -> Option<Retained<NSTextRange>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextContentManager`
-    unsafe impl NSTextContentStorage {
+/// Methods declared on superclass `NSTextContentManager`.
+impl NSTextContentStorage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -383,17 +383,17 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextContentStorage {
+/// Methods declared on superclass `NSObject`.
+impl NSTextContentStorage {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentstorageunsupportedattributeaddednotification?language=objc)

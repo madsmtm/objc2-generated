@@ -33,9 +33,9 @@ unsafe impl CopyingHelper for PHAsset {
 #[cfg(feature = "PHObject")]
 unsafe impl NSObjectProtocol for PHAsset {}
 
-extern_methods!(
-    #[cfg(feature = "PHObject")]
-    unsafe impl PHAsset {
+#[cfg(feature = "PHObject")]
+impl PHAsset {
+    extern_methods!(
         #[cfg(feature = "PhotosTypes")]
         #[unsafe(method(playbackStyle))]
         #[unsafe(method_family = none)]
@@ -187,13 +187,13 @@ extern_methods!(
             asset_ur_ls: &NSArray<NSURL>,
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHAsset>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "PHObject")]
-    unsafe impl PHAsset {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "PHObject")]
+impl PHAsset {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -201,5 +201,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPPlayableContentManager {}
 
-extern_methods!(
-    unsafe impl MPPlayableContentManager {
+impl MPPlayableContentManager {
+    extern_methods!(
         #[cfg(feature = "MPPlayableContentDataSource")]
         #[deprecated = "Use CarPlay framework"]
         #[unsafe(method(dataSource))]
@@ -105,12 +105,12 @@ extern_methods!(
         #[unsafe(method(endUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn endUpdates(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPPlayableContentManager {
+/// Methods declared on superclass `NSObject`.
+impl MPPlayableContentManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -118,5 +118,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

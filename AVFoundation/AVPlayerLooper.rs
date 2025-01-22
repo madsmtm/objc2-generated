@@ -82,8 +82,8 @@ unsafe impl Sync for AVPlayerLooper {}
 
 unsafe impl NSObjectProtocol for AVPlayerLooper {}
 
-extern_methods!(
-    unsafe impl AVPlayerLooper {
+impl AVPlayerLooper {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -226,5 +226,5 @@ extern_methods!(
             &self,
             mtm: MainThreadMarker,
         ) -> Retained<NSArray<AVPlayerItem>>;
-    }
-);
+    );
+}

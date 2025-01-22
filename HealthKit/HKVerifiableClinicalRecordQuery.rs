@@ -24,9 +24,9 @@ unsafe impl Sync for HKVerifiableClinicalRecordQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKVerifiableClinicalRecordQuery {
+#[cfg(feature = "HKQuery")]
+impl HKVerifiableClinicalRecordQuery {
+    extern_methods!(
         /// The record types that need to be present on desired records.
         #[unsafe(method(recordTypes))]
         #[unsafe(method_family = none)]
@@ -107,5 +107,5 @@ extern_methods!(
                 ),
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

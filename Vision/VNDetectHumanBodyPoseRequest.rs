@@ -376,9 +376,9 @@ unsafe impl NSSecureCoding for VNHumanBodyPoseObservation {}
 #[cfg(all(feature = "VNObservation", feature = "VNRequestRevisionProviding"))]
 unsafe impl VNRequestRevisionProviding for VNHumanBodyPoseObservation {}
 
-extern_methods!(
-    #[cfg(feature = "VNObservation")]
-    unsafe impl VNHumanBodyPoseObservation {
+#[cfg(feature = "VNObservation")]
+impl VNHumanBodyPoseObservation {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// All of the joint names available in the observation.
         #[unsafe(method(availableJointNames))]
@@ -440,13 +440,13 @@ extern_methods!(
             Retained<NSDictionary<VNHumanBodyPoseObservationJointName, VNRecognizedPoint>>,
             Retained<NSError>,
         >;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRecognizedPointsObservation`
-    #[cfg(feature = "VNObservation")]
-    unsafe impl VNHumanBodyPoseObservation {
+/// Methods declared on superclass `VNRecognizedPointsObservation`.
+#[cfg(feature = "VNObservation")]
+impl VNHumanBodyPoseObservation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -454,8 +454,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Detects specific landmark points on human bodies.
@@ -480,9 +480,9 @@ unsafe impl CopyingHelper for VNDetectHumanBodyPoseRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectHumanBodyPoseRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectHumanBodyPoseRequest {
+#[cfg(feature = "VNRequest")]
+impl VNDetectHumanBodyPoseRequest {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// Obtain the collection of human body joint names that are supported by a given request revision.
         ///
@@ -542,13 +542,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanBodyPoseObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectHumanBodyPoseRequest {
+/// Methods declared on superclass `VNRequest`.
+#[cfg(feature = "VNRequest")]
+impl VNDetectHumanBodyPoseRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -565,18 +565,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectHumanBodyPoseRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNDetectHumanBodyPoseRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequestrevision1?language=objc)
 pub static VNDetectHumanBodyPoseRequestRevision1: NSUInteger = 1;

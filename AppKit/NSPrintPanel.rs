@@ -121,8 +121,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPrintPanel {}
 
-extern_methods!(
-    unsafe impl NSPrintPanel {
+impl NSPrintPanel {
+    extern_methods!(
         #[unsafe(method(printPanel))]
         #[unsafe(method_family = none)]
         pub unsafe fn printPanel(mtm: MainThreadMarker) -> Retained<NSPrintPanel>;
@@ -220,12 +220,12 @@ extern_methods!(
         #[unsafe(method(printInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn printInfo(&self) -> Retained<NSPrintInfo>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPrintPanel {
+/// Methods declared on superclass `NSObject`.
+impl NSPrintPanel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -233,12 +233,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSPrintPanel {
+/// NSDeprecated.
+impl NSPrintPanel {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use -addAccessoryController instead"]
         #[unsafe(method(setAccessoryView:))]
@@ -260,5 +260,5 @@ extern_methods!(
         #[unsafe(method(finalWritePrintInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn finalWritePrintInfo(&self);
-    }
-);
+    );
+}

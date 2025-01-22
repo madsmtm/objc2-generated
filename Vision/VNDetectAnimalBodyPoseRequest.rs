@@ -29,9 +29,9 @@ unsafe impl CopyingHelper for VNDetectAnimalBodyPoseRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectAnimalBodyPoseRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectAnimalBodyPoseRequest {
+#[cfg(feature = "VNRequest")]
+impl VNDetectAnimalBodyPoseRequest {
+    extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// Obtain the collection of animal body joint names that are supported by a request object configured with a request revision.
         ///
@@ -61,13 +61,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNAnimalBodyPoseObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectAnimalBodyPoseRequest {
+/// Methods declared on superclass `VNRequest`.
+#[cfg(feature = "VNRequest")]
+impl VNDetectAnimalBodyPoseRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -84,18 +84,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectAnimalBodyPoseRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNDetectAnimalBodyPoseRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequestrevision1?language=objc)
 pub static VNDetectAnimalBodyPoseRequestRevision1: NSUInteger = 1;

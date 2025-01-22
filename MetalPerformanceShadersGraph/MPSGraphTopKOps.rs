@@ -6,10 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MPSGraphTopKOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphTopKOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a TopK operation and returns the value and indices tensors
         ///
@@ -149,13 +149,13 @@ extern_methods!(
             k_tensor: &MPSGraphTensor,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MPSGraphTopKGradientOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphTopKGradientOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a TopKGradient operation and returns the result tensor.
         ///
@@ -295,5 +295,5 @@ extern_methods!(
             k_tensor: &MPSGraphTensor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

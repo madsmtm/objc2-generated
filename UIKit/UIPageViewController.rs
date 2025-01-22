@@ -148,9 +148,9 @@ unsafe impl UIResponderStandardEditActions for UIPageViewController {}
 ))]
 unsafe impl UITraitEnvironment for UIPageViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIPageViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIPageViewController {
+    extern_methods!(
         #[unsafe(method(initWithTransitionStyle:navigationOrientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTransitionStyle_navigationOrientation_options(
@@ -237,13 +237,13 @@ extern_methods!(
             animated: bool,
             completion: Option<&block2::Block<dyn Fn(Bool)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIPageViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIPageViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -251,13 +251,13 @@ extern_methods!(
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIPageViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIPageViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -265,8 +265,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollerdelegate?language=objc)

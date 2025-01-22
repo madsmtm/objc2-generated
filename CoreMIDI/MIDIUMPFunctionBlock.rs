@@ -30,9 +30,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for MIDIUMPFunctionBlock {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl MIDIUMPFunctionBlock {
+impl MIDIUMPFunctionBlock {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// A string containing the Function Block's name.
         #[unsafe(method(name))]
@@ -108,16 +107,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2")]
-    unsafe impl MIDIUMPFunctionBlock {
+impl MIDIUMPFunctionBlock {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

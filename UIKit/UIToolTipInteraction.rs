@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for UIToolTipInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIToolTipInteraction {}
 
-extern_methods!(
-    unsafe impl UIToolTipInteraction {
+impl UIToolTipInteraction {
+    extern_methods!(
         /// The interaction's delegate.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -71,17 +71,17 @@ extern_methods!(
             this: Allocated<Self>,
             default_tool_tip: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIToolTipInteraction {
+/// Methods declared on superclass `NSObject`.
+impl UIToolTipInteraction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitooltipconfiguration?language=objc)
@@ -93,8 +93,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIToolTipConfiguration {}
 
-extern_methods!(
-    unsafe impl UIToolTipConfiguration {
+impl UIToolTipConfiguration {
+    extern_methods!(
         /// The string to annotate the contents at a given point.
         #[unsafe(method(toolTip))]
         #[unsafe(method_family = none)]
@@ -131,8 +131,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitooltipinteractiondelegate?language=objc)

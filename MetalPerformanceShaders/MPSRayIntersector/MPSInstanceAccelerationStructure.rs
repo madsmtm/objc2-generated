@@ -197,13 +197,13 @@ unsafe impl NSObjectProtocol for MPSInstanceAccelerationStructure {}
 ))]
 unsafe impl NSSecureCoding for MPSInstanceAccelerationStructure {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel"
-    ))]
-    unsafe impl MPSInstanceAccelerationStructure {
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
+impl MPSInstanceAccelerationStructure {
+    extern_methods!(
         #[cfg(feature = "MPSPolygonAccelerationStructure")]
         /// Acceleration structures available for use in this instance acceleration structure. Each
         /// instance must provide an index into this array in the instance buffer as well as a
@@ -335,17 +335,17 @@ extern_methods!(
         #[unsafe(method(setInstanceCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstanceCount(&self, instance_count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSAccelerationStructure`
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel"
-    ))]
-    unsafe impl MPSInstanceAccelerationStructure {
+/// Methods declared on superclass `MPSAccelerationStructure`.
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
+impl MPSInstanceAccelerationStructure {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -401,17 +401,17 @@ extern_methods!(
             a_decoder: &NSCoder,
             group: &MPSAccelerationStructureGroup,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel"
-    ))]
-    unsafe impl MPSInstanceAccelerationStructure {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
+impl MPSInstanceAccelerationStructure {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -426,19 +426,19 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSAccelerationStructure",
-        feature = "MPSCore",
-        feature = "MPSKernel"
-    ))]
-    unsafe impl MPSInstanceAccelerationStructure {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
+impl MPSInstanceAccelerationStructure {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

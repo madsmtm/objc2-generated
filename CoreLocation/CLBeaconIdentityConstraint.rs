@@ -32,15 +32,15 @@ unsafe impl NSObjectProtocol for CLBeaconIdentityConstraint {}
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
 unsafe impl NSSecureCoding for CLBeaconIdentityConstraint {}
 
-extern_methods!(
-    #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
-    unsafe impl CLBeaconIdentityConstraint {}
-);
+#[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
+impl CLBeaconIdentityConstraint {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLBeaconIdentityCondition`
-    #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
-    unsafe impl CLBeaconIdentityConstraint {
+/// Methods declared on superclass `CLBeaconIdentityCondition`.
+#[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
+impl CLBeaconIdentityConstraint {
+    extern_methods!(
         #[unsafe(method(initWithUUID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUUID(this: Allocated<Self>, uuid: &NSUUID) -> Retained<Self>;
@@ -61,13 +61,13 @@ extern_methods!(
             major: CLBeaconMajorValue,
             minor: CLBeaconMinorValue,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLCondition`
-    #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
-    unsafe impl CLBeaconIdentityConstraint {
+/// Methods declared on superclass `CLCondition`.
+#[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
+impl CLBeaconIdentityConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -75,5 +75,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

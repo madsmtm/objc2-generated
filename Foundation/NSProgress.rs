@@ -43,8 +43,8 @@ unsafe impl Sync for NSProgress {}
 
 unsafe impl NSObjectProtocol for NSProgress {}
 
-extern_methods!(
-    unsafe impl NSProgress {
+impl NSProgress {
+    extern_methods!(
         #[unsafe(method(currentProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentProgress() -> Option<Retained<NSProgress>>;
@@ -341,12 +341,12 @@ extern_methods!(
         #[unsafe(method(isOld))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOld(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSProgress {
+/// Methods declared on superclass `NSObject`.
+impl NSProgress {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -354,8 +354,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressreporting?language=objc)

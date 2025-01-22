@@ -40,8 +40,8 @@ unsafe impl Sync for AVAudioTime {}
 
 unsafe impl NSObjectProtocol for AVAudioTime {}
 
-extern_methods!(
-    unsafe impl AVAudioTime {
+impl AVAudioTime {
+    extern_methods!(
         #[cfg(feature = "objc2-core-audio-types")]
         #[unsafe(method(initWithAudioTimeStamp:sampleRate:))]
         #[unsafe(method_family = init)]
@@ -175,12 +175,12 @@ extern_methods!(
         #[unsafe(method(audioTimeStamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimeStamp(&self) -> AudioTimeStamp;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioTime {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioTime {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -188,5 +188,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

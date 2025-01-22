@@ -28,8 +28,8 @@ unsafe impl CopyingHelper for MPSImageDescriptor {
 
 unsafe impl NSObjectProtocol for MPSImageDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSImageDescriptor {
+impl MPSImageDescriptor {
+    extern_methods!(
         /// The width of the CNN image.
         ///
         /// The formal width of the CNN image in pixels.  Default = 1.
@@ -157,12 +157,12 @@ extern_methods!(
         #[unsafe(method(copyWithZone:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSImageDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSImageDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -170,8 +170,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C-unwind" {
     /// raise or lower the readcount of a batch by a set amount
@@ -522,8 +522,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSImage {}
 
-extern_methods!(
-    unsafe impl MPSImage {
+impl MPSImage {
+    extern_methods!(
         /// Get a well known MPSImageAllocator that makes MPSImages
         #[unsafe(method(defaultAllocator))]
         #[unsafe(method_family = none)]
@@ -1053,17 +1053,17 @@ extern_methods!(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSImage {
+/// Methods declared on superclass `NSObject`.
+impl MPSImage {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: MPSImage
@@ -1173,8 +1173,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSTemporaryImage {}
 
-extern_methods!(
-    unsafe impl MPSTemporaryImage {
+impl MPSTemporaryImage {
+    extern_methods!(
         /// Get a well known MPSImageAllocator that makes MPSTemporaryImages
         #[unsafe(method(defaultAllocator))]
         #[unsafe(method_family = none)]
@@ -1307,12 +1307,12 @@ extern_methods!(
         #[unsafe(method(setReadCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSImage`
-    unsafe impl MPSTemporaryImage {
+/// Methods declared on superclass `MPSImage`.
+impl MPSTemporaryImage {
+    extern_methods!(
         /// Use -batchRepresentation or -subImageWithFeatureChannelRange instead
         ///
         /// Generally, you should call -batchRepresentation or -subImageWithFeatureChannelRange
@@ -1341,14 +1341,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSTemporaryImage {
+/// Methods declared on superclass `NSObject`.
+impl MPSTemporaryImage {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

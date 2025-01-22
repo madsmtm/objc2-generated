@@ -87,8 +87,8 @@ unsafe impl NSCoding for NSSplitViewItem {}
 
 unsafe impl NSObjectProtocol for NSSplitViewItem {}
 
-extern_methods!(
-    unsafe impl NSSplitViewItem {
+impl NSSplitViewItem {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// Creates an autoreleased SplitViewItem that represents the provided ViewController. All other properties are left at their default.
         ///
@@ -314,12 +314,12 @@ extern_methods!(
             &self,
             titlebar_separator_style: NSTitlebarSeparatorStyle,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSplitViewItem {
+/// Methods declared on superclass `NSObject`.
+impl NSSplitViewItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -327,5 +327,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

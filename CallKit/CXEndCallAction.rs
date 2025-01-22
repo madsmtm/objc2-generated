@@ -32,20 +32,20 @@ unsafe impl NSObjectProtocol for CXEndCallAction {}
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSSecureCoding for CXEndCallAction {}
 
-extern_methods!(
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXEndCallAction {
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXEndCallAction {
+    extern_methods!(
         /// Normally, providers can just call -[CXAction fulfill] to indicate action fulfillment. Use this method to note a specific date that the call ended.
         #[unsafe(method(fulfillWithDateEnded:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fulfillWithDateEnded(&self, date_ended: &NSDate);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CXCallAction`
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXEndCallAction {
+/// Methods declared on superclass `CXCallAction`.
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXEndCallAction {
+    extern_methods!(
         #[unsafe(method(initWithCallUUID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
@@ -61,15 +61,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXEndCallAction {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXEndCallAction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -44,9 +44,9 @@ extern_class!(
 #[cfg(feature = "VZMemoryBalloonDevice")]
 unsafe impl NSObjectProtocol for VZVirtioTraditionalMemoryBalloonDevice {}
 
-extern_methods!(
-    #[cfg(feature = "VZMemoryBalloonDevice")]
-    unsafe impl VZVirtioTraditionalMemoryBalloonDevice {
+#[cfg(feature = "VZMemoryBalloonDevice")]
+impl VZVirtioTraditionalMemoryBalloonDevice {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -77,5 +77,5 @@ extern_methods!(
             &self,
             target_virtual_machine_memory_size: u64,
         );
-    }
-);
+    );
+}

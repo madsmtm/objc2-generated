@@ -33,9 +33,9 @@ unsafe impl CopyingHelper for AVCompositionTrack {
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl NSObjectProtocol for AVCompositionTrack {}
 
-extern_methods!(
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVCompositionTrack {
+#[cfg(feature = "AVAssetTrack")]
+impl AVCompositionTrack {
+    extern_methods!(
         #[cfg(all(feature = "AVAssetTrackSegment", feature = "AVCompositionTrackSegment"))]
         /// Provides read-only access to the array of track segments, each an instance of AVCompositionTrackSegment.
         ///
@@ -72,13 +72,13 @@ extern_methods!(
         pub unsafe fn formatDescriptionReplacements(
             &self,
         ) -> Retained<NSArray<AVCompositionTrackFormatDescriptionReplacement>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAssetTrack`
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVCompositionTrack {
+/// Methods declared on superclass `AVAssetTrack`.
+#[cfg(feature = "AVAssetTrack")]
+impl AVCompositionTrack {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -86,8 +86,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecompositiontrack?language=objc)
@@ -111,9 +111,9 @@ unsafe impl CopyingHelper for AVMutableCompositionTrack {
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl NSObjectProtocol for AVMutableCompositionTrack {}
 
-extern_methods!(
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableCompositionTrack {
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableCompositionTrack {
+    extern_methods!(
         /// Specifies whether the track is enabled or disabled.  Default is YES.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
@@ -331,13 +331,13 @@ extern_methods!(
             composition_track: &AVCompositionTrack,
             track_association_type: &AVTrackAssociationType,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAssetTrack`
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableCompositionTrack {
+/// Methods declared on superclass `AVAssetTrack`.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableCompositionTrack {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -345,8 +345,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A format description and its replacement.
@@ -369,8 +369,8 @@ unsafe impl NSObjectProtocol for AVCompositionTrackFormatDescriptionReplacement 
 
 unsafe impl NSSecureCoding for AVCompositionTrackFormatDescriptionReplacement {}
 
-extern_methods!(
-    unsafe impl AVCompositionTrackFormatDescriptionReplacement {
+impl AVCompositionTrackFormatDescriptionReplacement {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The original format description.
         #[unsafe(method(originalFormatDescription))]
@@ -382,12 +382,12 @@ extern_methods!(
         #[unsafe(method(replacementFormatDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn replacementFormatDescription(&self) -> Retained<CMFormatDescription>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCompositionTrackFormatDescriptionReplacement {
+/// Methods declared on superclass `NSObject`.
+impl AVCompositionTrackFormatDescriptionReplacement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -395,13 +395,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableCompositionTrackFormatDescriptionReplacement
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableCompositionTrack {
+/// AVMutableCompositionTrackFormatDescriptionReplacement.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableCompositionTrack {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Replaces one of the receiver's format descriptions with another format description or cancels a previous replacement.
         ///
@@ -418,16 +418,16 @@ extern_methods!(
             original_format_description: &CMFormatDescription,
             replacement_format_description: Option<&CMFormatDescription>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SynchronousTrackInterface
-    /// Redeclarations of async-only AVAssetTrack interfaces to allow synchronous usage in the synchronous subclass.
-    ///
-    /// See AVAssetTrack's interface for more information about these interfaces.
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVCompositionTrack {
+/// SynchronousTrackInterface.
+/// Redeclarations of async-only AVAssetTrack interfaces to allow synchronous usage in the synchronous subclass.
+///
+/// See AVAssetTrack's interface for more information about these interfaces.
+#[cfg(feature = "AVAssetTrack")]
+impl AVCompositionTrack {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         #[unsafe(method(hasMediaCharacteristic:))]
         #[unsafe(method_family = none)]
@@ -455,5 +455,5 @@ extern_methods!(
             &self,
             track_association_type: &AVTrackAssociationType,
         ) -> Retained<NSArray<AVAssetTrack>>;
-    }
-);
+    );
+}

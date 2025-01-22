@@ -35,9 +35,9 @@ unsafe impl CopyingHelper for VZVirtioConsoleDeviceConfiguration {
 #[cfg(feature = "VZConsoleDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioConsoleDeviceConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZConsoleDeviceConfiguration")]
-    unsafe impl VZVirtioConsoleDeviceConfiguration {
+#[cfg(feature = "VZConsoleDeviceConfiguration")]
+impl VZVirtioConsoleDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -47,15 +47,15 @@ extern_methods!(
         #[unsafe(method(ports))]
         #[unsafe(method_family = none)]
         pub unsafe fn ports(&self) -> Retained<VZVirtioConsolePortConfigurationArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZConsoleDeviceConfiguration`
-    #[cfg(feature = "VZConsoleDeviceConfiguration")]
-    unsafe impl VZVirtioConsoleDeviceConfiguration {
+/// Methods declared on superclass `VZConsoleDeviceConfiguration`.
+#[cfg(feature = "VZConsoleDeviceConfiguration")]
+impl VZVirtioConsoleDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

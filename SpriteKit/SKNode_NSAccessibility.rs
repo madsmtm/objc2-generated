@@ -8,11 +8,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// NSAccessibility
-    #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl SKNode {
+/// NSAccessibility.
+#[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl SKNode {
+    extern_methods!(
         #[unsafe(method(isAccessibilityElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAccessibilityElement(&self) -> bool;
@@ -113,5 +113,5 @@ extern_methods!(
         #[unsafe(method(accessibilityHitTest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityHitTest(&self, point: CGPoint) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}

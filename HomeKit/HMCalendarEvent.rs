@@ -49,9 +49,9 @@ unsafe impl MutableCopyingHelper for HMCalendarEvent {
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl NSObjectProtocol for HMCalendarEvent {}
 
-extern_methods!(
-    #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-    unsafe impl HMCalendarEvent {
+#[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
+impl HMCalendarEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -88,19 +88,19 @@ extern_methods!(
         #[unsafe(method(fireDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn fireDateComponents(&self) -> Retained<NSDateComponents>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-    unsafe impl HMCalendarEvent {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
+impl HMCalendarEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// This class is used to represent a calendar event.
@@ -137,9 +137,9 @@ unsafe impl MutableCopyingHelper for HMMutableCalendarEvent {
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl NSObjectProtocol for HMMutableCalendarEvent {}
 
-extern_methods!(
-    #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-    unsafe impl HMMutableCalendarEvent {
+#[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
+impl HMMutableCalendarEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -153,13 +153,13 @@ extern_methods!(
         #[unsafe(method(setFireDateComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFireDateComponents(&self, fire_date_components: &NSDateComponents);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMCalendarEvent`
-    #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-    unsafe impl HMMutableCalendarEvent {
+/// Methods declared on superclass `HMCalendarEvent`.
+#[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
+impl HMMutableCalendarEvent {
+    extern_methods!(
         /// Creates a calendar event
         ///
         ///
@@ -180,16 +180,16 @@ extern_methods!(
             this: Allocated<Self>,
             fire_date_components: &NSDateComponents,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-    unsafe impl HMMutableCalendarEvent {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
+impl HMMutableCalendarEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

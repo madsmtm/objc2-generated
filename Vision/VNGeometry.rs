@@ -34,8 +34,8 @@ unsafe impl NSObjectProtocol for VNPoint {}
 
 unsafe impl NSSecureCoding for VNPoint {}
 
-extern_methods!(
-    unsafe impl VNPoint {
+impl VNPoint {
+    extern_methods!(
         /// Returns a VNPoint object that represents the location of (0.0, 0.0).
         #[unsafe(method(zeroPoint))]
         #[unsafe(method_family = none)]
@@ -100,12 +100,12 @@ extern_methods!(
         #[unsafe(method(y))]
         #[unsafe(method_family = none)]
         pub unsafe fn y(&self) -> c_double;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNPoint {
+/// Methods declared on superclass `NSObject`.
+impl VNPoint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -113,8 +113,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNPoint3D represents a single, immutable, three-dimensional point in an image.
@@ -139,22 +139,22 @@ unsafe impl NSObjectProtocol for VNPoint3D {}
 
 unsafe impl NSSecureCoding for VNPoint3D {}
 
-extern_methods!(
-    unsafe impl VNPoint3D {
+impl VNPoint3D {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNPoint3D {
+/// Methods declared on superclass `NSObject`.
+impl VNPoint3D {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNVector is a two-dimensional vector represented its X and Y axis projections. Once created, VNVector objects are immutable.
@@ -177,8 +177,8 @@ unsafe impl NSObjectProtocol for VNVector {}
 
 unsafe impl NSSecureCoding for VNVector {}
 
-extern_methods!(
-    unsafe impl VNVector {
+impl VNVector {
+    extern_methods!(
         /// Returns a VNVector object with zero length. The theta for zeroVector is not defined (NaN).
         #[unsafe(method(zeroVector))]
         #[unsafe(method_family = none)]
@@ -275,12 +275,12 @@ extern_methods!(
         #[unsafe(method(squaredLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn squaredLength(&self) -> c_double;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNVector {
+/// Methods declared on superclass `NSObject`.
+impl VNVector {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -288,8 +288,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNCircle is two-dimensional circle represented by the center point 'center' and its radius 'radius'. Once created, VNCircle objects are immutable.
@@ -312,8 +312,8 @@ unsafe impl NSObjectProtocol for VNCircle {}
 
 unsafe impl NSSecureCoding for VNCircle {}
 
-extern_methods!(
-    unsafe impl VNCircle {
+impl VNCircle {
+    extern_methods!(
         /// Returns a VNCircle object with center at the Origin [0.0; 0.0] and zero radius.
         #[unsafe(method(zeroCircle))]
         #[unsafe(method_family = none)]
@@ -365,12 +365,12 @@ extern_methods!(
         #[unsafe(method(diameter))]
         #[unsafe(method_family = none)]
         pub unsafe fn diameter(&self) -> c_double;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNCircle {
+/// Methods declared on superclass `NSObject`.
+impl VNCircle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -378,8 +378,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The VNContour class describes a contour provided by a VNContoursObservation.
@@ -406,8 +406,8 @@ unsafe impl NSObjectProtocol for VNContour {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNContour {}
 
-extern_methods!(
-    unsafe impl VNContour {
+impl VNContour {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -484,5 +484,5 @@ extern_methods!(
             &self,
             epsilon: c_float,
         ) -> Result<Retained<VNContour>, Retained<NSError>>;
-    }
-);
+    );
+}

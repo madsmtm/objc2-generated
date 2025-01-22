@@ -85,8 +85,8 @@ unsafe impl CopyingHelper for UIAlertAction {
 
 unsafe impl NSObjectProtocol for UIAlertAction {}
 
-extern_methods!(
-    unsafe impl UIAlertAction {
+impl UIAlertAction {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(actionWithTitle:style:handler:))]
         #[unsafe(method_family = none)]
@@ -113,12 +113,12 @@ extern_methods!(
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIAlertAction {
+/// Methods declared on superclass `NSObject`.
+impl UIAlertAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -126,8 +126,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontroller?language=objc)
@@ -171,9 +171,9 @@ unsafe impl UIResponderStandardEditActions for UIAlertController {}
 ))]
 unsafe impl UITraitEnvironment for UIAlertController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIAlertController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIAlertController {
+    extern_methods!(
         #[unsafe(method(alertControllerWithTitle:message:preferredStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alertControllerWithTitle_message_preferredStyle(
@@ -248,13 +248,13 @@ extern_methods!(
         #[unsafe(method(setSeverity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSeverity(&self, severity: UIAlertControllerSeverity);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIAlertController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIAlertController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -269,13 +269,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIAlertController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIAlertController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -283,14 +283,14 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SpringLoading
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIAlertController {}
-);
+/// SpringLoading.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIAlertController {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "UIResponder",

@@ -36,8 +36,8 @@ unsafe impl CopyingHelper for WebHistoryItem {
 
 unsafe impl NSObjectProtocol for WebHistoryItem {}
 
-extern_methods!(
-    unsafe impl WebHistoryItem {
+impl WebHistoryItem {
+    extern_methods!(
         /// Parameter `URLString`: The URL string for the item.
         ///
         /// Parameter `title`: The title to use for the item.  This is normally the
@@ -115,12 +115,12 @@ extern_methods!(
         #[unsafe(method(icon))]
         #[unsafe(method_family = none)]
         pub unsafe fn icon(&self) -> Option<Retained<NSImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WebHistoryItem {
+/// Methods declared on superclass `NSObject`.
+impl WebHistoryItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -128,5 +128,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

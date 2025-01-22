@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for MEDecodedMessage {}
 
 unsafe impl NSSecureCoding for MEDecodedMessage {}
 
-extern_methods!(
-    unsafe impl MEDecodedMessage {
+impl MEDecodedMessage {
+    extern_methods!(
         /// The decoded MIME data for the message
         /// The decoded data should not be encrypted or contain any signatures that were decoded. The
         /// `rawData`here should only contain MIME parts that a standard email parser can decode without needing to decrypt. All information on the encryption and signature status should be defined in
@@ -79,5 +79,5 @@ extern_methods!(
             context: Option<&NSData>,
             banner: Option<&MEDecodedMessageBanner>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

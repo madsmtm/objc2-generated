@@ -39,10 +39,10 @@ unsafe impl NSObjectProtocol for AVPlayerLayer {}
 #[cfg(not(target_os = "watchos"))]
 unsafe impl NSSecureCoding for AVPlayerLayer {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVPlayerLayer {
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVPlayerLayer {
+    extern_methods!(
         #[cfg(feature = "AVPlayer")]
         /// Returns an instance of AVPlayerLayer to display the visual output of the specified AVPlayer.
         ///
@@ -126,14 +126,14 @@ extern_methods!(
         #[unsafe(method(copyDisplayedPixelBuffer))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVPlayerLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVPlayerLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -146,16 +146,16 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVPlayerLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVPlayerLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

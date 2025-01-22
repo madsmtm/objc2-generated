@@ -26,9 +26,9 @@ unsafe impl CopyingHelper for NSPersistentCloudKitContainerEventRequest {
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventRequest {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSPersistentCloudKitContainerEventRequest {
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSPersistentCloudKitContainerEventRequest {
+    extern_methods!(
         #[cfg(feature = "NSPersistentStoreResult")]
         #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
@@ -65,13 +65,13 @@ extern_methods!(
         #[unsafe(method(fetchRequestForEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRequestForEvents() -> Retained<NSFetchRequest>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSPersistentCloudKitContainerEventRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSPersistentCloudKitContainerEventRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,5 +79,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

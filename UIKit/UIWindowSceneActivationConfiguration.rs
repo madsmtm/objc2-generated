@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIWindowSceneActivationConfiguration {}
 
-extern_methods!(
-    unsafe impl UIWindowSceneActivationConfiguration {
+impl UIWindowSceneActivationConfiguration {
+    extern_methods!(
         /// The user activity that will be used to request a scene
         #[unsafe(method(userActivity))]
         #[unsafe(method_family = none)]
@@ -70,5 +70,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

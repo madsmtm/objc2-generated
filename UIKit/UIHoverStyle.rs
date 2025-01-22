@@ -26,8 +26,8 @@ unsafe impl CopyingHelper for UIHoverStyle {
 
 unsafe impl NSObjectProtocol for UIHoverStyle {}
 
-extern_methods!(
-    unsafe impl UIHoverStyle {
+impl UIHoverStyle {
+    extern_methods!(
         #[cfg(feature = "UIHoverEffect")]
         /// The effect to apply to the view with this style. Use `UIHoverAutomaticEffect`
         /// to apply a system-default effect to the view.
@@ -96,13 +96,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIHoverStyle
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIView {
+/// UIHoverStyle.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIView {
+    extern_methods!(
         /// The hover style associated with this view. Defaults to `nil`,
         /// indicating that this view should not have any hover effect.
         /// Subclasses may configure this style to use a different default value.
@@ -114,5 +114,5 @@ extern_methods!(
         #[unsafe(method(setHoverStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHoverStyle(&self, hover_style: Option<&UIHoverStyle>);
-    }
-);
+    );
+}

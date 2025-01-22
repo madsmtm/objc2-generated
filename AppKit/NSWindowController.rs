@@ -24,9 +24,9 @@ unsafe impl NSObjectProtocol for NSWindowController {}
 #[cfg(all(feature = "NSResponder", feature = "NSStoryboardSegue"))]
 unsafe impl NSSeguePerforming for NSWindowController {}
 
-extern_methods!(
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindowController {
+#[cfg(feature = "NSResponder")]
+impl NSWindowController {
+    extern_methods!(
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(initWithWindow:))]
         #[unsafe(method_family = init)]
@@ -202,47 +202,47 @@ extern_methods!(
         #[unsafe(method(showWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showWindow(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindowController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "NSResponder")]
+impl NSWindowController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindowController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSResponder")]
+impl NSWindowController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSWindowControllerStoryboardingMethods
-    /// These methods are used to support using Storyboards with your app.
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindowController {
+/// NSWindowControllerStoryboardingMethods.
+/// These methods are used to support using Storyboards with your app.
+#[cfg(feature = "NSResponder")]
+impl NSWindowController {
+    extern_methods!(
         #[cfg(feature = "NSStoryboard")]
         #[unsafe(method(storyboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn storyboard(&self) -> Option<Retained<NSStoryboard>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSWindowControllerDismissing
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSWindowController {
+/// NSWindowControllerDismissing.
+#[cfg(feature = "NSResponder")]
+impl NSWindowController {
+    extern_methods!(
         #[unsafe(method(dismissController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissController(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}

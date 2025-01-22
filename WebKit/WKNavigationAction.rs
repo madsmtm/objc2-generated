@@ -51,8 +51,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKNavigationAction {}
 
-extern_methods!(
-    unsafe impl WKNavigationAction {
+impl WKNavigationAction {
+    extern_methods!(
         #[cfg(feature = "WKFrameInfo")]
         /// The target frame, or nil if this is a new window navigation.
         #[unsafe(method(targetFrame))]
@@ -87,12 +87,12 @@ extern_methods!(
         #[unsafe(method(buttonNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonNumber(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKNavigationAction {
+/// Methods declared on superclass `NSObject`.
+impl WKNavigationAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

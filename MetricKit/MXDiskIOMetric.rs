@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXDiskIOMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXDiskIOMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXDiskIOMetric {
+#[cfg(feature = "MXMetric")]
+impl MXDiskIOMetric {
+    extern_methods!(
         /// Cumulative amount of logical writes.
         ///
         /// Dimensioned as NSUnitInformationStorage.
@@ -36,13 +36,13 @@ extern_methods!(
         pub unsafe fn cumulativeLogicalWrites(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXDiskIOMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXDiskIOMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -50,5 +50,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

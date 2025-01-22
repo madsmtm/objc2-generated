@@ -18,8 +18,8 @@ unsafe impl ASAuthorizationProvider for ASAuthorizationSingleSignOnProvider {}
 
 unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnProvider {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationSingleSignOnProvider {
+impl ASAuthorizationSingleSignOnProvider {
+    extern_methods!(
         /// To get the right extension the identity provider main URL has to be provided. The URL is even part of the extension using assosiated domains mechanism or can be configured by MDM profile.
         #[unsafe(method(authorizationProviderWithIdentityProviderURL:))]
         #[unsafe(method_family = none)]
@@ -50,5 +50,5 @@ extern_methods!(
         #[unsafe(method(canPerformAuthorization))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPerformAuthorization(&self) -> bool;
-    }
-);
+    );
+}

@@ -24,9 +24,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCEmbeddingLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCEmbeddingLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCEmbeddingLayer {
+    extern_methods!(
         #[cfg(feature = "MLCEmbeddingDescriptor")]
         #[deprecated]
         #[unsafe(method(descriptor))]
@@ -55,13 +55,13 @@ extern_methods!(
             descriptor: &MLCEmbeddingDescriptor,
             weights: &MLCTensor,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCEmbeddingLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCEmbeddingLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -71,5 +71,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

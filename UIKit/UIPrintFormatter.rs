@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for UIPrintFormatter {
 
 unsafe impl NSObjectProtocol for UIPrintFormatter {}
 
-extern_methods!(
-    unsafe impl UIPrintFormatter {
+impl UIPrintFormatter {
+    extern_methods!(
         #[cfg(feature = "UIPrintPageRenderer")]
         #[unsafe(method(printPageRenderer))]
         #[unsafe(method_family = none)]
@@ -108,12 +108,12 @@ extern_methods!(
         #[unsafe(method(drawInRect:forPageAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInRect_forPageAtIndex(&self, rect: CGRect, page_index: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPrintFormatter {
+/// Methods declared on superclass `NSObject`.
+impl UIPrintFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -121,8 +121,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisimpletextprintformatter?language=objc)
@@ -140,8 +140,8 @@ unsafe impl CopyingHelper for UISimpleTextPrintFormatter {
 
 unsafe impl NSObjectProtocol for UISimpleTextPrintFormatter {}
 
-extern_methods!(
-    unsafe impl UISimpleTextPrintFormatter {
+impl UISimpleTextPrintFormatter {
+    extern_methods!(
         #[unsafe(method(initWithText:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithText(this: Allocated<Self>, text: &NSString) -> Retained<Self>;
@@ -203,12 +203,12 @@ extern_methods!(
         #[unsafe(method(setTextAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAlignment(&self, text_alignment: NSTextAlignment);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UISimpleTextPrintFormatter {
+/// Methods declared on superclass `NSObject`.
+impl UISimpleTextPrintFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -216,8 +216,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimarkuptextprintformatter?language=objc)
@@ -235,8 +235,8 @@ unsafe impl CopyingHelper for UIMarkupTextPrintFormatter {
 
 unsafe impl NSObjectProtocol for UIMarkupTextPrintFormatter {}
 
-extern_methods!(
-    unsafe impl UIMarkupTextPrintFormatter {
+impl UIMarkupTextPrintFormatter {
+    extern_methods!(
         #[unsafe(method(initWithMarkupText:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMarkupText(
@@ -252,12 +252,12 @@ extern_methods!(
         #[unsafe(method(setMarkupText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarkupText(&self, markup_text: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIMarkupTextPrintFormatter {
+/// Methods declared on superclass `NSObject`.
+impl UIMarkupTextPrintFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -265,8 +265,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewprintformatter?language=objc)
@@ -284,18 +284,18 @@ unsafe impl CopyingHelper for UIViewPrintFormatter {
 
 unsafe impl NSObjectProtocol for UIViewPrintFormatter {}
 
-extern_methods!(
-    unsafe impl UIViewPrintFormatter {
+impl UIViewPrintFormatter {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Retained<UIView>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIViewPrintFormatter {
+/// Methods declared on superclass `NSObject`.
+impl UIViewPrintFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -303,13 +303,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIPrintFormatter
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIView {
+/// UIPrintFormatter.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(viewPrintFormatter))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewPrintFormatter(&self) -> Retained<UIViewPrintFormatter>;
@@ -322,5 +322,5 @@ extern_methods!(
             rect: CGRect,
             formatter: &UIViewPrintFormatter,
         );
-    }
-);
+    );
+}

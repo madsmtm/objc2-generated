@@ -17,8 +17,8 @@ unsafe impl NSCoding for NSScriptCommandDescription {}
 
 unsafe impl NSObjectProtocol for NSScriptCommandDescription {}
 
-extern_methods!(
-    unsafe impl NSScriptCommandDescription {
+impl NSScriptCommandDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -111,14 +111,14 @@ extern_methods!(
             &self,
             zone: *mut NSZone,
         ) -> Retained<NSScriptCommand>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScriptCommandDescription {
+/// Methods declared on superclass `NSObject`.
+impl NSScriptCommandDescription {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

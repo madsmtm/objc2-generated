@@ -42,46 +42,46 @@ unsafe impl CopyingHelper for DOMCSSFontFaceRule {
 ))]
 unsafe impl NSObjectProtocol for DOMCSSFontFaceRule {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSFontFaceRule {
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSFontFaceRule {
+    extern_methods!(
         #[cfg(feature = "DOMCSSStyleDeclaration")]
         #[deprecated]
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSFontFaceRule {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSFontFaceRule {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMCSSRule",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSFontFaceRule {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMCSSRule",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSFontFaceRule {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

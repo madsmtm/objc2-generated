@@ -109,8 +109,8 @@ unsafe impl NSObjectProtocol for NSLayoutManager {}
 
 unsafe impl NSSecureCoding for NSLayoutManager {}
 
-extern_methods!(
-    unsafe impl NSLayoutManager {
+impl NSLayoutManager {
+    extern_methods!(
         /// ************************** Initialization ***************************
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -789,17 +789,17 @@ extern_methods!(
             line_glyph_range: NSRange,
             container_origin: CGPoint,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLayoutManager {
+/// Methods declared on superclass `NSObject`.
+impl NSLayoutManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanagerdelegate?language=objc)
@@ -958,9 +958,9 @@ pub const NSControlCharacterParagraphBreakAction: c_uint = 16;
 #[deprecated]
 pub const NSControlCharacterContainerBreakAction: c_uint = 32;
 
-extern_methods!(
-    /// NSLayoutManagerDeprecated
-    unsafe impl NSLayoutManager {
+/// NSLayoutManagerDeprecated.
+impl NSLayoutManager {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(glyphAtIndex:isValidIndex:))]
         #[unsafe(method_family = none)]
@@ -1006,5 +1006,5 @@ extern_methods!(
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
             graphics_context: &CGContext,
         );
-    }
-);
+    );
+}

@@ -75,9 +75,9 @@ unsafe impl CopyingHelper for NSToolbarItemGroup {
 #[cfg(feature = "NSToolbarItem")]
 unsafe impl NSObjectProtocol for NSToolbarItemGroup {}
 
-extern_methods!(
-    #[cfg(feature = "NSToolbarItem")]
-    unsafe impl NSToolbarItemGroup {
+#[cfg(feature = "NSToolbarItem")]
+impl NSToolbarItemGroup {
+    extern_methods!(
         #[cfg(feature = "NSToolbar")]
         /// Convenience constructors for creating segmented control based toolbar items with images or text.
         /// The item returned will have a custom view for representing the control and automatically create subitems for the group.
@@ -164,13 +164,13 @@ extern_methods!(
         #[unsafe(method(isSelectedAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSelectedAtIndex(&self, index: NSInteger) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSToolbarItem`
-    #[cfg(feature = "NSToolbarItem")]
-    unsafe impl NSToolbarItemGroup {
+/// Methods declared on superclass `NSToolbarItem`.
+#[cfg(feature = "NSToolbarItem")]
+impl NSToolbarItemGroup {
+    extern_methods!(
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[unsafe(method(initWithItemIdentifier:))]
@@ -179,13 +179,13 @@ extern_methods!(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSToolbarItem")]
-    unsafe impl NSToolbarItemGroup {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSToolbarItem")]
+impl NSToolbarItemGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -193,5 +193,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

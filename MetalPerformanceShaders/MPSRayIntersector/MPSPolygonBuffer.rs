@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for MPSPolygonBuffer {}
 
 unsafe impl NSSecureCoding for MPSPolygonBuffer {}
 
-extern_methods!(
-    unsafe impl MPSPolygonBuffer {
+impl MPSPolygonBuffer {
+    extern_methods!(
         /// Initialize the polygon buffer
         #[deprecated]
         #[unsafe(method(init))]
@@ -170,14 +170,14 @@ extern_methods!(
         #[unsafe(method(setPolygonCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolygonCount(&self, polygon_count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSPolygonBuffer {
+/// Methods declared on superclass `NSObject`.
+impl MPSPolygonBuffer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -21,8 +21,8 @@ unsafe impl Sync for MLModelStructurePipeline {}
 
 unsafe impl NSObjectProtocol for MLModelStructurePipeline {}
 
-extern_methods!(
-    unsafe impl MLModelStructurePipeline {
+impl MLModelStructurePipeline {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -41,5 +41,5 @@ extern_methods!(
         #[unsafe(method(subModels))]
         #[unsafe(method_family = none)]
         pub unsafe fn subModels(&self) -> Retained<NSArray<MLModelStructure>>;
-    }
-);
+    );
+}

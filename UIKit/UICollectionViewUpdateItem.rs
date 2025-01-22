@@ -42,8 +42,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UICollectionViewUpdateItem {}
 
-extern_methods!(
-    unsafe impl UICollectionViewUpdateItem {
+impl UICollectionViewUpdateItem {
+    extern_methods!(
         #[unsafe(method(indexPathBeforeUpdate))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathBeforeUpdate(&self) -> Option<Retained<NSIndexPath>>;
@@ -55,12 +55,12 @@ extern_methods!(
         #[unsafe(method(updateAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateAction(&self) -> UICollectionUpdateAction;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICollectionViewUpdateItem {
+/// Methods declared on superclass `NSObject`.
+impl UICollectionViewUpdateItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,5 +68,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

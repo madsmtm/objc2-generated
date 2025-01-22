@@ -54,8 +54,8 @@ unsafe impl NSObjectProtocol for NSGradient {}
 
 unsafe impl NSSecureCoding for NSGradient {}
 
-extern_methods!(
-    unsafe impl NSGradient {
+impl NSGradient {
+    extern_methods!(
         #[cfg(feature = "NSColor")]
         #[unsafe(method(initWithStartingColor:endingColor:))]
         #[unsafe(method_family = init)]
@@ -165,12 +165,12 @@ extern_methods!(
         #[unsafe(method(interpolatedColorAtLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Retained<NSColor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSGradient {
+/// Methods declared on superclass `NSObject`.
+impl NSGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -178,5 +178,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

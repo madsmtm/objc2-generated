@@ -36,9 +36,9 @@ extern_class!(
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl NSObjectProtocol for WKInterfaceAuthorizationAppleIDButton {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceAuthorizationAppleIDButton {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceAuthorizationAppleIDButton {
+    extern_methods!(
         #[deprecated = "Use initWithStyle:target:action:"]
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
@@ -56,25 +56,25 @@ extern_methods!(
             target: Option<&AnyObject>,
             action: Sel,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `WKInterfaceObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceAuthorizationAppleIDButton {
+/// Methods declared on superclass `WKInterfaceObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceAuthorizationAppleIDButton {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceAuthorizationAppleIDButton {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceAuthorizationAppleIDButton {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

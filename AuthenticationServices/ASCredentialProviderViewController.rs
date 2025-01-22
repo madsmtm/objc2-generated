@@ -24,9 +24,9 @@ unsafe impl NSSeguePerforming for ASCredentialProviderViewController {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for ASCredentialProviderViewController {}
 
-extern_methods!(
-    #[cfg(target_os = "macos")]
-    unsafe impl ASCredentialProviderViewController {
+#[cfg(target_os = "macos")]
+impl ASCredentialProviderViewController {
+    extern_methods!(
         #[cfg(feature = "ASCredentialProviderExtensionContext")]
         #[unsafe(method(extensionContext))]
         #[unsafe(method_family = none)]
@@ -278,13 +278,13 @@ extern_methods!(
             &self,
             registration_request: &ASPasskeyCredentialRequest,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(target_os = "macos")]
-    unsafe impl ASCredentialProviderViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(target_os = "macos")]
+impl ASCredentialProviderViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -299,25 +299,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(target_os = "macos")]
-    unsafe impl ASCredentialProviderViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(target_os = "macos")]
+impl ASCredentialProviderViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(target_os = "macos")]
-    unsafe impl ASCredentialProviderViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(target_os = "macos")]
+impl ASCredentialProviderViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

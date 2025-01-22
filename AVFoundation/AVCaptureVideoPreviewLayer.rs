@@ -44,10 +44,10 @@ unsafe impl NSObjectProtocol for AVCaptureVideoPreviewLayer {}
 #[cfg(not(target_os = "watchos"))]
 unsafe impl NSSecureCoding for AVCaptureVideoPreviewLayer {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVCaptureVideoPreviewLayer {
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVCaptureVideoPreviewLayer {
+    extern_methods!(
         #[cfg(feature = "AVCaptureSession")]
         /// Creates an AVCaptureVideoPreviewLayer for previewing the visual output of the specified AVCaptureSession.
         ///
@@ -324,14 +324,14 @@ extern_methods!(
         #[unsafe(method(setMirrored:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMirrored(&self, mirrored: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVCaptureVideoPreviewLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVCaptureVideoPreviewLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -344,16 +344,16 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVCaptureVideoPreviewLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVCaptureVideoPreviewLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

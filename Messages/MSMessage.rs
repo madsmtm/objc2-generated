@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for MSMessage {}
 
 unsafe impl NSSecureCoding for MSMessage {}
 
-extern_methods!(
-    unsafe impl MSMessage {
+impl MSMessage {
+    extern_methods!(
         /// Initializes a new message that is not part of a session.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -154,14 +154,14 @@ extern_methods!(
         #[unsafe(method(setError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setError(&self, error: Option<&NSError>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MSMessage {
+/// Methods declared on superclass `NSObject`.
+impl MSMessage {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

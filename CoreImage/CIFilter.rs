@@ -549,8 +549,8 @@ unsafe impl NSObjectProtocol for CIFilter {}
 
 unsafe impl NSSecureCoding for CIFilter {}
 
-extern_methods!(
-    unsafe impl CIFilter {
+impl CIFilter {
+    extern_methods!(
         #[cfg(feature = "CIImage")]
         #[unsafe(method(outputImage))]
         #[unsafe(method_family = none)]
@@ -614,12 +614,12 @@ extern_methods!(
             args: Option<&NSArray>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Option<Retained<CIImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIFilter {
+/// Methods declared on superclass `NSObject`.
+impl CIFilter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -627,8 +627,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilterprotocol?language=objc)
@@ -646,11 +646,11 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// CIFilterRegistry
-    /// Methods to register a filter and get access to the list of registered filters
-    /// Use these methods to create filters and find filters.
-    unsafe impl CIFilter {
+/// CIFilterRegistry.
+/// Methods to register a filter and get access to the list of registered filters
+/// Use these methods to create filters and find filters.
+impl CIFilter {
+    extern_methods!(
         /// Creates a new filter of type 'name'.
         /// On OSX, all input values will be undefined.
         /// On iOS, all input values will be set to default values.
@@ -726,13 +726,13 @@ extern_methods!(
         pub unsafe fn localizedReferenceDocumentationForFilterName(
             filter_name: &NSString,
         ) -> Option<Retained<NSURL>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// CIFilterXMPSerialization
-    /// Methods to serialize arrays of filters to xmp.
-    unsafe impl CIFilter {
+/// CIFilterXMPSerialization.
+/// Methods to serialize arrays of filters to xmp.
+impl CIFilter {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[unsafe(method(serializedXMPFromFilters:inputImageExtent:))]
@@ -741,5 +741,5 @@ extern_methods!(
             filters: &NSArray<CIFilter>,
             extent: CGRect,
         ) -> Option<Retained<NSData>>;
-    }
-);
+    );
+}

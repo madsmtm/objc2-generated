@@ -7,10 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// NSScripting
-    #[cfg(feature = "NSDocument")]
-    unsafe impl NSDocument {
+/// NSScripting.
+#[cfg(feature = "NSDocument")]
+impl NSDocument {
+    extern_methods!(
         #[unsafe(method(lastComponentOfFileName))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastComponentOfFileName(&self) -> Retained<NSString>;
@@ -44,5 +44,5 @@ extern_methods!(
         #[unsafe(method(objectSpecifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectSpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
-    }
-);
+    );
+}

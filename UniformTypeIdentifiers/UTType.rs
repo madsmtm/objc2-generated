@@ -46,8 +46,8 @@ unsafe impl NSObjectProtocol for UTType {}
 
 unsafe impl NSSecureCoding for UTType {}
 
-extern_methods!(
-    unsafe impl UTType {
+impl UTType {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -269,12 +269,12 @@ extern_methods!(
         #[unsafe(method(isPublicType))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPublicType(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Conformance
-    unsafe impl UTType {
+/// Conformance.
+impl UTType {
+    extern_methods!(
         /// Tests for a conformance relationship between the receiver and another
         /// type.
         ///
@@ -344,12 +344,12 @@ extern_methods!(
         #[unsafe(method(supertypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn supertypes(&self) -> Retained<NSSet<UTType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UTTagSpecification
-    unsafe impl UTType {
+/// UTTagSpecification.
+impl UTType {
+    extern_methods!(
         /// Create a type given a type tag.
         ///
         ///
@@ -425,12 +425,12 @@ extern_methods!(
         #[unsafe(method(tags))]
         #[unsafe(method_family = none)]
         pub unsafe fn tags(&self) -> Retained<NSDictionary<NSString, NSArray<NSString>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// LocalConstants
-    unsafe impl UTType {
+/// LocalConstants.
+impl UTType {
+    extern_methods!(
         /// Gets an active
         /// `UTType`corresponding to a type that is declared as
         /// "exported" by the current process.
@@ -586,5 +586,5 @@ extern_methods!(
             identifier: &NSString,
             parent_type: &UTType,
         ) -> Retained<UTType>;
-    }
-);
+    );
+}

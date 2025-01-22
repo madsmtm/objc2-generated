@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for MLCEmbeddingDescriptor {
 
 unsafe impl NSObjectProtocol for MLCEmbeddingDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCEmbeddingDescriptor {
+impl MLCEmbeddingDescriptor {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -91,5 +91,5 @@ extern_methods!(
             p_norm: Option<&NSNumber>,
             scales_gradient_by_frequency: bool,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}

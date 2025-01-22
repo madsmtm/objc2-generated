@@ -30,8 +30,8 @@ unsafe impl Sync for HKQuantitySeriesSampleBuilder {}
 
 unsafe impl NSObjectProtocol for HKQuantitySeriesSampleBuilder {}
 
-extern_methods!(
-    unsafe impl HKQuantitySeriesSampleBuilder {
+impl HKQuantitySeriesSampleBuilder {
+    extern_methods!(
         #[cfg(all(
             feature = "HKDevice",
             feature = "HKHealthStore",
@@ -224,14 +224,14 @@ extern_methods!(
         #[unsafe(method(discard))]
         #[unsafe(method_family = none)]
         pub unsafe fn discard(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKQuantitySeriesSampleBuilder {
+/// Methods declared on superclass `NSObject`.
+impl HKQuantitySeriesSampleBuilder {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

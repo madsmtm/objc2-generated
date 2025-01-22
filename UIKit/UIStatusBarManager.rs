@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIStatusBarManager {}
 
-extern_methods!(
-    unsafe impl UIStatusBarManager {
+impl UIStatusBarManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -40,19 +40,19 @@ extern_methods!(
         #[unsafe(method(statusBarFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusBarFrame(&self) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// StatusBarManager
-    #[cfg(all(
-        feature = "UIResponder",
-        feature = "UIScene",
-        feature = "UIWindowScene"
-    ))]
-    unsafe impl UIWindowScene {
+/// StatusBarManager.
+#[cfg(all(
+    feature = "UIResponder",
+    feature = "UIScene",
+    feature = "UIWindowScene"
+))]
+impl UIWindowScene {
+    extern_methods!(
         #[unsafe(method(statusBarManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusBarManager(&self) -> Option<Retained<UIStatusBarManager>>;
-    }
-);
+    );
+}

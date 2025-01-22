@@ -31,9 +31,9 @@ unsafe impl CopyingHelper for PHProject {
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 unsafe impl NSObjectProtocol for PHProject {}
 
-extern_methods!(
-    #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-    unsafe impl PHProject {
+#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+impl PHProject {
+    extern_methods!(
         #[unsafe(method(projectExtensionData))]
         #[unsafe(method_family = none)]
         pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
@@ -43,13 +43,13 @@ extern_methods!(
         #[unsafe(method(hasProjectPreview))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasProjectPreview(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-    unsafe impl PHProject {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+impl PHProject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,5 +57,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

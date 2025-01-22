@@ -113,9 +113,9 @@ extern_class!(
 #[cfg(feature = "CBManager")]
 unsafe impl NSObjectProtocol for CBCentralManager {}
 
-extern_methods!(
-    #[cfg(feature = "CBManager")]
-    unsafe impl CBCentralManager {
+#[cfg(feature = "CBManager")]
+impl CBCentralManager {
+    extern_methods!(
         /// The delegate object that will receive central events.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -361,18 +361,18 @@ extern_methods!(
             &self,
             options: Option<&NSDictionary<CBConnectionEventMatchingOption, AnyObject>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBManager")]
-    unsafe impl CBCentralManager {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBManager")]
+impl CBCentralManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The delegate of a {

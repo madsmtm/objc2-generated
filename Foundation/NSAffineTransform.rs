@@ -70,8 +70,8 @@ unsafe impl NSObjectProtocol for NSAffineTransform {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSAffineTransform {}
 
-extern_methods!(
-    unsafe impl NSAffineTransform {
+impl NSAffineTransform {
+    extern_methods!(
         #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform() -> Retained<NSAffineTransform>;
@@ -144,14 +144,14 @@ extern_methods!(
         #[unsafe(method(setTransformStruct:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransformStruct(&self, transform_struct: NSAffineTransformStruct);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAffineTransform {
+/// Methods declared on superclass `NSObject`.
+impl NSAffineTransform {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -27,9 +27,9 @@ unsafe impl NSObjectProtocol for MXLocationActivityMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXLocationActivityMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXLocationActivityMetric {
+#[cfg(feature = "MXMetric")]
+impl MXLocationActivityMetric {
+    extern_methods!(
         /// Cumulative time spent acquiring location at kCLLocationAccuracyBest.
         ///
         /// Dimensioned as NSUnitDuration.
@@ -81,13 +81,13 @@ extern_methods!(
         pub unsafe fn cumulativeThreeKilometersAccuracyTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXLocationActivityMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXLocationActivityMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -95,5 +95,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

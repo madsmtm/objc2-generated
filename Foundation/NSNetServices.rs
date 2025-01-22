@@ -84,8 +84,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSNetService {}
 
-extern_methods!(
-    unsafe impl NSNetService {
+impl NSNetService {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(initWithDomain:type:name:port:))]
@@ -259,12 +259,12 @@ extern_methods!(
         #[unsafe(method(stopMonitoring))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoring(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSNetService {
+/// Methods declared on superclass `NSObject`.
+impl NSNetService {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -272,8 +272,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservicebrowser?language=objc)
@@ -285,8 +285,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSNetServiceBrowser {}
 
-extern_methods!(
-    unsafe impl NSNetServiceBrowser {
+impl NSNetServiceBrowser {
+    extern_methods!(
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -361,17 +361,17 @@ extern_methods!(
         #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSNetServiceBrowser {
+/// Methods declared on superclass `NSObject`.
+impl NSNetServiceBrowser {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservicedelegate?language=objc)

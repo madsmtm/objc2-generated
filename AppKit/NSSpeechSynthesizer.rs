@@ -237,8 +237,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}
 
-extern_methods!(
-    unsafe impl NSSpeechSynthesizer {
+impl NSSpeechSynthesizer {
+    extern_methods!(
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[unsafe(method(initWithVoice:))]
         #[unsafe(method_family = init)]
@@ -383,12 +383,12 @@ extern_methods!(
         pub unsafe fn attributesForVoice(
             voice: &NSSpeechSynthesizerVoiceName,
         ) -> Retained<NSDictionary<NSVoiceAttributeKey, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSpeechSynthesizer {
+/// Methods declared on superclass `NSObject`.
+impl NSSpeechSynthesizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -396,8 +396,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizerdelegate?language=objc)

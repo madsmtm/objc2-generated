@@ -27,9 +27,9 @@ unsafe impl CopyingHelper for DOMTreeWalker {
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMTreeWalker {}
 
-extern_methods!(
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMTreeWalker {
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMTreeWalker {
+    extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[unsafe(method(root))]
@@ -106,26 +106,26 @@ extern_methods!(
         #[unsafe(method(nextNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextNode(&self) -> Option<Retained<DOMNode>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMTreeWalker {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMTreeWalker {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMTreeWalker {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMTreeWalker {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

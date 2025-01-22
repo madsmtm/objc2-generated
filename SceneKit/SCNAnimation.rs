@@ -42,8 +42,8 @@ unsafe impl NSObjectProtocol for SCNTimingFunction {}
 
 unsafe impl NSSecureCoding for SCNTimingFunction {}
 
-extern_methods!(
-    unsafe impl SCNTimingFunction {
+impl SCNTimingFunction {
+    extern_methods!(
         #[cfg(feature = "SceneKitTypes")]
         #[unsafe(method(functionWithTimingMode:))]
         #[unsafe(method_family = none)]
@@ -58,12 +58,12 @@ extern_methods!(
         pub unsafe fn functionWithCAMediaTimingFunction(
             ca_timing_function: &CAMediaTimingFunction,
         ) -> Retained<SCNTimingFunction>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNTimingFunction {
+/// Methods declared on superclass `NSObject`.
+impl SCNTimingFunction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -71,8 +71,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The SCNAnimatable protocol defines an animatable property. Objects that implement this protocol can be animated through these methods.
@@ -248,8 +248,8 @@ unsafe impl NSSecureCoding for SCNAnimation {}
 
 unsafe impl SCNAnimationProtocol for SCNAnimation {}
 
-extern_methods!(
-    unsafe impl SCNAnimation {
+impl SCNAnimation {
+    extern_methods!(
         /// Loads and returns an animation loaded from the specified URL.
         ///
         ///
@@ -509,12 +509,12 @@ extern_methods!(
         #[unsafe(method(setCumulative:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCumulative(&self, cumulative: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNAnimation {
+/// Methods declared on superclass `NSObject`.
+impl SCNAnimation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -522,8 +522,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNAnimationPlayer let you control when and how to play and blend an animation
@@ -548,8 +548,8 @@ unsafe impl NSSecureCoding for SCNAnimationPlayer {}
 
 unsafe impl SCNAnimatable for SCNAnimationPlayer {}
 
-extern_methods!(
-    unsafe impl SCNAnimationPlayer {
+impl SCNAnimationPlayer {
+    extern_methods!(
         /// Initialize an animation player with an animation
         ///
         /// Parameter `animation`: The animation to play
@@ -612,12 +612,12 @@ extern_methods!(
         #[unsafe(method(stopWithBlendOutDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithBlendOutDuration(&self, duration: NSTimeInterval);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNAnimationPlayer {
+/// Methods declared on superclass `NSObject`.
+impl SCNAnimationPlayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -625,8 +625,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Signature for the block executed when the animation event is triggered.
 ///
@@ -647,8 +647,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCNAnimationEvent {}
 
-extern_methods!(
-    unsafe impl SCNAnimationEvent {
+impl SCNAnimationEvent {
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Returns an animation event instance
         ///
@@ -663,12 +663,12 @@ extern_methods!(
             time: CGFloat,
             event_block: SCNAnimationEventBlock,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNAnimationEvent {
+/// Methods declared on superclass `NSObject`.
+impl SCNAnimationEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -676,5 +676,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

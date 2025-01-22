@@ -22,9 +22,9 @@ unsafe impl NSObjectProtocol for UIScene {}
 #[cfg(feature = "UIResponder")]
 unsafe impl UIResponderStandardEditActions for UIScene {}
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIScene {
+#[cfg(feature = "UIResponder")]
+impl UIScene {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -102,8 +102,8 @@ extern_methods!(
             &self,
             activation_conditions: &UISceneActivationConditions,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedelegate?language=objc)

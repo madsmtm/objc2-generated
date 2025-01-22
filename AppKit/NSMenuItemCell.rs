@@ -55,9 +55,9 @@ unsafe impl NSObjectProtocol for NSMenuItemCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSMenuItemCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
-    unsafe impl NSMenuItemCell {
+#[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
+impl NSMenuItemCell {
+    extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
@@ -185,13 +185,13 @@ extern_methods!(
         #[unsafe(method(setTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTag(&self, tag: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSButtonCell`
-    #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
-    unsafe impl NSMenuItemCell {
+/// Methods declared on superclass `NSButtonCell`.
+#[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
+impl NSMenuItemCell {
+    extern_methods!(
         #[cfg(feature = "NSImage")]
         #[unsafe(method(initImageCell:))]
         #[unsafe(method_family = init)]
@@ -199,25 +199,25 @@ extern_methods!(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
-    unsafe impl NSMenuItemCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
+impl NSMenuItemCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
-    unsafe impl NSMenuItemCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
+impl NSMenuItemCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

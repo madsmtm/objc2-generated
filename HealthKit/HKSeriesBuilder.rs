@@ -22,8 +22,8 @@ unsafe impl Sync for HKSeriesBuilder {}
 
 unsafe impl NSObjectProtocol for HKSeriesBuilder {}
 
-extern_methods!(
-    unsafe impl HKSeriesBuilder {
+impl HKSeriesBuilder {
+    extern_methods!(
         /// Stop series generation and discard all collected data.
         ///
         /// This method informs the receiver that no more data should be collected and all
@@ -37,14 +37,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKSeriesBuilder {
+/// Methods declared on superclass `NSObject`.
+impl HKSeriesBuilder {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

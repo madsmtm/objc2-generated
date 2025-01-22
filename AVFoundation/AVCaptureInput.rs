@@ -27,8 +27,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureInput {}
 
-extern_methods!(
-    unsafe impl AVCaptureInput {
+impl AVCaptureInput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -44,8 +44,8 @@ extern_methods!(
         #[unsafe(method(ports))]
         #[unsafe(method_family = none)]
         pub unsafe fn ports(&self) -> Retained<NSArray<AVCaptureInputPort>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// This notification is posted when the value of an AVCaptureInputPort instance's formatDescription property changes.
@@ -72,8 +72,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureInputPort {}
 
-extern_methods!(
-    unsafe impl AVCaptureInputPort {
+impl AVCaptureInputPort {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -151,8 +151,8 @@ extern_methods!(
         #[unsafe(method(sourceDevicePosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceDevicePosition(&self) -> AVCaptureDevicePosition;
-    }
-);
+    );
+}
 
 /// Constants indicating the modes of multichannel audio.
 ///
@@ -199,8 +199,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDeviceInput {}
 
-extern_methods!(
-    unsafe impl AVCaptureDeviceInput {
+impl AVCaptureDeviceInput {
+    extern_methods!(
         #[cfg(feature = "AVCaptureDevice")]
         /// Returns an AVCaptureDeviceInput instance that provides media data from the given device.
         ///
@@ -374,12 +374,12 @@ extern_methods!(
         #[unsafe(method(setWindNoiseRemovalEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWindNoiseRemovalEnabled(&self, wind_noise_removal_enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureInput`
-    unsafe impl AVCaptureDeviceInput {
+/// Methods declared on superclass `AVCaptureInput`.
+impl AVCaptureDeviceInput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -387,8 +387,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVCaptureScreenInput is a concrete subclass of AVCaptureInput that provides an interface for capturing media from a screen or portion thereof.
@@ -404,8 +404,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureScreenInput {}
 
-extern_methods!(
-    unsafe impl AVCaptureScreenInput {
+impl AVCaptureScreenInput {
+    extern_methods!(
         /// Creates an AVCaptureScreenInput instance that provides media data from the main display.
         ///
         ///
@@ -526,8 +526,8 @@ extern_methods!(
         #[unsafe(method(setRemovesDuplicateFrames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemovesDuplicateFrames(&self, removes_duplicate_frames: bool);
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVCaptureMetadataInput is a concrete subclass of AVCaptureInput that provides a way for clients to supply AVMetadataItems to an AVCaptureSession.
@@ -543,8 +543,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureMetadataInput {}
 
-extern_methods!(
-    unsafe impl AVCaptureMetadataInput {
+impl AVCaptureMetadataInput {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Returns an AVCaptureMetadataInput instance that allows a client to provide AVTimedMetadataGroups to an AVCaptureSession.
         ///
@@ -598,12 +598,12 @@ extern_methods!(
             &self,
             metadata: &AVTimedMetadataGroup,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureInput`
-    unsafe impl AVCaptureMetadataInput {
+/// Methods declared on superclass `AVCaptureInput`.
+impl AVCaptureMetadataInput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -611,5 +611,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

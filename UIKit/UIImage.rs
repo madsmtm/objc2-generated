@@ -105,8 +105,8 @@ unsafe impl NSObjectProtocol for UIImage {}
 
 unsafe impl NSSecureCoding for UIImage {}
 
-extern_methods!(
-    unsafe impl UIImage {
+impl UIImage {
+    extern_methods!(
         #[unsafe(method(systemImageNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemImageNamed(name: &NSString) -> Option<Retained<UIImage>>;
@@ -584,12 +584,12 @@ extern_methods!(
         #[unsafe(method(imageRestrictedToStandardDynamicRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRestrictedToStandardDynamicRange(&self) -> Retained<UIImage>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIImage {
+/// Methods declared on superclass `NSObject`.
+impl UIImage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -597,12 +597,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// PreconfiguredSystemImages
-    unsafe impl UIImage {
+/// PreconfiguredSystemImages.
+impl UIImage {
+    extern_methods!(
         #[unsafe(method(actionsImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionsImage() -> Retained<UIImage>;
@@ -622,31 +622,31 @@ extern_methods!(
         #[unsafe(method(strokedCheckmarkImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokedCheckmarkImage() -> Retained<UIImage>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSItemProvider
-    unsafe impl UIImage {}
-);
+/// NSItemProvider.
+impl UIImage {
+    extern_methods!();
+}
 
 unsafe impl NSItemProviderReading for UIImage {}
 
 unsafe impl NSItemProviderWriting for UIImage {}
 
-extern_methods!(
-    /// UIImage
-    #[cfg(feature = "NSTextAttachment")]
-    unsafe impl NSTextAttachment {
+/// UIImage.
+#[cfg(feature = "NSTextAttachment")]
+impl NSTextAttachment {
+    extern_methods!(
         #[unsafe(method(textAttachmentWithImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttachmentWithImage(image: &UIImage) -> Retained<NSTextAttachment>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIImageDeprecated
-    unsafe impl UIImage {
+/// UIImageDeprecated.
+impl UIImage {
+    extern_methods!(
         #[unsafe(method(stretchableImageWithLeftCapWidth:topCapHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stretchableImageWithLeftCapWidth_topCapHeight(
@@ -662,8 +662,8 @@ extern_methods!(
         #[unsafe(method(topCapHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn topCapHeight(&self) -> NSInteger;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "UIKitAdditions" on [`CIImage`].

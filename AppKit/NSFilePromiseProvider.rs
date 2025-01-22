@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for NSFilePromiseProvider {}
 #[cfg(feature = "NSPasteboard")]
 unsafe impl NSPasteboardWriting for NSFilePromiseProvider {}
 
-extern_methods!(
-    unsafe impl NSFilePromiseProvider {
+impl NSFilePromiseProvider {
+    extern_methods!(
         #[unsafe(method(fileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileType(&self) -> Retained<NSString>;
@@ -65,17 +65,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFilePromiseProvider {
+/// Methods declared on superclass `NSObject`.
+impl NSFilePromiseProvider {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilepromiseproviderdelegate?language=objc)

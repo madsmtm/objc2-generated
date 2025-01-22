@@ -50,9 +50,9 @@ unsafe impl UIResponderStandardEditActions for UIDocumentPickerExtensionViewCont
 ))]
 unsafe impl UITraitEnvironment for UIDocumentPickerExtensionViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentPickerExtensionViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentPickerExtensionViewController {
+    extern_methods!(
         #[deprecated = "Use enumeration based NSFileProviderExtension instead"]
         #[unsafe(method(dismissGrantingAccessToURL:))]
         #[unsafe(method_family = none)]
@@ -89,13 +89,13 @@ extern_methods!(
         #[unsafe(method(documentStorageURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn documentStorageURL(&self) -> Option<Retained<NSURL>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentPickerExtensionViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentPickerExtensionViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -110,13 +110,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentPickerExtensionViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentPickerExtensionViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -124,5 +124,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

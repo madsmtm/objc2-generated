@@ -93,10 +93,10 @@ unsafe impl NSObjectProtocol for AVPlayerView {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for AVPlayerView {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl AVPlayerView {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl AVPlayerView {
+    extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         /// The player from which to source the media content for the view.
         #[unsafe(method(player))]
@@ -275,14 +275,14 @@ extern_methods!(
             magnification: CGFloat,
             point: CGPoint,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl AVPlayerView {
+/// Methods declared on superclass `NSView`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl AVPlayerView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -293,36 +293,36 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl AVPlayerView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl AVPlayerView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl AVPlayerView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl AVPlayerView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerViewCustomization
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl AVPlayerView {
+/// AVPlayerViewCustomization.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl AVPlayerView {
+    extern_methods!(
         /// Replace scanning controls in the playback UI with frame stepping buttons. Default is NO.
         #[unsafe(method(showsFrameSteppingButtons))]
         #[unsafe(method_family = none)]
@@ -372,8 +372,8 @@ extern_methods!(
         #[unsafe(method(setShowsTimecodes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsTimecodes(&self, shows_timecodes: bool);
-    }
-);
+    );
+}
 
 /// The user selected the Trim button.
 ///
@@ -399,11 +399,11 @@ unsafe impl RefEncode for AVPlayerViewTrimResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVPlayerViewTrimming
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl AVPlayerView {
+/// AVPlayerViewTrimming.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl AVPlayerView {
+    extern_methods!(
         /// Whether or not the current media can be trimmed.
         #[unsafe(method(canBeginTrimming))]
         #[unsafe(method_family = none)]
@@ -419,14 +419,14 @@ extern_methods!(
             &self,
             handler: Option<&block2::Block<dyn Fn(AVPlayerViewTrimResult)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerViewChapterIndicator
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl AVPlayerView {
+/// AVPlayerViewChapterIndicator.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl AVPlayerView {
+    extern_methods!(
         /// Parameter `chapterNumber`: The chapter number (required).
         ///
         /// Parameter `chapterTitle`: The chapter title (optional).
@@ -439,14 +439,14 @@ extern_methods!(
             chapter_number: NSUInteger,
             chapter_title: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerViewPictureInPictureSupport
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl AVPlayerView {
+/// AVPlayerViewPictureInPictureSupport.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl AVPlayerView {
+    extern_methods!(
         /// Whether or not the receiver allows Picture in Picture playback. Default is NO.
         #[unsafe(method(allowsPictureInPicturePlayback))]
         #[unsafe(method_family = none)]
@@ -477,8 +477,8 @@ extern_methods!(
                 &ProtocolObject<dyn AVPlayerViewPictureInPictureDelegate>,
             >,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A protocol for delegates of AVPlayerView.

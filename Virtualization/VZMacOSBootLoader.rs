@@ -34,22 +34,22 @@ unsafe impl CopyingHelper for VZMacOSBootLoader {
 #[cfg(feature = "VZBootLoader")]
 unsafe impl NSObjectProtocol for VZMacOSBootLoader {}
 
-extern_methods!(
-    #[cfg(feature = "VZBootLoader")]
-    unsafe impl VZMacOSBootLoader {
+#[cfg(feature = "VZBootLoader")]
+impl VZMacOSBootLoader {
+    extern_methods!(
         /// Create a VZMacOSBootLoader.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZBootLoader`
-    #[cfg(feature = "VZBootLoader")]
-    unsafe impl VZMacOSBootLoader {
+/// Methods declared on superclass `VZBootLoader`.
+#[cfg(feature = "VZBootLoader")]
+impl VZMacOSBootLoader {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

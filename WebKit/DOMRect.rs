@@ -26,9 +26,9 @@ unsafe impl CopyingHelper for DOMRect {
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMRect {}
 
-extern_methods!(
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMRect {
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMRect {
+    extern_methods!(
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
         #[unsafe(method(top))]
@@ -52,26 +52,26 @@ extern_methods!(
         #[unsafe(method(left))]
         #[unsafe(method_family = none)]
         pub unsafe fn left(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMRect {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMRect {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMRect {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMRect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

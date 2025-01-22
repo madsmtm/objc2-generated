@@ -77,9 +77,9 @@ unsafe impl NSObjectProtocol for NSISO8601DateFormatter {}
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSSecureCoding for NSISO8601DateFormatter {}
 
-extern_methods!(
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSISO8601DateFormatter {
+#[cfg(feature = "NSFormatter")]
+impl NSISO8601DateFormatter {
+    extern_methods!(
         #[cfg(feature = "NSTimeZone")]
         #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
@@ -122,15 +122,15 @@ extern_methods!(
             time_zone: &NSTimeZone,
             format_options: NSISO8601DateFormatOptions,
         ) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSISO8601DateFormatter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSFormatter")]
+impl NSISO8601DateFormatter {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

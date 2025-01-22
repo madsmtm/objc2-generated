@@ -168,10 +168,10 @@ extern_category!(
     unsafe impl NSObjectNSKeyValueObserverRegistration for NSObject {}
 );
 
-extern_methods!(
-    /// NSKeyValueObserverRegistration
-    #[cfg(feature = "NSArray")]
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+/// NSKeyValueObserverRegistration.
+#[cfg(feature = "NSArray")]
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[cfg(all(feature = "NSIndexSet", feature = "NSString"))]
         #[unsafe(method(addObserver:toObjectsAtIndexes:forKeyPath:options:context:))]
         #[unsafe(method_family = none)]
@@ -230,13 +230,13 @@ extern_methods!(
         #[unsafe(method(removeObserver:forKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, key_path: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSKeyValueObserverRegistration
-    #[cfg(feature = "NSOrderedSet")]
-    unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+/// NSKeyValueObserverRegistration.
+#[cfg(feature = "NSOrderedSet")]
+impl<ObjectType: Message> NSOrderedSet<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(addObserver:forKeyPath:options:context:))]
         #[unsafe(method_family = none)]
@@ -262,13 +262,13 @@ extern_methods!(
         #[unsafe(method(removeObserver:forKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, key_path: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSKeyValueObserverRegistration
-    #[cfg(feature = "NSSet")]
-    unsafe impl<ObjectType: Message> NSSet<ObjectType> {
+/// NSKeyValueObserverRegistration.
+#[cfg(feature = "NSSet")]
+impl<ObjectType: Message> NSSet<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(addObserver:forKeyPath:options:context:))]
         #[unsafe(method_family = none)]
@@ -294,8 +294,8 @@ extern_methods!(
         #[unsafe(method(removeObserver:forKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, key_path: &NSString);
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSKeyValueObserverNotification" on [`NSObject`].

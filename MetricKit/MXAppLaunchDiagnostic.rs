@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXAppLaunchDiagnostic {}
 #[cfg(feature = "MXDiagnostic")]
 unsafe impl NSSecureCoding for MXAppLaunchDiagnostic {}
 
-extern_methods!(
-    #[cfg(feature = "MXDiagnostic")]
-    unsafe impl MXAppLaunchDiagnostic {
+#[cfg(feature = "MXDiagnostic")]
+impl MXAppLaunchDiagnostic {
+    extern_methods!(
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the app launch.
         #[unsafe(method(callStackTree))]
@@ -40,13 +40,13 @@ extern_methods!(
         #[unsafe(method(launchDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn launchDuration(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXDiagnostic")]
-    unsafe impl MXAppLaunchDiagnostic {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXDiagnostic")]
+impl MXAppLaunchDiagnostic {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -54,5 +54,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

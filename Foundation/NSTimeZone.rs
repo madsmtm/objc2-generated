@@ -33,8 +33,8 @@ unsafe impl NSObjectProtocol for NSTimeZone {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSTimeZone {}
 
-extern_methods!(
-    unsafe impl NSTimeZone {
+impl NSTimeZone {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -72,12 +72,12 @@ extern_methods!(
             &self,
             a_date: &NSDate,
         ) -> Option<Retained<NSDate>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTimeZone {
+/// Methods declared on superclass `NSObject`.
+impl NSTimeZone {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -85,8 +85,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezonenamestyle?language=objc)
 // NS_ENUM
@@ -116,9 +116,9 @@ unsafe impl RefEncode for NSTimeZoneNameStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSExtendedTimeZone
-    unsafe impl NSTimeZone {
+/// NSExtendedTimeZone.
+impl NSTimeZone {
+    extern_methods!(
         #[unsafe(method(systemTimeZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemTimeZone() -> Retained<NSTimeZone>;
@@ -203,12 +203,12 @@ extern_methods!(
             style: NSTimeZoneNameStyle,
             locale: Option<&NSLocale>,
         ) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTimeZoneCreation
-    unsafe impl NSTimeZone {
+/// NSTimeZoneCreation.
+impl NSTimeZone {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(timeZoneWithName:))]
         #[unsafe(method_family = none)]
@@ -247,8 +247,8 @@ extern_methods!(
         #[unsafe(method(timeZoneWithAbbreviation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeZoneWithAbbreviation(abbreviation: &NSString) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssystemtimezonedidchangenotification?language=objc)

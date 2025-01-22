@@ -366,10 +366,10 @@ extern "C-unwind" {
     pub fn NSRectFromString(a_string: &NSString) -> NSRect;
 }
 
-extern_methods!(
-    /// NSValueGeometryExtensions
-    #[cfg(feature = "NSValue")]
-    unsafe impl NSValue {
+/// NSValueGeometryExtensions.
+#[cfg(feature = "NSValue")]
+impl NSValue {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(valueWithPoint:))]
         #[unsafe(method_family = none)]
@@ -409,13 +409,13 @@ extern_methods!(
         #[unsafe(method(edgeInsetsValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeInsetsValue(&self) -> NSEdgeInsets;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSGeometryCoding
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSCoder {
+/// NSGeometryCoding.
+#[cfg(feature = "NSCoder")]
+impl NSCoder {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(encodePoint:))]
         #[unsafe(method_family = none)]
@@ -445,13 +445,13 @@ extern_methods!(
         #[unsafe(method(decodeRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRect(&self) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSGeometryKeyedCoding
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSCoder {
+/// NSGeometryKeyedCoding.
+#[cfg(feature = "NSCoder")]
+impl NSCoder {
+    extern_methods!(
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
         #[unsafe(method(encodePoint:forKey:))]
         #[unsafe(method_family = none)]
@@ -481,5 +481,5 @@ extern_methods!(
         #[unsafe(method(decodeRectForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRectForKey(&self, key: &NSString) -> NSRect;
-    }
-);
+    );
+}

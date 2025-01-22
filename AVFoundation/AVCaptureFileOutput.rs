@@ -29,9 +29,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureOutputBase")]
 unsafe impl NSObjectProtocol for AVCaptureFileOutput {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureFileOutput {
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureFileOutput {
+    extern_methods!(
         /// The receiver's delegate.
         ///
         ///
@@ -192,13 +192,13 @@ extern_methods!(
         #[unsafe(method(setMinFreeDiskSpaceLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinFreeDiskSpaceLimit(&self, min_free_disk_space_limit: i64);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureOutput`
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureFileOutput {
+/// Methods declared on superclass `AVCaptureOutput`.
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureFileOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -206,8 +206,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines an interface for delegates of AVCaptureFileOutput to respond to events that occur in the process of recording a single file.
@@ -448,9 +448,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureOutputBase")]
 unsafe impl NSObjectProtocol for AVCaptureMovieFileOutput {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureMovieFileOutput {
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureMovieFileOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -670,8 +670,8 @@ extern_methods!(
         #[unsafe(method(setSpatialVideoCaptureEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpatialVideoCaptureEnabled(&self, spatial_video_capture_enabled: bool);
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVCaptureAudioFileOutput is a concrete subclass of AVCaptureFileOutput that writes captured audio to any audio file type supported by CoreAudio.
@@ -689,9 +689,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureOutputBase")]
 unsafe impl NSObjectProtocol for AVCaptureAudioFileOutput {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureAudioFileOutput {
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureAudioFileOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -768,5 +768,5 @@ extern_methods!(
             &self,
             audio_settings: Option<&NSDictionary<NSString, AnyObject>>,
         );
-    }
-);
+    );
+}

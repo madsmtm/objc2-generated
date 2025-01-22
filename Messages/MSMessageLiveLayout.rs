@@ -27,9 +27,9 @@ unsafe impl CopyingHelper for MSMessageLiveLayout {
 #[cfg(feature = "MSMessageLayout")]
 unsafe impl NSObjectProtocol for MSMessageLiveLayout {}
 
-extern_methods!(
-    #[cfg(feature = "MSMessageLayout")]
-    unsafe impl MSMessageLiveLayout {
+#[cfg(feature = "MSMessageLayout")]
+impl MSMessageLiveLayout {
+    extern_methods!(
         #[cfg(feature = "MSMessageTemplateLayout")]
         /// Parameter `alternateLayout`: The alternate layout of the message. This layout will be used on devices that don't support live layout or don't have the iMessage app installed.
         #[unsafe(method(initWithAlternateLayout:))]
@@ -48,15 +48,15 @@ extern_methods!(
         #[unsafe(method(alternateLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateLayout(&self) -> Retained<MSMessageTemplateLayout>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MSMessageLayout")]
-    unsafe impl MSMessageLiveLayout {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MSMessageLayout")]
+impl MSMessageLiveLayout {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

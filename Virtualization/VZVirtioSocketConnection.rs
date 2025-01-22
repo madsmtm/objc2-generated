@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZVirtioSocketConnection {}
 
-extern_methods!(
-    unsafe impl VZVirtioSocketConnection {
+impl VZVirtioSocketConnection {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -56,5 +56,5 @@ extern_methods!(
         #[unsafe(method(close))]
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
-    }
-);
+    );
+}

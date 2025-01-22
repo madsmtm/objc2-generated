@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for ASPasskeyRegistrationCredentialExtensionInput {
 
 unsafe impl NSSecureCoding for ASPasskeyRegistrationCredentialExtensionInput {}
 
-extern_methods!(
-    unsafe impl ASPasskeyRegistrationCredentialExtensionInput {
+impl ASPasskeyRegistrationCredentialExtensionInput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -44,5 +44,5 @@ extern_methods!(
         pub unsafe fn largeBlob(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>>;
-    }
-);
+    );
+}

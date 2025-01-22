@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKContentRuleListStore {}
 
-extern_methods!(
-    unsafe impl WKContentRuleListStore {
+impl WKContentRuleListStore {
+    extern_methods!(
         #[unsafe(method(defaultStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultStore(mtm: MainThreadMarker) -> Option<Retained<Self>>;
@@ -69,12 +69,12 @@ extern_methods!(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSArray<NSString>)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKContentRuleListStore {
+/// Methods declared on superclass `NSObject`.
+impl WKContentRuleListStore {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,5 +82,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

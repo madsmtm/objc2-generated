@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for CXProviderConfiguration {
 
 unsafe impl NSObjectProtocol for CXProviderConfiguration {}
 
-extern_methods!(
-    unsafe impl CXProviderConfiguration {
+impl CXProviderConfiguration {
+    extern_methods!(
         /// Localized name of the provider
         #[deprecated = "No longer supported"]
         #[unsafe(method(localizedName))]
@@ -107,14 +107,14 @@ extern_methods!(
             this: Allocated<Self>,
             localized_name: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CXProviderConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl CXProviderConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

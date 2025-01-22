@@ -110,8 +110,8 @@ unsafe impl CopyingHelper for MTLCommandQueueDescriptor {
 
 unsafe impl NSObjectProtocol for MTLCommandQueueDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLCommandQueueDescriptor {
+impl MTLCommandQueueDescriptor {
+    extern_methods!(
         /// @
         /// Specify upper bound on uncompleted command buffers that may be enqueued on this queue
         #[unsafe(method(maxCommandBufferCount))]
@@ -135,12 +135,12 @@ extern_methods!(
         #[unsafe(method(setLogState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLCommandQueueDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLCommandQueueDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -148,5 +148,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -73,13 +73,13 @@ unsafe impl NSObjectProtocol for NSTableHeaderCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSTableHeaderCell {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSTableHeaderCell {
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSTableHeaderCell {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(drawSortIndicatorWithFrame:inView:ascending:priority:))]
         #[unsafe(method_family = none)]
@@ -94,17 +94,17 @@ extern_methods!(
         #[unsafe(method(sortIndicatorRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortIndicatorRectForBounds(&self, rect: NSRect) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSTableHeaderCell {
+/// Methods declared on superclass `NSTextFieldCell`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSTableHeaderCell {
+    extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
@@ -120,33 +120,33 @@ extern_methods!(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSTableHeaderCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSTableHeaderCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSTableHeaderCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSTableHeaderCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

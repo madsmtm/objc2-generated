@@ -28,15 +28,15 @@ unsafe impl CopyingHelper for UIDragPreviewTarget {
 #[cfg(feature = "UITargetedPreview")]
 unsafe impl NSObjectProtocol for UIDragPreviewTarget {}
 
-extern_methods!(
-    #[cfg(feature = "UITargetedPreview")]
-    unsafe impl UIDragPreviewTarget {}
-);
+#[cfg(feature = "UITargetedPreview")]
+impl UIDragPreviewTarget {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIPreviewTarget`
-    #[cfg(feature = "UITargetedPreview")]
-    unsafe impl UIDragPreviewTarget {
+/// Methods declared on superclass `UIPreviewTarget`.
+#[cfg(feature = "UITargetedPreview")]
+impl UIDragPreviewTarget {
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UIView",
@@ -71,8 +71,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitargeteddragpreview?language=objc)
@@ -94,22 +94,22 @@ unsafe impl CopyingHelper for UITargetedDragPreview {
 #[cfg(feature = "UITargetedPreview")]
 unsafe impl NSObjectProtocol for UITargetedDragPreview {}
 
-extern_methods!(
-    #[cfg(feature = "UITargetedPreview")]
-    unsafe impl UITargetedDragPreview {
+#[cfg(feature = "UITargetedPreview")]
+impl UITargetedDragPreview {
+    extern_methods!(
         #[unsafe(method(retargetedPreviewWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retargetedPreviewWithTarget(
             &self,
             new_target: &UIDragPreviewTarget,
         ) -> Retained<UITargetedDragPreview>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UITargetedPreview`
-    #[cfg(feature = "UITargetedPreview")]
-    unsafe impl UITargetedDragPreview {
+/// Methods declared on superclass `UITargetedPreview`.
+#[cfg(feature = "UITargetedPreview")]
+impl UITargetedDragPreview {
+    extern_methods!(
         #[cfg(all(
             feature = "UIPreviewParameters",
             feature = "UIResponder",
@@ -149,5 +149,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

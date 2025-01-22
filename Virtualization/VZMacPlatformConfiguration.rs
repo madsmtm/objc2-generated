@@ -45,9 +45,9 @@ unsafe impl CopyingHelper for VZMacPlatformConfiguration {
 #[cfg(feature = "VZPlatformConfiguration")]
 unsafe impl NSObjectProtocol for VZMacPlatformConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZPlatformConfiguration")]
-    unsafe impl VZMacPlatformConfiguration {
+#[cfg(feature = "VZPlatformConfiguration")]
+impl VZMacPlatformConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -92,15 +92,15 @@ extern_methods!(
         #[unsafe(method(setAuxiliaryStorage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuxiliaryStorage(&self, auxiliary_storage: Option<&VZMacAuxiliaryStorage>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZPlatformConfiguration`
-    #[cfg(feature = "VZPlatformConfiguration")]
-    unsafe impl VZMacPlatformConfiguration {
+/// Methods declared on superclass `VZPlatformConfiguration`.
+#[cfg(feature = "VZPlatformConfiguration")]
+impl VZMacPlatformConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for MLCLossDescriptor {
 
 unsafe impl NSObjectProtocol for MLCLossDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCLossDescriptor {
+impl MLCLossDescriptor {
+    extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// Specifies the loss function.
         #[deprecated]
@@ -180,5 +180,5 @@ extern_methods!(
             epsilon: c_float,
             delta: c_float,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

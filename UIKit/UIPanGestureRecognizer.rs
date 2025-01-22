@@ -65,9 +65,9 @@ extern_class!(
 #[cfg(feature = "UIGestureRecognizer")]
 unsafe impl NSObjectProtocol for UIPanGestureRecognizer {}
 
-extern_methods!(
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UIPanGestureRecognizer {
+#[cfg(feature = "UIGestureRecognizer")]
+impl UIPanGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(minimumNumberOfTouches))]
         #[unsafe(method_family = none)]
         pub fn minimumNumberOfTouches(&self) -> NSUInteger;
@@ -121,13 +121,13 @@ extern_methods!(
         #[unsafe(method(setAllowedScrollTypesMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedScrollTypesMask(&self, allowed_scroll_types_mask: UIScrollTypeMask);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIGestureRecognizer`
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UIPanGestureRecognizer {
+/// Methods declared on superclass `UIGestureRecognizer`.
+#[cfg(feature = "UIGestureRecognizer")]
+impl UIPanGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
@@ -146,15 +146,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UIPanGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIGestureRecognizer")]
+impl UIPanGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

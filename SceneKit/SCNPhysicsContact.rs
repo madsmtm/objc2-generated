@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCNPhysicsContact {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsContact {
+impl SCNPhysicsContact {
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         #[unsafe(method(nodeA))]
         #[unsafe(method_family = none)]
@@ -54,12 +54,12 @@ extern_methods!(
         #[unsafe(method(sweepTestFraction))]
         #[unsafe(method_family = none)]
         pub unsafe fn sweepTestFraction(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsContact {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsContact {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -67,5 +67,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

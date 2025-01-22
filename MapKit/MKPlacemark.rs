@@ -39,9 +39,9 @@ unsafe impl NSObjectProtocol for MKPlacemark {}
 #[cfg(feature = "objc2-core-location")]
 unsafe impl NSSecureCoding for MKPlacemark {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-core-location")]
-    unsafe impl MKPlacemark {
+#[cfg(feature = "objc2-core-location")]
+impl MKPlacemark {
+    extern_methods!(
         #[unsafe(method(initWithCoordinate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate(
@@ -70,13 +70,13 @@ extern_methods!(
         #[unsafe(method(countryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLPlacemark`
-    #[cfg(feature = "objc2-core-location")]
-    unsafe impl MKPlacemark {
+/// Methods declared on superclass `CLPlacemark`.
+#[cfg(feature = "objc2-core-location")]
+impl MKPlacemark {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -91,5 +91,5 @@ extern_methods!(
             this: Allocated<Self>,
             placemark: &CLPlacemark,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

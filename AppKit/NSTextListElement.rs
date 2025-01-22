@@ -17,9 +17,9 @@ extern_class!(
 #[cfg(feature = "NSTextElement")]
 unsafe impl NSObjectProtocol for NSTextListElement {}
 
-extern_methods!(
-    #[cfg(feature = "NSTextElement")]
-    unsafe impl NSTextListElement {
+#[cfg(feature = "NSTextElement")]
+impl NSTextListElement {
+    extern_methods!(
         #[cfg(feature = "NSTextList")]
         #[unsafe(method(initWithParentElement:textList:contents:markerAttributes:childElements:))]
         #[unsafe(method_family = init)]
@@ -84,13 +84,13 @@ extern_methods!(
         #[unsafe(method(parentElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentElement(&self) -> Option<Retained<NSTextListElement>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextElement`
-    #[cfg(feature = "NSTextElement")]
-    unsafe impl NSTextListElement {
+/// Methods declared on superclass `NSTextElement`.
+#[cfg(feature = "NSTextElement")]
+impl NSTextListElement {
+    extern_methods!(
         #[cfg(feature = "NSTextContentManager")]
         #[unsafe(method(initWithTextContentManager:))]
         #[unsafe(method_family = init)]
@@ -98,13 +98,13 @@ extern_methods!(
             this: Allocated<Self>,
             text_content_manager: Option<&NSTextContentManager>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSTextElement")]
-    unsafe impl NSTextListElement {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSTextElement")]
+impl NSTextListElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -112,5 +112,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

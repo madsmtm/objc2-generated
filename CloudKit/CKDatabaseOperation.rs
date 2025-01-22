@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "CKOperation")]
 unsafe impl NSObjectProtocol for CKDatabaseOperation {}
 
-extern_methods!(
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKDatabaseOperation {
+#[cfg(feature = "CKOperation")]
+impl CKDatabaseOperation {
+    extern_methods!(
         #[cfg(feature = "CKDatabase")]
         /// The database on which to perform the operation.
         ///
@@ -42,25 +42,25 @@ extern_methods!(
         #[unsafe(method(setDatabase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDatabase(&self, database: Option<&CKDatabase>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CKOperation`
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKDatabaseOperation {
+/// Methods declared on superclass `CKOperation`.
+#[cfg(feature = "CKOperation")]
+impl CKDatabaseOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CKOperation")]
-    unsafe impl CKDatabaseOperation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CKOperation")]
+impl CKDatabaseOperation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

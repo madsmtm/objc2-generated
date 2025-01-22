@@ -162,8 +162,8 @@ unsafe impl CopyingHelper for PHPickerFilter {
 
 unsafe impl NSObjectProtocol for PHPickerFilter {}
 
-extern_methods!(
-    unsafe impl PHPickerFilter {
+impl PHPickerFilter {
+    extern_methods!(
         /// The filter for images.
         #[unsafe(method(imagesFilter))]
         #[unsafe(method_family = none)]
@@ -259,8 +259,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An update configuration for
@@ -280,8 +280,8 @@ unsafe impl CopyingHelper for PHPickerUpdateConfiguration {
 
 unsafe impl NSObjectProtocol for PHPickerUpdateConfiguration {}
 
-extern_methods!(
-    unsafe impl PHPickerUpdateConfiguration {
+impl PHPickerUpdateConfiguration {
+    extern_methods!(
         /// The maximum number of assets that can be selected.
         #[unsafe(method(selectionLimit))]
         #[unsafe(method_family = none)]
@@ -308,12 +308,12 @@ extern_methods!(
             &self,
             edges_without_content_margins: NSDirectionalRectEdge,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHPickerUpdateConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl PHPickerUpdateConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -321,8 +321,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A configuration for
@@ -342,8 +342,8 @@ unsafe impl CopyingHelper for PHPickerConfiguration {
 
 unsafe impl NSObjectProtocol for PHPickerConfiguration {}
 
-extern_methods!(
-    unsafe impl PHPickerConfiguration {
+impl PHPickerConfiguration {
+    extern_methods!(
         /// The preferred representation mode of selected assets. Default is
         /// `PHPickerConfigurationAssetRepresentationModeAutomatic.`
         /// Setting
@@ -473,17 +473,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHPickerConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl PHPickerConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A user selected asset from
@@ -497,8 +497,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHPickerResult {}
 
-extern_methods!(
-    unsafe impl PHPickerResult {
+impl PHPickerResult {
+    extern_methods!(
         /// Representations of the selected asset.
         #[unsafe(method(itemProvider))]
         #[unsafe(method_family = none)]
@@ -516,8 +516,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A set of methods that the delegate must implement to respond to
@@ -572,10 +572,10 @@ unsafe impl NSSeguePerforming for PHPickerViewController {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for PHPickerViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl PHPickerViewController {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl PHPickerViewController {
+    extern_methods!(
         /// The configuration passed in during initialization.
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
@@ -672,5 +672,5 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}

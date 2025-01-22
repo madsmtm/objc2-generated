@@ -330,8 +330,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSWritingToolsCoordinator {}
 
-extern_methods!(
-    unsafe impl NSWritingToolsCoordinator {
+impl NSWritingToolsCoordinator {
+    extern_methods!(
         /// A Boolean value that indicates whether Writing Tools features are
         /// currently available.
         ///
@@ -593,12 +593,12 @@ extern_methods!(
         #[unsafe(method(updateForReflowedTextInContextWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateForReflowedTextInContextWithIdentifier(&self, context_id: &NSUUID);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSWritingToolsCoordinator {
+/// Methods declared on superclass `NSObject`.
+impl NSWritingToolsCoordinator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -606,8 +606,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// An interface that you use to manage interactions between Writing Tools
@@ -1325,8 +1325,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTextPreview {}
 
-extern_methods!(
-    unsafe impl NSTextPreview {
+impl NSTextPreview {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         /// Creates a text preview using the specified image and rectangles that indicate
@@ -1418,14 +1418,14 @@ extern_methods!(
         #[unsafe(method(candidateRects))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidateRects(&self) -> Retained<NSArray<NSValue>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextPreview {
+/// Methods declared on superclass `NSObject`.
+impl NSTextPreview {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

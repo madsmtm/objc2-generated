@@ -33,8 +33,8 @@ unsafe impl CopyingHelper for NSNotification {
 
 unsafe impl NSObjectProtocol for NSNotification {}
 
-extern_methods!(
-    unsafe impl NSNotification {
+impl NSNotification {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -66,12 +66,12 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSNotificationCreation
-    unsafe impl NSNotification {
+/// NSNotificationCreation.
+impl NSNotification {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(notificationWithName:object:))]
         #[unsafe(method_family = none)]
@@ -88,8 +88,8 @@ extern_methods!(
             an_object: Option<&AnyObject>,
             a_user_info: Option<&NSDictionary>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// **************    Notification Center    ***************
@@ -106,8 +106,8 @@ unsafe impl Sync for NSNotificationCenter {}
 
 unsafe impl NSObjectProtocol for NSNotificationCenter {}
 
-extern_methods!(
-    unsafe impl NSNotificationCenter {
+impl NSNotificationCenter {
+    extern_methods!(
         #[unsafe(method(defaultCenter))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultCenter() -> Retained<NSNotificationCenter>;
@@ -170,12 +170,12 @@ extern_methods!(
             queue: Option<&NSOperationQueue>,
             block: &block2::Block<dyn Fn(NonNull<NSNotification>)>,
         ) -> Retained<ProtocolObject<dyn NSObjectProtocol>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSNotificationCenter {
+/// Methods declared on superclass `NSObject`.
+impl NSNotificationCenter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -183,5 +183,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

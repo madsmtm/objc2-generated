@@ -68,8 +68,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NLTagger {}
 
-extern_methods!(
-    unsafe impl NLTagger {
+impl NLTagger {
+    extern_methods!(
         #[cfg(feature = "NLTagScheme")]
         #[unsafe(method(initWithTagSchemes:))]
         #[unsafe(method_family = init)]
@@ -221,12 +221,12 @@ extern_methods!(
             tag_scheme: &NLTagScheme,
             completion_handler: &block2::Block<dyn Fn(NLTaggerAssetsResult, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NLTagger {
+/// Methods declared on superclass `NSObject`.
+impl NLTagger {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -234,5 +234,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

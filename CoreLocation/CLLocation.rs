@@ -138,17 +138,17 @@ unsafe impl NSObjectProtocol for CLFloor {}
 
 unsafe impl NSSecureCoding for CLFloor {}
 
-extern_methods!(
-    unsafe impl CLFloor {
+impl CLFloor {
+    extern_methods!(
         #[unsafe(method(level))]
         #[unsafe(method_family = none)]
         pub unsafe fn level(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CLFloor {
+/// Methods declared on superclass `NSObject`.
+impl CLFloor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -156,8 +156,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationsourceinformation?language=objc)
@@ -178,8 +178,8 @@ unsafe impl NSObjectProtocol for CLLocationSourceInformation {}
 
 unsafe impl NSSecureCoding for CLLocationSourceInformation {}
 
-extern_methods!(
-    unsafe impl CLLocationSourceInformation {
+impl CLLocationSourceInformation {
+    extern_methods!(
         #[unsafe(method(initWithSoftwareSimulationState:andExternalAccessoryState:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSoftwareSimulationState_andExternalAccessoryState(
@@ -195,12 +195,12 @@ extern_methods!(
         #[unsafe(method(isProducedByAccessory))]
         #[unsafe(method_family = none)]
         pub unsafe fn isProducedByAccessory(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CLLocationSourceInformation {
+/// Methods declared on superclass `NSObject`.
+impl CLLocationSourceInformation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -208,8 +208,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocation?language=objc)
@@ -234,8 +234,8 @@ unsafe impl NSObjectProtocol for CLLocation {}
 
 unsafe impl NSSecureCoding for CLLocation {}
 
-extern_methods!(
-    unsafe impl CLLocation {
+impl CLLocation {
+    extern_methods!(
         #[unsafe(method(initWithLatitude:longitude:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLatitude_longitude(
@@ -346,12 +346,12 @@ extern_methods!(
         #[unsafe(method(sourceInformation))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceInformation(&self) -> Option<Retained<CLLocationSourceInformation>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CLLocation {
+/// Methods declared on superclass `NSObject`.
+impl CLLocation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -359,5 +359,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

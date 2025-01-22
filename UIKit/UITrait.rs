@@ -93,13 +93,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitUserInterfaceIdiom {}
 
 unsafe impl UITraitDefinition for UITraitUserInterfaceIdiom {}
 
-extern_methods!(
-    unsafe impl UITraitUserInterfaceIdiom {}
-);
+impl UITraitUserInterfaceIdiom {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitUserInterfaceIdiom {
+/// Methods declared on superclass `NSObject`.
+impl UITraitUserInterfaceIdiom {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -107,8 +107,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacestyle?language=objc)
@@ -124,13 +124,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitUserInterfaceStyle {}
 
 unsafe impl UITraitDefinition for UITraitUserInterfaceStyle {}
 
-extern_methods!(
-    unsafe impl UITraitUserInterfaceStyle {}
-);
+impl UITraitUserInterfaceStyle {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitUserInterfaceStyle {
+/// Methods declared on superclass `NSObject`.
+impl UITraitUserInterfaceStyle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -138,8 +138,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlayoutdirection?language=objc)
@@ -155,13 +155,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitLayoutDirection {}
 
 unsafe impl UITraitDefinition for UITraitLayoutDirection {}
 
-extern_methods!(
-    unsafe impl UITraitLayoutDirection {}
-);
+impl UITraitLayoutDirection {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitLayoutDirection {
+/// Methods declared on superclass `NSObject`.
+impl UITraitLayoutDirection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -169,8 +169,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplayscale?language=objc)
@@ -186,13 +186,13 @@ unsafe impl UICGFloatTraitDefinition for UITraitDisplayScale {}
 
 unsafe impl UITraitDefinition for UITraitDisplayScale {}
 
-extern_methods!(
-    unsafe impl UITraitDisplayScale {}
-);
+impl UITraitDisplayScale {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitDisplayScale {
+/// Methods declared on superclass `NSObject`.
+impl UITraitDisplayScale {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -200,8 +200,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraithorizontalsizeclass?language=objc)
@@ -217,13 +217,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitHorizontalSizeClass {}
 
 unsafe impl UITraitDefinition for UITraitHorizontalSizeClass {}
 
-extern_methods!(
-    unsafe impl UITraitHorizontalSizeClass {}
-);
+impl UITraitHorizontalSizeClass {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitHorizontalSizeClass {
+/// Methods declared on superclass `NSObject`.
+impl UITraitHorizontalSizeClass {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -231,8 +231,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitverticalsizeclass?language=objc)
@@ -248,13 +248,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitVerticalSizeClass {}
 
 unsafe impl UITraitDefinition for UITraitVerticalSizeClass {}
 
-extern_methods!(
-    unsafe impl UITraitVerticalSizeClass {}
-);
+impl UITraitVerticalSizeClass {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitVerticalSizeClass {
+/// Methods declared on superclass `NSObject`.
+impl UITraitVerticalSizeClass {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -262,8 +262,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitforcetouchcapability?language=objc)
@@ -279,13 +279,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitForceTouchCapability {}
 
 unsafe impl UITraitDefinition for UITraitForceTouchCapability {}
 
-extern_methods!(
-    unsafe impl UITraitForceTouchCapability {}
-);
+impl UITraitForceTouchCapability {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitForceTouchCapability {
+/// Methods declared on superclass `NSObject`.
+impl UITraitForceTouchCapability {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -293,8 +293,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitpreferredcontentsizecategory?language=objc)
@@ -310,13 +310,13 @@ unsafe impl UIObjectTraitDefinition for UITraitPreferredContentSizeCategory {}
 
 unsafe impl UITraitDefinition for UITraitPreferredContentSizeCategory {}
 
-extern_methods!(
-    unsafe impl UITraitPreferredContentSizeCategory {}
-);
+impl UITraitPreferredContentSizeCategory {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitPreferredContentSizeCategory {
+/// Methods declared on superclass `NSObject`.
+impl UITraitPreferredContentSizeCategory {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -324,8 +324,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplaygamut?language=objc)
@@ -341,13 +341,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitDisplayGamut {}
 
 unsafe impl UITraitDefinition for UITraitDisplayGamut {}
 
-extern_methods!(
-    unsafe impl UITraitDisplayGamut {}
-);
+impl UITraitDisplayGamut {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitDisplayGamut {
+/// Methods declared on superclass `NSObject`.
+impl UITraitDisplayGamut {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -355,8 +355,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitaccessibilitycontrast?language=objc)
@@ -372,13 +372,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitAccessibilityContrast {}
 
 unsafe impl UITraitDefinition for UITraitAccessibilityContrast {}
 
-extern_methods!(
-    unsafe impl UITraitAccessibilityContrast {}
-);
+impl UITraitAccessibilityContrast {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitAccessibilityContrast {
+/// Methods declared on superclass `NSObject`.
+impl UITraitAccessibilityContrast {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -386,8 +386,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacelevel?language=objc)
@@ -403,13 +403,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitUserInterfaceLevel {}
 
 unsafe impl UITraitDefinition for UITraitUserInterfaceLevel {}
 
-extern_methods!(
-    unsafe impl UITraitUserInterfaceLevel {}
-);
+impl UITraitUserInterfaceLevel {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitUserInterfaceLevel {
+/// Methods declared on superclass `NSObject`.
+impl UITraitUserInterfaceLevel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -417,8 +417,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlegibilityweight?language=objc)
@@ -434,13 +434,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitLegibilityWeight {}
 
 unsafe impl UITraitDefinition for UITraitLegibilityWeight {}
 
-extern_methods!(
-    unsafe impl UITraitLegibilityWeight {}
-);
+impl UITraitLegibilityWeight {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitLegibilityWeight {
+/// Methods declared on superclass `NSObject`.
+impl UITraitLegibilityWeight {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -448,8 +448,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitactiveappearance?language=objc)
@@ -465,13 +465,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitActiveAppearance {}
 
 unsafe impl UITraitDefinition for UITraitActiveAppearance {}
 
-extern_methods!(
-    unsafe impl UITraitActiveAppearance {}
-);
+impl UITraitActiveAppearance {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitActiveAppearance {
+/// Methods declared on superclass `NSObject`.
+impl UITraitActiveAppearance {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -479,8 +479,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittoolbaritempresentationsize?language=objc)
@@ -496,13 +496,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitToolbarItemPresentationSize {}
 
 unsafe impl UITraitDefinition for UITraitToolbarItemPresentationSize {}
 
-extern_methods!(
-    unsafe impl UITraitToolbarItemPresentationSize {}
-);
+impl UITraitToolbarItemPresentationSize {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitToolbarItemPresentationSize {
+/// Methods declared on superclass `NSObject`.
+impl UITraitToolbarItemPresentationSize {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -510,8 +510,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitimagedynamicrange?language=objc)
@@ -527,13 +527,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitImageDynamicRange {}
 
 unsafe impl UITraitDefinition for UITraitImageDynamicRange {}
 
-extern_methods!(
-    unsafe impl UITraitImageDynamicRange {}
-);
+impl UITraitImageDynamicRange {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitImageDynamicRange {
+/// Methods declared on superclass `NSObject`.
+impl UITraitImageDynamicRange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -541,8 +541,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittypesettinglanguage?language=objc)
@@ -558,13 +558,13 @@ unsafe impl UIObjectTraitDefinition for UITraitTypesettingLanguage {}
 
 unsafe impl UITraitDefinition for UITraitTypesettingLanguage {}
 
-extern_methods!(
-    unsafe impl UITraitTypesettingLanguage {}
-);
+impl UITraitTypesettingLanguage {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitTypesettingLanguage {
+/// Methods declared on superclass `NSObject`.
+impl UITraitTypesettingLanguage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -572,8 +572,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitscenecapturestate?language=objc)
@@ -589,13 +589,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitSceneCaptureState {}
 
 unsafe impl UITraitDefinition for UITraitSceneCaptureState {}
 
-extern_methods!(
-    unsafe impl UITraitSceneCaptureState {}
-);
+impl UITraitSceneCaptureState {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitSceneCaptureState {
+/// Methods declared on superclass `NSObject`.
+impl UITraitSceneCaptureState {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -603,5 +603,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

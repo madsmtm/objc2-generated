@@ -60,9 +60,9 @@ unsafe impl CopyingHelper for NSDateIntervalFormatter {
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSDateIntervalFormatter {}
 
-extern_methods!(
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSDateIntervalFormatter {
+#[cfg(feature = "NSFormatter")]
+impl NSDateIntervalFormatter {
+    extern_methods!(
         #[cfg(feature = "NSLocale")]
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
@@ -141,13 +141,13 @@ extern_methods!(
             &self,
             date_interval: &NSDateInterval,
         ) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSDateIntervalFormatter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSFormatter")]
+impl NSDateIntervalFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -155,5 +155,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

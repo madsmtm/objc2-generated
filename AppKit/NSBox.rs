@@ -105,9 +105,9 @@ unsafe impl NSObjectProtocol for NSBox {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSBox {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSBox {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSBox {
+    extern_methods!(
         #[unsafe(method(boxType))]
         #[unsafe(method_family = none)]
         pub unsafe fn boxType(&self) -> NSBoxType;
@@ -236,13 +236,13 @@ extern_methods!(
         #[unsafe(method(setFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillColor(&self, fill_color: &NSColor);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSBox {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSBox {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -253,33 +253,33 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSBox {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSBox {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSBox {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSBox {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSBox {
+/// NSDeprecated.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSBox {
+    extern_methods!(
         #[deprecated = "borderType is only applicable to NSBoxOldStyle, which is deprecated. To replace a borderType of NSNoBorder, use the `transparent` property."]
         #[unsafe(method(borderType))]
         #[unsafe(method_family = none)]
@@ -295,8 +295,8 @@ extern_methods!(
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsboxsecondary?language=objc)
 pub static NSBoxSecondary: NSBoxType = NSBoxType(1);

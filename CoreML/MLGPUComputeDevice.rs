@@ -26,8 +26,8 @@ unsafe impl MLComputeDeviceProtocol for MLGPUComputeDevice {}
 
 unsafe impl NSObjectProtocol for MLGPUComputeDevice {}
 
-extern_methods!(
-    unsafe impl MLGPUComputeDevice {
+impl MLGPUComputeDevice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -42,5 +42,5 @@ extern_methods!(
         #[unsafe(method(metalDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn metalDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
-    }
-);
+    );
+}

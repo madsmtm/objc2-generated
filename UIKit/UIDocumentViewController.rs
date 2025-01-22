@@ -48,9 +48,9 @@ unsafe impl UIResponderStandardEditActions for UIDocumentViewController {}
 ))]
 unsafe impl UITraitEnvironment for UIDocumentViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentViewController {
+    extern_methods!(
         #[cfg(feature = "UIDocument")]
         #[unsafe(method(initWithDocument:))]
         #[unsafe(method_family = init)]
@@ -112,13 +112,13 @@ extern_methods!(
         #[unsafe(method(undoRedoItemGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn undoRedoItemGroup(&self) -> Retained<UIBarButtonItemGroup>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -133,13 +133,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -147,5 +147,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

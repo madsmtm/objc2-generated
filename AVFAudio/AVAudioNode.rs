@@ -47,8 +47,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioNode {}
 
-extern_methods!(
-    unsafe impl AVAudioNode {
+impl AVAudioNode {
+    extern_methods!(
         /// Clear a unit's previous processing state.
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
@@ -210,12 +210,12 @@ extern_methods!(
         #[unsafe(method(outputPresentationLatency))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputPresentationLatency(&self) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioNode {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -223,5 +223,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

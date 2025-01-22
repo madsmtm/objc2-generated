@@ -42,8 +42,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MDLMeshBufferMap {}
 
-extern_methods!(
-    unsafe impl MDLMeshBufferMap {
+impl MDLMeshBufferMap {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Called by implementor of MDLMeshBuffer protocol to create the map
         /// and arrange for unmapping on deallocation.
@@ -59,12 +59,12 @@ extern_methods!(
         #[unsafe(method(bytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn bytes(&self) -> NonNull<c_void>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLMeshBufferMap {
+/// Methods declared on superclass `NSObject`.
+impl MDLMeshBufferMap {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,8 +72,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Used by ModelIO to represent a buffer to be filled with vertex and
@@ -156,8 +156,8 @@ unsafe impl CopyingHelper for MDLMeshBufferData {
 
 unsafe impl NSObjectProtocol for MDLMeshBufferData {}
 
-extern_methods!(
-    unsafe impl MDLMeshBufferData {
+impl MDLMeshBufferData {
+    extern_methods!(
         /// instantiate a new data backed mesh buffer
         ///
         /// Parameter `type`: the intended use of the buffer
@@ -187,12 +187,12 @@ extern_methods!(
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSData>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLMeshBufferData {
+/// Methods declared on superclass `NSObject`.
+impl MDLMeshBufferData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -200,8 +200,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A reference to a logical pool of memory from which mesh buffers would
@@ -349,13 +349,13 @@ unsafe impl MDLMeshBufferAllocator for MDLMeshBufferDataAllocator {}
 
 unsafe impl NSObjectProtocol for MDLMeshBufferDataAllocator {}
 
-extern_methods!(
-    unsafe impl MDLMeshBufferDataAllocator {}
-);
+impl MDLMeshBufferDataAllocator {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLMeshBufferDataAllocator {
+/// Methods declared on superclass `NSObject`.
+impl MDLMeshBufferDataAllocator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -363,8 +363,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A default zone that can be use for convenience
@@ -379,8 +379,8 @@ unsafe impl MDLMeshBufferZone for MDLMeshBufferZoneDefault {}
 
 unsafe impl NSObjectProtocol for MDLMeshBufferZoneDefault {}
 
-extern_methods!(
-    unsafe impl MDLMeshBufferZoneDefault {
+impl MDLMeshBufferZoneDefault {
+    extern_methods!(
         #[unsafe(method(capacity))]
         #[unsafe(method_family = none)]
         pub unsafe fn capacity(&self) -> NSUInteger;
@@ -388,12 +388,12 @@ extern_methods!(
         #[unsafe(method(allocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn allocator(&self) -> Retained<ProtocolObject<dyn MDLMeshBufferAllocator>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLMeshBufferZoneDefault {
+/// Methods declared on superclass `NSObject`.
+impl MDLMeshBufferZoneDefault {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -401,5 +401,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

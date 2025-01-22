@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for MLCYOLOLossDescriptor {
 
 unsafe impl NSObjectProtocol for MLCYOLOLossDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCYOLOLossDescriptor {
+impl MLCYOLOLossDescriptor {
+    extern_methods!(
         /// number of anchor boxes used to detect object per grid cell
         #[deprecated]
         #[unsafe(method(anchorBoxCount))]
@@ -172,5 +172,5 @@ extern_methods!(
             anchor_boxes: &NSData,
             anchor_box_count: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

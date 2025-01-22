@@ -19,8 +19,8 @@ unsafe impl NSCoding for NSResponder {}
 
 unsafe impl NSObjectProtocol for NSResponder {}
 
-extern_methods!(
-    unsafe impl NSResponder {
+impl NSResponder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -310,17 +310,17 @@ extern_methods!(
             action: Sel,
             sender: Option<&AnyObject>,
         ) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSResponder {
+/// Methods declared on superclass `NSObject`.
+impl NSResponder {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstandardkeybindingresponding?language=objc)
@@ -831,25 +831,25 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSStandardKeyBindingMethods
-    unsafe impl NSResponder {}
-);
+/// NSStandardKeyBindingMethods.
+impl NSResponder {
+    extern_methods!();
+}
 
 unsafe impl NSStandardKeyBindingResponding for NSResponder {}
 
-extern_methods!(
-    /// NSUndoSupport
-    unsafe impl NSResponder {
+/// NSUndoSupport.
+impl NSResponder {
+    extern_methods!(
         #[unsafe(method(undoManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSControlEditingSupport
-    unsafe impl NSResponder {
+/// NSControlEditingSupport.
+impl NSResponder {
+    extern_methods!(
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(validateProposedFirstResponder:forEvent:))]
         #[unsafe(method_family = none)]
@@ -858,12 +858,12 @@ extern_methods!(
             responder: &NSResponder,
             event: Option<&NSEvent>,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSErrorPresentation
-    unsafe impl NSResponder {
+/// NSErrorPresentation.
+impl NSResponder {
+    extern_methods!(
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:))]
         #[unsafe(method_family = none)]
@@ -883,42 +883,42 @@ extern_methods!(
         #[unsafe(method(willPresentError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willPresentError(&self, error: &NSError) -> Retained<NSError>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTextFinderSupport
-    unsafe impl NSResponder {
+/// NSTextFinderSupport.
+impl NSResponder {
+    extern_methods!(
         #[unsafe(method(performTextFinderAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performTextFinderAction(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSWindowTabbing
-    unsafe impl NSResponder {
+/// NSWindowTabbing.
+impl NSResponder {
+    extern_methods!(
         #[unsafe(method(newWindowForTab:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newWindowForTab(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSWritingToolsSupport
-    unsafe impl NSResponder {
+/// NSWritingToolsSupport.
+impl NSResponder {
+    extern_methods!(
         #[unsafe(method(showWritingTools:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showWritingTools(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSResponder {
+/// NSDeprecated.
+impl NSResponder {
+    extern_methods!(
         #[deprecated = "This has always returned NO and had no effect on macOS"]
         #[unsafe(method(performMnemonic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performMnemonic(&self, string: &NSString) -> bool;
-    }
-);
+    );
+}

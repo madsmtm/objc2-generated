@@ -29,9 +29,9 @@ unsafe impl CopyingHelper for MLCAdamWOptimizer {
 #[cfg(feature = "MLCOptimizer")]
 unsafe impl NSObjectProtocol for MLCAdamWOptimizer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCOptimizer")]
-    unsafe impl MLCAdamWOptimizer {
+#[cfg(feature = "MLCOptimizer")]
+impl MLCAdamWOptimizer {
+    extern_methods!(
         /// Coefficent used for computing running averages of gradient.
         ///
         /// The default is 0.9.
@@ -110,13 +110,13 @@ extern_methods!(
             uses_ams_grad: bool,
             time_step: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCOptimizer`
-    #[cfg(feature = "MLCOptimizer")]
-    unsafe impl MLCAdamWOptimizer {
+/// Methods declared on superclass `MLCOptimizer`.
+#[cfg(feature = "MLCOptimizer")]
+impl MLCAdamWOptimizer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -126,5 +126,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

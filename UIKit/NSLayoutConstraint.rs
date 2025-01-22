@@ -182,8 +182,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSLayoutConstraint {}
 
-extern_methods!(
-    unsafe impl NSLayoutConstraint {
+impl NSLayoutConstraint {
+    extern_methods!(
         #[unsafe(method(constraintsWithVisualFormat:options:metrics:views:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsWithVisualFormat_options_metrics_views(
@@ -294,12 +294,12 @@ extern_methods!(
             constraints: &NSArray<NSLayoutConstraint>,
             mtm: MainThreadMarker,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLayoutConstraint {
+/// Methods declared on superclass `NSObject`.
+impl NSLayoutConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -307,12 +307,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSIdentifier
-    unsafe impl NSLayoutConstraint {
+/// NSIdentifier.
+impl NSLayoutConstraint {
+    extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
@@ -321,8 +321,8 @@ extern_methods!(
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutsupport?language=objc)

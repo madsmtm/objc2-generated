@@ -43,8 +43,8 @@ unsafe impl CopyingHelper for AEAssessmentApplication {
 
 unsafe impl NSObjectProtocol for AEAssessmentApplication {}
 
-extern_methods!(
-    unsafe impl AEAssessmentApplication {
+impl AEAssessmentApplication {
+    extern_methods!(
         #[unsafe(method(bundleIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
@@ -84,8 +84,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeautocorrectmode?language=objc)
 // NS_OPTIONS
@@ -126,8 +126,8 @@ unsafe impl CopyingHelper for AEAssessmentConfiguration {
 
 unsafe impl NSObjectProtocol for AEAssessmentConfiguration {}
 
-extern_methods!(
-    unsafe impl AEAssessmentConfiguration {
+impl AEAssessmentConfiguration {
+    extern_methods!(
         #[unsafe(method(autocorrectMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn autocorrectMode(&self) -> AEAutocorrectMode;
@@ -232,12 +232,12 @@ extern_methods!(
         #[unsafe(method(removeApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeApplication(&self, application: &AEAssessmentApplication);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AEAssessmentConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl AEAssessmentConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -245,8 +245,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration?language=objc)
@@ -263,8 +263,8 @@ unsafe impl CopyingHelper for AEAssessmentParticipantConfiguration {
 
 unsafe impl NSObjectProtocol for AEAssessmentParticipantConfiguration {}
 
-extern_methods!(
-    unsafe impl AEAssessmentParticipantConfiguration {
+impl AEAssessmentParticipantConfiguration {
+    extern_methods!(
         #[unsafe(method(allowsNetworkAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsNetworkAccess(&self) -> bool;
@@ -293,8 +293,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession?language=objc)
@@ -305,8 +305,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AEAssessmentSession {}
 
-extern_methods!(
-    unsafe impl AEAssessmentSession {
+impl AEAssessmentSession {
+    extern_methods!(
         #[unsafe(method(supportsMultipleParticipants))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsMultipleParticipants() -> bool;
@@ -364,8 +364,8 @@ extern_methods!(
         #[unsafe(method(updateToConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateToConfiguration(&self, configuration: &AEAssessmentConfiguration);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate?language=objc)

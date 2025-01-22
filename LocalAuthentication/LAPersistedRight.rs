@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "LARight")]
 unsafe impl NSObjectProtocol for LAPersistedRight {}
 
-extern_methods!(
-    #[cfg(feature = "LARight")]
-    unsafe impl LAPersistedRight {
+#[cfg(feature = "LARight")]
+impl LAPersistedRight {
+    extern_methods!(
         #[cfg(feature = "LAPrivateKey")]
         /// Managed private key
         #[unsafe(method(key))]
@@ -48,13 +48,13 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `LARight`
-    #[cfg(feature = "LARight")]
-    unsafe impl LAPersistedRight {
+/// Methods declared on superclass `LARight`.
+#[cfg(feature = "LARight")]
+impl LAPersistedRight {
+    extern_methods!(
         #[cfg(feature = "LARequirement")]
         /// Constructs a right that will be granted only when the given
         /// `LAAuthenticationRequirement`is statisfied.
@@ -68,5 +68,5 @@ extern_methods!(
             this: Allocated<Self>,
             requirement: &LAAuthenticationRequirement,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

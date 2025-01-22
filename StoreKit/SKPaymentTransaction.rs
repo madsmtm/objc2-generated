@@ -52,8 +52,8 @@ unsafe impl Sync for SKPaymentTransaction {}
 
 unsafe impl NSObjectProtocol for SKPaymentTransaction {}
 
-extern_methods!(
-    unsafe impl SKPaymentTransaction {
+impl SKPaymentTransaction {
+    extern_methods!(
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
@@ -95,12 +95,12 @@ extern_methods!(
         #[unsafe(method(transactionState))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionState(&self) -> SKPaymentTransactionState;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPaymentTransaction {
+/// Methods declared on superclass `NSObject`.
+impl SKPaymentTransaction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,5 +108,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

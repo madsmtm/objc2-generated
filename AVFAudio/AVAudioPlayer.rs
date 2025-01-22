@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioPlayer {}
 
-extern_methods!(
-    unsafe impl AVAudioPlayer {
+impl AVAudioPlayer {
+    extern_methods!(
         #[unsafe(method(initWithContentsOfURL:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
@@ -219,12 +219,12 @@ extern_methods!(
             &self,
             channel_assignments: Option<&NSArray<AVAudioSessionChannelDescription>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioPlayer {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioPlayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -232,8 +232,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayerdelegate?language=objc)

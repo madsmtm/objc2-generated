@@ -25,8 +25,8 @@ unsafe impl<AnchorType: ?Sized + Message> CopyingHelper for NSLayoutAnchor<Ancho
 
 unsafe impl<AnchorType: ?Sized> NSObjectProtocol for NSLayoutAnchor<AnchorType> {}
 
-extern_methods!(
-    unsafe impl<AnchorType: Message> NSLayoutAnchor<AnchorType> {
+impl<AnchorType: Message> NSLayoutAnchor<AnchorType> {
+    extern_methods!(
         #[cfg(feature = "NSLayoutConstraint")]
         #[must_use]
         #[unsafe(method(constraintEqualToAnchor:))]
@@ -100,12 +100,12 @@ extern_methods!(
         #[unsafe(method(constraintsAffectingLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsAffectingLayout(&self) -> Retained<NSArray<NSLayoutConstraint>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<AnchorType: Message> NSLayoutAnchor<AnchorType> {
+/// Methods declared on superclass `NSObject`.
+impl<AnchorType: Message> NSLayoutAnchor<AnchorType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -113,8 +113,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutxaxisanchor?language=objc)
@@ -133,8 +133,8 @@ unsafe impl CopyingHelper for NSLayoutXAxisAnchor {
 
 unsafe impl NSObjectProtocol for NSLayoutXAxisAnchor {}
 
-extern_methods!(
-    unsafe impl NSLayoutXAxisAnchor {
+impl NSLayoutXAxisAnchor {
+    extern_methods!(
         #[unsafe(method(anchorWithOffsetToAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchorWithOffsetToAnchor(
@@ -171,12 +171,12 @@ extern_methods!(
             anchor: &NSLayoutXAxisAnchor,
             multiplier: CGFloat,
         ) -> Retained<NSLayoutConstraint>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLayoutXAxisAnchor {
+/// Methods declared on superclass `NSObject`.
+impl NSLayoutXAxisAnchor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -184,8 +184,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutyaxisanchor?language=objc)
@@ -204,8 +204,8 @@ unsafe impl CopyingHelper for NSLayoutYAxisAnchor {
 
 unsafe impl NSObjectProtocol for NSLayoutYAxisAnchor {}
 
-extern_methods!(
-    unsafe impl NSLayoutYAxisAnchor {
+impl NSLayoutYAxisAnchor {
+    extern_methods!(
         #[unsafe(method(anchorWithOffsetToAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchorWithOffsetToAnchor(
@@ -242,12 +242,12 @@ extern_methods!(
             anchor: &NSLayoutYAxisAnchor,
             multiplier: CGFloat,
         ) -> Retained<NSLayoutConstraint>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLayoutYAxisAnchor {
+/// Methods declared on superclass `NSObject`.
+impl NSLayoutYAxisAnchor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -255,8 +255,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutdimension?language=objc)
@@ -275,8 +275,8 @@ unsafe impl CopyingHelper for NSLayoutDimension {
 
 unsafe impl NSObjectProtocol for NSLayoutDimension {}
 
-extern_methods!(
-    unsafe impl NSLayoutDimension {
+impl NSLayoutDimension {
+    extern_methods!(
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
         #[unsafe(method(constraintEqualToConstant:))]
@@ -363,12 +363,12 @@ extern_methods!(
             m: CGFloat,
             c: CGFloat,
         ) -> Retained<NSLayoutConstraint>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLayoutDimension {
+/// Methods declared on superclass `NSObject`.
+impl NSLayoutDimension {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -376,5 +376,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -44,8 +44,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSEntityMapping {}
 
-extern_methods!(
-    unsafe impl NSEntityMapping {
+impl NSEntityMapping {
+    extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -163,12 +163,12 @@ extern_methods!(
             &self,
             entity_migration_policy_class_name: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSEntityMapping {
+/// Methods declared on superclass `NSObject`.
+impl NSEntityMapping {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -176,5 +176,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

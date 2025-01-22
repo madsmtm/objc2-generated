@@ -24,13 +24,13 @@ unsafe impl NSObjectProtocol for SCNPhysicsBehavior {}
 
 unsafe impl NSSecureCoding for SCNPhysicsBehavior {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsBehavior {}
-);
+impl SCNPhysicsBehavior {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsBehavior {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsBehavior {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -38,8 +38,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNPhysicsHingeJoint makes two bodies to move like they are connected by a hinge. It is for example suitable for doors, chains...
@@ -56,8 +56,8 @@ unsafe impl NSObjectProtocol for SCNPhysicsHingeJoint {}
 
 unsafe impl NSSecureCoding for SCNPhysicsHingeJoint {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsHingeJoint {
+impl SCNPhysicsHingeJoint {
+    extern_methods!(
         #[cfg(all(
             feature = "SCNPhysicsBody",
             feature = "SceneKitTypes",
@@ -140,12 +140,12 @@ extern_methods!(
         #[unsafe(method(setAnchorB:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnchorB(&self, anchor_b: SCNVector3);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsHingeJoint {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsHingeJoint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -153,8 +153,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNPhysicsBallSocketJoint makes two bodies to move like they are connected by a ball-and-socket joint (i.e it allows rotations around all axes).
@@ -171,8 +171,8 @@ unsafe impl NSObjectProtocol for SCNPhysicsBallSocketJoint {}
 
 unsafe impl NSSecureCoding for SCNPhysicsBallSocketJoint {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsBallSocketJoint {
+impl SCNPhysicsBallSocketJoint {
+    extern_methods!(
         #[cfg(all(
             feature = "SCNPhysicsBody",
             feature = "SceneKitTypes",
@@ -230,12 +230,12 @@ extern_methods!(
         #[unsafe(method(setAnchorB:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnchorB(&self, anchor_b: SCNVector3);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsBallSocketJoint {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsBallSocketJoint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -243,8 +243,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNPhysicsSliderJoint provides a linear sliding joint between two bodies.
@@ -261,8 +261,8 @@ unsafe impl NSObjectProtocol for SCNPhysicsSliderJoint {}
 
 unsafe impl NSSecureCoding for SCNPhysicsSliderJoint {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsSliderJoint {
+impl SCNPhysicsSliderJoint {
+    extern_methods!(
         #[cfg(all(
             feature = "SCNPhysicsBody",
             feature = "SceneKitTypes",
@@ -433,12 +433,12 @@ extern_methods!(
         #[unsafe(method(setMotorMaximumTorque:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMotorMaximumTorque(&self, motor_maximum_torque: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsSliderJoint {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsSliderJoint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -446,8 +446,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsconetwistjoint?language=objc)
@@ -462,8 +462,8 @@ unsafe impl NSObjectProtocol for SCNPhysicsConeTwistJoint {}
 
 unsafe impl NSSecureCoding for SCNPhysicsConeTwistJoint {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsConeTwistJoint {
+impl SCNPhysicsConeTwistJoint {
+    extern_methods!(
         #[cfg(all(
             feature = "SCNPhysicsBody",
             feature = "SceneKitTypes",
@@ -560,12 +560,12 @@ extern_methods!(
         #[unsafe(method(setMaximumTwistAngle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumTwistAngle(&self, maximum_twist_angle: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsConeTwistJoint {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsConeTwistJoint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -573,8 +573,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNPhysicsVehicleWheel represents a wheel that can be attached to a SCNPhysicsVehicle instance.
@@ -597,8 +597,8 @@ unsafe impl NSObjectProtocol for SCNPhysicsVehicleWheel {}
 
 unsafe impl NSSecureCoding for SCNPhysicsVehicleWheel {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsVehicleWheel {
+impl SCNPhysicsVehicleWheel {
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         #[unsafe(method(wheelWithNode:))]
         #[unsafe(method_family = none)]
@@ -729,12 +729,12 @@ extern_methods!(
         #[unsafe(method(setSuspensionRestLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuspensionRestLength(&self, suspension_rest_length: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsVehicleWheel {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsVehicleWheel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -742,8 +742,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNPhysicsVehicle provides a vehicle behavior.
@@ -760,8 +760,8 @@ unsafe impl NSObjectProtocol for SCNPhysicsVehicle {}
 
 unsafe impl NSSecureCoding for SCNPhysicsVehicle {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsVehicle {
+impl SCNPhysicsVehicle {
+    extern_methods!(
         #[cfg(feature = "SCNPhysicsBody")]
         #[unsafe(method(vehicleWithChassisBody:wheels:))]
         #[unsafe(method_family = none)]
@@ -798,12 +798,12 @@ extern_methods!(
         #[unsafe(method(applyBrakingForce:forWheelAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyBrakingForce_forWheelAtIndex(&self, value: CGFloat, index: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsVehicle {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsVehicle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -811,5 +811,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

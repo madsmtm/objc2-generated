@@ -78,9 +78,9 @@ unsafe impl NSTextFinderBarContainer for NSScrollView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSScrollView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrollView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrollView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -494,28 +494,28 @@ extern_methods!(
         #[unsafe(method(setScrollerInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollerInsets(&self, scroller_insets: NSEdgeInsets);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrollView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrollView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrollView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrollView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewwillstartlivemagnifynotification?language=objc)
@@ -542,10 +542,10 @@ extern "C" {
     pub static NSScrollViewDidEndLiveScrollNotification: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// NSRulerSupport
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrollView {
+/// NSRulerSupport.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrollView {
+    extern_methods!(
         #[unsafe(method(rulerViewClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn rulerViewClass(mtm: MainThreadMarker) -> Option<&'static AnyClass>;
@@ -603,8 +603,8 @@ extern_methods!(
         #[unsafe(method(setVerticalRulerView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVerticalRulerView(&self, vertical_ruler_view: Option<&NSRulerView>);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewfindbarposition?language=objc)
 // NS_ENUM
@@ -628,10 +628,10 @@ unsafe impl RefEncode for NSScrollViewFindBarPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSFindBarSupport
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrollView {
+/// NSFindBarSupport.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrollView {
+    extern_methods!(
         #[unsafe(method(findBarPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn findBarPosition(&self) -> NSScrollViewFindBarPosition;
@@ -640,5 +640,5 @@ extern_methods!(
         #[unsafe(method(setFindBarPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFindBarPosition(&self, find_bar_position: NSScrollViewFindBarPosition);
-    }
-);
+    );
+}

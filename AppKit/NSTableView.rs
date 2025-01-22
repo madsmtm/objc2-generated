@@ -348,9 +348,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableView {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSTableView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTableView {
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTableView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -1091,28 +1091,28 @@ extern_methods!(
         #[unsafe(method(setUsesAutomaticRowHeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesAutomaticRowHeights(&self, uses_automatic_row_heights: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTableView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTableView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTableView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTableView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdelegate?language=objc)
@@ -1666,10 +1666,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSTableView {
+/// NSDeprecated.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSTableView {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setDrawsGrid:))]
         #[unsafe(method_family = none)]
@@ -1788,5 +1788,5 @@ extern_methods!(
         #[unsafe(method(performClickOnCellAtColumn:row:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performClickOnCellAtColumn_row(&self, column: NSInteger, row: NSInteger);
-    }
-);
+    );
+}

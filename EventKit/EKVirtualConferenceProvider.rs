@@ -22,8 +22,8 @@ unsafe impl NSExtensionRequestHandling for EKVirtualConferenceProvider {}
 
 unsafe impl NSObjectProtocol for EKVirtualConferenceProvider {}
 
-extern_methods!(
-    unsafe impl EKVirtualConferenceProvider {
+impl EKVirtualConferenceProvider {
+    extern_methods!(
         #[cfg(all(feature = "EKVirtualConferenceDescriptor", feature = "block2"))]
         /// Called to determine the available virtual conference room types that the user can add to a calendar event.
         ///
@@ -74,12 +74,12 @@ extern_methods!(
                 dyn Fn(*mut EKVirtualConferenceDescriptor, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl EKVirtualConferenceProvider {
+/// Methods declared on superclass `NSObject`.
+impl EKVirtualConferenceProvider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -87,5 +87,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

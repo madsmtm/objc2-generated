@@ -32,8 +32,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ScreenSaverDefaults {}
 
-extern_methods!(
-    unsafe impl ScreenSaverDefaults {
+impl ScreenSaverDefaults {
+    extern_methods!(
         /// Returns a screen saver defaults instance that reads and writes defaults for the specified
         /// module.
         ///
@@ -44,12 +44,12 @@ extern_methods!(
         pub unsafe fn defaultsForModuleWithName(
             in_module_name: &NSString,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSUserDefaults`
-    unsafe impl ScreenSaverDefaults {
+/// Methods declared on superclass `NSUserDefaults`.
+impl ScreenSaverDefaults {
+    extern_methods!(
         /// -init is equivalent to -initWithSuiteName:nil
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -71,14 +71,14 @@ extern_methods!(
             this: Allocated<Self>,
             username: &NSString,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ScreenSaverDefaults {
+/// Methods declared on superclass `NSObject`.
+impl ScreenSaverDefaults {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

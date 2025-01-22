@@ -80,10 +80,9 @@ unsafe impl NSObjectProtocol for ARAppClipCodeAnchor {}
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl NSSecureCoding for ARAppClipCodeAnchor {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARAppClipCodeAnchor {
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARAppClipCodeAnchor {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// The URL encoded in this app clip code. Not nil only if urlDecodingState is .decoded.
         #[unsafe(method(url))]
@@ -99,14 +98,13 @@ extern_methods!(
         #[unsafe(method(radius))]
         #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> c_float;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `ARAnchor`
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARAppClipCodeAnchor {
+/// Methods declared on superclass `ARAnchor`.
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARAppClipCodeAnchor {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -115,5 +113,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

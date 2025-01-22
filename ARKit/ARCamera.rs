@@ -40,9 +40,8 @@ unsafe impl CopyingHelper for ARCamera {
 unsafe impl NSObjectProtocol for ARCamera {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARCamera {
+impl ARCamera {
+    extern_methods!(
         #[cfg(feature = "ARTrackingStatusTypes")]
         /// The tracking state of the camera.
         #[unsafe(method(trackingState))]
@@ -80,5 +79,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

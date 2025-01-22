@@ -77,8 +77,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioUnitComponent {}
 
-extern_methods!(
-    unsafe impl AVAudioUnitComponent {
+impl AVAudioUnitComponent {
+    extern_methods!(
         /// the name of an audio component
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -196,12 +196,12 @@ extern_methods!(
             num_input_channels: NSInteger,
             num_output_channels: NSInteger,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioUnitComponent {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioUnitComponent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -209,8 +209,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponenttagsdidchangenotification?language=objc)
@@ -243,8 +243,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioUnitComponentManager {}
 
-extern_methods!(
-    unsafe impl AVAudioUnitComponentManager {
+impl AVAudioUnitComponentManager {
+    extern_methods!(
         /// returns all tags associated with the current user as well as all system tags defined by
         /// the audio unit(s).
         #[unsafe(method(tagNames))]
@@ -299,12 +299,12 @@ extern_methods!(
             &self,
             desc: AudioComponentDescription,
         ) -> Retained<NSArray<AVAudioUnitComponent>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioUnitComponentManager {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioUnitComponentManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -312,8 +312,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// A notification generated when AVAudioUnitComponentManager updates its list of components.

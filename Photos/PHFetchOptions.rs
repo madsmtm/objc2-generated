@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for PHFetchOptions {
 
 unsafe impl NSObjectProtocol for PHFetchOptions {}
 
-extern_methods!(
-    unsafe impl PHFetchOptions {
+impl PHFetchOptions {
+    extern_methods!(
         #[unsafe(method(predicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
@@ -97,12 +97,12 @@ extern_methods!(
             &self,
             wants_incremental_change_details: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHFetchOptions {
+/// Methods declared on superclass `NSObject`.
+impl PHFetchOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -110,5 +110,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

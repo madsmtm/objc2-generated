@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for NSInflectionRule {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSInflectionRule {}
 
-extern_methods!(
-    unsafe impl NSInflectionRule {
+impl NSInflectionRule {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -37,17 +37,17 @@ extern_methods!(
         #[unsafe(method(automaticRule))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticRule() -> Retained<NSInflectionRule>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSInflectionRule {
+/// Methods declared on superclass `NSObject`.
+impl NSInflectionRule {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionruleexplicit?language=objc)
@@ -72,8 +72,8 @@ unsafe impl NSObjectProtocol for NSInflectionRuleExplicit {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSInflectionRuleExplicit {}
 
-extern_methods!(
-    unsafe impl NSInflectionRuleExplicit {
+impl NSInflectionRuleExplicit {
+    extern_methods!(
         #[cfg(feature = "NSMorphology")]
         #[unsafe(method(initWithMorphology:))]
         #[unsafe(method_family = init)]
@@ -86,30 +86,30 @@ extern_methods!(
         #[unsafe(method(morphology))]
         #[unsafe(method_family = none)]
         pub unsafe fn morphology(&self) -> Retained<NSMorphology>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSInflectionRule`
-    unsafe impl NSInflectionRuleExplicit {
+/// Methods declared on superclass `NSInflectionRule`.
+impl NSInflectionRuleExplicit {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSInflectionRuleExplicit {
+/// Methods declared on superclass `NSObject`.
+impl NSInflectionRuleExplicit {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSInflectionAvailability
-    unsafe impl NSInflectionRule {
+/// NSInflectionAvailability.
+impl NSInflectionRule {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(canInflectLanguage:))]
         #[unsafe(method_family = none)]
@@ -118,5 +118,5 @@ extern_methods!(
         #[unsafe(method(canInflectPreferredLocalization))]
         #[unsafe(method_family = none)]
         pub unsafe fn canInflectPreferredLocalization() -> bool;
-    }
-);
+    );
+}

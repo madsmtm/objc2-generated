@@ -206,8 +206,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CXProvider {}
 
-extern_methods!(
-    unsafe impl CXProvider {
+impl CXProvider {
+    extern_methods!(
         #[cfg(feature = "CXProviderConfiguration")]
         /// Initialize a new provider instance with the supplied configuration
         #[unsafe(method(initWithConfiguration:))]
@@ -315,5 +315,5 @@ extern_methods!(
             call_action_class: &AnyClass,
             call_uuid: &NSUUID,
         ) -> Retained<NSArray<CXCallAction>>;
-    }
-);
+    );
+}

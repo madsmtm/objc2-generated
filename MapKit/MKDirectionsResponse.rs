@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKDirectionsResponse {}
 
-extern_methods!(
-    unsafe impl MKDirectionsResponse {
+impl MKDirectionsResponse {
+    extern_methods!(
         #[cfg(feature = "MKMapItem")]
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
@@ -32,12 +32,12 @@ extern_methods!(
         #[unsafe(method(routes))]
         #[unsafe(method_family = none)]
         pub unsafe fn routes(&self) -> Retained<NSArray<MKRoute>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKDirectionsResponse {
+/// Methods declared on superclass `NSObject`.
+impl MKDirectionsResponse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -45,8 +45,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkroute?language=objc)
@@ -57,8 +57,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKRoute {}
 
-extern_methods!(
-    unsafe impl MKRoute {
+impl MKRoute {
+    extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -97,12 +97,12 @@ extern_methods!(
         #[unsafe(method(hasHighways))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasHighways(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKRoute {
+/// Methods declared on superclass `NSObject`.
+impl MKRoute {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -110,8 +110,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkroutestep?language=objc)
@@ -122,8 +122,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKRouteStep {}
 
-extern_methods!(
-    unsafe impl MKRouteStep {
+impl MKRouteStep {
+    extern_methods!(
         #[unsafe(method(instructions))]
         #[unsafe(method_family = none)]
         pub unsafe fn instructions(&self) -> Retained<NSString>;
@@ -146,12 +146,12 @@ extern_methods!(
         #[unsafe(method(transportType))]
         #[unsafe(method_family = none)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKRouteStep {
+/// Methods declared on superclass `NSObject`.
+impl MKRouteStep {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -159,8 +159,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mketaresponse?language=objc)
@@ -171,8 +171,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKETAResponse {}
 
-extern_methods!(
-    unsafe impl MKETAResponse {
+impl MKETAResponse {
+    extern_methods!(
         #[cfg(feature = "MKMapItem")]
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
@@ -204,12 +204,12 @@ extern_methods!(
         #[unsafe(method(transportType))]
         #[unsafe(method_family = none)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKETAResponse {
+/// Methods declared on superclass `NSObject`.
+impl MKETAResponse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -217,5 +217,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

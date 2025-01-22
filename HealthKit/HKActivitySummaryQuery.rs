@@ -24,9 +24,9 @@ unsafe impl Sync for HKActivitySummaryQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKActivitySummaryQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKActivitySummaryQuery {
+#[cfg(feature = "HKQuery")]
+impl HKActivitySummaryQuery {
+    extern_methods!(
         #[cfg(all(feature = "HKActivitySummary", feature = "block2"))]
         /// An optional handler to be called when activity summaries matching the given predicate are updated.
         ///
@@ -80,25 +80,25 @@ extern_methods!(
                 ),
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKActivitySummaryQuery {
+/// Methods declared on superclass `HKQuery`.
+#[cfg(feature = "HKQuery")]
+impl HKActivitySummaryQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKActivitySummaryQuery {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKQuery")]
+impl HKActivitySummaryQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

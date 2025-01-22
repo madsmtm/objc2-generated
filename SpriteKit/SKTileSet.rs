@@ -146,8 +146,8 @@ unsafe impl NSObjectProtocol for SKTileSet {}
 
 unsafe impl NSSecureCoding for SKTileSet {}
 
-extern_methods!(
-    unsafe impl SKTileSet {
+impl SKTileSet {
+    extern_methods!(
         /// Create a tile set with the specified tile groups.
         ///
         /// Parameter `tileGroups`: the tile groups that will be available for use with this set
@@ -254,12 +254,12 @@ extern_methods!(
         #[unsafe(method(setDefaultTileSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTileSize(&self, default_tile_size: CGSize);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKTileSet {
+/// Methods declared on superclass `NSObject`.
+impl SKTileSet {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -267,8 +267,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A tile group encapsulates a collection of related tile definitions that are designed to be pieced together within a tile map. How those tiles are pieced together is governed by the set of rules. When a tile group is placed in a tile map, the map evaluates the rules to determine which tiles should be placed to achieve the desired outcome.
@@ -291,8 +291,8 @@ unsafe impl NSObjectProtocol for SKTileGroup {}
 
 unsafe impl NSSecureCoding for SKTileGroup {}
 
-extern_methods!(
-    unsafe impl SKTileGroup {
+impl SKTileGroup {
+    extern_methods!(
         #[cfg(feature = "SKTileDefinition")]
         /// Create a simple tile group for a single tile definition. This creates and initializes the SKTileGroupRule necessary to place the provided tile definition in a tile map.
         ///
@@ -355,12 +355,12 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKTileGroup {
+/// Methods declared on superclass `NSObject`.
+impl SKTileGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -368,8 +368,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A tile group rule defines how a certain type of tile should be placed on the map. These tiles are like puzzle pieces, and the rules define how they should be pieced together. This is accomplished by defining which neighboring spaces need to be filled with tiles that belong to the same group, and which tiles are required to be empty. The required pattern of neighboring tiles is defined using the SKTileAdjacencyMask.
@@ -392,8 +392,8 @@ unsafe impl NSObjectProtocol for SKTileGroupRule {}
 
 unsafe impl NSSecureCoding for SKTileGroupRule {}
 
-extern_methods!(
-    unsafe impl SKTileGroupRule {
+impl SKTileGroupRule {
+    extern_methods!(
         #[cfg(feature = "SKTileDefinition")]
         /// Create a tile group rule with the specified adjacency and tile definitions.
         ///
@@ -452,12 +452,12 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKTileGroupRule {
+/// Methods declared on superclass `NSObject`.
+impl SKTileGroupRule {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -465,5 +465,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -72,8 +72,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZMacAuxiliaryStorage {}
 
-extern_methods!(
-    unsafe impl VZMacAuxiliaryStorage {
+impl VZMacAuxiliaryStorage {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -118,15 +118,15 @@ extern_methods!(
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// VZDeprecated
-    unsafe impl VZMacAuxiliaryStorage {
+/// VZDeprecated.
+impl VZMacAuxiliaryStorage {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -43,8 +43,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetDownloadStorageManager {}
 
-extern_methods!(
-    unsafe impl AVAssetDownloadStorageManager {
+impl AVAssetDownloadStorageManager {
+    extern_methods!(
         /// returns singleton instance.
         #[unsafe(method(sharedDownloadStorageManager))]
         #[unsafe(method_family = none)]
@@ -71,12 +71,12 @@ extern_methods!(
             &self,
             download_storage_url: &NSURL,
         ) -> Option<Retained<AVAssetDownloadStorageManagementPolicy>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAssetDownloadStorageManager {
+/// Methods declared on superclass `NSObject`.
+impl AVAssetDownloadStorageManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,8 +84,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadstoragemanagementpolicy?language=objc)
@@ -108,8 +108,8 @@ unsafe impl MutableCopyingHelper for AVAssetDownloadStorageManagementPolicy {
 
 unsafe impl NSObjectProtocol for AVAssetDownloadStorageManagementPolicy {}
 
-extern_methods!(
-    unsafe impl AVAssetDownloadStorageManagementPolicy {
+impl AVAssetDownloadStorageManagementPolicy {
+    extern_methods!(
         #[unsafe(method(priority))]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> Retained<AVAssetDownloadedAssetEvictionPriority>;
@@ -117,12 +117,12 @@ extern_methods!(
         #[unsafe(method(expirationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAssetDownloadStorageManagementPolicy {
+/// Methods declared on superclass `NSObject`.
+impl AVAssetDownloadStorageManagementPolicy {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -130,8 +130,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A mutable subclass of AVAssetDownloadStorageManagementPolicy.
@@ -159,8 +159,8 @@ unsafe impl MutableCopyingHelper for AVMutableAssetDownloadStorageManagementPoli
 
 unsafe impl NSObjectProtocol for AVMutableAssetDownloadStorageManagementPolicy {}
 
-extern_methods!(
-    unsafe impl AVMutableAssetDownloadStorageManagementPolicy {
+impl AVMutableAssetDownloadStorageManagementPolicy {
+    extern_methods!(
         #[unsafe(method(priority))]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> Retained<AVAssetDownloadedAssetEvictionPriority>;
@@ -178,12 +178,12 @@ extern_methods!(
         #[unsafe(method(setExpirationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpirationDate(&self, expiration_date: &NSDate);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMutableAssetDownloadStorageManagementPolicy {
+/// Methods declared on superclass `NSObject`.
+impl AVMutableAssetDownloadStorageManagementPolicy {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -191,5 +191,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

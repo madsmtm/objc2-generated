@@ -49,8 +49,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SNTimeDurationConstraint {}
 
-extern_methods!(
-    unsafe impl SNTimeDurationConstraint {
+impl SNTimeDurationConstraint {
+    extern_methods!(
         /// The time constraint type.
         ///
         /// The value of this property dictates whether or not other properties associated with this class can be validly accessed. Please refer to the documentation of other individual properties to understand their relationship to this one. This property is always valid to access.
@@ -109,5 +109,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

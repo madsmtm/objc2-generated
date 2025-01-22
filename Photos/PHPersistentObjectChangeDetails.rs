@@ -19,8 +19,8 @@ unsafe impl Sync for PHPersistentObjectChangeDetails {}
 
 unsafe impl NSObjectProtocol for PHPersistentObjectChangeDetails {}
 
-extern_methods!(
-    unsafe impl PHPersistentObjectChangeDetails {
+impl PHPersistentObjectChangeDetails {
+    extern_methods!(
         #[cfg(feature = "PhotosTypes")]
         #[unsafe(method(objectType))]
         #[unsafe(method_family = none)]
@@ -45,5 +45,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

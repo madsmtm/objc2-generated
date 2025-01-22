@@ -31,15 +31,15 @@ unsafe impl NSObjectProtocol for ASAuthorizationPasswordRequest {}
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationPasswordRequest {}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationPasswordRequest {}
-);
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationPasswordRequest {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationPasswordRequest {
+/// Methods declared on superclass `ASAuthorizationRequest`.
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationPasswordRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -47,5 +47,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

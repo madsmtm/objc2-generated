@@ -56,9 +56,9 @@ unsafe impl NSObjectProtocol for ASAuthorizationOpenIDRequest {}
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationOpenIDRequest {}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationOpenIDRequest {
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationOpenIDRequest {
+    extern_methods!(
         #[cfg(feature = "ASAuthorization")]
         /// The contact information to be requested from the user.  Only scopes for which this app was authorized for will be returned.
         #[unsafe(method(requestedScopes))]
@@ -110,13 +110,13 @@ extern_methods!(
             &self,
             requested_operation: &ASAuthorizationOpenIDOperation,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationOpenIDRequest {
+/// Methods declared on superclass `ASAuthorizationRequest`.
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationOpenIDRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -124,5 +124,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for GKLeaderboardSet {}
 
 unsafe impl NSSecureCoding for GKLeaderboardSet {}
 
-extern_methods!(
-    unsafe impl GKLeaderboardSet {
+impl GKLeaderboardSet {
+    extern_methods!(
         /// Localized set title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -72,12 +72,12 @@ extern_methods!(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKLeaderboardSet {
+/// Methods declared on superclass `NSObject`.
+impl GKLeaderboardSet {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -85,12 +85,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Deprecated
-    unsafe impl GKLeaderboardSet {
+/// Deprecated.
+impl GKLeaderboardSet {
+    extern_methods!(
         #[cfg(all(feature = "GKLeaderboard", feature = "block2"))]
         /// Loads array with all leaderboards for the leaderboardSet
         /// Possible reasons for error:
@@ -105,12 +105,12 @@ extern_methods!(
                 &block2::Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UI
-    unsafe impl GKLeaderboardSet {
+/// UI.
+impl GKLeaderboardSet {
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[unsafe(method(loadImageWithCompletionHandler:))]
@@ -119,5 +119,5 @@ extern_methods!(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
-    }
-);
+    );
+}

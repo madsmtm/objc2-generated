@@ -30,8 +30,8 @@ unsafe impl CopyingHelper for VZNetworkDeviceConfiguration {
 
 unsafe impl NSObjectProtocol for VZNetworkDeviceConfiguration {}
 
-extern_methods!(
-    unsafe impl VZNetworkDeviceConfiguration {
+impl VZNetworkDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -69,5 +69,5 @@ extern_methods!(
         #[unsafe(method(setAttachment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachment(&self, attachment: Option<&VZNetworkDeviceAttachment>);
-    }
-);
+    );
+}

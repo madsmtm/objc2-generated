@@ -49,9 +49,9 @@ unsafe impl AVAudioStereoMixing for AVAudioUnitMIDIInstrument {}
 #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
 unsafe impl NSObjectProtocol for AVAudioUnitMIDIInstrument {}
 
-extern_methods!(
-    #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
-    unsafe impl AVAudioUnitMIDIInstrument {
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+impl AVAudioUnitMIDIInstrument {
+    extern_methods!(
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// initialize the node with the component description
@@ -221,13 +221,13 @@ extern_methods!(
         #[unsafe(method(sendMIDIEventList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMIDIEventList(&self, event_list: NonNull<MIDIEventList>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
-    unsafe impl AVAudioUnitMIDIInstrument {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+impl AVAudioUnitMIDIInstrument {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -235,5 +235,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

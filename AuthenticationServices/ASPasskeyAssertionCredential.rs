@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for ASPasskeyAssertionCredential {}
 
 unsafe impl NSSecureCoding for ASPasskeyAssertionCredential {}
 
-extern_methods!(
-    unsafe impl ASPasskeyAssertionCredential {
+impl ASPasskeyAssertionCredential {
+    extern_methods!(
         /// Initializes an ASPasskeyCredential object.
         ///
         /// Parameter `userHandle`: The identifier for the account the passkey is associated with.
@@ -137,12 +137,12 @@ extern_methods!(
             &self,
             extension_output: Option<&ASPasskeyAssertionCredentialExtensionOutput>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASPasskeyAssertionCredential {
+/// Methods declared on superclass `NSObject`.
+impl ASPasskeyAssertionCredential {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -150,5 +150,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

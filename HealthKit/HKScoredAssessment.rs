@@ -39,9 +39,9 @@ unsafe impl NSObjectProtocol for HKScoredAssessment {}
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKScoredAssessment {}
 
-extern_methods!(
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKScoredAssessment {
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKScoredAssessment {
+    extern_methods!(
         /// The score determined by the answers on an assessment
         #[unsafe(method(score))]
         #[unsafe(method_family = none)]
@@ -54,5 +54,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

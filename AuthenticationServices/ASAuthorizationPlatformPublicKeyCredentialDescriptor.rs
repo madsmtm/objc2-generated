@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialDescr
 
 unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialDescriptor {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationPlatformPublicKeyCredentialDescriptor {
+impl ASAuthorizationPlatformPublicKeyCredentialDescriptor {
+    extern_methods!(
         #[unsafe(method(initWithCredentialID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCredentialID(
@@ -47,5 +47,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

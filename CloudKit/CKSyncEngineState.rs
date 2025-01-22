@@ -42,8 +42,8 @@ unsafe impl Sync for CKSyncEngineState {}
 
 unsafe impl NSObjectProtocol for CKSyncEngineState {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineState {
+impl CKSyncEngineState {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -141,8 +141,8 @@ extern_methods!(
             &self,
             changes: &NSArray<CKSyncEnginePendingDatabaseChange>,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// A serialized representation of a ``CKSyncEngineState``.
@@ -166,8 +166,8 @@ unsafe impl NSObjectProtocol for CKSyncEngineStateSerialization {}
 
 unsafe impl NSSecureCoding for CKSyncEngineStateSerialization {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineStateSerialization {
+impl CKSyncEngineStateSerialization {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -175,8 +175,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechangetype?language=objc)
 // NS_ENUM
@@ -213,8 +213,8 @@ unsafe impl Sync for CKSyncEnginePendingRecordZoneChange {}
 
 unsafe impl NSObjectProtocol for CKSyncEnginePendingRecordZoneChange {}
 
-extern_methods!(
-    unsafe impl CKSyncEnginePendingRecordZoneChange {
+impl CKSyncEnginePendingRecordZoneChange {
+    extern_methods!(
         #[cfg(feature = "CKRecordID")]
         #[unsafe(method(initWithRecordID:type:))]
         #[unsafe(method_family = init)]
@@ -240,8 +240,8 @@ extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CKSyncEnginePendingRecordZoneChangeType;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechangetype?language=objc)
 // NS_ENUM
@@ -278,8 +278,8 @@ unsafe impl Sync for CKSyncEnginePendingDatabaseChange {}
 
 unsafe impl NSObjectProtocol for CKSyncEnginePendingDatabaseChange {}
 
-extern_methods!(
-    unsafe impl CKSyncEnginePendingDatabaseChange {
+impl CKSyncEnginePendingDatabaseChange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -296,8 +296,8 @@ extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CKSyncEnginePendingDatabaseChangeType;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A zone save that needs to be sent to the server.
@@ -314,8 +314,8 @@ unsafe impl Sync for CKSyncEnginePendingZoneSave {}
 
 unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneSave {}
 
-extern_methods!(
-    unsafe impl CKSyncEnginePendingZoneSave {
+impl CKSyncEnginePendingZoneSave {
+    extern_methods!(
         #[cfg(feature = "CKRecordZone")]
         #[unsafe(method(initWithZone:))]
         #[unsafe(method_family = init)]
@@ -325,12 +325,12 @@ extern_methods!(
         #[unsafe(method(zone))]
         #[unsafe(method_family = none)]
         pub unsafe fn zone(&self) -> Retained<CKRecordZone>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CKSyncEnginePendingDatabaseChange`
-    unsafe impl CKSyncEnginePendingZoneSave {
+/// Methods declared on superclass `CKSyncEnginePendingDatabaseChange`.
+impl CKSyncEnginePendingZoneSave {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -338,8 +338,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A zone delete that needs to be sent to the server.
@@ -356,8 +356,8 @@ unsafe impl Sync for CKSyncEnginePendingZoneDelete {}
 
 unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneDelete {}
 
-extern_methods!(
-    unsafe impl CKSyncEnginePendingZoneDelete {
+impl CKSyncEnginePendingZoneDelete {
+    extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         #[unsafe(method(initWithZoneID:))]
         #[unsafe(method_family = init)]
@@ -365,12 +365,12 @@ extern_methods!(
             this: Allocated<Self>,
             zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CKSyncEnginePendingDatabaseChange`
-    unsafe impl CKSyncEnginePendingZoneDelete {
+/// Methods declared on superclass `CKSyncEnginePendingDatabaseChange`.
+impl CKSyncEnginePendingZoneDelete {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -378,5 +378,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

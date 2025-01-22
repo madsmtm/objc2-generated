@@ -6,10 +6,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern_methods!(
-    /// UPI
-    #[cfg(all(feature = "MFMessageComposeViewController", feature = "objc2-ui-kit"))]
-    unsafe impl MFMessageComposeViewController {
+/// UPI.
+#[cfg(all(feature = "MFMessageComposeViewController", feature = "objc2-ui-kit"))]
+impl MFMessageComposeViewController {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Configures the instance of `MFMessageComposeViewController` for UPI device validation
         ///
@@ -37,5 +37,5 @@ extern_methods!(
             &self,
             completion: &block2::Block<dyn Fn(Bool)>,
         );
-    }
-);
+    );
+}

@@ -69,8 +69,8 @@ unsafe impl Sync for NSProcessInfo {}
 
 unsafe impl NSObjectProtocol for NSProcessInfo {}
 
-extern_methods!(
-    unsafe impl NSProcessInfo {
+impl NSProcessInfo {
+    extern_methods!(
         #[unsafe(method(processInfo))]
         #[unsafe(method_family = none)]
         pub fn processInfo() -> Retained<NSProcessInfo>;
@@ -183,12 +183,12 @@ extern_methods!(
             &self,
             automatic_termination_support_enabled: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSProcessInfo {
+/// Methods declared on superclass `NSObject`.
+impl NSProcessInfo {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -196,8 +196,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsactivityoptions?language=objc)
 // NS_OPTIONS
@@ -239,9 +239,9 @@ unsafe impl RefEncode for NSActivityOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSProcessInfoActivity
-    unsafe impl NSProcessInfo {
+/// NSProcessInfoActivity.
+impl NSProcessInfo {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(beginActivityWithOptions:reason:))]
         #[unsafe(method_family = none)]
@@ -273,12 +273,12 @@ extern_methods!(
             reason: &NSString,
             block: &block2::Block<dyn Fn(Bool)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSUserInformation
-    unsafe impl NSProcessInfo {
+/// NSUserInformation.
+impl NSProcessInfo {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(userName))]
         #[unsafe(method_family = none)]
@@ -288,8 +288,8 @@ extern_methods!(
         #[unsafe(method(fullUserName))]
         #[unsafe(method_family = none)]
         pub unsafe fn fullUserName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstate?language=objc)
 // NS_ENUM
@@ -315,23 +315,23 @@ unsafe impl RefEncode for NSProcessInfoThermalState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSProcessInfoThermalState
-    unsafe impl NSProcessInfo {
+/// NSProcessInfoThermalState.
+impl NSProcessInfo {
+    extern_methods!(
         #[unsafe(method(thermalState))]
         #[unsafe(method_family = none)]
         pub unsafe fn thermalState(&self) -> NSProcessInfoThermalState;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSProcessInfoPowerState
-    unsafe impl NSProcessInfo {
+/// NSProcessInfoPowerState.
+impl NSProcessInfo {
+    extern_methods!(
         #[unsafe(method(isLowPowerModeEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLowPowerModeEnabled(&self) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstatedidchangenotification?language=objc)
@@ -345,9 +345,9 @@ extern "C" {
     pub static NSProcessInfoPowerStateDidChangeNotification: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// NSProcessInfoPlatform
-    unsafe impl NSProcessInfo {
+/// NSProcessInfoPlatform.
+impl NSProcessInfo {
+    extern_methods!(
         #[unsafe(method(isMacCatalystApp))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMacCatalystApp(&self) -> bool;
@@ -355,5 +355,5 @@ extern_methods!(
         #[unsafe(method(isiOSAppOnMac))]
         #[unsafe(method_family = none)]
         pub unsafe fn isiOSAppOnMac(&self) -> bool;
-    }
-);
+    );
+}

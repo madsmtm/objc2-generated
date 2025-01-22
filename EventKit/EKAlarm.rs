@@ -31,9 +31,9 @@ unsafe impl CopyingHelper for EKAlarm {
 #[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKAlarm {}
 
-extern_methods!(
-    #[cfg(feature = "EKObject")]
-    unsafe impl EKAlarm {
+#[cfg(feature = "EKObject")]
+impl EKAlarm {
+    extern_methods!(
         /// Creates a new autoreleased alarm with an absolute trigger time.
         ///
         /// Parameter `date`: The date the alarm should fire.
@@ -163,13 +163,13 @@ extern_methods!(
         #[unsafe(method(setUrl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUrl(&self, url: Option<&NSURL>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EKObject")]
-    unsafe impl EKAlarm {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "EKObject")]
+impl EKAlarm {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -177,5 +177,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

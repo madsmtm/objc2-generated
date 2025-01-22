@@ -49,11 +49,11 @@ unsafe impl RefEncode for AVContentAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVPlayerItemProtectedContent
-    /// Methods supporting protected content.
-    #[cfg(feature = "AVPlayerItem")]
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemProtectedContent.
+/// Methods supporting protected content.
+#[cfg(feature = "AVPlayerItem")]
+impl AVPlayerItem {
+    extern_methods!(
         /// Indicates whether or not authorization is required to play the content.
         ///
         /// This property reports whether or not authorization is required for the receiver's content to be played.  If it does not require authorization, then none of the other
@@ -118,5 +118,5 @@ extern_methods!(
         #[unsafe(method(contentAuthorizationRequestStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentAuthorizationRequestStatus(&self) -> AVContentAuthorizationStatus;
-    }
-);
+    );
+}

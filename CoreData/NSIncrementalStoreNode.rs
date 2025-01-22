@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSIncrementalStoreNode {}
 
-extern_methods!(
-    unsafe impl NSIncrementalStoreNode {
+impl NSIncrementalStoreNode {
+    extern_methods!(
         #[cfg(feature = "NSManagedObjectID")]
         #[unsafe(method(initWithObjectID:withValues:version:))]
         #[unsafe(method_family = init)]
@@ -52,12 +52,12 @@ extern_methods!(
             &self,
             prop: &NSPropertyDescription,
         ) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSIncrementalStoreNode {
+/// Methods declared on superclass `NSObject`.
+impl NSIncrementalStoreNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -65,5 +65,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

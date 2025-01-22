@@ -23,8 +23,8 @@ unsafe impl CopyingHelper for UITabSidebarItem {
 
 unsafe impl NSObjectProtocol for UITabSidebarItem {}
 
-extern_methods!(
-    unsafe impl UITabSidebarItem {
+impl UITabSidebarItem {
+    extern_methods!(
         #[cfg(feature = "UITab")]
         /// The tab that the receiver represents. Only one of `tab` or `action` will be valid for an item.
         #[unsafe(method(tab))]
@@ -114,8 +114,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabsidebaritemrequest?language=objc)
@@ -127,8 +127,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITabSidebarItemRequest {}
 
-extern_methods!(
-    unsafe impl UITabSidebarItemRequest {
+impl UITabSidebarItemRequest {
+    extern_methods!(
         #[cfg(feature = "UITab")]
         /// The tab that the receiver represents. Only one of `tab` or `action` will be valid for an item.
         #[unsafe(method(tab))]
@@ -148,5 +148,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

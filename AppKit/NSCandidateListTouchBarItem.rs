@@ -24,9 +24,9 @@ unsafe impl<CandidateType: ?Sized + NSCoding> NSCoding
 #[cfg(feature = "NSTouchBarItem")]
 unsafe impl<CandidateType: ?Sized> NSObjectProtocol for NSCandidateListTouchBarItem<CandidateType> {}
 
-extern_methods!(
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
+#[cfg(feature = "NSTouchBarItem")]
+impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
+    extern_methods!(
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSTextInputClient",
@@ -143,13 +143,13 @@ extern_methods!(
         #[unsafe(method(setCustomizationLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
+/// Methods declared on superclass `NSTouchBarItem`.
+#[cfg(feature = "NSTouchBarItem")]
+impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
+    extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
@@ -167,18 +167,18 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSTouchBarItem")]
+impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritemdelegate?language=objc)
@@ -228,18 +228,18 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSCandidateListTouchBarItem
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSCandidateListTouchBarItem.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[cfg(feature = "NSTouchBarItem")]
         #[unsafe(method(candidateListTouchBarItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidateListTouchBarItem(
             &self,
         ) -> Option<Retained<NSCandidateListTouchBarItem>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiercandidatelist?language=objc)

@@ -35,9 +35,9 @@ unsafe impl NSObjectProtocol for VNRecognizedPoint3D {}
 #[cfg(feature = "VNGeometry")]
 unsafe impl NSSecureCoding for VNRecognizedPoint3D {}
 
-extern_methods!(
-    #[cfg(feature = "VNGeometry")]
-    unsafe impl VNRecognizedPoint3D {
+#[cfg(feature = "VNGeometry")]
+impl VNRecognizedPoint3D {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -53,5 +53,5 @@ extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<VNRecognizedPointKey>;
-    }
-);
+    );
+}

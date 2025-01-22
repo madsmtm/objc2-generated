@@ -16,9 +16,9 @@ extern_class!(
 #[cfg(feature = "NSClassDescription")]
 unsafe impl NSObjectProtocol for NSScriptClassDescription {}
 
-extern_methods!(
-    #[cfg(feature = "NSClassDescription")]
-    unsafe impl NSScriptClassDescription {
+#[cfg(feature = "NSClassDescription")]
+impl NSScriptClassDescription {
+    extern_methods!(
         #[unsafe(method(classDescriptionForClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn classDescriptionForClass(
@@ -136,13 +136,13 @@ extern_methods!(
         #[unsafe(method(hasWritablePropertyForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasWritablePropertyForKey(&self, key: &NSString) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSClassDescription")]
-    unsafe impl NSScriptClassDescription {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSClassDescription")]
+impl NSScriptClassDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -150,20 +150,20 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(feature = "NSClassDescription")]
-    unsafe impl NSScriptClassDescription {
+/// NSDeprecated.
+#[cfg(feature = "NSClassDescription")]
+impl NSScriptClassDescription {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated]
         #[unsafe(method(isReadOnlyKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReadOnlyKey(&self, key: &NSString) -> bool;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSScriptClassDescription" on [`NSObject`].

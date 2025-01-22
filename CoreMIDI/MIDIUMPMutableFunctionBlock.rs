@@ -29,10 +29,9 @@ extern_class!(
 #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]
 unsafe impl NSObjectProtocol for MIDIUMPMutableFunctionBlock {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]
-    unsafe impl MIDIUMPMutableFunctionBlock {
+#[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]
+impl MIDIUMPMutableFunctionBlock {
+    extern_methods!(
         #[cfg(all(feature = "MIDIUMPEndpoint", feature = "MIDIUMPMutableEndpoint"))]
         /// The UMP Endpoint to which this Function Block is registered.
         #[unsafe(method(UMPEndpoint))]
@@ -144,16 +143,15 @@ extern_methods!(
             midi1_info: MIDIUMPFunctionBlockMIDI1Info,
             ui_hint: MIDIUMPFunctionBlockUIHint,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]
-    unsafe impl MIDIUMPMutableFunctionBlock {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]
+impl MIDIUMPMutableFunctionBlock {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -166,15 +166,15 @@ unsafe impl NSTextAttachmentCellProtocol for NSTextAttachmentCell {}
 #[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]
 unsafe impl NSUserInterfaceItemIdentification for NSTextAttachmentCell {}
 
-extern_methods!(
-    #[cfg(feature = "NSCell")]
-    unsafe impl NSTextAttachmentCell {}
-);
+#[cfg(feature = "NSCell")]
+impl NSTextAttachmentCell {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "NSCell")]
-    unsafe impl NSTextAttachmentCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(feature = "NSCell")]
+impl NSTextAttachmentCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -194,15 +194,15 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCell")]
-    unsafe impl NSTextAttachmentCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCell")]
+impl NSTextAttachmentCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

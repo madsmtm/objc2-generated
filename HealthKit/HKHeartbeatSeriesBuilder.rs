@@ -31,9 +31,9 @@ unsafe impl Sync for HKHeartbeatSeriesBuilder {}
 #[cfg(feature = "HKSeriesBuilder")]
 unsafe impl NSObjectProtocol for HKHeartbeatSeriesBuilder {}
 
-extern_methods!(
-    #[cfg(feature = "HKSeriesBuilder")]
-    unsafe impl HKHeartbeatSeriesBuilder {
+#[cfg(feature = "HKSeriesBuilder")]
+impl HKHeartbeatSeriesBuilder {
+    extern_methods!(
         /// The maximum number of heartbeats that can be added to an HKHeartbeatSeriesBuilder.
         ///
         /// Any calls to addHeartbeatWithTimeIntervalSinceSeriesStartDate:precededByGap:completion: once
@@ -134,26 +134,26 @@ extern_methods!(
             &self,
             completion: &block2::Block<dyn Fn(*mut HKHeartbeatSeriesSample, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKSeriesBuilder`
-    #[cfg(feature = "HKSeriesBuilder")]
-    unsafe impl HKHeartbeatSeriesBuilder {
+/// Methods declared on superclass `HKSeriesBuilder`.
+#[cfg(feature = "HKSeriesBuilder")]
+impl HKHeartbeatSeriesBuilder {
+    extern_methods!(
         /// Use only subclass initializer methods.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKSeriesBuilder")]
-    unsafe impl HKHeartbeatSeriesBuilder {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKSeriesBuilder")]
+impl HKHeartbeatSeriesBuilder {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

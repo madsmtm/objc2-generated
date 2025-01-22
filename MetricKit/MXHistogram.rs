@@ -25,8 +25,8 @@ unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogramBucket<UnitType> {
 
 unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogramBucket<UnitType> {}
 
-extern_methods!(
-    unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
+impl<UnitType: Message> MXHistogramBucket<UnitType> {
+    extern_methods!(
         /// An NSMeasurement representing the start of a histogram bucket.
         #[unsafe(method(bucketStart))]
         #[unsafe(method_family = none)]
@@ -41,12 +41,12 @@ extern_methods!(
         #[unsafe(method(bucketCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn bucketCount(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
+/// Methods declared on superclass `NSObject`.
+impl<UnitType: Message> MXHistogramBucket<UnitType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -54,8 +54,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A class representing bucketized histogram data.
@@ -72,8 +72,8 @@ unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogram<UnitType> {}
 
 unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogram<UnitType> {}
 
-extern_methods!(
-    unsafe impl<UnitType: Message> MXHistogram<UnitType> {
+impl<UnitType: Message> MXHistogram<UnitType> {
+    extern_methods!(
         /// The number of buckets contained within this histogram.
         ///
         /// This value can never be negative.
@@ -87,12 +87,12 @@ extern_methods!(
         pub unsafe fn bucketEnumerator(
             &self,
         ) -> Retained<NSEnumerator<MXHistogramBucket<UnitType>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<UnitType: Message> MXHistogram<UnitType> {
+/// Methods declared on superclass `NSObject`.
+impl<UnitType: Message> MXHistogram<UnitType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

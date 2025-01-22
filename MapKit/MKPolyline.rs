@@ -33,9 +33,9 @@ unsafe impl MKOverlay for MKPolyline {}
 #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
 unsafe impl NSObjectProtocol for MKPolyline {}
 
-extern_methods!(
-    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
-    unsafe impl MKPolyline {
+#[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
+impl MKPolyline {
+    extern_methods!(
         #[cfg(feature = "MKGeometry")]
         #[unsafe(method(polylineWithPoints:count:))]
         #[unsafe(method_family = none)]
@@ -51,13 +51,13 @@ extern_methods!(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
-    unsafe impl MKPolyline {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
+impl MKPolyline {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -65,5 +65,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

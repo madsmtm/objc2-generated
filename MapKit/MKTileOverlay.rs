@@ -24,8 +24,8 @@ unsafe impl MKOverlay for MKTileOverlay {}
 
 unsafe impl NSObjectProtocol for MKTileOverlay {}
 
-extern_methods!(
-    unsafe impl MKTileOverlay {
+impl MKTileOverlay {
+    extern_methods!(
         #[unsafe(method(initWithURLTemplate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURLTemplate(
@@ -83,12 +83,12 @@ extern_methods!(
         #[unsafe(method(setCanReplaceMapContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanReplaceMapContent(&self, can_replace_map_content: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKTileOverlay {
+/// Methods declared on superclass `NSObject`.
+impl MKTileOverlay {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -96,8 +96,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mktileoverlaypath?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
@@ -128,9 +128,9 @@ unsafe impl RefEncode for MKTileOverlayPath {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// CustomLoading
-    unsafe impl MKTileOverlay {
+/// CustomLoading.
+impl MKTileOverlay {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(URLForTilePath:))]
         #[unsafe(method_family = none)]
@@ -144,5 +144,5 @@ extern_methods!(
             path: MKTileOverlayPath,
             result: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
-    }
-);
+    );
+}

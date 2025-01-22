@@ -47,8 +47,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WCSession {}
 
-extern_methods!(
-    unsafe impl WCSession {
+impl WCSession {
+    extern_methods!(
         /// Check if session is supported on this iOS device. Session is always available on WatchOS
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
@@ -214,17 +214,17 @@ extern_methods!(
         #[unsafe(method(outstandingFileTransfers))]
         #[unsafe(method_family = none)]
         pub unsafe fn outstandingFileTransfers(&self) -> Retained<NSArray<WCSessionFileTransfer>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WCSession {
+/// Methods declared on superclass `NSObject`.
+impl WCSession {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// ----------------------------- WCSessionDelegate -----------------------------

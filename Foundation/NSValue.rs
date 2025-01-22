@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for NSValue {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSValue {}
 
-extern_methods!(
-    unsafe impl NSValue {
+impl NSValue {
+    extern_methods!(
         #[unsafe(method(getValue:size:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getValue_size(&self, value: NonNull<c_void>, size: NSUInteger);
@@ -54,12 +54,12 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSValueCreation
-    unsafe impl NSValue {
+/// NSValueCreation.
+impl NSValue {
+    extern_methods!(
         #[unsafe(method(valueWithBytes:objCType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithBytes_objCType(
@@ -73,12 +73,12 @@ extern_methods!(
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
         ) -> Retained<NSValue>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSValueExtensionMethods
-    unsafe impl NSValue {
+/// NSValueExtensionMethods.
+impl NSValue {
+    extern_methods!(
         #[unsafe(method(valueWithNonretainedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNonretainedObject(
@@ -100,8 +100,8 @@ extern_methods!(
         #[unsafe(method(isEqualToValue:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToValue(&self, value: &NSValue) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumber?language=objc)
@@ -130,8 +130,8 @@ unsafe impl NSObjectProtocol for NSNumber {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSNumber {}
 
-extern_methods!(
-    unsafe impl NSNumber {
+impl NSNumber {
+    extern_methods!(
         #[cfg(feature = "NSCoder")]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
@@ -287,12 +287,12 @@ extern_methods!(
             &self,
             locale: Option<&AnyObject>,
         ) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSValue`
-    unsafe impl NSNumber {
+/// Methods declared on superclass `NSValue`.
+impl NSNumber {
+    extern_methods!(
         #[unsafe(method(initWithBytes:objCType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_objCType(
@@ -300,12 +300,12 @@ extern_methods!(
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSNumberCreation
-    unsafe impl NSNumber {
+/// NSNumberCreation.
+impl NSNumber {
+    extern_methods!(
         #[unsafe(method(numberWithChar:))]
         #[unsafe(method_family = none)]
         pub fn numberWithChar(value: c_char) -> Retained<NSNumber>;
@@ -365,15 +365,15 @@ extern_methods!(
         #[unsafe(method(numberWithUnsignedInteger:))]
         #[unsafe(method_family = none)]
         pub fn numberWithUnsignedInteger(value: NSUInteger) -> Retained<NSNumber>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSValue {
+/// NSDeprecated.
+impl NSValue {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(getValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getValue(&self, value: NonNull<c_void>);
-    }
-);
+    );
+}

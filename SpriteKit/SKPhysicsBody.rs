@@ -34,8 +34,8 @@ unsafe impl NSObjectProtocol for SKPhysicsBody {}
 
 unsafe impl NSSecureCoding for SKPhysicsBody {}
 
-extern_methods!(
-    unsafe impl SKPhysicsBody {
+impl SKPhysicsBody {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a circle of radius r centered at the node's origin.
         ///
@@ -424,12 +424,12 @@ extern_methods!(
         #[unsafe(method(allContactedBodies))]
         #[unsafe(method_family = none)]
         pub unsafe fn allContactedBodies(&self) -> Retained<NSArray<SKPhysicsBody>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPhysicsBody {
+/// Methods declared on superclass `NSObject`.
+impl SKPhysicsBody {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -437,5 +437,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

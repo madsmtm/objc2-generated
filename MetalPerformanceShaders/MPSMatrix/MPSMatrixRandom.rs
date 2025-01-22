@@ -51,8 +51,8 @@ unsafe impl CopyingHelper for MPSMatrixRandomDistributionDescriptor {
 
 unsafe impl NSObjectProtocol for MPSMatrixRandomDistributionDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSMatrixRandomDistributionDescriptor {
+impl MPSMatrixRandomDistributionDescriptor {
+    extern_methods!(
         /// The type of distribution.
         #[unsafe(method(distributionType))]
         #[unsafe(method_family = none)]
@@ -159,12 +159,12 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn defaultDistributionDescriptor(
         ) -> Retained<MPSMatrixRandomDistributionDescriptor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSMatrixRandomDistributionDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSMatrixRandomDistributionDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -172,8 +172,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Kernels that implement random number generation.
@@ -202,9 +202,9 @@ unsafe impl NSObjectProtocol for MPSMatrixRandom {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixRandom {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixRandom {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixRandom {
+    extern_methods!(
         #[cfg(feature = "MPSCoreTypes")]
         /// The type of the data which makes up the values of the result.
         /// Supported values are:
@@ -275,13 +275,13 @@ extern_methods!(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             destination_matrix: &MPSMatrix,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixRandom {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixRandom {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -317,13 +317,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixRandom {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixRandom {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -331,8 +331,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Generates random numbers using a Mersenne Twister algorithm
@@ -364,9 +364,9 @@ unsafe impl NSObjectProtocol for MPSMatrixRandomMTGP32 {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixRandomMTGP32 {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixRandomMTGP32 {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixRandomMTGP32 {
+    extern_methods!(
         /// initialize a MPSMatrixRandomMTGP32 filter to generate 32-bit unsigned
         /// integer values with an initial seed of 0.
         ///
@@ -432,13 +432,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixRandomMTGP32 {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixRandomMTGP32 {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -453,13 +453,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixRandomMTGP32 {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixRandomMTGP32 {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -467,8 +467,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Generates random numbers using a counter based algorithm.
@@ -499,9 +499,9 @@ unsafe impl NSObjectProtocol for MPSMatrixRandomPhilox {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixRandomPhilox {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixRandomPhilox {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixRandomPhilox {
+    extern_methods!(
         /// initialize a MPSMatrixRandomPhilox filter to generate 32-bit unsigned
         /// integer values with an initial seed of 0.
         ///
@@ -557,13 +557,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixRandomPhilox {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixRandomPhilox {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -578,13 +578,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixRandomPhilox {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixRandomPhilox {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -592,5 +592,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

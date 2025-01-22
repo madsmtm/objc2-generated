@@ -20,21 +20,21 @@ extern_class!(
 #[cfg(feature = "UIStoryboardSegue")]
 unsafe impl NSObjectProtocol for UIStoryboardPopoverSegue {}
 
-extern_methods!(
-    #[cfg(feature = "UIStoryboardSegue")]
-    unsafe impl UIStoryboardPopoverSegue {
+#[cfg(feature = "UIStoryboardSegue")]
+impl UIStoryboardPopoverSegue {
+    extern_methods!(
         #[cfg(feature = "UIPopoverController")]
         #[deprecated = "Access destinationViewController.popoverPresentationController from your segue's performHandler or override of -perform"]
         #[unsafe(method(popoverController))]
         #[unsafe(method_family = none)]
         pub unsafe fn popoverController(&self) -> Retained<UIPopoverController>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIStoryboardSegue`
-    #[cfg(feature = "UIStoryboardSegue")]
-    unsafe impl UIStoryboardPopoverSegue {
+/// Methods declared on superclass `UIStoryboardSegue`.
+#[cfg(feature = "UIStoryboardSegue")]
+impl UIStoryboardPopoverSegue {
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UIViewController",
@@ -64,15 +64,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIStoryboardSegue")]
-    unsafe impl UIStoryboardPopoverSegue {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIStoryboardSegue")]
+impl UIStoryboardPopoverSegue {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for HKQueryAnchor {}
 
 unsafe impl NSSecureCoding for HKQueryAnchor {}
 
-extern_methods!(
-    unsafe impl HKQueryAnchor {
+impl HKQueryAnchor {
+    extern_methods!(
         /// Creates an HKQueryAnchor with an integer anchor which was previously obtained from an
         /// HKAnchoredObjectQuery prior to iOS 9.0.
         #[unsafe(method(anchorFromValue:))]
@@ -42,14 +42,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKQueryAnchor {
+/// Methods declared on superclass `NSObject`.
+impl HKQueryAnchor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

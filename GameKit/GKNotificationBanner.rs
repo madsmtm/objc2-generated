@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKNotificationBanner {}
 
-extern_methods!(
-    unsafe impl GKNotificationBanner {
+impl GKNotificationBanner {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
         #[unsafe(method(showBannerWithTitle:message:completionHandler:))]
@@ -42,12 +42,12 @@ extern_methods!(
             duration: NSTimeInterval,
             completion_handler: Option<&block2::Block<dyn Fn()>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKNotificationBanner {
+/// Methods declared on superclass `NSObject`.
+impl GKNotificationBanner {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

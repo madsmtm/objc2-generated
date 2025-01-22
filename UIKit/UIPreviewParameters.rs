@@ -23,8 +23,8 @@ unsafe impl CopyingHelper for UIPreviewParameters {
 
 unsafe impl NSObjectProtocol for UIPreviewParameters {}
 
-extern_methods!(
-    unsafe impl UIPreviewParameters {
+impl UIPreviewParameters {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,14 +68,14 @@ extern_methods!(
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPreviewParameters {
+/// Methods declared on superclass `NSObject`.
+impl UIPreviewParameters {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

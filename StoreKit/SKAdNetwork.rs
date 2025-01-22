@@ -35,8 +35,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SKAdNetwork {}
 
-extern_methods!(
-    unsafe impl SKAdNetwork {
+impl SKAdNetwork {
+    extern_methods!(
         #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
         #[unsafe(method(startImpression:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -89,12 +89,12 @@ extern_methods!(
             lock_window: bool,
             completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKAdNetwork {
+/// Methods declared on superclass `NSObject`.
+impl SKAdNetwork {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -102,8 +102,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkattributionsignature?language=objc)

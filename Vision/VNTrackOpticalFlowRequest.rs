@@ -95,9 +95,9 @@ unsafe impl CopyingHelper for VNTrackOpticalFlowRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNTrackOpticalFlowRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl VNTrackOpticalFlowRequest {
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+impl VNTrackOpticalFlowRequest {
+    extern_methods!(
         /// Create a new request that can statefully track the optical from from one image to another.
         ///
         /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero and a nil completion handler.
@@ -158,13 +158,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNStatefulRequest`
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl VNTrackOpticalFlowRequest {
+/// Methods declared on superclass `VNStatefulRequest`.
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+impl VNTrackOpticalFlowRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -183,8 +183,8 @@ extern_methods!(
             frame_analysis_spacing: CMTime,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequestrevision1?language=objc)
 pub static VNTrackOpticalFlowRequestRevision1: NSUInteger = 1;

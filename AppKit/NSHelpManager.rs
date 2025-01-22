@@ -26,8 +26,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSHelpManager {}
 
-extern_methods!(
-    unsafe impl NSHelpManager {
+impl NSHelpManager {
+    extern_methods!(
         #[unsafe(method(sharedHelpManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedHelpManager(mtm: MainThreadMarker) -> Retained<NSHelpManager>;
@@ -86,12 +86,12 @@ extern_methods!(
         #[unsafe(method(registerBooksInBundle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerBooksInBundle(&self, bundle: &NSBundle) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSHelpManager {
+/// Methods declared on superclass `NSObject`.
+impl NSHelpManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -99,8 +99,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontexthelpmodedidactivatenotification?language=objc)
@@ -126,10 +126,10 @@ extern_category!(
     unsafe impl NSBundleHelpExtension for NSBundle {}
 );
 
-extern_methods!(
-    /// NSApplicationHelpExtension
-    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
-    unsafe impl NSApplication {
+/// NSApplicationHelpExtension.
+#[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(activateContextHelpMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateContextHelpMode(&self, sender: Option<&AnyObject>);
@@ -137,5 +137,5 @@ extern_methods!(
         #[unsafe(method(showHelp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showHelp(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}

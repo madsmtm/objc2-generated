@@ -50,9 +50,9 @@ unsafe impl Sync for HMEventTrigger {}
 #[cfg(feature = "HMTrigger")]
 unsafe impl NSObjectProtocol for HMEventTrigger {}
 
-extern_methods!(
-    #[cfg(feature = "HMTrigger")]
-    unsafe impl HMEventTrigger {
+#[cfg(feature = "HMTrigger")]
+impl HMEventTrigger {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -278,23 +278,23 @@ extern_methods!(
             execute_once: bool,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HMTrigger")]
-    unsafe impl HMEventTrigger {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HMTrigger")]
+impl HMEventTrigger {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPredicate
-    #[cfg(feature = "HMTrigger")]
-    unsafe impl HMEventTrigger {
+/// NSPredicate.
+#[cfg(feature = "HMTrigger")]
+impl HMEventTrigger {
+    extern_methods!(
         /// Creates a predicate that will evaluate whether the event occurred before a significant event.
         ///
         ///
@@ -488,5 +488,5 @@ extern_methods!(
         pub unsafe fn predicateForEvaluatingTriggerWithPresence(
             presence_event: &HMPresenceEvent,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}

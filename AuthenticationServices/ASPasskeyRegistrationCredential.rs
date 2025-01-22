@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for ASPasskeyRegistrationCredential {}
 
 unsafe impl NSSecureCoding for ASPasskeyRegistrationCredential {}
 
-extern_methods!(
-    unsafe impl ASPasskeyRegistrationCredential {
+impl ASPasskeyRegistrationCredential {
+    extern_methods!(
         /// Initializes an ASPasskeyRegistrationCredential object.
         ///
         /// Parameter `relyingParty`: The relying party identifier associated with this passkey.
@@ -127,12 +127,12 @@ extern_methods!(
             &self,
             extension_output: Option<&ASPasskeyRegistrationCredentialExtensionOutput>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASPasskeyRegistrationCredential {
+/// Methods declared on superclass `NSObject`.
+impl ASPasskeyRegistrationCredential {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -140,5 +140,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CKAsset {}
 
-extern_methods!(
-    unsafe impl CKAsset {
+impl CKAsset {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -34,5 +34,5 @@ extern_methods!(
         #[unsafe(method(fileURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
-    }
-);
+    );
+}

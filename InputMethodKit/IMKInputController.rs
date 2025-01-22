@@ -239,8 +239,8 @@ unsafe impl IMKStateSetting for IMKInputController {}
 
 unsafe impl NSObjectProtocol for IMKInputController {}
 
-extern_methods!(
-    unsafe impl IMKInputController {
+impl IMKInputController {
+    extern_methods!(
         #[cfg(feature = "IMKServer")]
         /// Initializes the controller class setting the delegate.
         ///
@@ -394,12 +394,12 @@ extern_methods!(
         #[unsafe(method(candidateSelected:))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidateSelected(&self, candidate_string: Option<&NSAttributedString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl IMKInputController {
+/// Methods declared on superclass `NSObject`.
+impl IMKInputController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -407,5 +407,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

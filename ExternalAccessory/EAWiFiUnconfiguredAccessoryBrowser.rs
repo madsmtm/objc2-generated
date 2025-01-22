@@ -74,8 +74,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessoryBrowser {}
 
-extern_methods!(
-    unsafe impl EAWiFiUnconfiguredAccessoryBrowser {
+impl EAWiFiUnconfiguredAccessoryBrowser {
+    extern_methods!(
         /// The delegate object that will receive the browser events.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -121,12 +121,12 @@ extern_methods!(
         #[unsafe(method(stopSearchingForUnconfiguredAccessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopSearchingForUnconfiguredAccessories(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl EAWiFiUnconfiguredAccessoryBrowser {
+/// Methods declared on superclass `NSObject`.
+impl EAWiFiUnconfiguredAccessoryBrowser {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -134,8 +134,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The delegate of a EAWiFiUnconfiguredAccessoryBrowser object must adopt the

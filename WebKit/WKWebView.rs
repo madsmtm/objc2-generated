@@ -126,10 +126,10 @@ unsafe impl NSObjectProtocol for WKWebView {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for WKWebView {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WKWebView {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WKWebView {
+    extern_methods!(
         #[cfg(feature = "WKWebViewConfiguration")]
         /// A copy of the configuration with which the web view was
         /// initialized.
@@ -987,47 +987,47 @@ extern_methods!(
         #[unsafe(method(isWritingToolsActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isWritingToolsActive(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WKWebView {
+/// Methods declared on superclass `NSView`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WKWebView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WKWebView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WKWebView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WKWebView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WKWebView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WKIBActions
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WKWebView {
+/// WKIBActions.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WKWebView {
+    extern_methods!(
         /// Action method that navigates to the back item in the
         /// back-forward list.
         ///
@@ -1066,32 +1066,32 @@ extern_methods!(
         #[unsafe(method(stopLoading:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopLoading_(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceValidations for WKWebView {}
 
-extern_methods!(
-    /// WKNSTextFinderClient
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WKWebView {}
-);
+/// WKNSTextFinderClient.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WKWebView {
+    extern_methods!();
+}
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 unsafe impl NSTextFinderClient for WKWebView {}
 
-extern_methods!(
-    /// WKDeprecated
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WKWebView {
+/// WKDeprecated.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WKWebView {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(certificateChain))]
         #[unsafe(method_family = none)]
         pub unsafe fn certificateChain(&self) -> Retained<NSArray>;
-    }
-);
+    );
+}

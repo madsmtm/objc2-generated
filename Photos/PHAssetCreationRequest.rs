@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for PHAssetResourceCreationOptions {
 
 unsafe impl NSObjectProtocol for PHAssetResourceCreationOptions {}
 
-extern_methods!(
-    unsafe impl PHAssetResourceCreationOptions {
+impl PHAssetResourceCreationOptions {
+    extern_methods!(
         #[unsafe(method(originalFilename))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalFilename(&self) -> Option<Retained<NSString>>;
@@ -53,12 +53,12 @@ extern_methods!(
         #[unsafe(method(setShouldMoveFile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldMoveFile(&self, should_move_file: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHAssetResourceCreationOptions {
+/// Methods declared on superclass `NSObject`.
+impl PHAssetResourceCreationOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,8 +66,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcreationrequest?language=objc)
@@ -80,9 +80,9 @@ extern_class!(
 #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
 unsafe impl NSObjectProtocol for PHAssetCreationRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
-    unsafe impl PHAssetCreationRequest {
+#[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
+impl PHAssetCreationRequest {
+    extern_methods!(
         #[unsafe(method(creationRequestForAsset))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAsset() -> Retained<Self>;
@@ -110,13 +110,13 @@ extern_methods!(
             data: &NSData,
             options: Option<&PHAssetResourceCreationOptions>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `PHAssetChangeRequest`
-    #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
-    unsafe impl PHAssetCreationRequest {
+/// Methods declared on superclass `PHAssetChangeRequest`.
+#[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
+impl PHAssetCreationRequest {
+    extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[unsafe(method(creationRequestForAssetFromImage:))]
@@ -139,13 +139,13 @@ extern_methods!(
         #[unsafe(method(changeRequestForAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAsset(asset: &PHAsset) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
-    unsafe impl PHAssetCreationRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
+impl PHAssetCreationRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -153,5 +153,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

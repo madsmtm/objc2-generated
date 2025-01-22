@@ -24,25 +24,25 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UIAccessibilityContentSizeCategoryImageAdjusting
-    #[cfg(all(feature = "UIImageView", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIImageView {}
-);
+/// UIAccessibilityContentSizeCategoryImageAdjusting.
+#[cfg(all(feature = "UIImageView", feature = "UIResponder", feature = "UIView"))]
+impl UIImageView {
+    extern_methods!();
+}
 
 #[cfg(all(feature = "UIImageView", feature = "UIResponder", feature = "UIView"))]
 unsafe impl UIAccessibilityContentSizeCategoryImageAdjusting for UIImageView {}
 
-extern_methods!(
-    /// UIAccessibilityContentSizeCategoryImageAdjusting
-    #[cfg(all(
-        feature = "UIButton",
-        feature = "UIControl",
-        feature = "UIResponder",
-        feature = "UIView"
-    ))]
-    unsafe impl UIButton {}
-);
+/// UIAccessibilityContentSizeCategoryImageAdjusting.
+#[cfg(all(
+    feature = "UIButton",
+    feature = "UIControl",
+    feature = "UIResponder",
+    feature = "UIView"
+))]
+impl UIButton {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "UIButton",
@@ -52,8 +52,8 @@ extern_methods!(
 ))]
 unsafe impl UIAccessibilityContentSizeCategoryImageAdjusting for UIButton {}
 
-extern_methods!(
-    /// UIAccessibilityContentSizeCategoryImageAdjusting
-    #[cfg(feature = "NSTextAttachment")]
-    unsafe impl NSTextAttachment {}
-);
+/// UIAccessibilityContentSizeCategoryImageAdjusting.
+#[cfg(feature = "NSTextAttachment")]
+impl NSTextAttachment {
+    extern_methods!();
+}

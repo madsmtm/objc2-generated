@@ -131,9 +131,9 @@ unsafe impl UIResponderStandardEditActions for UITextFormattingViewController {}
 ))]
 unsafe impl UITraitEnvironment for UITextFormattingViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UITextFormattingViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UITextFormattingViewController {
+    extern_methods!(
         #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
         /// Current text formatting configuration object.
         #[unsafe(method(configuration))]
@@ -193,28 +193,28 @@ extern_methods!(
             this: Allocated<Self>,
             configuration: &UITextFormattingViewControllerConfiguration,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UITextFormattingViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UITextFormattingViewController {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UITextFormattingViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UITextFormattingViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

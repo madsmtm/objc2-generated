@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LAPrivateKey {}
 
-extern_methods!(
-    unsafe impl LAPrivateKey {
+impl LAPrivateKey {
+    extern_methods!(
         #[cfg(feature = "LAPublicKey")]
         /// Offers the public key counterpart of a
         /// `LAPrivateKey`instance
@@ -134,5 +134,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

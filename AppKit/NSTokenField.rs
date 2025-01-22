@@ -253,14 +253,14 @@ unsafe impl NSUserInterfaceItemIdentification for NSTokenField {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSTokenField {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSTokenField {
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSTokenField {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
@@ -316,18 +316,18 @@ extern_methods!(
         pub unsafe fn defaultTokenizingCharacterSet(
             mtm: MainThreadMarker,
         ) -> Retained<NSCharacterSet>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSTokenField {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSTokenField {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -338,35 +338,35 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSTokenField {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSTokenField {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSTokenField {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSTokenField {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

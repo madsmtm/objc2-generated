@@ -120,9 +120,9 @@ unsafe impl UIResponderStandardEditActions for UISwitch {}
 ))]
 unsafe impl UITraitEnvironment for UISwitch {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UISwitch {
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UISwitch {
+    extern_methods!(
         #[cfg(feature = "UIColor")]
         #[unsafe(method(onTintColor))]
         #[unsafe(method_family = none)]
@@ -218,13 +218,13 @@ extern_methods!(
         #[unsafe(method(setOn:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOn_animated(&self, on: bool, animated: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIControl`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UISwitch {
+/// Methods declared on superclass `UIControl`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UISwitch {
+    extern_methods!(
         #[cfg(all(
             feature = "UIAction",
             feature = "UIMenuElement",
@@ -238,13 +238,13 @@ extern_methods!(
             frame: CGRect,
             primary_action: Option<&UIAction>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UISwitch {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UISwitch {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -252,5 +252,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

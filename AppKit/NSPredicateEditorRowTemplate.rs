@@ -27,8 +27,8 @@ unsafe impl CopyingHelper for NSPredicateEditorRowTemplate {
 
 unsafe impl NSObjectProtocol for NSPredicateEditorRowTemplate {}
 
-extern_methods!(
-    unsafe impl NSPredicateEditorRowTemplate {
+impl NSPredicateEditorRowTemplate {
+    extern_methods!(
         #[unsafe(method(matchForPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchForPredicate(&self, predicate: &NSPredicate) -> c_double;
@@ -125,12 +125,12 @@ extern_methods!(
             key_paths: &NSArray<NSString>,
             entity_description: &NSEntityDescription,
         ) -> Retained<NSArray<NSPredicateEditorRowTemplate>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPredicateEditorRowTemplate {
+/// Methods declared on superclass `NSObject`.
+impl NSPredicateEditorRowTemplate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -138,5 +138,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

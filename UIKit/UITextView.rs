@@ -579,9 +579,9 @@ unsafe impl UITextInputTraits for UITextView {}
 ))]
 unsafe impl UITraitEnvironment for UITextView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UITextView {
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UITextView {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITextViewDelegate>>>;
@@ -925,24 +925,24 @@ extern_methods!(
             &self,
             text_formatting_configuration: Option<&UITextFormattingViewControllerConfiguration>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UITextView {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UITextView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UITextView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UITextView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -950,13 +950,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UITextView {}
-);
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UITextView {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "UIFindInteraction",
@@ -1005,10 +1005,10 @@ unsafe impl UITextPasteConfigurationSupporting for UITextView {}
 ))]
 unsafe impl UITextSearching for UITextView {}
 
-extern_methods!(
-    /// UIInteractionStateRestorable
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UITextView {
+/// UIInteractionStateRestorable.
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UITextView {
+    extern_methods!(
         #[unsafe(method(interactionState))]
         #[unsafe(method_family = none)]
         pub unsafe fn interactionState(&self) -> Retained<AnyObject>;
@@ -1017,8 +1017,8 @@ extern_methods!(
         #[unsafe(method(setInteractionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionState(&self, interaction_state: &AnyObject);
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextviewtextdidbegineditingnotification?language=objc)

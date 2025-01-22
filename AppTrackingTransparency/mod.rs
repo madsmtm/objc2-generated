@@ -110,8 +110,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ATTrackingManager {}
 
-extern_methods!(
-    unsafe impl ATTrackingManager {
+impl ATTrackingManager {
+    extern_methods!(
         /// The authorization status that is current for the calling application.
         ///
         /// If the user has not yet been prompted to approve access, the return value
@@ -177,8 +177,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/apptrackingtransparencyversionnumber?language=objc)

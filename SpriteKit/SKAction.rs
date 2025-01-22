@@ -82,8 +82,8 @@ unsafe impl NSObjectProtocol for SKAction {}
 
 unsafe impl NSSecureCoding for SKAction {}
 
-extern_methods!(
-    unsafe impl SKAction {
+impl SKAction {
+    extern_methods!(
         /// The duration required to complete an action, in seconds.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
@@ -141,12 +141,12 @@ extern_methods!(
         #[unsafe(method(reversedAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn reversedAction(&self) -> Retained<SKAction>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKAction {
+/// Methods declared on superclass `NSObject`.
+impl SKAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -154,12 +154,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SKActions
-    unsafe impl SKAction {
+/// SKActions.
+impl SKAction {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates an action that moves a node relative to its current position
         ///
@@ -957,12 +957,12 @@ extern_methods!(
             url: &NSURL,
             duration: NSTimeInterval,
         ) -> Option<Retained<SKAction>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NodeWithPhysicsBody
-    unsafe impl SKAction {
+/// NodeWithPhysicsBody.
+impl SKAction {
+    extern_methods!(
         #[unsafe(method(changeChargeTo:duration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeChargeTo_duration(
@@ -1040,12 +1040,12 @@ extern_methods!(
             impulse: CGFloat,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// PlaybackControl
-    unsafe impl SKAction {
+/// PlaybackControl.
+impl SKAction {
+    extern_methods!(
         #[unsafe(method(play))]
         #[unsafe(method_family = none)]
         pub unsafe fn play() -> Retained<SKAction>;
@@ -1071,12 +1071,12 @@ extern_methods!(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MixerControl
-    unsafe impl SKAction {
+/// MixerControl.
+impl SKAction {
+    extern_methods!(
         #[unsafe(method(changeVolumeTo:duration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeVolumeTo_duration(
@@ -1090,5 +1090,5 @@ extern_methods!(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
-    }
-);
+    );
+}

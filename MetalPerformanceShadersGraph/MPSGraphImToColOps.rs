@@ -34,9 +34,9 @@ unsafe impl CopyingHelper for MPSGraphImToColOpDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphImToColOpDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphImToColOpDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphImToColOpDescriptor {
+    extern_methods!(
         /// The property that defines the kernel size in width dimension.
         #[unsafe(method(kernelWidth))]
         #[unsafe(method_family = none)]
@@ -215,13 +215,13 @@ extern_methods!(
             padding_top: NSUInteger,
             padding_bottom: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphImToColOpDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphImToColOpDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -229,13 +229,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MPSGraphImToColOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphImToColOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates an imToCol operation and returns the result tensor.
         ///
@@ -274,5 +274,5 @@ extern_methods!(
             descriptor: &MPSGraphImToColOpDescriptor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

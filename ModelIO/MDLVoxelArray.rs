@@ -25,9 +25,9 @@ unsafe impl MDLNamed for MDLVoxelArray {}
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLVoxelArray {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLVoxelArray {
+#[cfg(feature = "MDLObject")]
+impl MDLVoxelArray {
+    extern_methods!(
         #[cfg(feature = "MDLAsset")]
         /// Initialize a voxel grid from an MDLAsset. Attempts to create a closed volume
         /// model by applying "patches" of radius patchRadius to any holes found in the
@@ -263,13 +263,13 @@ extern_methods!(
             &self,
             allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
         ) -> Option<Retained<MDLMesh>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLVoxelArray {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLVoxelArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -277,5 +277,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

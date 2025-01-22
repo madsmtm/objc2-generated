@@ -45,8 +45,8 @@ unsafe impl CopyingHelper for VZMacHardwareModel {
 
 unsafe impl NSObjectProtocol for VZMacHardwareModel {}
 
-extern_methods!(
-    unsafe impl VZMacHardwareModel {
+impl VZMacHardwareModel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -79,5 +79,5 @@ extern_methods!(
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported(&self) -> bool;
-    }
-);
+    );
+}

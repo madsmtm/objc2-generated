@@ -27,8 +27,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSAccelerationStructureGroup {}
 
-extern_methods!(
-    unsafe impl MPSAccelerationStructureGroup {
+impl MPSAccelerationStructureGroup {
+    extern_methods!(
         /// The Metal device this acceleration structure group was created with
         #[deprecated]
         #[unsafe(method(device))]
@@ -47,14 +47,14 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSAccelerationStructureGroup {
+/// Methods declared on superclass `NSObject`.
+impl MPSAccelerationStructureGroup {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

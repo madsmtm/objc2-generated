@@ -79,8 +79,8 @@ unsafe impl NSObjectProtocol for UIShape {}
 
 unsafe impl UIShapeProvider for UIShape {}
 
-extern_methods!(
-    unsafe impl UIShape {
+impl UIShape {
+    extern_methods!(
         /// A rectangular shape.
         #[unsafe(method(rectShape))]
         #[unsafe(method_family = none)]
@@ -210,8 +210,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A shape that has been resolved based on a `ResolutionContext`.
@@ -230,8 +230,8 @@ unsafe impl CopyingHelper for UIResolvedShape {
 
 unsafe impl NSObjectProtocol for UIResolvedShape {}
 
-extern_methods!(
-    unsafe impl UIResolvedShape {
+impl UIResolvedShape {
+    extern_methods!(
         /// The abstract shape that produced this resolved shape.
         #[unsafe(method(shape))]
         #[unsafe(method_family = none)]
@@ -285,8 +285,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The context used for resolving a `dynamic` `UIShape`.
@@ -299,8 +299,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIShapeResolutionContext {}
 
-extern_methods!(
-    unsafe impl UIShapeResolutionContext {
+impl UIShapeResolutionContext {
+    extern_methods!(
         /// The resolved shape of the content to which this shape may be
         /// applied. For example, if this shape will be used to apply an effect
         /// to a button, the `contentShape` could represent the bounding shape
@@ -317,5 +317,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -27,9 +27,9 @@ unsafe impl CopyingHelper for DOMCSSStyleDeclaration {
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMCSSStyleDeclaration {}
 
-extern_methods!(
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMCSSStyleDeclaration {
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMCSSStyleDeclaration {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(cssText))]
         #[unsafe(method_family = none)]
@@ -110,34 +110,34 @@ extern_methods!(
         #[unsafe(method(isPropertyImplicit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPropertyImplicit(&self, property_name: Option<&NSString>) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMCSSStyleDeclaration {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMCSSStyleDeclaration {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMCSSStyleDeclaration {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMCSSStyleDeclaration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMCSSStyleDeclarationDeprecated
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMCSSStyleDeclaration {
+/// DOMCSSStyleDeclarationDeprecated.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMCSSStyleDeclaration {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setProperty:::))]
         #[unsafe(method_family = none)]
@@ -147,5 +147,5 @@ extern_methods!(
             value: Option<&NSString>,
             priority: Option<&NSString>,
         );
-    }
-);
+    );
+}

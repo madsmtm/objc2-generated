@@ -68,8 +68,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSUserDefaults {}
 
-extern_methods!(
-    unsafe impl NSUserDefaults {
+impl NSUserDefaults {
+    extern_methods!(
         /// +standardUserDefaults returns a global instance of NSUserDefaults configured to search the current application's search list.
         #[unsafe(method(standardUserDefaults))]
         #[unsafe(method_family = none)]
@@ -334,17 +334,17 @@ extern_methods!(
             key: &NSString,
             domain: &NSString,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUserDefaults {
+/// Methods declared on superclass `NSObject`.
+impl NSUserDefaults {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// NSUserDefaultsSizeLimitExceededNotification is posted on the main queue when more data is stored in user defaults than is allowed. Currently there is no limit for local user defaults except on tvOS, where a warning notification will be posted at 512kB, and the process terminated at 1MB. For ubiquitous defaults, the limit depends on the logged in iCloud user.

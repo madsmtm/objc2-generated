@@ -36,9 +36,9 @@ unsafe impl NSEditorRegistration for NSTreeController {}
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 unsafe impl NSObjectProtocol for NSTreeController {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-    unsafe impl NSTreeController {
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
+impl NSTreeController {
+    extern_methods!(
         #[unsafe(method(rearrangeObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn rearrangeObjects(&self);
@@ -255,13 +255,13 @@ extern_methods!(
         #[unsafe(method(leafKeyPathForNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn leafKeyPathForNode(&self, node: &NSTreeNode) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObjectController`
-    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-    unsafe impl NSTreeController {
+/// Methods declared on superclass `NSObjectController`.
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
+impl NSTreeController {
+    extern_methods!(
         #[unsafe(method(initWithContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(
@@ -275,25 +275,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSController`
-    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-    unsafe impl NSTreeController {
+/// Methods declared on superclass `NSController`.
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
+impl NSTreeController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-    unsafe impl NSTreeController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSController", feature = "NSObjectController"))]
+impl NSTreeController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

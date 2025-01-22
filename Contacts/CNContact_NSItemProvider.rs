@@ -5,11 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// NSItemProvider
-    #[cfg(feature = "CNContact")]
-    unsafe impl CNContact {}
-);
+/// NSItemProvider.
+#[cfg(feature = "CNContact")]
+impl CNContact {
+    extern_methods!();
+}
 
 #[cfg(feature = "CNContact")]
 unsafe impl NSItemProviderReading for CNContact {}

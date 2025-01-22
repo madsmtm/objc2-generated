@@ -19,8 +19,8 @@ unsafe impl Sync for NSDistributedLock {}
 
 unsafe impl NSObjectProtocol for NSDistributedLock {}
 
-extern_methods!(
-    unsafe impl NSDistributedLock {
+impl NSDistributedLock {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(lockWithPath:))]
         #[unsafe(method_family = none)]
@@ -54,14 +54,14 @@ extern_methods!(
         #[unsafe(method(lockDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn lockDate(&self) -> Retained<NSDate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDistributedLock {
+/// Methods declared on superclass `NSObject`.
+impl NSDistributedLock {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

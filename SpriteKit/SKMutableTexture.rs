@@ -39,9 +39,9 @@ unsafe impl NSObjectProtocol for SKMutableTexture {}
 #[cfg(feature = "SKTexture")]
 unsafe impl NSSecureCoding for SKMutableTexture {}
 
-extern_methods!(
-    #[cfg(feature = "SKTexture")]
-    unsafe impl SKMutableTexture {
+#[cfg(feature = "SKTexture")]
+impl SKMutableTexture {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a mutable texture with a specfic size.
         ///
@@ -79,13 +79,13 @@ extern_methods!(
             &self,
             block: &block2::Block<dyn Fn(*mut c_void, usize)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SKTexture`
-    #[cfg(feature = "SKTexture")]
-    unsafe impl SKMutableTexture {
+/// Methods declared on superclass `SKTexture`.
+#[cfg(feature = "SKTexture")]
+impl SKMutableTexture {
+    extern_methods!(
         /// Create a texture from an image file. Behaves similar to imageNamed: in UIImage or NSImage
         ///
         ///
@@ -194,13 +194,13 @@ extern_methods!(
             row_length: c_uint,
             alignment: c_uint,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SKTexture")]
-    unsafe impl SKMutableTexture {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SKTexture")]
+impl SKMutableTexture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -208,5 +208,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

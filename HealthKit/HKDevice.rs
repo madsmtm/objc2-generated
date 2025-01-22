@@ -101,8 +101,8 @@ unsafe impl NSObjectProtocol for HKDevice {}
 
 unsafe impl NSSecureCoding for HKDevice {}
 
-extern_methods!(
-    unsafe impl HKDevice {
+impl HKDevice {
+    extern_methods!(
         /// The name of the receiver.
         ///
         /// The user-facing name, such as the one displayed in the Bluetooth Settings for a BLE device.
@@ -187,14 +187,14 @@ extern_methods!(
         #[unsafe(method(localDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn localDevice() -> Retained<HKDevice>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKDevice {
+/// Methods declared on superclass `NSObject`.
+impl HKDevice {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

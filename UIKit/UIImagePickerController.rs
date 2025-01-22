@@ -265,13 +265,13 @@ unsafe impl UIResponderStandardEditActions for UIImagePickerController {}
 ))]
 unsafe impl UITraitEnvironment for UIImagePickerController {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "UINavigationController",
-        feature = "UIResponder",
-        feature = "UIViewController"
-    ))]
-    unsafe impl UIImagePickerController {
+#[cfg(all(
+    feature = "UINavigationController",
+    feature = "UIResponder",
+    feature = "UIViewController"
+))]
+impl UIImagePickerController {
+    extern_methods!(
         #[unsafe(method(isSourceTypeAvailable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSourceTypeAvailable(
@@ -484,17 +484,17 @@ extern_methods!(
             &self,
             camera_flash_mode: UIImagePickerControllerCameraFlashMode,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UINavigationController`
-    #[cfg(all(
-        feature = "UINavigationController",
-        feature = "UIResponder",
-        feature = "UIViewController"
-    ))]
-    unsafe impl UIImagePickerController {
+/// Methods declared on superclass `UINavigationController`.
+#[cfg(all(
+    feature = "UINavigationController",
+    feature = "UIResponder",
+    feature = "UIViewController"
+))]
+impl UIImagePickerController {
+    extern_methods!(
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
@@ -524,17 +524,17 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "UINavigationController",
-        feature = "UIResponder",
-        feature = "UIViewController"
-    ))]
-    unsafe impl UIImagePickerController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "UINavigationController",
+    feature = "UIResponder",
+    feature = "UIViewController"
+))]
+impl UIImagePickerController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -542,8 +542,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate?language=objc)

@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for HKQueryDescriptor {}
 
 unsafe impl NSSecureCoding for HKQueryDescriptor {}
 
-extern_methods!(
-    unsafe impl HKQueryDescriptor {
+impl HKQueryDescriptor {
+    extern_methods!(
         #[cfg(feature = "HKObjectType")]
         /// The type of sample to retrieve in an HKQuery.
         #[unsafe(method(sampleType))]
@@ -64,5 +64,5 @@ extern_methods!(
             sample_type: &HKSampleType,
             predicate: Option<&NSPredicate>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -50,9 +50,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for MIDIUMPCIProfile {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl MIDIUMPCIProfile {
+impl MIDIUMPCIProfile {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// The name of the MIDI-CI proifle.
         #[unsafe(method(name))]
@@ -132,16 +131,15 @@ extern_methods!(
             is_enabled: bool,
             enabled_channel_count: MIDIUInteger14,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2")]
-    unsafe impl MIDIUMPCIProfile {
+impl MIDIUMPCIProfile {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

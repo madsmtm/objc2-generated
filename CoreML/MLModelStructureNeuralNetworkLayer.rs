@@ -21,8 +21,8 @@ unsafe impl Sync for MLModelStructureNeuralNetworkLayer {}
 
 unsafe impl NSObjectProtocol for MLModelStructureNeuralNetworkLayer {}
 
-extern_methods!(
-    unsafe impl MLModelStructureNeuralNetworkLayer {
+impl MLModelStructureNeuralNetworkLayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -50,5 +50,5 @@ extern_methods!(
         #[unsafe(method(outputNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputNames(&self) -> Retained<NSArray<NSString>>;
-    }
-);
+    );
+}

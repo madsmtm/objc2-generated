@@ -31,8 +31,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSUndoManager {}
 
-extern_methods!(
-    unsafe impl NSUndoManager {
+impl NSUndoManager {
+    extern_methods!(
         /// Marks the beginning of an undo group.
         ///
         /// All individual undo operations before a subsequent ``endUndoGrouping`` message are grouped together and reversed by a later ``undo`` message. By default undo groups are begun automatically at the start of the event loop, but you can begin your own undo groups with this method, and nest them within other groups.
@@ -372,12 +372,12 @@ extern_methods!(
             &self,
             action_name: &NSString,
         ) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUndoManager {
+/// Methods declared on superclass `NSObject`.
+impl NSUndoManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -385,8 +385,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagercheckpointnotification?language=objc)

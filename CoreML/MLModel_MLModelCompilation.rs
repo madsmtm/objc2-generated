@@ -7,13 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MLModelCompilation
-    /// MLModel (MLModelCompilation)
-    ///
-    /// Class with utilties for performing .mlmodel compilation
-    #[cfg(feature = "MLModel")]
-    unsafe impl MLModel {
+/// MLModelCompilation.
+/// MLModel (MLModelCompilation)
+///
+/// Class with utilties for performing .mlmodel compilation
+#[cfg(feature = "MLModel")]
+impl MLModel {
+    extern_methods!(
         /// Compile a .mlmodel for this device
         ///
         ///
@@ -60,5 +60,5 @@ extern_methods!(
             model_url: &NSURL,
             handler: &block2::Block<dyn Fn(*mut NSURL, *mut NSError)>,
         );
-    }
-);
+    );
+}

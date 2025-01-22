@@ -54,8 +54,8 @@ unsafe impl CopyingHelper for NSUserNotification {
 
 unsafe impl NSObjectProtocol for NSUserNotification {}
 
-extern_methods!(
-    unsafe impl NSUserNotification {
+impl NSUserNotification {
+    extern_methods!(
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -283,17 +283,17 @@ extern_methods!(
         pub unsafe fn additionalActivationAction(
             &self,
         ) -> Option<Retained<NSUserNotificationAction>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUserNotification {
+/// Methods declared on superclass `NSObject`.
+impl NSUserNotification {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationaction?language=objc)
@@ -313,8 +313,8 @@ unsafe impl CopyingHelper for NSUserNotificationAction {
 
 unsafe impl NSObjectProtocol for NSUserNotificationAction {}
 
-extern_methods!(
-    unsafe impl NSUserNotificationAction {
+impl NSUserNotificationAction {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(actionWithIdentifier:title:))]
@@ -335,12 +335,12 @@ extern_methods!(
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUserNotificationAction {
+/// Methods declared on superclass `NSObject`.
+impl NSUserNotificationAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -348,8 +348,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationdefaultsoundname?language=objc)
@@ -367,8 +367,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSUserNotificationCenter {}
 
-extern_methods!(
-    unsafe impl NSUserNotificationCenter {
+impl NSUserNotificationCenter {
+    extern_methods!(
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(defaultUserNotificationCenter))]
         #[unsafe(method_family = none)]
@@ -436,12 +436,12 @@ extern_methods!(
         #[unsafe(method(removeAllDeliveredNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllDeliveredNotifications(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUserNotificationCenter {
+/// Methods declared on superclass `NSObject`.
+impl NSUserNotificationCenter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -449,8 +449,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationcenterdelegate?language=objc)

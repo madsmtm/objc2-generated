@@ -109,9 +109,9 @@ extern_class!(
 #[cfg(feature = "UIFocus")]
 unsafe impl NSObjectProtocol for UICollectionViewFocusUpdateContext {}
 
-extern_methods!(
-    #[cfg(feature = "UIFocus")]
-    unsafe impl UICollectionViewFocusUpdateContext {
+#[cfg(feature = "UIFocus")]
+impl UICollectionViewFocusUpdateContext {
+    extern_methods!(
         #[unsafe(method(previouslyFocusedIndexPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn previouslyFocusedIndexPath(&self) -> Option<Retained<NSIndexPath>>;
@@ -119,13 +119,13 @@ extern_methods!(
         #[unsafe(method(nextFocusedIndexPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextFocusedIndexPath(&self) -> Option<Retained<NSIndexPath>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIFocus")]
-    unsafe impl UICollectionViewFocusUpdateContext {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIFocus")]
+impl UICollectionViewFocusUpdateContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -133,8 +133,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource?language=objc)
@@ -1016,9 +1016,9 @@ unsafe impl UIResponderStandardEditActions for UICollectionView {}
 ))]
 unsafe impl UITraitEnvironment for UICollectionView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UICollectionView {
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UICollectionView {
+    extern_methods!(
         #[cfg(all(feature = "UICollectionViewLayout", feature = "objc2-core-foundation"))]
         #[unsafe(method(initWithFrame:collectionViewLayout:))]
         #[unsafe(method_family = init)]
@@ -1608,24 +1608,24 @@ extern_methods!(
             &self,
             allows_multiple_selection_during_editing: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UICollectionView {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UICollectionView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UICollectionView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UICollectionView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1633,14 +1633,14 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIDragAndDrop
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UICollectionView {}
-);
+/// UIDragAndDrop.
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UICollectionView {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "UIResponder",
@@ -1919,9 +1919,9 @@ unsafe impl CopyingHelper for UICollectionViewDropProposal {
 #[cfg(feature = "UIDropInteraction")]
 unsafe impl NSObjectProtocol for UICollectionViewDropProposal {}
 
-extern_methods!(
-    #[cfg(feature = "UIDropInteraction")]
-    unsafe impl UICollectionViewDropProposal {
+#[cfg(feature = "UIDropInteraction")]
+impl UICollectionViewDropProposal {
+    extern_methods!(
         #[unsafe(method(initWithDropOperation:intent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation_intent(
@@ -1933,13 +1933,13 @@ extern_methods!(
         #[unsafe(method(intent))]
         #[unsafe(method_family = none)]
         pub unsafe fn intent(&self) -> UICollectionViewDropIntent;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIDropProposal`
-    #[cfg(feature = "UIDropInteraction")]
-    unsafe impl UICollectionViewDropProposal {
+/// Methods declared on superclass `UIDropProposal`.
+#[cfg(feature = "UIDropInteraction")]
+impl UICollectionViewDropProposal {
+    extern_methods!(
         #[unsafe(method(initWithDropOperation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation(
@@ -1954,8 +1954,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropcoordinator?language=objc)
@@ -2038,8 +2038,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UICollectionViewPlaceholder {}
 
-extern_methods!(
-    unsafe impl UICollectionViewPlaceholder {
+impl UICollectionViewPlaceholder {
+    extern_methods!(
         #[unsafe(method(initWithInsertionIndexPath:reuseIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInsertionIndexPath_reuseIdentifier(
@@ -2081,8 +2081,8 @@ extern_methods!(
             &self,
             cell_update_handler: Option<&block2::Block<dyn Fn(NonNull<UICollectionViewCell>)>>,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropplaceholder?language=objc)
@@ -2094,8 +2094,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UICollectionViewDropPlaceholder {}
 
-extern_methods!(
-    unsafe impl UICollectionViewDropPlaceholder {
+impl UICollectionViewDropPlaceholder {
+    extern_methods!(
         #[cfg(all(
             feature = "UICollectionViewCell",
             feature = "UIDragPreviewParameters",
@@ -2129,12 +2129,12 @@ extern_methods!(
                 >,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICollectionViewPlaceholder`
-    unsafe impl UICollectionViewDropPlaceholder {
+/// Methods declared on superclass `UICollectionViewPlaceholder`.
+impl UICollectionViewDropPlaceholder {
+    extern_methods!(
         #[unsafe(method(initWithInsertionIndexPath:reuseIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInsertionIndexPath_reuseIdentifier(
@@ -2150,8 +2150,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropitem?language=objc)

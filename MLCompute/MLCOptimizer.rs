@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for MLCOptimizer {
 
 unsafe impl NSObjectProtocol for MLCOptimizer {}
 
-extern_methods!(
-    unsafe impl MLCOptimizer {
+impl MLCOptimizer {
+    extern_methods!(
         /// The learning rate.  This property is 'readwrite' so that callers can implement a 'decay' during training
         #[deprecated]
         #[unsafe(method(learningRate))]
@@ -107,5 +107,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

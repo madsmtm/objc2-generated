@@ -20,8 +20,8 @@ unsafe impl NSColorPickingDefault for NSColorPicker {}
 
 unsafe impl NSObjectProtocol for NSColorPicker {}
 
-extern_methods!(
-    unsafe impl NSColorPicker {
+impl NSColorPicker {
+    extern_methods!(
         #[cfg(all(
             feature = "NSColorPanel",
             feature = "NSPanel",
@@ -91,12 +91,12 @@ extern_methods!(
         #[unsafe(method(minContentSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn minContentSize(&self) -> NSSize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSColorPicker {
+/// Methods declared on superclass `NSObject`.
+impl NSColorPicker {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -104,5 +104,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

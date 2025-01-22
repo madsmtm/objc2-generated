@@ -42,9 +42,9 @@ unsafe impl NSObjectProtocol for MPSImageCopyToMatrix {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageCopyToMatrix {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSImageCopyToMatrix {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSImageCopyToMatrix {
+    extern_methods!(
         /// The origin, relative to [0, 0] in the destination matrix, at which to
         /// start writing results.  This property is modifiable and defaults
         /// to [0, 0] at initialization time.  If a different origin is desired
@@ -171,13 +171,13 @@ extern_methods!(
             source_images: &MPSImageBatch,
             destination_matrix: &MPSMatrix,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSImageCopyToMatrix {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSImageCopyToMatrix {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -206,13 +206,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSImageCopyToMatrix {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSImageCopyToMatrix {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -220,8 +220,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSMatrixCopyToImage copies matrix data to a MPSImage.
@@ -251,9 +251,9 @@ unsafe impl NSObjectProtocol for MPSMatrixCopyToImage {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixCopyToImage {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixCopyToImage {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixCopyToImage {
+    extern_methods!(
         /// The origin, relative to [0, 0] in the source matrix.
         /// This property is modifiable and defaults
         /// to [0, 0] at initialization time.  If a different origin is desired
@@ -377,13 +377,13 @@ extern_methods!(
             source_matrix: &MPSMatrix,
             destination_images: &MPSImageBatch,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixCopyToImage {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixCopyToImage {
+    extern_methods!(
         /// Standard init with default properties per filter type
         ///
         /// Parameter `device`: The device that the filter will be used on. May not be NULL.
@@ -412,13 +412,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSMatrixCopyToImage {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSMatrixCopyToImage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -426,5 +426,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -50,8 +50,8 @@ unsafe impl CopyingHelper for AVAssetTrack {
 
 unsafe impl NSObjectProtocol for AVAssetTrack {}
 
-extern_methods!(
-    unsafe impl AVAssetTrack {
+impl AVAssetTrack {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -69,12 +69,12 @@ extern_methods!(
         #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackBasicPropertiesAndCharacteristics
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackBasicPropertiesAndCharacteristics.
+impl AVAssetTrack {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
@@ -117,12 +117,12 @@ extern_methods!(
             &self,
             media_characteristic: &AVMediaCharacteristic,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackTemporalProperties
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackTemporalProperties.
+impl AVAssetTrack {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
@@ -136,12 +136,12 @@ extern_methods!(
         #[unsafe(method(estimatedDataRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedDataRate(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackLanguageProperties
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackLanguageProperties.
+impl AVAssetTrack {
+    extern_methods!(
         #[unsafe(method(languageCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
@@ -149,12 +149,12 @@ extern_methods!(
         #[unsafe(method(extendedLanguageTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackPropertiesForVisualCharacteristic
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackPropertiesForVisualCharacteristic.
+impl AVAssetTrack {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(naturalSize))]
         #[unsafe(method_family = none)]
@@ -164,12 +164,12 @@ extern_methods!(
         #[unsafe(method(preferredTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTransform(&self) -> CGAffineTransform;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackPropertiesForAudibleCharacteristic
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackPropertiesForAudibleCharacteristic.
+impl AVAssetTrack {
+    extern_methods!(
         #[unsafe(method(preferredVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredVolume(&self) -> c_float;
@@ -177,12 +177,12 @@ extern_methods!(
         #[unsafe(method(hasAudioSampleDependencies))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAudioSampleDependencies(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackPropertiesForFrameBasedCharacteristic
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackPropertiesForFrameBasedCharacteristic.
+impl AVAssetTrack {
+    extern_methods!(
         /// For tracks that carry a full frame per media sample, indicates the frame rate of the track in units of frames per second.
         ///
         /// For field-based video tracks that carry one field per media sample, the value of this property is the field rate, not the frame rate.
@@ -199,12 +199,12 @@ extern_methods!(
         #[unsafe(method(requiresFrameReordering))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresFrameReordering(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackSegments
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackSegments.
+impl AVAssetTrack {
+    extern_methods!(
         #[cfg(feature = "AVAssetTrackSegment")]
         #[unsafe(method(segments))]
         #[unsafe(method_family = none)]
@@ -270,12 +270,12 @@ extern_methods!(
             track_time: CMTime,
             completion_handler: &block2::Block<dyn Fn(CMTime, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackMetadataReading
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackMetadataReading.
+impl AVAssetTrack {
+    extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
         #[unsafe(method(commonMetadata))]
         #[unsafe(method_family = none)]
@@ -326,8 +326,8 @@ extern_methods!(
             format: &AVMetadataFormat,
             completion_handler: &block2::Block<dyn Fn(*mut NSArray<AVMetadataItem>, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
 /// The type of a track association.
 ///
@@ -365,9 +365,9 @@ extern "C" {
     pub static AVTrackAssociationTypeMetadataReferent: &'static AVTrackAssociationType;
 }
 
-extern_methods!(
-    /// AVAssetTrackTrackAssociations
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackTrackAssociations.
+impl AVAssetTrack {
+    extern_methods!(
         #[unsafe(method(availableTrackAssociationTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableTrackAssociationTypes(
@@ -405,12 +405,12 @@ extern_methods!(
             track_association_type: &AVTrackAssociationType,
             completion_handler: &block2::Block<dyn Fn(*mut NSArray<AVAssetTrack>, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackSampleCursorProvision
-    unsafe impl AVAssetTrack {
+/// AVAssetTrackSampleCursorProvision.
+impl AVAssetTrack {
+    extern_methods!(
         #[unsafe(method(canProvideSampleCursors))]
         #[unsafe(method_family = none)]
         pub unsafe fn canProvideSampleCursors(&self) -> bool;
@@ -455,8 +455,8 @@ extern_methods!(
         pub unsafe fn makeSampleCursorAtLastSampleInDecodeOrder(
             &self,
         ) -> Option<Retained<AVSampleCursor>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Posted when the timeRange of an AVFragmentedAssetTrack changes while the associated instance of AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of
@@ -507,13 +507,13 @@ unsafe impl CopyingHelper for AVFragmentedAssetTrack {
 
 unsafe impl NSObjectProtocol for AVFragmentedAssetTrack {}
 
-extern_methods!(
-    unsafe impl AVFragmentedAssetTrack {}
-);
+impl AVFragmentedAssetTrack {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAssetTrack`
-    unsafe impl AVFragmentedAssetTrack {
+/// Methods declared on superclass `AVAssetTrack`.
+impl AVFragmentedAssetTrack {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -521,5 +521,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

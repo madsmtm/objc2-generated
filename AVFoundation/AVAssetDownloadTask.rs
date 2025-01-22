@@ -90,8 +90,8 @@ unsafe impl NSObjectProtocol for AVAssetDownloadTask {}
 
 unsafe impl NSProgressReporting for AVAssetDownloadTask {}
 
-extern_methods!(
-    unsafe impl AVAssetDownloadTask {
+impl AVAssetDownloadTask {
+    extern_methods!(
         #[cfg(feature = "AVAsset")]
         /// The asset supplied to the download task upon initialization.
         #[unsafe(method(URLAsset))]
@@ -139,8 +139,8 @@ extern_methods!(
         #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Retained<NSURLResponse>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Configuration parameters for the download task.
@@ -158,8 +158,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetDownloadConfiguration {}
 
-extern_methods!(
-    unsafe impl AVAssetDownloadConfiguration {
+impl AVAssetDownloadConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -243,8 +243,8 @@ extern_methods!(
         #[unsafe(method(setDownloadsInterstitialAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDownloadsInterstitialAssets(&self, downloads_interstitial_assets: bool);
-    }
-);
+    );
+}
 
 extern_class!(
     /// Represents the configuration consisting of variant and the variant's media options.
@@ -263,8 +263,8 @@ unsafe impl CopyingHelper for AVAssetDownloadContentConfiguration {
 
 unsafe impl NSObjectProtocol for AVAssetDownloadContentConfiguration {}
 
-extern_methods!(
-    unsafe impl AVAssetDownloadContentConfiguration {
+impl AVAssetDownloadContentConfiguration {
+    extern_methods!(
         #[cfg(feature = "AVAssetVariant")]
         /// An array of variant qualifiers.
         ///
@@ -297,12 +297,12 @@ extern_methods!(
         #[unsafe(method(setMediaSelections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaSelections(&self, media_selections: &NSArray<AVMediaSelection>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAssetDownloadContentConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl AVAssetDownloadContentConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -310,8 +310,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVAssetDownloadTask used for downloading multiple AVMediaSelections for a single AVAsset, under the umbrella of a single download task.
@@ -337,8 +337,8 @@ unsafe impl NSObjectProtocol for AVAggregateAssetDownloadTask {}
 
 unsafe impl NSProgressReporting for AVAggregateAssetDownloadTask {}
 
-extern_methods!(
-    unsafe impl AVAggregateAssetDownloadTask {
+impl AVAggregateAssetDownloadTask {
+    extern_methods!(
         #[cfg(feature = "AVAsset")]
         /// The asset supplied to the download task upon initialization.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
@@ -370,8 +370,8 @@ extern_methods!(
         #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Retained<NSURLResponse>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Delegate methods to implement when adopting AVAssetDownloadTask.
@@ -514,8 +514,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetDownloadURLSession {}
 
-extern_methods!(
-    unsafe impl AVAssetDownloadURLSession {
+impl AVAssetDownloadURLSession {
+    extern_methods!(
         /// Creates and initializes an AVAssetDownloadURLSession for use with AVAssetDownloadTasks.
         ///
         /// Parameter `configuration`: The configuration for this URLSession. Must be a background configuration.
@@ -769,5 +769,5 @@ extern_methods!(
                 dyn Fn(NonNull<NSURL>, NonNull<NSURLResponse>, NonNull<NSError>),
             >,
         ) -> Retained<NSURLSessionDownloadTask>;
-    }
-);
+    );
+}

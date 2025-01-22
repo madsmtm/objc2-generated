@@ -48,9 +48,9 @@ unsafe impl UIResponderStandardEditActions for UIReferenceLibraryViewController 
 ))]
 unsafe impl UITraitEnvironment for UIReferenceLibraryViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIReferenceLibraryViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIReferenceLibraryViewController {
+    extern_methods!(
         /// Returns YES if any installed dictionary has a definition for the provided term.
         #[unsafe(method(dictionaryHasDefinitionForTerm:))]
         #[unsafe(method_family = none)]
@@ -79,15 +79,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIReferenceLibraryViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIReferenceLibraryViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

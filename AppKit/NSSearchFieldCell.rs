@@ -85,13 +85,13 @@ unsafe impl NSObjectProtocol for NSSearchFieldCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSearchFieldCell {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSSearchFieldCell {
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSSearchFieldCell {
+    extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
@@ -212,33 +212,33 @@ extern_methods!(
         #[unsafe(method(setSendsSearchStringImmediately:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSSearchFieldCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSSearchFieldCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSSearchFieldCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSSearchFieldCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

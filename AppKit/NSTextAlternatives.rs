@@ -20,8 +20,8 @@ unsafe impl NSObjectProtocol for NSTextAlternatives {}
 
 unsafe impl NSSecureCoding for NSTextAlternatives {}
 
-extern_methods!(
-    unsafe impl NSTextAlternatives {
+impl NSTextAlternatives {
+    extern_methods!(
         #[unsafe(method(initWithPrimaryString:alternativeStrings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPrimaryString_alternativeStrings(
@@ -41,12 +41,12 @@ extern_methods!(
         #[unsafe(method(noteSelectedAlternativeString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn noteSelectedAlternativeString(&self, alternative_string: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextAlternatives {
+/// Methods declared on superclass `NSObject`.
+impl NSTextAlternatives {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -54,8 +54,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalternativesselectedalternativestringnotification?language=objc)

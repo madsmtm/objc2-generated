@@ -8,11 +8,11 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MPSGraphConvolutionTransposeOps
-    /// This is a category that defines the methods which can be used to add 2D-convolution transpose operator to the graph with properties described by an instance of `MPSGraphConvolution2DOpDescriptor`.
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphConvolutionTransposeOps.
+/// This is a category that defines the methods which can be used to add 2D-convolution transpose operator to the graph with properties described by an instance of `MPSGraphConvolution2DOpDescriptor`.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(all(
             feature = "MPSGraphConvolutionOps",
             feature = "MPSGraphTensor",
@@ -171,5 +171,5 @@ extern_methods!(
             forward_convolution_descriptor: &MPSGraphConvolution2DOpDescriptor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

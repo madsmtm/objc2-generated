@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextLoupeSession {}
 
-extern_methods!(
-    unsafe impl UITextLoupeSession {
+impl UITextLoupeSession {
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UIView",
@@ -64,12 +64,12 @@ extern_methods!(
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextLoupeSession {
+/// Methods declared on superclass `NSObject`.
+impl UITextLoupeSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -77,5 +77,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -128,8 +128,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIUserNotificationSettings {}
 
-extern_methods!(
-    unsafe impl UIUserNotificationSettings {
+impl UIUserNotificationSettings {
+    extern_methods!(
         #[deprecated = "Use UserNotifications Framework's UNNotificationSettings"]
         #[unsafe(method(settingsForTypes:categories:))]
         #[unsafe(method_family = none)]
@@ -148,12 +148,12 @@ extern_methods!(
         #[unsafe(method(categories))]
         #[unsafe(method_family = none)]
         pub unsafe fn categories(&self) -> Option<Retained<NSSet<UIUserNotificationCategory>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIUserNotificationSettings {
+/// Methods declared on superclass `NSObject`.
+impl UIUserNotificationSettings {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -161,8 +161,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationcategory?language=objc)
@@ -191,8 +191,8 @@ unsafe impl NSObjectProtocol for UIUserNotificationCategory {}
 
 unsafe impl NSSecureCoding for UIUserNotificationCategory {}
 
-extern_methods!(
-    unsafe impl UIUserNotificationCategory {
+impl UIUserNotificationCategory {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -214,17 +214,17 @@ extern_methods!(
             &self,
             context: UIUserNotificationActionContext,
         ) -> Option<Retained<NSArray<UIUserNotificationAction>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIUserNotificationCategory {
+/// Methods declared on superclass `NSObject`.
+impl UIUserNotificationCategory {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutableusernotificationcategory?language=objc)
@@ -253,8 +253,8 @@ unsafe impl NSObjectProtocol for UIMutableUserNotificationCategory {}
 
 unsafe impl NSSecureCoding for UIMutableUserNotificationCategory {}
 
-extern_methods!(
-    unsafe impl UIMutableUserNotificationCategory {
+impl UIMutableUserNotificationCategory {
+    extern_methods!(
         #[deprecated = "Use UserNotifications Framework's UNNotificationCategory"]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -274,12 +274,12 @@ extern_methods!(
             actions: Option<&NSArray<UIUserNotificationAction>>,
             context: UIUserNotificationActionContext,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIUserNotificationCategory`
-    unsafe impl UIMutableUserNotificationCategory {
+/// Methods declared on superclass `UIUserNotificationCategory`.
+impl UIMutableUserNotificationCategory {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -290,17 +290,17 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIMutableUserNotificationCategory {
+/// Methods declared on superclass `NSObject`.
+impl UIMutableUserNotificationCategory {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationaction?language=objc)
@@ -329,8 +329,8 @@ unsafe impl NSObjectProtocol for UIUserNotificationAction {}
 
 unsafe impl NSSecureCoding for UIUserNotificationAction {}
 
-extern_methods!(
-    unsafe impl UIUserNotificationAction {
+impl UIUserNotificationAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -369,17 +369,17 @@ extern_methods!(
         #[unsafe(method(isDestructive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDestructive(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIUserNotificationAction {
+/// Methods declared on superclass `NSObject`.
+impl UIUserNotificationAction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutableusernotificationaction?language=objc)
@@ -408,8 +408,8 @@ unsafe impl NSObjectProtocol for UIMutableUserNotificationAction {}
 
 unsafe impl NSSecureCoding for UIMutableUserNotificationAction {}
 
-extern_methods!(
-    unsafe impl UIMutableUserNotificationAction {
+impl UIMutableUserNotificationAction {
+    extern_methods!(
         #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -482,12 +482,12 @@ extern_methods!(
         #[unsafe(method(setDestructive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestructive(&self, destructive: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIUserNotificationAction`
-    unsafe impl UIMutableUserNotificationAction {
+/// Methods declared on superclass `UIUserNotificationAction`.
+impl UIMutableUserNotificationAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -498,14 +498,14 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIMutableUserNotificationAction {
+/// Methods declared on superclass `NSObject`.
+impl UIMutableUserNotificationAction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

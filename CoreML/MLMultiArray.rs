@@ -76,8 +76,8 @@ unsafe impl NSObjectProtocol for MLMultiArray {}
 
 unsafe impl NSSecureCoding for MLMultiArray {}
 
-extern_methods!(
-    unsafe impl MLMultiArray {
+impl MLMultiArray {
+    extern_methods!(
         /// Unsafe pointer to underlying buffer holding the data
         #[deprecated = "Use getBytesWithHandler or getMutableBytesWithHandler instead. For Swift, use withUnsafeBytes or withUnsafeMutableBytes."]
         #[unsafe(method(dataPointer))]
@@ -116,12 +116,12 @@ extern_methods!(
         #[unsafe(method(pixelBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLMultiArray {
+/// Methods declared on superclass `NSObject`.
+impl MLMultiArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -129,12 +129,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Creation
-    unsafe impl MLMultiArray {
+/// Creation.
+impl MLMultiArray {
+    extern_methods!(
         /// Creates the object.
         ///
         /// The contents of the object are left uninitialized; the client must initialize it.
@@ -299,12 +299,12 @@ extern_methods!(
             pixel_buffer: &CVPixelBuffer,
             shape: &NSArray<NSNumber>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// ScopedBufferAccess
-    unsafe impl MLMultiArray {
+/// ScopedBufferAccess.
+impl MLMultiArray {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Get the underlying buffer pointer to read.
         ///
@@ -379,12 +379,12 @@ extern_methods!(
                 dyn Fn(NonNull<c_void>, NSInteger, NonNull<NSArray<NSNumber>>) + '_,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Concatenating
-    unsafe impl MLMultiArray {
+/// Concatenating.
+impl MLMultiArray {
+    extern_methods!(
         /// Concatenate MLMultiArrays to form a new MLMultiArray.
         ///
         /// All the source MLMultiArrays must have a same shape except the specified axis. The resultant
@@ -445,12 +445,12 @@ extern_methods!(
             axis: NSInteger,
             data_type: MLMultiArrayDataType,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSNumberDataAccess
-    unsafe impl MLMultiArray {
+/// NSNumberDataAccess.
+impl MLMultiArray {
+    extern_methods!(
         /// Get a value by its linear index (assumes C-style index ordering)
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
@@ -475,12 +475,12 @@ extern_methods!(
         #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKeyedSubscript(&self, obj: &NSNumber, key: &NSArray<NSNumber>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Transferring
-    unsafe impl MLMultiArray {
+/// Transferring.
+impl MLMultiArray {
+    extern_methods!(
         /// Transfer the contents to the destination multi-array.
         ///
         /// Numeric data will be up or down casted as needed. It can transfer to a multi-array with different layout (strides).
@@ -539,5 +539,5 @@ extern_methods!(
         #[unsafe(method(transferToMultiArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transferToMultiArray(&self, destination_multi_array: &MLMultiArray);
-    }
-);
+    );
+}

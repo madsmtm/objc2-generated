@@ -84,9 +84,9 @@ unsafe impl CopyingHelper for MPSGraphPooling2DOpDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphPooling2DOpDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphPooling2DOpDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphPooling2DOpDescriptor {
+    extern_methods!(
         /// Defines the pooling window size for the width dimension.
         #[unsafe(method(kernelWidth))]
         #[unsafe(method_family = none)]
@@ -354,13 +354,13 @@ extern_methods!(
             padding_top: NSUInteger,
             padding_bottom: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphPooling2DOpDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphPooling2DOpDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -368,8 +368,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The class that defines the parameters for a 4D pooling operation.
@@ -403,9 +403,9 @@ unsafe impl CopyingHelper for MPSGraphPooling4DOpDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphPooling4DOpDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphPooling4DOpDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphPooling4DOpDescriptor {
+    extern_methods!(
         /// Defines the pooling window size.
         ///
         /// Must be four numbers, one for each spatial dimension, fastest running index last.
@@ -602,13 +602,13 @@ extern_methods!(
             kernel_sizes: &NSArray<NSNumber>,
             padding_style: MPSGraphPaddingStyle,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphPooling4DOpDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphPooling4DOpDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -616,13 +616,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MPSGraphPoolingOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphPoolingOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a 2D max-pooling operation and returns the result tensor.
         ///
@@ -948,5 +948,5 @@ extern_methods!(
             descriptor: &MPSGraphPooling4DOpDescriptor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

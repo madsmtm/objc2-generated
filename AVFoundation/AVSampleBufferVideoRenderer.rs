@@ -39,8 +39,8 @@ unsafe impl AVQueuedSampleBufferRendering for AVSampleBufferVideoRenderer {}
 
 unsafe impl NSObjectProtocol for AVSampleBufferVideoRenderer {}
 
-extern_methods!(
-    unsafe impl AVSampleBufferVideoRenderer {
+impl AVSampleBufferVideoRenderer {
+    extern_methods!(
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
         /// The ability of the video renderer to be used for enqueueing sample buffers.
         ///
@@ -82,12 +82,12 @@ extern_methods!(
             remove_displayed_image: bool,
             handler: Option<&block2::Block<dyn Fn()>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVSampleBufferVideoRenderer {
+/// Methods declared on superclass `NSObject`.
+impl AVSampleBufferVideoRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -95,12 +95,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferVideoRendererPixelBufferOutput
-    unsafe impl AVSampleBufferVideoRenderer {
+/// AVSampleBufferVideoRendererPixelBufferOutput.
+impl AVSampleBufferVideoRenderer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         /// Returns a retained reference to the pixel buffer currently displayed in the AVSampleBufferVideoRenderer's target. This will return NULL if the displayed pixel buffer is protected, no image is currently being displayed, or if the image is unavailable.
         ///
@@ -110,12 +110,12 @@ extern_methods!(
         #[unsafe(method(copyDisplayedPixelBuffer))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferVideoRendererPowerOptimization
-    unsafe impl AVSampleBufferVideoRenderer {
+/// AVSampleBufferVideoRendererPowerOptimization.
+impl AVSampleBufferVideoRenderer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Promises, for the purpose of enabling power optimizations, that future sample buffers will have PTS values no less than a specified lower-bound PTS.
         ///
@@ -149,12 +149,12 @@ extern_methods!(
         #[unsafe(method(resetUpcomingSampleBufferPresentationTimeExpectations))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetUpcomingSampleBufferPresentationTimeExpectations(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferVideoRendererVideoPerformanceMetrics
-    unsafe impl AVSampleBufferVideoRenderer {
+/// AVSampleBufferVideoRendererVideoPerformanceMetrics.
+impl AVSampleBufferVideoRenderer {
+    extern_methods!(
         #[cfg(all(feature = "AVVideoPerformanceMetrics", feature = "block2"))]
         /// Gathers a snapshot of the video performance metrics and calls the completion handler with the results.
         ///
@@ -167,5 +167,5 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut AVVideoPerformanceMetrics)>,
         );
-    }
-);
+    );
+}

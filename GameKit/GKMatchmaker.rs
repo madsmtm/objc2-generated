@@ -91,8 +91,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKMatchRequest {}
 
-extern_methods!(
-    unsafe impl GKMatchRequest {
+impl GKMatchRequest {
+    extern_methods!(
         /// Minimum number of players for the match
         #[unsafe(method(minPlayers))]
         #[unsafe(method_family = none)]
@@ -273,12 +273,12 @@ extern_methods!(
             &self,
             recipient_properties: Option<&NSDictionary<GKPlayer, GKMatchProperties>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKMatchRequest {
+/// Methods declared on superclass `NSObject`.
+impl GKMatchRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -286,8 +286,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// GKInvite represents an accepted game invite, it is used to create a GKMatchmakerViewController
@@ -300,8 +300,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKInvite {}
 
-extern_methods!(
-    unsafe impl GKInvite {
+impl GKInvite {
+    extern_methods!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[unsafe(method(sender))]
         #[unsafe(method_family = none)]
@@ -326,12 +326,12 @@ extern_methods!(
         #[unsafe(method(inviter))]
         #[unsafe(method_family = none)]
         pub unsafe fn inviter(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKInvite {
+/// Methods declared on superclass `NSObject`.
+impl GKInvite {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -339,8 +339,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// GKInviteEventListener uses the GKLocalPlayerListener mechanism on GKLocalPlayer to listen to the two kinds of invite events that a game must respond to
@@ -388,8 +388,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKMatchedPlayers {}
 
-extern_methods!(
-    unsafe impl GKMatchedPlayers {
+impl GKMatchedPlayers {
+    extern_methods!(
         #[cfg(feature = "GKDefines")]
         #[unsafe(method(properties))]
         #[unsafe(method_family = none)]
@@ -406,12 +406,12 @@ extern_methods!(
         pub unsafe fn playerProperties(
             &self,
         ) -> Option<Retained<NSDictionary<GKPlayer, GKMatchProperties>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKMatchedPlayers {
+/// Methods declared on superclass `NSObject`.
+impl GKMatchedPlayers {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -419,8 +419,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// GKMatchmaker is a singleton object to manage match creation from invites and automatching.
@@ -433,8 +433,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKMatchmaker {}
 
-extern_methods!(
-    unsafe impl GKMatchmaker {
+impl GKMatchmaker {
+    extern_methods!(
         /// The shared matchmaker
         #[unsafe(method(sharedMatchmaker))]
         #[unsafe(method_family = none)]
@@ -586,12 +586,12 @@ extern_methods!(
         #[unsafe(method(stopGroupActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopGroupActivity(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKMatchmaker {
+/// Methods declared on superclass `NSObject`.
+impl GKMatchmaker {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -599,12 +599,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// GKDeprecated
-    unsafe impl GKMatchmaker {
+/// GKDeprecated.
+impl GKMatchmaker {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListener instead."]
         #[unsafe(method(inviteHandler))]
@@ -622,12 +622,12 @@ extern_methods!(
             &self,
             invite_handler: Option<&block2::Block<dyn Fn(NonNull<GKInvite>, *mut NSArray)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Obsoleted
-    unsafe impl GKMatchmaker {
+/// Obsoleted.
+impl GKMatchmaker {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
@@ -656,5 +656,5 @@ extern_methods!(
                 &block2::Block<dyn Fn(*mut NSArray<NSString>, *mut NSError)>,
             >,
         );
-    }
-);
+    );
+}

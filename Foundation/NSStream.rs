@@ -82,8 +82,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSStream {}
 
-extern_methods!(
-    unsafe impl NSStream {
+impl NSStream {
+    extern_methods!(
         #[unsafe(method(open))]
         #[unsafe(method_family = none)]
         pub unsafe fn open(&self);
@@ -144,12 +144,12 @@ extern_methods!(
         #[unsafe(method(streamError))]
         #[unsafe(method_family = none)]
         pub unsafe fn streamError(&self) -> Option<Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSStream {
+/// Methods declared on superclass `NSObject`.
+impl NSStream {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -157,8 +157,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinputstream?language=objc)
@@ -169,8 +169,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSInputStream {}
 
-extern_methods!(
-    unsafe impl NSInputStream {
+impl NSInputStream {
+    extern_methods!(
         #[unsafe(method(read:maxLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn read_maxLength(&self, buffer: NonNull<u8>, len: NSUInteger) -> NSInteger;
@@ -196,12 +196,12 @@ extern_methods!(
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSInputStream {
+/// Methods declared on superclass `NSObject`.
+impl NSInputStream {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -209,8 +209,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoutputstream?language=objc)
@@ -221,8 +221,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSOutputStream {}
 
-extern_methods!(
-    unsafe impl NSOutputStream {
+impl NSOutputStream {
+    extern_methods!(
         #[unsafe(method(write:maxLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn write_maxLength(&self, buffer: NonNull<u8>, len: NSUInteger) -> NSInteger;
@@ -251,12 +251,12 @@ extern_methods!(
             url: &NSURL,
             should_append: bool,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSOutputStream {
+/// Methods declared on superclass `NSObject`.
+impl NSOutputStream {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -264,12 +264,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSocketStreamCreationExtensions
-    unsafe impl NSStream {
+/// NSSocketStreamCreationExtensions.
+impl NSStream {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[unsafe(method(getStreamsToHostWithName:port:inputStream:outputStream:))]
@@ -291,12 +291,12 @@ extern_methods!(
             input_stream: Option<&mut Option<Retained<NSInputStream>>>,
             output_stream: Option<&mut Option<Retained<NSOutputStream>>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSStreamBoundPairCreationExtensions
-    unsafe impl NSStream {
+/// NSStreamBoundPairCreationExtensions.
+impl NSStream {
+    extern_methods!(
         #[unsafe(method(getBoundStreamsWithBufferSize:inputStream:outputStream:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBoundStreamsWithBufferSize_inputStream_outputStream(
@@ -304,12 +304,12 @@ extern_methods!(
             input_stream: Option<&mut Option<Retained<NSInputStream>>>,
             output_stream: Option<&mut Option<Retained<NSOutputStream>>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSInputStreamExtensions
-    unsafe impl NSInputStream {
+/// NSInputStreamExtensions.
+impl NSInputStream {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithFileAtPath:))]
         #[unsafe(method_family = init)]
@@ -332,12 +332,12 @@ extern_methods!(
         #[unsafe(method(inputStreamWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputStreamWithURL(url: &NSURL) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSOutputStreamExtensions
-    unsafe impl NSOutputStream {
+/// NSOutputStreamExtensions.
+impl NSOutputStream {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(initToFileAtPath:append:))]
         #[unsafe(method_family = init)]
@@ -373,8 +373,8 @@ extern_methods!(
             url: &NSURL,
             should_append: bool,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamdelegate?language=objc)

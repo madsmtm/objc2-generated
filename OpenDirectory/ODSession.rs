@@ -56,8 +56,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ODSession {}
 
-extern_methods!(
-    unsafe impl ODSession {
+impl ODSession {
+    extern_methods!(
         /// Returns a shared instance of a local ODSession
         ///
         /// Returns a shared instance of a local ODSession.  This can be used for most situations unless
@@ -146,12 +146,12 @@ extern_methods!(
             &self,
             nodename: Option<&NSString>,
         ) -> Option<Retained<ODConfiguration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ODSession {
+/// Methods declared on superclass `NSObject`.
+impl ODSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -159,5 +159,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -134,9 +134,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSFontPanel {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSFontPanel {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSFontPanel {
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSFontPanel {
+    extern_methods!(
         #[unsafe(method(sharedFontPanel))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedFontPanel(mtm: MainThreadMarker) -> Retained<NSFontPanel>;
@@ -187,13 +187,13 @@ extern_methods!(
         #[unsafe(method(reloadDefaultFontFamilies))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadDefaultFontFamilies(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSWindow`
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSFontPanel {
+/// Methods declared on superclass `NSWindow`.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSFontPanel {
+    extern_methods!(
         #[cfg(feature = "NSGraphics")]
         #[unsafe(method(initWithContentRect:styleMask:backing:defer:))]
         #[unsafe(method_family = init)]
@@ -228,28 +228,28 @@ extern_methods!(
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSFontPanel {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSFontPanel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSFontPanel {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
+impl NSFontPanel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelfacemodemask?language=objc)
 pub const NSFontPanelFaceModeMask: c_uint = 1 << 0;

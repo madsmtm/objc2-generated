@@ -137,13 +137,13 @@ unsafe impl NSObjectProtocol for HKPHQ9Assessment {}
 ))]
 unsafe impl NSSecureCoding for HKPHQ9Assessment {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "HKObject",
-        feature = "HKSample",
-        feature = "HKScoredAssessment"
-    ))]
-    unsafe impl HKPHQ9Assessment {
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKScoredAssessment"
+))]
+impl HKPHQ9Assessment {
+    extern_methods!(
         /// Answers on the PHQ-9 assessment. There are exactly 9 answers, one for each multiple choice question. Each answer is of type `HKPHQ9AssessmentAnswer`. If the 9th question was unanswered,  the answer is `HKPHQ9AssessmentAnswerPreferNotToAnswer`.
         #[unsafe(method(answers))]
         #[unsafe(method_family = none)]
@@ -180,5 +180,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

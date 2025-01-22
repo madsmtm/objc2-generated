@@ -38,13 +38,13 @@ extern_class!(
 ))]
 unsafe impl NSObjectProtocol for MPSCNNDropoutGradientState {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSNNGradientState",
-        feature = "MPSState"
-    ))]
-    unsafe impl MPSCNNDropoutGradientState {
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
+impl MPSCNNDropoutGradientState {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -62,17 +62,17 @@ extern_methods!(
         #[unsafe(method(maskData))]
         #[unsafe(method_family = none)]
         pub unsafe fn maskData(&self) -> Retained<NSData>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSNNGradientState",
-        feature = "MPSState"
-    ))]
-    unsafe impl MPSCNNDropoutGradientState {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
+impl MPSCNNDropoutGradientState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -168,22 +168,22 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSNNGradientState",
-        feature = "MPSState"
-    ))]
-    unsafe impl MPSCNNDropoutGradientState {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
+impl MPSCNNDropoutGradientState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutgradientstatebatch?language=objc)
 #[cfg(all(
@@ -226,9 +226,9 @@ unsafe impl NSObjectProtocol for MPSCNNDropout {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNDropout {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDropout {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDropout {
+    extern_methods!(
         /// The probability that each element in the input is kept.
         /// The valid range is (0.0f, 1.0f).
         #[unsafe(method(keepProbability))]
@@ -352,13 +352,13 @@ extern_methods!(
             source_states: Option<&NSArray<MPSStateBatch>>,
             destination_image: &MPSImageBatch,
         ) -> Option<Retained<MPSCNNDropoutGradientStateBatch>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDropout {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDropout {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -373,13 +373,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDropout {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDropout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -387,8 +387,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -424,9 +424,9 @@ unsafe impl NSObjectProtocol for MPSCNNDropoutGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNDropoutGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDropoutGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDropoutGradient {
+    extern_methods!(
         /// The probability that each element in the input is kept.
         /// The valid range is (0.0f, 1.0f).
         #[unsafe(method(keepProbability))]
@@ -490,13 +490,13 @@ extern_methods!(
             seed: NSUInteger,
             mask_stride_in_pixels: MTLSize,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDropoutGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDropoutGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -511,13 +511,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNDropoutGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNDropoutGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -525,5 +525,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

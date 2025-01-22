@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CBL2CAPChannel {}
 
-extern_methods!(
-    unsafe impl CBL2CAPChannel {
+impl CBL2CAPChannel {
+    extern_methods!(
         #[cfg(feature = "CBPeer")]
         /// The peer connected to the channel
         #[unsafe(method(peer))]
@@ -42,12 +42,12 @@ extern_methods!(
         #[unsafe(method(PSM))]
         #[unsafe(method_family = none)]
         pub unsafe fn PSM(&self) -> CBL2CAPPSM;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CBL2CAPChannel {
+/// Methods declared on superclass `NSObject`.
+impl CBL2CAPChannel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

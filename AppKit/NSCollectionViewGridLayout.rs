@@ -23,9 +23,9 @@ unsafe impl NSCoding for NSCollectionViewGridLayout {}
 #[cfg(feature = "NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewGridLayout {}
 
-extern_methods!(
-    #[cfg(feature = "NSCollectionViewLayout")]
-    unsafe impl NSCollectionViewGridLayout {
+#[cfg(feature = "NSCollectionViewLayout")]
+impl NSCollectionViewGridLayout {
+    extern_methods!(
         #[unsafe(method(margins))]
         #[unsafe(method_family = none)]
         pub unsafe fn margins(&self) -> NSEdgeInsets;
@@ -103,13 +103,13 @@ extern_methods!(
         #[unsafe(method(setBackgroundColors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCollectionViewLayout")]
-    unsafe impl NSCollectionViewGridLayout {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCollectionViewLayout")]
+impl NSCollectionViewGridLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -117,5 +117,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

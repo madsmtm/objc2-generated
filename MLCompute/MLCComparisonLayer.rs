@@ -25,9 +25,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCComparisonLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCComparisonLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCComparisonLayer {
+    extern_methods!(
         #[cfg(feature = "MLCTypes")]
         #[deprecated]
         #[unsafe(method(operation))]
@@ -42,13 +42,13 @@ extern_methods!(
         #[unsafe(method(layerWithOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithOperation(operation: MLCComparisonOperation) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCComparisonLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCComparisonLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -58,5 +58,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for UIPreviewTarget {
 
 unsafe impl NSObjectProtocol for UIPreviewTarget {}
 
-extern_methods!(
-    unsafe impl UIPreviewTarget {
+impl UIPreviewTarget {
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UIView",
@@ -75,8 +75,8 @@ extern_methods!(
         #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> CGAffineTransform;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitargetedpreview?language=objc)
@@ -94,8 +94,8 @@ unsafe impl CopyingHelper for UITargetedPreview {
 
 unsafe impl NSObjectProtocol for UITargetedPreview {}
 
-extern_methods!(
-    unsafe impl UITargetedPreview {
+impl UITargetedPreview {
+    extern_methods!(
         #[cfg(all(
             feature = "UIPreviewParameters",
             feature = "UIResponder",
@@ -161,5 +161,5 @@ extern_methods!(
             &self,
             new_target: &UIPreviewTarget,
         ) -> Retained<UITargetedPreview>;
-    }
-);
+    );
+}

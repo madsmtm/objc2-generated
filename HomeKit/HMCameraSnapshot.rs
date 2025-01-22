@@ -25,9 +25,9 @@ unsafe impl Sync for HMCameraSnapshot {}
 #[cfg(feature = "HMCameraSource")]
 unsafe impl NSObjectProtocol for HMCameraSnapshot {}
 
-extern_methods!(
-    #[cfg(feature = "HMCameraSource")]
-    unsafe impl HMCameraSnapshot {
+#[cfg(feature = "HMCameraSource")]
+impl HMCameraSnapshot {
+    extern_methods!(
         /// Time corresponding to the snapshot request.
         #[unsafe(method(captureDate))]
         #[unsafe(method_family = none)]
@@ -37,15 +37,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HMCameraSource")]
-    unsafe impl HMCameraSnapshot {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HMCameraSource")]
+impl HMCameraSnapshot {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

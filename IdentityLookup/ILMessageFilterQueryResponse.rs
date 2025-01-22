@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for ILMessageFilterQueryResponse {}
 
 unsafe impl NSSecureCoding for ILMessageFilterQueryResponse {}
 
-extern_methods!(
-    unsafe impl ILMessageFilterQueryResponse {
+impl ILMessageFilterQueryResponse {
+    extern_methods!(
         #[cfg(feature = "ILMessageFilterAction")]
         /// Action to take for the received message.
         #[unsafe(method(action))]
@@ -47,12 +47,12 @@ extern_methods!(
         #[unsafe(method(setSubAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubAction(&self, sub_action: ILMessageFilterSubAction);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ILMessageFilterQueryResponse {
+/// Methods declared on superclass `NSObject`.
+impl ILMessageFilterQueryResponse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,5 +60,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

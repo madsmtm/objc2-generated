@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WebDataSource {}
 
-extern_methods!(
-    unsafe impl WebDataSource {
+impl WebDataSource {
+    extern_methods!(
         /// The designated initializer for WebDataSource.
         ///
         /// Parameter `request`: The request to use in creating a datasource.
@@ -171,12 +171,12 @@ extern_methods!(
         #[unsafe(method(addSubresource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSubresource(&self, subresource: Option<&WebResource>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WebDataSource {
+/// Methods declared on superclass `NSObject`.
+impl WebDataSource {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -184,5 +184,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

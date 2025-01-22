@@ -139,8 +139,8 @@ unsafe impl NSObjectProtocol for UITextFormattingViewControllerFormattingDescrip
 
 unsafe impl NSSecureCoding for UITextFormattingViewControllerFormattingDescriptor {}
 
-extern_methods!(
-    unsafe impl UITextFormattingViewControllerFormattingDescriptor {
+impl UITextFormattingViewControllerFormattingDescriptor {
+    extern_methods!(
         /// Initializes formatting descriptor with default property values.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -265,14 +265,14 @@ extern_methods!(
         #[unsafe(method(setFormattingStyleKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormattingStyleKey(&self, formatting_style_key: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextFormattingViewControllerFormattingDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl UITextFormattingViewControllerFormattingDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

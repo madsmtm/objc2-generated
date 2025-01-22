@@ -19,8 +19,8 @@ unsafe impl Sync for HMAccessoryOwnershipToken {}
 
 unsafe impl NSObjectProtocol for HMAccessoryOwnershipToken {}
 
-extern_methods!(
-    unsafe impl HMAccessoryOwnershipToken {
+impl HMAccessoryOwnershipToken {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -43,8 +43,8 @@ extern_methods!(
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessorysetuppayload?language=objc)
@@ -59,8 +59,8 @@ unsafe impl Sync for HMAccessorySetupPayload {}
 
 unsafe impl NSObjectProtocol for HMAccessorySetupPayload {}
 
-extern_methods!(
-    unsafe impl HMAccessorySetupPayload {
+impl HMAccessorySetupPayload {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
             setup_payload_url: &NSURL,
             ownership_token: Option<&HMAccessoryOwnershipToken>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}

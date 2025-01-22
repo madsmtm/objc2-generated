@@ -31,8 +31,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZBridgedNetworkInterface {}
 
-extern_methods!(
-    unsafe impl VZBridgedNetworkInterface {
+impl VZBridgedNetworkInterface {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(localizedDisplayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDisplayName(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}

@@ -32,9 +32,9 @@ unsafe impl CopyingHelper for NSEPSImageRep {
 #[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSEPSImageRep {}
 
-extern_methods!(
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSEPSImageRep {
+#[cfg(feature = "NSImageRep")]
+impl NSEPSImageRep {
+    extern_methods!(
         /// Creates and returns a representation of an image initialized with the specified EPS data. Convenience of `-initWithData:`.
         /// - Note: This method always returns `nil` on macOS 14.0 and later.
         #[unsafe(method(imageRepWithData:))]
@@ -65,13 +65,13 @@ extern_methods!(
         #[unsafe(method(prepareGState))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareGState(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSEPSImageRep {
+/// Methods declared on superclass `NSImageRep`.
+#[cfg(feature = "NSImageRep")]
+impl NSEPSImageRep {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,15 +82,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSEPSImageRep {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSImageRep")]
+impl NSEPSImageRep {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

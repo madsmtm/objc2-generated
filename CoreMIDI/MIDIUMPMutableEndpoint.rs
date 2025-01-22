@@ -32,10 +32,9 @@ extern_class!(
 #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
 unsafe impl NSObjectProtocol for MIDIUMPMutableEndpoint {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
-    unsafe impl MIDIUMPMutableEndpoint {
+#[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
+impl MIDIUMPMutableEndpoint {
+    extern_methods!(
         #[cfg(all(
             feature = "MIDIUMPFunctionBlock",
             feature = "MIDIUMPMutableFunctionBlock",
@@ -164,27 +163,25 @@ extern_methods!(
         #[unsafe(method(setEnabled:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled_error(&self, is_enabled: bool) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `MIDIUMPEndpoint`
-    #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
-    unsafe impl MIDIUMPMutableEndpoint {
+/// Methods declared on superclass `MIDIUMPEndpoint`.
+#[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
+impl MIDIUMPMutableEndpoint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
-    unsafe impl MIDIUMPMutableEndpoint {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
+impl MIDIUMPMutableEndpoint {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

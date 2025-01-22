@@ -55,13 +55,13 @@ unsafe impl CopyingHelper for DOMElement {
 ))]
 unsafe impl NSObjectProtocol for DOMElement {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMElement {
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMElement {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(tagName))]
         #[unsafe(method_family = none)]
@@ -360,46 +360,46 @@ extern_methods!(
             &self,
             selectors: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMElement {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMElement {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMElement {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMElement {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMElementDeprecated
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMElement {
+/// DOMElementDeprecated.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMElement {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setAttribute::))]
         #[unsafe(method_family = none)]
@@ -471,5 +471,5 @@ extern_methods!(
         #[unsafe(method(scrollByPages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollByPages(&self, pages: c_int);
-    }
-);
+    );
+}

@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for HKWorkoutActivity {}
 
 unsafe impl NSSecureCoding for HKWorkoutActivity {}
 
-extern_methods!(
-    unsafe impl HKWorkoutActivity {
+impl HKWorkoutActivity {
+    extern_methods!(
         /// A unique identifier of the activity in the HealthKit database.
         #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
@@ -136,8 +136,8 @@ extern_methods!(
             end_date: Option<&NSDate>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitytype?language=objc)

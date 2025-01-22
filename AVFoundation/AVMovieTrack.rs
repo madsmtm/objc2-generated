@@ -33,9 +33,9 @@ unsafe impl CopyingHelper for AVMovieTrack {
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl NSObjectProtocol for AVMovieTrack {}
 
-extern_methods!(
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMovieTrack {
+#[cfg(feature = "AVAssetTrack")]
+impl AVMovieTrack {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// A CMTimeRange indicating the range of presentation times for the track's media.
         #[unsafe(method(mediaPresentationTimeRange))]
@@ -51,13 +51,13 @@ extern_methods!(
         #[unsafe(method(alternateGroupID))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateGroupID(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAssetTrack`
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMovieTrack {
+/// Methods declared on superclass `AVAssetTrack`.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMovieTrack {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -65,13 +65,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMovieTrackMediaDataStorage
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMovieTrack {
+/// AVMovieTrackMediaDataStorage.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMovieTrack {
+    extern_methods!(
         #[cfg(feature = "AVMovie")]
         /// The storage container for media data added to a track.
         ///
@@ -79,8 +79,8 @@ extern_methods!(
         #[unsafe(method(mediaDataStorage))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaDataStorage(&self) -> Option<Retained<AVMediaDataStorage>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablemovietrack?language=objc)
@@ -104,9 +104,9 @@ unsafe impl CopyingHelper for AVMutableMovieTrack {
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl NSObjectProtocol for AVMutableMovieTrack {}
 
-extern_methods!(
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         #[cfg(feature = "AVMovie")]
         /// The storage container for media data added to a track.
         ///
@@ -191,13 +191,13 @@ extern_methods!(
         #[unsafe(method(setTimescale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimescale(&self, timescale: CMTimeScale);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAssetTrack`
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// Methods declared on superclass `AVAssetTrack`.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -205,13 +205,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackLanguageProperties
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// AVMutableMovieTrackLanguageProperties.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         /// The language associated with the track.
         ///
         /// The value of this property is an ISO 639-2/T language code indicating the language associated with the track; may be nil if no language is indicated.
@@ -235,13 +235,13 @@ extern_methods!(
         #[unsafe(method(setExtendedLanguageTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackVisualProperties
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// AVMutableMovieTrackVisualProperties.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// A CGSize indicating the dimensions at which the visual media data of the track should be displayed.
         #[unsafe(method(naturalSize))]
@@ -314,13 +314,13 @@ extern_methods!(
         #[unsafe(method(setEncodedPixelsDimensions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEncodedPixelsDimensions(&self, encoded_pixels_dimensions: CGSize);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackAudibleProperties
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// AVMutableMovieTrackAudibleProperties.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         /// The preferred volume of the audible media data of the track; often but not always 1.0.
         #[unsafe(method(preferredVolume))]
         #[unsafe(method_family = none)]
@@ -330,13 +330,13 @@ extern_methods!(
         #[unsafe(method(setPreferredVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredVolume(&self, preferred_volume: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackChunkProperties
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// AVMutableMovieTrackChunkProperties.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         /// For file types that support media chunk sizes, the maximum size (in bytes) to be used for each chunk of sample data written to the file.
         ///
         /// The total size of the samples in a chunk will be no larger than this preferred chunk size, or the size of a single sample if the sample is larger than this preferred chunk size.
@@ -383,13 +383,13 @@ extern_methods!(
             &self,
             preferred_media_chunk_alignment: NSInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackTrackLevelEditing
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// AVMutableMovieTrackTrackLevelEditing.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Inserts a portion of an AVAssetTrack object into the target movie.
         ///
@@ -444,13 +444,13 @@ extern_methods!(
         #[unsafe(method(scaleTimeRange:toDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleTimeRange_toDuration(&self, time_range: CMTimeRange, duration: CMTime);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackMetadataEditing
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// AVMutableMovieTrackMetadataEditing.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
         /// A collection of metadata stored by the track.
         ///
@@ -464,13 +464,13 @@ extern_methods!(
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackTrackAssociations
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// AVMutableMovieTrackTrackAssociations.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         /// Establishes a track association of a specific type between two tracks.
         ///
         /// Parameter `movieTrack`: An AVMovieTrack object that is to be associated with the receiver.
@@ -500,13 +500,13 @@ extern_methods!(
             movie_track: &AVMovieTrack,
             track_association_type: &AVTrackAssociationType,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackFormatDescriptions
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// AVMutableMovieTrackFormatDescriptions.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Replaces one of the receiver's format descriptions with another format description
         ///
@@ -524,13 +524,13 @@ extern_methods!(
             format_description: &CMFormatDescription,
             new_format_description: &CMFormatDescription,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackSampleLevelEditing
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// AVMutableMovieTrackSampleLevelEditing.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Appends sample data to a media file and adds sample references for the added data to a track's media sample tables.
         ///
@@ -597,8 +597,8 @@ extern_methods!(
             media_time_range: CMTimeRange,
             track_time_range: CMTimeRange,
         ) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Posted when the timeRange of an AVFragmentedMovieTrack changes while the associated instance of AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of
@@ -653,15 +653,15 @@ unsafe impl CopyingHelper for AVFragmentedMovieTrack {
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl NSObjectProtocol for AVFragmentedMovieTrack {}
 
-extern_methods!(
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVFragmentedMovieTrack {}
-);
+#[cfg(feature = "AVAssetTrack")]
+impl AVFragmentedMovieTrack {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAssetTrack`
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVFragmentedMovieTrack {
+/// Methods declared on superclass `AVAssetTrack`.
+#[cfg(feature = "AVAssetTrack")]
+impl AVFragmentedMovieTrack {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -669,16 +669,16 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SynchronousTrackInterface
-    /// Redeclarations of async-only AVAssetTrack interfaces to allow synchronous usage in the synchronous subclass.
-    ///
-    /// See AVAssetTrack's interface for more information about these interfaces.
-    #[cfg(feature = "AVAssetTrack")]
-    unsafe impl AVMutableMovieTrack {
+/// SynchronousTrackInterface.
+/// Redeclarations of async-only AVAssetTrack interfaces to allow synchronous usage in the synchronous subclass.
+///
+/// See AVAssetTrack's interface for more information about these interfaces.
+#[cfg(feature = "AVAssetTrack")]
+impl AVMutableMovieTrack {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         #[unsafe(method(hasMediaCharacteristic:))]
         #[unsafe(method_family = none)]
@@ -714,5 +714,5 @@ extern_methods!(
             &self,
             track_association_type: &AVTrackAssociationType,
         ) -> Retained<NSArray<AVAssetTrack>>;
-    }
-);
+    );
+}

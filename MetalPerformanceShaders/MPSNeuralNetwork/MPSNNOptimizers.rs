@@ -51,8 +51,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSNNOptimizerDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSNNOptimizerDescriptor {
+impl MPSNNOptimizerDescriptor {
+    extern_methods!(
         /// The learningRate at which we update values
         ///
         /// The default value is 0.001f
@@ -176,12 +176,12 @@ extern_methods!(
             regularization_type: MPSNNRegularizationType,
             regularization_scale: c_float,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSNNOptimizerDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSNNOptimizerDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -189,8 +189,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSNNOptimizer base class, use one of the child classes, not to be directly used. Optimizers are generally used to update trainable neural network parameters.
@@ -223,9 +223,9 @@ unsafe impl NSObjectProtocol for MPSNNOptimizer {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNOptimizer {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizer {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizer {
+    extern_methods!(
         /// The learningRate at which we update values
         ///
         /// The default value is 1e-3
@@ -286,13 +286,13 @@ extern_methods!(
         #[unsafe(method(setLearningRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLearningRate(&self, new_learning_rate: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizer {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizer {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -328,13 +328,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -342,8 +342,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSNNOptimizerStochasticGradientDescent performs a gradient descent with an optional momentum Update
@@ -385,9 +385,9 @@ unsafe impl NSObjectProtocol for MPSNNOptimizerStochasticGradientDescent {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNOptimizerStochasticGradientDescent {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizerStochasticGradientDescent {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizerStochasticGradientDescent {
+    extern_methods!(
         /// The momentumScale at which we update momentum for values array
         ///
         /// Default value is 0.0
@@ -669,13 +669,13 @@ extern_methods!(
             input_momentum_vectors: Option<&NSArray<MPSVector>>,
             result_state: &MPSCNNNormalizationGammaAndBetaState,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizerStochasticGradientDescent {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizerStochasticGradientDescent {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -711,13 +711,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizerStochasticGradientDescent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizerStochasticGradientDescent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -725,8 +725,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSNNOptimizerRMSProp performs an RMSProp Update
@@ -763,9 +763,9 @@ unsafe impl NSObjectProtocol for MPSNNOptimizerRMSProp {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNOptimizerRMSProp {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizerRMSProp {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizerRMSProp {
+    extern_methods!(
         /// The decay at which we update sumOfSquares
         ///
         /// Default value is 0.9
@@ -999,13 +999,13 @@ extern_methods!(
             input_sum_of_squares_vectors: Option<&NSArray<MPSVector>>,
             result_state: &MPSCNNNormalizationGammaAndBetaState,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizerRMSProp {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizerRMSProp {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1041,13 +1041,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizerRMSProp {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizerRMSProp {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1055,8 +1055,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The MPSNNOptimizerAdam performs an Adam Update
@@ -1105,9 +1105,9 @@ unsafe impl NSObjectProtocol for MPSNNOptimizerAdam {}
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNOptimizerAdam {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizerAdam {
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizerAdam {
+    extern_methods!(
         /// The beta1 at which we update values
         ///
         /// Default value is 0.9
@@ -1600,13 +1600,13 @@ extern_methods!(
             maximum_velocity_vectors: Option<&NSArray<MPSVector>>,
             result_state: &MPSCNNNormalizationGammaAndBetaState,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizerAdam {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizerAdam {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -1642,13 +1642,13 @@ extern_methods!(
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNOptimizerAdam {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNOptimizerAdam {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1656,5 +1656,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -219,8 +219,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioConverter {}
 
-extern_methods!(
-    unsafe impl AVAudioConverter {
+impl AVAudioConverter {
+    extern_methods!(
         #[cfg(feature = "AVAudioFormat")]
         /// Initialize from input and output formats.
         ///
@@ -398,12 +398,12 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
             input_block: AVAudioConverterInputBlock,
         ) -> AVAudioConverterOutputStatus;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioConverter {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioConverter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -411,12 +411,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Encoding
-    unsafe impl AVAudioConverter {
+/// Encoding.
+impl AVAudioConverter {
+    extern_methods!(
         /// bitRate in bits per second. Only applies when encoding.
         #[unsafe(method(bitRate))]
         #[unsafe(method_family = none)]
@@ -470,5 +470,5 @@ extern_methods!(
         pub unsafe fn availableEncodeChannelLayoutTags(
             &self,
         ) -> Option<Retained<NSArray<NSNumber>>>;
-    }
-);
+    );
+}

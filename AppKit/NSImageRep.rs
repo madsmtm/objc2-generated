@@ -58,8 +58,8 @@ unsafe impl CopyingHelper for NSImageRep {
 
 unsafe impl NSObjectProtocol for NSImageRep {}
 
-extern_methods!(
-    unsafe impl NSImageRep {
+impl NSImageRep {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -288,17 +288,17 @@ extern_methods!(
             context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         ) -> Option<Retained<CGImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSImageRep {
+/// Methods declared on superclass `NSObject`.
+impl NSImageRep {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerepregistrydidchangenotification?language=objc)

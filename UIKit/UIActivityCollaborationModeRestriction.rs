@@ -65,8 +65,8 @@ unsafe impl NSObjectProtocol for UIActivityCollaborationModeRestriction {}
 
 unsafe impl NSSecureCoding for UIActivityCollaborationModeRestriction {}
 
-extern_methods!(
-    unsafe impl UIActivityCollaborationModeRestriction {
+impl UIActivityCollaborationModeRestriction {
+    extern_methods!(
         /// The type of sharing which should be disabled
         #[unsafe(method(disabledMode))]
         #[unsafe(method_family = none)]
@@ -165,5 +165,5 @@ extern_methods!(
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
         pub unsafe fn description(&self) -> Retained<NSString>;
-    }
-);
+    );
+}

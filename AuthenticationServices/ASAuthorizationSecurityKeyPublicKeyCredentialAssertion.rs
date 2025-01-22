@@ -44,8 +44,8 @@ unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialAs
 
 unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {
+impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {
+    extern_methods!(
         /// Indicates that this assertion used the appid WebAuthn extension.
         /// This can only happen if the requesting app is a web browser and requested to use this extension.
         #[unsafe(method(appID))]
@@ -59,5 +59,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

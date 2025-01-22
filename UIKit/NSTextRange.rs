@@ -27,8 +27,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTextRange {}
 
-extern_methods!(
-    unsafe impl NSTextRange {
+impl NSTextRange {
+    extern_methods!(
         #[unsafe(method(initWithLocation:endLocation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocation_endLocation(
@@ -96,5 +96,5 @@ extern_methods!(
             &self,
             text_range: &NSTextRange,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

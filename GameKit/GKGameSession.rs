@@ -57,8 +57,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKGameSession {}
 
-extern_methods!(
-    unsafe impl GKGameSession {
+impl GKGameSession {
+    extern_methods!(
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -230,12 +230,12 @@ extern_methods!(
             players: &NSArray<GKCloudPlayer>,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKGameSession {
+/// Methods declared on superclass `NSObject`.
+impl GKGameSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -243,5 +243,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

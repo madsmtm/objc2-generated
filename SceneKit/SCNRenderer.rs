@@ -32,8 +32,8 @@ unsafe impl SCNSceneRenderer for SCNRenderer {}
 #[cfg(feature = "SCNTechnique")]
 unsafe impl SCNTechniqueSupport for SCNRenderer {}
 
-extern_methods!(
-    unsafe impl SCNRenderer {
+impl SCNRenderer {
+    extern_methods!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// Creates a new renderer object that renders using Metal.
@@ -140,12 +140,12 @@ extern_methods!(
             light_probes: &NSArray<SCNNode>,
             time: CFTimeInterval,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNRenderer {
+/// Methods declared on superclass `NSObject`.
+impl SCNRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -153,5 +153,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

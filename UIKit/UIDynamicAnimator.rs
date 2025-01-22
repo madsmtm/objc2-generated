@@ -33,8 +33,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIDynamicAnimator {}
 
-extern_methods!(
-    unsafe impl UIDynamicAnimator {
+impl UIDynamicAnimator {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(initWithReferenceView:))]
         #[unsafe(method_family = init)]
@@ -105,12 +105,12 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn UIDynamicAnimatorDelegate>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIDynamicAnimator {
+/// Methods declared on superclass `NSObject`.
+impl UIDynamicAnimator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -118,12 +118,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UICollectionViewAdditions
-    unsafe impl UIDynamicAnimator {
+/// UICollectionViewAdditions.
+impl UIDynamicAnimator {
+    extern_methods!(
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(initWithCollectionViewLayout:))]
         #[unsafe(method_family = init)]
@@ -160,5 +160,5 @@ extern_methods!(
             index_path: &NSIndexPath,
             mtm: MainThreadMarker,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
-    }
-);
+    );
+}

@@ -133,8 +133,8 @@ unsafe impl Sync for CKSyncEngine {}
 
 unsafe impl NSObjectProtocol for CKSyncEngine {}
 
-extern_methods!(
-    unsafe impl CKSyncEngine {
+impl CKSyncEngine {
+    extern_methods!(
         #[cfg(feature = "CKSyncEngineConfiguration")]
         /// Initializes a `CKSyncEngine` with the given configuration.
         /// See properties on ``CKSyncEngineConfiguration`` for more details on all the options.
@@ -232,8 +232,8 @@ extern_methods!(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn()>>,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// An interface by which `CKSyncEngine` communicates with your application.
@@ -385,8 +385,8 @@ unsafe impl CopyingHelper for CKSyncEngineFetchChangesOptions {
 
 unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesOptions {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineFetchChangesOptions {
+impl CKSyncEngineFetchChangesOptions {
+    extern_methods!(
         /// The scope in which to fetch changes from the server.
         #[unsafe(method(scope))]
         #[unsafe(method_family = none)]
@@ -439,12 +439,12 @@ extern_methods!(
             this: Allocated<Self>,
             scope: Option<&CKSyncEngineFetchChangesScope>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKSyncEngineFetchChangesOptions {
+/// Methods declared on superclass `NSObject`.
+impl CKSyncEngineFetchChangesOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -452,8 +452,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A scope in which the sync engine will fetch changes from the server.
@@ -476,8 +476,8 @@ unsafe impl CopyingHelper for CKSyncEngineFetchChangesScope {
 
 unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesScope {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineFetchChangesScope {
+impl CKSyncEngineFetchChangesScope {
+    extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         /// A specific set of zone IDs to include in the scope.
         /// For example, if you want to fetch changes for a specific set of zones, you can specify them here.
@@ -516,12 +516,12 @@ extern_methods!(
         #[unsafe(method(containsZoneID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsZoneID(&self, zone_id: &CKRecordZoneID) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKSyncEngineFetchChangesScope {
+/// Methods declared on superclass `NSObject`.
+impl CKSyncEngineFetchChangesScope {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -529,8 +529,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A set of options to use when sending changes to the server.
@@ -553,8 +553,8 @@ unsafe impl CopyingHelper for CKSyncEngineSendChangesOptions {
 
 unsafe impl NSObjectProtocol for CKSyncEngineSendChangesOptions {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineSendChangesOptions {
+impl CKSyncEngineSendChangesOptions {
+    extern_methods!(
         /// The scope in which to send changes to the server.
         #[unsafe(method(scope))]
         #[unsafe(method_family = none)]
@@ -588,12 +588,12 @@ extern_methods!(
             this: Allocated<Self>,
             scope: Option<&CKSyncEngineSendChangesScope>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKSyncEngineSendChangesOptions {
+/// Methods declared on superclass `NSObject`.
+impl CKSyncEngineSendChangesOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -601,8 +601,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A scope in which the sync engine will send changes to  the server.
@@ -625,8 +625,8 @@ unsafe impl CopyingHelper for CKSyncEngineSendChangesScope {
 
 unsafe impl NSObjectProtocol for CKSyncEngineSendChangesScope {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineSendChangesScope {
+impl CKSyncEngineSendChangesScope {
+    extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         /// The scope of zone IDs in which to send changes.
         ///
@@ -699,12 +699,12 @@ extern_methods!(
             &self,
             pending_record_zone_change: &CKSyncEnginePendingRecordZoneChange,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKSyncEngineSendChangesScope {
+/// Methods declared on superclass `NSObject`.
+impl CKSyncEngineSendChangesScope {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -712,8 +712,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesyncreason?language=objc)
 // NS_ENUM
@@ -757,8 +757,8 @@ unsafe impl Sync for CKSyncEngineFetchChangesContext {}
 
 unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesContext {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineFetchChangesContext {
+impl CKSyncEngineFetchChangesContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -776,8 +776,8 @@ extern_methods!(
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<CKSyncEngineFetchChangesOptions>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The context of an attempt to send changes to the server.
@@ -799,8 +799,8 @@ unsafe impl Sync for CKSyncEngineSendChangesContext {}
 
 unsafe impl NSObjectProtocol for CKSyncEngineSendChangesContext {}
 
-extern_methods!(
-    unsafe impl CKSyncEngineSendChangesContext {
+impl CKSyncEngineSendChangesContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -818,5 +818,5 @@ extern_methods!(
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<CKSyncEngineSendChangesOptions>;
-    }
-);
+    );
+}

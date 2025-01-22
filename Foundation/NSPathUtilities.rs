@@ -6,10 +6,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern_methods!(
-    /// NSStringPathExtensions
-    #[cfg(feature = "NSString")]
-    unsafe impl NSString {
+/// NSStringPathExtensions.
+#[cfg(feature = "NSString")]
+impl NSString {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[unsafe(method(pathWithComponents:))]
         #[unsafe(method_family = none)]
@@ -97,13 +97,13 @@ extern_methods!(
             cname: NonNull<c_char>,
             max: NSUInteger,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSArrayPathExtensions
-    #[cfg(feature = "NSArray")]
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+/// NSArrayPathExtensions.
+#[cfg(feature = "NSArray")]
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(pathsMatchingExtensions:))]
         #[unsafe(method_family = none)]
@@ -111,8 +111,8 @@ extern_methods!(
             &self,
             filter_types: &NSArray<NSString>,
         ) -> Retained<NSArray<NSString>>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "NSString")]
 #[inline]

@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for ASPasskeyRegistrationCredentialExtensionOutput 
 
 unsafe impl NSSecureCoding for ASPasskeyRegistrationCredentialExtensionOutput {}
 
-extern_methods!(
-    unsafe impl ASPasskeyRegistrationCredentialExtensionOutput {
+impl ASPasskeyRegistrationCredentialExtensionOutput {
+    extern_methods!(
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput")]
         #[unsafe(method(initWithLargeBlobOutput:))]
         #[unsafe(method_family = init)]
@@ -44,12 +44,12 @@ extern_methods!(
         pub unsafe fn largeBlobRegistrationOutput(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASPasskeyRegistrationCredentialExtensionOutput {
+/// Methods declared on superclass `NSObject`.
+impl ASPasskeyRegistrationCredentialExtensionOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,5 +57,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VNCoreMLModel {}
 
-extern_methods!(
-    unsafe impl VNCoreMLModel {
+impl VNCoreMLModel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,17 +66,17 @@ extern_methods!(
             &self,
             feature_provider: Option<&ProtocolObject<dyn MLFeatureProvider>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNCoreMLModel {
+/// Methods declared on superclass `NSObject`.
+impl VNCoreMLModel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The VNCoreMLRequest uses a VNCoreMLModel, that is based on a CoreML MLModel object, to run predictions with that model. Depending on the model the returned
@@ -100,9 +100,9 @@ unsafe impl CopyingHelper for VNCoreMLRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNCoreMLRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNCoreMLRequest {
+#[cfg(feature = "VNRequest")]
+impl VNCoreMLRequest {
+    extern_methods!(
         /// The model from CoreML wrapped in a VNCoreMLModel.
         #[unsafe(method(model))]
         #[unsafe(method_family = none)]
@@ -158,18 +158,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNCoreMLRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNCoreMLRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlrequestrevision1?language=objc)
 pub static VNCoreMLRequestRevision1: NSUInteger = 1;

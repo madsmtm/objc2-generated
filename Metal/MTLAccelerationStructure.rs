@@ -115,8 +115,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructureDescriptor {
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructureDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructureDescriptor {
+impl MTLAccelerationStructureDescriptor {
+    extern_methods!(
         #[unsafe(method(usage))]
         #[unsafe(method_family = none)]
         pub unsafe fn usage(&self) -> MTLAccelerationStructureUsage;
@@ -125,12 +125,12 @@ extern_methods!(
         #[unsafe(method(setUsage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsage(&self, usage: MTLAccelerationStructureUsage);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructureDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructureDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -138,8 +138,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Base class for all geometry descriptors. Do not use this class directly. Use one of the derived
@@ -159,8 +159,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructureGeometryDescriptor {
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructureGeometryDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructureGeometryDescriptor {
+impl MTLAccelerationStructureGeometryDescriptor {
+    extern_methods!(
         #[unsafe(method(intersectionFunctionTableOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectionFunctionTableOffset(&self) -> NSUInteger;
@@ -262,12 +262,12 @@ extern_methods!(
         #[unsafe(method(setPrimitiveDataElementSize:))]
         #[unsafe(method_family = none)]
         pub fn setPrimitiveDataElementSize(&self, primitive_data_element_size: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructureGeometryDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructureGeometryDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -275,8 +275,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Describes what happens to the object before the first motion key and after the last
 /// motion key.
@@ -320,8 +320,8 @@ unsafe impl CopyingHelper for MTLPrimitiveAccelerationStructureDescriptor {
 
 unsafe impl NSObjectProtocol for MTLPrimitiveAccelerationStructureDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLPrimitiveAccelerationStructureDescriptor {
+impl MTLPrimitiveAccelerationStructureDescriptor {
+    extern_methods!(
         /// Array of geometry descriptors. If motionKeyframeCount is greater than one all geometryDescriptors
         /// must be motion versions and have motionKeyframeCount of primitive buffers.
         #[unsafe(method(geometryDescriptors))]
@@ -396,12 +396,12 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLPrimitiveAccelerationStructureDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLPrimitiveAccelerationStructureDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -409,8 +409,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Descriptor for triangle geometry
@@ -429,8 +429,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructureTriangleGeometryDescriptor
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructureTriangleGeometryDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructureTriangleGeometryDescriptor {
+impl MTLAccelerationStructureTriangleGeometryDescriptor {
+    extern_methods!(
         #[cfg(all(
             feature = "MTLAllocation",
             feature = "MTLBuffer",
@@ -596,12 +596,12 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructureTriangleGeometryDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructureTriangleGeometryDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -609,8 +609,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Descriptor for bounding box geometry
@@ -629,8 +629,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructureBoundingBoxGeometryDescrip
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
+impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
+    extern_methods!(
         #[cfg(all(
             feature = "MTLAllocation",
             feature = "MTLBuffer",
@@ -689,12 +689,12 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -702,8 +702,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MTLbuffer and description how the data is stored in it.
@@ -716,8 +716,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLMotionKeyframeData {}
 
-extern_methods!(
-    unsafe impl MTLMotionKeyframeData {
+impl MTLMotionKeyframeData {
+    extern_methods!(
         #[cfg(all(
             feature = "MTLAllocation",
             feature = "MTLBuffer",
@@ -751,12 +751,12 @@ extern_methods!(
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLMotionKeyframeData {
+/// Methods declared on superclass `NSObject`.
+impl MTLMotionKeyframeData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -764,8 +764,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Descriptor for motion triangle geometry
@@ -784,8 +784,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructureMotionTriangleGeometryDesc
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
+impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
+    extern_methods!(
         /// Vertex buffer containing triangle vertices similar to what MTLAccelerationStructureTriangleGeometryDescriptor has but array of the values.
         #[unsafe(method(vertexBuffers))]
         #[unsafe(method_family = none)]
@@ -930,12 +930,12 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -943,8 +943,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Descriptor for motion bounding box geometry
@@ -963,8 +963,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructureMotionBoundingBoxGeometryD
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
+impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
+    extern_methods!(
         /// Bounding box buffer containing MTLAxisAlignedBoundingBoxes similar to what MTLAccelerationStructureBoundingBoxGeometryDescriptor has but array of the values.
         #[unsafe(method(boundingBoxBuffers))]
         #[unsafe(method_family = none)]
@@ -1002,12 +1002,12 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1015,8 +1015,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Curve types
 ///
@@ -1144,8 +1144,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructureCurveGeometryDescriptor {
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructureCurveGeometryDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructureCurveGeometryDescriptor {
+impl MTLAccelerationStructureCurveGeometryDescriptor {
+    extern_methods!(
         #[cfg(all(
             feature = "MTLAllocation",
             feature = "MTLBuffer",
@@ -1376,12 +1376,12 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructureCurveGeometryDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructureCurveGeometryDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1389,8 +1389,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Acceleration structure motion geometry descriptor describing
@@ -1410,8 +1410,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructureMotionCurveGeometryDescrip
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
+impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
+    extern_methods!(
         /// Buffers containing curve control points for each keyframe.
         /// Each control point must be of the format specified by the control
         /// point format. Buffer offsets musts be multiples of the control
@@ -1603,12 +1603,12 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1616,8 +1616,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptor?language=objc)
 #[cfg(feature = "MTLAccelerationStructureTypes")]
@@ -1925,8 +1925,8 @@ unsafe impl CopyingHelper for MTLInstanceAccelerationStructureDescriptor {
 
 unsafe impl NSObjectProtocol for MTLInstanceAccelerationStructureDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLInstanceAccelerationStructureDescriptor {
+impl MTLInstanceAccelerationStructureDescriptor {
+    extern_methods!(
         #[cfg(all(
             feature = "MTLAllocation",
             feature = "MTLBuffer",
@@ -2111,12 +2111,12 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLInstanceAccelerationStructureDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLInstanceAccelerationStructureDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2124,8 +2124,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Descriptor for an instance acceleration structure built with an indirected buffer of instances.
@@ -2144,8 +2144,8 @@ unsafe impl CopyingHelper for MTLIndirectInstanceAccelerationStructureDescriptor
 
 unsafe impl NSObjectProtocol for MTLIndirectInstanceAccelerationStructureDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLIndirectInstanceAccelerationStructureDescriptor {
+impl MTLIndirectInstanceAccelerationStructureDescriptor {
+    extern_methods!(
         #[cfg(all(
             feature = "MTLAllocation",
             feature = "MTLBuffer",
@@ -2389,12 +2389,12 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLIndirectInstanceAccelerationStructureDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLIndirectInstanceAccelerationStructureDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2402,8 +2402,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructure?language=objc)

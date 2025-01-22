@@ -70,9 +70,9 @@ unsafe impl CopyingHelper for MPSGraphSingleGateRNNDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphSingleGateRNNDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphSingleGateRNNDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphSingleGateRNNDescriptor {
+    extern_methods!(
         /// A parameter that defines time direction of the input sequence.
         ///
         /// If set to `YES` then the input sequence is passed in reverse time order to the layer.
@@ -130,13 +130,13 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphSingleGateRNNDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphSingleGateRNNDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -144,8 +144,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The class that defines the parameters for a long short-term memory (LSTM) operation.
@@ -177,9 +177,9 @@ unsafe impl CopyingHelper for MPSGraphLSTMDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphLSTMDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphLSTMDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphLSTMDescriptor {
+    extern_methods!(
         /// A parameter that defines time direction of the input sequence.
         ///
         /// If set to `YES` then the input sequence is passed in reverse time order to the layer.
@@ -311,13 +311,13 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphLSTMDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphLSTMDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -325,8 +325,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The class that defines the parameters for a gated recurrent unit (GRU) operation.
@@ -357,9 +357,9 @@ unsafe impl CopyingHelper for MPSGraphGRUDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphGRUDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphGRUDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphGRUDescriptor {
+    extern_methods!(
         /// A parameter that defines the time direction of the input sequence.
         ///
         /// If set to `YES` then the input sequence is passed in reverse time order to the layer.
@@ -482,13 +482,13 @@ extern_methods!(
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphGRUDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphGRUDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -496,13 +496,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MPSGraphRNNOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphRNNOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a single-gate RNN operation and returns the value and optionally the training state tensor.
         ///
@@ -1361,5 +1361,5 @@ extern_methods!(
             descriptor: &MPSGraphGRUDescriptor,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
-    }
-);
+    );
+}

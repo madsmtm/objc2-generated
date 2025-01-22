@@ -370,8 +370,8 @@ unsafe impl NSObjectProtocol for MPSNNDefaultPadding {}
 
 unsafe impl NSSecureCoding for MPSNNDefaultPadding {}
 
-extern_methods!(
-    unsafe impl MPSNNDefaultPadding {
+impl MPSNNDefaultPadding {
+    extern_methods!(
         /// Fetch a well known object that implements a non-custom padding method
         ///
         /// For custom padding methods, you will need to implement an object that conforms
@@ -428,12 +428,12 @@ extern_methods!(
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSNNDefaultPadding {
+/// Methods declared on superclass `NSObject`.
+impl MPSNNDefaultPadding {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -441,8 +441,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// MPSStates conforming to this protocol contain information about a image size elsewhere in the graph

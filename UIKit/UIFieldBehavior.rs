@@ -21,9 +21,9 @@ extern_class!(
 #[cfg(feature = "UIDynamicBehavior")]
 unsafe impl NSObjectProtocol for UIFieldBehavior {}
 
-extern_methods!(
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UIFieldBehavior {
+#[cfg(feature = "UIDynamicBehavior")]
+impl UIFieldBehavior {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -301,15 +301,15 @@ extern_methods!(
             >,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UIFieldBehavior {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIDynamicBehavior")]
+impl UIFieldBehavior {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -46,10 +46,10 @@ unsafe impl SCNSceneRenderer for SCNLayer {}
 #[cfg(not(target_os = "watchos"))]
 unsafe impl SCNTechniqueSupport for SCNLayer {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl SCNLayer {
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl SCNLayer {
+    extern_methods!(
         #[cfg(feature = "SCNScene")]
         /// Specifies the scene of the receiver
         #[deprecated = "OpenGL API deprecated, please use Metal instead. (Define SCN_SILENCE_GL_DEPRECATION to silence these warnings)"]
@@ -63,14 +63,14 @@ extern_methods!(
         #[unsafe(method(setScene:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScene(&self, scene: Option<&SCNScene>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl SCNLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl SCNLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -83,16 +83,16 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl SCNLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl SCNLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

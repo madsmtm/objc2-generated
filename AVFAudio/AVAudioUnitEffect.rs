@@ -30,9 +30,9 @@ extern_class!(
 #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
 unsafe impl NSObjectProtocol for AVAudioUnitEffect {}
 
-extern_methods!(
-    #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
-    unsafe impl AVAudioUnitEffect {
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+impl AVAudioUnitEffect {
+    extern_methods!(
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// Create an AVAudioUnitEffect object.
@@ -62,13 +62,13 @@ extern_methods!(
         #[unsafe(method(setBypass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBypass(&self, bypass: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
-    unsafe impl AVAudioUnitEffect {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+impl AVAudioUnitEffect {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,5 +76,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

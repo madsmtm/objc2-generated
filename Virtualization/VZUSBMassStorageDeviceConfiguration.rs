@@ -35,9 +35,9 @@ unsafe impl NSObjectProtocol for VZUSBMassStorageDeviceConfiguration {}
 ))]
 unsafe impl VZUSBDeviceConfiguration for VZUSBMassStorageDeviceConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZStorageDeviceConfiguration")]
-    unsafe impl VZUSBMassStorageDeviceConfiguration {
+#[cfg(feature = "VZStorageDeviceConfiguration")]
+impl VZUSBMassStorageDeviceConfiguration {
+    extern_methods!(
         #[cfg(feature = "VZStorageDeviceAttachment")]
         /// Initialize a VZUSBMassStorageDeviceConfiguration with a device attachment.
         ///
@@ -50,13 +50,13 @@ extern_methods!(
             this: Allocated<Self>,
             attachment: &VZStorageDeviceAttachment,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZStorageDeviceConfiguration`
-    #[cfg(feature = "VZStorageDeviceConfiguration")]
-    unsafe impl VZUSBMassStorageDeviceConfiguration {
+/// Methods declared on superclass `VZStorageDeviceConfiguration`.
+#[cfg(feature = "VZStorageDeviceConfiguration")]
+impl VZUSBMassStorageDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -64,5 +64,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

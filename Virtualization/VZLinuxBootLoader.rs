@@ -35,9 +35,9 @@ unsafe impl CopyingHelper for VZLinuxBootLoader {
 #[cfg(feature = "VZBootLoader")]
 unsafe impl NSObjectProtocol for VZLinuxBootLoader {}
 
-extern_methods!(
-    #[cfg(feature = "VZBootLoader")]
-    unsafe impl VZLinuxBootLoader {
+#[cfg(feature = "VZBootLoader")]
+impl VZLinuxBootLoader {
+    extern_methods!(
         /// Create a VZLinuxBootLoader with the Linux kernel passed as URL.
         ///
         /// Parameter `kernelURL`: The URL of Linux kernel on the local file system.
@@ -82,13 +82,13 @@ extern_methods!(
         #[unsafe(method(setInitialRamdiskURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialRamdiskURL(&self, initial_ramdisk_url: Option<&NSURL>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZBootLoader`
-    #[cfg(feature = "VZBootLoader")]
-    unsafe impl VZLinuxBootLoader {
+/// Methods declared on superclass `VZBootLoader`.
+#[cfg(feature = "VZBootLoader")]
+impl VZLinuxBootLoader {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -96,5 +96,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

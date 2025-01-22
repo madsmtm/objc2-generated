@@ -31,8 +31,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetWriterInput {}
 
-extern_methods!(
-    unsafe impl AVAssetWriterInput {
+impl AVAssetWriterInput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -290,12 +290,12 @@ extern_methods!(
         #[unsafe(method(markAsFinished))]
         #[unsafe(method_family = none)]
         pub unsafe fn markAsFinished(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetWriterInputLanguageProperties
-    unsafe impl AVAssetWriterInput {
+/// AVAssetWriterInputLanguageProperties.
+impl AVAssetWriterInput {
+    extern_methods!(
         /// Indicates the language to associate with the track corresponding to the receiver, as an ISO 639-2/T language code; can be nil.
         ///
         ///
@@ -329,12 +329,12 @@ extern_methods!(
         #[unsafe(method(setExtendedLanguageTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetWriterInputPropertiesForVisualCharacteristic
-    unsafe impl AVAssetWriterInput {
+/// AVAssetWriterInputPropertiesForVisualCharacteristic.
+impl AVAssetWriterInput {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The size specified in the output file as the natural dimensions of the visual media data for display purposes.
         ///
@@ -368,12 +368,12 @@ extern_methods!(
         #[unsafe(method(setTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransform(&self, transform: CGAffineTransform);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetWriterInputPropertiesForAudibleCharacteristic
-    unsafe impl AVAssetWriterInput {
+/// AVAssetWriterInputPropertiesForAudibleCharacteristic.
+impl AVAssetWriterInput {
+    extern_methods!(
         /// The preferred volume level to be stored in the output file.
         ///
         ///
@@ -388,8 +388,8 @@ extern_methods!(
         #[unsafe(method(setPreferredVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredVolume(&self, preferred_volume: c_float);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputmediadatalocation?language=objc)
 // NS_TYPED_ENUM
@@ -411,9 +411,9 @@ extern "C" {
         &'static AVAssetWriterInputMediaDataLocation;
 }
 
-extern_methods!(
-    /// AVAssetWriterInputFileTypeSpecificProperties
-    unsafe impl AVAssetWriterInput {
+/// AVAssetWriterInputFileTypeSpecificProperties.
+impl AVAssetWriterInput {
+    extern_methods!(
         /// For file types that support enabled and disabled tracks, such as QuickTime Movie files, specifies whether the track corresponding to the receiver should be enabled by default for playback and processing. The default value is YES.
         ///
         ///
@@ -538,12 +538,12 @@ extern_methods!(
             &self,
             media_data_location: &AVAssetWriterInputMediaDataLocation,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetWriterInputTrackAssociations
-    unsafe impl AVAssetWriterInput {
+/// AVAssetWriterInputTrackAssociations.
+impl AVAssetWriterInput {
+    extern_methods!(
         /// Tests whether an association between the tracks corresponding to a pair of inputs is valid.
         ///
         ///
@@ -581,12 +581,12 @@ extern_methods!(
             input: &AVAssetWriterInput,
             track_association_type: &NSString,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetWriterInputMultiPass
-    unsafe impl AVAssetWriterInput {
+/// AVAssetWriterInputMultiPass.
+impl AVAssetWriterInput {
+    extern_methods!(
         /// Indicates whether the input should attempt to encode the source media data using multiple passes.
         ///
         ///
@@ -660,8 +660,8 @@ extern_methods!(
         #[unsafe(method(markCurrentPassAsFinished))]
         #[unsafe(method_family = none)]
         pub unsafe fn markCurrentPassAsFinished(&self);
-    }
-);
+    );
+}
 
 extern_class!(
     /// Defines an interface for querying information about the requirements of the current pass, such as the time ranges of media data to append.
@@ -680,8 +680,8 @@ unsafe impl Sync for AVAssetWriterInputPassDescription {}
 
 unsafe impl NSObjectProtocol for AVAssetWriterInputPassDescription {}
 
-extern_methods!(
-    unsafe impl AVAssetWriterInputPassDescription {
+impl AVAssetWriterInputPassDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -697,8 +697,8 @@ extern_methods!(
         #[unsafe(method(sourceTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTimeRanges(&self) -> Retained<NSArray<NSValue>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Defines an interface for appending video samples packaged as CVPixelBuffer objects to a single AVAssetWriterInput object.
@@ -714,8 +714,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetWriterInputPixelBufferAdaptor {}
 
-extern_methods!(
-    unsafe impl AVAssetWriterInputPixelBufferAdaptor {
+impl AVAssetWriterInputPixelBufferAdaptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -842,8 +842,8 @@ extern_methods!(
             pixel_buffer: &CVPixelBuffer,
             presentation_time: CMTime,
         ) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Defines an interface for appending tagged buffer groups packaged as CMTaggedBufferGroupRef objects to a single AVAssetWriterInput object.
@@ -859,8 +859,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetWriterInputTaggedPixelBufferGroupAdaptor {}
 
-extern_methods!(
-    unsafe impl AVAssetWriterInputTaggedPixelBufferGroupAdaptor {
+impl AVAssetWriterInputTaggedPixelBufferGroupAdaptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1007,8 +1007,8 @@ extern_methods!(
             tagged_pixel_buffer_group: &CMTaggedBufferGroup,
             presentation_time: CMTime,
         ) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Defines an interface for writing metadata, packaged as instances of AVTimedMetadataGroup, to a single AVAssetWriterInput object.
@@ -1021,8 +1021,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetWriterInputMetadataAdaptor {}
 
-extern_methods!(
-    unsafe impl AVAssetWriterInputMetadataAdaptor {
+impl AVAssetWriterInputMetadataAdaptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1101,8 +1101,8 @@ extern_methods!(
             &self,
             timed_metadata_group: &AVTimedMetadataGroup,
         ) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An adaptor class for appending instances of AVCaption to an asset writer input. -[AVAssetWriterInput -appendSampleBuffer:] will throw an exception if used when this adaptor is attached.
@@ -1115,8 +1115,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetWriterInputCaptionAdaptor {}
 
-extern_methods!(
-    unsafe impl AVAssetWriterInputCaptionAdaptor {
+impl AVAssetWriterInputCaptionAdaptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1181,5 +1181,5 @@ extern_methods!(
         #[unsafe(method(appendCaptionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendCaptionGroup(&self, caption_group: &AVCaptionGroup) -> bool;
-    }
-);
+    );
+}

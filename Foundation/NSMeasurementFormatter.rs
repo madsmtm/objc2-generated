@@ -55,9 +55,9 @@ unsafe impl NSObjectProtocol for NSMeasurementFormatter {}
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl NSSecureCoding for NSMeasurementFormatter {}
 
-extern_methods!(
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSMeasurementFormatter {
+#[cfg(feature = "NSFormatter")]
+impl NSMeasurementFormatter {
+    extern_methods!(
         #[unsafe(method(unitOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitOptions(&self) -> NSMeasurementFormatterUnitOptions;
@@ -110,13 +110,13 @@ extern_methods!(
         #[unsafe(method(stringFromUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromUnit(&self, unit: &NSUnit) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSMeasurementFormatter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSFormatter")]
+impl NSMeasurementFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -124,5 +124,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

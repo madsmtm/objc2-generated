@@ -87,9 +87,9 @@ unsafe impl Sync for HKLiveWorkoutBuilder {}
 #[cfg(feature = "HKWorkoutBuilder")]
 unsafe impl NSObjectProtocol for HKLiveWorkoutBuilder {}
 
-extern_methods!(
-    #[cfg(feature = "HKWorkoutBuilder")]
-    unsafe impl HKLiveWorkoutBuilder {
+#[cfg(feature = "HKWorkoutBuilder")]
+impl HKLiveWorkoutBuilder {
+    extern_methods!(
         #[cfg(all(
             feature = "HKDevice",
             feature = "HKHealthStore",
@@ -168,25 +168,25 @@ extern_methods!(
         #[unsafe(method(currentWorkoutActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentWorkoutActivity(&self) -> Option<Retained<HKWorkoutActivity>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKWorkoutBuilder`
-    #[cfg(feature = "HKWorkoutBuilder")]
-    unsafe impl HKLiveWorkoutBuilder {
+/// Methods declared on superclass `HKWorkoutBuilder`.
+#[cfg(feature = "HKWorkoutBuilder")]
+impl HKLiveWorkoutBuilder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKWorkoutBuilder")]
-    unsafe impl HKLiveWorkoutBuilder {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKWorkoutBuilder")]
+impl HKLiveWorkoutBuilder {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTimer {}
 
-extern_methods!(
-    unsafe impl NSTimer {
+impl NSTimer {
+    extern_methods!(
         #[cfg(all(feature = "NSDate", feature = "NSInvocation"))]
         #[unsafe(method(timerWithTimeInterval:invocation:repeats:))]
         #[unsafe(method_family = none)]
@@ -154,12 +154,12 @@ extern_methods!(
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTimer {
+/// Methods declared on superclass `NSObject`.
+impl NSTimer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -167,5 +167,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

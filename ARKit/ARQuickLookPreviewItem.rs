@@ -22,9 +22,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for ARQuickLookPreviewItem {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARQuickLookPreviewItem {
+impl ARQuickLookPreviewItem {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// Creates an object representing the 3D content that will be previewed in AR Quick Look.
         ///
@@ -83,5 +82,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

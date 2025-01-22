@@ -147,8 +147,8 @@ unsafe impl CopyingHelper for OSAScript {
 
 unsafe impl NSObjectProtocol for OSAScript {}
 
-extern_methods!(
-    unsafe impl OSAScript {
+impl OSAScript {
+    extern_methods!(
         #[unsafe(method(scriptDataDescriptorWithContentsOfURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scriptDataDescriptorWithContentsOfURL(
@@ -348,12 +348,12 @@ extern_methods!(
             storage_options: OSAStorageOptions,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<NSData>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl OSAScript {
+/// Methods declared on superclass `NSObject`.
+impl OSAScript {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -361,5 +361,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

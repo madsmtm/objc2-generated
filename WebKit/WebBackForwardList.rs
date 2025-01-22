@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WebBackForwardList {}
 
-extern_methods!(
-    unsafe impl WebBackForwardList {
+impl WebBackForwardList {
+    extern_methods!(
         #[cfg(feature = "WebHistoryItem")]
         /// Adds an entry to the list.
         ///
@@ -145,12 +145,12 @@ extern_methods!(
         #[unsafe(method(itemAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemAtIndex(&self, index: c_int) -> Option<Retained<WebHistoryItem>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WebBackForwardList {
+/// Methods declared on superclass `NSObject`.
+impl WebBackForwardList {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -158,12 +158,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebBackForwardListDeprecated
-    unsafe impl WebBackForwardList {
+/// WebBackForwardListDeprecated.
+impl WebBackForwardList {
+    extern_methods!(
         /// The size passed to this method determines whether the WebView
         /// associated with this WebBackForwardList will use the shared page cache.
         ///
@@ -182,5 +182,5 @@ extern_methods!(
         #[unsafe(method(pageCacheSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageCacheSize(&self) -> NSUInteger;
-    }
-);
+    );
+}

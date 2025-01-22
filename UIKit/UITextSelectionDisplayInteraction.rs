@@ -46,8 +46,8 @@ unsafe impl NSObjectProtocol for UITextSelectionDisplayInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UITextSelectionDisplayInteraction {}
 
-extern_methods!(
-    unsafe impl UITextSelectionDisplayInteraction {
+impl UITextSelectionDisplayInteraction {
+    extern_methods!(
         /// Controls both the hidden sate of contained selection views as well as interactions that follow.
         #[unsafe(method(isActivated))]
         #[unsafe(method_family = none)]
@@ -164,5 +164,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

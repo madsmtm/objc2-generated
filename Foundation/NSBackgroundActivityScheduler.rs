@@ -40,8 +40,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSBackgroundActivityScheduler {}
 
-extern_methods!(
-    unsafe impl NSBackgroundActivityScheduler {
+impl NSBackgroundActivityScheduler {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
@@ -112,12 +112,12 @@ extern_methods!(
         #[unsafe(method(shouldDefer))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldDefer(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSBackgroundActivityScheduler {
+/// Methods declared on superclass `NSObject`.
+impl NSBackgroundActivityScheduler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -125,5 +125,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

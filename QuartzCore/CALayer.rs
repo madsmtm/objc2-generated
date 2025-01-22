@@ -148,8 +148,8 @@ unsafe impl NSObjectProtocol for CALayer {}
 
 unsafe impl NSSecureCoding for CALayer {}
 
-extern_methods!(
-    unsafe impl CALayer {
+impl CALayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -929,17 +929,17 @@ extern_methods!(
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CALayer {
+/// Methods declared on superclass `NSObject`.
+impl CALayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for CALayer {
     #[inline]

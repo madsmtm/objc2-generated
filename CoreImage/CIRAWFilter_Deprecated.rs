@@ -237,11 +237,11 @@ extern "C" {
     pub static kCIPropertiesKey: Option<&'static CIRAWFilterOption>;
 }
 
-extern_methods!(
-    /// CIRAWFilter
-    /// CIRAWFilter is a category of CIFilter which returns a CIFilter initialized with a RAW image. It allows the user to influence key aspects of the raw processing, such as white balance, exposure, sharpening or boost.
-    #[cfg(feature = "CIFilter")]
-    unsafe impl CIFilter {
+/// CIRAWFilter.
+/// CIRAWFilter is a category of CIFilter which returns a CIFilter initialized with a RAW image. It allows the user to influence key aspects of the raw processing, such as white balance, exposure, sharpening or boost.
+#[cfg(feature = "CIFilter")]
+impl CIFilter {
+    extern_methods!(
         /// Returns a CIFilter that will in turn return a properly processed CIImage as "outputImage".
         #[deprecated = "Use new CIRAWFilter class instead."]
         #[unsafe(method(filterWithImageURL:options:))]
@@ -282,5 +282,5 @@ extern_methods!(
         #[unsafe(method(supportedRawCameraModels))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRawCameraModels() -> Option<Retained<NSArray<NSString>>>;
-    }
-);
+    );
+}

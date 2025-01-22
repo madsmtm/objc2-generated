@@ -28,9 +28,9 @@ unsafe impl CopyingHelper for VNCalculateImageAestheticsScoresRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNCalculateImageAestheticsScoresRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNCalculateImageAestheticsScoresRequest {
+#[cfg(feature = "VNRequest")]
+impl VNCalculateImageAestheticsScoresRequest {
+    extern_methods!(
         #[cfg(feature = "VNObservation")]
         /// VNObservation results.
         #[unsafe(method(results))]
@@ -38,13 +38,13 @@ extern_methods!(
         pub unsafe fn results(
             &self,
         ) -> Option<Retained<NSArray<VNImageAestheticsScoresObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNCalculateImageAestheticsScoresRequest {
+/// Methods declared on superclass `VNRequest`.
+#[cfg(feature = "VNRequest")]
+impl VNCalculateImageAestheticsScoresRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -61,18 +61,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNCalculateImageAestheticsScoresRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNCalculateImageAestheticsScoresRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequestrevision1?language=objc)
 pub static VNCalculateImageAestheticsScoresRequestRevision1: NSUInteger = 1;

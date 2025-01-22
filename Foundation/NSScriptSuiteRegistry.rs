@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSScriptSuiteRegistry {}
 
-extern_methods!(
-    unsafe impl NSScriptSuiteRegistry {
+impl NSScriptSuiteRegistry {
+    extern_methods!(
         #[unsafe(method(sharedScriptSuiteRegistry))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedScriptSuiteRegistry() -> Retained<NSScriptSuiteRegistry>;
@@ -121,12 +121,12 @@ extern_methods!(
         #[unsafe(method(aeteResource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn aeteResource(&self, language_name: &NSString) -> Option<Retained<NSData>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScriptSuiteRegistry {
+/// Methods declared on superclass `NSObject`.
+impl NSScriptSuiteRegistry {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -134,5 +134,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

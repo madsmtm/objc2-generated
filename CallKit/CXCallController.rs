@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CXCallController {}
 
-extern_methods!(
-    unsafe impl CXCallController {
+impl CXCallController {
+    extern_methods!(
         /// Initialize call controller with a private, serial queue.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -72,14 +72,14 @@ extern_methods!(
             action: &CXAction,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CXCallController {
+/// Methods declared on superclass `NSObject`.
+impl CXCallController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

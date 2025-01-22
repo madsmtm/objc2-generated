@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZMacOSConfigurationRequirements {}
 
-extern_methods!(
-    unsafe impl VZMacOSConfigurationRequirements {
+impl VZMacOSConfigurationRequirements {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -62,5 +62,5 @@ extern_methods!(
         #[unsafe(method(minimumSupportedMemorySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumSupportedMemorySize(&self) -> u64;
-    }
-);
+    );
+}

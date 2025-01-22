@@ -9,10 +9,10 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MPSGraphMatrixMultiplicationOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphMatrixMultiplicationOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Computes the matrix multiplication of 2 input tensors with support for broadcasting.
         ///
@@ -105,5 +105,5 @@ extern_methods!(
             scale: c_float,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

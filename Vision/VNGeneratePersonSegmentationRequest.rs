@@ -60,9 +60,9 @@ unsafe impl CopyingHelper for VNGeneratePersonSegmentationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNGeneratePersonSegmentationRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl VNGeneratePersonSegmentationRequest {
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+impl VNGeneratePersonSegmentationRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -122,8 +122,8 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequestrevision1?language=objc)
 pub static VNGeneratePersonSegmentationRequestRevision1: NSUInteger = 1;

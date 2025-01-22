@@ -28,8 +28,8 @@ unsafe impl CopyingHelper for UIFocusMovementHint {
 
 unsafe impl NSObjectProtocol for UIFocusMovementHint {}
 
-extern_methods!(
-    unsafe impl UIFocusMovementHint {
+impl UIFocusMovementHint {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Value between {-1.0, -1.0} and {1.0, 1.0} representing how close focus is to moving in a particular direction.
         #[unsafe(method(movementDirection))]
@@ -69,5 +69,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

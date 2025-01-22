@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for UIShadowProperties {}
 
 unsafe impl NSSecureCoding for UIShadowProperties {}
 
-extern_methods!(
-    unsafe impl UIShadowProperties {
+impl UIShadowProperties {
+    extern_methods!(
         #[cfg(feature = "UIColor")]
         /// The color to use when rendering the shadow. Defaults to `UIColor.blackColor`.
         #[unsafe(method(color))]
@@ -92,12 +92,12 @@ extern_methods!(
         #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: Option<&UIBezierPath>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIShadowProperties {
+/// Methods declared on superclass `NSObject`.
+impl UIShadowProperties {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -105,5 +105,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

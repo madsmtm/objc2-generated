@@ -37,10 +37,10 @@ unsafe impl RefEncode for UIPopoverArrowDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// UIPopoverController
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIViewController {
+/// UIPopoverController.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIViewController {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(isModalInPopover))]
         #[unsafe(method_family = none)]
@@ -67,5 +67,5 @@ extern_methods!(
             &self,
             content_size_for_view_in_popover: CGSize,
         );
-    }
-);
+    );
+}

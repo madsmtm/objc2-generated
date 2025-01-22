@@ -58,8 +58,8 @@ unsafe impl NSObjectProtocol for MPMediaQuery {}
 
 unsafe impl NSSecureCoding for MPMediaQuery {}
 
-extern_methods!(
-    unsafe impl MPMediaQuery {
+impl MPMediaQuery {
+    extern_methods!(
         #[unsafe(method(initWithFilterPredicates:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFilterPredicates(
@@ -151,12 +151,12 @@ extern_methods!(
         #[unsafe(method(genresQuery))]
         #[unsafe(method_family = none)]
         pub unsafe fn genresQuery() -> Retained<MPMediaQuery>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPMediaQuery {
+/// Methods declared on superclass `NSObject`.
+impl MPMediaQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -164,8 +164,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediapredicate?language=objc)
@@ -180,13 +180,13 @@ unsafe impl NSObjectProtocol for MPMediaPredicate {}
 
 unsafe impl NSSecureCoding for MPMediaPredicate {}
 
-extern_methods!(
-    unsafe impl MPMediaPredicate {}
-);
+impl MPMediaPredicate {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPMediaPredicate {
+/// Methods declared on superclass `NSObject`.
+impl MPMediaPredicate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -194,8 +194,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediapredicatecomparison?language=objc)
 // NS_ENUM
@@ -230,8 +230,8 @@ unsafe impl NSObjectProtocol for MPMediaPropertyPredicate {}
 
 unsafe impl NSSecureCoding for MPMediaPropertyPredicate {}
 
-extern_methods!(
-    unsafe impl MPMediaPropertyPredicate {
+impl MPMediaPropertyPredicate {
+    extern_methods!(
         #[unsafe(method(predicateWithValue:forProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateWithValue_forProperty(
@@ -258,12 +258,12 @@ extern_methods!(
         #[unsafe(method(comparisonType))]
         #[unsafe(method_family = none)]
         pub unsafe fn comparisonType(&self) -> MPMediaPredicateComparison;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPMediaPropertyPredicate {
+/// Methods declared on superclass `NSObject`.
+impl MPMediaPropertyPredicate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -271,13 +271,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MPMediaQueryAdditions
-    #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
-    unsafe impl MPMediaItem {
+/// MPMediaQueryAdditions.
+#[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
+impl MPMediaItem {
+    extern_methods!(
         #[unsafe(method(persistentIDPropertyForGroupingType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentIDPropertyForGroupingType(
@@ -289,5 +289,5 @@ extern_methods!(
         pub unsafe fn titlePropertyForGroupingType(
             grouping_type: MPMediaGrouping,
         ) -> Retained<NSString>;
-    }
-);
+    );
+}

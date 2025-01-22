@@ -34,15 +34,15 @@ extern_class!(
 #[cfg(feature = "VZGraphicsDisplay")]
 unsafe impl NSObjectProtocol for VZVirtioGraphicsScanout {}
 
-extern_methods!(
-    #[cfg(feature = "VZGraphicsDisplay")]
-    unsafe impl VZVirtioGraphicsScanout {}
-);
+#[cfg(feature = "VZGraphicsDisplay")]
+impl VZVirtioGraphicsScanout {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZGraphicsDisplay`
-    #[cfg(feature = "VZGraphicsDisplay")]
-    unsafe impl VZVirtioGraphicsScanout {
+/// Methods declared on superclass `VZGraphicsDisplay`.
+#[cfg(feature = "VZGraphicsDisplay")]
+impl VZVirtioGraphicsScanout {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -50,5 +50,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

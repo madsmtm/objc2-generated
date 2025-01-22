@@ -25,8 +25,8 @@ unsafe impl Sync for AVVideoPerformanceMetrics {}
 
 unsafe impl NSObjectProtocol for AVVideoPerformanceMetrics {}
 
-extern_methods!(
-    unsafe impl AVVideoPerformanceMetrics {
+impl AVVideoPerformanceMetrics {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -93,5 +93,5 @@ extern_methods!(
         #[unsafe(method(totalFrameDelay))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalFrameDelay(&self) -> c_double;
-    }
-);
+    );
+}

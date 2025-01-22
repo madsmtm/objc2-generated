@@ -28,9 +28,9 @@ unsafe impl NSObjectProtocol for VZUSBMassStorageDevice {}
 #[cfg(all(feature = "VZStorageDevice", feature = "VZUSBDevice"))]
 unsafe impl VZUSBDevice for VZUSBMassStorageDevice {}
 
-extern_methods!(
-    #[cfg(feature = "VZStorageDevice")]
-    unsafe impl VZUSBMassStorageDevice {
+#[cfg(feature = "VZStorageDevice")]
+impl VZUSBMassStorageDevice {
+    extern_methods!(
         #[cfg(all(
             feature = "VZStorageDeviceConfiguration",
             feature = "VZUSBMassStorageDeviceConfiguration"
@@ -46,13 +46,13 @@ extern_methods!(
             this: Allocated<Self>,
             configuration: &VZUSBMassStorageDeviceConfiguration,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZStorageDevice`
-    #[cfg(feature = "VZStorageDevice")]
-    unsafe impl VZUSBMassStorageDevice {
+/// Methods declared on superclass `VZStorageDevice`.
+#[cfg(feature = "VZStorageDevice")]
+impl VZUSBMassStorageDevice {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -60,5 +60,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

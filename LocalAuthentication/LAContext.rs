@@ -199,8 +199,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LAContext {}
 
-extern_methods!(
-    unsafe impl LAContext {
+impl LAContext {
+    extern_methods!(
         /// Determines if a particular policy can be evaluated.
         ///
         ///
@@ -538,12 +538,12 @@ extern_methods!(
         #[unsafe(method(domainState))]
         #[unsafe(method_family = none)]
         pub unsafe fn domainState(&self) -> Retained<LADomainState>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl LAContext {
+/// Methods declared on superclass `NSObject`.
+impl LAContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -551,5 +551,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

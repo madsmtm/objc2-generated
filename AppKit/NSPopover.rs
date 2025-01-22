@@ -77,9 +77,9 @@ unsafe impl NSCoding for NSPopover {}
 #[cfg(feature = "NSResponder")]
 unsafe impl NSObjectProtocol for NSPopover {}
 
-extern_methods!(
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSPopover {
+#[cfg(feature = "NSResponder")]
+impl NSPopover {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -231,18 +231,18 @@ extern_methods!(
         #[unsafe(method(close))]
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSPopover {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSResponder")]
+impl NSPopover {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverclosereasonkey?language=objc)

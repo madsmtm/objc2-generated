@@ -134,13 +134,13 @@ unsafe impl CopyingHelper for DOMCSSPrimitiveValue {
 ))]
 unsafe impl NSObjectProtocol for DOMCSSPrimitiveValue {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMCSSValue",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSPrimitiveValue {
+#[cfg(all(
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSPrimitiveValue {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(primitiveType))]
         #[unsafe(method_family = none)]
@@ -185,46 +185,46 @@ extern_methods!(
         #[unsafe(method(getRGBColorValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRGBColorValue(&self) -> Option<Retained<DOMRGBColor>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMCSSValue",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSPrimitiveValue {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSPrimitiveValue {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMCSSValue",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSPrimitiveValue {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSPrimitiveValue {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMCSSPrimitiveValueDeprecated
-    #[cfg(all(
-        feature = "DOMCSSValue",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSPrimitiveValue {
+/// DOMCSSPrimitiveValueDeprecated.
+#[cfg(all(
+    feature = "DOMCSSValue",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSPrimitiveValue {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setFloatValue::))]
         #[unsafe(method_family = none)]
@@ -234,5 +234,5 @@ extern_methods!(
         #[unsafe(method(setStringValue::))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStringValue(&self, string_type: c_ushort, string_value: Option<&NSString>);
-    }
-);
+    );
+}

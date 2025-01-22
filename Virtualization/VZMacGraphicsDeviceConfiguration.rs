@@ -30,9 +30,9 @@ unsafe impl CopyingHelper for VZMacGraphicsDeviceConfiguration {
 #[cfg(feature = "VZGraphicsDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZMacGraphicsDeviceConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZGraphicsDeviceConfiguration")]
-    unsafe impl VZMacGraphicsDeviceConfiguration {
+#[cfg(feature = "VZGraphicsDeviceConfiguration")]
+impl VZMacGraphicsDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -56,15 +56,15 @@ extern_methods!(
         #[unsafe(method(setDisplays:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplays(&self, displays: &NSArray<VZMacGraphicsDisplayConfiguration>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZGraphicsDeviceConfiguration`
-    #[cfg(feature = "VZGraphicsDeviceConfiguration")]
-    unsafe impl VZMacGraphicsDeviceConfiguration {
+/// Methods declared on superclass `VZGraphicsDeviceConfiguration`.
+#[cfg(feature = "VZGraphicsDeviceConfiguration")]
+impl VZMacGraphicsDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

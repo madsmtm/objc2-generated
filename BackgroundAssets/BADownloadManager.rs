@@ -84,8 +84,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for BADownloadManager {}
 
-extern_methods!(
-    unsafe impl BADownloadManager {
+impl BADownloadManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -228,5 +228,5 @@ extern_methods!(
             &self,
             download: &BADownload,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}

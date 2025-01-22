@@ -42,8 +42,8 @@ unsafe impl CopyingHelper for VNRequest {
 
 unsafe impl NSObjectProtocol for VNRequest {}
 
-extern_methods!(
-    unsafe impl VNRequest {
+impl VNRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -128,25 +128,25 @@ extern_methods!(
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNRequest {
+/// Methods declared on superclass `NSObject`.
+impl VNRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// A value that indicates that the request revision is either unknown or not applicable.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestrevisionunspecified?language=objc)
 pub static VNRequestRevisionUnspecified: NSUInteger = 0;
 
-extern_methods!(
-    unsafe impl VNRequest {
+impl VNRequest {
+    extern_methods!(
         #[cfg(all(feature = "VNTypes", feature = "objc2-core-ml"))]
         /// Obtain the collection of compute device per stage that are supported by the request.
         ///
@@ -199,8 +199,8 @@ extern_methods!(
             compute_device: Option<&ProtocolObject<dyn MLComputeDeviceProtocol>>,
             compute_stage: &VNComputeStage,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// A request that will process the contents of a reference image.
@@ -219,8 +219,8 @@ unsafe impl CopyingHelper for VNImageBasedRequest {
 
 unsafe impl NSObjectProtocol for VNImageBasedRequest {}
 
-extern_methods!(
-    unsafe impl VNImageBasedRequest {
+impl VNImageBasedRequest {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The region of the image in which the request will be performed.  The rectangle is normalized to the dimensions of the image being processed and has its origin specified relative to the image's lower-left corner.
         ///
@@ -235,12 +235,12 @@ extern_methods!(
         #[unsafe(method(setRegionOfInterest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRegionOfInterest(&self, region_of_interest: CGRect);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    unsafe impl VNImageBasedRequest {
+/// Methods declared on superclass `VNRequest`.
+impl VNImageBasedRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -257,17 +257,17 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNImageBasedRequest {
+/// Methods declared on superclass `NSObject`.
+impl VNImageBasedRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// A block that is executed at intervals during the processing of a request.
 ///

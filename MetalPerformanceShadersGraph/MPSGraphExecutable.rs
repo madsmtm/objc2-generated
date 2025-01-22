@@ -61,9 +61,9 @@ unsafe impl CopyingHelper for MPSGraphExecutableExecutionDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphExecutableExecutionDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphExecutableExecutionDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphExecutableExecutionDescriptor {
+    extern_methods!(
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
         /// A notification that appears when graph-executable execution is scheduled.
         ///
@@ -140,13 +140,13 @@ extern_methods!(
             execution_stage: MPSGraphExecutionStage,
             value: u64,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphExecutableExecutionDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphExecutableExecutionDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -154,8 +154,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The options available to a graph.
 ///
@@ -200,9 +200,9 @@ extern_class!(
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphExecutableSerializationDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphExecutableSerializationDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphExecutableSerializationDescriptor {
+    extern_methods!(
         /// Flag to append to an existing .mpsgraphpackage if found at provided url.
         ///
         /// If false, the exisiting .mpsgraphpackage will be overwritten.
@@ -238,13 +238,13 @@ extern_methods!(
         #[unsafe(method(setMinimumDeploymentTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumDeploymentTarget(&self, minimum_deployment_target: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphExecutableSerializationDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphExecutableSerializationDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -252,8 +252,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The compiled representation of a compute graph executable.
@@ -270,9 +270,9 @@ extern_class!(
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphExecutable {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphExecutable {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphExecutable {
+    extern_methods!(
         #[cfg(feature = "MPSGraph")]
         /// Options for the graph executable.
         ///
@@ -438,13 +438,13 @@ extern_methods!(
             core_ml_package_url: &NSURL,
             compilation_descriptor: Option<&MPSGraphCompilationDescriptor>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphExecutable {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphExecutable {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -452,5 +452,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

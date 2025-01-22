@@ -28,8 +28,8 @@ unsafe impl MutableCopyingHelper for AVMediaSelection {
 
 unsafe impl NSObjectProtocol for AVMediaSelection {}
 
-extern_methods!(
-    unsafe impl AVMediaSelection {
+impl AVMediaSelection {
+    extern_methods!(
         #[cfg(feature = "AVAsset")]
         #[unsafe(method(asset))]
         #[unsafe(method_family = none)]
@@ -64,12 +64,12 @@ extern_methods!(
             &self,
             media_selection_group: &AVMediaSelectionGroup,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMediaSelection {
+/// Methods declared on superclass `NSObject`.
+impl AVMediaSelection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -77,8 +77,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablemediaselection?language=objc)
@@ -101,8 +101,8 @@ unsafe impl MutableCopyingHelper for AVMutableMediaSelection {
 
 unsafe impl NSObjectProtocol for AVMutableMediaSelection {}
 
-extern_methods!(
-    unsafe impl AVMutableMediaSelection {
+impl AVMutableMediaSelection {
+    extern_methods!(
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Selects the media option described by the specified instance of AVMediaSelectionOption in the specified AVMediaSelectionGroup and deselects all other options in that group.
         ///
@@ -119,12 +119,12 @@ extern_methods!(
             media_selection_option: Option<&AVMediaSelectionOption>,
             media_selection_group: &AVMediaSelectionGroup,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMutableMediaSelection {
+/// Methods declared on superclass `NSObject`.
+impl AVMutableMediaSelection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -132,5 +132,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

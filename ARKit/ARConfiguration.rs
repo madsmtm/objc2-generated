@@ -202,9 +202,8 @@ unsafe impl CopyingHelper for ARConfiguration {
 unsafe impl NSObjectProtocol for ARConfiguration {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARConfiguration {
+impl ARConfiguration {
+    extern_methods!(
         /// Determines whether this device supports the ARConfiguration.
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
@@ -345,8 +344,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -376,9 +375,8 @@ unsafe impl CopyingHelper for ARWorldTrackingConfiguration {
 unsafe impl NSObjectProtocol for ARWorldTrackingConfiguration {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARWorldTrackingConfiguration {
+impl ARWorldTrackingConfiguration {
+    extern_methods!(
         /// Enable or disable continuous auto focus.
         ///
         /// Enabled by default.
@@ -591,8 +589,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -620,9 +618,8 @@ unsafe impl CopyingHelper for AROrientationTrackingConfiguration {
 unsafe impl NSObjectProtocol for AROrientationTrackingConfiguration {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl AROrientationTrackingConfiguration {
+impl AROrientationTrackingConfiguration {
+    extern_methods!(
         /// Enable or disable continuous auto focus.
         ///
         /// Enabled by default.
@@ -642,8 +639,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -673,9 +670,8 @@ unsafe impl CopyingHelper for ARFaceTrackingConfiguration {
 unsafe impl NSObjectProtocol for ARFaceTrackingConfiguration {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARFaceTrackingConfiguration {
+impl ARFaceTrackingConfiguration {
+    extern_methods!(
         /// Maximum number of faces which can be tracked simultaneously.
         #[unsafe(method(supportedNumberOfTrackedFaces))]
         #[unsafe(method_family = none)]
@@ -723,8 +719,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -752,9 +748,8 @@ unsafe impl CopyingHelper for ARImageTrackingConfiguration {
 unsafe impl NSObjectProtocol for ARImageTrackingConfiguration {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARImageTrackingConfiguration {
+impl ARImageTrackingConfiguration {
+    extern_methods!(
         /// Enable or disable continuous auto focus.
         ///
         /// Enabled by default.
@@ -803,8 +798,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -834,9 +829,8 @@ unsafe impl CopyingHelper for ARObjectScanningConfiguration {
 unsafe impl NSObjectProtocol for ARObjectScanningConfiguration {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARObjectScanningConfiguration {
+impl ARObjectScanningConfiguration {
+    extern_methods!(
         /// Enable or disable continuous auto focus.
         ///
         /// Enabled by default.
@@ -871,8 +865,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -905,9 +899,8 @@ unsafe impl CopyingHelper for ARBodyTrackingConfiguration {
 unsafe impl NSObjectProtocol for ARBodyTrackingConfiguration {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARBodyTrackingConfiguration {
+impl ARBodyTrackingConfiguration {
+    extern_methods!(
         /// Enable or disable continuous auto focus.
         ///
         /// Enabled by default.
@@ -1065,8 +1058,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -1094,9 +1087,8 @@ unsafe impl CopyingHelper for ARPositionalTrackingConfiguration {
 unsafe impl NSObjectProtocol for ARPositionalTrackingConfiguration {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARPositionalTrackingConfiguration {
+impl ARPositionalTrackingConfiguration {
+    extern_methods!(
         #[cfg(feature = "ARPlaneDetectionTypes")]
         /// Type of planes to detect in the scene.
         ///
@@ -1136,8 +1128,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -1165,9 +1157,8 @@ unsafe impl CopyingHelper for ARGeoTrackingConfiguration {
 unsafe impl NSObjectProtocol for ARGeoTrackingConfiguration {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARGeoTrackingConfiguration {
+impl ARGeoTrackingConfiguration {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(worldAlignment))]
         #[unsafe(method_family = none)]
@@ -1337,5 +1328,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

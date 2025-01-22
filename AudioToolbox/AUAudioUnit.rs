@@ -383,8 +383,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AUAudioUnit {}
 
-extern_methods!(
-    unsafe impl AUAudioUnit {
+impl AUAudioUnit {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1363,17 +1363,17 @@ extern_methods!(
             &self,
             channel_name: &NSString,
         ) -> Retained<ProtocolObject<dyn AUMessageChannel>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AUAudioUnit {
+/// Methods declared on superclass `NSObject`.
+impl AUAudioUnit {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Block to notify the client of an I/O unit that input is available.
 ///
@@ -1405,12 +1405,12 @@ pub type AUInputHandler = *mut block2::Block<
     ),
 >;
 
-extern_methods!(
-    /// AUAudioInputOutputUnit
-    /// Additional methods for audio units which can do input/output.
-    ///
-    /// These methods will fail if the audio unit is not an input/output audio unit.
-    unsafe impl AUAudioUnit {
+/// AUAudioInputOutputUnit.
+/// Additional methods for audio units which can do input/output.
+///
+/// These methods will fail if the audio unit is not an input/output audio unit.
+impl AUAudioUnit {
+    extern_methods!(
         /// Whether the I/O device can perform input.
         #[unsafe(method(canPerformInput))]
         #[unsafe(method_family = none)]
@@ -1540,8 +1540,8 @@ extern_methods!(
         #[unsafe(method(stopHardware))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopHardware(&self);
-    }
-);
+    );
+}
 
 extern_class!(
     /// Container for an audio unit's input or output busses.
@@ -1571,8 +1571,8 @@ unsafe impl NSFastEnumeration for AUAudioUnitBusArray {}
 
 unsafe impl NSObjectProtocol for AUAudioUnitBusArray {}
 
-extern_methods!(
-    unsafe impl AUAudioUnitBusArray {
+impl AUAudioUnitBusArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1649,17 +1649,17 @@ extern_methods!(
         #[unsafe(method(busType))]
         #[unsafe(method_family = none)]
         pub unsafe fn busType(&self) -> AUAudioUnitBusType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AUAudioUnitBusArray {
+/// Methods declared on superclass `NSObject`.
+impl AUAudioUnitBusArray {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An input or output connection point on an audio unit.
@@ -1672,8 +1672,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AUAudioUnitBus {}
 
-extern_methods!(
-    unsafe impl AUAudioUnitBus {
+impl AUAudioUnitBus {
+    extern_methods!(
         /// Controls the audio unit's allocation strategy for a bus.
         ///
         /// Hosts can set this flag to communicate whether an audio unit should allocate its own buffer.
@@ -1793,12 +1793,12 @@ extern_methods!(
             &self,
             context_presentation_latency: NSTimeInterval,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AUAudioUnitBus {
+/// Methods declared on superclass `NSObject`.
+impl AUAudioUnitBus {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1806,8 +1806,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A collection of parameter settings provided by the audio unit implementor, producing a
@@ -1825,8 +1825,8 @@ unsafe impl NSObjectProtocol for AUAudioUnitPreset {}
 
 unsafe impl NSSecureCoding for AUAudioUnitPreset {}
 
-extern_methods!(
-    unsafe impl AUAudioUnitPreset {
+impl AUAudioUnitPreset {
+    extern_methods!(
         /// The preset's unique numeric identifier.
         #[unsafe(method(number))]
         #[unsafe(method_family = none)]
@@ -1846,12 +1846,12 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AUAudioUnitPreset {
+/// Methods declared on superclass `NSObject`.
+impl AUAudioUnitPreset {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1859,8 +1859,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Block that hosts provide to AU message channels to be called back by the AU.
 ///

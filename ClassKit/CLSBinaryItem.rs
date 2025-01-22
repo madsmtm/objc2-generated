@@ -50,9 +50,9 @@ unsafe impl NSObjectProtocol for CLSBinaryItem {}
 #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
 unsafe impl NSSecureCoding for CLSBinaryItem {}
 
-extern_methods!(
-    #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
-    unsafe impl CLSBinaryItem {
+#[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
+impl CLSBinaryItem {
+    extern_methods!(
         /// True or false value.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
@@ -85,13 +85,13 @@ extern_methods!(
             title: &NSString,
             value_type: CLSBinaryValueType,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLSActivityItem`
-    #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
-    unsafe impl CLSBinaryItem {
+/// Methods declared on superclass `CLSActivityItem`.
+#[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
+impl CLSBinaryItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -99,5 +99,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

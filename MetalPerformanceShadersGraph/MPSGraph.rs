@@ -199,9 +199,9 @@ unsafe impl CopyingHelper for MPSGraphCompilationDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphCompilationDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphCompilationDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphCompilationDescriptor {
+    extern_methods!(
         /// Turns off type inference and relies on type inference during runtime.
         #[unsafe(method(disableTypeInference))]
         #[unsafe(method_family = none)]
@@ -272,13 +272,13 @@ extern_methods!(
         #[unsafe(method(setCallables:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCallables(&self, callables: Option<&MPSGraphCallableMap>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphCompilationDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphCompilationDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -286,8 +286,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A class that consists of all the levers  to synchronize and schedule graph execution.
@@ -302,9 +302,9 @@ extern_class!(
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphExecutionDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphExecutionDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphExecutionDescriptor {
+    extern_methods!(
         #[cfg(all(
             feature = "MPSGraphTensor",
             feature = "MPSGraphTensorData",
@@ -405,13 +405,13 @@ extern_methods!(
             execution_stage: MPSGraphExecutionStage,
             value: u64,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphExecutionDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphExecutionDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -419,8 +419,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The optimized representation of a compute graph of operations and tensors.
@@ -437,9 +437,9 @@ extern_class!(
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraph {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraph {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraph {
+    extern_methods!(
         /// Options for the graph.
         ///
         /// The default value is `MPSGraphOptionsDefault`.
@@ -700,5 +700,5 @@ extern_methods!(
             results_dictionary: &MPSGraphTensorDataDictionary,
             execution_descriptor: Option<&MPSGraphExecutionDescriptor>,
         );
-    }
-);
+    );
+}

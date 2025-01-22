@@ -27,9 +27,9 @@ unsafe impl NSObjectProtocol for MXCrashDiagnostic {}
 #[cfg(feature = "MXDiagnostic")]
 unsafe impl NSSecureCoding for MXCrashDiagnostic {}
 
-extern_methods!(
-    #[cfg(feature = "MXDiagnostic")]
-    unsafe impl MXCrashDiagnostic {
+#[cfg(feature = "MXDiagnostic")]
+impl MXCrashDiagnostic {
+    extern_methods!(
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with this crash.
         ///
@@ -83,13 +83,13 @@ extern_methods!(
         pub unsafe fn exceptionReason(
             &self,
         ) -> Option<Retained<MXCrashDiagnosticObjectiveCExceptionReason>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXDiagnostic")]
-    unsafe impl MXCrashDiagnostic {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXDiagnostic")]
+impl MXCrashDiagnostic {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -97,5 +97,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

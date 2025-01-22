@@ -249,8 +249,8 @@ unsafe impl CopyingHelper for NSPrintInfo {
 
 unsafe impl NSObjectProtocol for NSPrintInfo {}
 
-extern_methods!(
-    unsafe impl NSPrintInfo {
+impl NSPrintInfo {
+    extern_methods!(
         #[unsafe(method(sharedPrintInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedPrintInfo() -> Retained<NSPrintInfo>;
@@ -480,21 +480,21 @@ extern_methods!(
         #[unsafe(method(takeSettingsFromPDFInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeSettingsFromPDFInfo(&self, in_pdf_info: &NSPDFInfo);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPrintInfo {
+/// Methods declared on superclass `NSObject`.
+impl NSPrintInfo {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSPrintInfo {
+/// NSDeprecated.
+impl NSPrintInfo {
+    extern_methods!(
         #[cfg(feature = "NSPrinter")]
         #[deprecated = "NSPrintInfo's implementation has no effect"]
         #[unsafe(method(setDefaultPrinter:))]
@@ -506,8 +506,8 @@ extern_methods!(
         #[unsafe(method(sizeForPaperName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeForPaperName(name: Option<&NSPrinterPaperName>) -> NSSize;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintformname?language=objc)

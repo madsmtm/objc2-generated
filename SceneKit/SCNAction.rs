@@ -97,8 +97,8 @@ unsafe impl NSObjectProtocol for SCNAction {}
 
 unsafe impl NSSecureCoding for SCNAction {}
 
-extern_methods!(
-    unsafe impl SCNAction {
+impl SCNAction {
+    extern_methods!(
         /// This is the expected duration of an action’s animation. The actual time an action takes to complete is modified by the speed property of the action.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
@@ -343,12 +343,12 @@ extern_methods!(
             source: &SCNAudioSource,
             wait: bool,
         ) -> Retained<SCNAction>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNAction {
+/// Methods declared on superclass `NSObject`.
+impl SCNAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -356,5 +356,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

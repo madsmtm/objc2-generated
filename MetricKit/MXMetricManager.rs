@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MXMetricManager {}
 
-extern_methods!(
-    unsafe impl MXMetricManager {
+impl MXMetricManager {
+    extern_methods!(
         #[cfg(feature = "MXMetricPayload")]
         /// A list of past metric payloads received.
         #[unsafe(method(pastPayloads))]
@@ -66,12 +66,12 @@ extern_methods!(
             &self,
             subscriber: &ProtocolObject<dyn MXMetricManagerSubscriber>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MXMetricManager {
+/// Methods declared on superclass `NSObject`.
+impl MXMetricManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,8 +79,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A protocol that allows the conforming object to receive metric payloads from the metric manager.

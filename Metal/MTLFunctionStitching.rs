@@ -60,13 +60,13 @@ unsafe impl MTLFunctionStitchingAttribute for MTLFunctionStitchingAttributeAlway
 
 unsafe impl NSObjectProtocol for MTLFunctionStitchingAttributeAlwaysInline {}
 
-extern_methods!(
-    unsafe impl MTLFunctionStitchingAttributeAlwaysInline {}
-);
+impl MTLFunctionStitchingAttributeAlwaysInline {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLFunctionStitchingAttributeAlwaysInline {
+/// Methods declared on superclass `NSObject`.
+impl MTLFunctionStitchingAttributeAlwaysInline {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -74,8 +74,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A node used in a graph for stitching.
@@ -103,8 +103,8 @@ unsafe impl CopyingHelper for MTLFunctionStitchingInputNode {
 
 unsafe impl NSObjectProtocol for MTLFunctionStitchingInputNode {}
 
-extern_methods!(
-    unsafe impl MTLFunctionStitchingInputNode {
+impl MTLFunctionStitchingInputNode {
+    extern_methods!(
         #[unsafe(method(argumentIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn argumentIndex(&self) -> NSUInteger;
@@ -120,12 +120,12 @@ extern_methods!(
             this: Allocated<Self>,
             argument: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLFunctionStitchingInputNode {
+/// Methods declared on superclass `NSObject`.
+impl MTLFunctionStitchingInputNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -133,8 +133,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A function node that calls the specified function with arguments and ordering determined by data and control dependencies.
@@ -155,8 +155,8 @@ unsafe impl CopyingHelper for MTLFunctionStitchingFunctionNode {
 
 unsafe impl NSObjectProtocol for MTLFunctionStitchingFunctionNode {}
 
-extern_methods!(
-    unsafe impl MTLFunctionStitchingFunctionNode {
+impl MTLFunctionStitchingFunctionNode {
+    extern_methods!(
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -202,12 +202,12 @@ extern_methods!(
             arguments: &NSArray<ProtocolObject<dyn MTLFunctionStitchingNode>>,
             control_dependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLFunctionStitchingFunctionNode {
+/// Methods declared on superclass `NSObject`.
+impl MTLFunctionStitchingFunctionNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -215,8 +215,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A function graph that describes a directed acyclic graph.
@@ -237,8 +237,8 @@ unsafe impl CopyingHelper for MTLFunctionStitchingGraph {
 
 unsafe impl NSObjectProtocol for MTLFunctionStitchingGraph {}
 
-extern_methods!(
-    unsafe impl MTLFunctionStitchingGraph {
+impl MTLFunctionStitchingGraph {
+    extern_methods!(
         #[unsafe(method(functionName))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionName(&self) -> Retained<NSString>;
@@ -289,12 +289,12 @@ extern_methods!(
             output_node: Option<&MTLFunctionStitchingFunctionNode>,
             attributes: &NSArray<ProtocolObject<dyn MTLFunctionStitchingAttribute>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLFunctionStitchingGraph {
+/// Methods declared on superclass `NSObject`.
+impl MTLFunctionStitchingGraph {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -302,8 +302,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A container for the graphs and functions needed to create the stitched functions described by the graphs.
@@ -322,8 +322,8 @@ unsafe impl CopyingHelper for MTLStitchedLibraryDescriptor {
 
 unsafe impl NSObjectProtocol for MTLStitchedLibraryDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLStitchedLibraryDescriptor {
+impl MTLStitchedLibraryDescriptor {
+    extern_methods!(
         #[unsafe(method(functionGraphs))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionGraphs(&self) -> Retained<NSArray<MTLFunctionStitchingGraph>>;
@@ -375,12 +375,12 @@ extern_methods!(
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptions(&self, options: MTLStitchedLibraryOptions);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLStitchedLibraryDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLStitchedLibraryDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -388,5 +388,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

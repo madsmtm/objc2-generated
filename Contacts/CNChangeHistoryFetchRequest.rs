@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for CNChangeHistoryFetchRequest {}
 #[cfg(feature = "CNFetchRequest")]
 unsafe impl NSSecureCoding for CNChangeHistoryFetchRequest {}
 
-extern_methods!(
-    #[cfg(feature = "CNFetchRequest")]
-    unsafe impl CNChangeHistoryFetchRequest {
+#[cfg(feature = "CNFetchRequest")]
+impl CNChangeHistoryFetchRequest {
+    extern_methods!(
         /// Request changes made after a certain point.
         ///
         ///
@@ -141,13 +141,13 @@ extern_methods!(
             &self,
             excluded_transaction_authors: Option<&NSArray<NSString>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CNFetchRequest")]
-    unsafe impl CNChangeHistoryFetchRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CNFetchRequest")]
+impl CNChangeHistoryFetchRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -155,5 +155,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for CKLocationSortDescriptor {}
 
 unsafe impl NSSecureCoding for CKLocationSortDescriptor {}
 
-extern_methods!(
-    unsafe impl CKLocationSortDescriptor {
+impl CKLocationSortDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -54,12 +54,12 @@ extern_methods!(
         #[unsafe(method(relativeLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn relativeLocation(&self) -> Retained<CLLocation>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSSortDescriptor`
-    unsafe impl CKLocationSortDescriptor {
+/// Methods declared on superclass `NSSortDescriptor`.
+impl CKLocationSortDescriptor {
+    extern_methods!(
         #[unsafe(method(sortDescriptorWithKey:ascending:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorWithKey_ascending(
@@ -108,5 +108,5 @@ extern_methods!(
             ascending: bool,
             cmptr: NSComparator,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

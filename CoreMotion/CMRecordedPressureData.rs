@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for CMRecordedPressureData {}
 #[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]
 unsafe impl NSSecureCoding for CMRecordedPressureData {}
 
-extern_methods!(
-    #[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]
-    unsafe impl CMRecordedPressureData {
+#[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]
+impl CMRecordedPressureData {
+    extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> u64;
@@ -41,13 +41,13 @@ extern_methods!(
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]
-    unsafe impl CMRecordedPressureData {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]
+impl CMRecordedPressureData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

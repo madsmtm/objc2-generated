@@ -59,8 +59,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LARight {}
 
-extern_methods!(
-    unsafe impl LARight {
+impl LARight {
+    extern_methods!(
         /// Provides the current authorization state of the
         /// `LARight`instance
         #[unsafe(method(state))]
@@ -134,14 +134,14 @@ extern_methods!(
         #[unsafe(method(deauthorizeWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deauthorizeWithCompletion(&self, handler: &block2::Block<dyn Fn()>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl LARight {
+/// Methods declared on superclass `NSObject`.
+impl LARight {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

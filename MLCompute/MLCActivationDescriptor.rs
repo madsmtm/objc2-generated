@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for MLCActivationDescriptor {
 
 unsafe impl NSObjectProtocol for MLCActivationDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCActivationDescriptor {
+impl MLCActivationDescriptor {
+    extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// The type of activation function
         #[deprecated]
@@ -131,5 +131,5 @@ extern_methods!(
             b: c_float,
             c: c_float,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}

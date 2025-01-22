@@ -45,9 +45,9 @@ extern_class!(
 #[cfg(feature = "UITab")]
 unsafe impl NSObjectProtocol for UITabGroup {}
 
-extern_methods!(
-    #[cfg(feature = "UITab")]
-    unsafe impl UITabGroup {
+#[cfg(feature = "UITab")]
+impl UITabGroup {
+    extern_methods!(
         /// The currently selected tab. The tab must be part of `children`.
         #[unsafe(method(selectedChild))]
         #[unsafe(method_family = none)]
@@ -196,13 +196,13 @@ extern_methods!(
                 &block2::Block<dyn Fn(NonNull<UITab>) -> NonNull<UIViewController>>,
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UITab`
-    #[cfg(feature = "UITab")]
-    unsafe impl UITabGroup {
+/// Methods declared on superclass `UITab`.
+#[cfg(feature = "UITab")]
+impl UITabGroup {
+    extern_methods!(
         #[cfg(all(
             feature = "UIImage",
             feature = "UIResponder",
@@ -231,5 +231,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

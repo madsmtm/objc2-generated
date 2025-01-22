@@ -468,9 +468,9 @@ unsafe impl NSObjectProtocol for NSApplication {}
 #[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceValidation"))]
 unsafe impl NSUserInterfaceValidations for NSApplication {}
 
-extern_methods!(
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(sharedApplication))]
         #[unsafe(method_family = none)]
         pub fn sharedApplication(mtm: MainThreadMarker) -> Retained<NSApplication>;
@@ -794,13 +794,13 @@ extern_methods!(
         #[unsafe(method(isProtectedDataAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isProtectedDataAvailable(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -811,23 +811,23 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSAppearanceCustomization
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSAppearanceCustomization.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[cfg(feature = "NSAppearance")]
         #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]
@@ -843,16 +843,16 @@ extern_methods!(
         #[unsafe(method(effectiveAppearance))]
         #[unsafe(method_family = none)]
         pub fn effectiveAppearance(&self) -> Retained<NSAppearance>;
-    }
-);
+    );
+}
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder"))]
 unsafe impl NSAppearanceCustomization for NSApplication {}
 
-extern_methods!(
-    /// NSEvent
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSEvent.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(sendEvent:))]
         #[unsafe(method_family = none)]
@@ -887,13 +887,13 @@ extern_methods!(
             mask: NSEventMask,
             last_event: Option<&NSEvent>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSResponder
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSResponder.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(sendAction:to:from:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendAction_to_from(
@@ -928,13 +928,13 @@ extern_methods!(
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
         ) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSWindowsMenu
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSWindowsMenu.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(windowsMenu))]
         #[unsafe(method_family = none)]
@@ -983,21 +983,21 @@ extern_methods!(
         #[unsafe(method(miniaturizeAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn miniaturizeAll(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSFullKeyboardAccess
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSFullKeyboardAccess.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         /// A Boolean value indicating whether keyboard navigation is enabled in System Settings > Keyboard.
         /// - Note: The value of this property is `YES` if keyboard navigation is enabled or `NO` if it’s not. You might use this value to implement your own key loop or to implement in-control tabbing behavior similar to `NSTableView`. Because of the nature of the preference storage, you won’t be notified of changes to this property if you attempt to observe it through key-value observing; however, accessing this property is fairly inexpensive, so you can access it directly rather than caching it.
         /// - Note: This property’s value isn’t necessarily reflective of the separate accessibility setting named “Full Keyboard Access” in System Settings > Accessibility > Keyboard.
         #[unsafe(method(isFullKeyboardAccessEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFullKeyboardAccessEnabled(&self) -> bool;
-    }
-);
+    );
+}
 
 /// Return values for `-applicationShouldTerminate:`.
 ///
@@ -1454,10 +1454,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSServicesMenu
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSServicesMenu.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(servicesMenu))]
         #[unsafe(method_family = none)]
@@ -1477,8 +1477,8 @@ extern_methods!(
             send_types: &NSArray<NSPasteboardType>,
             return_types: &NSArray<NSPasteboardType>,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsservicesmenurequestor?language=objc)
@@ -1501,10 +1501,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSServicesHandling
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSServicesHandling.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(servicesProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn servicesProvider(&self) -> Option<Retained<AnyObject>>;
@@ -1513,8 +1513,8 @@ extern_methods!(
         #[unsafe(method(setServicesProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServicesProvider(&self, services_provider: Option<&AnyObject>);
-    }
-);
+    );
+}
 
 /// Optional keys in `-orderFrontStandardAboutPanelWithOptions:`
 /// `optionsDictionary.`
@@ -1560,10 +1560,10 @@ extern "C" {
     pub static NSAboutPanelOptionApplicationVersion: &'static NSAboutPanelOptionKey;
 }
 
-extern_methods!(
-    /// NSStandardAboutPanel
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSStandardAboutPanel.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(orderFrontStandardAboutPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontStandardAboutPanel(&self, sender: Option<&AnyObject>);
@@ -1574,24 +1574,24 @@ extern_methods!(
             &self,
             options_dictionary: &NSDictionary<NSAboutPanelOptionKey, AnyObject>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSApplicationLayoutDirection
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSApplicationLayoutDirection.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[cfg(feature = "NSUserInterfaceLayout")]
         #[unsafe(method(userInterfaceLayoutDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSRestorableUserInterface
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSRestorableUserInterface.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         /// Disable or reenable relaunching this app on login, if the app was running at the time the user logged out.  These methods increment and decrement a counter respectively; if the counter is 0 at the time the user logs out, then the app may be relaunched when the user logs back in.  The counter is initially zero, so by default apps are relaunched.
         ///
         /// If your app should not be relaunched because it launches via some other mechanism (e.g. launchd), then the recommended usage is to call `-[NSApp disableRelaunchOnLogin]` once, and never pair it with an -enable call.
@@ -1606,8 +1606,8 @@ extern_methods!(
         #[unsafe(method(enableRelaunchOnLogin))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableRelaunchOnLogin(&self);
-    }
-);
+    );
+}
 
 /// Soft deprecated.
 /// Please use `NSApplication`'s `-registerForRemoteNotifications` along with `-requestAuthorizationWithOptions:` from the `UserNotifications.framework` to specify allowable notification types.
@@ -1638,10 +1638,10 @@ unsafe impl RefEncode for NSRemoteNotificationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSRemoteNotifications
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSRemoteNotifications.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(registerForRemoteNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForRemoteNotifications(&self);
@@ -1664,8 +1664,8 @@ extern_methods!(
         #[unsafe(method(enabledRemoteNotificationTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabledRemoteNotificationTypes(&self) -> NSRemoteNotificationType;
-    }
-);
+    );
+}
 
 extern "C-unwind" {
     /// An Application's startup function.
@@ -1854,10 +1854,10 @@ pub const NSRunAbortedResponse: c_int = -1001;
 #[deprecated = "Use NSModalResponseContinue instead"]
 pub const NSRunContinuesResponse: c_int = -1002;
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSApplication {
+/// NSDeprecated.
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
+    extern_methods!(
         #[cfg(feature = "NSWindow")]
         /// `-runModalForWindow:relativeToWindow:` was deprecated in Mac OS X 10.0. Please use `-[NSWindow beginSheet:completionHandler:]` instead.
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
@@ -1933,5 +1933,5 @@ extern_methods!(
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;
-    }
-);
+    );
+}

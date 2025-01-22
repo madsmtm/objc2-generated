@@ -26,19 +26,19 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CXCallObserver {}
 
-extern_methods!(
-    unsafe impl CXCallObserver {
+impl CXCallObserver {
+    extern_methods!(
         #[cfg(feature = "CXCall")]
         /// Retrieve the current call list, blocking on initial state retrieval if necessary
         #[unsafe(method(calls))]
         #[unsafe(method_family = none)]
         pub unsafe fn calls(&self) -> Retained<NSArray<CXCall>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CXCallObserver {
+/// Methods declared on superclass `NSObject`.
+impl CXCallObserver {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -46,5 +46,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

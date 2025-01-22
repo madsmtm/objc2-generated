@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXAppLaunchMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXAppLaunchMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXAppLaunchMetric {
+#[cfg(feature = "MXMetric")]
+impl MXAppLaunchMetric {
+    extern_methods!(
         #[cfg(feature = "MXHistogram")]
         /// Histogrammed application time-to-first-draw data.
         ///
@@ -71,13 +71,13 @@ extern_methods!(
         #[unsafe(method(histogrammedExtendedLaunch))]
         #[unsafe(method_family = none)]
         pub unsafe fn histogrammedExtendedLaunch(&self) -> Retained<MXHistogram<NSUnitDuration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXAppLaunchMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXAppLaunchMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -85,5 +85,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

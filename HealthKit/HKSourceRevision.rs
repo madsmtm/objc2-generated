@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for HKSourceRevision {}
 
 unsafe impl NSSecureCoding for HKSourceRevision {}
 
-extern_methods!(
-    unsafe impl HKSourceRevision {
+impl HKSourceRevision {
+    extern_methods!(
         #[cfg(feature = "HKSource")]
         /// The HKSource of the receiver.
         #[unsafe(method(source))]
@@ -87,17 +87,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKSourceRevision {
+/// Methods declared on superclass `NSObject`.
+impl HKSourceRevision {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevisionanyversion?language=objc)

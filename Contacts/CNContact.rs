@@ -97,8 +97,8 @@ unsafe impl NSObjectProtocol for CNContact {}
 
 unsafe impl NSSecureCoding for CNContact {}
 
-extern_methods!(
-    unsafe impl CNContact {
+impl CNContact {
+    extern_methods!(
         /// The identifier is unique among contacts on the device. It can be saved and used for fetching contacts next application launch.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -271,12 +271,12 @@ extern_methods!(
             &self,
             contact_identifier: &NSString,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNContact {
+/// Methods declared on superclass `NSObject`.
+impl CNContact {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -284,8 +284,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactpropertynotfetchedexceptionname?language=objc)

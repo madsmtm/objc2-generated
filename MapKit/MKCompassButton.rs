@@ -51,10 +51,10 @@ unsafe impl NSObjectProtocol for MKCompassButton {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for MKCompassButton {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKCompassButton {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl MKCompassButton {
+    extern_methods!(
         #[cfg(feature = "MKMapView")]
         #[unsafe(method(compassButtonWithMapView:))]
         #[unsafe(method_family = none)]
@@ -85,14 +85,14 @@ extern_methods!(
         #[unsafe(method(setCompassVisibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompassVisibility(&self, compass_visibility: MKFeatureVisibility);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKCompassButton {
+/// Methods declared on superclass `NSView`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl MKCompassButton {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -103,27 +103,27 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKCompassButton {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl MKCompassButton {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKCompassButton {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl MKCompassButton {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

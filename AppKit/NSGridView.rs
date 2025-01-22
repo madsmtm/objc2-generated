@@ -115,9 +115,9 @@ unsafe impl NSObjectProtocol for NSGridView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSGridView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSGridView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSGridView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -276,28 +276,28 @@ extern_methods!(
             h_range: NSRange,
             v_range: NSRange,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSGridView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSGridView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSGridView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSGridView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow?language=objc)
@@ -311,8 +311,8 @@ unsafe impl NSCoding for NSGridRow {}
 
 unsafe impl NSObjectProtocol for NSGridRow {}
 
-extern_methods!(
-    unsafe impl NSGridRow {
+impl NSGridRow {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(gridView))]
         #[unsafe(method_family = none)]
@@ -389,12 +389,12 @@ extern_methods!(
         #[unsafe(method(mergeCellsInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mergeCellsInRange(&self, range: NSRange);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSGridRow {
+/// Methods declared on superclass `NSObject`.
+impl NSGridRow {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -402,8 +402,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcolumn?language=objc)
@@ -417,8 +417,8 @@ unsafe impl NSCoding for NSGridColumn {}
 
 unsafe impl NSObjectProtocol for NSGridColumn {}
 
-extern_methods!(
-    unsafe impl NSGridColumn {
+impl NSGridColumn {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(gridView))]
         #[unsafe(method_family = none)]
@@ -486,12 +486,12 @@ extern_methods!(
         #[unsafe(method(mergeCellsInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mergeCellsInRange(&self, range: NSRange);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSGridColumn {
+/// Methods declared on superclass `NSObject`.
+impl NSGridColumn {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -499,8 +499,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell?language=objc)
@@ -514,8 +514,8 @@ unsafe impl NSCoding for NSGridCell {}
 
 unsafe impl NSObjectProtocol for NSGridCell {}
 
-extern_methods!(
-    unsafe impl NSGridCell {
+impl NSGridCell {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
@@ -580,12 +580,12 @@ extern_methods!(
             &self,
             custom_placement_constraints: &NSArray<NSLayoutConstraint>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSGridCell {
+/// Methods declared on superclass `NSObject`.
+impl NSGridCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -593,5 +593,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

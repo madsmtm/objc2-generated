@@ -99,13 +99,13 @@ unsafe impl NSObjectProtocol for NSTokenFieldCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSTokenFieldCell {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSTokenFieldCell {
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSTokenFieldCell {
+    extern_methods!(
         #[unsafe(method(tokenStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenStyle(&self) -> NSTokenStyle;
@@ -160,17 +160,17 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn NSTokenFieldCellDelegate>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSTokenFieldCell {
+/// Methods declared on superclass `NSTextFieldCell`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSTokenFieldCell {
+    extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
@@ -186,36 +186,36 @@ extern_methods!(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSTokenFieldCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSTokenFieldCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSTokenFieldCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSTokenFieldCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfieldcelldelegate?language=objc)

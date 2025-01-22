@@ -22,8 +22,8 @@ unsafe impl Sync for ASWebAuthenticationSessionCallback {}
 
 unsafe impl NSObjectProtocol for ASWebAuthenticationSessionCallback {}
 
-extern_methods!(
-    unsafe impl ASWebAuthenticationSessionCallback {
+impl ASWebAuthenticationSessionCallback {
+    extern_methods!(
         /// Creates a callback object that matches against URLs with the given custom scheme.
         ///
         /// Parameter `customScheme`: The custom scheme that the app expects in the callback URL.
@@ -59,5 +59,5 @@ extern_methods!(
         #[unsafe(method(matchesURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchesURL(&self, url: &NSURL) -> bool;
-    }
-);
+    );
+}

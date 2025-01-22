@@ -38,8 +38,8 @@ unsafe impl NSObjectProtocol for NSFontAssetRequest {}
 
 unsafe impl NSProgressReporting for NSFontAssetRequest {}
 
-extern_methods!(
-    unsafe impl NSFontAssetRequest {
+impl NSFontAssetRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -69,14 +69,14 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError) -> Bool>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFontAssetRequest {
+/// Methods declared on superclass `NSObject`.
+impl NSFontAssetRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

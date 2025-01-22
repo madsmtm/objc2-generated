@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for MLCConvolutionDescriptor {
 
 unsafe impl NSObjectProtocol for MLCConvolutionDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCConvolutionDescriptor {
+impl MLCConvolutionDescriptor {
+    extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// The type of convolution.
         #[deprecated]
@@ -403,12 +403,12 @@ extern_methods!(
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLCConvolutionDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MLCConvolutionDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -416,5 +416,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

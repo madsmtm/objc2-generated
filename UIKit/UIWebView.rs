@@ -148,9 +148,9 @@ unsafe impl UIScrollViewDelegate for UIWebView {}
 ))]
 unsafe impl UITraitEnvironment for UIWebView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIWebView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIWebView {
+    extern_methods!(
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -390,13 +390,13 @@ extern_methods!(
         #[unsafe(method(setAllowsLinkPreview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsLinkPreview(&self, allows_link_preview: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIWebView {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIWebView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -408,13 +408,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIWebView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIWebView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -422,8 +422,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebviewdelegate?language=objc)

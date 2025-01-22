@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptionFormatConformer {}
 
-extern_methods!(
-    unsafe impl AVCaptionFormatConformer {
+impl AVCaptionFormatConformer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -85,5 +85,5 @@ extern_methods!(
             &self,
             caption: &AVCaption,
         ) -> Result<Retained<AVCaption>, Retained<NSError>>;
-    }
-);
+    );
+}

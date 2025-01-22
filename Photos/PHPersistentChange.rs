@@ -19,8 +19,8 @@ unsafe impl Sync for PHPersistentChange {}
 
 unsafe impl NSObjectProtocol for PHPersistentChange {}
 
-extern_methods!(
-    unsafe impl PHPersistentChange {
+impl PHPersistentChange {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -41,5 +41,5 @@ extern_methods!(
             &self,
             object_type: PHObjectType,
         ) -> Result<Retained<PHPersistentObjectChangeDetails>, Retained<NSError>>;
-    }
-);
+    );
+}

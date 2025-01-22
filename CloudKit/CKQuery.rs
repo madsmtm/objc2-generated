@@ -42,8 +42,8 @@ unsafe impl NSObjectProtocol for CKQuery {}
 
 unsafe impl NSSecureCoding for CKQuery {}
 
-extern_methods!(
-    unsafe impl CKQuery {
+impl CKQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -92,5 +92,5 @@ extern_methods!(
             &self,
             sort_descriptors: Option<&NSArray<NSSortDescriptor>>,
         );
-    }
-);
+    );
+}

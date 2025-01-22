@@ -21,9 +21,9 @@ unsafe impl NSCoding for NSDistantObject {}
 #[cfg(feature = "NSProxy")]
 unsafe impl NSObjectProtocol for NSDistantObject {}
 
-extern_methods!(
-    #[cfg(feature = "NSProxy")]
-    unsafe impl NSDistantObject {
+#[cfg(feature = "NSProxy")]
+impl NSDistantObject {
+    extern_methods!(
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(proxyWithTarget:connection:))]
@@ -81,5 +81,5 @@ extern_methods!(
         #[unsafe(method(connectionForProxy))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionForProxy(&self) -> Retained<NSConnection>;
-    }
-);
+    );
+}

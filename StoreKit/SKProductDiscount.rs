@@ -69,8 +69,8 @@ unsafe impl Sync for SKProductDiscount {}
 
 unsafe impl NSObjectProtocol for SKProductDiscount {}
 
-extern_methods!(
-    unsafe impl SKProductDiscount {
+impl SKProductDiscount {
+    extern_methods!(
         #[deprecated = "Use Product.SubscriptionOffer.displayPrice"]
         #[unsafe(method(price))]
         #[unsafe(method_family = none)]
@@ -106,12 +106,12 @@ extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> SKProductDiscountType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKProductDiscount {
+/// Methods declared on superclass `NSObject`.
+impl SKProductDiscount {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -119,5 +119,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

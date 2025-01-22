@@ -77,8 +77,8 @@ unsafe impl NSObjectProtocol for SCNScene {}
 
 unsafe impl NSSecureCoding for SCNScene {}
 
-extern_methods!(
-    unsafe impl SCNScene {
+impl SCNScene {
+    extern_methods!(
         #[unsafe(method(scene))]
         #[unsafe(method_family = none)]
         pub unsafe fn scene() -> Retained<Self>;
@@ -337,12 +337,12 @@ extern_methods!(
         #[unsafe(method(setPaused:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaused(&self, paused: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNScene {
+/// Methods declared on superclass `NSObject`.
+impl SCNScene {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -350,8 +350,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneexportdelegate?language=objc)

@@ -115,8 +115,8 @@ unsafe impl CopyingHelper for AVPlayerItem {
 
 unsafe impl NSObjectProtocol for AVPlayerItem {}
 
-extern_methods!(
-    unsafe impl AVPlayerItem {
+impl AVPlayerItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -247,12 +247,12 @@ extern_methods!(
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemInspection
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemInspection.
+impl AVPlayerItem {
+    extern_methods!(
         #[cfg(feature = "AVAsset")]
         /// Accessor for underlying AVAsset.
         #[unsafe(method(asset))]
@@ -322,12 +322,12 @@ extern_methods!(
         #[unsafe(method(automaticallyLoadedAssetKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyLoadedAssetKeys(&self) -> Retained<NSArray<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemRateAndSteppingSupport
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemRateAndSteppingSupport.
+impl AVPlayerItem {
+    extern_methods!(
         #[unsafe(method(canPlayFastForward))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPlayFastForward(&self) -> bool;
@@ -401,12 +401,12 @@ extern_methods!(
             &self,
             automatically_preserves_time_offset_from_live: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemTimeControl
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemTimeControl.
+impl AVPlayerItem {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Returns the current time of the item.
         ///
@@ -572,12 +572,12 @@ extern_methods!(
         #[unsafe(method(timebase))]
         #[unsafe(method_family = none)]
         pub unsafe fn timebase(&self) -> Option<Retained<CMTimebase>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemVisualPresentation
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemVisualPresentation.
+impl AVPlayerItem {
+    extern_methods!(
         #[cfg(feature = "AVVideoComposition")]
         /// Indicates the video composition settings to be applied during playback.
         ///
@@ -674,12 +674,12 @@ extern_methods!(
             &self,
             applies_per_frame_hdr_display_metadata: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemAudioProcessing
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemAudioProcessing.
+impl AVPlayerItem {
+    extern_methods!(
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Indicates the processing algorithm used to manage audio pitch at varying rates and for scaled audio edits.
         ///
@@ -743,12 +743,12 @@ extern_methods!(
         #[unsafe(method(setAudioMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioMix(&self, audio_mix: Option<&AVAudioMix>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemPlayability
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemPlayability.
+impl AVPlayerItem {
+    extern_methods!(
         /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
@@ -814,8 +814,8 @@ extern_methods!(
             &self,
             preferred_forward_buffer_duration: NSTimeInterval,
         );
-    }
-);
+    );
+}
 
 /// These constants can be used in any combination as the value of variantPreferences.
 ///
@@ -846,9 +846,9 @@ unsafe impl RefEncode for AVVariantPreferences {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVPlayerItemVariantControl
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemVariantControl.
+impl AVPlayerItem {
+    extern_methods!(
         /// Indicates the desired limit of network bandwidth consumption for this item.
         ///
         ///
@@ -959,12 +959,12 @@ extern_methods!(
         #[unsafe(method(setVariantPreferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariantPreferences(&self, variant_preferences: AVVariantPreferences);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemMediaSelection
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemMediaSelection.
+impl AVPlayerItem {
+    extern_methods!(
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Selects the media option described by the specified instance of AVMediaSelectionOption in the specified AVMediaSelectionGroup and deselects all other options in that group.
         ///
@@ -1006,12 +1006,12 @@ extern_methods!(
         #[unsafe(method(currentMediaSelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentMediaSelection(&self) -> Retained<AVMediaSelection>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemLogging
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemLogging.
+impl AVPlayerItem {
+    extern_methods!(
         /// Returns an object that represents a snapshot of the network access log. Can be nil.
         ///
         /// An AVPlayerItemAccessLog provides methods to retrieve the network access log in a format suitable for serialization.
@@ -1032,12 +1032,12 @@ extern_methods!(
         #[unsafe(method(errorLog))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorLog(&self) -> Option<Retained<AVPlayerItemErrorLog>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemOutputs
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemOutputs.
+impl AVPlayerItem {
+    extern_methods!(
         #[cfg(feature = "AVPlayerItemOutput")]
         /// Adds the specified instance of AVPlayerItemOutput to the receiver's collection of outputs.
         ///
@@ -1063,12 +1063,12 @@ extern_methods!(
         #[unsafe(method(outputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVPlayerItemOutput>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemMediaDataCollectors
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemMediaDataCollectors.
+impl AVPlayerItem {
+    extern_methods!(
         #[cfg(feature = "AVPlayerItemMediaDataCollector")]
         /// Adds the specified instance of AVPlayerItemMediaDataCollector to the receiver's collection of mediaDataCollectors.
         ///
@@ -1094,12 +1094,12 @@ extern_methods!(
         pub unsafe fn mediaDataCollectors(
             &self,
         ) -> Retained<NSArray<AVPlayerItemMediaDataCollector>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVPlayerItemDeprecated
-    unsafe impl AVPlayerItem {
+/// AVPlayerItemDeprecated.
+impl AVPlayerItem {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Moves the playback cursor.
         ///
@@ -1164,8 +1164,8 @@ extern_methods!(
             &self,
             media_selection_group: &AVMediaSelectionGroup,
         ) -> Option<Retained<AVMediaSelectionOption>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVPlayerItemAccessLog provides methods to retrieve the access log in a format suitable for serialization.
@@ -1194,8 +1194,8 @@ unsafe impl CopyingHelper for AVPlayerItemAccessLog {
 
 unsafe impl NSObjectProtocol for AVPlayerItemAccessLog {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemAccessLog {
+impl AVPlayerItemAccessLog {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1231,8 +1231,8 @@ extern_methods!(
         #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemAccessLogEvent>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVPlayerItemErrorLog provides methods to retrieve the error log in a format suitable for serialization.
@@ -1259,8 +1259,8 @@ unsafe impl CopyingHelper for AVPlayerItemErrorLog {
 
 unsafe impl NSObjectProtocol for AVPlayerItemErrorLog {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemErrorLog {
+impl AVPlayerItemErrorLog {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1296,8 +1296,8 @@ extern_methods!(
         #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemErrorLogEvent>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVPlayerItemAccessLogEvent represents a single log entry.
@@ -1325,8 +1325,8 @@ unsafe impl CopyingHelper for AVPlayerItemAccessLogEvent {
 
 unsafe impl NSObjectProtocol for AVPlayerItemAccessLogEvent {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemAccessLogEvent {
+impl AVPlayerItemAccessLogEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1556,8 +1556,8 @@ extern_methods!(
         #[unsafe(method(switchBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn switchBitrate(&self) -> c_double;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVPlayerItemErrorLogEvent represents a single log entry.
@@ -1585,8 +1585,8 @@ unsafe impl CopyingHelper for AVPlayerItemErrorLogEvent {
 
 unsafe impl NSObjectProtocol for AVPlayerItemErrorLogEvent {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemErrorLogEvent {
+impl AVPlayerItemErrorLogEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1656,13 +1656,13 @@ extern_methods!(
         pub unsafe fn allHTTPResponseHeaderFields(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMetricEventStreamPublisher
-    unsafe impl AVPlayerItem {}
-);
+/// AVMetricEventStreamPublisher.
+impl AVPlayerItem {
+    extern_methods!();
+}
 
 #[cfg(feature = "AVMetrics")]
 unsafe impl AVMetricEventStreamPublisher for AVPlayerItem {}

@@ -44,9 +44,9 @@ unsafe impl CopyingHelper for VNRecognizeAnimalsRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNRecognizeAnimalsRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNRecognizeAnimalsRequest {
+#[cfg(feature = "VNRequest")]
+impl VNRecognizeAnimalsRequest {
+    extern_methods!(
         /// This class method returns a list of all animals supported by the recognition algorithm
         ///
         ///
@@ -78,13 +78,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNRecognizedObjectObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNRecognizeAnimalsRequest {
+/// Methods declared on superclass `VNRequest`.
+#[cfg(feature = "VNRequest")]
+impl VNRecognizeAnimalsRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -101,18 +101,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNRecognizeAnimalsRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNRecognizeAnimalsRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequestrevision1?language=objc)
 pub static VNRecognizeAnimalsRequestRevision1: NSUInteger = 1;

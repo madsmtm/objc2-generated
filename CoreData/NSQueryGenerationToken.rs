@@ -25,17 +25,17 @@ unsafe impl NSObjectProtocol for NSQueryGenerationToken {}
 
 unsafe impl NSSecureCoding for NSQueryGenerationToken {}
 
-extern_methods!(
-    unsafe impl NSQueryGenerationToken {
+impl NSQueryGenerationToken {
+    extern_methods!(
         #[unsafe(method(currentQueryGenerationToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentQueryGenerationToken() -> Retained<NSQueryGenerationToken>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSQueryGenerationToken {
+/// Methods declared on superclass `NSObject`.
+impl NSQueryGenerationToken {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -43,5 +43,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

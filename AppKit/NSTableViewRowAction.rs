@@ -42,8 +42,8 @@ unsafe impl CopyingHelper for NSTableViewRowAction {
 
 unsafe impl NSObjectProtocol for NSTableViewRowAction {}
 
-extern_methods!(
-    unsafe impl NSTableViewRowAction {
+impl NSTableViewRowAction {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(rowActionWithStyle:title:handler:))]
         #[unsafe(method_family = none)]
@@ -87,12 +87,12 @@ extern_methods!(
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTableViewRowAction {
+/// Methods declared on superclass `NSObject`.
+impl NSTableViewRowAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

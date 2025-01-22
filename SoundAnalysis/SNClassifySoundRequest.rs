@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for SNClassifySoundRequest {}
 #[cfg(feature = "SNRequest")]
 unsafe impl SNRequest for SNClassifySoundRequest {}
 
-extern_methods!(
-    unsafe impl SNClassifySoundRequest {
+impl SNClassifySoundRequest {
+    extern_methods!(
         /// The overlap factor of the windows of audio data provided to the classifier, if the model operates on fixed audio block sizes.
         ///
         /// When performing audio analysis on fixed audio block sizes, it is common for the analysis windows to overlap by some factor. Without overlapping the analysis windows (when the overlap factor is 0.0), a sound might be split across two analysis windows, which could negatively affect classification performance. Overlapping the analysis windows by 50% ensures each sound will fall near the center of at least one analysis window. The supported range is [0.0, 1.0), and the default value is 0.5. Increasing the overlap factor increases computational complexity, so values greater than 0.5 should be used with care.
@@ -109,5 +109,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

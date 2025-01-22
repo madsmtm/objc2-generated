@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "UICalendarSelection")]
 unsafe impl NSObjectProtocol for UICalendarSelectionMultiDate {}
 
-extern_methods!(
-    #[cfg(feature = "UICalendarSelection")]
-    unsafe impl UICalendarSelectionMultiDate {
+#[cfg(feature = "UICalendarSelection")]
+impl UICalendarSelectionMultiDate {
+    extern_methods!(
         /// The currently selected dates in the Calendar view.
         #[unsafe(method(selectedDates))]
         #[unsafe(method_family = none)]
@@ -55,13 +55,13 @@ extern_methods!(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UICalendarSelectionMultiDateDelegate>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICalendarSelection`
-    #[cfg(feature = "UICalendarSelection")]
-    unsafe impl UICalendarSelectionMultiDate {
+/// Methods declared on superclass `UICalendarSelection`.
+#[cfg(feature = "UICalendarSelection")]
+impl UICalendarSelectionMultiDate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -69,8 +69,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionmultidatedelegate?language=objc)

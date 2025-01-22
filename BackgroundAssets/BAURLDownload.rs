@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for BAURLDownload {}
 #[cfg(feature = "BADownload")]
 unsafe impl NSSecureCoding for BAURLDownload {}
 
-extern_methods!(
-    #[cfg(feature = "BADownload")]
-    unsafe impl BAURLDownload {
+#[cfg(feature = "BADownload")]
+impl BAURLDownload {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -133,5 +133,5 @@ extern_methods!(
             application_group_identifier: &NSString,
             priority: BADownloaderPriority,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -27,8 +27,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCustomRoutingActionItem {}
 
-extern_methods!(
-    unsafe impl AVCustomRoutingActionItem {
+impl AVCustomRoutingActionItem {
+    extern_methods!(
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// A type with an identifier that matches a value in the app’s configuration.
         ///
@@ -55,12 +55,12 @@ extern_methods!(
         #[unsafe(method(setOverrideTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverrideTitle(&self, override_title: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCustomRoutingActionItem {
+/// Methods declared on superclass `NSObject`.
+impl AVCustomRoutingActionItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,5 +68,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

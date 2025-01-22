@@ -90,9 +90,9 @@ unsafe impl UIResponderStandardEditActions for UIProgressView {}
 ))]
 unsafe impl UITraitEnvironment for UIProgressView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIProgressView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIProgressView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -186,13 +186,13 @@ extern_methods!(
         #[unsafe(method(setObservedProgress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObservedProgress(&self, observed_progress: Option<&NSProgress>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIProgressView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIProgressView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -200,5 +200,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

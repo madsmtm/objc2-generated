@@ -43,15 +43,15 @@ extern "C-unwind" {
     pub fn NSCountFrames() -> NSUInteger;
 }
 
-extern_methods!(
-    /// NSAutoreleasePoolDebugging
-    #[cfg(feature = "NSAutoreleasePool")]
-    unsafe impl NSAutoreleasePool {
+/// NSAutoreleasePoolDebugging.
+#[cfg(feature = "NSAutoreleasePool")]
+impl NSAutoreleasePool {
+    extern_methods!(
         #[unsafe(method(showPools))]
         #[unsafe(method_family = none)]
         pub unsafe fn showPools();
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeepallocationstatistics?language=objc)

@@ -42,8 +42,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SFSpeechRecognitionTask {}
 
-extern_methods!(
-    unsafe impl SFSpeechRecognitionTask {
+impl SFSpeechRecognitionTask {
+    extern_methods!(
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> SFSpeechRecognitionTaskState;
@@ -67,12 +67,12 @@ extern_methods!(
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFSpeechRecognitionTask {
+/// Methods declared on superclass `NSObject`.
+impl SFSpeechRecognitionTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -80,8 +80,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskdelegate?language=objc)

@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ODRecord {}
 
-extern_methods!(
-    unsafe impl ODRecord {
+impl ODRecord {
+    extern_methods!(
         /// Similar to calling -[ODNode setCredentials:] except credentials are only set for this particular
         /// record's node
         ///
@@ -551,12 +551,12 @@ extern_methods!(
         #[unsafe(method(secondsUntilAuthenticationsExpire))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondsUntilAuthenticationsExpire(&self) -> i64;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ODRecord {
+/// Methods declared on superclass `NSObject`.
+impl ODRecord {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -564,13 +564,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// ODRecordGroupExtensions
-    /// Record extensions for checking and modifying group membership.
-    unsafe impl ODRecord {
+/// ODRecordGroupExtensions.
+/// Record extensions for checking and modifying group membership.
+impl ODRecord {
+    extern_methods!(
         /// Will add the record as a member of the group record
         ///
         /// Will add the record as a member of the group record.  An error will be returned if the record is not
@@ -609,5 +609,5 @@ extern_methods!(
             in_record: Option<&ODRecord>,
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
-    }
-);
+    );
+}

@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXNetworkTransferMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXNetworkTransferMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXNetworkTransferMetric {
+#[cfg(feature = "MXMetric")]
+impl MXNetworkTransferMetric {
+    extern_methods!(
         /// Cumulative amount of data uploaded over WiFi.
         ///
         /// Dimensioned as NSUnitInformationStorage.
@@ -67,13 +67,13 @@ extern_methods!(
         pub unsafe fn cumulativeCellularDownload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXNetworkTransferMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXNetworkTransferMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,5 +81,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

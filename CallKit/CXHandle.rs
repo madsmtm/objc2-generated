@@ -47,8 +47,8 @@ unsafe impl NSObjectProtocol for CXHandle {}
 
 unsafe impl NSSecureCoding for CXHandle {}
 
-extern_methods!(
-    unsafe impl CXHandle {
+impl CXHandle {
+    extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CXHandleType;
@@ -72,14 +72,14 @@ extern_methods!(
         #[unsafe(method(isEqualToHandle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToHandle(&self, handle: &CXHandle) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CXHandle {
+/// Methods declared on superclass `NSObject`.
+impl CXHandle {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

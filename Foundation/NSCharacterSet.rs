@@ -40,8 +40,8 @@ unsafe impl NSObjectProtocol for NSCharacterSet {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSCharacterSet {}
 
-extern_methods!(
-    unsafe impl NSCharacterSet {
+impl NSCharacterSet {
+    extern_methods!(
         #[unsafe(method(controlCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlCharacterSet() -> Retained<NSCharacterSet>;
@@ -158,12 +158,12 @@ extern_methods!(
         #[unsafe(method(hasMemberInPlane:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasMemberInPlane(&self, the_plane: u8) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCharacterSet {
+/// Methods declared on superclass `NSObject`.
+impl NSCharacterSet {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -171,8 +171,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablecharacterset?language=objc)
@@ -205,8 +205,8 @@ unsafe impl NSObjectProtocol for NSMutableCharacterSet {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMutableCharacterSet {}
 
-extern_methods!(
-    unsafe impl NSMutableCharacterSet {
+impl NSMutableCharacterSet {
+    extern_methods!(
         #[cfg(feature = "NSRange")]
         #[unsafe(method(addCharactersInRange:))]
         #[unsafe(method_family = none)]
@@ -324,22 +324,22 @@ extern_methods!(
         pub unsafe fn characterSetWithContentsOfFile(
             f_name: &NSString,
         ) -> Option<Retained<NSMutableCharacterSet>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCharacterSet`
-    unsafe impl NSMutableCharacterSet {
+/// Methods declared on superclass `NSCharacterSet`.
+impl NSMutableCharacterSet {
+    extern_methods!(
         #[cfg(feature = "NSCoder")]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMutableCharacterSet {
+/// Methods declared on superclass `NSObject`.
+impl NSMutableCharacterSet {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -347,5 +347,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

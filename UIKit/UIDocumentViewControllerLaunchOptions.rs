@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIDocumentViewControllerLaunchOptions {}
 
-extern_methods!(
-    unsafe impl UIDocumentViewControllerLaunchOptions {
+impl UIDocumentViewControllerLaunchOptions {
+    extern_methods!(
         #[cfg(all(
             feature = "UIDocumentBrowserViewController",
             feature = "UIResponder",
@@ -137,12 +137,12 @@ extern_methods!(
             intent: &UIDocumentCreationIntent,
             mtm: MainThreadMarker,
         ) -> Retained<UIAction>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIDocumentViewControllerLaunchOptions {
+/// Methods declared on superclass `NSObject`.
+impl UIDocumentViewControllerLaunchOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -150,5 +150,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

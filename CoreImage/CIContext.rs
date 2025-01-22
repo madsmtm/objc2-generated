@@ -85,8 +85,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIContext {}
 
-extern_methods!(
-    unsafe impl CIContext {
+impl CIContext {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(contextWithCGContext:options:))]
         #[unsafe(method_family = none)]
@@ -265,26 +265,26 @@ extern_methods!(
         #[unsafe(method(outputImageMaximumSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputImageMaximumSize(&self) -> CGSize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIContext {
+/// Methods declared on superclass `NSObject`.
+impl CIContext {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// createCGImage
-    unsafe impl CIContext {}
-);
+/// createCGImage.
+impl CIContext {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// OfflineGPUSupport
-    unsafe impl CIContext {
+/// OfflineGPUSupport.
+impl CIContext {
+    extern_methods!(
         #[unsafe(method(offlineGPUCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn offlineGPUCount() -> c_uint;
@@ -293,8 +293,8 @@ extern_methods!(
         #[unsafe(method(contextForOfflineGPUAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextForOfflineGPUAtIndex(index: c_uint) -> Option<Retained<CIContext>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption?language=objc)
 // NS_TYPED_ENUM
@@ -372,9 +372,9 @@ extern "C" {
     pub static kCIImageRepresentationHDRGainMapImage: &'static CIImageRepresentationOption;
 }
 
-extern_methods!(
-    /// ImageRepresentation
-    unsafe impl CIContext {
+/// ImageRepresentation.
+impl CIContext {
+    extern_methods!(
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
         #[unsafe(method(TIFFRepresentationOfImage:format:colorSpace:options:))]
         #[unsafe(method_family = none)]
@@ -504,12 +504,12 @@ extern_methods!(
             url: &NSURL,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// CIDepthBlurEffect
-    unsafe impl CIContext {
+/// CIDepthBlurEffect.
+impl CIContext {
+    extern_methods!(
         #[cfg(feature = "CIFilter")]
         #[unsafe(method(depthBlurEffectFilterForImageURL:options:))]
         #[unsafe(method_family = none)]
@@ -527,5 +527,5 @@ extern_methods!(
             data: &NSData,
             options: Option<&NSDictionary>,
         ) -> Option<Retained<CIFilter>>;
-    }
-);
+    );
+}

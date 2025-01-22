@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSStateResourceList {}
 
-extern_methods!(
-    unsafe impl MPSStateResourceList {
+impl MPSStateResourceList {
+    extern_methods!(
         /// Init an empty autoreleased resource list
         #[unsafe(method(resourceList))]
         #[unsafe(method_family = none)]
@@ -38,17 +38,17 @@ extern_methods!(
         #[unsafe(method(appendBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBuffer(&self, size: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSStateResourceList {
+/// Methods declared on superclass `NSObject`.
+impl MPSStateResourceList {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatetextureinfo?language=objc)
 #[repr(C)]
@@ -179,8 +179,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPSState {}
 
-extern_methods!(
-    unsafe impl MPSState {
+impl MPSState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -525,17 +525,17 @@ extern_methods!(
         #[unsafe(method(resource))]
         #[unsafe(method_family = none)]
         pub unsafe fn resource(&self) -> Option<Retained<ProtocolObject<dyn MTLResource>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSState {
+/// Methods declared on superclass `NSObject`.
+impl MPSState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatebatch?language=objc)
 pub type MPSStateBatch = NSArray<MPSState>;

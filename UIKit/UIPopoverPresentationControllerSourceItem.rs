@@ -21,38 +21,38 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UIPopoverPresentationControllerSourceItem
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIView {}
-);
+/// UIPopoverPresentationControllerSourceItem.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIView {
+    extern_methods!();
+}
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 unsafe impl UIPopoverPresentationControllerSourceItem for UIView {}
 
-extern_methods!(
-    /// UIPopoverPresentationControllerSourceItem
-    #[cfg(feature = "UILayoutGuide")]
-    unsafe impl UILayoutGuide {}
-);
+/// UIPopoverPresentationControllerSourceItem.
+#[cfg(feature = "UILayoutGuide")]
+impl UILayoutGuide {
+    extern_methods!();
+}
 
 #[cfg(feature = "UILayoutGuide")]
 unsafe impl UIPopoverPresentationControllerSourceItem for UILayoutGuide {}
 
-extern_methods!(
-    /// UIPopoverPresentationControllerSourceItem
-    #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-    unsafe impl UIBarButtonItem {}
-);
+/// UIPopoverPresentationControllerSourceItem.
+#[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+impl UIBarButtonItem {
+    extern_methods!();
+}
 
 #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
 unsafe impl UIPopoverPresentationControllerSourceItem for UIBarButtonItem {}
 
-extern_methods!(
-    /// UIPopoverPresentationControllerSourceItem
-    #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
-    unsafe impl UITabBarItem {}
-);
+/// UIPopoverPresentationControllerSourceItem.
+#[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
+impl UITabBarItem {
+    extern_methods!();
+}
 
 #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
 unsafe impl UIPopoverPresentationControllerSourceItem for UITabBarItem {}

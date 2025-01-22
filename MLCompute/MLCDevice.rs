@@ -32,8 +32,8 @@ unsafe impl CopyingHelper for MLCDevice {
 
 unsafe impl NSObjectProtocol for MLCDevice {}
 
-extern_methods!(
-    unsafe impl MLCDevice {
+impl MLCDevice {
+    extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// The type specified when the device is created
         ///
@@ -124,12 +124,12 @@ extern_methods!(
         pub unsafe fn deviceWithGPUDevices(
             gpus: &NSArray<ProtocolObject<dyn MTLDevice>>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLCDevice {
+/// Methods declared on superclass `NSObject`.
+impl MLCDevice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -137,5 +137,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

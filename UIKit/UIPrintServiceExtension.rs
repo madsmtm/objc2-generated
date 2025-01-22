@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for UIPrinterDestination {}
 
 unsafe impl NSSecureCoding for UIPrinterDestination {}
 
-extern_methods!(
-    unsafe impl UIPrinterDestination {
+impl UIPrinterDestination {
+    extern_methods!(
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
@@ -53,12 +53,12 @@ extern_methods!(
         #[unsafe(method(setTxtRecord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTxtRecord(&self, txt_record: Option<&NSData>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPrinterDestination {
+/// Methods declared on superclass `NSObject`.
+impl UIPrinterDestination {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,8 +66,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintserviceextension?language=objc)
@@ -79,8 +79,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPrintServiceExtension {}
 
-extern_methods!(
-    unsafe impl UIPrintServiceExtension {
+impl UIPrintServiceExtension {
+    extern_methods!(
         #[cfg(feature = "UIPrintInfo")]
         #[unsafe(method(printerDestinationsForPrintInfo:))]
         #[unsafe(method_family = none)]
@@ -88,12 +88,12 @@ extern_methods!(
             &self,
             print_info: &UIPrintInfo,
         ) -> Retained<NSArray<UIPrinterDestination>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPrintServiceExtension {
+/// Methods declared on superclass `NSObject`.
+impl UIPrintServiceExtension {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -101,5 +101,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

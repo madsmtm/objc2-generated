@@ -22,9 +22,9 @@ extern_class!(
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSCNNNormalizationGammaAndBetaState {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSCNNNormalizationGammaAndBetaState {
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSCNNNormalizationGammaAndBetaState {
+    extern_methods!(
         /// A MTLBuffer containing the gamma terms.
         #[unsafe(method(gamma))]
         #[unsafe(method_family = none)]
@@ -68,13 +68,13 @@ extern_methods!(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             number_of_feature_channels: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSCNNNormalizationGammaAndBetaState {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSCNNNormalizationGammaAndBetaState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -174,15 +174,15 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSCNNNormalizationGammaAndBetaState {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSCNNNormalizationGammaAndBetaState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

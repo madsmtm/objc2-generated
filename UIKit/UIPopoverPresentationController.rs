@@ -82,9 +82,9 @@ unsafe impl UIFocusEnvironment for UIPopoverPresentationController {}
 #[cfg(all(feature = "UIPresentationController", feature = "UITraitCollection"))]
 unsafe impl UITraitEnvironment for UIPopoverPresentationController {}
 
-extern_methods!(
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl UIPopoverPresentationController {
+#[cfg(feature = "UIPresentationController")]
+impl UIPopoverPresentationController {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -232,13 +232,13 @@ extern_methods!(
         pub unsafe fn adaptiveSheetPresentationController(
             &self,
         ) -> Retained<UISheetPresentationController>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIPresentationController`
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl UIPopoverPresentationController {
+/// Methods declared on superclass `UIPresentationController`.
+#[cfg(feature = "UIPresentationController")]
+impl UIPopoverPresentationController {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(initWithPresentedViewController:presentingViewController:))]
         #[unsafe(method_family = init)]
@@ -251,15 +251,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl UIPopoverPresentationController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIPresentationController")]
+impl UIPopoverPresentationController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -123,8 +123,8 @@ unsafe impl UIFocusEnvironment for UIPresentationController {}
 #[cfg(feature = "UITraitCollection")]
 unsafe impl UITraitEnvironment for UIPresentationController {}
 
-extern_methods!(
-    unsafe impl UIPresentationController {
+impl UIPresentationController {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(presentingViewController))]
         #[unsafe(method_family = none)]
@@ -243,26 +243,26 @@ extern_methods!(
             &self,
             override_trait_collection: Option<&UITraitCollection>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPresentationController {
+/// Methods declared on superclass `NSObject`.
+impl UIPresentationController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl UIPresentationController {
+impl UIPresentationController {
+    extern_methods!(
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(traitOverrides))]
         #[unsafe(method_family = none)]
         pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "UITraitCollection")]
 unsafe impl UITraitChangeObservable for UIPresentationController {}

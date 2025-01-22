@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSExtensionContext {}
 
-extern_methods!(
-    unsafe impl NSExtensionContext {
+impl NSExtensionContext {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[unsafe(method(inputItems))]
         #[unsafe(method_family = none)]
@@ -44,12 +44,12 @@ extern_methods!(
             url: &NSURL,
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSExtensionContext {
+/// Methods declared on superclass `NSObject`.
+impl NSExtensionContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,8 +57,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey?language=objc)

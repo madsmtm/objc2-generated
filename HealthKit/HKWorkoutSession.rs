@@ -78,8 +78,8 @@ unsafe impl NSObjectProtocol for HKWorkoutSession {}
 
 unsafe impl NSSecureCoding for HKWorkoutSession {}
 
-extern_methods!(
-    unsafe impl HKWorkoutSession {
+impl HKWorkoutSession {
+    extern_methods!(
         #[cfg(feature = "HKWorkout")]
         /// Indicates the type of workout that will be performed during the session.
         #[deprecated]
@@ -354,17 +354,17 @@ extern_methods!(
             data: &NSData,
             completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKWorkoutSession {
+/// Methods declared on superclass `NSObject`.
+impl HKWorkoutSession {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// This protocol should be implemented to be notified when a workout session's state changes.

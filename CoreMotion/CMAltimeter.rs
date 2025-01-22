@@ -29,8 +29,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CMAltimeter {}
 
-extern_methods!(
-    unsafe impl CMAltimeter {
+impl CMAltimeter {
+    extern_methods!(
         #[unsafe(method(isRelativeAltitudeAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRelativeAltitudeAvailable() -> bool;
@@ -73,12 +73,12 @@ extern_methods!(
         #[unsafe(method(stopAbsoluteAltitudeUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopAbsoluteAltitudeUpdates(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMAltimeter {
+/// Methods declared on superclass `NSObject`.
+impl CMAltimeter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -86,5 +86,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

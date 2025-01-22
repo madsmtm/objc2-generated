@@ -28,8 +28,8 @@ unsafe impl CopyingHelper for WKFrameInfo {
 
 unsafe impl NSObjectProtocol for WKFrameInfo {}
 
-extern_methods!(
-    unsafe impl WKFrameInfo {
+impl WKFrameInfo {
+    extern_methods!(
         /// A Boolean value indicating whether the frame is the main frame
         /// or a subframe.
         #[unsafe(method(isMainFrame))]
@@ -53,12 +53,12 @@ extern_methods!(
         #[unsafe(method(webView))]
         #[unsafe(method_family = none)]
         pub unsafe fn webView(&self) -> Option<Retained<WKWebView>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKFrameInfo {
+/// Methods declared on superclass `NSObject`.
+impl WKFrameInfo {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,5 +66,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

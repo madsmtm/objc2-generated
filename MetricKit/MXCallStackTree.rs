@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for MXCallStackTree {}
 
 unsafe impl NSSecureCoding for MXCallStackTree {}
 
-extern_methods!(
-    unsafe impl MXCallStackTree {
+impl MXCallStackTree {
+    extern_methods!(
         /// Convenience method to return a JSON representation of this callstack tree.
         ///
         /// The JSON structure of MXCallStackTree is organized into individual groups of call stacks. Individual call stacks contain stack frames, which consist of information needed to symbolicate the frame off device. This includes binary image name, binary UUID, offset in binary text segment, address, and sample count (for stack trees that contain temporally sampled data.)
@@ -35,12 +35,12 @@ extern_methods!(
         #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MXCallStackTree {
+/// Methods declared on superclass `NSObject`.
+impl MXCallStackTree {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -48,5 +48,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

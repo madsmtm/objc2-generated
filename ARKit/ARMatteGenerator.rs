@@ -53,9 +53,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for ARMatteGenerator {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARMatteGenerator {
+impl ARMatteGenerator {
+    extern_methods!(
         #[cfg(feature = "objc2-metal")]
         /// Initializes an instance of ARMatteGenerator.
         ///
@@ -124,5 +123,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

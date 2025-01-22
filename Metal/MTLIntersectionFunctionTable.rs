@@ -79,8 +79,8 @@ unsafe impl CopyingHelper for MTLIntersectionFunctionTableDescriptor {
 
 unsafe impl NSObjectProtocol for MTLIntersectionFunctionTableDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLIntersectionFunctionTableDescriptor {
+impl MTLIntersectionFunctionTableDescriptor {
+    extern_methods!(
         /// Create an autoreleased intersection function table descriptor
         #[unsafe(method(intersectionFunctionTableDescriptor))]
         #[unsafe(method_family = none)]
@@ -96,12 +96,12 @@ extern_methods!(
         #[unsafe(method(setFunctionCount:))]
         #[unsafe(method_family = none)]
         pub fn setFunctionCount(&self, function_count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLIntersectionFunctionTableDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLIntersectionFunctionTableDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -109,8 +109,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLIntersectionFunctionTableDescriptor {
     #[inline]

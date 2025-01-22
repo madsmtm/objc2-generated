@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCConcatenationLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCConcatenationLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCConcatenationLayer {
+    extern_methods!(
         /// The dimension (or axis) along which to concatenate tensors
         ///
         /// The default value is 1 (which typically represents features channels)
@@ -47,13 +47,13 @@ extern_methods!(
         #[unsafe(method(layerWithDimension:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithDimension(dimension: NSUInteger) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCConcatenationLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCConcatenationLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -63,5 +63,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

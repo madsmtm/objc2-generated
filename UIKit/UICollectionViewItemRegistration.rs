@@ -28,8 +28,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UICollectionViewCellRegistration {}
 
-extern_methods!(
-    unsafe impl UICollectionViewCellRegistration {
+impl UICollectionViewCellRegistration {
+    extern_methods!(
         #[cfg(all(
             feature = "UICollectionViewCell",
             feature = "UIResponder",
@@ -79,12 +79,12 @@ extern_methods!(
         pub unsafe fn configurationHandler(
             &self,
         ) -> UICollectionViewCellRegistrationConfigurationHandler;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICollectionViewCellRegistration {
+/// Methods declared on superclass `NSObject`.
+impl UICollectionViewCellRegistration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -92,8 +92,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewsupplementaryregistrationconfigurationhandler?language=objc)
 #[cfg(all(
@@ -116,8 +116,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UICollectionViewSupplementaryRegistration {}
 
-extern_methods!(
-    unsafe impl UICollectionViewSupplementaryRegistration {
+impl UICollectionViewSupplementaryRegistration {
+    extern_methods!(
         #[cfg(all(
             feature = "UICollectionViewCell",
             feature = "UIResponder",
@@ -173,12 +173,12 @@ extern_methods!(
         pub unsafe fn configurationHandler(
             &self,
         ) -> UICollectionViewSupplementaryRegistrationConfigurationHandler;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICollectionViewSupplementaryRegistration {
+/// Methods declared on superclass `NSObject`.
+impl UICollectionViewSupplementaryRegistration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -186,5 +186,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

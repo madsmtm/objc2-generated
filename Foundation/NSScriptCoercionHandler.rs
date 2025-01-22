@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSScriptCoercionHandler {}
 
-extern_methods!(
-    unsafe impl NSScriptCoercionHandler {
+impl NSScriptCoercionHandler {
+    extern_methods!(
         #[unsafe(method(sharedCoercionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedCoercionHandler() -> Retained<NSScriptCoercionHandler>;
@@ -38,12 +38,12 @@ extern_methods!(
             from_class: &AnyClass,
             to_class: &AnyClass,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScriptCoercionHandler {
+/// Methods declared on superclass `NSObject`.
+impl NSScriptCoercionHandler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -51,5 +51,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

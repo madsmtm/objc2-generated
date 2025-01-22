@@ -73,8 +73,8 @@ unsafe impl Sync for NSFileAccessIntent {}
 
 unsafe impl NSObjectProtocol for NSFileAccessIntent {}
 
-extern_methods!(
-    unsafe impl NSFileAccessIntent {
+impl NSFileAccessIntent {
+    extern_methods!(
         #[cfg(feature = "NSURL")]
         #[unsafe(method(readingIntentWithURL:options:))]
         #[unsafe(method_family = none)]
@@ -95,12 +95,12 @@ extern_methods!(
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileAccessIntent {
+/// Methods declared on superclass `NSObject`.
+impl NSFileAccessIntent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,8 +108,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator?language=objc)
@@ -120,8 +120,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFileCoordinator {}
 
-extern_methods!(
-    unsafe impl NSFileCoordinator {
+impl NSFileCoordinator {
+    extern_methods!(
         #[cfg(feature = "NSFilePresenter")]
         #[unsafe(method(addFilePresenter:))]
         #[unsafe(method_family = none)]
@@ -259,12 +259,12 @@ extern_methods!(
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileCoordinator {
+/// Methods declared on superclass `NSObject`.
+impl NSFileCoordinator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -272,5 +272,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

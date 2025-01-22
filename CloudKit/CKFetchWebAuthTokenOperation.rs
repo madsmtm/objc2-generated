@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 unsafe impl NSObjectProtocol for CKFetchWebAuthTokenOperation {}
 
-extern_methods!(
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl CKFetchWebAuthTokenOperation {
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
+impl CKFetchWebAuthTokenOperation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -75,15 +75,15 @@ extern_methods!(
                 &block2::Block<dyn Fn(*mut NSString, *mut NSError)>,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-    unsafe impl CKFetchWebAuthTokenOperation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
+impl CKFetchWebAuthTokenOperation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

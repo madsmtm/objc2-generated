@@ -180,8 +180,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCContentFilter {}
 
-extern_methods!(
-    unsafe impl SCContentFilter {
+impl SCContentFilter {
+    extern_methods!(
         /// streamType type of stream
         #[deprecated = "Use style instead"]
         #[unsafe(method(streamType))]
@@ -315,12 +315,12 @@ extern_methods!(
             applications: &NSArray<SCRunningApplication>,
             excepting_windows: &NSArray<SCWindow>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCContentFilter {
+/// Methods declared on superclass `NSObject`.
+impl SCContentFilter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -328,8 +328,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Client can use SCStreamConfigurationPreset to create SCStreamConfiguration with suggested values of properties for various use cases
 ///
@@ -370,8 +370,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCStreamConfiguration {}
 
-extern_methods!(
-    unsafe impl SCStreamConfiguration {
+impl SCStreamConfiguration {
+    extern_methods!(
         /// SCStreamProperty for output width as measured in pixels. Default is set to 1920.
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
@@ -721,12 +721,12 @@ extern_methods!(
         pub unsafe fn streamConfigurationWithPreset(
             preset: SCStreamConfigurationPreset,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCStreamConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl SCStreamConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -734,8 +734,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo?language=objc)
 // NS_TYPED_ENUM
@@ -832,8 +832,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCStream {}
 
-extern_methods!(
-    unsafe impl SCStream {
+impl SCStream {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Synchronization clock used for media capture.
         #[unsafe(method(synchronizationClock))]
@@ -970,8 +970,8 @@ extern_methods!(
             &self,
             recording_output: &SCRecordingOutput,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutput?language=objc)

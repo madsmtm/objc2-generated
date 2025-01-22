@@ -79,8 +79,8 @@ unsafe impl MutableCopyingHelper for NSFontCollection {
 
 unsafe impl NSObjectProtocol for NSFontCollection {}
 
-extern_methods!(
-    unsafe impl NSFontCollection {
+impl NSFontCollection {
+    extern_methods!(
         #[cfg(feature = "NSFontDescriptor")]
         #[unsafe(method(fontCollectionWithDescriptors:))]
         #[unsafe(method_family = none)]
@@ -177,12 +177,12 @@ extern_methods!(
             family: &NSString,
             options: Option<&NSDictionary<NSFontCollectionMatchingOptionKey, NSNumber>>,
         ) -> Option<Retained<NSArray<NSFontDescriptor>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFontCollection {
+/// Methods declared on superclass `NSObject`.
+impl NSFontCollection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -190,8 +190,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmutablefontcollection?language=objc)
@@ -216,8 +216,8 @@ unsafe impl MutableCopyingHelper for NSMutableFontCollection {
 
 unsafe impl NSObjectProtocol for NSMutableFontCollection {}
 
-extern_methods!(
-    unsafe impl NSMutableFontCollection {
+impl NSMutableFontCollection {
+    extern_methods!(
         #[cfg(feature = "NSFontDescriptor")]
         #[unsafe(method(fontCollectionWithDescriptors:))]
         #[unsafe(method_family = none)]
@@ -286,12 +286,12 @@ extern_methods!(
         #[unsafe(method(removeQueryForDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeQueryForDescriptors(&self, descriptors: &NSArray<NSFontDescriptor>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMutableFontCollection {
+/// Methods declared on superclass `NSObject`.
+impl NSMutableFontCollection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -299,8 +299,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectiondidchangenotification?language=objc)

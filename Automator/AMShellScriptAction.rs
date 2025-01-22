@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for AMShellScriptAction {}
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 unsafe impl NSSecureCoding for AMShellScriptAction {}
 
-extern_methods!(
-    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
-    unsafe impl AMShellScriptAction {
+#[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
+impl AMShellScriptAction {
+    extern_methods!(
         #[unsafe(method(remapLineEndings))]
         #[unsafe(method_family = none)]
         pub unsafe fn remapLineEndings(&self) -> bool;
@@ -45,13 +45,13 @@ extern_methods!(
         #[unsafe(method(outputFieldSeparator))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFieldSeparator(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AMAction`
-    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
-    unsafe impl AMShellScriptAction {
+/// Methods declared on superclass `AMAction`.
+#[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
+impl AMShellScriptAction {
+    extern_methods!(
         #[unsafe(method(initWithDefinition:fromArchive:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDefinition_fromArchive(
@@ -66,13 +66,13 @@ extern_methods!(
             this: Allocated<Self>,
             file_url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
-    unsafe impl AMShellScriptAction {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
+impl AMShellScriptAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -80,5 +80,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

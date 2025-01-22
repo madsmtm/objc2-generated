@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UILocalizedIndexedCollation {}
 
-extern_methods!(
-    unsafe impl UILocalizedIndexedCollation {
+impl UILocalizedIndexedCollation {
+    extern_methods!(
         #[unsafe(method(currentCollation))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentCollation(mtm: MainThreadMarker) -> Retained<Self>;
@@ -52,12 +52,12 @@ extern_methods!(
             array: &NSArray,
             selector: Sel,
         ) -> Retained<NSArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UILocalizedIndexedCollation {
+/// Methods declared on superclass `NSObject`.
+impl UILocalizedIndexedCollation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -65,5 +65,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

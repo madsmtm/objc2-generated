@@ -21,8 +21,8 @@ unsafe impl GCPhysicalInputElement for GCGearShifterElement {}
 
 unsafe impl NSObjectProtocol for GCGearShifterElement {}
 
-extern_methods!(
-    unsafe impl GCGearShifterElement {
+impl GCGearShifterElement {
+    extern_methods!(
         #[cfg(feature = "GCSwitchPositionInput")]
         /// Get the input reporting the position of the pattern gear shifter.  If this
         /// property is
@@ -47,12 +47,12 @@ extern_methods!(
         pub unsafe fn sequentialInput(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GCRelativeInput>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCGearShifterElement {
+/// Methods declared on superclass `NSObject`.
+impl GCGearShifterElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,5 +60,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

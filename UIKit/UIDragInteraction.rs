@@ -37,8 +37,8 @@ unsafe impl NSObjectProtocol for UIDragInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIDragInteraction {}
 
-extern_methods!(
-    unsafe impl UIDragInteraction {
+impl UIDragInteraction {
+    extern_methods!(
         #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
@@ -84,8 +84,8 @@ extern_methods!(
         #[unsafe(method(isEnabledByDefault))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabledByDefault(mtm: MainThreadMarker) -> bool;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidraginteractiondelegate?language=objc)

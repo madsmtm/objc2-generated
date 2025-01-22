@@ -55,8 +55,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTextViewportLayoutController {}
 
-extern_methods!(
-    unsafe impl NSTextViewportLayoutController {
+impl NSTextViewportLayoutController {
+    extern_methods!(
         #[cfg(feature = "NSTextLayoutManager")]
         #[unsafe(method(initWithTextLayoutManager:))]
         #[unsafe(method_family = init)]
@@ -119,5 +119,5 @@ extern_methods!(
         #[unsafe(method(adjustViewportByVerticalOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustViewportByVerticalOffset(&self, vertical_offset: CGFloat);
-    }
-);
+    );
+}

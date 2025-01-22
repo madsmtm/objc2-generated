@@ -26,9 +26,9 @@ unsafe impl NSCoding for NSCollectionViewTransitionLayout {}
 #[cfg(feature = "NSCollectionViewLayout")]
 unsafe impl NSObjectProtocol for NSCollectionViewTransitionLayout {}
 
-extern_methods!(
-    #[cfg(feature = "NSCollectionViewLayout")]
-    unsafe impl NSCollectionViewTransitionLayout {
+#[cfg(feature = "NSCollectionViewLayout")]
+impl NSCollectionViewTransitionLayout {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(transitionProgress))]
         #[unsafe(method_family = none)]
@@ -72,13 +72,13 @@ extern_methods!(
             &self,
             key: &NSCollectionViewTransitionLayoutAnimatedKey,
         ) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCollectionViewLayout")]
-    unsafe impl NSCollectionViewTransitionLayout {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCollectionViewLayout")]
+impl NSCollectionViewTransitionLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -86,5 +86,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

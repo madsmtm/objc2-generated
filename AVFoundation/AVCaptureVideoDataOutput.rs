@@ -25,9 +25,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureOutputBase")]
 unsafe impl NSObjectProtocol for AVCaptureVideoDataOutput {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureVideoDataOutput {
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureVideoDataOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -252,8 +252,8 @@ extern_methods!(
             &self,
             delivers_preview_sized_output_buffers: bool,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines an interface for delegates of AVCaptureVideoDataOutput to receive captured video sample buffers and be notified of late sample buffers that were dropped.

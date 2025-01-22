@@ -25,17 +25,17 @@ unsafe impl NSObjectProtocol for CMLogItem {}
 
 unsafe impl NSSecureCoding for CMLogItem {}
 
-extern_methods!(
-    unsafe impl CMLogItem {
+impl CMLogItem {
+    extern_methods!(
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMLogItem {
+/// Methods declared on superclass `NSObject`.
+impl CMLogItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -43,5 +43,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

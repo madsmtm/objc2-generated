@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCTransposeLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCTransposeLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCTransposeLayer {
+    extern_methods!(
         /// Permutes the dimensions according to 'dimensions'.
         ///
         /// The returned tensor's dimension i will correspond to dimensions[i].
@@ -46,13 +46,13 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithDimensions(dimensions: &NSArray<NSNumber>)
             -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCTransposeLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCTransposeLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -62,5 +62,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

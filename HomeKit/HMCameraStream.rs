@@ -26,9 +26,9 @@ unsafe impl Sync for HMCameraStream {}
 #[cfg(feature = "HMCameraSource")]
 unsafe impl NSObjectProtocol for HMCameraStream {}
 
-extern_methods!(
-    #[cfg(feature = "HMCameraSource")]
-    unsafe impl HMCameraStream {
+#[cfg(feature = "HMCameraSource")]
+impl HMCameraStream {
+    extern_methods!(
         #[cfg(feature = "HMCameraDefines")]
         /// Represents the audio setting for the current stream.
         #[unsafe(method(audioStreamSetting))]
@@ -70,15 +70,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HMCameraSource")]
-    unsafe impl HMCameraStream {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HMCameraSource")]
+impl HMCameraStream {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

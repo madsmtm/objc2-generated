@@ -24,9 +24,9 @@ extern_class!(
 #[cfg(feature = "VZDirectoryShare")]
 unsafe impl NSObjectProtocol for VZSingleDirectoryShare {}
 
-extern_methods!(
-    #[cfg(feature = "VZDirectoryShare")]
-    unsafe impl VZSingleDirectoryShare {
+#[cfg(feature = "VZDirectoryShare")]
+impl VZSingleDirectoryShare {
+    extern_methods!(
         #[cfg(feature = "VZSharedDirectory")]
         /// Initialize the directory share with a directory on the host.
         ///
@@ -43,13 +43,13 @@ extern_methods!(
         #[unsafe(method(directory))]
         #[unsafe(method_family = none)]
         pub unsafe fn directory(&self) -> Retained<VZSharedDirectory>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZDirectoryShare`
-    #[cfg(feature = "VZDirectoryShare")]
-    unsafe impl VZSingleDirectoryShare {
+/// Methods declared on superclass `VZDirectoryShare`.
+#[cfg(feature = "VZDirectoryShare")]
+impl VZSingleDirectoryShare {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -57,5 +57,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

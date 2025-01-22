@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLCLayer {}
 
-extern_methods!(
-    unsafe impl MLCLayer {
+impl MLCLayer {
+    extern_methods!(
         /// The layer ID
         ///
         /// A unique number to identify each layer.  Assigned when the layer is created.
@@ -93,5 +93,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

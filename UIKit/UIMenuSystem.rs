@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIMenuSystem {}
 
-extern_methods!(
-    unsafe impl UIMenuSystem {
+impl UIMenuSystem {
+    extern_methods!(
         /// The main command system.
         #[unsafe(method(mainSystem))]
         #[unsafe(method_family = none)]
@@ -47,5 +47,5 @@ extern_methods!(
         #[unsafe(method(setNeedsRevalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsRevalidate(&self);
-    }
-);
+    );
+}

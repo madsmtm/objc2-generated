@@ -180,17 +180,17 @@ unsafe impl NSObjectProtocol for NSData {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSData {}
 
-extern_methods!(
-    unsafe impl NSData {
+impl NSData {
+    extern_methods!(
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub fn length(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSData {
+/// Methods declared on superclass `NSObject`.
+impl NSData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -198,8 +198,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for NSData {
     #[inline]
@@ -208,9 +208,9 @@ impl DefaultRetained for NSData {
     }
 }
 
-extern_methods!(
-    /// NSExtendedData
-    unsafe impl NSData {
+/// NSExtendedData.
+impl NSData {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
@@ -283,12 +283,12 @@ extern_methods!(
             &self,
             block: &block2::Block<dyn Fn(NonNull<c_void>, NSRange, NonNull<Bool>) + '_>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDataCreation
-    unsafe impl NSData {
+/// NSDataCreation.
+impl NSData {
+    extern_methods!(
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data() -> Retained<Self>;
@@ -417,14 +417,14 @@ extern_methods!(
         #[unsafe(method(dataWithData:))]
         #[unsafe(method_family = none)]
         pub fn dataWithData(data: &NSData) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSData`
-    ///
-    /// NSDataCreation
-    unsafe impl NSMutableData {
+/// Methods declared on superclass `NSData`.
+///
+/// NSDataCreation.
+impl NSMutableData {
+    extern_methods!(
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data() -> Retained<Self>;
@@ -553,12 +553,12 @@ extern_methods!(
         #[unsafe(method(dataWithData:))]
         #[unsafe(method_family = none)]
         pub fn dataWithData(data: &NSData) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDataBase64Encoding
-    unsafe impl NSData {
+/// NSDataBase64Encoding.
+impl NSData {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithBase64EncodedString:options:))]
         #[unsafe(method_family = init)]
@@ -590,14 +590,14 @@ extern_methods!(
             &self,
             options: NSDataBase64EncodingOptions,
         ) -> Retained<NSData>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSData`
-    ///
-    /// NSDataBase64Encoding
-    unsafe impl NSMutableData {
+/// Methods declared on superclass `NSData`.
+///
+/// NSDataBase64Encoding.
+impl NSMutableData {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithBase64EncodedString:options:))]
         #[unsafe(method_family = init)]
@@ -614,8 +614,8 @@ extern_methods!(
             base64_data: &NSData,
             options: NSDataBase64DecodingOptions,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatacompressionalgorithm?language=objc)
 // NS_ENUM
@@ -641,9 +641,9 @@ unsafe impl RefEncode for NSDataCompressionAlgorithm {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSDataCompression
-    unsafe impl NSData {
+/// NSDataCompression.
+impl NSData {
+    extern_methods!(
         #[cfg(feature = "NSError")]
         #[unsafe(method(decompressedDataUsingAlgorithm:error:_))]
         #[unsafe(method_family = none)]
@@ -659,12 +659,12 @@ extern_methods!(
             &self,
             algorithm: NSDataCompressionAlgorithm,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSData {
+/// NSDeprecated.
+impl NSData {
+    extern_methods!(
         #[deprecated = "This method is unsafe because it could potentially cause buffer overruns. Use -getBytes:length: instead."]
         #[unsafe(method(getBytes:))]
         #[unsafe(method_family = none)]
@@ -699,14 +699,14 @@ extern_methods!(
         #[unsafe(method(base64Encoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn base64Encoding(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSData`
-    ///
-    /// NSDeprecated
-    unsafe impl NSMutableData {
+/// Methods declared on superclass `NSData`.
+///
+/// NSDeprecated.
+impl NSMutableData {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
         #[unsafe(method(initWithContentsOfMappedFile:))]
@@ -724,8 +724,8 @@ extern_methods!(
             this: Allocated<Self>,
             base64_string: &NSString,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// **************    Mutable Data        ***************
@@ -760,18 +760,18 @@ unsafe impl NSObjectProtocol for NSMutableData {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMutableData {}
 
-extern_methods!(
-    unsafe impl NSMutableData {
+impl NSMutableData {
+    extern_methods!(
         /// Setter for [`length`][Self::length].
         #[unsafe(method(setLength:))]
         #[unsafe(method_family = none)]
         pub fn setLength(&self, length: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMutableData {
+/// Methods declared on superclass `NSObject`.
+impl NSMutableData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -779,8 +779,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for NSMutableData {
     #[inline]
@@ -789,9 +789,9 @@ impl DefaultRetained for NSMutableData {
     }
 }
 
-extern_methods!(
-    /// NSExtendedMutableData
-    unsafe impl NSMutableData {
+/// NSExtendedMutableData.
+impl NSMutableData {
+    extern_methods!(
         #[unsafe(method(appendBytes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBytes_length(&self, bytes: NonNull<c_void>, length: NSUInteger);
@@ -827,12 +827,12 @@ extern_methods!(
             replacement_bytes: *const c_void,
             replacement_length: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSMutableDataCreation
-    unsafe impl NSMutableData {
+/// NSMutableDataCreation.
+impl NSMutableData {
+    extern_methods!(
         #[unsafe(method(dataWithCapacity:))]
         #[unsafe(method_family = none)]
         pub fn dataWithCapacity(a_num_items: NSUInteger) -> Option<Retained<Self>>;
@@ -854,12 +854,12 @@ extern_methods!(
             this: Allocated<Self>,
             length: NSUInteger,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSMutableDataCompression
-    unsafe impl NSMutableData {
+/// NSMutableDataCompression.
+impl NSMutableData {
+    extern_methods!(
         #[cfg(feature = "NSError")]
         #[unsafe(method(decompressUsingAlgorithm:error:_))]
         #[unsafe(method_family = none)]
@@ -875,8 +875,8 @@ extern_methods!(
             &self,
             algorithm: NSDataCompressionAlgorithm,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// **************        Purgeable Data    ***************
@@ -898,13 +898,13 @@ unsafe impl NSObjectProtocol for NSPurgeableData {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSPurgeableData {}
 
-extern_methods!(
-    unsafe impl NSPurgeableData {}
-);
+impl NSPurgeableData {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPurgeableData {
+/// Methods declared on superclass `NSObject`.
+impl NSPurgeableData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -912,5 +912,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

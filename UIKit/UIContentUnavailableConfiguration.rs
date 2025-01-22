@@ -52,8 +52,8 @@ unsafe impl NSSecureCoding for UIContentUnavailableConfiguration {}
 #[cfg(feature = "UIContentConfiguration")]
 unsafe impl UIContentConfiguration for UIContentUnavailableConfiguration {}
 
-extern_methods!(
-    unsafe impl UIContentUnavailableConfiguration {
+impl UIContentUnavailableConfiguration {
+    extern_methods!(
         /// Returns the default configuration for unavailable content.
         #[unsafe(method(emptyConfiguration))]
         #[unsafe(method_family = none)]
@@ -292,5 +292,5 @@ extern_methods!(
         #[unsafe(method(setBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackground(&self, background: &UIBackgroundConfiguration);
-    }
-);
+    );
+}

@@ -48,9 +48,9 @@ unsafe impl SCNBoundingVolume for SCNPlane {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNPlane {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNPlane {
+#[cfg(feature = "SCNGeometry")]
+impl SCNPlane {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a plane with given width and height.
         ///
@@ -138,13 +138,13 @@ extern_methods!(
         #[unsafe(method(setCornerSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCornerSegmentCount(&self, corner_segment_count: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNPlane {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNPlane {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -240,13 +240,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNPlane {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNPlane {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -254,8 +254,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNBox represents a box with rectangular sides and optional chamfers.
@@ -293,9 +293,9 @@ unsafe impl SCNBoundingVolume for SCNBox {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNBox {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNBox {
+#[cfg(feature = "SCNGeometry")]
+impl SCNBox {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a box with given width, height, length and chamfer radius.
         ///
@@ -418,13 +418,13 @@ extern_methods!(
         #[unsafe(method(setChamferSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferSegmentCount(&self, chamfer_segment_count: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNBox {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNBox {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -520,13 +520,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNBox {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNBox {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -534,8 +534,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNPyramid represents a right pyramid with a rectangular base.
@@ -573,9 +573,9 @@ unsafe impl SCNBoundingVolume for SCNPyramid {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNPyramid {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNPyramid {
+#[cfg(feature = "SCNGeometry")]
+impl SCNPyramid {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a pyramid with given width, height, and length.
         ///
@@ -669,13 +669,13 @@ extern_methods!(
         #[unsafe(method(setLengthSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLengthSegmentCount(&self, length_segment_count: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNPyramid {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNPyramid {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -771,13 +771,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNPyramid {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNPyramid {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -785,8 +785,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNSphere represents a sphere with controllable radius
@@ -824,9 +824,9 @@ unsafe impl SCNBoundingVolume for SCNSphere {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNSphere {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNSphere {
+#[cfg(feature = "SCNGeometry")]
+impl SCNSphere {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a sphere with given radius.
         ///
@@ -872,13 +872,13 @@ extern_methods!(
         #[unsafe(method(setSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNSphere {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNSphere {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -974,13 +974,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNSphere {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNSphere {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -988,8 +988,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNCylinder represents a cylinder with controllable height and radius.
@@ -1027,9 +1027,9 @@ unsafe impl SCNBoundingVolume for SCNCylinder {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNCylinder {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNCylinder {
+#[cfg(feature = "SCNGeometry")]
+impl SCNCylinder {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a cylinder with given radius and height.
         ///
@@ -1092,13 +1092,13 @@ extern_methods!(
         #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNCylinder {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNCylinder {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -1194,13 +1194,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNCylinder {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNCylinder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1208,8 +1208,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNCone represents a cone with controllable height, top radius and bottom radius.
@@ -1247,9 +1247,9 @@ unsafe impl SCNBoundingVolume for SCNCone {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNCone {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNCone {
+#[cfg(feature = "SCNGeometry")]
+impl SCNCone {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a cone with given top radius, bottom radius and height.
         ///
@@ -1331,13 +1331,13 @@ extern_methods!(
         #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNCone {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNCone {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -1433,13 +1433,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNCone {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNCone {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1447,8 +1447,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNTube represents a tube with controllable height, inner radius and outer radius.
@@ -1486,9 +1486,9 @@ unsafe impl SCNBoundingVolume for SCNTube {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNTube {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNTube {
+#[cfg(feature = "SCNGeometry")]
+impl SCNTube {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a tube with given inner radius, outer radius and height.
         ///
@@ -1570,13 +1570,13 @@ extern_methods!(
         #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNTube {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNTube {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -1672,13 +1672,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNTube {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNTube {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1686,8 +1686,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNCapsule represents a capsule with controllable height and cap radius.
@@ -1725,9 +1725,9 @@ unsafe impl SCNBoundingVolume for SCNCapsule {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNCapsule {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNCapsule {
+#[cfg(feature = "SCNGeometry")]
+impl SCNCapsule {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a capsule with given radius and height.
         ///
@@ -1804,13 +1804,13 @@ extern_methods!(
         #[unsafe(method(setCapSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCapSegmentCount(&self, cap_segment_count: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNCapsule {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNCapsule {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -1906,13 +1906,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNCapsule {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNCapsule {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1920,8 +1920,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNTorus represents a torus with controllable ring radius and pipe radius.
@@ -1959,9 +1959,9 @@ unsafe impl SCNBoundingVolume for SCNTorus {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNTorus {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNTorus {
+#[cfg(feature = "SCNGeometry")]
+impl SCNTorus {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a torus with given ring radius and pipe radius.
         ///
@@ -2026,13 +2026,13 @@ extern_methods!(
         #[unsafe(method(setPipeSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPipeSegmentCount(&self, pipe_segment_count: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNTorus {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNTorus {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -2128,13 +2128,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNTorus {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNTorus {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2142,8 +2142,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNFloor represents an infinite plane geometry.
@@ -2181,9 +2181,9 @@ unsafe impl SCNBoundingVolume for SCNFloor {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNFloor {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNFloor {
+#[cfg(feature = "SCNGeometry")]
+impl SCNFloor {
+    extern_methods!(
         /// Creates and returns a floor.
         ///
         /// A floor is an infinite plane.
@@ -2287,13 +2287,13 @@ extern_methods!(
             &self,
             reflection_resolution_scale_factor: CGFloat,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNFloor {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNFloor {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -2389,13 +2389,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNFloor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNFloor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2403,8 +2403,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCNText represents a block of text that has been extruded
@@ -2442,9 +2442,9 @@ unsafe impl SCNBoundingVolume for SCNText {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNText {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNText {
+#[cfg(feature = "SCNGeometry")]
+impl SCNText {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a 3D representation of given text with given extrusion depth.
         ///
@@ -2613,13 +2613,13 @@ extern_methods!(
         #[unsafe(method(setFlatness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFlatness(&self, flatness: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNText {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNText {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -2715,13 +2715,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNText {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNText {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2729,8 +2729,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnchamfermode?language=objc)
 // NS_ENUM
@@ -2790,9 +2790,9 @@ unsafe impl SCNBoundingVolume for SCNShape {}
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
 unsafe impl SCNShadable for SCNShape {}
 
-extern_methods!(
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNShape {
+#[cfg(feature = "SCNGeometry")]
+impl SCNShape {
+    extern_methods!(
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]
         /// Creates and returns a 3D representation of the given shape with the given extrusion depth.
@@ -2878,13 +2878,13 @@ extern_methods!(
         #[unsafe(method(setChamferProfile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferProfile(&self, chamfer_profile: Option<&NSBezierPath>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SCNGeometry`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNShape {
+/// Methods declared on superclass `SCNGeometry`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNShape {
+    extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
@@ -2980,13 +2980,13 @@ extern_methods!(
             elements: Option<&NSArray<SCNGeometryElement>>,
             source_channels: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SCNGeometry")]
-    unsafe impl SCNShape {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SCNGeometry")]
+impl SCNShape {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2994,5 +2994,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

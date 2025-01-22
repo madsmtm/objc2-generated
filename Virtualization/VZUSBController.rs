@@ -26,8 +26,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZUSBController {}
 
-extern_methods!(
-    unsafe impl VZUSBController {
+impl VZUSBController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -102,5 +102,5 @@ extern_methods!(
         #[unsafe(method(usbDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn usbDevices(&self) -> Retained<NSArray<ProtocolObject<dyn VZUSBDevice>>>;
-    }
-);
+    );
+}

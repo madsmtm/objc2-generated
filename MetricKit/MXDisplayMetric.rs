@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXDisplayMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXDisplayMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXDisplayMetric {
+#[cfg(feature = "MXMetric")]
+impl MXDisplayMetric {
+    extern_methods!(
         #[cfg(all(feature = "MXAverage", feature = "MXUnit"))]
         /// Average Pixel Luminance for the application.
         ///
@@ -41,13 +41,13 @@ extern_methods!(
         pub unsafe fn averagePixelLuminance(
             &self,
         ) -> Option<Retained<MXAverage<MXUnitAveragePixelLuminance>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXDisplayMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXDisplayMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

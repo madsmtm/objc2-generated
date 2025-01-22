@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSScriptExecutionContext {}
 
-extern_methods!(
-    unsafe impl NSScriptExecutionContext {
+impl NSScriptExecutionContext {
+    extern_methods!(
         #[unsafe(method(sharedScriptExecutionContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedScriptExecutionContext() -> Retained<NSScriptExecutionContext>;
@@ -47,12 +47,12 @@ extern_methods!(
         #[unsafe(method(setRangeContainerObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRangeContainerObject(&self, range_container_object: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScriptExecutionContext {
+/// Methods declared on superclass `NSObject`.
+impl NSScriptExecutionContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,5 +60,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

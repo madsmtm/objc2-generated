@@ -90,13 +90,13 @@ extern_class!(
 ))]
 unsafe impl NSObjectProtocol for AVAudioUnitDistortion {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitEffect"
-    ))]
-    unsafe impl AVAudioUnitDistortion {
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+impl AVAudioUnitDistortion {
+    extern_methods!(
         /// Load a distortion preset.
         /// Default:    AVAudioUnitDistortionPresetDrumsBitBrush
         #[unsafe(method(loadFactoryPreset:))]
@@ -128,17 +128,17 @@ extern_methods!(
         #[unsafe(method(setWetDryMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAudioUnitEffect`
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitEffect"
-    ))]
-    unsafe impl AVAudioUnitDistortion {
+/// Methods declared on superclass `AVAudioUnitEffect`.
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+impl AVAudioUnitDistortion {
+    extern_methods!(
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// Create an AVAudioUnitEffect object.
@@ -158,17 +158,17 @@ extern_methods!(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitEffect"
-    ))]
-    unsafe impl AVAudioUnitDistortion {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+impl AVAudioUnitDistortion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -176,5 +176,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

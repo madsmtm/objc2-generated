@@ -35,9 +35,9 @@ extern_class!(
 #[cfg(feature = "SKRequest")]
 unsafe impl NSObjectProtocol for SKProductsRequest {}
 
-extern_methods!(
-    #[cfg(feature = "SKRequest")]
-    unsafe impl SKProductsRequest {
+#[cfg(feature = "SKRequest")]
+impl SKProductsRequest {
+    extern_methods!(
         #[deprecated = "Use Product.products(for:)"]
         #[unsafe(method(initWithProductIdentifiers:))]
         #[unsafe(method_family = init)]
@@ -62,13 +62,13 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn SKProductsRequestDelegate>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "SKRequest")]
-    unsafe impl SKProductsRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "SKRequest")]
+impl SKProductsRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,8 +76,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsresponse?language=objc)
@@ -93,8 +93,8 @@ unsafe impl Sync for SKProductsResponse {}
 
 unsafe impl NSObjectProtocol for SKProductsResponse {}
 
-extern_methods!(
-    unsafe impl SKProductsResponse {
+impl SKProductsResponse {
+    extern_methods!(
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Get products using Product.products(for:)"]
         #[unsafe(method(products))]
@@ -105,12 +105,12 @@ extern_methods!(
         #[unsafe(method(invalidProductIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidProductIdentifiers(&self) -> Retained<NSArray<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKProductsResponse {
+/// Methods declared on superclass `NSObject`.
+impl SKProductsResponse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -118,5 +118,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

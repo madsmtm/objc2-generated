@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPortraitEffectsMatte {}
 
-extern_methods!(
-    unsafe impl AVPortraitEffectsMatte {
+impl AVPortraitEffectsMatte {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -102,5 +102,5 @@ extern_methods!(
         #[unsafe(method(mattingImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn mattingImage(&self) -> Retained<CVPixelBuffer>;
-    }
-);
+    );
+}

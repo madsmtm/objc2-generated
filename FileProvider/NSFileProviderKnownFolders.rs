@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocation {}
 
-extern_methods!(
-    unsafe impl NSFileProviderKnownFolderLocation {
+impl NSFileProviderKnownFolderLocation {
+    extern_methods!(
         #[cfg(feature = "NSFileProviderItem")]
         /// Initialize a location with the filename of the folder in a specified parent.
         ///
@@ -45,12 +45,12 @@ extern_methods!(
             this: Allocated<Self>,
             existing_item_identifier: &NSFileProviderItemIdentifier,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileProviderKnownFolderLocation {
+/// Methods declared on superclass `NSObject`.
+impl NSFileProviderKnownFolderLocation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -58,8 +58,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Specify the locations at which known folders should be synced in the replicated tree.
@@ -74,8 +74,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocations {}
 
-extern_methods!(
-    unsafe impl NSFileProviderKnownFolderLocations {
+impl NSFileProviderKnownFolderLocations {
+    extern_methods!(
         /// Specify whether the system should create a binary compatibility symlink folders.
         ///
         /// If YES, the system creates a symlink from the logical location of the folder in the domain
@@ -131,22 +131,22 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileProviderKnownFolderLocations {
+/// Methods declared on superclass `NSObject`.
+impl NSFileProviderKnownFolderLocations {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// KnownFolders
-    #[cfg(feature = "Extension")]
-    unsafe impl NSFileProviderManager {
+/// KnownFolders.
+#[cfg(feature = "Extension")]
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Request the specified known folders to be synced by this domain.
         ///
@@ -204,8 +204,8 @@ extern_methods!(
             localized_reason: &NSString,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfoldersupporting?language=objc)

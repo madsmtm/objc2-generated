@@ -63,9 +63,9 @@ unsafe impl MutableCopyingHelper for AVMovie {
 #[cfg(feature = "AVAsset")]
 unsafe impl NSObjectProtocol for AVMovie {}
 
-extern_methods!(
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMovie {
+#[cfg(feature = "AVAsset")]
+impl AVMovie {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         /// Provides the file types the AVMovie class understands.
         ///
@@ -185,13 +185,13 @@ extern_methods!(
         #[unsafe(method(containsMovieFragments))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsMovieFragments(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAsset`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMovie {
+/// Methods declared on superclass `AVAsset`.
+#[cfg(feature = "AVAsset")]
+impl AVMovie {
+    extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
         /// Parameter `URL`: An instance of NSURL that references a media resource.
@@ -202,13 +202,13 @@ extern_methods!(
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMovie {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAsset")]
+impl AVMovie {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -216,8 +216,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// These options can be passed into writeMovieHeaderToURL:fileType:options:error: to control the writing of a movie header to a destination URL.
 ///
@@ -249,10 +249,10 @@ unsafe impl RefEncode for AVMovieWritingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVMovieMovieHeaderSupport
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMovie {
+/// AVMovieMovieHeaderSupport.
+#[cfg(feature = "AVAsset")]
+impl AVMovie {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         /// Creates an NSData object containing the movie header of the AVMovie object.
         ///
@@ -300,13 +300,13 @@ extern_methods!(
         #[unsafe(method(isCompatibleWithFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompatibleWithFileType(&self, file_type: &AVFileType) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMovieTrackInspection
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMovie {
+/// AVMovieTrackInspection.
+#[cfg(feature = "AVAsset")]
+impl AVMovie {
+    extern_methods!(
         #[cfg(all(
             feature = "AVAssetTrack",
             feature = "AVMovieTrack",
@@ -429,8 +429,8 @@ extern_methods!(
             media_characteristic: &AVMediaCharacteristic,
             completion_handler: &block2::Block<dyn Fn(*mut NSArray<AVMovieTrack>, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVMutableMovie adds to its immutable superclass, AVMovie, several categories of methods for editing QuickTime movie files, e.g. inserting and removing time ranges of media, adding and removing tracks, and modifying the metadata collections stored therein.
@@ -467,9 +467,9 @@ unsafe impl MutableCopyingHelper for AVMutableMovie {
 #[cfg(feature = "AVAsset")]
 unsafe impl NSObjectProtocol for AVMutableMovie {}
 
-extern_methods!(
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableMovie {
+#[cfg(feature = "AVAsset")]
+impl AVMutableMovie {
+    extern_methods!(
         /// Creates an AVMutableMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
         /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
@@ -647,13 +647,13 @@ extern_methods!(
         #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVMutableMovieTrack>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMovie`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableMovie {
+/// Methods declared on superclass `AVMovie`.
+#[cfg(feature = "AVAsset")]
+impl AVMutableMovie {
+    extern_methods!(
         /// Creates an AVMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
         /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
@@ -726,13 +726,13 @@ extern_methods!(
             data: &NSData,
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAsset`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableMovie {
+/// Methods declared on superclass `AVAsset`.
+#[cfg(feature = "AVAsset")]
+impl AVMutableMovie {
+    extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
         /// Parameter `URL`: An instance of NSURL that references a media resource.
@@ -743,13 +743,13 @@ extern_methods!(
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableMovie {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAsset")]
+impl AVMutableMovie {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -757,13 +757,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieMovieLevelEditing
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableMovie {
+/// AVMutableMovieMovieLevelEditing.
+#[cfg(feature = "AVAsset")]
+impl AVMutableMovie {
+    extern_methods!(
         /// Whether a movie has been modified.
         ///
         /// The value of this property is a BOOL that indicates whether the AVMutableMovie object has been modified since it was created, was last written, or had its modified state cleared via a call to setModified:NO.
@@ -863,13 +863,13 @@ extern_methods!(
         #[unsafe(method(scaleTimeRange:toDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleTimeRange_toDuration(&self, time_range: CMTimeRange, duration: CMTime);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackLevelEditing
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableMovie {
+/// AVMutableMovieTrackLevelEditing.
+#[cfg(feature = "AVAsset")]
+impl AVMutableMovie {
+    extern_methods!(
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMovieTrack"))]
         /// Provides a reference to a track of a mutable movie into which any time range of an AVAssetTrack
         /// can be inserted (via -[AVMutableMovieTrack insertTimeRange:ofTrack:atTime:copySampleData:error:]).
@@ -945,13 +945,13 @@ extern_methods!(
         #[unsafe(method(removeTrack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrack(&self, track: &AVMovieTrack);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieMetadataEditing
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableMovie {
+/// AVMutableMovieMetadataEditing.
+#[cfg(feature = "AVAsset")]
+impl AVMutableMovie {
+    extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
         /// A collection of metadata stored by the movie.
         ///
@@ -965,13 +965,13 @@ extern_methods!(
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableMovieTrackInspection
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableMovie {
+/// AVMutableMovieTrackInspection.
+#[cfg(feature = "AVAsset")]
+impl AVMutableMovie {
+    extern_methods!(
         #[cfg(all(
             feature = "AVAssetTrack",
             feature = "AVMovieTrack",
@@ -1095,8 +1095,8 @@ extern_methods!(
                 dyn Fn(*mut NSArray<AVMutableMovieTrack>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// Media sample data storage file.
@@ -1115,8 +1115,8 @@ unsafe impl Sync for AVMediaDataStorage {}
 
 unsafe impl NSObjectProtocol for AVMediaDataStorage {}
 
-extern_methods!(
-    unsafe impl AVMediaDataStorage {
+impl AVMediaDataStorage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1144,8 +1144,8 @@ extern_methods!(
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Posted after the value of
@@ -1197,9 +1197,9 @@ unsafe impl AVFragmentMinding for AVFragmentedMovie {}
 #[cfg(feature = "AVAsset")]
 unsafe impl NSObjectProtocol for AVFragmentedMovie {}
 
-extern_methods!(
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVFragmentedMovie {
+#[cfg(feature = "AVAsset")]
+impl AVFragmentedMovie {
+    extern_methods!(
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMovieTrack"))]
         /// The tracks in a movie.
         ///
@@ -1207,13 +1207,13 @@ extern_methods!(
         #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVFragmentedMovieTrack>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVMovie`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVFragmentedMovie {
+/// Methods declared on superclass `AVMovie`.
+#[cfg(feature = "AVAsset")]
+impl AVFragmentedMovie {
+    extern_methods!(
         /// Creates an AVMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
         /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
@@ -1286,13 +1286,13 @@ extern_methods!(
             data: &NSData,
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAsset`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVFragmentedMovie {
+/// Methods declared on superclass `AVAsset`.
+#[cfg(feature = "AVAsset")]
+impl AVFragmentedMovie {
+    extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
         /// Parameter `URL`: An instance of NSURL that references a media resource.
@@ -1303,13 +1303,13 @@ extern_methods!(
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVFragmentedMovie {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAsset")]
+impl AVFragmentedMovie {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1317,13 +1317,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVFragmentedMovieTrackInspection
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVFragmentedMovie {
+/// AVFragmentedMovieTrackInspection.
+#[cfg(feature = "AVAsset")]
+impl AVFragmentedMovie {
+    extern_methods!(
         #[cfg(all(
             feature = "AVAssetTrack",
             feature = "AVMovieTrack",
@@ -1450,8 +1450,8 @@ extern_methods!(
                 dyn Fn(*mut NSArray<AVFragmentedMovieTrack>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// A class that periodically checks whether additional movie fragments have been appended to fragmented movie files.
@@ -1468,9 +1468,9 @@ extern_class!(
 #[cfg(feature = "AVAsset")]
 unsafe impl NSObjectProtocol for AVFragmentedMovieMinder {}
 
-extern_methods!(
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVFragmentedMovieMinder {
+#[cfg(feature = "AVAsset")]
+impl AVFragmentedMovieMinder {
+    extern_methods!(
         /// Creates an AVFragmentedMovieMinder, adds the specified movie to it, and sets the mindingInterval to the specified value.
         ///
         /// Parameter `movie`: An instance of AVFragmentedMovie to add to the AVFragmentedMovieMinder
@@ -1528,13 +1528,13 @@ extern_methods!(
         #[unsafe(method(removeFragmentedMovie:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFragmentedMovie(&self, movie: &AVFragmentedMovie);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVFragmentedAssetMinder`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVFragmentedMovieMinder {
+/// Methods declared on superclass `AVFragmentedAssetMinder`.
+#[cfg(feature = "AVAsset")]
+impl AVFragmentedMovieMinder {
+    extern_methods!(
         /// Creates an AVFragmentedAssetMinder, adds the specified asset to it, and sets the mindingInterval to the specified value.
         ///
         /// Parameter `asset`: An instance of AVFragmentedAsset to add to the AVFragmentedAssetMinder
@@ -1563,13 +1563,13 @@ extern_methods!(
             asset: &AVAsset,
             minding_interval: NSTimeInterval,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVFragmentedMovieMinder {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAsset")]
+impl AVFragmentedMovieMinder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1577,16 +1577,16 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SynchronousAssetInterface
-    /// Redeclarations of async-only AVAsset interfaces to allow synchronous usage in the synchronous subclass.
-    ///
-    /// See AVAsset's interface for more information about these interfaces.
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableMovie {
+/// SynchronousAssetInterface.
+/// Redeclarations of async-only AVAsset interfaces to allow synchronous usage in the synchronous subclass.
+///
+/// See AVAsset's interface for more information about these interfaces.
+#[cfg(feature = "AVAsset")]
+impl AVMutableMovie {
+    extern_methods!(
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
         #[unsafe(method(metadataForFormat:))]
         #[unsafe(method_family = none)]
@@ -1624,5 +1624,5 @@ extern_methods!(
         #[unsafe(method(unusedTrackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn unusedTrackID(&self) -> CMPersistentTrackID;
-    }
-);
+    );
+}

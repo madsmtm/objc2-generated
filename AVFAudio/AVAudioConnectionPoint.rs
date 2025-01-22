@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioConnectionPoint {}
 
-extern_methods!(
-    unsafe impl AVAudioConnectionPoint {
+impl AVAudioConnectionPoint {
+    extern_methods!(
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioTypes"))]
         /// Create a connection point object.
         ///
@@ -54,14 +54,14 @@ extern_methods!(
         #[unsafe(method(bus))]
         #[unsafe(method_family = none)]
         pub unsafe fn bus(&self) -> AVAudioNodeBus;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioConnectionPoint {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioConnectionPoint {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

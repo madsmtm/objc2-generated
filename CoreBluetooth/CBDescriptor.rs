@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "CBAttribute")]
 unsafe impl NSObjectProtocol for CBDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBDescriptor {
+#[cfg(feature = "CBAttribute")]
+impl CBDescriptor {
+    extern_methods!(
         #[cfg(feature = "CBCharacteristic")]
         /// A back-pointer to the characteristic this descriptor belongs to.
         #[unsafe(method(characteristic))]
@@ -37,28 +37,28 @@ extern_methods!(
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CBAttribute`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBDescriptor {
+/// Methods declared on superclass `CBAttribute`.
+#[cfg(feature = "CBAttribute")]
+impl CBDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBAttribute")]
+impl CBDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Used to create a local characteristic descriptor, which can be added to the local database via
@@ -103,9 +103,9 @@ extern_class!(
 #[cfg(feature = "CBAttribute")]
 unsafe impl NSObjectProtocol for CBMutableDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBMutableDescriptor {
+#[cfg(feature = "CBAttribute")]
+impl CBMutableDescriptor {
+    extern_methods!(
         #[cfg(feature = "CBUUID")]
         /// Parameter `UUID`: The Bluetooth UUID of the descriptor.
         ///
@@ -125,25 +125,25 @@ extern_methods!(
             uuid: &CBUUID,
             value: Option<&AnyObject>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CBAttribute`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBMutableDescriptor {
+/// Methods declared on superclass `CBAttribute`.
+#[cfg(feature = "CBAttribute")]
+impl CBMutableDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBAttribute")]
-    unsafe impl CBMutableDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBAttribute")]
+impl CBMutableDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

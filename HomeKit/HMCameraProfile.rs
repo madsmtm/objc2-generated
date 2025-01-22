@@ -27,9 +27,9 @@ unsafe impl Sync for HMCameraProfile {}
 #[cfg(feature = "HMAccessoryProfile")]
 unsafe impl NSObjectProtocol for HMCameraProfile {}
 
-extern_methods!(
-    #[cfg(feature = "HMAccessoryProfile")]
-    unsafe impl HMCameraProfile {
+#[cfg(feature = "HMAccessoryProfile")]
+impl HMCameraProfile {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -63,15 +63,15 @@ extern_methods!(
         #[unsafe(method(microphoneControl))]
         #[unsafe(method_family = none)]
         pub unsafe fn microphoneControl(&self) -> Option<Retained<HMCameraAudioControl>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HMAccessoryProfile")]
-    unsafe impl HMCameraProfile {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HMAccessoryProfile")]
+impl HMCameraProfile {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

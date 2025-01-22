@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<KeyType, ObjectType> {}
 
-extern_methods!(
-    unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
+impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -86,12 +86,12 @@ extern_methods!(
             &self,
             evicts_objects_with_discarded_content: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -99,8 +99,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscachedelegate?language=objc)

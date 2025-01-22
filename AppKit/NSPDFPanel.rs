@@ -41,8 +41,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPDFPanel {}
 
-extern_methods!(
-    unsafe impl NSPDFPanel {
+impl NSPDFPanel {
+    extern_methods!(
         #[unsafe(method(panel))]
         #[unsafe(method_family = none)]
         pub unsafe fn panel(mtm: MainThreadMarker) -> Retained<NSPDFPanel>;
@@ -93,12 +93,12 @@ extern_methods!(
             doc_window: Option<&NSWindow>,
             completion_handler: &block2::Block<dyn Fn(NSInteger)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPDFPanel {
+/// Methods declared on superclass `NSObject`.
+impl NSPDFPanel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -106,5 +106,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

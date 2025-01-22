@@ -138,8 +138,8 @@ unsafe impl NSObjectProtocol for NSLayoutManager {}
 
 unsafe impl NSSecureCoding for NSLayoutManager {}
 
-extern_methods!(
-    unsafe impl NSLayoutManager {
+impl NSLayoutManager {
+    extern_methods!(
         /// ************************** Initialization ***************************
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -1006,21 +1006,21 @@ extern_methods!(
         #[unsafe(method(defaultBaselineOffsetForFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultBaselineOffsetForFont(&self, the_font: &NSFont) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLayoutManager {
+/// Methods declared on superclass `NSObject`.
+impl NSLayoutManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTextViewSupport
-    unsafe impl NSLayoutManager {
+/// NSTextViewSupport.
+impl NSLayoutManager {
+    extern_methods!(
         #[cfg(all(
             feature = "NSParagraphStyle",
             feature = "NSResponder",
@@ -1086,8 +1086,8 @@ extern_methods!(
             &self,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSTextView>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanagerdelegate?language=objc)
@@ -1285,9 +1285,9 @@ unsafe impl RefEncode for NSGlyphInscription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSLayoutManagerDeprecated
-    unsafe impl NSLayoutManager {
+/// NSLayoutManagerDeprecated.
+impl NSLayoutManager {
+    extern_methods!(
         #[cfg(feature = "NSFont")]
         #[unsafe(method(glyphAtIndex:isValidIndex:))]
         #[unsafe(method_family = none)]
@@ -1531,12 +1531,12 @@ extern_methods!(
         #[unsafe(method(setHyphenationFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHyphenationFactor(&self, hyphenation_factor: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSGlyphGeneration
-    unsafe impl NSLayoutManager {
+/// NSGlyphGeneration.
+impl NSLayoutManager {
+    extern_methods!(
         #[cfg(feature = "NSGlyphGenerator")]
         #[unsafe(method(glyphGenerator))]
         #[unsafe(method_family = none)]
@@ -1547,8 +1547,8 @@ extern_methods!(
         #[unsafe(method(setGlyphGenerator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlyphGenerator(&self, glyph_generator: &NSGlyphGenerator);
-    }
-);
+    );
+}
 
 #[cfg(feature = "NSGlyphGenerator")]
 unsafe impl NSGlyphStorage for NSLayoutManager {}

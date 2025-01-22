@@ -21,9 +21,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCLayerNormalizationLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCLayerNormalizationLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCLayerNormalizationLayer {
+    extern_methods!(
         /// The shape of the axes over which normalization occurs, (W), (H,W) or (C,H,W)
         #[deprecated]
         #[unsafe(method(normalizedShape))]
@@ -85,13 +85,13 @@ extern_methods!(
             gamma: Option<&MLCTensor>,
             variance_epsilon: c_float,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCLayerNormalizationLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCLayerNormalizationLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -101,5 +101,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

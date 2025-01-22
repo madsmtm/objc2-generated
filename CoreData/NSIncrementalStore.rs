@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "NSPersistentStore")]
 unsafe impl NSObjectProtocol for NSIncrementalStore {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStore")]
-    unsafe impl NSIncrementalStore {
+#[cfg(feature = "NSPersistentStore")]
+impl NSIncrementalStore {
+    extern_methods!(
         #[unsafe(method(loadMetadata:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMetadata(&self) -> Result<(), Retained<NSError>>;
@@ -109,13 +109,13 @@ extern_methods!(
             &self,
             object_id: &NSManagedObjectID,
         ) -> Retained<AnyObject>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSPersistentStore`
-    #[cfg(feature = "NSPersistentStore")]
-    unsafe impl NSIncrementalStore {
+/// Methods declared on superclass `NSPersistentStore`.
+#[cfg(feature = "NSPersistentStore")]
+impl NSIncrementalStore {
+    extern_methods!(
         #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[unsafe(method(initWithPersistentStoreCoordinator:configurationName:URL:options:))]
         #[unsafe(method_family = init)]
@@ -130,15 +130,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStore")]
-    unsafe impl NSIncrementalStore {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStore")]
+impl NSIncrementalStore {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

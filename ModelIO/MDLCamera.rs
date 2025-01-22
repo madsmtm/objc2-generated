@@ -246,9 +246,9 @@ unsafe impl MDLNamed for MDLCamera {}
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLCamera {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLCamera {
+#[cfg(feature = "MDLObject")]
+impl MDLCamera {
+    extern_methods!(
         #[unsafe(method(projection))]
         #[unsafe(method_family = none)]
         pub unsafe fn projection(&self) -> MDLCameraProjection;
@@ -427,13 +427,13 @@ extern_methods!(
         #[unsafe(method(setSensorAspect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSensorAspect(&self, sensor_aspect: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLCamera {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLCamera {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -441,8 +441,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlstereoscopiccamera?language=objc)
@@ -458,9 +458,9 @@ unsafe impl MDLNamed for MDLStereoscopicCamera {}
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLStereoscopicCamera {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLStereoscopicCamera {
+#[cfg(feature = "MDLObject")]
+impl MDLStereoscopicCamera {
+    extern_methods!(
         /// Inter-pupillary distance in mm.
         /// Default is 63mm.
         #[unsafe(method(interPupillaryDistance))]
@@ -512,13 +512,13 @@ extern_methods!(
         #[unsafe(method(setOverlap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverlap(&self, overlap: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLStereoscopicCamera {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLStereoscopicCamera {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -526,5 +526,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

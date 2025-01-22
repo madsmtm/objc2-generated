@@ -46,8 +46,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLTask {}
 
-extern_methods!(
-    unsafe impl MLTask {
+impl MLTask {
+    extern_methods!(
         #[unsafe(method(taskIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn taskIdentifier(&self) -> Retained<NSString>;
@@ -75,5 +75,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

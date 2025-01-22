@@ -35,8 +35,8 @@ unsafe impl NSObjectProtocol for UIHoverHighlightEffect {}
 
 unsafe impl UIHoverEffect for UIHoverHighlightEffect {}
 
-extern_methods!(
-    unsafe impl UIHoverHighlightEffect {
+impl UIHoverHighlightEffect {
+    extern_methods!(
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub unsafe fn effect(mtm: MainThreadMarker) -> Retained<Self>;
@@ -48,8 +48,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An effect that can visually lift the view on hover where appropriate.
@@ -71,8 +71,8 @@ unsafe impl NSObjectProtocol for UIHoverLiftEffect {}
 
 unsafe impl UIHoverEffect for UIHoverLiftEffect {}
 
-extern_methods!(
-    unsafe impl UIHoverLiftEffect {
+impl UIHoverLiftEffect {
+    extern_methods!(
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub unsafe fn effect(mtm: MainThreadMarker) -> Retained<Self>;
@@ -84,8 +84,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A system-default hover effect that automatically selects the appropriate
@@ -108,8 +108,8 @@ unsafe impl NSObjectProtocol for UIHoverAutomaticEffect {}
 
 unsafe impl UIHoverEffect for UIHoverAutomaticEffect {}
 
-extern_methods!(
-    unsafe impl UIHoverAutomaticEffect {
+impl UIHoverAutomaticEffect {
+    extern_methods!(
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub unsafe fn effect(mtm: MainThreadMarker) -> Retained<Self>;
@@ -121,5 +121,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -24,8 +24,8 @@ unsafe impl NSObjectProtocol for CAMediaTimingFunction {}
 
 unsafe impl NSSecureCoding for CAMediaTimingFunction {}
 
-extern_methods!(
-    unsafe impl CAMediaTimingFunction {
+impl CAMediaTimingFunction {
+    extern_methods!(
         #[unsafe(method(functionWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionWithName(name: &CAMediaTimingFunctionName) -> Retained<Self>;
@@ -48,12 +48,12 @@ extern_methods!(
             c2x: c_float,
             c2y: c_float,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CAMediaTimingFunction {
+/// Methods declared on superclass `NSObject`.
+impl CAMediaTimingFunction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -61,8 +61,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Timing function names. *

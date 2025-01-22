@@ -21,9 +21,9 @@ extern_class!(
 #[cfg(feature = "MLCGraph")]
 unsafe impl NSObjectProtocol for MLCInferenceGraph {}
 
-extern_methods!(
-    #[cfg(feature = "MLCGraph")]
-    unsafe impl MLCInferenceGraph {
+#[cfg(feature = "MLCGraph")]
+impl MLCInferenceGraph {
+    extern_methods!(
         /// Returns the total size in bytes of device memory used by all intermediate tensors in the inference graph
         ///
         /// Returns: A NSUInteger value
@@ -303,13 +303,13 @@ extern_methods!(
             options: MLCExecutionOptions,
             completion_handler: MLCGraphCompletionHandler,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCGraph`
-    #[cfg(feature = "MLCGraph")]
-    unsafe impl MLCInferenceGraph {
+/// Methods declared on superclass `MLCGraph`.
+#[cfg(feature = "MLCGraph")]
+impl MLCInferenceGraph {
+    extern_methods!(
         /// Creates a new graph.
         ///
         /// Returns: A new graph.
@@ -317,5 +317,5 @@ extern_methods!(
         #[unsafe(method(graph))]
         #[unsafe(method_family = none)]
         pub unsafe fn graph() -> Retained<Self>;
-    }
-);
+    );
+}

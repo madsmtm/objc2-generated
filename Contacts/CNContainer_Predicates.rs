@@ -6,14 +6,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// Predicates
-    /// The predicates to match containers against.
-    ///
-    ///
-    /// Can only use these predicates with CNContactStore.
-    #[cfg(feature = "CNContainer")]
-    unsafe impl CNContainer {
+/// Predicates.
+/// The predicates to match containers against.
+///
+///
+/// Can only use these predicates with CNContactStore.
+#[cfg(feature = "CNContainer")]
+impl CNContainer {
+    extern_methods!(
         #[unsafe(method(predicateForContainersWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForContainersWithIdentifiers(
@@ -32,5 +32,5 @@ extern_methods!(
         pub unsafe fn predicateForContainerOfGroupWithIdentifier(
             group_identifier: &NSString,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}

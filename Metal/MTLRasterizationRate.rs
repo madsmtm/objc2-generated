@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLRasterizationRateSampleArray {}
 
-extern_methods!(
-    unsafe impl MTLRasterizationRateSampleArray {
+impl MTLRasterizationRateSampleArray {
+    extern_methods!(
         /// Retrieves the sample value at the specified index.
         ///
         /// Returns: NSNumber instance describing the value of the sample at the specified index, or 0 if the index is out of range.
@@ -33,12 +33,12 @@ extern_methods!(
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(&self, value: &NSNumber, index: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRasterizationRateSampleArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLRasterizationRateSampleArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -46,8 +46,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Describes the minimum rasterization rate screen space using two piecewise linear functions.
@@ -74,8 +74,8 @@ unsafe impl CopyingHelper for MTLRasterizationRateLayerDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRasterizationRateLayerDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRasterizationRateLayerDescriptor {
+impl MTLRasterizationRateLayerDescriptor {
+    extern_methods!(
         /// Do not use, instead use initWithNumSamples:
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -150,27 +150,27 @@ extern_methods!(
         #[unsafe(method(vertical))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertical(&self) -> Retained<MTLRasterizationRateSampleArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRasterizationRateLayerDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRasterizationRateLayerDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl MTLRasterizationRateLayerDescriptor {
+impl MTLRasterizationRateLayerDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`sampleCount`][Self::sampleCount].
         #[unsafe(method(setSampleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleCount(&self, sample_count: MTLSize);
-    }
-);
+    );
+}
 
 extern_class!(
     /// Mutable array of MTLRasterizationRateLayerDescriptor
@@ -183,8 +183,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLRasterizationRateLayerArray {}
 
-extern_methods!(
-    unsafe impl MTLRasterizationRateLayerArray {
+impl MTLRasterizationRateLayerArray {
+    extern_methods!(
         /// Returns: The MTLRasterizationRateLayerDescriptor instance for the given layerIndex, or nil if no instance hasn't been set for this index.
         ///
         /// Use setObject:atIndexedSubscript: to set the layer
@@ -205,12 +205,12 @@ extern_methods!(
             layer: Option<&MTLRasterizationRateLayerDescriptor>,
             layer_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRasterizationRateLayerArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLRasterizationRateLayerArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -218,8 +218,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Describes a MTLRasterizationRateMap containing an arbitrary number of MTLRasterizationRateLayerDescriptor instances.
@@ -240,8 +240,8 @@ unsafe impl CopyingHelper for MTLRasterizationRateMapDescriptor {
 
 unsafe impl NSObjectProtocol for MTLRasterizationRateMapDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLRasterizationRateMapDescriptor {
+impl MTLRasterizationRateMapDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLTypes")]
         /// Convenience descriptor creation function without layers
         ///
@@ -354,12 +354,12 @@ extern_methods!(
         #[unsafe(method(layerCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerCount(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLRasterizationRateMapDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLRasterizationRateMapDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -367,8 +367,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Compiled read-only object that determines how variable rasterization rate is applied when rendering.

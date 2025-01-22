@@ -34,8 +34,8 @@ unsafe impl CopyingHelper for VZMacMachineIdentifier {
 
 unsafe impl NSObjectProtocol for VZMacMachineIdentifier {}
 
-extern_methods!(
-    unsafe impl VZMacMachineIdentifier {
+impl VZMacMachineIdentifier {
+    extern_methods!(
         /// Create a new unique machine identifier.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -63,14 +63,14 @@ extern_methods!(
         #[unsafe(method(dataRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VZMacMachineIdentifier {
+/// Methods declared on superclass `NSObject`.
+impl VZMacMachineIdentifier {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

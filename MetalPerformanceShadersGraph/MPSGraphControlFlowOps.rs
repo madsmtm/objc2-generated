@@ -88,10 +88,10 @@ pub type MPSGraphForLoopBodyBlock = *mut block2::Block<
     ) -> NonNull<NSArray<MPSGraphTensor>>,
 >;
 
-extern_methods!(
-    /// MPSGraphControlFlowOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphControlFlowOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(all(
             feature = "MPSGraphOperation",
             feature = "MPSGraphTensor",
@@ -195,5 +195,5 @@ extern_methods!(
             body: MPSGraphForLoopBodyBlock,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
-    }
-);
+    );
+}

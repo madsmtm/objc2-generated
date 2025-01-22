@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for AXRequest {}
 
 unsafe impl NSSecureCoding for AXRequest {}
 
-extern_methods!(
-    unsafe impl AXRequest {
+impl AXRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -43,5 +43,5 @@ extern_methods!(
         #[unsafe(method(technology))]
         #[unsafe(method_family = none)]
         pub unsafe fn technology(&self) -> Retained<AXTechnology>;
-    }
-);
+    );
+}

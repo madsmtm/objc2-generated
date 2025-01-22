@@ -29,21 +29,21 @@ unsafe impl CopyingHelper for VZVirtioEntropyDeviceConfiguration {
 #[cfg(feature = "VZEntropyDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioEntropyDeviceConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZEntropyDeviceConfiguration")]
-    unsafe impl VZVirtioEntropyDeviceConfiguration {
+#[cfg(feature = "VZEntropyDeviceConfiguration")]
+impl VZVirtioEntropyDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZEntropyDeviceConfiguration`
-    #[cfg(feature = "VZEntropyDeviceConfiguration")]
-    unsafe impl VZVirtioEntropyDeviceConfiguration {
+/// Methods declared on superclass `VZEntropyDeviceConfiguration`.
+#[cfg(feature = "VZEntropyDeviceConfiguration")]
+impl VZVirtioEntropyDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

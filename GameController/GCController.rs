@@ -146,8 +146,8 @@ unsafe impl GCDevice for GCController {}
 
 unsafe impl NSObjectProtocol for GCController {}
 
-extern_methods!(
-    unsafe impl GCController {
+impl GCController {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Set this block to be notified when a user intends to suspend or resume the current game state. A controller will have a button
         /// dedicated to suspending and resuming play and invoking context sensitive actions. During event handling the system will
@@ -426,12 +426,12 @@ extern_methods!(
         #[unsafe(method(controllerWithExtendedGamepad))]
         #[unsafe(method_family = none)]
         pub unsafe fn controllerWithExtendedGamepad() -> Retained<GCController>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCController {
+/// Methods declared on superclass `NSObject`.
+impl GCController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -439,5 +439,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

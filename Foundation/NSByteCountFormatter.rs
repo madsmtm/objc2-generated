@@ -92,9 +92,9 @@ unsafe impl CopyingHelper for NSByteCountFormatter {
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSByteCountFormatter {}
 
-extern_methods!(
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSByteCountFormatter {
+#[cfg(feature = "NSFormatter")]
+impl NSByteCountFormatter {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(stringFromByteCount:countStyle:))]
         #[unsafe(method_family = none)]
@@ -212,13 +212,13 @@ extern_methods!(
         #[unsafe(method(setFormattingContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSByteCountFormatter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSFormatter")]
+impl NSByteCountFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -226,5 +226,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

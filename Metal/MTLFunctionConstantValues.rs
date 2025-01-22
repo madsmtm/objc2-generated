@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for MTLFunctionConstantValues {
 
 unsafe impl NSObjectProtocol for MTLFunctionConstantValues {}
 
-extern_methods!(
-    unsafe impl MTLFunctionConstantValues {
+impl MTLFunctionConstantValues {
+    extern_methods!(
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(setConstantValue:type:atIndex:))]
         #[unsafe(method_family = none)]
@@ -57,12 +57,12 @@ extern_methods!(
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub fn reset(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLFunctionConstantValues {
+/// Methods declared on superclass `NSObject`.
+impl MTLFunctionConstantValues {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -70,8 +70,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLFunctionConstantValues {
     #[inline]

@@ -6,10 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// CallOp
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// CallOp.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates an operation which invokes another executable.
         ///
@@ -28,5 +28,5 @@ extern_methods!(
             output_types: &NSArray<MPSGraphType>,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
-    }
-);
+    );
+}

@@ -76,8 +76,8 @@ unsafe impl CopyingHelper for MTLCaptureDescriptor {
 
 unsafe impl NSObjectProtocol for MTLCaptureDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLCaptureDescriptor {
+impl MTLCaptureDescriptor {
+    extern_methods!(
         /// The object that is captured.
         ///
         /// Must be one of the following:
@@ -116,12 +116,12 @@ extern_methods!(
         #[unsafe(method(setOutputURL:))]
         #[unsafe(method_family = none)]
         pub fn setOutputURL(&self, output_url: Option<&NSURL>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLCaptureDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLCaptureDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -129,8 +129,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLCaptureDescriptor {
     #[inline]
@@ -148,8 +148,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLCaptureManager {}
 
-extern_methods!(
-    unsafe impl MTLCaptureManager {
+impl MTLCaptureManager {
+    extern_methods!(
         /// Retrieves the shared capture manager for this process. There is only one capture manager per process.
         /// The capture manager allows the user to create capture scopes and trigger captures from code.
         /// When a capture has been completed, it will be displayed in Xcode and the application will be paused.
@@ -241,14 +241,14 @@ extern_methods!(
         #[unsafe(method(isCapturing))]
         #[unsafe(method_family = none)]
         pub fn isCapturing(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLCaptureManager {
+/// Methods declared on superclass `NSObject`.
+impl MTLCaptureManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptionGrouper {}
 
-extern_methods!(
-    unsafe impl AVCaptionGrouper {
+impl AVCaptionGrouper {
+    extern_methods!(
         #[cfg(feature = "AVCaption")]
         #[unsafe(method(addCaption:))]
         #[unsafe(method_family = none)]
@@ -32,12 +32,12 @@ extern_methods!(
             &self,
             up_to_time: CMTime,
         ) -> Retained<NSArray<AVCaptionGroup>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCaptionGrouper {
+/// Methods declared on superclass `NSObject`.
+impl AVCaptionGrouper {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -45,5 +45,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

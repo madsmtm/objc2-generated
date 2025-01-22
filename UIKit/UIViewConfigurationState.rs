@@ -30,8 +30,8 @@ unsafe impl NSSecureCoding for UIViewConfigurationState {}
 #[cfg(feature = "UIConfigurationState")]
 unsafe impl UIConfigurationState for UIViewConfigurationState {}
 
-extern_methods!(
-    unsafe impl UIViewConfigurationState {
+impl UIViewConfigurationState {
+    extern_methods!(
         #[cfg(feature = "UITraitCollection")]
         /// Returns a new instance with the specified trait collection.
         #[unsafe(method(initWithTraitCollection:))]
@@ -111,5 +111,5 @@ extern_methods!(
         #[unsafe(method(setPinned:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPinned(&self, pinned: bool);
-    }
-);
+    );
+}

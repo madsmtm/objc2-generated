@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "NSCoder")]
 unsafe impl NSObjectProtocol for NSArchiver {}
 
-extern_methods!(
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSArchiver {
+#[cfg(feature = "NSCoder")]
+impl NSArchiver {
+    extern_methods!(
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(initForWritingWithMutableData:))]
@@ -83,13 +83,13 @@ extern_methods!(
         #[unsafe(method(replaceObject:withObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceObject_withObject(&self, object: &AnyObject, new_object: &AnyObject);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSArchiver {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCoder")]
+impl NSArchiver {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -97,8 +97,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// **********        Archiving: Reading        ***************
@@ -114,9 +114,9 @@ extern_class!(
 #[cfg(feature = "NSCoder")]
 unsafe impl NSObjectProtocol for NSUnarchiver {}
 
-extern_methods!(
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSUnarchiver {
+#[cfg(feature = "NSCoder")]
+impl NSUnarchiver {
+    extern_methods!(
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(initForReadingWithData:))]
@@ -200,13 +200,13 @@ extern_methods!(
         #[unsafe(method(replaceObject:withObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceObject_withObject(&self, object: &AnyObject, new_object: &AnyObject);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCoder")]
-    unsafe impl NSUnarchiver {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCoder")]
+impl NSUnarchiver {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -214,8 +214,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSArchiverCallback" on [`NSObject`].

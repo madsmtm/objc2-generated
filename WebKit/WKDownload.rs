@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for WKDownload {}
 
 unsafe impl NSProgressReporting for WKDownload {}
 
-extern_methods!(
-    unsafe impl WKDownload {
+impl WKDownload {
+    extern_methods!(
         #[unsafe(method(originalRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalRequest(&self) -> Option<Retained<NSURLRequest>>;
@@ -59,12 +59,12 @@ extern_methods!(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSData)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKDownload {
+/// Methods declared on superclass `NSObject`.
+impl WKDownload {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,5 +72,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

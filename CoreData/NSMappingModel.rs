@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSMappingModel {}
 
-extern_methods!(
-    unsafe impl NSMappingModel {
+impl NSMappingModel {
+    extern_methods!(
         #[cfg(feature = "NSManagedObjectModel")]
         #[unsafe(method(mappingModelFromBundles:forSourceModel:destinationModel:))]
         #[unsafe(method_family = none)]
@@ -59,12 +59,12 @@ extern_methods!(
         pub unsafe fn entityMappingsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, NSEntityMapping>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMappingModel {
+/// Methods declared on superclass `NSObject`.
+impl NSMappingModel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,5 +72,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

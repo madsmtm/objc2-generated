@@ -29,8 +29,8 @@ unsafe impl MutableCopyingHelper for SKPayment {
 
 unsafe impl NSObjectProtocol for SKPayment {}
 
-extern_methods!(
-    unsafe impl SKPayment {
+impl SKPayment {
+    extern_methods!(
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Use Product.purchase(confirmIn:options:)"]
         #[unsafe(method(paymentWithProduct:))]
@@ -72,12 +72,12 @@ extern_methods!(
         #[unsafe(method(paymentDiscount))]
         #[unsafe(method_family = none)]
         pub unsafe fn paymentDiscount(&self) -> Option<Retained<SKPaymentDiscount>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPayment {
+/// Methods declared on superclass `NSObject`.
+impl SKPayment {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -85,8 +85,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skmutablepayment?language=objc)
@@ -110,8 +110,8 @@ unsafe impl MutableCopyingHelper for SKMutablePayment {
 
 unsafe impl NSObjectProtocol for SKMutablePayment {}
 
-extern_methods!(
-    unsafe impl SKMutablePayment {
+impl SKMutablePayment {
+    extern_methods!(
         #[deprecated = "Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)"]
         #[unsafe(method(applicationUsername))]
         #[unsafe(method_family = none)]
@@ -179,23 +179,23 @@ extern_methods!(
         #[unsafe(method(setSimulatesAskToBuyInSandbox:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSimulatesAskToBuyInSandbox(&self, simulates_ask_to_buy_in_sandbox: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `SKPayment`
-    unsafe impl SKMutablePayment {
+/// Methods declared on superclass `SKPayment`.
+impl SKMutablePayment {
+    extern_methods!(
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Use Product.purchase(confirmIn:options:)"]
         #[unsafe(method(paymentWithProduct:))]
         #[unsafe(method_family = none)]
         pub unsafe fn paymentWithProduct(product: &SKProduct) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKMutablePayment {
+/// Methods declared on superclass `NSObject`.
+impl SKMutablePayment {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -203,5 +203,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

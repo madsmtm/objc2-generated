@@ -58,9 +58,9 @@ unsafe impl NSSeguePerforming for NSTitlebarAccessoryViewController {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSTitlebarAccessoryViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSTitlebarAccessoryViewController {
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSTitlebarAccessoryViewController {
+    extern_methods!(
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(layoutAttribute))]
         #[unsafe(method_family = none)]
@@ -112,13 +112,13 @@ extern_methods!(
         #[unsafe(method(viewDidDisappear))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewDidDisappear(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSTitlebarAccessoryViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSTitlebarAccessoryViewController {
+    extern_methods!(
         #[cfg(feature = "NSNib")]
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
@@ -134,25 +134,25 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSTitlebarAccessoryViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSTitlebarAccessoryViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSTitlebarAccessoryViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSTitlebarAccessoryViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -274,8 +274,8 @@ unsafe impl NSObjectProtocol for UIPercentDrivenInteractiveTransition {}
 
 unsafe impl UIViewControllerInteractiveTransitioning for UIPercentDrivenInteractiveTransition {}
 
-extern_methods!(
-    unsafe impl UIPercentDrivenInteractiveTransition {
+impl UIPercentDrivenInteractiveTransition {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// This is the non-interactive duration that was returned when the
         /// animators transitionDuration: method was called when the transition started.
@@ -370,12 +370,12 @@ extern_methods!(
         #[unsafe(method(finishInteractiveTransition))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishInteractiveTransition(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPercentDrivenInteractiveTransition {
+/// Methods declared on superclass `NSObject`.
+impl UIPercentDrivenInteractiveTransition {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -383,5 +383,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

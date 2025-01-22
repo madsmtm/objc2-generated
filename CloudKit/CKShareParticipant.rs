@@ -136,8 +136,8 @@ unsafe impl NSObjectProtocol for CKShareParticipant {}
 
 unsafe impl NSSecureCoding for CKShareParticipant {}
 
-extern_methods!(
-    unsafe impl CKShareParticipant {
+impl CKShareParticipant {
+    extern_methods!(
         /// Use
         /// `CKFetchShareParticipantsOperation`to create a
         /// `CKShareParticipant`object
@@ -197,5 +197,5 @@ extern_methods!(
         #[unsafe(method(participantID))]
         #[unsafe(method_family = none)]
         pub unsafe fn participantID(&self) -> Retained<NSString>;
-    }
-);
+    );
+}

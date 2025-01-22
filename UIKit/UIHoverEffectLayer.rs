@@ -62,10 +62,10 @@ unsafe impl NSObjectProtocol for UIHoverEffectLayer {}
 #[cfg(not(target_os = "watchos"))]
 unsafe impl NSSecureCoding for UIHoverEffectLayer {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl UIHoverEffectLayer {
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl UIHoverEffectLayer {
+    extern_methods!(
         #[cfg(feature = "UIHoverStyle")]
         /// The hover style to apply to the sublayers of this layer when this layer
         /// is hovered (e.g., when the user looks at this layer). Defaults to the
@@ -117,14 +117,14 @@ extern_methods!(
             container_view: &UIView,
             style: Option<&UIHoverStyle>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl UIHoverEffectLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl UIHoverEffectLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -137,16 +137,16 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl UIHoverEffectLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl UIHoverEffectLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

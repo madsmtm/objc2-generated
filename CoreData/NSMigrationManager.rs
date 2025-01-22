@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSMigrationManager {}
 
-extern_methods!(
-    unsafe impl NSMigrationManager {
+impl NSMigrationManager {
+    extern_methods!(
         #[cfg(feature = "NSManagedObjectModel")]
         #[unsafe(method(initWithSourceModel:destinationModel:))]
         #[unsafe(method_family = init)]
@@ -147,12 +147,12 @@ extern_methods!(
         #[unsafe(method(cancelMigrationWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelMigrationWithError(&self, error: &NSError);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMigrationManager {
+/// Methods declared on superclass `NSObject`.
+impl NSMigrationManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -160,5 +160,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

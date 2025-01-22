@@ -53,9 +53,9 @@ unsafe impl CopyingHelper for NSRelationshipDescription {
 #[cfg(feature = "NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSRelationshipDescription {}
 
-extern_methods!(
-    #[cfg(feature = "NSPropertyDescription")]
-    unsafe impl NSRelationshipDescription {
+#[cfg(feature = "NSPropertyDescription")]
+impl NSRelationshipDescription {
+    extern_methods!(
         #[cfg(feature = "NSEntityDescription")]
         #[unsafe(method(destinationEntity))]
         #[unsafe(method_family = none)]
@@ -122,13 +122,13 @@ extern_methods!(
         #[unsafe(method(setOrdered:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrdered(&self, ordered: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPropertyDescription")]
-    unsafe impl NSRelationshipDescription {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPropertyDescription")]
+impl NSRelationshipDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -136,5 +136,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

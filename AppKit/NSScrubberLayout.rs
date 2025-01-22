@@ -33,8 +33,8 @@ unsafe impl CopyingHelper for NSScrubberLayoutAttributes {
 
 unsafe impl NSObjectProtocol for NSScrubberLayoutAttributes {}
 
-extern_methods!(
-    unsafe impl NSScrubberLayoutAttributes {
+impl NSScrubberLayoutAttributes {
+    extern_methods!(
         #[unsafe(method(itemIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemIndex(&self) -> NSInteger;
@@ -67,12 +67,12 @@ extern_methods!(
         #[unsafe(method(layoutAttributesForItemAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForItemAtIndex(index: NSInteger) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScrubberLayoutAttributes {
+/// Methods declared on superclass `NSObject`.
+impl NSScrubberLayoutAttributes {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -80,8 +80,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// `NSScrubberLayout`is an abstract class that describes the layout of items within a
@@ -98,8 +98,8 @@ unsafe impl NSCoding for NSScrubberLayout {}
 
 unsafe impl NSObjectProtocol for NSScrubberLayout {}
 
-extern_methods!(
-    unsafe impl NSScrubberLayout {
+impl NSScrubberLayout {
+    extern_methods!(
         /// Specifies a class for describing layout attributes. By default, this is
         /// `NSScrubberLayoutAttributes,`but subclasses may override this method to use a custom subclass of
         /// `NSScrubberLayoutAttributes.`
@@ -198,17 +198,17 @@ extern_methods!(
         #[unsafe(method(automaticallyMirrorsInRightToLeftLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyMirrorsInRightToLeftLayout(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScrubberLayout {
+/// Methods declared on superclass `NSObject`.
+impl NSScrubberLayout {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberflowlayoutdelegate?language=objc)
@@ -248,8 +248,8 @@ unsafe impl NSCoding for NSScrubberFlowLayout {}
 
 unsafe impl NSObjectProtocol for NSScrubberFlowLayout {}
 
-extern_methods!(
-    unsafe impl NSScrubberFlowLayout {
+impl NSScrubberFlowLayout {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The amount of horizontal spacing between items in points. The default value is 0.0.
         #[unsafe(method(itemSpacing))]
@@ -275,12 +275,12 @@ extern_methods!(
         #[unsafe(method(invalidateLayoutForItemsAtIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateLayoutForItemsAtIndexes(&self, invalid_item_indexes: &NSIndexSet);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScrubberLayout`
-    unsafe impl NSScrubberFlowLayout {
+/// Methods declared on superclass `NSScrubberLayout`.
+impl NSScrubberFlowLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -288,17 +288,17 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScrubberFlowLayout {
+/// Methods declared on superclass `NSObject`.
+impl NSScrubberFlowLayout {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// `NSScrubberProportionalLayout`is a concrete layout object that sizes each item to some fraction of the scrubber's visible size.
@@ -313,8 +313,8 @@ unsafe impl NSCoding for NSScrubberProportionalLayout {}
 
 unsafe impl NSObjectProtocol for NSScrubberProportionalLayout {}
 
-extern_methods!(
-    unsafe impl NSScrubberProportionalLayout {
+impl NSScrubberProportionalLayout {
+    extern_methods!(
         /// The number of items that should fit within the scrubber's viewport at once.
         #[unsafe(method(numberOfVisibleItems))]
         #[unsafe(method_family = none)]
@@ -335,23 +335,23 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScrubberLayout`
-    unsafe impl NSScrubberProportionalLayout {
+/// Methods declared on superclass `NSScrubberLayout`.
+impl NSScrubberProportionalLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScrubberProportionalLayout {
+/// Methods declared on superclass `NSObject`.
+impl NSScrubberProportionalLayout {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

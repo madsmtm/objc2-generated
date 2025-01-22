@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for MEMessageActionDecision {}
 
 unsafe impl NSSecureCoding for MEMessageActionDecision {}
 
-extern_methods!(
-    unsafe impl MEMessageActionDecision {
+impl MEMessageActionDecision {
+    extern_methods!(
         #[unsafe(method(invokeAgainWithBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn invokeAgainWithBody() -> Retained<MEMessageActionDecision>;
@@ -45,5 +45,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

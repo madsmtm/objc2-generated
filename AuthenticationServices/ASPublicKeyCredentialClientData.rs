@@ -40,8 +40,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASPublicKeyCredentialClientData {}
 
-extern_methods!(
-    unsafe impl ASPublicKeyCredentialClientData {
+impl ASPublicKeyCredentialClientData {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
             &self,
             cross_origin: ASPublicKeyCredentialClientDataCrossOriginValue,
         );
-    }
-);
+    );
+}

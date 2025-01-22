@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDeskViewApplication {}
 
-extern_methods!(
-    unsafe impl AVCaptureDeskViewApplication {
+impl AVCaptureDeskViewApplication {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Presents the Desk View application to the user with no launch configuration.
         ///
@@ -58,12 +58,12 @@ extern_methods!(
             launch_configuration: &AVCaptureDeskViewApplicationLaunchConfiguration,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCaptureDeskViewApplication {
+/// Methods declared on superclass `NSObject`.
+impl AVCaptureDeskViewApplication {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -71,8 +71,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object for configuring how the Desk View application is presented.
@@ -88,8 +88,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDeskViewApplicationLaunchConfiguration {}
 
-extern_methods!(
-    unsafe impl AVCaptureDeskViewApplicationLaunchConfiguration {
+impl AVCaptureDeskViewApplicationLaunchConfiguration {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the desired frame of the Desk View application's main window when launched.
         ///
@@ -117,12 +117,12 @@ extern_methods!(
         #[unsafe(method(setRequiresSetUpModeCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresSetUpModeCompletion(&self, requires_set_up_mode_completion: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCaptureDeskViewApplicationLaunchConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl AVCaptureDeskViewApplicationLaunchConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -130,5 +130,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

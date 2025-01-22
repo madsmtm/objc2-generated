@@ -49,13 +49,13 @@ unsafe impl NSObjectProtocol for SKWarpGeometry {}
 
 unsafe impl NSSecureCoding for SKWarpGeometry {}
 
-extern_methods!(
-    unsafe impl SKWarpGeometry {}
-);
+impl SKWarpGeometry {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKWarpGeometry {
+/// Methods declared on superclass `NSObject`.
+impl SKWarpGeometry {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -63,8 +63,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skwarpgeometrygrid?language=objc)
@@ -85,8 +85,8 @@ unsafe impl NSObjectProtocol for SKWarpGeometryGrid {}
 
 unsafe impl NSSecureCoding for SKWarpGeometryGrid {}
 
-extern_methods!(
-    unsafe impl SKWarpGeometryGrid {
+impl SKWarpGeometryGrid {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -113,12 +113,12 @@ extern_methods!(
         #[unsafe(method(vertexCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexCount(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKWarpGeometryGrid {
+/// Methods declared on superclass `NSObject`.
+impl SKWarpGeometryGrid {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -126,13 +126,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SKWarpable
-    #[cfg(feature = "SKAction")]
-    unsafe impl SKAction {
+/// SKWarpable.
+#[cfg(feature = "SKAction")]
+impl SKAction {
+    extern_methods!(
         #[unsafe(method(warpTo:duration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn warpTo_duration(
@@ -154,5 +154,5 @@ extern_methods!(
             times: &NSArray<NSNumber>,
             restore: bool,
         ) -> Option<Retained<SKAction>>;
-    }
-);
+    );
+}

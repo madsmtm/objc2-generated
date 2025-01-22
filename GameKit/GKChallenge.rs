@@ -47,8 +47,8 @@ unsafe impl NSObjectProtocol for GKChallenge {}
 
 unsafe impl NSSecureCoding for GKChallenge {}
 
-extern_methods!(
-    unsafe impl GKChallenge {
+impl GKChallenge {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Query challenges for the current game issued to the local player -- equivalent GKChallenge objects are not guaranteed to be pointer equivalent across calls, but equal GKChallenge objects will have equal hashes
         #[unsafe(method(loadReceivedChallengesWithCompletionHandler:))]
@@ -95,12 +95,12 @@ extern_methods!(
         #[unsafe(method(message))]
         #[unsafe(method_family = none)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKChallenge {
+/// Methods declared on superclass `NSObject`.
+impl GKChallenge {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,12 +108,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Obsoleted
-    unsafe impl GKChallenge {
+/// Obsoleted.
+impl GKChallenge {
+    extern_methods!(
         /// * This property is obsolete. **
         #[deprecated]
         #[unsafe(method(issuingPlayerID))]
@@ -125,8 +125,8 @@ extern_methods!(
         #[unsafe(method(receivingPlayerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn receivingPlayerID(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkscorechallenge?language=objc)
@@ -141,8 +141,8 @@ unsafe impl NSObjectProtocol for GKScoreChallenge {}
 
 unsafe impl NSSecureCoding for GKScoreChallenge {}
 
-extern_methods!(
-    unsafe impl GKScoreChallenge {
+impl GKScoreChallenge {
+    extern_methods!(
         #[cfg(feature = "GKScore")]
         /// The score to meet to satisfy this challenge
         #[deprecated]
@@ -155,12 +155,12 @@ extern_methods!(
         #[unsafe(method(leaderboardEntry))]
         #[unsafe(method_family = none)]
         pub unsafe fn leaderboardEntry(&self) -> Option<Retained<GKLeaderboardEntry>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKScoreChallenge {
+/// Methods declared on superclass `NSObject`.
+impl GKScoreChallenge {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -168,8 +168,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementchallenge?language=objc)
@@ -184,19 +184,19 @@ unsafe impl NSObjectProtocol for GKAchievementChallenge {}
 
 unsafe impl NSSecureCoding for GKAchievementChallenge {}
 
-extern_methods!(
-    unsafe impl GKAchievementChallenge {
+impl GKAchievementChallenge {
+    extern_methods!(
         #[cfg(feature = "GKAchievement")]
         /// The achievement to achieve to satisfy this challenge
         #[unsafe(method(achievement))]
         #[unsafe(method_family = none)]
         pub unsafe fn achievement(&self) -> Option<Retained<GKAchievement>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKAchievementChallenge {
+/// Methods declared on superclass `NSObject`.
+impl GKAchievementChallenge {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -204,14 +204,14 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// GKChallenge
-    /// Use the following category methods to issue GKScoreChallenges and GKAchievementChallenges to an array of playerIDs. Players may not issue challenges to themselves nor to non-friends. Please see the GameKit reference documentation for further details on these methods.
-    #[cfg(feature = "GKScore")]
-    unsafe impl GKScore {
+/// GKChallenge.
+/// Use the following category methods to issue GKScoreChallenges and GKAchievementChallenges to an array of playerIDs. Players may not issue challenges to themselves nor to non-friends. Please see the GameKit reference documentation for further details on these methods.
+#[cfg(feature = "GKScore")]
+impl GKScore {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Use this alternative to reportScores:withCompletionHandler: to allow only certain specific challenges to be completed. Pass nil to avoid completing any challenges.
         #[deprecated]
@@ -231,13 +231,13 @@ extern_methods!(
             challenges: &NSArray<GKChallenge>,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// GKChallenge
-    #[cfg(feature = "GKAchievement")]
-    unsafe impl GKAchievement {
+/// GKChallenge.
+#[cfg(feature = "GKAchievement")]
+impl GKAchievement {
+    extern_methods!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Given a list of players, return a subset of that list containing only players that are eligible to receive a challenge for the achievement.
         #[unsafe(method(selectChallengeablePlayers:withCompletionHandler:))]
@@ -259,13 +259,13 @@ extern_methods!(
             challenges: &NSArray<GKChallenge>,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// GKChallengeObsoleted
-    #[cfg(feature = "GKScore")]
-    unsafe impl GKScore {
+/// GKChallengeObsoleted.
+#[cfg(feature = "GKScore")]
+impl GKScore {
+    extern_methods!(
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[unsafe(method(issueChallengeToPlayers:message:))]
@@ -275,13 +275,13 @@ extern_methods!(
             player_i_ds: Option<&NSArray<NSString>>,
             message: Option<&NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// GKChallengeObsoleted
-    #[cfg(feature = "GKAchievement")]
-    unsafe impl GKAchievement {
+/// GKChallengeObsoleted.
+#[cfg(feature = "GKAchievement")]
+impl GKAchievement {
+    extern_methods!(
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[unsafe(method(issueChallengeToPlayers:message:))]
@@ -304,8 +304,8 @@ extern_methods!(
                 &block2::Block<dyn Fn(*mut NSArray<NSString>, *mut NSError)>,
             >,
         );
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengecomposecompletionblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
@@ -324,10 +324,10 @@ pub type GKChallengeComposeCompletionBlock =
 pub type GKChallengeComposeHandler =
     *mut block2::Block<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<GKPlayer>)>;
 
-extern_methods!(
-    /// GKChallengeUI
-    #[cfg(feature = "GKScore")]
-    unsafe impl GKScore {
+/// GKChallengeUI.
+#[cfg(feature = "GKScore")]
+impl GKScore {
+    extern_methods!(
         #[cfg(all(
             feature = "GKBasePlayer",
             feature = "GKPlayer",
@@ -362,13 +362,13 @@ extern_methods!(
             completion_handler: GKChallengeComposeHandler,
             mtm: MainThreadMarker,
         ) -> Retained<NSViewController>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// GKChallengeUI
-    #[cfg(feature = "GKLeaderboardEntry")]
-    unsafe impl GKLeaderboardEntry {
+/// GKChallengeUI.
+#[cfg(feature = "GKLeaderboardEntry")]
+impl GKLeaderboardEntry {
+    extern_methods!(
         #[cfg(all(
             feature = "GKBasePlayer",
             feature = "GKPlayer",
@@ -403,13 +403,13 @@ extern_methods!(
             completion_handler: GKChallengeComposeHandler,
             mtm: MainThreadMarker,
         ) -> Retained<NSViewController>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// GKChallengeUI
-    #[cfg(feature = "GKAchievement")]
-    unsafe impl GKAchievement {
+/// GKChallengeUI.
+#[cfg(feature = "GKAchievement")]
+impl GKAchievement {
+    extern_methods!(
         #[cfg(all(
             feature = "GKBasePlayer",
             feature = "GKPlayer",
@@ -444,17 +444,17 @@ extern_methods!(
             completion_handler: GKChallengeComposeHandler,
             mtm: MainThreadMarker,
         ) -> Retained<NSViewController>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// GKChallengeObsoletedUI
-    #[cfg(feature = "GKScore")]
-    unsafe impl GKScore {}
-);
+/// GKChallengeObsoletedUI.
+#[cfg(feature = "GKScore")]
+impl GKScore {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// GKChallengeObsoletedUI
-    #[cfg(feature = "GKAchievement")]
-    unsafe impl GKAchievement {}
-);
+/// GKChallengeObsoletedUI.
+#[cfg(feature = "GKAchievement")]
+impl GKAchievement {
+    extern_methods!();
+}

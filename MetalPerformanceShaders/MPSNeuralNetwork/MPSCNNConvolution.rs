@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for MPSCNNConvolutionDescriptor {}
 
 unsafe impl NSSecureCoding for MPSCNNConvolutionDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSCNNConvolutionDescriptor {
+impl MPSCNNConvolutionDescriptor {
+    extern_methods!(
         /// The width of the filter window.  The default value is 3.
         /// Any positive non-zero value is valid, including even values.
         /// The position of the left edge of the filter window is given
@@ -425,12 +425,12 @@ extern_methods!(
         #[unsafe(method(setNeuronToPReLUWithParametersA:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeuronToPReLUWithParametersA(&self, a: &NSData);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSCNNConvolutionDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSCNNConvolutionDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -438,8 +438,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MPSCNNSubPixelConvolutionDescriptor can be used to create MPSCNNConvolution object that does sub pixel upsamling
@@ -486,8 +486,8 @@ unsafe impl NSObjectProtocol for MPSCNNSubPixelConvolutionDescriptor {}
 
 unsafe impl NSSecureCoding for MPSCNNSubPixelConvolutionDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSCNNSubPixelConvolutionDescriptor {
+impl MPSCNNSubPixelConvolutionDescriptor {
+    extern_methods!(
         /// Upsampling scale factor. Each pixel in input is upsampled into a subPixelScaleFactor x subPixelScaleFactor pixel block by rearranging
         /// the outputFeatureChannels as described above. Default value is 1.
         #[unsafe(method(subPixelScaleFactor))]
@@ -498,12 +498,12 @@ extern_methods!(
         #[unsafe(method(setSubPixelScaleFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubPixelScaleFactor(&self, sub_pixel_scale_factor: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNConvolutionDescriptor`
-    unsafe impl MPSCNNSubPixelConvolutionDescriptor {
+/// Methods declared on superclass `MPSCNNConvolutionDescriptor`.
+impl MPSCNNSubPixelConvolutionDescriptor {
+    extern_methods!(
         /// <NSSecureCoding
         /// > support
         #[unsafe(method(initWithCoder:))]
@@ -563,12 +563,12 @@ extern_methods!(
             input_feature_channels: NSUInteger,
             output_feature_channels: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSCNNSubPixelConvolutionDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSCNNSubPixelConvolutionDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -576,8 +576,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MPSCNNDepthWiseConvolutionDescriptor can be used to create MPSCNNConvolution object that does depthwise convolution
@@ -615,19 +615,19 @@ unsafe impl NSObjectProtocol for MPSCNNDepthWiseConvolutionDescriptor {}
 
 unsafe impl NSSecureCoding for MPSCNNDepthWiseConvolutionDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSCNNDepthWiseConvolutionDescriptor {
+impl MPSCNNDepthWiseConvolutionDescriptor {
+    extern_methods!(
         /// Ratio of outputFeactureChannel to inputFeatureChannels for depthwise convolution i.e. how many output feature channels are
         /// produced by each input channel.
         #[unsafe(method(channelMultiplier))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelMultiplier(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSCNNConvolutionDescriptor`
-    unsafe impl MPSCNNDepthWiseConvolutionDescriptor {
+/// Methods declared on superclass `MPSCNNConvolutionDescriptor`.
+impl MPSCNNDepthWiseConvolutionDescriptor {
+    extern_methods!(
         /// <NSSecureCoding
         /// > support
         #[unsafe(method(initWithCoder:))]
@@ -687,12 +687,12 @@ extern_methods!(
             input_feature_channels: NSUInteger,
             output_feature_channels: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSCNNDepthWiseConvolutionDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSCNNDepthWiseConvolutionDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -700,8 +700,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionweightslayout?language=objc)
 // NS_ENUM
@@ -814,13 +814,13 @@ unsafe impl MPSImageSizeEncodingState for MPSCNNConvolutionGradientState {}
 ))]
 unsafe impl NSObjectProtocol for MPSCNNConvolutionGradientState {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSNNGradientState",
-        feature = "MPSState"
-    ))]
-    unsafe impl MPSCNNConvolutionGradientState {
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
+impl MPSCNNConvolutionGradientState {
+    extern_methods!(
         /// A buffer that contains the loss function gradients with respect to weights.
         /// Each value in the buffer is a float. The layout of the gradients with respect to the weights is the same as
         /// the weights layout provided by data source i.e. it can be interpreted as 4D array
@@ -852,17 +852,17 @@ extern_methods!(
         #[unsafe(method(gradientForWeightsLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn gradientForWeightsLayout(&self) -> MPSCNNConvolutionWeightsLayout;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSNNGradientState",
-        feature = "MPSState"
-    ))]
-    unsafe impl MPSCNNConvolutionGradientState {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
+impl MPSCNNConvolutionGradientState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -962,22 +962,22 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSNNGradientState",
-        feature = "MPSState"
-    ))]
-    unsafe impl MPSCNNConvolutionGradientState {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
+impl MPSCNNConvolutionGradientState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstatebatch?language=objc)
 #[cfg(all(
@@ -1028,29 +1028,29 @@ unsafe impl MPSImageSizeEncodingState for MPSCNNConvolutionTransposeGradientStat
 ))]
 unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeGradientState {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSNNGradientState",
-        feature = "MPSState"
-    ))]
-    unsafe impl MPSCNNConvolutionTransposeGradientState {
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
+impl MPSCNNConvolutionTransposeGradientState {
+    extern_methods!(
         #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
         /// The convolutionTranspose filter that produced the state.
         #[unsafe(method(convolutionTranspose))]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionTranspose(&self) -> Retained<MPSCNNConvolutionTranspose>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSNNGradientState",
-        feature = "MPSState"
-    ))]
-    unsafe impl MPSCNNConvolutionTransposeGradientState {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
+impl MPSCNNConvolutionTransposeGradientState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -1150,22 +1150,22 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSNNGradientState",
-        feature = "MPSState"
-    ))]
-    unsafe impl MPSCNNConvolutionTransposeGradientState {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
+impl MPSCNNConvolutionTransposeGradientState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradientstatebatch?language=objc)
 #[cfg(all(
@@ -1194,9 +1194,9 @@ extern_class!(
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSCNNConvolutionWeightsAndBiasesState {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSCNNConvolutionWeightsAndBiasesState {
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSCNNConvolutionWeightsAndBiasesState {
+    extern_methods!(
         /// A buffer that contains the weights.
         /// Each value in the buffer is a float. The layout of the weights with respect to the weights is the same as
         /// the weights layout provided by data source i.e. it can be interpreted as 4D array
@@ -1290,13 +1290,13 @@ extern_methods!(
             biases_offset: NSUInteger,
             descriptor: &MPSCNNConvolutionDescriptor,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSState`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSCNNConvolutionWeightsAndBiasesState {
+/// Methods declared on superclass `MPSState`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSCNNConvolutionWeightsAndBiasesState {
+    extern_methods!(
         /// Create a MPSState holding a temporary MTLBuffer
         ///
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
@@ -1396,18 +1396,18 @@ extern_methods!(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-    unsafe impl MPSCNNConvolutionWeightsAndBiasesState {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
+impl MPSCNNConvolutionWeightsAndBiasesState {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Provides convolution filter weights and bias terms
@@ -1692,9 +1692,9 @@ unsafe impl NSObjectProtocol for MPSCNNConvolution {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNConvolution {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolution {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolution {
+    extern_methods!(
         /// The number of feature channels per pixel in the input image.
         #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
@@ -2003,13 +2003,13 @@ extern_methods!(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             result_state_can_be_temporary: bool,
         ) -> Retained<MPSCNNConvolutionWeightsAndBiasesState>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolution {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolution {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -2024,13 +2024,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolution {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolution {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2038,8 +2038,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption?language=objc)
 // NS_OPTIONS
@@ -2206,9 +2206,9 @@ unsafe impl NSObjectProtocol for MPSCNNConvolutionGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNConvolutionGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolutionGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolutionGradient {
+    extern_methods!(
         /// The number of feature channels per pixel in the gradient image (primarySource) of encode call. This is same is outputFeatureChannels
         /// or the feature channels of destination image in forward convolution i.e. dataSource.descriptor.outputFeatureChannels
         #[unsafe(method(sourceGradientFeatureChannels))]
@@ -2343,13 +2343,13 @@ extern_methods!(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             state: &MPSCNNConvolutionWeightsAndBiasesState,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolutionGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolutionGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -2364,13 +2364,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolutionGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolutionGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2378,8 +2378,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -2440,9 +2440,9 @@ unsafe impl NSObjectProtocol for MPSCNNFullyConnected {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNFullyConnected {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNFullyConnected {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNFullyConnected {
+    extern_methods!(
         /// Initializes a fully connected kernel
         ///
         /// Parameter `device`: The MTLDevice on which this MPSCNNFullyConnected filter will be used
@@ -2524,13 +2524,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNFullyConnected {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNFullyConnected {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -2545,13 +2545,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNFullyConnected {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNFullyConnected {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2559,8 +2559,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -2597,9 +2597,9 @@ unsafe impl NSObjectProtocol for MPSCNNFullyConnectedGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNFullyConnectedGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNFullyConnectedGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNFullyConnectedGradient {
+    extern_methods!(
         /// Initializes a convolution gradient (with respect to weights and bias) object.
         ///
         /// Parameter `device`: The MTLDevice on which this MPSCNNConvolutionGradient filter will be used
@@ -2644,13 +2644,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNFullyConnectedGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNFullyConnectedGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -2665,13 +2665,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNFullyConnectedGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNFullyConnectedGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2679,8 +2679,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -2811,9 +2811,9 @@ unsafe impl NSObjectProtocol for MPSCNNConvolutionTranspose {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNConvolutionTranspose {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolutionTranspose {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolutionTranspose {
+    extern_methods!(
         /// The number of feature channels per pixel in the input image.
         #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
@@ -3154,13 +3154,13 @@ extern_methods!(
             out_states: &mut Option<Retained<MPSCNNConvolutionTransposeGradientStateBatch>>,
             is_temporary: bool,
         ) -> Retained<MPSImageBatch>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolutionTranspose {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolutionTranspose {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -3175,13 +3175,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolutionTranspose {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolutionTranspose {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3189,8 +3189,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -3221,9 +3221,9 @@ unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNConvolutionTransposeGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolutionTransposeGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolutionTransposeGradient {
+    extern_methods!(
         /// The number of feature channels per pixel in the gradient image (primarySource) of encode call. This is same is outputFeatureChannels
         /// or the feature channels of destination image in forward convolution i.e. dataSource.descriptor.outputFeatureChannels
         #[unsafe(method(sourceGradientFeatureChannels))]
@@ -3327,13 +3327,13 @@ extern_methods!(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             state: &MPSCNNConvolutionWeightsAndBiasesState,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolutionTransposeGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolutionTransposeGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -3348,13 +3348,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNConvolutionTransposeGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNConvolutionTransposeGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3362,8 +3362,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -3451,9 +3451,9 @@ unsafe impl NSObjectProtocol for MPSCNNBinaryConvolution {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNBinaryConvolution {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNBinaryConvolution {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNBinaryConvolution {
+    extern_methods!(
         #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputFeatureChannels(&self) -> NSUInteger;
@@ -3584,13 +3584,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNBinaryConvolution {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNBinaryConvolution {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -3605,13 +3605,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNBinaryConvolution {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNBinaryConvolution {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3619,8 +3619,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -3658,9 +3658,9 @@ unsafe impl NSObjectProtocol for MPSCNNBinaryFullyConnected {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNBinaryFullyConnected {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNBinaryFullyConnected {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNBinaryFullyConnected {
+    extern_methods!(
         #[cfg(feature = "MPSNeuralNetworkTypes")]
         /// Initializes a binary fully connected kernel with binary weights and a single scaling term.
         ///
@@ -3786,13 +3786,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNBinaryFullyConnected {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNBinaryFullyConnected {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -3807,13 +3807,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSCNNBinaryFullyConnected {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSCNNBinaryFullyConnected {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3821,8 +3821,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -3866,9 +3866,9 @@ unsafe impl NSObjectProtocol for MPSNNGramMatrixCalculation {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNGramMatrixCalculation {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNGramMatrixCalculation {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNGramMatrixCalculation {
+    extern_methods!(
         /// Scaling factor for the output. Default: 1.0f.
         #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
@@ -3928,13 +3928,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNGramMatrixCalculation {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNGramMatrixCalculation {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -3949,13 +3949,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNGramMatrixCalculation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNGramMatrixCalculation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3963,8 +3963,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework
@@ -3995,9 +3995,9 @@ unsafe impl NSObjectProtocol for MPSNNGramMatrixCalculationGradient {}
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNGramMatrixCalculationGradient {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNGramMatrixCalculationGradient {
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNGramMatrixCalculationGradient {
+    extern_methods!(
         /// Scaling factor for the output. Default: 1.0f. NOTE: the value for alpha is automatically adjusted by
         /// the
         /// MPSNNGradientStatewhen it is provided in the encode call.
@@ -4061,13 +4061,13 @@ extern_methods!(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNGramMatrixCalculationGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNGramMatrixCalculationGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -4082,13 +4082,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-    unsafe impl MPSNNGramMatrixCalculationGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
+impl MPSNNGramMatrixCalculationGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -4096,5 +4096,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

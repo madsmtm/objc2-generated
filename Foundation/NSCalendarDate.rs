@@ -32,9 +32,9 @@ unsafe impl NSObjectProtocol for NSCalendarDate {}
 #[cfg(all(feature = "NSDate", feature = "NSObject"))]
 unsafe impl NSSecureCoding for NSCalendarDate {}
 
-extern_methods!(
-    #[cfg(feature = "NSDate")]
-    unsafe impl NSCalendarDate {
+#[cfg(feature = "NSDate")]
+impl NSCalendarDate {
+    extern_methods!(
         #[deprecated = "Use NSCalendar instead"]
         #[unsafe(method(calendarDate))]
         #[unsafe(method_family = none)]
@@ -249,13 +249,13 @@ extern_methods!(
         #[unsafe(method(distantPast))]
         #[unsafe(method_family = none)]
         pub unsafe fn distantPast() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSDate`
-    #[cfg(feature = "NSDate")]
-    unsafe impl NSCalendarDate {
+/// Methods declared on superclass `NSDate`.
+#[cfg(feature = "NSDate")]
+impl NSCalendarDate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -274,23 +274,23 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSDate")]
-    unsafe impl NSCalendarDate {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSDate")]
+impl NSCalendarDate {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSCalendarDateExtras
-    #[cfg(feature = "NSDate")]
-    unsafe impl NSDate {
+/// NSCalendarDateExtras.
+#[cfg(feature = "NSDate")]
+impl NSDate {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
         #[unsafe(method(dateWithNaturalLanguageString:locale:))]
@@ -343,5 +343,5 @@ extern_methods!(
             this: Allocated<Self>,
             description: &NSString,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}

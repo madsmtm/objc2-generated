@@ -66,9 +66,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for ARSession {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARSession {
+impl ARSession {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// Unique identifier of the running session.
         ///
@@ -248,14 +247,13 @@ extern_methods!(
             &self,
             completion: &block2::Block<dyn Fn(*mut ARFrame, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2")]
-    unsafe impl ARSession {
+impl ARSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -263,8 +261,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_protocol!(

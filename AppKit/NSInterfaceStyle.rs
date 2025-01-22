@@ -31,10 +31,10 @@ extern "C-unwind" {
     ) -> NSInterfaceStyle;
 }
 
-extern_methods!(
-    /// NSInterfaceStyle
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSResponder {
+/// NSInterfaceStyle.
+#[cfg(feature = "NSResponder")]
+impl NSResponder {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(interfaceStyle))]
         #[unsafe(method_family = none)]
@@ -44,8 +44,8 @@ extern_methods!(
         #[unsafe(method(setInterfaceStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterfaceStyle(&self, interface_style: NSInterfaceStyle);
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyledefault?language=objc)

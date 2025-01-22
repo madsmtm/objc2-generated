@@ -26,8 +26,8 @@ unsafe impl CopyingHelper for SFSpeechLanguageModelConfiguration {
 
 unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
 
-extern_methods!(
-    unsafe impl SFSpeechLanguageModelConfiguration {
+impl SFSpeechLanguageModelConfiguration {
+    extern_methods!(
         #[unsafe(method(languageModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageModel(&self) -> Retained<NSURL>;
@@ -50,12 +50,12 @@ extern_methods!(
             language_model: &NSURL,
             vocabulary: Option<&NSURL>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFSpeechLanguageModelConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl SFSpeechLanguageModelConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -63,8 +63,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechlanguagemodel?language=objc)
@@ -75,8 +75,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SFSpeechLanguageModel {}
 
-extern_methods!(
-    unsafe impl SFSpeechLanguageModel {
+impl SFSpeechLanguageModel {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:))]
         #[unsafe(method_family = none)]
@@ -97,12 +97,12 @@ extern_methods!(
             ignores_cache: bool,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFSpeechLanguageModel {
+/// Methods declared on superclass `NSObject`.
+impl SFSpeechLanguageModel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -110,5 +110,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

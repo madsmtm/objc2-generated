@@ -29,9 +29,9 @@ unsafe impl NSObjectProtocol for MXHangDiagnostic {}
 #[cfg(feature = "MXDiagnostic")]
 unsafe impl NSSecureCoding for MXHangDiagnostic {}
 
-extern_methods!(
-    #[cfg(feature = "MXDiagnostic")]
-    unsafe impl MXHangDiagnostic {
+#[cfg(feature = "MXDiagnostic")]
+impl MXHangDiagnostic {
+    extern_methods!(
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the hang.
         #[unsafe(method(callStackTree))]
@@ -44,13 +44,13 @@ extern_methods!(
         #[unsafe(method(hangDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn hangDuration(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXDiagnostic")]
-    unsafe impl MXHangDiagnostic {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXDiagnostic")]
+impl MXHangDiagnostic {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -58,5 +58,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

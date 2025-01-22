@@ -65,8 +65,8 @@ unsafe impl NSObjectProtocol for MEMessage {}
 
 unsafe impl NSSecureCoding for MEMessage {}
 
-extern_methods!(
-    unsafe impl MEMessage {
+impl MEMessage {
+    extern_methods!(
         /// The state of the mail message.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
@@ -146,5 +146,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

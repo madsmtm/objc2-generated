@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for SFSpeechRecognitionResult {}
 
 unsafe impl NSSecureCoding for SFSpeechRecognitionResult {}
 
-extern_methods!(
-    unsafe impl SFSpeechRecognitionResult {
+impl SFSpeechRecognitionResult {
+    extern_methods!(
         #[cfg(feature = "SFTranscription")]
         #[unsafe(method(bestTranscription))]
         #[unsafe(method_family = none)]
@@ -47,12 +47,12 @@ extern_methods!(
         pub unsafe fn speechRecognitionMetadata(
             &self,
         ) -> Option<Retained<SFSpeechRecognitionMetadata>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFSpeechRecognitionResult {
+/// Methods declared on superclass `NSObject`.
+impl SFSpeechRecognitionResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,5 +60,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

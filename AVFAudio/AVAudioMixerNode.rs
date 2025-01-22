@@ -34,9 +34,9 @@ unsafe impl AVAudioStereoMixing for AVAudioMixerNode {}
 #[cfg(feature = "AVAudioNode")]
 unsafe impl NSObjectProtocol for AVAudioMixerNode {}
 
-extern_methods!(
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioMixerNode {
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioMixerNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,15 +60,15 @@ extern_methods!(
         #[unsafe(method(nextAvailableInputBus))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextAvailableInputBus(&self) -> AVAudioNodeBus;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioMixerNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioMixerNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

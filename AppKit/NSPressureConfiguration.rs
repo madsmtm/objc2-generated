@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPressureConfiguration {}
 
-extern_methods!(
-    unsafe impl NSPressureConfiguration {
+impl NSPressureConfiguration {
+    extern_methods!(
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(pressureBehavior))]
         #[unsafe(method_family = none)]
@@ -33,12 +33,12 @@ extern_methods!(
         #[unsafe(method(set))]
         #[unsafe(method_family = none)]
         pub unsafe fn set(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPressureConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl NSPressureConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -46,13 +46,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPressureConfiguration
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSPressureConfiguration.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(pressureConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn pressureConfiguration(&self) -> Option<Retained<NSPressureConfiguration>>;
@@ -64,5 +64,5 @@ extern_methods!(
             &self,
             pressure_configuration: Option<&NSPressureConfiguration>,
         );
-    }
-);
+    );
+}

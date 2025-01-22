@@ -267,9 +267,9 @@ unsafe impl NSObjectProtocol for MPMediaItem {}
 #[cfg(feature = "MPMediaEntity")]
 unsafe impl NSSecureCoding for MPMediaItem {}
 
-extern_methods!(
-    #[cfg(feature = "MPMediaEntity")]
-    unsafe impl MPMediaItem {
+#[cfg(feature = "MPMediaEntity")]
+impl MPMediaItem {
+    extern_methods!(
         #[unsafe(method(persistentID))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
@@ -425,13 +425,13 @@ extern_methods!(
         #[unsafe(method(isPreorder))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPreorder(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPMediaEntity")]
-    unsafe impl MPMediaItem {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPMediaEntity")]
+impl MPMediaItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -439,8 +439,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork?language=objc)
@@ -451,8 +451,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPMediaItemArtwork {}
 
-extern_methods!(
-    unsafe impl MPMediaItemArtwork {
+impl MPMediaItemArtwork {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -491,5 +491,5 @@ extern_methods!(
         #[unsafe(method(imageCropRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageCropRect(&self) -> CGRect;
-    }
-);
+    );
+}

@@ -22,9 +22,9 @@ extern_class!(
 #[cfg(feature = "VZSerialPortAttachment")]
 unsafe impl NSObjectProtocol for VZFileHandleSerialPortAttachment {}
 
-extern_methods!(
-    #[cfg(feature = "VZSerialPortAttachment")]
-    unsafe impl VZFileHandleSerialPortAttachment {
+#[cfg(feature = "VZSerialPortAttachment")]
+impl VZFileHandleSerialPortAttachment {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -61,5 +61,5 @@ extern_methods!(
         #[unsafe(method(fileHandleForWriting))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForWriting(&self) -> Option<Retained<NSFileHandle>>;
-    }
-);
+    );
+}

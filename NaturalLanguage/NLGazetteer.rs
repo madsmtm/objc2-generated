@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NLGazetteer {}
 
-extern_methods!(
-    unsafe impl NLGazetteer {
+impl NLGazetteer {
+    extern_methods!(
         #[unsafe(method(gazetteerWithContentsOfURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn gazetteerWithContentsOfURL_error(
@@ -67,12 +67,12 @@ extern_methods!(
             language: Option<&NLLanguage>,
             url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NLGazetteer {
+/// Methods declared on superclass `NSObject`.
+impl NLGazetteer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -80,5 +80,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

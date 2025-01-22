@@ -75,8 +75,8 @@ unsafe impl CopyingHelper for NSFormatter {
 
 unsafe impl NSObjectProtocol for NSFormatter {}
 
-extern_methods!(
-    unsafe impl NSFormatter {
+impl NSFormatter {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(stringForObjectValue:))]
         #[unsafe(method_family = none)]
@@ -137,12 +137,12 @@ extern_methods!(
             orig_sel_range: NSRange,
             error: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFormatter {
+/// Methods declared on superclass `NSObject`.
+impl NSFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -150,5 +150,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

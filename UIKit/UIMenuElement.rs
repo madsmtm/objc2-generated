@@ -78,8 +78,8 @@ unsafe impl NSObjectProtocol for UIMenuElement {}
 
 unsafe impl NSSecureCoding for UIMenuElement {}
 
-extern_methods!(
-    unsafe impl UIMenuElement {
+impl UIMenuElement {
+    extern_methods!(
         /// The element's title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -115,5 +115,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

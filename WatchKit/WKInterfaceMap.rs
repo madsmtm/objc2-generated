@@ -68,9 +68,9 @@ extern_class!(
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl NSObjectProtocol for WKInterfaceMap {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceMap {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceMap {
+    extern_methods!(
         #[deprecated = "Use MapKit.MapView instead."]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -138,15 +138,15 @@ extern_methods!(
         #[unsafe(method(removeAllAnnotations))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllAnnotations(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceMap {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceMap {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

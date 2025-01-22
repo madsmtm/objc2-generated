@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIPlugIn {}
 
-extern_methods!(
-    unsafe impl CIPlugIn {
+impl CIPlugIn {
+    extern_methods!(
         /// This call will scan for plugins with the extension .plugin in
         /// /Library/Graphics/Image Units
         /// ~Library/Graphics/Image Units
@@ -63,12 +63,12 @@ extern_methods!(
         #[unsafe(method(loadNonExecutablePlugIn:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadNonExecutablePlugIn(url: Option<&NSURL>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIPlugIn {
+/// Methods declared on superclass `NSObject`.
+impl CIPlugIn {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,5 +76,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

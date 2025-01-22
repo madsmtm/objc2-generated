@@ -53,8 +53,8 @@ unsafe impl NSObjectProtocol for UNNotificationAction {}
 
 unsafe impl NSSecureCoding for UNNotificationAction {}
 
-extern_methods!(
-    unsafe impl UNNotificationAction {
+impl UNNotificationAction {
+    extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -93,17 +93,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UNNotificationAction {
+/// Methods declared on superclass `NSObject`.
+impl UNNotificationAction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/untextinputnotificationaction?language=objc)
@@ -124,8 +124,8 @@ unsafe impl NSObjectProtocol for UNTextInputNotificationAction {}
 
 unsafe impl NSSecureCoding for UNTextInputNotificationAction {}
 
-extern_methods!(
-    unsafe impl UNTextInputNotificationAction {
+impl UNTextInputNotificationAction {
+    extern_methods!(
         #[unsafe(method(actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_title_options_textInputButtonTitle_textInputPlaceholder(
@@ -155,12 +155,12 @@ extern_methods!(
         #[unsafe(method(textInputPlaceholder))]
         #[unsafe(method_family = none)]
         pub unsafe fn textInputPlaceholder(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UNNotificationAction`
-    unsafe impl UNTextInputNotificationAction {
+/// Methods declared on superclass `UNNotificationAction`.
+impl UNTextInputNotificationAction {
+    extern_methods!(
         #[unsafe(method(actionWithIdentifier:title:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_title_options(
@@ -182,14 +182,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UNTextInputNotificationAction {
+/// Methods declared on superclass `NSObject`.
+impl UNTextInputNotificationAction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

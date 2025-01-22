@@ -49,8 +49,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKHTTPCookieStore {}
 
-extern_methods!(
-    unsafe impl WKHTTPCookieStore {
+impl WKHTTPCookieStore {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -136,14 +136,14 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(WKCookiePolicy)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKHTTPCookieStore {
+/// Methods declared on superclass `NSObject`.
+impl WKHTTPCookieStore {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

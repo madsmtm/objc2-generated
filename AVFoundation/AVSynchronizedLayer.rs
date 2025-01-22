@@ -35,10 +35,10 @@ unsafe impl NSObjectProtocol for AVSynchronizedLayer {}
 #[cfg(not(target_os = "watchos"))]
 unsafe impl NSSecureCoding for AVSynchronizedLayer {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSynchronizedLayer {
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSynchronizedLayer {
+    extern_methods!(
         #[cfg(feature = "AVPlayerItem")]
         /// Returns an instance of AVSynchronizedLayer with timing synchronized with the specified AVPlayerItem.
         ///
@@ -66,14 +66,14 @@ extern_methods!(
             player_item: Option<&AVPlayerItem>,
             mtm: MainThreadMarker,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSynchronizedLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSynchronizedLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -86,16 +86,16 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSynchronizedLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSynchronizedLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

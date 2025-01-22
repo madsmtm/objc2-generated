@@ -239,9 +239,9 @@ unsafe impl NSObjectProtocol for NSBitmapImageRep {}
 #[cfg(feature = "NSImageRep")]
 unsafe impl NSSecureCoding for NSBitmapImageRep {}
 
-extern_methods!(
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSBitmapImageRep {
+#[cfg(feature = "NSImageRep")]
+impl NSBitmapImageRep {
+    extern_methods!(
         #[deprecated = "Use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view."]
         #[unsafe(method(initWithFocusedViewRect:))]
         #[unsafe(method_family = init)]
@@ -468,13 +468,13 @@ extern_methods!(
             &self,
             new_space: &NSColorSpace,
         ) -> Option<Retained<NSBitmapImageRep>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSBitmapImageRep {
+/// Methods declared on superclass `NSImageRep`.
+#[cfg(feature = "NSImageRep")]
+impl NSBitmapImageRep {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -485,23 +485,23 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSBitmapImageRep {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSImageRep")]
+impl NSBitmapImageRep {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSBitmapImageFileTypeExtensions
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSBitmapImageRep {
+/// NSBitmapImageFileTypeExtensions.
+#[cfg(feature = "NSImageRep")]
+impl NSBitmapImageRep {
+    extern_methods!(
         #[unsafe(method(representationOfImageRepsInArray:usingType:properties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn representationOfImageRepsInArray_usingType_properties(
@@ -532,8 +532,8 @@ extern_methods!(
             &self,
             property: &NSBitmapImageRepPropertyKey,
         ) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstifffiletype?language=objc)
 pub static NSTIFFFileType: NSBitmapImageFileType =

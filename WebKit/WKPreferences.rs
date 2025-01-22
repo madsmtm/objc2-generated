@@ -49,8 +49,8 @@ unsafe impl NSObjectProtocol for WKPreferences {}
 
 unsafe impl NSSecureCoding for WKPreferences {}
 
-extern_methods!(
-    unsafe impl WKPreferences {
+impl WKPreferences {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The minimum font size in points.
         ///
@@ -171,12 +171,12 @@ extern_methods!(
             &self,
             inactive_scheduling_policy: WKInactiveSchedulingPolicy,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKPreferences {
+/// Methods declared on superclass `NSObject`.
+impl WKPreferences {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -184,12 +184,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WKDeprecated
-    unsafe impl WKPreferences {
+/// WKDeprecated.
+impl WKPreferences {
+    extern_methods!(
         #[deprecated = "Java is no longer supported"]
         #[unsafe(method(javaEnabled))]
         #[unsafe(method_family = none)]
@@ -222,5 +222,5 @@ extern_methods!(
         #[unsafe(method(setJavaScriptEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJavaScriptEnabled(&self, java_script_enabled: bool);
-    }
-);
+    );
+}

@@ -117,14 +117,14 @@ unsafe impl NSUserInterfaceItemIdentification for NSPopUpButton {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSPopUpButton {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSPopUpButton {
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSPopUpButton {
+    extern_methods!(
         #[cfg(feature = "NSMenu")]
         /// Creates a standard pop-up button with a menu, target, and action.
         ///
@@ -392,18 +392,18 @@ extern_methods!(
         #[unsafe(method(titleOfSelectedItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleOfSelectedItem(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSButton`
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSPopUpButton {
+/// Methods declared on superclass `NSButton`.
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSPopUpButton {
+    extern_methods!(
         #[cfg(feature = "NSImage")]
         /// Creates a standard push button with a title and image.
         ///
@@ -498,18 +498,18 @@ extern_methods!(
             action: Option<Sel>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSPopUpButton {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSPopUpButton {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -520,38 +520,38 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSPopUpButton {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSPopUpButton {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSPopUpButton {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSPopUpButton {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbuttonwillpopupnotification?language=objc)

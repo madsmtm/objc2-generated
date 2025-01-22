@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for UIContentUnavailableButtonProperties {}
 
 unsafe impl NSSecureCoding for UIContentUnavailableButtonProperties {}
 
-extern_methods!(
-    unsafe impl UIContentUnavailableButtonProperties {
+impl UIContentUnavailableButtonProperties {
+    extern_methods!(
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The primary action of the button.
         #[unsafe(method(primaryAction))]
@@ -74,12 +74,12 @@ extern_methods!(
         #[unsafe(method(setRole:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRole(&self, role: UIButtonRole);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIContentUnavailableButtonProperties {
+/// Methods declared on superclass `NSObject`.
+impl UIContentUnavailableButtonProperties {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -87,5 +87,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

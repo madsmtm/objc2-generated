@@ -54,9 +54,9 @@ unsafe impl NSObjectProtocol for CXPlayDTMFCallAction {}
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSSecureCoding for CXPlayDTMFCallAction {}
 
-extern_methods!(
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXPlayDTMFCallAction {
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXPlayDTMFCallAction {
+    extern_methods!(
         #[unsafe(method(initWithCallUUID:digits:type:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID_digits_type(
@@ -95,25 +95,25 @@ extern_methods!(
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: CXPlayDTMFCallActionType);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CXCallAction`
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXPlayDTMFCallAction {
+/// Methods declared on superclass `CXCallAction`.
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXPlayDTMFCallAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXPlayDTMFCallAction {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXPlayDTMFCallAction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

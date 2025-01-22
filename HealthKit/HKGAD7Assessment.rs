@@ -133,13 +133,13 @@ unsafe impl NSObjectProtocol for HKGAD7Assessment {}
 ))]
 unsafe impl NSSecureCoding for HKGAD7Assessment {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "HKObject",
-        feature = "HKSample",
-        feature = "HKScoredAssessment"
-    ))]
-    unsafe impl HKGAD7Assessment {
+#[cfg(all(
+    feature = "HKObject",
+    feature = "HKSample",
+    feature = "HKScoredAssessment"
+))]
+impl HKGAD7Assessment {
+    extern_methods!(
         /// Answers on the GAD-7 assessment. There are exactly 7 answers, one for each multiple choice question. Each answer is of type `HKGAD7AssessmentAnswer`.
         #[unsafe(method(answers))]
         #[unsafe(method_family = none)]
@@ -174,5 +174,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

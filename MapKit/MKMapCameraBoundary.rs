@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for MKMapCameraBoundary {}
 
 unsafe impl NSSecureCoding for MKMapCameraBoundary {}
 
-extern_methods!(
-    unsafe impl MKMapCameraBoundary {
+impl MKMapCameraBoundary {
+    extern_methods!(
         #[cfg(feature = "MKGeometry")]
         #[unsafe(method(initWithMapRect:))]
         #[unsafe(method_family = init)]
@@ -59,12 +59,12 @@ extern_methods!(
         #[unsafe(method(region))]
         #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKMapCameraBoundary {
+/// Methods declared on superclass `NSObject`.
+impl MKMapCameraBoundary {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,5 +72,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

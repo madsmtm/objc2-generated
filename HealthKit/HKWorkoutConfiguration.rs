@@ -54,8 +54,8 @@ unsafe impl NSObjectProtocol for HKWorkoutConfiguration {}
 
 unsafe impl NSSecureCoding for HKWorkoutConfiguration {}
 
-extern_methods!(
-    unsafe impl HKWorkoutConfiguration {
+impl HKWorkoutConfiguration {
+    extern_methods!(
         #[cfg(feature = "HKWorkout")]
         /// Indicates the type of workout for the configuration.
         #[unsafe(method(activityType))]
@@ -107,12 +107,12 @@ extern_methods!(
         #[unsafe(method(setLapLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLapLength(&self, lap_length: Option<&HKQuantity>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKWorkoutConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl HKWorkoutConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -120,5 +120,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

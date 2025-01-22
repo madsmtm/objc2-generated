@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for UIKey {
 
 unsafe impl NSObjectProtocol for UIKey {}
 
-extern_methods!(
-    unsafe impl UIKey {
+impl UIKey {
+    extern_methods!(
         /// Returns: a string representing what would be inserted into a text field when this key is pressed.
         ///
         /// if a modifier key is held, this property will contain the modified characters according
@@ -55,12 +55,12 @@ extern_methods!(
         #[unsafe(method(keyCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyCode(&self) -> UIKeyboardHIDUsage;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIKey {
+/// Methods declared on superclass `NSObject`.
+impl UIKey {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,5 +68,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

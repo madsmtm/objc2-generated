@@ -126,25 +126,25 @@ unsafe impl NSUserInterfaceItemIdentification for NSSecureTextField {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSSecureTextField {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSSecureTextField {}
-);
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSSecureTextField {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSSecureTextField {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSSecureTextField {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -155,38 +155,38 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSSecureTextField {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSSecureTextField {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSTextField",
-        feature = "NSView"
-    ))]
-    unsafe impl NSSecureTextField {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSTextField",
+    feature = "NSView"
+))]
+impl NSSecureTextField {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssecuretextfieldcell?language=objc)
@@ -254,13 +254,13 @@ unsafe impl NSObjectProtocol for NSSecureTextFieldCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSecureTextFieldCell {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSSecureTextFieldCell {
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSSecureTextFieldCell {
+    extern_methods!(
         #[unsafe(method(echosBullets))]
         #[unsafe(method_family = none)]
         pub unsafe fn echosBullets(&self) -> bool;
@@ -269,17 +269,17 @@ extern_methods!(
         #[unsafe(method(setEchosBullets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEchosBullets(&self, echos_bullets: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSSecureTextFieldCell {
+/// Methods declared on superclass `NSTextFieldCell`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSSecureTextFieldCell {
+    extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
@@ -295,33 +295,33 @@ extern_methods!(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSSecureTextFieldCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSSecureTextFieldCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSSecureTextFieldCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSSecureTextFieldCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

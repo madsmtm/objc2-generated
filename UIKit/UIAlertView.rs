@@ -95,9 +95,9 @@ unsafe impl UIResponderStandardEditActions for UIAlertView {}
 ))]
 unsafe impl UITraitEnvironment for UIAlertView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIAlertView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIAlertView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(initWithFrame:))]
@@ -215,13 +215,13 @@ extern_methods!(
             &self,
             text_field_index: NSInteger,
         ) -> Option<Retained<UITextField>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIAlertView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIAlertView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -229,8 +229,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewdelegate?language=objc)

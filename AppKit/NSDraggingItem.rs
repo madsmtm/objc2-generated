@@ -30,8 +30,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSDraggingImageComponent {}
 
-extern_methods!(
-    unsafe impl NSDraggingImageComponent {
+impl NSDraggingImageComponent {
+    extern_methods!(
         #[unsafe(method(draggingImageComponentWithKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn draggingImageComponentWithKey(
@@ -75,17 +75,17 @@ extern_methods!(
         #[unsafe(method(setFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrame(&self, frame: NSRect);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDraggingImageComponent {
+/// Methods declared on superclass `NSObject`.
+impl NSDraggingImageComponent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitem?language=objc)
@@ -96,8 +96,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSDraggingItem {}
 
-extern_methods!(
-    unsafe impl NSDraggingItem {
+impl NSDraggingItem {
+    extern_methods!(
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(initWithPasteboardWriter:))]
         #[unsafe(method_family = init)]
@@ -149,14 +149,14 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn imageComponents(&self)
             -> Option<Retained<NSArray<NSDraggingImageComponent>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDraggingItem {
+/// Methods declared on superclass `NSObject`.
+impl NSDraggingItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for UITextFormattingViewControllerConfiguration {}
 
 unsafe impl NSSecureCoding for UITextFormattingViewControllerConfiguration {}
 
-extern_methods!(
-    unsafe impl UITextFormattingViewControllerConfiguration {
+impl UITextFormattingViewControllerConfiguration {
+    extern_methods!(
         #[cfg(feature = "UITextFormattingViewControllerComponent")]
         /// Component groups displayed by text formatting view.
         #[unsafe(method(groups))]
@@ -87,14 +87,14 @@ extern_methods!(
             this: Allocated<Self>,
             groups: &NSArray<UITextFormattingViewControllerComponentGroup>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextFormattingViewControllerConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl UITextFormattingViewControllerConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

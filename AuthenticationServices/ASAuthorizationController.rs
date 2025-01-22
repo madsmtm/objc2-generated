@@ -90,8 +90,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationController {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationController {
+impl ASAuthorizationController {
+    extern_methods!(
         #[cfg(feature = "ASAuthorizationRequest")]
         /// Authorization requests that are being serviced by this controller
         #[unsafe(method(authorizationRequests))]
@@ -217,5 +217,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

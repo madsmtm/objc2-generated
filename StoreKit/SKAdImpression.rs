@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SKAdImpression {}
 
-extern_methods!(
-    unsafe impl SKAdImpression {
+impl SKAdImpression {
+    extern_methods!(
         /// The App Store item identifier for the source app.
         #[unsafe(method(sourceAppStoreItemIdentifier))]
         #[unsafe(method_family = none)]
@@ -143,12 +143,12 @@ extern_methods!(
         #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersion(&self, version: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKAdImpression {
+/// Methods declared on superclass `NSObject`.
+impl SKAdImpression {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -156,5 +156,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

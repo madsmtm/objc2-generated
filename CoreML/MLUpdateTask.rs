@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "MLTask")]
 unsafe impl NSObjectProtocol for MLUpdateTask {}
 
-extern_methods!(
-    #[cfg(feature = "MLTask")]
-    unsafe impl MLUpdateTask {
+#[cfg(feature = "MLTask")]
+impl MLUpdateTask {
+    extern_methods!(
         #[cfg(all(
             feature = "MLBatchProvider",
             feature = "MLModelConfiguration",
@@ -89,5 +89,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

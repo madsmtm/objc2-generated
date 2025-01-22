@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSManagedObjectModelReference {}
 
-extern_methods!(
-    unsafe impl NSManagedObjectModelReference {
+impl NSManagedObjectModelReference {
+    extern_methods!(
         #[cfg(feature = "NSManagedObjectModel")]
         #[unsafe(method(resolvedModel))]
         #[unsafe(method_family = none)]
@@ -64,14 +64,14 @@ extern_methods!(
             bundle: Option<&NSBundle>,
             version_checksum: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSManagedObjectModelReference {
+/// Methods declared on superclass `NSObject`.
+impl NSManagedObjectModelReference {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

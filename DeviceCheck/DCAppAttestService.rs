@@ -45,8 +45,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for DCAppAttestService {}
 
-extern_methods!(
-    unsafe impl DCAppAttestService {
+impl DCAppAttestService {
+    extern_methods!(
         /// The shared App Attest service that you use to validate your app.
         ///
         /// Use the shared instance of the service to generate and to certify a
@@ -267,12 +267,12 @@ extern_methods!(
             client_data_hash: &NSData,
             completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl DCAppAttestService {
+/// Methods declared on superclass `NSObject`.
+impl DCAppAttestService {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -280,5 +280,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -44,9 +44,8 @@ unsafe impl NSObjectProtocol for ARReferenceObject {}
 unsafe impl NSSecureCoding for ARReferenceObject {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARReferenceObject {
+impl ARReferenceObject {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to identify the object.
         #[unsafe(method(name))]
@@ -151,5 +150,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for SCNAudioSource {}
 
 unsafe impl NSSecureCoding for SCNAudioSource {}
 
-extern_methods!(
-    unsafe impl SCNAudioSource {
+impl SCNAudioSource {
+    extern_methods!(
         /// Convenience initializer that creates an AVAudioNode from the named audio asset in the main bundle.
         #[unsafe(method(initWithFileNamed:))]
         #[unsafe(method_family = init)]
@@ -120,12 +120,12 @@ extern_methods!(
         #[unsafe(method(load))]
         #[unsafe(method_family = none)]
         pub unsafe fn load(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNAudioSource {
+/// Methods declared on superclass `NSObject`.
+impl SCNAudioSource {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -133,8 +133,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnaudioplayer?language=objc)
@@ -145,8 +145,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCNAudioPlayer {}
 
-extern_methods!(
-    unsafe impl SCNAudioPlayer {
+impl SCNAudioPlayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -219,22 +219,22 @@ extern_methods!(
         #[unsafe(method(audioSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioSource(&self) -> Option<Retained<SCNAudioSource>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNAudioPlayer {
+/// Methods declared on superclass `NSObject`.
+impl SCNAudioPlayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SCNAudioSupport
-    #[cfg(feature = "SCNNode")]
-    unsafe impl SCNNode {
+/// SCNAudioSupport.
+#[cfg(feature = "SCNNode")]
+impl SCNNode {
+    extern_methods!(
         /// Add an audio player to the node and starts playing it right away.
         #[unsafe(method(addAudioPlayer:))]
         #[unsafe(method_family = none)]
@@ -254,5 +254,5 @@ extern_methods!(
         #[unsafe(method(audioPlayers))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioPlayers(&self) -> Retained<NSArray<SCNAudioPlayer>>;
-    }
-);
+    );
+}

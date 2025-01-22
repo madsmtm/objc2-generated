@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVExternalStorageDevice {}
 
-extern_methods!(
-    unsafe impl AVExternalStorageDevice {
+impl AVExternalStorageDevice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,12 +108,12 @@ extern_methods!(
             &self,
             extension_array: &NSArray<NSString>,
         ) -> Result<Retained<NSArray<NSURL>>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVExternalStorageDeviceAuthorization
-    unsafe impl AVExternalStorageDevice {
+/// AVExternalStorageDeviceAuthorization.
+impl AVExternalStorageDevice {
+    extern_methods!(
         #[cfg(feature = "AVCaptureDevice")]
         /// Returns the client's authorization status for capturing onto an external storage device connected to this device.
         ///
@@ -138,8 +138,8 @@ extern_methods!(
         #[unsafe(method(requestAccessWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAccessWithCompletionHandler(handler: &block2::Block<dyn Fn(Bool)>);
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVExternalStorageDeviceDiscoverySession is used to monitor connection / disconnection of external storage devices to the device.
@@ -155,8 +155,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVExternalStorageDeviceDiscoverySession {}
 
-extern_methods!(
-    unsafe impl AVExternalStorageDeviceDiscoverySession {
+impl AVExternalStorageDeviceDiscoverySession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -191,5 +191,5 @@ extern_methods!(
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
-    }
-);
+    );
+}

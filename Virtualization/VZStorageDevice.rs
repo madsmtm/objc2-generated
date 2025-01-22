@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZStorageDevice {}
 
-extern_methods!(
-    unsafe impl VZStorageDevice {
+impl VZStorageDevice {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -30,5 +30,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

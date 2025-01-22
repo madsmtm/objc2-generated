@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSAlignmentFeedbackFilter {}
 
-extern_methods!(
-    unsafe impl NSAlignmentFeedbackFilter {
+impl NSAlignmentFeedbackFilter {
+    extern_methods!(
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(inputEventMask))]
         #[unsafe(method_family = none)]
@@ -89,12 +89,12 @@ extern_methods!(
             alignment_feedback_tokens: &NSArray<ProtocolObject<dyn NSAlignmentFeedbackToken>>,
             performance_time: NSHapticFeedbackPerformanceTime,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAlignmentFeedbackFilter {
+/// Methods declared on superclass `NSObject`.
+impl NSAlignmentFeedbackFilter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -102,5 +102,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

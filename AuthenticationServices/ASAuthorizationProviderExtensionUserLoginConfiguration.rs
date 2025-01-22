@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionUserLoginConfiguration {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationProviderExtensionUserLoginConfiguration {
+impl ASAuthorizationProviderExtensionUserLoginConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -101,5 +101,5 @@ extern_methods!(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}

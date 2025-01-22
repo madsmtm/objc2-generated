@@ -86,8 +86,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKLeaderboard {}
 
-extern_methods!(
-    unsafe impl GKLeaderboard {
+impl GKLeaderboard {
+    extern_methods!(
         /// Localized title
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -221,12 +221,12 @@ extern_methods!(
                 dyn Fn(*mut GKLeaderboardEntry, *mut NSArray<GKLeaderboardEntry>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Deprecated
-    unsafe impl GKLeaderboard {
+/// Deprecated.
+impl GKLeaderboard {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(category))]
         #[unsafe(method_family = none)]
@@ -378,12 +378,12 @@ extern_methods!(
                 &block2::Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UI
-    unsafe impl GKLeaderboard {
+/// UI.
+impl GKLeaderboard {
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[unsafe(method(loadImageWithCompletionHandler:))]
@@ -392,5 +392,5 @@ extern_methods!(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
-    }
-);
+    );
+}

@@ -281,10 +281,10 @@ unsafe impl RefEncode for UIImageDynamicRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// UIColorSystemColors
-    #[cfg(feature = "UIColor")]
-    unsafe impl UIColor {
+/// UIColorSystemColors.
+#[cfg(feature = "UIColor")]
+impl UIColor {
+    extern_methods!(
         #[unsafe(method(systemRedColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemRedColor() -> Retained<UIColor>;
@@ -460,13 +460,13 @@ extern_methods!(
         #[unsafe(method(underPageBackgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn underPageBackgroundColor() -> Retained<UIColor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIFontSystemFonts
-    #[cfg(feature = "UIFont")]
-    unsafe impl UIFont {
+/// UIFontSystemFonts.
+#[cfg(feature = "UIFont")]
+impl UIFont {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(labelFontSize))]
         #[unsafe(method_family = none)]
@@ -496,5 +496,5 @@ extern_methods!(
         #[unsafe(method(systemMinimumFontSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemMinimumFontSize() -> CGFloat;
-    }
-);
+    );
+}

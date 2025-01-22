@@ -83,8 +83,8 @@ unsafe impl CopyingHelper for NSAnimation {
 
 unsafe impl NSObjectProtocol for NSAnimation {}
 
-extern_methods!(
-    unsafe impl NSAnimation {
+impl NSAnimation {
+    extern_methods!(
         #[unsafe(method(initWithDuration:animationCurve:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDuration_animationCurve(
@@ -221,12 +221,12 @@ extern_methods!(
         #[unsafe(method(runLoopModesForAnimating))]
         #[unsafe(method_family = none)]
         pub unsafe fn runLoopModesForAnimating(&self) -> Option<Retained<NSArray<NSRunLoopMode>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAnimation {
+/// Methods declared on superclass `NSObject`.
+impl NSAnimation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -234,8 +234,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationdelegate?language=objc)
@@ -330,8 +330,8 @@ unsafe impl CopyingHelper for NSViewAnimation {
 
 unsafe impl NSObjectProtocol for NSViewAnimation {}
 
-extern_methods!(
-    unsafe impl NSViewAnimation {
+impl NSViewAnimation {
+    extern_methods!(
         #[unsafe(method(initWithViewAnimations:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithViewAnimations(
@@ -352,12 +352,12 @@ extern_methods!(
             &self,
             view_animations: &NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSAnimation`
-    unsafe impl NSViewAnimation {
+/// Methods declared on superclass `NSAnimation`.
+impl NSViewAnimation {
+    extern_methods!(
         #[unsafe(method(initWithDuration:animationCurve:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDuration_animationCurve(
@@ -372,12 +372,12 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSViewAnimation {
+/// Methods declared on superclass `NSObject`.
+impl NSViewAnimation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -385,8 +385,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimatablepropertykey?language=objc)
 pub type NSAnimatablePropertyKey = NSString;

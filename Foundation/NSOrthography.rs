@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for NSOrthography {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSOrthography {}
 
-extern_methods!(
-    unsafe impl NSOrthography {
+impl NSOrthography {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(dominantScript))]
         #[unsafe(method_family = none)]
@@ -56,12 +56,12 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSOrthography {
+/// Methods declared on superclass `NSObject`.
+impl NSOrthography {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -69,12 +69,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSOrthographyExtended
-    unsafe impl NSOrthography {
+/// NSOrthographyExtended.
+impl NSOrthography {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(languagesForScript:))]
         #[unsafe(method_family = none)]
@@ -110,12 +110,12 @@ extern_methods!(
         #[unsafe(method(defaultOrthographyForLanguage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultOrthographyForLanguage(language: &NSString) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSOrthographyCreation
-    unsafe impl NSOrthography {
+/// NSOrthographyCreation.
+impl NSOrthography {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(orthographyWithDominantScript:languageMap:))]
         #[unsafe(method_family = none)]
@@ -123,5 +123,5 @@ extern_methods!(
             script: &NSString,
             map: &NSDictionary<NSString, NSArray<NSString>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

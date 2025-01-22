@@ -21,9 +21,9 @@ unsafe impl NSCoding for NSColorPickerTouchBarItem {}
 #[cfg(feature = "NSTouchBarItem")]
 unsafe impl NSObjectProtocol for NSColorPickerTouchBarItem {}
 
-extern_methods!(
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl NSColorPickerTouchBarItem {
+#[cfg(feature = "NSTouchBarItem")]
+impl NSColorPickerTouchBarItem {
+    extern_methods!(
         /// Creates a bar item containing a button with the standard color picker icon that invokes the color picker.
         #[unsafe(method(colorPickerWithIdentifier:))]
         #[unsafe(method_family = none)]
@@ -143,13 +143,13 @@ extern_methods!(
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTouchBarItem`
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl NSColorPickerTouchBarItem {
+/// Methods declared on superclass `NSTouchBarItem`.
+#[cfg(feature = "NSTouchBarItem")]
+impl NSColorPickerTouchBarItem {
+    extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
@@ -167,15 +167,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSTouchBarItem")]
-    unsafe impl NSColorPickerTouchBarItem {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSTouchBarItem")]
+impl NSColorPickerTouchBarItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

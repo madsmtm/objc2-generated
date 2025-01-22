@@ -57,8 +57,8 @@ unsafe impl NSUserInterfaceItemIdentification for OSAScriptView {}
 
 unsafe impl NSUserInterfaceValidations for OSAScriptView {}
 
-extern_methods!(
-    unsafe impl OSAScriptView {
+impl OSAScriptView {
+    extern_methods!(
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
@@ -121,12 +121,12 @@ extern_methods!(
         #[unsafe(method(setIndentWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndentWidth(&self, indent_width: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextView`
-    unsafe impl OSAScriptView {
+/// Methods declared on superclass `NSTextView`.
+impl OSAScriptView {
+    extern_methods!(
         /// ************************** Initializing ***************************
         #[unsafe(method(initWithFrame:textContainer:))]
         #[unsafe(method_family = init)]
@@ -160,23 +160,23 @@ extern_methods!(
             using_text_layout_manager: bool,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    unsafe impl OSAScriptView {
+/// Methods declared on superclass `NSResponder`.
+impl OSAScriptView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl OSAScriptView {
+/// Methods declared on superclass `NSObject`.
+impl OSAScriptView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

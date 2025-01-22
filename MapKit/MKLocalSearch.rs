@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKLocalSearch {}
 
-extern_methods!(
-    unsafe impl MKLocalSearch {
+impl MKLocalSearch {
+    extern_methods!(
         #[cfg(feature = "MKLocalSearchRequest")]
         #[unsafe(method(initWithRequest:))]
         #[unsafe(method_family = init)]
@@ -54,12 +54,12 @@ extern_methods!(
         #[unsafe(method(isSearching))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSearching(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKLocalSearch {
+/// Methods declared on superclass `NSObject`.
+impl MKLocalSearch {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -67,5 +67,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

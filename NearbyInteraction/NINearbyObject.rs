@@ -72,8 +72,8 @@ unsafe impl NSObjectProtocol for NINearbyObject {}
 
 unsafe impl NSSecureCoding for NINearbyObject {}
 
-extern_methods!(
-    unsafe impl NINearbyObject {
+impl NINearbyObject {
+    extern_methods!(
         #[cfg(feature = "NIConfiguration")]
         /// Nearby interaction discovery token
         ///
@@ -107,5 +107,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

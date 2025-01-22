@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for UIPointerInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIPointerInteraction {}
 
-extern_methods!(
-    unsafe impl UIPointerInteraction {
+impl UIPointerInteraction {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -49,12 +49,12 @@ extern_methods!(
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPointerInteraction {
+/// Methods declared on superclass `NSObject`.
+impl UIPointerInteraction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -62,8 +62,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerinteractiondelegate?language=objc)
@@ -165,8 +165,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPointerRegionRequest {}
 
-extern_methods!(
-    unsafe impl UIPointerRegionRequest {
+impl UIPointerRegionRequest {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The location of the pointer in the interaction's view's coordinate space.
         #[unsafe(method(location))]
@@ -178,12 +178,12 @@ extern_methods!(
         #[unsafe(method(modifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifiers(&self) -> UIKeyModifierFlags;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPointerRegionRequest {
+/// Methods declared on superclass `NSObject`.
+impl UIPointerRegionRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -191,8 +191,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerinteractionanimating?language=objc)

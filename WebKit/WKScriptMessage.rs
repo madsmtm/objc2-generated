@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKScriptMessage {}
 
-extern_methods!(
-    unsafe impl WKScriptMessage {
+impl WKScriptMessage {
+    extern_methods!(
         /// The body of the message.
         ///
         /// Allowed types are NSNumber, NSString, NSDate, NSArray,
@@ -52,12 +52,12 @@ extern_methods!(
         #[unsafe(method(world))]
         #[unsafe(method_family = none)]
         pub unsafe fn world(&self) -> Retained<WKContentWorld>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKScriptMessage {
+/// Methods declared on superclass `NSObject`.
+impl WKScriptMessage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -65,5 +65,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

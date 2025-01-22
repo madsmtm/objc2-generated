@@ -139,9 +139,9 @@ extern_class!(
 #[cfg(feature = "CBManager")]
 unsafe impl NSObjectProtocol for CBPeripheralManager {}
 
-extern_methods!(
-    #[cfg(feature = "CBManager")]
-    unsafe impl CBPeripheralManager {
+#[cfg(feature = "CBManager")]
+impl CBPeripheralManager {
+    extern_methods!(
         /// The delegate object that will receive peripheral events.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -404,18 +404,18 @@ extern_methods!(
         #[unsafe(method(unpublishL2CAPChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unpublishL2CAPChannel(&self, psm: CBL2CAPPSM);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBManager")]
-    unsafe impl CBPeripheralManager {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBManager")]
+impl CBPeripheralManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The delegate of a

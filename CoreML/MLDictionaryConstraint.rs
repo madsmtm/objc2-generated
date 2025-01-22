@@ -23,19 +23,19 @@ unsafe impl NSObjectProtocol for MLDictionaryConstraint {}
 
 unsafe impl NSSecureCoding for MLDictionaryConstraint {}
 
-extern_methods!(
-    unsafe impl MLDictionaryConstraint {
+impl MLDictionaryConstraint {
+    extern_methods!(
         #[cfg(feature = "MLFeatureType")]
         /// Required key type, described as MLFeatureType
         #[unsafe(method(keyType))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyType(&self) -> MLFeatureType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLDictionaryConstraint {
+/// Methods declared on superclass `NSObject`.
+impl MLDictionaryConstraint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -43,5 +43,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

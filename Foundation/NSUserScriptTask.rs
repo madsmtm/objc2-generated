@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSUserScriptTask {}
 
-extern_methods!(
-    unsafe impl NSUserScriptTask {
+impl NSUserScriptTask {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithURL:error:_))]
         #[unsafe(method_family = init)]
@@ -41,12 +41,12 @@ extern_methods!(
             &self,
             handler: NSUserScriptTaskCompletionHandler,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUserScriptTask {
+/// Methods declared on superclass `NSObject`.
+impl NSUserScriptTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -54,8 +54,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserunixtaskcompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
@@ -70,8 +70,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSUserUnixTask {}
 
-extern_methods!(
-    unsafe impl NSUserUnixTask {
+impl NSUserUnixTask {
+    extern_methods!(
         #[cfg(feature = "NSFileHandle")]
         #[unsafe(method(standardInput))]
         #[unsafe(method_family = none)]
@@ -118,12 +118,12 @@ extern_methods!(
             arguments: Option<&NSArray<NSString>>,
             handler: NSUserUnixTaskCompletionHandler,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSUserScriptTask`
-    unsafe impl NSUserUnixTask {
+/// Methods declared on superclass `NSUserScriptTask`.
+impl NSUserUnixTask {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithURL:error:_))]
         #[unsafe(method_family = init)]
@@ -131,12 +131,12 @@ extern_methods!(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUserUnixTask {
+/// Methods declared on superclass `NSObject`.
+impl NSUserUnixTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -144,8 +144,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserapplescripttaskcompletionhandler?language=objc)
 #[cfg(all(
@@ -165,8 +165,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSUserAppleScriptTask {}
 
-extern_methods!(
-    unsafe impl NSUserAppleScriptTask {
+impl NSUserAppleScriptTask {
+    extern_methods!(
         #[cfg(all(
             feature = "NSAppleEventDescriptor",
             feature = "NSError",
@@ -179,12 +179,12 @@ extern_methods!(
             event: Option<&NSAppleEventDescriptor>,
             handler: NSUserAppleScriptTaskCompletionHandler,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSUserScriptTask`
-    unsafe impl NSUserAppleScriptTask {
+/// Methods declared on superclass `NSUserScriptTask`.
+impl NSUserAppleScriptTask {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithURL:error:_))]
         #[unsafe(method_family = init)]
@@ -192,12 +192,12 @@ extern_methods!(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUserAppleScriptTask {
+/// Methods declared on superclass `NSObject`.
+impl NSUserAppleScriptTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -205,8 +205,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserautomatortaskcompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
@@ -222,8 +222,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSUserAutomatorTask {}
 
-extern_methods!(
-    unsafe impl NSUserAutomatorTask {
+impl NSUserAutomatorTask {
+    extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(variables))]
         #[unsafe(method_family = none)]
@@ -243,12 +243,12 @@ extern_methods!(
             input: Option<&ProtocolObject<dyn NSSecureCoding>>,
             handler: NSUserAutomatorTaskCompletionHandler,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSUserScriptTask`
-    unsafe impl NSUserAutomatorTask {
+/// Methods declared on superclass `NSUserScriptTask`.
+impl NSUserAutomatorTask {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithURL:error:_))]
         #[unsafe(method_family = init)]
@@ -256,12 +256,12 @@ extern_methods!(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUserAutomatorTask {
+/// Methods declared on superclass `NSObject`.
+impl NSUserAutomatorTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -269,5 +269,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

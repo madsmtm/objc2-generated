@@ -34,9 +34,9 @@ extern_class!(
 #[cfg(feature = "GCControllerElement")]
 unsafe impl NSObjectProtocol for GCControllerDirectionPad {}
 
-extern_methods!(
-    #[cfg(feature = "GCControllerElement")]
-    unsafe impl GCControllerDirectionPad {
+#[cfg(feature = "GCControllerElement")]
+impl GCControllerDirectionPad {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(valueChangedHandler))]
         #[unsafe(method_family = none)]
@@ -96,13 +96,13 @@ extern_methods!(
         #[unsafe(method(setValueForXAxis:yAxis:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueForXAxis_yAxis(&self, x_axis: c_float, y_axis: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GCControllerElement")]
-    unsafe impl GCControllerDirectionPad {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "GCControllerElement")]
+impl GCControllerDirectionPad {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -110,5 +110,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

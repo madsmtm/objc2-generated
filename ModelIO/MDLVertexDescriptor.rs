@@ -285,8 +285,8 @@ unsafe impl CopyingHelper for MDLVertexBufferLayout {
 
 unsafe impl NSObjectProtocol for MDLVertexBufferLayout {}
 
-extern_methods!(
-    unsafe impl MDLVertexBufferLayout {
+impl MDLVertexBufferLayout {
+    extern_methods!(
         #[unsafe(method(initWithStride:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStride(this: Allocated<Self>, stride: NSUInteger) -> Retained<Self>;
@@ -306,12 +306,12 @@ extern_methods!(
         #[unsafe(method(setStride:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStride(&self, stride: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLVertexBufferLayout {
+/// Methods declared on superclass `NSObject`.
+impl MDLVertexBufferLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -319,8 +319,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Structure with properties of a vertex attribute
@@ -339,8 +339,8 @@ unsafe impl CopyingHelper for MDLVertexAttribute {
 
 unsafe impl NSObjectProtocol for MDLVertexAttribute {}
 
-extern_methods!(
-    unsafe impl MDLVertexAttribute {
+impl MDLVertexAttribute {
+    extern_methods!(
         /// Initialize attribute object with all properties
         #[unsafe(method(initWithName:format:offset:bufferIndex:))]
         #[unsafe(method_family = init)]
@@ -409,12 +409,12 @@ extern_methods!(
         #[unsafe(method(setTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTime(&self, time: NSTimeInterval);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLVertexAttribute {
+/// Methods declared on superclass `NSObject`.
+impl MDLVertexAttribute {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -422,8 +422,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Describes the layout of vertex buffers in MDLMesh objects
@@ -450,8 +450,8 @@ unsafe impl CopyingHelper for MDLVertexDescriptor {
 
 unsafe impl NSObjectProtocol for MDLVertexDescriptor {}
 
-extern_methods!(
-    unsafe impl MDLVertexDescriptor {
+impl MDLVertexDescriptor {
+    extern_methods!(
         /// Initializes the object with values from supplied vertexDescriptor
         ///
         /// This performs a deep copy of all data in the supplied descriptor.
@@ -527,12 +527,12 @@ extern_methods!(
         #[unsafe(method(setPackedOffsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPackedOffsets(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLVertexDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MDLVertexDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -540,5 +540,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -28,8 +28,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZGraphicsDevice {}
 
-extern_methods!(
-    unsafe impl VZGraphicsDevice {
+impl VZGraphicsDevice {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -49,5 +49,5 @@ extern_methods!(
         #[unsafe(method(displays))]
         #[unsafe(method_family = none)]
         pub unsafe fn displays(&self) -> Retained<NSArray<VZGraphicsDisplay>>;
-    }
-);
+    );
+}

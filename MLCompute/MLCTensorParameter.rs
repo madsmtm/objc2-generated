@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLCTensorParameter {}
 
-extern_methods!(
-    unsafe impl MLCTensorParameter {
+impl MLCTensorParameter {
+    extern_methods!(
         #[cfg(feature = "MLCTensor")]
         /// The underlying tensor
         #[deprecated]
@@ -76,5 +76,5 @@ extern_methods!(
             tensor: &MLCTensor,
             optimizer_data: Option<&NSArray<MLCTensorData>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

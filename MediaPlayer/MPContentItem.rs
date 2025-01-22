@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPContentItem {}
 
-extern_methods!(
-    unsafe impl MPContentItem {
+impl MPContentItem {
+    extern_methods!(
         /// Designated initializer. A unique identifier is required to identify the item
         /// for later use.
         #[unsafe(method(initWithIdentifier:))]
@@ -129,12 +129,12 @@ extern_methods!(
         #[unsafe(method(setPlayable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayable(&self, playable: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPContentItem {
+/// Methods declared on superclass `NSObject`.
+impl MPContentItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -142,5 +142,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

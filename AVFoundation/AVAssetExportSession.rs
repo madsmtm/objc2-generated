@@ -245,8 +245,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetExportSession {}
 
-extern_methods!(
-    unsafe impl AVAssetExportSession {
+impl AVAssetExportSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -382,12 +382,12 @@ extern_methods!(
         #[unsafe(method(cancelExport))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelExport(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetExportSessionPresets
-    unsafe impl AVAssetExportSession {
+/// AVAssetExportSessionPresets.
+impl AVAssetExportSession {
+    extern_methods!(
         /// Returns all available export preset names.
         ///
         /// Returns an array of NSStrings with the names of all available presets. Note that not all presets are
@@ -444,12 +444,12 @@ extern_methods!(
             output_file_type: Option<&AVFileType>,
             handler: &block2::Block<dyn Fn(Bool)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetExportSessionFileTypes
-    unsafe impl AVAssetExportSession {
+/// AVAssetExportSessionFileTypes.
+impl AVAssetExportSession {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         #[unsafe(method(supportedFileTypes))]
         #[unsafe(method_family = none)]
@@ -467,12 +467,12 @@ extern_methods!(
             &self,
             handler: &block2::Block<dyn Fn(NonNull<NSArray<AVFileType>>)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetExportSessionDurationAndLength
-    unsafe impl AVAssetExportSession {
+/// AVAssetExportSessionDurationAndLength.
+impl AVAssetExportSession {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
@@ -529,12 +529,12 @@ extern_methods!(
             &self,
             handler: &block2::Block<dyn Fn(i64, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetExportSessionMetadata
-    unsafe impl AVAssetExportSession {
+/// AVAssetExportSessionMetadata.
+impl AVAssetExportSession {
+    extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
         #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
@@ -559,12 +559,12 @@ extern_methods!(
             &self,
             metadata_item_filter: Option<&AVMetadataItemFilter>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetExportSessionMediaProcessing
-    unsafe impl AVAssetExportSession {
+/// AVAssetExportSessionMediaProcessing.
+impl AVAssetExportSession {
+    extern_methods!(
         #[cfg(feature = "AVAudioProcessingSettings")]
         #[unsafe(method(audioTimePitchAlgorithm))]
         #[unsafe(method_family = none)]
@@ -626,12 +626,12 @@ extern_methods!(
             &self,
             audio_track_group_handling: AVAssetTrackGroupOutputHandling,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetExportSessionMultipass
-    unsafe impl AVAssetExportSession {
+/// AVAssetExportSessionMultipass.
+impl AVAssetExportSession {
+    extern_methods!(
         /// Determines whether the export session can perform multiple passes over the source media to achieve better results.
         ///
         ///
@@ -671,5 +671,5 @@ extern_methods!(
             &self,
             directory_for_temporary_files: Option<&NSURL>,
         );
-    }
-);
+    );
+}

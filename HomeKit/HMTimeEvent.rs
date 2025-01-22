@@ -24,15 +24,15 @@ unsafe impl Sync for HMTimeEvent {}
 #[cfg(feature = "HMEvent")]
 unsafe impl NSObjectProtocol for HMTimeEvent {}
 
-extern_methods!(
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMTimeEvent {}
-);
+#[cfg(feature = "HMEvent")]
+impl HMTimeEvent {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMTimeEvent {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMTimeEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -42,5 +42,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

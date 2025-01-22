@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASSettingsHelper {}
 
-extern_methods!(
-    unsafe impl ASSettingsHelper {
+impl ASSettingsHelper {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Calling this method will open the Settings app and navigate directly to the AutoFill provider settings.
         #[unsafe(method(openCredentialProviderAppSettingsWithCompletionHandler:))]
@@ -54,5 +54,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

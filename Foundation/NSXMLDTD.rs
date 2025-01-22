@@ -27,9 +27,9 @@ unsafe impl CopyingHelper for NSXMLDTD {
 #[cfg(feature = "NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLDTD {}
 
-extern_methods!(
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLDTD {
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLDTD {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -194,13 +194,13 @@ extern_methods!(
         pub unsafe fn predefinedEntityDeclarationForName(
             name: &NSString,
         ) -> Option<Retained<NSXMLDTDNode>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLDTD {
+/// Methods declared on superclass `NSXMLNode`.
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLDTD {
+    extern_methods!(
         /// Invokes
         ///
         /// ```text
@@ -211,15 +211,15 @@ extern_methods!(
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLDTD {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLDTD {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

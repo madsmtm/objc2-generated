@@ -66,9 +66,9 @@ unsafe impl NSSeguePerforming for NSViewController {}
 #[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceItemIdentification"))]
 unsafe impl NSUserInterfaceItemIdentification for NSViewController {}
 
-extern_methods!(
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSViewController {
+#[cfg(feature = "NSResponder")]
+impl NSViewController {
+    extern_methods!(
         #[cfg(feature = "NSNib")]
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
@@ -197,33 +197,33 @@ extern_methods!(
         #[unsafe(method(viewDidLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewDidLayout(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "NSResponder")]
+impl NSViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSResponder")]
+impl NSViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSViewControllerPresentation
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSViewController {
+/// NSViewControllerPresentation.
+#[cfg(feature = "NSResponder")]
+impl NSViewController {
+    extern_methods!(
         #[unsafe(method(presentViewController:animator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentViewController_animator(
@@ -249,13 +249,13 @@ extern_methods!(
         #[unsafe(method(presentingViewController))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentingViewController(&self) -> Option<Retained<NSViewController>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSViewControllerPresentationAndTransitionStyles
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSViewController {
+/// NSViewControllerPresentationAndTransitionStyles.
+#[cfg(feature = "NSResponder")]
+impl NSViewController {
+    extern_methods!(
         #[unsafe(method(presentViewControllerAsSheet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentViewControllerAsSheet(&self, view_controller: &NSViewController);
@@ -299,13 +299,13 @@ extern_methods!(
             options: NSViewControllerTransitionOptions,
             completion: Option<&block2::Block<dyn Fn()>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSViewControllerContainer
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSViewController {
+/// NSViewControllerContainer.
+#[cfg(feature = "NSResponder")]
+impl NSViewController {
+    extern_methods!(
         #[unsafe(method(parentViewController))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentViewController(&self) -> Option<Retained<NSViewController>>;
@@ -352,8 +352,8 @@ extern_methods!(
         #[unsafe(method(viewWillTransitionToSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewWillTransitionToSize(&self, new_size: NSSize);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontrollerpresentationanimator?language=objc)
@@ -380,21 +380,21 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSViewControllerStoryboardingMethods
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSViewController {
+/// NSViewControllerStoryboardingMethods.
+#[cfg(feature = "NSResponder")]
+impl NSViewController {
+    extern_methods!(
         #[cfg(feature = "NSStoryboard")]
         #[unsafe(method(storyboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn storyboard(&self) -> Option<Retained<NSStoryboard>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtensionAdditions
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSViewController {
+/// NSExtensionAdditions.
+#[cfg(feature = "NSResponder")]
+impl NSViewController {
+    extern_methods!(
         #[unsafe(method(extensionContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionContext(&self) -> Option<Retained<NSExtensionContext>>;
@@ -426,8 +426,8 @@ extern_methods!(
         #[unsafe(method(preferredMaximumSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredMaximumSize(&self) -> NSSize;
-    }
-);
+    );
+}
 
 #[cfg(feature = "NSResponder")]
 unsafe impl NSExtensionRequestHandling for NSViewController {}

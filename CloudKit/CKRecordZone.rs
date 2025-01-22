@@ -60,8 +60,8 @@ unsafe impl NSObjectProtocol for CKRecordZone {}
 
 unsafe impl NSSecureCoding for CKRecordZone {}
 
-extern_methods!(
-    unsafe impl CKRecordZone {
+impl CKRecordZone {
+    extern_methods!(
         #[unsafe(method(defaultRecordZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRecordZone() -> Retained<CKRecordZone>;
@@ -117,5 +117,5 @@ extern_methods!(
         #[unsafe(method(share))]
         #[unsafe(method_family = none)]
         pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
-    }
-);
+    );
+}

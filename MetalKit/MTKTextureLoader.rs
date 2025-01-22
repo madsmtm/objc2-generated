@@ -187,8 +187,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTKTextureLoader {}
 
-extern_methods!(
-    unsafe impl MTKTextureLoader {
+impl MTKTextureLoader {
+    extern_methods!(
         /// Metal device with which to create Metal textures
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
@@ -622,14 +622,14 @@ extern_methods!(
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTKTextureLoader {
+/// Methods declared on superclass `NSObject`.
+impl MTKTextureLoader {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

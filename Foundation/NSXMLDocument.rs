@@ -55,9 +55,9 @@ unsafe impl CopyingHelper for NSXMLDocument {
 #[cfg(feature = "NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLDocument {}
 
-extern_methods!(
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLDocument {
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLDocument {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -296,13 +296,13 @@ extern_methods!(
         #[unsafe(method(validateAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateAndReturnError(&self) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLDocument {
+/// Methods declared on superclass `NSXMLNode`.
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLDocument {
+    extern_methods!(
         /// Invokes
         ///
         /// ```text
@@ -323,15 +323,15 @@ extern_methods!(
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLDocument {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLDocument {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

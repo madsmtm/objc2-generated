@@ -56,8 +56,8 @@ unsafe impl CopyingHelper for NSMenuItemBadge {
 
 unsafe impl NSObjectProtocol for NSMenuItemBadge {}
 
-extern_methods!(
-    unsafe impl NSMenuItemBadge {
+impl NSMenuItemBadge {
+    extern_methods!(
         /// Creates a badge with an integer count and a label representing
         /// the number of available updates.
         #[unsafe(method(updatesWithCount:))]
@@ -118,14 +118,14 @@ extern_methods!(
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMenuItemBadge {
+/// Methods declared on superclass `NSObject`.
+impl NSMenuItemBadge {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

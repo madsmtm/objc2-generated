@@ -42,9 +42,9 @@ unsafe impl NSCoding for NSCloneCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSCloneCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCloneCommand {
+#[cfg(feature = "NSScriptCommand")]
+impl NSCloneCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(setReceiversSpecifier:))]
         #[unsafe(method_family = none)]
@@ -54,13 +54,13 @@ extern_methods!(
         #[unsafe(method(keySpecifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCloneCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSCloneCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -76,13 +76,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCloneCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSCloneCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -90,8 +90,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclosecommand?language=objc)
@@ -107,19 +107,19 @@ unsafe impl NSCoding for NSCloseCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSCloseCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCloseCommand {
+#[cfg(feature = "NSScriptCommand")]
+impl NSCloseCommand {
+    extern_methods!(
         #[unsafe(method(saveOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveOptions(&self) -> NSSaveOptions;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCloseCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSCloseCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -135,13 +135,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCloseCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSCloseCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -149,8 +149,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountcommand?language=objc)
@@ -166,15 +166,15 @@ unsafe impl NSCoding for NSCountCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSCountCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCountCommand {}
-);
+#[cfg(feature = "NSScriptCommand")]
+impl NSCountCommand {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCountCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSCountCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -190,13 +190,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCountCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSCountCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -204,8 +204,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatecommand?language=objc)
@@ -221,9 +221,9 @@ unsafe impl NSCoding for NSCreateCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSCreateCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCreateCommand {
+#[cfg(feature = "NSScriptCommand")]
+impl NSCreateCommand {
+    extern_methods!(
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[unsafe(method(createClassDescription))]
         #[unsafe(method_family = none)]
@@ -233,13 +233,13 @@ extern_methods!(
         #[unsafe(method(resolvedKeyDictionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedKeyDictionary(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCreateCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSCreateCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -255,13 +255,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSCreateCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSCreateCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -269,8 +269,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdeletecommand?language=objc)
@@ -286,9 +286,9 @@ unsafe impl NSCoding for NSDeleteCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSDeleteCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSDeleteCommand {
+#[cfg(feature = "NSScriptCommand")]
+impl NSDeleteCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(setReceiversSpecifier:))]
         #[unsafe(method_family = none)]
@@ -298,13 +298,13 @@ extern_methods!(
         #[unsafe(method(keySpecifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSDeleteCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSDeleteCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -320,13 +320,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSDeleteCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSDeleteCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -334,8 +334,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexistscommand?language=objc)
@@ -351,15 +351,15 @@ unsafe impl NSCoding for NSExistsCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSExistsCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSExistsCommand {}
-);
+#[cfg(feature = "NSScriptCommand")]
+impl NSExistsCommand {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSExistsCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSExistsCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -375,13 +375,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSExistsCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSExistsCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -389,8 +389,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgetcommand?language=objc)
@@ -406,15 +406,15 @@ unsafe impl NSCoding for NSGetCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSGetCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSGetCommand {}
-);
+#[cfg(feature = "NSScriptCommand")]
+impl NSGetCommand {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSGetCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSGetCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -430,13 +430,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSGetCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSGetCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -444,8 +444,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmovecommand?language=objc)
@@ -461,9 +461,9 @@ unsafe impl NSCoding for NSMoveCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSMoveCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSMoveCommand {
+#[cfg(feature = "NSScriptCommand")]
+impl NSMoveCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(setReceiversSpecifier:))]
         #[unsafe(method_family = none)]
@@ -473,13 +473,13 @@ extern_methods!(
         #[unsafe(method(keySpecifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSMoveCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSMoveCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -495,13 +495,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSMoveCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSMoveCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -509,8 +509,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsquitcommand?language=objc)
@@ -526,19 +526,19 @@ unsafe impl NSCoding for NSQuitCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSQuitCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSQuitCommand {
+#[cfg(feature = "NSScriptCommand")]
+impl NSQuitCommand {
+    extern_methods!(
         #[unsafe(method(saveOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveOptions(&self) -> NSSaveOptions;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSQuitCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSQuitCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -554,13 +554,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSQuitCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSQuitCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -568,8 +568,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssetcommand?language=objc)
@@ -585,9 +585,9 @@ unsafe impl NSCoding for NSSetCommand {}
 #[cfg(feature = "NSScriptCommand")]
 unsafe impl NSObjectProtocol for NSSetCommand {}
 
-extern_methods!(
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSSetCommand {
+#[cfg(feature = "NSScriptCommand")]
+impl NSSetCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(setReceiversSpecifier:))]
         #[unsafe(method_family = none)]
@@ -597,13 +597,13 @@ extern_methods!(
         #[unsafe(method(keySpecifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptCommand`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSSetCommand {
+/// Methods declared on superclass `NSScriptCommand`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSSetCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -619,13 +619,13 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSScriptCommand")]
-    unsafe impl NSSetCommand {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSScriptCommand")]
+impl NSSetCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -633,5 +633,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

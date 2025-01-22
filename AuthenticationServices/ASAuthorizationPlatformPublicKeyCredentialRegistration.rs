@@ -44,8 +44,8 @@ unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialRegis
 
 unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationPlatformPublicKeyCredentialRegistration {
+impl ASAuthorizationPlatformPublicKeyCredentialRegistration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -72,5 +72,5 @@ extern_methods!(
         pub unsafe fn prf(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput>>;
-    }
-);
+    );
+}

@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for MEAddressAnnotation {}
 
 unsafe impl NSSecureCoding for MEAddressAnnotation {}
 
-extern_methods!(
-    unsafe impl MEAddressAnnotation {
+impl MEAddressAnnotation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,5 +57,5 @@ extern_methods!(
         pub unsafe fn successWithLocalizedDescription(
             localized_description: &NSString,
         ) -> Retained<MEAddressAnnotation>;
-    }
-);
+    );
+}

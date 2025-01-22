@@ -567,8 +567,8 @@ unsafe impl CopyingHelper for MTLArgumentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLArgumentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLArgumentDescriptor {
+impl MTLArgumentDescriptor {
+    extern_methods!(
         /// Create an autoreleased default argument descriptor
         #[unsafe(method(argumentDescriptor))]
         #[unsafe(method_family = none)]
@@ -643,12 +643,12 @@ extern_methods!(
         #[unsafe(method(setConstantBlockAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantBlockAlignment(&self, constant_block_alignment: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLArgumentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLArgumentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -656,8 +656,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Contains information about the device's architecture
@@ -676,18 +676,18 @@ unsafe impl CopyingHelper for MTLArchitecture {
 
 unsafe impl NSObjectProtocol for MTLArchitecture {}
 
-extern_methods!(
-    unsafe impl MTLArchitecture {
+impl MTLArchitecture {
+    extern_methods!(
         /// The device's architecture name.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLArchitecture {
+/// Methods declared on superclass `NSObject`.
+impl MTLArchitecture {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -695,8 +695,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltimestamp?language=objc)
 pub type MTLTimestamp = u64;

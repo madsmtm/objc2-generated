@@ -27,8 +27,8 @@ unsafe impl CopyingHelper for AVSampleCursor {
 
 unsafe impl NSObjectProtocol for AVSampleCursor {}
 
-extern_methods!(
-    unsafe impl AVSampleCursor {
+impl AVSampleCursor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -86,12 +86,12 @@ extern_methods!(
             delta_presentation_time: CMTime,
             out_was_pinned: *mut Bool,
         ) -> CMTime;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleCursorTemporalPosition
-    unsafe impl AVSampleCursor {
+/// AVSampleCursorTemporalPosition.
+impl AVSampleCursor {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The presentation timestamp (PTS) of the sample at the current position of the cursor.
         #[unsafe(method(presentationTimeStamp))]
@@ -145,8 +145,8 @@ extern_methods!(
             &self,
             cursor: &AVSampleCursor,
         ) -> bool;
-    }
-);
+    );
+}
 
 /// A struct for describing attributes of a media sample for consideration when resynchronizing a decoder.
 /// Field: sampleIsFullSync
@@ -240,9 +240,9 @@ unsafe impl RefEncode for AVSampleCursorAudioDependencyInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVSampleCursorCurrentSampleInfo
-    unsafe impl AVSampleCursor {
+/// AVSampleCursorCurrentSampleInfo.
+impl AVSampleCursor {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the decode duration of the sample at the receiver's current position.
         ///
@@ -297,8 +297,8 @@ extern_methods!(
         #[unsafe(method(samplesRequiredForDecoderRefresh))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplesRequiredForDecoderRefresh(&self) -> NSInteger;
-    }
-);
+    );
+}
 
 /// A struct for indicating the offset and length of storage occupied by a media sample or its chunk.
 /// Field: offset
@@ -360,9 +360,9 @@ unsafe impl RefEncode for AVSampleCursorChunkInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVSampleCursorSampleStorageInfo
-    unsafe impl AVSampleCursor {
+/// AVSampleCursorSampleStorageInfo.
+impl AVSampleCursor {
+    extern_methods!(
         /// The URL of the storage container of the current sample, as well as other samples that are intended to be loaded in the same operation as a "chunk".
         ///
         /// May be nil; if nil, the storage location of the chunk is the URL of the sample cursor's track's asset, if it has one.
@@ -393,5 +393,5 @@ extern_methods!(
         #[unsafe(method(currentSampleStorageRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSampleStorageRange(&self) -> AVSampleCursorStorageRange;
-    }
-);
+    );
+}

@@ -26,8 +26,8 @@ unsafe impl NSObjectProtocol for CAEDRMetadata {}
 
 unsafe impl NSSecureCoding for CAEDRMetadata {}
 
-extern_methods!(
-    unsafe impl CAEDRMetadata {
+impl CAEDRMetadata {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -65,5 +65,5 @@ extern_methods!(
         #[unsafe(method(isAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAvailable() -> bool;
-    }
-);
+    );
+}

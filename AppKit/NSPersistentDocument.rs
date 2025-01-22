@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for NSPersistentDocument {}
 #[cfg(all(feature = "NSDocument", feature = "NSUserInterfaceValidation"))]
 unsafe impl NSUserInterfaceValidations for NSPersistentDocument {}
 
-extern_methods!(
-    #[cfg(feature = "NSDocument")]
-    unsafe impl NSPersistentDocument {
+#[cfg(feature = "NSDocument")]
+impl NSPersistentDocument {
+    extern_methods!(
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(managedObjectContext))]
@@ -100,13 +100,13 @@ extern_methods!(
             in_absolute_url: &NSURL,
             in_type_name: &NSString,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSDocument`
-    #[cfg(feature = "NSDocument")]
-    unsafe impl NSPersistentDocument {
+/// Methods declared on superclass `NSDocument`.
+#[cfg(feature = "NSDocument")]
+impl NSPersistentDocument {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -134,23 +134,23 @@ extern_methods!(
             contents_url: &NSURL,
             type_name: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSDocument")]
-    unsafe impl NSPersistentDocument {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSDocument")]
+impl NSPersistentDocument {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(feature = "NSDocument")]
-    unsafe impl NSPersistentDocument {
+/// NSDeprecated.
+#[cfg(feature = "NSDocument")]
+impl NSPersistentDocument {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(configurePersistentStoreCoordinatorForURL:ofType:error:_))]
         #[unsafe(method_family = none)]
@@ -159,5 +159,5 @@ extern_methods!(
             url: Option<&NSURL>,
             file_type: Option<&NSString>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}

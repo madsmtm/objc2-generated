@@ -71,8 +71,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSJSONSerialization {}
 
-extern_methods!(
-    unsafe impl NSJSONSerialization {
+impl NSJSONSerialization {
+    extern_methods!(
         #[unsafe(method(isValidJSONObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isValidJSONObject(obj: &AnyObject) -> bool;
@@ -100,12 +100,12 @@ extern_methods!(
             stream: &NSInputStream,
             opt: NSJSONReadingOptions,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSJSONSerialization {
+/// Methods declared on superclass `NSObject`.
+impl NSJSONSerialization {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -113,5 +113,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

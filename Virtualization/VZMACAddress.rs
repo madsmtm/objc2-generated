@@ -28,8 +28,8 @@ unsafe impl CopyingHelper for VZMACAddress {
 
 unsafe impl NSObjectProtocol for VZMACAddress {}
 
-extern_methods!(
-    unsafe impl VZMACAddress {
+impl VZMACAddress {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -94,5 +94,5 @@ extern_methods!(
         #[unsafe(method(isUniversallyAdministeredAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUniversallyAdministeredAddress(&self) -> bool;
-    }
-);
+    );
+}

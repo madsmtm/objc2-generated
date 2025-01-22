@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for CWChannel {}
 
 unsafe impl NSSecureCoding for CWChannel {}
 
-extern_methods!(
-    unsafe impl CWChannel {
+impl CWChannel {
+    extern_methods!(
         /// The channel number represented as an integer value.
         #[unsafe(method(channelNumber))]
         #[unsafe(method_family = none)]
@@ -62,12 +62,12 @@ extern_methods!(
         #[unsafe(method(isEqualToChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToChannel(&self, channel: &CWChannel) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CWChannel {
+/// Methods declared on superclass `NSObject`.
+impl CWChannel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -75,5 +75,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

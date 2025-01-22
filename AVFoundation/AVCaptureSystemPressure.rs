@@ -105,8 +105,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureSystemPressureState {}
 
-extern_methods!(
-    unsafe impl AVCaptureSystemPressureState {
+impl AVCaptureSystemPressureState {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -124,5 +124,5 @@ extern_methods!(
         #[unsafe(method(factors))]
         #[unsafe(method_family = none)]
         pub unsafe fn factors(&self) -> AVCaptureSystemPressureFactors;
-    }
-);
+    );
+}

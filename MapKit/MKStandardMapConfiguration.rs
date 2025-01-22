@@ -52,9 +52,9 @@ unsafe impl NSObjectProtocol for MKStandardMapConfiguration {}
 #[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSSecureCoding for MKStandardMapConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "MKMapConfiguration")]
-    unsafe impl MKStandardMapConfiguration {
+#[cfg(feature = "MKMapConfiguration")]
+impl MKStandardMapConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -112,15 +112,15 @@ extern_methods!(
         #[unsafe(method(setShowsTraffic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsTraffic(&self, shows_traffic: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MKMapConfiguration`
-    #[cfg(feature = "MKMapConfiguration")]
-    unsafe impl MKStandardMapConfiguration {
+/// Methods declared on superclass `MKMapConfiguration`.
+#[cfg(feature = "MKMapConfiguration")]
+impl MKStandardMapConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -60,14 +60,14 @@ unsafe impl CopyingHelper for DOMKeyboardEvent {
 ))]
 unsafe impl NSObjectProtocol for DOMKeyboardEvent {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMKeyboardEvent {
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMKeyboardEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(keyIdentifier))]
         #[unsafe(method_family = none)]
@@ -192,36 +192,36 @@ extern_methods!(
             shift_key: bool,
             meta_key: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMKeyboardEvent {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMKeyboardEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "DOMUIEvent",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMKeyboardEvent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "DOMUIEvent",
+    feature = "WebScriptObject"
+))]
+impl DOMKeyboardEvent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

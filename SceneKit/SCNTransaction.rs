@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCNTransaction {}
 
-extern_methods!(
-    unsafe impl SCNTransaction {
+impl SCNTransaction {
+    extern_methods!(
         #[unsafe(method(begin))]
         #[unsafe(method_family = none)]
         pub unsafe fn begin();
@@ -96,12 +96,12 @@ extern_methods!(
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(value: Option<&AnyObject>, key: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNTransaction {
+/// Methods declared on superclass `NSObject`.
+impl SCNTransaction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -109,5 +109,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

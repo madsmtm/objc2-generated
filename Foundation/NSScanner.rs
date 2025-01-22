@@ -23,8 +23,8 @@ unsafe impl CopyingHelper for NSScanner {
 
 unsafe impl NSObjectProtocol for NSScanner {}
 
-extern_methods!(
-    unsafe impl NSScanner {
+impl NSScanner {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
@@ -75,12 +75,12 @@ extern_methods!(
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScanner {
+/// Methods declared on superclass `NSObject`.
+impl NSScanner {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -88,12 +88,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtendedScanner
-    unsafe impl NSScanner {
+/// NSExtendedScanner.
+impl NSScanner {
+    extern_methods!(
         #[unsafe(method(scanInt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanInt(&self, result: *mut c_int) -> bool;
@@ -183,5 +183,5 @@ extern_methods!(
         #[unsafe(method(localizedScannerWithString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedScannerWithString(string: &NSString) -> Retained<AnyObject>;
-    }
-);
+    );
+}

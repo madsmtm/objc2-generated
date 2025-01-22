@@ -96,9 +96,9 @@ extern_class!(
 #[cfg(feature = "UIDynamicBehavior")]
 unsafe impl NSObjectProtocol for UICollisionBehavior {}
 
-extern_methods!(
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UICollisionBehavior {
+#[cfg(feature = "UIDynamicBehavior")]
+impl UICollisionBehavior {
+    extern_methods!(
         #[unsafe(method(initWithItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
@@ -205,13 +205,13 @@ extern_methods!(
             &self,
             collision_delegate: Option<&ProtocolObject<dyn UICollisionBehaviorDelegate>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl UICollisionBehavior {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIDynamicBehavior")]
+impl UICollisionBehavior {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -219,5 +219,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

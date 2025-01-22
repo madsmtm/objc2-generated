@@ -32,9 +32,9 @@ unsafe impl CopyingHelper for MPSGraphConvolution2DOpDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphConvolution2DOpDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphConvolution2DOpDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphConvolution2DOpDescriptor {
+    extern_methods!(
         /// The scale that maps `x`-coordinate of the destination to `x`-coordinate of the source.
         ///
         /// Source `x`-coordinate, `sx` is computed from destination `x`-coordinate, `dx` as `sx = strideInX*dx`.
@@ -255,13 +255,13 @@ extern_methods!(
             padding_top: NSUInteger,
             padding_bottom: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphConvolution2DOpDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphConvolution2DOpDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -269,8 +269,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A class that describes the properties of a 3D-convolution operator.
@@ -295,9 +295,9 @@ unsafe impl CopyingHelper for MPSGraphConvolution3DOpDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphConvolution3DOpDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphConvolution3DOpDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphConvolution3DOpDescriptor {
+    extern_methods!(
         /// The scale that maps`x`-coordinate of destination to `x`-coordinate of source.
         ///
         /// Source `x`-coordinate, `sx` is computed from destination `x`-coordinate, `dx` as `sx = strideInX*dx`.
@@ -581,13 +581,13 @@ extern_methods!(
             padding_front: NSUInteger,
             padding_back: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphConvolution3DOpDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphConvolution3DOpDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -595,14 +595,14 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MPSGraphConvolutionOps
-    /// This is a category that defines the methods which can be used to add 2D-convolution operator to the graph with properties described by an instance of `MPSGraphConvolution2DOpDescriptor`.
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphConvolutionOps.
+/// This is a category that defines the methods which can be used to add 2D-convolution operator to the graph with properties described by an instance of `MPSGraphConvolution2DOpDescriptor`.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a 2D (forward) convolution operation and returns the result tensor.
         ///
@@ -852,5 +852,5 @@ extern_methods!(
             forward_convolution_descriptor: &MPSGraphConvolution3DOpDescriptor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

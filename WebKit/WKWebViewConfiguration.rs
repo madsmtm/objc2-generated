@@ -100,8 +100,8 @@ unsafe impl NSObjectProtocol for WKWebViewConfiguration {}
 
 unsafe impl NSSecureCoding for WKWebViewConfiguration {}
 
-extern_methods!(
-    unsafe impl WKWebViewConfiguration {
+impl WKWebViewConfiguration {
+    extern_methods!(
         #[cfg(feature = "WKProcessPool")]
         /// The process pool from which to obtain the view's web content
         /// process.
@@ -334,12 +334,12 @@ extern_methods!(
             &self,
             writing_tools_behavior: NSWritingToolsBehavior,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKWebViewConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl WKWebViewConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -347,5 +347,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

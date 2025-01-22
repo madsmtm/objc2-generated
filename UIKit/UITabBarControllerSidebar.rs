@@ -47,8 +47,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITabSidebarScrollTarget {}
 
-extern_methods!(
-    unsafe impl UITabSidebarScrollTarget {
+impl UITabSidebarScrollTarget {
+    extern_methods!(
         /// Scrolls to the `headerContentConfiguration` if it is set.
         #[unsafe(method(targetForHeader))]
         #[unsafe(method_family = none)]
@@ -64,12 +64,12 @@ extern_methods!(
         #[unsafe(method(targetForTab:))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetForTab(tab: &UITab) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITabSidebarScrollTarget {
+/// Methods declared on superclass `NSObject`.
+impl UITabSidebarScrollTarget {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -77,8 +77,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollersidebar?language=objc)
@@ -90,8 +90,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITabBarControllerSidebar {}
 
-extern_methods!(
-    unsafe impl UITabBarControllerSidebar {
+impl UITabBarControllerSidebar {
+    extern_methods!(
         /// The object managing the delegate of the sidebar.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -203,8 +203,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollersidebaranimating?language=objc)

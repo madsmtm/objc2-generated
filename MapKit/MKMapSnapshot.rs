@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKMapSnapshot {}
 
-extern_methods!(
-    unsafe impl MKMapSnapshot {
+impl MKMapSnapshot {
+    extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[unsafe(method(image))]
@@ -38,12 +38,12 @@ extern_methods!(
         #[unsafe(method(pointForCoordinate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointForCoordinate(&self, coordinate: CLLocationCoordinate2D) -> NSPoint;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKMapSnapshot {
+/// Methods declared on superclass `NSObject`.
+impl MKMapSnapshot {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -51,5 +51,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

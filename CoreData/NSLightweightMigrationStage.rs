@@ -17,9 +17,9 @@ extern_class!(
 #[cfg(feature = "NSMigrationStage")]
 unsafe impl NSObjectProtocol for NSLightweightMigrationStage {}
 
-extern_methods!(
-    #[cfg(feature = "NSMigrationStage")]
-    unsafe impl NSLightweightMigrationStage {
+#[cfg(feature = "NSMigrationStage")]
+impl NSLightweightMigrationStage {
+    extern_methods!(
         #[unsafe(method(versionChecksums))]
         #[unsafe(method_family = none)]
         pub unsafe fn versionChecksums(&self) -> Retained<NSArray<NSString>>;
@@ -34,15 +34,15 @@ extern_methods!(
             this: Allocated<Self>,
             version_checksums: &NSArray<NSString>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSMigrationStage")]
-    unsafe impl NSLightweightMigrationStage {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSMigrationStage")]
+impl NSLightweightMigrationStage {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

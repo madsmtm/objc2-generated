@@ -6,10 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// AVAudioSessionDeprecated
-    #[cfg(feature = "AVAudioSession")]
-    unsafe impl AVAudioSession {
+/// AVAudioSessionDeprecated.
+#[cfg(feature = "AVAudioSession")]
+impl AVAudioSession {
+    extern_methods!(
         #[deprecated = "No longer supported"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -67,8 +67,8 @@ extern_methods!(
         #[unsafe(method(preferredHardwareSampleRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredHardwareSampleRate(&self) -> c_double;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessiondelegate?language=objc)

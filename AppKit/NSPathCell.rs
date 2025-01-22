@@ -79,9 +79,9 @@ unsafe impl NSOpenSavePanelDelegate for NSPathCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSPathCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSPathCell {
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSPathCell {
+    extern_methods!(
         #[unsafe(method(pathStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn pathStyle(&self) -> NSPathStyle;
@@ -236,13 +236,13 @@ extern_methods!(
             &self,
             placeholder_attributed_string: Option<&NSAttributedString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSPathCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSPathCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -262,18 +262,18 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSPathCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSPathCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcelldelegate?language=objc)

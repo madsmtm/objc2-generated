@@ -31,9 +31,9 @@ unsafe impl CopyingHelper for VNTrackTranslationalImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNTrackTranslationalImageRegistrationRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl VNTrackTranslationalImageRegistrationRequest {
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+impl VNTrackTranslationalImageRegistrationRequest {
+    extern_methods!(
         /// Create a new request that can statefully track the translational registration of two images.
         ///
         /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero and a nil completion handler.
@@ -59,13 +59,13 @@ extern_methods!(
         pub unsafe fn results(
             &self,
         ) -> Option<Retained<NSArray<VNImageTranslationAlignmentObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNStatefulRequest`
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl VNTrackTranslationalImageRegistrationRequest {
+/// Methods declared on superclass `VNStatefulRequest`.
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+impl VNTrackTranslationalImageRegistrationRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -84,8 +84,8 @@ extern_methods!(
             frame_analysis_spacing: CMTime,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntracktranslationalimageregistrationrequestrevision1?language=objc)
 pub static VNTrackTranslationalImageRegistrationRequestRevision1: NSUInteger = 1;

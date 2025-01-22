@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for NSFileHandle {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSFileHandle {}
 
-extern_methods!(
-    unsafe impl NSFileHandle {
+impl NSFileHandle {
+    extern_methods!(
         #[cfg(feature = "NSData")]
         #[unsafe(method(availableData))]
         #[unsafe(method_family = none)]
@@ -109,12 +109,12 @@ extern_methods!(
         #[unsafe(method(closeAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeAndReturnError(&self) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileHandle {
+/// Methods declared on superclass `NSObject`.
+impl NSFileHandle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -122,12 +122,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSFileHandleCreation
-    unsafe impl NSFileHandle {
+/// NSFileHandleCreation.
+impl NSFileHandle {
+    extern_methods!(
         #[unsafe(method(fileHandleWithStandardInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileHandleWithStandardInput() -> Retained<NSFileHandle>;
@@ -179,8 +179,8 @@ extern_methods!(
         pub unsafe fn fileHandleForUpdatingURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandleoperationexception?language=objc)
@@ -230,9 +230,9 @@ extern "C" {
     pub static NSFileHandleNotificationMonitorModes: &'static NSString;
 }
 
-extern_methods!(
-    /// NSFileHandleAsynchronousAccess
-    unsafe impl NSFileHandle {
+/// NSFileHandleAsynchronousAccess.
+impl NSFileHandle {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[unsafe(method(readInBackgroundAndNotifyForModes:))]
         #[unsafe(method_family = none)]
@@ -312,12 +312,12 @@ extern_methods!(
             &self,
             writeability_handler: Option<&block2::Block<dyn Fn(NonNull<NSFileHandle>)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSFileHandlePlatformSpecific
-    unsafe impl NSFileHandle {
+/// NSFileHandlePlatformSpecific.
+impl NSFileHandle {
+    extern_methods!(
         #[unsafe(method(initWithFileDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFileDescriptor(this: Allocated<Self>, fd: c_int) -> Retained<Self>;
@@ -325,11 +325,11 @@ extern_methods!(
         #[unsafe(method(fileDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileDescriptor(&self) -> c_int;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSFileHandle {
+impl NSFileHandle {
+    extern_methods!(
         #[cfg(feature = "NSData")]
         #[deprecated]
         #[unsafe(method(readDataToEndOfFile))]
@@ -377,8 +377,8 @@ extern_methods!(
         #[unsafe(method(closeFile))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeFile(&self);
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspipe?language=objc)
@@ -393,8 +393,8 @@ unsafe impl Sync for NSPipe {}
 
 unsafe impl NSObjectProtocol for NSPipe {}
 
-extern_methods!(
-    unsafe impl NSPipe {
+impl NSPipe {
+    extern_methods!(
         #[unsafe(method(fileHandleForReading))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForReading(&self) -> Retained<NSFileHandle>;
@@ -406,12 +406,12 @@ extern_methods!(
         #[unsafe(method(pipe))]
         #[unsafe(method_family = none)]
         pub unsafe fn pipe() -> Retained<NSPipe>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPipe {
+/// Methods declared on superclass `NSObject`.
+impl NSPipe {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -419,5 +419,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

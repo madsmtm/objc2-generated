@@ -17,8 +17,8 @@ unsafe impl ASAuthorizationProvider for ASAuthorizationPasswordProvider {}
 
 unsafe impl NSObjectProtocol for ASAuthorizationPasswordProvider {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationPasswordProvider {
+impl ASAuthorizationPasswordProvider {
+    extern_methods!(
         #[cfg(all(
             feature = "ASAuthorizationPasswordRequest",
             feature = "ASAuthorizationRequest"
@@ -26,12 +26,12 @@ extern_methods!(
         #[unsafe(method(createRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn createRequest(&self) -> Retained<ASAuthorizationPasswordRequest>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASAuthorizationPasswordProvider {
+/// Methods declared on superclass `NSObject`.
+impl ASAuthorizationPasswordProvider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -39,5 +39,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

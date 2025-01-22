@@ -43,8 +43,8 @@ unsafe impl NSObjectProtocol for AVSpeechSynthesisProviderVoice {}
 
 unsafe impl NSSecureCoding for AVSpeechSynthesisProviderVoice {}
 
-extern_methods!(
-    unsafe impl AVSpeechSynthesisProviderVoice {
+impl AVSpeechSynthesisProviderVoice {
+    extern_methods!(
         /// The localized name of the voice
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -148,8 +148,8 @@ extern_methods!(
         #[unsafe(method(updateSpeechVoices))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateSpeechVoices();
-    }
-);
+    );
+}
 
 extern_class!(
     /// An
@@ -180,8 +180,8 @@ unsafe impl NSObjectProtocol for AVSpeechSynthesisProviderRequest {}
 
 unsafe impl NSSecureCoding for AVSpeechSynthesisProviderRequest {}
 
-extern_methods!(
-    unsafe impl AVSpeechSynthesisProviderRequest {
+impl AVSpeechSynthesisProviderRequest {
+    extern_methods!(
         /// The SSML representation of the text to be synthesized with the corresponding speech synthesis attributes for customization of pitch, rate, intonation, and more.
         ///
         /// See: https://www.w3.org/TR/speech-synthesis11/
@@ -209,8 +209,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// A block of information that is relevant to the generation of speech synthesis.
 ///
@@ -237,10 +237,10 @@ extern_class!(
 #[cfg(not(target_os = "watchos"))]
 unsafe impl NSObjectProtocol for AVSpeechSynthesisProviderAudioUnit {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-audio-toolbox")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSpeechSynthesisProviderAudioUnit {
+#[cfg(feature = "objc2-audio-toolbox")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSpeechSynthesisProviderAudioUnit {
+    extern_methods!(
         /// Returns the voices this audio unit has available and ready for synthesis.
         ///
         /// This method should fetch and return the voices ready to synthesize that a user can select from (usually through Settings).
@@ -295,14 +295,14 @@ extern_methods!(
         #[unsafe(method(cancelSpeechRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelSpeechRequest(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AUAudioUnit`
-    #[cfg(feature = "objc2-audio-toolbox")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSpeechSynthesisProviderAudioUnit {
+/// Methods declared on superclass `AUAudioUnit`.
+#[cfg(feature = "objc2-audio-toolbox")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSpeechSynthesisProviderAudioUnit {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -331,16 +331,16 @@ extern_methods!(
             this: Allocated<Self>,
             component_description: AudioComponentDescription,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-audio-toolbox")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSpeechSynthesisProviderAudioUnit {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-audio-toolbox")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSpeechSynthesisProviderAudioUnit {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

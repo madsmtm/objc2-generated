@@ -279,8 +279,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKInterfaceController {}
 
-extern_methods!(
-    unsafe impl WKInterfaceController {
+impl WKInterfaceController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -625,17 +625,17 @@ extern_methods!(
         #[unsafe(method(clearAllMenuItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearAllMenuItems(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKInterfaceController {
+/// Methods declared on superclass `NSObject`.
+impl WKInterfaceController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacecontroller?language=objc)
@@ -647,8 +647,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKUserNotificationInterfaceController {}
 
-extern_methods!(
-    unsafe impl WKUserNotificationInterfaceController {
+impl WKUserNotificationInterfaceController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -704,14 +704,14 @@ extern_methods!(
             notification: &UNNotification,
             completion_handler: &block2::Block<dyn Fn(WKUserNotificationInterfaceType)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKUserNotificationInterfaceController {
+/// Methods declared on superclass `NSObject`.
+impl WKUserNotificationInterfaceController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

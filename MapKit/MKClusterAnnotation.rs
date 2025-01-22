@@ -19,8 +19,8 @@ unsafe impl MKAnnotation for MKClusterAnnotation {}
 
 unsafe impl NSObjectProtocol for MKClusterAnnotation {}
 
-extern_methods!(
-    unsafe impl MKClusterAnnotation {
+impl MKClusterAnnotation {
+    extern_methods!(
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
@@ -57,14 +57,14 @@ extern_methods!(
             this: Allocated<Self>,
             member_annotations: &NSArray<ProtocolObject<dyn MKAnnotation>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKClusterAnnotation {
+/// Methods declared on superclass `NSObject`.
+impl MKClusterAnnotation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

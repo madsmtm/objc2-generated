@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for UIBackgroundConfiguration {}
 
 unsafe impl NSSecureCoding for UIBackgroundConfiguration {}
 
-extern_methods!(
-    unsafe impl UIBackgroundConfiguration {
+impl UIBackgroundConfiguration {
+    extern_methods!(
         /// Returns a clear configuration, with no default styling.
         #[unsafe(method(clearConfiguration))]
         #[unsafe(method_family = none)]
@@ -327,5 +327,5 @@ extern_methods!(
         #[unsafe(method(listSidebarHeaderConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listSidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

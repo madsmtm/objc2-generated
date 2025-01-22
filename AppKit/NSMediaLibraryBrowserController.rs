@@ -50,8 +50,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSMediaLibraryBrowserController {}
 
-extern_methods!(
-    unsafe impl NSMediaLibraryBrowserController {
+impl NSMediaLibraryBrowserController {
+    extern_methods!(
         #[unsafe(method(sharedMediaLibraryBrowserController))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedMediaLibraryBrowserController(
@@ -87,12 +87,12 @@ extern_methods!(
         #[unsafe(method(togglePanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn togglePanel(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMediaLibraryBrowserController {
+/// Methods declared on superclass `NSObject`.
+impl NSMediaLibraryBrowserController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

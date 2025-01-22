@@ -9,13 +9,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// Sharing
-    #[cfg(all(
-        feature = "NSPersistentCloudKitContainer",
-        feature = "NSPersistentContainer"
-    ))]
-    unsafe impl NSPersistentCloudKitContainer {
+/// Sharing.
+#[cfg(all(
+    feature = "NSPersistentCloudKitContainer",
+    feature = "NSPersistentContainer"
+))]
+impl NSPersistentCloudKitContainer {
+    extern_methods!(
         #[cfg(all(
             feature = "NSPersistentStore",
             feature = "block2",
@@ -104,5 +104,5 @@ extern_methods!(
                 dyn Fn(*mut NSSet<NSManagedObjectID>, *mut CKShare, *mut CKContainer, *mut NSError),
             >,
         );
-    }
-);
+    );
+}

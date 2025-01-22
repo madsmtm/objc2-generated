@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for UIContentUnavailableTextProperties {}
 
 unsafe impl NSSecureCoding for UIContentUnavailableTextProperties {}
 
-extern_methods!(
-    unsafe impl UIContentUnavailableTextProperties {
+impl UIContentUnavailableTextProperties {
+    extern_methods!(
         #[cfg(feature = "UIFont")]
         /// The font used for the text.
         #[unsafe(method(font))]
@@ -111,12 +111,12 @@ extern_methods!(
             &self,
             allows_default_tightening_for_truncation: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIContentUnavailableTextProperties {
+/// Methods declared on superclass `NSObject`.
+impl UIContentUnavailableTextProperties {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -124,5 +124,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

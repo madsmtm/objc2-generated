@@ -50,8 +50,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for OSALanguage {}
 
-extern_methods!(
-    unsafe impl OSALanguage {
+impl OSALanguage {
+    extern_methods!(
         #[unsafe(method(availableLanguages))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableLanguages() -> Retained<NSArray<OSALanguage>>;
@@ -110,12 +110,12 @@ extern_methods!(
         #[unsafe(method(isThreadSafe))]
         #[unsafe(method_family = none)]
         pub unsafe fn isThreadSafe(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl OSALanguage {
+/// Methods declared on superclass `NSObject`.
+impl OSALanguage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -123,5 +123,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

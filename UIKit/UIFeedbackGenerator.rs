@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIFeedbackGenerator {}
 
-extern_methods!(
-    unsafe impl UIFeedbackGenerator {
+impl UIFeedbackGenerator {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// initalize the generator with a view to attach it to the provided view as an interaction.
         #[unsafe(method(feedbackGeneratorForView:))]
@@ -34,21 +34,21 @@ extern_methods!(
         #[unsafe(method(prepare))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepare(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIFeedbackGenerator {
+/// Methods declared on superclass `NSObject`.
+impl UIFeedbackGenerator {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl UIFeedbackGenerator {}
-);
+impl UIFeedbackGenerator {
+    extern_methods!();
+}
 
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIFeedbackGenerator {}

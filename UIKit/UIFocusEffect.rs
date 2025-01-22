@@ -27,8 +27,8 @@ unsafe impl CopyingHelper for UIFocusEffect {
 
 unsafe impl NSObjectProtocol for UIFocusEffect {}
 
-extern_methods!(
-    unsafe impl UIFocusEffect {
+impl UIFocusEffect {
+    extern_methods!(
         /// Creates a default system effect using metrics inferred from the focus item.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -41,8 +41,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffectposition?language=objc)
 // NS_ENUM
@@ -84,8 +84,8 @@ unsafe impl CopyingHelper for UIFocusHaloEffect {
 
 unsafe impl NSObjectProtocol for UIFocusHaloEffect {}
 
-extern_methods!(
-    unsafe impl UIFocusHaloEffect {
+impl UIFocusHaloEffect {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a rectangular halo.
         #[unsafe(method(effectWithRect:))]
@@ -152,12 +152,12 @@ extern_methods!(
         #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: UIFocusHaloEffectPosition);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIFocusEffect`
-    unsafe impl UIFocusHaloEffect {
+/// Methods declared on superclass `UIFocusEffect`.
+impl UIFocusHaloEffect {
+    extern_methods!(
         /// Creates a default system effect using metrics inferred from the focus item.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
@@ -170,5 +170,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

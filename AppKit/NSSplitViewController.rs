@@ -77,9 +77,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSSplitViewController {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSSplitViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSSplitViewController {
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSSplitViewController {
+    extern_methods!(
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
         /// The split view managed by the SplitViewController. This can be used to customize view properties such as the dividerStyle, vertical, and autosaveName. It is not guaranteed to be the same view as the receivers 'view' property. The default created splitView is vertical with a dividerStyle of
         /// `NSSplitViewDividerStyleThin.`To provide a custom NSSplitView, set the splitView property anytime before self.viewLoaded is YES.
@@ -240,13 +240,13 @@ extern_methods!(
             split_view: &NSSplitView,
             divider_index: NSInteger,
         ) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSSplitViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSSplitViewController {
+    extern_methods!(
         #[cfg(feature = "NSNib")]
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
@@ -262,33 +262,33 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSSplitViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSSplitViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSSplitViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSSplitViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSplitViewControllerToggleSidebarAction
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSSplitViewController {
+/// NSSplitViewControllerToggleSidebarAction.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSSplitViewController {
+    extern_methods!(
         /// Animatedly collapses or uncollapses the first sidebar split view item in the receiver. Does nothing if the receiver does not contain any sidebars.
         #[unsafe(method(toggleSidebar:))]
         #[unsafe(method_family = none)]
@@ -298,5 +298,5 @@ extern_methods!(
         #[unsafe(method(toggleInspector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleInspector(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}

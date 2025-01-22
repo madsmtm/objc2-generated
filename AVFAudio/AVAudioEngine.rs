@@ -203,8 +203,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioEngine {}
 
-extern_methods!(
-    unsafe impl AVAudioEngine {
+impl AVAudioEngine {
+    extern_methods!(
         /// Initialize a new engine.
         ///
         /// On creation, the engine is by default connected to an audio device and automatically renders
@@ -883,17 +883,17 @@ extern_methods!(
         #[unsafe(method(disconnectMIDIOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disconnectMIDIOutput(&self, node: &AVAudioNode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioEngine {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioEngine {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// A notification generated on engine configuration changes when rendering to/from an audio

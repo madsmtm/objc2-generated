@@ -29,9 +29,9 @@ unsafe impl NSObjectProtocol for CATiledLayer {}
 #[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CATiledLayer {}
 
-extern_methods!(
-    #[cfg(feature = "CALayer")]
-    unsafe impl CATiledLayer {
+#[cfg(feature = "CALayer")]
+impl CATiledLayer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(fadeDuration))]
         #[unsafe(method_family = none)]
@@ -65,13 +65,13 @@ extern_methods!(
         #[unsafe(method(setTileSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTileSize(&self, tile_size: CGSize);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CATiledLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "CALayer")]
+impl CATiledLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -84,15 +84,15 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CATiledLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CALayer")]
+impl CATiledLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

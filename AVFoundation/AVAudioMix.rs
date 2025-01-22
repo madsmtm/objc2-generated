@@ -30,17 +30,17 @@ unsafe impl MutableCopyingHelper for AVAudioMix {
 
 unsafe impl NSObjectProtocol for AVAudioMix {}
 
-extern_methods!(
-    unsafe impl AVAudioMix {
+impl AVAudioMix {
+    extern_methods!(
         #[unsafe(method(inputParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputParameters(&self) -> Retained<NSArray<AVAudioMixInputParameters>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioMix {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioMix {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -48,8 +48,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutableaudiomix?language=objc)
@@ -72,8 +72,8 @@ unsafe impl MutableCopyingHelper for AVMutableAudioMix {
 
 unsafe impl NSObjectProtocol for AVMutableAudioMix {}
 
-extern_methods!(
-    unsafe impl AVMutableAudioMix {
+impl AVMutableAudioMix {
+    extern_methods!(
         #[unsafe(method(audioMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMix() -> Retained<Self>;
@@ -92,12 +92,12 @@ extern_methods!(
             &self,
             input_parameters: &NSArray<AVAudioMixInputParameters>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMutableAudioMix {
+/// Methods declared on superclass `NSObject`.
+impl AVMutableAudioMix {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -105,8 +105,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters?language=objc)
@@ -129,8 +129,8 @@ unsafe impl MutableCopyingHelper for AVAudioMixInputParameters {
 
 unsafe impl NSObjectProtocol for AVAudioMixInputParameters {}
 
-extern_methods!(
-    unsafe impl AVAudioMixInputParameters {
+impl AVAudioMixInputParameters {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the trackID of the audio track to which the parameters should be applied.
         #[unsafe(method(trackID))]
@@ -157,12 +157,12 @@ extern_methods!(
             end_volume: *mut c_float,
             time_range: *mut CMTimeRange,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioMixInputParameters {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioMixInputParameters {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -170,8 +170,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters?language=objc)
@@ -194,8 +194,8 @@ unsafe impl MutableCopyingHelper for AVMutableAudioMixInputParameters {
 
 unsafe impl NSObjectProtocol for AVMutableAudioMixInputParameters {}
 
-extern_methods!(
-    unsafe impl AVMutableAudioMixInputParameters {
+impl AVMutableAudioMixInputParameters {
+    extern_methods!(
         #[cfg(feature = "AVAssetTrack")]
         #[unsafe(method(audioMixInputParametersWithTrack:))]
         #[unsafe(method_family = none)]
@@ -252,12 +252,12 @@ extern_methods!(
         #[unsafe(method(setVolume:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume_atTime(&self, volume: c_float, time: CMTime);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMutableAudioMixInputParameters {
+/// Methods declared on superclass `NSObject`.
+impl AVMutableAudioMixInputParameters {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -265,5 +265,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

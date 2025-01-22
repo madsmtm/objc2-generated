@@ -26,8 +26,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptionRenderer {}
 
-extern_methods!(
-    unsafe impl AVCaptionRenderer {
+impl AVCaptionRenderer {
+    extern_methods!(
         #[cfg(feature = "AVCaption")]
         /// A NSArray holding captions to consider for rendering.
         ///
@@ -82,12 +82,12 @@ extern_methods!(
         #[unsafe(method(renderInContext:forTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderInContext_forTime(&self, ctx: &CGContext, time: CMTime);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCaptionRenderer {
+/// Methods declared on superclass `NSObject`.
+impl AVCaptionRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -95,8 +95,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An instance of AVCaptionRendererScene holds a time range and associated state indicating when the AVCaptionRenderer will draw different output.
@@ -125,8 +125,8 @@ unsafe impl CopyingHelper for AVCaptionRendererScene {
 
 unsafe impl NSObjectProtocol for AVCaptionRendererScene {}
 
-extern_methods!(
-    unsafe impl AVCaptionRendererScene {
+impl AVCaptionRendererScene {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -154,5 +154,5 @@ extern_methods!(
         #[unsafe(method(needsPeriodicRefresh))]
         #[unsafe(method_family = none)]
         pub unsafe fn needsPeriodicRefresh(&self) -> bool;
-    }
-);
+    );
+}

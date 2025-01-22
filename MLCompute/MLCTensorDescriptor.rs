@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for MLCTensorDescriptor {
 
 unsafe impl NSObjectProtocol for MLCTensorDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCTensorDescriptor {
+impl MLCTensorDescriptor {
+    extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// The tensor data type.  The default is MLCDataTypeFloat32.
         #[deprecated]
@@ -249,5 +249,5 @@ extern_methods!(
             feature_channel_count: NSUInteger,
             data_type: MLCDataType,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}

@@ -30,9 +30,9 @@ unsafe impl CopyingHelper for MPSGraphVariableOp {
 #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
 unsafe impl NSObjectProtocol for MPSGraphVariableOp {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
-    unsafe impl MPSGraphVariableOp {
+#[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
+impl MPSGraphVariableOp {
+    extern_methods!(
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The shape of the variable.
         #[unsafe(method(shape))]
@@ -44,34 +44,34 @@ extern_methods!(
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MPSDataType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSGraphOperation`
-    #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
-    unsafe impl MPSGraphVariableOp {
+/// Methods declared on superclass `MPSGraphOperation`.
+#[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
+impl MPSGraphVariableOp {
+    extern_methods!(
         /// Unavailable, please utilize graph methods to create and initialize operations.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
-    unsafe impl MPSGraphVariableOp {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
+impl MPSGraphVariableOp {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MemoryOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MemoryOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(all(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
@@ -294,5 +294,5 @@ extern_methods!(
             tensor: &MPSGraphTensor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphOperation>;
-    }
-);
+    );
+}

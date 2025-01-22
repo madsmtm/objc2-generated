@@ -108,8 +108,8 @@ unsafe impl Sync for AVAudioSessionChannelDescription {}
 
 unsafe impl NSObjectProtocol for AVAudioSessionChannelDescription {}
 
-extern_methods!(
-    unsafe impl AVAudioSessionChannelDescription {
+impl AVAudioSessionChannelDescription {
+    extern_methods!(
         /// A human-readable name for the channel.
         #[unsafe(method(channelName))]
         #[unsafe(method_family = none)]
@@ -130,12 +130,12 @@ extern_methods!(
         #[unsafe(method(channelLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelLabel(&self) -> AudioChannelLabel;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioSessionChannelDescription {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioSessionChannelDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -143,8 +143,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Information about one of potentially multiple data sources associated with a port.
@@ -161,8 +161,8 @@ unsafe impl Sync for AVAudioSessionDataSourceDescription {}
 
 unsafe impl NSObjectProtocol for AVAudioSessionDataSourceDescription {}
 
-extern_methods!(
-    unsafe impl AVAudioSessionDataSourceDescription {
+impl AVAudioSessionDataSourceDescription {
+    extern_methods!(
         /// System-assigned ID for the data source.
         #[unsafe(method(dataSourceID))]
         #[unsafe(method_family = none)]
@@ -222,12 +222,12 @@ extern_methods!(
             &self,
             pattern: Option<&AVAudioSessionPolarPattern>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioSessionDataSourceDescription {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioSessionDataSourceDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -235,8 +235,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Information about a port, a physical connector or audio device.
@@ -253,8 +253,8 @@ unsafe impl Sync for AVAudioSessionPortDescription {}
 
 unsafe impl NSObjectProtocol for AVAudioSessionPortDescription {}
 
-extern_methods!(
-    unsafe impl AVAudioSessionPortDescription {
+impl AVAudioSessionPortDescription {
+    extern_methods!(
         #[cfg(feature = "AVAudioSessionTypes")]
         #[unsafe(method(portType))]
         #[unsafe(method_family = none)]
@@ -342,12 +342,12 @@ extern_methods!(
             &self,
             data_source: Option<&AVAudioSessionDataSourceDescription>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioSessionPortDescription {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioSessionPortDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -355,8 +355,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A description of the input and output ports which comprise a route.
@@ -373,8 +373,8 @@ unsafe impl Sync for AVAudioSessionRouteDescription {}
 
 unsafe impl NSObjectProtocol for AVAudioSessionRouteDescription {}
 
-extern_methods!(
-    unsafe impl AVAudioSessionRouteDescription {
+impl AVAudioSessionRouteDescription {
+    extern_methods!(
         /// Flattened list of all input port descriptions associated with all the streams as part of the route.
         #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
@@ -384,12 +384,12 @@ extern_methods!(
         #[unsafe(method(outputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVAudioSessionPortDescription>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioSessionRouteDescription {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioSessionRouteDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -397,5 +397,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -188,8 +188,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureSession {}
 
-extern_methods!(
-    unsafe impl AVCaptureSession {
+impl AVCaptureSession {
+    extern_methods!(
         #[cfg(feature = "AVCaptureSessionPreset")]
         /// Returns whether the receiver can be configured with the given preset.
         ///
@@ -652,12 +652,12 @@ extern_methods!(
         #[unsafe(method(hardwareCost))]
         #[unsafe(method_family = none)]
         pub unsafe fn hardwareCost(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCaptureSession {
+/// Methods declared on superclass `NSObject`.
+impl AVCaptureSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -665,8 +665,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines an interface for delegates of `AVCaptureSession` to receive events about the session's controls.
@@ -735,8 +735,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureMultiCamSession {}
 
-extern_methods!(
-    unsafe impl AVCaptureMultiCamSession {
+impl AVCaptureMultiCamSession {
+    extern_methods!(
         /// Indicates whether multicam session is supported on this platform.
         ///
         ///
@@ -767,12 +767,12 @@ extern_methods!(
         #[unsafe(method(systemPressureCost))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemPressureCost(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCaptureMultiCamSession {
+/// Methods declared on superclass `NSObject`.
+impl AVCaptureMultiCamSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -780,8 +780,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Constants indicating video field mode, for use with AVCaptureConnection's videoFieldMode property (see below).
 ///
@@ -836,8 +836,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureConnection {}
 
-extern_methods!(
-    unsafe impl AVCaptureConnection {
+impl AVCaptureConnection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1284,8 +1284,8 @@ extern_methods!(
             &self,
             camera_intrinsic_matrix_delivery_enabled: bool,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVCaptureAudioChannel represents a single channel of audio flowing through an AVCaptureSession.
@@ -1301,8 +1301,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureAudioChannel {}
 
-extern_methods!(
-    unsafe impl AVCaptureAudioChannel {
+impl AVCaptureAudioChannel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1352,5 +1352,5 @@ extern_methods!(
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
-    }
-);
+    );
+}

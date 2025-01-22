@@ -22,20 +22,20 @@ unsafe impl Sync for LAEnvironmentMechanismUserPassword {}
 #[cfg(feature = "LAEnvironmentMechanism")]
 unsafe impl NSObjectProtocol for LAEnvironmentMechanismUserPassword {}
 
-extern_methods!(
-    #[cfg(feature = "LAEnvironmentMechanism")]
-    unsafe impl LAEnvironmentMechanismUserPassword {
+#[cfg(feature = "LAEnvironmentMechanism")]
+impl LAEnvironmentMechanismUserPassword {
+    extern_methods!(
         /// Whether the local user password or passcode is set on this device.
         #[unsafe(method(isSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSet(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `LAEnvironmentMechanism`
-    #[cfg(feature = "LAEnvironmentMechanism")]
-    unsafe impl LAEnvironmentMechanismUserPassword {
+/// Methods declared on superclass `LAEnvironmentMechanism`.
+#[cfg(feature = "LAEnvironmentMechanism")]
+impl LAEnvironmentMechanismUserPassword {
+    extern_methods!(
         /// Clients should only consume environment mechanisms..
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -45,5 +45,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

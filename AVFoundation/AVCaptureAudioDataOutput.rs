@@ -25,9 +25,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureOutputBase")]
 unsafe impl NSObjectProtocol for AVCaptureAudioDataOutput {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureAudioDataOutput {
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureAudioDataOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,8 +84,8 @@ extern_methods!(
             &self,
             output_file_type: &AVFileType,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines an interface for delegates of AVCaptureAudioDataOutput to receive captured audio sample buffers.

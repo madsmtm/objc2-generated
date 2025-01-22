@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for NSPDFInfo {
 
 unsafe impl NSObjectProtocol for NSPDFInfo {}
 
-extern_methods!(
-    unsafe impl NSPDFInfo {
+impl NSPDFInfo {
+    extern_methods!(
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
@@ -79,12 +79,12 @@ extern_methods!(
         pub unsafe fn attributes(
             &self,
         ) -> Retained<NSMutableDictionary<NSPrintInfoAttributeKey, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPDFInfo {
+/// Methods declared on superclass `NSObject`.
+impl NSPDFInfo {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -92,5 +92,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

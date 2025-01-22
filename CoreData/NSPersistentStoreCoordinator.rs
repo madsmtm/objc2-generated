@@ -262,8 +262,8 @@ unsafe impl NSLocking for NSPersistentStoreCoordinator {}
 
 unsafe impl NSObjectProtocol for NSPersistentStoreCoordinator {}
 
-extern_methods!(
-    unsafe impl NSPersistentStoreCoordinator {
+impl NSPersistentStoreCoordinator {
+    extern_methods!(
         #[cfg(feature = "NSManagedObjectModel")]
         #[unsafe(method(initWithManagedObjectModel:))]
         #[unsafe(method_family = init)]
@@ -540,12 +540,12 @@ extern_methods!(
             store_url: &NSURL,
             options: Option<&NSDictionary>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersistentStoreCoordinator {
+/// Methods declared on superclass `NSObject`.
+impl NSPersistentStoreCoordinator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -553,8 +553,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype?language=objc)
 // NS_ENUM

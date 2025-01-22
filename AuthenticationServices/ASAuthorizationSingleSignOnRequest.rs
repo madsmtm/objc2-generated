@@ -50,12 +50,12 @@ unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnRequest {}
 ))]
 unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnRequest {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "ASAuthorizationOpenIDRequest",
-        feature = "ASAuthorizationRequest"
-    ))]
-    unsafe impl ASAuthorizationSingleSignOnRequest {
+#[cfg(all(
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
+))]
+impl ASAuthorizationSingleSignOnRequest {
+    extern_methods!(
         /// Parameters required by the specific Authorization Server which should be used by the selected Authorization Services extension for authorization.
         #[unsafe(method(authorizationOptions))]
         #[unsafe(method_family = none)]
@@ -82,16 +82,16 @@ extern_methods!(
         #[unsafe(method(setUserInterfaceEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInterfaceEnabled(&self, user_interface_enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(all(
-        feature = "ASAuthorizationOpenIDRequest",
-        feature = "ASAuthorizationRequest"
-    ))]
-    unsafe impl ASAuthorizationSingleSignOnRequest {
+/// Methods declared on superclass `ASAuthorizationRequest`.
+#[cfg(all(
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
+))]
+impl ASAuthorizationSingleSignOnRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -99,5 +99,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

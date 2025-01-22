@@ -27,17 +27,17 @@ unsafe impl NSObjectProtocol for MXUnitSignalBars {}
 
 unsafe impl NSSecureCoding for MXUnitSignalBars {}
 
-extern_methods!(
-    unsafe impl MXUnitSignalBars {
+impl MXUnitSignalBars {
+    extern_methods!(
         #[unsafe(method(bars))]
         #[unsafe(method_family = none)]
         pub unsafe fn bars() -> Retained<MXUnitSignalBars>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    unsafe impl MXUnitSignalBars {
+/// Methods declared on superclass `NSDimension`.
+impl MXUnitSignalBars {
+    extern_methods!(
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
@@ -49,12 +49,12 @@ extern_methods!(
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    unsafe impl MXUnitSignalBars {
+/// Methods declared on superclass `NSUnit`.
+impl MXUnitSignalBars {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,8 +66,8 @@ extern_methods!(
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An NSUnit subclass representing the linear space Display APL.
@@ -90,17 +90,17 @@ unsafe impl NSObjectProtocol for MXUnitAveragePixelLuminance {}
 
 unsafe impl NSSecureCoding for MXUnitAveragePixelLuminance {}
 
-extern_methods!(
-    unsafe impl MXUnitAveragePixelLuminance {
+impl MXUnitAveragePixelLuminance {
+    extern_methods!(
         #[unsafe(method(apl))]
         #[unsafe(method_family = none)]
         pub unsafe fn apl() -> Retained<MXUnitAveragePixelLuminance>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSDimension`
-    unsafe impl MXUnitAveragePixelLuminance {
+/// Methods declared on superclass `NSDimension`.
+impl MXUnitAveragePixelLuminance {
+    extern_methods!(
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
@@ -112,12 +112,12 @@ extern_methods!(
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSUnit`
-    unsafe impl MXUnitAveragePixelLuminance {
+/// Methods declared on superclass `NSUnit`.
+impl MXUnitAveragePixelLuminance {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -129,5 +129,5 @@ extern_methods!(
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -60,8 +60,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CLSDataStore {}
 
-extern_methods!(
-    unsafe impl CLSDataStore {
+impl CLSDataStore {
+    extern_methods!(
         /// The data store provides read/write access to your app's ClassKit data.
         ///
         /// Data written to the data store is automatically synced via iCloud across the user's devices.
@@ -132,12 +132,12 @@ extern_methods!(
             &self,
             context_path: &NSArray<NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Contexts
-    unsafe impl CLSDataStore {
+/// Contexts.
+impl CLSDataStore {
+    extern_methods!(
         #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
         /// Fetch contexts matching a predicate.
         ///
@@ -194,5 +194,5 @@ extern_methods!(
             url: &NSURL,
             completion: &block2::Block<dyn Fn(*mut CLSActivity, *mut NSError)>,
         );
-    }
-);
+    );
+}

@@ -100,8 +100,8 @@ unsafe impl CopyingHelper for PHImageRequestOptions {
 
 unsafe impl NSObjectProtocol for PHImageRequestOptions {}
 
-extern_methods!(
-    unsafe impl PHImageRequestOptions {
+impl PHImageRequestOptions {
+    extern_methods!(
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> PHImageRequestOptionsVersion;
@@ -177,12 +177,12 @@ extern_methods!(
         #[unsafe(method(setAllowSecondaryDegradedImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowSecondaryDegradedImage(&self, allow_secondary_degraded_image: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHImageRequestOptions {
+/// Methods declared on superclass `NSObject`.
+impl PHImageRequestOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -190,8 +190,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotorequestoptions?language=objc)
@@ -208,8 +208,8 @@ unsafe impl CopyingHelper for PHLivePhotoRequestOptions {
 
 unsafe impl NSObjectProtocol for PHLivePhotoRequestOptions {}
 
-extern_methods!(
-    unsafe impl PHLivePhotoRequestOptions {
+impl PHLivePhotoRequestOptions {
+    extern_methods!(
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> PHImageRequestOptionsVersion;
@@ -247,12 +247,12 @@ extern_methods!(
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHLivePhotoRequestOptions {
+/// Methods declared on superclass `NSObject`.
+impl PHLivePhotoRequestOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -260,8 +260,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsversion?language=objc)
 // NS_ENUM
@@ -327,8 +327,8 @@ unsafe impl CopyingHelper for PHVideoRequestOptions {
 
 unsafe impl NSObjectProtocol for PHVideoRequestOptions {}
 
-extern_methods!(
-    unsafe impl PHVideoRequestOptions {
+impl PHVideoRequestOptions {
+    extern_methods!(
         #[unsafe(method(isNetworkAccessAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
@@ -366,12 +366,12 @@ extern_methods!(
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetVideoProgressHandler);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHVideoRequestOptions {
+/// Methods declared on superclass `NSObject`.
+impl PHVideoRequestOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -379,8 +379,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestid?language=objc)
 pub type PHImageRequestID = i32;
@@ -428,8 +428,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHImageManager {}
 
-extern_methods!(
-    unsafe impl PHImageManager {
+impl PHImageManager {
+    extern_methods!(
         #[unsafe(method(defaultManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultManager() -> Retained<PHImageManager>;
@@ -525,12 +525,12 @@ extern_methods!(
                 dyn Fn(*mut AVAsset, *mut AVAudioMix, *mut NSDictionary),
             >,
         ) -> PHImageRequestID;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHImageManager {
+/// Methods declared on superclass `NSObject`.
+impl PHImageManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -538,8 +538,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcachingimagemanager?language=objc)
@@ -550,8 +550,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHCachingImageManager {}
 
-extern_methods!(
-    unsafe impl PHCachingImageManager {
+impl PHCachingImageManager {
+    extern_methods!(
         #[unsafe(method(allowsCachingHighQualityImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCachingHighQualityImages(&self) -> bool;
@@ -599,12 +599,12 @@ extern_methods!(
         #[unsafe(method(stopCachingImagesForAllAssets))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopCachingImagesForAllAssets(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHCachingImageManager {
+/// Methods declared on superclass `NSObject`.
+impl PHCachingImageManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -612,5 +612,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

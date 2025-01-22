@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for UIToolbarAppearance {}
 #[cfg(feature = "UIBarAppearance")]
 unsafe impl NSSecureCoding for UIToolbarAppearance {}
 
-extern_methods!(
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl UIToolbarAppearance {
+#[cfg(feature = "UIBarAppearance")]
+impl UIToolbarAppearance {
+    extern_methods!(
         #[cfg(feature = "UIBarButtonItemAppearance")]
         /// The appearance for plain-style bar button items
         #[unsafe(method(buttonAppearance))]
@@ -62,13 +62,13 @@ extern_methods!(
             &self,
             done_button_appearance: &UIBarButtonItemAppearance,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIBarAppearance`
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl UIToolbarAppearance {
+/// Methods declared on superclass `UIBarAppearance`.
+#[cfg(feature = "UIBarAppearance")]
+impl UIToolbarAppearance {
+    extern_methods!(
         /// Constructs a new bar appearance, configured with default values and targeting the device idiom.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -94,15 +94,15 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIBarAppearance")]
-    unsafe impl UIToolbarAppearance {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIBarAppearance")]
+impl UIToolbarAppearance {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

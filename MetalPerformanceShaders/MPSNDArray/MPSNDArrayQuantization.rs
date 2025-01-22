@@ -50,8 +50,8 @@ unsafe impl CopyingHelper for MPSNDArrayQuantizationDescriptor {
 
 unsafe impl NSObjectProtocol for MPSNDArrayQuantizationDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSNDArrayQuantizationDescriptor {
+impl MPSNDArrayQuantizationDescriptor {
+    extern_methods!(
         #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// The datatype to use with quantization - the default is MPSDataTypeUint8
         #[unsafe(method(quantizationDataType))]
@@ -62,12 +62,12 @@ extern_methods!(
         #[unsafe(method(quantizationScheme))]
         #[unsafe(method_family = none)]
         pub unsafe fn quantizationScheme(&self) -> MPSNDArrayQuantizationScheme;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSNDArrayQuantizationDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSNDArrayQuantizationDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -75,8 +75,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -97,8 +97,8 @@ unsafe impl CopyingHelper for MPSNDArrayAffineQuantizationDescriptor {
 
 unsafe impl NSObjectProtocol for MPSNDArrayAffineQuantizationDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSNDArrayAffineQuantizationDescriptor {
+impl MPSNDArrayAffineQuantizationDescriptor {
+    extern_methods!(
         /// If yes then asymmetric quantization is used. See MPSNDArrayQuantizationScheme.
         #[unsafe(method(hasZeroPoint))]
         #[unsafe(method_family = none)]
@@ -156,17 +156,17 @@ extern_methods!(
             has_zero_point: bool,
             has_min_value: bool,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSNDArrayAffineQuantizationDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSNDArrayAffineQuantizationDescriptor {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -187,8 +187,8 @@ unsafe impl CopyingHelper for MPSNDArrayLUTQuantizationDescriptor {
 
 unsafe impl NSObjectProtocol for MPSNDArrayLUTQuantizationDescriptor {}
 
-extern_methods!(
-    unsafe impl MPSNDArrayLUTQuantizationDescriptor {
+impl MPSNDArrayLUTQuantizationDescriptor {
+    extern_methods!(
         #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// Initializes a scalar lookup-table quantization descriptor.
         ///
@@ -217,12 +217,12 @@ extern_methods!(
             quantization_data_type: MPSDataType,
             vector_axis: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSNDArrayLUTQuantizationDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MPSNDArrayLUTQuantizationDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -230,5 +230,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

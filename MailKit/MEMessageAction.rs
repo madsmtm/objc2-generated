@@ -87,8 +87,8 @@ unsafe impl NSObjectProtocol for MEMessageAction {}
 
 unsafe impl NSSecureCoding for MEMessageAction {}
 
-extern_methods!(
-    unsafe impl MEMessageAction {
+impl MEMessageAction {
+    extern_methods!(
         /// Moves the mail message to the user's trash mailbox for the account.
         #[unsafe(method(moveToTrashAction))]
         #[unsafe(method_family = none)]
@@ -133,5 +133,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

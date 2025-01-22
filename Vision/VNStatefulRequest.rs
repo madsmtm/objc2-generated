@@ -31,9 +31,9 @@ unsafe impl CopyingHelper for VNStatefulRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNStatefulRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNStatefulRequest {
+#[cfg(feature = "VNRequest")]
+impl VNStatefulRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -79,5 +79,5 @@ extern_methods!(
         #[unsafe(method(frameAnalysisSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameAnalysisSpacing(&self) -> CMTime;
-    }
-);
+    );
+}

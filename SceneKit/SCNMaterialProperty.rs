@@ -82,8 +82,8 @@ unsafe impl NSSecureCoding for SCNMaterialProperty {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNMaterialProperty {}
 
-extern_methods!(
-    unsafe impl SCNMaterialProperty {
+impl SCNMaterialProperty {
+    extern_methods!(
         /// Creates and initialize a property instance with the specified contents.
         #[unsafe(method(materialPropertyWithContents:))]
         #[unsafe(method_family = none)]
@@ -257,12 +257,12 @@ extern_methods!(
             contents: &AnyObject,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNMaterialProperty {
+/// Methods declared on superclass `NSObject`.
+impl SCNMaterialProperty {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -270,5 +270,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

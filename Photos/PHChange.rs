@@ -20,8 +20,8 @@ unsafe impl Sync for PHChange {}
 
 unsafe impl NSObjectProtocol for PHChange {}
 
-extern_methods!(
-    unsafe impl PHChange {
+impl PHChange {
+    extern_methods!(
         #[cfg(feature = "PHObject")]
         #[unsafe(method(changeDetailsForObject:))]
         #[unsafe(method_family = none)]
@@ -37,12 +37,12 @@ extern_methods!(
             &self,
             object: &PHFetchResult,
         ) -> Option<Retained<PHFetchResultChangeDetails>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHChange {
+/// Methods declared on superclass `NSObject`.
+impl PHChange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -50,8 +50,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjectchangedetails?language=objc)
@@ -62,8 +62,8 @@ extern_class!(
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHObjectChangeDetails<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
+impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
+    extern_methods!(
         #[unsafe(method(objectBeforeChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectBeforeChanges(&self) -> Retained<ObjectType>;
@@ -79,12 +79,12 @@ extern_methods!(
         #[unsafe(method(objectWasDeleted))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectWasDeleted(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -92,8 +92,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phfetchresultchangedetails?language=objc)
@@ -104,8 +104,8 @@ extern_class!(
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResultChangeDetails<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
+impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "PHFetchResult")]
         #[unsafe(method(fetchResultBeforeChanges))]
         #[unsafe(method_family = none)]
@@ -164,12 +164,12 @@ extern_methods!(
             to_result: &PHFetchResult<ObjectType>,
             changed_objects: &NSArray<ObjectType>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -177,5 +177,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

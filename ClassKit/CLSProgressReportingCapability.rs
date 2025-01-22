@@ -51,9 +51,9 @@ unsafe impl NSObjectProtocol for CLSProgressReportingCapability {}
 #[cfg(feature = "CLSObject")]
 unsafe impl NSSecureCoding for CLSProgressReportingCapability {}
 
-extern_methods!(
-    #[cfg(feature = "CLSObject")]
-    unsafe impl CLSProgressReportingCapability {
+#[cfg(feature = "CLSObject")]
+impl CLSProgressReportingCapability {
+    extern_methods!(
         /// Returns the kind of progress reporting capability
         #[unsafe(method(kind))]
         #[unsafe(method_family = none)]
@@ -76,13 +76,13 @@ extern_methods!(
             kind: CLSProgressReportingCapabilityKind,
             details: Option<&NSString>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLSObject`
-    #[cfg(feature = "CLSObject")]
-    unsafe impl CLSProgressReportingCapability {
+/// Methods declared on superclass `CLSObject`.
+#[cfg(feature = "CLSObject")]
+impl CLSProgressReportingCapability {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -90,5 +90,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

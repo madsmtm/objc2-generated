@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKOverlayRenderer {}
 
-extern_methods!(
-    unsafe impl MKOverlayRenderer {
+impl MKOverlayRenderer {
+    extern_methods!(
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[unsafe(method(initWithOverlay:))]
         #[unsafe(method_family = init)]
@@ -121,12 +121,12 @@ extern_methods!(
         #[unsafe(method(setBlendMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: CGBlendMode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKOverlayRenderer {
+/// Methods declared on superclass `NSObject`.
+impl MKOverlayRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -134,8 +134,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C-unwind" {
     #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]

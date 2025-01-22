@@ -184,8 +184,8 @@ unsafe impl CopyingHelper for MTLIOCommandQueueDescriptor {
 
 unsafe impl NSObjectProtocol for MTLIOCommandQueueDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLIOCommandQueueDescriptor {
+impl MTLIOCommandQueueDescriptor {
+    extern_methods!(
         /// The maximum number of commandBuffers that can be in flight at a given time for the queue.
         #[unsafe(method(maxCommandBufferCount))]
         #[unsafe(method_family = none)]
@@ -246,12 +246,12 @@ extern_methods!(
             &self,
             scratch_buffer_allocator: Option<&ProtocolObject<dyn MTLIOScratchBufferAllocator>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLIOCommandQueueDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLIOCommandQueueDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -259,8 +259,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Represents a  file (raw or compressed) that can be used as a source

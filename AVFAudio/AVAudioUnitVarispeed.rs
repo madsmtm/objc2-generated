@@ -30,13 +30,13 @@ extern_class!(
 ))]
 unsafe impl NSObjectProtocol for AVAudioUnitVarispeed {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitTimeEffect"
-    ))]
-    unsafe impl AVAudioUnitVarispeed {
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitTimeEffect"
+))]
+impl AVAudioUnitVarispeed {
+    extern_methods!(
         /// controls the playback rate of the audio signal
         ///
         /// Since this unit resamples the input signal, changing the playback rate also changes the pitch.
@@ -62,17 +62,17 @@ extern_methods!(
         #[unsafe(method(setRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAudioUnitTimeEffect`
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitTimeEffect"
-    ))]
-    unsafe impl AVAudioUnitVarispeed {
+/// Methods declared on superclass `AVAudioUnitTimeEffect`.
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitTimeEffect"
+))]
+impl AVAudioUnitVarispeed {
+    extern_methods!(
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// create an AVAudioUnitTimeEffect object
@@ -87,17 +87,17 @@ extern_methods!(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "AVAudioNode",
-        feature = "AVAudioUnit",
-        feature = "AVAudioUnitTimeEffect"
-    ))]
-    unsafe impl AVAudioUnitVarispeed {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitTimeEffect"
+))]
+impl AVAudioUnitVarispeed {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -105,5 +105,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

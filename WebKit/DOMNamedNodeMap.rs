@@ -27,9 +27,9 @@ unsafe impl CopyingHelper for DOMNamedNodeMap {
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMNamedNodeMap {}
 
-extern_methods!(
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMNamedNodeMap {
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMNamedNodeMap {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
@@ -82,34 +82,34 @@ extern_methods!(
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
         ) -> Option<Retained<DOMNode>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMNamedNodeMap {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMNamedNodeMap {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMNamedNodeMap {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMNamedNodeMap {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMNamedNodeMapDeprecated
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMNamedNodeMap {
+/// DOMNamedNodeMapDeprecated.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMNamedNodeMap {
+    extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[unsafe(method(getNamedItemNS::))]
@@ -129,5 +129,5 @@ extern_methods!(
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
         ) -> Option<Retained<DOMNode>>;
-    }
-);
+    );
+}

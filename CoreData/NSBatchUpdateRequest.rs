@@ -26,9 +26,9 @@ unsafe impl CopyingHelper for NSBatchUpdateRequest {
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSBatchUpdateRequest {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSBatchUpdateRequest {
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSBatchUpdateRequest {
+    extern_methods!(
         #[unsafe(method(batchUpdateRequestWithEntityName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn batchUpdateRequestWithEntityName(entity_name: &NSString) -> Retained<Self>;
@@ -94,13 +94,13 @@ extern_methods!(
         #[unsafe(method(setPropertiesToUpdate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesToUpdate(&self, properties_to_update: Option<&NSDictionary>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSBatchUpdateRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSBatchUpdateRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -108,5 +108,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

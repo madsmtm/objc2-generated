@@ -96,9 +96,9 @@ unsafe impl NSObjectProtocol for NSSliderCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSliderCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSliderCell {
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSliderCell {
+    extern_methods!(
         #[unsafe(method(prefersTrackingUntilMouseUp))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefersTrackingUntilMouseUp(mtm: MainThreadMarker) -> bool;
@@ -172,13 +172,13 @@ extern_methods!(
         #[unsafe(method(drawBarInside:flipped:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawBarInside_flipped(&self, rect: NSRect, flipped: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSliderCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSliderCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -198,29 +198,29 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSliderCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSliderCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSliderCellVerticalGetter
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSliderCell {}
-);
+/// NSSliderCellVerticalGetter.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSliderCell {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// NSTickMarkSupport
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSliderCell {
+/// NSTickMarkSupport.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSliderCell {
+    extern_methods!(
         #[unsafe(method(numberOfTickMarks))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
@@ -267,13 +267,13 @@ extern_methods!(
         #[unsafe(method(drawTickMarks))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawTickMarks(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSSliderCell {
+/// NSDeprecated.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSSliderCell {
+    extern_methods!(
         #[deprecated = "-setTitleCell: had no effect since 10.0"]
         #[unsafe(method(setTitleCell:))]
         #[unsafe(method_family = none)]
@@ -335,8 +335,8 @@ extern_methods!(
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkbelow?language=objc)
 pub static NSTickMarkBelow: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Below.0);

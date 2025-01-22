@@ -50,8 +50,8 @@ unsafe impl CopyingHelper for CNPostalAddressFormatter {
 
 unsafe impl NSObjectProtocol for CNPostalAddressFormatter {}
 
-extern_methods!(
-    unsafe impl CNPostalAddressFormatter {
+impl CNPostalAddressFormatter {
+    extern_methods!(
         #[cfg(feature = "CNPostalAddress")]
         /// Formats the postal address.
         ///
@@ -136,12 +136,12 @@ extern_methods!(
             postal_address: &CNPostalAddress,
             attributes: &NSDictionary,
         ) -> Retained<NSAttributedString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNPostalAddressFormatter {
+/// Methods declared on superclass `NSObject`.
+impl CNPostalAddressFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -149,8 +149,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresspropertyattribute?language=objc)

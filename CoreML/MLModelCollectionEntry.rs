@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLModelCollectionEntry {}
 
-extern_methods!(
-    unsafe impl MLModelCollectionEntry {
+impl MLModelCollectionEntry {
+    extern_methods!(
         #[deprecated = "Use Background Assets or NSURLSession instead."]
         #[unsafe(method(modelIdentifier))]
         #[unsafe(method_family = none)]
@@ -45,5 +45,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

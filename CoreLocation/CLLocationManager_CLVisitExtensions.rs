@@ -5,10 +5,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern_methods!(
-    /// CLVisitExtensions
-    #[cfg(feature = "CLLocationManager")]
-    unsafe impl CLLocationManager {
+/// CLVisitExtensions.
+#[cfg(feature = "CLLocationManager")]
+impl CLLocationManager {
+    extern_methods!(
         #[unsafe(method(startMonitoringVisits))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringVisits(&self);
@@ -16,5 +16,5 @@ extern_methods!(
         #[unsafe(method(stopMonitoringVisits))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringVisits(&self);
-    }
-);
+    );
+}

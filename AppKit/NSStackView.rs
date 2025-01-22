@@ -131,9 +131,9 @@ unsafe impl NSObjectProtocol for NSStackView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSStackView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSStackView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSStackView {
+    extern_methods!(
         #[unsafe(method(stackViewWithViews:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stackViewWithViews(
@@ -307,13 +307,13 @@ extern_methods!(
             hugging_priority: NSLayoutPriority,
             orientation: NSLayoutConstraintOrientation,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSStackView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSStackView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -324,28 +324,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSStackView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSStackView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSStackView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSStackView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewdelegate?language=objc)
@@ -372,10 +372,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSStackViewGravityAreas
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSStackView {
+/// NSStackViewGravityAreas.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSStackView {
+    extern_methods!(
         #[unsafe(method(addView:inGravity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addView_inGravity(&self, view: &NSView, gravity: NSStackViewGravity);
@@ -411,13 +411,13 @@ extern_methods!(
         #[unsafe(method(views))]
         #[unsafe(method_family = none)]
         pub unsafe fn views(&self) -> Retained<NSArray<NSView>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSStackViewDeprecated
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSStackView {
+/// NSStackViewDeprecated.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSStackView {
+    extern_methods!(
         #[deprecated = "Set -distribution to NSStackViewDistributionEqualSpacing instead."]
         #[unsafe(method(hasEqualSpacing))]
         #[unsafe(method_family = none)]
@@ -428,5 +428,5 @@ extern_methods!(
         #[unsafe(method(setHasEqualSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHasEqualSpacing(&self, has_equal_spacing: bool);
-    }
-);
+    );
+}

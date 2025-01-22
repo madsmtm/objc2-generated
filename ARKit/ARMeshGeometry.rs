@@ -37,9 +37,8 @@ unsafe impl NSObjectProtocol for ARGeometrySource {}
 unsafe impl NSSecureCoding for ARGeometrySource {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARGeometrySource {
+impl ARGeometrySource {
+    extern_methods!(
         #[cfg(feature = "objc2-metal")]
         /// A Metal buffer containing per-vector data for the source.
         #[unsafe(method(buffer))]
@@ -80,8 +79,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The primitive that defines how vertices are connected.
 ///
@@ -138,9 +137,8 @@ unsafe impl NSObjectProtocol for ARGeometryElement {}
 unsafe impl NSSecureCoding for ARGeometryElement {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARGeometryElement {
+impl ARGeometryElement {
+    extern_methods!(
         #[cfg(feature = "objc2-metal")]
         /// A Metal buffer containing index data that defines the geometry.
         #[unsafe(method(buffer))]
@@ -179,8 +177,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// A value describing the classification of a mesh face.
 ///
@@ -247,9 +245,8 @@ unsafe impl NSObjectProtocol for ARMeshGeometry {}
 unsafe impl NSSecureCoding for ARMeshGeometry {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARMeshGeometry {
+impl ARMeshGeometry {
+    extern_methods!(
         /// The vertices of the mesh.
         #[unsafe(method(vertices))]
         #[unsafe(method_family = none)]
@@ -278,5 +275,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

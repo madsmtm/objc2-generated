@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for SKRegion {}
 
 unsafe impl NSSecureCoding for SKRegion {}
 
-extern_methods!(
-    unsafe impl SKRegion {
+impl SKRegion {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(path))]
         #[unsafe(method_family = none)]
@@ -87,12 +87,12 @@ extern_methods!(
         #[unsafe(method(containsPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsPoint(&self, point: CGPoint) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKRegion {
+/// Methods declared on superclass `NSObject`.
+impl SKRegion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

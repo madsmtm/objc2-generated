@@ -405,8 +405,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructurePassSampleBufferAttachment
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
+impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLCounters")]
         /// The sample buffer to store samples for the acceleration structure pass defined samples.
         /// If sampleBuffer is non-nil, the sample indices will be used to store samples into
@@ -462,12 +462,12 @@ extern_methods!(
         #[unsafe(method(setEndOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -475,8 +475,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptorarray?language=objc)
@@ -487,8 +487,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
+impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -503,12 +503,12 @@ extern_methods!(
             attachment: Option<&MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>,
             attachment_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -516,8 +516,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MTLAccelerationStructurePassDescriptor represents a collection of attachments to be used to create a concrete acceleration structure encoder.
@@ -536,8 +536,8 @@ unsafe impl CopyingHelper for MTLAccelerationStructurePassDescriptor {
 
 unsafe impl NSObjectProtocol for MTLAccelerationStructurePassDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAccelerationStructurePassDescriptor {
+impl MTLAccelerationStructurePassDescriptor {
+    extern_methods!(
         /// Create an autoreleased default acceleration structure pass descriptor
         #[unsafe(method(accelerationStructurePassDescriptor))]
         #[unsafe(method_family = none)]
@@ -550,12 +550,12 @@ extern_methods!(
         pub unsafe fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAccelerationStructurePassDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAccelerationStructurePassDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -563,5 +563,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

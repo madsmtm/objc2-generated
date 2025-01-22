@@ -32,9 +32,9 @@ unsafe impl CopyingHelper for VNDetectHumanBodyPose3DRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl NSObjectProtocol for VNDetectHumanBodyPose3DRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl VNDetectHumanBodyPose3DRequest {
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+impl VNDetectHumanBodyPose3DRequest {
+    extern_methods!(
         /// Creates a new VNDetectHumanBodyPose3DRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -78,13 +78,13 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanBodyPose3DObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNStatefulRequest`
-    #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-    unsafe impl VNDetectHumanBodyPose3DRequest {
+/// Methods declared on superclass `VNStatefulRequest`.
+#[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
+impl VNDetectHumanBodyPose3DRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -103,8 +103,8 @@ extern_methods!(
             frame_analysis_spacing: CMTime,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequestrevision1?language=objc)
 pub static VNDetectHumanBodyPose3DRequestRevision1: NSUInteger = 1;

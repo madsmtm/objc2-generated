@@ -42,8 +42,8 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSArray<ObjectType> {}
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSArray<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub fn count(&self) -> NSUInteger;
@@ -71,17 +71,17 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl<ObjectType: Message> DefaultRetained for NSArray<ObjectType> {
     #[inline]
@@ -114,9 +114,9 @@ unsafe impl RefEncode for NSBinarySearchingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSExtendedArray
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+/// NSExtendedArray.
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(arrayByAddingObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayByAddingObject(
@@ -418,12 +418,12 @@ extern_methods!(
             opts: NSBinarySearchingOptions,
             cmp: NSComparator,
         ) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSArrayCreation
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+/// NSArrayCreation.
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(array))]
         #[unsafe(method_family = none)]
         pub unsafe fn array() -> Retained<Self>;
@@ -472,14 +472,14 @@ extern_methods!(
         pub unsafe fn arrayWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Retained<NSArray<ObjectType>>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSArray`
-    ///
-    /// NSArrayCreation
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+/// Methods declared on superclass `NSArray`.
+///
+/// NSArrayCreation.
+impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(array))]
         #[unsafe(method_family = none)]
         pub unsafe fn array() -> Retained<Self>;
@@ -513,12 +513,12 @@ extern_methods!(
             array: &NSArray<ObjectType>,
             flag: bool,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSArrayDiffing
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+/// NSArrayDiffing.
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[cfg(all(feature = "NSOrderedCollectionDifference", feature = "block2"))]
         #[unsafe(method(differenceFromArray:withOptions:usingEquivalenceTest:))]
         #[unsafe(method_family = none)]
@@ -553,12 +553,12 @@ extern_methods!(
             &self,
             difference: &NSOrderedCollectionDifference<ObjectType>,
         ) -> Option<Retained<NSArray<ObjectType>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl<ObjectType: Message> NSArray<ObjectType> {
+/// NSDeprecated.
+impl<ObjectType: Message> NSArray<ObjectType> {
+    extern_methods!(
         #[deprecated = "Use -getObjects:range: instead"]
         #[unsafe(method(getObjects:))]
         #[unsafe(method_family = none)]
@@ -611,8 +611,8 @@ extern_methods!(
         #[unsafe(method(writeToURL:atomically:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// **************    Mutable Array        ***************
@@ -650,8 +650,8 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableArray<ObjectType> 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableArray<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub fn addObject(&self, an_object: &ObjectType);
@@ -687,12 +687,12 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSArray`
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+/// Methods declared on superclass `NSArray`.
+impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(initWithObjects:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(
@@ -700,17 +700,17 @@ extern_methods!(
             objects: *mut NonNull<ObjectType>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl<ObjectType: Message> DefaultRetained for NSMutableArray<ObjectType> {
     #[inline]
@@ -719,9 +719,9 @@ impl<ObjectType: Message> DefaultRetained for NSMutableArray<ObjectType> {
     }
 }
 
-extern_methods!(
-    /// NSExtendedMutableArray
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+/// NSExtendedMutableArray.
+impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(addObjectsFromArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObjectsFromArray(&self, other_array: &NSArray<ObjectType>);
@@ -857,12 +857,12 @@ extern_methods!(
             opts: NSSortOptions,
             cmptr: NSComparator,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSMutableArrayCreation
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+/// NSMutableArrayCreation.
+impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    extern_methods!(
         #[unsafe(method(arrayWithCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithCapacity(num_items: NSUInteger) -> Retained<Self>;
@@ -896,12 +896,12 @@ extern_methods!(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Retained<NSMutableArray<ObjectType>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSMutableArrayDiffing
-    unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
+/// NSMutableArrayDiffing.
+impl<ObjectType: Message> NSMutableArray<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSOrderedCollectionDifference")]
         #[unsafe(method(applyDifference:))]
         #[unsafe(method_family = none)]
@@ -909,5 +909,5 @@ extern_methods!(
             &self,
             difference: &NSOrderedCollectionDifference<ObjectType>,
         );
-    }
-);
+    );
+}

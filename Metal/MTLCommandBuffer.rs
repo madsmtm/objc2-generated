@@ -234,8 +234,8 @@ unsafe impl CopyingHelper for MTLCommandBufferDescriptor {
 
 unsafe impl NSObjectProtocol for MTLCommandBufferDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLCommandBufferDescriptor {
+impl MTLCommandBufferDescriptor {
+    extern_methods!(
         /// If YES, the created command buffer holds strong references to objects needed for it to execute. If NO, the created command buffer does not hold strong references to objects needed for it to execute.
         #[unsafe(method(retainedReferences))]
         #[unsafe(method_family = none)]
@@ -267,12 +267,12 @@ extern_methods!(
         #[unsafe(method(setLogState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLCommandBufferDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLCommandBufferDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -280,8 +280,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Provides execution status information for a Metal command encoder.

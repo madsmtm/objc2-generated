@@ -52,9 +52,9 @@ unsafe impl NSObjectProtocol for NSFormCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSFormCell {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSFormCell {
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSFormCell {
+    extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(
@@ -170,44 +170,44 @@ extern_methods!(
         #[unsafe(method(setPreferredTextFieldWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredTextFieldWidth(&self, preferred_text_field_width: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSFormCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSFormCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSFormCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSFormCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSKeyboardUI
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSFormCell {
+/// NSKeyboardUI.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSFormCell {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSFormCellAttributedStringMethods
-    #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-    unsafe impl NSFormCell {
+/// NSFormCellAttributedStringMethods.
+#[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+impl NSFormCell {
+    extern_methods!(
         #[unsafe(method(attributedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
@@ -216,5 +216,5 @@ extern_methods!(
         #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
-    }
-);
+    );
+}

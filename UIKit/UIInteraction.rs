@@ -27,10 +27,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// Interactions
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIView {
+/// Interactions.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(addInteraction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addInteraction(&self, interaction: &ProtocolObject<dyn UIInteraction>);
@@ -50,5 +50,5 @@ extern_methods!(
             &self,
             interactions: &NSArray<ProtocolObject<dyn UIInteraction>>,
         );
-    }
-);
+    );
+}

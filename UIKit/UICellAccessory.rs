@@ -65,8 +65,8 @@ unsafe impl NSObjectProtocol for UICellAccessory {}
 
 unsafe impl NSSecureCoding for UICellAccessory {}
 
-extern_methods!(
-    unsafe impl UICellAccessory {
+impl UICellAccessory {
+    extern_methods!(
         /// The state(s) for which the accessory should be displayed.
         #[unsafe(method(displayedState))]
         #[unsafe(method_family = none)]
@@ -125,17 +125,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICellAccessory {
+/// Methods declared on superclass `NSObject`.
+impl UICellAccessory {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A disclosure chevron that points in the trailing direction.
@@ -159,13 +159,13 @@ unsafe impl NSObjectProtocol for UICellAccessoryDisclosureIndicator {}
 
 unsafe impl NSSecureCoding for UICellAccessoryDisclosureIndicator {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryDisclosureIndicator {}
-);
+impl UICellAccessoryDisclosureIndicator {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICellAccessory`
-    unsafe impl UICellAccessoryDisclosureIndicator {
+/// Methods declared on superclass `UICellAccessory`.
+impl UICellAccessoryDisclosureIndicator {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -176,17 +176,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICellAccessoryDisclosureIndicator {
+/// Methods declared on superclass `NSObject`.
+impl UICellAccessoryDisclosureIndicator {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A detail (info) button.
@@ -210,8 +210,8 @@ unsafe impl NSObjectProtocol for UICellAccessoryDetail {}
 
 unsafe impl NSSecureCoding for UICellAccessoryDetail {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryDetail {
+impl UICellAccessoryDetail {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// An optional handler to call when the detail accessory is tapped. If nil, taps on the accessory are ignored.
         #[unsafe(method(actionHandler))]
@@ -223,12 +223,12 @@ extern_methods!(
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::Block<dyn Fn()>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICellAccessory`
-    unsafe impl UICellAccessoryDetail {
+/// Methods declared on superclass `UICellAccessory`.
+impl UICellAccessoryDetail {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -239,17 +239,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICellAccessoryDetail {
+/// Methods declared on superclass `NSObject`.
+impl UICellAccessoryDetail {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A checkmark with default green color.
@@ -273,13 +273,13 @@ unsafe impl NSObjectProtocol for UICellAccessoryCheckmark {}
 
 unsafe impl NSSecureCoding for UICellAccessoryCheckmark {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryCheckmark {}
-);
+impl UICellAccessoryCheckmark {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICellAccessory`
-    unsafe impl UICellAccessoryCheckmark {
+/// Methods declared on superclass `UICellAccessory`.
+impl UICellAccessoryCheckmark {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -290,17 +290,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICellAccessoryCheckmark {
+/// Methods declared on superclass `NSObject`.
+impl UICellAccessoryCheckmark {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A delete control (minus sign inside a circle) with default red color.
@@ -324,8 +324,8 @@ unsafe impl NSObjectProtocol for UICellAccessoryDelete {}
 
 unsafe impl NSSecureCoding for UICellAccessoryDelete {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryDelete {
+impl UICellAccessoryDelete {
+    extern_methods!(
         #[cfg(feature = "UIColor")]
         /// The background color to apply to the accessory. Default value is nil, which uses the system default.
         #[unsafe(method(backgroundColor))]
@@ -349,12 +349,12 @@ extern_methods!(
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::Block<dyn Fn()>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICellAccessory`
-    unsafe impl UICellAccessoryDelete {
+/// Methods declared on superclass `UICellAccessory`.
+impl UICellAccessoryDelete {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -365,17 +365,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICellAccessoryDelete {
+/// Methods declared on superclass `NSObject`.
+impl UICellAccessoryDelete {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An insert control (plus sign inside a circle) with default green color.
@@ -399,8 +399,8 @@ unsafe impl NSObjectProtocol for UICellAccessoryInsert {}
 
 unsafe impl NSSecureCoding for UICellAccessoryInsert {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryInsert {
+impl UICellAccessoryInsert {
+    extern_methods!(
         #[cfg(feature = "UIColor")]
         /// The background color to apply to the accessory. Default value is nil, which uses the system default.
         #[unsafe(method(backgroundColor))]
@@ -424,12 +424,12 @@ extern_methods!(
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::Block<dyn Fn()>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICellAccessory`
-    unsafe impl UICellAccessoryInsert {
+/// Methods declared on superclass `UICellAccessory`.
+impl UICellAccessoryInsert {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -440,17 +440,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICellAccessoryInsert {
+/// Methods declared on superclass `NSObject`.
+impl UICellAccessoryInsert {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A reorder control (three horizontal lines) with default gray color that automatically initiates interactive
@@ -475,8 +475,8 @@ unsafe impl NSObjectProtocol for UICellAccessoryReorder {}
 
 unsafe impl NSSecureCoding for UICellAccessoryReorder {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryReorder {
+impl UICellAccessoryReorder {
+    extern_methods!(
         /// Whether a vertical separator is displayed before the accessory when it is placed after another accessory. Default is YES.
         #[unsafe(method(showsVerticalSeparator))]
         #[unsafe(method_family = none)]
@@ -486,12 +486,12 @@ extern_methods!(
         #[unsafe(method(setShowsVerticalSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsVerticalSeparator(&self, shows_vertical_separator: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICellAccessory`
-    unsafe impl UICellAccessoryReorder {
+/// Methods declared on superclass `UICellAccessory`.
+impl UICellAccessoryReorder {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -502,17 +502,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICellAccessoryReorder {
+/// Methods declared on superclass `NSObject`.
+impl UICellAccessoryReorder {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A two-state control whose appearance follows the selection state of the cell (empty circle when deselected,
@@ -537,8 +537,8 @@ unsafe impl NSObjectProtocol for UICellAccessoryMultiselect {}
 
 unsafe impl NSSecureCoding for UICellAccessoryMultiselect {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryMultiselect {
+impl UICellAccessoryMultiselect {
+    extern_methods!(
         #[cfg(feature = "UIColor")]
         /// The background color to apply to the accessory. Default value is nil, which uses the system default.
         #[unsafe(method(backgroundColor))]
@@ -550,12 +550,12 @@ extern_methods!(
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICellAccessory`
-    unsafe impl UICellAccessoryMultiselect {
+/// Methods declared on superclass `UICellAccessory`.
+impl UICellAccessoryMultiselect {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -566,17 +566,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICellAccessoryMultiselect {
+/// Methods declared on superclass `NSObject`.
+impl UICellAccessoryMultiselect {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosurestyle?language=objc)
 // NS_ENUM
@@ -627,8 +627,8 @@ unsafe impl NSObjectProtocol for UICellAccessoryOutlineDisclosure {}
 
 unsafe impl NSSecureCoding for UICellAccessoryOutlineDisclosure {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryOutlineDisclosure {
+impl UICellAccessoryOutlineDisclosure {
+    extern_methods!(
         /// The style of the outline disclosure accessory. Default is automatic.
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
@@ -651,12 +651,12 @@ extern_methods!(
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::Block<dyn Fn()>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICellAccessory`
-    unsafe impl UICellAccessoryOutlineDisclosure {
+/// Methods declared on superclass `UICellAccessory`.
+impl UICellAccessoryOutlineDisclosure {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -667,17 +667,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICellAccessoryOutlineDisclosure {
+/// Methods declared on superclass `NSObject`.
+impl UICellAccessoryOutlineDisclosure {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Up/down chevrons that indicate a tap anywhere in the cell presents a pop-up menu.
@@ -701,8 +701,8 @@ unsafe impl NSObjectProtocol for UICellAccessoryPopUpMenu {}
 
 unsafe impl NSSecureCoding for UICellAccessoryPopUpMenu {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryPopUpMenu {
+impl UICellAccessoryPopUpMenu {
+    extern_methods!(
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a new pop-up menu accessory using the provided menu.
         #[unsafe(method(initWithMenu:))]
@@ -745,8 +745,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A label displaying a short string of text, typically a small number such as a count for the associated item.
@@ -770,8 +770,8 @@ unsafe impl NSObjectProtocol for UICellAccessoryLabel {}
 
 unsafe impl NSSecureCoding for UICellAccessoryLabel {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryLabel {
+impl UICellAccessoryLabel {
+    extern_methods!(
         /// Creates a new label accessory using the provided text.
         #[unsafe(method(initWithText:))]
         #[unsafe(method_family = init)]
@@ -820,8 +820,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryplacement?language=objc)
 // NS_ENUM
@@ -890,8 +890,8 @@ unsafe impl NSObjectProtocol for UICellAccessoryCustomView {}
 
 unsafe impl NSSecureCoding for UICellAccessoryCustomView {}
 
-extern_methods!(
-    unsafe impl UICellAccessoryCustomView {
+impl UICellAccessoryCustomView {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Creates a new custom view accessory using the provided view and specified placement. The custom view must have translatesAutoresizingMaskIntoConstraints
         /// enabled, but may use auto layout constraints internally for layout of subviews and/or to indicate its preferred size.
@@ -949,5 +949,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

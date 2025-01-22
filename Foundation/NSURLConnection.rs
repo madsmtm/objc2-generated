@@ -99,8 +99,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSURLConnection {}
 
-extern_methods!(
-    unsafe impl NSURLConnection {
+impl NSURLConnection {
+    extern_methods!(
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
         #[unsafe(method(initWithRequest:delegate:startImmediately:))]
@@ -197,12 +197,12 @@ extern_methods!(
         #[unsafe(method(canHandleRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canHandleRequest(request: &NSURLRequest) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLConnection {
+/// Methods declared on superclass `NSObject`.
+impl NSURLConnection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -210,8 +210,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Delegate methods that are common to all forms of
@@ -528,12 +528,12 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSURLConnectionSynchronousLoading
-    /// The NSURLConnectionSynchronousLoading category on
-    /// NSURLConnection provides the interface to perform
-    /// synchronous loading of URL requests.
-    unsafe impl NSURLConnection {
+/// NSURLConnectionSynchronousLoading.
+/// The NSURLConnectionSynchronousLoading category on
+/// NSURLConnection provides the interface to perform
+/// synchronous loading of URL requests.
+impl NSURLConnection {
+    extern_methods!(
         #[cfg(all(
             feature = "NSData",
             feature = "NSError",
@@ -581,19 +581,19 @@ extern_methods!(
             request: &NSURLRequest,
             response: Option<&mut Option<Retained<NSURLResponse>>>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLConnectionQueuedLoading
-    /// The NSURLConnectionQueuedLoading category on NSURLConnection
-    /// provides the interface to perform asynchronous loading of URL
-    /// requests where the results of the request are delivered to a
-    /// block via an NSOperationQueue.
-    ///
-    /// Note that there is no guarantee of load ordering implied by this
-    /// method.
-    unsafe impl NSURLConnection {
+/// NSURLConnectionQueuedLoading.
+/// The NSURLConnectionQueuedLoading category on NSURLConnection
+/// provides the interface to perform asynchronous loading of URL
+/// requests where the results of the request are delivered to a
+/// block via an NSOperationQueue.
+///
+/// Note that there is no guarantee of load ordering implied by this
+/// method.
+impl NSURLConnection {
+    extern_methods!(
         #[cfg(all(
             feature = "NSData",
             feature = "NSError",
@@ -637,5 +637,5 @@ extern_methods!(
             queue: &NSOperationQueue,
             handler: &block2::Block<dyn Fn(*mut NSURLResponse, *mut NSData, *mut NSError)>,
         );
-    }
-);
+    );
+}

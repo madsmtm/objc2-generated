@@ -434,8 +434,8 @@ unsafe impl AVAudioStereoMixing for AVAudioMixingDestination {}
 
 unsafe impl NSObjectProtocol for AVAudioMixingDestination {}
 
-extern_methods!(
-    unsafe impl AVAudioMixingDestination {
+impl AVAudioMixingDestination {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -445,14 +445,14 @@ extern_methods!(
         #[unsafe(method(connectionPoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionPoint(&self) -> Retained<AVAudioConnectionPoint>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioMixingDestination {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioMixingDestination {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

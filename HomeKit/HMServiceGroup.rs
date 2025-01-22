@@ -27,8 +27,8 @@ unsafe impl Sync for HMServiceGroup {}
 
 unsafe impl NSObjectProtocol for HMServiceGroup {}
 
-extern_methods!(
-    unsafe impl HMServiceGroup {
+impl HMServiceGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -104,14 +104,14 @@ extern_methods!(
             service: &HMService,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMServiceGroup {
+/// Methods declared on superclass `NSObject`.
+impl HMServiceGroup {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

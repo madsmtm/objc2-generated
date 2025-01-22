@@ -26,9 +26,9 @@ unsafe impl CopyingHelper for NSBatchInsertRequest {
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl NSObjectProtocol for NSBatchInsertRequest {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSBatchInsertRequest {
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSBatchInsertRequest {
+    extern_methods!(
         #[unsafe(method(entityName))]
         #[unsafe(method_family = none)]
         pub unsafe fn entityName(&self) -> Retained<NSString>;
@@ -189,15 +189,15 @@ extern_methods!(
             entity_name: &NSString,
             handler: &block2::Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl NSBatchInsertRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl NSBatchInsertRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

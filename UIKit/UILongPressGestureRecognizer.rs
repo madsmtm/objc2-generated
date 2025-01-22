@@ -21,9 +21,9 @@ extern_class!(
 #[cfg(feature = "UIGestureRecognizer")]
 unsafe impl NSObjectProtocol for UILongPressGestureRecognizer {}
 
-extern_methods!(
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UILongPressGestureRecognizer {
+#[cfg(feature = "UIGestureRecognizer")]
+impl UILongPressGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(numberOfTapsRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfTapsRequired(&self) -> NSUInteger;
@@ -61,13 +61,13 @@ extern_methods!(
         #[unsafe(method(setAllowableMovement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIGestureRecognizer`
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UILongPressGestureRecognizer {
+/// Methods declared on superclass `UIGestureRecognizer`.
+#[cfg(feature = "UIGestureRecognizer")]
+impl UILongPressGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
@@ -86,15 +86,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIGestureRecognizer")]
-    unsafe impl UILongPressGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIGestureRecognizer")]
+impl UILongPressGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

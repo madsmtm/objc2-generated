@@ -6,14 +6,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// DOMCSS2Properties
-    #[cfg(all(
-        feature = "DOMCSSStyleDeclaration",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMCSSStyleDeclaration {
+/// DOMCSS2Properties.
+#[cfg(all(
+    feature = "DOMCSSStyleDeclaration",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMCSSStyleDeclaration {
+    extern_methods!(
         #[unsafe(method(azimuth))]
         #[unsafe(method_family = none)]
         pub unsafe fn azimuth(&self) -> Option<Retained<NSString>>;
@@ -989,5 +989,5 @@ extern_methods!(
         #[unsafe(method(setZIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZIndex(&self, z_index: Option<&NSString>);
-    }
-);
+    );
+}

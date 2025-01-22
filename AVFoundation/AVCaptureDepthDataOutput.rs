@@ -26,9 +26,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureOutputBase")]
 unsafe impl NSObjectProtocol for AVCaptureDepthDataOutput {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureDepthDataOutput {
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureDepthDataOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,8 +72,8 @@ extern_methods!(
         #[unsafe(method(setFilteringEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilteringEnabled(&self, filtering_enabled: bool);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines an interface for delegates of AVCaptureDepthDataOutput to receive captured depth data and be notified of late depth data that were dropped.

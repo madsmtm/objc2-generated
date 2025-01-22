@@ -66,20 +66,20 @@ unsafe impl NSObjectProtocol for NSURLCredential {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSURLCredential {}
 
-extern_methods!(
-    unsafe impl NSURLCredential {
+impl NSURLCredential {
+    extern_methods!(
         /// Determine whether this credential is or should be stored persistently
         ///
         /// Returns: A value indicating whether this credential is stored permanently, per session or not at all.
         #[unsafe(method(persistence))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistence(&self) -> NSURLCredentialPersistence;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLCredential {
+/// Methods declared on superclass `NSObject`.
+impl NSURLCredential {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -87,13 +87,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSInternetPassword
-    /// This category defines the methods available to an NSURLCredential created to represent an internet password credential.  These are most commonly used for resources that require a username and password combination.
-    unsafe impl NSURLCredential {
+/// NSInternetPassword.
+/// This category defines the methods available to an NSURLCredential created to represent an internet password credential.  These are most commonly used for resources that require a username and password combination.
+impl NSURLCredential {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         /// Initialize a NSURLCredential with a user and password
         ///
@@ -162,13 +162,13 @@ extern_methods!(
         #[unsafe(method(hasPassword))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasPassword(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSClientCertificate
-    /// This category defines the methods available to an NSURLCredential created to represent a client certificate credential.  Client certificates are commonly stored on the users computer in the keychain and must be presented to the server during a handshake.
-    unsafe impl NSURLCredential {
+/// NSClientCertificate.
+/// This category defines the methods available to an NSURLCredential created to represent a client certificate credential.  Client certificates are commonly stored on the users computer in the keychain and must be presented to the server during a handshake.
+impl NSURLCredential {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         /// Returns an NSArray of SecCertificateRef objects representing the client certificate for this credential, if this credential was created with an identity and certificate.
         ///
@@ -176,10 +176,10 @@ extern_methods!(
         #[unsafe(method(certificates))]
         #[unsafe(method_family = none)]
         pub unsafe fn certificates(&self) -> Retained<NSArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSServerTrust
-    unsafe impl NSURLCredential {}
-);
+/// NSServerTrust.
+impl NSURLCredential {
+    extern_methods!();
+}

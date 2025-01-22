@@ -27,8 +27,8 @@ unsafe impl Sync for HMAccessory {}
 
 unsafe impl NSObjectProtocol for HMAccessory {}
 
-extern_methods!(
-    unsafe impl HMAccessory {
+impl HMAccessory {
+    extern_methods!(
         /// The name of the accessory.
         ///
         ///
@@ -200,17 +200,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMAccessory {
+/// Methods declared on superclass `NSObject`.
+impl HMAccessory {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// This defines the protocol for a delegate to receive updates about

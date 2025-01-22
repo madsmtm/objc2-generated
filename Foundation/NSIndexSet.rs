@@ -37,8 +37,8 @@ unsafe impl NSObjectProtocol for NSIndexSet {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSIndexSet {}
 
-extern_methods!(
-    unsafe impl NSIndexSet {
+impl NSIndexSet {
+    extern_methods!(
         #[unsafe(method(indexSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexSet() -> Retained<Self>;
@@ -243,12 +243,12 @@ extern_methods!(
             opts: NSEnumerationOptions,
             block: &block2::Block<dyn Fn(NSRange, NonNull<Bool>) + '_>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSIndexSet {
+/// Methods declared on superclass `NSObject`.
+impl NSIndexSet {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -256,8 +256,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableindexset?language=objc)
@@ -290,8 +290,8 @@ unsafe impl NSObjectProtocol for NSMutableIndexSet {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSMutableIndexSet {}
 
-extern_methods!(
-    unsafe impl NSMutableIndexSet {
+impl NSMutableIndexSet {
+    extern_methods!(
         #[unsafe(method(addIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addIndexes(&self, index_set: &NSIndexSet);
@@ -325,12 +325,12 @@ extern_methods!(
         #[unsafe(method(shiftIndexesStartingAtIndex:by:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shiftIndexesStartingAtIndex_by(&self, index: NSUInteger, delta: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSIndexSet`
-    unsafe impl NSMutableIndexSet {
+/// Methods declared on superclass `NSIndexSet`.
+impl NSMutableIndexSet {
+    extern_methods!(
         #[unsafe(method(indexSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexSet() -> Retained<Self>;
@@ -362,12 +362,12 @@ extern_methods!(
         #[unsafe(method(initWithIndex:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIndex(this: Allocated<Self>, value: NSUInteger) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMutableIndexSet {
+/// Methods declared on superclass `NSObject`.
+impl NSMutableIndexSet {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -375,5 +375,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

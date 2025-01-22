@@ -106,8 +106,8 @@ unsafe impl MPMediaPlayback for MPMusicPlayerController {}
 
 unsafe impl NSObjectProtocol for MPMusicPlayerController {}
 
-extern_methods!(
-    unsafe impl MPMusicPlayerController {
+impl MPMusicPlayerController {
+    extern_methods!(
         /// Playing items with applicationMusicPlayer does not affect Music's playback state.
         #[unsafe(method(applicationMusicPlayer))]
         #[unsafe(method_family = none)]
@@ -241,8 +241,8 @@ extern_methods!(
         #[unsafe(method(iPodMusicPlayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn iPodMusicPlayer() -> Retained<MPMusicPlayerController>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollerplaybackstatedidchangenotification?language=objc)

@@ -75,9 +75,9 @@ unsafe impl NSObjectProtocol for CIRAWFilter {}
 #[cfg(feature = "CIFilter")]
 unsafe impl NSSecureCoding for CIRAWFilter {}
 
-extern_methods!(
-    #[cfg(feature = "CIFilter")]
-    unsafe impl CIRAWFilter {
+#[cfg(feature = "CIFilter")]
+impl CIRAWFilter {
+    extern_methods!(
         #[unsafe(method(supportedCameraModels))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedCameraModels() -> Retained<NSArray<NSString>>;
@@ -394,13 +394,13 @@ extern_methods!(
             buffer: &CVPixelBuffer,
             properties: &NSDictionary,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CIFilter")]
-    unsafe impl CIRAWFilter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CIFilter")]
+impl CIRAWFilter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -408,5 +408,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

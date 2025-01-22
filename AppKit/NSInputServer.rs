@@ -155,8 +155,8 @@ unsafe impl NSInputServiceProvider for NSInputServer {}
 
 unsafe impl NSObjectProtocol for NSInputServer {}
 
-extern_methods!(
-    unsafe impl NSInputServer {
+impl NSInputServer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(initWithDelegate:name:))]
         #[unsafe(method_family = init)]
@@ -165,12 +165,12 @@ extern_methods!(
             delegate: Option<&AnyObject>,
             name: Option<&NSString>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSInputServer {
+/// Methods declared on superclass `NSObject`.
+impl NSInputServer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -178,5 +178,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

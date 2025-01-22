@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
 unsafe impl NSObjectProtocol for MKPolygonRenderer {}
 
-extern_methods!(
-    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
-    unsafe impl MKPolygonRenderer {
+#[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
+impl MKPolygonRenderer {
+    extern_methods!(
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
         #[unsafe(method(initWithPolygon:))]
         #[unsafe(method_family = init)]
@@ -54,13 +54,13 @@ extern_methods!(
         #[unsafe(method(setStrokeEnd:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeEnd(&self, stroke_end: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MKOverlayRenderer`
-    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
-    unsafe impl MKPolygonRenderer {
+/// Methods declared on superclass `MKOverlayRenderer`.
+#[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
+impl MKPolygonRenderer {
+    extern_methods!(
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[unsafe(method(initWithOverlay:))]
         #[unsafe(method_family = init)]
@@ -68,13 +68,13 @@ extern_methods!(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
-    unsafe impl MKPolygonRenderer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
+impl MKPolygonRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,5 +82,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

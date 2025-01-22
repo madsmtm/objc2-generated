@@ -36,9 +36,9 @@ unsafe impl CopyingHelper for EKRecurrenceRule {
 #[cfg(feature = "EKObject")]
 unsafe impl NSObjectProtocol for EKRecurrenceRule {}
 
-extern_methods!(
-    #[cfg(feature = "EKObject")]
-    unsafe impl EKRecurrenceRule {
+#[cfg(feature = "EKObject")]
+impl EKRecurrenceRule {
+    extern_methods!(
         #[cfg(all(feature = "EKRecurrenceEnd", feature = "EKTypes"))]
         /// Simple initializer to create a recurrence.
         ///
@@ -199,13 +199,13 @@ extern_methods!(
         #[unsafe(method(setPositions))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositions(&self) -> Option<Retained<NSArray<NSNumber>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "EKObject")]
-    unsafe impl EKRecurrenceRule {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "EKObject")]
+impl EKRecurrenceRule {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -213,5 +213,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

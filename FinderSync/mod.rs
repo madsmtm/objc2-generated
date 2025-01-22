@@ -45,8 +45,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for FIFinderSyncController {}
 
-extern_methods!(
-    unsafe impl FIFinderSyncController {
+impl FIFinderSyncController {
+    extern_methods!(
         /// Returns the shared Finder Sync controller object.
         ///
         /// - Returns: The default Finder Sync controller object for this extension.
@@ -194,12 +194,12 @@ extern_methods!(
         #[unsafe(method(showExtensionManagementInterface))]
         #[unsafe(method_family = none)]
         pub unsafe fn showExtensionManagementInterface();
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl FIFinderSyncController {
+/// Methods declared on superclass `NSObject`.
+impl FIFinderSyncController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -207,8 +207,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The different kinds of custom menus that the Finder Sync extension can
 /// provide.
@@ -424,13 +424,13 @@ unsafe impl NSExtensionRequestHandling for FIFinderSync {}
 
 unsafe impl NSObjectProtocol for FIFinderSync {}
 
-extern_methods!(
-    unsafe impl FIFinderSync {}
-);
+impl FIFinderSync {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl FIFinderSync {
+/// Methods declared on superclass `NSObject`.
+impl FIFinderSync {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -438,5 +438,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

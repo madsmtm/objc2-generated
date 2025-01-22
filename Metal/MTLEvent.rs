@@ -39,22 +39,22 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLSharedEventListener {}
 
-extern_methods!(
-    unsafe impl MTLSharedEventListener {
+impl MTLSharedEventListener {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLSharedEventListener {
+/// Methods declared on superclass `NSObject`.
+impl MTLSharedEventListener {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLSharedEventListener {
     #[inline]
@@ -113,17 +113,17 @@ unsafe impl NSObjectProtocol for MTLSharedEventHandle {}
 
 unsafe impl NSSecureCoding for MTLSharedEventHandle {}
 
-extern_methods!(
-    unsafe impl MTLSharedEventHandle {
+impl MTLSharedEventHandle {
+    extern_methods!(
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub fn label(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLSharedEventHandle {
+/// Methods declared on superclass `NSObject`.
+impl MTLSharedEventHandle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -131,5 +131,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

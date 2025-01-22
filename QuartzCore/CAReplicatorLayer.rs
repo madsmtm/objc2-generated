@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for CAReplicatorLayer {}
 #[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAReplicatorLayer {}
 
-extern_methods!(
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAReplicatorLayer {
+#[cfg(feature = "CALayer")]
+impl CAReplicatorLayer {
+    extern_methods!(
         #[unsafe(method(instanceCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn instanceCount(&self) -> NSInteger;
@@ -120,13 +120,13 @@ extern_methods!(
         #[unsafe(method(setInstanceAlphaOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstanceAlphaOffset(&self, instance_alpha_offset: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAReplicatorLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "CALayer")]
+impl CAReplicatorLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -139,15 +139,15 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAReplicatorLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CALayer")]
+impl CAReplicatorLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

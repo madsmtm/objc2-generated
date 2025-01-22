@@ -114,8 +114,8 @@ unsafe impl NSObjectProtocol for CMAttitude {}
 
 unsafe impl NSSecureCoding for CMAttitude {}
 
-extern_methods!(
-    unsafe impl CMAttitude {
+impl CMAttitude {
+    extern_methods!(
         #[unsafe(method(roll))]
         #[unsafe(method_family = none)]
         pub unsafe fn roll(&self) -> c_double;
@@ -139,12 +139,12 @@ extern_methods!(
         #[unsafe(method(multiplyByInverseOfAttitude:))]
         #[unsafe(method_family = none)]
         pub unsafe fn multiplyByInverseOfAttitude(&self, attitude: &CMAttitude);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMAttitude {
+/// Methods declared on superclass `NSObject`.
+impl CMAttitude {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -152,5 +152,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

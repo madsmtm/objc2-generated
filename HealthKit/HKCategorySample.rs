@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for HKCategorySample {}
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKCategorySample {}
 
-extern_methods!(
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKCategorySample {
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKCategorySample {
+    extern_methods!(
         #[cfg(feature = "HKObjectType")]
         #[unsafe(method(categoryType))]
         #[unsafe(method_family = none)]
@@ -118,18 +118,18 @@ extern_methods!(
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKCategorySample {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKCategorySample {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcategoryvalue?language=objc)

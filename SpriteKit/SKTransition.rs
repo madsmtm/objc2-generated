@@ -54,8 +54,8 @@ unsafe impl CopyingHelper for SKTransition {
 
 unsafe impl NSObjectProtocol for SKTransition {}
 
-extern_methods!(
-    unsafe impl SKTransition {
+impl SKTransition {
+    extern_methods!(
         #[unsafe(method(crossFadeWithDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn crossFadeWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
@@ -155,12 +155,12 @@ extern_methods!(
         #[unsafe(method(setPausesOutgoingScene:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPausesOutgoingScene(&self, pauses_outgoing_scene: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKTransition {
+/// Methods declared on superclass `NSObject`.
+impl SKTransition {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -168,5 +168,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

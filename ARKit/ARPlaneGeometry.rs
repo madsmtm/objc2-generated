@@ -38,9 +38,8 @@ unsafe impl NSObjectProtocol for ARPlaneGeometry {}
 unsafe impl NSSecureCoding for ARPlaneGeometry {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARPlaneGeometry {
+impl ARPlaneGeometry {
+    extern_methods!(
         /// The number of mesh vertices of the geometry.
         #[unsafe(method(vertexCount))]
         #[unsafe(method_family = none)]
@@ -74,5 +73,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

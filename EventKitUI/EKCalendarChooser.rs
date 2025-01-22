@@ -80,9 +80,9 @@ unsafe impl UIResponderStandardEditActions for EKCalendarChooser {}
 #[cfg(feature = "objc2-ui-kit")]
 unsafe impl UITraitEnvironment for EKCalendarChooser {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl EKCalendarChooser {
+#[cfg(feature = "objc2-ui-kit")]
+impl EKCalendarChooser {
+    extern_methods!(
         #[cfg(feature = "objc2-event-kit")]
         #[unsafe(method(initWithSelectionStyle:displayStyle:eventStore:))]
         #[unsafe(method_family = init)]
@@ -151,13 +151,13 @@ extern_methods!(
         #[unsafe(method(setSelectedCalendars:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedCalendars(&self, selected_calendars: &NSSet<EKCalendar>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl EKCalendarChooser {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(feature = "objc2-ui-kit")]
+impl EKCalendarChooser {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -172,13 +172,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl EKCalendarChooser {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-ui-kit")]
+impl EKCalendarChooser {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -186,8 +186,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserdelegate?language=objc)

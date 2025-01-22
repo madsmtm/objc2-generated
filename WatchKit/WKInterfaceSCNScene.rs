@@ -24,9 +24,9 @@ unsafe impl NSObjectProtocol for WKInterfaceSCNScene {}
 #[cfg(all(feature = "WKInterfaceObject", feature = "objc2-scene-kit"))]
 unsafe impl SCNSceneRenderer for WKInterfaceSCNScene {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceSCNScene {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceSCNScene {
+    extern_methods!(
         #[deprecated = "Use SceneKit.SceneView instead."]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -76,15 +76,15 @@ extern_methods!(
         #[unsafe(method(setAntialiasingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAntialiasingMode(&self, antialiasing_mode: SCNAntialiasingMode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceSCNScene {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceSCNScene {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

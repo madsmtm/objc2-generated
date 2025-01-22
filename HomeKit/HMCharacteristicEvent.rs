@@ -41,9 +41,9 @@ unsafe impl<TriggerValueType: ?Sized + Message> MutableCopyingHelper
 #[cfg(feature = "HMEvent")]
 unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol for HMCharacteristicEvent<TriggerValueType> {}
 
-extern_methods!(
-    #[cfg(feature = "HMEvent")]
-    unsafe impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
+#[cfg(feature = "HMEvent")]
+impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -102,19 +102,19 @@ extern_methods!(
             trigger_value: Option<&TriggerValueType>,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(feature = "HMEvent")]
+impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// This class represents an event that is evaluated based on the value of a characteristic
@@ -156,9 +156,9 @@ unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol
 {
 }
 
-extern_methods!(
-    #[cfg(feature = "HMEvent")]
-    unsafe impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
+#[cfg(feature = "HMEvent")]
+impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -185,13 +185,13 @@ extern_methods!(
         #[unsafe(method(setTriggerValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTriggerValue(&self, trigger_value: Option<&TriggerValueType>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMCharacteristicEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
+/// Methods declared on superclass `HMCharacteristicEvent`.
+#[cfg(feature = "HMEvent")]
+impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
+    extern_methods!(
         #[cfg(feature = "HMCharacteristic")]
         /// Initializes a new characteristic event object
         ///
@@ -213,16 +213,16 @@ extern_methods!(
             characteristic: &HMCharacteristic,
             trigger_value: Option<&TriggerValueType>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(feature = "HMEvent")]
+impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

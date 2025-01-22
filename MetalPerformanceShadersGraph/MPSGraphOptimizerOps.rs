@@ -6,10 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// MPSGraphOptimizerOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphOptimizerOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// The Stochastic gradient descent performs a gradient descent.
         ///
@@ -140,5 +140,5 @@ extern_methods!(
             gradient_tensor: &MPSGraphTensor,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
-    }
-);
+    );
+}

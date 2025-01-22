@@ -41,8 +41,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSMergeConflict {}
 
-extern_methods!(
-    unsafe impl NSMergeConflict {
+impl NSMergeConflict {
+    extern_methods!(
         #[cfg(feature = "NSManagedObject")]
         #[unsafe(method(sourceObject))]
         #[unsafe(method_family = none)]
@@ -85,17 +85,17 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMergeConflict {
+/// Methods declared on superclass `NSObject`.
+impl NSMergeConflict {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsconstraintconflict?language=objc)
@@ -106,8 +106,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSConstraintConflict {}
 
-extern_methods!(
-    unsafe impl NSConstraintConflict {
+impl NSConstraintConflict {
+    extern_methods!(
         #[unsafe(method(constraint))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraint(&self) -> Retained<NSArray<NSString>>;
@@ -147,12 +147,12 @@ extern_methods!(
             conflicting_objects: &NSArray<NSManagedObject>,
             conflicting_snapshots: &NSArray,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSConstraintConflict {
+/// Methods declared on superclass `NSObject`.
+impl NSConstraintConflict {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -160,8 +160,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicy?language=objc)
@@ -172,8 +172,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSMergePolicy {}
 
-extern_methods!(
-    unsafe impl NSMergePolicy {
+impl NSMergePolicy {
+    extern_methods!(
         #[unsafe(method(errorMergePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorMergePolicy() -> Retained<NSMergePolicy>;
@@ -229,14 +229,14 @@ extern_methods!(
             &self,
             list: &NSArray<NSConstraintConflict>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMergePolicy {
+/// Methods declared on superclass `NSObject`.
+impl NSMergePolicy {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

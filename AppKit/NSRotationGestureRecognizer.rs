@@ -23,9 +23,9 @@ unsafe impl NSCoding for NSRotationGestureRecognizer {}
 #[cfg(feature = "NSGestureRecognizer")]
 unsafe impl NSObjectProtocol for NSRotationGestureRecognizer {}
 
-extern_methods!(
-    #[cfg(feature = "NSGestureRecognizer")]
-    unsafe impl NSRotationGestureRecognizer {
+#[cfg(feature = "NSGestureRecognizer")]
+impl NSRotationGestureRecognizer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(rotation))]
         #[unsafe(method_family = none)]
@@ -47,13 +47,13 @@ extern_methods!(
         #[unsafe(method(setRotationInDegrees:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRotationInDegrees(&self, rotation_in_degrees: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSGestureRecognizer`
-    #[cfg(feature = "NSGestureRecognizer")]
-    unsafe impl NSRotationGestureRecognizer {
+/// Methods declared on superclass `NSGestureRecognizer`.
+#[cfg(feature = "NSGestureRecognizer")]
+impl NSRotationGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
@@ -68,13 +68,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSGestureRecognizer")]
-    unsafe impl NSRotationGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSGestureRecognizer")]
+impl NSRotationGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,5 +82,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -33,8 +33,8 @@ unsafe impl NSObjectProtocol for HKAttachment {}
 
 unsafe impl NSSecureCoding for HKAttachment {}
 
-extern_methods!(
-    unsafe impl HKAttachment {
+impl HKAttachment {
+    extern_methods!(
         /// A unique identifier of the receiver in the HealthKit database.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -77,5 +77,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -122,10 +122,10 @@ unsafe impl NSObjectProtocol for WebView {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for WebView {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WebView {
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WebView {
+    extern_methods!(
         /// Checks if the WebKit can show content of a certain MIME type.
         ///
         /// Parameter `MIMEType`: The MIME type to check.
@@ -776,14 +776,14 @@ extern_methods!(
         #[unsafe(method(mainFrameIcon))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainFrameIcon(&self) -> Option<Retained<NSImage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WebView {
+/// Methods declared on superclass `NSView`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WebView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -794,36 +794,36 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WebView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WebView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WebView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WebView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebIBActions
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WebView {
+/// WebIBActions.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WebView {
+    extern_methods!(
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(takeStringURLFrom:))]
         #[unsafe(method_family = none)]
@@ -903,8 +903,8 @@ extern_methods!(
         #[unsafe(method(toggleSmartInsertDelete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleSmartInsertDelete(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
@@ -935,11 +935,11 @@ extern "C" {
     pub static WebViewDidChangeSelectionNotification: Option<&'static NSString>;
 }
 
-extern_methods!(
-    /// WebViewCSS
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WebView {
+/// WebViewCSS.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WebView {
+    extern_methods!(
         #[cfg(all(
             feature = "DOMCSSStyleDeclaration",
             feature = "DOMElement",
@@ -955,14 +955,14 @@ extern_methods!(
             element: Option<&DOMElement>,
             pseudo_element: Option<&NSString>,
         ) -> Option<Retained<DOMCSSStyleDeclaration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebViewEditing
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WebView {
+/// WebViewEditing.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WebView {
+    extern_methods!(
         #[cfg(all(
             feature = "DOMObject",
             feature = "DOMRange",
@@ -1105,14 +1105,14 @@ extern_methods!(
             &self,
             text: Option<&NSString>,
         ) -> Option<Retained<DOMCSSStyleDeclaration>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebViewUndoableEditing
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WebView {
+/// WebViewUndoableEditing.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WebView {
+    extern_methods!(
         #[cfg(all(
             feature = "DOMNode",
             feature = "DOMObject",
@@ -1153,14 +1153,14 @@ extern_methods!(
         #[unsafe(method(applyStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyStyle(&self, style: Option<&DOMCSSStyleDeclaration>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebViewEditingActions
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl WebView {
+/// WebViewEditingActions.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl WebView {
+    extern_methods!(
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(copy:))]
         #[unsafe(method_family = none)]
@@ -1298,5 +1298,5 @@ extern_methods!(
         #[unsafe(method(overWrite:))]
         #[unsafe(method_family = none)]
         pub unsafe fn overWrite(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}

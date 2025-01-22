@@ -83,8 +83,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CNContactStore {}
 
-extern_methods!(
-    unsafe impl CNContactStore {
+impl CNContactStore {
+    extern_methods!(
         /// Indicates the current authorization status to access contact data.
         ///
         ///
@@ -351,12 +351,12 @@ extern_methods!(
         #[unsafe(method(defaultContainerIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultContainerIdentifier(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNContactStore {
+/// Methods declared on superclass `NSObject`.
+impl CNContactStore {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -364,8 +364,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Notification posted when changes occur in another CNContactStore.

@@ -27,9 +27,9 @@ unsafe impl CopyingHelper for CBCentral {
 #[cfg(feature = "CBPeer")]
 unsafe impl NSObjectProtocol for CBCentral {}
 
-extern_methods!(
-    #[cfg(feature = "CBPeer")]
-    unsafe impl CBCentral {
+#[cfg(feature = "CBPeer")]
+impl CBCentral {
+    extern_methods!(
         /// The maximum amount of data, in bytes, that can be received by the central in a single notification or indication.
         ///
         ///
@@ -37,25 +37,25 @@ extern_methods!(
         #[unsafe(method(maximumUpdateValueLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumUpdateValueLength(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CBPeer`
-    #[cfg(feature = "CBPeer")]
-    unsafe impl CBCentral {
+/// Methods declared on superclass `CBPeer`.
+#[cfg(feature = "CBPeer")]
+impl CBCentral {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CBPeer")]
-    unsafe impl CBCentral {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CBPeer")]
+impl CBCentral {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

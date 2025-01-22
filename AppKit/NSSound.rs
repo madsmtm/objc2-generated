@@ -44,8 +44,8 @@ unsafe impl NSPasteboardWriting for NSSound {}
 
 unsafe impl NSSecureCoding for NSSound {}
 
-extern_methods!(
-    unsafe impl NSSound {
+impl NSSound {
+    extern_methods!(
         #[unsafe(method(soundNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn soundNamed(name: &NSSoundName) -> Option<Retained<NSSound>>;
@@ -187,12 +187,12 @@ extern_methods!(
         #[unsafe(method(channelMapping))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelMapping(&self) -> Option<Retained<NSArray>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSound {
+/// Methods declared on superclass `NSObject`.
+impl NSSound {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -200,12 +200,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSSound {
+/// NSDeprecated.
+impl NSSound {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(soundUnfilteredFileTypes))]
         #[unsafe(method_family = none)]
@@ -215,8 +215,8 @@ extern_methods!(
         #[unsafe(method(soundUnfilteredPasteboardTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn soundUnfilteredPasteboardTypes() -> Option<Retained<NSArray>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssounddelegate?language=objc)

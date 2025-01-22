@@ -147,8 +147,8 @@ unsafe impl NSCoding for NSScrubberSelectionStyle {}
 
 unsafe impl NSObjectProtocol for NSScrubberSelectionStyle {}
 
-extern_methods!(
-    unsafe impl NSScrubberSelectionStyle {
+impl NSScrubberSelectionStyle {
+    extern_methods!(
         #[unsafe(method(outlineOverlayStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn outlineOverlayStyle(
@@ -177,17 +177,17 @@ extern_methods!(
         #[unsafe(method(makeSelectionView))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeSelectionView(&self) -> Option<Retained<NSScrubberSelectionView>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScrubberSelectionStyle {
+/// Methods declared on superclass `NSObject`.
+impl NSScrubberSelectionStyle {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// `NSScrubber`is a control designed for the NSTouchBar environment.
@@ -244,9 +244,9 @@ unsafe impl NSObjectProtocol for NSScrubber {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSScrubber {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubber {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubber {
+    extern_methods!(
         #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
@@ -565,25 +565,25 @@ extern_methods!(
             item_identifier: &NSUserInterfaceItemIdentifier,
             owner: Option<&AnyObject>,
         ) -> Option<Retained<NSScrubberItemView>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubber {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubber {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSScrubber {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrubber {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

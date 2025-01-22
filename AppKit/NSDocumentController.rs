@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for NSDocumentController {}
 #[cfg(feature = "NSUserInterfaceValidation")]
 unsafe impl NSUserInterfaceValidations for NSDocumentController {}
 
-extern_methods!(
-    unsafe impl NSDocumentController {
+impl NSDocumentController {
+    extern_methods!(
         #[unsafe(method(sharedDocumentController))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedDocumentController(
@@ -317,21 +317,21 @@ extern_methods!(
             &self,
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDocumentController {
+/// Methods declared on superclass `NSObject`.
+impl NSDocumentController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSDocumentController {
+/// NSDeprecated.
+impl NSDocumentController {
+    extern_methods!(
         #[deprecated = "Use -openDocumentWithContentsOfURL:display:completionHandler: instead"]
         #[unsafe(method(openDocumentWithContentsOfURL:display:error:_))]
         #[unsafe(method_family = none)]
@@ -441,5 +441,5 @@ extern_methods!(
         #[unsafe(method(shouldCreateUI))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldCreateUI(&self) -> bool;
-    }
-);
+    );
+}

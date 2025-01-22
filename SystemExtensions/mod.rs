@@ -169,8 +169,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for OSSystemExtensionRequest {}
 
-extern_methods!(
-    unsafe impl OSSystemExtensionRequest {
+impl OSSystemExtensionRequest {
+    extern_methods!(
         /// A delegate to receive updates about the progress of a request
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -191,12 +191,12 @@ extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl OSSystemExtensionRequest {
+/// Methods declared on superclass `NSObject`.
+impl OSSystemExtensionRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -204,8 +204,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties?language=objc)
@@ -216,8 +216,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for OSSystemExtensionProperties {}
 
-extern_methods!(
-    unsafe impl OSSystemExtensionProperties {
+impl OSSystemExtensionProperties {
+    extern_methods!(
         /// The file URL locating an indicating the extension bundle these properties
         /// were retreived from.
         #[unsafe(method(URL))]
@@ -253,12 +253,12 @@ extern_methods!(
         #[unsafe(method(isUninstalling))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUninstalling(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl OSSystemExtensionProperties {
+/// Methods declared on superclass `NSObject`.
+impl OSSystemExtensionProperties {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -266,8 +266,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequestdelegate?language=objc)
@@ -381,8 +381,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for OSSystemExtensionManager {}
 
-extern_methods!(
-    unsafe impl OSSystemExtensionManager {
+impl OSSystemExtensionManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -402,17 +402,17 @@ extern_methods!(
         #[unsafe(method(submitRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitRequest(&self, request: &OSSystemExtensionRequest);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl OSSystemExtensionManager {
+/// Methods declared on superclass `NSObject`.
+impl OSSystemExtensionManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo?language=objc)
@@ -427,8 +427,8 @@ unsafe impl Sync for OSSystemExtensionInfo {}
 
 unsafe impl NSObjectProtocol for OSSystemExtensionInfo {}
 
-extern_methods!(
-    unsafe impl OSSystemExtensionInfo {
+impl OSSystemExtensionInfo {
+    extern_methods!(
         /// The bundle identifier of the extension (CFBundleIdentifier)
         #[unsafe(method(bundleIdentifier))]
         #[unsafe(method_family = none)]
@@ -443,12 +443,12 @@ extern_methods!(
         #[unsafe(method(bundleShortVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleShortVersion(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl OSSystemExtensionInfo {
+/// Methods declared on superclass `NSObject`.
+impl OSSystemExtensionInfo {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -456,8 +456,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionsworkspaceobserver?language=objc)
@@ -506,8 +506,8 @@ unsafe impl Sync for OSSystemExtensionsWorkspace {}
 
 unsafe impl NSObjectProtocol for OSSystemExtensionsWorkspace {}
 
-extern_methods!(
-    unsafe impl OSSystemExtensionsWorkspace {
+impl OSSystemExtensionsWorkspace {
+    extern_methods!(
         #[unsafe(method(sharedWorkspace))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedWorkspace() -> Retained<OSSystemExtensionsWorkspace>;
@@ -527,12 +527,12 @@ extern_methods!(
             &self,
             observer: &ProtocolObject<dyn OSSystemExtensionsWorkspaceObserver>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl OSSystemExtensionsWorkspace {
+/// Methods declared on superclass `NSObject`.
+impl OSSystemExtensionsWorkspace {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -540,5 +540,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

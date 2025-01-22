@@ -39,8 +39,8 @@ unsafe impl NSObjectProtocol for NSFont {}
 
 unsafe impl NSSecureCoding for NSFont {}
 
-extern_methods!(
-    unsafe impl NSFont {
+impl NSFont {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// ******* Factory ********
         #[unsafe(method(fontWithName:size:))]
@@ -353,12 +353,12 @@ extern_methods!(
         #[unsafe(method(isVertical))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVertical(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFont {
+/// Methods declared on superclass `NSObject`.
+impl NSFont {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -366,8 +366,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// ******* Notifications ********
@@ -447,9 +447,9 @@ extern "C-unwind" {
     ) -> NSInteger;
 }
 
-extern_methods!(
-    /// NSFont_Deprecated
-    unsafe impl NSFont {
+/// NSFont_Deprecated.
+impl NSFont {
+    extern_methods!(
         #[unsafe(method(glyphWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn glyphWithName(&self, name: &NSString) -> NSGlyph;
@@ -508,12 +508,12 @@ extern_methods!(
         #[unsafe(method(renderingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingMode(&self) -> NSFontRenderingMode;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSFont_TextStyles
-    unsafe impl NSFont {
+/// NSFont_TextStyles.
+impl NSFont {
+    extern_methods!(
         #[cfg(feature = "NSFontDescriptor")]
         #[unsafe(method(preferredFontForTextStyle:options:))]
         #[unsafe(method_family = none)]
@@ -521,5 +521,5 @@ extern_methods!(
             style: &NSFontTextStyle,
             options: &NSDictionary<NSFontTextStyleOptionKey, AnyObject>,
         ) -> Retained<NSFont>;
-    }
-);
+    );
+}

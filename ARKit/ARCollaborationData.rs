@@ -67,9 +67,8 @@ unsafe impl NSObjectProtocol for ARCollaborationData {}
 unsafe impl NSSecureCoding for ARCollaborationData {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARCollaborationData {
+impl ARCollaborationData {
+    extern_methods!(
         /// Network priority of the data.
         ///
         /// The network implementation should respect this flag and choose the appropriate protocol.
@@ -85,5 +84,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

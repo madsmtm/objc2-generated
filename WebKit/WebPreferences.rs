@@ -73,8 +73,8 @@ unsafe impl NSCoding for WebPreferences {}
 
 unsafe impl NSObjectProtocol for WebPreferences {}
 
-extern_methods!(
-    unsafe impl WebPreferences {
+impl WebPreferences {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(standardPreferences))]
         #[unsafe(method_family = none)]
@@ -454,12 +454,12 @@ extern_methods!(
             &self,
             allows_air_play_for_media_playback: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WebPreferences {
+/// Methods declared on superclass `NSObject`.
+impl WebPreferences {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -467,5 +467,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

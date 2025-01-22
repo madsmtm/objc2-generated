@@ -29,9 +29,9 @@ extern_class!(
 #[cfg(feature = "VZSocketDevice")]
 unsafe impl NSObjectProtocol for VZVirtioSocketDevice {}
 
-extern_methods!(
-    #[cfg(feature = "VZSocketDevice")]
-    unsafe impl VZVirtioSocketDevice {
+#[cfg(feature = "VZSocketDevice")]
+impl VZVirtioSocketDevice {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -83,5 +83,5 @@ extern_methods!(
             port: u32,
             completion_handler: &block2::Block<dyn Fn(*mut VZVirtioSocketConnection, *mut NSError)>,
         );
-    }
-);
+    );
+}

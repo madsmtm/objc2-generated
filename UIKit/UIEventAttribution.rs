@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for UIEventAttribution {
 
 unsafe impl NSObjectProtocol for UIEventAttribution {}
 
-extern_methods!(
-    unsafe impl UIEventAttribution {
+impl UIEventAttribution {
+    extern_methods!(
         /// An identifier that is associated with the source of the attribution. For example, you may choose to use this as a campaign identifier to measure the effectiveness of different advertisement campaigns.
         ///
         /// This field corresponds to `source_id` in the subsequent attribution report.
@@ -92,5 +92,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

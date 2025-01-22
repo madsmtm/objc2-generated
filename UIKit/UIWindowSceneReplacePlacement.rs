@@ -31,9 +31,9 @@ unsafe impl CopyingHelper for UIWindowSceneReplacePlacement {
 #[cfg(feature = "UIWindowScenePlacement")]
 unsafe impl NSObjectProtocol for UIWindowSceneReplacePlacement {}
 
-extern_methods!(
-    #[cfg(feature = "UIWindowScenePlacement")]
-    unsafe impl UIWindowSceneReplacePlacement {
+#[cfg(feature = "UIWindowScenePlacement")]
+impl UIWindowSceneReplacePlacement {
+    extern_methods!(
         #[cfg(feature = "UISceneSession")]
         /// Creates the placement that targets the given `sceneSession`
         /// - Parameter sceneSession: The scene session of the window scene to replace.
@@ -43,13 +43,13 @@ extern_methods!(
         pub unsafe fn placementToReplaceSceneSession(
             scene_session: &UISceneSession,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIWindowScenePlacement`
-    #[cfg(feature = "UIWindowScenePlacement")]
-    unsafe impl UIWindowSceneReplacePlacement {
+/// Methods declared on superclass `UIWindowScenePlacement`.
+#[cfg(feature = "UIWindowScenePlacement")]
+impl UIWindowSceneReplacePlacement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -57,5 +57,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

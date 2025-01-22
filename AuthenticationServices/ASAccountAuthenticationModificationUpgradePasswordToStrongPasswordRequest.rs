@@ -20,9 +20,9 @@ unsafe impl NSObjectProtocol
 {
 }
 
-extern_methods!(
-    #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
-    unsafe impl ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest {
+#[cfg(feature = "ASAccountAuthenticationModificationRequest")]
+impl ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest {
+    extern_methods!(
         #[cfg(feature = "ASCredentialServiceIdentifier")]
         /// Creates a request for a strong password upgrade invoked within the extension's containing app.
         ///
@@ -57,13 +57,13 @@ extern_methods!(
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
-    unsafe impl ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "ASAccountAuthenticationModificationRequest")]
+impl ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -71,5 +71,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

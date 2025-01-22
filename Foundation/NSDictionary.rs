@@ -61,8 +61,8 @@ unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCodin
 {
 }
 
-extern_methods!(
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub fn count(&self) -> NSUInteger;
@@ -97,17 +97,17 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl<KeyType: Message, ObjectType: Message> DefaultRetained for NSDictionary<KeyType, ObjectType> {
     #[inline]
@@ -116,9 +116,9 @@ impl<KeyType: Message, ObjectType: Message> DefaultRetained for NSDictionary<Key
     }
 }
 
-extern_methods!(
-    /// NSExtendedDictionary
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+/// NSExtendedDictionary.
+impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[unsafe(method(allKeys))]
         #[unsafe(method_family = none)]
@@ -268,12 +268,12 @@ extern_methods!(
                 dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
             >,
         ) -> Retained<NSSet<KeyType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+/// NSDeprecated.
+impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    extern_methods!(
         /// This method is unsafe because it could potentially cause buffer overruns. You should use -getObjects:andKeys:count:
         #[deprecated = "Use -getObjects:andKeys:count: instead"]
         #[unsafe(method(getObjects:andKeys:))]
@@ -333,12 +333,12 @@ extern_methods!(
         #[unsafe(method(writeToURL:atomically:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDictionaryCreation
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+/// NSDictionaryCreation.
+impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(dictionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionary() -> Retained<Self>;
@@ -397,14 +397,14 @@ extern_methods!(
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSDictionary`
-    ///
-    /// NSDictionaryCreation
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+/// Methods declared on superclass `NSDictionary`.
+///
+/// NSDictionaryCreation.
+impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(dictionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionary() -> Retained<Self>;
@@ -463,8 +463,8 @@ extern_methods!(
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// **************    Mutable Dictionary    ***************
@@ -524,8 +524,8 @@ unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCodin
 {
 }
 
-extern_methods!(
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(removeObjectForKey:))]
         #[unsafe(method_family = none)]
         pub fn removeObjectForKey(&self, a_key: &KeyType);
@@ -554,12 +554,12 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSDictionary`
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+/// Methods declared on superclass `NSDictionary`.
+impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSObject")]
         #[unsafe(method(initWithObjects:forKeys:count:))]
         #[unsafe(method_family = init)]
@@ -569,17 +569,17 @@ extern_methods!(
             keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl<KeyType: Message, ObjectType: Message> DefaultRetained
     for NSMutableDictionary<KeyType, ObjectType>
@@ -590,9 +590,9 @@ impl<KeyType: Message, ObjectType: Message> DefaultRetained
     }
 }
 
-extern_methods!(
-    /// NSExtendedMutableDictionary
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+/// NSExtendedMutableDictionary.
+impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(addEntriesFromDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addEntriesFromDictionary(
@@ -621,12 +621,12 @@ extern_methods!(
             obj: Option<&ObjectType>,
             key: &ProtocolObject<dyn NSCopying>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSMutableDictionaryCreation
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+/// NSMutableDictionaryCreation.
+impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(dictionaryWithCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithCapacity(num_items: NSUInteger) -> Retained<Self>;
@@ -660,28 +660,28 @@ extern_methods!(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Retained<NSMutableDictionary<KeyType, ObjectType>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSharedKeySetDictionary
-    unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+/// NSSharedKeySetDictionary.
+impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
         #[unsafe(method(sharedKeySetForKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedKeySetForKeys(
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Retained<AnyObject>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSharedKeySetDictionary
-    unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+/// NSSharedKeySetDictionary.
+impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
+    extern_methods!(
         #[unsafe(method(dictionaryWithSharedKeySet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithSharedKeySet(
             keyset: &AnyObject,
         ) -> Retained<NSMutableDictionary<KeyType, ObjectType>>;
-    }
-);
+    );
+}

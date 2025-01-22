@@ -68,8 +68,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetReader {}
 
-extern_methods!(
-    unsafe impl AVAssetReader {
+impl AVAssetReader {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -216,5 +216,5 @@ extern_methods!(
         #[unsafe(method(cancelReading))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelReading(&self);
-    }
-);
+    );
+}

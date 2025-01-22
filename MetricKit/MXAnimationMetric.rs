@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXAnimationMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXAnimationMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXAnimationMetric {
+#[cfg(feature = "MXMetric")]
+impl MXAnimationMetric {
+    extern_methods!(
         /// Ratio of time the application spent hitching while scrolling.
         ///
         /// Scroll hitches are user perceptible animation issues that occur during scrolling.
@@ -38,13 +38,13 @@ extern_methods!(
         #[unsafe(method(scrollHitchTimeRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollHitchTimeRatio(&self) -> Retained<NSMeasurement<NSUnit>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXAnimationMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXAnimationMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -52,5 +52,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

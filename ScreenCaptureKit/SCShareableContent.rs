@@ -46,8 +46,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCRunningApplication {}
 
-extern_methods!(
-    unsafe impl SCRunningApplication {
+impl SCRunningApplication {
+    extern_methods!(
         /// bundleIdentifier the bundleIdentifier for the SCRunningApplication
         #[unsafe(method(bundleIdentifier))]
         #[unsafe(method_family = none)]
@@ -71,8 +71,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scwindow?language=objc)
@@ -83,8 +83,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCWindow {}
 
-extern_methods!(
-    unsafe impl SCWindow {
+impl SCWindow {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         /// windowID the CGWindowID for the SCWindow
         #[unsafe(method(windowID))]
@@ -129,8 +129,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scdisplay?language=objc)
@@ -141,8 +141,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCDisplay {}
 
-extern_methods!(
-    unsafe impl SCDisplay {
+impl SCDisplay {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         /// displayId the CGDirectDisplayID for the SCDisplay
         #[unsafe(method(displayID))]
@@ -172,8 +172,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// SCShareableContentInfo
@@ -188,8 +188,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCShareableContentInfo {}
 
-extern_methods!(
-    unsafe impl SCShareableContentInfo {
+impl SCShareableContentInfo {
+    extern_methods!(
         /// style of stream
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
@@ -205,12 +205,12 @@ extern_methods!(
         #[unsafe(method(contentRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentRect(&self) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCShareableContentInfo {
+/// Methods declared on superclass `NSObject`.
+impl SCShareableContentInfo {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -218,8 +218,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontent?language=objc)
@@ -230,8 +230,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCShareableContent {}
 
-extern_methods!(
-    unsafe impl SCShareableContent {
+impl SCShareableContent {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// getShareableContentWithCompletionHandler:completionHandler
         ///
@@ -342,5 +342,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

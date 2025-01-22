@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetResourceLoader {}
 
-extern_methods!(
-    unsafe impl AVAssetResourceLoader {
+impl AVAssetResourceLoader {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -34,8 +34,8 @@ extern_methods!(
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAssetResourceLoaderDelegate>>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The AVAssetResourceLoaderDelegate protocol defines methods that allow your code to handle resource loading requests coming from an AVURLAsset.
@@ -147,8 +147,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetResourceLoadingRequestor {}
 
-extern_methods!(
-    unsafe impl AVAssetResourceLoadingRequestor {
+impl AVAssetResourceLoadingRequestor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -161,8 +161,8 @@ extern_methods!(
         #[unsafe(method(providesExpiredSessionReports))]
         #[unsafe(method_family = none)]
         pub unsafe fn providesExpiredSessionReports(&self) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest?language=objc)
@@ -173,8 +173,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetResourceLoadingRequest {}
 
-extern_methods!(
-    unsafe impl AVAssetResourceLoadingRequest {
+impl AVAssetResourceLoadingRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -254,8 +254,8 @@ extern_methods!(
         #[unsafe(method(finishLoadingWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishLoadingWithError(&self, error: Option<&NSError>);
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVAssetResourceRenewalRequest encapsulates information about a resource request issued by a resource loader for the purpose of renewing a request previously issued.
@@ -271,13 +271,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetResourceRenewalRequest {}
 
-extern_methods!(
-    unsafe impl AVAssetResourceRenewalRequest {}
-);
+impl AVAssetResourceRenewalRequest {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAssetResourceLoadingRequest`
-    unsafe impl AVAssetResourceRenewalRequest {
+/// Methods declared on superclass `AVAssetResourceLoadingRequest`.
+impl AVAssetResourceRenewalRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -285,8 +285,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingcontentinformationrequest?language=objc)
@@ -297,8 +297,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetResourceLoadingContentInformationRequest {}
 
-extern_methods!(
-    unsafe impl AVAssetResourceLoadingContentInformationRequest {
+impl AVAssetResourceLoadingContentInformationRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -376,8 +376,8 @@ extern_methods!(
             &self,
             entire_length_available_on_demand: bool,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingdatarequest?language=objc)
@@ -388,8 +388,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAssetResourceLoadingDataRequest {}
 
-extern_methods!(
-    unsafe impl AVAssetResourceLoadingDataRequest {
+impl AVAssetResourceLoadingDataRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -433,12 +433,12 @@ extern_methods!(
         #[unsafe(method(respondWithData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondWithData(&self, data: &NSData);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetResourceLoaderContentKeySupport
-    unsafe impl AVAssetResourceLoader {
+/// AVAssetResourceLoaderContentKeySupport.
+impl AVAssetResourceLoader {
+    extern_methods!(
         /// When YES, eligible content keys will be loaded as eagerly as possible, potentially handled by the delegate. Setting to YES may result in network activity.
         ///
         /// Any work done as a result of setting this property will be performed asynchronously.
@@ -450,12 +450,12 @@ extern_methods!(
         #[unsafe(method(setPreloadsEligibleContentKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreloadsEligibleContentKeys(&self, preloads_eligible_content_keys: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetResourceLoaderCommonMediaClientDataSupport
-    unsafe impl AVAssetResourceLoader {
+/// AVAssetResourceLoaderCommonMediaClientDataSupport.
+impl AVAssetResourceLoader {
+    extern_methods!(
         #[unsafe(method(sendsCommonMediaClientDataAsHTTPHeaders))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendsCommonMediaClientDataAsHTTPHeaders(&self) -> bool;
@@ -467,12 +467,12 @@ extern_methods!(
             &self,
             sends_common_media_client_data_as_http_headers: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetResourceLoadingRequestContentKeyRequestSupport
-    unsafe impl AVAssetResourceLoadingRequest {
+/// AVAssetResourceLoadingRequestContentKeyRequestSupport.
+impl AVAssetResourceLoadingRequest {
+    extern_methods!(
         /// Obtains a streaming content key request for a specific combination of application and content.
         ///
         /// Parameter `appIdentifier`: An opaque identifier for the application. The value of this identifier depends on the particular system used to provide the decryption key.
@@ -513,8 +513,8 @@ extern_methods!(
             key_vendor_response: &NSData,
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Specifies whether the content key request should require a persistable key to be returned from the key vendor. Value should be a NSNumber created with +[NSNumber numberWithBool:].
@@ -524,9 +524,9 @@ extern "C" {
         &'static NSString;
 }
 
-extern_methods!(
-    /// AVAssetResourceLoadingRequestDeprecated
-    unsafe impl AVAssetResourceLoadingRequest {
+/// AVAssetResourceLoadingRequestDeprecated.
+impl AVAssetResourceLoadingRequest {
+    extern_methods!(
         /// Causes the receiver to finish loading a resource that a delegate has previously assumed responsibility for loading by returning YES as the result of -resourceLoader:shouldWaitForLoadingOfRequestedResource:.
         ///
         /// Parameter `response`: The NSURLResponse for the NSURLRequest of the receiver. Should be nil if no response is required.
@@ -549,5 +549,5 @@ extern_methods!(
             data: Option<&NSData>,
             redirect: Option<&NSURLRequest>,
         );
-    }
-);
+    );
+}

@@ -42,8 +42,8 @@ unsafe impl CopyingHelper for NSToolbarItem {
 
 unsafe impl NSObjectProtocol for NSToolbarItem {}
 
-extern_methods!(
-    unsafe impl NSToolbarItem {
+impl NSToolbarItem {
+    extern_methods!(
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[unsafe(method(initWithItemIdentifier:))]
@@ -317,12 +317,12 @@ extern_methods!(
         #[unsafe(method(allowsDuplicatesInToolbar))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsDuplicatesInToolbar(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSToolbarItem {
+/// Methods declared on superclass `NSObject`.
+impl NSToolbarItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -330,12 +330,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSToolbarItem {}
-);
+impl NSToolbarItem {
+    extern_methods!();
+}
 
 #[cfg(feature = "NSMenu")]
 unsafe impl NSMenuItemValidation for NSToolbarItem {}

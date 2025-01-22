@@ -44,8 +44,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLModelAsset {}
 
-extern_methods!(
-    unsafe impl MLModelAsset {
+impl MLModelAsset {
+    extern_methods!(
         /// Construct a model asset from the contents of specification data.
         ///
         /// - Parameters:
@@ -151,5 +151,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

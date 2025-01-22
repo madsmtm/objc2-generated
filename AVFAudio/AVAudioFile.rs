@@ -26,8 +26,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioFile {}
 
-extern_methods!(
-    unsafe impl AVAudioFile {
+impl AVAudioFile {
+    extern_methods!(
         /// Open a file for reading.
         ///
         /// Parameter `fileURL`: the file to open
@@ -225,12 +225,12 @@ extern_methods!(
         #[unsafe(method(setFramePosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFramePosition(&self, frame_position: AVAudioFramePosition);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioFile {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioFile {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -238,5 +238,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -85,8 +85,8 @@ unsafe impl NSObjectProtocol for PHProjectInfo {}
 
 unsafe impl NSSecureCoding for PHProjectInfo {}
 
-extern_methods!(
-    unsafe impl PHProjectInfo {
+impl PHProjectInfo {
+    extern_methods!(
         /// Source from which the project was created.
         #[unsafe(method(creationSource))]
         #[unsafe(method_family = none)]
@@ -133,8 +133,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Options for the sectionType property in PHProjectSection which provides a hint to a section's intended usage.
 ///
@@ -196,8 +196,8 @@ unsafe impl NSObjectProtocol for PHProjectSection {}
 
 unsafe impl NSSecureCoding for PHProjectSection {}
 
-extern_methods!(
-    unsafe impl PHProjectSection {
+impl PHProjectSection {
+    extern_methods!(
         /// Array containing one or more PHProjectSectionContent objects. Ordered by number of elements from least to most.
         /// Projects should only present one level of content to the user at a time as assets will be reused within
         /// individual content objects.
@@ -222,8 +222,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A PHProjectSectionContent object contains all the elements and suggested layout information for a specific
@@ -246,8 +246,8 @@ unsafe impl NSObjectProtocol for PHProjectSectionContent {}
 
 unsafe impl NSSecureCoding for PHProjectSectionContent {}
 
-extern_methods!(
-    unsafe impl PHProjectSectionContent {
+impl PHProjectSectionContent {
+    extern_methods!(
         /// Array of asset, text, or journal entry elements contained in the content.
         #[unsafe(method(elements))]
         #[unsafe(method_family = none)]
@@ -288,8 +288,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// PHProjectElement is the superclass for all element objects. It is never directly used, but defines the shared
@@ -311,8 +311,8 @@ unsafe impl NSObjectProtocol for PHProjectElement {}
 
 unsafe impl NSSecureCoding for PHProjectElement {}
 
-extern_methods!(
-    unsafe impl PHProjectElement {
+impl PHProjectElement {
+    extern_methods!(
         /// Relative significance of any element in the section content is defined by it's weight.
         /// Values range from 0.0 to 1.0 where the higher numbers represent higher overall significance.
         /// Projects that allow a user to reduce the number of elements in any section content can use
@@ -339,8 +339,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectregionofinterestidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
@@ -366,8 +366,8 @@ unsafe impl NSObjectProtocol for PHProjectRegionOfInterest {}
 
 unsafe impl NSSecureCoding for PHProjectRegionOfInterest {}
 
-extern_methods!(
-    unsafe impl PHProjectRegionOfInterest {
+impl PHProjectRegionOfInterest {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
@@ -405,8 +405,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A PHProjectAssetElement object represents a media asset within a PHProjectSectionContent.
@@ -429,8 +429,8 @@ unsafe impl NSObjectProtocol for PHProjectAssetElement {}
 
 unsafe impl NSSecureCoding for PHProjectAssetElement {}
 
-extern_methods!(
-    unsafe impl PHProjectAssetElement {
+impl PHProjectAssetElement {
+    extern_methods!(
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
         /// Cloud identifier for the underlying PHAsset. This identifier must be converted to a localIdentifier
@@ -474,12 +474,12 @@ extern_methods!(
         #[unsafe(method(verticallyFlipped))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticallyFlipped(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `PHProjectElement`
-    unsafe impl PHProjectAssetElement {
+/// Methods declared on superclass `PHProjectElement`.
+impl PHProjectAssetElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -487,8 +487,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Options for PHProjectTextElementType
 ///
@@ -539,8 +539,8 @@ unsafe impl NSObjectProtocol for PHProjectTextElement {}
 
 unsafe impl NSSecureCoding for PHProjectTextElement {}
 
-extern_methods!(
-    unsafe impl PHProjectTextElement {
+impl PHProjectTextElement {
+    extern_methods!(
         /// Unformatted, raw string for the text element
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
@@ -555,12 +555,12 @@ extern_methods!(
         #[unsafe(method(textElementType))]
         #[unsafe(method_family = none)]
         pub unsafe fn textElementType(&self) -> PHProjectTextElementType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `PHProjectElement`
-    unsafe impl PHProjectTextElement {
+/// Methods declared on superclass `PHProjectElement`.
+impl PHProjectTextElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -568,8 +568,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A PHProjectJournalEntryElement object represents auxilary, date specific information that may be interesting
@@ -592,8 +592,8 @@ unsafe impl NSObjectProtocol for PHProjectJournalEntryElement {}
 
 unsafe impl NSSecureCoding for PHProjectJournalEntryElement {}
 
-extern_methods!(
-    unsafe impl PHProjectJournalEntryElement {
+impl PHProjectJournalEntryElement {
+    extern_methods!(
         /// Date to which the provided asset and/or text pertain
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
@@ -608,12 +608,12 @@ extern_methods!(
         #[unsafe(method(textElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn textElement(&self) -> Option<Retained<PHProjectTextElement>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `PHProjectElement`
-    unsafe impl PHProjectJournalEntryElement {
+/// Methods declared on superclass `PHProjectElement`.
+impl PHProjectJournalEntryElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -621,8 +621,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A PHProjectMapElement object representing a map with annotations.
@@ -644,8 +644,8 @@ unsafe impl NSObjectProtocol for PHProjectMapElement {}
 
 unsafe impl NSSecureCoding for PHProjectMapElement {}
 
-extern_methods!(
-    unsafe impl PHProjectMapElement {
+impl PHProjectMapElement {
+    extern_methods!(
         #[cfg(feature = "objc2-map-kit")]
         /// The type of the map in the project.
         #[unsafe(method(mapType))]
@@ -676,12 +676,12 @@ extern_methods!(
         #[unsafe(method(annotations))]
         #[unsafe(method_family = none)]
         pub unsafe fn annotations(&self) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `PHProjectElement`
-    unsafe impl PHProjectMapElement {
+/// Methods declared on superclass `PHProjectElement`.
+impl PHProjectMapElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -689,5 +689,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

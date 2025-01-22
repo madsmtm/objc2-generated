@@ -36,10 +36,10 @@ unsafe impl RefEncode for MPSGraphLossReductionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// MPSGraphLossOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphLossOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a softmax cross-entropy loss operation and returns the result tensor.
         ///
@@ -90,5 +90,5 @@ extern_methods!(
             reduction_type: MPSGraphLossReductionType,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXCPUMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXCPUMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXCPUMetric {
+#[cfg(feature = "MXMetric")]
+impl MXCPUMetric {
+    extern_methods!(
         /// CPU time aggregated cumulatively.
         ///
         /// The data here represents the total CPU time an application consumed over the date range of the containing payload.
@@ -45,13 +45,13 @@ extern_methods!(
         #[unsafe(method(cumulativeCPUInstructions))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCPUInstructions(&self) -> Retained<NSMeasurement<NSUnit>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXCPUMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXCPUMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -59,5 +59,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

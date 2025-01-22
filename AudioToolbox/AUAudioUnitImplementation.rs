@@ -35,11 +35,11 @@ unsafe impl RefEncode for AURenderEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AUAudioUnitImplementation
-    /// Aspects of AUAudioUnit of interest only to subclassers.
-    #[cfg(feature = "AUAudioUnit")]
-    unsafe impl AUAudioUnit {
+/// AUAudioUnitImplementation.
+/// Aspects of AUAudioUnit of interest only to subclassers.
+#[cfg(feature = "AUAudioUnit")]
+impl AUAudioUnit {
+    extern_methods!(
         #[cfg(feature = "AudioComponent")]
         /// Register an audio unit component implemented as an AUAudioUnit subclass.
         ///
@@ -94,14 +94,14 @@ extern_methods!(
         #[unsafe(method(setRenderResourcesAllocated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenderResourcesAllocated(&self, flag: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AUAudioUnitImplementation
-    /// Aspects of AUAudioUnitBus of interest only to the implementation of v3 AUs.
-    #[cfg(feature = "AUAudioUnit")]
-    unsafe impl AUAudioUnitBus {
+/// AUAudioUnitImplementation.
+/// Aspects of AUAudioUnitBus of interest only to the implementation of v3 AUs.
+#[cfg(feature = "AUAudioUnit")]
+impl AUAudioUnitBus {
+    extern_methods!(
         /// An array of numbers giving the supported numbers of channels for this bus.
         ///
         /// If supportedChannelCounts is nil, then any number less than or equal to maximumChannelCount
@@ -132,30 +132,30 @@ extern_methods!(
         #[unsafe(method(setMaximumChannelCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumChannelCount(&self, maximum_channel_count: AUAudioChannelCount);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AUAudioUnitBusImplementation
-    /// Aspects of AUAudioUnitBusArray of interest only to subclassers.
-    #[cfg(feature = "AUAudioUnit")]
-    unsafe impl AUAudioUnitBusArray {
+/// AUAudioUnitBusImplementation.
+/// Aspects of AUAudioUnitBusArray of interest only to subclassers.
+#[cfg(feature = "AUAudioUnit")]
+impl AUAudioUnitBusArray {
+    extern_methods!(
         /// Sets the bus array to be a copy of the supplied array. The base class issues KVO notifications.
         #[unsafe(method(replaceBusses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceBusses(&self, bus_array: &NSArray<AUAudioUnitBus>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Factory
-    /// Factory methods for building parameters, parameter groups, and parameter trees.
-    ///
-    ///
-    /// Note: In non-ARC code, "create" methods return unretained objects (unlike "create"
-    /// C functions); the caller should generally retain them.
-    #[cfg(feature = "AUParameters")]
-    unsafe impl AUParameterTree {
+/// Factory.
+/// Factory methods for building parameters, parameter groups, and parameter trees.
+///
+///
+/// Note: In non-ARC code, "create" methods return unretained objects (unlike "create"
+/// C functions); the caller should generally retain them.
+#[cfg(feature = "AUParameters")]
+impl AUParameterTree {
+    extern_methods!(
         #[cfg(feature = "AudioUnitProperties")]
         /// Create an AUParameter.
         /// See AUParameter's properties for descriptions of the arguments.
@@ -229,8 +229,8 @@ extern_methods!(
         pub unsafe fn createTreeWithChildren(
             children: &NSArray<AUParameterNode>,
         ) -> Retained<AUParameterTree>;
-    }
-);
+    );
+}
 
 /// A block called to notify the AUAudioUnit implementation of changes to AUParameter values.
 ///
@@ -265,11 +265,11 @@ pub type AUImplementorValueFromStringCallback =
 pub type AUImplementorDisplayNameWithLengthCallback =
     *mut block2::Block<dyn Fn(NonNull<AUParameterNode>, NSInteger) -> NonNull<NSString>>;
 
-extern_methods!(
-    /// AUParameterNodeImplementation
-    /// Aspects of AUParameterNode of interest only to AUAudioUnit subclassers.
-    #[cfg(feature = "AUParameters")]
-    unsafe impl AUParameterNode {
+/// AUParameterNodeImplementation.
+/// Aspects of AUParameterNode of interest only to AUAudioUnit subclassers.
+#[cfg(feature = "AUParameters")]
+impl AUParameterNode {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Called when a parameter changes value.
         ///
@@ -359,8 +359,8 @@ extern_methods!(
             &self,
             implementor_display_name_with_length_callback: AUImplementorDisplayNameWithLengthCallback,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// Wraps a v2 audio unit in an AUAudioUnit subclass.
@@ -385,9 +385,9 @@ extern_class!(
 #[cfg(feature = "AUAudioUnit")]
 unsafe impl NSObjectProtocol for AUAudioUnitV2Bridge {}
 
-extern_methods!(
-    #[cfg(feature = "AUAudioUnit")]
-    unsafe impl AUAudioUnitV2Bridge {
+#[cfg(feature = "AUAudioUnit")]
+impl AUAudioUnitV2Bridge {
+    extern_methods!(
         #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
         /// The underlying v2 AudioUnit
         ///
@@ -401,13 +401,13 @@ extern_methods!(
         #[unsafe(method(audioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioUnit(&self) -> AudioUnit;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AUAudioUnit`
-    #[cfg(feature = "AUAudioUnit")]
-    unsafe impl AUAudioUnitV2Bridge {
+/// Methods declared on superclass `AUAudioUnit`.
+#[cfg(feature = "AUAudioUnit")]
+impl AUAudioUnitV2Bridge {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -438,18 +438,18 @@ extern_methods!(
             this: Allocated<Self>,
             component_description: AudioComponentDescription,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AUAudioUnit")]
-    unsafe impl AUAudioUnitV2Bridge {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AUAudioUnit")]
+impl AUAudioUnitV2Bridge {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Protocol to which principal classes of v3 audio units (extensions) must conform.

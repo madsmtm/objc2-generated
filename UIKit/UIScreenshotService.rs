@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIScreenshotService {}
 
-extern_methods!(
-    unsafe impl UIScreenshotService {
+impl UIScreenshotService {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -56,25 +56,25 @@ extern_methods!(
         #[unsafe(method(windowScene))]
         #[unsafe(method_family = none)]
         pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIScreenshotService
-    #[cfg(all(
-        feature = "UIResponder",
-        feature = "UIScene",
-        feature = "UIWindowScene"
-    ))]
-    unsafe impl UIWindowScene {
+/// UIScreenshotService.
+#[cfg(all(
+    feature = "UIResponder",
+    feature = "UIScene",
+    feature = "UIWindowScene"
+))]
+impl UIWindowScene {
+    extern_methods!(
         /// The screenshot object associated with the scene
         ///
         /// This is non-null if the screenshot service is available for this window scene
         #[unsafe(method(screenshotService))]
         #[unsafe(method_family = none)]
         pub unsafe fn screenshotService(&self) -> Option<Retained<UIScreenshotService>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenshotservicedelegate?language=objc)

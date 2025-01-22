@@ -120,14 +120,14 @@ unsafe impl NSUserInterfaceItemIdentification for NSStatusBarButton {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSStatusBarButton {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSStatusBarButton {
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSStatusBarButton {
+    extern_methods!(
         /// If `YES`, the status bar icon has a disabled/off appearance while still being functional, such as allowing selection and actions. Defaults to `NO`.
         #[unsafe(method(appearsDisabled))]
         #[unsafe(method_family = none)]
@@ -137,18 +137,18 @@ extern_methods!(
         #[unsafe(method(setAppearsDisabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppearsDisabled(&self, appears_disabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSButton`
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSStatusBarButton {
+/// Methods declared on superclass `NSButton`.
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSStatusBarButton {
+    extern_methods!(
         #[cfg(feature = "NSImage")]
         /// Creates a standard push button with a title and image.
         ///
@@ -243,18 +243,18 @@ extern_methods!(
             action: Option<Sel>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSStatusBarButton {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSStatusBarButton {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -265,35 +265,35 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSStatusBarButton {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSStatusBarButton {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSButton",
-        feature = "NSControl",
-        feature = "NSResponder",
-        feature = "NSView"
-    ))]
-    unsafe impl NSStatusBarButton {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSButton",
+    feature = "NSControl",
+    feature = "NSResponder",
+    feature = "NSView"
+))]
+impl NSStatusBarButton {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

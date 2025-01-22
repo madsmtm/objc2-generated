@@ -75,8 +75,8 @@ unsafe impl NSObjectProtocol for UIListContentTextProperties {}
 
 unsafe impl NSSecureCoding for UIListContentTextProperties {}
 
-extern_methods!(
-    unsafe impl UIListContentTextProperties {
+impl UIListContentTextProperties {
+    extern_methods!(
         #[cfg(feature = "UIFont")]
         /// The font used for the text.
         #[unsafe(method(font))]
@@ -232,12 +232,12 @@ extern_methods!(
         #[unsafe(method(setTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransform(&self, transform: UIListContentTextTransform);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIListContentTextProperties {
+/// Methods declared on superclass `NSObject`.
+impl UIListContentTextProperties {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -245,5 +245,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

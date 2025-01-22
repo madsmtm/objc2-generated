@@ -57,8 +57,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NLContextualEmbedding {}
 
-extern_methods!(
-    unsafe impl NLContextualEmbedding {
+impl NLContextualEmbedding {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -145,17 +145,17 @@ extern_methods!(
                 dyn Fn(NLContextualEmbeddingAssetsResult, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NLContextualEmbedding {
+/// Methods declared on superclass `NSObject`.
+impl NLContextualEmbedding {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingresult?language=objc)
@@ -166,8 +166,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NLContextualEmbeddingResult {}
 
-extern_methods!(
-    unsafe impl NLContextualEmbeddingResult {
+impl NLContextualEmbeddingResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -201,14 +201,14 @@ extern_methods!(
             character_index: NSUInteger,
             token_range: NSRangePointer,
         ) -> Option<Retained<NSArray<NSNumber>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NLContextualEmbeddingResult {
+/// Methods declared on superclass `NSObject`.
+impl NLContextualEmbeddingResult {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

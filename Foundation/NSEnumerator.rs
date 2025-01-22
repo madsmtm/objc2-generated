@@ -30,17 +30,17 @@ unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSEnumerator<ObjectType> {
 
 unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
 
-extern_methods!(
-    unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
+impl<ObjectType: Message> NSEnumerator<ObjectType> {
+    extern_methods!(
         #[unsafe(method(nextObject))]
         #[unsafe(method_family = none)]
         pub fn nextObject(&self) -> Option<Retained<ObjectType>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
+/// Methods declared on superclass `NSObject`.
+impl<ObjectType: Message> NSEnumerator<ObjectType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -48,15 +48,15 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtendedEnumerator
-    unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
+/// NSExtendedEnumerator.
+impl<ObjectType: Message> NSEnumerator<ObjectType> {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
         pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
-    }
-);
+    );
+}

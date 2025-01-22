@@ -29,8 +29,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UISymbolEffectCompletionContext {}
 
-extern_methods!(
-    unsafe impl UISymbolEffectCompletionContext {
+impl UISymbolEffectCompletionContext {
+    extern_methods!(
         /// Whether or not the symbol effect was completely finished.
         /// This will be YES for effects that have successfully run to completion.
         #[unsafe(method(isFinished))]
@@ -65,5 +65,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -294,8 +294,8 @@ unsafe impl NSObjectProtocol for CIImage {}
 
 unsafe impl NSSecureCoding for CIImage {}
 
-extern_methods!(
-    unsafe impl CIImage {
+impl CIImage {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(imageWithCGImage:))]
         #[unsafe(method_family = none)]
@@ -816,12 +816,12 @@ extern_methods!(
             image: &CIImage,
             rect: CGRect,
         ) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIImage {
+/// Methods declared on superclass `NSObject`.
+impl CIImage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -829,8 +829,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption?language=objc)
 // NS_TYPED_ENUM
@@ -861,9 +861,9 @@ extern "C" {
     pub static kCIImageAutoAdjustLevel: &'static CIImageAutoAdjustmentOption;
 }
 
-extern_methods!(
-    /// AutoAdjustment
-    unsafe impl CIImage {
+/// AutoAdjustment.
+impl CIImage {
+    extern_methods!(
         #[cfg(feature = "CIFilter")]
         #[unsafe(method(autoAdjustmentFilters))]
         #[unsafe(method_family = none)]
@@ -876,12 +876,12 @@ extern_methods!(
             &self,
             options: Option<&NSDictionary<CIImageAutoAdjustmentOption, AnyObject>>,
         ) -> Retained<NSArray<CIFilter>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// LabConversion
-    unsafe impl CIImage {
+/// LabConversion.
+impl CIImage {
+    extern_methods!(
         #[unsafe(method(imageByConvertingWorkingSpaceToLab))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByConvertingWorkingSpaceToLab(&self) -> Retained<CIImage>;
@@ -889,5 +889,5 @@ extern_methods!(
         #[unsafe(method(imageByConvertingLabToWorkingSpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByConvertingLabToWorkingSpace(&self) -> Retained<CIImage>;
-    }
-);
+    );
+}

@@ -30,9 +30,9 @@ unsafe impl CopyingHelper for VZVirtioSoundDeviceInputStreamConfiguration {
 #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioSoundDeviceInputStreamConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
-    unsafe impl VZVirtioSoundDeviceInputStreamConfiguration {
+#[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
+impl VZVirtioSoundDeviceInputStreamConfiguration {
+    extern_methods!(
         /// Initialize the input stream configuration.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -53,15 +53,15 @@ extern_methods!(
         #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&VZAudioInputStreamSource>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZVirtioSoundDeviceStreamConfiguration`
-    #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
-    unsafe impl VZVirtioSoundDeviceInputStreamConfiguration {
+/// Methods declared on superclass `VZVirtioSoundDeviceStreamConfiguration`.
+#[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
+impl VZVirtioSoundDeviceInputStreamConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

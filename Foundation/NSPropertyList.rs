@@ -66,8 +66,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPropertyListSerialization {}
 
-extern_methods!(
-    unsafe impl NSPropertyListSerialization {
+impl NSPropertyListSerialization {
+    extern_methods!(
         #[unsafe(method(propertyList:isValidForFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyList_isValidForFormat(
@@ -122,12 +122,12 @@ extern_methods!(
             format: *mut NSPropertyListFormat,
             error_string: *mut *mut NSString,
         ) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPropertyListSerialization {
+/// Methods declared on superclass `NSObject`.
+impl NSPropertyListSerialization {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -135,5 +135,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

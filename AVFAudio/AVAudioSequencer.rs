@@ -215,8 +215,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioSequencer {}
 
-extern_methods!(
-    unsafe impl AVAudioSequencer {
+impl AVAudioSequencer {
+    extern_methods!(
         /// Initialize a new sequencer, which will not be connected to an audio engine.
         ///
         /// This is used to create a sequencer whose tracks will only send events to external MIDI endpoints.
@@ -357,21 +357,21 @@ extern_methods!(
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioSequencer {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioSequencer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAudioSequencer_Player
-    unsafe impl AVAudioSequencer {
+/// AVAudioSequencer_Player.
+impl AVAudioSequencer {
+    extern_methods!(
         /// The current playback position in seconds
         ///
         /// Setting this positions the sequencer's player to the specified time.  This can be set while
@@ -447,8 +447,8 @@ extern_methods!(
         #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusictrackloopcount?language=objc)
 // NS_ENUM
@@ -484,8 +484,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVMusicTrack {}
 
-extern_methods!(
-    unsafe impl AVMusicTrack {
+impl AVMusicTrack {
+    extern_methods!(
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
         /// The AVAudioUnit which will receive the track's events
         ///
@@ -637,12 +637,12 @@ extern_methods!(
         #[unsafe(method(timeResolution))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeResolution(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMusicTrack {
+/// Methods declared on superclass `NSObject`.
+impl AVMusicTrack {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -650,8 +650,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The block type used to enumerate and optionally remove AVMusicEvents when using
 /// `AVMusicTrack(enumerateEventsInRange:usingBlock:)`
@@ -675,9 +675,9 @@ extern_methods!(
 pub type AVMusicEventEnumerationBlock =
     *mut block2::Block<dyn Fn(NonNull<AVMusicEvent>, NonNull<AVMusicTimeStamp>, NonNull<Bool>)>;
 
-extern_methods!(
-    /// AVMusicTrackEditor
-    unsafe impl AVMusicTrack {
+/// AVMusicTrackEditor.
+impl AVMusicTrack {
+    extern_methods!(
         /// Indicates whether the track is an automation track.
         ///
         /// If set to YES, this can be used to contain, parameter automation events, exclusively.
@@ -818,5 +818,5 @@ extern_methods!(
             range: AVBeatRange,
             block: AVMusicEventEnumerationBlock,
         );
-    }
-);
+    );
+}

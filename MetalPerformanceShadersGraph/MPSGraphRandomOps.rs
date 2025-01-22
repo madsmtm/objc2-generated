@@ -81,9 +81,9 @@ unsafe impl CopyingHelper for MPSGraphRandomOpDescriptor {
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl NSObjectProtocol for MPSGraphRandomOpDescriptor {}
 
-extern_methods!(
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphRandomOpDescriptor {
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphRandomOpDescriptor {
+    extern_methods!(
         /// The type of distribution to draw samples from. See MPSGraphRandomDistribution.
         #[unsafe(method(distribution))]
         #[unsafe(method_family = none)]
@@ -213,13 +213,13 @@ extern_methods!(
             distribution: MPSGraphRandomDistribution,
             data_type: MPSDataType,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSGraphCore")]
-    unsafe impl MPSGraphRandomOpDescriptor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphRandomOpDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -227,13 +227,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MPSGraphRandomOps
-    #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
-    unsafe impl MPSGraph {
+/// MPSGraphRandomOps.
+#[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
+impl MPSGraph {
+    extern_methods!(
         #[cfg(feature = "MPSGraphTensor")]
         /// Creates a tensor representing state using the Philox algorithm with given counter and key values.
         ///
@@ -610,5 +610,5 @@ extern_methods!(
             rate: &MPSGraphTensor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
-    }
-);
+    );
+}

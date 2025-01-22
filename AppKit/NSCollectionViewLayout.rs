@@ -59,8 +59,8 @@ unsafe impl CopyingHelper for NSCollectionViewLayoutAttributes {
 
 unsafe impl NSObjectProtocol for NSCollectionViewLayoutAttributes {}
 
-extern_methods!(
-    unsafe impl NSCollectionViewLayoutAttributes {
+impl NSCollectionViewLayoutAttributes {
+    extern_methods!(
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
         pub unsafe fn frame(&self) -> NSRect;
@@ -155,12 +155,12 @@ extern_methods!(
             index_path: &NSIndexPath,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCollectionViewLayoutAttributes {
+/// Methods declared on superclass `NSObject`.
+impl NSCollectionViewLayoutAttributes {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -168,8 +168,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionupdateaction?language=objc)
 // NS_ENUM
@@ -207,8 +207,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSCollectionViewUpdateItem {}
 
-extern_methods!(
-    unsafe impl NSCollectionViewUpdateItem {
+impl NSCollectionViewUpdateItem {
+    extern_methods!(
         #[unsafe(method(indexPathBeforeUpdate))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathBeforeUpdate(&self) -> Option<Retained<NSIndexPath>>;
@@ -220,12 +220,12 @@ extern_methods!(
         #[unsafe(method(updateAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateAction(&self) -> NSCollectionUpdateAction;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCollectionViewUpdateItem {
+/// Methods declared on superclass `NSObject`.
+impl NSCollectionViewUpdateItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -233,8 +233,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext?language=objc)
@@ -246,8 +246,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSCollectionViewLayoutInvalidationContext {}
 
-extern_methods!(
-    unsafe impl NSCollectionViewLayoutInvalidationContext {
+impl NSCollectionViewLayoutInvalidationContext {
+    extern_methods!(
         #[unsafe(method(invalidateEverything))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateEverything(&self) -> bool;
@@ -313,12 +313,12 @@ extern_methods!(
         #[unsafe(method(setContentSizeAdjustment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentSizeAdjustment(&self, content_size_adjustment: NSSize);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCollectionViewLayoutInvalidationContext {
+/// Methods declared on superclass `NSObject`.
+impl NSCollectionViewLayoutInvalidationContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -326,8 +326,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewlayout?language=objc)
@@ -341,8 +341,8 @@ unsafe impl NSCoding for NSCollectionViewLayout {}
 
 unsafe impl NSObjectProtocol for NSCollectionViewLayout {}
 
-extern_methods!(
-    unsafe impl NSCollectionViewLayout {
+impl NSCollectionViewLayout {
+    extern_methods!(
         #[cfg(all(
             feature = "NSCollectionView",
             feature = "NSResponder",
@@ -379,12 +379,12 @@ extern_methods!(
             nib: Option<&NSNib>,
             element_kind: &NSCollectionViewDecorationElementKind,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCollectionViewLayout {
+/// Methods declared on superclass `NSObject`.
+impl NSCollectionViewLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -392,12 +392,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSubclassingHooks
-    unsafe impl NSCollectionViewLayout {
+/// NSSubclassingHooks.
+impl NSCollectionViewLayout {
+    extern_methods!(
         #[unsafe(method(layoutAttributesClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesClass(mtm: MainThreadMarker) -> &'static AnyClass;
@@ -500,12 +500,12 @@ extern_methods!(
         #[unsafe(method(collectionViewContentSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn collectionViewContentSize(&self) -> NSSize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSUpdateSupportHooks
-    unsafe impl NSCollectionViewLayout {
+/// NSUpdateSupportHooks.
+impl NSCollectionViewLayout {
+    extern_methods!(
         #[unsafe(method(prepareForCollectionViewUpdates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareForCollectionViewUpdates(
@@ -614,5 +614,5 @@ extern_methods!(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
         ) -> Retained<NSSet<NSIndexPath>>;
-    }
-);
+    );
+}

@@ -159,9 +159,9 @@ unsafe impl UIResponderStandardEditActions for UIDatePicker {}
 ))]
 unsafe impl UITraitEnvironment for UIDatePicker {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIDatePicker {
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIDatePicker {
+    extern_methods!(
         #[unsafe(method(datePickerMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn datePickerMode(&self) -> UIDatePickerMode;
@@ -282,13 +282,13 @@ extern_methods!(
         #[unsafe(method(setRoundsToMinuteInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoundsToMinuteInterval(&self, rounds_to_minute_interval: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIControl`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIDatePicker {
+/// Methods declared on superclass `UIControl`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIDatePicker {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -314,13 +314,13 @@ extern_methods!(
             frame: CGRect,
             primary_action: Option<&UIAction>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIDatePicker {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIDatePicker {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -328,5 +328,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

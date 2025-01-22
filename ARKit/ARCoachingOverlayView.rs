@@ -110,10 +110,9 @@ unsafe impl UIResponderStandardEditActions for ARCoachingOverlayView {}
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
 unsafe impl UITraitEnvironment for ARCoachingOverlayView {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-    unsafe impl ARCoachingOverlayView {
+#[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
+impl ARCoachingOverlayView {
+    extern_methods!(
         /// Specifies the delegate used for callbacks
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -211,14 +210,13 @@ extern_methods!(
         #[unsafe(method(setActive:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActive_animated(&self, active: bool, animated: bool);
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-    unsafe impl ARCoachingOverlayView {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
+impl ARCoachingOverlayView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -231,14 +229,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-    unsafe impl ARCoachingOverlayView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
+impl ARCoachingOverlayView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -246,8 +243,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_protocol!(

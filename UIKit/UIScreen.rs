@@ -104,8 +104,8 @@ unsafe impl NSObjectProtocol for UIScreen {}
 #[cfg(feature = "UITraitCollection")]
 unsafe impl UITraitEnvironment for UIScreen {}
 
-extern_methods!(
-    unsafe impl UIScreen {
+impl UIScreen {
+    extern_methods!(
         #[deprecated = "Use UIApplication.shared.openSessions to find open sessions with scenes from other screens"]
         #[unsafe(method(screens))]
         #[unsafe(method_family = none)]
@@ -267,12 +267,12 @@ extern_methods!(
         #[unsafe(method(applicationFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationFrame(&self) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIScreen {
+/// Methods declared on superclass `NSObject`.
+impl UIScreen {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -280,12 +280,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UISnapshotting
-    unsafe impl UIScreen {
+/// UISnapshotting.
+impl UIScreen {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(snapshotViewAfterScreenUpdates:))]
         #[unsafe(method_family = none)]
@@ -293,5 +293,5 @@ extern_methods!(
             &self,
             after_updates: bool,
         ) -> Retained<UIView>;
-    }
-);
+    );
+}

@@ -37,8 +37,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UICalendarViewDecoration {}
 
-extern_methods!(
-    unsafe impl UICalendarViewDecoration {
+impl UICalendarViewDecoration {
+    extern_methods!(
         /// Creates a default decoration with a circle image.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -115,14 +115,14 @@ extern_methods!(
             custom_view_provider: &block2::Block<dyn Fn() -> NonNull<UIView>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UICalendarViewDecoration {
+/// Methods declared on superclass `NSObject`.
+impl UICalendarViewDecoration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

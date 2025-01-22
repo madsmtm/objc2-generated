@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for CAScrollLayer {}
 #[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAScrollLayer {}
 
-extern_methods!(
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAScrollLayer {
+#[cfg(feature = "CALayer")]
+impl CAScrollLayer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollToPoint:))]
         #[unsafe(method_family = none)]
@@ -54,13 +54,13 @@ extern_methods!(
         #[unsafe(method(setScrollMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollMode(&self, scroll_mode: &CAScrollLayerScrollMode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAScrollLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "CALayer")]
+impl CAScrollLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -73,23 +73,23 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAScrollLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CALayer")]
+impl CAScrollLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// CALayerScrolling
-    #[cfg(feature = "CALayer")]
-    unsafe impl CALayer {
+/// CALayerScrolling.
+#[cfg(feature = "CALayer")]
+impl CALayer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollPoint:))]
         #[unsafe(method_family = none)]
@@ -104,8 +104,8 @@ extern_methods!(
         #[unsafe(method(visibleRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn visibleRect(&self) -> CGRect;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcascrollnone?language=objc)

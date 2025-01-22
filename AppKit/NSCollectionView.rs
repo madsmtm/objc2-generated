@@ -227,9 +227,9 @@ unsafe impl NSSeguePerforming for NSCollectionViewItem {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSCollectionViewItem {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSCollectionViewItem {
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSCollectionViewItem {
+    extern_methods!(
         #[cfg(feature = "NSView")]
         #[unsafe(method(collectionView))]
         #[unsafe(method_family = none)]
@@ -282,13 +282,13 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn draggingImageComponents(&self)
             -> Retained<NSArray<NSDraggingImageComponent>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSCollectionViewItem {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSCollectionViewItem {
+    extern_methods!(
         #[cfg(feature = "NSNib")]
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
@@ -304,28 +304,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSCollectionViewItem {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSCollectionViewItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-    unsafe impl NSCollectionViewItem {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+impl NSCollectionViewItem {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview?language=objc)
@@ -374,9 +374,9 @@ unsafe impl NSObjectProtocol for NSCollectionView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSCollectionView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSCollectionView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSCollectionView {
+    extern_methods!(
         #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
@@ -796,13 +796,13 @@ extern_methods!(
             event: &NSEvent,
             drag_image_offset: NSPointPointer,
         ) -> Retained<NSImage>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSCollectionView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSCollectionView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -813,28 +813,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSCollectionView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSCollectionView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSCollectionView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSCollectionView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource?language=objc)
@@ -1325,10 +1325,10 @@ extern_category!(
     unsafe impl NSSetNSCollectionViewAdditions for NSSet {}
 );
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSCollectionView {
+/// NSDeprecated.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSCollectionView {
+    extern_methods!(
         #[cfg(feature = "NSViewController")]
         #[deprecated = "Use -[NSCollectionViewDataSource collectionView:itemForRepresentedObjectAtIndexPath:] instead"]
         #[unsafe(method(newItemForRepresentedObject:))]
@@ -1394,5 +1394,5 @@ extern_methods!(
         #[unsafe(method(setMaxItemSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxItemSize(&self, max_item_size: NSSize);
-    }
-);
+    );
+}

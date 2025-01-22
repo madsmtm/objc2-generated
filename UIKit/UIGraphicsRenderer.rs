@@ -26,8 +26,8 @@ unsafe impl CopyingHelper for UIGraphicsRendererFormat {
 
 unsafe impl NSObjectProtocol for UIGraphicsRendererFormat {}
 
-extern_methods!(
-    unsafe impl UIGraphicsRendererFormat {
+impl UIGraphicsRendererFormat {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(defaultFormat))]
         #[unsafe(method_family = none)]
@@ -41,12 +41,12 @@ extern_methods!(
         #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIGraphicsRendererFormat {
+/// Methods declared on superclass `NSObject`.
+impl UIGraphicsRendererFormat {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -54,8 +54,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext?language=objc)
@@ -66,8 +66,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIGraphicsRendererContext {}
 
-extern_methods!(
-    unsafe impl UIGraphicsRendererContext {
+impl UIGraphicsRendererContext {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(CGContext))]
         #[unsafe(method_family = none)]
@@ -101,12 +101,12 @@ extern_methods!(
         #[unsafe(method(clipToRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn clipToRect(&self, rect: CGRect);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIGraphicsRendererContext {
+/// Methods declared on superclass `NSObject`.
+impl UIGraphicsRendererContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -114,8 +114,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsrenderer?language=objc)
@@ -126,8 +126,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIGraphicsRenderer {}
 
-extern_methods!(
-    unsafe impl UIGraphicsRenderer {
+impl UIGraphicsRenderer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithBounds:))]
         #[unsafe(method_family = init)]
@@ -149,12 +149,12 @@ extern_methods!(
         #[unsafe(method(allowsImageOutput))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsImageOutput(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIGraphicsRenderer {
+/// Methods declared on superclass `NSObject`.
+impl UIGraphicsRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -162,5 +162,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

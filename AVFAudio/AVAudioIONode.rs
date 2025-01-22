@@ -151,9 +151,9 @@ extern_class!(
 #[cfg(feature = "AVAudioNode")]
 unsafe impl NSObjectProtocol for AVAudioIONode {}
 
-extern_methods!(
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioIONode {
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioIONode {
+    extern_methods!(
         /// The presentation or hardware latency, applicable when the engine is rendering to/from an
         /// audio device.
         ///
@@ -205,13 +205,13 @@ extern_methods!(
             &self,
             enabled: bool,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioIONode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioIONode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -219,8 +219,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A node that performs audio input in the engine.
@@ -262,9 +262,9 @@ unsafe impl AVAudioStereoMixing for AVAudioInputNode {}
 #[cfg(feature = "AVAudioNode")]
 unsafe impl NSObjectProtocol for AVAudioInputNode {}
 
-extern_methods!(
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioInputNode {
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioInputNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -370,18 +370,18 @@ extern_methods!(
             &self,
             voice_processing_other_audio_ducking_configuration: AVAudioVoiceProcessingOtherAudioDuckingConfiguration,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioInputNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioInputNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A node that performs audio output in the engine.
@@ -410,21 +410,21 @@ extern_class!(
 #[cfg(feature = "AVAudioNode")]
 unsafe impl NSObjectProtocol for AVAudioOutputNode {}
 
-extern_methods!(
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioOutputNode {
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioOutputNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioOutputNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioOutputNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

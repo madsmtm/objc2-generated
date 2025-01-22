@@ -142,8 +142,8 @@ unsafe impl NSObjectProtocol for NSTextBlock {}
 
 unsafe impl NSSecureCoding for NSTextBlock {}
 
-extern_methods!(
-    unsafe impl NSTextBlock {
+impl NSTextBlock {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -293,17 +293,17 @@ extern_methods!(
             char_range: NSRange,
             layout_manager: &NSLayoutManager,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextBlock {
+/// Methods declared on superclass `NSObject`.
+impl NSTextBlock {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttableblock?language=objc)
@@ -324,8 +324,8 @@ unsafe impl NSObjectProtocol for NSTextTableBlock {}
 
 unsafe impl NSSecureCoding for NSTextTableBlock {}
 
-extern_methods!(
-    unsafe impl NSTextTableBlock {
+impl NSTextTableBlock {
+    extern_methods!(
         #[unsafe(method(initWithTable:startingRow:rowSpan:startingColumn:columnSpan:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTable_startingRow_rowSpan_startingColumn_columnSpan(
@@ -356,26 +356,26 @@ extern_methods!(
         #[unsafe(method(columnSpan))]
         #[unsafe(method_family = none)]
         pub unsafe fn columnSpan(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextBlock`
-    unsafe impl NSTextTableBlock {
+/// Methods declared on superclass `NSTextBlock`.
+impl NSTextTableBlock {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextTableBlock {
+/// Methods declared on superclass `NSObject`.
+impl NSTextTableBlock {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable?language=objc)
@@ -396,8 +396,8 @@ unsafe impl NSObjectProtocol for NSTextTable {}
 
 unsafe impl NSSecureCoding for NSTextTable {}
 
-extern_methods!(
-    unsafe impl NSTextTable {
+impl NSTextTable {
+    extern_methods!(
         #[unsafe(method(numberOfColumns))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfColumns(&self) -> NSUInteger;
@@ -473,23 +473,23 @@ extern_methods!(
             char_range: NSRange,
             layout_manager: &NSLayoutManager,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextBlock`
-    unsafe impl NSTextTable {
+/// Methods declared on superclass `NSTextBlock`.
+impl NSTextTable {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextTable {
+/// Methods declared on superclass `NSObject`.
+impl NSTextTable {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

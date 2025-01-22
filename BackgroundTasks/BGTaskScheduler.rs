@@ -88,8 +88,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for BGTaskScheduler {}
 
-extern_methods!(
-    unsafe impl BGTaskScheduler {
+impl BGTaskScheduler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -156,5 +156,5 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<BGTaskRequest>>)>,
         );
-    }
-);
+    );
+}

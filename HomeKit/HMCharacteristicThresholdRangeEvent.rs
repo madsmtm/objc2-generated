@@ -43,9 +43,9 @@ unsafe impl MutableCopyingHelper for HMCharacteristicThresholdRangeEvent {
 #[cfg(feature = "HMEvent")]
 unsafe impl NSObjectProtocol for HMCharacteristicThresholdRangeEvent {}
 
-extern_methods!(
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMCharacteristicThresholdRangeEvent {
+#[cfg(feature = "HMEvent")]
+impl HMCharacteristicThresholdRangeEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,19 +81,19 @@ extern_methods!(
         #[unsafe(method(thresholdRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdRange(&self) -> Retained<HMNumberRange>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMCharacteristicThresholdRangeEvent {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMCharacteristicThresholdRangeEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// This class represents an event when a characteristic's value falls within the specified
@@ -131,9 +131,9 @@ unsafe impl MutableCopyingHelper for HMMutableCharacteristicThresholdRangeEvent 
 #[cfg(feature = "HMEvent")]
 unsafe impl NSObjectProtocol for HMMutableCharacteristicThresholdRangeEvent {}
 
-extern_methods!(
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMMutableCharacteristicThresholdRangeEvent {
+#[cfg(feature = "HMEvent")]
+impl HMMutableCharacteristicThresholdRangeEvent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -161,13 +161,13 @@ extern_methods!(
         #[unsafe(method(setThresholdRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThresholdRange(&self, threshold_range: &HMNumberRange);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMCharacteristicThresholdRangeEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMMutableCharacteristicThresholdRangeEvent {
+/// Methods declared on superclass `HMCharacteristicThresholdRangeEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMMutableCharacteristicThresholdRangeEvent {
+    extern_methods!(
         #[cfg(all(feature = "HMCharacteristic", feature = "HMNumberRange"))]
         /// Initializes a new characteristic number range event object
         ///
@@ -187,16 +187,16 @@ extern_methods!(
             characteristic: &HMCharacteristic,
             threshold_range: &HMNumberRange,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HMEvent`
-    #[cfg(feature = "HMEvent")]
-    unsafe impl HMMutableCharacteristicThresholdRangeEvent {
+/// Methods declared on superclass `HMEvent`.
+#[cfg(feature = "HMEvent")]
+impl HMMutableCharacteristicThresholdRangeEvent {
+    extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

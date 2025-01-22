@@ -77,8 +77,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSGraphicsContext {}
 
-extern_methods!(
-    unsafe impl NSGraphicsContext {
+impl NSGraphicsContext {
+    extern_methods!(
         #[unsafe(method(graphicsContextWithAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsContextWithAttributes(
@@ -153,12 +153,12 @@ extern_methods!(
         #[unsafe(method(isFlipped))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFlipped(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSGraphicsContext {
+/// Methods declared on superclass `NSObject`.
+impl NSGraphicsContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -166,12 +166,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSGraphicsContext_RenderingOptions
-    unsafe impl NSGraphicsContext {
+/// NSGraphicsContext_RenderingOptions.
+impl NSGraphicsContext {
+    extern_methods!(
         #[unsafe(method(shouldAntialias))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldAntialias(&self) -> bool;
@@ -223,23 +223,23 @@ extern_methods!(
             &self,
             color_rendering_intent: NSColorRenderingIntent,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSQuartzCoreAdditions
-    unsafe impl NSGraphicsContext {
+/// NSQuartzCoreAdditions.
+impl NSGraphicsContext {
+    extern_methods!(
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(CIContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn CIContext(&self) -> Option<Retained<CIContext>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSGraphicsContextDeprecated
-    unsafe impl NSGraphicsContext {
+/// NSGraphicsContextDeprecated.
+impl NSGraphicsContext {
+    extern_methods!(
         #[deprecated = "This method has no effect"]
         #[unsafe(method(setGraphicsState:))]
         #[unsafe(method_family = none)]
@@ -273,5 +273,5 @@ extern_methods!(
         #[unsafe(method(graphicsContextWithWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Retained<NSGraphicsContext>;
-    }
-);
+    );
+}

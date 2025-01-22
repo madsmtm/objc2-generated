@@ -79,9 +79,9 @@ unsafe impl NSObjectProtocol for NSSlider {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSlider {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSlider {
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSlider {
+    extern_methods!(
         #[cfg(feature = "NSSliderCell")]
         #[unsafe(method(sliderType))]
         #[unsafe(method_family = none)]
@@ -145,13 +145,13 @@ extern_methods!(
         #[unsafe(method(setTrackFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackFillColor(&self, track_fill_color: Option<&NSColor>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSControl`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSlider {
+/// Methods declared on superclass `NSControl`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSlider {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -162,39 +162,39 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSlider {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSlider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSlider {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSlider {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSliderVerticalGetter
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSlider {}
-);
+/// NSSliderVerticalGetter.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSlider {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// NSTickMarkSupport
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSlider {
+/// NSTickMarkSupport.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSlider {
+    extern_methods!(
         #[unsafe(method(numberOfTickMarks))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
@@ -239,13 +239,13 @@ extern_methods!(
         #[unsafe(method(closestTickMarkValueToValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn closestTickMarkValueToValue(&self, value: c_double) -> c_double;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSliderConvenience
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSlider {
+/// NSSliderConvenience.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSlider {
+    extern_methods!(
         /// Creates a continuous horizontal slider over the range 0.0 to 1.0. The default value is 0.0.
         ///
         /// Parameter `target`: The target object that receives action messages from the control.
@@ -284,13 +284,13 @@ extern_methods!(
             action: Option<Sel>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSliderDeprecated
-    #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSlider {
+/// NSSliderDeprecated.
+#[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+impl NSSlider {
+    extern_methods!(
         #[cfg(feature = "NSCell")]
         #[deprecated = "-setTitleCell: had no effect since 10.0"]
         #[unsafe(method(setTitleCell:))]
@@ -353,5 +353,5 @@ extern_methods!(
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
-    }
-);
+    );
+}

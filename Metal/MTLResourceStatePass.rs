@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for MTLResourceStatePassSampleBufferAttachmentDescript
 
 unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLResourceStatePassSampleBufferAttachmentDescriptor {
+impl MTLResourceStatePassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLCounters")]
         /// The sample buffer to store samples for the resourceState-pass defined samples.
         /// If sampleBuffer is non-nil, the sample indices will be used to store samples into
@@ -77,12 +77,12 @@ extern_methods!(
         #[unsafe(method(setEndOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLResourceStatePassSampleBufferAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLResourceStatePassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -90,8 +90,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptorarray?language=objc)
@@ -102,8 +102,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
+impl MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -118,12 +118,12 @@ extern_methods!(
             attachment: Option<&MTLResourceStatePassSampleBufferAttachmentDescriptor>,
             attachment_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -131,8 +131,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MTLResourceStatePassDescriptor represents a collection of attachments to be used to create a concrete resourceState command encoder
@@ -151,8 +151,8 @@ unsafe impl CopyingHelper for MTLResourceStatePassDescriptor {
 
 unsafe impl NSObjectProtocol for MTLResourceStatePassDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLResourceStatePassDescriptor {
+impl MTLResourceStatePassDescriptor {
+    extern_methods!(
         /// Create an autoreleased default frame buffer descriptor
         #[unsafe(method(resourceStatePassDescriptor))]
         #[unsafe(method_family = none)]
@@ -164,12 +164,12 @@ extern_methods!(
         pub unsafe fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLResourceStatePassSampleBufferAttachmentDescriptorArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLResourceStatePassDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLResourceStatePassDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -177,5 +177,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

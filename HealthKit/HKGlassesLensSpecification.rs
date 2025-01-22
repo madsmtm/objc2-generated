@@ -39,9 +39,9 @@ unsafe impl NSObjectProtocol for HKGlassesLensSpecification {}
 #[cfg(feature = "HKLensSpecification")]
 unsafe impl NSSecureCoding for HKGlassesLensSpecification {}
 
-extern_methods!(
-    #[cfg(feature = "HKLensSpecification")]
-    unsafe impl HKGlassesLensSpecification {
+#[cfg(feature = "HKLensSpecification")]
+impl HKGlassesLensSpecification {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// The distance between the back of the eyeglass lens and the eye (measured in mm)
         #[unsafe(method(vertexDistance))]
@@ -107,5 +107,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

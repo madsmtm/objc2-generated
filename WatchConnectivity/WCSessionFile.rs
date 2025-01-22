@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WCSessionFile {}
 
-extern_methods!(
-    unsafe impl WCSessionFile {
+impl WCSessionFile {
+    extern_methods!(
         #[unsafe(method(fileURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileURL(&self) -> Retained<NSURL>;
@@ -27,12 +27,12 @@ extern_methods!(
         #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WCSessionFile {
+/// Methods declared on superclass `NSObject`.
+impl WCSessionFile {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -40,8 +40,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Used to track a file being transferred.
@@ -54,8 +54,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WCSessionFileTransfer {}
 
-extern_methods!(
-    unsafe impl WCSessionFileTransfer {
+impl WCSessionFileTransfer {
+    extern_methods!(
         #[unsafe(method(file))]
         #[unsafe(method_family = none)]
         pub unsafe fn file(&self) -> Retained<WCSessionFile>;
@@ -71,12 +71,12 @@ extern_methods!(
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WCSessionFileTransfer {
+/// Methods declared on superclass `NSObject`.
+impl WCSessionFileTransfer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,5 +84,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

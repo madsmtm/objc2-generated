@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIAccessibilityLocationDescriptor {}
 
-extern_methods!(
-    unsafe impl UIAccessibilityLocationDescriptor {
+impl UIAccessibilityLocationDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,5 +82,5 @@ extern_methods!(
         #[unsafe(method(attributedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
-    }
-);
+    );
+}

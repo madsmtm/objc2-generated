@@ -44,8 +44,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for BCChatAction {}
 
-extern_methods!(
-    unsafe impl BCChatAction {
+impl BCChatAction {
+    extern_methods!(
         /// Open the chat transcript configured for a given business.
         ///
         ///
@@ -59,12 +59,12 @@ extern_methods!(
             business_identifier: &NSString,
             intent_parameters: &NSDictionary<BCParameterName, NSString>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl BCChatAction {
+/// Methods declared on superclass `NSObject`.
+impl BCChatAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -72,5 +72,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -61,8 +61,8 @@ unsafe impl NSObjectProtocol for UNNotificationContent {}
 
 unsafe impl NSSecureCoding for UNNotificationContent {}
 
-extern_methods!(
-    unsafe impl UNNotificationContent {
+impl UNNotificationContent {
+    extern_methods!(
         #[cfg(feature = "UNNotificationAttachment")]
         #[unsafe(method(attachments))]
         #[unsafe(method_family = none)]
@@ -147,12 +147,12 @@ extern_methods!(
             &self,
             provider: &ProtocolObject<dyn UNNotificationContentProviding>,
         ) -> Result<Retained<UNNotificationContent>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UNNotificationContent {
+/// Methods declared on superclass `NSObject`.
+impl UNNotificationContent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -160,8 +160,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent?language=objc)
@@ -188,8 +188,8 @@ unsafe impl NSObjectProtocol for UNMutableNotificationContent {}
 
 unsafe impl NSSecureCoding for UNMutableNotificationContent {}
 
-extern_methods!(
-    unsafe impl UNMutableNotificationContent {
+impl UNMutableNotificationContent {
+    extern_methods!(
         #[cfg(feature = "UNNotificationAttachment")]
         #[unsafe(method(attachments))]
         #[unsafe(method_family = none)]
@@ -352,12 +352,12 @@ extern_methods!(
         #[unsafe(method(setFilterCriteria:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterCriteria(&self, filter_criteria: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UNMutableNotificationContent {
+/// Methods declared on superclass `NSObject`.
+impl UNMutableNotificationContent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -365,5 +365,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

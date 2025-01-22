@@ -75,8 +75,8 @@ unsafe impl Sync for AVContentKeySession {}
 
 unsafe impl NSObjectProtocol for AVContentKeySession {}
 
-extern_methods!(
-    unsafe impl AVContentKeySession {
+impl AVContentKeySession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -232,12 +232,12 @@ extern_methods!(
             >,
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVContentKeyRecipients
-    unsafe impl AVContentKeySession {
+/// AVContentKeyRecipients.
+impl AVContentKeySession {
+    extern_methods!(
         /// Informs the receiver that the specified recipient will be used for the session.
         ///
         /// It is an error to add recipient to sessions that have received an expire message. It is also an error to add recipients after they have already begun to process media data (e.g. after an AVURLAsset has loaded the values of any of its keys). Such errors will result in NSInternalInconsistencyExceptions. Sending this message to an AVContentKeySession is atomic.
@@ -264,12 +264,12 @@ extern_methods!(
         pub unsafe fn contentKeyRecipients(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn AVContentKeyRecipient>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVContentKeySessionPendingExpiredSessionReports
-    unsafe impl AVContentKeySession {
+/// AVContentKeySessionPendingExpiredSessionReports.
+impl AVContentKeySession {
+    extern_methods!(
         /// Provides "expired session reports" for prior AVContentKeySessions created with the specified app identifier that have expired either normally or abnormally.
         ///
         /// Parameter `appIdentifier`: An opaque identifier for the application. The contents of this identifier depend on the particular protocol in use by the entity that controls the use of the media data.
@@ -302,8 +302,8 @@ extern_methods!(
             app_identifier: &NSData,
             storage_url: &NSURL,
         );
-    }
-);
+    );
+}
 
 /// AVContentKeyRequestRetryReason string constants
 ///
@@ -489,8 +489,8 @@ unsafe impl Sync for AVContentKeyRequest {}
 
 unsafe impl NSObjectProtocol for AVContentKeyRequest {}
 
-extern_methods!(
-    unsafe impl AVContentKeyRequest {
+impl AVContentKeyRequest {
+    extern_methods!(
         /// This describes the state of the AVContentKeyRequest, value is one of AVContentKeyRequestStatus.
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
@@ -578,12 +578,12 @@ extern_methods!(
         pub unsafe fn respondByRequestingPersistableContentKeyRequestAndReturnError(
             &self,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVContentKeyRequest {
+/// Methods declared on superclass `NSObject`.
+impl AVContentKeyRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -591,8 +591,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
@@ -609,8 +609,8 @@ unsafe impl Sync for AVPersistableContentKeyRequest {}
 
 unsafe impl NSObjectProtocol for AVPersistableContentKeyRequest {}
 
-extern_methods!(
-    unsafe impl AVPersistableContentKeyRequest {
+impl AVPersistableContentKeyRequest {
+    extern_methods!(
         /// Obtains a persistable content key from a context.
         ///
         /// Parameter `keyVendorResponse`: The response returned from the key vendor as a result of a request generated from makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:.
@@ -629,12 +629,12 @@ extern_methods!(
             key_vendor_response: &NSData,
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPersistableContentKeyRequest {
+/// Methods declared on superclass `NSObject`.
+impl AVPersistableContentKeyRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -642,17 +642,17 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVContentKeyRequestRenewal
-    unsafe impl AVContentKeyRequest {
+/// AVContentKeyRequestRenewal.
+impl AVContentKeyRequest {
+    extern_methods!(
         #[unsafe(method(renewsExpiringResponseData))]
         #[unsafe(method_family = none)]
         pub unsafe fn renewsExpiringResponseData(&self) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVContentKeyResponse is used to represent the data returned from the key server when requesting a key for decrypting content.
@@ -671,8 +671,8 @@ unsafe impl Sync for AVContentKeyResponse {}
 
 unsafe impl NSObjectProtocol for AVContentKeyResponse {}
 
-extern_methods!(
-    unsafe impl AVContentKeyResponse {
+impl AVContentKeyResponse {
+    extern_methods!(
         /// Create an AVContentKeyResponse from the server response to a key request made when using FairPlayStreaming (FPS) as the method of key delivery.
         ///
         /// Parameter `keyResponseData`: The response from the FairPlayStreaming key server
@@ -715,12 +715,12 @@ extern_methods!(
         pub unsafe fn contentKeyResponseWithAuthorizationTokenData(
             authorization_token_data: &NSData,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVContentKeyResponse {
+/// Methods declared on superclass `NSObject`.
+impl AVContentKeyResponse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -728,8 +728,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Specifies the versions of the content protection protocol supported by the application as an NSArray of one or more NSNumber objects.
@@ -779,8 +779,8 @@ unsafe impl Sync for AVContentKeySpecifier {}
 
 unsafe impl NSObjectProtocol for AVContentKeySpecifier {}
 
-extern_methods!(
-    unsafe impl AVContentKeySpecifier {
+impl AVContentKeySpecifier {
+    extern_methods!(
         /// Creates a new instance of AVContentKeySpecifier.
         ///
         /// Parameter `keySystem`: A valid key system for content keys.
@@ -833,12 +833,12 @@ extern_methods!(
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVContentKeySpecifier {
+/// Methods declared on superclass `NSObject`.
+impl AVContentKeySpecifier {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -846,8 +846,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The constants can be used to derive whether or not we have established sufficient protection to display content protected by this AVContentKey on some set of attached displays.
 ///
@@ -895,8 +895,8 @@ unsafe impl Sync for AVContentKey {}
 
 unsafe impl NSObjectProtocol for AVContentKey {}
 
-extern_methods!(
-    unsafe impl AVContentKey {
+impl AVContentKey {
+    extern_methods!(
         #[unsafe(method(contentKeySpecifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentKeySpecifier(&self) -> Retained<AVContentKeySpecifier>;
@@ -916,12 +916,12 @@ extern_methods!(
         #[unsafe(method(revoke))]
         #[unsafe(method_family = none)]
         pub unsafe fn revoke(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVContentKey {
+/// Methods declared on superclass `NSObject`.
+impl AVContentKey {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -929,8 +929,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Attaches an AVContentKey to a CMSampleBuffer for the purpose of content decryption.
 ///

@@ -24,9 +24,9 @@ unsafe impl Sync for HKAnchoredObjectQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKAnchoredObjectQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKAnchoredObjectQuery {
+#[cfg(feature = "HKQuery")]
+impl HKAnchoredObjectQuery {
+    extern_methods!(
         #[cfg(all(
             feature = "HKDeletedObject",
             feature = "HKObject",
@@ -191,25 +191,25 @@ extern_methods!(
                 ),
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKAnchoredObjectQuery {
+/// Methods declared on superclass `HKQuery`.
+#[cfg(feature = "HKQuery")]
+impl HKAnchoredObjectQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKAnchoredObjectQuery {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKQuery")]
+impl HKAnchoredObjectQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

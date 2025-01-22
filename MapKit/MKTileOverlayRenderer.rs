@@ -17,9 +17,9 @@ extern_class!(
 #[cfg(feature = "MKOverlayRenderer")]
 unsafe impl NSObjectProtocol for MKTileOverlayRenderer {}
 
-extern_methods!(
-    #[cfg(feature = "MKOverlayRenderer")]
-    unsafe impl MKTileOverlayRenderer {
+#[cfg(feature = "MKOverlayRenderer")]
+impl MKTileOverlayRenderer {
+    extern_methods!(
         #[cfg(feature = "MKTileOverlay")]
         #[unsafe(method(initWithTileOverlay:))]
         #[unsafe(method_family = init)]
@@ -31,13 +31,13 @@ extern_methods!(
         #[unsafe(method(reloadData))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadData(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MKOverlayRenderer`
-    #[cfg(feature = "MKOverlayRenderer")]
-    unsafe impl MKTileOverlayRenderer {
+/// Methods declared on superclass `MKOverlayRenderer`.
+#[cfg(feature = "MKOverlayRenderer")]
+impl MKTileOverlayRenderer {
+    extern_methods!(
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
         #[unsafe(method(initWithOverlay:))]
         #[unsafe(method_family = init)]
@@ -45,13 +45,13 @@ extern_methods!(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MKOverlayRenderer")]
-    unsafe impl MKTileOverlayRenderer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MKOverlayRenderer")]
+impl MKTileOverlayRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -59,5 +59,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -26,8 +26,8 @@ unsafe impl NSObjectProtocol for WKUserContentController {}
 
 unsafe impl NSSecureCoding for WKUserContentController {}
 
-extern_methods!(
-    unsafe impl WKUserContentController {
+impl WKUserContentController {
+    extern_methods!(
         #[cfg(feature = "WKUserScript")]
         /// The user scripts associated with this user content
         /// controller.
@@ -198,12 +198,12 @@ extern_methods!(
         #[unsafe(method(removeAllContentRuleLists))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllContentRuleLists(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKUserContentController {
+/// Methods declared on superclass `NSObject`.
+impl WKUserContentController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -211,5 +211,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

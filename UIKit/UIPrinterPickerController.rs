@@ -97,8 +97,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPrinterPickerController {}
 
-extern_methods!(
-    unsafe impl UIPrinterPickerController {
+impl UIPrinterPickerController {
+    extern_methods!(
         #[cfg(feature = "UIPrinter")]
         /// This method returns a printer picker controller object for showing the
         /// UI that allows the user to select a printer. This is only used with the
@@ -171,12 +171,12 @@ extern_methods!(
         #[unsafe(method(dismissAnimated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissAnimated(&self, animated: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPrinterPickerController {
+/// Methods declared on superclass `NSObject`.
+impl UIPrinterPickerController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -184,5 +184,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

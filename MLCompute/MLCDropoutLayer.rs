@@ -20,9 +20,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCDropoutLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCDropoutLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCDropoutLayer {
+    extern_methods!(
         /// The probability that each element is dropped
         #[deprecated]
         #[unsafe(method(rate))]
@@ -46,13 +46,13 @@ extern_methods!(
         #[unsafe(method(layerWithRate:seed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithRate_seed(rate: c_float, seed: NSUInteger) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCDropoutLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCDropoutLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -62,5 +62,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

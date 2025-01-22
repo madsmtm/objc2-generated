@@ -67,8 +67,8 @@ unsafe impl CopyingHelper for NSXMLNode {
 
 unsafe impl NSObjectProtocol for NSXMLNode {}
 
-extern_methods!(
-    unsafe impl NSXMLNode {
+impl NSXMLNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -457,14 +457,14 @@ extern_methods!(
             &self,
             xquery: &NSString,
         ) -> Result<Retained<NSArray>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSXMLNode {
+/// Methods declared on superclass `NSObject`.
+impl NSXMLNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

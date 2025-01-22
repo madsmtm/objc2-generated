@@ -397,8 +397,8 @@ unsafe impl NSObjectProtocol for SCNParticlePropertyController {}
 
 unsafe impl NSSecureCoding for SCNParticlePropertyController {}
 
-extern_methods!(
-    unsafe impl SCNParticlePropertyController {
+impl SCNParticlePropertyController {
+    extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(controllerWithAnimation:))]
@@ -469,12 +469,12 @@ extern_methods!(
         #[unsafe(method(setInputProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputProperty(&self, input_property: Option<&SCNParticleProperty>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNParticlePropertyController {
+/// Methods declared on superclass `NSObject`.
+impl SCNParticlePropertyController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -482,8 +482,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The SCNParticleSystem class represents a system of particles.
@@ -509,8 +509,8 @@ unsafe impl NSSecureCoding for SCNParticleSystem {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNParticleSystem {}
 
-extern_methods!(
-    unsafe impl SCNParticleSystem {
+impl SCNParticleSystem {
+    extern_methods!(
         #[unsafe(method(particleSystem))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleSystem() -> Retained<Self>;
@@ -1246,12 +1246,12 @@ extern_methods!(
         #[unsafe(method(removeAllModifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllModifiers(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNParticleSystem {
+/// Methods declared on superclass `NSObject`.
+impl SCNParticleSystem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1259,13 +1259,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SCNParticleSystemSupport
-    #[cfg(feature = "SCNNode")]
-    unsafe impl SCNNode {
+/// SCNParticleSystemSupport.
+#[cfg(feature = "SCNNode")]
+impl SCNNode {
+    extern_methods!(
         #[unsafe(method(addParticleSystem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addParticleSystem(&self, system: &SCNParticleSystem);
@@ -1281,13 +1281,13 @@ extern_methods!(
         #[unsafe(method(particleSystems))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleSystems(&self) -> Option<Retained<NSArray<SCNParticleSystem>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SCNParticleSystemSupport
-    #[cfg(feature = "SCNScene")]
-    unsafe impl SCNScene {
+/// SCNParticleSystemSupport.
+#[cfg(feature = "SCNScene")]
+impl SCNScene {
+    extern_methods!(
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(addParticleSystem:withTransform:))]
@@ -1309,5 +1309,5 @@ extern_methods!(
         #[unsafe(method(particleSystems))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleSystems(&self) -> Option<Retained<NSArray<SCNParticleSystem>>>;
-    }
-);
+    );
+}

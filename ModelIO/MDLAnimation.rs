@@ -29,9 +29,9 @@ unsafe impl CopyingHelper for MDLSkeleton {
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLSkeleton {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLSkeleton {
+#[cfg(feature = "MDLObject")]
+impl MDLSkeleton {
+    extern_methods!(
         #[unsafe(method(jointPaths))]
         #[unsafe(method_family = none)]
         pub unsafe fn jointPaths(&self) -> Retained<NSArray<NSString>>;
@@ -53,13 +53,13 @@ extern_methods!(
             name: &NSString,
             joint_paths: &NSArray<NSString>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLSkeleton {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLSkeleton {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -67,8 +67,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdljointanimation?language=objc)
@@ -100,9 +100,9 @@ unsafe impl CopyingHelper for MDLPackedJointAnimation {
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLPackedJointAnimation {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLPackedJointAnimation {
+#[cfg(feature = "MDLObject")]
+impl MDLPackedJointAnimation {
+    extern_methods!(
         #[unsafe(method(jointPaths))]
         #[unsafe(method_family = none)]
         pub unsafe fn jointPaths(&self) -> Retained<NSArray<NSString>>;
@@ -129,13 +129,13 @@ extern_methods!(
             name: &NSString,
             joint_paths: &NSArray<NSString>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLPackedJointAnimation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLPackedJointAnimation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -143,8 +143,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimationbindcomponent?language=objc)
@@ -164,8 +164,8 @@ unsafe impl CopyingHelper for MDLAnimationBindComponent {
 
 unsafe impl NSObjectProtocol for MDLAnimationBindComponent {}
 
-extern_methods!(
-    unsafe impl MDLAnimationBindComponent {
+impl MDLAnimationBindComponent {
+    extern_methods!(
         #[cfg(feature = "MDLObject")]
         #[unsafe(method(skeleton))]
         #[unsafe(method_family = none)]
@@ -199,12 +199,12 @@ extern_methods!(
         #[unsafe(method(setJointPaths:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJointPaths(&self, joint_paths: Option<&NSArray<NSString>>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLAnimationBindComponent {
+/// Methods declared on superclass `NSObject`.
+impl MDLAnimationBindComponent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -212,5 +212,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

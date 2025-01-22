@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPMusicPlayerControllerQueue {}
 
-extern_methods!(
-    unsafe impl MPMusicPlayerControllerQueue {
+impl MPMusicPlayerControllerQueue {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -30,8 +30,8 @@ extern_methods!(
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<MPMediaItem>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollermutablequeue?language=objc)
@@ -42,8 +42,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPMusicPlayerControllerMutableQueue {}
 
-extern_methods!(
-    unsafe impl MPMusicPlayerControllerMutableQueue {
+impl MPMusicPlayerControllerMutableQueue {
+    extern_methods!(
         #[cfg(all(
             feature = "MPMediaEntity",
             feature = "MPMediaItem",
@@ -61,12 +61,12 @@ extern_methods!(
         #[unsafe(method(removeItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeItem(&self, item: &MPMediaItem);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPMusicPlayerControllerQueue`
-    unsafe impl MPMusicPlayerControllerMutableQueue {
+/// Methods declared on superclass `MPMusicPlayerControllerQueue`.
+impl MPMusicPlayerControllerMutableQueue {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -74,8 +74,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerapplicationcontroller?language=objc)
@@ -91,9 +91,9 @@ unsafe impl MPMediaPlayback for MPMusicPlayerApplicationController {}
 #[cfg(feature = "MPMusicPlayerController")]
 unsafe impl NSObjectProtocol for MPMusicPlayerApplicationController {}
 
-extern_methods!(
-    #[cfg(feature = "MPMusicPlayerController")]
-    unsafe impl MPMusicPlayerApplicationController {
+#[cfg(feature = "MPMusicPlayerController")]
+impl MPMusicPlayerApplicationController {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(performQueueTransaction:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -104,13 +104,13 @@ extern_methods!(
                 dyn Fn(NonNull<MPMusicPlayerControllerQueue>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPMusicPlayerController`
-    #[cfg(feature = "MPMusicPlayerController")]
-    unsafe impl MPMusicPlayerApplicationController {
+/// Methods declared on superclass `MPMusicPlayerController`.
+#[cfg(feature = "MPMusicPlayerController")]
+impl MPMusicPlayerApplicationController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -118,8 +118,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollerqueuedidchangenotification?language=objc)

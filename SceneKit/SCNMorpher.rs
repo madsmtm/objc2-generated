@@ -47,8 +47,8 @@ unsafe impl NSSecureCoding for SCNMorpher {}
 #[cfg(feature = "SCNAnimation")]
 unsafe impl SCNAnimatable for SCNMorpher {}
 
-extern_methods!(
-    unsafe impl SCNMorpher {
+impl SCNMorpher {
+    extern_methods!(
         #[cfg(feature = "SCNGeometry")]
         /// Specifies the morph targets as an array of SCNGeometry.
         ///
@@ -116,12 +116,12 @@ extern_methods!(
         #[unsafe(method(setUnifiesNormals:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnifiesNormals(&self, unifies_normals: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNMorpher {
+/// Methods declared on superclass `NSObject`.
+impl SCNMorpher {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -129,5 +129,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

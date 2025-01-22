@@ -82,8 +82,8 @@ unsafe impl NSObjectProtocol for HKVisionPrism {}
 
 unsafe impl NSSecureCoding for HKVisionPrism {}
 
-extern_methods!(
-    unsafe impl HKVisionPrism {
+impl HKVisionPrism {
+    extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// The compensation in prism diopters to correct eye misalignment [polar coordinates]
         #[unsafe(method(amount))]
@@ -170,5 +170,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

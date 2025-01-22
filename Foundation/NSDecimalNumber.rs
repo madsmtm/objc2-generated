@@ -90,9 +90,9 @@ unsafe impl NSObjectProtocol for NSDecimalNumber {}
 #[cfg(all(feature = "NSObject", feature = "NSValue"))]
 unsafe impl NSSecureCoding for NSDecimalNumber {}
 
-extern_methods!(
-    #[cfg(feature = "NSValue")]
-    unsafe impl NSDecimalNumber {
+#[cfg(feature = "NSValue")]
+impl NSDecimalNumber {
+    extern_methods!(
         #[unsafe(method(initWithMantissa:exponent:isNegative:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMantissa_exponent_isNegative(
@@ -305,13 +305,13 @@ extern_methods!(
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn doubleValue(&self) -> c_double;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSNumber`
-    #[cfg(feature = "NSValue")]
-    unsafe impl NSDecimalNumber {
+/// Methods declared on superclass `NSNumber`.
+#[cfg(feature = "NSValue")]
+impl NSDecimalNumber {
+    extern_methods!(
         #[cfg(feature = "NSCoder")]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
@@ -319,13 +319,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSValue`
-    #[cfg(feature = "NSValue")]
-    unsafe impl NSDecimalNumber {
+/// Methods declared on superclass `NSValue`.
+#[cfg(feature = "NSValue")]
+impl NSDecimalNumber {
+    extern_methods!(
         #[unsafe(method(initWithBytes:objCType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_objCType(
@@ -333,13 +333,13 @@ extern_methods!(
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSValue")]
-    unsafe impl NSDecimalNumber {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSValue")]
+impl NSDecimalNumber {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -347,8 +347,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// *********    A class for defining common behaviors        ******
@@ -370,8 +370,8 @@ unsafe impl NSDecimalNumberBehaviors for NSDecimalNumberHandler {}
 
 unsafe impl NSObjectProtocol for NSDecimalNumberHandler {}
 
-extern_methods!(
-    unsafe impl NSDecimalNumberHandler {
+impl NSDecimalNumberHandler {
+    extern_methods!(
         #[unsafe(method(defaultDecimalNumberHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultDecimalNumberHandler() -> Retained<NSDecimalNumberHandler>;
@@ -400,12 +400,12 @@ extern_methods!(
             underflow: bool,
             divide_by_zero: bool,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDecimalNumberHandler {
+/// Methods declared on superclass `NSObject`.
+impl NSDecimalNumberHandler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -413,28 +413,28 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDecimalNumberExtensions
-    /// *********    Extensions to other classes        ******
-    #[cfg(feature = "NSValue")]
-    unsafe impl NSNumber {
+/// NSDecimalNumberExtensions.
+/// *********    Extensions to other classes        ******
+#[cfg(feature = "NSValue")]
+impl NSNumber {
+    extern_methods!(
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(decimalValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn decimalValue(&self) -> NSDecimal;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDecimalNumberScanning
-    #[cfg(feature = "NSScanner")]
-    unsafe impl NSScanner {
+/// NSDecimalNumberScanning.
+#[cfg(feature = "NSScanner")]
+impl NSScanner {
+    extern_methods!(
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(scanDecimal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanDecimal(&self, dcm: *mut NSDecimal) -> bool;
-    }
-);
+    );
+}

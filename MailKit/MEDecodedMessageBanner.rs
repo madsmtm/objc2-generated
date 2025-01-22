@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for MEDecodedMessageBanner {}
 
 unsafe impl NSSecureCoding for MEDecodedMessageBanner {}
 
-extern_methods!(
-    unsafe impl MEDecodedMessageBanner {
+impl MEDecodedMessageBanner {
+    extern_methods!(
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
@@ -57,5 +57,5 @@ extern_methods!(
             primary_action_title: &NSString,
             dismissable: bool,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

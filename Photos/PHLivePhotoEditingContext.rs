@@ -34,8 +34,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHLivePhotoEditingContext {}
 
-extern_methods!(
-    unsafe impl PHLivePhotoEditingContext {
+impl PHLivePhotoEditingContext {
+    extern_methods!(
         #[cfg(feature = "PHContentEditingInput")]
         /// Initializer from the specified live photo input
         /// Return nil if the specified input is not for a live photo
@@ -127,17 +127,17 @@ extern_methods!(
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHLivePhotoEditingContext {
+/// Methods declared on superclass `NSObject`.
+impl PHLivePhotoEditingContext {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The type of frame in the Live Photo
 ///

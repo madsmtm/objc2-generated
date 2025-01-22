@@ -51,9 +51,9 @@ unsafe impl NSObjectProtocol for NSClipView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSClipView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSClipView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSClipView {
+    extern_methods!(
         #[cfg(feature = "NSColor")]
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
@@ -143,13 +143,13 @@ extern_methods!(
             &self,
             automatically_adjusts_content_insets: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSClipView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSClipView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -160,33 +160,33 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSClipView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSClipView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSClipView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSClipView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSClipViewSuperview
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSClipViewSuperview.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(reflectScrolledClipView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reflectScrolledClipView(&self, clip_view: &NSClipView);
@@ -194,12 +194,12 @@ extern_methods!(
         #[unsafe(method(scrollClipView:toPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollClipView_toPoint(&self, clip_view: &NSClipView, point: NSPoint);
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSClipView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSClipView {
+    extern_methods!(
         #[deprecated = "Use -constrainBoundsRect: instead."]
         #[unsafe(method(constrainScrollPoint:))]
         #[unsafe(method_family = none)]
@@ -215,5 +215,5 @@ extern_methods!(
         #[unsafe(method(setCopiesOnScroll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCopiesOnScroll(&self, copies_on_scroll: bool);
-    }
-);
+    );
+}

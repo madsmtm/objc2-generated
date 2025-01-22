@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSUbiquitousKeyValueStore {}
 
-extern_methods!(
-    unsafe impl NSUbiquitousKeyValueStore {
+impl NSUbiquitousKeyValueStore {
+    extern_methods!(
         #[unsafe(method(defaultStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultStore() -> Retained<NSUbiquitousKeyValueStore>;
@@ -123,12 +123,12 @@ extern_methods!(
         #[unsafe(method(synchronize))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronize(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSUbiquitousKeyValueStore {
+/// Methods declared on superclass `NSObject`.
+impl NSUbiquitousKeyValueStore {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -136,8 +136,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestoredidchangeexternallynotification?language=objc)

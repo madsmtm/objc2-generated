@@ -65,10 +65,10 @@ unsafe impl NSObjectProtocol for AVSampleBufferDisplayLayer {}
 #[cfg(not(target_os = "watchos"))]
 unsafe impl NSSecureCoding for AVSampleBufferDisplayLayer {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSampleBufferDisplayLayer {
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSampleBufferDisplayLayer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The layer's control timebase, which governs how time stamps are interpreted.
         ///
@@ -122,14 +122,14 @@ extern_methods!(
         #[unsafe(method(isReadyForDisplay))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSampleBufferDisplayLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSampleBufferDisplayLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -142,25 +142,25 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSampleBufferDisplayLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSampleBufferDisplayLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferDisplayLayerQueueManagement
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSampleBufferDisplayLayer {
+/// AVSampleBufferDisplayLayerQueueManagement.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSampleBufferDisplayLayer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The renderer's timebase, which governs how time stamps are interpreted.
         ///
@@ -297,8 +297,8 @@ extern_methods!(
         #[unsafe(method(hasSufficientMediaDataForReliablePlaybackStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasSufficientMediaDataForReliablePlaybackStart(&self) -> bool;
-    }
-);
+    );
+}
 
 #[cfg(all(
     feature = "AVQueuedSampleBufferRendering",
@@ -307,11 +307,11 @@ extern_methods!(
 #[cfg(not(target_os = "watchos"))]
 unsafe impl AVQueuedSampleBufferRendering for AVSampleBufferDisplayLayer {}
 
-extern_methods!(
-    /// AVSampleBufferDisplayLayerImageProtection
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSampleBufferDisplayLayer {
+/// AVSampleBufferDisplayLayerImageProtection.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSampleBufferDisplayLayer {
+    extern_methods!(
         /// Indicates that image data should be protected from capture.
         #[unsafe(method(preventsCapture))]
         #[unsafe(method_family = none)]
@@ -321,14 +321,14 @@ extern_methods!(
         #[unsafe(method(setPreventsCapture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreventsCapture(&self, prevents_capture: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferDisplayLayerVideoDisplaySleepPrevention
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSampleBufferDisplayLayer {
+/// AVSampleBufferDisplayLayerVideoDisplaySleepPrevention.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSampleBufferDisplayLayer {
+    extern_methods!(
         /// Indicates whether video playback prevents display and device sleep.
         ///
         /// Default is YES on iOS, tvOS and in Mac Catalyst apps.  Default is NO on macOS.
@@ -345,14 +345,14 @@ extern_methods!(
             &self,
             prevents_display_sleep_during_video_playback: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferDisplayLayerAutomaticBackgroundPrevention
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSampleBufferDisplayLayer {
+/// AVSampleBufferDisplayLayerAutomaticBackgroundPrevention.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSampleBufferDisplayLayer {
+    extern_methods!(
         /// Indicates whether video playback prevents the app from automatically getting backgrounded.
         ///
         /// Default is YES.
@@ -369,14 +369,14 @@ extern_methods!(
             &self,
             prevents_automatic_backgrounding_during_video_playback: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// ProtectedContent
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSampleBufferDisplayLayer {
+/// ProtectedContent.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSampleBufferDisplayLayer {
+    extern_methods!(
         /// Whether or not decoded output is being obscured due to insufficient external protection.
         ///
         ///
@@ -395,14 +395,14 @@ extern_methods!(
         #[unsafe(method(outputObscuredDueToInsufficientExternalProtection))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputObscuredDueToInsufficientExternalProtection(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVSampleBufferDisplayLayerRenderer
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl AVSampleBufferDisplayLayer {
+/// AVSampleBufferDisplayLayerRenderer.
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl AVSampleBufferDisplayLayer {
+    extern_methods!(
         #[cfg(feature = "AVSampleBufferVideoRenderer")]
         /// An AVSampleBufferVideoRenderer instance that allows enqueuing sample buffers for rendering.
         ///
@@ -410,5 +410,5 @@ extern_methods!(
         #[unsafe(method(sampleBufferRenderer))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBufferRenderer(&self) -> Retained<AVSampleBufferVideoRenderer>;
-    }
-);
+    );
+}

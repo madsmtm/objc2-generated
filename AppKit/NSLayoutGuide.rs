@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for NSLayoutGuide {}
 #[cfg(feature = "NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSLayoutGuide {}
 
-extern_methods!(
-    unsafe impl NSLayoutGuide {
+impl NSLayoutGuide {
+    extern_methods!(
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
         pub unsafe fn frame(&self) -> NSRect;
@@ -111,12 +111,12 @@ extern_methods!(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> Retained<NSArray<NSLayoutConstraint>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLayoutGuide {
+/// Methods declared on superclass `NSObject`.
+impl NSLayoutGuide {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -124,13 +124,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSLayoutGuideSupport
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSView {
+/// NSLayoutGuideSupport.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSView {
+    extern_methods!(
         #[unsafe(method(addLayoutGuide:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addLayoutGuide(&self, guide: &NSLayoutGuide);
@@ -142,5 +142,5 @@ extern_methods!(
         #[unsafe(method(layoutGuides))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutGuides(&self) -> Retained<NSArray<NSLayoutGuide>>;
-    }
-);
+    );
+}

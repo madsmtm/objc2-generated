@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MDLSubmeshTopology {}
 
-extern_methods!(
-    unsafe impl MDLSubmeshTopology {
+impl MDLSubmeshTopology {
+    extern_methods!(
         /// create a topology object corresponding to the topology in the submesh
         #[unsafe(method(initWithSubmesh:))]
         #[unsafe(method_family = init)]
@@ -190,12 +190,12 @@ extern_methods!(
         #[unsafe(method(setHoleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHoleCount(&self, hole_count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLSubmeshTopology {
+/// Methods declared on superclass `NSObject`.
+impl MDLSubmeshTopology {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -203,8 +203,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A drawable subset of an MDLMesh, with its own material
@@ -220,8 +220,8 @@ unsafe impl MDLNamed for MDLSubmesh {}
 
 unsafe impl NSObjectProtocol for MDLSubmesh {}
 
-extern_methods!(
-    unsafe impl MDLSubmesh {
+impl MDLSubmesh {
+    extern_methods!(
         #[cfg(all(
             feature = "MDLMaterial",
             feature = "MDLMeshBuffer",
@@ -367,12 +367,12 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLSubmesh {
+/// Methods declared on superclass `NSObject`.
+impl MDLSubmesh {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -380,5 +380,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

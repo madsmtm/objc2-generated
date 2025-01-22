@@ -48,9 +48,9 @@ unsafe impl NSObjectProtocol for CAMetalLayer {}
 #[cfg(feature = "CALayer")]
 unsafe impl NSSecureCoding for CAMetalLayer {}
 
-extern_methods!(
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAMetalLayer {
+#[cfg(feature = "CALayer")]
+impl CAMetalLayer {
+    extern_methods!(
         #[cfg(feature = "objc2-metal")]
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
@@ -184,13 +184,13 @@ extern_methods!(
             &self,
             developer_hud_properties: Option<&NSDictionary>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CALayer`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAMetalLayer {
+/// Methods declared on superclass `CALayer`.
+#[cfg(feature = "CALayer")]
+impl CAMetalLayer {
+    extern_methods!(
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
@@ -203,15 +203,15 @@ extern_methods!(
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CALayer")]
-    unsafe impl CAMetalLayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CALayer")]
+impl CAMetalLayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

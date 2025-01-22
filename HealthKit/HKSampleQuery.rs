@@ -27,9 +27,9 @@ unsafe impl Sync for HKSampleQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKSampleQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKSampleQuery {
+#[cfg(feature = "HKQuery")]
+impl HKSampleQuery {
+    extern_methods!(
         /// The maximum number of results the receiver will return upon completion.
         #[unsafe(method(limit))]
         #[unsafe(method_family = none)]
@@ -132,25 +132,25 @@ extern_methods!(
                 dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKSampleQuery {
+/// Methods declared on superclass `HKQuery`.
+#[cfg(feature = "HKQuery")]
+impl HKSampleQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKSampleQuery {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKQuery")]
+impl HKSampleQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

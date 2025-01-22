@@ -45,23 +45,21 @@ unsafe impl NSObjectProtocol for ARObjectAnchor {}
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl NSSecureCoding for ARObjectAnchor {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARObjectAnchor {
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARObjectAnchor {
+    extern_methods!(
         #[cfg(feature = "ARReferenceObject")]
         /// Reference to the detected object.
         #[unsafe(method(referenceObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceObject(&self) -> Retained<ARReferenceObject>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `ARAnchor`
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARObjectAnchor {
+/// Methods declared on superclass `ARAnchor`.
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARObjectAnchor {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -70,5 +68,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

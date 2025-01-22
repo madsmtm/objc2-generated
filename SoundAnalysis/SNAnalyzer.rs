@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SNAudioStreamAnalyzer {}
 
-extern_methods!(
-    unsafe impl SNAudioStreamAnalyzer {
+impl SNAudioStreamAnalyzer {
+    extern_methods!(
         #[cfg(feature = "objc2-avf-audio")]
         /// Creates a new analyzer
         ///
@@ -98,17 +98,17 @@ extern_methods!(
         #[unsafe(method(completeAnalysis))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeAnalysis(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SNAudioStreamAnalyzer {
+/// Methods declared on superclass `NSObject`.
+impl SNAudioStreamAnalyzer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Analyzes an audio file and provides analysis results to the client
@@ -121,8 +121,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SNAudioFileAnalyzer {}
 
-extern_methods!(
-    unsafe impl SNAudioFileAnalyzer {
+impl SNAudioFileAnalyzer {
+    extern_methods!(
         /// Creates a new analyzer
         ///
         /// - Parameters:
@@ -202,14 +202,14 @@ extern_methods!(
         #[unsafe(method(cancelAnalysis))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelAnalysis(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SNAudioFileAnalyzer {
+/// Methods declared on superclass `NSObject`.
+impl SNAudioFileAnalyzer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

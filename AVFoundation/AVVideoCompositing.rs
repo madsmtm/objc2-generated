@@ -79,8 +79,8 @@ unsafe impl Sync for AVVideoCompositionRenderContext {}
 
 unsafe impl NSObjectProtocol for AVVideoCompositionRenderContext {}
 
-extern_methods!(
-    unsafe impl AVVideoCompositionRenderContext {
+impl AVVideoCompositionRenderContext {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
@@ -120,12 +120,12 @@ extern_methods!(
         #[unsafe(method(newPixelBuffer))]
         #[unsafe(method_family = new)]
         pub unsafe fn newPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVVideoCompositionRenderContext {
+/// Methods declared on superclass `NSObject`.
+impl AVVideoCompositionRenderContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -133,8 +133,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionrenderhint?language=objc)
@@ -149,8 +149,8 @@ unsafe impl Sync for AVVideoCompositionRenderHint {}
 
 unsafe impl NSObjectProtocol for AVVideoCompositionRenderHint {}
 
-extern_methods!(
-    unsafe impl AVVideoCompositionRenderHint {
+impl AVVideoCompositionRenderHint {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The start time of the upcoming composition requests.
         #[unsafe(method(startCompositionTime))]
@@ -162,12 +162,12 @@ extern_methods!(
         #[unsafe(method(endCompositionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn endCompositionTime(&self) -> CMTime;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVVideoCompositionRenderHint {
+/// Methods declared on superclass `NSObject`.
+impl AVVideoCompositionRenderHint {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -175,8 +175,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines properties and methods for custom video compositors
@@ -319,8 +319,8 @@ unsafe impl CopyingHelper for AVAsynchronousVideoCompositionRequest {
 
 unsafe impl NSObjectProtocol for AVAsynchronousVideoCompositionRequest {}
 
-extern_methods!(
-    unsafe impl AVAsynchronousVideoCompositionRequest {
+impl AVAsynchronousVideoCompositionRequest {
+    extern_methods!(
         #[unsafe(method(renderContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderContext(&self) -> Retained<AVVideoCompositionRenderContext>;
@@ -392,12 +392,12 @@ extern_methods!(
         #[unsafe(method(finishCancelledRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishCancelledRequest(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAsynchronousVideoCompositionRequest {
+/// Methods declared on superclass `NSObject`.
+impl AVAsynchronousVideoCompositionRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -405,8 +405,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avasynchronousciimagefilteringrequest?language=objc)
@@ -423,8 +423,8 @@ unsafe impl CopyingHelper for AVAsynchronousCIImageFilteringRequest {
 
 unsafe impl NSObjectProtocol for AVAsynchronousCIImageFilteringRequest {}
 
-extern_methods!(
-    unsafe impl AVAsynchronousCIImageFilteringRequest {
+impl AVAsynchronousCIImageFilteringRequest {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(renderSize))]
         #[unsafe(method_family = none)]
@@ -454,12 +454,12 @@ extern_methods!(
         #[unsafe(method(finishWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWithError(&self, error: &NSError);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAsynchronousCIImageFilteringRequest {
+/// Methods declared on superclass `NSObject`.
+impl AVAsynchronousCIImageFilteringRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -467,8 +467,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// The AVVideoCompositionInstruction protocol is implemented by objects to represent operations to be performed by a compositor.

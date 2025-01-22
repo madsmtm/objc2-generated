@@ -219,8 +219,8 @@ unsafe impl NSObjectProtocol for AVSpeechSynthesisVoice {}
 
 unsafe impl NSSecureCoding for AVSpeechSynthesisVoice {}
 
-extern_methods!(
-    unsafe impl AVSpeechSynthesisVoice {
+impl AVSpeechSynthesisVoice {
+    extern_methods!(
         #[unsafe(method(speechVoices))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechVoices() -> Retained<NSArray<AVSpeechSynthesisVoice>>;
@@ -283,12 +283,12 @@ extern_methods!(
         #[unsafe(method(voiceTraits))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceTraits(&self) -> AVSpeechSynthesisVoiceTraits;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVSpeechSynthesisVoice {
+/// Methods declared on superclass `NSObject`.
+impl AVSpeechSynthesisVoice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -296,8 +296,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVSpeechUtterance is the atom of speaking a string or pausing the synthesizer.
@@ -323,8 +323,8 @@ unsafe impl NSObjectProtocol for AVSpeechUtterance {}
 
 unsafe impl NSSecureCoding for AVSpeechUtterance {}
 
-extern_methods!(
-    unsafe impl AVSpeechUtterance {
+impl AVSpeechUtterance {
+    extern_methods!(
         #[unsafe(method(speechUtteranceWithString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechUtteranceWithString(string: &NSString) -> Retained<Self>;
@@ -447,12 +447,12 @@ extern_methods!(
         #[unsafe(method(setPostUtteranceDelay:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPostUtteranceDelay(&self, post_utterance_delay: NSTimeInterval);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVSpeechUtterance {
+/// Methods declared on superclass `NSObject`.
+impl AVSpeechUtterance {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -460,8 +460,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVSpeechSynthesizer allows speaking of speech utterances with a basic queuing mechanism.
@@ -477,8 +477,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVSpeechSynthesizer {}
 
-extern_methods!(
-    unsafe impl AVSpeechSynthesizer {
+impl AVSpeechSynthesizer {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -596,12 +596,12 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn personalVoiceAuthorizationStatus(
         ) -> AVSpeechSynthesisPersonalVoiceAuthorizationStatus;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVSpeechSynthesizer {
+/// Methods declared on superclass `NSObject`.
+impl AVSpeechSynthesizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -609,8 +609,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Defines an interface for delegates of AVSpeechSynthesizer to receive notifications of important speech utterance events.
@@ -707,8 +707,8 @@ unsafe impl NSObjectProtocol for AVSpeechSynthesisMarker {}
 
 unsafe impl NSSecureCoding for AVSpeechSynthesisMarker {}
 
-extern_methods!(
-    unsafe impl AVSpeechSynthesisMarker {
+impl AVSpeechSynthesisMarker {
+    extern_methods!(
         #[unsafe(method(mark))]
         #[unsafe(method_family = none)]
         pub unsafe fn mark(&self) -> AVSpeechSynthesisMarkerMark;
@@ -804,12 +804,12 @@ extern_methods!(
             mark: &NSString,
             byte_sample_offset: NSInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVSpeechSynthesisMarker {
+/// Methods declared on superclass `NSObject`.
+impl AVSpeechSynthesisMarker {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -817,5 +817,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

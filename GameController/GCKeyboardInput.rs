@@ -44,9 +44,9 @@ extern_class!(
 #[cfg(feature = "GCPhysicalInputProfile")]
 unsafe impl NSObjectProtocol for GCKeyboardInput {}
 
-extern_methods!(
-    #[cfg(feature = "GCPhysicalInputProfile")]
-    unsafe impl GCKeyboardInput {
+#[cfg(feature = "GCPhysicalInputProfile")]
+impl GCKeyboardInput {
+    extern_methods!(
         #[cfg(all(
             feature = "GCControllerButtonInput",
             feature = "GCControllerElement",
@@ -97,13 +97,13 @@ extern_methods!(
             &self,
             code: GCKeyCode,
         ) -> Option<Retained<GCControllerButtonInput>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GCPhysicalInputProfile")]
-    unsafe impl GCKeyboardInput {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "GCPhysicalInputProfile")]
+impl GCKeyboardInput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -111,5 +111,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

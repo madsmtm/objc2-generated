@@ -78,8 +78,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCoordinatedPlaybackSuspension {}
 
-extern_methods!(
-    unsafe impl AVCoordinatedPlaybackSuspension {
+impl AVCoordinatedPlaybackSuspension {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -115,8 +115,8 @@ extern_methods!(
         #[unsafe(method(endProposingNewTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endProposingNewTime(&self, time: CMTime);
-    }
-);
+    );
+}
 
 extern "C" {
     /// Posted by the playback coordinator when its otherParticipants property changes.
@@ -149,8 +149,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlaybackCoordinator {}
 
-extern_methods!(
-    unsafe impl AVPlaybackCoordinator {
+impl AVPlaybackCoordinator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -202,8 +202,8 @@ extern_methods!(
         #[unsafe(method(expectedItemTimeAtHostTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedItemTimeAtHostTime(&self, host_clock_time: CMTime) -> CMTime;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A participant in a coordinated playback group connected through AVPlaybackCoordinator.
@@ -222,8 +222,8 @@ unsafe impl Sync for AVCoordinatedPlaybackParticipant {}
 
 unsafe impl NSObjectProtocol for AVCoordinatedPlaybackParticipant {}
 
-extern_methods!(
-    unsafe impl AVCoordinatedPlaybackParticipant {
+impl AVCoordinatedPlaybackParticipant {
+    extern_methods!(
         /// The reason, if any, this participant is currently not participating in coordinated playback.
         #[unsafe(method(suspensionReasons))]
         #[unsafe(method_family = none)]
@@ -242,12 +242,12 @@ extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVCoordinatedPlaybackParticipant {
+/// Methods declared on superclass `NSObject`.
+impl AVCoordinatedPlaybackParticipant {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -255,13 +255,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCoordinatedPlaybackPolicies
-    /// Policies used by AVPlaybackCoordinator to determine how to interact with the group.
-    unsafe impl AVPlaybackCoordinator {
+/// AVCoordinatedPlaybackPolicies.
+/// Policies used by AVPlaybackCoordinator to determine how to interact with the group.
+impl AVPlaybackCoordinator {
+    extern_methods!(
         /// Sets the amount of participants that can join a group before the coordinator stops waiting for this particular suspension reason.
         ///
         /// This allows additional configuration for suspension reasons in the suspensionReasonsThatTriggerWaiting array.
@@ -314,8 +314,8 @@ extern_methods!(
             &self,
             pause_snaps_to_media_time_of_originator: bool,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVPlaybackCoordinator subclass for controlling an AVPlayer
@@ -333,8 +333,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerPlaybackCoordinator {}
 
-extern_methods!(
-    unsafe impl AVPlayerPlaybackCoordinator {
+impl AVPlayerPlaybackCoordinator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -364,8 +364,8 @@ extern_methods!(
             &self,
             delegate: Option<&ProtocolObject<dyn AVPlayerPlaybackCoordinatorDelegate>>,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Delegate protocol for AVPlayerPlaybackCoordinator.
@@ -470,8 +470,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinator {}
 
-extern_methods!(
-    unsafe impl AVDelegatingPlaybackCoordinator {
+impl AVDelegatingPlaybackCoordinator {
+    extern_methods!(
         /// Creates an AVPlaybackCoordinator for a custom playback object.
         ///
         /// Use this to create an AVPlaybackCoordinator when playback is not driven by an AVPlayer.
@@ -570,12 +570,12 @@ extern_methods!(
         #[unsafe(method(reapplyCurrentItemStateToPlaybackControlDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn reapplyCurrentItemStateToPlaybackControlDelegate(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVPlaybackCoordinator`
-    unsafe impl AVDelegatingPlaybackCoordinator {
+/// Methods declared on superclass `AVPlaybackCoordinator`.
+impl AVDelegatingPlaybackCoordinator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -583,8 +583,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A custom player implementation
@@ -698,8 +698,8 @@ unsafe impl Sync for AVDelegatingPlaybackCoordinatorPlaybackControlCommand {}
 
 unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPlaybackControlCommand {}
 
-extern_methods!(
-    unsafe impl AVDelegatingPlaybackCoordinatorPlaybackControlCommand {
+impl AVDelegatingPlaybackCoordinatorPlaybackControlCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -725,8 +725,8 @@ extern_methods!(
         #[unsafe(method(expectedCurrentItemIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedCurrentItemIdentifier(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A playback command requesting playback with specific timing.
@@ -745,8 +745,8 @@ unsafe impl Sync for AVDelegatingPlaybackCoordinatorPlayCommand {}
 
 unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPlayCommand {}
 
-extern_methods!(
-    unsafe impl AVDelegatingPlaybackCoordinatorPlayCommand {
+impl AVDelegatingPlaybackCoordinatorPlayCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -776,8 +776,8 @@ extern_methods!(
         #[unsafe(method(hostClockTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn hostClockTime(&self) -> CMTime;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A playback command requesting buffering in anticipation of playback.
@@ -799,8 +799,8 @@ unsafe impl Sync for AVDelegatingPlaybackCoordinatorBufferingCommand {}
 
 unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorBufferingCommand {}
 
-extern_methods!(
-    unsafe impl AVDelegatingPlaybackCoordinatorBufferingCommand {
+impl AVDelegatingPlaybackCoordinatorBufferingCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -825,8 +825,8 @@ extern_methods!(
         #[unsafe(method(completionDueDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionDueDate(&self) -> Option<Retained<NSDate>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A playback command requesting a pause
@@ -845,8 +845,8 @@ unsafe impl Sync for AVDelegatingPlaybackCoordinatorPauseCommand {}
 
 unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPauseCommand {}
 
-extern_methods!(
-    unsafe impl AVDelegatingPlaybackCoordinatorPauseCommand {
+impl AVDelegatingPlaybackCoordinatorPauseCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -868,8 +868,8 @@ extern_methods!(
         #[unsafe(method(anticipatedPlaybackRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn anticipatedPlaybackRate(&self) -> c_float;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A playback command requesting a seek.
@@ -890,8 +890,8 @@ unsafe impl Sync for AVDelegatingPlaybackCoordinatorSeekCommand {}
 
 unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorSeekCommand {}
 
-extern_methods!(
-    unsafe impl AVDelegatingPlaybackCoordinatorSeekCommand {
+impl AVDelegatingPlaybackCoordinatorSeekCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -932,5 +932,5 @@ extern_methods!(
         #[unsafe(method(completionDueDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionDueDate(&self) -> Option<Retained<NSDate>>;
-    }
-);
+    );
+}

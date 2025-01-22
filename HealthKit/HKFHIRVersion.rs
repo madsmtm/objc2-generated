@@ -36,8 +36,8 @@ unsafe impl NSObjectProtocol for HKFHIRVersion {}
 
 unsafe impl NSSecureCoding for HKFHIRVersion {}
 
-extern_methods!(
-    unsafe impl HKFHIRVersion {
+impl HKFHIRVersion {
+    extern_methods!(
         #[unsafe(method(majorVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn majorVersion(&self) -> NSInteger;
@@ -77,14 +77,14 @@ extern_methods!(
         #[unsafe(method(primaryR4Version))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryR4Version() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKFHIRVersion {
+/// Methods declared on superclass `NSObject`.
+impl HKFHIRVersion {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

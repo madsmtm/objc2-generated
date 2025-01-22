@@ -21,8 +21,8 @@ unsafe impl Sync for MLModelStructureProgramNamedValueType {}
 
 unsafe impl NSObjectProtocol for MLModelStructureProgramNamedValueType {}
 
-extern_methods!(
-    unsafe impl MLModelStructureProgramNamedValueType {
+impl MLModelStructureProgramNamedValueType {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -41,5 +41,5 @@ extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<MLModelStructureProgramValueType>;
-    }
-);
+    );
+}

@@ -50,8 +50,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WebHistory {}
 
-extern_methods!(
-    unsafe impl WebHistory {
+impl WebHistory {
+    extern_methods!(
         /// Returns a shared WebHistory instance initialized with the default history file.
         ///
         /// Returns: A WebHistory object.
@@ -134,12 +134,12 @@ extern_methods!(
         #[unsafe(method(setHistoryAgeInDaysLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHistoryAgeInDaysLimit(&self, history_age_in_days_limit: c_int);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WebHistory {
+/// Methods declared on superclass `NSObject`.
+impl WebHistory {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -147,5 +147,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

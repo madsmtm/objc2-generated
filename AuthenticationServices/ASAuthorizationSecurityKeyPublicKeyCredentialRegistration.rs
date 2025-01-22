@@ -47,8 +47,8 @@ unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialRe
 
 unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
+impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
+    extern_methods!(
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// A list of transports that the authenticator is believed to support, if this could be determined.
         #[unsafe(method(transports))]
@@ -56,12 +56,12 @@ extern_methods!(
         pub unsafe fn transports(
             &self,
         ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
+/// Methods declared on superclass `NSObject`.
+impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -69,5 +69,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

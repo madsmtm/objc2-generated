@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLPredictionOptions {}
 
-extern_methods!(
-    unsafe impl MLPredictionOptions {
+impl MLPredictionOptions {
+    extern_methods!(
         /// Set to YES to force computation to be on the CPU only
         #[deprecated]
         #[unsafe(method(usesCPUOnly))]
@@ -107,12 +107,12 @@ extern_methods!(
         #[unsafe(method(setOutputBackings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputBackings(&self, output_backings: &NSDictionary<NSString, AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLPredictionOptions {
+/// Methods declared on superclass `NSObject`.
+impl MLPredictionOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -120,5 +120,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

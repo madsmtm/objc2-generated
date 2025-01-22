@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchedResultsController<ResultType> {}
 
-extern_methods!(
-    unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
+impl<ResultType: Message> NSFetchedResultsController<ResultType> {
+    extern_methods!(
         #[cfg(all(
             feature = "NSFetchRequest",
             feature = "NSManagedObjectContext",
@@ -112,12 +112,12 @@ extern_methods!(
             title: &NSString,
             section_index: NSInteger,
         ) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl<ResultType: Message> NSFetchedResultsController<ResultType> {
+/// Methods declared on superclass `NSObject`.
+impl<ResultType: Message> NSFetchedResultsController<ResultType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -125,8 +125,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultssectioninfo?language=objc)

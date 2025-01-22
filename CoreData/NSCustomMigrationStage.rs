@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "NSMigrationStage")]
 unsafe impl NSObjectProtocol for NSCustomMigrationStage {}
 
-extern_methods!(
-    #[cfg(feature = "NSMigrationStage")]
-    unsafe impl NSCustomMigrationStage {
+#[cfg(feature = "NSMigrationStage")]
+impl NSCustomMigrationStage {
+    extern_methods!(
         #[cfg(feature = "NSManagedObjectModelReference")]
         #[unsafe(method(currentModel))]
         #[unsafe(method_family = none)]
@@ -103,15 +103,15 @@ extern_methods!(
             current_model: &NSManagedObjectModelReference,
             next_model: &NSManagedObjectModelReference,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSMigrationStage")]
-    unsafe impl NSCustomMigrationStage {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSMigrationStage")]
+impl NSCustomMigrationStage {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

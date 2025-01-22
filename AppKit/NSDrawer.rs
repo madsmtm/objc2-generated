@@ -58,9 +58,9 @@ unsafe impl NSCoding for NSDrawer {}
 #[cfg(feature = "NSResponder")]
 unsafe impl NSObjectProtocol for NSDrawer {}
 
-extern_methods!(
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSDrawer {
+#[cfg(feature = "NSResponder")]
+impl NSDrawer {
+    extern_methods!(
         #[unsafe(method(initWithContentSize:preferredEdge:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentSize_preferredEdge(
@@ -189,13 +189,13 @@ extern_methods!(
         #[unsafe(method(setTrailingOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingOffset(&self, trailing_offset: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSDrawer {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "NSResponder")]
+impl NSDrawer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -206,29 +206,29 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSDrawer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSResponder")]
+impl NSDrawer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDrawers
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSWindow {
+/// NSDrawers.
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSWindow {
+    extern_methods!(
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[unsafe(method(drawers))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawers(&self) -> Option<Retained<NSArray<NSDrawer>>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerdelegate?language=objc)

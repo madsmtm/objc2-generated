@@ -41,9 +41,9 @@ unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialRe
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
+    extern_methods!(
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
         /// A list of parameters for the new credential which are supported by the Relying Party. The authenticator should choose from these parameters when creating the credential.
         #[unsafe(method(credentialParameters))]
@@ -102,13 +102,13 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(feature = "ASAuthorizationRequest")]
-    unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
-);
+#[cfg(feature = "ASAuthorizationRequest")]
+impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "ASAuthorizationRequest",

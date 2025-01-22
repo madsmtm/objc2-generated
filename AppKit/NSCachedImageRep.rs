@@ -29,9 +29,9 @@ unsafe impl CopyingHelper for NSCachedImageRep {
 #[cfg(feature = "NSImageRep")]
 unsafe impl NSObjectProtocol for NSCachedImageRep {}
 
-extern_methods!(
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSCachedImageRep {
+#[cfg(feature = "NSImageRep")]
+impl NSCachedImageRep {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated]
         #[unsafe(method(initWithWindow:rect:))]
@@ -64,13 +64,13 @@ extern_methods!(
         #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
         pub unsafe fn rect(&self) -> NSRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSImageRep`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSCachedImageRep {
+/// Methods declared on superclass `NSImageRep`.
+#[cfg(feature = "NSImageRep")]
+impl NSCachedImageRep {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,15 +81,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSImageRep")]
-    unsafe impl NSCachedImageRep {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSImageRep")]
+impl NSCachedImageRep {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

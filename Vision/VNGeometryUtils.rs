@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VNGeometryUtils {}
 
-extern_methods!(
-    unsafe impl VNGeometryUtils {
+impl VNGeometryUtils {
+    extern_methods!(
         #[cfg(feature = "VNGeometry")]
         /// Calculates a bounding circle that includes a collection of points or a VNContour object. Note that because this is based on a geometric shape the aspect ratio is important when using normalized points.
         /// This takes the aspect ratio of the contour into account when using a VNContour as an input.
@@ -104,12 +104,12 @@ extern_methods!(
             perimeter: NonNull<c_double>,
             contour: &VNContour,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNGeometryUtils {
+/// Methods declared on superclass `NSObject`.
+impl VNGeometryUtils {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -117,5 +117,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

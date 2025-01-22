@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for SKReachConstraints {}
 
 unsafe impl NSSecureCoding for SKReachConstraints {}
 
-extern_methods!(
-    unsafe impl SKReachConstraints {
+impl SKReachConstraints {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Lower angle limit in radians
         #[unsafe(method(lowerAngleLimit))]
@@ -56,12 +56,12 @@ extern_methods!(
             lower_angle_limit: CGFloat,
             upper_angle_limit: CGFloat,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKReachConstraints {
+/// Methods declared on superclass `NSObject`.
+impl SKReachConstraints {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -69,5 +69,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

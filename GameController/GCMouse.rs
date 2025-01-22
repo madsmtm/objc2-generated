@@ -87,8 +87,8 @@ unsafe impl GCDevice for GCMouse {}
 
 unsafe impl NSObjectProtocol for GCMouse {}
 
-extern_methods!(
-    unsafe impl GCMouse {
+impl GCMouse {
+    extern_methods!(
         #[cfg(all(feature = "GCMouseInput", feature = "GCPhysicalInputProfile"))]
         /// Unlike GCController GCMouse supports only one input profile
         /// Profile contains mouse buttons, scroll wheel and  pointer delta.
@@ -108,12 +108,12 @@ extern_methods!(
         #[unsafe(method(mice))]
         #[unsafe(method_family = none)]
         pub unsafe fn mice() -> Retained<NSArray<GCMouse>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCMouse {
+/// Methods declared on superclass `NSObject`.
+impl GCMouse {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -121,5 +121,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

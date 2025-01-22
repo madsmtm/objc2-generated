@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GCPhysicalInputProfile {}
 
-extern_methods!(
-    unsafe impl GCPhysicalInputProfile {
+impl GCPhysicalInputProfile {
+    extern_methods!(
         #[cfg(feature = "GCDevice")]
         /// A profile keeps a reference to the device that this profile is mapping input from
         #[unsafe(method(device))]
@@ -199,12 +199,12 @@ extern_methods!(
             &self,
             element_alias: &NSString,
         ) -> Retained<NSSet<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCPhysicalInputProfile {
+/// Methods declared on superclass `NSObject`.
+impl GCPhysicalInputProfile {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -212,5 +212,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for AMWorkflow {
 
 unsafe impl NSObjectProtocol for AMWorkflow {}
 
-extern_methods!(
-    unsafe impl AMWorkflow {
+impl AMWorkflow {
+    extern_methods!(
         #[unsafe(method(runWorkflowAtURL:withInput:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWorkflowAtURL_withInput_error(
@@ -105,14 +105,14 @@ extern_methods!(
         #[unsafe(method(output))]
         #[unsafe(method_family = none)]
         pub unsafe fn output(&self) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AMWorkflow {
+/// Methods declared on superclass `NSObject`.
+impl AMWorkflow {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

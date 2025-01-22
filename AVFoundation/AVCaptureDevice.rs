@@ -60,8 +60,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDevice {}
 
-extern_methods!(
-    unsafe impl AVCaptureDevice {
+impl AVCaptureDevice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -405,8 +405,8 @@ extern_methods!(
             &self,
             active_input_source: Option<&AVCaptureDeviceInputSource>,
         );
-    }
-);
+    );
+}
 
 /// Constants indicating the physical position of an AVCaptureDevice's hardware on the system.
 ///
@@ -439,9 +439,9 @@ unsafe impl RefEncode for AVCaptureDevicePosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCaptureDevicePosition
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDevicePosition.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates the physical position of an AVCaptureDevice's hardware on the system.
         ///
         ///
@@ -449,8 +449,8 @@ extern_methods!(
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> AVCaptureDevicePosition;
-    }
-);
+    );
+}
 
 /// AVCaptureDeviceType string constants
 ///
@@ -625,9 +625,9 @@ extern "C" {
     pub static AVCaptureDeviceTypeBuiltInMicrophone: &'static AVCaptureDeviceType;
 }
 
-extern_methods!(
-    /// AVCaptureDeviceType
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceType.
+impl AVCaptureDevice {
+    extern_methods!(
         /// The type of the capture device.
         ///
         ///
@@ -635,12 +635,12 @@ extern_methods!(
         #[unsafe(method(deviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceType(&self) -> Retained<AVCaptureDeviceType>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDefaultDevice
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDefaultDevice.
+impl AVCaptureDevice {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         /// Returns an AVCaptureDevice instance for the default device of the given device type, media type, and position.
         ///
@@ -662,12 +662,12 @@ extern_methods!(
             media_type: Option<&AVMediaType>,
             position: AVCaptureDevicePosition,
         ) -> Option<Retained<AVCaptureDevice>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDevicePreferredCamera
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDevicePreferredCamera.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Settable property that specifies a user preferred camera.
         ///
         ///
@@ -692,12 +692,12 @@ extern_methods!(
         #[unsafe(method(systemPreferredCamera))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemPreferredCamera() -> Option<Retained<AVCaptureDevice>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceSystemPressure
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceSystemPressure.
+impl AVCaptureDevice {
+    extern_methods!(
         #[cfg(feature = "AVCaptureSystemPressure")]
         /// A key-value observable property indicating the capture device's current system pressure state.
         ///
@@ -706,8 +706,8 @@ extern_methods!(
         #[unsafe(method(systemPressureState))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemPressureState(&self) -> Retained<AVCaptureSystemPressureState>;
-    }
-);
+    );
+}
 
 /// These constants can be used to control when the virtual device is allowed to switch the active primary constituent device.
 ///
@@ -791,9 +791,9 @@ unsafe impl RefEncode for AVCapturePrimaryConstituentDeviceRestrictedSwitchingBe
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCaptureDeviceVirtual
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceVirtual.
+impl AVCaptureDevice {
+    extern_methods!(
         /// A property indicating whether the receiver is a virtual device consisting of constituent physical devices.
         ///
         ///
@@ -912,8 +912,8 @@ extern_methods!(
             &self,
             fallback_primary_constituent_devices: &NSArray<AVCaptureDevice>,
         );
-    }
-);
+    );
+}
 
 /// Constants indicating the mode of the flash on the receiver's device, if it has one.
 ///
@@ -946,9 +946,9 @@ unsafe impl RefEncode for AVCaptureFlashMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCaptureDeviceFlash
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceFlash.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates whether the receiver has a flash.
         ///
         ///
@@ -1004,8 +1004,8 @@ extern_methods!(
         #[unsafe(method(setFlashMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFlashMode(&self, flash_mode: AVCaptureFlashMode);
-    }
-);
+    );
+}
 
 /// Constants indicating the mode of the torch on the receiver's device, if it has one.
 ///
@@ -1045,9 +1045,9 @@ extern "C" {
     pub static AVCaptureMaxAvailableTorchLevel: c_float;
 }
 
-extern_methods!(
-    /// AVCaptureDeviceTorch
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceTorch.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates whether the receiver has a torch.
         ///
         ///
@@ -1116,8 +1116,8 @@ extern_methods!(
             &self,
             torch_level: c_float,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
 /// Constants indicating the mode of the focus on the receiver's device, if it has one.
 ///
@@ -1188,9 +1188,9 @@ extern "C" {
     pub static AVCaptureLensPositionCurrent: c_float;
 }
 
-extern_methods!(
-    /// AVCaptureDeviceFocus
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceFocus.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Returns whether the receiver supports the given focus mode.
         ///
         ///
@@ -1367,8 +1367,8 @@ extern_methods!(
         #[unsafe(method(minimumFocusDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumFocusDistance(&self) -> NSInteger;
-    }
-);
+    );
+}
 
 /// Constants indicating the mode of the exposure on the receiver's device, if it has adjustable exposure.
 ///
@@ -1427,9 +1427,9 @@ extern "C" {
     pub static AVCaptureExposureTargetBiasCurrent: c_float;
 }
 
-extern_methods!(
-    /// AVCaptureDeviceExposure
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceExposure.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Returns whether the receiver supports the given exposure mode.
         ///
         ///
@@ -1631,12 +1631,12 @@ extern_methods!(
             bias: c_float,
             handler: Option<&block2::Block<dyn Fn(CMTime)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceToneMapping
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceToneMapping.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates whether the receiver should use global tone mapping.
         ///
         ///
@@ -1662,8 +1662,8 @@ extern_methods!(
         #[unsafe(method(setGlobalToneMappingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlobalToneMappingEnabled(&self, global_tone_mapping_enabled: bool);
-    }
-);
+    );
+}
 
 /// Constants indicating the mode of the white balance on the receiver's device, if it has adjustable white balance.
 ///
@@ -1765,9 +1765,9 @@ extern "C" {
     pub static AVCaptureWhiteBalanceGainsCurrent: AVCaptureWhiteBalanceGains;
 }
 
-extern_methods!(
-    /// AVCaptureDeviceWhiteBalance
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceWhiteBalance.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Returns whether the receiver supports the given white balance mode.
         ///
         ///
@@ -1918,12 +1918,12 @@ extern_methods!(
             &self,
             temp_and_tint_values: AVCaptureWhiteBalanceTemperatureAndTintValues,
         ) -> AVCaptureWhiteBalanceGains;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceSubjectAreaChangeMonitoring
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceSubjectAreaChangeMonitoring.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates whether the receiver should monitor the subject area for changes.
         ///
         ///
@@ -1939,12 +1939,12 @@ extern_methods!(
             &self,
             subject_area_change_monitoring_enabled: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceLowLightBoost
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceLowLightBoost.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates whether the receiver supports boosting images in low light conditions.
         ///
         ///
@@ -1976,12 +1976,12 @@ extern_methods!(
             &self,
             automatically_enables_low_light_boost_when_available: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceVideoZoom
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceVideoZoom.
+impl AVCaptureDevice {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls zoom level of image outputs
         ///
@@ -2055,8 +2055,8 @@ extern_methods!(
         #[unsafe(method(displayVideoZoomFactorMultiplier))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayVideoZoomFactorMultiplier(&self) -> CGFloat;
-    }
-);
+    );
+}
 
 /// Constants indicating the client's authorization to the underlying hardware supporting a media type.
 ///
@@ -2093,9 +2093,9 @@ unsafe impl RefEncode for AVAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCaptureDeviceAuthorization
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceAuthorization.
+impl AVCaptureDevice {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         /// Returns the client's authorization status for accessing the underlying hardware that supports a given media type.
         ///
@@ -2136,8 +2136,8 @@ extern_methods!(
             media_type: &AVMediaType,
             handler: &block2::Block<dyn Fn(Bool)>,
         );
-    }
-);
+    );
+}
 
 /// A constant that is used to specify the transport controls' speed.
 ///
@@ -2171,9 +2171,9 @@ unsafe impl RefEncode for AVCaptureDeviceTransportControlsPlaybackMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCaptureDeviceTransportControls
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceTransportControls.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Returns whether the receiver supports transport control commands.
         ///
         ///
@@ -2221,12 +2221,12 @@ extern_methods!(
             mode: AVCaptureDeviceTransportControlsPlaybackMode,
             speed: AVCaptureDeviceTransportControlsSpeed,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceHighDynamicRangeSupport
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceHighDynamicRangeSupport.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates whether the receiver is allowed to turn high dynamic range streaming on or off.
         ///
         ///
@@ -2257,8 +2257,8 @@ extern_methods!(
         #[unsafe(method(setVideoHDREnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoHDREnabled(&self, video_hdr_enabled: bool);
-    }
-);
+    );
+}
 
 /// Constants indicating active or supported video color space.
 ///
@@ -2295,9 +2295,9 @@ unsafe impl RefEncode for AVCaptureColorSpace {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCaptureDeviceColorSpaceSupport
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceColorSpaceSupport.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates the receiver's current active color space.
         ///
         ///
@@ -2310,12 +2310,12 @@ extern_methods!(
         #[unsafe(method(setActiveColorSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActiveColorSpace(&self, active_color_space: AVCaptureColorSpace);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceDepthSupport
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceDepthSupport.
+impl AVCaptureDevice {
+    extern_methods!(
         /// The currently active depth data format of the receiver.
         ///
         ///
@@ -2382,12 +2382,12 @@ extern_methods!(
         #[unsafe(method(maxAvailableVideoZoomFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxAvailableVideoZoomFactor(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceGeometricDistortionCorrection
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceGeometricDistortionCorrection.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates that geometric distortion correction is supported by the receiver.
         ///
         ///
@@ -2411,12 +2411,12 @@ extern_methods!(
             &self,
             geometric_distortion_correction_enabled: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceCalibration
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceCalibration.
+impl AVCaptureDevice {
+    extern_methods!(
         /// An NSData containing the relative extrinsic matrix from one AVCaptureDevice to another.
         ///
         /// Parameter `fromDevice`: The AVCaptureDevice to use as the source. Must be non nil or an NSInvalidArgumentException is thrown.
@@ -2443,8 +2443,8 @@ extern_methods!(
             from_device: &AVCaptureDevice,
             to_device: &AVCaptureDevice,
         ) -> Option<Retained<NSData>>;
-    }
-);
+    );
+}
 
 /// Constants indicating the current Center Stage control mode.
 ///
@@ -2477,9 +2477,9 @@ unsafe impl RefEncode for AVCaptureCenterStageControlMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCaptureDeviceCenterStage
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceCenterStage.
+impl AVCaptureDevice {
+    extern_methods!(
         /// A class property indicating the current mode of Center Stage control (user, app, or cooperative).
         ///
         ///
@@ -2552,12 +2552,12 @@ extern_methods!(
         #[unsafe(method(setCenterStageRectOfInterest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCenterStageRectOfInterest(&self, center_stage_rect_of_interest: CGRect);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDevicePortraitEffect
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDevicePortraitEffect.
+impl AVCaptureDevice {
+    extern_methods!(
         /// A class property indicating whether the Portrait Effect feature is currently enabled in Control Center.
         ///
         ///
@@ -2582,12 +2582,12 @@ extern_methods!(
         #[unsafe(method(isPortraitEffectActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPortraitEffectActive(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceReactionEffects
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceReactionEffects.
+impl AVCaptureDevice {
+    extern_methods!(
         /// A class property indicating whether the application is suitable for reaction effects, either by automatic gesture detection, or by calls to -[AVCaptureDevice performEffectForReaction:]. Reactions are only rendered when the device's activeFormat.reactionEffectsSupported is also YES, which will be reflected by canPerformReactionEffects when the feature is both enabled and supported.
         ///
         ///
@@ -2657,12 +2657,12 @@ extern_methods!(
         pub unsafe fn reactionEffectsInProgress(
             &self,
         ) -> Retained<NSArray<AVCaptureReactionEffectState>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceBackgroundReplacement
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceBackgroundReplacement.
+impl AVCaptureDevice {
+    extern_methods!(
         /// A class property indicating whether the user has enabled the Background Replacement feature for this application.
         #[unsafe(method(isBackgroundReplacementEnabled))]
         #[unsafe(method_family = none)]
@@ -2675,12 +2675,12 @@ extern_methods!(
         #[unsafe(method(isBackgroundReplacementActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBackgroundReplacementActive(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceContinuityCamera
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceContinuityCamera.
+impl AVCaptureDevice {
+    extern_methods!(
         /// A property that reports YES if the receiver is a Continuity Camera.
         ///
         ///
@@ -2688,12 +2688,12 @@ extern_methods!(
         #[unsafe(method(isContinuityCamera))]
         #[unsafe(method_family = none)]
         pub unsafe fn isContinuityCamera(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceDeskViewCamera
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceDeskViewCamera.
+impl AVCaptureDevice {
+    extern_methods!(
         /// A reference to the Desk View Camera that is associated with and derived from this camera.
         ///
         ///
@@ -2701,8 +2701,8 @@ extern_methods!(
         #[unsafe(method(companionDeskViewCamera))]
         #[unsafe(method_family = none)]
         pub unsafe fn companionDeskViewCamera(&self) -> Option<Retained<AVCaptureDevice>>;
-    }
-);
+    );
+}
 
 /// Constants describing microphone filtering modes.
 ///
@@ -2735,9 +2735,9 @@ unsafe impl RefEncode for AVCaptureMicrophoneMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCaptureMicrophoneMode
-    unsafe impl AVCaptureDevice {
+/// AVCaptureMicrophoneMode.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates the microphone mode that has been selected by the user in Control Center.
         ///
         ///
@@ -2753,8 +2753,8 @@ extern_methods!(
         #[unsafe(method(activeMicrophoneMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn activeMicrophoneMode() -> AVCaptureMicrophoneMode;
-    }
-);
+    );
+}
 
 /// Constants describing the system user interfaces available to +showSystemUserInterface:.
 ///
@@ -2783,9 +2783,9 @@ unsafe impl RefEncode for AVCaptureSystemUserInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVCaptureSystemUserInterface
-    unsafe impl AVCaptureDevice {
+/// AVCaptureSystemUserInterface.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Displays the system's user interface for video effects or microphone modes.
         ///
         ///
@@ -2796,8 +2796,8 @@ extern_methods!(
         #[unsafe(method(showSystemUserInterface:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showSystemUserInterface(system_user_interface: AVCaptureSystemUserInterface);
-    }
-);
+    );
+}
 
 /// AVSpatialCaptureDiscomfortReason string constants
 ///
@@ -2824,9 +2824,9 @@ extern "C" {
         &'static AVSpatialCaptureDiscomfortReason;
 }
 
-extern_methods!(
-    /// AVCaptureDeviceSpatialCapture
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceSpatialCapture.
+impl AVCaptureDevice {
+    extern_methods!(
         /// Indicates whether or not the current environmental conditions are amenable to a spatial capture that is comfortable to view.
         ///
         ///
@@ -2836,8 +2836,8 @@ extern_methods!(
         pub unsafe fn spatialCaptureDiscomfortReasons(
             &self,
         ) -> Retained<NSSet<AVSpatialCaptureDiscomfortReason>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The AVCaptureDeviceDiscoverySession allows clients to search for devices by certain criteria.
@@ -2853,8 +2853,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDeviceDiscoverySession {}
 
-extern_methods!(
-    unsafe impl AVCaptureDeviceDiscoverySession {
+impl AVCaptureDeviceDiscoverySession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2902,8 +2902,8 @@ extern_methods!(
         pub unsafe fn supportedMultiCamDeviceSets(
             &self,
         ) -> Retained<NSArray<NSSet<AVCaptureDevice>>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The AVCaptureDeviceRotationCoordinator allows clients to monitor rotations of a given AVCaptureDevice instance and be provided the video rotation angle that should be applied for horizon-level preview and capture relative to gravity.
@@ -2919,8 +2919,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDeviceRotationCoordinator {}
 
-extern_methods!(
-    unsafe impl AVCaptureDeviceRotationCoordinator {
+impl AVCaptureDeviceRotationCoordinator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2985,8 +2985,8 @@ extern_methods!(
         #[unsafe(method(videoRotationAngleForHorizonLevelCapture))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoRotationAngleForHorizonLevelCapture(&self) -> CGFloat;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVExposureBiasRange expresses an inclusive range of supported exposure bias values, in EV units.
@@ -3002,8 +3002,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVExposureBiasRange {}
 
-extern_methods!(
-    unsafe impl AVExposureBiasRange {
+impl AVExposureBiasRange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3034,8 +3034,8 @@ extern_methods!(
         #[unsafe(method(containsExposureBias:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsExposureBias(&self, exposure_bias: c_float) -> bool;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVFrameRateRange expresses a range of valid frame rates as min and max rate and min and max duration.
@@ -3051,8 +3051,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVFrameRateRange {}
 
-extern_methods!(
-    unsafe impl AVFrameRateRange {
+impl AVFrameRateRange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3094,8 +3094,8 @@ extern_methods!(
         #[unsafe(method(minFrameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn minFrameDuration(&self) -> CMTime;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVZoomRange expresses an inclusive range of supported zoom factors.
@@ -3111,8 +3111,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVZoomRange {}
 
-extern_methods!(
-    unsafe impl AVZoomRange {
+impl AVZoomRange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3144,8 +3144,8 @@ extern_methods!(
         #[unsafe(method(containsZoomFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsZoomFactor(&self, zoom_factor: CGFloat) -> bool;
-    }
-);
+    );
+}
 
 /// Constants indicating the modes of video stabilization supported by the device's format.
 ///
@@ -3239,8 +3239,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDeviceFormat {}
 
-extern_methods!(
-    unsafe impl AVCaptureDeviceFormat {
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3541,21 +3541,21 @@ extern_methods!(
         #[unsafe(method(isAutoVideoFrameRateSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoVideoFrameRateSupported(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceFormatDepthDataAdditions
-    unsafe impl AVCaptureDeviceFormat {
+/// AVCaptureDeviceFormatDepthDataAdditions.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         #[unsafe(method(isPortraitEffectsMatteStillImageDeliverySupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPortraitEffectsMatteStillImageDeliverySupported(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceFormatMultiCamAdditions
-    unsafe impl AVCaptureDeviceFormat {
+/// AVCaptureDeviceFormatMultiCamAdditions.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         /// A property indicating whether this format is supported in an AVCaptureMultiCamSession.
         ///
         ///
@@ -3563,22 +3563,22 @@ extern_methods!(
         #[unsafe(method(isMultiCamSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMultiCamSupported(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceFormatSpatialVideoCapture
-    unsafe impl AVCaptureDeviceFormat {
+/// AVCaptureDeviceFormatSpatialVideoCapture.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         /// Returns whether or not the format supports capturing spatial video to a file.
         #[unsafe(method(isSpatialVideoCaptureSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSpatialVideoCaptureSupported(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceFormatGeometricDistortionCorrection
-    unsafe impl AVCaptureDeviceFormat {
+/// AVCaptureDeviceFormatGeometricDistortionCorrection.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         /// A property indicating the format's horizontal field of view post geometric distortion correction.
         ///
         ///
@@ -3586,12 +3586,12 @@ extern_methods!(
         #[unsafe(method(geometricDistortionCorrectedVideoFieldOfView))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometricDistortionCorrectedVideoFieldOfView(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceFormatCenterStage
-    unsafe impl AVCaptureDeviceFormat {
+/// AVCaptureDeviceFormatCenterStage.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         /// Indicates whether the format supports the Center Stage feature.
         ///
         ///
@@ -3623,12 +3623,12 @@ extern_methods!(
         pub unsafe fn videoFrameRateRangeForCenterStage(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceFormatPortraitEffect
-    unsafe impl AVCaptureDeviceFormat {
+/// AVCaptureDeviceFormatPortraitEffect.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         /// Indicates whether the format supports the Portrait Effect feature.
         ///
         ///
@@ -3646,12 +3646,12 @@ extern_methods!(
         pub unsafe fn videoFrameRateRangeForPortraitEffect(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceStudioLight
-    unsafe impl AVCaptureDevice {
+/// AVCaptureDeviceStudioLight.
+impl AVCaptureDevice {
+    extern_methods!(
         /// A class property indicating whether the Studio Light feature is currently enabled in Control Center.
         ///
         ///
@@ -3673,12 +3673,12 @@ extern_methods!(
         #[unsafe(method(isStudioLightActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStudioLightActive(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceFormatStudioLight
-    unsafe impl AVCaptureDeviceFormat {
+/// AVCaptureDeviceFormatStudioLight.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         /// Indicates whether the format supports the Studio Light feature.
         ///
         ///
@@ -3696,12 +3696,12 @@ extern_methods!(
         pub unsafe fn videoFrameRateRangeForStudioLight(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceFormatReactionEffects
-    unsafe impl AVCaptureDeviceFormat {
+/// AVCaptureDeviceFormatReactionEffects.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         /// Indicates whether the format supports the Reaction Effects feature.
         ///
         ///
@@ -3719,12 +3719,12 @@ extern_methods!(
         pub unsafe fn videoFrameRateRangeForReactionEffectsInProgress(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureDeviceFormatBackgroundReplacement
-    unsafe impl AVCaptureDeviceFormat {
+/// AVCaptureDeviceFormatBackgroundReplacement.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
         /// Indicates whether the format supports the Background Replacement feature.
         ///
         ///
@@ -3742,8 +3742,8 @@ extern_methods!(
         pub unsafe fn videoFrameRateRangeForBackgroundReplacement(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVCaptureDeviceInputSource represents a distinct input source on an AVCaptureDevice object.
@@ -3759,8 +3759,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureDeviceInputSource {}
 
-extern_methods!(
-    unsafe impl AVCaptureDeviceInputSource {
+impl AVCaptureDeviceInputSource {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -3784,5 +3784,5 @@ extern_methods!(
         #[unsafe(method(localizedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}

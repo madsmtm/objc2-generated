@@ -123,9 +123,9 @@ unsafe impl UIResponderStandardEditActions for UIDocumentBrowserViewController {
 ))]
 unsafe impl UITraitEnvironment for UIDocumentBrowserViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentBrowserViewController {
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentBrowserViewController {
+    extern_methods!(
         /// Parameter `allowedContentTypes`: The document types that the user should be able to open. If nil, the types specified via the CFBundleDocumentTypes key in the application plist will be used instead.
         #[deprecated]
         #[unsafe(method(initForOpeningFilesWithContentTypes:))]
@@ -365,26 +365,26 @@ extern_methods!(
         #[unsafe(method(setDefaultDocumentAspectRatio:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultDocumentAspectRatio(&self, default_document_aspect_ratio: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentBrowserViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentBrowserViewController {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIDocumentBrowserViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIDocumentBrowserViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -392,8 +392,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontrollerdelegate?language=objc)
@@ -519,8 +519,8 @@ unsafe impl NSObjectProtocol for UIDocumentBrowserTransitionController {}
 #[cfg(feature = "UIViewControllerTransitioning")]
 unsafe impl UIViewControllerAnimatedTransitioning for UIDocumentBrowserTransitionController {}
 
-extern_methods!(
-    unsafe impl UIDocumentBrowserTransitionController {
+impl UIDocumentBrowserTransitionController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -549,14 +549,14 @@ extern_methods!(
         #[unsafe(method(setTargetView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetView(&self, target_view: Option<&UIView>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIDocumentBrowserTransitionController {
+/// Methods declared on superclass `NSObject`.
+impl UIDocumentBrowserTransitionController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

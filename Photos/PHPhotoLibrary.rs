@@ -85,8 +85,8 @@ unsafe impl Sync for PHPhotoLibrary {}
 
 unsafe impl NSObjectProtocol for PHPhotoLibrary {}
 
-extern_methods!(
-    unsafe impl PHPhotoLibrary {
+impl PHPhotoLibrary {
+    extern_methods!(
         #[unsafe(method(sharedPhotoLibrary))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedPhotoLibrary() -> Retained<PHPhotoLibrary>;
@@ -167,12 +167,12 @@ extern_methods!(
         #[unsafe(method(currentChangeToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentChangeToken(&self) -> Retained<PHPersistentChangeToken>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHPhotoLibrary {
+/// Methods declared on superclass `NSObject`.
+impl PHPhotoLibrary {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -180,5 +180,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

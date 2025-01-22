@@ -184,8 +184,8 @@ unsafe impl NSObjectProtocol for UIButtonConfiguration {}
 
 unsafe impl NSSecureCoding for UIButtonConfiguration {}
 
-extern_methods!(
-    unsafe impl UIButtonConfiguration {
+impl UIButtonConfiguration {
+    extern_methods!(
         #[unsafe(method(plainButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn plainButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
@@ -599,5 +599,5 @@ extern_methods!(
             &self,
             automatically_update_for_selection: bool,
         );
-    }
-);
+    );
+}

@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for MPMediaEntity {}
 
 unsafe impl NSSecureCoding for MPMediaEntity {}
 
-extern_methods!(
-    unsafe impl MPMediaEntity {
+impl MPMediaEntity {
+    extern_methods!(
         #[unsafe(method(canFilterByProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canFilterByProperty(property: &NSString) -> bool;
@@ -57,12 +57,12 @@ extern_methods!(
         #[unsafe(method(persistentID))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPMediaEntity {
+/// Methods declared on superclass `NSObject`.
+impl MPMediaEntity {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -70,5 +70,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

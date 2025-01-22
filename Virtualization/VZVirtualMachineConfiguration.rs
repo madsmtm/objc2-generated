@@ -61,8 +61,8 @@ unsafe impl CopyingHelper for VZVirtualMachineConfiguration {
 
 unsafe impl NSObjectProtocol for VZVirtualMachineConfiguration {}
 
-extern_methods!(
-    unsafe impl VZVirtualMachineConfiguration {
+impl VZVirtualMachineConfiguration {
+    extern_methods!(
         #[cfg(feature = "VZBootLoader")]
         /// Boot loader used when the virtual machine starts.
         ///
@@ -363,12 +363,12 @@ extern_methods!(
             &self,
             usb_controllers: &NSArray<VZUSBControllerConfiguration>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VZVirtualMachineConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl VZVirtualMachineConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -376,13 +376,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// VZVirtualMachineConfigurationValidation
-    /// Virtual machine configuration runtime validation.
-    unsafe impl VZVirtualMachineConfiguration {
+/// VZVirtualMachineConfigurationValidation.
+/// Virtual machine configuration runtime validation.
+impl VZVirtualMachineConfiguration {
+    extern_methods!(
         /// Validate the configuration.
         ///
         /// Parameter `error`: If not nil, assigned with the validation error if the validation failed.
@@ -432,5 +432,5 @@ extern_methods!(
         #[unsafe(method(maximumAllowedCPUCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumAllowedCPUCount() -> NSUInteger;
-    }
-);
+    );
+}

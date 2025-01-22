@@ -64,8 +64,8 @@ unsafe impl NSObjectProtocol for UIContextMenuInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIContextMenuInteraction {}
 
-extern_methods!(
-    unsafe impl UIContextMenuInteraction {
+impl UIContextMenuInteraction {
+    extern_methods!(
         /// The interaction's delegate.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -133,8 +133,8 @@ extern_methods!(
         #[unsafe(method(dismissMenu))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissMenu(&self);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractionanimating?language=objc)

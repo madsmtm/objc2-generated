@@ -50,17 +50,17 @@ unsafe impl NSSeguePerforming for GKLeaderboardViewController {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for GKLeaderboardViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKLeaderboardViewController {}
-);
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl GKLeaderboardViewController {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKLeaderboardViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl GKLeaderboardViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -75,35 +75,35 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKLeaderboardViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl GKLeaderboardViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKLeaderboardViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl GKLeaderboardViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKLeaderboardViewController {
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl GKLeaderboardViewController {
+    extern_methods!(
         #[cfg(feature = "GKLeaderboard")]
         #[deprecated]
         #[unsafe(method(timeScope))]
@@ -144,8 +144,8 @@ extern_methods!(
             &self,
             leaderboard_delegate: Option<&ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>,
         );
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardviewcontrollerdelegate?language=objc)

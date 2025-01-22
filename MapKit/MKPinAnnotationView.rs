@@ -78,10 +78,10 @@ unsafe impl NSObjectProtocol for MKPinAnnotationView {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for MKPinAnnotationView {}
 
-extern_methods!(
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKPinAnnotationView {
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKPinAnnotationView {
+    extern_methods!(
         #[unsafe(method(redPinColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn redPinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
@@ -124,14 +124,14 @@ extern_methods!(
         #[unsafe(method(setPinColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPinColor(&self, pin_color: MKPinAnnotationColor);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MKAnnotationView`
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKPinAnnotationView {
+/// Methods declared on superclass `MKAnnotationView`.
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKPinAnnotationView {
+    extern_methods!(
         #[cfg(feature = "MKAnnotation")]
         #[unsafe(method(initWithAnnotation:reuseIdentifier:))]
         #[unsafe(method_family = init)]
@@ -147,38 +147,38 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKPinAnnotationView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKPinAnnotationView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKPinAnnotationView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKPinAnnotationView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKPinAnnotationView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKPinAnnotationView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

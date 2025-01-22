@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCSoftmaxLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCSoftmaxLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCSoftmaxLayer {
+    extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// The softmax operation.  Supported values are softmax and log softmax.
         #[deprecated]
@@ -61,13 +61,13 @@ extern_methods!(
             operation: MLCSoftmaxOperation,
             dimension: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCSoftmaxLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCSoftmaxLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -77,5 +77,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

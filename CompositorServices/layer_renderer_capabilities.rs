@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CP_OBJECT_cp_layer_renderer_capabilities {}
 
-extern_methods!(
-    unsafe impl CP_OBJECT_cp_layer_renderer_capabilities {
+impl CP_OBJECT_cp_layer_renderer_capabilities {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -26,8 +26,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_t?language=objc)
 pub type cp_layer_renderer_capabilities_t = CP_OBJECT_cp_layer_renderer_capabilities;

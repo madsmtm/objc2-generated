@@ -52,9 +52,9 @@ unsafe impl NSObjectProtocol for NSCompoundPredicate {}
 #[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl NSSecureCoding for NSCompoundPredicate {}
 
-extern_methods!(
-    #[cfg(feature = "NSPredicate")]
-    unsafe impl NSCompoundPredicate {
+#[cfg(feature = "NSPredicate")]
+impl NSCompoundPredicate {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[unsafe(method(initWithType:subpredicates:))]
         #[unsafe(method_family = init)]
@@ -101,13 +101,13 @@ extern_methods!(
         pub unsafe fn notPredicateWithSubpredicate(
             predicate: &NSPredicate,
         ) -> Retained<NSCompoundPredicate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPredicate")]
-    unsafe impl NSCompoundPredicate {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPredicate")]
+impl NSCompoundPredicate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -115,5 +115,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

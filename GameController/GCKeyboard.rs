@@ -48,8 +48,8 @@ unsafe impl GCDevice for GCKeyboard {}
 
 unsafe impl NSObjectProtocol for GCKeyboard {}
 
-extern_methods!(
-    unsafe impl GCKeyboard {
+impl GCKeyboard {
+    extern_methods!(
         #[cfg(all(feature = "GCKeyboardInput", feature = "GCPhysicalInputProfile"))]
         /// Unlike GCController GCKeyboard only has one input profile.
         ///
@@ -63,12 +63,12 @@ extern_methods!(
         #[unsafe(method(coalescedKeyboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn coalescedKeyboard() -> Option<Retained<GCKeyboard>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCKeyboard {
+/// Methods declared on superclass `NSObject`.
+impl GCKeyboard {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,5 +76,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

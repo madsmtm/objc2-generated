@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LADomainStateBiometry {}
 
-extern_methods!(
-    unsafe impl LADomainStateBiometry {
+impl LADomainStateBiometry {
+    extern_methods!(
         #[cfg(feature = "LABiometryType")]
         /// Indicates biometry type available on the device.
         #[unsafe(method(biometryType))]
@@ -45,8 +45,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/ladomainstatecompanion?language=objc)
@@ -57,8 +57,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LADomainStateCompanion {}
 
-extern_methods!(
-    unsafe impl LADomainStateCompanion {
+impl LADomainStateCompanion {
+    extern_methods!(
         /// Indicates types of companions paired with the device.
         /// The elements are NSNumber-wrapped instances of
         /// ``LACompanionType`.`
@@ -112,8 +112,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/ladomainstate?language=objc)
@@ -124,8 +124,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for LADomainState {}
 
-extern_methods!(
-    unsafe impl LADomainState {
+impl LADomainState {
+    extern_methods!(
         /// Contains biometric domain state.
         #[unsafe(method(biometry))]
         #[unsafe(method_family = none)]
@@ -152,5 +152,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

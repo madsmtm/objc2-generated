@@ -41,8 +41,8 @@ unsafe impl NSCoding for NSScriptCommand {}
 
 unsafe impl NSObjectProtocol for NSScriptCommand {}
 
-extern_methods!(
-    unsafe impl NSScriptCommand {
+impl NSScriptCommand {
+    extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
@@ -189,12 +189,12 @@ extern_methods!(
         #[unsafe(method(resumeExecutionWithResult:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeExecutionWithResult(&self, result: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScriptCommand {
+/// Methods declared on superclass `NSObject`.
+impl NSScriptCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -202,5 +202,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

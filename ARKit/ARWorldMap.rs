@@ -42,9 +42,8 @@ unsafe impl NSObjectProtocol for ARWorldMap {}
 unsafe impl NSSecureCoding for ARWorldMap {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARWorldMap {
+impl ARWorldMap {
+    extern_methods!(
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
         /// A list of anchors in the map.
         #[unsafe(method(anchors))]
@@ -71,5 +70,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

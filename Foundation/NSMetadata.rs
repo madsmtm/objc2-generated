@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSMetadataQuery {}
 
-extern_methods!(
-    unsafe impl NSMetadataQuery {
+impl NSMetadataQuery {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -204,12 +204,12 @@ extern_methods!(
             attr_name: &NSString,
             idx: NSUInteger,
         ) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMetadataQuery {
+/// Methods declared on superclass `NSObject`.
+impl NSMetadataQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -217,8 +217,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydelegate?language=objc)
@@ -350,8 +350,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSMetadataItem {}
 
-extern_methods!(
-    unsafe impl NSMetadataItem {
+impl NSMetadataItem {
+    extern_methods!(
         #[cfg(feature = "NSURL")]
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
@@ -374,12 +374,12 @@ extern_methods!(
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> Retained<NSArray<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMetadataItem {
+/// Methods declared on superclass `NSObject`.
+impl NSMetadataItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -387,8 +387,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryattributevaluetuple?language=objc)
@@ -399,8 +399,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSMetadataQueryAttributeValueTuple {}
 
-extern_methods!(
-    unsafe impl NSMetadataQueryAttributeValueTuple {
+impl NSMetadataQueryAttributeValueTuple {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(attribute))]
         #[unsafe(method_family = none)]
@@ -413,12 +413,12 @@ extern_methods!(
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMetadataQueryAttributeValueTuple {
+/// Methods declared on superclass `NSObject`.
+impl NSMetadataQueryAttributeValueTuple {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -426,8 +426,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryresultgroup?language=objc)
@@ -438,8 +438,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSMetadataQueryResultGroup {}
 
-extern_methods!(
-    unsafe impl NSMetadataQueryResultGroup {
+impl NSMetadataQueryResultGroup {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(attribute))]
         #[unsafe(method_family = none)]
@@ -466,12 +466,12 @@ extern_methods!(
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Retained<NSArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMetadataQueryResultGroup {
+/// Methods declared on superclass `NSObject`.
+impl NSMetadataQueryResultGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -479,5 +479,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

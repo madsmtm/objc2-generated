@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVMIDIPlayer {}
 
-extern_methods!(
-    unsafe impl AVMIDIPlayer {
+impl AVMIDIPlayer {
+    extern_methods!(
         /// Create a player with the contents of the file specified by the URL.
         ///
         /// 'bankURL' should contain the path to a SoundFont2 or DLS bank to be used
@@ -104,12 +104,12 @@ extern_methods!(
         #[unsafe(method(setCurrentPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentPosition(&self, current_position: NSTimeInterval);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMIDIPlayer {
+/// Methods declared on superclass `NSObject`.
+impl AVMIDIPlayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -117,5 +117,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

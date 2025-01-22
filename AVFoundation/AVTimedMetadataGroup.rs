@@ -20,18 +20,18 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVMetadataGroup {}
 
-extern_methods!(
-    unsafe impl AVMetadataGroup {
+impl AVMetadataGroup {
+    extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMetadataGroup {
+/// Methods declared on superclass `NSObject`.
+impl AVMetadataGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -39,12 +39,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMetadataGroupIdentification
-    unsafe impl AVMetadataGroup {
+/// AVMetadataGroupIdentification.
+impl AVMetadataGroup {
+    extern_methods!(
         #[unsafe(method(classifyingLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn classifyingLabel(&self) -> Option<Retained<NSString>>;
@@ -52,8 +52,8 @@ extern_methods!(
         #[unsafe(method(uniqueID))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueID(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVTimedMetadataGroup is used to represent a collection of metadata items that are valid for use during a specific range of time. For example, AVTimedMetadataGroups are used to represent chapters, optionally containing metadata items for chapter titles and chapter images.
@@ -78,8 +78,8 @@ unsafe impl MutableCopyingHelper for AVTimedMetadataGroup {
 
 unsafe impl NSObjectProtocol for AVTimedMetadataGroup {}
 
-extern_methods!(
-    unsafe impl AVTimedMetadataGroup {
+impl AVTimedMetadataGroup {
+    extern_methods!(
         #[cfg(all(feature = "AVMetadataItem", feature = "objc2-core-media"))]
         /// Initializes an instance of AVTimedMetadataGroup with a collection of metadata items.
         ///
@@ -118,12 +118,12 @@ extern_methods!(
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVTimedMetadataGroup {
+/// Methods declared on superclass `NSObject`.
+impl AVTimedMetadataGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -131,12 +131,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVTimedMetadataGroupSerializationSupport
-    unsafe impl AVTimedMetadataGroup {
+/// AVTimedMetadataGroupSerializationSupport.
+impl AVTimedMetadataGroup {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Creates a format description based on the receiver's items.
         ///
@@ -149,8 +149,8 @@ extern_methods!(
         #[unsafe(method_family = copy)]
         pub unsafe fn copyFormatDescription(&self)
             -> Option<Retained<CMMetadataFormatDescription>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVMutableTimedMetadataGroup is used to represent a mutable collection of metadata items that are valid for use during a specific range of time.
@@ -175,8 +175,8 @@ unsafe impl MutableCopyingHelper for AVMutableTimedMetadataGroup {
 
 unsafe impl NSObjectProtocol for AVMutableTimedMetadataGroup {}
 
-extern_methods!(
-    unsafe impl AVMutableTimedMetadataGroup {
+impl AVMutableTimedMetadataGroup {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
@@ -198,12 +198,12 @@ extern_methods!(
         #[unsafe(method(setItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItems(&self, items: &NSArray<AVMetadataItem>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVTimedMetadataGroup`
-    unsafe impl AVMutableTimedMetadataGroup {
+/// Methods declared on superclass `AVTimedMetadataGroup`.
+impl AVMutableTimedMetadataGroup {
+    extern_methods!(
         #[cfg(all(feature = "AVMetadataItem", feature = "objc2-core-media"))]
         /// Initializes an instance of AVTimedMetadataGroup with a collection of metadata items.
         ///
@@ -232,12 +232,12 @@ extern_methods!(
             this: Allocated<Self>,
             sample_buffer: &CMSampleBuffer,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMutableTimedMetadataGroup {
+/// Methods declared on superclass `NSObject`.
+impl AVMutableTimedMetadataGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -245,8 +245,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVDateRangeMetadataGroup is used to represent a collection of metadata items that are valid for use within a specific range of dates.
@@ -271,8 +271,8 @@ unsafe impl MutableCopyingHelper for AVDateRangeMetadataGroup {
 
 unsafe impl NSObjectProtocol for AVDateRangeMetadataGroup {}
 
-extern_methods!(
-    unsafe impl AVDateRangeMetadataGroup {
+impl AVDateRangeMetadataGroup {
+    extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
         /// Initializes an instance of AVDateRangeMetadataGroup with a collection of metadata items.
         ///
@@ -304,12 +304,12 @@ extern_methods!(
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVDateRangeMetadataGroup {
+/// Methods declared on superclass `NSObject`.
+impl AVDateRangeMetadataGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -317,8 +317,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVMutableDateRangeMetadataGroup is used to represent a mutable collection of metadata items that are valid for use within a specific range of dates.
@@ -343,8 +343,8 @@ unsafe impl MutableCopyingHelper for AVMutableDateRangeMetadataGroup {
 
 unsafe impl NSObjectProtocol for AVMutableDateRangeMetadataGroup {}
 
-extern_methods!(
-    unsafe impl AVMutableDateRangeMetadataGroup {
+impl AVMutableDateRangeMetadataGroup {
+    extern_methods!(
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
@@ -373,12 +373,12 @@ extern_methods!(
         #[unsafe(method(setItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItems(&self, items: &NSArray<AVMetadataItem>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVDateRangeMetadataGroup`
-    unsafe impl AVMutableDateRangeMetadataGroup {
+/// Methods declared on superclass `AVDateRangeMetadataGroup`.
+impl AVMutableDateRangeMetadataGroup {
+    extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
         /// Initializes an instance of AVDateRangeMetadataGroup with a collection of metadata items.
         ///
@@ -397,12 +397,12 @@ extern_methods!(
             start_date: &NSDate,
             end_date: Option<&NSDate>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVMutableDateRangeMetadataGroup {
+/// Methods declared on superclass `NSObject`.
+impl AVMutableDateRangeMetadataGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -410,5 +410,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

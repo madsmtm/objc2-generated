@@ -166,14 +166,14 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UIViewControllerTransitionCoordinator
-    #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-    unsafe impl UIViewController {
+/// UIViewControllerTransitionCoordinator.
+#[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+impl UIViewController {
+    extern_methods!(
         #[unsafe(method(transitionCoordinator))]
         #[unsafe(method_family = none)]
         pub unsafe fn transitionCoordinator(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIViewControllerTransitionCoordinator>>>;
-    }
-);
+    );
+}

@@ -6,14 +6,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// Predicates
-    /// The predicates to match contacts against.
-    ///
-    ///
-    /// Can only use these predicates with CNContactStore and CNContactFetchRequest.
-    #[cfg(feature = "CNContact")]
-    unsafe impl CNContact {
+/// Predicates.
+/// The predicates to match contacts against.
+///
+///
+/// Can only use these predicates with CNContactStore and CNContactFetchRequest.
+#[cfg(feature = "CNContact")]
+impl CNContact {
+    extern_methods!(
         /// To fetch contacts matching a name.
         ///
         ///
@@ -72,5 +72,5 @@ extern_methods!(
         pub unsafe fn predicateForContactsInContainerWithIdentifier(
             container_identifier: &NSString,
         ) -> Retained<NSPredicate>;
-    }
-);
+    );
+}

@@ -23,8 +23,8 @@ unsafe impl Sync for AVPlayerMediaSelectionCriteria {}
 
 unsafe impl NSObjectProtocol for AVPlayerMediaSelectionCriteria {}
 
-extern_methods!(
-    unsafe impl AVPlayerMediaSelectionCriteria {
+impl AVPlayerMediaSelectionCriteria {
+    extern_methods!(
         #[unsafe(method(preferredLanguages))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredLanguages(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -79,12 +79,12 @@ extern_methods!(
             preferred_languages: Option<&NSArray<NSString>>,
             preferred_media_characteristics: Option<&NSArray<AVMediaCharacteristic>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerMediaSelectionCriteria {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerMediaSelectionCriteria {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -92,5 +92,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

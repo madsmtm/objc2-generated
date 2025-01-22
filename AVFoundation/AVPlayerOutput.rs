@@ -25,8 +25,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerVideoOutput {}
 
-extern_methods!(
-    unsafe impl AVPlayerVideoOutput {
+impl AVPlayerVideoOutput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -77,8 +77,8 @@ extern_methods!(
                 &mut Option<Retained<AVPlayerVideoOutputConfiguration>>,
             >,
         ) -> Option<Retained<CMTaggedBufferGroup>>;
-    }
-);
+    );
+}
 
 /// Video output presets supported by CMTagCollectionCreateWithVideoOutputPreset.
 ///
@@ -147,8 +147,8 @@ unsafe impl CopyingHelper for AVVideoOutputSpecification {
 
 unsafe impl NSObjectProtocol for AVVideoOutputSpecification {}
 
-extern_methods!(
-    unsafe impl AVVideoOutputSpecification {
+impl AVVideoOutputSpecification {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -280,8 +280,8 @@ extern_methods!(
             &self,
             default_output_settings: Option<&NSDictionary<NSString, AnyObject>>,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVPlayerVideoOutputConfiguration carries an identifier for the AVPlayerItem the configuration is associated with as well as presentation settings for that item.
@@ -294,8 +294,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerVideoOutputConfiguration {}
 
-extern_methods!(
-    unsafe impl AVPlayerVideoOutputConfiguration {
+impl AVPlayerVideoOutputConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -335,5 +335,5 @@ extern_methods!(
         #[unsafe(method(activationTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn activationTime(&self) -> CMTime;
-    }
-);
+    );
+}

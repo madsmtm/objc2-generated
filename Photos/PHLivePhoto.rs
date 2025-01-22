@@ -54,8 +54,8 @@ unsafe impl NSObjectProtocol for PHLivePhoto {}
 
 unsafe impl NSSecureCoding for PHLivePhoto {}
 
-extern_methods!(
-    unsafe impl PHLivePhoto {
+impl PHLivePhoto {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -87,21 +87,21 @@ extern_methods!(
         #[unsafe(method(cancelLivePhotoRequestWithRequestID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelLivePhotoRequestWithRequestID(request_id: PHLivePhotoRequestID);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHLivePhoto {
+/// Methods declared on superclass `NSObject`.
+impl PHLivePhoto {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSItemProvider
-    unsafe impl PHLivePhoto {}
-);
+/// NSItemProvider.
+impl PHLivePhoto {
+    extern_methods!();
+}
 
 unsafe impl NSItemProviderReading for PHLivePhoto {}

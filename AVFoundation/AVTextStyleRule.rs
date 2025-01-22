@@ -21,8 +21,8 @@ unsafe impl CopyingHelper for AVTextStyleRule {
 
 unsafe impl NSObjectProtocol for AVTextStyleRule {}
 
-extern_methods!(
-    unsafe impl AVTextStyleRule {
+impl AVTextStyleRule {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -132,5 +132,5 @@ extern_methods!(
         #[unsafe(method(textSelector))]
         #[unsafe(method_family = none)]
         pub unsafe fn textSelector(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}

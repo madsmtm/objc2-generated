@@ -29,8 +29,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSRunLoop {}
 
-extern_methods!(
-    unsafe impl NSRunLoop {
+impl NSRunLoop {
+    extern_methods!(
         #[unsafe(method(currentRunLoop))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentRunLoop() -> Retained<NSRunLoop>;
@@ -77,12 +77,12 @@ extern_methods!(
             mode: &NSRunLoopMode,
             limit_date: &NSDate,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSRunLoop {
+/// Methods declared on superclass `NSObject`.
+impl NSRunLoop {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -90,12 +90,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSRunLoopConveniences
-    unsafe impl NSRunLoop {
+/// NSRunLoopConveniences.
+impl NSRunLoop {
+    extern_methods!(
         #[unsafe(method(run))]
         #[unsafe(method_family = none)]
         pub unsafe fn run(&self);
@@ -138,8 +138,8 @@ extern_methods!(
         #[unsafe(method(performBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performBlock(&self, block: &block2::Block<dyn Fn()>);
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSDelayedPerforming" on [`NSObject`].
@@ -188,9 +188,9 @@ extern_category!(
     unsafe impl NSObjectNSDelayedPerforming for NSObject {}
 );
 
-extern_methods!(
-    /// NSOrderedPerform
-    unsafe impl NSRunLoop {
+/// NSOrderedPerform.
+impl NSRunLoop {
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[unsafe(method(performSelector:target:argument:order:modes:))]
         #[unsafe(method_family = none)]
@@ -215,5 +215,5 @@ extern_methods!(
         #[unsafe(method(cancelPerformSelectorsWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelPerformSelectorsWithTarget(&self, target: &AnyObject);
-    }
-);
+    );
+}

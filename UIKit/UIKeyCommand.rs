@@ -40,9 +40,9 @@ unsafe impl NSSecureCoding for UIKeyCommand {}
 ))]
 unsafe impl UIMenuLeaf for UIKeyCommand {}
 
-extern_methods!(
-    #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
-    unsafe impl UIKeyCommand {
+#[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
+impl UIKeyCommand {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -268,15 +268,15 @@ extern_methods!(
             alternates: &NSArray<UICommandAlternate>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UICommand`
-    #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
-    unsafe impl UIKeyCommand {
+/// Methods declared on superclass `UICommand`.
+#[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
+impl UIKeyCommand {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

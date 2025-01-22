@@ -59,9 +59,9 @@ unsafe impl NSSecureCoding for UIWindowSceneActivationAction {}
 ))]
 unsafe impl UIMenuLeaf for UIWindowSceneActivationAction {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
-    unsafe impl UIWindowSceneActivationAction {
+#[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+impl UIWindowSceneActivationAction {
+    extern_methods!(
         /// The actions title. Set to nil to use the default title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -109,13 +109,13 @@ extern_methods!(
             handler: UIActionHandler,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIAction`
-    #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
-    unsafe impl UIWindowSceneActivationAction {
+/// Methods declared on superclass `UIAction`.
+#[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+impl UIWindowSceneActivationAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -123,18 +123,18 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIMenuElement`
-    #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
-    unsafe impl UIWindowSceneActivationAction {
+/// Methods declared on superclass `UIMenuElement`.
+#[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+impl UIWindowSceneActivationAction {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}

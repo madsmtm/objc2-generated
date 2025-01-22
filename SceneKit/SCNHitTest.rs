@@ -104,8 +104,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SCNHitTestResult {}
 
-extern_methods!(
-    unsafe impl SCNHitTestResult {
+impl SCNHitTestResult {
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         /// The hit node.
         #[unsafe(method(node))]
@@ -166,12 +166,12 @@ extern_methods!(
         #[unsafe(method(textureCoordinatesWithMappingChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureCoordinatesWithMappingChannel(&self, channel: NSInteger) -> CGPoint;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNHitTestResult {
+/// Methods declared on superclass `NSObject`.
+impl SCNHitTestResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -179,10 +179,10 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SIMD
-    unsafe impl SCNHitTestResult {}
-);
+/// SIMD.
+impl SCNHitTestResult {
+    extern_methods!();
+}

@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSColorSampler {}
 
-extern_methods!(
-    unsafe impl NSColorSampler {
+impl NSColorSampler {
+    extern_methods!(
         #[cfg(all(feature = "NSColor", feature = "block2"))]
         /// The primary method for NSColorSampler.
         ///
@@ -31,12 +31,12 @@ extern_methods!(
             &self,
             selection_handler: &block2::Block<dyn Fn(*mut NSColor)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSColorSampler {
+/// Methods declared on superclass `NSObject`.
+impl NSColorSampler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -44,5 +44,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

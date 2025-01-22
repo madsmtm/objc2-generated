@@ -82,14 +82,14 @@ unsafe impl NSObjectProtocol for MPSMatrixBatchNormalization {}
 ))]
 unsafe impl NSSecureCoding for MPSMatrixBatchNormalization {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixBatchNormalization {
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixBatchNormalization {
+    extern_methods!(
         /// The number of input vectors which make up the input array.  This
         /// is equivalent to the number of rows to consider from the primary
         /// source matrix.
@@ -302,18 +302,18 @@ extern_methods!(
             zone: *mut NSZone,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixBatchNormalization {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixBatchNormalization {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -328,18 +328,18 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixBatchNormalization {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixBatchNormalization {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -347,8 +347,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -417,14 +417,14 @@ unsafe impl NSObjectProtocol for MPSMatrixBatchNormalizationGradient {}
 ))]
 unsafe impl NSSecureCoding for MPSMatrixBatchNormalizationGradient {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixBatchNormalizationGradient {
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixBatchNormalizationGradient {
+    extern_methods!(
         /// The number of input vectors which make up the input array.
         #[unsafe(method(sourceNumberOfFeatureVectors))]
         #[unsafe(method_family = none)]
@@ -614,18 +614,18 @@ extern_methods!(
             zone: *mut NSZone,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixBatchNormalizationGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixBatchNormalizationGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -640,18 +640,18 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSMatrix",
-        feature = "MPSMatrixTypes"
-    ))]
-    unsafe impl MPSMatrixBatchNormalizationGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
+impl MPSMatrixBatchNormalizationGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -659,5 +659,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

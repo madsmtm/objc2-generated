@@ -208,9 +208,9 @@ unsafe impl UITextInputTraits for UITextField {}
 ))]
 unsafe impl UITraitEnvironment for UITextField {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITextField {
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UITextField {
+    extern_methods!(
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
@@ -514,13 +514,13 @@ extern_methods!(
         #[unsafe(method(setClearsOnInsertion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClearsOnInsertion(&self, clears_on_insertion: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIControl`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITextField {
+/// Methods declared on superclass `UIControl`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UITextField {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -546,13 +546,13 @@ extern_methods!(
             frame: CGRect,
             primary_action: Option<&UIAction>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITextField {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UITextField {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -560,13 +560,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITextField {}
-);
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UITextField {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "UIControl",
@@ -599,10 +599,10 @@ unsafe impl UITextDroppable for UITextField {}
 ))]
 unsafe impl UITextPasteConfigurationSupporting for UITextField {}
 
-extern_methods!(
-    /// UIInteractionStateRestorable
-    #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UITextField {
+/// UIInteractionStateRestorable.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UITextField {
+    extern_methods!(
         #[unsafe(method(interactionState))]
         #[unsafe(method_family = none)]
         pub unsafe fn interactionState(&self) -> Retained<AnyObject>;
@@ -611,18 +611,18 @@ extern_methods!(
         #[unsafe(method(setInteractionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionState(&self, interaction_state: &AnyObject);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UITextField
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIView {
+/// UITextField.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIView {
+    extern_methods!(
         #[unsafe(method(endEditing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endEditing(&self, force: bool) -> bool;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfielddelegate?language=objc)

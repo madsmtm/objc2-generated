@@ -148,8 +148,8 @@ unsafe impl CopyingHelper for NSItemProvider {
 
 unsafe impl NSObjectProtocol for NSItemProvider {}
 
-extern_methods!(
-    unsafe impl NSItemProvider {
+impl NSItemProvider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -340,17 +340,17 @@ extern_methods!(
             options: Option<&NSDictionary>,
             completion_handler: NSItemProviderCompletionHandler,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSItemProvider {
+/// Methods declared on superclass `NSObject`.
+impl NSItemProvider {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderpreferredimagesizekey?language=objc)
@@ -358,9 +358,9 @@ extern "C" {
     pub static NSItemProviderPreferredImageSizeKey: &'static NSString;
 }
 
-extern_methods!(
-    /// NSPreviewSupport
-    unsafe impl NSItemProvider {
+/// NSPreviewSupport.
+impl NSItemProvider {
+    extern_methods!(
         #[cfg(all(
             feature = "NSDictionary",
             feature = "NSError",
@@ -398,8 +398,8 @@ extern_methods!(
             options: Option<&NSDictionary>,
             completion_handler: NSItemProviderCompletionHandler,
         );
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptpreprocessingresultskey?language=objc)

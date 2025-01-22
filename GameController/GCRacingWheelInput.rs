@@ -17,8 +17,8 @@ unsafe impl GCDevicePhysicalInputState for GCRacingWheelInputState {}
 
 unsafe impl NSObjectProtocol for GCRacingWheelInputState {}
 
-extern_methods!(
-    unsafe impl GCRacingWheelInputState {
+impl GCRacingWheelInputState {
+    extern_methods!(
         #[cfg(feature = "GCSteeringWheelElement")]
         /// The steering wheel element.
         #[unsafe(method(wheel))]
@@ -53,12 +53,12 @@ extern_methods!(
         #[unsafe(method(shifter))]
         #[unsafe(method_family = none)]
         pub unsafe fn shifter(&self) -> Option<Retained<GCGearShifterElement>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCRacingWheelInputState {
+/// Methods declared on superclass `NSObject`.
+impl GCRacingWheelInputState {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,8 +66,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheelinput?language=objc)
@@ -87,8 +87,8 @@ unsafe impl GCDevicePhysicalInputState for GCRacingWheelInput {}
 
 unsafe impl NSObjectProtocol for GCRacingWheelInput {}
 
-extern_methods!(
-    unsafe impl GCRacingWheelInput {
+impl GCRacingWheelInput {
+    extern_methods!(
         /// Polls the current state vector of the racing wheel input and saves it to a new
         /// instance.
         #[unsafe(method(capture))]
@@ -99,12 +99,12 @@ extern_methods!(
         #[unsafe(method(nextInputState))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextInputState(&self) -> Option<Retained<GCRacingWheelInputState>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCRacingWheelInput {
+/// Methods declared on superclass `NSObject`.
+impl GCRacingWheelInput {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -112,5 +112,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

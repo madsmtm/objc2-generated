@@ -77,8 +77,8 @@ unsafe impl CopyingHelper for MDLTransform {
 
 unsafe impl NSObjectProtocol for MDLTransform {}
 
-extern_methods!(
-    unsafe impl MDLTransform {
+impl MDLTransform {
+    extern_methods!(
         /// Initialize an MDLTransform's matrices with identity
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -110,14 +110,14 @@ extern_methods!(
         #[unsafe(method(setIdentity))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentity(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLTransform {
+/// Methods declared on superclass `NSObject`.
+impl MDLTransform {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

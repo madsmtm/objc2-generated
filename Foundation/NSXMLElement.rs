@@ -29,9 +29,9 @@ unsafe impl CopyingHelper for NSXMLElement {
 #[cfg(feature = "NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLElement {}
 
-extern_methods!(
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLElement {
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLElement {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         /// Returns an element
         /// <tt>
@@ -245,13 +245,13 @@ extern_methods!(
         #[unsafe(method(normalizeAdjacentTextNodesPreservingCDATA:))]
         #[unsafe(method_family = none)]
         pub unsafe fn normalizeAdjacentTextNodesPreservingCDATA(&self, preserve: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLElement {
+/// Methods declared on superclass `NSXMLNode`.
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLElement {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -266,23 +266,23 @@ extern_methods!(
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLElement {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLElement {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLElement {
+/// NSDeprecated.
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLElement {
+    extern_methods!(
         #[cfg(feature = "NSDictionary")]
         /// Set the attributes base on a name-value dictionary.
         ///
@@ -291,5 +291,5 @@ extern_methods!(
         #[unsafe(method(setAttributesAsDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributesAsDictionary(&self, attributes: &NSDictionary);
-    }
-);
+    );
+}

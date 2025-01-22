@@ -30,13 +30,13 @@ unsafe impl NSObjectProtocol for CIBarcodeDescriptor {}
 
 unsafe impl NSSecureCoding for CIBarcodeDescriptor {}
 
-extern_methods!(
-    unsafe impl CIBarcodeDescriptor {}
-);
+impl CIBarcodeDescriptor {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIBarcodeDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl CIBarcodeDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -44,8 +44,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Constants indicating the percentage of the symbol that is dedicated to error correction.
 ///
@@ -103,8 +103,8 @@ unsafe impl NSObjectProtocol for CIQRCodeDescriptor {}
 
 unsafe impl NSSecureCoding for CIQRCodeDescriptor {}
 
-extern_methods!(
-    unsafe impl CIQRCodeDescriptor {
+impl CIQRCodeDescriptor {
+    extern_methods!(
         /// The error-corrected codewords that comprise the QR code symbol.
         ///
         ///
@@ -157,12 +157,12 @@ extern_methods!(
             mask_pattern: u8,
             error_correction_level: CIQRCodeErrorCorrectionLevel,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIQRCodeDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl CIQRCodeDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -170,8 +170,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// CIAztecCodeDescriptor is a concrete subclass of CIBarcodeDescriptor that defines an abstract representation of an Aztec Code symbol.
@@ -197,8 +197,8 @@ unsafe impl NSObjectProtocol for CIAztecCodeDescriptor {}
 
 unsafe impl NSSecureCoding for CIAztecCodeDescriptor {}
 
-extern_methods!(
-    unsafe impl CIAztecCodeDescriptor {
+impl CIAztecCodeDescriptor {
+    extern_methods!(
         /// The error-corrected codewords that comprise the Aztec code symbol.
         ///
         ///
@@ -255,12 +255,12 @@ extern_methods!(
             layer_count: NSInteger,
             data_codeword_count: NSInteger,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIAztecCodeDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl CIAztecCodeDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -268,8 +268,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// CIPDF417CodeDescriptor is a concrete subclass of CIBarcodeDescriptor that defines an abstract representation of a PDF417 code symbol.
@@ -295,8 +295,8 @@ unsafe impl NSObjectProtocol for CIPDF417CodeDescriptor {}
 
 unsafe impl NSSecureCoding for CIPDF417CodeDescriptor {}
 
-extern_methods!(
-    unsafe impl CIPDF417CodeDescriptor {
+impl CIPDF417CodeDescriptor {
+    extern_methods!(
         /// The error-corrected codewords which comprise the PDF417 symbol. The first codeword indicates the number of data codewords in the errorCorrectedPayload.
         ///
         ///
@@ -347,12 +347,12 @@ extern_methods!(
             row_count: NSInteger,
             column_count: NSInteger,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIPDF417CodeDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl CIPDF417CodeDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -360,8 +360,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Constants indicating the Data Matrix code ECC version.
 ///
@@ -432,8 +432,8 @@ unsafe impl NSObjectProtocol for CIDataMatrixCodeDescriptor {}
 
 unsafe impl NSSecureCoding for CIDataMatrixCodeDescriptor {}
 
-extern_methods!(
-    unsafe impl CIDataMatrixCodeDescriptor {
+impl CIDataMatrixCodeDescriptor {
+    extern_methods!(
         /// The error corrected payload that comprise the Data Matrix code symbol.
         ///
         ///
@@ -486,12 +486,12 @@ extern_methods!(
             column_count: NSInteger,
             ecc_version: CIDataMatrixCodeECCVersion,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIDataMatrixCodeDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl CIDataMatrixCodeDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -499,8 +499,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "CIBarcodeDescriptor" on [`NSUserActivity`].

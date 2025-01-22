@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureControl {}
 
-extern_methods!(
-    unsafe impl AVCaptureControl {
+impl AVCaptureControl {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -46,5 +46,5 @@ extern_methods!(
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
-    }
-);
+    );
+}

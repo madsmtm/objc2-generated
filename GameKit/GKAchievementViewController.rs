@@ -50,10 +50,10 @@ unsafe impl NSSeguePerforming for GKAchievementViewController {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for GKAchievementViewController {}
 
-extern_methods!(
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKAchievementViewController {
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl GKAchievementViewController {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(achievementDelegate))]
         #[unsafe(method_family = none)]
@@ -70,14 +70,14 @@ extern_methods!(
             &self,
             achievement_delegate: Option<&ProtocolObject<dyn GKAchievementViewControllerDelegate>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSViewController`
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKAchievementViewController {
+/// Methods declared on superclass `NSViewController`.
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl GKAchievementViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -92,30 +92,30 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKAchievementViewController {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl GKAchievementViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl GKAchievementViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl GKAchievementViewController {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Optional delegate

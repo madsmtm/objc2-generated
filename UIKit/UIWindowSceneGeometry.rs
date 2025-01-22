@@ -51,8 +51,8 @@ unsafe impl CopyingHelper for UIWindowSceneGeometry {
 
 unsafe impl NSObjectProtocol for UIWindowSceneGeometry {}
 
-extern_methods!(
-    unsafe impl UIWindowSceneGeometry {
+impl UIWindowSceneGeometry {
+    extern_methods!(
         /// Geometry objects are readonly and should only be created by the framework. To set a window scene's geometry, see UIWindowSceneGeometryPreferences and -[UIWindowScene requestGeometryUpdateWithPreferences:].
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -88,5 +88,5 @@ extern_methods!(
         #[unsafe(method(resizingRestrictions))]
         #[unsafe(method_family = none)]
         pub unsafe fn resizingRestrictions(&self) -> UIWindowSceneResizingRestrictions;
-    }
-);
+    );
+}

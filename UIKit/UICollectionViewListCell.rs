@@ -124,13 +124,13 @@ unsafe impl UIResponderStandardEditActions for UICollectionViewListCell {}
 ))]
 unsafe impl UITraitEnvironment for UICollectionViewListCell {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "UICollectionViewCell",
-        feature = "UIResponder",
-        feature = "UIView"
-    ))]
-    unsafe impl UICollectionViewListCell {
+#[cfg(all(
+    feature = "UICollectionViewCell",
+    feature = "UIResponder",
+    feature = "UIView"
+))]
+impl UICollectionViewListCell {
+    extern_methods!(
         #[cfg(feature = "UIListContentConfiguration")]
         /// Returns a default list content configuration for the cell's style.
         #[unsafe(method(defaultContentConfiguration))]
@@ -193,17 +193,17 @@ extern_methods!(
         #[unsafe(method(separatorLayoutGuide))]
         #[unsafe(method_family = none)]
         pub unsafe fn separatorLayoutGuide(&self) -> Retained<UILayoutGuide>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(
-        feature = "UICollectionViewCell",
-        feature = "UIResponder",
-        feature = "UIView"
-    ))]
-    unsafe impl UICollectionViewListCell {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(
+    feature = "UICollectionViewCell",
+    feature = "UIResponder",
+    feature = "UIView"
+))]
+impl UICollectionViewListCell {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -215,17 +215,17 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "UICollectionViewCell",
-        feature = "UIResponder",
-        feature = "UIView"
-    ))]
-    unsafe impl UICollectionViewListCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "UICollectionViewCell",
+    feature = "UIResponder",
+    feature = "UIView"
+))]
+impl UICollectionViewListCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -233,5 +233,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

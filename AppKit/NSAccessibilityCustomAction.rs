@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSAccessibilityCustomAction {}
 
-extern_methods!(
-    unsafe impl NSAccessibilityCustomAction {
+impl NSAccessibilityCustomAction {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(initWithName:handler:))]
         #[unsafe(method_family = init)]
@@ -74,12 +74,12 @@ extern_methods!(
         #[unsafe(method(setSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelector(&self, selector: Option<Sel>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAccessibilityCustomAction {
+/// Methods declared on superclass `NSObject`.
+impl NSAccessibilityCustomAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -87,5 +87,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

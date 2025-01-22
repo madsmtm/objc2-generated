@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NISession {}
 
-extern_methods!(
-    unsafe impl NISession {
+impl NISession {
+    extern_methods!(
         /// Whether or not this device is capable of participating in a nearby interaction session.
         #[deprecated]
         #[unsafe(method(isSupported))]
@@ -104,12 +104,12 @@ extern_methods!(
         #[unsafe(method(setARSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setARSession(&self, session: &ARSession);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NISession {
+/// Methods declared on superclass `NSObject`.
+impl NISession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -117,8 +117,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Reasons to remove a nearby object.
 ///
@@ -191,8 +191,8 @@ unsafe impl NSObjectProtocol for NIAlgorithmConvergence {}
 
 unsafe impl NSSecureCoding for NIAlgorithmConvergence {}
 
-extern_methods!(
-    unsafe impl NIAlgorithmConvergence {
+impl NIAlgorithmConvergence {
+    extern_methods!(
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> NIAlgorithmConvergenceStatus;
@@ -210,8 +210,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Delegate for nearby interaction session updates.

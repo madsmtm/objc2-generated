@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for MPMediaQuerySection {}
 
 unsafe impl NSSecureCoding for MPMediaQuerySection {}
 
-extern_methods!(
-    unsafe impl MPMediaQuerySection {
+impl MPMediaQuerySection {
+    extern_methods!(
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
@@ -34,12 +34,12 @@ extern_methods!(
         #[unsafe(method(range))]
         #[unsafe(method_family = none)]
         pub unsafe fn range(&self) -> NSRange;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPMediaQuerySection {
+/// Methods declared on superclass `NSObject`.
+impl MPMediaQuerySection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -47,5 +47,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

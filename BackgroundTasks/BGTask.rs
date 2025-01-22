@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for BGTask {}
 
-extern_methods!(
-    unsafe impl BGTask {
+impl BGTask {
+    extern_methods!(
         /// The string identifier of the task.
         ///
         /// The identifier is the same as the one used to register the launch handler in
@@ -85,8 +85,8 @@ extern_methods!(
         #[unsafe(method(setTaskCompletedWithSuccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTaskCompletedWithSuccess(&self, success: bool);
-    }
-);
+    );
+}
 
 extern_class!(
     /// A time-consuming processing task that runs while the app is in the
@@ -115,13 +115,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for BGProcessingTask {}
 
-extern_methods!(
-    unsafe impl BGProcessingTask {}
-);
+impl BGProcessingTask {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `BGTask`
-    unsafe impl BGProcessingTask {
+/// Methods declared on superclass `BGTask`.
+impl BGProcessingTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -129,8 +129,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A task meant to perform processing on behalf of health research studies.
@@ -147,13 +147,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for BGHealthResearchTask {}
 
-extern_methods!(
-    unsafe impl BGHealthResearchTask {}
-);
+impl BGHealthResearchTask {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `BGTask`
-    unsafe impl BGHealthResearchTask {
+/// Methods declared on superclass `BGTask`.
+impl BGHealthResearchTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -161,8 +161,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// An object representing a short task typically used to refresh content that’s
@@ -185,13 +185,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for BGAppRefreshTask {}
 
-extern_methods!(
-    unsafe impl BGAppRefreshTask {}
-);
+impl BGAppRefreshTask {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `BGTask`
-    unsafe impl BGAppRefreshTask {
+/// Methods declared on superclass `BGTask`.
+impl BGAppRefreshTask {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -199,5 +199,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

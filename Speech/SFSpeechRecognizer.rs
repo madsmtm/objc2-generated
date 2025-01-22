@@ -40,8 +40,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SFSpeechRecognizer {}
 
-extern_methods!(
-    unsafe impl SFSpeechRecognizer {
+impl SFSpeechRecognizer {
+    extern_methods!(
         #[unsafe(method(supportedLocales))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedLocales() -> Retained<NSSet<NSLocale>>;
@@ -145,17 +145,17 @@ extern_methods!(
         #[unsafe(method(setQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueue(&self, queue: &NSOperationQueue);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SFSpeechRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl SFSpeechRecognizer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerdelegate?language=objc)

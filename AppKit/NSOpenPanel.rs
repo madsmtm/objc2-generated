@@ -99,14 +99,14 @@ unsafe impl NSUserInterfaceItemIdentification for NSOpenPanel {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSOpenPanel {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSPanel",
-        feature = "NSResponder",
-        feature = "NSSavePanel",
-        feature = "NSWindow"
-    ))]
-    unsafe impl NSOpenPanel {
+#[cfg(all(
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
+))]
+impl NSOpenPanel {
+    extern_methods!(
         #[unsafe(method(openPanel))]
         #[unsafe(method_family = none)]
         pub unsafe fn openPanel(mtm: MainThreadMarker) -> Retained<NSOpenPanel>;
@@ -183,18 +183,18 @@ extern_methods!(
         #[unsafe(method(setAccessoryViewDisclosed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryViewDisclosed(&self, accessory_view_disclosed: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSWindow`
-    #[cfg(all(
-        feature = "NSPanel",
-        feature = "NSResponder",
-        feature = "NSSavePanel",
-        feature = "NSWindow"
-    ))]
-    unsafe impl NSOpenPanel {
+/// Methods declared on superclass `NSWindow`.
+#[cfg(all(
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
+))]
+impl NSOpenPanel {
+    extern_methods!(
         #[cfg(feature = "NSGraphics")]
         #[unsafe(method(initWithContentRect:styleMask:backing:defer:))]
         #[unsafe(method_family = init)]
@@ -229,48 +229,48 @@ extern_methods!(
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(
-        feature = "NSPanel",
-        feature = "NSResponder",
-        feature = "NSSavePanel",
-        feature = "NSWindow"
-    ))]
-    unsafe impl NSOpenPanel {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
+))]
+impl NSOpenPanel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSPanel",
-        feature = "NSResponder",
-        feature = "NSSavePanel",
-        feature = "NSWindow"
-    ))]
-    unsafe impl NSOpenPanel {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
+))]
+impl NSOpenPanel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// InheritedAndUnavailable
-    #[cfg(all(
-        feature = "NSPanel",
-        feature = "NSResponder",
-        feature = "NSSavePanel",
-        feature = "NSWindow"
-    ))]
-    unsafe impl NSOpenPanel {
+/// InheritedAndUnavailable.
+#[cfg(all(
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
+))]
+impl NSOpenPanel {
+    extern_methods!(
         #[unsafe(method(showsContentTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsContentTypes(&self) -> bool;
@@ -279,18 +279,18 @@ extern_methods!(
         #[unsafe(method(setShowsContentTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsContentTypes(&self, shows_content_types: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(
-        feature = "NSPanel",
-        feature = "NSResponder",
-        feature = "NSSavePanel",
-        feature = "NSWindow"
-    ))]
-    unsafe impl NSOpenPanel {
+/// NSDeprecated.
+#[cfg(all(
+    feature = "NSPanel",
+    feature = "NSResponder",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
+))]
+impl NSOpenPanel {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(filenames))]
         #[unsafe(method_family = none)]
@@ -337,5 +337,5 @@ extern_methods!(
         #[unsafe(method(runModalForTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalForTypes(&self, file_types: Option<&NSArray>) -> NSInteger;
-    }
-);
+    );
+}

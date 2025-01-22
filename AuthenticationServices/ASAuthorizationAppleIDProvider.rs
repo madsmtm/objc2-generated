@@ -51,8 +51,8 @@ unsafe impl ASAuthorizationProvider for ASAuthorizationAppleIDProvider {}
 
 unsafe impl NSObjectProtocol for ASAuthorizationAppleIDProvider {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationAppleIDProvider {
+impl ASAuthorizationAppleIDProvider {
+    extern_methods!(
         #[cfg(all(
             feature = "ASAuthorizationAppleIDRequest",
             feature = "ASAuthorizationOpenIDRequest",
@@ -89,12 +89,12 @@ extern_methods!(
                 dyn Fn(ASAuthorizationAppleIDProviderCredentialState, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASAuthorizationAppleIDProvider {
+/// Methods declared on superclass `NSObject`.
+impl ASAuthorizationAppleIDProvider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -102,5 +102,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

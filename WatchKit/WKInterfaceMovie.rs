@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "WKInterfaceObject")]
 unsafe impl NSObjectProtocol for WKInterfaceMovie {}
 
-extern_methods!(
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceMovie {
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceMovie {
+    extern_methods!(
         #[deprecated = "Use AVKit.VideoPlayer instead."]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -43,15 +43,15 @@ extern_methods!(
         #[unsafe(method(setPosterImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosterImage(&self, poster_image: Option<&WKImage>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "WKInterfaceObject")]
-    unsafe impl WKInterfaceMovie {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "WKInterfaceObject")]
+impl WKInterfaceMovie {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -77,9 +77,9 @@ unsafe impl CopyingHelper for NSAttributeDescription {
 #[cfg(feature = "NSPropertyDescription")]
 unsafe impl NSObjectProtocol for NSAttributeDescription {}
 
-extern_methods!(
-    #[cfg(feature = "NSPropertyDescription")]
-    unsafe impl NSAttributeDescription {
+#[cfg(feature = "NSPropertyDescription")]
+impl NSAttributeDescription {
+    extern_methods!(
         #[unsafe(method(attributeType))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeType(&self) -> NSAttributeType;
@@ -155,13 +155,13 @@ extern_methods!(
         #[unsafe(method(setAllowsCloudEncryption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCloudEncryption(&self, allows_cloud_encryption: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPropertyDescription")]
-    unsafe impl NSAttributeDescription {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPropertyDescription")]
+impl NSAttributeDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -169,5 +169,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

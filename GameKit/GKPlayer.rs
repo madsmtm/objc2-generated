@@ -28,9 +28,9 @@ extern_class!(
 #[cfg(feature = "GKBasePlayer")]
 unsafe impl NSObjectProtocol for GKPlayer {}
 
-extern_methods!(
-    #[cfg(feature = "GKBasePlayer")]
-    unsafe impl GKPlayer {
+#[cfg(feature = "GKBasePlayer")]
+impl GKPlayer {
+    extern_methods!(
         /// This convenience method checks if the gamePlayerID and the teamPlayerID (scopedIDs) are persistent or unique for the instantiation of this app.
         #[unsafe(method(scopedIDsArePersistent))]
         #[unsafe(method_family = none)]
@@ -69,13 +69,13 @@ extern_methods!(
         #[unsafe(method(isInvitable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInvitable(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GKBasePlayer")]
-    unsafe impl GKPlayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "GKBasePlayer")]
+impl GKPlayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -83,8 +83,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkphotosize?language=objc)
 // NS_ENUM
@@ -106,10 +106,10 @@ unsafe impl RefEncode for GKPhotoSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// UI
-    #[cfg(feature = "GKBasePlayer")]
-    unsafe impl GKPlayer {
+/// UI.
+#[cfg(feature = "GKBasePlayer")]
+impl GKPlayer {
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[unsafe(method(loadPhotoForSize:withCompletionHandler:))]
@@ -119,8 +119,8 @@ extern_methods!(
             size: GKPhotoSize,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
-    }
-);
+    );
+}
 
 extern "C" {
     /// Notification will be posted whenever the player details changes. The object of the notification will be the player.
@@ -129,10 +129,10 @@ extern "C" {
     pub static GKPlayerDidChangeNotificationName: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// Deprecated
-    #[cfg(feature = "GKBasePlayer")]
-    unsafe impl GKPlayer {
+/// Deprecated.
+#[cfg(feature = "GKBasePlayer")]
+impl GKPlayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(isFriend))]
         #[unsafe(method_family = none)]
@@ -158,5 +158,5 @@ extern_methods!(
                 &block2::Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
-    }
-);
+    );
+}

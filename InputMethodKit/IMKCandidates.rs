@@ -55,9 +55,9 @@ unsafe impl NSCoding for IMKCandidates {}
 #[cfg(feature = "objc2-app-kit")]
 unsafe impl NSObjectProtocol for IMKCandidates {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl IMKCandidates {
+#[cfg(feature = "objc2-app-kit")]
+impl IMKCandidates {
+    extern_methods!(
         #[cfg(feature = "IMKServer")]
         /// Default initializer for the class.
         ///
@@ -306,13 +306,13 @@ extern_methods!(
         #[unsafe(method(clearSelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearSelection(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl IMKCandidates {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+impl IMKCandidates {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -323,15 +323,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl IMKCandidates {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+impl IMKCandidates {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

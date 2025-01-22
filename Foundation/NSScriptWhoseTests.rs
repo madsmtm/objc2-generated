@@ -49,8 +49,8 @@ unsafe impl NSCoding for NSScriptWhoseTest {}
 
 unsafe impl NSObjectProtocol for NSScriptWhoseTest {}
 
-extern_methods!(
-    unsafe impl NSScriptWhoseTest {
+impl NSScriptWhoseTest {
+    extern_methods!(
         #[unsafe(method(isTrue))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTrue(&self) -> bool;
@@ -66,17 +66,17 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSScriptWhoseTest {
+/// Methods declared on superclass `NSObject`.
+impl NSScriptWhoseTest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslogicaltest?language=objc)
@@ -90,8 +90,8 @@ unsafe impl NSCoding for NSLogicalTest {}
 
 unsafe impl NSObjectProtocol for NSLogicalTest {}
 
-extern_methods!(
-    unsafe impl NSLogicalTest {
+impl NSLogicalTest {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[unsafe(method(initAndTestWithTests:))]
         #[unsafe(method_family = init)]
@@ -114,12 +114,12 @@ extern_methods!(
             this: Allocated<Self>,
             sub_test: &NSScriptWhoseTest,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSScriptWhoseTest`
-    unsafe impl NSLogicalTest {
+/// Methods declared on superclass `NSScriptWhoseTest`.
+impl NSLogicalTest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -131,17 +131,17 @@ extern_methods!(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSLogicalTest {
+/// Methods declared on superclass `NSObject`.
+impl NSLogicalTest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest?language=objc)
@@ -155,8 +155,8 @@ unsafe impl NSCoding for NSSpecifierTest {}
 
 unsafe impl NSObjectProtocol for NSSpecifierTest {}
 
-extern_methods!(
-    unsafe impl NSSpecifierTest {
+impl NSSpecifierTest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -178,17 +178,17 @@ extern_methods!(
             comp_op: NSTestComparisonOperation,
             obj2: Option<&AnyObject>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSpecifierTest {
+/// Methods declared on superclass `NSObject`.
+impl NSSpecifierTest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSComparisonMethods" on [`NSObject`].

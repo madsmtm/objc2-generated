@@ -61,9 +61,9 @@ unsafe impl NSObjectProtocol for ScreenSaverView {}
 #[cfg(feature = "objc2-app-kit")]
 unsafe impl NSUserInterfaceItemIdentification for ScreenSaverView {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl ScreenSaverView {
+#[cfg(feature = "objc2-app-kit")]
+impl ScreenSaverView {
+    extern_methods!(
         /// Returns the type of backing store you want for your screen saver’s window.
         ///
         /// ## Overview
@@ -281,13 +281,13 @@ extern_methods!(
         #[unsafe(method(isPreview))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPreview(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl ScreenSaverView {
+/// Methods declared on superclass `NSView`.
+#[cfg(feature = "objc2-app-kit")]
+impl ScreenSaverView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -298,28 +298,28 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl ScreenSaverView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(feature = "objc2-app-kit")]
+impl ScreenSaverView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-app-kit")]
-    unsafe impl ScreenSaverView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+impl ScreenSaverView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 // TODO: pub fn SSRandomIntBetween(a: c_int,b: c_int,) -> c_int;
 

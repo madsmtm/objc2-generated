@@ -88,9 +88,9 @@ unsafe impl UIResponderStandardEditActions for MSStickerBrowserView {}
 #[cfg(feature = "objc2-ui-kit")]
 unsafe impl UITraitEnvironment for MSStickerBrowserView {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSStickerBrowserView {
+#[cfg(feature = "objc2-ui-kit")]
+impl MSStickerBrowserView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Initializes a MSStickerBrowserView with a frame using the regular size class.
         #[unsafe(method(initWithFrame:))]
@@ -169,26 +169,26 @@ extern_methods!(
         #[unsafe(method(reloadData))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadData(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSStickerBrowserView {
+/// Methods declared on superclass `UIView`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MSStickerBrowserView {
+    extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSStickerBrowserView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MSStickerBrowserView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -196,5 +196,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

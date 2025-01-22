@@ -31,9 +31,9 @@ unsafe impl CopyingHelper for VZVirtioFileSystemDeviceConfiguration {
 #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioFileSystemDeviceConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
-    unsafe impl VZVirtioFileSystemDeviceConfiguration {
+#[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
+impl VZVirtioFileSystemDeviceConfiguration {
+    extern_methods!(
         /// Configuration of the Virtio file system device.
         ///
         /// Parameter `tag`: The label identifying this device in the guest.
@@ -94,13 +94,13 @@ extern_methods!(
         #[unsafe(method(macOSGuestAutomountTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn macOSGuestAutomountTag() -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZDirectorySharingDeviceConfiguration`
-    #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
-    unsafe impl VZVirtioFileSystemDeviceConfiguration {
+/// Methods declared on superclass `VZDirectorySharingDeviceConfiguration`.
+#[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
+impl VZVirtioFileSystemDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -108,5 +108,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

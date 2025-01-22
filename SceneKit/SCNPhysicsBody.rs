@@ -76,8 +76,8 @@ unsafe impl NSObjectProtocol for SCNPhysicsBody {}
 
 unsafe impl NSSecureCoding for SCNPhysicsBody {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsBody {
+impl SCNPhysicsBody {
+    extern_methods!(
         #[unsafe(method(staticBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn staticBody() -> Retained<Self>;
@@ -386,12 +386,12 @@ extern_methods!(
         #[unsafe(method(setAngularRestingThreshold:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAngularRestingThreshold(&self, angular_resting_threshold: CGFloat);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsBody {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsBody {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -399,5 +399,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -24,9 +24,9 @@ extern_class!(
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCSliceLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCSliceLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCSliceLayer {
+    extern_methods!(
         /// A vector of length equal to that of source. The element at index i specifies the beginning of slice in dimension i.
         #[deprecated]
         #[unsafe(method(start))]
@@ -58,13 +58,13 @@ extern_methods!(
             end: &NSArray<NSNumber>,
             stride: Option<&NSArray<NSNumber>>,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCSliceLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCSliceLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -74,5 +74,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

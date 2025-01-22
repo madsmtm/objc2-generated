@@ -64,8 +64,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKInterfaceObject {}
 
-extern_methods!(
-    unsafe impl WKInterfaceObject {
+impl WKInterfaceObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -132,21 +132,21 @@ extern_methods!(
         #[unsafe(method(interfaceProperty))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceProperty(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKInterfaceObject {
+/// Methods declared on superclass `NSObject`.
+impl WKInterfaceObject {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WKAccessibility
-    unsafe impl WKInterfaceObject {
+/// WKAccessibility.
+impl WKInterfaceObject {
+    extern_methods!(
         #[unsafe(method(setAccessibilityIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityIdentifier(
@@ -181,8 +181,8 @@ extern_methods!(
             &self,
             accessibility_image_regions: &NSArray<WKAccessibilityImageRegion>,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaccessibilityimageregion?language=objc)
@@ -193,8 +193,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKAccessibilityImageRegion {}
 
-extern_methods!(
-    unsafe impl WKAccessibilityImageRegion {
+impl WKAccessibilityImageRegion {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
@@ -214,12 +214,12 @@ extern_methods!(
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKAccessibilityImageRegion {
+/// Methods declared on superclass `NSObject`.
+impl WKAccessibilityImageRegion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -227,5 +227,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

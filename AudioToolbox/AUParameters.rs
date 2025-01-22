@@ -178,8 +178,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AUParameterNode {}
 
-extern_methods!(
-    unsafe impl AUParameterNode {
+impl AUParameterNode {
+    extern_methods!(
         /// A non-localized, permanent name for a parameter or group.
         ///
         /// The identifier must be unique for all child nodes under any given parent. From release to
@@ -295,12 +295,12 @@ extern_methods!(
         #[unsafe(method(removeParameterObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeParameterObserver(&self, token: AUParameterObserverToken);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AUParameterNode {
+/// Methods declared on superclass `NSObject`.
+impl AUParameterNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -308,8 +308,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A group of related parameters.
@@ -331,8 +331,8 @@ unsafe impl NSObjectProtocol for AUParameterGroup {}
 
 unsafe impl NSSecureCoding for AUParameterGroup {}
 
-extern_methods!(
-    unsafe impl AUParameterGroup {
+impl AUParameterGroup {
+    extern_methods!(
         /// The group's child nodes (AUParameterGroupNode).
         #[unsafe(method(children))]
         #[unsafe(method_family = none)]
@@ -342,12 +342,12 @@ extern_methods!(
         #[unsafe(method(allParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn allParameters(&self) -> Retained<NSArray<AUParameter>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AUParameterGroup {
+/// Methods declared on superclass `NSObject`.
+impl AUParameterGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -355,8 +355,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The top level group node, representing all of an audio unit's parameters.
@@ -385,8 +385,8 @@ unsafe impl NSObjectProtocol for AUParameterTree {}
 
 unsafe impl NSSecureCoding for AUParameterTree {}
 
-extern_methods!(
-    unsafe impl AUParameterTree {
+impl AUParameterTree {
+    extern_methods!(
         /// Search a tree for a parameter with a specific address.
         ///
         /// Returns: The parameter corresponding to the supplied address, or nil if no such parameter exists.
@@ -414,12 +414,12 @@ extern_methods!(
             scope: AudioUnitScope,
             element: AudioUnitElement,
         ) -> Option<Retained<AUParameter>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AUParameterTree {
+/// Methods declared on superclass `NSObject`.
+impl AUParameterTree {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -427,8 +427,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A node representing a single parameter.
@@ -445,8 +445,8 @@ unsafe impl NSObjectProtocol for AUParameter {}
 
 unsafe impl NSSecureCoding for AUParameter {}
 
-extern_methods!(
-    unsafe impl AUParameter {
+impl AUParameter {
+    extern_methods!(
         /// The parameter's minimum value.
         #[unsafe(method(minValue))]
         #[unsafe(method_family = none)]
@@ -564,12 +564,12 @@ extern_methods!(
         #[unsafe(method(valueFromString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueFromString(&self, string: &NSString) -> AUValue;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AUParameter {
+/// Methods declared on superclass `NSObject`.
+impl AUParameter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -577,5 +577,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

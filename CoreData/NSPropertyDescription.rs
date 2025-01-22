@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for NSPropertyDescription {
 
 unsafe impl NSObjectProtocol for NSPropertyDescription {}
 
-extern_methods!(
-    unsafe impl NSPropertyDescription {
+impl NSPropertyDescription {
+    extern_methods!(
         #[cfg(feature = "NSEntityDescription")]
         #[unsafe(method(entity))]
         #[unsafe(method_family = none)]
@@ -135,12 +135,12 @@ extern_methods!(
         #[unsafe(method(setRenamingIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenamingIdentifier(&self, renaming_identifier: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPropertyDescription {
+/// Methods declared on superclass `NSObject`.
+impl NSPropertyDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -148,5 +148,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

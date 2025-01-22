@@ -23,9 +23,9 @@ unsafe impl Sync for LAEnvironmentMechanismCompanion {}
 #[cfg(feature = "LAEnvironmentMechanism")]
 unsafe impl NSObjectProtocol for LAEnvironmentMechanismCompanion {}
 
-extern_methods!(
-    #[cfg(feature = "LAEnvironmentMechanism")]
-    unsafe impl LAEnvironmentMechanismCompanion {
+#[cfg(feature = "LAEnvironmentMechanism")]
+impl LAEnvironmentMechanismCompanion {
+    extern_methods!(
         #[cfg(feature = "LACompanionType")]
         /// Type of the companion.
         #[unsafe(method(type))]
@@ -43,13 +43,13 @@ extern_methods!(
         #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `LAEnvironmentMechanism`
-    #[cfg(feature = "LAEnvironmentMechanism")]
-    unsafe impl LAEnvironmentMechanismCompanion {
+/// Methods declared on superclass `LAEnvironmentMechanism`.
+#[cfg(feature = "LAEnvironmentMechanism")]
+impl LAEnvironmentMechanismCompanion {
+    extern_methods!(
         /// Clients should only consume environment mechanisms..
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -59,5 +59,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

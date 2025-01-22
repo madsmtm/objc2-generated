@@ -64,8 +64,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSAlert {}
 
-extern_methods!(
-    unsafe impl NSAlert {
+impl NSAlert {
+    extern_methods!(
         /// Returns an alert initialized from information in an error object.
         /// - Parameter error: Error information to display.
         /// - Returns: An initialized alert.
@@ -274,12 +274,12 @@ extern_methods!(
         #[unsafe(method(window))]
         #[unsafe(method_family = none)]
         pub unsafe fn window(&self) -> Retained<NSWindow>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAlert {
+/// Methods declared on superclass `NSObject`.
+impl NSAlert {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -287,8 +287,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A set of optional methods implemented by the delegate of an `NSAlert` object to respond to a user’s request for help.
@@ -305,9 +305,9 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSAlertDeprecated
-    unsafe impl NSAlert {
+/// NSAlertDeprecated.
+impl NSAlert {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated = "Use -beginSheetModalForWindow:completionHandler: instead"]
         #[unsafe(method(beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:))]
@@ -319,8 +319,8 @@ extern_methods!(
             did_end_selector: Option<Sel>,
             context_info: *mut c_void,
         );
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswarningalertstyle?language=objc)
 pub static NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Warning.0);

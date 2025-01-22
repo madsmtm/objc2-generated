@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for GKAchievementDescription {}
 
 unsafe impl NSSecureCoding for GKAchievementDescription {}
 
-extern_methods!(
-    unsafe impl GKAchievementDescription {
+impl GKAchievementDescription {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously load all achievement descriptions
         #[unsafe(method(loadAchievementDescriptionsWithCompletionHandler:))]
@@ -80,12 +80,12 @@ extern_methods!(
         #[unsafe(method(rarityPercent))]
         #[unsafe(method_family = none)]
         pub unsafe fn rarityPercent(&self) -> Option<Retained<NSNumber>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKAchievementDescription {
+/// Methods declared on superclass `NSObject`.
+impl GKAchievementDescription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -93,12 +93,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UI
-    unsafe impl GKAchievementDescription {
+/// UI.
+impl GKAchievementDescription {
+    extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[deprecated]
@@ -126,5 +126,5 @@ extern_methods!(
         #[unsafe(method(placeholderCompletedAchievementImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderCompletedAchievementImage() -> Retained<NSImage>;
-    }
-);
+    );
+}

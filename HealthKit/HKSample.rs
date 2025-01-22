@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for HKSample {}
 #[cfg(feature = "HKObject")]
 unsafe impl NSSecureCoding for HKSample {}
 
-extern_methods!(
-    #[cfg(feature = "HKObject")]
-    unsafe impl HKSample {
+#[cfg(feature = "HKObject")]
+impl HKSample {
+    extern_methods!(
         #[cfg(feature = "HKObjectType")]
         #[unsafe(method(sampleType))]
         #[unsafe(method_family = none)]
@@ -53,28 +53,28 @@ extern_methods!(
         #[unsafe(method(hasUndeterminedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasUndeterminedDuration(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObject`
-    #[cfg(feature = "HKObject")]
-    unsafe impl HKSample {
+/// Methods declared on superclass `HKObject`.
+#[cfg(feature = "HKObject")]
+impl HKSample {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKObject")]
-    unsafe impl HKSample {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKObject")]
+impl HKSample {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksamplesortidentifierstartdate?language=objc)

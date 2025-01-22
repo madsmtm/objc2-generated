@@ -198,8 +198,8 @@ unsafe impl NSObjectProtocol for UIResponder {}
 
 unsafe impl UIResponderStandardEditActions for UIResponder {}
 
-extern_methods!(
-    unsafe impl UIResponder {
+impl UIResponder {
+    extern_methods!(
         #[unsafe(method(nextResponder))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextResponder(&self) -> Option<Retained<UIResponder>>;
@@ -358,12 +358,12 @@ extern_methods!(
         #[unsafe(method(editingInteractionConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn editingInteractionConfiguration(&self) -> UIEditingInteractionConfiguration;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIResponder {
+/// Methods declared on superclass `NSObject`.
+impl UIResponder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -371,12 +371,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIResponderKeyCommands
-    unsafe impl UIResponder {
+/// UIResponderKeyCommands.
+impl UIResponder {
+    extern_methods!(
         #[cfg(all(
             feature = "UICommand",
             feature = "UIKeyCommand",
@@ -385,12 +385,12 @@ extern_methods!(
         #[unsafe(method(keyCommands))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyCommands(&self) -> Option<Retained<NSArray<UIKeyCommand>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIResponderInputViewAdditions
-    unsafe impl UIResponder {
+/// UIResponderInputViewAdditions.
+impl UIResponder {
+    extern_methods!(
         #[cfg(feature = "UIView")]
         #[unsafe(method(inputView))]
         #[unsafe(method_family = none)]
@@ -438,8 +438,8 @@ extern_methods!(
         #[unsafe(method(reloadInputViews))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadInputViews(&self);
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputuparrow?language=objc)
@@ -546,9 +546,9 @@ extern "C" {
     pub static UIKeyInputDelete: &'static NSString;
 }
 
-extern_methods!(
-    /// ActivityContinuation
-    unsafe impl UIResponder {
+/// ActivityContinuation.
+impl UIResponder {
+    extern_methods!(
         #[unsafe(method(userActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
@@ -565,25 +565,25 @@ extern_methods!(
         #[unsafe(method(restoreUserActivityState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreUserActivityState(&self, activity: &NSUserActivity);
-    }
-);
+    );
+}
 
 #[cfg(feature = "UIUserActivity")]
 unsafe impl UIUserActivityRestoring for UIResponder {}
 
-extern_methods!(
-    /// UIPasteConfigurationSupporting
-    unsafe impl UIResponder {}
-);
+/// UIPasteConfigurationSupporting.
+impl UIResponder {
+    extern_methods!();
+}
 
 #[cfg(feature = "UIPasteConfigurationSupporting")]
 unsafe impl UIPasteConfigurationSupporting for UIResponder {}
 
-extern_methods!(
-    /// UICaptureTextFromCameraSupporting
-    unsafe impl UIResponder {
+/// UICaptureTextFromCameraSupporting.
+impl UIResponder {
+    extern_methods!(
         #[unsafe(method(captureTextFromCamera:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureTextFromCamera(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}

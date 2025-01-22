@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for CKUserIdentity {}
 
 unsafe impl NSSecureCoding for CKUserIdentity {}
 
-extern_methods!(
-    unsafe impl CKUserIdentity {
+impl CKUserIdentity {
+    extern_methods!(
         /// Use
         /// `CKDiscoverUserIdentitiesOperation`or
         /// `CKFetchShareParticipantsOperation`to create a
@@ -65,5 +65,5 @@ extern_methods!(
         #[unsafe(method(contactIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn contactIdentifiers(&self) -> Retained<NSArray<NSString>>;
-    }
-);
+    );
+}

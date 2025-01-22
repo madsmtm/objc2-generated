@@ -24,9 +24,9 @@ unsafe impl Sync for HKSourceQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKSourceQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKSourceQuery {
+#[cfg(feature = "HKQuery")]
+impl HKSourceQuery {
+    extern_methods!(
         #[cfg(all(feature = "HKObjectType", feature = "HKSource", feature = "block2"))]
         /// Returns a query that will retrieve HKSources that have saved samples of the given type matching the
         /// given predicate.
@@ -47,25 +47,25 @@ extern_methods!(
                 dyn Fn(NonNull<HKSourceQuery>, *mut NSSet<HKSource>, *mut NSError),
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKSourceQuery {
+/// Methods declared on superclass `HKQuery`.
+#[cfg(feature = "HKQuery")]
+impl HKSourceQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKSourceQuery {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKQuery")]
+impl HKSourceQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

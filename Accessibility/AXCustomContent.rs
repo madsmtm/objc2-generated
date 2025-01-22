@@ -46,8 +46,8 @@ unsafe impl NSObjectProtocol for AXCustomContent {}
 
 unsafe impl NSSecureCoding for AXCustomContent {}
 
-extern_methods!(
-    unsafe impl AXCustomContent {
+impl AXCustomContent {
+    extern_methods!(
         #[unsafe(method(customContentWithLabel:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customContentWithLabel_value(
@@ -94,8 +94,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentreturnblock?language=objc)
 #[cfg(feature = "block2")]

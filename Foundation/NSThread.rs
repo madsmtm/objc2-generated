@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSThread {}
 
-extern_methods!(
-    unsafe impl NSThread {
+impl NSThread {
+    extern_methods!(
         #[unsafe(method(currentThread))]
         #[unsafe(method_family = none)]
         pub fn currentThread() -> Retained<NSThread>;
@@ -171,17 +171,17 @@ extern_methods!(
         #[unsafe(method(main))]
         #[unsafe(method_family = none)]
         pub unsafe fn main(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSThread {
+/// Methods declared on superclass `NSObject`.
+impl NSThread {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for NSThread {
     #[inline]

@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for CMAltitudeData {}
 #[cfg(feature = "CMLogItem")]
 unsafe impl NSSecureCoding for CMAltitudeData {}
 
-extern_methods!(
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMAltitudeData {
+#[cfg(feature = "CMLogItem")]
+impl CMAltitudeData {
+    extern_methods!(
         #[unsafe(method(relativeAltitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn relativeAltitude(&self) -> Retained<NSNumber>;
@@ -41,13 +41,13 @@ extern_methods!(
         #[unsafe(method(pressure))]
         #[unsafe(method_family = none)]
         pub unsafe fn pressure(&self) -> Retained<NSNumber>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMAltitudeData {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CMLogItem")]
+impl CMAltitudeData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

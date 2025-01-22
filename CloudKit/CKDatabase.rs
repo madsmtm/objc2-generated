@@ -42,8 +42,8 @@ unsafe impl Sync for CKDatabase {}
 
 unsafe impl NSObjectProtocol for CKDatabase {}
 
-extern_methods!(
-    unsafe impl CKDatabase {
+impl CKDatabase {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,19 +60,19 @@ extern_methods!(
         #[unsafe(method(databaseScope))]
         #[unsafe(method_family = none)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// ConvenienceMethods
-    /// Convenience APIs
-    ///
-    ///
-    /// These calls operate on a single item in the default zone and allow for simple operations.
-    /// If you'd like to batch your requests, add dependencies between requests, set priorities, or schedule operations on your own queue, take a look at the corresponding
-    /// `CKOperation.`This work is treated as having
-    /// `NSQualityOfServiceUserInitiated`quality of service.
-    unsafe impl CKDatabase {
+/// ConvenienceMethods.
+/// Convenience APIs
+///
+///
+/// These calls operate on a single item in the default zone and allow for simple operations.
+/// If you'd like to batch your requests, add dependencies between requests, set priorities, or schedule operations on your own queue, take a look at the corresponding
+/// `CKOperation.`This work is treated as having
+/// `NSQualityOfServiceUserInitiated`quality of service.
+impl CKDatabase {
+    extern_methods!(
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// `CKFetchRecordsOperation`and
         /// `CKModifyRecordsOperation`are the more configurable,
@@ -208,5 +208,5 @@ extern_methods!(
             subscription_id: &CKSubscriptionID,
             completion_handler: &block2::Block<dyn Fn(*mut CKSubscriptionID, *mut NSError)>,
         );
-    }
-);
+    );
+}

@@ -30,9 +30,9 @@ unsafe impl CopyingHelper for VZVirtioSoundDeviceConfiguration {
 #[cfg(feature = "VZAudioDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioSoundDeviceConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZAudioDeviceConfiguration")]
-    unsafe impl VZVirtioSoundDeviceConfiguration {
+#[cfg(feature = "VZAudioDeviceConfiguration")]
+impl VZVirtioSoundDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -48,15 +48,15 @@ extern_methods!(
         #[unsafe(method(setStreams:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStreams(&self, streams: &NSArray<VZVirtioSoundDeviceStreamConfiguration>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZAudioDeviceConfiguration`
-    #[cfg(feature = "VZAudioDeviceConfiguration")]
-    unsafe impl VZVirtioSoundDeviceConfiguration {
+/// Methods declared on superclass `VZAudioDeviceConfiguration`.
+#[cfg(feature = "VZAudioDeviceConfiguration")]
+impl VZVirtioSoundDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

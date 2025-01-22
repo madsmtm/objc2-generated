@@ -41,8 +41,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSWorkspace {}
 
-extern_methods!(
-    unsafe impl NSWorkspace {
+impl NSWorkspace {
+    extern_methods!(
         #[unsafe(method(sharedWorkspace))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedWorkspace() -> Retained<NSWorkspace>;
@@ -297,12 +297,12 @@ extern_methods!(
         #[unsafe(method(menuBarOwningApplication))]
         #[unsafe(method_family = none)]
         pub unsafe fn menuBarOwningApplication(&self) -> Option<Retained<NSRunningApplication>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSWorkspace {
+/// Methods declared on superclass `NSObject`.
+impl NSWorkspace {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -310,8 +310,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceopenconfiguration?language=objc)
@@ -328,8 +328,8 @@ unsafe impl CopyingHelper for NSWorkspaceOpenConfiguration {
 
 unsafe impl NSObjectProtocol for NSWorkspaceOpenConfiguration {}
 
-extern_methods!(
-    unsafe impl NSWorkspaceOpenConfiguration {
+impl NSWorkspaceOpenConfiguration {
+    extern_methods!(
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration() -> Retained<Self>;
@@ -447,12 +447,12 @@ extern_methods!(
         #[unsafe(method(setRequiresUniversalLinks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresUniversalLinks(&self, requires_universal_links: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSWorkspaceOpenConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl NSWorkspaceOpenConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -460,8 +460,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedesktopimageoptionkey?language=objc)
 // NS_TYPED_ENUM
@@ -482,9 +482,9 @@ extern "C" {
     pub static NSWorkspaceDesktopImageFillColorKey: &'static NSWorkspaceDesktopImageOptionKey;
 }
 
-extern_methods!(
-    /// NSDesktopImages
-    unsafe impl NSWorkspace {
+/// NSDesktopImages.
+impl NSWorkspace {
+    extern_methods!(
         #[cfg(feature = "NSScreen")]
         #[unsafe(method(setDesktopImageURL:forScreen:options:error:_))]
         #[unsafe(method_family = none)]
@@ -508,8 +508,8 @@ extern_methods!(
             &self,
             screen: &NSScreen,
         ) -> Option<Retained<NSDictionary<NSWorkspaceDesktopImageOptionKey, AnyObject>>>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceauthorizationtype?language=objc)
 // NS_ENUM
@@ -542,13 +542,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSWorkspaceAuthorization {}
 
-extern_methods!(
-    unsafe impl NSWorkspaceAuthorization {}
-);
+impl NSWorkspaceAuthorization {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSWorkspaceAuthorization {
+/// Methods declared on superclass `NSObject`.
+impl NSWorkspaceAuthorization {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -556,12 +556,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSWorkspaceAuthorization
-    unsafe impl NSWorkspace {
+/// NSWorkspaceAuthorization.
+impl NSWorkspace {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[unsafe(method(requestAuthorizationOfType:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -570,8 +570,8 @@ extern_methods!(
             r#type: NSWorkspaceAuthorizationType,
             completion_handler: &block2::Block<dyn Fn(*mut NSWorkspaceAuthorization, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
 extern_category!(
     /// Category "NSWorkspaceAuthorization" on [`NSFileManager`].
@@ -796,9 +796,9 @@ extern "C" {
         &'static NSWorkspaceLaunchConfigurationKey;
 }
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSWorkspace {
+/// NSDeprecated.
+impl NSWorkspace {
+    extern_methods!(
         #[deprecated = "Use -[NSWorkspace openURL:] instead."]
         #[unsafe(method(openFile:))]
         #[unsafe(method_family = none)]
@@ -1063,8 +1063,8 @@ extern_methods!(
             first_type_name: &NSString,
             second_type_name: &NSString,
         ) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacemoveoperation?language=objc)

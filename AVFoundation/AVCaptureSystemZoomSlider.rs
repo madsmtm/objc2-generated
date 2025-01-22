@@ -26,9 +26,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureControl")]
 unsafe impl NSObjectProtocol for AVCaptureSystemZoomSlider {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureControl")]
-    unsafe impl AVCaptureSystemZoomSlider {
+#[cfg(feature = "AVCaptureControl")]
+impl AVCaptureSystemZoomSlider {
+    extern_methods!(
         #[cfg(feature = "AVCaptureDevice")]
         /// Initializes an `AVCaptureSystemZoomSlider` for controlling `device`.
         ///
@@ -71,13 +71,13 @@ extern_methods!(
             device: &AVCaptureDevice,
             action: &block2::Block<dyn Fn(CGFloat)>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureControl`
-    #[cfg(feature = "AVCaptureControl")]
-    unsafe impl AVCaptureSystemZoomSlider {
+/// Methods declared on superclass `AVCaptureControl`.
+#[cfg(feature = "AVCaptureControl")]
+impl AVCaptureSystemZoomSlider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -85,5 +85,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

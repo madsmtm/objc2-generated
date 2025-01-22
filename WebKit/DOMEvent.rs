@@ -40,9 +40,9 @@ unsafe impl CopyingHelper for DOMEvent {
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMEvent {}
 
-extern_methods!(
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMEvent {
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
@@ -121,34 +121,34 @@ extern_methods!(
             can_bubble_arg: bool,
             cancelable_arg: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMEvent {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMEvent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMEvent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMEventDeprecated
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMEvent {
+/// DOMEventDeprecated.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(initEvent:::))]
         #[unsafe(method_family = none)]
@@ -158,5 +158,5 @@ extern_methods!(
             can_bubble_arg: bool,
             cancelable_arg: bool,
         );
-    }
-);
+    );
+}

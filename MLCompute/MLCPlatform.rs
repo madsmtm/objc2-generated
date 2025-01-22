@@ -19,8 +19,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MLCPlatform {}
 
-extern_methods!(
-    unsafe impl MLCPlatform {
+impl MLCPlatform {
+    extern_methods!(
         /// sets the RNG seed. The seed should be of type long int.
         #[deprecated]
         #[unsafe(method(setRNGSeedTo:))]
@@ -32,12 +32,12 @@ extern_methods!(
         #[unsafe(method(getRNGseed))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRNGseed() -> Option<Retained<NSNumber>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MLCPlatform {
+/// Methods declared on superclass `NSObject`.
+impl MLCPlatform {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -45,5 +45,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

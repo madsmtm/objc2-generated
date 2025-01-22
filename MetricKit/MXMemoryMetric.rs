@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXMemoryMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXMemoryMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXMemoryMetric {
+#[cfg(feature = "MXMetric")]
+impl MXMemoryMetric {
+    extern_methods!(
         /// A single value representing the peak memory consumption of the application.
         ///
         /// Dimensioned as NSUnitInformationStorage.
@@ -44,13 +44,13 @@ extern_methods!(
         pub unsafe fn averageSuspendedMemory(
             &self,
         ) -> Retained<MXAverage<NSUnitInformationStorage>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXMemoryMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXMemoryMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -58,5 +58,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

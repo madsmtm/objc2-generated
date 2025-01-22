@@ -20,8 +20,8 @@ unsafe impl Sync for HKStatisticsCollection {}
 
 unsafe impl NSObjectProtocol for HKStatisticsCollection {}
 
-extern_methods!(
-    unsafe impl HKStatisticsCollection {
+impl HKStatisticsCollection {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -64,17 +64,17 @@ extern_methods!(
         #[unsafe(method(sources))]
         #[unsafe(method_family = none)]
         pub unsafe fn sources(&self) -> Retained<NSSet<HKSource>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKStatisticsCollection {
+/// Methods declared on superclass `NSObject`.
+impl HKStatisticsCollection {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery?language=objc)
@@ -93,9 +93,9 @@ unsafe impl Sync for HKStatisticsCollectionQuery {}
 #[cfg(feature = "HKQuery")]
 unsafe impl NSObjectProtocol for HKStatisticsCollectionQuery {}
 
-extern_methods!(
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKStatisticsCollectionQuery {
+#[cfg(feature = "HKQuery")]
+impl HKStatisticsCollectionQuery {
+    extern_methods!(
         #[unsafe(method(anchorDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchorDate(&self) -> Retained<NSDate>;
@@ -178,25 +178,25 @@ extern_methods!(
             anchor_date: &NSDate,
             interval_components: &NSDateComponents,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKQuery`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKStatisticsCollectionQuery {
+/// Methods declared on superclass `HKQuery`.
+#[cfg(feature = "HKQuery")]
+impl HKStatisticsCollectionQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HKQuery")]
-    unsafe impl HKStatisticsCollectionQuery {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HKQuery")]
+impl HKStatisticsCollectionQuery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

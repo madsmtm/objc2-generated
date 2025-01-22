@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSTextInputContext {}
 
-extern_methods!(
-    unsafe impl NSTextInputContext {
+impl NSTextInputContext {
+    extern_methods!(
         #[unsafe(method(currentInputContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentInputContext(
@@ -124,17 +124,17 @@ extern_methods!(
             input_source_identifier: &NSTextInputSourceIdentifier,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextInputContext {
+/// Methods declared on superclass `NSObject`.
+impl NSTextInputContext {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// ** Notifications ***

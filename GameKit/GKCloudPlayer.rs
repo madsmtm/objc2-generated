@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "GKBasePlayer")]
 unsafe impl NSObjectProtocol for GKCloudPlayer {}
 
-extern_methods!(
-    #[cfg(feature = "GKBasePlayer")]
-    unsafe impl GKCloudPlayer {
+#[cfg(feature = "GKBasePlayer")]
+impl GKCloudPlayer {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Retrieve a player instance representing the active iCloud account for a given iCloud container. Returns nil and an error if the user is not signed in to iCloud or the container is invalid.
         #[deprecated]
@@ -31,13 +31,13 @@ extern_methods!(
             container_name: Option<&NSString>,
             handler: &block2::Block<dyn Fn(*mut GKCloudPlayer, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GKBasePlayer")]
-    unsafe impl GKCloudPlayer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "GKBasePlayer")]
+impl GKCloudPlayer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -45,5 +45,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

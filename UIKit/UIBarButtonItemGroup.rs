@@ -19,8 +19,8 @@ unsafe impl NSCoding for UIBarButtonItemGroup {}
 
 unsafe impl NSObjectProtocol for UIBarButtonItemGroup {}
 
-extern_methods!(
-    unsafe impl UIBarButtonItemGroup {
+impl UIBarButtonItemGroup {
+    extern_methods!(
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Create a new bar button item group with the given items. When bar button item layout is done, either the group's barButtonItems or its representativeItem is displayed (if it exists).
         #[unsafe(method(initWithBarButtonItems:representativeItem:))]
@@ -134,12 +134,12 @@ extern_methods!(
         #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIBarButtonItemGroup {
+/// Methods declared on superclass `NSObject`.
+impl UIBarButtonItemGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -147,16 +147,16 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIBarButtonItemGroup
-    #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-    unsafe impl UIBarButtonItem {
+/// UIBarButtonItemGroup.
+#[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+impl UIBarButtonItem {
+    extern_methods!(
         /// The group that the UIBarButtonItem is currently associated with, either as a member of the barButtonItems array or as that group's representativeItem.
         #[unsafe(method(buttonGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonGroup(&self) -> Option<Retained<UIBarButtonItemGroup>>;
-    }
-);
+    );
+}

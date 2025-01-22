@@ -65,8 +65,8 @@ unsafe impl NSObjectProtocol for UIListSeparatorConfiguration {}
 
 unsafe impl NSSecureCoding for UIListSeparatorConfiguration {}
 
-extern_methods!(
-    unsafe impl UIListSeparatorConfiguration {
+impl UIListSeparatorConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -174,5 +174,5 @@ extern_methods!(
         #[unsafe(method(setVisualEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisualEffect(&self, visual_effect: Option<&UIVisualEffect>);
-    }
-);
+    );
+}

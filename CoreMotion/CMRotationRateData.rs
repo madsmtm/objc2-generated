@@ -31,20 +31,20 @@ unsafe impl NSObjectProtocol for CMRotationRateData {}
 #[cfg(feature = "CMLogItem")]
 unsafe impl NSSecureCoding for CMRotationRateData {}
 
-extern_methods!(
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMRotationRateData {
+#[cfg(feature = "CMLogItem")]
+impl CMRotationRateData {
+    extern_methods!(
         #[cfg(feature = "CMGyro")]
         #[unsafe(method(rotationRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotationRate(&self) -> CMRotationRate;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMRotationRateData {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CMLogItem")]
+impl CMRotationRateData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -52,8 +52,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmrecordedrotationratedata?language=objc)
@@ -80,19 +80,19 @@ unsafe impl NSObjectProtocol for CMRecordedRotationRateData {}
 #[cfg(feature = "CMLogItem")]
 unsafe impl NSSecureCoding for CMRecordedRotationRateData {}
 
-extern_methods!(
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMRecordedRotationRateData {
+#[cfg(feature = "CMLogItem")]
+impl CMRecordedRotationRateData {
+    extern_methods!(
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMRecordedRotationRateData {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CMLogItem")]
+impl CMRecordedRotationRateData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

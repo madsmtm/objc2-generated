@@ -25,9 +25,9 @@ unsafe impl NSObjectProtocol for MXCellularConditionMetric {}
 #[cfg(feature = "MXMetric")]
 unsafe impl NSSecureCoding for MXCellularConditionMetric {}
 
-extern_methods!(
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXCellularConditionMetric {
+#[cfg(feature = "MXMetric")]
+impl MXCellularConditionMetric {
+    extern_methods!(
         #[cfg(all(feature = "MXHistogram", feature = "MXUnit"))]
         /// Application run time bucketized by cellular condition.
         ///
@@ -41,13 +41,13 @@ extern_methods!(
         pub unsafe fn histogrammedCellularConditionTime(
             &self,
         ) -> Retained<MXHistogram<MXUnitSignalBars>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MXMetric")]
-    unsafe impl MXCellularConditionMetric {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MXMetric")]
+impl MXCellularConditionMetric {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -55,5 +55,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

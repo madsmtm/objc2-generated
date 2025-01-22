@@ -261,8 +261,8 @@ unsafe impl NSObjectProtocol for NSCell {}
 #[cfg(feature = "NSUserInterfaceItemIdentification")]
 unsafe impl NSUserInterfaceItemIdentification for NSCell {}
 
-extern_methods!(
-    unsafe impl NSCell {
+impl NSCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -884,21 +884,21 @@ extern_methods!(
             frame: NSRect,
             view: &NSView,
         ) -> Retained<NSArray<NSDraggingImageComponent>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCell {
+/// Methods declared on superclass `NSObject`.
+impl NSCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSKeyboardUI
-    unsafe impl NSCell {
+/// NSKeyboardUI.
+impl NSCell {
+    extern_methods!(
         #[unsafe(method(refusesFirstResponder))]
         #[unsafe(method_family = none)]
         pub unsafe fn refusesFirstResponder(&self) -> bool;
@@ -962,12 +962,12 @@ extern_methods!(
         #[unsafe(method(wantsNotificationForMarkedText))]
         #[unsafe(method_family = none)]
         pub unsafe fn wantsNotificationForMarkedText(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSCellAttributedStringMethods
-    unsafe impl NSCell {
+/// NSCellAttributedStringMethods.
+impl NSCell {
+    extern_methods!(
         #[unsafe(method(attributedStringValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringValue(&self) -> Retained<NSAttributedString>;
@@ -994,12 +994,12 @@ extern_methods!(
         #[unsafe(method(setImportsGraphics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImportsGraphics(&self, imports_graphics: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSCellMixedState
-    unsafe impl NSCell {
+/// NSCellMixedState.
+impl NSCell {
+    extern_methods!(
         #[unsafe(method(allowsMixedState))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsMixedState(&self) -> bool;
@@ -1016,8 +1016,8 @@ extern_methods!(
         #[unsafe(method(setNextState))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNextState(&self);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellhitresult?language=objc)
 // NS_OPTIONS
@@ -1045,9 +1045,9 @@ unsafe impl RefEncode for NSCellHitResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSCellHitTest
-    unsafe impl NSCell {
+/// NSCellHitTest.
+impl NSCell {
+    extern_methods!(
         #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(hitTestForEvent:inRect:ofView:))]
         #[unsafe(method_family = none)]
@@ -1057,12 +1057,12 @@ extern_methods!(
             cell_frame: NSRect,
             control_view: &NSView,
         ) -> NSCellHitResult;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSCellExpansion
-    unsafe impl NSCell {
+/// NSCellExpansion.
+impl NSCell {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(expansionFrameWithFrame:inView:))]
         #[unsafe(method_family = none)]
@@ -1076,8 +1076,8 @@ extern_methods!(
         #[unsafe(method(drawWithExpansionFrame:inView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawWithExpansionFrame_inView(&self, cell_frame: NSRect, view: &NSView);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstyle?language=objc)
 // NS_ENUM
@@ -1103,9 +1103,9 @@ unsafe impl RefEncode for NSBackgroundStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSCellBackgroundStyle
-    unsafe impl NSCell {
+/// NSCellBackgroundStyle.
+impl NSCell {
+    extern_methods!(
         #[unsafe(method(backgroundStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
@@ -1118,8 +1118,8 @@ extern_methods!(
         #[unsafe(method(interiorBackgroundStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn interiorBackgroundStyle(&self) -> NSBackgroundStyle;
-    }
-);
+    );
+}
 
 #[cfg(all(
     feature = "NSGraphics",
@@ -1220,9 +1220,9 @@ pub unsafe extern "C-unwind" fn NSDrawNinePartImage(
     }
 }
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSCell {
+/// NSDeprecated.
+impl NSCell {
+    extern_methods!(
         #[deprecated = "The controlTint property is not respected on 10.14 and later. For custom cells, use +[NSColor controlAccentColor] to respect the user's preferred accent color when drawing."]
         #[unsafe(method(controlTint))]
         #[unsafe(method_family = none)]
@@ -1278,8 +1278,8 @@ extern_methods!(
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: &NSString);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstylelight?language=objc)
 pub static NSBackgroundStyleLight: NSBackgroundStyle =

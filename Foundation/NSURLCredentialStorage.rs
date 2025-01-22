@@ -21,8 +21,8 @@ unsafe impl Sync for NSURLCredentialStorage {}
 
 unsafe impl NSObjectProtocol for NSURLCredentialStorage {}
 
-extern_methods!(
-    unsafe impl NSURLCredentialStorage {
+impl NSURLCredentialStorage {
+    extern_methods!(
         /// Get the shared singleton authentication storage
         ///
         /// Returns: the shared authentication storage
@@ -154,12 +154,12 @@ extern_methods!(
             credential: &NSURLCredential,
             space: &NSURLProtectionSpace,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLCredentialStorage {
+/// Methods declared on superclass `NSObject`.
+impl NSURLCredentialStorage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -167,12 +167,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLSessionTaskAdditions
-    unsafe impl NSURLCredentialStorage {
+/// NSURLSessionTaskAdditions.
+impl NSURLCredentialStorage {
+    extern_methods!(
         #[cfg(all(
             feature = "NSDictionary",
             feature = "NSString",
@@ -251,8 +251,8 @@ extern_methods!(
             protection_space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
         );
-    }
-);
+    );
+}
 
 extern "C" {
     /// This notification is sent on the main thread whenever

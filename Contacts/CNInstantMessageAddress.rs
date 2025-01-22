@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for CNInstantMessageAddress {}
 
 unsafe impl NSSecureCoding for CNInstantMessageAddress {}
 
-extern_methods!(
-    unsafe impl CNInstantMessageAddress {
+impl CNInstantMessageAddress {
+    extern_methods!(
         #[unsafe(method(username))]
         #[unsafe(method_family = none)]
         pub unsafe fn username(&self) -> Retained<NSString>;
@@ -57,12 +57,12 @@ extern_methods!(
         #[unsafe(method(localizedStringForService:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringForService(service: &NSString) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNInstantMessageAddress {
+/// Methods declared on superclass `NSObject`.
+impl CNInstantMessageAddress {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -70,8 +70,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageaddressusernamekey?language=objc)

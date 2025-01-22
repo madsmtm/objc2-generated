@@ -62,9 +62,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSPanel {}
 ))]
 unsafe impl NSUserInterfaceValidations for NSPanel {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSPanel {
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSPanel {
+    extern_methods!(
         #[unsafe(method(isFloatingPanel))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFloatingPanel(&self) -> bool;
@@ -91,13 +91,13 @@ extern_methods!(
         #[unsafe(method(setWorksWhenModal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorksWhenModal(&self, works_when_modal: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSWindow`
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSPanel {
+/// Methods declared on superclass `NSWindow`.
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSPanel {
+    extern_methods!(
         #[cfg(feature = "NSGraphics")]
         #[unsafe(method(initWithContentRect:styleMask:backing:defer:))]
         #[unsafe(method_family = init)]
@@ -132,28 +132,28 @@ extern_methods!(
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSPanel {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSPanel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-    unsafe impl NSPanel {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+impl NSPanel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C-unwind" {
     #[deprecated = "Use NSAlert instead"]

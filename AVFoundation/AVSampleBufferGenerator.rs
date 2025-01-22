@@ -22,8 +22,8 @@ unsafe impl Sync for AVSampleBufferGenerator {}
 
 unsafe impl NSObjectProtocol for AVSampleBufferGenerator {}
 
-extern_methods!(
-    unsafe impl AVSampleBufferGenerator {
+impl AVSampleBufferGenerator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,8 +76,8 @@ extern_methods!(
             sbuf: &CMSampleBuffer,
             completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
 /// Indicates the direction in which the samples should be generated for the AVSampleBufferRequest.
 ///
@@ -152,8 +152,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVSampleBufferRequest {}
 
-extern_methods!(
-    unsafe impl AVSampleBufferRequest {
+impl AVSampleBufferRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -232,8 +232,8 @@ extern_methods!(
         #[unsafe(method(setOverrideTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverrideTime(&self, override_time: CMTime);
-    }
-);
+    );
+}
 
 extern_class!(
     /// An AVSampleBufferGeneratorBatch provides an optimized way to load sample data asynchronously for multiple CMSampleBuffers in an asset.
@@ -255,8 +255,8 @@ unsafe impl Sync for AVSampleBufferGeneratorBatch {}
 
 unsafe impl NSObjectProtocol for AVSampleBufferGeneratorBatch {}
 
-extern_methods!(
-    unsafe impl AVSampleBufferGeneratorBatch {
+impl AVSampleBufferGeneratorBatch {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -281,5 +281,5 @@ extern_methods!(
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
-    }
-);
+    );
+}

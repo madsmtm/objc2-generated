@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for NSPersonNameComponents {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSPersonNameComponents {}
 
-extern_methods!(
-    unsafe impl NSPersonNameComponents {
+impl NSPersonNameComponents {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(namePrefix))]
         #[unsafe(method_family = none)]
@@ -108,12 +108,12 @@ extern_methods!(
             &self,
             phonetic_representation: Option<&NSPersonNameComponents>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersonNameComponents {
+/// Methods declared on superclass `NSObject`.
+impl NSPersonNameComponents {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -121,5 +121,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

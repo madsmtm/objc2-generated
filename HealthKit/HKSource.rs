@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for HKSource {}
 
 unsafe impl NSSecureCoding for HKSource {}
 
-extern_methods!(
-    unsafe impl HKSource {
+impl HKSource {
+    extern_methods!(
         /// The name of the source represented by the receiver.  If the source is an app, then the name is the
         /// localized name of the app.
         #[unsafe(method(name))]
@@ -52,14 +52,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKSource {
+/// Methods declared on superclass `NSObject`.
+impl HKSource {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

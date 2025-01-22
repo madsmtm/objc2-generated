@@ -90,8 +90,8 @@ unsafe impl NSObjectProtocol for UIDynamicItemGroup {}
 
 unsafe impl UIDynamicItem for UIDynamicItemGroup {}
 
-extern_methods!(
-    unsafe impl UIDynamicItemGroup {
+impl UIDynamicItemGroup {
+    extern_methods!(
         #[unsafe(method(initWithItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
@@ -102,12 +102,12 @@ extern_methods!(
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIDynamicItemGroup {
+/// Methods declared on superclass `NSObject`.
+impl UIDynamicItemGroup {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -115,8 +115,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicbehavior?language=objc)
@@ -128,8 +128,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIDynamicBehavior {}
 
-extern_methods!(
-    unsafe impl UIDynamicBehavior {
+impl UIDynamicBehavior {
+    extern_methods!(
         #[unsafe(method(addChildBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChildBehavior(&self, behavior: &UIDynamicBehavior);
@@ -162,12 +162,12 @@ extern_methods!(
         #[unsafe(method(dynamicAnimator))]
         #[unsafe(method_family = none)]
         pub unsafe fn dynamicAnimator(&self) -> Option<Retained<UIDynamicAnimator>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIDynamicBehavior {
+/// Methods declared on superclass `NSObject`.
+impl UIDynamicBehavior {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -175,5 +175,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

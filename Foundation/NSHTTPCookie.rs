@@ -171,8 +171,8 @@ unsafe impl Sync for NSHTTPCookie {}
 
 unsafe impl NSObjectProtocol for NSHTTPCookie {}
 
-extern_methods!(
-    unsafe impl NSHTTPCookie {
+impl NSHTTPCookie {
+    extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Initialize a NSHTTPCookie object with a dictionary of
         /// parameters
@@ -679,12 +679,12 @@ extern_methods!(
         #[unsafe(method(sameSitePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn sameSitePolicy(&self) -> Option<Retained<NSHTTPCookieStringPolicy>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSHTTPCookie {
+/// Methods declared on superclass `NSObject`.
+impl NSHTTPCookie {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -692,5 +692,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

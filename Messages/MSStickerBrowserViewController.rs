@@ -42,9 +42,9 @@ unsafe impl UIResponderStandardEditActions for MSStickerBrowserViewController {}
 #[cfg(feature = "objc2-ui-kit")]
 unsafe impl UITraitEnvironment for MSStickerBrowserViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSStickerBrowserViewController {
+#[cfg(feature = "objc2-ui-kit")]
+impl MSStickerBrowserViewController {
+    extern_methods!(
         #[cfg(feature = "MSStickerBrowserView")]
         /// Initializes a MSStickerBrowserViewController and configures it's MSStickerBrowserView with the provided sticker size class.
         #[unsafe(method(initWithStickerSize:))]
@@ -65,13 +65,13 @@ extern_methods!(
         #[unsafe(method(stickerSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn stickerSize(&self) -> MSStickerSize;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSStickerBrowserViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MSStickerBrowserViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -86,13 +86,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSStickerBrowserViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MSStickerBrowserViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

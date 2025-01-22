@@ -25,9 +25,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for MIDI2DeviceInfo {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl MIDI2DeviceInfo {
+impl MIDI2DeviceInfo {
+    extern_methods!(
         #[cfg(feature = "MIDIUMPCI")]
         /// The MIDI System Exclusive ID of the device manufacturer, up to 3-Bytes.
         ///
@@ -82,19 +81,18 @@ extern_methods!(
             model_number: MIDIUInteger14,
             revision_level: MIDI2DeviceRevisionLevel,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2")]
-    unsafe impl MIDI2DeviceInfo {
+impl MIDI2DeviceInfo {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The UMP protocols that can be supported by a UMP endpoint.
 ///
@@ -155,9 +153,8 @@ extern_class!(
 unsafe impl NSObjectProtocol for MIDIUMPEndpoint {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl MIDIUMPEndpoint {
+impl MIDIUMPEndpoint {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// The UTF-8 encoded name of the UMP endpoint.
         ///
@@ -239,16 +236,15 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2")]
-    unsafe impl MIDIUMPEndpoint {
+impl MIDIUMPEndpoint {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

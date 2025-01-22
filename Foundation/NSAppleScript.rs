@@ -52,8 +52,8 @@ unsafe impl CopyingHelper for NSAppleScript {
 
 unsafe impl NSObjectProtocol for NSAppleScript {}
 
-extern_methods!(
-    unsafe impl NSAppleScript {
+impl NSAppleScript {
+    extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(initWithContentsOfURL:error:))]
         #[unsafe(method_family = init)]
@@ -112,12 +112,12 @@ extern_methods!(
             event: &NSAppleEventDescriptor,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Retained<NSAppleEventDescriptor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAppleScript {
+/// Methods declared on superclass `NSObject`.
+impl NSAppleScript {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -125,5 +125,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

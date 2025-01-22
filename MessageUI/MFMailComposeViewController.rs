@@ -147,9 +147,9 @@ unsafe impl UIResponderStandardEditActions for MFMailComposeViewController {}
 #[cfg(feature = "objc2-ui-kit")]
 unsafe impl UITraitEnvironment for MFMailComposeViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MFMailComposeViewController {
+#[cfg(feature = "objc2-ui-kit")]
+impl MFMailComposeViewController {
+    extern_methods!(
         /// Returns
         /// <tt>
         /// YES
@@ -303,13 +303,13 @@ extern_methods!(
         #[unsafe(method(setPreferredSendingEmailAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSendingEmailAddress(&self, email_address: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UINavigationController`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MFMailComposeViewController {
+/// Methods declared on superclass `UINavigationController`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MFMailComposeViewController {
+    extern_methods!(
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
@@ -339,13 +339,13 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MFMailComposeViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MFMailComposeViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -353,8 +353,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// Protocol for delegate callbacks to MFMailComposeViewController instances.

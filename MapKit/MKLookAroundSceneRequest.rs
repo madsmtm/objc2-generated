@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKLookAroundSceneRequest {}
 
-extern_methods!(
-    unsafe impl MKLookAroundSceneRequest {
+impl MKLookAroundSceneRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -73,5 +73,5 @@ extern_methods!(
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
-    }
-);
+    );
+}

@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for SCNLevelOfDetail {}
 
 unsafe impl NSSecureCoding for SCNLevelOfDetail {}
 
-extern_methods!(
-    unsafe impl SCNLevelOfDetail {
+impl SCNLevelOfDetail {
+    extern_methods!(
         #[cfg(all(feature = "SCNGeometry", feature = "objc2-core-foundation"))]
         /// This is a convenience method to create a level of detail with a coverage radius threshold mode.
         ///
@@ -74,12 +74,12 @@ extern_methods!(
         #[unsafe(method(worldSpaceDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldSpaceDistance(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNLevelOfDetail {
+/// Methods declared on superclass `NSObject`.
+impl SCNLevelOfDetail {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -87,5 +87,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

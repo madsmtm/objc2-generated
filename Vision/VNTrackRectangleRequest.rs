@@ -31,9 +31,9 @@ unsafe impl CopyingHelper for VNTrackRectangleRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
 unsafe impl NSObjectProtocol for VNTrackRectangleRequest {}
 
-extern_methods!(
-    #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
-    unsafe impl VNTrackRectangleRequest {
+#[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
+impl VNTrackRectangleRequest {
+    extern_methods!(
         #[cfg(feature = "VNObservation")]
         /// Create a new rectangle tracking request with rectangle observation.
         ///
@@ -72,18 +72,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
-    unsafe impl VNTrackRectangleRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
+impl VNTrackRectangleRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackrectanglerequestrevision1?language=objc)
 pub static VNTrackRectangleRequestRevision1: NSUInteger = 1;

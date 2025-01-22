@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CNContactPicker {}
 
-extern_methods!(
-    unsafe impl CNContactPicker {
+impl CNContactPicker {
+    extern_methods!(
         /// The CNContact keys to display when a contact is expanded.
         ///
         /// If no keys are provided, the picker will select contacts instead of values.
@@ -69,12 +69,12 @@ extern_methods!(
         #[unsafe(method(close))]
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNContactPicker {
+/// Methods declared on superclass `NSObject`.
+impl CNContactPicker {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,5 +82,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

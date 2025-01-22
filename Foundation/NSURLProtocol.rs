@@ -151,8 +151,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSURLProtocol {}
 
-extern_methods!(
-    unsafe impl NSURLProtocol {
+impl NSURLProtocol {
+    extern_methods!(
         #[cfg(all(feature = "NSURLCache", feature = "NSURLRequest"))]
         /// Initializes an NSURLProtocol given request,
         /// cached response, and client.
@@ -374,12 +374,12 @@ extern_methods!(
         #[unsafe(method(unregisterClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterClass(protocol_class: &AnyClass);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSURLProtocol {
+/// Methods declared on superclass `NSObject`.
+impl NSURLProtocol {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -387,12 +387,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLSessionTaskAdditions
-    unsafe impl NSURLProtocol {
+/// NSURLSessionTaskAdditions.
+impl NSURLProtocol {
+    extern_methods!(
         #[cfg(feature = "NSURLSession")]
         #[unsafe(method(canInitWithTask:))]
         #[unsafe(method_family = none)]
@@ -412,5 +412,5 @@ extern_methods!(
         #[unsafe(method(task))]
         #[unsafe(method_family = none)]
         pub unsafe fn task(&self) -> Option<Retained<NSURLSessionTask>>;
-    }
-);
+    );
+}

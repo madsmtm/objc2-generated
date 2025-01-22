@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CNContactVCardSerialization {}
 
-extern_methods!(
-    unsafe impl CNContactVCardSerialization {
+impl CNContactVCardSerialization {
+    extern_methods!(
         #[cfg(feature = "CNContact")]
         /// Descriptor for all contact keys required by vCard serialization
         ///
@@ -70,12 +70,12 @@ extern_methods!(
         pub unsafe fn contactsWithData_error(
             data: &NSData,
         ) -> Result<Retained<NSArray<CNContact>>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNContactVCardSerialization {
+/// Methods declared on superclass `NSObject`.
+impl CNContactVCardSerialization {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -83,5 +83,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

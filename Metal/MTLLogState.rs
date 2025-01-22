@@ -69,8 +69,8 @@ unsafe impl CopyingHelper for MTLLogStateDescriptor {
 
 unsafe impl NSObjectProtocol for MTLLogStateDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLLogStateDescriptor {
+impl MTLLogStateDescriptor {
+    extern_methods!(
         /// level indicates the minimum level of the logs that will be printed.
         /// All the logs with level less than given level will be skipped on the GPU Side.
         #[unsafe(method(level))]
@@ -91,12 +91,12 @@ extern_methods!(
         #[unsafe(method(setBufferSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBufferSize(&self, buffer_size: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLLogStateDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLLogStateDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -104,8 +104,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstateerrordomain?language=objc)

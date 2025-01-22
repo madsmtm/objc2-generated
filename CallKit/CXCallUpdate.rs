@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for CXCallUpdate {
 
 unsafe impl NSObjectProtocol for CXCallUpdate {}
 
-extern_methods!(
-    unsafe impl CXCallUpdate {
+impl CXCallUpdate {
+    extern_methods!(
         #[cfg(feature = "CXHandle")]
         /// Handle for the remote party (for an incoming call, the caller; for an outgoing call, the callee)
         #[unsafe(method(remoteHandle))]
@@ -96,12 +96,12 @@ extern_methods!(
         #[unsafe(method(setHasVideo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHasVideo(&self, has_video: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CXCallUpdate {
+/// Methods declared on superclass `NSObject`.
+impl CXCallUpdate {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -109,5 +109,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

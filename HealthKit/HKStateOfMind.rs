@@ -256,9 +256,9 @@ unsafe impl NSObjectProtocol for HKStateOfMind {}
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKStateOfMind {}
 
-extern_methods!(
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKStateOfMind {
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKStateOfMind {
+    extern_methods!(
         /// A description of the kind of feeling type captured by this state of mind.
         ///
         /// Feeling types can be understood by the timeframe considered to create this log, possibly indicated by the context used to create it.
@@ -318,5 +318,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

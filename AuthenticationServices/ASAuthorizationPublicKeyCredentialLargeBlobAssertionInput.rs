@@ -36,8 +36,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {
+impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -67,5 +67,5 @@ extern_methods!(
         #[unsafe(method(setDataToWrite:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataToWrite(&self, data_to_write: Option<&NSData>);
-    }
-);
+    );
+}

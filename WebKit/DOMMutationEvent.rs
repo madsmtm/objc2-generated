@@ -53,13 +53,13 @@ unsafe impl CopyingHelper for DOMMutationEvent {
 ))]
 unsafe impl NSObjectProtocol for DOMMutationEvent {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMMutationEvent {
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMMutationEvent {
+    extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[unsafe(method(relatedNode))]
@@ -95,46 +95,46 @@ extern_methods!(
             attr_name: Option<&NSString>,
             attr_change: c_ushort,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMMutationEvent {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMMutationEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMMutationEvent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMMutationEvent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMMutationEventDeprecated
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMMutationEvent {
+/// DOMMutationEventDeprecated.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMMutationEvent {
+    extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[unsafe(method(initMutationEvent::::::::))]
@@ -150,5 +150,5 @@ extern_methods!(
             attr_name: Option<&NSString>,
             attr_change: c_ushort,
         );
-    }
-);
+    );
+}

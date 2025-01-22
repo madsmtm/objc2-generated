@@ -33,8 +33,8 @@ unsafe impl CopyingHelper for VZStorageDeviceConfiguration {
 
 unsafe impl NSObjectProtocol for VZStorageDeviceConfiguration {}
 
-extern_methods!(
-    unsafe impl VZStorageDeviceConfiguration {
+impl VZStorageDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -50,5 +50,5 @@ extern_methods!(
         #[unsafe(method(attachment))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachment(&self) -> Retained<VZStorageDeviceAttachment>;
-    }
-);
+    );
+}

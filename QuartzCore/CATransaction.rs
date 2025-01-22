@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CATransaction {}
 
-extern_methods!(
-    unsafe impl CATransaction {
+impl CATransaction {
+    extern_methods!(
         #[unsafe(method(begin))]
         #[unsafe(method_family = none)]
         pub fn begin();
@@ -85,12 +85,12 @@ extern_methods!(
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(an_object: Option<&AnyObject>, key: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CATransaction {
+/// Methods declared on superclass `NSObject`.
+impl CATransaction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -98,8 +98,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Transaction property ids. *

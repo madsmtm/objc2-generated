@@ -69,8 +69,8 @@ unsafe impl NSObjectProtocol for NSAppleEventDescriptor {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSAppleEventDescriptor {}
 
-extern_methods!(
-    unsafe impl NSAppleEventDescriptor {
+impl NSAppleEventDescriptor {
+    extern_methods!(
         #[unsafe(method(nullDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn nullDescriptor() -> Retained<NSAppleEventDescriptor>;
@@ -222,12 +222,12 @@ extern_methods!(
         #[unsafe(method(removeDescriptorAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeDescriptorAtIndex(&self, index: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSAppleEventDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl NSAppleEventDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -235,5 +235,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

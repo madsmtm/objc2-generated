@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for SNClassification {}
 
-extern_methods!(
-    unsafe impl SNClassification {
+impl SNClassification {
+    extern_methods!(
         /// The identifier of a classification request. An example classification could be a string like 'laughter' or 'applause'. The string is defined in the model that was used for the classification. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -39,8 +39,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A result containing the most likely classification candidates in the time range specified
@@ -56,8 +56,8 @@ unsafe impl NSObjectProtocol for SNClassificationResult {}
 #[cfg(feature = "SNResult")]
 unsafe impl SNResult for SNClassificationResult {}
 
-extern_methods!(
-    unsafe impl SNClassificationResult {
+impl SNClassificationResult {
+    extern_methods!(
         /// All classification candidates, sorted with highest confidence first.
         #[unsafe(method(classifications))]
         #[unsafe(method_family = none)]
@@ -90,5 +90,5 @@ extern_methods!(
             &self,
             identifier: &NSString,
         ) -> Option<Retained<SNClassification>>;
-    }
-);
+    );
+}

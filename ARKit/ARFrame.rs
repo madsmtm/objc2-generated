@@ -118,9 +118,8 @@ unsafe impl CopyingHelper for ARFrame {
 unsafe impl NSObjectProtocol for ARFrame {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARFrame {
+impl ARFrame {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// A timestamp identifying the frame.
         #[unsafe(method(timestamp))]
@@ -348,5 +347,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

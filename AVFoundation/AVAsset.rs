@@ -29,8 +29,8 @@ unsafe impl CopyingHelper for AVAsset {
 
 unsafe impl NSObjectProtocol for AVAsset {}
 
-extern_methods!(
-    unsafe impl AVAsset {
+impl AVAsset {
+    extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
         /// Parameter `URL`: An instance of NSURL that references a media resource.
@@ -73,12 +73,12 @@ extern_methods!(
         #[unsafe(method(minimumTimeOffsetFromLive))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumTimeOffsetFromLive(&self) -> CMTime;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAsset {
+/// Methods declared on superclass `NSObject`.
+impl AVAsset {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -86,12 +86,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetAsynchronousLoading
-    unsafe impl AVAsset {
+/// AVAssetAsynchronousLoading.
+impl AVAsset {
+    extern_methods!(
         #[unsafe(method(providesPreciseDurationAndTiming))]
         #[unsafe(method_family = none)]
         pub unsafe fn providesPreciseDurationAndTiming(&self) -> bool;
@@ -102,8 +102,8 @@ extern_methods!(
         #[unsafe(method(cancelLoading))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelLoading(&self);
-    }
-);
+    );
+}
 
 /// These constants can be passed in to AVURLAssetReferenceRestrictionsKey to control the resolution of references to external media data.
 ///
@@ -152,21 +152,21 @@ unsafe impl RefEncode for AVAssetReferenceRestrictions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// AVAssetReferenceRestrictions
-    unsafe impl AVAsset {
+/// AVAssetReferenceRestrictions.
+impl AVAsset {
+    extern_methods!(
         /// Indicates the reference restrictions being used by the receiver.
         ///
         /// For AVURLAsset, this property reflects the value passed in for AVURLAssetReferenceRestrictionsKey, if any. See AVURLAssetReferenceRestrictionsKey below for a full discussion of reference restrictions. The default value for this property is AVAssetReferenceRestrictionForbidLocalReferenceToRemote.
         #[unsafe(method(referenceRestrictions))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceRestrictions(&self) -> AVAssetReferenceRestrictions;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetTrackInspection
-    unsafe impl AVAsset {
+/// AVAssetTrackInspection.
+impl AVAsset {
+    extern_methods!(
         #[cfg(feature = "AVAssetTrack")]
         /// Provides the array of AVAssetTracks contained by the asset
         #[unsafe(method(tracks))]
@@ -289,12 +289,12 @@ extern_methods!(
         #[unsafe(method(trackGroups))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackGroups(&self) -> Retained<NSArray<AVAssetTrackGroup>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetMetadataReading
-    unsafe impl AVAsset {
+/// AVAssetMetadataReading.
+impl AVAsset {
+    extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
         #[unsafe(method(creationDate))]
         #[unsafe(method_family = none)]
@@ -354,12 +354,12 @@ extern_methods!(
             format: &AVMetadataFormat,
             completion_handler: &block2::Block<dyn Fn(*mut NSArray<AVMetadataItem>, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetChapterInspection
-    unsafe impl AVAsset {
+/// AVAssetChapterInspection.
+impl AVAsset {
+    extern_methods!(
         #[unsafe(method(availableChapterLocales))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableChapterLocales(&self) -> Retained<NSArray<NSLocale>>;
@@ -462,12 +462,12 @@ extern_methods!(
                 dyn Fn(*mut NSArray<AVTimedMetadataGroup>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetMediaSelection
-    unsafe impl AVAsset {
+/// AVAssetMediaSelection.
+impl AVAsset {
+    extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
         #[unsafe(method(availableMediaCharacteristicsWithMediaSelectionOptions))]
         #[unsafe(method_family = none)]
@@ -538,24 +538,24 @@ extern_methods!(
         #[unsafe(method(allMediaSelections))]
         #[unsafe(method_family = none)]
         pub unsafe fn allMediaSelections(&self) -> Retained<NSArray<AVMediaSelection>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetProtectedContent
-    unsafe impl AVAsset {
+/// AVAssetProtectedContent.
+impl AVAsset {
+    extern_methods!(
         /// Indicates whether or not the asset has protected content.
         ///
         /// Assets containing protected content may not be playable without successful authorization, even if the value of the "playable" property is YES.  See the properties in the AVAssetUsability category for details on how such an asset may be used.  On macOS, clients can use the interfaces in AVPlayerItemProtectedContentAdditions.h to request authorization to play the asset.
         #[unsafe(method(hasProtectedContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasProtectedContent(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetFragments
-    unsafe impl AVAsset {
+/// AVAssetFragments.
+impl AVAsset {
+    extern_methods!(
         /// Indicates whether the asset is capable of being extended by fragments.
         ///
         /// For QuickTime movie files and MPEG-4 files, the value of canContainFragments is YES if an 'mvex' box is present in the 'moov' box. For those types, the 'mvex' box signals the possible presence of later 'moof' boxes.
@@ -577,12 +577,12 @@ extern_methods!(
         #[unsafe(method(overallDurationHint))]
         #[unsafe(method_family = none)]
         pub unsafe fn overallDurationHint(&self) -> CMTime;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetUsability
-    unsafe impl AVAsset {
+/// AVAssetUsability.
+impl AVAsset {
+    extern_methods!(
         /// Indicates whether an AVPlayer can play the contents of the asset in a manner that meets user expectations.
         ///
         /// A client can attempt playback when playable is NO, this however may lead to a substandard playback experience.
@@ -612,8 +612,8 @@ extern_methods!(
         #[unsafe(method(isCompatibleWithAirPlayVideo))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompatibleWithAirPlayVideo(&self) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Indicates whether the asset should be prepared to indicate a precise duration and provide precise random access by time.
@@ -759,8 +759,8 @@ unsafe impl CopyingHelper for AVURLAsset {
 
 unsafe impl NSObjectProtocol for AVURLAsset {}
 
-extern_methods!(
-    unsafe impl AVURLAsset {
+impl AVURLAsset {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -836,12 +836,12 @@ extern_methods!(
         #[unsafe(method(httpSessionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn httpSessionIdentifier(&self) -> Retained<NSUUID>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAsset`
-    unsafe impl AVURLAsset {
+/// Methods declared on superclass `AVAsset`.
+impl AVURLAsset {
+    extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
         /// Parameter `URL`: An instance of NSURL that references a media resource.
@@ -852,12 +852,12 @@ extern_methods!(
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVURLAssetURLHandling
-    unsafe impl AVURLAsset {
+/// AVURLAssetURLHandling.
+impl AVURLAsset {
+    extern_methods!(
         #[cfg(feature = "AVAssetResourceLoader")]
         /// Provides access to an instance of AVAssetResourceLoader, which offers limited control over the handling of URLs that may be loaded in the course of performing operations on the asset, such as playback.
         /// The loading of file URLs cannot be mediated via use of AVAssetResourceLoader.
@@ -865,23 +865,23 @@ extern_methods!(
         #[unsafe(method(resourceLoader))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceLoader(&self) -> Retained<AVAssetResourceLoader>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVURLAssetCache
-    unsafe impl AVURLAsset {
+/// AVURLAssetCache.
+impl AVURLAsset {
+    extern_methods!(
         #[cfg(feature = "AVAssetCache")]
         /// Provides access to an instance of AVAssetCache to use for inspection of locally cached media data. Will be nil if an asset has not been configured to store or access media data from disk.
         #[unsafe(method(assetCache))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetCache(&self) -> Option<Retained<AVAssetCache>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetCompositionUtility
-    unsafe impl AVURLAsset {
+/// AVAssetCompositionUtility.
+impl AVURLAsset {
+    extern_methods!(
         #[cfg(all(feature = "AVAssetTrack", feature = "AVCompositionTrack"))]
         /// Provides a reference to an AVAssetTrack of the target from which any timeRange
         /// can be inserted into a mutable composition track (via -[AVMutableCompositionTrack insertTimeRange:ofTrack:atTime:error:]).
@@ -921,12 +921,12 @@ extern_methods!(
             composition_track: &AVCompositionTrack,
             completion_handler: &block2::Block<dyn Fn(*mut AVAssetTrack, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVAssetVariantInspection
-    unsafe impl AVURLAsset {
+/// AVAssetVariantInspection.
+impl AVURLAsset {
+    extern_methods!(
         #[cfg(feature = "AVAssetVariant")]
         /// Provides an array of AVAssetVariants contained in the asset
         ///
@@ -934,16 +934,16 @@ extern_methods!(
         #[unsafe(method(variants))]
         #[unsafe(method_family = none)]
         pub unsafe fn variants(&self) -> Retained<NSArray<AVAssetVariant>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVURLAssetNSItemProvider
-    /// AVURLAssets can be shared through any interface that supports passing NSItemProviders. Note that only AVURLAssets with file URLs can be added to NSItemProviders. Attempting to share assets with non file URLs will result in an error.
-    ///
-    /// AVURLAssets can be retrieved from NSItemProviders by directly requesting an AVURLAsset through -[NSItemProvider loadObjectOfClass:completionHandler:]. Requesting data representations of AVURLAssets is not supported. File representations of AVURLAssets will be sent without copying the underlying media and the receiver will be extended readonly sandbox access to the sender's original URL until the AVURLAsset is deallocated. Use of NSFileCoordinator and NSFilePresenter is recommended for both the sender and receive to coordinate possible changes in the file's state once sharing has been completed.
-    unsafe impl AVURLAsset {}
-);
+/// AVURLAssetNSItemProvider.
+/// AVURLAssets can be shared through any interface that supports passing NSItemProviders. Note that only AVURLAssets with file URLs can be added to NSItemProviders. Attempting to share assets with non file URLs will result in an error.
+///
+/// AVURLAssets can be retrieved from NSItemProviders by directly requesting an AVURLAsset through -[NSItemProvider loadObjectOfClass:completionHandler:]. Requesting data representations of AVURLAssets is not supported. File representations of AVURLAssets will be sent without copying the underlying media and the receiver will be extended readonly sandbox access to the sender's original URL until the AVURLAsset is deallocated. Use of NSFileCoordinator and NSFilePresenter is recommended for both the sender and receive to coordinate possible changes in the file's state once sharing has been completed.
+impl AVURLAsset {
+    extern_methods!();
+}
 
 unsafe impl NSItemProviderReading for AVURLAsset {}
 
@@ -973,8 +973,8 @@ unsafe impl CopyingHelper for AVMediaExtensionProperties {
 
 unsafe impl NSObjectProtocol for AVMediaExtensionProperties {}
 
-extern_methods!(
-    unsafe impl AVMediaExtensionProperties {
+impl AVMediaExtensionProperties {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1013,12 +1013,12 @@ extern_methods!(
         #[unsafe(method(containingBundleURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn containingBundleURL(&self) -> Retained<NSURL>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMediaExtension
-    unsafe impl AVURLAsset {
+/// AVMediaExtension.
+impl AVURLAsset {
+    extern_methods!(
         /// The properties of the MediaExtension format reader for the asset.
         ///
         /// If the asset is being decoded using a MediaExtension format reader, this property will return a AVMediaExtensionProperties object describing the extension. If the asset is not being decoded with a MediaExtension format reader, this property will return nil.
@@ -1027,8 +1027,8 @@ extern_methods!(
         pub unsafe fn mediaExtensionProperties(
             &self,
         ) -> Option<Retained<AVMediaExtensionProperties>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Posted when the duration of an AVFragmentedAsset changes while it's being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of
@@ -1120,8 +1120,8 @@ unsafe impl CopyingHelper for AVFragmentedAsset {
 
 unsafe impl NSObjectProtocol for AVFragmentedAsset {}
 
-extern_methods!(
-    unsafe impl AVFragmentedAsset {
+impl AVFragmentedAsset {
+    extern_methods!(
         /// Returns an instance of AVFragmentedAsset for inspection of a fragmented media resource.
         ///
         /// Parameter `URL`: An instance of NSURL that references a media resource.
@@ -1143,12 +1143,12 @@ extern_methods!(
         #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVFragmentedAssetTrack>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVURLAsset`
-    unsafe impl AVFragmentedAsset {
+/// Methods declared on superclass `AVURLAsset`.
+impl AVFragmentedAsset {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1185,12 +1185,12 @@ extern_methods!(
             url: &NSURL,
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAsset`
-    unsafe impl AVFragmentedAsset {
+/// Methods declared on superclass `AVAsset`.
+impl AVFragmentedAsset {
+    extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
         /// Parameter `URL`: An instance of NSURL that references a media resource.
@@ -1201,12 +1201,12 @@ extern_methods!(
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVFragmentedAssetTrackInspection
-    unsafe impl AVFragmentedAsset {
+/// AVFragmentedAssetTrackInspection.
+impl AVFragmentedAsset {
+    extern_methods!(
         #[cfg(all(feature = "AVAssetTrack", feature = "objc2-core-media"))]
         /// Provides an instance of AVFragmentedAssetTrack that represents the track of the specified trackID.
         ///
@@ -1318,8 +1318,8 @@ extern_methods!(
                 dyn Fn(*mut NSArray<AVFragmentedAssetTrack>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedassetminder?language=objc)
@@ -1330,8 +1330,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVFragmentedAssetMinder {}
 
-extern_methods!(
-    unsafe impl AVFragmentedAssetMinder {
+impl AVFragmentedAssetMinder {
+    extern_methods!(
         /// Creates an AVFragmentedAssetMinder, adds the specified asset to it, and sets the mindingInterval to the specified value.
         ///
         /// Parameter `asset`: An instance of AVFragmentedAsset to add to the AVFragmentedAssetMinder
@@ -1395,12 +1395,12 @@ extern_methods!(
         #[unsafe(method(removeFragmentedAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFragmentedAsset(&self, asset: &AVAsset);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVFragmentedAssetMinder {
+/// Methods declared on superclass `NSObject`.
+impl AVFragmentedAssetMinder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1408,18 +1408,18 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVURLAssetContentKeyEligibility
-    unsafe impl AVURLAsset {
+/// AVURLAssetContentKeyEligibility.
+impl AVURLAsset {
+    extern_methods!(
         /// Allows AVURLAsset to be added as a content key recipient to an AVContentKeySession.
         #[unsafe(method(mayRequireContentKeysForMediaDataProcessing))]
         #[unsafe(method_family = none)]
         pub unsafe fn mayRequireContentKeysForMediaDataProcessing(&self) -> bool;
-    }
-);
+    );
+}
 
 #[cfg(feature = "AVContentKeySession")]
 unsafe impl AVContentKeyRecipient for AVURLAsset {}

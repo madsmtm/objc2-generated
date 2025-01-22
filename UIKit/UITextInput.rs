@@ -113,8 +113,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIDictationPhrase {}
 
-extern_methods!(
-    unsafe impl UIDictationPhrase {
+impl UIDictationPhrase {
+    extern_methods!(
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
@@ -122,12 +122,12 @@ extern_methods!(
         #[unsafe(method(alternativeInterpretations))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternativeInterpretations(&self) -> Option<Retained<NSArray<NSString>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIDictationPhrase {
+/// Methods declared on superclass `NSObject`.
+impl UIDictationPhrase {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -135,8 +135,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputassistantitem?language=objc)
@@ -148,8 +148,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextInputAssistantItem {}
 
-extern_methods!(
-    unsafe impl UITextInputAssistantItem {
+impl UITextInputAssistantItem {
+    extern_methods!(
         /// Default is YES, controls if the user is allowed to hide the shortcuts bar. Does not influence the built in auto-hiding logic.
         #[unsafe(method(allowsHidingShortcuts))]
         #[unsafe(method_family = none)]
@@ -204,12 +204,12 @@ extern_methods!(
             &self,
             keyboard_action_button_item: Option<&UIBarButtonItem>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextInputAssistantItem {
+/// Methods declared on superclass `NSObject`.
+impl UITextInputAssistantItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -217,8 +217,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextplaceholder?language=objc)
@@ -230,17 +230,17 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextPlaceholder {}
 
-extern_methods!(
-    unsafe impl UITextPlaceholder {
+impl UITextPlaceholder {
+    extern_methods!(
         #[unsafe(method(rects))]
         #[unsafe(method_family = none)]
         pub unsafe fn rects(&self) -> Retained<NSArray<UITextSelectionRect>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextPlaceholder {
+/// Methods declared on superclass `NSObject`.
+impl UITextPlaceholder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -248,8 +248,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalternativestyle?language=objc)
 // NS_ENUM
@@ -725,13 +725,13 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextPosition {}
 
-extern_methods!(
-    unsafe impl UITextPosition {}
-);
+impl UITextPosition {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextPosition {
+/// Methods declared on superclass `NSObject`.
+impl UITextPosition {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -739,8 +739,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextrange?language=objc)
@@ -752,8 +752,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextRange {}
 
-extern_methods!(
-    unsafe impl UITextRange {
+impl UITextRange {
+    extern_methods!(
         #[unsafe(method(isEmpty))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEmpty(&self) -> bool;
@@ -765,12 +765,12 @@ extern_methods!(
         #[unsafe(method(end))]
         #[unsafe(method_family = none)]
         pub unsafe fn end(&self) -> Retained<UITextPosition>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextRange {
+/// Methods declared on superclass `NSObject`.
+impl UITextRange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -778,8 +778,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionrect?language=objc)
@@ -791,8 +791,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextSelectionRect {}
 
-extern_methods!(
-    unsafe impl UITextSelectionRect {
+impl UITextSelectionRect {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
@@ -822,12 +822,12 @@ extern_methods!(
         #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> CGAffineTransform;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextSelectionRect {
+/// Methods declared on superclass `NSObject`.
+impl UITextSelectionRect {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -835,8 +835,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputdelegate?language=objc)
@@ -916,8 +916,8 @@ unsafe impl NSObjectProtocol for UITextInputStringTokenizer {}
 
 unsafe impl UITextInputTokenizer for UITextInputStringTokenizer {}
 
-extern_methods!(
-    unsafe impl UITextInputStringTokenizer {
+impl UITextInputStringTokenizer {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UITextInputTraits"))]
         #[unsafe(method(initWithTextInput:))]
         #[unsafe(method_family = init)]
@@ -925,12 +925,12 @@ extern_methods!(
             this: Allocated<Self>,
             text_input: &UIResponder,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextInputStringTokenizer {
+/// Methods declared on superclass `NSObject`.
+impl UITextInputStringTokenizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -938,8 +938,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputmode?language=objc)
@@ -955,8 +955,8 @@ unsafe impl NSObjectProtocol for UITextInputMode {}
 
 unsafe impl NSSecureCoding for UITextInputMode {}
 
-extern_methods!(
-    unsafe impl UITextInputMode {
+impl UITextInputMode {
+    extern_methods!(
         #[unsafe(method(primaryLanguage))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
@@ -970,12 +970,12 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn activeInputModes(mtm: MainThreadMarker)
             -> Retained<NSArray<UITextInputMode>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITextInputMode {
+/// Methods declared on superclass `NSObject`.
+impl UITextInputMode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -983,8 +983,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputcurrentinputmodedidchangenotification?language=objc)

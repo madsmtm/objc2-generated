@@ -68,13 +68,13 @@ unsafe impl NSObjectProtocol for MPSNDArrayStridedSlice {}
 ))]
 unsafe impl NSSecureCoding for MPSNDArrayStridedSlice {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSNDArrayKernel"
-    ))]
-    unsafe impl MPSNDArrayStridedSlice {
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
+impl MPSNDArrayStridedSlice {
+    extern_methods!(
         #[cfg(feature = "MPSNDArrayTypes")]
         /// The strides to use when slicing the input array.
         #[unsafe(method(strides))]
@@ -86,17 +86,17 @@ extern_methods!(
         #[unsafe(method(setStrides:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrides(&self, strides: MPSNDArrayOffsets);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSNDArrayUnaryKernel`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSNDArrayKernel"
-    ))]
-    unsafe impl MPSNDArrayStridedSlice {
+/// Methods declared on superclass `MPSNDArrayUnaryKernel`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
+impl MPSNDArrayStridedSlice {
+    extern_methods!(
         #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
@@ -119,17 +119,17 @@ extern_methods!(
             coder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSNDArrayKernel"
-    ))]
-    unsafe impl MPSNDArrayStridedSlice {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
+impl MPSNDArrayStridedSlice {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -144,17 +144,17 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSNDArrayKernel"
-    ))]
-    unsafe impl MPSNDArrayStridedSlice {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
+impl MPSNDArrayStridedSlice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -162,8 +162,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
@@ -225,23 +225,23 @@ unsafe impl NSObjectProtocol for MPSNDArrayStridedSliceGradient {}
 ))]
 unsafe impl NSSecureCoding for MPSNDArrayStridedSliceGradient {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSNDArrayKernel"
-    ))]
-    unsafe impl MPSNDArrayStridedSliceGradient {}
-);
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
+impl MPSNDArrayStridedSliceGradient {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSNDArrayUnaryGradientKernel`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSNDArrayKernel"
-    ))]
-    unsafe impl MPSNDArrayStridedSliceGradient {
+/// Methods declared on superclass `MPSNDArrayUnaryGradientKernel`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
+impl MPSNDArrayStridedSliceGradient {
+    extern_methods!(
         #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
@@ -265,17 +265,17 @@ extern_methods!(
             coder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSNDArrayMultiaryGradientKernel`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSNDArrayKernel"
-    ))]
-    unsafe impl MPSNDArrayStridedSliceGradient {
+/// Methods declared on superclass `MPSNDArrayMultiaryGradientKernel`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
+impl MPSNDArrayStridedSliceGradient {
+    extern_methods!(
         #[unsafe(method(initWithDevice:sourceCount:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_sourceCount(
@@ -283,17 +283,17 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
             count: NSUInteger,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSNDArrayKernel"
-    ))]
-    unsafe impl MPSNDArrayStridedSliceGradient {
+/// Methods declared on superclass `MPSKernel`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
+impl MPSNDArrayStridedSliceGradient {
+    extern_methods!(
         /// Called by NSCoder to decode MPSKernels
         ///
         /// This isn't the right interface to decode a MPSKernel, but
@@ -308,17 +308,17 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "MPSCore",
-        feature = "MPSKernel",
-        feature = "MPSNDArrayKernel"
-    ))]
-    unsafe impl MPSNDArrayStridedSliceGradient {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
+impl MPSNDArrayStridedSliceGradient {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -326,5 +326,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

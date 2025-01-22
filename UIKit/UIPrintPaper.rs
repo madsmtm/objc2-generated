@@ -18,8 +18,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPrintPaper {}
 
-extern_methods!(
-    unsafe impl UIPrintPaper {
+impl UIPrintPaper {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bestPaperForPageSize:withPapersFromArray:))]
         #[unsafe(method_family = none)]
@@ -38,12 +38,12 @@ extern_methods!(
         #[unsafe(method(printableRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn printableRect(&self) -> CGRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPrintPaper {
+/// Methods declared on superclass `NSObject`.
+impl UIPrintPaper {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -51,15 +51,15 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Deprecated_Nonfunctional
-    unsafe impl UIPrintPaper {
+/// Deprecated_Nonfunctional.
+impl UIPrintPaper {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(printRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn printRect(&self) -> CGRect;
-    }
-);
+    );
+}

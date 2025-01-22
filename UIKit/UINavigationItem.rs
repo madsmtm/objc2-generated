@@ -175,8 +175,8 @@ unsafe impl NSCoding for UINavigationItem {}
 
 unsafe impl NSObjectProtocol for UINavigationItem {}
 
-extern_methods!(
-    unsafe impl UINavigationItem {
+impl UINavigationItem {
+    extern_methods!(
         #[unsafe(method(initWithTitle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle(this: Allocated<Self>, title: &NSString) -> Retained<Self>;
@@ -664,12 +664,12 @@ extern_methods!(
             &self,
             compact_scroll_edge_appearance: Option<&UINavigationBarAppearance>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UINavigationItem {
+/// Methods declared on superclass `NSObject`.
+impl UINavigationItem {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -677,5 +677,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

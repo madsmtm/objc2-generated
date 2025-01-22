@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NLLanguageRecognizer {}
 
-extern_methods!(
-    unsafe impl NLLanguageRecognizer {
+impl NLLanguageRecognizer {
+    extern_methods!(
         #[cfg(feature = "NLLanguage")]
         #[unsafe(method(dominantLanguageForString:))]
         #[unsafe(method_family = none)]
@@ -69,14 +69,14 @@ extern_methods!(
         #[unsafe(method(setLanguageConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguageConstraints(&self, language_constraints: &NSArray<NLLanguage>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NLLanguageRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl NLLanguageRecognizer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

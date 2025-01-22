@@ -54,8 +54,8 @@ unsafe impl NSObjectProtocol for CNContainer {}
 
 unsafe impl NSSecureCoding for CNContainer {}
 
-extern_methods!(
-    unsafe impl CNContainer {
+impl CNContainer {
+    extern_methods!(
         /// The identifier is unique among containers on the device. It can be saved and used for fetching containers next application launch.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -68,12 +68,12 @@ extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CNContainerType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CNContainer {
+/// Methods declared on superclass `NSObject`.
+impl CNContainer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,8 +81,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontaineridentifierkey?language=objc)

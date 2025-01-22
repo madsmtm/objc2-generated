@@ -26,8 +26,8 @@ unsafe impl NSObjectProtocol for CMDyskineticSymptomResult {}
 
 unsafe impl NSSecureCoding for CMDyskineticSymptomResult {}
 
-extern_methods!(
-    unsafe impl CMDyskineticSymptomResult {
+impl CMDyskineticSymptomResult {
+    extern_methods!(
         /// The date and time representing the start of the result.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
@@ -47,12 +47,12 @@ extern_methods!(
         #[unsafe(method(percentLikely))]
         #[unsafe(method_family = none)]
         pub unsafe fn percentLikely(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMDyskineticSymptomResult {
+/// Methods declared on superclass `NSObject`.
+impl CMDyskineticSymptomResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,8 +60,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A CMTremorResult object describes the presence and prevalence of tremor symptoms (specifically, resting tremor) during a one minute result period when subjects wear the Apple Watch on their most affected arm.
@@ -85,8 +85,8 @@ unsafe impl NSObjectProtocol for CMTremorResult {}
 
 unsafe impl NSSecureCoding for CMTremorResult {}
 
-extern_methods!(
-    unsafe impl CMTremorResult {
+impl CMTremorResult {
+    extern_methods!(
         /// The date and time representing the start of the result.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
@@ -129,12 +129,12 @@ extern_methods!(
         #[unsafe(method(percentStrong))]
         #[unsafe(method_family = none)]
         pub unsafe fn percentStrong(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMTremorResult {
+/// Methods declared on superclass `NSObject`.
+impl CMTremorResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -142,8 +142,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Completion handler for CMDyskineticSymptomResult values.
 ///
@@ -170,8 +170,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CMMovementDisorderManager {}
 
-extern_methods!(
-    unsafe impl CMMovementDisorderManager {
+impl CMMovementDisorderManager {
+    extern_methods!(
         /// Whether movement disorder results are available on this platform.
         ///
         /// Returns: Returns the availability of movement disorder results on this platform.
@@ -255,12 +255,12 @@ extern_methods!(
         #[unsafe(method(monitorKinesiasExpirationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn monitorKinesiasExpirationDate(&self) -> Option<Retained<NSDate>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CMMovementDisorderManager {
+/// Methods declared on superclass `NSObject`.
+impl CMMovementDisorderManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -268,5 +268,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

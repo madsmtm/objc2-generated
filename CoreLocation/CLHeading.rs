@@ -35,8 +35,8 @@ unsafe impl NSObjectProtocol for CLHeading {}
 
 unsafe impl NSSecureCoding for CLHeading {}
 
-extern_methods!(
-    unsafe impl CLHeading {
+impl CLHeading {
+    extern_methods!(
         #[cfg(feature = "CLLocation")]
         #[unsafe(method(magneticHeading))]
         #[unsafe(method_family = none)]
@@ -67,12 +67,12 @@ extern_methods!(
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CLHeading {
+/// Methods declared on superclass `NSObject`.
+impl CLHeading {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -80,5 +80,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

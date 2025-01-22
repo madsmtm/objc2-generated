@@ -50,17 +50,17 @@ unsafe impl NSObjectProtocol for MKUserLocationView {}
 #[cfg(target_os = "macos")]
 unsafe impl NSUserInterfaceItemIdentification for MKUserLocationView {}
 
-extern_methods!(
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKUserLocationView {}
-);
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKUserLocationView {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MKAnnotationView`
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKUserLocationView {
+/// Methods declared on superclass `MKAnnotationView`.
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKUserLocationView {
+    extern_methods!(
         #[cfg(feature = "MKAnnotation")]
         #[unsafe(method(initWithAnnotation:reuseIdentifier:))]
         #[unsafe(method_family = init)]
@@ -76,38 +76,38 @@ extern_methods!(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKUserLocationView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKUserLocationView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKUserLocationView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKUserLocationView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
-    #[cfg(target_os = "macos")]
-    unsafe impl MKUserLocationView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
+#[cfg(target_os = "macos")]
+impl MKUserLocationView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

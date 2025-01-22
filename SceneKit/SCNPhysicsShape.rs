@@ -70,8 +70,8 @@ unsafe impl NSObjectProtocol for SCNPhysicsShape {}
 
 unsafe impl NSSecureCoding for SCNPhysicsShape {}
 
-extern_methods!(
-    unsafe impl SCNPhysicsShape {
+impl SCNPhysicsShape {
+    extern_methods!(
         #[cfg(feature = "SCNGeometry")]
         #[unsafe(method(shapeWithGeometry:options:))]
         #[unsafe(method_family = none)]
@@ -108,12 +108,12 @@ extern_methods!(
         #[unsafe(method(transforms))]
         #[unsafe(method_family = none)]
         pub unsafe fn transforms(&self) -> Option<Retained<NSArray<NSValue>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNPhysicsShape {
+/// Methods declared on superclass `NSObject`.
+impl SCNPhysicsShape {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -121,5 +121,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for NSTintConfiguration {}
 
 unsafe impl NSSecureCoding for NSTintConfiguration {}
 
-extern_methods!(
-    unsafe impl NSTintConfiguration {
+impl NSTintConfiguration {
+    extern_methods!(
         /// Specifies that content should be tinted using the system default for its context.
         /// For example, a source list icon's default tint matches the active Accent Color.
         #[unsafe(method(defaultTintConfiguration))]
@@ -70,12 +70,12 @@ extern_methods!(
         #[unsafe(method(adaptsToUserAccentColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn adaptsToUserAccentColor(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTintConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl NSTintConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -83,5 +83,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

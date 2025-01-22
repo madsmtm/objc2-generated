@@ -53,9 +53,9 @@ unsafe impl NSObjectProtocol for CMMotionActivity {}
 #[cfg(feature = "CMLogItem")]
 unsafe impl NSSecureCoding for CMMotionActivity {}
 
-extern_methods!(
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMMotionActivity {
+#[cfg(feature = "CMLogItem")]
+impl CMMotionActivity {
+    extern_methods!(
         #[unsafe(method(confidence))]
         #[unsafe(method_family = none)]
         pub unsafe fn confidence(&self) -> CMMotionActivityConfidence;
@@ -87,13 +87,13 @@ extern_methods!(
         #[unsafe(method(cycling))]
         #[unsafe(method_family = none)]
         pub unsafe fn cycling(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "CMLogItem")]
-    unsafe impl CMMotionActivity {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "CMLogItem")]
+impl CMMotionActivity {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -101,5 +101,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

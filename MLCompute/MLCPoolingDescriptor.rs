@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for MLCPoolingDescriptor {
 
 unsafe impl NSObjectProtocol for MLCPoolingDescriptor {}
 
-extern_methods!(
-    unsafe impl MLCPoolingDescriptor {
+impl MLCPoolingDescriptor {
+    extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// The pooling operation
         #[deprecated]
@@ -269,5 +269,5 @@ extern_methods!(
             padding_policy: MLCPaddingPolicy,
             padding_sizes: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

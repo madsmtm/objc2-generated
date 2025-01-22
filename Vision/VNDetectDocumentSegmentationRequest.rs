@@ -27,21 +27,21 @@ unsafe impl CopyingHelper for VNDetectDocumentSegmentationRequest {
 #[cfg(feature = "VNRequest")]
 unsafe impl NSObjectProtocol for VNDetectDocumentSegmentationRequest {}
 
-extern_methods!(
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectDocumentSegmentationRequest {
+#[cfg(feature = "VNRequest")]
+impl VNDetectDocumentSegmentationRequest {
+    extern_methods!(
         #[cfg(feature = "VNObservation")]
         /// VNRectangleObservation results.
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNRequest`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectDocumentSegmentationRequest {
+/// Methods declared on superclass `VNRequest`.
+#[cfg(feature = "VNRequest")]
+impl VNDetectDocumentSegmentationRequest {
+    extern_methods!(
         /// Creates a new VNRequest with no completion handler.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -58,18 +58,18 @@ extern_methods!(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VNRequest")]
-    unsafe impl VNDetectDocumentSegmentationRequest {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VNRequest")]
+impl VNDetectDocumentSegmentationRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequestrevision1?language=objc)
 pub static VNDetectDocumentSegmentationRequestRevision1: NSUInteger = 1;

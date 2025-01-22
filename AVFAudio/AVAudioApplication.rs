@@ -112,8 +112,8 @@ unsafe impl Sync for AVAudioApplication {}
 
 unsafe impl NSObjectProtocol for AVAudioApplication {}
 
-extern_methods!(
-    unsafe impl AVAudioApplication {
+impl AVAudioApplication {
+    extern_methods!(
         /// Returns the singleton instance
         #[unsafe(method(sharedInstance))]
         #[unsafe(method_family = none)]
@@ -200,14 +200,14 @@ extern_methods!(
         pub unsafe fn requestMicrophoneInjectionPermissionWithCompletionHandler(
             response: &block2::Block<dyn Fn(AVAudioApplicationMicrophoneInjectionPermission)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioApplication {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioApplication {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

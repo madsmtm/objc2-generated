@@ -93,9 +93,9 @@ unsafe impl CopyingHelper for NSXMLDTDNode {
 #[cfg(feature = "NSXMLNode")]
 unsafe impl NSObjectProtocol for NSXMLDTDNode {}
 
-extern_methods!(
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLDTDNode {
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLDTDNode {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         /// Returns an element, attribute, entity, or notation DTD node based on the full XML string.
         #[unsafe(method(initWithXMLString:))]
@@ -168,13 +168,13 @@ extern_methods!(
         #[unsafe(method(setNotationName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotationName(&self, notation_name: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSXMLNode`
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLDTDNode {
+/// Methods declared on superclass `NSXMLNode`.
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLDTDNode {
+    extern_methods!(
         /// Invokes
         ///
         /// ```text
@@ -185,15 +185,15 @@ extern_methods!(
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSXMLNode")]
-    unsafe impl NSXMLDTDNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSXMLNode")]
+impl NSXMLDTDNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

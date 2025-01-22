@@ -62,9 +62,9 @@ unsafe impl UIResponderStandardEditActions for EKEventViewController {}
 #[cfg(feature = "objc2-ui-kit")]
 unsafe impl UITraitEnvironment for EKEventViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl EKEventViewController {
+#[cfg(feature = "objc2-ui-kit")]
+impl EKEventViewController {
+    extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn EKEventViewDelegate>>>;
@@ -121,13 +121,13 @@ extern_methods!(
         #[unsafe(method(setAllowsCalendarPreview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCalendarPreview(&self, allows_calendar_preview: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl EKEventViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(feature = "objc2-ui-kit")]
+impl EKEventViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -142,13 +142,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl EKEventViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-ui-kit")]
+impl EKEventViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -156,8 +156,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// View controller to view event detail.

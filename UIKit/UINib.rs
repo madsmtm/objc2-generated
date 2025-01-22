@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UINib {}
 
-extern_methods!(
-    unsafe impl UINib {
+impl UINib {
+    extern_methods!(
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(nibWithNibName:bundle:))]
         #[unsafe(method_family = none)]
@@ -46,12 +46,12 @@ extern_methods!(
             owner_or_nil: Option<&AnyObject>,
             options_or_nil: Option<&NSDictionary<UINibOptionsKey, AnyObject>>,
         ) -> Retained<NSArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UINib {
+/// Methods declared on superclass `NSObject`.
+impl UINib {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -59,5 +59,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

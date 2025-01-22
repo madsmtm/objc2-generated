@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for NSFetchRequestExpression {}
 
 unsafe impl NSSecureCoding for NSFetchRequestExpression {}
 
-extern_methods!(
-    unsafe impl NSFetchRequestExpression {
+impl NSFetchRequestExpression {
+    extern_methods!(
         #[unsafe(method(expressionForFetch:context:countOnly:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForFetch_context_countOnly(
@@ -49,12 +49,12 @@ extern_methods!(
         #[unsafe(method(isCountOnlyRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCountOnlyRequest(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSExpression`
-    unsafe impl NSFetchRequestExpression {
+/// Methods declared on superclass `NSExpression`.
+impl NSFetchRequestExpression {
+    extern_methods!(
         #[unsafe(method(initWithExpressionType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExpressionType(
@@ -68,12 +68,12 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFetchRequestExpression {
+/// Methods declared on superclass `NSObject`.
+impl NSFetchRequestExpression {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,5 +81,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

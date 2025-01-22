@@ -21,8 +21,8 @@ unsafe impl Sync for MLComputePlanDeviceUsage {}
 
 unsafe impl NSObjectProtocol for MLComputePlanDeviceUsage {}
 
-extern_methods!(
-    unsafe impl MLComputePlanDeviceUsage {
+impl MLComputePlanDeviceUsage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -46,5 +46,5 @@ extern_methods!(
         pub unsafe fn preferredComputeDevice(
             &self,
         ) -> Retained<ProtocolObject<dyn MLComputeDeviceProtocol>>;
-    }
-);
+    );
+}

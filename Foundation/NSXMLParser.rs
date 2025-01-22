@@ -39,8 +39,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSXMLParser {}
 
-extern_methods!(
-    unsafe impl NSXMLParser {
+impl NSXMLParser {
+    extern_methods!(
         #[cfg(feature = "NSURL")]
         #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
@@ -147,12 +147,12 @@ extern_methods!(
             &self,
             should_resolve_external_entities: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSXMLParser {
+/// Methods declared on superclass `NSObject`.
+impl NSXMLParser {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -160,12 +160,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSXMLParserLocatorAdditions
-    unsafe impl NSXMLParser {
+/// NSXMLParserLocatorAdditions.
+impl NSXMLParser {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(publicID))]
         #[unsafe(method_family = none)]
@@ -183,8 +183,8 @@ extern_methods!(
         #[unsafe(method(columnNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn columnNumber(&self) -> NSInteger;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparserdelegate?language=objc)

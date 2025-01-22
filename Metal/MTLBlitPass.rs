@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for MTLBlitPassSampleBufferAttachmentDescriptor {
 
 unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
+impl MTLBlitPassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[cfg(feature = "MTLCounters")]
         /// The sample buffer to store samples for the blit-pass defined samples.
         /// If sampleBuffer is non-nil, the sample indices will be used to store samples into
@@ -77,12 +77,12 @@ extern_methods!(
         #[unsafe(method(setEndOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLBlitPassSampleBufferAttachmentDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -90,8 +90,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitpasssamplebufferattachmentdescriptorarray?language=objc)
@@ -102,8 +102,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
+impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -118,12 +118,12 @@ extern_methods!(
             attachment: Option<&MTLBlitPassSampleBufferAttachmentDescriptor>,
             attachment_index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -131,8 +131,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// MTLBlitPassDescriptor represents a collection of attachments to be used to create a concrete blit command encoder
@@ -151,8 +151,8 @@ unsafe impl CopyingHelper for MTLBlitPassDescriptor {
 
 unsafe impl NSObjectProtocol for MTLBlitPassDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLBlitPassDescriptor {
+impl MTLBlitPassDescriptor {
+    extern_methods!(
         /// Create an autoreleased default frame buffer descriptor
         #[unsafe(method(blitPassDescriptor))]
         #[unsafe(method_family = none)]
@@ -164,12 +164,12 @@ extern_methods!(
         pub unsafe fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLBlitPassSampleBufferAttachmentDescriptorArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLBlitPassDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLBlitPassDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -177,5 +177,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

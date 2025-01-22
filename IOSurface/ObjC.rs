@@ -165,9 +165,8 @@ unsafe impl NSObjectProtocol for IOSurface {}
 unsafe impl NSSecureCoding for IOSurface {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl IOSurface {
+impl IOSurface {
+    extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         #[unsafe(method(initWithProperties:))]
         #[unsafe(method_family = init)]
@@ -327,14 +326,13 @@ extern_methods!(
             new_state: IOSurfacePurgeabilityState,
             old_state: *mut IOSurfacePurgeabilityState,
         ) -> libc::kern_return_t;
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2")]
-    unsafe impl IOSurface {
+impl IOSurface {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -342,8 +340,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertyallocsizekey?language=objc)

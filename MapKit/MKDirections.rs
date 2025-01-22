@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MKDirections {}
 
-extern_methods!(
-    unsafe impl MKDirections {
+impl MKDirections {
+    extern_methods!(
         #[cfg(feature = "MKDirectionsRequest")]
         #[unsafe(method(initWithRequest:))]
         #[unsafe(method_family = init)]
@@ -54,12 +54,12 @@ extern_methods!(
         #[unsafe(method(isCalculating))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCalculating(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MKDirections {
+/// Methods declared on superclass `NSObject`.
+impl MKDirections {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -67,5 +67,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

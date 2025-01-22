@@ -45,8 +45,8 @@ unsafe impl NSObjectProtocol for EKRecurrenceDayOfWeek {}
 
 unsafe impl NSSecureCoding for EKRecurrenceDayOfWeek {}
 
-extern_methods!(
-    unsafe impl EKRecurrenceDayOfWeek {
+impl EKRecurrenceDayOfWeek {
+    extern_methods!(
         #[cfg(feature = "EKTypes")]
         /// Creates an autoreleased object with a day of the week and week number of zero.
         #[unsafe(method(dayOfWeek:))]
@@ -82,12 +82,12 @@ extern_methods!(
         #[unsafe(method(weekNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn weekNumber(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl EKRecurrenceDayOfWeek {
+/// Methods declared on superclass `NSObject`.
+impl EKRecurrenceDayOfWeek {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -95,5 +95,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

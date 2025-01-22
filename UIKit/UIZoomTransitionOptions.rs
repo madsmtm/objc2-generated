@@ -24,8 +24,8 @@ unsafe impl CopyingHelper for UIZoomTransitionOptions {
 
 unsafe impl NSObjectProtocol for UIZoomTransitionOptions {}
 
-extern_methods!(
-    unsafe impl UIZoomTransitionOptions {
+impl UIZoomTransitionOptions {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Called when an interactive dismissal of this transition begins.
         /// Return value indicates whether the interaction should begin for the given context.
@@ -92,12 +92,12 @@ extern_methods!(
         #[unsafe(method(setDimmingVisualEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDimmingVisualEffect(&self, dimming_visual_effect: Option<&UIBlurEffect>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIZoomTransitionOptions {
+/// Methods declared on superclass `NSObject`.
+impl UIZoomTransitionOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -105,8 +105,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uizoomtransitioninteractioncontext?language=objc)
@@ -117,8 +117,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIZoomTransitionInteractionContext {}
 
-extern_methods!(
-    unsafe impl UIZoomTransitionInteractionContext {
+impl UIZoomTransitionInteractionContext {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Location of the interaction in the displayed view controller's view's coordinate space.
         #[unsafe(method(location))]
@@ -135,12 +135,12 @@ extern_methods!(
         #[unsafe(method(willBegin))]
         #[unsafe(method_family = none)]
         pub unsafe fn willBegin(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIZoomTransitionInteractionContext {
+/// Methods declared on superclass `NSObject`.
+impl UIZoomTransitionInteractionContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -148,8 +148,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uizoomtransitionalignmentrectcontext?language=objc)
@@ -160,8 +160,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIZoomTransitionAlignmentRectContext {}
 
-extern_methods!(
-    unsafe impl UIZoomTransitionAlignmentRectContext {
+impl UIZoomTransitionAlignmentRectContext {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The transition's source view.
         #[unsafe(method(sourceView))]
@@ -176,12 +176,12 @@ extern_methods!(
             &self,
             mtm: MainThreadMarker,
         ) -> Retained<UIViewController>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIZoomTransitionAlignmentRectContext {
+/// Methods declared on superclass `NSObject`.
+impl UIZoomTransitionAlignmentRectContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -189,5 +189,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

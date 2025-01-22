@@ -42,20 +42,20 @@ unsafe impl NSFetchRequestResult for NSNumber {}
 
 unsafe impl NSFetchRequestResult for NSDictionary {}
 
-extern_methods!(
-    /// NSFetchedResultSupport
-    #[cfg(feature = "NSManagedObject")]
-    unsafe impl NSManagedObject {}
-);
+/// NSFetchedResultSupport.
+#[cfg(feature = "NSManagedObject")]
+impl NSManagedObject {
+    extern_methods!();
+}
 
 #[cfg(feature = "NSManagedObject")]
 unsafe impl NSFetchRequestResult for NSManagedObject {}
 
-extern_methods!(
-    /// NSFetchedResultSupport
-    #[cfg(feature = "NSManagedObjectID")]
-    unsafe impl NSManagedObjectID {}
-);
+/// NSFetchedResultSupport.
+#[cfg(feature = "NSManagedObjectID")]
+impl NSManagedObjectID {
+    extern_methods!();
+}
 
 #[cfg(feature = "NSManagedObjectID")]
 unsafe impl NSFetchRequestResult for NSManagedObjectID {}
@@ -82,9 +82,9 @@ unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSFetchRequest<Resul
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl<ResultType: Message> NSFetchRequest<ResultType> {
+    extern_methods!(
         #[unsafe(method(fetchRequestWithEntityName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRequestWithEntityName(entity_name: &NSString) -> Retained<Self>;
@@ -287,18 +287,18 @@ extern_methods!(
         #[unsafe(method(setHavingPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHavingPredicate(&self, having_predicate: Option<&NSPredicate>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl<ResultType: Message> NSFetchRequest<ResultType> {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreasynchronousfetchresultcompletionblock?language=objc)
 #[cfg(all(feature = "NSPersistentStoreResult", feature = "block2"))]
@@ -324,9 +324,9 @@ unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSAsynchronousFetchR
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}
 
-extern_methods!(
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
+    extern_methods!(
         #[unsafe(method(fetchRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest<ResultType>>;
@@ -355,13 +355,13 @@ extern_methods!(
             request: &NSFetchRequest<ResultType>,
             blk: Option<&block2::Block<dyn Fn(NonNull<NSAsynchronousFetchResult<ResultType>>)>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSPersistentStoreRequest")]
-    unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -369,5 +369,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

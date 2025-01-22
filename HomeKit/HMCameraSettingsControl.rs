@@ -24,9 +24,9 @@ unsafe impl Sync for HMCameraSettingsControl {}
 #[cfg(feature = "HMCameraControl")]
 unsafe impl NSObjectProtocol for HMCameraSettingsControl {}
 
-extern_methods!(
-    #[cfg(feature = "HMCameraControl")]
-    unsafe impl HMCameraSettingsControl {
+#[cfg(feature = "HMCameraControl")]
+impl HMCameraSettingsControl {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,15 +84,15 @@ extern_methods!(
         #[unsafe(method(imageMirroring))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageMirroring(&self) -> Option<Retained<HMCharacteristic>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HMCameraControl")]
-    unsafe impl HMCameraSettingsControl {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HMCameraControl")]
+impl HMCameraSettingsControl {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

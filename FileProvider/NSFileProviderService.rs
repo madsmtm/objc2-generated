@@ -43,15 +43,15 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSFileProviderService
-    /// A file provider can override the method in this category to return service
-    /// sources that provide custom communication channels to client applications.
-    /// The service sources must be tied to the item identified by
-    /// `itemIdentifier.`Client applications can retrieve the list of supported services by calling
-    /// `-[NSFileManager`getFileProviderServicesForItemAtURL:] for a specific item URL.
-    #[cfg(feature = "Extension")]
-    unsafe impl NSFileProviderExtension {
+/// NSFileProviderService.
+/// A file provider can override the method in this category to return service
+/// sources that provide custom communication channels to client applications.
+/// The service sources must be tied to the item identified by
+/// `itemIdentifier.`Client applications can retrieve the list of supported services by calling
+/// `-[NSFileManager`getFileProviderServicesForItemAtURL:] for a specific item URL.
+#[cfg(feature = "Extension")]
+impl NSFileProviderExtension {
+    extern_methods!(
         #[cfg(feature = "NSFileProviderItem")]
         #[unsafe(method(supportedServiceSourcesForItemIdentifier:error:_))]
         #[unsafe(method_family = none)]
@@ -62,13 +62,13 @@ extern_methods!(
             Retained<NSArray<ProtocolObject<dyn NSFileProviderServiceSource>>>,
             Retained<NSError>,
         >;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSFileProviderService
-    #[cfg(feature = "Extension")]
-    unsafe impl NSFileProviderManager {
+/// NSFileProviderService.
+#[cfg(feature = "Extension")]
+impl NSFileProviderManager {
+    extern_methods!(
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         /// Retrieve the service with the specified named for the specified item.
         #[unsafe(method(getServiceWithName:itemIdentifier:completionHandler:))]
@@ -79,5 +79,5 @@ extern_methods!(
             item_identifier: &NSFileProviderItemIdentifier,
             completion_handler: &block2::Block<dyn Fn(*mut NSFileProviderService, *mut NSError)>,
         );
-    }
-);
+    );
+}

@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ODModuleEntry {}
 
-extern_methods!(
-    unsafe impl ODModuleEntry {
+impl ODModuleEntry {
+    extern_methods!(
         #[cfg(feature = "ODMappings")]
         #[unsafe(method(mappings))]
         #[unsafe(method_family = none)]
@@ -90,12 +90,12 @@ extern_methods!(
         #[unsafe(method(option:))]
         #[unsafe(method_family = none)]
         pub unsafe fn option(&self, option_name: Option<&NSString>) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ODModuleEntry {
+/// Methods declared on superclass `NSObject`.
+impl ODModuleEntry {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -103,5 +103,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

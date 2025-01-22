@@ -23,9 +23,9 @@ unsafe impl MKAnnotation for MKPointAnnotation {}
 #[cfg(feature = "MKShape")]
 unsafe impl NSObjectProtocol for MKPointAnnotation {}
 
-extern_methods!(
-    #[cfg(feature = "MKShape")]
-    unsafe impl MKPointAnnotation {
+#[cfg(feature = "MKShape")]
+impl MKPointAnnotation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -58,15 +58,15 @@ extern_methods!(
         #[unsafe(method(setCoordinate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCoordinate(&self, coordinate: CLLocationCoordinate2D);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MKShape")]
-    unsafe impl MKPointAnnotation {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MKShape")]
+impl MKPointAnnotation {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

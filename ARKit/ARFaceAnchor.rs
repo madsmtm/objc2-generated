@@ -374,10 +374,9 @@ unsafe impl NSObjectProtocol for ARFaceAnchor {}
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl NSSecureCoding for ARFaceAnchor {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARFaceAnchor {
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARFaceAnchor {
+    extern_methods!(
         #[cfg(feature = "ARFaceGeometry")]
         /// The face geometry updated based on the computed blend shapes.
         #[unsafe(method(geometry))]
@@ -391,14 +390,13 @@ extern_methods!(
         #[unsafe(method(blendShapes))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendShapes(&self) -> Retained<NSDictionary<ARBlendShapeLocation, NSNumber>>;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `ARAnchor`
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARFaceAnchor {
+/// Methods declared on superclass `ARAnchor`.
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARFaceAnchor {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -407,5 +405,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

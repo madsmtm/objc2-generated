@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for AXBrailleMap {}
 
 unsafe impl NSSecureCoding for AXBrailleMap {}
 
-extern_methods!(
-    unsafe impl AXBrailleMap {
+impl AXBrailleMap {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(dimensions))]
         #[unsafe(method_family = none)]
@@ -59,8 +59,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axbraillemaprenderer?language=objc)

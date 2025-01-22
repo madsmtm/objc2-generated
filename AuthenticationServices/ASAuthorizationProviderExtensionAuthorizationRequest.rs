@@ -60,8 +60,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationRequest {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationProviderExtensionAuthorizationRequest {
+impl ASAuthorizationProviderExtensionAuthorizationRequest {
+    extern_methods!(
         /// Call when authorization was not handled.
         #[unsafe(method(doNotHandle))]
         #[unsafe(method_family = none)]
@@ -199,12 +199,12 @@ extern_methods!(
         pub unsafe fn loginManager(
             &self,
         ) -> Option<Retained<ASAuthorizationProviderExtensionLoginManager>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASAuthorizationProviderExtensionAuthorizationRequest {
+/// Methods declared on superclass `NSObject`.
+impl ASAuthorizationProviderExtensionAuthorizationRequest {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -212,5 +212,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

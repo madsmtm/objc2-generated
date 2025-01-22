@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for MKImageryMapConfiguration {}
 #[cfg(feature = "MKMapConfiguration")]
 unsafe impl NSSecureCoding for MKImageryMapConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "MKMapConfiguration")]
-    unsafe impl MKImageryMapConfiguration {
+#[cfg(feature = "MKMapConfiguration")]
+impl MKImageryMapConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -44,15 +44,15 @@ extern_methods!(
             this: Allocated<Self>,
             elevation_style: MKMapElevationStyle,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MKMapConfiguration`
-    #[cfg(feature = "MKMapConfiguration")]
-    unsafe impl MKImageryMapConfiguration {
+/// Methods declared on superclass `MKMapConfiguration`.
+#[cfg(feature = "MKMapConfiguration")]
+impl MKImageryMapConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

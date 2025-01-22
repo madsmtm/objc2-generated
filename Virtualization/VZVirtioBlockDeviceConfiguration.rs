@@ -34,9 +34,9 @@ unsafe impl CopyingHelper for VZVirtioBlockDeviceConfiguration {
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 unsafe impl NSObjectProtocol for VZVirtioBlockDeviceConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZStorageDeviceConfiguration")]
-    unsafe impl VZVirtioBlockDeviceConfiguration {
+#[cfg(feature = "VZStorageDeviceConfiguration")]
+impl VZVirtioBlockDeviceConfiguration {
+    extern_methods!(
         #[cfg(feature = "VZStorageDeviceAttachment")]
         /// Initialize a VZVirtioBlockDeviceConfiguration with a device attachment.
         ///
@@ -79,13 +79,13 @@ extern_methods!(
         #[unsafe(method(setBlockDeviceIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlockDeviceIdentifier(&self, block_device_identifier: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZStorageDeviceConfiguration`
-    #[cfg(feature = "VZStorageDeviceConfiguration")]
-    unsafe impl VZVirtioBlockDeviceConfiguration {
+/// Methods declared on superclass `VZStorageDeviceConfiguration`.
+#[cfg(feature = "VZStorageDeviceConfiguration")]
+impl VZVirtioBlockDeviceConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -93,5 +93,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

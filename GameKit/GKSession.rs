@@ -21,8 +21,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKSession {}
 
-extern_methods!(
-    unsafe impl GKSession {
+impl GKSession {
+    extern_methods!(
         #[cfg(feature = "GKPublicConstants")]
         #[deprecated]
         #[unsafe(method(initWithSessionID:displayName:sessionMode:))]
@@ -156,12 +156,12 @@ extern_methods!(
             &self,
             state: GKPeerConnectionState,
         ) -> Option<Retained<NSArray>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKSession {
+/// Methods declared on superclass `NSObject`.
+impl GKSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -169,5 +169,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

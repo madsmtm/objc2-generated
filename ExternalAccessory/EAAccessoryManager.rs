@@ -69,8 +69,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for EAAccessoryManager {}
 
-extern_methods!(
-    unsafe impl EAAccessoryManager {
+impl EAAccessoryManager {
+    extern_methods!(
         #[unsafe(method(sharedAccessoryManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedAccessoryManager() -> Retained<EAAccessoryManager>;
@@ -96,12 +96,12 @@ extern_methods!(
         #[unsafe(method(connectedAccessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedAccessories(&self) -> Retained<NSArray<EAAccessory>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl EAAccessoryManager {
+/// Methods declared on superclass `NSObject`.
+impl EAAccessoryManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -109,5 +109,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

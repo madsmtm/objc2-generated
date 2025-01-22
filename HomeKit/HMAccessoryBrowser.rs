@@ -23,8 +23,8 @@ unsafe impl Sync for HMAccessoryBrowser {}
 
 unsafe impl NSObjectProtocol for HMAccessoryBrowser {}
 
-extern_methods!(
-    unsafe impl HMAccessoryBrowser {
+impl HMAccessoryBrowser {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -80,17 +80,17 @@ extern_methods!(
         #[unsafe(method(stopSearchingForNewAccessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopSearchingForNewAccessories(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HMAccessoryBrowser {
+/// Methods declared on superclass `NSObject`.
+impl HMAccessoryBrowser {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// This delegate receives updates about new accessories in the home.

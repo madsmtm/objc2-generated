@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for HKAttachmentStore {}
 
-extern_methods!(
-    unsafe impl HKAttachmentStore {
+impl HKAttachmentStore {
+    extern_methods!(
         #[cfg(feature = "HKHealthStore")]
         /// The designated initializer to create an HKAttachmentStore.
         ///
@@ -134,12 +134,12 @@ extern_methods!(
             attachment: &HKAttachment,
             data_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError, Bool)>,
         ) -> Retained<NSProgress>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKAttachmentStore {
+/// Methods declared on superclass `NSObject`.
+impl HKAttachmentStore {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -147,5 +147,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

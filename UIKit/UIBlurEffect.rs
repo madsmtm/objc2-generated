@@ -90,22 +90,22 @@ unsafe impl NSObjectProtocol for UIBlurEffect {}
 #[cfg(feature = "UIVisualEffect")]
 unsafe impl NSSecureCoding for UIBlurEffect {}
 
-extern_methods!(
-    #[cfg(feature = "UIVisualEffect")]
-    unsafe impl UIBlurEffect {
+#[cfg(feature = "UIVisualEffect")]
+impl UIBlurEffect {
+    extern_methods!(
         #[unsafe(method(effectWithStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectWithStyle(
             style: UIBlurEffectStyle,
             mtm: MainThreadMarker,
         ) -> Retained<UIBlurEffect>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIVisualEffect")]
-    unsafe impl UIBlurEffect {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIVisualEffect")]
+impl UIBlurEffect {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -113,5 +113,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

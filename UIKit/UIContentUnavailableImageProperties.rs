@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for UIContentUnavailableImageProperties {}
 
 unsafe impl NSSecureCoding for UIContentUnavailableImageProperties {}
 
-extern_methods!(
-    unsafe impl UIContentUnavailableImageProperties {
+impl UIContentUnavailableImageProperties {
+    extern_methods!(
         #[cfg(all(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
@@ -106,12 +106,12 @@ extern_methods!(
             &self,
             accessibility_ignores_invert_colors: bool,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIContentUnavailableImageProperties {
+/// Methods declared on superclass `NSObject`.
+impl UIContentUnavailableImageProperties {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -119,5 +119,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

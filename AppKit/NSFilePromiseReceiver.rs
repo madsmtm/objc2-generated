@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for NSFilePromiseReceiver {}
 #[cfg(feature = "NSPasteboard")]
 unsafe impl NSPasteboardReading for NSFilePromiseReceiver {}
 
-extern_methods!(
-    unsafe impl NSFilePromiseReceiver {
+impl NSFilePromiseReceiver {
+    extern_methods!(
         #[unsafe(method(readableDraggedTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn readableDraggedTypes() -> Retained<NSArray<NSString>>;
@@ -43,12 +43,12 @@ extern_methods!(
             operation_queue: &NSOperationQueue,
             reader: &block2::Block<dyn Fn(NonNull<NSURL>, *mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFilePromiseReceiver {
+/// Methods declared on superclass `NSObject`.
+impl NSFilePromiseReceiver {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -56,5 +56,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ACAccountCredential {}
 
-extern_methods!(
-    unsafe impl ACAccountCredential {
+impl ACAccountCredential {
+    extern_methods!(
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(initWithOAuthToken:tokenSecret:))]
         #[unsafe(method_family = init)]
@@ -48,12 +48,12 @@ extern_methods!(
         #[unsafe(method(setOauthToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOauthToken(&self, oauth_token: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ACAccountCredential {
+/// Methods declared on superclass `NSObject`.
+impl ACAccountCredential {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -61,5 +61,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

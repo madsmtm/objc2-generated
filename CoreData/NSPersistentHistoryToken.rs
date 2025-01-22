@@ -25,13 +25,13 @@ unsafe impl NSObjectProtocol for NSPersistentHistoryToken {}
 
 unsafe impl NSSecureCoding for NSPersistentHistoryToken {}
 
-extern_methods!(
-    unsafe impl NSPersistentHistoryToken {}
-);
+impl NSPersistentHistoryToken {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersistentHistoryToken {
+/// Methods declared on superclass `NSObject`.
+impl NSPersistentHistoryToken {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -39,5 +39,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

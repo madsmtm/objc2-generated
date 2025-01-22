@@ -38,9 +38,9 @@ unsafe impl NSObjectProtocol for NSActionCell {}
 #[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]
 unsafe impl NSUserInterfaceItemIdentification for NSActionCell {}
 
-extern_methods!(
-    #[cfg(feature = "NSCell")]
-    unsafe impl NSActionCell {
+#[cfg(feature = "NSCell")]
+impl NSActionCell {
+    extern_methods!(
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
@@ -68,13 +68,13 @@ extern_methods!(
         #[unsafe(method(setTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTag(&self, tag: NSInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(feature = "NSCell")]
-    unsafe impl NSActionCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(feature = "NSCell")]
+impl NSActionCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -94,15 +94,15 @@ extern_methods!(
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSCell")]
-    unsafe impl NSActionCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSCell")]
+impl NSActionCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

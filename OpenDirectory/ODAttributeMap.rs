@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ODAttributeMap {}
 
-extern_methods!(
-    unsafe impl ODAttributeMap {
+impl ODAttributeMap {
+    extern_methods!(
         #[unsafe(method(customQueryFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn customQueryFunction(&self) -> Retained<NSString>;
@@ -92,12 +92,12 @@ extern_methods!(
         #[unsafe(method(setVariableSubstitution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariableSubstitution(&self, variable_substitution: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ODAttributeMap {
+/// Methods declared on superclass `NSObject`.
+impl ODAttributeMap {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -105,5 +105,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

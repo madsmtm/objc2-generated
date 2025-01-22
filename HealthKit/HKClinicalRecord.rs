@@ -54,9 +54,9 @@ unsafe impl NSObjectProtocol for HKClinicalRecord {}
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKClinicalRecord {}
 
-extern_methods!(
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKClinicalRecord {
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKClinicalRecord {
+    extern_methods!(
         #[cfg(all(feature = "HKClinicalType", feature = "HKObjectType"))]
         #[unsafe(method(clinicalType))]
         #[unsafe(method_family = none)]
@@ -82,5 +82,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

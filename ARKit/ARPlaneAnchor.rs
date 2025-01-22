@@ -144,9 +144,8 @@ unsafe impl NSObjectProtocol for ARPlaneExtent {}
 unsafe impl NSSecureCoding for ARPlaneExtent {}
 
 #[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(feature = "objc2")]
-    unsafe impl ARPlaneExtent {
+impl ARPlaneExtent {
+    extern_methods!(
         /// The rotation angle in radians of the extents around the y-axis in the anchor’s coordinate space.
         #[unsafe(method(rotationOnYAxis))]
         #[unsafe(method_family = none)]
@@ -161,14 +160,13 @@ extern_methods!(
         #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> c_float;
-    }
-);
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
 #[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2")]
-    unsafe impl ARPlaneExtent {
+impl ARPlaneExtent {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -176,8 +174,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -218,10 +216,9 @@ unsafe impl NSObjectProtocol for ARPlaneAnchor {}
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl NSSecureCoding for ARPlaneAnchor {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARPlaneAnchor {
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARPlaneAnchor {
+    extern_methods!(
         /// Determines whether plane classification is supported on this device.
         #[unsafe(method(isClassificationSupported))]
         #[unsafe(method_family = none)]
@@ -252,14 +249,13 @@ extern_methods!(
         #[unsafe(method(classification))]
         #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> ARPlaneClassification;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `ARAnchor`
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARPlaneAnchor {
+/// Methods declared on superclass `ARAnchor`.
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARPlaneAnchor {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -268,5 +264,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

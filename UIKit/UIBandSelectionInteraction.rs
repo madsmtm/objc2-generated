@@ -45,8 +45,8 @@ unsafe impl NSObjectProtocol for UIBandSelectionInteraction {}
 #[cfg(feature = "UIInteraction")]
 unsafe impl UIInteraction for UIBandSelectionInteraction {}
 
-extern_methods!(
-    unsafe impl UIBandSelectionInteraction {
+impl UIBandSelectionInteraction {
+    extern_methods!(
         /// Indicates whether the interaction is enabled. Defaults to YES.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
@@ -113,5 +113,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -25,8 +25,8 @@ unsafe impl NSObjectProtocol for ASAuthorizationRequest {}
 
 unsafe impl NSSecureCoding for ASAuthorizationRequest {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationRequest {
+impl ASAuthorizationRequest {
+    extern_methods!(
         #[cfg(feature = "ASAuthorizationProvider")]
         /// The provider object that is being used to service this request
         #[unsafe(method(provider))]
@@ -40,5 +40,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

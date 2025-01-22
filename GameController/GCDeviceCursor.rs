@@ -19,15 +19,15 @@ extern_class!(
 #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
 unsafe impl NSObjectProtocol for GCDeviceCursor {}
 
-extern_methods!(
-    #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-    unsafe impl GCDeviceCursor {}
-);
+#[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
+impl GCDeviceCursor {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-    unsafe impl GCDeviceCursor {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
+impl GCDeviceCursor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -35,5 +35,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -49,8 +49,8 @@ unsafe impl NSCoding for NSGestureRecognizer {}
 
 unsafe impl NSObjectProtocol for NSGestureRecognizer {}
 
-extern_methods!(
-    unsafe impl NSGestureRecognizer {
+impl NSGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
@@ -195,12 +195,12 @@ extern_methods!(
         #[unsafe(method(locationInView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+impl NSGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -208,12 +208,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTouchBar
-    unsafe impl NSGestureRecognizer {
+/// NSTouchBar.
+impl NSGestureRecognizer {
+    extern_methods!(
         #[cfg(feature = "NSTouch")]
         #[unsafe(method(allowedTouchTypes))]
         #[unsafe(method_family = none)]
@@ -224,8 +224,8 @@ extern_methods!(
         #[unsafe(method(setAllowedTouchTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: NSTouchTypeMask);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizerdelegate?language=objc)
@@ -287,9 +287,9 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSSubclassUse
-    unsafe impl NSGestureRecognizer {
+/// NSSubclassUse.
+impl NSGestureRecognizer {
+    extern_methods!(
         /// Setter for [`state`][Self::state].
         #[unsafe(method(setState:))]
         #[unsafe(method_family = none)]
@@ -426,5 +426,5 @@ extern_methods!(
         #[unsafe(method(touchesCancelledWithEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchesCancelledWithEvent(&self, event: &NSEvent);
-    }
-);
+    );
+}

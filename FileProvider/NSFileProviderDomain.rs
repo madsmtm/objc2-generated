@@ -30,8 +30,8 @@ unsafe impl NSObjectProtocol for NSFileProviderDomainVersion {}
 
 unsafe impl NSSecureCoding for NSFileProviderDomainVersion {}
 
-extern_methods!(
-    unsafe impl NSFileProviderDomainVersion {
+impl NSFileProviderDomainVersion {
+    extern_methods!(
         /// Build a version that is strictly greater than the receiver.
         #[unsafe(method(next))]
         #[unsafe(method_family = none)]
@@ -52,12 +52,12 @@ extern_methods!(
             &self,
             other_version: &NSFileProviderDomainVersion,
         ) -> NSComparisonResult;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileProviderDomainVersion {
+/// Methods declared on superclass `NSObject`.
+impl NSFileProviderDomainVersion {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -65,8 +65,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Testing modes.
 ///
@@ -158,8 +158,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSFileProviderDomain {}
 
-extern_methods!(
-    unsafe impl NSFileProviderDomain {
+impl NSFileProviderDomain {
+    extern_methods!(
         /// Initialize a new non-replicated NSFileProviderDomain
         ///
         /// The extension will be implementing NSFileProviderExtension.
@@ -384,12 +384,12 @@ extern_methods!(
             &self,
             supported_known_folders: NSFileProviderKnownFolders,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFileProviderDomain {
+/// Methods declared on superclass `NSObject`.
+impl NSFileProviderDomain {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -397,18 +397,18 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSFileProviderDomain
-    #[cfg(feature = "Extension")]
-    unsafe impl NSFileProviderExtension {
+/// NSFileProviderDomain.
+#[cfg(feature = "Extension")]
+impl NSFileProviderExtension {
+    extern_methods!(
         #[unsafe(method(domain))]
         #[unsafe(method_family = none)]
         pub unsafe fn domain(&self) -> Option<Retained<NSFileProviderDomain>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// Posted when any domain changed.

@@ -20,8 +20,8 @@ unsafe impl NSObjectProtocol for SKTextureAtlas {}
 
 unsafe impl NSSecureCoding for SKTextureAtlas {}
 
-extern_methods!(
-    unsafe impl SKTextureAtlas {
+impl SKTextureAtlas {
+    extern_methods!(
         #[unsafe(method(atlasNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn atlasNamed(name: &NSString) -> Retained<Self>;
@@ -81,12 +81,12 @@ extern_methods!(
         #[unsafe(method(textureNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureNames(&self) -> Retained<NSArray<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKTextureAtlas {
+/// Methods declared on superclass `NSObject`.
+impl SKTextureAtlas {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -94,5 +94,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

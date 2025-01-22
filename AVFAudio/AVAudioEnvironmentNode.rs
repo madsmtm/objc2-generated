@@ -67,8 +67,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioEnvironmentDistanceAttenuationParameters {}
 
-extern_methods!(
-    unsafe impl AVAudioEnvironmentDistanceAttenuationParameters {
+impl AVAudioEnvironmentDistanceAttenuationParameters {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -132,17 +132,17 @@ extern_methods!(
         #[unsafe(method(setRolloffFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRolloffFactor(&self, rolloff_factor: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioEnvironmentDistanceAttenuationParameters {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioEnvironmentDistanceAttenuationParameters {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Parameters used to control the reverb in AVAudioEnvironmentNode
@@ -167,8 +167,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVAudioEnvironmentReverbParameters {}
 
-extern_methods!(
-    unsafe impl AVAudioEnvironmentReverbParameters {
+impl AVAudioEnvironmentReverbParameters {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -214,17 +214,17 @@ extern_methods!(
         #[unsafe(method(loadFactoryReverbPreset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFactoryReverbPreset(&self, preset: AVAudioUnitReverbPreset);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVAudioEnvironmentReverbParameters {
+/// Methods declared on superclass `NSObject`.
+impl AVAudioEnvironmentReverbParameters {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Types of output for AVAudio3DMixingRenderingAlgorithmAuto
 ///
@@ -309,9 +309,9 @@ unsafe impl AVAudioStereoMixing for AVAudioEnvironmentNode {}
 #[cfg(feature = "AVAudioNode")]
 unsafe impl NSObjectProtocol for AVAudioEnvironmentNode {}
 
-extern_methods!(
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioEnvironmentNode {
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioEnvironmentNode {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -458,15 +458,15 @@ extern_methods!(
         #[unsafe(method(setListenerHeadTrackingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListenerHeadTrackingEnabled(&self, listener_head_tracking_enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAudioNode")]
-    unsafe impl AVAudioEnvironmentNode {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAudioNode")]
+impl AVAudioEnvironmentNode {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

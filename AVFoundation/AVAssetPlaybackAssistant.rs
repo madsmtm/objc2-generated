@@ -58,8 +58,8 @@ unsafe impl Sync for AVAssetPlaybackAssistant {}
 
 unsafe impl NSObjectProtocol for AVAssetPlaybackAssistant {}
 
-extern_methods!(
-    unsafe impl AVAssetPlaybackAssistant {
+impl AVAssetPlaybackAssistant {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -92,5 +92,5 @@ extern_methods!(
                 dyn Fn(NonNull<NSArray<AVAssetPlaybackConfigurationOption>>),
             >,
         );
-    }
-);
+    );
+}

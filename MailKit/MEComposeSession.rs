@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for MEComposeSession {}
 
 unsafe impl NSSecureCoding for MEComposeSession {}
 
-extern_methods!(
-    unsafe impl MEComposeSession {
+impl MEComposeSession {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -61,8 +61,8 @@ extern_methods!(
         #[unsafe(method(reloadSession))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadSession(&self);
-    }
-);
+    );
+}
 
 extern "C" {
     /// Error domain and codes for extensions to report errors before message is delivered.

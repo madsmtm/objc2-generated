@@ -54,18 +54,18 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AAAttribution {}
 
-extern_methods!(
-    unsafe impl AAAttribution {
+impl AAAttribution {
+    extern_methods!(
         /// Generates a token.
         #[unsafe(method(attributionTokenWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributionTokenWithError() -> Result<Retained<NSString>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AAAttribution {
+/// Methods declared on superclass `NSObject`.
+impl AAAttribution {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -73,5 +73,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

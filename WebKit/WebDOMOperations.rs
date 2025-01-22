@@ -6,32 +6,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_methods!(
-    /// WebDOMNodeOperations
-    #[cfg(all(
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMNode {
+/// WebDOMNodeOperations.
+#[cfg(all(
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMNode {
+    extern_methods!(
         #[cfg(feature = "WebArchive")]
         /// A WebArchive representing the node and the children of the node.
         #[deprecated]
         #[unsafe(method(webArchive))]
         #[unsafe(method_family = none)]
         pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebDOMDocumentOperations
-    #[cfg(all(
-        feature = "DOMDocument",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMDocument {
+/// WebDOMDocumentOperations.
+#[cfg(all(
+    feature = "DOMDocument",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMDocument {
+    extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// The frame of the DOM document.
         #[deprecated]
@@ -51,17 +51,17 @@ extern_methods!(
             &self,
             string: Option<&NSString>,
         ) -> Option<Retained<NSURL>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebDOMRangeOperations
-    #[cfg(all(
-        feature = "DOMObject",
-        feature = "DOMRange",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMRange {
+/// WebDOMRangeOperations.
+#[cfg(all(
+    feature = "DOMObject",
+    feature = "DOMRange",
+    feature = "WebScriptObject"
+))]
+impl DOMRange {
+    extern_methods!(
         #[cfg(feature = "WebArchive")]
         /// A WebArchive representing the range.
         #[deprecated]
@@ -74,60 +74,60 @@ extern_methods!(
         #[unsafe(method(markupString))]
         #[unsafe(method_family = none)]
         pub unsafe fn markupString(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebDOMHTMLFrameElementOperations
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMHTMLFrameElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLFrameElement {
+/// WebDOMHTMLFrameElementOperations.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLFrameElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLFrameElement {
+    extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// The content frame of the element.
         #[deprecated]
         #[unsafe(method(contentFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebDOMHTMLIFrameElementOperations
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMHTMLIFrameElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLIFrameElement {
+/// WebDOMHTMLIFrameElementOperations.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLIFrameElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLIFrameElement {
+    extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// Returns the content frame of the element.
         #[deprecated]
         #[unsafe(method(contentFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// WebDOMHTMLObjectElementOperations
-    #[cfg(all(
-        feature = "DOMElement",
-        feature = "DOMHTMLElement",
-        feature = "DOMHTMLObjectElement",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLObjectElement {
+/// WebDOMHTMLObjectElementOperations.
+#[cfg(all(
+    feature = "DOMElement",
+    feature = "DOMHTMLElement",
+    feature = "DOMHTMLObjectElement",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLObjectElement {
+    extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// The content frame of the element.
         ///
@@ -137,5 +137,5 @@ extern_methods!(
         #[unsafe(method(contentFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
-    }
-);
+    );
+}

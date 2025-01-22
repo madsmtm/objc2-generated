@@ -34,9 +34,9 @@ unsafe impl NSObjectProtocol for CLSActivity {}
 #[cfg(feature = "CLSObject")]
 unsafe impl NSSecureCoding for CLSActivity {}
 
-extern_methods!(
-    #[cfg(feature = "CLSObject")]
-    unsafe impl CLSActivity {
+#[cfg(feature = "CLSObject")]
+impl CLSActivity {
+    extern_methods!(
         /// Current progress as a decimal representation of a percentage.
         ///
         /// Should be [0.0, 1.0].
@@ -98,13 +98,13 @@ extern_methods!(
         #[unsafe(method(additionalActivityItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalActivityItems(&self) -> Retained<NSArray<CLSActivityItem>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CLSObject`
-    #[cfg(feature = "CLSObject")]
-    unsafe impl CLSActivity {
+/// Methods declared on superclass `CLSObject`.
+#[cfg(feature = "CLSObject")]
+impl CLSActivity {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -112,13 +112,13 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Activation
-    #[cfg(feature = "CLSObject")]
-    unsafe impl CLSActivity {
+/// Activation.
+#[cfg(feature = "CLSObject")]
+impl CLSActivity {
+    extern_methods!(
         /// Returns whether this Activity has been started or not.
         #[unsafe(method(isStarted))]
         #[unsafe(method_family = none)]
@@ -144,13 +144,13 @@ extern_methods!(
         #[unsafe(method(removeAllActivityItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllActivityItems(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Activity
-    #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
-    unsafe impl CLSContext {
+/// Activity.
+#[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
+impl CLSContext {
+    extern_methods!(
         /// Returns the current activity.
         ///
         /// Activity associated with a context.  If no activity was ever created this is nil. See:
@@ -165,5 +165,5 @@ extern_methods!(
         #[unsafe(method(createNewActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn createNewActivity(&self) -> Retained<CLSActivity>;
-    }
-);
+    );
+}

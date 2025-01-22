@@ -31,18 +31,18 @@ unsafe impl NSObjectProtocol for HKBiologicalSexObject {}
 
 unsafe impl NSSecureCoding for HKBiologicalSexObject {}
 
-extern_methods!(
-    unsafe impl HKBiologicalSexObject {
+impl HKBiologicalSexObject {
+    extern_methods!(
         #[cfg(feature = "HKCharacteristicValues")]
         #[unsafe(method(biologicalSex))]
         #[unsafe(method_family = none)]
         pub unsafe fn biologicalSex(&self) -> HKBiologicalSex;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKBiologicalSexObject {
+/// Methods declared on superclass `NSObject`.
+impl HKBiologicalSexObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -50,8 +50,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A wrapper object for HKBloodType enumeration.
@@ -78,18 +78,18 @@ unsafe impl NSObjectProtocol for HKBloodTypeObject {}
 
 unsafe impl NSSecureCoding for HKBloodTypeObject {}
 
-extern_methods!(
-    unsafe impl HKBloodTypeObject {
+impl HKBloodTypeObject {
+    extern_methods!(
         #[cfg(feature = "HKCharacteristicValues")]
         #[unsafe(method(bloodType))]
         #[unsafe(method_family = none)]
         pub unsafe fn bloodType(&self) -> HKBloodType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKBloodTypeObject {
+/// Methods declared on superclass `NSObject`.
+impl HKBloodTypeObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -97,8 +97,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A wrapper object for HKFitzpatrickSkinType enumeration.
@@ -125,18 +125,18 @@ unsafe impl NSObjectProtocol for HKFitzpatrickSkinTypeObject {}
 
 unsafe impl NSSecureCoding for HKFitzpatrickSkinTypeObject {}
 
-extern_methods!(
-    unsafe impl HKFitzpatrickSkinTypeObject {
+impl HKFitzpatrickSkinTypeObject {
+    extern_methods!(
         #[cfg(feature = "HKCharacteristicValues")]
         #[unsafe(method(skinType))]
         #[unsafe(method_family = none)]
         pub unsafe fn skinType(&self) -> HKFitzpatrickSkinType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKFitzpatrickSkinTypeObject {
+/// Methods declared on superclass `NSObject`.
+impl HKFitzpatrickSkinTypeObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -144,8 +144,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A wrapper object for HKWheelchairUse enumeration.
@@ -172,18 +172,18 @@ unsafe impl NSObjectProtocol for HKWheelchairUseObject {}
 
 unsafe impl NSSecureCoding for HKWheelchairUseObject {}
 
-extern_methods!(
-    unsafe impl HKWheelchairUseObject {
+impl HKWheelchairUseObject {
+    extern_methods!(
         #[cfg(feature = "HKCharacteristicValues")]
         #[unsafe(method(wheelchairUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn wheelchairUse(&self) -> HKWheelchairUse;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKWheelchairUseObject {
+/// Methods declared on superclass `NSObject`.
+impl HKWheelchairUseObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -191,8 +191,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A wrapper object for HKActivityMoveMode enumeration.
@@ -219,18 +219,18 @@ unsafe impl NSObjectProtocol for HKActivityMoveModeObject {}
 
 unsafe impl NSSecureCoding for HKActivityMoveModeObject {}
 
-extern_methods!(
-    unsafe impl HKActivityMoveModeObject {
+impl HKActivityMoveModeObject {
+    extern_methods!(
         #[cfg(feature = "HKCharacteristicValues")]
         #[unsafe(method(activityMoveMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityMoveMode(&self) -> HKActivityMoveMode;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKActivityMoveModeObject {
+/// Methods declared on superclass `NSObject`.
+impl HKActivityMoveModeObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -238,5 +238,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

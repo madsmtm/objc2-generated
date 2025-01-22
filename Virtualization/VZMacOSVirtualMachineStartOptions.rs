@@ -19,9 +19,9 @@ extern_class!(
 #[cfg(feature = "VZVirtualMachineStartOptions")]
 unsafe impl NSObjectProtocol for VZMacOSVirtualMachineStartOptions {}
 
-extern_methods!(
-    #[cfg(feature = "VZVirtualMachineStartOptions")]
-    unsafe impl VZMacOSVirtualMachineStartOptions {
+#[cfg(feature = "VZVirtualMachineStartOptions")]
+impl VZMacOSVirtualMachineStartOptions {
+    extern_methods!(
         /// Whether to start up from macOS Recovery.
         #[unsafe(method(startUpFromMacOSRecovery))]
         #[unsafe(method_family = none)]
@@ -31,13 +31,13 @@ extern_methods!(
         #[unsafe(method(setStartUpFromMacOSRecovery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartUpFromMacOSRecovery(&self, start_up_from_mac_os_recovery: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "VZVirtualMachineStartOptions")]
-    unsafe impl VZMacOSVirtualMachineStartOptions {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "VZVirtualMachineStartOptions")]
+impl VZMacOSVirtualMachineStartOptions {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -45,5 +45,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

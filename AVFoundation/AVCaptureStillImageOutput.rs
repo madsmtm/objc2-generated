@@ -26,9 +26,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureOutputBase")]
 unsafe impl NSObjectProtocol for AVCaptureStillImageOutput {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureStillImageOutput {
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureStillImageOutput {
+    extern_methods!(
         #[deprecated = "Use AVCapturePhotoOutput instead."]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -177,8 +177,8 @@ extern_methods!(
         pub unsafe fn jpegStillImageNSDataRepresentation(
             jpeg_sample_buffer: &CMSampleBuffer,
         ) -> Option<Retained<NSData>>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVCaptureBracketedStillImageSettings is an abstract base class that defines an interface for settings pertaining to a bracketed capture.
@@ -194,8 +194,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureBracketedStillImageSettings {}
 
-extern_methods!(
-    unsafe impl AVCaptureBracketedStillImageSettings {
+impl AVCaptureBracketedStillImageSettings {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -203,8 +203,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVCaptureManualExposureBracketedStillImageSettings is a concrete subclass of AVCaptureBracketedStillImageSettings to be used when bracketing exposure duration and ISO.
@@ -220,8 +220,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureManualExposureBracketedStillImageSettings {}
 
-extern_methods!(
-    unsafe impl AVCaptureManualExposureBracketedStillImageSettings {
+impl AVCaptureManualExposureBracketedStillImageSettings {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Creates an AVCaptureManualExposureBracketedStillImageSettings using the specified exposure duration and ISO.
         ///
@@ -248,12 +248,12 @@ extern_methods!(
         #[unsafe(method(ISO))]
         #[unsafe(method_family = none)]
         pub unsafe fn ISO(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureBracketedStillImageSettings`
-    unsafe impl AVCaptureManualExposureBracketedStillImageSettings {
+/// Methods declared on superclass `AVCaptureBracketedStillImageSettings`.
+impl AVCaptureManualExposureBracketedStillImageSettings {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -261,8 +261,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// AVCaptureAutoExposureBracketedStillImageSettings is a concrete subclass of AVCaptureBracketedStillImageSettings to be used when bracketing exposure target bias.
@@ -278,8 +278,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVCaptureAutoExposureBracketedStillImageSettings {}
 
-extern_methods!(
-    unsafe impl AVCaptureAutoExposureBracketedStillImageSettings {
+impl AVCaptureAutoExposureBracketedStillImageSettings {
+    extern_methods!(
         /// Creates an AVCaptureAutoExposureBracketedStillImageSettings using the specified exposure target bias.
         ///
         ///
@@ -296,12 +296,12 @@ extern_methods!(
         #[unsafe(method(exposureTargetBias))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureTargetBias(&self) -> c_float;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureBracketedStillImageSettings`
-    unsafe impl AVCaptureAutoExposureBracketedStillImageSettings {
+/// Methods declared on superclass `AVCaptureBracketedStillImageSettings`.
+impl AVCaptureAutoExposureBracketedStillImageSettings {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -309,19 +309,19 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCaptureStillImageOutputBracketedCapture
-    /// A category of methods for bracketed still image capture.
-    ///
-    ///
-    /// A "still image bracket" is a batch of images taken as quickly as possible in succession, optionally with different settings from picture to picture.
-    ///
-    /// In a bracketed capture, AVCaptureDevice flashMode property is ignored (flash is forced off), as is AVCaptureStillImageOutput's automaticallyEnablesStillImageStabilizationWhenAvailable property (stabilization is forced off).
-    #[cfg(feature = "AVCaptureOutputBase")]
-    unsafe impl AVCaptureStillImageOutput {
+/// AVCaptureStillImageOutputBracketedCapture.
+/// A category of methods for bracketed still image capture.
+///
+///
+/// A "still image bracket" is a batch of images taken as quickly as possible in succession, optionally with different settings from picture to picture.
+///
+/// In a bracketed capture, AVCaptureDevice flashMode property is ignored (flash is forced off), as is AVCaptureStillImageOutput's automaticallyEnablesStillImageStabilizationWhenAvailable property (stabilization is forced off).
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureStillImageOutput {
+    extern_methods!(
         /// Specifies the maximum number of still images that may be taken in a single bracket.
         ///
         ///
@@ -411,5 +411,5 @@ extern_methods!(
                 ),
             >,
         );
-    }
-);
+    );
+}

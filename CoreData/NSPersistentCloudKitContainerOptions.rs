@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerOptions {}
 
-extern_methods!(
-    unsafe impl NSPersistentCloudKitContainerOptions {
+impl NSPersistentCloudKitContainerOptions {
+    extern_methods!(
         /// The container identifier of the CKContainer to use with a given instance of NSPersistentStoreDescription
         #[unsafe(method(containerIdentifier))]
         #[unsafe(method_family = none)]
@@ -34,14 +34,14 @@ extern_methods!(
             this: Allocated<Self>,
             container_identifier: &NSString,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPersistentCloudKitContainerOptions {
+/// Methods declared on superclass `NSObject`.
+impl NSPersistentCloudKitContainerOptions {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -111,9 +111,9 @@ unsafe impl NSObjectProtocol for UIImageSymbolConfiguration {}
 #[cfg(feature = "UIImageConfiguration")]
 unsafe impl NSSecureCoding for UIImageSymbolConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "UIImageConfiguration")]
-    unsafe impl UIImageSymbolConfiguration {
+#[cfg(feature = "UIImageConfiguration")]
+impl UIImageSymbolConfiguration {
+    extern_methods!(
         #[unsafe(method(unspecifiedConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn unspecifiedConfiguration() -> Retained<UIImageSymbolConfiguration>;
@@ -218,13 +218,13 @@ extern_methods!(
             &self,
             other_configuration: Option<&UIImageSymbolConfiguration>,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIImageConfiguration`
-    #[cfg(feature = "UIImageConfiguration")]
-    unsafe impl UIImageSymbolConfiguration {
+/// Methods declared on superclass `UIImageConfiguration`.
+#[cfg(feature = "UIImageConfiguration")]
+impl UIImageSymbolConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -243,5 +243,5 @@ extern_methods!(
         #[unsafe(method(configurationWithLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithLocale(locale: Option<&NSLocale>) -> Retained<Self>;
-    }
-);
+    );
+}

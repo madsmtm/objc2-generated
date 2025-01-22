@@ -32,8 +32,8 @@ unsafe impl NSSecureCoding for VNFaceLandmarkRegion {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNFaceLandmarkRegion {}
 
-extern_methods!(
-    unsafe impl VNFaceLandmarkRegion {
+impl VNFaceLandmarkRegion {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -46,8 +46,8 @@ extern_methods!(
         #[unsafe(method(pointCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointCount(&self) -> NSUInteger;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNFaceLandmarkRegion2D gives access to the 2D landmark points for the region. The points are stored as vector_float2 and must not be modified.
@@ -73,8 +73,8 @@ unsafe impl NSSecureCoding for VNFaceLandmarkRegion2D {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNFaceLandmarkRegion2D {}
 
-extern_methods!(
-    unsafe impl VNFaceLandmarkRegion2D {
+impl VNFaceLandmarkRegion2D {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Obtains the array of normalized landmark points.
         ///
@@ -120,12 +120,12 @@ extern_methods!(
         #[unsafe(method(pointsClassification))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointsClassification(&self) -> VNPointsClassification;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNFaceLandmarkRegion`
-    unsafe impl VNFaceLandmarkRegion2D {
+/// Methods declared on superclass `VNFaceLandmarkRegion`.
+impl VNFaceLandmarkRegion2D {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -133,8 +133,8 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNFaceLandmarks2D is the result of a face landmarks request. It is an abstract base class.
@@ -160,8 +160,8 @@ unsafe impl NSSecureCoding for VNFaceLandmarks {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNFaceLandmarks {}
 
-extern_methods!(
-    unsafe impl VNFaceLandmarks {
+impl VNFaceLandmarks {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -171,17 +171,17 @@ extern_methods!(
         #[unsafe(method(confidence))]
         #[unsafe(method_family = none)]
         pub unsafe fn confidence(&self) -> VNConfidence;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNFaceLandmarks {
+/// Methods declared on superclass `NSObject`.
+impl VNFaceLandmarks {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// VNFaceLandmarks2D is the result of a face landmarks 2D request, containing detected facial landmark points organized into VNFaceLandmarkRegion2D regions. The points are accessible as a full list, or as sub-gruops representing pre-defined facial regions.
@@ -207,8 +207,8 @@ unsafe impl NSSecureCoding for VNFaceLandmarks2D {}
 #[cfg(feature = "VNRequestRevisionProviding")]
 unsafe impl VNRequestRevisionProviding for VNFaceLandmarks2D {}
 
-extern_methods!(
-    unsafe impl VNFaceLandmarks2D {
+impl VNFaceLandmarks2D {
+    extern_methods!(
         /// allPoints the region containing all face landmark points.
         #[unsafe(method(allPoints))]
         #[unsafe(method_family = none)]
@@ -275,23 +275,23 @@ extern_methods!(
         #[unsafe(method(rightPupil))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightPupil(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VNFaceLandmarks`
-    unsafe impl VNFaceLandmarks2D {
+/// Methods declared on superclass `VNFaceLandmarks`.
+impl VNFaceLandmarks2D {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl VNFaceLandmarks2D {
+/// Methods declared on superclass `NSObject`.
+impl VNFaceLandmarks2D {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

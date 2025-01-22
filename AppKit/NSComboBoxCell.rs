@@ -75,13 +75,13 @@ unsafe impl NSObjectProtocol for NSComboBoxCell {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSComboBoxCell {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSComboBoxCell {
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSComboBoxCell {
+    extern_methods!(
         #[unsafe(method(hasVerticalScroller))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
@@ -244,17 +244,17 @@ extern_methods!(
         #[unsafe(method(objectValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectValues(&self) -> Retained<NSArray>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSTextFieldCell`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSComboBoxCell {
+/// Methods declared on superclass `NSTextFieldCell`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSComboBoxCell {
+    extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
@@ -270,36 +270,36 @@ extern_methods!(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSCell`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSComboBoxCell {
+/// Methods declared on superclass `NSCell`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSComboBoxCell {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "NSActionCell",
-        feature = "NSCell",
-        feature = "NSTextFieldCell"
-    ))]
-    unsafe impl NSComboBoxCell {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "NSActionCell",
+    feature = "NSCell",
+    feature = "NSTextFieldCell"
+))]
+impl NSComboBoxCell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxcelldatasource?language=objc)

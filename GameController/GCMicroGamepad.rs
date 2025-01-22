@@ -89,9 +89,9 @@ extern_class!(
 #[cfg(feature = "GCPhysicalInputProfile")]
 unsafe impl NSObjectProtocol for GCMicroGamepad {}
 
-extern_methods!(
-    #[cfg(feature = "GCPhysicalInputProfile")]
-    unsafe impl GCMicroGamepad {
+#[cfg(feature = "GCPhysicalInputProfile")]
+impl GCMicroGamepad {
+    extern_methods!(
         #[cfg(feature = "GCController")]
         #[unsafe(method(controller))]
         #[unsafe(method_family = none)]
@@ -195,13 +195,13 @@ extern_methods!(
         #[unsafe(method(setStateFromMicroGamepad:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStateFromMicroGamepad(&self, micro_gamepad: &GCMicroGamepad);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "GCPhysicalInputProfile")]
-    unsafe impl GCMicroGamepad {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "GCPhysicalInputProfile")]
+impl GCMicroGamepad {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -209,5 +209,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

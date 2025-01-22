@@ -32,20 +32,20 @@ extern_class!(
 #[cfg(feature = "VZGraphicsDisplay")]
 unsafe impl NSObjectProtocol for VZMacGraphicsDisplay {}
 
-extern_methods!(
-    #[cfg(feature = "VZGraphicsDisplay")]
-    unsafe impl VZMacGraphicsDisplay {
+#[cfg(feature = "VZGraphicsDisplay")]
+impl VZMacGraphicsDisplay {
+    extern_methods!(
         /// The pixel density as a number of pixels per inch.
         #[unsafe(method(pixelsPerInch))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelsPerInch(&self) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZGraphicsDisplay`
-    #[cfg(feature = "VZGraphicsDisplay")]
-    unsafe impl VZMacGraphicsDisplay {
+/// Methods declared on superclass `VZGraphicsDisplay`.
+#[cfg(feature = "VZGraphicsDisplay")]
+impl VZMacGraphicsDisplay {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -53,5 +53,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

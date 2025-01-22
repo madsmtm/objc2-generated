@@ -24,9 +24,9 @@ unsafe impl MKOverlay for MKCircle {}
 #[cfg(feature = "MKShape")]
 unsafe impl NSObjectProtocol for MKCircle {}
 
-extern_methods!(
-    #[cfg(feature = "MKShape")]
-    unsafe impl MKCircle {
+#[cfg(feature = "MKShape")]
+impl MKCircle {
+    extern_methods!(
         #[cfg(feature = "objc2-core-location")]
         #[unsafe(method(circleWithCenterCoordinate:radius:))]
         #[unsafe(method_family = none)]
@@ -54,13 +54,13 @@ extern_methods!(
         #[unsafe(method(boundingMapRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn boundingMapRect(&self) -> MKMapRect;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MKShape")]
-    unsafe impl MKCircle {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MKShape")]
+impl MKCircle {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -68,5 +68,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

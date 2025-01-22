@@ -43,13 +43,13 @@ unsafe impl CopyingHelper for DOMUIEvent {
 ))]
 unsafe impl NSObjectProtocol for DOMUIEvent {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMUIEvent {
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMUIEvent {
+    extern_methods!(
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
         #[unsafe(method(view))]
@@ -102,46 +102,46 @@ extern_methods!(
             view: Option<&DOMAbstractView>,
             detail: c_int,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMUIEvent {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMUIEvent {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMUIEvent {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMUIEvent {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMUIEventDeprecated
-    #[cfg(all(
-        feature = "DOMEvent",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMUIEvent {
+/// DOMUIEventDeprecated.
+#[cfg(all(
+    feature = "DOMEvent",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMUIEvent {
+    extern_methods!(
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
         #[unsafe(method(initUIEvent:::::))]
@@ -154,5 +154,5 @@ extern_methods!(
             view: Option<&DOMAbstractView>,
             detail: c_int,
         );
-    }
-);
+    );
+}

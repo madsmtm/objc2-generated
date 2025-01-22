@@ -81,9 +81,9 @@ unsafe impl NSObjectProtocol for CKShare {}
 #[cfg(feature = "CKRecord")]
 unsafe impl NSSecureCoding for CKShare {}
 
-extern_methods!(
-    #[cfg(feature = "CKRecord")]
-    unsafe impl CKShare {
+#[cfg(feature = "CKRecord")]
+impl CKShare {
+    extern_methods!(
         /// When saving a newly created CKShare, you must save the share and its rootRecord in the same CKModifyRecordsOperation batch.
         #[unsafe(method(initWithRootRecord:))]
         #[unsafe(method_family = init)]
@@ -232,5 +232,5 @@ extern_methods!(
             record_type: &CKRecordType,
             zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
-    }
-);
+    );
+}

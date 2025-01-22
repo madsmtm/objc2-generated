@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for UIBarAppearance {}
 
 unsafe impl NSSecureCoding for UIBarAppearance {}
 
-extern_methods!(
-    unsafe impl UIBarAppearance {
+impl UIBarAppearance {
+    extern_methods!(
         /// Constructs a new bar appearance, configured with default values and targeting the device idiom.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -154,14 +154,14 @@ extern_methods!(
         #[unsafe(method(setShadowImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowImage(&self, shadow_image: Option<&UIImage>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIBarAppearance {
+/// Methods declared on superclass `NSObject`.
+impl UIBarAppearance {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

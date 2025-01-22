@@ -56,14 +56,14 @@ unsafe impl CopyingHelper for DOMHTMLDocument {
 ))]
 unsafe impl NSObjectProtocol for DOMHTMLDocument {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "DOMDocument",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLDocument {
+#[cfg(all(
+    feature = "DOMDocument",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLDocument {
+    extern_methods!(
         #[cfg(feature = "DOMHTMLCollection")]
         #[unsafe(method(embeds))]
         #[unsafe(method_family = none)]
@@ -185,36 +185,36 @@ extern_methods!(
         #[unsafe(method(releaseEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn releaseEvents(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(
-        feature = "DOMDocument",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLDocument {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(
+    feature = "DOMDocument",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLDocument {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(
-        feature = "DOMDocument",
-        feature = "DOMNode",
-        feature = "DOMObject",
-        feature = "WebScriptObject"
-    ))]
-    unsafe impl DOMHTMLDocument {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(
+    feature = "DOMDocument",
+    feature = "DOMNode",
+    feature = "DOMObject",
+    feature = "WebScriptObject"
+))]
+impl DOMHTMLDocument {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

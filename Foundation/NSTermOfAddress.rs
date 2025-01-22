@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for NSTermOfAddress {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSTermOfAddress {}
 
-extern_methods!(
-    unsafe impl NSTermOfAddress {
+impl NSTermOfAddress {
+    extern_methods!(
         /// Term of address that uses gender-neutral pronouns (e.g. they/them/theirs in
         /// English), and an epicene grammatical gender when inflecting verbs and
         /// adjectives referring to the person
@@ -91,5 +91,5 @@ extern_methods!(
         #[unsafe(method(pronouns))]
         #[unsafe(method_family = none)]
         pub unsafe fn pronouns(&self) -> Option<Retained<NSArray<NSMorphologyPronoun>>>;
-    }
-);
+    );
+}

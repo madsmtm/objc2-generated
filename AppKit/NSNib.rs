@@ -20,8 +20,8 @@ unsafe impl NSCoding for NSNib {}
 
 unsafe impl NSObjectProtocol for NSNib {}
 
-extern_methods!(
-    unsafe impl NSNib {
+impl NSNib {
+    extern_methods!(
         #[unsafe(method(initWithNibNamed:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibNamed_bundle(
@@ -37,12 +37,12 @@ extern_methods!(
             nib_data: &NSData,
             bundle: Option<&NSBundle>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSNib {
+/// Methods declared on superclass `NSObject`.
+impl NSNib {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -50,12 +50,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSNib {
+/// NSDeprecated.
+impl NSNib {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
@@ -80,8 +80,8 @@ extern_methods!(
             owner: Option<&AnyObject>,
             top_level_objects: Option<&mut Option<Retained<NSArray>>>,
         ) -> bool;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnibowner?language=objc)

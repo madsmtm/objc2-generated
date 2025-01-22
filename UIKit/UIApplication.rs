@@ -209,9 +209,9 @@ unsafe impl NSObjectProtocol for UIApplication {}
 #[cfg(feature = "UIResponder")]
 unsafe impl UIResponderStandardEditActions for UIApplication {}
 
-extern_methods!(
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[unsafe(method(sharedApplication))]
         #[unsafe(method_family = none)]
         pub fn sharedApplication(mtm: MainThreadMarker) -> Retained<UIApplication>;
@@ -487,13 +487,13 @@ extern_methods!(
         #[unsafe(method(requestSceneSessionRefresh:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestSceneSessionRefresh(&self, scene_session: &UISceneSession);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -501,13 +501,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIRemoteNotifications
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// UIRemoteNotifications.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[unsafe(method(registerForRemoteNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForRemoteNotifications(&self);
@@ -529,13 +529,13 @@ extern_methods!(
         #[unsafe(method(enabledRemoteNotificationTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabledRemoteNotificationTypes(&self) -> UIRemoteNotificationType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UILocalNotifications
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// UILocalNotifications.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[cfg(feature = "UILocalNotification")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter addNotificationRequest:withCompletionHandler:]"]
         #[unsafe(method(presentLocalNotificationNow:))]
@@ -576,13 +576,13 @@ extern_methods!(
             &self,
             scheduled_local_notifications: Option<&NSArray<UILocalNotification>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIUserNotificationSettings
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// UIUserNotificationSettings.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[cfg(feature = "UIUserNotificationSettings")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:] and -[UNUserNotificationCenter setNotificationCategories:]"]
         #[unsafe(method(registerUserNotificationSettings:))]
@@ -599,13 +599,13 @@ extern_methods!(
         pub unsafe fn currentUserNotificationSettings(
             &self,
         ) -> Option<Retained<UIUserNotificationSettings>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIRemoteControlEvents
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// UIRemoteControlEvents.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[unsafe(method(beginReceivingRemoteControlEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginReceivingRemoteControlEvents(&self);
@@ -613,25 +613,25 @@ extern_methods!(
         #[unsafe(method(endReceivingRemoteControlEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn endReceivingRemoteControlEvents(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UINewsstand
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// UINewsstand.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[cfg(feature = "UIImage")]
         #[deprecated = "Newsstand apps now behave like normal apps on SpringBoard"]
         #[unsafe(method(setNewsstandIconImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNewsstandIconImage(&self, image: Option<&UIImage>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIShortcutItems
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// UIShortcutItems.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[cfg(feature = "UIApplicationShortcutItem")]
         #[unsafe(method(shortcutItems))]
         #[unsafe(method_family = none)]
@@ -645,13 +645,13 @@ extern_methods!(
             &self,
             shortcut_items: Option<&NSArray<UIApplicationShortcutItem>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIAlternateApplicationIcons
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// UIAlternateApplicationIcons.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[unsafe(method(supportsAlternateIcons))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAlternateIcons(&self) -> bool;
@@ -668,13 +668,13 @@ extern_methods!(
         #[unsafe(method(alternateIconName))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateIconName(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIStateRestoration
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// UIStateRestoration.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[unsafe(method(extendStateRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendStateRestoration(&self);
@@ -694,8 +694,8 @@ extern_methods!(
             object: &ProtocolObject<dyn UIStateRestoring>,
             restoration_identifier: &NSString,
         );
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategory?language=objc)
 // NS_ENUM
@@ -784,11 +784,11 @@ extern "C" {
         &'static NSErrorUserInfoKey;
 }
 
-extern_methods!(
-    /// DefaultApplication
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {}
-);
+/// DefaultApplication.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!();
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionskey?language=objc)
 // NS_TYPED_ENUM
@@ -1354,10 +1354,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// UIApplicationDeprecated
-    #[cfg(feature = "UIResponder")]
-    unsafe impl UIApplication {
+/// UIApplicationDeprecated.
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(isProximitySensingEnabled))]
         #[unsafe(method_family = none)]
@@ -1438,8 +1438,8 @@ extern_methods!(
         #[unsafe(method(clearKeepAliveTimeout))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearKeepAliveTimeout(&self);
-    }
-);
+    );
+}
 
 extern "C-unwind" {
     pub fn UIApplicationMain(

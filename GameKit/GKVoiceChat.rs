@@ -51,8 +51,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKVoiceChat {}
 
-extern_methods!(
-    unsafe impl GKVoiceChat {
+impl GKVoiceChat {
+    extern_methods!(
         #[deprecated = "No longer supported"]
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
@@ -124,12 +124,12 @@ extern_methods!(
         #[unsafe(method(isVoIPAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoIPAllowed() -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKVoiceChat {
+/// Methods declared on superclass `NSObject`.
+impl GKVoiceChat {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -137,12 +137,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Deprecated
-    unsafe impl GKVoiceChat {
+/// Deprecated.
+impl GKVoiceChat {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[unsafe(method(playerStateUpdateHandler))]
@@ -162,12 +162,12 @@ extern_methods!(
                 dyn Fn(NonNull<NSString>, GKVoiceChatPlayerState),
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Obsoleted
-    unsafe impl GKVoiceChat {
+/// Obsoleted.
+impl GKVoiceChat {
+    extern_methods!(
         /// * This property is obsolete. **
         #[deprecated]
         #[unsafe(method(playerIDs))]
@@ -179,5 +179,5 @@ extern_methods!(
         #[unsafe(method(setMute:forPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMute_forPlayer(&self, is_muted: bool, player_id: &NSString);
-    }
-);
+    );
+}

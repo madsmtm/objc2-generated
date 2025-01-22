@@ -29,8 +29,8 @@ unsafe impl NSObjectProtocol for CIColor {}
 
 unsafe impl NSSecureCoding for CIColor {}
 
-extern_methods!(
-    unsafe impl CIColor {
+impl CIColor {
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(colorWithCGColor:))]
         #[unsafe(method_family = none)]
@@ -198,12 +198,12 @@ extern_methods!(
         #[unsafe(method(clearColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearColor() -> Retained<CIColor>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIColor {
+/// Methods declared on superclass `NSObject`.
+impl CIColor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -211,5 +211,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

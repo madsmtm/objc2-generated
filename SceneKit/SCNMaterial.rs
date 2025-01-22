@@ -168,8 +168,8 @@ unsafe impl SCNAnimatable for SCNMaterial {}
 #[cfg(feature = "SCNShadable")]
 unsafe impl SCNShadable for SCNMaterial {}
 
-extern_methods!(
-    unsafe impl SCNMaterial {
+impl SCNMaterial {
+    extern_methods!(
         /// Creates and initialize a material instance.
         #[unsafe(method(material))]
         #[unsafe(method_family = none)]
@@ -442,12 +442,12 @@ extern_methods!(
         #[unsafe(method(setBlendMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: SCNBlendMode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SCNMaterial {
+/// Methods declared on superclass `NSObject`.
+impl SCNMaterial {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -455,5 +455,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -170,8 +170,8 @@ unsafe impl CopyingHelper for UITableViewRowAction {
 
 unsafe impl NSObjectProtocol for UITableViewRowAction {}
 
-extern_methods!(
-    unsafe impl UITableViewRowAction {
+impl UITableViewRowAction {
+    extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use UIContextualAction and related APIs instead."]
         #[unsafe(method(rowActionWithStyle:title:handler:))]
@@ -224,12 +224,12 @@ extern_methods!(
         #[unsafe(method(setBackgroundEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundEffect(&self, background_effect: Option<&UIVisualEffect>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITableViewRowAction {
+/// Methods declared on superclass `NSObject`.
+impl UITableViewRowAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -237,8 +237,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewfocusupdatecontext?language=objc)
@@ -252,9 +252,9 @@ extern_class!(
 #[cfg(feature = "UIFocus")]
 unsafe impl NSObjectProtocol for UITableViewFocusUpdateContext {}
 
-extern_methods!(
-    #[cfg(feature = "UIFocus")]
-    unsafe impl UITableViewFocusUpdateContext {
+#[cfg(feature = "UIFocus")]
+impl UITableViewFocusUpdateContext {
+    extern_methods!(
         #[unsafe(method(previouslyFocusedIndexPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn previouslyFocusedIndexPath(&self) -> Option<Retained<NSIndexPath>>;
@@ -262,13 +262,13 @@ extern_methods!(
         #[unsafe(method(nextFocusedIndexPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextFocusedIndexPath(&self) -> Option<Retained<NSIndexPath>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "UIFocus")]
-    unsafe impl UITableViewFocusUpdateContext {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "UIFocus")]
+impl UITableViewFocusUpdateContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -276,8 +276,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdelegate?language=objc)
@@ -1157,9 +1157,9 @@ unsafe impl UIResponderStandardEditActions for UITableView {}
 ))]
 unsafe impl UITraitEnvironment for UITableView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UITableView {
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UITableView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:style:))]
         #[unsafe(method_family = init)]
@@ -1946,24 +1946,24 @@ extern_methods!(
             &self,
             content_hugging_elements: UITableViewContentHuggingElements,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIView`
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UITableView {
+/// Methods declared on superclass `UIView`.
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UITableView {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UITableView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UITableView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1971,14 +1971,14 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// UIDragAndDrop
-    #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-    unsafe impl UITableView {}
-);
+/// UIDragAndDrop.
+#[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
+impl UITableView {
+    extern_methods!();
+}
 
 #[cfg(all(
     feature = "UIResponder",
@@ -2402,9 +2402,9 @@ unsafe impl CopyingHelper for UITableViewDropProposal {
 #[cfg(feature = "UIDropInteraction")]
 unsafe impl NSObjectProtocol for UITableViewDropProposal {}
 
-extern_methods!(
-    #[cfg(feature = "UIDropInteraction")]
-    unsafe impl UITableViewDropProposal {
+#[cfg(feature = "UIDropInteraction")]
+impl UITableViewDropProposal {
+    extern_methods!(
         #[unsafe(method(initWithDropOperation:intent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation_intent(
@@ -2416,13 +2416,13 @@ extern_methods!(
         #[unsafe(method(intent))]
         #[unsafe(method_family = none)]
         pub unsafe fn intent(&self) -> UITableViewDropIntent;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIDropProposal`
-    #[cfg(feature = "UIDropInteraction")]
-    unsafe impl UITableViewDropProposal {
+/// Methods declared on superclass `UIDropProposal`.
+#[cfg(feature = "UIDropInteraction")]
+impl UITableViewDropProposal {
+    extern_methods!(
         #[unsafe(method(initWithDropOperation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation(
@@ -2437,8 +2437,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropcoordinator?language=objc)
@@ -2519,8 +2519,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITableViewPlaceholder {}
 
-extern_methods!(
-    unsafe impl UITableViewPlaceholder {
+impl UITableViewPlaceholder {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithInsertionIndexPath:reuseIdentifier:rowHeight:))]
         #[unsafe(method_family = init)]
@@ -2564,8 +2564,8 @@ extern_methods!(
             &self,
             cell_update_handler: Option<&block2::Block<dyn Fn(NonNull<UITableViewCell>)>>,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholder?language=objc)
@@ -2577,8 +2577,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITableViewDropPlaceholder {}
 
-extern_methods!(
-    unsafe impl UITableViewDropPlaceholder {
+impl UITableViewDropPlaceholder {
+    extern_methods!(
         #[cfg(all(
             feature = "UIDragPreviewParameters",
             feature = "UIPreviewParameters",
@@ -2610,12 +2610,12 @@ extern_methods!(
                 &block2::Block<dyn Fn(NonNull<UITableViewCell>) -> *mut UIDragPreviewParameters>,
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UITableViewPlaceholder`
-    unsafe impl UITableViewDropPlaceholder {
+/// Methods declared on superclass `UITableViewPlaceholder`.
+impl UITableViewDropPlaceholder {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithInsertionIndexPath:reuseIdentifier:rowHeight:))]
         #[unsafe(method_family = init)]
@@ -2633,8 +2633,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropitem?language=objc)

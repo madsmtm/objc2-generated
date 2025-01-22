@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CWInterface {}
 
-extern_methods!(
-    unsafe impl CWInterface {
+impl CWInterface {
+    extern_methods!(
         /// Returns the BSD name of the Wi-Fi interface (e.g. "en0").
         #[unsafe(method(interfaceName))]
         #[unsafe(method_family = none)]
@@ -581,12 +581,12 @@ extern_methods!(
             channel: NSUInteger,
             password: Option<&NSString>,
         ) -> Result<(), Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CWInterface {
+/// Methods declared on superclass `NSObject`.
+impl CWInterface {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -594,5 +594,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

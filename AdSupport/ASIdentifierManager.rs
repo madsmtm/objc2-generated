@@ -17,8 +17,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for ASIdentifierManager {}
 
-extern_methods!(
-    unsafe impl ASIdentifierManager {
+impl ASIdentifierManager {
+    extern_methods!(
         /// The shared instance of the identifier manager class.
         ///
         /// - Returns: Returns the shared instance of the AdSupport identifier manager
@@ -113,12 +113,12 @@ extern_methods!(
         #[unsafe(method(isAdvertisingTrackingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAdvertisingTrackingEnabled(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASIdentifierManager {
+/// Methods declared on superclass `NSObject`.
+impl ASIdentifierManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -126,5 +126,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

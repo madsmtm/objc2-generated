@@ -39,8 +39,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIPrintPageRenderer {}
 
-extern_methods!(
-    unsafe impl UIPrintPageRenderer {
+impl UIPrintPageRenderer {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(headerHeight))]
         #[unsafe(method_family = none)]
@@ -159,12 +159,12 @@ extern_methods!(
             page_index: NSInteger,
             footer_rect: CGRect,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPrintPageRenderer {
+/// Methods declared on superclass `NSObject`.
+impl UIPrintPageRenderer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -172,5 +172,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

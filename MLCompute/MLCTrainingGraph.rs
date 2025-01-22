@@ -22,9 +22,9 @@ extern_class!(
 #[cfg(feature = "MLCGraph")]
 unsafe impl NSObjectProtocol for MLCTrainingGraph {}
 
-extern_methods!(
-    #[cfg(feature = "MLCGraph")]
-    unsafe impl MLCTrainingGraph {
+#[cfg(feature = "MLCGraph")]
+impl MLCTrainingGraph {
+    extern_methods!(
         #[cfg(feature = "MLCOptimizer")]
         /// The optimizer to be used with the training graph
         #[deprecated]
@@ -536,13 +536,13 @@ extern_methods!(
             device_data: Option<&NSArray<MLCTensorOptimizerDeviceData>>,
             tensor: &MLCTensor,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCGraph`
-    #[cfg(feature = "MLCGraph")]
-    unsafe impl MLCTrainingGraph {
+/// Methods declared on superclass `MLCGraph`.
+#[cfg(feature = "MLCGraph")]
+impl MLCTrainingGraph {
+    extern_methods!(
         /// Creates a new graph.
         ///
         /// Returns: A new graph.
@@ -550,13 +550,13 @@ extern_methods!(
         #[unsafe(method(graph))]
         #[unsafe(method_family = none)]
         pub unsafe fn graph() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MLCGraph")]
-    unsafe impl MLCTrainingGraph {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MLCGraph")]
+impl MLCTrainingGraph {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -564,5 +564,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

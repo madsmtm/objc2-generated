@@ -31,9 +31,9 @@ unsafe impl NSObjectProtocol for HKQuantitySample {}
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl NSSecureCoding for HKQuantitySample {}
 
-extern_methods!(
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKQuantitySample {
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKQuantitySample {
+    extern_methods!(
         #[cfg(feature = "HKObjectType")]
         #[unsafe(method(quantityType))]
         #[unsafe(method_family = none)]
@@ -105,28 +105,28 @@ extern_methods!(
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `HKObject`
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKQuantitySample {
+/// Methods declared on superclass `HKObject`.
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKQuantitySample {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-    unsafe impl HKQuantitySample {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "HKObject", feature = "HKSample"))]
+impl HKQuantitySample {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathquantity?language=objc)

@@ -32,8 +32,8 @@ unsafe impl NSObjectProtocol for NSPointerArray {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSPointerArray {}
 
-extern_methods!(
-    unsafe impl NSPointerArray {
+impl NSPointerArray {
+    extern_methods!(
         #[cfg(feature = "NSPointerFunctions")]
         #[unsafe(method(initWithOptions:))]
         #[unsafe(method_family = init)]
@@ -105,12 +105,12 @@ extern_methods!(
         #[unsafe(method(setCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCount(&self, count: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPointerArray {
+/// Methods declared on superclass `NSObject`.
+impl NSPointerArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -118,12 +118,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPointerArrayConveniences
-    unsafe impl NSPointerArray {
+/// NSPointerArrayConveniences.
+impl NSPointerArray {
+    extern_methods!(
         #[deprecated = "GC no longer supported"]
         #[unsafe(method(pointerArrayWithStrongObjects))]
         #[unsafe(method_family = none)]
@@ -146,5 +146,5 @@ extern_methods!(
         #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn allObjects(&self) -> Retained<NSArray>;
-    }
-);
+    );
+}

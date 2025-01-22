@@ -22,8 +22,8 @@ unsafe impl Sync for HKLiveWorkoutDataSource {}
 
 unsafe impl NSObjectProtocol for HKLiveWorkoutDataSource {}
 
-extern_methods!(
-    unsafe impl HKLiveWorkoutDataSource {
+impl HKLiveWorkoutDataSource {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,14 +76,14 @@ extern_methods!(
         #[unsafe(method(disableCollectionForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableCollectionForType(&self, quantity_type: &HKQuantityType);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl HKLiveWorkoutDataSource {
+/// Methods declared on superclass `NSObject`.
+impl HKLiveWorkoutDataSource {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -22,9 +22,9 @@ extern_class!(
 #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
 unsafe impl NSObjectProtocol for UIScreenEdgePanGestureRecognizer {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
-    unsafe impl UIScreenEdgePanGestureRecognizer {
+#[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
+impl UIScreenEdgePanGestureRecognizer {
+    extern_methods!(
         #[cfg(feature = "UIGeometry")]
         #[unsafe(method(edges))]
         #[unsafe(method_family = none)]
@@ -35,13 +35,13 @@ extern_methods!(
         #[unsafe(method(setEdges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEdges(&self, edges: UIRectEdge);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIGestureRecognizer`
-    #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
-    unsafe impl UIScreenEdgePanGestureRecognizer {
+/// Methods declared on superclass `UIGestureRecognizer`.
+#[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
+impl UIScreenEdgePanGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
@@ -60,15 +60,15 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
-    unsafe impl UIScreenEdgePanGestureRecognizer {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
+impl UIScreenEdgePanGestureRecognizer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

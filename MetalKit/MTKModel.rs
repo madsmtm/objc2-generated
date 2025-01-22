@@ -37,8 +37,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTKMeshBufferAllocator {}
 
-extern_methods!(
-    unsafe impl MTKMeshBufferAllocator {
+impl MTKMeshBufferAllocator {
+    extern_methods!(
         /// Must initialize with device
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -58,17 +58,17 @@ extern_methods!(
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTKMeshBufferAllocator {
+/// Methods declared on superclass `NSObject`.
+impl MTKMeshBufferAllocator {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Mesh buffer created by MTKMeshBufferAllocator when Model I/O needs to memory for vertex or index data backing.
@@ -89,8 +89,8 @@ unsafe impl CopyingHelper for MTKMeshBuffer {
 
 unsafe impl NSObjectProtocol for MTKMeshBuffer {}
 
-extern_methods!(
-    unsafe impl MTKMeshBuffer {
+impl MTKMeshBuffer {
+    extern_methods!(
         /// Only an MTKMeshBufferAllocator object can initilize a MTKMeshBuffer object
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -133,17 +133,17 @@ extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> MDLMeshBufferType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTKMeshBuffer {
+/// Methods declared on superclass `NSObject`.
+impl MTKMeshBuffer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A segment of a mesh and properties to render the segement.
@@ -158,8 +158,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTKSubmesh {}
 
-extern_methods!(
-    unsafe impl MTKSubmesh {
+impl MTKSubmesh {
+    extern_methods!(
         /// Applicatiohs must not explicity allocate or initialize.  Must initialize as part of MTKMesh object.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -211,17 +211,17 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTKSubmesh {
+/// Methods declared on superclass `NSObject`.
+impl MTKSubmesh {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Container for vertex data of a mesh and submeshes to render it.
@@ -234,8 +234,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTKMesh {}
 
-extern_methods!(
-    unsafe impl MTKMesh {
+impl MTKMesh {
+    extern_methods!(
         /// Cannot use default init.  Must initialize with mesh and metal device.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -317,17 +317,17 @@ extern_methods!(
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTKMesh {
+/// Methods declared on superclass `NSObject`.
+impl MTKMesh {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// Partially converts a Metal vertex descriptor to a Model I/O vertex descriptor
 ///

@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CIImageProcessorKernel {}
 
-extern_methods!(
-    unsafe impl CIImageProcessorKernel {
+impl CIImageProcessorKernel {
+    extern_methods!(
         #[unsafe(method(processWithInputs:arguments:output:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn processWithInputs_arguments_output_error(
@@ -78,12 +78,12 @@ extern_methods!(
             inputs: Option<&NSArray<CIImage>>,
             args: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Result<Retained<CIImage>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CIImageProcessorKernel {
+/// Methods declared on superclass `NSObject`.
+impl CIImageProcessorKernel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -91,8 +91,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessorinput?language=objc)

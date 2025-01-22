@@ -104,9 +104,9 @@ unsafe impl UIResponderStandardEditActions for MSMessagesAppViewController {}
 #[cfg(feature = "objc2-ui-kit")]
 unsafe impl UITraitEnvironment for MSMessagesAppViewController {}
 
-extern_methods!(
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSMessagesAppViewController {
+#[cfg(feature = "objc2-ui-kit")]
+impl MSMessagesAppViewController {
+    extern_methods!(
         #[cfg(feature = "MSConversation")]
         /// Current active conversation.
         #[unsafe(method(activeConversation))]
@@ -166,13 +166,13 @@ extern_methods!(
         #[unsafe(method(didResignActiveWithConversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didResignActiveWithConversation(&self, conversation: &MSConversation);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UIViewController`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSMessagesAppViewController {
+/// Methods declared on superclass `UIViewController`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MSMessagesAppViewController {
+    extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
@@ -187,13 +187,13 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSMessagesAppViewController {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-ui-kit")]
+impl MSMessagesAppViewController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -201,13 +201,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// CompactOrExpandedPresentation
-    #[cfg(feature = "objc2-ui-kit")]
-    unsafe impl MSMessagesAppViewController {
+/// CompactOrExpandedPresentation.
+#[cfg(feature = "objc2-ui-kit")]
+impl MSMessagesAppViewController {
+    extern_methods!(
         /// Tells Messages to dismiss the extension and present the keyboard.
         ///
         /// Calling this method does nothing when the `presentationStyle` is `MSMessagesAppPresentationStyleTranscript`.
@@ -318,5 +318,5 @@ extern_methods!(
             &self,
             presentation_style: MSMessagesAppPresentationStyle,
         );
-    }
-);
+    );
+}

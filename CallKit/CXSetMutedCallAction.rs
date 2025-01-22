@@ -32,9 +32,9 @@ unsafe impl NSObjectProtocol for CXSetMutedCallAction {}
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl NSSecureCoding for CXSetMutedCallAction {}
 
-extern_methods!(
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXSetMutedCallAction {
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXSetMutedCallAction {
+    extern_methods!(
         #[unsafe(method(initWithCallUUID:muted:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID_muted(
@@ -63,25 +63,25 @@ extern_methods!(
         #[unsafe(method(setMuted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMuted(&self, muted: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CXCallAction`
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXSetMutedCallAction {
+/// Methods declared on superclass `CXCallAction`.
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXSetMutedCallAction {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-    unsafe impl CXSetMutedCallAction {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+impl CXSetMutedCallAction {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

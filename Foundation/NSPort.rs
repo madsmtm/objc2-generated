@@ -35,8 +35,8 @@ unsafe impl CopyingHelper for NSPort {
 
 unsafe impl NSObjectProtocol for NSPort {}
 
-extern_methods!(
-    unsafe impl NSPort {
+impl NSPort {
+    extern_methods!(
         #[unsafe(method(port))]
         #[unsafe(method_family = none)]
         pub unsafe fn port() -> Retained<NSPort>;
@@ -125,12 +125,12 @@ extern_methods!(
             run_loop: &NSRunLoop,
             mode: &NSRunLoopMode,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPort {
+/// Methods declared on superclass `NSObject`.
+impl NSPort {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -138,8 +138,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportdelegate?language=objc)
@@ -196,8 +196,8 @@ unsafe impl CopyingHelper for NSMachPort {
 
 unsafe impl NSObjectProtocol for NSMachPort {}
 
-extern_methods!(
-    unsafe impl NSMachPort {
+impl NSMachPort {
+    extern_methods!(
         #[unsafe(method(portWithMachPort:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portWithMachPort(mach_port: u32) -> Retained<NSPort>;
@@ -245,12 +245,12 @@ extern_methods!(
         #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMachPort {
+/// Methods declared on superclass `NSObject`.
+impl NSMachPort {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -258,8 +258,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportdelegate?language=objc)
@@ -291,13 +291,13 @@ unsafe impl CopyingHelper for NSMessagePort {
 
 unsafe impl NSObjectProtocol for NSMessagePort {}
 
-extern_methods!(
-    unsafe impl NSMessagePort {}
-);
+impl NSMessagePort {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSMessagePort {
+/// Methods declared on superclass `NSObject`.
+impl NSMessagePort {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -305,8 +305,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssocketport?language=objc)
@@ -328,8 +328,8 @@ unsafe impl CopyingHelper for NSSocketPort {
 
 unsafe impl NSObjectProtocol for NSSocketPort {}
 
-extern_methods!(
-    unsafe impl NSSocketPort {
+impl NSSocketPort {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -402,14 +402,14 @@ extern_methods!(
         #[unsafe(method(socket))]
         #[unsafe(method_family = none)]
         pub unsafe fn socket(&self) -> NSSocketNativeHandle;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSocketPort {
+/// Methods declared on superclass `NSObject`.
+impl NSSocketPort {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

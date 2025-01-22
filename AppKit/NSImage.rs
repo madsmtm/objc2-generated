@@ -92,8 +92,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSImage {}
 
-extern_methods!(
-    unsafe impl NSImage {
+impl NSImage {
+    extern_methods!(
         #[unsafe(method(imageNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageNamed(name: &NSImageName) -> Option<Retained<NSImage>>;
@@ -545,12 +545,12 @@ extern_methods!(
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSImage {
+/// Methods declared on superclass `NSObject`.
+impl NSImage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -558,12 +558,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl NSImage {}
-);
+impl NSImage {
+    extern_methods!();
+}
 
 unsafe impl NSCopying for NSImage {}
 
@@ -579,9 +579,9 @@ unsafe impl NSPasteboardWriting for NSImage {}
 
 unsafe impl NSSecureCoding for NSImage {}
 
-extern_methods!(
-    unsafe impl NSImage {}
-);
+impl NSImage {
+    extern_methods!();
+}
 
 unsafe impl NSItemProviderReading for NSImage {}
 
@@ -658,9 +658,9 @@ extern_category!(
     unsafe impl NSBundleImageExtension for NSBundle {}
 );
 
-extern_methods!(
-    /// Deprecated
-    unsafe impl NSImage {
+/// Deprecated.
+impl NSImage {
+    extern_methods!(
         #[deprecated = "Use +imageUnfilteredTypes instead"]
         #[unsafe(method(imageUnfilteredFileTypes))]
         #[unsafe(method_family = none)]
@@ -828,8 +828,8 @@ extern_methods!(
         #[unsafe(method(cancelIncrementalLoad))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelIncrementalLoad(&self);
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenameaddtemplate?language=objc)
@@ -1567,8 +1567,8 @@ unsafe impl NSObjectProtocol for NSImageSymbolConfiguration {}
 
 unsafe impl NSSecureCoding for NSImageSymbolConfiguration {}
 
-extern_methods!(
-    unsafe impl NSImageSymbolConfiguration {
+impl NSImageSymbolConfiguration {
+    extern_methods!(
         #[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
         #[unsafe(method(configurationWithPointSize:weight:scale:))]
         #[unsafe(method_family = none)]
@@ -1659,12 +1659,12 @@ extern_methods!(
             &self,
             configuration: &NSImageSymbolConfiguration,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSImageSymbolConfiguration {
+/// Methods declared on superclass `NSObject`.
+impl NSImageSymbolConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1672,5 +1672,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

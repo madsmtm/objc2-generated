@@ -24,8 +24,8 @@ unsafe impl MDLNamed for MDLObject {}
 
 unsafe impl NSObjectProtocol for MDLObject {}
 
-extern_methods!(
-    unsafe impl MDLObject {
+impl MDLObject {
+    extern_methods!(
         #[cfg(feature = "MDLTypes")]
         /// Allows applications to introspect the components on the objects.
         #[unsafe(method(components))]
@@ -207,12 +207,12 @@ extern_methods!(
         #[unsafe(method(addChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChild(&self, child: &MDLObject);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLObject {
+/// Methods declared on superclass `NSObject`.
+impl MDLObject {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -220,8 +220,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// Default container object
@@ -246,13 +246,13 @@ unsafe impl NSFastEnumeration for MDLObjectContainer {}
 
 unsafe impl NSObjectProtocol for MDLObjectContainer {}
 
-extern_methods!(
-    unsafe impl MDLObjectContainer {}
-);
+impl MDLObjectContainer {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLObjectContainer {
+/// Methods declared on superclass `NSObject`.
+impl MDLObjectContainer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -260,5 +260,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

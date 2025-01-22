@@ -72,9 +72,9 @@ unsafe impl CopyingHelper for NSRelativeDateTimeFormatter {
 #[cfg(feature = "NSFormatter")]
 unsafe impl NSObjectProtocol for NSRelativeDateTimeFormatter {}
 
-extern_methods!(
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSRelativeDateTimeFormatter {
+#[cfg(feature = "NSFormatter")]
+impl NSRelativeDateTimeFormatter {
+    extern_methods!(
         #[unsafe(method(dateTimeStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateTimeStyle(&self) -> NSRelativeDateTimeFormatterStyle;
@@ -156,13 +156,13 @@ extern_methods!(
             &self,
             obj: Option<&AnyObject>,
         ) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "NSFormatter")]
-    unsafe impl NSRelativeDateTimeFormatter {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "NSFormatter")]
+impl NSRelativeDateTimeFormatter {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -170,5 +170,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

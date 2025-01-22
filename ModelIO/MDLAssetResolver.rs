@@ -35,8 +35,8 @@ unsafe impl MDLAssetResolver for MDLRelativeAssetResolver {}
 
 unsafe impl NSObjectProtocol for MDLRelativeAssetResolver {}
 
-extern_methods!(
-    unsafe impl MDLRelativeAssetResolver {
+impl MDLRelativeAssetResolver {
+    extern_methods!(
         #[cfg(feature = "MDLAsset")]
         #[unsafe(method(initWithAsset:))]
         #[unsafe(method_family = init)]
@@ -53,12 +53,12 @@ extern_methods!(
         #[unsafe(method(setAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAsset(&self, asset: Option<&MDLAsset>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLRelativeAssetResolver {
+/// Methods declared on superclass `NSObject`.
+impl MDLRelativeAssetResolver {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -66,8 +66,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// The path asset resolver searches for referenced files
@@ -92,8 +92,8 @@ unsafe impl MDLAssetResolver for MDLPathAssetResolver {}
 
 unsafe impl NSObjectProtocol for MDLPathAssetResolver {}
 
-extern_methods!(
-    unsafe impl MDLPathAssetResolver {
+impl MDLPathAssetResolver {
+    extern_methods!(
         #[unsafe(method(initWithPath:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPath(this: Allocated<Self>, path: &NSString) -> Retained<Self>;
@@ -106,12 +106,12 @@ extern_methods!(
         #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLPathAssetResolver {
+/// Methods declared on superclass `NSObject`.
+impl MDLPathAssetResolver {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -119,8 +119,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlbundleassetresolver?language=objc)
@@ -133,8 +133,8 @@ unsafe impl MDLAssetResolver for MDLBundleAssetResolver {}
 
 unsafe impl NSObjectProtocol for MDLBundleAssetResolver {}
 
-extern_methods!(
-    unsafe impl MDLBundleAssetResolver {
+impl MDLBundleAssetResolver {
+    extern_methods!(
         #[unsafe(method(initWithBundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBundle(this: Allocated<Self>, path: &NSString) -> Retained<Self>;
@@ -147,12 +147,12 @@ extern_methods!(
         #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MDLBundleAssetResolver {
+/// Methods declared on superclass `NSObject`.
+impl MDLBundleAssetResolver {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -160,5 +160,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

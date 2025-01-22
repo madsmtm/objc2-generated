@@ -26,8 +26,8 @@ unsafe impl CopyingHelper for WebResource {
 
 unsafe impl NSObjectProtocol for WebResource {}
 
-extern_methods!(
-    unsafe impl WebResource {
+impl WebResource {
+    extern_methods!(
         /// The initializer for WebResource.
         ///
         /// Parameter `data`: The data of the resource.
@@ -76,12 +76,12 @@ extern_methods!(
         #[unsafe(method(frameName))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameName(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WebResource {
+/// Methods declared on superclass `NSObject`.
+impl WebResource {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -89,5 +89,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

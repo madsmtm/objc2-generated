@@ -26,8 +26,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for VZLinuxRosettaCachingOptions {}
 
-extern_methods!(
-    unsafe impl VZLinuxRosettaCachingOptions {
+impl VZLinuxRosettaCachingOptions {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -35,5 +35,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

@@ -51,8 +51,8 @@ unsafe impl NSObjectProtocol for CKSubscription {}
 
 unsafe impl NSSecureCoding for CKSubscription {}
 
-extern_methods!(
-    unsafe impl CKSubscription {
+impl CKSubscription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,8 +82,8 @@ extern_methods!(
         #[unsafe(method(setNotificationInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotificationInfo(&self, notification_info: Option<&CKNotificationInfo>);
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscriptionoptions?language=objc)
 // NS_OPTIONS
@@ -136,8 +136,8 @@ unsafe impl NSObjectProtocol for CKQuerySubscription {}
 
 unsafe impl NSSecureCoding for CKQuerySubscription {}
 
-extern_methods!(
-    unsafe impl CKQuerySubscription {
+impl CKQuerySubscription {
+    extern_methods!(
         #[cfg(feature = "CKRecord")]
         #[deprecated]
         #[unsafe(method(initWithRecordType:predicate:options:))]
@@ -199,12 +199,12 @@ extern_methods!(
         #[unsafe(method(querySubscriptionOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn querySubscriptionOptions(&self) -> CKQuerySubscriptionOptions;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CKSubscription`
-    unsafe impl CKQuerySubscription {
+/// Methods declared on superclass `CKSubscription`.
+impl CKQuerySubscription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -212,8 +212,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A subscription that fires whenever any change happens in the indicated Record Zone.
@@ -241,8 +241,8 @@ unsafe impl NSObjectProtocol for CKRecordZoneSubscription {}
 
 unsafe impl NSSecureCoding for CKRecordZoneSubscription {}
 
-extern_methods!(
-    unsafe impl CKRecordZoneSubscription {
+impl CKRecordZoneSubscription {
+    extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
         #[unsafe(method(initWithZoneID:))]
@@ -281,12 +281,12 @@ extern_methods!(
         #[unsafe(method(setRecordType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordType(&self, record_type: Option<&CKRecordType>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `CKSubscription`
-    unsafe impl CKRecordZoneSubscription {
+/// Methods declared on superclass `CKSubscription`.
+impl CKRecordZoneSubscription {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -294,8 +294,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A subscription fires whenever any change happens in the database that this subscription was saved in.
@@ -321,8 +321,8 @@ unsafe impl NSObjectProtocol for CKDatabaseSubscription {}
 
 unsafe impl NSSecureCoding for CKDatabaseSubscription {}
 
-extern_methods!(
-    unsafe impl CKDatabaseSubscription {
+impl CKDatabaseSubscription {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -354,8 +354,8 @@ extern_methods!(
         #[unsafe(method(setRecordType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordType(&self, record_type: Option<&CKRecordType>);
-    }
-);
+    );
+}
 
 extern_class!(
     /// The payload of a push notification delivered in the UIApplication
@@ -388,8 +388,8 @@ unsafe impl NSObjectProtocol for CKNotificationInfo {}
 
 unsafe impl NSSecureCoding for CKNotificationInfo {}
 
-extern_methods!(
-    unsafe impl CKNotificationInfo {
+impl CKNotificationInfo {
+    extern_methods!(
         /// Optional alert string to display in a push notification.
         #[unsafe(method(alertBody))]
         #[unsafe(method_family = none)]
@@ -620,12 +620,12 @@ extern_methods!(
         #[unsafe(method(setCollapseIDKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCollapseIDKey(&self, collapse_id_key: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CKNotificationInfo {
+/// Methods declared on superclass `NSObject`.
+impl CKNotificationInfo {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -633,5 +633,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

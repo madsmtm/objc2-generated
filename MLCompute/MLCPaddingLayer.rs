@@ -29,9 +29,9 @@ unsafe impl CopyingHelper for MLCPaddingLayer {
 #[cfg(feature = "MLCLayer")]
 unsafe impl NSObjectProtocol for MLCPaddingLayer {}
 
-extern_methods!(
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCPaddingLayer {
+#[cfg(feature = "MLCLayer")]
+impl MLCPaddingLayer {
+    extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// The padding type i.e. constant, zero, reflect or symmetric
         #[deprecated]
@@ -113,13 +113,13 @@ extern_methods!(
             padding: &NSArray<NSNumber>,
             constant_value: c_float,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MLCLayer`
-    #[cfg(feature = "MLCLayer")]
-    unsafe impl MLCPaddingLayer {
+/// Methods declared on superclass `MLCLayer`.
+#[cfg(feature = "MLCLayer")]
+impl MLCPaddingLayer {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -129,5 +129,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

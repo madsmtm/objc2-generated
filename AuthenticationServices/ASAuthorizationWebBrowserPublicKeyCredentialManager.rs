@@ -46,8 +46,8 @@ unsafe impl Sync for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
 
 unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
 
-extern_methods!(
-    unsafe impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
+impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,14 +81,14 @@ extern_methods!(
         pub unsafe fn authorizationStateForPlatformCredentials(
             &self,
         ) -> ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
+/// Methods declared on superclass `NSObject`.
+impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

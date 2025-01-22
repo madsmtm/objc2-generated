@@ -376,8 +376,8 @@ unsafe impl NSObjectProtocol for UITextInputPasswordRules {}
 
 unsafe impl NSSecureCoding for UITextInputPasswordRules {}
 
-extern_methods!(
-    unsafe impl UITextInputPasswordRules {
+impl UITextInputPasswordRules {
+    extern_methods!(
         #[unsafe(method(passwordRulesDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordRulesDescriptor(&self) -> Retained<NSString>;
@@ -396,8 +396,8 @@ extern_methods!(
             password_rules_descriptor: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtraits?language=objc)

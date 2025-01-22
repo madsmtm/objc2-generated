@@ -16,8 +16,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MCNearbyServiceAdvertiser {}
 
-extern_methods!(
-    unsafe impl MCNearbyServiceAdvertiser {
+impl MCNearbyServiceAdvertiser {
+    extern_methods!(
         #[cfg(feature = "MCPeerID")]
         #[unsafe(method(initWithPeer:discoveryInfo:serviceType:))]
         #[unsafe(method_family = init)]
@@ -63,12 +63,12 @@ extern_methods!(
         #[unsafe(method(serviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MCNearbyServiceAdvertiser {
+/// Methods declared on superclass `NSObject`.
+impl MCNearbyServiceAdvertiser {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -76,8 +76,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiserdelegate?language=objc)

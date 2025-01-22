@@ -56,8 +56,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSGlyphGenerator {}
 
-extern_methods!(
-    unsafe impl NSGlyphGenerator {
+impl NSGlyphGenerator {
+    extern_methods!(
         #[unsafe(method(generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex(
@@ -71,12 +71,12 @@ extern_methods!(
         #[unsafe(method(sharedGlyphGenerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedGlyphGenerator() -> Retained<NSGlyphGenerator>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSGlyphGenerator {
+/// Methods declared on superclass `NSObject`.
+impl NSGlyphGenerator {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -84,5 +84,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

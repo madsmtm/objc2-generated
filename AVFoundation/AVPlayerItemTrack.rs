@@ -30,8 +30,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVPlayerItemTrack {}
 
-extern_methods!(
-    unsafe impl AVPlayerItemTrack {
+impl AVPlayerItemTrack {
+    extern_methods!(
         #[cfg(feature = "AVAssetTrack")]
         /// Indicates the AVAssetTrack for which the AVPlayerItemTrack represents presentation state.
         ///
@@ -77,12 +77,12 @@ extern_methods!(
         #[unsafe(method(setVideoFieldMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoFieldMode(&self, video_field_mode: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl AVPlayerItemTrack {
+/// Methods declared on superclass `NSObject`.
+impl AVPlayerItemTrack {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -90,5 +90,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

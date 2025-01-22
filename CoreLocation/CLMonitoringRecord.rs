@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for CLMonitoringRecord {}
 
 unsafe impl NSSecureCoding for CLMonitoringRecord {}
 
-extern_methods!(
-    unsafe impl CLMonitoringRecord {
+impl CLMonitoringRecord {
+    extern_methods!(
         #[cfg(feature = "CLCondition")]
         #[unsafe(method(condition))]
         #[unsafe(method_family = none)]
@@ -38,5 +38,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

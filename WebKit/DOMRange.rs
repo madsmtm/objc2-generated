@@ -52,9 +52,9 @@ unsafe impl CopyingHelper for DOMRange {
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl NSObjectProtocol for DOMRange {}
 
-extern_methods!(
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMRange {
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMRange {
+    extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[unsafe(method(startContainer))]
@@ -230,34 +230,34 @@ extern_methods!(
             ref_node: Option<&DOMNode>,
             offset: c_int,
         ) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `DOMObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMRange {
+/// Methods declared on superclass `DOMObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMRange {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMRange {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMRange {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// DOMRangeDeprecated
-    #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-    unsafe impl DOMRange {
+/// DOMRangeDeprecated.
+#[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
+impl DOMRange {
+    extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[unsafe(method(setStart::))]
@@ -278,5 +278,5 @@ extern_methods!(
             how: c_ushort,
             source_range: Option<&DOMRange>,
         ) -> c_short;
-    }
-);
+    );
+}

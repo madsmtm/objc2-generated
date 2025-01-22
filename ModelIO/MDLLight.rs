@@ -63,9 +63,9 @@ unsafe impl MDLNamed for MDLLight {}
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLLight {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLLight {
+#[cfg(feature = "MDLObject")]
+impl MDLLight {
+    extern_methods!(
         #[unsafe(method(lightType))]
         #[unsafe(method_family = none)]
         pub unsafe fn lightType(&self) -> MDLLightType;
@@ -83,13 +83,13 @@ extern_methods!(
         #[unsafe(method(setColorSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorSpace(&self, color_space: &NSString);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLLight {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLLight {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -97,8 +97,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A light with characteristics representing plausible real world lights
@@ -124,9 +124,9 @@ unsafe impl MDLNamed for MDLPhysicallyPlausibleLight {}
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLPhysicallyPlausibleLight {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLPhysicallyPlausibleLight {
+#[cfg(feature = "MDLObject")]
+impl MDLPhysicallyPlausibleLight {
+    extern_methods!(
         /// Light color specified by color temperature, in degrees Kelvin
         ///
         /// default color is 6500K, cool daylight.
@@ -189,13 +189,13 @@ extern_methods!(
         #[unsafe(method(setAttenuationEndDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttenuationEndDistance(&self, attenuation_end_distance: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLPhysicallyPlausibleLight {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLPhysicallyPlausibleLight {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -203,8 +203,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlarealight?language=objc)
@@ -220,9 +220,9 @@ unsafe impl MDLNamed for MDLAreaLight {}
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLAreaLight {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLAreaLight {
+#[cfg(feature = "MDLObject")]
+impl MDLAreaLight {
+    extern_methods!(
         #[unsafe(method(areaRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn areaRadius(&self) -> c_float;
@@ -240,13 +240,13 @@ extern_methods!(
         #[unsafe(method(setAspect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAspect(&self, aspect: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLAreaLight {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLAreaLight {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -254,8 +254,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A light created from measurements at various angles.
@@ -280,9 +280,9 @@ unsafe impl MDLNamed for MDLPhotometricLight {}
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLPhotometricLight {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLPhotometricLight {
+#[cfg(feature = "MDLObject")]
+impl MDLPhotometricLight {
+    extern_methods!(
         #[unsafe(method(initWithIESProfile:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIESProfile(
@@ -328,13 +328,13 @@ extern_methods!(
         #[unsafe(method(sphericalHarmonicsCoefficients))]
         #[unsafe(method_family = none)]
         pub unsafe fn sphericalHarmonicsCoefficients(&self) -> Option<Retained<NSData>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLPhotometricLight {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLPhotometricLight {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -342,8 +342,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllightprobe?language=objc)
@@ -359,9 +359,9 @@ unsafe impl MDLNamed for MDLLightProbe {}
 #[cfg(feature = "MDLObject")]
 unsafe impl NSObjectProtocol for MDLLightProbe {}
 
-extern_methods!(
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLLightProbe {
+#[cfg(feature = "MDLObject")]
+impl MDLLightProbe {
+    extern_methods!(
         #[cfg(feature = "MDLTexture")]
         #[unsafe(method(initWithReflectiveTexture:irradianceTexture:))]
         #[unsafe(method_family = init)]
@@ -395,13 +395,13 @@ extern_methods!(
         #[unsafe(method(sphericalHarmonicsCoefficients))]
         #[unsafe(method_family = none)]
         pub unsafe fn sphericalHarmonicsCoefficients(&self) -> Option<Retained<NSData>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLLightProbe {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MDLObject")]
+impl MDLLightProbe {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -409,13 +409,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MDLLightBaking
-    #[cfg(feature = "MDLObject")]
-    unsafe impl MDLLightProbe {
+/// MDLLightBaking.
+#[cfg(feature = "MDLObject")]
+impl MDLLightProbe {
+    extern_methods!(
         #[cfg(all(feature = "MDLTexture", feature = "MDLTransform"))]
         #[unsafe(method(lightProbeWithTextureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:))]
         #[unsafe(method_family = none)]
@@ -427,5 +427,5 @@ extern_methods!(
             reflective_cubemap: Option<&MDLTexture>,
             irradiance_cubemap: Option<&MDLTexture>,
         ) -> Option<Retained<MDLLightProbe>>;
-    }
-);
+    );
+}

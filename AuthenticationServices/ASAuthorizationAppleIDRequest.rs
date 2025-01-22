@@ -50,12 +50,12 @@ unsafe impl NSObjectProtocol for ASAuthorizationAppleIDRequest {}
 ))]
 unsafe impl NSSecureCoding for ASAuthorizationAppleIDRequest {}
 
-extern_methods!(
-    #[cfg(all(
-        feature = "ASAuthorizationOpenIDRequest",
-        feature = "ASAuthorizationRequest"
-    ))]
-    unsafe impl ASAuthorizationAppleIDRequest {
+#[cfg(all(
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
+))]
+impl ASAuthorizationAppleIDRequest {
+    extern_methods!(
         /// If you have been previously vended a 'user' value through ASAuthorization response, you may set it here to provide additional context to identity provider.
         ///
         ///
@@ -68,16 +68,16 @@ extern_methods!(
         #[unsafe(method(setUser:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUser(&self, user: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `ASAuthorizationRequest`
-    #[cfg(all(
-        feature = "ASAuthorizationOpenIDRequest",
-        feature = "ASAuthorizationRequest"
-    ))]
-    unsafe impl ASAuthorizationAppleIDRequest {
+/// Methods declared on superclass `ASAuthorizationRequest`.
+#[cfg(all(
+    feature = "ASAuthorizationOpenIDRequest",
+    feature = "ASAuthorizationRequest"
+))]
+impl ASAuthorizationAppleIDRequest {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -85,5 +85,5 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}

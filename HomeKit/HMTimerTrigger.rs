@@ -29,9 +29,9 @@ unsafe impl Sync for HMTimerTrigger {}
 #[cfg(feature = "HMTrigger")]
 unsafe impl NSObjectProtocol for HMTimerTrigger {}
 
-extern_methods!(
-    #[cfg(feature = "HMTrigger")]
-    unsafe impl HMTimerTrigger {
+#[cfg(feature = "HMTrigger")]
+impl HMTimerTrigger {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -174,15 +174,15 @@ extern_methods!(
             recurrence: Option<&NSDateComponents>,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HMTrigger")]
-    unsafe impl HMTimerTrigger {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HMTrigger")]
+impl HMTimerTrigger {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

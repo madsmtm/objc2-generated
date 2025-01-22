@@ -200,8 +200,8 @@ unsafe impl CopyingHelper for MTLBufferLayoutDescriptor {
 
 unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLBufferLayoutDescriptor {
+impl MTLBufferLayoutDescriptor {
+    extern_methods!(
         #[unsafe(method(stride))]
         #[unsafe(method_family = none)]
         pub fn stride(&self) -> NSUInteger;
@@ -228,12 +228,12 @@ extern_methods!(
         #[unsafe(method(setStepRate:))]
         #[unsafe(method_family = none)]
         pub fn setStepRate(&self, step_rate: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLBufferLayoutDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLBufferLayoutDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -241,8 +241,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbufferlayoutdescriptorarray?language=objc)
@@ -253,8 +253,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLBufferLayoutDescriptorArray {
+impl MTLBufferLayoutDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -269,12 +269,12 @@ extern_methods!(
             buffer_desc: Option<&MTLBufferLayoutDescriptor>,
             index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLBufferLayoutDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLBufferLayoutDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -282,8 +282,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributedescriptor?language=objc)
@@ -300,8 +300,8 @@ unsafe impl CopyingHelper for MTLAttributeDescriptor {
 
 unsafe impl NSObjectProtocol for MTLAttributeDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLAttributeDescriptor {
+impl MTLAttributeDescriptor {
+    extern_methods!(
         #[unsafe(method(format))]
         #[unsafe(method_family = none)]
         pub fn format(&self) -> MTLAttributeFormat;
@@ -328,12 +328,12 @@ extern_methods!(
         #[unsafe(method(setBufferIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAttributeDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLAttributeDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -341,8 +341,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributedescriptorarray?language=objc)
@@ -353,8 +353,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MTLAttributeDescriptorArray {}
 
-extern_methods!(
-    unsafe impl MTLAttributeDescriptorArray {
+impl MTLAttributeDescriptorArray {
+    extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -369,12 +369,12 @@ extern_methods!(
             attribute_desc: Option<&MTLAttributeDescriptor>,
             index: NSUInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLAttributeDescriptorArray {
+/// Methods declared on superclass `NSObject`.
+impl MTLAttributeDescriptorArray {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -382,8 +382,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor?language=objc)
@@ -400,8 +400,8 @@ unsafe impl CopyingHelper for MTLStageInputOutputDescriptor {
 
 unsafe impl NSObjectProtocol for MTLStageInputOutputDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLStageInputOutputDescriptor {
+impl MTLStageInputOutputDescriptor {
+    extern_methods!(
         #[unsafe(method(stageInputOutputDescriptor))]
         #[unsafe(method_family = none)]
         pub fn stageInputOutputDescriptor() -> Retained<MTLStageInputOutputDescriptor>;
@@ -435,12 +435,12 @@ extern_methods!(
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub fn reset(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLStageInputOutputDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLStageInputOutputDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -448,5 +448,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

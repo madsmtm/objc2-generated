@@ -48,8 +48,8 @@ unsafe impl CopyingHelper for ODQuery {
 
 unsafe impl NSObjectProtocol for ODQuery {}
 
-extern_methods!(
-    unsafe impl ODQuery {
+impl ODQuery {
+    extern_methods!(
         #[cfg(all(
             feature = "CFOpenDirectory",
             feature = "CFOpenDirectoryConstants",
@@ -169,12 +169,12 @@ extern_methods!(
         #[unsafe(method(setOperationQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl ODQuery {
+/// Methods declared on superclass `NSObject`.
+impl ODQuery {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -182,5 +182,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

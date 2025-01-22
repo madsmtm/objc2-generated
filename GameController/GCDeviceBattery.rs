@@ -47,8 +47,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GCDeviceBattery {}
 
-extern_methods!(
-    unsafe impl GCDeviceBattery {
+impl GCDeviceBattery {
+    extern_methods!(
         /// This is the battery level for controller.
         /// Battery level ranges from 0.0 (fully discharged) to 1.0 (100% charged) and defaults to 0
         #[unsafe(method(batteryLevel))]
@@ -66,14 +66,14 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCDeviceBattery {
+/// Methods declared on superclass `NSObject`.
+impl GCDeviceBattery {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

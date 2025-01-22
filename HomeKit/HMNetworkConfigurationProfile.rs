@@ -23,9 +23,9 @@ unsafe impl Sync for HMNetworkConfigurationProfile {}
 #[cfg(feature = "HMAccessoryProfile")]
 unsafe impl NSObjectProtocol for HMNetworkConfigurationProfile {}
 
-extern_methods!(
-    #[cfg(feature = "HMAccessoryProfile")]
-    unsafe impl HMNetworkConfigurationProfile {
+#[cfg(feature = "HMAccessoryProfile")]
+impl HMNetworkConfigurationProfile {
+    extern_methods!(
         /// The delegate of the receiver.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -50,18 +50,18 @@ extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "HMAccessoryProfile")]
-    unsafe impl HMNetworkConfigurationProfile {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "HMAccessoryProfile")]
+impl HMNetworkConfigurationProfile {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmnetworkconfigurationprofiledelegate?language=objc)

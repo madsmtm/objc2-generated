@@ -37,8 +37,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSPageLayout {}
 
-extern_methods!(
-    unsafe impl NSPageLayout {
+impl NSPageLayout {
+    extern_methods!(
         #[unsafe(method(pageLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageLayout(mtm: MainThreadMarker) -> Retained<NSPageLayout>;
@@ -99,12 +99,12 @@ extern_methods!(
         #[unsafe(method(printInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn printInfo(&self) -> Option<Retained<NSPrintInfo>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSPageLayout {
+/// Methods declared on superclass `NSObject`.
+impl NSPageLayout {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -112,12 +112,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSPageLayout {
+/// NSDeprecated.
+impl NSPageLayout {
+    extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated]
         #[unsafe(method(setAccessoryView:))]
@@ -139,15 +139,15 @@ extern_methods!(
         #[unsafe(method(writePrintInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn writePrintInfo(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSPageLayoutPanel
-    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
-    unsafe impl NSApplication {
+/// NSPageLayoutPanel.
+#[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
+impl NSApplication {
+    extern_methods!(
         #[unsafe(method(runPageLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runPageLayout(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}

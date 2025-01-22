@@ -21,8 +21,8 @@ unsafe impl MPSDeviceProvider for MPSKeyedUnarchiver {}
 
 unsafe impl NSObjectProtocol for MPSKeyedUnarchiver {}
 
-extern_methods!(
-    unsafe impl MPSKeyedUnarchiver {
+impl MPSKeyedUnarchiver {
+    extern_methods!(
         #[unsafe(method(unarchivedObjectOfClasses:fromData:device:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn unarchivedObjectOfClasses_fromData_device_error(
@@ -123,14 +123,14 @@ extern_methods!(
             data: &NSData,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MPSKeyedUnarchiver {
+/// Methods declared on superclass `NSObject`.
+impl MPSKeyedUnarchiver {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -109,8 +109,8 @@ unsafe impl NSObjectProtocol for UIDocument {}
 
 unsafe impl NSProgressReporting for UIDocument {}
 
-extern_methods!(
-    unsafe impl UIDocument {
+impl UIDocument {
+    extern_methods!(
         #[unsafe(method(initWithFileURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
@@ -309,12 +309,12 @@ extern_methods!(
             url: &NSURL,
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIDocument {
+/// Methods declared on superclass `NSObject`.
+impl UIDocument {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -322,12 +322,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    unsafe impl UIDocument {}
-);
+impl UIDocument {
+    extern_methods!();
+}
 
 #[cfg(feature = "UINavigationItem")]
 unsafe impl UINavigationItemRenameDelegate for UIDocument {}
@@ -337,9 +337,9 @@ extern "C" {
     pub static NSUserActivityDocumentURLKey: &'static NSString;
 }
 
-extern_methods!(
-    /// ActivityContinuation
-    unsafe impl UIDocument {
+/// ActivityContinuation.
+impl UIDocument {
+    extern_methods!(
         #[unsafe(method(userActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
@@ -356,8 +356,8 @@ extern_methods!(
         #[unsafe(method(restoreUserActivityState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);
-    }
-);
+    );
+}
 
 #[cfg(feature = "UIUserActivity")]
 unsafe impl UIUserActivityRestoring for UIDocument {}

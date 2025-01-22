@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for UIPopoverController {}
 #[cfg(feature = "UIAppearance")]
 unsafe impl UIAppearanceContainer for UIPopoverController {}
 
-extern_methods!(
-    unsafe impl UIPopoverController {
+impl UIPopoverController {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(initWithContentViewController:))]
@@ -187,12 +187,12 @@ extern_methods!(
             &self,
             popover_background_view_class: Option<&AnyClass>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UIPopoverController {
+/// Methods declared on superclass `NSObject`.
+impl UIPopoverController {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -200,8 +200,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopovercontrollerdelegate?language=objc)

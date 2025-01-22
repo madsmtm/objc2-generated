@@ -50,8 +50,8 @@ unsafe impl GCDevice for GCRacingWheel {}
 
 unsafe impl NSObjectProtocol for GCRacingWheel {}
 
-extern_methods!(
-    unsafe impl GCRacingWheel {
+impl GCRacingWheel {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -114,14 +114,14 @@ extern_methods!(
         #[unsafe(method(capture))]
         #[unsafe(method_family = none)]
         pub unsafe fn capture(&self) -> Retained<GCRacingWheel>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GCRacingWheel {
+/// Methods declared on superclass `NSObject`.
+impl GCRacingWheel {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

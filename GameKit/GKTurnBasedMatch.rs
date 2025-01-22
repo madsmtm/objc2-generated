@@ -118,8 +118,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKTurnBasedParticipant {}
 
-extern_methods!(
-    unsafe impl GKTurnBasedParticipant {
+impl GKTurnBasedParticipant {
+    extern_methods!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[unsafe(method(player))]
         #[unsafe(method_family = none)]
@@ -145,12 +145,12 @@ extern_methods!(
         #[unsafe(method(timeoutDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutDate(&self) -> Option<Retained<NSDate>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKTurnBasedParticipant {
+/// Methods declared on superclass `NSObject`.
+impl GKTurnBasedParticipant {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -158,19 +158,19 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Obsoleted
-    unsafe impl GKTurnBasedParticipant {
+/// Obsoleted.
+impl GKTurnBasedParticipant {
+    extern_methods!(
         /// * This property is obsolete. **
         #[deprecated]
         #[unsafe(method(playerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener?language=objc)
@@ -288,8 +288,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKTurnBasedMatch {}
 
-extern_methods!(
-    unsafe impl GKTurnBasedMatch {
+impl GKTurnBasedMatch {
+    extern_methods!(
         #[unsafe(method(matchID))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchID(&self) -> Retained<NSString>;
@@ -551,12 +551,12 @@ extern_methods!(
             match_data: &NSData,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKTurnBasedMatch {
+/// Methods declared on superclass `NSObject`.
+impl GKTurnBasedMatch {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -564,8 +564,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus?language=objc)
 // NS_ENUM
@@ -612,8 +612,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKTurnBasedExchange {}
 
-extern_methods!(
-    unsafe impl GKTurnBasedExchange {
+impl GKTurnBasedExchange {
+    extern_methods!(
         #[unsafe(method(exchangeID))]
         #[unsafe(method_family = none)]
         pub unsafe fn exchangeID(&self) -> Retained<NSString>;
@@ -674,12 +674,12 @@ extern_methods!(
             data: &NSData,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKTurnBasedExchange {
+/// Methods declared on superclass `NSObject`.
+impl GKTurnBasedExchange {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -687,8 +687,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply?language=objc)
@@ -699,8 +699,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKTurnBasedExchangeReply {}
 
-extern_methods!(
-    unsafe impl GKTurnBasedExchangeReply {
+impl GKTurnBasedExchangeReply {
+    extern_methods!(
         #[unsafe(method(recipient))]
         #[unsafe(method_family = none)]
         pub unsafe fn recipient(&self) -> Retained<GKTurnBasedParticipant>;
@@ -716,12 +716,12 @@ extern_methods!(
         #[unsafe(method(replyDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn replyDate(&self) -> Option<Retained<NSDate>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKTurnBasedExchangeReply {
+/// Methods declared on superclass `NSObject`.
+impl GKTurnBasedExchangeReply {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -729,8 +729,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandlerdelegate?language=objc)
@@ -774,8 +774,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for GKTurnBasedEventHandler {}
 
-extern_methods!(
-    unsafe impl GKTurnBasedEventHandler {
+impl GKTurnBasedEventHandler {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(sharedTurnBasedEventHandler))]
         #[unsafe(method_family = none)]
@@ -792,12 +792,12 @@ extern_methods!(
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl GKTurnBasedEventHandler {
+/// Methods declared on superclass `NSObject`.
+impl GKTurnBasedEventHandler {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -805,5 +805,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

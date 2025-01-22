@@ -56,8 +56,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSValueTransformer {}
 
-extern_methods!(
-    unsafe impl NSValueTransformer {
+impl NSValueTransformer {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(setValueTransformer:forName:))]
         #[unsafe(method_family = none)]
@@ -99,12 +99,12 @@ extern_methods!(
             &self,
             value: Option<&AnyObject>,
         ) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSValueTransformer {
+/// Methods declared on superclass `NSObject`.
+impl NSValueTransformer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -112,8 +112,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// A value transformer which transforms values to and from
@@ -127,8 +127,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSSecureUnarchiveFromDataTransformer {}
 
-extern_methods!(
-    unsafe impl NSSecureUnarchiveFromDataTransformer {
+impl NSSecureUnarchiveFromDataTransformer {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         /// The list of allowable classes which the top-level object in the archive must conform to on encoding and decoding.
         ///
@@ -141,12 +141,12 @@ extern_methods!(
         #[unsafe(method(allowedTopLevelClasses))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedTopLevelClasses() -> Retained<NSArray<AnyClass>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSSecureUnarchiveFromDataTransformer {
+/// Methods declared on superclass `NSObject`.
+impl NSSecureUnarchiveFromDataTransformer {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -154,5 +154,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

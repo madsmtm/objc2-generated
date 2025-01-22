@@ -37,8 +37,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSCoder {}
 
-extern_methods!(
-    unsafe impl NSCoder {
+impl NSCoder {
+    extern_methods!(
         #[unsafe(method(encodeValueOfObjCType:at:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeValueOfObjCType_at(
@@ -70,12 +70,12 @@ extern_methods!(
         #[unsafe(method(versionForClassName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn versionForClassName(&self, class_name: &NSString) -> NSInteger;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSCoder {
+/// Methods declared on superclass `NSObject`.
+impl NSCoder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -83,12 +83,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSExtendedCoder
-    unsafe impl NSCoder {
+/// NSExtendedCoder.
+impl NSCoder {
+    extern_methods!(
         #[unsafe(method(encodeObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeObject(&self, object: Option<&AnyObject>);
@@ -497,8 +497,8 @@ extern_methods!(
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
-    }
-);
+    );
+}
 
 #[deprecated = "Not supported"]
 #[inline]
@@ -512,9 +512,9 @@ pub unsafe extern "C-unwind" fn NXReadNSObjectFromCoder(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern_methods!(
-    /// NSTypedstreamCompatibility
-    unsafe impl NSCoder {
+/// NSTypedstreamCompatibility.
+impl NSCoder {
+    extern_methods!(
         #[deprecated = "Not supported"]
         #[unsafe(method(encodeNXObject:))]
         #[unsafe(method_family = none)]
@@ -524,12 +524,12 @@ extern_methods!(
         #[unsafe(method(decodeNXObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeNXObject(&self) -> Option<Retained<AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSDeprecated
-    unsafe impl NSCoder {
+/// NSDeprecated.
+impl NSCoder {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(decodeValueOfObjCType:at:))]
         #[unsafe(method_family = none)]
@@ -538,5 +538,5 @@ extern_methods!(
             r#type: NonNull<c_char>,
             data: NonNull<c_void>,
         );
-    }
-);
+    );
+}

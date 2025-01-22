@@ -22,8 +22,8 @@ unsafe impl NSCoding for NSTouchBar {}
 
 unsafe impl NSObjectProtocol for NSTouchBar {}
 
-extern_methods!(
-    unsafe impl NSTouchBar {
+impl NSTouchBar {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -174,17 +174,17 @@ extern_methods!(
             automatic_customize_touch_bar_menu_item_enabled: bool,
             mtm: MainThreadMarker,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTouchBar {
+/// Methods declared on superclass `NSObject`.
+impl NSTouchBar {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbardelegate?language=objc)
@@ -210,10 +210,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// NSTouchBarProvider
-    #[cfg(feature = "NSResponder")]
-    unsafe impl NSResponder {
+/// NSTouchBarProvider.
+#[cfg(feature = "NSResponder")]
+impl NSResponder {
+    extern_methods!(
         #[unsafe(method(touchBar))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchBar(&self) -> Option<Retained<NSTouchBar>>;
@@ -226,16 +226,16 @@ extern_methods!(
         #[unsafe(method(makeTouchBar))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeTouchBar(&self) -> Option<Retained<NSTouchBar>>;
-    }
-);
+    );
+}
 
 #[cfg(feature = "NSResponder")]
 unsafe impl NSTouchBarProvider for NSResponder {}
 
-extern_methods!(
-    /// NSTouchBarCustomization
-    #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
-    unsafe impl NSApplication {
+/// NSTouchBarCustomization.
+#[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
+impl NSApplication {
+    extern_methods!(
         /// Whether or not a menu item to customize the NSTouchBar can be automatically added to the main menu. It will only actually be added when Touch Bar hardware or simulator is present. Defaults to NO. Setting this property to YES is the recommended way to add the customization menu item. But if non-standard placement of the menu item is needed, creating a menu item with an action of `toggleTouchBarCustomizationPalette:` can be used instead.
         #[unsafe(method(isAutomaticCustomizeTouchBarMenuItemEnabled))]
         #[unsafe(method_family = none)]
@@ -253,5 +253,5 @@ extern_methods!(
         #[unsafe(method(toggleTouchBarCustomizationPalette:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleTouchBarCustomizationPalette(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}

@@ -33,9 +33,9 @@ unsafe impl NSObjectProtocol for MLParameterKey {}
 #[cfg(feature = "MLKey")]
 unsafe impl NSSecureCoding for MLParameterKey {}
 
-extern_methods!(
-    #[cfg(feature = "MLKey")]
-    unsafe impl MLParameterKey {
+#[cfg(feature = "MLKey")]
+impl MLParameterKey {
+    extern_methods!(
         #[unsafe(method(learningRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn learningRate() -> Retained<MLParameterKey>;
@@ -83,13 +83,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MLLinkedModelParameters
-    #[cfg(feature = "MLKey")]
-    unsafe impl MLParameterKey {
+/// MLLinkedModelParameters.
+#[cfg(feature = "MLKey")]
+impl MLParameterKey {
+    extern_methods!(
         #[unsafe(method(linkedModelFileName))]
         #[unsafe(method_family = none)]
         pub unsafe fn linkedModelFileName() -> Retained<MLParameterKey>;
@@ -97,13 +97,13 @@ extern_methods!(
         #[unsafe(method(linkedModelSearchPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn linkedModelSearchPath() -> Retained<MLParameterKey>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MLNeuralNetworkParameters
-    #[cfg(feature = "MLKey")]
-    unsafe impl MLParameterKey {
+/// MLNeuralNetworkParameters.
+#[cfg(feature = "MLKey")]
+impl MLParameterKey {
+    extern_methods!(
         #[unsafe(method(weights))]
         #[unsafe(method_family = none)]
         pub unsafe fn weights() -> Retained<MLParameterKey>;
@@ -111,15 +111,15 @@ extern_methods!(
         #[unsafe(method(biases))]
         #[unsafe(method_family = none)]
         pub unsafe fn biases() -> Retained<MLParameterKey>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// MLScopedParameters
-    #[cfg(feature = "MLKey")]
-    unsafe impl MLParameterKey {
+/// MLScopedParameters.
+#[cfg(feature = "MLKey")]
+impl MLParameterKey {
+    extern_methods!(
         #[unsafe(method(scopedTo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scopedTo(&self, scope: &NSString) -> Retained<MLParameterKey>;
-    }
-);
+    );
+}

@@ -50,10 +50,9 @@ unsafe impl NSObjectProtocol for ARImageAnchor {}
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl NSSecureCoding for ARImageAnchor {}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARImageAnchor {
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARImageAnchor {
+    extern_methods!(
         #[cfg(feature = "ARReferenceImage")]
         /// Reference to the detected image.
         #[unsafe(method(referenceImage))]
@@ -69,14 +68,13 @@ extern_methods!(
         #[unsafe(method(estimatedScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedScaleFactor(&self) -> CGFloat;
-    }
-);
+    );
+}
 
-#[cfg(feature = "objc2")]
-extern_methods!(
-    /// Methods declared on superclass `ARAnchor`
-    #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-    unsafe impl ARImageAnchor {
+/// Methods declared on superclass `ARAnchor`.
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+impl ARImageAnchor {
+    extern_methods!(
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -85,5 +83,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

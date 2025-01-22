@@ -39,8 +39,8 @@ unsafe impl NSObjectProtocol for SKPhysicsWorld {}
 
 unsafe impl NSSecureCoding for SKPhysicsWorld {}
 
-extern_methods!(
-    unsafe impl SKPhysicsWorld {
+impl SKPhysicsWorld {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// A global 2D vector specifying the field force acceleration due to gravity. The unit is meters per second so standard earth gravity would be { 0.0, +/-9.8 }.
         #[unsafe(method(gravity))]
@@ -150,12 +150,12 @@ extern_methods!(
             end: CGPoint,
             block: &block2::Block<dyn Fn(NonNull<SKPhysicsBody>, CGPoint, CGVector, NonNull<Bool>)>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKPhysicsWorld {
+/// Methods declared on superclass `NSObject`.
+impl SKPhysicsWorld {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -163,5 +163,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

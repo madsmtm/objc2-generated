@@ -65,8 +65,8 @@ unsafe impl NSObjectProtocol for NSRegularExpression {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSRegularExpression {}
 
-extern_methods!(
-    unsafe impl NSRegularExpression {
+impl NSRegularExpression {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[unsafe(method(regularExpressionWithPattern:options:error:_))]
         #[unsafe(method_family = none)]
@@ -101,12 +101,12 @@ extern_methods!(
         #[unsafe(method(escapedPatternForString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn escapedPatternForString(string: &NSString) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSRegularExpression {
+/// Methods declared on superclass `NSObject`.
+impl NSRegularExpression {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -114,8 +114,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmatchingoptions?language=objc)
 // NS_OPTIONS
@@ -173,9 +173,9 @@ unsafe impl RefEncode for NSMatchingFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_methods!(
-    /// NSMatching
-    unsafe impl NSRegularExpression {
+/// NSMatching.
+impl NSRegularExpression {
+    extern_methods!(
         #[cfg(all(
             feature = "NSRange",
             feature = "NSString",
@@ -242,12 +242,12 @@ extern_methods!(
             options: NSMatchingOptions,
             range: NSRange,
         ) -> NSRange;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSReplacement
-    unsafe impl NSRegularExpression {
+/// NSReplacement.
+impl NSRegularExpression {
+    extern_methods!(
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[unsafe(method(stringByReplacingMatchesInString:options:range:withTemplate:))]
         #[unsafe(method_family = none)]
@@ -285,8 +285,8 @@ extern_methods!(
         #[unsafe(method(escapedTemplateForString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn escapedTemplateForString(string: &NSString) -> Retained<NSString>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatadetector?language=objc)
@@ -311,8 +311,8 @@ unsafe impl NSObjectProtocol for NSDataDetector {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSDataDetector {}
 
-extern_methods!(
-    unsafe impl NSDataDetector {
+impl NSDataDetector {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSTextCheckingResult"))]
         #[unsafe(method(dataDetectorWithTypes:error:_))]
         #[unsafe(method_family = none)]
@@ -332,12 +332,12 @@ extern_methods!(
         #[unsafe(method(checkingTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkingTypes(&self) -> NSTextCheckingTypes;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSRegularExpression`
-    unsafe impl NSDataDetector {
+/// Methods declared on superclass `NSRegularExpression`.
+impl NSDataDetector {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[unsafe(method(initWithPattern:options:error:_))]
         #[unsafe(method_family = init)]
@@ -346,12 +346,12 @@ extern_methods!(
             pattern: &NSString,
             options: NSRegularExpressionOptions,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSDataDetector {
+/// Methods declared on superclass `NSObject`.
+impl NSDataDetector {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -359,5 +359,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

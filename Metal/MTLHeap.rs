@@ -54,8 +54,8 @@ unsafe impl CopyingHelper for MTLHeapDescriptor {
 
 unsafe impl NSObjectProtocol for MTLHeapDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLHeapDescriptor {
+impl MTLHeapDescriptor {
+    extern_methods!(
         /// Requested size of the heap's backing memory.
         ///
         /// The size may be rounded up to GPU page granularity.
@@ -154,12 +154,12 @@ extern_methods!(
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub fn setType(&self, r#type: MTLHeapType);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLHeapDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLHeapDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -167,8 +167,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheap?language=objc)

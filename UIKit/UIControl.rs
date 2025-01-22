@@ -214,9 +214,9 @@ unsafe impl UIResponderStandardEditActions for UIControl {}
 ))]
 unsafe impl UITraitEnvironment for UIControl {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIControl {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIControl {
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
@@ -514,13 +514,13 @@ extern_methods!(
         #[unsafe(method(setSymbolAnimationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSymbolAnimationEnabled(&self, symbol_animation_enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIControl {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIControl {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -528,14 +528,14 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Implementing UIControl Menus
-    /// UIControl will only create a UIContextMenuInteraction if you've created a subclass of UIControl with a minimum viable delegate implementation. UIControl extends the contract of UIContextMenuInteractionDelegate for these methods, see each method for more detail.
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIControl {
+/// Implementing UIControl Menus
+/// UIControl will only create a UIContextMenuInteraction if you've created a subclass of UIControl with a minimum viable delegate implementation. UIControl extends the contract of UIContextMenuInteractionDelegate for these methods, see each method for more detail.
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIControl {
+    extern_methods!(
         #[cfg(all(
             feature = "UIContextMenuConfiguration",
             feature = "UIContextMenuInteraction",
@@ -619,8 +619,8 @@ extern_methods!(
             configuration: &UIContextMenuConfiguration,
             animator: &ProtocolObject<dyn UIContextMenuInteractionCommitAnimating>,
         );
-    }
-);
+    );
+}
 
 #[cfg(all(
     feature = "UIContextMenuInteraction",

@@ -88,8 +88,8 @@ unsafe impl NSObjectProtocol for NSTextCheckingResult {}
 #[cfg(feature = "NSObject")]
 unsafe impl NSSecureCoding for NSTextCheckingResult {}
 
-extern_methods!(
-    unsafe impl NSTextCheckingResult {
+impl NSTextCheckingResult {
+    extern_methods!(
         #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultType(&self) -> NSTextCheckingType;
@@ -98,12 +98,12 @@ extern_methods!(
         #[unsafe(method(range))]
         #[unsafe(method_family = none)]
         pub unsafe fn range(&self) -> NSRange;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSTextCheckingResult {
+/// Methods declared on superclass `NSObject`.
+impl NSTextCheckingResult {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -111,12 +111,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSTextCheckingResultOptional
-    unsafe impl NSTextCheckingResult {
+/// NSTextCheckingResultOptional.
+impl NSTextCheckingResult {
+    extern_methods!(
         #[cfg(feature = "NSOrthography")]
         #[unsafe(method(orthography))]
         #[unsafe(method_family = none)]
@@ -203,8 +203,8 @@ extern_methods!(
         pub unsafe fn addressComponents(
             &self,
         ) -> Option<Retained<NSDictionary<NSTextCheckingKey, NSString>>>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingnamekey?language=objc)
@@ -272,9 +272,9 @@ extern "C" {
     pub static NSTextCheckingFlightKey: &'static NSTextCheckingKey;
 }
 
-extern_methods!(
-    /// NSTextCheckingResultCreation
-    unsafe impl NSTextCheckingResult {
+/// NSTextCheckingResultCreation.
+impl NSTextCheckingResult {
+    extern_methods!(
         #[cfg(all(feature = "NSOrthography", feature = "NSRange"))]
         #[unsafe(method(orthographyCheckingResultWithRange:orthography:))]
         #[unsafe(method_family = none)]
@@ -402,5 +402,5 @@ extern_methods!(
             range: NSRange,
             components: &NSDictionary<NSTextCheckingKey, NSString>,
         ) -> Retained<NSTextCheckingResult>;
-    }
-);
+    );
+}

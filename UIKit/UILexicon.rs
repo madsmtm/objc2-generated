@@ -22,8 +22,8 @@ unsafe impl CopyingHelper for UILexiconEntry {
 
 unsafe impl NSObjectProtocol for UILexiconEntry {}
 
-extern_methods!(
-    unsafe impl UILexiconEntry {
+impl UILexiconEntry {
+    extern_methods!(
         #[unsafe(method(documentText))]
         #[unsafe(method_family = none)]
         pub unsafe fn documentText(&self) -> Retained<NSString>;
@@ -31,12 +31,12 @@ extern_methods!(
         #[unsafe(method(userInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInput(&self) -> Retained<NSString>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UILexiconEntry {
+/// Methods declared on superclass `NSObject`.
+impl UILexiconEntry {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -44,8 +44,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilexicon?language=objc)
@@ -63,17 +63,17 @@ unsafe impl CopyingHelper for UILexicon {
 
 unsafe impl NSObjectProtocol for UILexicon {}
 
-extern_methods!(
-    unsafe impl UILexicon {
+impl UILexicon {
+    extern_methods!(
         #[unsafe(method(entries))]
         #[unsafe(method_family = none)]
         pub unsafe fn entries(&self) -> Retained<NSArray<UILexiconEntry>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UILexicon {
+/// Methods declared on superclass `NSObject`.
+impl UILexicon {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -81,5 +81,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

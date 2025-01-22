@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UITextInputContext {}
 
-extern_methods!(
-    unsafe impl UITextInputContext {
+impl UITextInputContext {
+    extern_methods!(
         #[unsafe(method(isPencilInputExpected))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPencilInputExpected(&self) -> bool;
@@ -58,5 +58,5 @@ extern_methods!(
         #[unsafe(method(current))]
         #[unsafe(method_family = none)]
         pub unsafe fn current() -> Option<Retained<UITextInputContext>>;
-    }
-);
+    );
+}

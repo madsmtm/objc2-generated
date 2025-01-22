@@ -22,8 +22,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVContinuityDevice {}
 
-extern_methods!(
-    unsafe impl AVContinuityDevice {
+impl AVContinuityDevice {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -60,5 +60,5 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn audioSessionInputs(&self)
             -> Retained<NSArray<AVAudioSessionPortDescription>>;
-    }
-);
+    );
+}

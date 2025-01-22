@@ -65,8 +65,8 @@ unsafe impl CopyingHelper for MTLFunctionDescriptor {
 
 unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLFunctionDescriptor {
+impl MTLFunctionDescriptor {
+    extern_methods!(
         /// Create an autoreleased function descriptor
         #[unsafe(method(functionDescriptor))]
         #[unsafe(method_family = none)]
@@ -132,12 +132,12 @@ extern_methods!(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLFunctionDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLFunctionDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -145,8 +145,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 impl DefaultRetained for MTLFunctionDescriptor {
     #[inline]
@@ -170,13 +170,13 @@ unsafe impl CopyingHelper for MTLIntersectionFunctionDescriptor {
 
 unsafe impl NSObjectProtocol for MTLIntersectionFunctionDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLIntersectionFunctionDescriptor {}
-);
+impl MTLIntersectionFunctionDescriptor {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLIntersectionFunctionDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLIntersectionFunctionDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -184,5 +184,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

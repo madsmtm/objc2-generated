@@ -43,8 +43,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKAudioFilePlayer {}
 
-extern_methods!(
-    unsafe impl WKAudioFilePlayer {
+impl WKAudioFilePlayer {
+    extern_methods!(
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -103,17 +103,17 @@ extern_methods!(
         #[unsafe(method(currentTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKAudioFilePlayer {
+/// Methods declared on superclass `NSObject`.
+impl WKAudioFilePlayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// WatchKit corollary to AVFoundation AVQueuePlayer class
@@ -130,8 +130,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKAudioFileQueuePlayer {}
 
-extern_methods!(
-    unsafe impl WKAudioFileQueuePlayer {
+impl WKAudioFileQueuePlayer {
+    extern_methods!(
         #[cfg(feature = "WKAudioFilePlayerItem")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
         #[unsafe(method(queuePlayerWithItems:))]
@@ -167,12 +167,12 @@ extern_methods!(
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<WKAudioFilePlayerItem>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `WKAudioFilePlayer`
-    unsafe impl WKAudioFileQueuePlayer {
+/// Methods declared on superclass `WKAudioFilePlayer`.
+impl WKAudioFileQueuePlayer {
+    extern_methods!(
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -183,14 +183,14 @@ extern_methods!(
         #[unsafe(method(playerWithPlayerItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerWithPlayerItem(item: &WKAudioFilePlayerItem) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKAudioFileQueuePlayer {
+/// Methods declared on superclass `NSObject`.
+impl WKAudioFileQueuePlayer {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

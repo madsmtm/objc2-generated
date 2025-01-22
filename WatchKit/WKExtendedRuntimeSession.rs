@@ -148,8 +148,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for WKExtendedRuntimeSession {}
 
-extern_methods!(
-    unsafe impl WKExtendedRuntimeSession {
+impl WKExtendedRuntimeSession {
+    extern_methods!(
         /// This method will create a session, with the capabilities granted for the appropriate session type specified in the "Background Modes" capability in Xcode.
         #[unsafe(method(session))]
         #[unsafe(method_family = none)]
@@ -237,12 +237,12 @@ extern_methods!(
             r#type: WKHapticType,
             repeat_handler: Option<&block2::Block<dyn Fn(NonNull<WKHapticType>) -> NSTimeInterval>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl WKExtendedRuntimeSession {
+/// Methods declared on superclass `NSObject`.
+impl WKExtendedRuntimeSession {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -250,8 +250,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessiondelegate?language=objc)

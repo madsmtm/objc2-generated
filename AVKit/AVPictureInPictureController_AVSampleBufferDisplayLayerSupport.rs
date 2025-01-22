@@ -10,17 +10,17 @@ use objc2_core_media::*;
 
 use crate::*;
 
-extern_methods!(
-    #[cfg(feature = "AVPictureInPictureController")]
-    unsafe impl AVPictureInPictureController {
+#[cfg(feature = "AVPictureInPictureController")]
+impl AVPictureInPictureController {
+    extern_methods!(
         /// Informs Picture in Picture controller that it should request an updated playback state from its sampleBufferPlaybackDelegate.
         ///
         /// This should always be called whenever playback is paused or unpaused, or the underlying content duration changes.
         #[unsafe(method(invalidatePlaybackState))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidatePlaybackState(&self);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// A protocol for controlling playback from an AVSampleBufferDisplayLayer in Picture in Picture.
@@ -130,10 +130,10 @@ extern_protocol!(
     }
 );
 
-extern_methods!(
-    /// AVSampleBufferDisplayLayerSupport
-    #[cfg(feature = "AVPictureInPictureController")]
-    unsafe impl AVPictureInPictureControllerContentSource {
+/// AVSampleBufferDisplayLayerSupport.
+#[cfg(feature = "AVPictureInPictureController")]
+impl AVPictureInPictureControllerContentSource {
+    extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// Parameter `sampleBufferDisplayLayer`: The sample buffer display layer to be shown in Picture in Picture.
@@ -164,5 +164,5 @@ extern_methods!(
         pub unsafe fn sampleBufferPlaybackDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPictureInPictureSampleBufferPlaybackDelegate>>>;
-    }
-);
+    );
+}

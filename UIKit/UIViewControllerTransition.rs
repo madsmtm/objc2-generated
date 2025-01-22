@@ -14,8 +14,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIViewControllerTransition {}
 
-extern_methods!(
-    unsafe impl UIViewControllerTransition {
+impl UIViewControllerTransition {
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UIView",
@@ -76,8 +76,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uizoomtransitionsourceviewprovidercontext?language=objc)
@@ -88,8 +88,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for UIZoomTransitionSourceViewProviderContext {}
 
-extern_methods!(
-    unsafe impl UIZoomTransitionSourceViewProviderContext {
+impl UIZoomTransitionSourceViewProviderContext {
+    extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// View controller that is the source of the zoom transition.
         #[unsafe(method(sourceViewController))]
@@ -115,5 +115,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -18,9 +18,9 @@ extern_class!(
 #[cfg(feature = "UITab")]
 unsafe impl NSObjectProtocol for UISearchTab {}
 
-extern_methods!(
-    #[cfg(feature = "UITab")]
-    unsafe impl UISearchTab {
+#[cfg(feature = "UITab")]
+impl UISearchTab {
+    extern_methods!(
         #[cfg(all(
             feature = "UIResponder",
             feature = "UIViewController",
@@ -35,13 +35,13 @@ extern_methods!(
                 &block2::Block<dyn Fn(NonNull<UITab>) -> NonNull<UIViewController>>,
             >,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `UITab`
-    #[cfg(feature = "UITab")]
-    unsafe impl UISearchTab {
+/// Methods declared on superclass `UITab`.
+#[cfg(feature = "UITab")]
+impl UISearchTab {
+    extern_methods!(
         #[cfg(all(
             feature = "UIImage",
             feature = "UIResponder",
@@ -70,5 +70,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

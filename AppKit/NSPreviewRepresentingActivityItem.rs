@@ -51,8 +51,8 @@ unsafe impl NSObjectProtocol for NSPreviewRepresentingActivityItem {}
 
 unsafe impl NSPreviewRepresentableActivityItem for NSPreviewRepresentingActivityItem {}
 
-extern_methods!(
-    unsafe impl NSPreviewRepresentingActivityItem {
+impl NSPreviewRepresentingActivityItem {
+    extern_methods!(
         #[cfg(feature = "NSImage")]
         /// - Parameters:
         /// - item: The item to share
@@ -95,5 +95,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

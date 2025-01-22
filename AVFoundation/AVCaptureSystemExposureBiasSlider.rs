@@ -24,9 +24,9 @@ extern_class!(
 #[cfg(feature = "AVCaptureControl")]
 unsafe impl NSObjectProtocol for AVCaptureSystemExposureBiasSlider {}
 
-extern_methods!(
-    #[cfg(feature = "AVCaptureControl")]
-    unsafe impl AVCaptureSystemExposureBiasSlider {
+#[cfg(feature = "AVCaptureControl")]
+impl AVCaptureSystemExposureBiasSlider {
+    extern_methods!(
         #[cfg(feature = "AVCaptureDevice")]
         /// Initializes an `AVCaptureSystemExposureBiasSlider` for controlling `device`.
         ///
@@ -65,13 +65,13 @@ extern_methods!(
             device: &AVCaptureDevice,
             action: &block2::Block<dyn Fn(c_float)>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVCaptureControl`
-    #[cfg(feature = "AVCaptureControl")]
-    unsafe impl AVCaptureSystemExposureBiasSlider {
+/// Methods declared on superclass `AVCaptureControl`.
+#[cfg(feature = "AVCaptureControl")]
+impl AVCaptureSystemExposureBiasSlider {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,5 +79,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

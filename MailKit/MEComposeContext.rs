@@ -47,8 +47,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MEComposeContext {}
 
-extern_methods!(
-    unsafe impl MEComposeContext {
+impl MEComposeContext {
+    extern_methods!(
         /// A unique identifier for the compose context.
         #[unsafe(method(contextID))]
         #[unsafe(method_family = none)]
@@ -87,12 +87,12 @@ extern_methods!(
         #[unsafe(method(shouldSign))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldSign(&self) -> bool;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MEComposeContext {
+/// Methods declared on superclass `NSObject`.
+impl MEComposeContext {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -100,5 +100,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

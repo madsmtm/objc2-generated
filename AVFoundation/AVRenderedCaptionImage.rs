@@ -23,8 +23,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for AVRenderedCaptionImage {}
 
-extern_methods!(
-    unsafe impl AVRenderedCaptionImage {
+impl AVRenderedCaptionImage {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -50,5 +50,5 @@ extern_methods!(
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> CGPoint;
-    }
-);
+    );
+}

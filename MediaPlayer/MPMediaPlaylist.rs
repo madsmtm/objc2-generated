@@ -85,9 +85,9 @@ unsafe impl NSObjectProtocol for MPMediaPlaylist {}
 #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
 unsafe impl NSSecureCoding for MPMediaPlaylist {}
 
-extern_methods!(
-    #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
-    unsafe impl MPMediaPlaylist {
+#[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
+impl MPMediaPlaylist {
+    extern_methods!(
         #[unsafe(method(persistentID))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
@@ -134,13 +134,13 @@ extern_methods!(
             media_items: &NSArray<MPMediaItem>,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `MPMediaItemCollection`
-    #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
-    unsafe impl MPMediaPlaylist {
+/// Methods declared on superclass `MPMediaItemCollection`.
+#[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
+impl MPMediaPlaylist {
+    extern_methods!(
         #[cfg(feature = "MPMediaItem")]
         #[unsafe(method(initWithItems:))]
         #[unsafe(method_family = init)]
@@ -148,13 +148,13 @@ extern_methods!(
             this: Allocated<Self>,
             items: &NSArray<MPMediaItem>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
-    unsafe impl MPMediaPlaylist {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
+impl MPMediaPlaylist {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -162,8 +162,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistcreationmetadata?language=objc)
@@ -174,8 +174,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for MPMediaPlaylistCreationMetadata {}
 
-extern_methods!(
-    unsafe impl MPMediaPlaylistCreationMetadata {
+impl MPMediaPlaylistCreationMetadata {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -211,5 +211,5 @@ extern_methods!(
         #[unsafe(method(setDescriptionText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDescriptionText(&self, description_text: &NSString);
-    }
-);
+    );
+}

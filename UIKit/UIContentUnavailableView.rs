@@ -77,9 +77,9 @@ unsafe impl UIResponderStandardEditActions for UIContentUnavailableView {}
 ))]
 unsafe impl UITraitEnvironment for UIContentUnavailableView {}
 
-extern_methods!(
-    #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-    unsafe impl UIContentUnavailableView {
+#[cfg(all(feature = "UIResponder", feature = "UIView"))]
+impl UIContentUnavailableView {
+    extern_methods!(
         #[cfg(feature = "UIContentUnavailableConfiguration")]
         #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
@@ -126,5 +126,5 @@ extern_methods!(
         #[unsafe(method(setScrollEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollEnabled(&self, scroll_enabled: bool);
-    }
-);
+    );
+}

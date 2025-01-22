@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for PHAdjustmentData {}
 
-extern_methods!(
-    unsafe impl PHAdjustmentData {
+impl PHAdjustmentData {
+    extern_methods!(
         #[unsafe(method(initWithFormatIdentifier:formatVersion:data:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFormatIdentifier_formatVersion_data(
@@ -37,12 +37,12 @@ extern_methods!(
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSData>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl PHAdjustmentData {
+/// Methods declared on superclass `NSObject`.
+impl PHAdjustmentData {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -50,5 +50,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

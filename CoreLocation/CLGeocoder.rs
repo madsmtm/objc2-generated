@@ -24,8 +24,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CLGeocoder {}
 
-extern_methods!(
-    unsafe impl CLGeocoder {
+impl CLGeocoder {
+    extern_methods!(
         #[unsafe(method(isGeocoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn isGeocoding(&self) -> bool;
@@ -92,12 +92,12 @@ extern_methods!(
         #[unsafe(method(cancelGeocode))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelGeocode(&self);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CLGeocoder {
+/// Methods declared on superclass `NSObject`.
+impl CLGeocoder {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -105,12 +105,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// ContactsAdditions
-    unsafe impl CLGeocoder {
+/// ContactsAdditions.
+impl CLGeocoder {
+    extern_methods!(
         #[cfg(all(
             feature = "CLPlacemark",
             feature = "block2",
@@ -139,5 +139,5 @@ extern_methods!(
             locale: Option<&NSLocale>,
             completion_handler: CLGeocodeCompletionHandler,
         );
-    }
-);
+    );
+}

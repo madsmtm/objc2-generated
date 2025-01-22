@@ -78,9 +78,9 @@ unsafe impl NSObjectProtocol for NSSplitView {}
 ))]
 unsafe impl NSUserInterfaceItemIdentification for NSSplitView {}
 
-extern_methods!(
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSplitView {
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSSplitView {
+    extern_methods!(
         #[unsafe(method(isVertical))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVertical(&self) -> bool;
@@ -184,13 +184,13 @@ extern_methods!(
             priority: NSLayoutPriority,
             subview_index: NSInteger,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSView`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSplitView {
+/// Methods declared on superclass `NSView`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSSplitView {
+    extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
@@ -201,33 +201,33 @@ extern_methods!(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSResponder`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSplitView {
+/// Methods declared on superclass `NSResponder`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSSplitView {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSplitView {
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSSplitView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSSplitViewArrangedSubviews
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSplitView {
+/// NSSplitViewArrangedSubviews.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSSplitView {
+    extern_methods!(
         /// Whether or not all subviews will be added as arranged views. When NO, a subview must be explicitly added as an arrangedSubview if the view should be arranged as a split pane. When YES,
         /// `-arrangedSubviews`always be identical to
         /// `-subviews.`Defaults to YES.
@@ -272,8 +272,8 @@ extern_methods!(
         #[unsafe(method(removeArrangedSubview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewdelegate?language=objc)
@@ -419,10 +419,10 @@ extern "C" {
     pub static NSSplitViewDidResizeSubviewsNotification: &'static NSNotificationName;
 }
 
-extern_methods!(
-    /// NSDeprecated
-    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-    unsafe impl NSSplitView {
+/// NSDeprecated.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSSplitView {
+    extern_methods!(
         #[deprecated]
         #[unsafe(method(setIsPaneSplitter:))]
         #[unsafe(method_family = none)]
@@ -432,5 +432,5 @@ extern_methods!(
         #[unsafe(method(isPaneSplitter))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPaneSplitter(&self) -> bool;
-    }
-);
+    );
+}

@@ -65,13 +65,13 @@ unsafe impl UINSIntegerTraitDefinition for UITraitListEnvironment {}
 #[cfg(feature = "UITrait")]
 unsafe impl UITraitDefinition for UITraitListEnvironment {}
 
-extern_methods!(
-    unsafe impl UITraitListEnvironment {}
-);
+impl UITraitListEnvironment {
+    extern_methods!();
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl UITraitListEnvironment {
+/// Methods declared on superclass `NSObject`.
+impl UITraitListEnvironment {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -79,5 +79,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}

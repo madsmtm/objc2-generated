@@ -86,8 +86,8 @@ unsafe impl CopyingHelper for MTLStencilDescriptor {
 
 unsafe impl NSObjectProtocol for MTLStencilDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLStencilDescriptor {
+impl MTLStencilDescriptor {
+    extern_methods!(
         #[unsafe(method(stencilCompareFunction))]
         #[unsafe(method_family = none)]
         pub fn stencilCompareFunction(&self) -> MTLCompareFunction;
@@ -147,12 +147,12 @@ extern_methods!(
         #[unsafe(method(setWriteMask:))]
         #[unsafe(method_family = none)]
         pub fn setWriteMask(&self, write_mask: u32);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLStencilDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLStencilDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -160,8 +160,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthstencildescriptor?language=objc)
@@ -178,8 +178,8 @@ unsafe impl CopyingHelper for MTLDepthStencilDescriptor {
 
 unsafe impl NSObjectProtocol for MTLDepthStencilDescriptor {}
 
-extern_methods!(
-    unsafe impl MTLDepthStencilDescriptor {
+impl MTLDepthStencilDescriptor {
+    extern_methods!(
         #[unsafe(method(depthCompareFunction))]
         #[unsafe(method_family = none)]
         pub fn depthCompareFunction(&self) -> MTLCompareFunction;
@@ -225,12 +225,12 @@ extern_methods!(
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub fn setLabel(&self, label: Option<&NSString>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl MTLDepthStencilDescriptor {
+/// Methods declared on superclass `NSObject`.
+impl MTLDepthStencilDescriptor {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -238,8 +238,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthstencilstate?language=objc)

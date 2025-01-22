@@ -24,8 +24,8 @@ unsafe impl Sync for NSURLSession {}
 
 unsafe impl NSObjectProtocol for NSURLSession {}
 
-extern_methods!(
-    unsafe impl NSURLSession {
+impl NSURLSession {
+    extern_methods!(
         #[unsafe(method(sharedSession))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedSession() -> Retained<NSURLSession>;
@@ -245,12 +245,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSURLSessionAsynchronousConvenience
-    unsafe impl NSURLSession {
+/// NSURLSessionAsynchronousConvenience.
+impl NSURLSession {
+    extern_methods!(
         #[cfg(all(
             feature = "NSData",
             feature = "NSError",
@@ -393,8 +393,8 @@ extern_methods!(
                 dyn Fn(*mut NSURL, *mut NSURLResponse, *mut NSError),
             >,
         ) -> Retained<NSURLSessionDownloadTask>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskstate?language=objc)
 // NS_ENUM
@@ -444,8 +444,8 @@ unsafe impl NSObjectProtocol for NSURLSessionTask {}
 #[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionTask {}
 
-extern_methods!(
-    unsafe impl NSURLSessionTask {
+impl NSURLSessionTask {
+    extern_methods!(
         #[unsafe(method(taskIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn taskIdentifier(&self) -> NSUInteger;
@@ -594,8 +594,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskprioritydefault?language=objc)
@@ -636,8 +636,8 @@ unsafe impl NSObjectProtocol for NSURLSessionDataTask {}
 #[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionDataTask {}
 
-extern_methods!(
-    unsafe impl NSURLSessionDataTask {
+impl NSURLSessionDataTask {
+    extern_methods!(
         #[deprecated = "Please use -[NSURLSession dataTaskWithRequest:] or other NSURLSession methods to create instances"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -647,8 +647,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionuploadtask?language=objc)
@@ -674,8 +674,8 @@ unsafe impl NSObjectProtocol for NSURLSessionUploadTask {}
 #[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionUploadTask {}
 
-extern_methods!(
-    unsafe impl NSURLSessionUploadTask {
+impl NSURLSessionUploadTask {
+    extern_methods!(
         #[deprecated = "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -699,8 +699,8 @@ extern_methods!(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSData)>,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondownloadtask?language=objc)
@@ -726,8 +726,8 @@ unsafe impl NSObjectProtocol for NSURLSessionDownloadTask {}
 #[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionDownloadTask {}
 
-extern_methods!(
-    unsafe impl NSURLSessionDownloadTask {
+impl NSURLSessionDownloadTask {
+    extern_methods!(
         #[cfg(all(feature = "NSData", feature = "block2"))]
         #[unsafe(method(cancelByProducingResumeData:))]
         #[unsafe(method_family = none)]
@@ -745,8 +745,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionstreamtask?language=objc)
@@ -772,8 +772,8 @@ unsafe impl NSObjectProtocol for NSURLSessionStreamTask {}
 #[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionStreamTask {}
 
-extern_methods!(
-    unsafe impl NSURLSessionStreamTask {
+impl NSURLSessionStreamTask {
+    extern_methods!(
         #[cfg(all(
             feature = "NSData",
             feature = "NSDate",
@@ -835,8 +835,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketmessagetype?language=objc)
 // NS_ENUM
@@ -871,8 +871,8 @@ unsafe impl Sync for NSURLSessionWebSocketMessage {}
 
 unsafe impl NSObjectProtocol for NSURLSessionWebSocketMessage {}
 
-extern_methods!(
-    unsafe impl NSURLSessionWebSocketMessage {
+impl NSURLSessionWebSocketMessage {
+    extern_methods!(
         #[cfg(feature = "NSData")]
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
@@ -904,8 +904,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketclosecode?language=objc)
 // NS_ENUM
@@ -973,8 +973,8 @@ unsafe impl NSObjectProtocol for NSURLSessionWebSocketTask {}
 #[cfg(feature = "NSProgress")]
 unsafe impl NSProgressReporting for NSURLSessionWebSocketTask {}
 
-extern_methods!(
-    unsafe impl NSURLSessionWebSocketTask {
+impl NSURLSessionWebSocketTask {
+    extern_methods!(
         #[cfg(all(feature = "NSError", feature = "block2"))]
         #[unsafe(method(sendMessage:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1036,8 +1036,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// The NSURLSessionMultipathServiceType enum defines constants that
 /// can be used to specify the multipath service type to associate an NSURLSession.  The
@@ -1104,8 +1104,8 @@ unsafe impl CopyingHelper for NSURLSessionConfiguration {
 
 unsafe impl NSObjectProtocol for NSURLSessionConfiguration {}
 
-extern_methods!(
-    unsafe impl NSURLSessionConfiguration {
+impl NSURLSessionConfiguration {
+    extern_methods!(
         #[unsafe(method(defaultSessionConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultSessionConfiguration() -> Retained<NSURLSessionConfiguration>;
@@ -1414,8 +1414,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondelayedrequestdisposition?language=objc)
 // NS_ENUM
@@ -1850,9 +1850,9 @@ extern "C" {
     pub static NSURLSessionUploadTaskResumeData: &'static NSString;
 }
 
-extern_methods!(
-    /// NSURLSessionDeprecated
-    unsafe impl NSURLSessionConfiguration {
+/// NSURLSessionDeprecated.
+impl NSURLSessionConfiguration {
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated]
         #[unsafe(method(backgroundSessionConfiguration:))]
@@ -1860,8 +1860,8 @@ extern_methods!(
         pub unsafe fn backgroundSessionConfiguration(
             identifier: &NSString,
         ) -> Retained<NSURLSessionConfiguration>;
-    }
-);
+    );
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskmetricsresourcefetchtype?language=objc)
 // NS_ENUM
@@ -1926,8 +1926,8 @@ unsafe impl Sync for NSURLSessionTaskTransactionMetrics {}
 
 unsafe impl NSObjectProtocol for NSURLSessionTaskTransactionMetrics {}
 
-extern_methods!(
-    unsafe impl NSURLSessionTaskTransactionMetrics {
+impl NSURLSessionTaskTransactionMetrics {
+    extern_methods!(
         #[cfg(feature = "NSURLRequest")]
         #[unsafe(method(request))]
         #[unsafe(method_family = none)]
@@ -2095,8 +2095,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskmetrics?language=objc)
@@ -2111,8 +2111,8 @@ unsafe impl Sync for NSURLSessionTaskMetrics {}
 
 unsafe impl NSObjectProtocol for NSURLSessionTaskMetrics {}
 
-extern_methods!(
-    unsafe impl NSURLSessionTaskMetrics {
+impl NSURLSessionTaskMetrics {
+    extern_methods!(
         #[cfg(feature = "NSArray")]
         #[unsafe(method(transactionMetrics))]
         #[unsafe(method_family = none)]
@@ -2138,5 +2138,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

@@ -33,9 +33,9 @@ unsafe impl CopyingHelper for VZGenericPlatformConfiguration {
 #[cfg(feature = "VZPlatformConfiguration")]
 unsafe impl NSObjectProtocol for VZGenericPlatformConfiguration {}
 
-extern_methods!(
-    #[cfg(feature = "VZPlatformConfiguration")]
-    unsafe impl VZGenericPlatformConfiguration {
+#[cfg(feature = "VZPlatformConfiguration")]
+impl VZGenericPlatformConfiguration {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -85,15 +85,15 @@ extern_methods!(
         #[unsafe(method(setNestedVirtualizationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNestedVirtualizationEnabled(&self, nested_virtualization_enabled: bool);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `VZPlatformConfiguration`
-    #[cfg(feature = "VZPlatformConfiguration")]
-    unsafe impl VZGenericPlatformConfiguration {
+/// Methods declared on superclass `VZPlatformConfiguration`.
+#[cfg(feature = "VZPlatformConfiguration")]
+impl VZGenericPlatformConfiguration {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

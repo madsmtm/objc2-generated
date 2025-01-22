@@ -21,8 +21,8 @@ unsafe impl Sync for MLComputePlanCost {}
 
 unsafe impl NSObjectProtocol for MLComputePlanCost {}
 
-extern_methods!(
-    unsafe impl MLComputePlanCost {
+impl MLComputePlanCost {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -35,5 +35,5 @@ extern_methods!(
         #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_double;
-    }
-);
+    );
+}

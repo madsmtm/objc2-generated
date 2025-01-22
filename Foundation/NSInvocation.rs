@@ -15,8 +15,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for NSInvocation {}
 
-extern_methods!(
-    unsafe impl NSInvocation {
+impl NSInvocation {
+    extern_methods!(
         #[cfg(feature = "NSMethodSignature")]
         #[unsafe(method(invocationWithMethodSignature:))]
         #[unsafe(method_family = none)]
@@ -90,12 +90,12 @@ extern_methods!(
         #[unsafe(method(invokeUsingIMP:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invokeUsingIMP(&self, imp: Option<Imp>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSInvocation {
+/// Methods declared on superclass `NSObject`.
+impl NSInvocation {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -103,5 +103,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

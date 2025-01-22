@@ -54,8 +54,8 @@ unsafe impl NSObjectProtocol for SKAttribute {}
 
 unsafe impl NSSecureCoding for SKAttribute {}
 
-extern_methods!(
-    unsafe impl SKAttribute {
+impl SKAttribute {
+    extern_methods!(
         #[unsafe(method(attributeWithName:type:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeWithName_type(
@@ -78,12 +78,12 @@ extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> SKAttributeType;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKAttribute {
+/// Methods declared on superclass `NSObject`.
+impl SKAttribute {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -91,8 +91,8 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributevalue?language=objc)
@@ -107,8 +107,8 @@ unsafe impl NSObjectProtocol for SKAttributeValue {}
 
 unsafe impl NSSecureCoding for SKAttributeValue {}
 
-extern_methods!(
-    unsafe impl SKAttributeValue {
+impl SKAttributeValue {
+    extern_methods!(
         #[unsafe(method(valueWithFloat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithFloat(value: c_float) -> Retained<Self>;
@@ -125,14 +125,14 @@ extern_methods!(
         #[unsafe(method(setFloatValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFloatValue(&self, float_value: c_float);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl SKAttributeValue {
+/// Methods declared on superclass `NSObject`.
+impl SKAttributeValue {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

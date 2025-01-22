@@ -41,9 +41,9 @@ unsafe impl MutableCopyingHelper for AVComposition {
 #[cfg(feature = "AVAsset")]
 unsafe impl NSObjectProtocol for AVComposition {}
 
-extern_methods!(
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVComposition {
+#[cfg(feature = "AVAsset")]
+impl AVComposition {
+    extern_methods!(
         #[cfg(all(feature = "AVAssetTrack", feature = "AVCompositionTrack"))]
         /// Provides the array of AVCompositionTracks contained by the composition.
         #[unsafe(method(tracks))]
@@ -65,13 +65,13 @@ extern_methods!(
         pub unsafe fn URLAssetInitializationOptions(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAsset`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVComposition {
+/// Methods declared on superclass `AVAsset`.
+#[cfg(feature = "AVAsset")]
+impl AVComposition {
+    extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
         /// Parameter `URL`: An instance of NSURL that references a media resource.
@@ -82,13 +82,13 @@ extern_methods!(
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVComposition {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAsset")]
+impl AVComposition {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -96,13 +96,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVCompositionTrackInspection
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVComposition {
+/// AVCompositionTrackInspection.
+#[cfg(feature = "AVAsset")]
+impl AVComposition {
+    extern_methods!(
         #[cfg(all(
             feature = "AVAssetTrack",
             feature = "AVCompositionTrack",
@@ -226,8 +226,8 @@ extern_methods!(
                 dyn Fn(*mut NSArray<AVCompositionTrack>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecomposition?language=objc)
@@ -259,9 +259,9 @@ unsafe impl MutableCopyingHelper for AVMutableComposition {
 #[cfg(feature = "AVAsset")]
 unsafe impl NSObjectProtocol for AVMutableComposition {}
 
-extern_methods!(
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableComposition {
+#[cfg(feature = "AVAsset")]
+impl AVMutableComposition {
+    extern_methods!(
         #[cfg(all(feature = "AVAssetTrack", feature = "AVCompositionTrack"))]
         /// Provides the array of AVMutableCompositionTracks contained by the composition.
         #[unsafe(method(tracks))]
@@ -297,13 +297,13 @@ extern_methods!(
         pub unsafe fn compositionWithURLAssetInitializationOptions(
             url_asset_initialization_options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `AVAsset`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableComposition {
+/// Methods declared on superclass `AVAsset`.
+#[cfg(feature = "AVAsset")]
+impl AVMutableComposition {
+    extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
         /// Parameter `URL`: An instance of NSURL that references a media resource.
@@ -314,13 +314,13 @@ extern_methods!(
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableComposition {
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "AVAsset")]
+impl AVMutableComposition {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -328,13 +328,13 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableCompositionCompositionLevelEditing
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableComposition {
+/// AVMutableCompositionCompositionLevelEditing.
+#[cfg(feature = "AVAsset")]
+impl AVMutableComposition {
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Inserts all the tracks of a timeRange of an asset into a composition.
         ///
@@ -423,13 +423,13 @@ extern_methods!(
         #[unsafe(method(scaleTimeRange:toDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleTimeRange_toDuration(&self, time_range: CMTimeRange, duration: CMTime);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableCompositionTrackLevelEditing
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableComposition {
+/// AVMutableCompositionTrackLevelEditing.
+#[cfg(feature = "AVAsset")]
+impl AVMutableComposition {
+    extern_methods!(
         #[cfg(all(
             feature = "AVAssetTrack",
             feature = "AVCompositionTrack",
@@ -485,13 +485,13 @@ extern_methods!(
             &self,
             track: &AVAssetTrack,
         ) -> Option<Retained<AVMutableCompositionTrack>>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// AVMutableCompositionTrackInspection
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVMutableComposition {
+/// AVMutableCompositionTrackInspection.
+#[cfg(feature = "AVAsset")]
+impl AVMutableComposition {
+    extern_methods!(
         #[cfg(all(
             feature = "AVAssetTrack",
             feature = "AVCompositionTrack",
@@ -617,16 +617,16 @@ extern_methods!(
                 dyn Fn(*mut NSArray<AVMutableCompositionTrack>, *mut NSError),
             >,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// SynchronousAssetInterface
-    /// Redeclarations of async-only AVAsset interfaces to allow synchronous usage in the synchronous subclass.
-    ///
-    /// See AVAsset's interface for more information about these interfaces.
-    #[cfg(feature = "AVAsset")]
-    unsafe impl AVComposition {
+/// SynchronousAssetInterface.
+/// Redeclarations of async-only AVAsset interfaces to allow synchronous usage in the synchronous subclass.
+///
+/// See AVAsset's interface for more information about these interfaces.
+#[cfg(feature = "AVAsset")]
+impl AVComposition {
+    extern_methods!(
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
         #[unsafe(method(metadataForFormat:))]
         #[unsafe(method_family = none)]
@@ -664,5 +664,5 @@ extern_methods!(
         #[unsafe(method(unusedTrackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn unusedTrackID(&self) -> CMPersistentTrackID;
-    }
-);
+    );
+}

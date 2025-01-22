@@ -25,8 +25,8 @@ unsafe impl CopyingHelper for HMAccessorySetupResult {
 
 unsafe impl NSObjectProtocol for HMAccessorySetupResult {}
 
-extern_methods!(
-    unsafe impl HMAccessorySetupResult {
+impl HMAccessorySetupResult {
+    extern_methods!(
         /// The -[HMHome uniqueIdentifier] that the accessories were added to
         #[unsafe(method(homeUniqueIdentifier))]
         #[unsafe(method_family = none)]
@@ -46,5 +46,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}

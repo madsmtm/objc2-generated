@@ -116,8 +116,8 @@ unsafe impl NSMenuItemValidation for NSFontManager {}
 
 unsafe impl NSObjectProtocol for NSFontManager {}
 
-extern_methods!(
-    unsafe impl NSFontManager {
+impl NSFontManager {
+    extern_methods!(
         #[unsafe(method(setFontPanelFactory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontPanelFactory(factory_id: Option<&AnyClass>, mtm: MainThreadMarker);
@@ -387,12 +387,12 @@ extern_methods!(
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl NSFontManager {
+/// Methods declared on superclass `NSObject`.
+impl NSFontManager {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -400,12 +400,12 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// NSFontManagerMenuActionMethods
-    unsafe impl NSFontManager {
+/// NSFontManagerMenuActionMethods.
+impl NSFontManager {
+    extern_methods!(
         #[unsafe(method(fontNamed:hasTraits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontNamed_hasTraits(
@@ -444,5 +444,5 @@ extern_methods!(
         #[unsafe(method(orderFrontStylesPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontStylesPanel(&self, sender: Option<&AnyObject>);
-    }
-);
+    );
+}

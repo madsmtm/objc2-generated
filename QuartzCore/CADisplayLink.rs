@@ -20,8 +20,8 @@ extern_class!(
 
 unsafe impl NSObjectProtocol for CADisplayLink {}
 
-extern_methods!(
-    unsafe impl CADisplayLink {
+impl CADisplayLink {
+    extern_methods!(
         #[unsafe(method(displayLinkWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(
@@ -100,12 +100,12 @@ extern_methods!(
             &self,
             preferred_frame_rate_range: CAFrameRateRange,
         );
-    }
-);
+    );
+}
 
-extern_methods!(
-    /// Methods declared on superclass `NSObject`
-    unsafe impl CADisplayLink {
+/// Methods declared on superclass `NSObject`.
+impl CADisplayLink {
+    extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -113,5 +113,5 @@ extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    }
-);
+    );
+}
