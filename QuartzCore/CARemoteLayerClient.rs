@@ -22,8 +22,10 @@ impl CARemoteLayerClient {
         #[cfg(feature = "libc")]
         #[unsafe(method(initWithServerPort:))]
         #[unsafe(method_family = init)]
-        pub fn initWithServerPort(this: Allocated<Self>, port: libc::mach_port_t)
-            -> Retained<Self>;
+        pub fn init_with_server_port(
+            this: Allocated<Self>,
+            port: libc::mach_port_t,
+        ) -> Retained<Self>;
 
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
@@ -31,7 +33,7 @@ impl CARemoteLayerClient {
 
         #[unsafe(method(clientId))]
         #[unsafe(method_family = none)]
-        pub fn clientId(&self) -> u32;
+        pub fn client_id(&self) -> u32;
 
         #[cfg(feature = "CALayer")]
         #[unsafe(method(layer))]
@@ -42,7 +44,7 @@ impl CARemoteLayerClient {
         /// Setter for [`layer`][Self::layer].
         #[unsafe(method(setLayer:))]
         #[unsafe(method_family = none)]
-        pub fn setLayer(&self, layer: Option<&CALayer>);
+        pub fn set_layer(&self, layer: Option<&CALayer>);
     );
 }
 

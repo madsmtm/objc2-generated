@@ -207,7 +207,7 @@ impl MTLType {
         #[cfg(feature = "MTLDataType")]
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
-        pub fn dataType(&self) -> MTLDataType;
+        pub fn data_type(&self) -> MTLDataType;
     );
 }
 
@@ -255,34 +255,34 @@ impl MTLStructMember {
         #[cfg(feature = "MTLDataType")]
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
-        pub fn dataType(&self) -> MTLDataType;
+        pub fn data_type(&self) -> MTLDataType;
 
         #[unsafe(method(structType))]
         #[unsafe(method_family = none)]
-        pub fn structType(&self) -> Option<Retained<MTLStructType>>;
+        pub fn struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(arrayType))]
         #[unsafe(method_family = none)]
-        pub fn arrayType(&self) -> Option<Retained<MTLArrayType>>;
+        pub fn array_type(&self) -> Option<Retained<MTLArrayType>>;
 
         #[unsafe(method(textureReferenceType))]
         #[unsafe(method_family = none)]
-        pub fn textureReferenceType(&self) -> Option<Retained<MTLTextureReferenceType>>;
+        pub fn texture_reference_type(&self) -> Option<Retained<MTLTextureReferenceType>>;
 
         #[unsafe(method(pointerType))]
         #[unsafe(method_family = none)]
-        pub fn pointerType(&self) -> Option<Retained<MTLPointerType>>;
+        pub fn pointer_type(&self) -> Option<Retained<MTLPointerType>>;
 
         /// Provides a description of the underlying tensor type when this struct member holds a tensor.
         ///
         /// - Returns: A description of the tensor type that this struct member holds, or `nil` if this struct member doesn't hold a tensor.
         #[unsafe(method(tensorReferenceType))]
         #[unsafe(method_family = none)]
-        pub fn tensorReferenceType(&self) -> Option<Retained<MTLTensorReferenceType>>;
+        pub fn tensor_reference_type(&self) -> Option<Retained<MTLTensorReferenceType>>;
 
         #[unsafe(method(argumentIndex))]
         #[unsafe(method_family = none)]
-        pub fn argumentIndex(&self) -> NSUInteger;
+        pub fn argument_index(&self) -> NSUInteger;
     );
 }
 
@@ -325,7 +325,7 @@ impl MTLStructType {
 
         #[unsafe(method(memberByName:))]
         #[unsafe(method_family = none)]
-        pub fn memberByName(&self, name: &NSString) -> Option<Retained<MTLStructMember>>;
+        pub fn member_by_name(&self, name: &NSString) -> Option<Retained<MTLStructMember>>;
     );
 }
 
@@ -365,11 +365,11 @@ impl MTLArrayType {
         #[cfg(feature = "MTLDataType")]
         #[unsafe(method(elementType))]
         #[unsafe(method_family = none)]
-        pub fn elementType(&self) -> MTLDataType;
+        pub fn element_type(&self) -> MTLDataType;
 
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
-        pub fn arrayLength(&self) -> NSUInteger;
+        pub fn array_length(&self) -> NSUInteger;
 
         #[unsafe(method(stride))]
         #[unsafe(method_family = none)]
@@ -377,30 +377,30 @@ impl MTLArrayType {
 
         #[unsafe(method(argumentIndexStride))]
         #[unsafe(method_family = none)]
-        pub fn argumentIndexStride(&self) -> NSUInteger;
+        pub fn argument_index_stride(&self) -> NSUInteger;
 
         #[unsafe(method(elementStructType))]
         #[unsafe(method_family = none)]
-        pub fn elementStructType(&self) -> Option<Retained<MTLStructType>>;
+        pub fn element_struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(elementArrayType))]
         #[unsafe(method_family = none)]
-        pub fn elementArrayType(&self) -> Option<Retained<MTLArrayType>>;
+        pub fn element_array_type(&self) -> Option<Retained<MTLArrayType>>;
 
         #[unsafe(method(elementTextureReferenceType))]
         #[unsafe(method_family = none)]
-        pub fn elementTextureReferenceType(&self) -> Option<Retained<MTLTextureReferenceType>>;
+        pub fn element_texture_reference_type(&self) -> Option<Retained<MTLTextureReferenceType>>;
 
         #[unsafe(method(elementPointerType))]
         #[unsafe(method_family = none)]
-        pub fn elementPointerType(&self) -> Option<Retained<MTLPointerType>>;
+        pub fn element_pointer_type(&self) -> Option<Retained<MTLPointerType>>;
 
         /// Provides a description of the underlying tensor type when this array holds tensors as its elements.
         ///
         /// - Returns: A description of the tensor type that this array holds, or `nil` if this struct member doesn't hold a tensor.
         #[unsafe(method(elementTensorReferenceType))]
         #[unsafe(method_family = none)]
-        pub fn elementTensorReferenceType(&self) -> Option<Retained<MTLTensorReferenceType>>;
+        pub fn element_tensor_reference_type(&self) -> Option<Retained<MTLTensorReferenceType>>;
     );
 }
 
@@ -440,7 +440,7 @@ impl MTLPointerType {
         #[cfg(feature = "MTLDataType")]
         #[unsafe(method(elementType))]
         #[unsafe(method_family = none)]
-        pub fn elementType(&self) -> MTLDataType;
+        pub fn element_type(&self) -> MTLDataType;
 
         #[unsafe(method(access))]
         #[unsafe(method_family = none)]
@@ -452,19 +452,19 @@ impl MTLPointerType {
 
         #[unsafe(method(dataSize))]
         #[unsafe(method_family = none)]
-        pub fn dataSize(&self) -> NSUInteger;
+        pub fn data_size(&self) -> NSUInteger;
 
         #[unsafe(method(elementIsArgumentBuffer))]
         #[unsafe(method_family = none)]
-        pub fn elementIsArgumentBuffer(&self) -> bool;
+        pub fn element_is_argument_buffer(&self) -> bool;
 
         #[unsafe(method(elementStructType))]
         #[unsafe(method_family = none)]
-        pub fn elementStructType(&self) -> Option<Retained<MTLStructType>>;
+        pub fn element_struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(elementArrayType))]
         #[unsafe(method_family = none)]
-        pub fn elementArrayType(&self) -> Option<Retained<MTLArrayType>>;
+        pub fn element_array_type(&self) -> Option<Retained<MTLArrayType>>;
     );
 }
 
@@ -504,12 +504,12 @@ impl MTLTextureReferenceType {
         #[cfg(feature = "MTLDataType")]
         #[unsafe(method(textureDataType))]
         #[unsafe(method_family = none)]
-        pub fn textureDataType(&self) -> MTLDataType;
+        pub fn texture_data_type(&self) -> MTLDataType;
 
         #[cfg(feature = "MTLTexture")]
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        pub fn textureType(&self) -> MTLTextureType;
+        pub fn texture_type(&self) -> MTLTextureType;
 
         #[unsafe(method(access))]
         #[unsafe(method_family = none)]
@@ -517,7 +517,7 @@ impl MTLTextureReferenceType {
 
         #[unsafe(method(isDepthTexture))]
         #[unsafe(method_family = none)]
-        pub fn isDepthTexture(&self) -> bool;
+        pub fn is_depth_texture(&self) -> bool;
     );
 }
 
@@ -560,13 +560,13 @@ impl MTLTensorReferenceType {
         /// The underlying data format of the tensor.
         #[unsafe(method(tensorDataType))]
         #[unsafe(method_family = none)]
-        pub fn tensorDataType(&self) -> MTLTensorDataType;
+        pub fn tensor_data_type(&self) -> MTLTensorDataType;
 
         #[cfg(feature = "MTLDataType")]
         /// The data format you use for indexing into the tensor.
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
-        pub fn indexType(&self) -> MTLDataType;
+        pub fn index_type(&self) -> MTLDataType;
 
         #[cfg(feature = "MTLTensor")]
         /// The array of sizes, in elements, one for each dimension of this tensor.
@@ -646,62 +646,62 @@ impl MTLArgument {
         #[deprecated]
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
-        pub fn isActive(&self) -> bool;
+        pub fn is_active(&self) -> bool;
 
         #[deprecated]
         #[unsafe(method(bufferAlignment))]
         #[unsafe(method_family = none)]
-        pub fn bufferAlignment(&self) -> NSUInteger;
+        pub fn buffer_alignment(&self) -> NSUInteger;
 
         #[deprecated]
         #[unsafe(method(bufferDataSize))]
         #[unsafe(method_family = none)]
-        pub fn bufferDataSize(&self) -> NSUInteger;
+        pub fn buffer_data_size(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLDataType")]
         #[deprecated]
         #[unsafe(method(bufferDataType))]
         #[unsafe(method_family = none)]
-        pub fn bufferDataType(&self) -> MTLDataType;
+        pub fn buffer_data_type(&self) -> MTLDataType;
 
         #[deprecated]
         #[unsafe(method(bufferStructType))]
         #[unsafe(method_family = none)]
-        pub fn bufferStructType(&self) -> Option<Retained<MTLStructType>>;
+        pub fn buffer_struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(bufferPointerType))]
         #[unsafe(method_family = none)]
-        pub fn bufferPointerType(&self) -> Option<Retained<MTLPointerType>>;
+        pub fn buffer_pointer_type(&self) -> Option<Retained<MTLPointerType>>;
 
         #[deprecated]
         #[unsafe(method(threadgroupMemoryAlignment))]
         #[unsafe(method_family = none)]
-        pub fn threadgroupMemoryAlignment(&self) -> NSUInteger;
+        pub fn threadgroup_memory_alignment(&self) -> NSUInteger;
 
         #[deprecated]
         #[unsafe(method(threadgroupMemoryDataSize))]
         #[unsafe(method_family = none)]
-        pub fn threadgroupMemoryDataSize(&self) -> NSUInteger;
+        pub fn threadgroup_memory_data_size(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTexture")]
         #[deprecated]
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        pub fn textureType(&self) -> MTLTextureType;
+        pub fn texture_type(&self) -> MTLTextureType;
 
         #[cfg(feature = "MTLDataType")]
         #[deprecated]
         #[unsafe(method(textureDataType))]
         #[unsafe(method_family = none)]
-        pub fn textureDataType(&self) -> MTLDataType;
+        pub fn texture_data_type(&self) -> MTLDataType;
 
         #[unsafe(method(isDepthTexture))]
         #[unsafe(method_family = none)]
-        pub fn isDepthTexture(&self) -> bool;
+        pub fn is_depth_texture(&self) -> bool;
 
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
-        pub fn arrayLength(&self) -> NSUInteger;
+        pub fn array_length(&self) -> NSUInteger;
     );
 }
 
@@ -746,11 +746,11 @@ extern_protocol!(
 
         #[unsafe(method(isUsed))]
         #[unsafe(method_family = none)]
-        fn isUsed(&self) -> bool;
+        fn is_used(&self) -> bool;
 
         #[unsafe(method(isArgument))]
         #[unsafe(method_family = none)]
-        fn isArgument(&self) -> bool;
+        fn is_argument(&self) -> bool;
     }
 );
 
@@ -759,24 +759,24 @@ extern_protocol!(
     pub unsafe trait MTLBufferBinding: MTLBinding {
         #[unsafe(method(bufferAlignment))]
         #[unsafe(method_family = none)]
-        fn bufferAlignment(&self) -> NSUInteger;
+        fn buffer_alignment(&self) -> NSUInteger;
 
         #[unsafe(method(bufferDataSize))]
         #[unsafe(method_family = none)]
-        fn bufferDataSize(&self) -> NSUInteger;
+        fn buffer_data_size(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLDataType")]
         #[unsafe(method(bufferDataType))]
         #[unsafe(method_family = none)]
-        fn bufferDataType(&self) -> MTLDataType;
+        fn buffer_data_type(&self) -> MTLDataType;
 
         #[unsafe(method(bufferStructType))]
         #[unsafe(method_family = none)]
-        fn bufferStructType(&self) -> Option<Retained<MTLStructType>>;
+        fn buffer_struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(bufferPointerType))]
         #[unsafe(method_family = none)]
-        fn bufferPointerType(&self) -> Option<Retained<MTLPointerType>>;
+        fn buffer_pointer_type(&self) -> Option<Retained<MTLPointerType>>;
     }
 );
 
@@ -785,11 +785,11 @@ extern_protocol!(
     pub unsafe trait MTLThreadgroupBinding: MTLBinding {
         #[unsafe(method(threadgroupMemoryAlignment))]
         #[unsafe(method_family = none)]
-        fn threadgroupMemoryAlignment(&self) -> NSUInteger;
+        fn threadgroup_memory_alignment(&self) -> NSUInteger;
 
         #[unsafe(method(threadgroupMemoryDataSize))]
         #[unsafe(method_family = none)]
-        fn threadgroupMemoryDataSize(&self) -> NSUInteger;
+        fn threadgroup_memory_data_size(&self) -> NSUInteger;
     }
 );
 
@@ -799,20 +799,20 @@ extern_protocol!(
         #[cfg(feature = "MTLTexture")]
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        fn textureType(&self) -> MTLTextureType;
+        fn texture_type(&self) -> MTLTextureType;
 
         #[cfg(feature = "MTLDataType")]
         #[unsafe(method(textureDataType))]
         #[unsafe(method_family = none)]
-        fn textureDataType(&self) -> MTLDataType;
+        fn texture_data_type(&self) -> MTLDataType;
 
         #[unsafe(method(isDepthTexture))]
         #[unsafe(method_family = none)]
-        fn isDepthTexture(&self) -> bool;
+        fn is_depth_texture(&self) -> bool;
 
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
-        fn arrayLength(&self) -> NSUInteger;
+        fn array_length(&self) -> NSUInteger;
     }
 );
 
@@ -821,11 +821,11 @@ extern_protocol!(
     pub unsafe trait MTLObjectPayloadBinding: MTLBinding {
         #[unsafe(method(objectPayloadAlignment))]
         #[unsafe(method_family = none)]
-        fn objectPayloadAlignment(&self) -> NSUInteger;
+        fn object_payload_alignment(&self) -> NSUInteger;
 
         #[unsafe(method(objectPayloadDataSize))]
         #[unsafe(method_family = none)]
-        fn objectPayloadDataSize(&self) -> NSUInteger;
+        fn object_payload_data_size(&self) -> NSUInteger;
     }
 );
 
@@ -838,13 +838,13 @@ extern_protocol!(
         /// The underlying data format of this tensor.
         #[unsafe(method(tensorDataType))]
         #[unsafe(method_family = none)]
-        fn tensorDataType(&self) -> MTLTensorDataType;
+        fn tensor_data_type(&self) -> MTLTensorDataType;
 
         #[cfg(feature = "MTLDataType")]
         /// The data format you use for indexing into the tensor.
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
-        fn indexType(&self) -> MTLDataType;
+        fn index_type(&self) -> MTLDataType;
 
         #[cfg(feature = "MTLTensor")]
         /// The array of sizes, in elements, one for each dimension of this tensor.

@@ -33,7 +33,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTextureView:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTextureView_atIndex(
+        unsafe fn set_texture_view_at_index(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             index: NSUInteger,
@@ -63,7 +63,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTextureView:descriptor:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTextureView_descriptor_atIndex(
+        unsafe fn set_texture_view_descriptor_at_index(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             descriptor: &MTLTextureViewDescriptor,
@@ -99,7 +99,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTextureViewFromBuffer:descriptor:offset:bytesPerRow:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTextureViewFromBuffer_descriptor_offset_bytesPerRow_atIndex(
+        unsafe fn set_texture_view_from_buffer_descriptor_offset_bytes_per_row_at_index(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             descriptor: &MTLTextureDescriptor,

@@ -28,7 +28,7 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
     }
 );
 
@@ -61,7 +61,7 @@ impl MTLSharedEventListener {
         /// `dispatch_queue` possibly has additional threading requirements.
         #[unsafe(method(initWithDispatchQueue:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDispatchQueue(
+        pub unsafe fn init_with_dispatch_queue(
             this: Allocated<Self>,
             dispatch_queue: &DispatchQueue,
         ) -> Retained<Self>;
@@ -69,11 +69,11 @@ impl MTLSharedEventListener {
         #[cfg(feature = "dispatch2")]
         #[unsafe(method(dispatchQueue))]
         #[unsafe(method_family = none)]
-        pub fn dispatchQueue(&self) -> Retained<DispatchQueue>;
+        pub fn dispatch_queue(&self) -> Retained<DispatchQueue>;
 
         #[unsafe(method(sharedListener))]
         #[unsafe(method_family = none)]
-        pub fn sharedListener() -> Retained<MTLSharedEventListener>;
+        pub fn shared_listener() -> Retained<MTLSharedEventListener>;
     );
 }
 
@@ -107,7 +107,7 @@ extern_protocol!(
         /// `block` must be a valid pointer.
         #[unsafe(method(notifyListener:atValue:block:))]
         #[unsafe(method_family = none)]
-        unsafe fn notifyListener_atValue_block(
+        unsafe fn notify_listener_at_value_block(
             &self,
             listener: &MTLSharedEventListener,
             value: u64,
@@ -116,20 +116,20 @@ extern_protocol!(
 
         #[unsafe(method(newSharedEventHandle))]
         #[unsafe(method_family = new)]
-        fn newSharedEventHandle(&self) -> Retained<MTLSharedEventHandle>;
+        fn new_shared_event_handle(&self) -> Retained<MTLSharedEventHandle>;
 
         #[unsafe(method(waitUntilSignaledValue:timeoutMS:))]
         #[unsafe(method_family = none)]
-        fn waitUntilSignaledValue_timeoutMS(&self, value: u64, milliseconds: u64) -> bool;
+        fn wait_until_signaled_value_timeout_ms(&self, value: u64, milliseconds: u64) -> bool;
 
         #[unsafe(method(signaledValue))]
         #[unsafe(method_family = none)]
-        fn signaledValue(&self) -> u64;
+        fn signaled_value(&self) -> u64;
 
         /// Setter for [`signaledValue`][Self::signaledValue].
         #[unsafe(method(setSignaledValue:))]
         #[unsafe(method_family = none)]
-        fn setSignaledValue(&self, signaled_value: u64);
+        fn set_signaled_value(&self, signaled_value: u64);
     }
 );
 

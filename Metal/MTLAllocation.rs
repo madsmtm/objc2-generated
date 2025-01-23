@@ -17,6 +17,6 @@ extern_protocol!(
     pub unsafe trait MTLAllocation: NSObjectProtocol {
         #[unsafe(method(allocatedSize))]
         #[unsafe(method_family = none)]
-        fn allocatedSize(&self) -> NSUInteger;
+        fn allocated_size(&self) -> NSUInteger;
     }
 );

@@ -46,7 +46,7 @@ impl CAEDRMetadata {
 
         #[unsafe(method(HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:))]
         #[unsafe(method_family = none)]
-        pub fn HDR10MetadataWithDisplayInfo_contentInfo_opticalOutputScale(
+        pub fn hdr10_metadata_with_display_info_content_info_optical_output_scale(
             display_data: Option<&NSData>,
             content_data: Option<&NSData>,
             scale: c_float,
@@ -54,7 +54,7 @@ impl CAEDRMetadata {
 
         #[unsafe(method(HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:))]
         #[unsafe(method_family = none)]
-        pub fn HDR10MetadataWithMinLuminance_maxLuminance_opticalOutputScale(
+        pub fn hdr10_metadata_with_min_luminance_max_luminance_optical_output_scale(
             min_nits: c_float,
             max_nits: c_float,
             scale: c_float,
@@ -62,14 +62,16 @@ impl CAEDRMetadata {
 
         #[unsafe(method(HLGMetadataWithAmbientViewingEnvironment:))]
         #[unsafe(method_family = none)]
-        pub fn HLGMetadataWithAmbientViewingEnvironment(data: &NSData) -> Retained<CAEDRMetadata>;
+        pub fn hlg_metadata_with_ambient_viewing_environment(
+            data: &NSData,
+        ) -> Retained<CAEDRMetadata>;
 
         #[unsafe(method(HLGMetadata))]
         #[unsafe(method_family = none)]
-        pub fn HLGMetadata() -> Retained<CAEDRMetadata>;
+        pub fn hlg_metadata() -> Retained<CAEDRMetadata>;
 
         #[unsafe(method(isAvailable))]
         #[unsafe(method_family = none)]
-        pub fn isAvailable() -> bool;
+        pub fn is_available() -> bool;
     );
 }

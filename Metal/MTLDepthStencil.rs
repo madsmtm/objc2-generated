@@ -94,63 +94,63 @@ impl MTLStencilDescriptor {
     extern_methods!(
         #[unsafe(method(stencilCompareFunction))]
         #[unsafe(method_family = none)]
-        pub fn stencilCompareFunction(&self) -> MTLCompareFunction;
+        pub fn stencil_compare_function(&self) -> MTLCompareFunction;
 
         /// Setter for [`stencilCompareFunction`][Self::stencilCompareFunction].
         #[unsafe(method(setStencilCompareFunction:))]
         #[unsafe(method_family = none)]
-        pub fn setStencilCompareFunction(&self, stencil_compare_function: MTLCompareFunction);
+        pub fn set_stencil_compare_function(&self, stencil_compare_function: MTLCompareFunction);
 
         /// Stencil is tested first.  stencilFailureOperation declares how the stencil buffer is updated when the stencil test fails.
         #[unsafe(method(stencilFailureOperation))]
         #[unsafe(method_family = none)]
-        pub fn stencilFailureOperation(&self) -> MTLStencilOperation;
+        pub fn stencil_failure_operation(&self) -> MTLStencilOperation;
 
         /// Setter for [`stencilFailureOperation`][Self::stencilFailureOperation].
         #[unsafe(method(setStencilFailureOperation:))]
         #[unsafe(method_family = none)]
-        pub fn setStencilFailureOperation(&self, stencil_failure_operation: MTLStencilOperation);
+        pub fn set_stencil_failure_operation(&self, stencil_failure_operation: MTLStencilOperation);
 
         /// If stencil passes, depth is tested next.  Declare what happens when the depth test fails.
         #[unsafe(method(depthFailureOperation))]
         #[unsafe(method_family = none)]
-        pub fn depthFailureOperation(&self) -> MTLStencilOperation;
+        pub fn depth_failure_operation(&self) -> MTLStencilOperation;
 
         /// Setter for [`depthFailureOperation`][Self::depthFailureOperation].
         #[unsafe(method(setDepthFailureOperation:))]
         #[unsafe(method_family = none)]
-        pub fn setDepthFailureOperation(&self, depth_failure_operation: MTLStencilOperation);
+        pub fn set_depth_failure_operation(&self, depth_failure_operation: MTLStencilOperation);
 
         /// If both the stencil and depth tests pass, declare how the stencil buffer is updated.
         #[unsafe(method(depthStencilPassOperation))]
         #[unsafe(method_family = none)]
-        pub fn depthStencilPassOperation(&self) -> MTLStencilOperation;
+        pub fn depth_stencil_pass_operation(&self) -> MTLStencilOperation;
 
         /// Setter for [`depthStencilPassOperation`][Self::depthStencilPassOperation].
         #[unsafe(method(setDepthStencilPassOperation:))]
         #[unsafe(method_family = none)]
-        pub fn setDepthStencilPassOperation(
+        pub fn set_depth_stencil_pass_operation(
             &self,
             depth_stencil_pass_operation: MTLStencilOperation,
         );
 
         #[unsafe(method(readMask))]
         #[unsafe(method_family = none)]
-        pub fn readMask(&self) -> u32;
+        pub fn read_mask(&self) -> u32;
 
         /// Setter for [`readMask`][Self::readMask].
         #[unsafe(method(setReadMask:))]
         #[unsafe(method_family = none)]
-        pub fn setReadMask(&self, read_mask: u32);
+        pub fn set_read_mask(&self, read_mask: u32);
 
         #[unsafe(method(writeMask))]
         #[unsafe(method_family = none)]
-        pub fn writeMask(&self) -> u32;
+        pub fn write_mask(&self) -> u32;
 
         /// Setter for [`writeMask`][Self::writeMask].
         #[unsafe(method(setWriteMask:))]
         #[unsafe(method_family = none)]
-        pub fn setWriteMask(&self, write_mask: u32);
+        pub fn set_write_mask(&self, write_mask: u32);
     );
 }
 
@@ -197,43 +197,43 @@ impl MTLDepthStencilDescriptor {
     extern_methods!(
         #[unsafe(method(depthCompareFunction))]
         #[unsafe(method_family = none)]
-        pub fn depthCompareFunction(&self) -> MTLCompareFunction;
+        pub fn depth_compare_function(&self) -> MTLCompareFunction;
 
         /// Setter for [`depthCompareFunction`][Self::depthCompareFunction].
         #[unsafe(method(setDepthCompareFunction:))]
         #[unsafe(method_family = none)]
-        pub fn setDepthCompareFunction(&self, depth_compare_function: MTLCompareFunction);
+        pub fn set_depth_compare_function(&self, depth_compare_function: MTLCompareFunction);
 
         #[unsafe(method(isDepthWriteEnabled))]
         #[unsafe(method_family = none)]
-        pub fn isDepthWriteEnabled(&self) -> bool;
+        pub fn is_depth_write_enabled(&self) -> bool;
 
         /// Setter for [`isDepthWriteEnabled`][Self::isDepthWriteEnabled].
         #[unsafe(method(setDepthWriteEnabled:))]
         #[unsafe(method_family = none)]
-        pub fn setDepthWriteEnabled(&self, depth_write_enabled: bool);
+        pub fn set_depth_write_enabled(&self, depth_write_enabled: bool);
 
         #[unsafe(method(frontFaceStencil))]
         #[unsafe(method_family = none)]
-        pub fn frontFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
+        pub fn front_face_stencil(&self) -> Retained<MTLStencilDescriptor>;
 
         /// Setter for [`frontFaceStencil`][Self::frontFaceStencil].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFrontFaceStencil:))]
         #[unsafe(method_family = none)]
-        pub fn setFrontFaceStencil(&self, front_face_stencil: Option<&MTLStencilDescriptor>);
+        pub fn set_front_face_stencil(&self, front_face_stencil: Option<&MTLStencilDescriptor>);
 
         #[unsafe(method(backFaceStencil))]
         #[unsafe(method_family = none)]
-        pub fn backFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
+        pub fn back_face_stencil(&self) -> Retained<MTLStencilDescriptor>;
 
         /// Setter for [`backFaceStencil`][Self::backFaceStencil].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackFaceStencil:))]
         #[unsafe(method_family = none)]
-        pub fn setBackFaceStencil(&self, back_face_stencil: Option<&MTLStencilDescriptor>);
+        pub fn set_back_face_stencil(&self, back_face_stencil: Option<&MTLStencilDescriptor>);
 
         /// A string to help identify the created object.
         #[unsafe(method(label))]
@@ -245,7 +245,7 @@ impl MTLDepthStencilDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        pub fn set_label(&self, label: Option<&NSString>);
     );
 }
 
@@ -287,6 +287,6 @@ extern_protocol!(
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpu_resource_id(&self) -> MTLResourceID;
     }
 );

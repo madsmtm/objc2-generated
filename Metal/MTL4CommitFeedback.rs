@@ -37,12 +37,12 @@ extern_protocol!(
         /// The host time, in seconds, when the GPU starts execution of the committed command buffers.
         #[unsafe(method(GPUStartTime))]
         #[unsafe(method_family = none)]
-        fn GPUStartTime(&self) -> CFTimeInterval;
+        fn gpu_start_time(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The host time, in seconds, when the GPU finishes execution of the committed command buffers.
         #[unsafe(method(GPUEndTime))]
         #[unsafe(method_family = none)]
-        fn GPUEndTime(&self) -> CFTimeInterval;
+        fn gpu_end_time(&self) -> CFTimeInterval;
     }
 );

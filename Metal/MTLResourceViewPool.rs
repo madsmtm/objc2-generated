@@ -33,7 +33,7 @@ impl MTLResourceViewPoolDescriptor {
         /// Configures the number of resource views with which Metal creates the resource view pool.
         #[unsafe(method(resourceViewCount))]
         #[unsafe(method_family = none)]
-        pub fn resourceViewCount(&self) -> NSUInteger;
+        pub fn resource_view_count(&self) -> NSUInteger;
 
         /// Setter for [`resourceViewCount`][Self::resourceViewCount].
         ///
@@ -42,7 +42,7 @@ impl MTLResourceViewPoolDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setResourceViewCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResourceViewCount(&self, resource_view_count: NSUInteger);
+        pub unsafe fn set_resource_view_count(&self, resource_view_count: NSUInteger);
 
         /// Assigns an optional label you to the resource view pool for debugging purposes.
         #[unsafe(method(label))]
@@ -54,7 +54,7 @@ impl MTLResourceViewPoolDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        pub fn set_label(&self, label: Option<&NSString>);
     );
 }
 
@@ -87,12 +87,12 @@ extern_protocol!(
         /// Obtains the resource ID corresponding to the resource view at index 0 in this resource view pool.
         #[unsafe(method(baseResourceID))]
         #[unsafe(method_family = none)]
-        fn baseResourceID(&self) -> MTLResourceID;
+        fn base_resource_id(&self) -> MTLResourceID;
 
         /// Queries the number of resource views that this pool contains.
         #[unsafe(method(resourceViewCount))]
         #[unsafe(method_family = none)]
-        fn resourceViewCount(&self) -> NSUInteger;
+        fn resource_view_count(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLDevice")]
         /// Obtains a reference to the GPU device this pool belongs to.
@@ -121,7 +121,7 @@ extern_protocol!(
         /// - `destinationIndex` might not be bounds-checked.
         #[unsafe(method(copyResourceViewsFromPool:sourceRange:destinationIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyResourceViewsFromPool_sourceRange_destinationIndex(
+        unsafe fn copy_resource_views_from_pool_source_range_destination_index(
             &self,
             source_pool: &ProtocolObject<dyn MTLResourceViewPool>,
             source_range: NSRange,

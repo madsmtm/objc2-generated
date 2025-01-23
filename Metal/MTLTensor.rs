@@ -75,7 +75,7 @@ impl MTLTensorExtents {
         /// `values` must be a valid pointer or null.
         #[unsafe(method(initWithRank:values:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithRank_values(
+        pub unsafe fn init_with_rank_values(
             this: Allocated<Self>,
             rank: NSUInteger,
             values: *const NSInteger,
@@ -99,7 +99,7 @@ impl MTLTensorExtents {
         /// `dimensionIndex` might not be bounds-checked.
         #[unsafe(method(extentAtDimensionIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn extentAtDimensionIndex(&self, dimension_index: NSUInteger) -> NSInteger;
+        pub unsafe fn extent_at_dimension_index(&self, dimension_index: NSUInteger) -> NSInteger;
     );
 }
 
@@ -224,7 +224,7 @@ impl MTLTensorDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDimensions:))]
         #[unsafe(method_family = none)]
-        pub fn setDimensions(&self, dimensions: &MTLTensorExtents);
+        pub fn set_dimensions(&self, dimensions: &MTLTensorExtents);
 
         /// An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
         ///
@@ -242,19 +242,19 @@ impl MTLTensorDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStrides:))]
         #[unsafe(method_family = none)]
-        pub fn setStrides(&self, strides: Option<&MTLTensorExtents>);
+        pub fn set_strides(&self, strides: Option<&MTLTensorExtents>);
 
         /// A data format for the tensors you create with this descriptor.
         ///
         /// The default value of this property is ``MTLTensorDataType/MTLTensorDataTypeFloat32``.
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
-        pub fn dataType(&self) -> MTLTensorDataType;
+        pub fn data_type(&self) -> MTLTensorDataType;
 
         /// Setter for [`dataType`][Self::dataType].
         #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
-        pub fn setDataType(&self, data_type: MTLTensorDataType);
+        pub fn set_data_type(&self, data_type: MTLTensorDataType);
 
         /// A set of contexts in which you can use tensors you create with this descriptor.
         ///
@@ -268,19 +268,19 @@ impl MTLTensorDescriptor {
         /// Setter for [`usage`][Self::usage].
         #[unsafe(method(setUsage:))]
         #[unsafe(method_family = none)]
-        pub fn setUsage(&self, usage: MTLTensorUsage);
+        pub fn set_usage(&self, usage: MTLTensorUsage);
 
         #[cfg(feature = "MTLResource")]
         /// A packed set of the `storageMode`, `cpuCacheMode` and `hazardTrackingMode` properties.
         #[unsafe(method(resourceOptions))]
         #[unsafe(method_family = none)]
-        pub fn resourceOptions(&self) -> MTLResourceOptions;
+        pub fn resource_options(&self) -> MTLResourceOptions;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`resourceOptions`][Self::resourceOptions].
         #[unsafe(method(setResourceOptions:))]
         #[unsafe(method_family = none)]
-        pub fn setResourceOptions(&self, resource_options: MTLResourceOptions);
+        pub fn set_resource_options(&self, resource_options: MTLResourceOptions);
 
         #[cfg(feature = "MTLResource")]
         /// A value that configures the cache mode of CPU mapping of tensors you create with this descriptor.
@@ -288,13 +288,13 @@ impl MTLTensorDescriptor {
         /// The default value of this property is ``MTLCPUCacheMode/MTLCPUCacheModeDefaultCache``.
         #[unsafe(method(cpuCacheMode))]
         #[unsafe(method_family = none)]
-        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        pub fn cpu_cache_mode(&self) -> MTLCPUCacheMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`cpuCacheMode`][Self::cpuCacheMode].
         #[unsafe(method(setCpuCacheMode:))]
         #[unsafe(method_family = none)]
-        pub fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
+        pub fn set_cpu_cache_mode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
         #[cfg(feature = "MTLResource")]
         /// A value that configures the memory location and access permissions of tensors you create with this descriptor.
@@ -302,13 +302,13 @@ impl MTLTensorDescriptor {
         /// The default value of this property defaults to ``MTLStorageMode/MTLStorageModeShared``.
         #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
-        pub fn storageMode(&self) -> MTLStorageMode;
+        pub fn storage_mode(&self) -> MTLStorageMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`storageMode`][Self::storageMode].
         #[unsafe(method(setStorageMode:))]
         #[unsafe(method_family = none)]
-        pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
+        pub fn set_storage_mode(&self, storage_mode: MTLStorageMode);
 
         #[cfg(feature = "MTLResource")]
         /// A value that configures the hazard tracking of tensors you create with this descriptor.
@@ -316,13 +316,13 @@ impl MTLTensorDescriptor {
         /// The default value of this property is ``MTLHazardTrackingMode/MTLHazardTrackingModeDefault``.
         #[unsafe(method(hazardTrackingMode))]
         #[unsafe(method_family = none)]
-        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        pub fn hazard_tracking_mode(&self) -> MTLHazardTrackingMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`hazardTrackingMode`][Self::hazardTrackingMode].
         #[unsafe(method(setHazardTrackingMode:))]
         #[unsafe(method_family = none)]
-        pub fn setHazardTrackingMode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
+        pub fn set_hazard_tracking_mode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
     );
 }
 
@@ -356,7 +356,7 @@ extern_protocol!(
         /// A handle that represents the GPU resource, which you can store in an argument buffer.
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpu_resource_id(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLBuffer")]
         /// A buffer instance this tensor shares its storage with or nil if this tensor does not wrap an underlying buffer.
@@ -367,7 +367,7 @@ extern_protocol!(
         /// An offset, in bytes, into the buffer instance this tensor shares its storage with, or zero if this tensor does not wrap an underlying buffer.
         #[unsafe(method(bufferOffset))]
         #[unsafe(method_family = none)]
-        fn bufferOffset(&self) -> NSUInteger;
+        fn buffer_offset(&self) -> NSUInteger;
 
         /// An array of strides, in elements, one for each dimension of this tensor.
         ///
@@ -384,7 +384,7 @@ extern_protocol!(
         /// An underlying data format of this tensor.
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
-        fn dataType(&self) -> MTLTensorDataType;
+        fn data_type(&self) -> MTLTensorDataType;
 
         /// A set of contexts in which you can use this tensor.
         #[unsafe(method(usage))]
@@ -406,7 +406,7 @@ extern_protocol!(
         /// `bytes` must be a valid pointer.
         #[unsafe(method(replaceSliceOrigin:sliceDimensions:withBytes:strides:))]
         #[unsafe(method_family = none)]
-        unsafe fn replaceSliceOrigin_sliceDimensions_withBytes_strides(
+        unsafe fn replace_slice_origin_slice_dimensions_with_bytes_strides(
             &self,
             slice_origin: &MTLTensorExtents,
             slice_dimensions: &MTLTensorExtents,
@@ -429,7 +429,7 @@ extern_protocol!(
         /// `bytes` must be a valid pointer.
         #[unsafe(method(getBytes:strides:fromSliceOrigin:sliceDimensions:))]
         #[unsafe(method_family = none)]
-        unsafe fn getBytes_strides_fromSliceOrigin_sliceDimensions(
+        unsafe fn get_bytes_strides_from_slice_origin_slice_dimensions(
             &self,
             bytes: NonNull<c_void>,
             strides: &MTLTensorExtents,

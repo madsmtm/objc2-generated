@@ -43,36 +43,36 @@ impl CATiledLayer {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(fadeDuration))]
         #[unsafe(method_family = none)]
-        pub fn fadeDuration() -> CFTimeInterval;
+        pub fn fade_duration() -> CFTimeInterval;
 
         #[unsafe(method(levelsOfDetail))]
         #[unsafe(method_family = none)]
-        pub fn levelsOfDetail(&self) -> usize;
+        pub fn levels_of_detail(&self) -> usize;
 
         /// Setter for [`levelsOfDetail`][Self::levelsOfDetail].
         #[unsafe(method(setLevelsOfDetail:))]
         #[unsafe(method_family = none)]
-        pub fn setLevelsOfDetail(&self, levels_of_detail: usize);
+        pub fn set_levels_of_detail(&self, levels_of_detail: usize);
 
         #[unsafe(method(levelsOfDetailBias))]
         #[unsafe(method_family = none)]
-        pub fn levelsOfDetailBias(&self) -> usize;
+        pub fn levels_of_detail_bias(&self) -> usize;
 
         /// Setter for [`levelsOfDetailBias`][Self::levelsOfDetailBias].
         #[unsafe(method(setLevelsOfDetailBias:))]
         #[unsafe(method_family = none)]
-        pub fn setLevelsOfDetailBias(&self, levels_of_detail_bias: usize);
+        pub fn set_levels_of_detail_bias(&self, levels_of_detail_bias: usize);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(tileSize))]
         #[unsafe(method_family = none)]
-        pub fn tileSize(&self) -> CGSize;
+        pub fn tile_size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`tileSize`][Self::tileSize].
         #[unsafe(method(setTileSize:))]
         #[unsafe(method_family = none)]
-        pub fn setTileSize(&self, tile_size: CGSize);
+        pub fn set_tile_size(&self, tile_size: CGSize);
     );
 }
 
@@ -94,7 +94,7 @@ impl CATiledLayer {
         /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
+        pub unsafe fn init_with_layer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     );
 }
 

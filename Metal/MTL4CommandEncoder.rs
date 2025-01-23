@@ -54,7 +54,7 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTL4CommandBuffer")]
         /// Returns the command buffer that is currently encoding commands.
@@ -62,7 +62,7 @@ extern_protocol!(
         /// This property may return undefined results if you call it after calling ``endEncoding``.
         #[unsafe(method(commandBuffer))]
         #[unsafe(method_family = none)]
-        fn commandBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTL4CommandBuffer>>>;
+        fn command_buffer(&self) -> Option<Retained<ProtocolObject<dyn MTL4CommandBuffer>>>;
 
         #[cfg(feature = "MTLCommandEncoder")]
         /// Encodes a consumer barrier on work you commit to the same command queue.
@@ -89,7 +89,7 @@ extern_protocol!(
         /// - visibilityOptions: ``MTL4VisibilityOptions`` of the barrier.
         #[unsafe(method(barrierAfterQueueStages:beforeStages:visibilityOptions:))]
         #[unsafe(method_family = none)]
-        fn barrierAfterQueueStages_beforeStages_visibilityOptions(
+        fn barrier_after_queue_stages_before_stages_visibility_options(
             &self,
             after_queue_stages: MTLStages,
             before_stages: MTLStages,
@@ -116,7 +116,7 @@ extern_protocol!(
         /// - visibilityOptions: ``MTL4VisibilityOptions`` of the barrier, controlling cache flush behavior.
         #[unsafe(method(barrierAfterStages:beforeQueueStages:visibilityOptions:))]
         #[unsafe(method_family = none)]
-        fn barrierAfterStages_beforeQueueStages_visibilityOptions(
+        fn barrier_after_stages_before_queue_stages_visibility_options(
             &self,
             after_stages: MTLStages,
             before_queue_stages: MTLStages,
@@ -144,7 +144,7 @@ extern_protocol!(
         /// - visibilityOptions: ``MTL4VisibilityOptions`` of the barrier, controlling cache flush behavior.
         #[unsafe(method(barrierAfterEncoderStages:beforeEncoderStages:visibilityOptions:))]
         #[unsafe(method_family = none)]
-        fn barrierAfterEncoderStages_beforeEncoderStages_visibilityOptions(
+        fn barrier_after_encoder_stages_before_encoder_stages_visibility_options(
             &self,
             after_encoder_stages: MTLStages,
             before_encoder_stages: MTLStages,
@@ -167,7 +167,7 @@ extern_protocol!(
         /// This argument only applies to work encoded in the current command encoder.
         #[unsafe(method(updateFence:afterEncoderStages:))]
         #[unsafe(method_family = none)]
-        fn updateFence_afterEncoderStages(
+        fn update_fence_after_encoder_stages(
             &self,
             fence: &ProtocolObject<dyn MTLFence>,
             after_encoder_stages: MTLStages,
@@ -191,7 +191,7 @@ extern_protocol!(
         /// This argument only applies to work you encode in the current command encoder.
         #[unsafe(method(waitForFence:beforeEncoderStages:))]
         #[unsafe(method_family = none)]
-        fn waitForFence_beforeEncoderStages(
+        fn wait_for_fence_before_encoder_stages(
             &self,
             fence: &ProtocolObject<dyn MTLFence>,
             before_encoder_stages: MTLStages,
@@ -204,23 +204,23 @@ extern_protocol!(
         /// - Parameter string: The debug string to insert as a signpost.
         #[unsafe(method(insertDebugSignpost:))]
         #[unsafe(method_family = none)]
-        fn insertDebugSignpost(&self, string: &NSString);
+        fn insert_debug_signpost(&self, string: &NSString);
 
         /// Pushes a string onto this encoder's stack of debug groups.
         ///
         /// - Parameter string: The debug string to push.
         #[unsafe(method(pushDebugGroup:))]
         #[unsafe(method_family = none)]
-        fn pushDebugGroup(&self, string: &NSString);
+        fn push_debug_group(&self, string: &NSString);
 
         /// Pops the latest debug group string from this encoder's stack of debug groups.
         #[unsafe(method(popDebugGroup))]
         #[unsafe(method_family = none)]
-        fn popDebugGroup(&self);
+        fn pop_debug_group(&self);
 
         /// Declares that all command generation from this encoder is complete.
         #[unsafe(method(endEncoding))]
         #[unsafe(method_family = none)]
-        fn endEncoding(&self);
+        fn end_encoding(&self);
     }
 );

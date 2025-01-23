@@ -21,6 +21,6 @@ extern_protocol!(
         /// Describes the type of this binary function.
         #[unsafe(method(functionType))]
         #[unsafe(method_family = none)]
-        fn functionType(&self) -> MTLFunctionType;
+        fn function_type(&self) -> MTLFunctionType;
     }
 );

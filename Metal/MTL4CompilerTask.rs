@@ -57,6 +57,6 @@ extern_protocol!(
         /// Waits synchronously for this compile task to complete by blocking the calling thread.
         #[unsafe(method(waitUntilCompleted))]
         #[unsafe(method_family = none)]
-        fn waitUntilCompleted(&self);
+        fn wait_until_completed(&self);
     }
 );

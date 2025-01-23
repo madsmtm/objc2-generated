@@ -45,7 +45,7 @@ impl MTL4LibraryFunctionDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub fn setName(&self, name: Option<&NSString>);
+        pub fn set_name(&self, name: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         /// Returns a reference to the library containing the function.
@@ -57,7 +57,7 @@ impl MTL4LibraryFunctionDescriptor {
         /// Setter for [`library`][Self::library].
         #[unsafe(method(setLibrary:))]
         #[unsafe(method_family = none)]
-        pub fn setLibrary(&self, library: Option<&ProtocolObject<dyn MTLLibrary>>);
+        pub fn set_library(&self, library: Option<&ProtocolObject<dyn MTLLibrary>>);
     );
 }
 

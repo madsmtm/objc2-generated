@@ -36,13 +36,14 @@ impl MTLComputePassSampleBufferAttachmentDescriptor {
         /// will be taken for that action.
         #[unsafe(method(sampleBuffer))]
         #[unsafe(method_family = none)]
-        pub fn sampleBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
+        pub fn sample_buffer(&self)
+            -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
         /// Setter for [`sampleBuffer`][Self::sampleBuffer].
         #[unsafe(method(setSampleBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setSampleBuffer(
+        pub fn set_sample_buffer(
             &self,
             sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
         );
@@ -55,7 +56,7 @@ impl MTLComputePassSampleBufferAttachmentDescriptor {
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a compute pass will fail.
         #[unsafe(method(startOfEncoderSampleIndex))]
         #[unsafe(method_family = none)]
-        pub fn startOfEncoderSampleIndex(&self) -> NSUInteger;
+        pub fn start_of_encoder_sample_index(&self) -> NSUInteger;
 
         /// Setter for [`startOfEncoderSampleIndex`][Self::startOfEncoderSampleIndex].
         ///
@@ -64,7 +65,7 @@ impl MTLComputePassSampleBufferAttachmentDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setStartOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStartOfEncoderSampleIndex(
+        pub unsafe fn set_start_of_encoder_sample_index(
             &self,
             start_of_encoder_sample_index: NSUInteger,
         );
@@ -77,7 +78,7 @@ impl MTLComputePassSampleBufferAttachmentDescriptor {
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a compute pass will fail.
         #[unsafe(method(endOfEncoderSampleIndex))]
         #[unsafe(method_family = none)]
-        pub fn endOfEncoderSampleIndex(&self) -> NSUInteger;
+        pub fn end_of_encoder_sample_index(&self) -> NSUInteger;
 
         /// Setter for [`endOfEncoderSampleIndex`][Self::endOfEncoderSampleIndex].
         ///
@@ -86,7 +87,10 @@ impl MTLComputePassSampleBufferAttachmentDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setEndOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
+        pub unsafe fn set_end_of_encoder_sample_index(
+            &self,
+            end_of_encoder_sample_index: NSUInteger,
+        );
     );
 }
 
@@ -128,7 +132,7 @@ impl MTLComputePassSampleBufferAttachmentDescriptorArray {
         /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Retained<MTLComputePassSampleBufferAttachmentDescriptor>;
@@ -138,7 +142,7 @@ impl MTLComputePassSampleBufferAttachmentDescriptorArray {
         /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             attachment: Option<&MTLComputePassSampleBufferAttachmentDescriptor>,
             attachment_index: NSUInteger,
@@ -192,24 +196,24 @@ impl MTLComputePassDescriptor {
         /// Create an autoreleased default frame buffer descriptor
         #[unsafe(method(computePassDescriptor))]
         #[unsafe(method_family = none)]
-        pub fn computePassDescriptor() -> Retained<MTLComputePassDescriptor>;
+        pub fn compute_pass_descriptor() -> Retained<MTLComputePassDescriptor>;
 
         #[cfg(feature = "MTLCommandBuffer")]
         /// The dispatch type of the compute command encoder.
         #[unsafe(method(dispatchType))]
         #[unsafe(method_family = none)]
-        pub fn dispatchType(&self) -> MTLDispatchType;
+        pub fn dispatch_type(&self) -> MTLDispatchType;
 
         #[cfg(feature = "MTLCommandBuffer")]
         /// Setter for [`dispatchType`][Self::dispatchType].
         #[unsafe(method(setDispatchType:))]
         #[unsafe(method_family = none)]
-        pub fn setDispatchType(&self, dispatch_type: MTLDispatchType);
+        pub fn set_dispatch_type(&self, dispatch_type: MTLDispatchType);
 
         /// An array of sample buffers and associated sample indices.
         #[unsafe(method(sampleBufferAttachments))]
         #[unsafe(method_family = none)]
-        pub fn sampleBufferAttachments(
+        pub fn sample_buffer_attachments(
             &self,
         ) -> Retained<MTLComputePassSampleBufferAttachmentDescriptorArray>;
     );

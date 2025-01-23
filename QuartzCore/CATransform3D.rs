@@ -235,12 +235,12 @@ pub unsafe trait NSValueCATransform3DAdditions:
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(valueWithCATransform3D:))]
         #[unsafe(method_family = none)]
-        unsafe fn valueWithCATransform3D(t: CATransform3D) -> Retained<NSValue>;
+        unsafe fn value_with_ca_transform3_d(t: CATransform3D) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(CATransform3DValue))]
         #[unsafe(method_family = none)]
-        unsafe fn CATransform3DValue(&self) -> CATransform3D;
+        unsafe fn ca_transform3_d_value(&self) -> CATransform3D;
     );
 }
 

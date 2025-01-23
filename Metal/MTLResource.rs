@@ -305,7 +305,7 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
@@ -316,12 +316,12 @@ extern_protocol!(
         /// The cache mode used for the CPU mapping for this resource
         #[unsafe(method(cpuCacheMode))]
         #[unsafe(method_family = none)]
-        fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        fn cpu_cache_mode(&self) -> MTLCPUCacheMode;
 
         /// The resource storage mode used for the CPU mapping for this resource
         #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
-        fn storageMode(&self) -> MTLStorageMode;
+        fn storage_mode(&self) -> MTLStorageMode;
 
         /// Whether or not the resource is hazard tracked.
         ///
@@ -329,12 +329,12 @@ extern_protocol!(
         /// Resources created from heaps are by default untracked, whereas resources created from the device are by default tracked.
         #[unsafe(method(hazardTrackingMode))]
         #[unsafe(method_family = none)]
-        fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        fn hazard_tracking_mode(&self) -> MTLHazardTrackingMode;
 
         /// A packed tuple of the storageMode, cpuCacheMode and hazardTrackingMode properties.
         #[unsafe(method(resourceOptions))]
         #[unsafe(method_family = none)]
-        fn resourceOptions(&self) -> MTLResourceOptions;
+        fn resource_options(&self) -> MTLResourceOptions;
 
         /// Set (or query) the purgeability state of a resource
         ///
@@ -342,7 +342,7 @@ extern_protocol!(
         /// FIXME: If the device is keeping a cached copy of the resource, both the shared copy and cached copy are made purgeable.  Any access to the resource by either the CPU or device will be undefined.
         #[unsafe(method(setPurgeableState:))]
         #[unsafe(method_family = none)]
-        fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
+        fn set_purgeable_state(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         #[cfg(feature = "MTLHeap")]
         /// The heap from which this resouce was created.
@@ -357,12 +357,12 @@ extern_protocol!(
         /// Zero when this resource was not created on a heap with MTLHeapTypePlacement.
         #[unsafe(method(heapOffset))]
         #[unsafe(method_family = none)]
-        fn heapOffset(&self) -> NSUInteger;
+        fn heap_offset(&self) -> NSUInteger;
 
         /// The size in bytes occupied by this resource
         #[unsafe(method(allocatedSize))]
         #[unsafe(method_family = none)]
-        fn allocatedSize(&self) -> NSUInteger;
+        fn allocated_size(&self) -> NSUInteger;
 
         /// Allow future heap sub-allocations to alias against this resource's memory.
         ///
@@ -373,7 +373,7 @@ extern_protocol!(
         /// Once a resource is made aliasable, the decision cannot be reverted.
         #[unsafe(method(makeAliasable))]
         #[unsafe(method_family = none)]
-        unsafe fn makeAliasable(&self);
+        unsafe fn make_aliasable(&self);
 
         /// Returns whether future heap sub-allocations may alias against this resource's memory.
         ///
@@ -386,6 +386,6 @@ extern_protocol!(
         /// aliasing state of that base resource. Also returns NO when storage mode is memoryless.
         #[unsafe(method(isAliasable))]
         #[unsafe(method_family = none)]
-        fn isAliasable(&self) -> bool;
+        fn is_aliasable(&self) -> bool;
     }
 );

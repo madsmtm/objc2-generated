@@ -12,7 +12,7 @@ extern_protocol!(
         #[cfg(feature = "MTLLibrary")]
         #[unsafe(method(functionType))]
         #[unsafe(method_family = none)]
-        fn functionType(&self) -> MTLFunctionType;
+        fn function_type(&self) -> MTLFunctionType;
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -29,6 +29,6 @@ extern_protocol!(
         /// The handle must have been created from an intersection function annotated with the `intersection_function_buffer` tag.
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpu_resource_id(&self) -> MTLResourceID;
     }
 );

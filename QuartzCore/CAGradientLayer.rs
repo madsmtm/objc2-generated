@@ -57,7 +57,7 @@ impl CAGradientLayer {
         /// `colors` generic should be of the correct type.
         #[unsafe(method(setColors:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setColors(&self, colors: Option<&NSArray>);
+        pub unsafe fn set_colors(&self, colors: Option<&NSArray>);
 
         #[unsafe(method(locations))]
         #[unsafe(method_family = none)]
@@ -68,29 +68,29 @@ impl CAGradientLayer {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocations:))]
         #[unsafe(method_family = none)]
-        pub fn setLocations(&self, locations: Option<&NSArray<NSNumber>>);
+        pub fn set_locations(&self, locations: Option<&NSArray<NSNumber>>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(startPoint))]
         #[unsafe(method_family = none)]
-        pub fn startPoint(&self) -> CGPoint;
+        pub fn start_point(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`startPoint`][Self::startPoint].
         #[unsafe(method(setStartPoint:))]
         #[unsafe(method_family = none)]
-        pub fn setStartPoint(&self, start_point: CGPoint);
+        pub fn set_start_point(&self, start_point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(endPoint))]
         #[unsafe(method_family = none)]
-        pub fn endPoint(&self) -> CGPoint;
+        pub fn end_point(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`endPoint`][Self::endPoint].
         #[unsafe(method(setEndPoint:))]
         #[unsafe(method_family = none)]
-        pub fn setEndPoint(&self, end_point: CGPoint);
+        pub fn set_end_point(&self, end_point: CGPoint);
 
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
@@ -101,7 +101,7 @@ impl CAGradientLayer {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
-        pub fn setType(&self, r#type: &CAGradientLayerType);
+        pub fn set_type(&self, r#type: &CAGradientLayerType);
     );
 }
 
@@ -123,7 +123,7 @@ impl CAGradientLayer {
         /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
+        pub unsafe fn init_with_layer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     );
 }
 

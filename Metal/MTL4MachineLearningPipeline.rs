@@ -45,14 +45,15 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        pub fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTL4FunctionDescriptor")]
         /// Assigns the function that the machine learning pipeline you create from this descriptor executes.
         #[unsafe(method(machineLearningFunctionDescriptor))]
         #[unsafe(method_family = none)]
-        pub fn machineLearningFunctionDescriptor(&self)
-            -> Option<Retained<MTL4FunctionDescriptor>>;
+        pub fn machine_learning_function_descriptor(
+            &self,
+        ) -> Option<Retained<MTL4FunctionDescriptor>>;
 
         #[cfg(feature = "MTL4FunctionDescriptor")]
         /// Setter for [`machineLearningFunctionDescriptor`][Self::machineLearningFunctionDescriptor].
@@ -60,7 +61,7 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMachineLearningFunctionDescriptor:))]
         #[unsafe(method_family = none)]
-        pub fn setMachineLearningFunctionDescriptor(
+        pub fn set_machine_learning_function_descriptor(
             &self,
             machine_learning_function_descriptor: Option<&MTL4FunctionDescriptor>,
         );
@@ -77,7 +78,7 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setInputDimensions:atBufferIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInputDimensions_atBufferIndex(
+        pub unsafe fn set_input_dimensions_at_buffer_index(
             &self,
             dimensions: Option<&MTLTensorExtents>,
             buffer_index: NSInteger,
@@ -104,7 +105,7 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// `range` might not be bounds-checked.
         #[unsafe(method(setInputDimensions:withRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInputDimensions_withRange(
+        pub unsafe fn set_input_dimensions_with_range(
             &self,
             dimensions: &NSArray<MTLTensorExtents>,
             range: NSRange,
@@ -118,7 +119,7 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(inputDimensionsAtBufferIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inputDimensionsAtBufferIndex(
+        pub unsafe fn input_dimensions_at_buffer_index(
             &self,
             buffer_index: NSInteger,
         ) -> Option<Retained<MTLTensorExtents>>;
@@ -234,6 +235,6 @@ extern_protocol!(
         /// a heap at least as large as this property requests.
         #[unsafe(method(intermediatesHeapSize))]
         #[unsafe(method_family = none)]
-        fn intermediatesHeapSize(&self) -> NSUInteger;
+        fn intermediates_heap_size(&self) -> NSUInteger;
     }
 );

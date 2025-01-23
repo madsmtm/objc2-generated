@@ -193,25 +193,25 @@ impl MTLBufferLayoutDescriptor {
         /// Setter for [`stride`][Self::stride].
         #[unsafe(method(setStride:))]
         #[unsafe(method_family = none)]
-        pub fn setStride(&self, stride: NSUInteger);
+        pub fn set_stride(&self, stride: NSUInteger);
 
         #[unsafe(method(stepFunction))]
         #[unsafe(method_family = none)]
-        pub fn stepFunction(&self) -> MTLStepFunction;
+        pub fn step_function(&self) -> MTLStepFunction;
 
         /// Setter for [`stepFunction`][Self::stepFunction].
         #[unsafe(method(setStepFunction:))]
         #[unsafe(method_family = none)]
-        pub fn setStepFunction(&self, step_function: MTLStepFunction);
+        pub fn set_step_function(&self, step_function: MTLStepFunction);
 
         #[unsafe(method(stepRate))]
         #[unsafe(method_family = none)]
-        pub fn stepRate(&self) -> NSUInteger;
+        pub fn step_rate(&self) -> NSUInteger;
 
         /// Setter for [`stepRate`][Self::stepRate].
         #[unsafe(method(setStepRate:))]
         #[unsafe(method_family = none)]
-        pub fn setStepRate(&self, step_rate: NSUInteger);
+        pub fn set_step_rate(&self, step_rate: NSUInteger);
     );
 }
 
@@ -253,7 +253,7 @@ impl MTLBufferLayoutDescriptorArray {
         /// `index` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             index: NSUInteger,
         ) -> Retained<MTLBufferLayoutDescriptor>;
@@ -263,7 +263,7 @@ impl MTLBufferLayoutDescriptorArray {
         /// `index` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             buffer_desc: Option<&MTLBufferLayoutDescriptor>,
             index: NSUInteger,
@@ -319,7 +319,7 @@ impl MTLAttributeDescriptor {
         /// Setter for [`format`][Self::format].
         #[unsafe(method(setFormat:))]
         #[unsafe(method_family = none)]
-        pub fn setFormat(&self, format: MTLAttributeFormat);
+        pub fn set_format(&self, format: MTLAttributeFormat);
 
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
@@ -328,11 +328,11 @@ impl MTLAttributeDescriptor {
         /// Setter for [`offset`][Self::offset].
         #[unsafe(method(setOffset:))]
         #[unsafe(method_family = none)]
-        pub fn setOffset(&self, offset: NSUInteger);
+        pub fn set_offset(&self, offset: NSUInteger);
 
         #[unsafe(method(bufferIndex))]
         #[unsafe(method_family = none)]
-        pub fn bufferIndex(&self) -> NSUInteger;
+        pub fn buffer_index(&self) -> NSUInteger;
 
         /// Setter for [`bufferIndex`][Self::bufferIndex].
         ///
@@ -341,7 +341,7 @@ impl MTLAttributeDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setBufferIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
+        pub unsafe fn set_buffer_index(&self, buffer_index: NSUInteger);
     );
 }
 
@@ -383,7 +383,7 @@ impl MTLAttributeDescriptorArray {
         /// `index` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             index: NSUInteger,
         ) -> Retained<MTLAttributeDescriptor>;
@@ -393,7 +393,7 @@ impl MTLAttributeDescriptorArray {
         /// `index` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             attribute_desc: Option<&MTLAttributeDescriptor>,
             index: NSUInteger,
@@ -444,7 +444,7 @@ impl MTLStageInputOutputDescriptor {
     extern_methods!(
         #[unsafe(method(stageInputOutputDescriptor))]
         #[unsafe(method_family = none)]
-        pub fn stageInputOutputDescriptor() -> Retained<MTLStageInputOutputDescriptor>;
+        pub fn stage_input_output_descriptor() -> Retained<MTLStageInputOutputDescriptor>;
 
         #[unsafe(method(layouts))]
         #[unsafe(method_family = none)]
@@ -457,17 +457,17 @@ impl MTLStageInputOutputDescriptor {
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
-        pub fn indexType(&self) -> MTLIndexType;
+        pub fn index_type(&self) -> MTLIndexType;
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn set_index_type(&self, index_type: MTLIndexType);
 
         #[unsafe(method(indexBufferIndex))]
         #[unsafe(method_family = none)]
-        pub fn indexBufferIndex(&self) -> NSUInteger;
+        pub fn index_buffer_index(&self) -> NSUInteger;
 
         /// Setter for [`indexBufferIndex`][Self::indexBufferIndex].
         ///
@@ -476,7 +476,7 @@ impl MTLStageInputOutputDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setIndexBufferIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexBufferIndex(&self, index_buffer_index: NSUInteger);
+        pub unsafe fn set_index_buffer_index(&self, index_buffer_index: NSUInteger);
 
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
