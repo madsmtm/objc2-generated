@@ -124,7 +124,7 @@ impl MTLFunctionStitchingInputNode {
     extern_methods!(
         #[unsafe(method(argumentIndex))]
         #[unsafe(method_family = none)]
-        pub fn argumentIndex(&self) -> NSUInteger;
+        pub fn argument_index(&self) -> NSUInteger;
 
         /// Setter for [`argumentIndex`][Self::argumentIndex].
         ///
@@ -133,14 +133,14 @@ impl MTLFunctionStitchingInputNode {
         /// This might not be bounds-checked.
         #[unsafe(method(setArgumentIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setArgumentIndex(&self, argument_index: NSUInteger);
+        pub unsafe fn set_argument_index(&self, argument_index: NSUInteger);
 
         /// # Safety
         ///
         /// This might not be bounds-checked.
         #[unsafe(method(initWithArgumentIndex:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithArgumentIndex(
+        pub unsafe fn init_with_argument_index(
             this: Allocated<Self>,
             argument: NSUInteger,
         ) -> Retained<Self>;
@@ -203,7 +203,7 @@ impl MTLFunctionStitchingFunctionNode {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub fn setName(&self, name: &NSString);
+        pub fn set_name(&self, name: &NSString);
 
         #[unsafe(method(arguments))]
         #[unsafe(method_family = none)]
@@ -214,28 +214,28 @@ impl MTLFunctionStitchingFunctionNode {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setArguments:))]
         #[unsafe(method_family = none)]
-        pub fn setArguments(
+        pub fn set_arguments(
             &self,
             arguments: &NSArray<ProtocolObject<dyn MTLFunctionStitchingNode>>,
         );
 
         #[unsafe(method(controlDependencies))]
         #[unsafe(method_family = none)]
-        pub fn controlDependencies(&self) -> Retained<NSArray<MTLFunctionStitchingFunctionNode>>;
+        pub fn control_dependencies(&self) -> Retained<NSArray<MTLFunctionStitchingFunctionNode>>;
 
         /// Setter for [`controlDependencies`][Self::controlDependencies].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setControlDependencies:))]
         #[unsafe(method_family = none)]
-        pub fn setControlDependencies(
+        pub fn set_control_dependencies(
             &self,
             control_dependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
         );
 
         #[unsafe(method(initWithName:arguments:controlDependencies:))]
         #[unsafe(method_family = init)]
-        pub fn initWithName_arguments_controlDependencies(
+        pub fn init_with_name_arguments_control_dependencies(
             this: Allocated<Self>,
             name: &NSString,
             arguments: &NSArray<ProtocolObject<dyn MTLFunctionStitchingNode>>,
@@ -291,14 +291,14 @@ impl MTLFunctionStitchingGraph {
     extern_methods!(
         #[unsafe(method(functionName))]
         #[unsafe(method_family = none)]
-        pub fn functionName(&self) -> Retained<NSString>;
+        pub fn function_name(&self) -> Retained<NSString>;
 
         /// Setter for [`functionName`][Self::functionName].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFunctionName:))]
         #[unsafe(method_family = none)]
-        pub fn setFunctionName(&self, function_name: &NSString);
+        pub fn set_function_name(&self, function_name: &NSString);
 
         #[unsafe(method(nodes))]
         #[unsafe(method_family = none)]
@@ -309,16 +309,16 @@ impl MTLFunctionStitchingGraph {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNodes:))]
         #[unsafe(method_family = none)]
-        pub fn setNodes(&self, nodes: &NSArray<MTLFunctionStitchingFunctionNode>);
+        pub fn set_nodes(&self, nodes: &NSArray<MTLFunctionStitchingFunctionNode>);
 
         #[unsafe(method(outputNode))]
         #[unsafe(method_family = none)]
-        pub fn outputNode(&self) -> Option<Retained<MTLFunctionStitchingFunctionNode>>;
+        pub fn output_node(&self) -> Option<Retained<MTLFunctionStitchingFunctionNode>>;
 
         /// Setter for [`outputNode`][Self::outputNode].
         #[unsafe(method(setOutputNode:))]
         #[unsafe(method_family = none)]
-        pub fn setOutputNode(&self, output_node: Option<&MTLFunctionStitchingFunctionNode>);
+        pub fn set_output_node(&self, output_node: Option<&MTLFunctionStitchingFunctionNode>);
 
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
@@ -331,14 +331,14 @@ impl MTLFunctionStitchingGraph {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
-        pub fn setAttributes(
+        pub fn set_attributes(
             &self,
             attributes: &NSArray<ProtocolObject<dyn MTLFunctionStitchingAttribute>>,
         );
 
         #[unsafe(method(initWithFunctionName:nodes:outputNode:attributes:))]
         #[unsafe(method_family = init)]
-        pub fn initWithFunctionName_nodes_outputNode_attributes(
+        pub fn init_with_function_name_nodes_output_node_attributes(
             this: Allocated<Self>,
             function_name: &NSString,
             nodes: &NSArray<MTLFunctionStitchingFunctionNode>,
@@ -393,14 +393,14 @@ impl MTLStitchedLibraryDescriptor {
     extern_methods!(
         #[unsafe(method(functionGraphs))]
         #[unsafe(method_family = none)]
-        pub fn functionGraphs(&self) -> Retained<NSArray<MTLFunctionStitchingGraph>>;
+        pub fn function_graphs(&self) -> Retained<NSArray<MTLFunctionStitchingGraph>>;
 
         /// Setter for [`functionGraphs`][Self::functionGraphs].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFunctionGraphs:))]
         #[unsafe(method_family = none)]
-        pub fn setFunctionGraphs(&self, function_graphs: &NSArray<MTLFunctionStitchingGraph>);
+        pub fn set_function_graphs(&self, function_graphs: &NSArray<MTLFunctionStitchingGraph>);
 
         #[cfg(feature = "MTLLibrary")]
         #[unsafe(method(functions))]
@@ -418,7 +418,7 @@ impl MTLStitchedLibraryDescriptor {
         /// - `functions` generic must have the correct argument and return types.
         #[unsafe(method(setFunctions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFunctions(&self, functions: &NSArray<ProtocolObject<dyn MTLFunction>>);
+        pub unsafe fn set_functions(&self, functions: &NSArray<ProtocolObject<dyn MTLFunction>>);
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// The array of archives to be searched.
@@ -426,7 +426,7 @@ impl MTLStitchedLibraryDescriptor {
         /// Binary archives to be searched for precompiled stitched libraries during the compilation of this library.
         #[unsafe(method(binaryArchives))]
         #[unsafe(method_family = none)]
-        pub fn binaryArchives(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>;
+        pub fn binary_archives(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>;
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// Setter for [`binaryArchives`][Self::binaryArchives].
@@ -434,7 +434,7 @@ impl MTLStitchedLibraryDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
-        pub fn setBinaryArchives(
+        pub fn set_binary_archives(
             &self,
             binary_archives: &NSArray<ProtocolObject<dyn MTLBinaryArchive>>,
         );
@@ -447,7 +447,7 @@ impl MTLStitchedLibraryDescriptor {
         /// Setter for [`options`][Self::options].
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
-        pub fn setOptions(&self, options: MTLStitchedLibraryOptions);
+        pub fn set_options(&self, options: MTLStitchedLibraryOptions);
     );
 }
 

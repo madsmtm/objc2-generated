@@ -29,7 +29,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(presentAtTime:))]
         #[unsafe(method_family = none)]
-        fn presentAtTime(&self, presentation_time: CFTimeInterval);
+        fn present_at_time(&self, presentation_time: CFTimeInterval);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Present this drawable while setting a minimum duration in seconds before allowing this drawable to appear on the display.
@@ -37,7 +37,7 @@ extern_protocol!(
         /// Parameter `duration`: Duration in seconds before this drawable is allowed to appear on the display
         #[unsafe(method(presentAfterMinimumDuration:))]
         #[unsafe(method_family = none)]
-        fn presentAfterMinimumDuration(&self, duration: CFTimeInterval);
+        fn present_after_minimum_duration(&self, duration: CFTimeInterval);
 
         #[cfg(feature = "block2")]
         /// Add a block to be called when this drawable is presented on screen.
@@ -47,7 +47,7 @@ extern_protocol!(
         /// `block` must be a valid pointer.
         #[unsafe(method(addPresentedHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn addPresentedHandler(&self, block: MTLDrawablePresentedHandler);
+        unsafe fn add_presented_handler(&self, block: MTLDrawablePresentedHandler);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The host time that this drawable was presented on screen.
@@ -55,13 +55,13 @@ extern_protocol!(
         /// Returns 0 if a frame has not been presented or has been skipped.
         #[unsafe(method(presentedTime))]
         #[unsafe(method_family = none)]
-        fn presentedTime(&self) -> CFTimeInterval;
+        fn presented_time(&self) -> CFTimeInterval;
 
         /// The monotonically incremented ID for all MTLDrawable objects created from the same CAMetalLayer object.
         ///
         /// The value starts from 0.
         #[unsafe(method(drawableID))]
         #[unsafe(method_family = none)]
-        fn drawableID(&self) -> NSUInteger;
+        fn drawable_id(&self) -> NSUInteger;
     }
 );

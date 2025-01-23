@@ -45,51 +45,51 @@ impl CATransaction {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(animationDuration))]
         #[unsafe(method_family = none)]
-        pub fn animationDuration() -> CFTimeInterval;
+        pub fn animation_duration() -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setAnimationDuration:))]
         #[unsafe(method_family = none)]
-        pub fn setAnimationDuration(dur: CFTimeInterval);
+        pub fn set_animation_duration(dur: CFTimeInterval);
 
         #[cfg(feature = "CAMediaTimingFunction")]
         #[unsafe(method(animationTimingFunction))]
         #[unsafe(method_family = none)]
-        pub fn animationTimingFunction() -> Option<Retained<CAMediaTimingFunction>>;
+        pub fn animation_timing_function() -> Option<Retained<CAMediaTimingFunction>>;
 
         #[cfg(feature = "CAMediaTimingFunction")]
         #[unsafe(method(setAnimationTimingFunction:))]
         #[unsafe(method_family = none)]
-        pub fn setAnimationTimingFunction(function: Option<&CAMediaTimingFunction>);
+        pub fn set_animation_timing_function(function: Option<&CAMediaTimingFunction>);
 
         #[unsafe(method(disableActions))]
         #[unsafe(method_family = none)]
-        pub fn disableActions() -> bool;
+        pub fn disable_actions() -> bool;
 
         #[unsafe(method(setDisableActions:))]
         #[unsafe(method_family = none)]
-        pub fn setDisableActions(flag: bool);
+        pub fn set_disable_actions(flag: bool);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(completionBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionBlock() -> *mut block2::DynBlock<dyn Fn()>;
+        pub unsafe fn completion_block() -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(setCompletionBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCompletionBlock(block: Option<&block2::DynBlock<dyn Fn()>>);
+        pub unsafe fn set_completion_block(block: Option<&block2::DynBlock<dyn Fn()>>);
 
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
-        pub fn valueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
+        pub fn value_for_key(key: &NSString) -> Option<Retained<AnyObject>>;
 
         /// # Safety
         ///
         /// `an_object` should be of the correct type.
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setValue_forKey(an_object: Option<&AnyObject>, key: &NSString);
+        pub unsafe fn set_value_for_key(an_object: Option<&AnyObject>, key: &NSString);
     );
 }
 

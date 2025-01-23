@@ -176,7 +176,7 @@ impl MTLRenderPassAttachmentDescriptor {
         /// Setter for [`texture`][Self::texture].
         #[unsafe(method(setTexture:))]
         #[unsafe(method_family = none)]
-        pub fn setTexture(&self, texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        pub fn set_texture(&self, texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         /// The mipmap level of the texture to be used for rendering.  Default is zero.
         #[unsafe(method(level))]
@@ -186,7 +186,7 @@ impl MTLRenderPassAttachmentDescriptor {
         /// Setter for [`level`][Self::level].
         #[unsafe(method(setLevel:))]
         #[unsafe(method_family = none)]
-        pub fn setLevel(&self, level: NSUInteger);
+        pub fn set_level(&self, level: NSUInteger);
 
         /// The slice of the texture to be used for rendering.  Default is zero.
         #[unsafe(method(slice))]
@@ -196,17 +196,17 @@ impl MTLRenderPassAttachmentDescriptor {
         /// Setter for [`slice`][Self::slice].
         #[unsafe(method(setSlice:))]
         #[unsafe(method_family = none)]
-        pub fn setSlice(&self, slice: NSUInteger);
+        pub fn set_slice(&self, slice: NSUInteger);
 
         /// The depth plane of the texture to be used for rendering.  Default is zero.
         #[unsafe(method(depthPlane))]
         #[unsafe(method_family = none)]
-        pub fn depthPlane(&self) -> NSUInteger;
+        pub fn depth_plane(&self) -> NSUInteger;
 
         /// Setter for [`depthPlane`][Self::depthPlane].
         #[unsafe(method(setDepthPlane:))]
         #[unsafe(method_family = none)]
-        pub fn setDepthPlane(&self, depth_plane: NSUInteger);
+        pub fn set_depth_plane(&self, depth_plane: NSUInteger);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -217,7 +217,7 @@ impl MTLRenderPassAttachmentDescriptor {
         /// if the store action is set to MTLStoreActionMultisampleResolve.
         #[unsafe(method(resolveTexture))]
         #[unsafe(method_family = none)]
-        pub fn resolveTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
+        pub fn resolve_texture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -227,70 +227,70 @@ impl MTLRenderPassAttachmentDescriptor {
         /// Setter for [`resolveTexture`][Self::resolveTexture].
         #[unsafe(method(setResolveTexture:))]
         #[unsafe(method_family = none)]
-        pub fn setResolveTexture(&self, resolve_texture: Option<&ProtocolObject<dyn MTLTexture>>);
+        pub fn set_resolve_texture(&self, resolve_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         /// The mipmap level of the resolve texture to be used for multisample resolve.  Defaults to zero.
         #[unsafe(method(resolveLevel))]
         #[unsafe(method_family = none)]
-        pub fn resolveLevel(&self) -> NSUInteger;
+        pub fn resolve_level(&self) -> NSUInteger;
 
         /// Setter for [`resolveLevel`][Self::resolveLevel].
         #[unsafe(method(setResolveLevel:))]
         #[unsafe(method_family = none)]
-        pub fn setResolveLevel(&self, resolve_level: NSUInteger);
+        pub fn set_resolve_level(&self, resolve_level: NSUInteger);
 
         /// The texture slice of the resolve texture to be used for multisample resolve.  Defaults to zero.
         #[unsafe(method(resolveSlice))]
         #[unsafe(method_family = none)]
-        pub fn resolveSlice(&self) -> NSUInteger;
+        pub fn resolve_slice(&self) -> NSUInteger;
 
         /// Setter for [`resolveSlice`][Self::resolveSlice].
         #[unsafe(method(setResolveSlice:))]
         #[unsafe(method_family = none)]
-        pub fn setResolveSlice(&self, resolve_slice: NSUInteger);
+        pub fn set_resolve_slice(&self, resolve_slice: NSUInteger);
 
         /// The texture depth plane of the resolve texture to be used for multisample resolve.  Defaults to zero.
         #[unsafe(method(resolveDepthPlane))]
         #[unsafe(method_family = none)]
-        pub fn resolveDepthPlane(&self) -> NSUInteger;
+        pub fn resolve_depth_plane(&self) -> NSUInteger;
 
         /// Setter for [`resolveDepthPlane`][Self::resolveDepthPlane].
         #[unsafe(method(setResolveDepthPlane:))]
         #[unsafe(method_family = none)]
-        pub fn setResolveDepthPlane(&self, resolve_depth_plane: NSUInteger);
+        pub fn set_resolve_depth_plane(&self, resolve_depth_plane: NSUInteger);
 
         /// The action to be performed with this attachment at the beginning of a render pass.  Default is
         /// MTLLoadActionDontCare unless specified by a creation or init method.
         #[unsafe(method(loadAction))]
         #[unsafe(method_family = none)]
-        pub fn loadAction(&self) -> MTLLoadAction;
+        pub fn load_action(&self) -> MTLLoadAction;
 
         /// Setter for [`loadAction`][Self::loadAction].
         #[unsafe(method(setLoadAction:))]
         #[unsafe(method_family = none)]
-        pub fn setLoadAction(&self, load_action: MTLLoadAction);
+        pub fn set_load_action(&self, load_action: MTLLoadAction);
 
         /// The action to be performed with this attachment at the end of a render pass.  Default is
         /// MTLStoreActionDontCare unless specified by a creation or init method.
         #[unsafe(method(storeAction))]
         #[unsafe(method_family = none)]
-        pub fn storeAction(&self) -> MTLStoreAction;
+        pub fn store_action(&self) -> MTLStoreAction;
 
         /// Setter for [`storeAction`][Self::storeAction].
         #[unsafe(method(setStoreAction:))]
         #[unsafe(method_family = none)]
-        pub fn setStoreAction(&self, store_action: MTLStoreAction);
+        pub fn set_store_action(&self, store_action: MTLStoreAction);
 
         /// Optional configuration for the store action performed with this attachment at the end of a render pass.  Default is
         /// MTLStoreActionOptionNone.
         #[unsafe(method(storeActionOptions))]
         #[unsafe(method_family = none)]
-        pub fn storeActionOptions(&self) -> MTLStoreActionOptions;
+        pub fn store_action_options(&self) -> MTLStoreActionOptions;
 
         /// Setter for [`storeActionOptions`][Self::storeActionOptions].
         #[unsafe(method(setStoreActionOptions:))]
         #[unsafe(method_family = none)]
-        pub fn setStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
+        pub fn set_store_action_options(&self, store_action_options: MTLStoreActionOptions);
     );
 }
 
@@ -338,12 +338,12 @@ impl MTLRenderPassColorAttachmentDescriptor {
         /// The clear color to be used if the loadAction property is MTLLoadActionClear
         #[unsafe(method(clearColor))]
         #[unsafe(method_family = none)]
-        pub fn clearColor(&self) -> MTLClearColor;
+        pub fn clear_color(&self) -> MTLClearColor;
 
         /// Setter for [`clearColor`][Self::clearColor].
         #[unsafe(method(setClearColor:))]
         #[unsafe(method_family = none)]
-        pub fn setClearColor(&self, clear_color: MTLClearColor);
+        pub fn set_clear_color(&self, clear_color: MTLClearColor);
     );
 }
 
@@ -415,22 +415,25 @@ impl MTLRenderPassDepthAttachmentDescriptor {
         /// The clear depth value to be used if the loadAction property is MTLLoadActionClear
         #[unsafe(method(clearDepth))]
         #[unsafe(method_family = none)]
-        pub fn clearDepth(&self) -> c_double;
+        pub fn clear_depth(&self) -> c_double;
 
         /// Setter for [`clearDepth`][Self::clearDepth].
         #[unsafe(method(setClearDepth:))]
         #[unsafe(method_family = none)]
-        pub fn setClearDepth(&self, clear_depth: c_double);
+        pub fn set_clear_depth(&self, clear_depth: c_double);
 
         /// The filter to be used for depth multisample resolve.  Defaults to MTLMultisampleDepthResolveFilterSample0.
         #[unsafe(method(depthResolveFilter))]
         #[unsafe(method_family = none)]
-        pub fn depthResolveFilter(&self) -> MTLMultisampleDepthResolveFilter;
+        pub fn depth_resolve_filter(&self) -> MTLMultisampleDepthResolveFilter;
 
         /// Setter for [`depthResolveFilter`][Self::depthResolveFilter].
         #[unsafe(method(setDepthResolveFilter:))]
         #[unsafe(method_family = none)]
-        pub fn setDepthResolveFilter(&self, depth_resolve_filter: MTLMultisampleDepthResolveFilter);
+        pub fn set_depth_resolve_filter(
+            &self,
+            depth_resolve_filter: MTLMultisampleDepthResolveFilter,
+        );
     );
 }
 
@@ -502,22 +505,22 @@ impl MTLRenderPassStencilAttachmentDescriptor {
         /// The clear stencil value to be used if the loadAction property is MTLLoadActionClear
         #[unsafe(method(clearStencil))]
         #[unsafe(method_family = none)]
-        pub fn clearStencil(&self) -> u32;
+        pub fn clear_stencil(&self) -> u32;
 
         /// Setter for [`clearStencil`][Self::clearStencil].
         #[unsafe(method(setClearStencil:))]
         #[unsafe(method_family = none)]
-        pub fn setClearStencil(&self, clear_stencil: u32);
+        pub fn set_clear_stencil(&self, clear_stencil: u32);
 
         /// The filter to be used for stencil multisample resolve. Defaults to MTLMultisampleStencilResolveFilterSample0.
         #[unsafe(method(stencilResolveFilter))]
         #[unsafe(method_family = none)]
-        pub fn stencilResolveFilter(&self) -> MTLMultisampleStencilResolveFilter;
+        pub fn stencil_resolve_filter(&self) -> MTLMultisampleStencilResolveFilter;
 
         /// Setter for [`stencilResolveFilter`][Self::stencilResolveFilter].
         #[unsafe(method(setStencilResolveFilter:))]
         #[unsafe(method_family = none)]
-        pub fn setStencilResolveFilter(
+        pub fn set_stencil_resolve_filter(
             &self,
             stencil_resolve_filter: MTLMultisampleStencilResolveFilter,
         );
@@ -562,7 +565,7 @@ impl MTLRenderPassColorAttachmentDescriptorArray {
         /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Retained<MTLRenderPassColorAttachmentDescriptor>;
@@ -572,7 +575,7 @@ impl MTLRenderPassColorAttachmentDescriptorArray {
         /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             attachment: Option<&MTLRenderPassColorAttachmentDescriptor>,
             attachment_index: NSUInteger,
@@ -629,13 +632,14 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         /// will be taken for that action.
         #[unsafe(method(sampleBuffer))]
         #[unsafe(method_family = none)]
-        pub fn sampleBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
+        pub fn sample_buffer(&self)
+            -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
         /// Setter for [`sampleBuffer`][Self::sampleBuffer].
         #[unsafe(method(setSampleBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setSampleBuffer(
+        pub fn set_sample_buffer(
             &self,
             sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
         );
@@ -648,7 +652,7 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a render pass will fail.
         #[unsafe(method(startOfVertexSampleIndex))]
         #[unsafe(method_family = none)]
-        pub fn startOfVertexSampleIndex(&self) -> NSUInteger;
+        pub fn start_of_vertex_sample_index(&self) -> NSUInteger;
 
         /// Setter for [`startOfVertexSampleIndex`][Self::startOfVertexSampleIndex].
         ///
@@ -657,7 +661,10 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setStartOfVertexSampleIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStartOfVertexSampleIndex(&self, start_of_vertex_sample_index: NSUInteger);
+        pub unsafe fn set_start_of_vertex_sample_index(
+            &self,
+            start_of_vertex_sample_index: NSUInteger,
+        );
 
         /// The sample index to use to store the sample taken at the end of
         /// vertex processing.  Setting the value to MTLCounterDontSample will cause
@@ -667,7 +674,7 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a render pass will fail.
         #[unsafe(method(endOfVertexSampleIndex))]
         #[unsafe(method_family = none)]
-        pub fn endOfVertexSampleIndex(&self) -> NSUInteger;
+        pub fn end_of_vertex_sample_index(&self) -> NSUInteger;
 
         /// Setter for [`endOfVertexSampleIndex`][Self::endOfVertexSampleIndex].
         ///
@@ -676,7 +683,7 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setEndOfVertexSampleIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEndOfVertexSampleIndex(&self, end_of_vertex_sample_index: NSUInteger);
+        pub unsafe fn set_end_of_vertex_sample_index(&self, end_of_vertex_sample_index: NSUInteger);
 
         /// The sample index to use to store the sample taken at the start of
         /// fragment processing.  Setting the value to MTLCounterDontSample will cause
@@ -686,7 +693,7 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a render pass will fail.
         #[unsafe(method(startOfFragmentSampleIndex))]
         #[unsafe(method_family = none)]
-        pub fn startOfFragmentSampleIndex(&self) -> NSUInteger;
+        pub fn start_of_fragment_sample_index(&self) -> NSUInteger;
 
         /// Setter for [`startOfFragmentSampleIndex`][Self::startOfFragmentSampleIndex].
         ///
@@ -695,7 +702,7 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setStartOfFragmentSampleIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStartOfFragmentSampleIndex(
+        pub unsafe fn set_start_of_fragment_sample_index(
             &self,
             start_of_fragment_sample_index: NSUInteger,
         );
@@ -708,7 +715,7 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a render pass will fail.
         #[unsafe(method(endOfFragmentSampleIndex))]
         #[unsafe(method_family = none)]
-        pub fn endOfFragmentSampleIndex(&self) -> NSUInteger;
+        pub fn end_of_fragment_sample_index(&self) -> NSUInteger;
 
         /// Setter for [`endOfFragmentSampleIndex`][Self::endOfFragmentSampleIndex].
         ///
@@ -717,7 +724,10 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setEndOfFragmentSampleIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEndOfFragmentSampleIndex(&self, end_of_fragment_sample_index: NSUInteger);
+        pub unsafe fn set_end_of_fragment_sample_index(
+            &self,
+            end_of_fragment_sample_index: NSUInteger,
+        );
     );
 }
 
@@ -759,7 +769,7 @@ impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
         /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Retained<MTLRenderPassSampleBufferAttachmentDescriptor>;
@@ -769,7 +779,7 @@ impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
         /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             attachment: Option<&MTLRenderPassSampleBufferAttachmentDescriptor>,
             attachment_index: NSUInteger,
@@ -823,36 +833,36 @@ impl MTLRenderPassDescriptor {
         /// Create an autoreleased default frame buffer descriptor
         #[unsafe(method(renderPassDescriptor))]
         #[unsafe(method_family = none)]
-        pub fn renderPassDescriptor() -> Retained<MTLRenderPassDescriptor>;
+        pub fn render_pass_descriptor() -> Retained<MTLRenderPassDescriptor>;
 
         #[unsafe(method(colorAttachments))]
         #[unsafe(method_family = none)]
-        pub fn colorAttachments(&self) -> Retained<MTLRenderPassColorAttachmentDescriptorArray>;
+        pub fn color_attachments(&self) -> Retained<MTLRenderPassColorAttachmentDescriptorArray>;
 
         #[unsafe(method(depthAttachment))]
         #[unsafe(method_family = none)]
-        pub fn depthAttachment(&self) -> Retained<MTLRenderPassDepthAttachmentDescriptor>;
+        pub fn depth_attachment(&self) -> Retained<MTLRenderPassDepthAttachmentDescriptor>;
 
         /// Setter for [`depthAttachment`][Self::depthAttachment].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDepthAttachment:))]
         #[unsafe(method_family = none)]
-        pub fn setDepthAttachment(
+        pub fn set_depth_attachment(
             &self,
             depth_attachment: Option<&MTLRenderPassDepthAttachmentDescriptor>,
         );
 
         #[unsafe(method(stencilAttachment))]
         #[unsafe(method_family = none)]
-        pub fn stencilAttachment(&self) -> Retained<MTLRenderPassStencilAttachmentDescriptor>;
+        pub fn stencil_attachment(&self) -> Retained<MTLRenderPassStencilAttachmentDescriptor>;
 
         /// Setter for [`stencilAttachment`][Self::stencilAttachment].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStencilAttachment:))]
         #[unsafe(method_family = none)]
-        pub fn setStencilAttachment(
+        pub fn set_stencil_attachment(
             &self,
             stencil_attachment: Option<&MTLRenderPassStencilAttachmentDescriptor>,
         );
@@ -865,7 +875,7 @@ impl MTLRenderPassDescriptor {
         /// Buffer into which samples passing the depth and stencil tests are counted.
         #[unsafe(method(visibilityResultBuffer))]
         #[unsafe(method_family = none)]
-        pub fn visibilityResultBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn visibility_result_buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -875,7 +885,7 @@ impl MTLRenderPassDescriptor {
         /// Setter for [`visibilityResultBuffer`][Self::visibilityResultBuffer].
         #[unsafe(method(setVisibilityResultBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setVisibilityResultBuffer(
+        pub fn set_visibility_result_buffer(
             &self,
             visibility_result_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -883,90 +893,90 @@ impl MTLRenderPassDescriptor {
         /// The number of active layers
         #[unsafe(method(renderTargetArrayLength))]
         #[unsafe(method_family = none)]
-        pub fn renderTargetArrayLength(&self) -> NSUInteger;
+        pub fn render_target_array_length(&self) -> NSUInteger;
 
         /// Setter for [`renderTargetArrayLength`][Self::renderTargetArrayLength].
         #[unsafe(method(setRenderTargetArrayLength:))]
         #[unsafe(method_family = none)]
-        pub fn setRenderTargetArrayLength(&self, render_target_array_length: NSUInteger);
+        pub fn set_render_target_array_length(&self, render_target_array_length: NSUInteger);
 
         /// The per sample size in bytes of the largest explicit imageblock layout in the renderPass.
         #[unsafe(method(imageblockSampleLength))]
         #[unsafe(method_family = none)]
-        pub fn imageblockSampleLength(&self) -> NSUInteger;
+        pub fn imageblock_sample_length(&self) -> NSUInteger;
 
         /// Setter for [`imageblockSampleLength`][Self::imageblockSampleLength].
         #[unsafe(method(setImageblockSampleLength:))]
         #[unsafe(method_family = none)]
-        pub fn setImageblockSampleLength(&self, imageblock_sample_length: NSUInteger);
+        pub fn set_imageblock_sample_length(&self, imageblock_sample_length: NSUInteger);
 
         /// The per tile size in bytes of the persistent threadgroup memory allocation.
         #[unsafe(method(threadgroupMemoryLength))]
         #[unsafe(method_family = none)]
-        pub fn threadgroupMemoryLength(&self) -> NSUInteger;
+        pub fn threadgroup_memory_length(&self) -> NSUInteger;
 
         /// Setter for [`threadgroupMemoryLength`][Self::threadgroupMemoryLength].
         #[unsafe(method(setThreadgroupMemoryLength:))]
         #[unsafe(method_family = none)]
-        pub fn setThreadgroupMemoryLength(&self, threadgroup_memory_length: NSUInteger);
+        pub fn set_threadgroup_memory_length(&self, threadgroup_memory_length: NSUInteger);
 
         /// The width in pixels of the tile.
         ///
         /// Defaults to 0. Zero means Metal chooses a width that fits within the local memory.
         #[unsafe(method(tileWidth))]
         #[unsafe(method_family = none)]
-        pub fn tileWidth(&self) -> NSUInteger;
+        pub fn tile_width(&self) -> NSUInteger;
 
         /// Setter for [`tileWidth`][Self::tileWidth].
         #[unsafe(method(setTileWidth:))]
         #[unsafe(method_family = none)]
-        pub fn setTileWidth(&self, tile_width: NSUInteger);
+        pub fn set_tile_width(&self, tile_width: NSUInteger);
 
         /// The height in pixels of the tile.
         ///
         /// Defaults to 0. Zero means Metal chooses a height that fits within the local memory.
         #[unsafe(method(tileHeight))]
         #[unsafe(method_family = none)]
-        pub fn tileHeight(&self) -> NSUInteger;
+        pub fn tile_height(&self) -> NSUInteger;
 
         /// Setter for [`tileHeight`][Self::tileHeight].
         #[unsafe(method(setTileHeight:))]
         #[unsafe(method_family = none)]
-        pub fn setTileHeight(&self, tile_height: NSUInteger);
+        pub fn set_tile_height(&self, tile_height: NSUInteger);
 
         /// The raster sample count for the render pass when no attachments are given.
         #[unsafe(method(defaultRasterSampleCount))]
         #[unsafe(method_family = none)]
-        pub fn defaultRasterSampleCount(&self) -> NSUInteger;
+        pub fn default_raster_sample_count(&self) -> NSUInteger;
 
         /// Setter for [`defaultRasterSampleCount`][Self::defaultRasterSampleCount].
         #[unsafe(method(setDefaultRasterSampleCount:))]
         #[unsafe(method_family = none)]
-        pub fn setDefaultRasterSampleCount(&self, default_raster_sample_count: NSUInteger);
+        pub fn set_default_raster_sample_count(&self, default_raster_sample_count: NSUInteger);
 
         /// The width in pixels to constrain the render target to.
         ///
         /// Defaults to 0. If non-zero the value must be smaller than or equal to the minimum width of all attachments.
         #[unsafe(method(renderTargetWidth))]
         #[unsafe(method_family = none)]
-        pub fn renderTargetWidth(&self) -> NSUInteger;
+        pub fn render_target_width(&self) -> NSUInteger;
 
         /// Setter for [`renderTargetWidth`][Self::renderTargetWidth].
         #[unsafe(method(setRenderTargetWidth:))]
         #[unsafe(method_family = none)]
-        pub fn setRenderTargetWidth(&self, render_target_width: NSUInteger);
+        pub fn set_render_target_width(&self, render_target_width: NSUInteger);
 
         /// The height in pixels to constrain the render target to.
         ///
         /// Defaults to 0. If non-zero the value must be smaller than or equal to the minimum height of all attachments.
         #[unsafe(method(renderTargetHeight))]
         #[unsafe(method_family = none)]
-        pub fn renderTargetHeight(&self) -> NSUInteger;
+        pub fn render_target_height(&self) -> NSUInteger;
 
         /// Setter for [`renderTargetHeight`][Self::renderTargetHeight].
         #[unsafe(method(setRenderTargetHeight:))]
         #[unsafe(method_family = none)]
-        pub fn setRenderTargetHeight(&self, render_target_height: NSUInteger);
+        pub fn set_render_target_height(&self, render_target_height: NSUInteger);
 
         #[cfg(feature = "MTLTypes")]
         /// Configure the custom sample positions, to be used in MSAA rendering (i.e. when sample count > 1).
@@ -981,7 +991,7 @@ impl MTLRenderPassDescriptor {
         /// - `count` might not be bounds-checked.
         #[unsafe(method(setSamplePositions:count:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSamplePositions_count(
+        pub unsafe fn set_sample_positions_count(
             &self,
             positions: *const MTLSamplePosition,
             count: NSUInteger,
@@ -1002,7 +1012,7 @@ impl MTLRenderPassDescriptor {
         /// - `count` might not be bounds-checked.
         #[unsafe(method(getSamplePositions:count:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getSamplePositions_count(
+        pub unsafe fn get_sample_positions_count(
             &self,
             positions: *mut MTLSamplePosition,
             count: NSUInteger,
@@ -1014,7 +1024,7 @@ impl MTLRenderPassDescriptor {
         /// The default value is nil. Enabling variable rasterization rate allows for decreasing the rasterization rate in unimportant regions of screen space.
         #[unsafe(method(rasterizationRateMap))]
         #[unsafe(method_family = none)]
-        pub fn rasterizationRateMap(
+        pub fn rasterization_rate_map(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLRasterizationRateMap>>>;
 
@@ -1022,7 +1032,7 @@ impl MTLRenderPassDescriptor {
         /// Setter for [`rasterizationRateMap`][Self::rasterizationRateMap].
         #[unsafe(method(setRasterizationRateMap:))]
         #[unsafe(method_family = none)]
-        pub fn setRasterizationRateMap(
+        pub fn set_rasterization_rate_map(
             &self,
             rasterization_rate_map: Option<&ProtocolObject<dyn MTLRasterizationRateMap>>,
         );
@@ -1030,29 +1040,29 @@ impl MTLRenderPassDescriptor {
         /// An array of sample buffers and associated sample indices.
         #[unsafe(method(sampleBufferAttachments))]
         #[unsafe(method_family = none)]
-        pub fn sampleBufferAttachments(
+        pub fn sample_buffer_attachments(
             &self,
         ) -> Retained<MTLRenderPassSampleBufferAttachmentDescriptorArray>;
 
         /// Specifies if Metal accumulates visibility results between render encoders or resets them.
         #[unsafe(method(visibilityResultType))]
         #[unsafe(method_family = none)]
-        pub fn visibilityResultType(&self) -> MTLVisibilityResultType;
+        pub fn visibility_result_type(&self) -> MTLVisibilityResultType;
 
         /// Setter for [`visibilityResultType`][Self::visibilityResultType].
         #[unsafe(method(setVisibilityResultType:))]
         #[unsafe(method_family = none)]
-        pub fn setVisibilityResultType(&self, visibility_result_type: MTLVisibilityResultType);
+        pub fn set_visibility_result_type(&self, visibility_result_type: MTLVisibilityResultType);
 
         /// Specifies if the render pass should support color attachment mapping.
         #[unsafe(method(supportColorAttachmentMapping))]
         #[unsafe(method_family = none)]
-        pub fn supportColorAttachmentMapping(&self) -> bool;
+        pub fn support_color_attachment_mapping(&self) -> bool;
 
         /// Setter for [`supportColorAttachmentMapping`][Self::supportColorAttachmentMapping].
         #[unsafe(method(setSupportColorAttachmentMapping:))]
         #[unsafe(method_family = none)]
-        pub fn setSupportColorAttachmentMapping(&self, support_color_attachment_mapping: bool);
+        pub fn set_support_color_attachment_mapping(&self, support_color_attachment_mapping: bool);
     );
 }
 

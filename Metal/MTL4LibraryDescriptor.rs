@@ -41,7 +41,7 @@ impl MTL4LibraryDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
-        pub fn setSource(&self, source: Option<&NSString>);
+        pub fn set_source(&self, source: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         /// Provides compile-time options for the Metal library.
@@ -55,7 +55,7 @@ impl MTL4LibraryDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
-        pub fn setOptions(&self, options: Option<&MTLCompileOptions>);
+        pub fn set_options(&self, options: Option<&MTLCompileOptions>);
 
         /// Assigns an optional name to the Metal library.
         #[unsafe(method(name))]
@@ -67,7 +67,7 @@ impl MTL4LibraryDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub fn setName(&self, name: Option<&NSString>);
+        pub fn set_name(&self, name: Option<&NSString>);
     );
 }
 

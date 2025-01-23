@@ -44,90 +44,90 @@ impl CAReplicatorLayer {
     extern_methods!(
         #[unsafe(method(instanceCount))]
         #[unsafe(method_family = none)]
-        pub fn instanceCount(&self) -> NSInteger;
+        pub fn instance_count(&self) -> NSInteger;
 
         /// Setter for [`instanceCount`][Self::instanceCount].
         #[unsafe(method(setInstanceCount:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceCount(&self, instance_count: NSInteger);
+        pub fn set_instance_count(&self, instance_count: NSInteger);
 
         #[unsafe(method(preservesDepth))]
         #[unsafe(method_family = none)]
-        pub fn preservesDepth(&self) -> bool;
+        pub fn preserves_depth(&self) -> bool;
 
         /// Setter for [`preservesDepth`][Self::preservesDepth].
         #[unsafe(method(setPreservesDepth:))]
         #[unsafe(method_family = none)]
-        pub fn setPreservesDepth(&self, preserves_depth: bool);
+        pub fn set_preserves_depth(&self, preserves_depth: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(instanceDelay))]
         #[unsafe(method_family = none)]
-        pub fn instanceDelay(&self) -> CFTimeInterval;
+        pub fn instance_delay(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`instanceDelay`][Self::instanceDelay].
         #[unsafe(method(setInstanceDelay:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceDelay(&self, instance_delay: CFTimeInterval);
+        pub fn set_instance_delay(&self, instance_delay: CFTimeInterval);
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
         #[unsafe(method(instanceTransform))]
         #[unsafe(method_family = none)]
-        pub fn instanceTransform(&self) -> CATransform3D;
+        pub fn instance_transform(&self) -> CATransform3D;
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
         /// Setter for [`instanceTransform`][Self::instanceTransform].
         #[unsafe(method(setInstanceTransform:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceTransform(&self, instance_transform: CATransform3D);
+        pub fn set_instance_transform(&self, instance_transform: CATransform3D);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(instanceColor))]
         #[unsafe(method_family = none)]
-        pub fn instanceColor(&self) -> Option<Retained<CGColor>>;
+        pub fn instance_color(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`instanceColor`][Self::instanceColor].
         #[unsafe(method(setInstanceColor:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceColor(&self, instance_color: Option<&CGColor>);
+        pub fn set_instance_color(&self, instance_color: Option<&CGColor>);
 
         #[unsafe(method(instanceRedOffset))]
         #[unsafe(method_family = none)]
-        pub fn instanceRedOffset(&self) -> c_float;
+        pub fn instance_red_offset(&self) -> c_float;
 
         /// Setter for [`instanceRedOffset`][Self::instanceRedOffset].
         #[unsafe(method(setInstanceRedOffset:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceRedOffset(&self, instance_red_offset: c_float);
+        pub fn set_instance_red_offset(&self, instance_red_offset: c_float);
 
         #[unsafe(method(instanceGreenOffset))]
         #[unsafe(method_family = none)]
-        pub fn instanceGreenOffset(&self) -> c_float;
+        pub fn instance_green_offset(&self) -> c_float;
 
         /// Setter for [`instanceGreenOffset`][Self::instanceGreenOffset].
         #[unsafe(method(setInstanceGreenOffset:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceGreenOffset(&self, instance_green_offset: c_float);
+        pub fn set_instance_green_offset(&self, instance_green_offset: c_float);
 
         #[unsafe(method(instanceBlueOffset))]
         #[unsafe(method_family = none)]
-        pub fn instanceBlueOffset(&self) -> c_float;
+        pub fn instance_blue_offset(&self) -> c_float;
 
         /// Setter for [`instanceBlueOffset`][Self::instanceBlueOffset].
         #[unsafe(method(setInstanceBlueOffset:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceBlueOffset(&self, instance_blue_offset: c_float);
+        pub fn set_instance_blue_offset(&self, instance_blue_offset: c_float);
 
         #[unsafe(method(instanceAlphaOffset))]
         #[unsafe(method_family = none)]
-        pub fn instanceAlphaOffset(&self) -> c_float;
+        pub fn instance_alpha_offset(&self) -> c_float;
 
         /// Setter for [`instanceAlphaOffset`][Self::instanceAlphaOffset].
         #[unsafe(method(setInstanceAlphaOffset:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceAlphaOffset(&self, instance_alpha_offset: c_float);
+        pub fn set_instance_alpha_offset(&self, instance_alpha_offset: c_float);
     );
 }
 
@@ -149,7 +149,7 @@ impl CAReplicatorLayer {
         /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
+        pub unsafe fn init_with_layer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     );
 }
 

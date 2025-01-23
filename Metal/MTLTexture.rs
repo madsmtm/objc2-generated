@@ -240,7 +240,7 @@ impl MTLTextureDescriptor {
         /// Create a TextureDescriptor for a common 2D texture.
         #[unsafe(method(texture2DDescriptorWithPixelFormat:width:height:mipmapped:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn texture2DDescriptorWithPixelFormat_width_height_mipmapped(
+        pub unsafe fn texture2_d_descriptor_with_pixel_format_width_height_mipmapped(
             pixel_format: MTLPixelFormat,
             width: NSUInteger,
             height: NSUInteger,
@@ -255,7 +255,7 @@ impl MTLTextureDescriptor {
         /// `size` might not be bounds-checked.
         #[unsafe(method(textureCubeDescriptorWithPixelFormat:size:mipmapped:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textureCubeDescriptorWithPixelFormat_size_mipmapped(
+        pub unsafe fn texture_cube_descriptor_with_pixel_format_size_mipmapped(
             pixel_format: MTLPixelFormat,
             size: NSUInteger,
             mipmapped: bool,
@@ -265,7 +265,7 @@ impl MTLTextureDescriptor {
         /// Create a TextureDescriptor for a common texture buffer.
         #[unsafe(method(textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage(
+        pub unsafe fn texture_buffer_descriptor_with_pixel_format_width_resource_options_usage(
             pixel_format: MTLPixelFormat,
             width: NSUInteger,
             resource_options: MTLResourceOptions,
@@ -275,24 +275,24 @@ impl MTLTextureDescriptor {
         /// The overall type of the texture to be created. The default value is MTLTextureType2D.
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        pub fn textureType(&self) -> MTLTextureType;
+        pub fn texture_type(&self) -> MTLTextureType;
 
         /// Setter for [`textureType`][Self::textureType].
         #[unsafe(method(setTextureType:))]
         #[unsafe(method_family = none)]
-        pub fn setTextureType(&self, texture_type: MTLTextureType);
+        pub fn set_texture_type(&self, texture_type: MTLTextureType);
 
         #[cfg(feature = "MTLPixelFormat")]
         /// The pixel format to use when allocating this texture. This is also the pixel format that will be used to when the caller writes or reads pixels from this texture. The default value is MTLPixelFormatRGBA8Unorm.
         #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
-        pub fn pixelFormat(&self) -> MTLPixelFormat;
+        pub fn pixel_format(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Setter for [`pixelFormat`][Self::pixelFormat].
         #[unsafe(method(setPixelFormat:))]
         #[unsafe(method_family = none)]
-        pub fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
+        pub fn set_pixel_format(&self, pixel_format: MTLPixelFormat);
 
         /// The width of the texture to create. The default value is 1.
         #[unsafe(method(width))]
@@ -302,7 +302,7 @@ impl MTLTextureDescriptor {
         /// Setter for [`width`][Self::width].
         #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWidth(&self, width: NSUInteger);
+        pub unsafe fn set_width(&self, width: NSUInteger);
 
         /// The height of the texture to create. The default value is 1.
         ///
@@ -314,7 +314,7 @@ impl MTLTextureDescriptor {
         /// Setter for [`height`][Self::height].
         #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHeight(&self, height: NSUInteger);
+        pub unsafe fn set_height(&self, height: NSUInteger);
 
         /// The depth of the texture to create. The default value is 1.
         ///
@@ -326,14 +326,14 @@ impl MTLTextureDescriptor {
         /// Setter for [`depth`][Self::depth].
         #[unsafe(method(setDepth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDepth(&self, depth: NSUInteger);
+        pub unsafe fn set_depth(&self, depth: NSUInteger);
 
         /// The number of mipmap levels to allocate. The default value is 1.
         ///
         /// When creating Buffer and Multisample textures, mipmapLevelCount must be 1.
         #[unsafe(method(mipmapLevelCount))]
         #[unsafe(method_family = none)]
-        pub fn mipmapLevelCount(&self) -> NSUInteger;
+        pub fn mipmap_level_count(&self) -> NSUInteger;
 
         /// Setter for [`mipmapLevelCount`][Self::mipmapLevelCount].
         ///
@@ -342,14 +342,14 @@ impl MTLTextureDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setMipmapLevelCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMipmapLevelCount(&self, mipmap_level_count: NSUInteger);
+        pub unsafe fn set_mipmap_level_count(&self, mipmap_level_count: NSUInteger);
 
         /// The number of samples in the texture to create. The default value is 1.
         ///
         /// When creating Buffer textures sampleCount must be 1. Implementations may round sample counts up to the next supported value.
         #[unsafe(method(sampleCount))]
         #[unsafe(method_family = none)]
-        pub fn sampleCount(&self) -> NSUInteger;
+        pub fn sample_count(&self) -> NSUInteger;
 
         /// Setter for [`sampleCount`][Self::sampleCount].
         ///
@@ -358,19 +358,19 @@ impl MTLTextureDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setSampleCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSampleCount(&self, sample_count: NSUInteger);
+        pub unsafe fn set_sample_count(&self, sample_count: NSUInteger);
 
         /// The number of array elements to allocate. The default value is 1.
         ///
         /// When allocating any non-Array texture type, arrayLength has to be 1. Otherwise it must be set to something greater than 1 and less than 2048.
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
-        pub fn arrayLength(&self) -> NSUInteger;
+        pub fn array_length(&self) -> NSUInteger;
 
         /// Setter for [`arrayLength`][Self::arrayLength].
         #[unsafe(method(setArrayLength:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setArrayLength(&self, array_length: NSUInteger);
+        pub unsafe fn set_array_length(&self, array_length: NSUInteger);
 
         #[cfg(feature = "MTLResource")]
         /// Options to control memory allocation parameters, etc.
@@ -378,37 +378,37 @@ impl MTLTextureDescriptor {
         /// Contains a packed set of the storageMode, cpuCacheMode and hazardTrackingMode properties.
         #[unsafe(method(resourceOptions))]
         #[unsafe(method_family = none)]
-        pub fn resourceOptions(&self) -> MTLResourceOptions;
+        pub fn resource_options(&self) -> MTLResourceOptions;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`resourceOptions`][Self::resourceOptions].
         #[unsafe(method(setResourceOptions:))]
         #[unsafe(method_family = none)]
-        pub fn setResourceOptions(&self, resource_options: MTLResourceOptions);
+        pub fn set_resource_options(&self, resource_options: MTLResourceOptions);
 
         #[cfg(feature = "MTLResource")]
         /// Options to specify CPU cache mode of texture resource.
         #[unsafe(method(cpuCacheMode))]
         #[unsafe(method_family = none)]
-        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        pub fn cpu_cache_mode(&self) -> MTLCPUCacheMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`cpuCacheMode`][Self::cpuCacheMode].
         #[unsafe(method(setCpuCacheMode:))]
         #[unsafe(method_family = none)]
-        pub fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
+        pub fn set_cpu_cache_mode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
         #[cfg(feature = "MTLResource")]
         /// To specify storage mode of texture resource.
         #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
-        pub fn storageMode(&self) -> MTLStorageMode;
+        pub fn storage_mode(&self) -> MTLStorageMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`storageMode`][Self::storageMode].
         #[unsafe(method(setStorageMode:))]
         #[unsafe(method_family = none)]
-        pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
+        pub fn set_storage_mode(&self, storage_mode: MTLStorageMode);
 
         #[cfg(feature = "MTLResource")]
         /// Set hazard tracking mode for the texture. The default value is MTLHazardTrackingModeDefault.
@@ -420,13 +420,13 @@ impl MTLTextureDescriptor {
         /// For optimal performance, perform hazard tracking manually through MTLFence or MTLEvent instead.
         #[unsafe(method(hazardTrackingMode))]
         #[unsafe(method_family = none)]
-        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        pub fn hazard_tracking_mode(&self) -> MTLHazardTrackingMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`hazardTrackingMode`][Self::hazardTrackingMode].
         #[unsafe(method(setHazardTrackingMode:))]
         #[unsafe(method_family = none)]
-        pub fn setHazardTrackingMode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
+        pub fn set_hazard_tracking_mode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
 
         /// Description of texture usage
         #[unsafe(method(usage))]
@@ -436,19 +436,19 @@ impl MTLTextureDescriptor {
         /// Setter for [`usage`][Self::usage].
         #[unsafe(method(setUsage:))]
         #[unsafe(method_family = none)]
-        pub fn setUsage(&self, usage: MTLTextureUsage);
+        pub fn set_usage(&self, usage: MTLTextureUsage);
 
         /// Allow GPU-optimization for the contents of this texture. The default value is true.
         ///
         /// Useful for opting-out of GPU-optimization when implicit optimization (e.g. RT writes) is regressing CPU-read-back performance. See the documentation for optimizeContentsForGPUAccess: and optimizeContentsForCPUAccess: APIs.
         #[unsafe(method(allowGPUOptimizedContents))]
         #[unsafe(method_family = none)]
-        pub fn allowGPUOptimizedContents(&self) -> bool;
+        pub fn allow_gpu_optimized_contents(&self) -> bool;
 
         /// Setter for [`allowGPUOptimizedContents`][Self::allowGPUOptimizedContents].
         #[unsafe(method(setAllowGPUOptimizedContents:))]
         #[unsafe(method_family = none)]
-        pub fn setAllowGPUOptimizedContents(&self, allow_gpu_optimized_contents: bool);
+        pub fn set_allow_gpu_optimized_contents(&self, allow_gpu_optimized_contents: bool);
 
         /// Controls how the texture contents will be compressed when written to by the GPU. Compression can be used to reduce the bandwidth usage and storage requirements of a texture.
         ///
@@ -461,12 +461,12 @@ impl MTLTextureDescriptor {
         /// Set allowGPUOptimizedContents to NO to opt out of both lossless and lossy compression; such textures do not benefit from either reduced bandwidth usage or reduced storage requirements, but have predictable CPU readback performance.
         #[unsafe(method(compressionType))]
         #[unsafe(method_family = none)]
-        pub fn compressionType(&self) -> MTLTextureCompressionType;
+        pub fn compression_type(&self) -> MTLTextureCompressionType;
 
         /// Setter for [`compressionType`][Self::compressionType].
         #[unsafe(method(setCompressionType:))]
         #[unsafe(method_family = none)]
-        pub fn setCompressionType(&self, compression_type: MTLTextureCompressionType);
+        pub fn set_compression_type(&self, compression_type: MTLTextureCompressionType);
 
         /// Channel swizzle to use when reading or sampling from the texture, the default value is MTLTextureSwizzleChannelsDefault.
         #[unsafe(method(swizzle))]
@@ -476,7 +476,7 @@ impl MTLTextureDescriptor {
         /// Setter for [`swizzle`][Self::swizzle].
         #[unsafe(method(setSwizzle:))]
         #[unsafe(method_family = none)]
-        pub fn setSwizzle(&self, swizzle: MTLTextureSwizzleChannels);
+        pub fn set_swizzle(&self, swizzle: MTLTextureSwizzleChannels);
 
         #[cfg(feature = "MTLResource")]
         /// Determines the page size for a placement sparse texture.
@@ -490,13 +490,13 @@ impl MTLTextureDescriptor {
         /// This value is 0 by default.
         #[unsafe(method(placementSparsePageSize))]
         #[unsafe(method_family = none)]
-        pub fn placementSparsePageSize(&self) -> MTLSparsePageSize;
+        pub fn placement_sparse_page_size(&self) -> MTLSparsePageSize;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`placementSparsePageSize`][Self::placementSparsePageSize].
         #[unsafe(method(setPlacementSparsePageSize:))]
         #[unsafe(method_family = none)]
-        pub fn setPlacementSparsePageSize(&self, placement_sparse_page_size: MTLSparsePageSize);
+        pub fn set_placement_sparse_page_size(&self, placement_sparse_page_size: MTLSparsePageSize);
     );
 }
 
@@ -545,28 +545,28 @@ impl MTLTextureViewDescriptor {
         /// A desired pixel format of a texture view.
         #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
-        pub fn pixelFormat(&self) -> MTLPixelFormat;
+        pub fn pixel_format(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Setter for [`pixelFormat`][Self::pixelFormat].
         #[unsafe(method(setPixelFormat:))]
         #[unsafe(method_family = none)]
-        pub fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
+        pub fn set_pixel_format(&self, pixel_format: MTLPixelFormat);
 
         /// A desired texture view of a texture view.
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        pub fn textureType(&self) -> MTLTextureType;
+        pub fn texture_type(&self) -> MTLTextureType;
 
         /// Setter for [`textureType`][Self::textureType].
         #[unsafe(method(setTextureType:))]
         #[unsafe(method_family = none)]
-        pub fn setTextureType(&self, texture_type: MTLTextureType);
+        pub fn set_texture_type(&self, texture_type: MTLTextureType);
 
         /// A desired range of mip levels of a texture view.
         #[unsafe(method(levelRange))]
         #[unsafe(method_family = none)]
-        pub fn levelRange(&self) -> NSRange;
+        pub fn level_range(&self) -> NSRange;
 
         /// Setter for [`levelRange`][Self::levelRange].
         ///
@@ -575,12 +575,12 @@ impl MTLTextureViewDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setLevelRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLevelRange(&self, level_range: NSRange);
+        pub unsafe fn set_level_range(&self, level_range: NSRange);
 
         /// A desired range of slices of a texture view.
         #[unsafe(method(sliceRange))]
         #[unsafe(method_family = none)]
-        pub fn sliceRange(&self) -> NSRange;
+        pub fn slice_range(&self) -> NSRange;
 
         /// Setter for [`sliceRange`][Self::sliceRange].
         ///
@@ -589,7 +589,7 @@ impl MTLTextureViewDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setSliceRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSliceRange(&self, slice_range: NSRange);
+        pub unsafe fn set_slice_range(&self, slice_range: NSRange);
 
         /// A desired swizzle format of a texture view.
         #[unsafe(method(swizzle))]
@@ -599,7 +599,7 @@ impl MTLTextureViewDescriptor {
         /// Setter for [`swizzle`][Self::swizzle].
         #[unsafe(method(setSwizzle:))]
         #[unsafe(method_family = none)]
-        pub fn setSwizzle(&self, swizzle: MTLTextureSwizzleChannels);
+        pub fn set_swizzle(&self, swizzle: MTLTextureSwizzleChannels);
     );
 }
 
@@ -637,22 +637,22 @@ extern_protocol!(
         #[deprecated = "Use parentTexture or buffer instead"]
         #[unsafe(method(rootResource))]
         #[unsafe(method_family = none)]
-        fn rootResource(&self) -> Option<Retained<ProtocolObject<dyn MTLResource>>>;
+        fn root_resource(&self) -> Option<Retained<ProtocolObject<dyn MTLResource>>>;
 
         /// The texture this texture view was created from, or nil if this is not a texture view or it was not created from a texture.
         #[unsafe(method(parentTexture))]
         #[unsafe(method_family = none)]
-        fn parentTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
+        fn parent_texture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// The base level of the texture this texture view was created from, or 0 if this is not a texture view.
         #[unsafe(method(parentRelativeLevel))]
         #[unsafe(method_family = none)]
-        fn parentRelativeLevel(&self) -> NSUInteger;
+        fn parent_relative_level(&self) -> NSUInteger;
 
         /// The base slice of the texture this texture view was created from, or 0 if this is not a texture view.
         #[unsafe(method(parentRelativeSlice))]
         #[unsafe(method_family = none)]
-        fn parentRelativeSlice(&self) -> NSUInteger;
+        fn parent_relative_slice(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLBuffer")]
         /// The buffer this texture view was created from, or nil if this is not a texture view or it was not created from a buffer.
@@ -663,12 +663,12 @@ extern_protocol!(
         /// The offset of the buffer this texture view was created from, or 0 if this is not a texture view.
         #[unsafe(method(bufferOffset))]
         #[unsafe(method_family = none)]
-        fn bufferOffset(&self) -> NSUInteger;
+        fn buffer_offset(&self) -> NSUInteger;
 
         /// The bytesPerRow of the buffer this texture view was created from, or 0 if this is not a texture view.
         #[unsafe(method(bufferBytesPerRow))]
         #[unsafe(method_family = none)]
-        fn bufferBytesPerRow(&self) -> NSUInteger;
+        fn buffer_bytes_per_row(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-io-surface")]
         /// If this texture was created from an IOSurface, this returns a reference to that IOSurface. iosurface is nil if this texture was not created from an IOSurface.
@@ -679,18 +679,18 @@ extern_protocol!(
         /// If this texture was created from an IOSurface, this returns the plane of the IOSurface from which the texture was created. iosurfacePlane is 0 if this texture was not created from an IOSurface.
         #[unsafe(method(iosurfacePlane))]
         #[unsafe(method_family = none)]
-        fn iosurfacePlane(&self) -> NSUInteger;
+        fn iosurface_plane(&self) -> NSUInteger;
 
         /// The type of this texture.
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        fn textureType(&self) -> MTLTextureType;
+        fn texture_type(&self) -> MTLTextureType;
 
         #[cfg(feature = "MTLPixelFormat")]
         /// The MTLPixelFormat that is used to interpret this texture's contents.
         #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
-        fn pixelFormat(&self) -> MTLPixelFormat;
+        fn pixel_format(&self) -> MTLPixelFormat;
 
         /// The width of the MTLTexture instance in pixels.
         #[unsafe(method(width))]
@@ -714,21 +714,21 @@ extern_protocol!(
         /// The number of mipmap levels in each slice of this MTLTexture.
         #[unsafe(method(mipmapLevelCount))]
         #[unsafe(method_family = none)]
-        fn mipmapLevelCount(&self) -> NSUInteger;
+        fn mipmap_level_count(&self) -> NSUInteger;
 
         /// The number of samples in each pixel of this MTLTexture.
         ///
         /// If this texture is any type other than 2DMultisample, samples is 1.
         #[unsafe(method(sampleCount))]
         #[unsafe(method_family = none)]
-        fn sampleCount(&self) -> NSUInteger;
+        fn sample_count(&self) -> NSUInteger;
 
         /// The number of array elements in this MTLTexture.
         ///
         /// For non-Array texture types, arrayLength is 1.
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
-        fn arrayLength(&self) -> NSUInteger;
+        fn array_length(&self) -> NSUInteger;
 
         /// Description of texture usage.
         #[unsafe(method(usage))]
@@ -740,52 +740,52 @@ extern_protocol!(
         /// Texture can be shared across process addres space boundaries through use of sharedTextureHandle and XPC.
         #[unsafe(method(isShareable))]
         #[unsafe(method_family = none)]
-        fn isShareable(&self) -> bool;
+        fn is_shareable(&self) -> bool;
 
         /// If YES, this texture can only be used with a MTLAttachmentDescriptor, and cannot be used as a texture argument for MTLRenderCommandEncoder, MTLBlitCommandEncoder, or MTLComputeCommandEncoder. Furthermore, when this property's value is YES, readPixels/writePixels may not be used with this texture.
         ///
         /// Textures obtained from CAMetalDrawables may have this property set to YES, depending on the value of frameBufferOnly passed to their parent CAMetalLayer. Textures created directly by the application will not have any restrictions.
         #[unsafe(method(isFramebufferOnly))]
         #[unsafe(method_family = none)]
-        fn isFramebufferOnly(&self) -> bool;
+        fn is_framebuffer_only(&self) -> bool;
 
         /// For sparse textures this property returns index of first mipmap that is packed in tail.
         /// Mapping this mipmap level will map all subsequent mipmap levels.
         #[optional]
         #[unsafe(method(firstMipmapInTail))]
         #[unsafe(method_family = none)]
-        fn firstMipmapInTail(&self) -> NSUInteger;
+        fn first_mipmap_in_tail(&self) -> NSUInteger;
 
         /// Amount of memory in bytes required to map sparse texture tail.
         #[optional]
         #[unsafe(method(tailSizeInBytes))]
         #[unsafe(method_family = none)]
-        fn tailSizeInBytes(&self) -> NSUInteger;
+        fn tail_size_in_bytes(&self) -> NSUInteger;
 
         #[optional]
         #[unsafe(method(isSparse))]
         #[unsafe(method_family = none)]
-        fn isSparse(&self) -> bool;
+        fn is_sparse(&self) -> bool;
 
         /// Allow GPU-optimization for the contents texture. The default value is true.
         ///
         /// Useful for opting-out of GPU-optimization when implicit optimization (e.g. RT writes) is regressing CPU-read-back performance. See the documentation for optimizeContentsForGPUAccess: and optimizeContentsForCPUAccess: APIs.
         #[unsafe(method(allowGPUOptimizedContents))]
         #[unsafe(method_family = none)]
-        fn allowGPUOptimizedContents(&self) -> bool;
+        fn allow_gpu_optimized_contents(&self) -> bool;
 
         /// Returns the compression type of the texture
         ///
         /// See the compressionType property on MTLTextureDescriptor
         #[unsafe(method(compressionType))]
         #[unsafe(method_family = none)]
-        fn compressionType(&self) -> MTLTextureCompressionType;
+        fn compression_type(&self) -> MTLTextureCompressionType;
 
         #[cfg(feature = "MTLTypes")]
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpu_resource_id(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLTypes")]
         /// Copies a block of pixels from a texture slice into the application's memory.
@@ -795,7 +795,7 @@ extern_protocol!(
         /// `pixel_bytes` must be a valid pointer.
         #[unsafe(method(getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:))]
         #[unsafe(method_family = none)]
-        unsafe fn getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice(
+        unsafe fn get_bytes_bytes_per_row_bytes_per_image_from_region_mipmap_level_slice(
             &self,
             pixel_bytes: NonNull<c_void>,
             bytes_per_row: NSUInteger,
@@ -813,7 +813,7 @@ extern_protocol!(
         /// `pixel_bytes` must be a valid pointer.
         #[unsafe(method(replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:))]
         #[unsafe(method_family = none)]
-        unsafe fn replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage(
+        unsafe fn replace_region_mipmap_level_slice_with_bytes_bytes_per_row_bytes_per_image(
             &self,
             region: MTLRegion,
             level: NSUInteger,
@@ -831,7 +831,7 @@ extern_protocol!(
         /// `pixel_bytes` must be a valid pointer.
         #[unsafe(method(getBytes:bytesPerRow:fromRegion:mipmapLevel:))]
         #[unsafe(method_family = none)]
-        unsafe fn getBytes_bytesPerRow_fromRegion_mipmapLevel(
+        unsafe fn get_bytes_bytes_per_row_from_region_mipmap_level(
             &self,
             pixel_bytes: NonNull<c_void>,
             bytes_per_row: NSUInteger,
@@ -847,7 +847,7 @@ extern_protocol!(
         /// `pixel_bytes` must be a valid pointer.
         #[unsafe(method(replaceRegion:mipmapLevel:withBytes:bytesPerRow:))]
         #[unsafe(method_family = none)]
-        unsafe fn replaceRegion_mipmapLevel_withBytes_bytesPerRow(
+        unsafe fn replace_region_mipmap_level_with_bytes_bytes_per_row(
             &self,
             region: MTLRegion,
             level: NSUInteger,
@@ -859,7 +859,7 @@ extern_protocol!(
         /// Create a new texture which shares the same storage as the source texture, but with a different (but compatible) pixel format.
         #[unsafe(method(newTextureViewWithPixelFormat:))]
         #[unsafe(method_family = new)]
-        fn newTextureViewWithPixelFormat(
+        fn new_texture_view_with_pixel_format(
             &self,
             pixel_format: MTLPixelFormat,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -873,7 +873,7 @@ extern_protocol!(
         /// - `sliceRange` might not be bounds-checked.
         #[unsafe(method(newTextureViewWithPixelFormat:textureType:levels:slices:))]
         #[unsafe(method_family = new)]
-        unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices(
+        unsafe fn new_texture_view_with_pixel_format_texture_type_levels_slices(
             &self,
             pixel_format: MTLPixelFormat,
             texture_type: MTLTextureType,
@@ -884,12 +884,12 @@ extern_protocol!(
         /// Create a new texture handle, that can be shared across process addres space boundaries.
         #[unsafe(method(newSharedTextureHandle))]
         #[unsafe(method_family = new)]
-        fn newSharedTextureHandle(&self) -> Option<Retained<MTLSharedTextureHandle>>;
+        fn new_shared_texture_handle(&self) -> Option<Retained<MTLSharedTextureHandle>>;
 
         /// Create a new texture which shares the same storage as the source texture, but with different (but compatible) properties specified by the descriptor
         #[unsafe(method(newTextureViewWithDescriptor:))]
         #[unsafe(method_family = new)]
-        fn newTextureViewWithDescriptor(
+        fn new_texture_view_with_descriptor(
             &self,
             descriptor: &MTLTextureViewDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -897,14 +897,14 @@ extern_protocol!(
         /// For Metal texture objects that are remote views, this returns the texture associated with the storage on the originating device.
         #[unsafe(method(remoteStorageTexture))]
         #[unsafe(method_family = none)]
-        fn remoteStorageTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
+        fn remote_storage_texture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "MTLDevice")]
         /// On Metal devices that support peer to peer transfers, this method is used to create a remote texture view on another device
         /// within the peer group.  The receiver must use MTLStorageModePrivate or be backed by an IOSurface.
         #[unsafe(method(newRemoteTextureViewForDevice:))]
         #[unsafe(method_family = new)]
-        fn newRemoteTextureViewForDevice(
+        fn new_remote_texture_view_for_device(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -923,7 +923,7 @@ extern_protocol!(
         /// - `sliceRange` might not be bounds-checked.
         #[unsafe(method(newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:))]
         #[unsafe(method_family = new)]
-        unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(
+        unsafe fn new_texture_view_with_pixel_format_texture_type_levels_slices_swizzle(
             &self,
             pixel_format: MTLPixelFormat,
             texture_type: MTLTextureType,
@@ -935,6 +935,6 @@ extern_protocol!(
         /// Query support tier for sparse textures.
         #[unsafe(method(sparseTextureTier))]
         #[unsafe(method_family = none)]
-        fn sparseTextureTier(&self) -> MTLTextureSparseTier;
+        fn sparse_texture_tier(&self) -> MTLTextureSparseTier;
     }
 );

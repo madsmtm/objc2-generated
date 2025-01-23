@@ -31,7 +31,7 @@ impl MTLRasterizationRateSampleArray {
         /// `index` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(&self, index: NSUInteger) -> Retained<NSNumber>;
+        pub unsafe fn object_at_indexed_subscript(&self, index: NSUInteger) -> Retained<NSNumber>;
 
         /// Stores a sample value at the specified index.
         ///
@@ -42,7 +42,7 @@ impl MTLRasterizationRateSampleArray {
         /// `index` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(&self, value: &NSNumber, index: NSUInteger);
+        pub unsafe fn set_object_at_indexed_subscript(&self, value: &NSNumber, index: NSUInteger);
     );
 }
 
@@ -114,7 +114,7 @@ impl MTLRasterizationRateLayerDescriptor {
         /// `sampleCount` might not be bounds-checked.
         #[unsafe(method(initWithSampleCount:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSampleCount(
+        pub unsafe fn init_with_sample_count(
             this: Allocated<Self>,
             sample_count: MTLSize,
         ) -> Retained<Self>;
@@ -137,7 +137,7 @@ impl MTLRasterizationRateLayerDescriptor {
         /// - `vertical` must be a valid pointer.
         #[unsafe(method(initWithSampleCount:horizontal:vertical:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSampleCount_horizontal_vertical(
+        pub unsafe fn init_with_sample_count_horizontal_vertical(
             this: Allocated<Self>,
             sample_count: MTLSize,
             horizontal: NonNull<c_float>,
@@ -148,7 +148,7 @@ impl MTLRasterizationRateLayerDescriptor {
         /// Returns: The maximum number of quality samples that this descriptor can use to describe its function, for the horizontal and vertical axis, this is the sampleCount that the descriptor was initialized with. The depth component of the returned MTLSize is always 0.
         #[unsafe(method(maxSampleCount))]
         #[unsafe(method_family = none)]
-        pub fn maxSampleCount(&self) -> MTLSize;
+        pub fn max_sample_count(&self) -> MTLSize;
 
         /// Provide direct access to the quality samples stored in the descriptor.
         ///
@@ -157,7 +157,7 @@ impl MTLRasterizationRateLayerDescriptor {
         /// The returned pointer points to the first element of an array of sampleCount.width elements.
         #[unsafe(method(horizontalSampleStorage))]
         #[unsafe(method_family = none)]
-        pub fn horizontalSampleStorage(&self) -> NonNull<c_float>;
+        pub fn horizontal_sample_storage(&self) -> NonNull<c_float>;
 
         /// Provide direct access to the quality samples stored in the descriptor.
         ///
@@ -166,7 +166,7 @@ impl MTLRasterizationRateLayerDescriptor {
         /// The returned pointer points to the first element of an array of sampleCount.height elements.
         #[unsafe(method(verticalSampleStorage))]
         #[unsafe(method_family = none)]
-        pub fn verticalSampleStorage(&self) -> NonNull<c_float>;
+        pub fn vertical_sample_storage(&self) -> NonNull<c_float>;
 
         /// Provide convenient bounds-checked access to the quality samples stored in the descriptor.
         ///
@@ -210,7 +210,7 @@ impl MTLRasterizationRateLayerDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setSampleCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSampleCount(&self, sample_count: MTLSize);
+        pub unsafe fn set_sample_count(&self, sample_count: MTLSize);
     );
 }
 
@@ -238,7 +238,7 @@ impl MTLRasterizationRateLayerArray {
         /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             layer_index: NSUInteger,
         ) -> Option<Retained<MTLRasterizationRateLayerDescriptor>>;
@@ -252,7 +252,7 @@ impl MTLRasterizationRateLayerArray {
         /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             layer: Option<&MTLRasterizationRateLayerDescriptor>,
             layer_index: NSUInteger,
@@ -317,7 +317,7 @@ impl MTLRasterizationRateMapDescriptor {
         /// `screenSize` might not be bounds-checked.
         #[unsafe(method(rasterizationRateMapDescriptorWithScreenSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rasterizationRateMapDescriptorWithScreenSize(
+        pub unsafe fn rasterization_rate_map_descriptor_with_screen_size(
             screen_size: MTLSize,
         ) -> Retained<MTLRasterizationRateMapDescriptor>;
 
@@ -335,7 +335,7 @@ impl MTLRasterizationRateMapDescriptor {
         /// `screenSize` might not be bounds-checked.
         #[unsafe(method(rasterizationRateMapDescriptorWithScreenSize:layer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layer(
+        pub unsafe fn rasterization_rate_map_descriptor_with_screen_size_layer(
             screen_size: MTLSize,
             layer: &MTLRasterizationRateLayerDescriptor,
         ) -> Retained<MTLRasterizationRateMapDescriptor>;
@@ -350,7 +350,7 @@ impl MTLRasterizationRateMapDescriptor {
         /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(layerAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layerAtIndex(
+        pub unsafe fn layer_at_index(
             &self,
             layer_index: NSUInteger,
         ) -> Option<Retained<MTLRasterizationRateLayerDescriptor>>;
@@ -366,7 +366,7 @@ impl MTLRasterizationRateMapDescriptor {
         /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(setLayer:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLayer_atIndex(
+        pub unsafe fn set_layer_at_index(
             &self,
             layer: Option<&MTLRasterizationRateLayerDescriptor>,
             layer_index: NSUInteger,
@@ -387,7 +387,7 @@ impl MTLRasterizationRateMapDescriptor {
         /// The depth component of MTLSize is ignored.
         #[unsafe(method(screenSize))]
         #[unsafe(method_family = none)]
-        pub fn screenSize(&self) -> MTLSize;
+        pub fn screen_size(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`screenSize`][Self::screenSize].
@@ -397,7 +397,7 @@ impl MTLRasterizationRateMapDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setScreenSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScreenSize(&self, screen_size: MTLSize);
+        pub unsafe fn set_screen_size(&self, screen_size: MTLSize);
 
         /// A string to help identify this object.
         ///
@@ -411,14 +411,14 @@ impl MTLRasterizationRateMapDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        pub fn set_label(&self, label: Option<&NSString>);
 
         /// Returns: The number of subsequent non-nil layer instances stored in the descriptor, starting at index 0.
         ///
         /// This property is modified by setting new layer instances using setLayer:atIndex: or assigning to layers[X]
         #[unsafe(method(layerCount))]
         #[unsafe(method_family = none)]
-        pub fn layerCount(&self) -> NSUInteger;
+        pub fn layer_count(&self) -> NSUInteger;
     );
 }
 
@@ -473,7 +473,7 @@ extern_protocol!(
         /// The depth component of the returned MTLSize is always 0.
         #[unsafe(method(screenSize))]
         #[unsafe(method_family = none)]
-        fn screenSize(&self) -> MTLSize;
+        fn screen_size(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Returns: The granularity, in physical pixels, at which variable rasterization rate varies.
@@ -482,7 +482,7 @@ extern_protocol!(
         /// The depth component of the returned MTLSize is always 0.
         #[unsafe(method(physicalGranularity))]
         #[unsafe(method_family = none)]
-        fn physicalGranularity(&self) -> MTLSize;
+        fn physical_granularity(&self) -> MTLSize;
 
         /// Returns: The number of different configured layers in the rasterization map.
         ///
@@ -490,7 +490,7 @@ extern_protocol!(
         /// The rasterization rate layer for a primitive is selected on the [[render_target_layer_index]].
         #[unsafe(method(layerCount))]
         #[unsafe(method_family = none)]
-        fn layerCount(&self) -> NSUInteger;
+        fn layer_count(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLDevice")]
         /// Returns the size and alignment requirements of the parameter buffer for this rate map.
@@ -498,7 +498,7 @@ extern_protocol!(
         /// The parameter data can be copied into a buffer with this size and alignment using copyParameterDataToBuffer:offset:
         #[unsafe(method(parameterBufferSizeAndAlign))]
         #[unsafe(method_family = none)]
-        fn parameterBufferSizeAndAlign(&self) -> MTLSizeAndAlign;
+        fn parameter_buffer_size_and_align(&self) -> MTLSizeAndAlign;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -519,7 +519,7 @@ extern_protocol!(
         /// - `offset` might not be bounds-checked.
         #[unsafe(method(copyParameterDataToBuffer:offset:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyParameterDataToBuffer_offset(
+        unsafe fn copy_parameter_data_to_buffer_offset(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
@@ -536,7 +536,7 @@ extern_protocol!(
         /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(physicalSizeForLayer:))]
         #[unsafe(method_family = none)]
-        unsafe fn physicalSizeForLayer(&self, layer_index: NSUInteger) -> MTLSize;
+        unsafe fn physical_size_for_layer(&self, layer_index: NSUInteger) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Computes where an offset relative to the top-left of screen space, in screen space pixels, would end up in the framebuffer, in physical fragments.
@@ -547,7 +547,7 @@ extern_protocol!(
         /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(mapScreenToPhysicalCoordinates:forLayer:))]
         #[unsafe(method_family = none)]
-        unsafe fn mapScreenToPhysicalCoordinates_forLayer(
+        unsafe fn map_screen_to_physical_coordinates_for_layer(
             &self,
             screen_coordinates: MTLCoordinate2D,
             layer_index: NSUInteger,
@@ -562,7 +562,7 @@ extern_protocol!(
         /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(mapPhysicalToScreenCoordinates:forLayer:))]
         #[unsafe(method_family = none)]
-        unsafe fn mapPhysicalToScreenCoordinates_forLayer(
+        unsafe fn map_physical_to_screen_coordinates_for_layer(
             &self,
             physical_coordinates: MTLCoordinate2D,
             layer_index: NSUInteger,

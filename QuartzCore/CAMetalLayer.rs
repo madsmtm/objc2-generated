@@ -68,66 +68,66 @@ impl CAMetalLayer {
         /// Setter for [`device`][Self::device].
         #[unsafe(method(setDevice:))]
         #[unsafe(method_family = none)]
-        pub fn setDevice(&self, device: Option<&ProtocolObject<dyn MTLDevice>>);
+        pub fn set_device(&self, device: Option<&ProtocolObject<dyn MTLDevice>>);
 
         #[cfg(feature = "objc2-metal")]
         #[unsafe(method(preferredDevice))]
         #[unsafe(method_family = none)]
-        pub fn preferredDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
+        pub fn preferred_device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
         #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
-        pub fn pixelFormat(&self) -> MTLPixelFormat;
+        pub fn pixel_format(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "objc2-metal")]
         /// Setter for [`pixelFormat`][Self::pixelFormat].
         #[unsafe(method(setPixelFormat:))]
         #[unsafe(method_family = none)]
-        pub fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
+        pub fn set_pixel_format(&self, pixel_format: MTLPixelFormat);
 
         #[unsafe(method(framebufferOnly))]
         #[unsafe(method_family = none)]
-        pub fn framebufferOnly(&self) -> bool;
+        pub fn framebuffer_only(&self) -> bool;
 
         /// Setter for [`framebufferOnly`][Self::framebufferOnly].
         #[unsafe(method(setFramebufferOnly:))]
         #[unsafe(method_family = none)]
-        pub fn setFramebufferOnly(&self, framebuffer_only: bool);
+        pub fn set_framebuffer_only(&self, framebuffer_only: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawableSize))]
         #[unsafe(method_family = none)]
-        pub fn drawableSize(&self) -> CGSize;
+        pub fn drawable_size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`drawableSize`][Self::drawableSize].
         #[unsafe(method(setDrawableSize:))]
         #[unsafe(method_family = none)]
-        pub fn setDrawableSize(&self, drawable_size: CGSize);
+        pub fn set_drawable_size(&self, drawable_size: CGSize);
 
         #[cfg(feature = "objc2-metal")]
         #[unsafe(method(nextDrawable))]
         #[unsafe(method_family = none)]
-        pub fn nextDrawable(&self) -> Option<Retained<ProtocolObject<dyn CAMetalDrawable>>>;
+        pub fn next_drawable(&self) -> Option<Retained<ProtocolObject<dyn CAMetalDrawable>>>;
 
         #[unsafe(method(maximumDrawableCount))]
         #[unsafe(method_family = none)]
-        pub fn maximumDrawableCount(&self) -> NSUInteger;
+        pub fn maximum_drawable_count(&self) -> NSUInteger;
 
         /// Setter for [`maximumDrawableCount`][Self::maximumDrawableCount].
         #[unsafe(method(setMaximumDrawableCount:))]
         #[unsafe(method_family = none)]
-        pub fn setMaximumDrawableCount(&self, maximum_drawable_count: NSUInteger);
+        pub fn set_maximum_drawable_count(&self, maximum_drawable_count: NSUInteger);
 
         #[unsafe(method(presentsWithTransaction))]
         #[unsafe(method_family = none)]
-        pub fn presentsWithTransaction(&self) -> bool;
+        pub fn presents_with_transaction(&self) -> bool;
 
         /// Setter for [`presentsWithTransaction`][Self::presentsWithTransaction].
         #[unsafe(method(setPresentsWithTransaction:))]
         #[unsafe(method_family = none)]
-        pub fn setPresentsWithTransaction(&self, presents_with_transaction: bool);
+        pub fn set_presents_with_transaction(&self, presents_with_transaction: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(colorspace))]
@@ -138,16 +138,16 @@ impl CAMetalLayer {
         /// Setter for [`colorspace`][Self::colorspace].
         #[unsafe(method(setColorspace:))]
         #[unsafe(method_family = none)]
-        pub fn setColorspace(&self, colorspace: Option<&CGColorSpace>);
+        pub fn set_colorspace(&self, colorspace: Option<&CGColorSpace>);
 
         #[unsafe(method(wantsExtendedDynamicRangeContent))]
         #[unsafe(method_family = none)]
-        pub fn wantsExtendedDynamicRangeContent(&self) -> bool;
+        pub fn wants_extended_dynamic_range_content(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
         #[unsafe(method(setWantsExtendedDynamicRangeContent:))]
         #[unsafe(method_family = none)]
-        pub fn setWantsExtendedDynamicRangeContent(
+        pub fn set_wants_extended_dynamic_range_content(
             &self,
             wants_extended_dynamic_range_content: bool,
         );
@@ -155,35 +155,35 @@ impl CAMetalLayer {
         #[cfg(feature = "CAEDRMetadata")]
         #[unsafe(method(EDRMetadata))]
         #[unsafe(method_family = none)]
-        pub fn EDRMetadata(&self) -> Option<Retained<CAEDRMetadata>>;
+        pub fn edr_metadata(&self) -> Option<Retained<CAEDRMetadata>>;
 
         #[cfg(feature = "CAEDRMetadata")]
         /// Setter for [`EDRMetadata`][Self::EDRMetadata].
         #[unsafe(method(setEDRMetadata:))]
         #[unsafe(method_family = none)]
-        pub fn setEDRMetadata(&self, edr_metadata: Option<&CAEDRMetadata>);
+        pub fn set_edr_metadata(&self, edr_metadata: Option<&CAEDRMetadata>);
 
         #[unsafe(method(displaySyncEnabled))]
         #[unsafe(method_family = none)]
-        pub fn displaySyncEnabled(&self) -> bool;
+        pub fn display_sync_enabled(&self) -> bool;
 
         /// Setter for [`displaySyncEnabled`][Self::displaySyncEnabled].
         #[unsafe(method(setDisplaySyncEnabled:))]
         #[unsafe(method_family = none)]
-        pub fn setDisplaySyncEnabled(&self, display_sync_enabled: bool);
+        pub fn set_display_sync_enabled(&self, display_sync_enabled: bool);
 
         #[unsafe(method(allowsNextDrawableTimeout))]
         #[unsafe(method_family = none)]
-        pub fn allowsNextDrawableTimeout(&self) -> bool;
+        pub fn allows_next_drawable_timeout(&self) -> bool;
 
         /// Setter for [`allowsNextDrawableTimeout`][Self::allowsNextDrawableTimeout].
         #[unsafe(method(setAllowsNextDrawableTimeout:))]
         #[unsafe(method_family = none)]
-        pub fn setAllowsNextDrawableTimeout(&self, allows_next_drawable_timeout: bool);
+        pub fn set_allows_next_drawable_timeout(&self, allows_next_drawable_timeout: bool);
 
         #[unsafe(method(developerHUDProperties))]
         #[unsafe(method_family = none)]
-        pub fn developerHUDProperties(&self) -> Option<Retained<NSDictionary>>;
+        pub fn developer_hud_properties(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`developerHUDProperties`][Self::developerHUDProperties].
         ///
@@ -194,7 +194,7 @@ impl CAMetalLayer {
         /// `developer_hud_properties` generic should be of the correct type.
         #[unsafe(method(setDeveloperHUDProperties:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDeveloperHUDProperties(
+        pub unsafe fn set_developer_hud_properties(
             &self,
             developer_hud_properties: Option<&NSDictionary>,
         );
@@ -202,7 +202,7 @@ impl CAMetalLayer {
         #[cfg(feature = "objc2-metal")]
         #[unsafe(method(residencySet))]
         #[unsafe(method_family = none)]
-        pub fn residencySet(&self) -> Retained<ProtocolObject<dyn MTLResidencySet>>;
+        pub fn residency_set(&self) -> Retained<ProtocolObject<dyn MTLResidencySet>>;
     );
 }
 
@@ -224,7 +224,7 @@ impl CAMetalLayer {
         /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
+        pub unsafe fn init_with_layer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     );
 }
 

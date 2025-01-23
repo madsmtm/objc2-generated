@@ -34,11 +34,11 @@ impl CAMediaTimingFunction {
     extern_methods!(
         #[unsafe(method(functionWithName:))]
         #[unsafe(method_family = none)]
-        pub fn functionWithName(name: &CAMediaTimingFunctionName) -> Retained<Self>;
+        pub fn function_with_name(name: &CAMediaTimingFunctionName) -> Retained<Self>;
 
         #[unsafe(method(functionWithControlPoints::::))]
         #[unsafe(method_family = none)]
-        pub fn functionWithControlPoints(
+        pub fn function_with_control_points(
             c1x: c_float,
             c1y: c_float,
             c2x: c_float,
@@ -47,7 +47,7 @@ impl CAMediaTimingFunction {
 
         #[unsafe(method(initWithControlPoints::::))]
         #[unsafe(method_family = init)]
-        pub fn initWithControlPoints(
+        pub fn init_with_control_points(
             this: Allocated<Self>,
             c1x: c_float,
             c1y: c_float,

@@ -39,7 +39,7 @@ impl MTL4TileRenderPipelineDescriptor {
         /// Configures the tile function that the render pipeline executes for each tile in the tile shader stage.
         #[unsafe(method(tileFunctionDescriptor))]
         #[unsafe(method_family = none)]
-        pub fn tileFunctionDescriptor(&self) -> Option<Retained<MTL4FunctionDescriptor>>;
+        pub fn tile_function_descriptor(&self) -> Option<Retained<MTL4FunctionDescriptor>>;
 
         #[cfg(feature = "MTL4FunctionDescriptor")]
         /// Setter for [`tileFunctionDescriptor`][Self::tileFunctionDescriptor].
@@ -47,7 +47,7 @@ impl MTL4TileRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTileFunctionDescriptor:))]
         #[unsafe(method_family = none)]
-        pub fn setTileFunctionDescriptor(
+        pub fn set_tile_function_descriptor(
             &self,
             tile_function_descriptor: Option<&MTL4FunctionDescriptor>,
         );
@@ -55,7 +55,7 @@ impl MTL4TileRenderPipelineDescriptor {
         /// Configures the number of samples per pixel used for multisampling.
         #[unsafe(method(rasterSampleCount))]
         #[unsafe(method_family = none)]
-        pub fn rasterSampleCount(&self) -> NSUInteger;
+        pub fn raster_sample_count(&self) -> NSUInteger;
 
         /// Setter for [`rasterSampleCount`][Self::rasterSampleCount].
         ///
@@ -64,37 +64,40 @@ impl MTL4TileRenderPipelineDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setRasterSampleCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRasterSampleCount(&self, raster_sample_count: NSUInteger);
+        pub unsafe fn set_raster_sample_count(&self, raster_sample_count: NSUInteger);
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Access an array of descriptors that configure the properties of each color attachment in the tile render
         /// pipeline.
         #[unsafe(method(colorAttachments))]
         #[unsafe(method_family = none)]
-        pub fn colorAttachments(
+        pub fn color_attachments(
             &self,
         ) -> Retained<MTLTileRenderPipelineColorAttachmentDescriptorArray>;
 
         /// Indicating whether the size of the threadgroup matches the size of a tile in the render pipeline.
         #[unsafe(method(threadgroupSizeMatchesTileSize))]
         #[unsafe(method_family = none)]
-        pub fn threadgroupSizeMatchesTileSize(&self) -> bool;
+        pub fn threadgroup_size_matches_tile_size(&self) -> bool;
 
         /// Setter for [`threadgroupSizeMatchesTileSize`][Self::threadgroupSizeMatchesTileSize].
         #[unsafe(method(setThreadgroupSizeMatchesTileSize:))]
         #[unsafe(method_family = none)]
-        pub fn setThreadgroupSizeMatchesTileSize(&self, threadgroup_size_matches_tile_size: bool);
+        pub fn set_threadgroup_size_matches_tile_size(
+            &self,
+            threadgroup_size_matches_tile_size: bool,
+        );
 
         /// Sets the maximum number of threads that the GPU can execute simultaneously within a single threadgroup in
         /// the tile render pipeline.
         #[unsafe(method(maxTotalThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
+        pub fn max_total_threads_per_threadgroup(&self) -> NSUInteger;
 
         /// Setter for [`maxTotalThreadsPerThreadgroup`][Self::maxTotalThreadsPerThreadgroup].
         #[unsafe(method(setMaxTotalThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub fn setMaxTotalThreadsPerThreadgroup(
+        pub fn set_max_total_threads_per_threadgroup(
             &self,
             max_total_threads_per_threadgroup: NSUInteger,
         );
@@ -110,20 +113,23 @@ impl MTL4TileRenderPipelineDescriptor {
         /// Setting this value to a size of 0 in every dimension disables this property.
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+        pub fn required_threads_per_threadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`requiredThreadsPerThreadgroup`][Self::requiredThreadsPerThreadgroup].
         #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub fn setRequiredThreadsPerThreadgroup(&self, required_threads_per_threadgroup: MTLSize);
+        pub fn set_required_threads_per_threadgroup(
+            &self,
+            required_threads_per_threadgroup: MTLSize,
+        );
 
         #[cfg(feature = "MTL4LinkingDescriptor")]
         /// Configures an object that contains information about functions to link to the tile render pipeline
         /// when Metal builds it.
         #[unsafe(method(staticLinkingDescriptor))]
         #[unsafe(method_family = none)]
-        pub fn staticLinkingDescriptor(&self) -> Retained<MTL4StaticLinkingDescriptor>;
+        pub fn static_linking_descriptor(&self) -> Retained<MTL4StaticLinkingDescriptor>;
 
         #[cfg(feature = "MTL4LinkingDescriptor")]
         /// Setter for [`staticLinkingDescriptor`][Self::staticLinkingDescriptor].
@@ -131,7 +137,7 @@ impl MTL4TileRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStaticLinkingDescriptor:))]
         #[unsafe(method_family = none)]
-        pub fn setStaticLinkingDescriptor(
+        pub fn set_static_linking_descriptor(
             &self,
             static_linking_descriptor: Option<&MTL4StaticLinkingDescriptor>,
         );
@@ -139,12 +145,12 @@ impl MTL4TileRenderPipelineDescriptor {
         /// Indicates whether the pipeline supports linking binary functions.
         #[unsafe(method(supportBinaryLinking))]
         #[unsafe(method_family = none)]
-        pub fn supportBinaryLinking(&self) -> bool;
+        pub fn support_binary_linking(&self) -> bool;
 
         /// Setter for [`supportBinaryLinking`][Self::supportBinaryLinking].
         #[unsafe(method(setSupportBinaryLinking:))]
         #[unsafe(method_family = none)]
-        pub fn setSupportBinaryLinking(&self, support_binary_linking: bool);
+        pub fn set_support_binary_linking(&self, support_binary_linking: bool);
 
         /// Resets the descriptor to the default state.
         #[unsafe(method(reset))]

@@ -166,23 +166,23 @@ impl MTL4PipelineOptions {
         /// Controls whether to enable or disable Metal Shader Validation for the pipeline.
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
-        pub fn shaderValidation(&self) -> MTLShaderValidation;
+        pub fn shader_validation(&self) -> MTLShaderValidation;
 
         #[cfg(feature = "MTLPipeline")]
         /// Setter for [`shaderValidation`][Self::shaderValidation].
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
-        pub fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+        pub fn set_shader_validation(&self, shader_validation: MTLShaderValidation);
 
         /// Controls whether to include Metal shader reflection in this pipeline.
         #[unsafe(method(shaderReflection))]
         #[unsafe(method_family = none)]
-        pub fn shaderReflection(&self) -> MTL4ShaderReflection;
+        pub fn shader_reflection(&self) -> MTL4ShaderReflection;
 
         /// Setter for [`shaderReflection`][Self::shaderReflection].
         #[unsafe(method(setShaderReflection:))]
         #[unsafe(method_family = none)]
-        pub fn setShaderReflection(&self, shader_reflection: MTL4ShaderReflection);
+        pub fn set_shader_reflection(&self, shader_reflection: MTL4ShaderReflection);
     );
 }
 
@@ -241,7 +241,7 @@ impl MTL4PipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        pub fn set_label(&self, label: Option<&NSString>);
 
         /// Provides compile-time options when you build the pipeline.
         #[unsafe(method(options))]
@@ -251,7 +251,7 @@ impl MTL4PipelineDescriptor {
         /// Setter for [`options`][Self::options].
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
-        pub fn setOptions(&self, options: Option<&MTL4PipelineOptions>);
+        pub fn set_options(&self, options: Option<&MTL4PipelineOptions>);
     );
 }
 

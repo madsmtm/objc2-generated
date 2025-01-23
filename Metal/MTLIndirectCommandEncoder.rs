@@ -12,7 +12,7 @@ extern_protocol!(
         #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         #[unsafe(method(setRenderPipelineState:))]
         #[unsafe(method_family = none)]
-        fn setRenderPipelineState(
+        fn set_render_pipeline_state(
             &self,
             pipeline_state: &ProtocolObject<dyn MTLRenderPipelineState>,
         );
@@ -31,7 +31,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setVertexBuffer_offset_atIndex(
+        unsafe fn set_vertex_buffer_offset_at_index(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
@@ -52,7 +52,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setFragmentBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setFragmentBuffer_offset_atIndex(
+        unsafe fn set_fragment_buffer_offset_at_index(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
@@ -78,7 +78,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBuffer:offset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
+        unsafe fn set_vertex_buffer_offset_attribute_stride_at_index(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
@@ -106,7 +106,7 @@ extern_protocol!(
         /// - `instanceStride` might not be bounds-checked.
         #[unsafe(method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
+        unsafe fn draw_patches_patch_start_patch_count_patch_index_buffer_patch_index_buffer_offset_instance_count_base_instance_tessellation_factor_buffer_tessellation_factor_buffer_offset_tessellation_factor_buffer_instance_stride(
             &self,
             number_of_patch_control_points: NSUInteger,
             patch_start: NSUInteger,
@@ -144,7 +144,7 @@ extern_protocol!(
         /// - `instanceStride` might not be bounds-checked.
         #[unsafe(method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
+        unsafe fn draw_indexed_patches_patch_start_patch_count_patch_index_buffer_patch_index_buffer_offset_control_point_index_buffer_control_point_index_buffer_offset_instance_count_base_instance_tessellation_factor_buffer_tessellation_factor_buffer_offset_tessellation_factor_buffer_instance_stride(
             &self,
             number_of_patch_control_points: NSUInteger,
             patch_start: NSUInteger,
@@ -167,7 +167,7 @@ extern_protocol!(
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
+        unsafe fn draw_primitives_vertex_start_vertex_count_instance_count_base_instance(
             &self,
             primitive_type: MTLPrimitiveType,
             vertex_start: NSUInteger,
@@ -193,7 +193,7 @@ extern_protocol!(
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
+        unsafe fn draw_indexed_primitives_index_count_index_type_index_buffer_index_buffer_offset_instance_count_base_vertex_base_instance(
             &self,
             primitive_type: MTLPrimitiveType,
             index_count: NSUInteger,
@@ -210,7 +210,7 @@ extern_protocol!(
         /// `index` might not be bounds-checked.
         #[unsafe(method(setObjectThreadgroupMemoryLength:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setObjectThreadgroupMemoryLength_atIndex(
+        unsafe fn set_object_threadgroup_memory_length_at_index(
             &self,
             length: NSUInteger,
             index: NSUInteger,
@@ -230,7 +230,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setObjectBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setObjectBuffer_offset_atIndex(
+        unsafe fn set_object_buffer_offset_at_index(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
@@ -251,7 +251,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setMeshBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setMeshBuffer_offset_atIndex(
+        unsafe fn set_mesh_buffer_offset_at_index(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
@@ -261,7 +261,7 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
-        fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+        fn draw_mesh_threadgroups_threads_per_object_threadgroup_threads_per_mesh_threadgroup(
             &self,
             threadgroups_per_grid: MTLSize,
             threads_per_object_threadgroup: MTLSize,
@@ -271,7 +271,7 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
-        fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+        fn draw_mesh_threads_threads_per_object_threadgroup_threads_per_mesh_threadgroup(
             &self,
             threads_per_grid: MTLSize,
             threads_per_object_threadgroup: MTLSize,
@@ -280,23 +280,23 @@ extern_protocol!(
 
         #[unsafe(method(setBarrier))]
         #[unsafe(method_family = none)]
-        fn setBarrier(&self);
+        fn set_barrier(&self);
 
         #[unsafe(method(clearBarrier))]
         #[unsafe(method_family = none)]
-        fn clearBarrier(&self);
+        fn clear_barrier(&self);
 
         #[cfg(feature = "MTLDepthStencil")]
         #[unsafe(method(setDepthStencilState:))]
         #[unsafe(method_family = none)]
-        fn setDepthStencilState(
+        fn set_depth_stencil_state(
             &self,
             depth_stencil_state: Option<&ProtocolObject<dyn MTLDepthStencilState>>,
         );
 
         #[unsafe(method(setDepthBias:slopeScale:clamp:))]
         #[unsafe(method_family = none)]
-        fn setDepthBias_slopeScale_clamp(
+        fn set_depth_bias_slope_scale_clamp(
             &self,
             depth_bias: c_float,
             slope_scale: c_float,
@@ -306,22 +306,22 @@ extern_protocol!(
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setDepthClipMode:))]
         #[unsafe(method_family = none)]
-        fn setDepthClipMode(&self, depth_clip_mode: MTLDepthClipMode);
+        fn set_depth_clip_mode(&self, depth_clip_mode: MTLDepthClipMode);
 
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setCullMode:))]
         #[unsafe(method_family = none)]
-        fn setCullMode(&self, cull_mode: MTLCullMode);
+        fn set_cull_mode(&self, cull_mode: MTLCullMode);
 
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setFrontFacingWinding:))]
         #[unsafe(method_family = none)]
-        fn setFrontFacingWinding(&self, front_facing_windning: MTLWinding);
+        fn set_front_facing_winding(&self, front_facing_windning: MTLWinding);
 
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setTriangleFillMode:))]
         #[unsafe(method_family = none)]
-        fn setTriangleFillMode(&self, fill_mode: MTLTriangleFillMode);
+        fn set_triangle_fill_mode(&self, fill_mode: MTLTriangleFillMode);
 
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
@@ -335,7 +335,7 @@ extern_protocol!(
         #[cfg(all(feature = "MTLAllocation", feature = "MTLComputePipeline"))]
         #[unsafe(method(setComputePipelineState:))]
         #[unsafe(method_family = none)]
-        fn setComputePipelineState(
+        fn set_compute_pipeline_state(
             &self,
             pipeline_state: &ProtocolObject<dyn MTLComputePipelineState>,
         );
@@ -354,7 +354,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setKernelBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setKernelBuffer_offset_atIndex(
+        unsafe fn set_kernel_buffer_offset_at_index(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
@@ -380,7 +380,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setKernelBuffer:offset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setKernelBuffer_offset_attributeStride_atIndex(
+        unsafe fn set_kernel_buffer_offset_attribute_stride_at_index(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             offset: NSUInteger,
@@ -391,7 +391,7 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(concurrentDispatchThreadgroups:threadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        fn concurrentDispatchThreadgroups_threadsPerThreadgroup(
+        fn concurrent_dispatch_threadgroups_threads_per_threadgroup(
             &self,
             threadgroups_per_grid: MTLSize,
             threads_per_threadgroup: MTLSize,
@@ -400,7 +400,7 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(concurrentDispatchThreads:threadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        fn concurrentDispatchThreads_threadsPerThreadgroup(
+        fn concurrent_dispatch_threads_threads_per_threadgroup(
             &self,
             threads_per_grid: MTLSize,
             threads_per_threadgroup: MTLSize,
@@ -408,15 +408,15 @@ extern_protocol!(
 
         #[unsafe(method(setBarrier))]
         #[unsafe(method_family = none)]
-        fn setBarrier(&self);
+        fn set_barrier(&self);
 
         #[unsafe(method(clearBarrier))]
         #[unsafe(method_family = none)]
-        fn clearBarrier(&self);
+        fn clear_barrier(&self);
 
         #[unsafe(method(setImageblockWidth:height:))]
         #[unsafe(method_family = none)]
-        fn setImageblockWidth_height(&self, width: NSUInteger, height: NSUInteger);
+        fn set_imageblock_width_height(&self, width: NSUInteger, height: NSUInteger);
 
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
@@ -427,11 +427,15 @@ extern_protocol!(
         /// `index` might not be bounds-checked.
         #[unsafe(method(setThreadgroupMemoryLength:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setThreadgroupMemoryLength_atIndex(&self, length: NSUInteger, index: NSUInteger);
+        unsafe fn set_threadgroup_memory_length_at_index(
+            &self,
+            length: NSUInteger,
+            index: NSUInteger,
+        );
 
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(setStageInRegion:))]
         #[unsafe(method_family = none)]
-        fn setStageInRegion(&self, region: MTLRegion);
+        fn set_stage_in_region(&self, region: MTLRegion);
     }
 );

@@ -83,7 +83,7 @@ impl MTL4CommitOptions {
         /// `block` must be a valid pointer.
         #[unsafe(method(addFeedbackHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addFeedbackHandler(&self, block: MTL4CommitFeedbackHandler);
+        pub unsafe fn add_feedback_handler(&self, block: MTL4CommitFeedbackHandler);
     );
 }
 
@@ -140,7 +140,7 @@ impl MTL4CommandQueueDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        pub fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "dispatch2")]
         /// Assigns a dispatch queue to which Metal submits feedback notification blocks.
@@ -155,7 +155,7 @@ impl MTL4CommandQueueDescriptor {
         /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(feedbackQueue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn feedbackQueue(&self) -> Option<Retained<DispatchQueue>>;
+        pub unsafe fn feedback_queue(&self) -> Option<Retained<DispatchQueue>>;
 
         #[cfg(feature = "dispatch2")]
         /// Setter for [`feedbackQueue`][Self::feedbackQueue].
@@ -166,7 +166,7 @@ impl MTL4CommandQueueDescriptor {
         /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setFeedbackQueue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFeedbackQueue(&self, feedback_queue: Option<&DispatchQueue>);
+        pub unsafe fn set_feedback_queue(&self, feedback_queue: Option<&DispatchQueue>);
     );
 }
 
@@ -462,7 +462,7 @@ extern_protocol!(
         /// - value: the value to signal the ``MTLEvent`` with.
         #[unsafe(method(signalEvent:value:))]
         #[unsafe(method_family = none)]
-        fn signalEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
+        fn signal_event_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
 
         #[cfg(feature = "MTLEvent")]
         /// Schedules an operation to wait for a GPU event of a specific value before continuing to execute any future GPU work.
@@ -472,7 +472,7 @@ extern_protocol!(
         /// - value: the specific value to wait for.
         #[unsafe(method(waitForEvent:value:))]
         #[unsafe(method_family = none)]
-        fn waitForEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
+        fn wait_for_event_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
 
         #[cfg(feature = "MTLDrawable")]
         /// Schedules a signal operation on the command queue to indicate when rendering to a Metal drawable is complete.
@@ -494,7 +494,7 @@ extern_protocol!(
         /// - drawable: ``MTLDrawable`` instance to signal.
         #[unsafe(method(signalDrawable:))]
         #[unsafe(method_family = none)]
-        fn signalDrawable(&self, drawable: &ProtocolObject<dyn MTLDrawable>);
+        fn signal_drawable(&self, drawable: &ProtocolObject<dyn MTLDrawable>);
 
         #[cfg(feature = "MTLDrawable")]
         /// Schedules a wait operation on the command queue to ensure the display is no longer using a specific Metal drawable.
@@ -511,7 +511,7 @@ extern_protocol!(
         /// - drawable: ``MTLDrawable`` instance to signal.
         #[unsafe(method(waitForDrawable:))]
         #[unsafe(method_family = none)]
-        fn waitForDrawable(&self, drawable: &ProtocolObject<dyn MTLDrawable>);
+        fn wait_for_drawable(&self, drawable: &ProtocolObject<dyn MTLDrawable>);
 
         #[cfg(feature = "MTLResidencySet")]
         /// Marks a residency set as part of this command queue.
@@ -524,7 +524,7 @@ extern_protocol!(
         /// - Parameter residencySet: ``MTLResidencySet`` to add to the command queue.
         #[unsafe(method(addResidencySet:))]
         #[unsafe(method_family = none)]
-        fn addResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
+        fn add_residency_set(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
 
         #[cfg(feature = "MTLResidencySet")]
         /// Marks an array of residency sets as part of this command queue.
@@ -544,7 +544,7 @@ extern_protocol!(
         /// - `count` might not be bounds-checked.
         #[unsafe(method(addResidencySets:count:))]
         #[unsafe(method_family = none)]
-        unsafe fn addResidencySets_count(
+        unsafe fn add_residency_sets_count(
             &self,
             residency_sets: NonNull<NonNull<ProtocolObject<dyn MTLResidencySet>>>,
             count: NSUInteger,
@@ -559,7 +559,7 @@ extern_protocol!(
         /// - Parameter residencySet: ``MTLResidencySet`` instance to remove from the command queue.
         #[unsafe(method(removeResidencySet:))]
         #[unsafe(method_family = none)]
-        fn removeResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
+        fn remove_residency_set(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
 
         #[cfg(feature = "MTLResidencySet")]
         /// Removes multiple residency sets from the command queue.
@@ -577,7 +577,7 @@ extern_protocol!(
         /// - `count` might not be bounds-checked.
         #[unsafe(method(removeResidencySets:count:))]
         #[unsafe(method_family = none)]
-        unsafe fn removeResidencySets_count(
+        unsafe fn remove_residency_sets_count(
             &self,
             residency_sets: NonNull<NonNull<ProtocolObject<dyn MTLResidencySet>>>,
             count: NSUInteger,
@@ -616,7 +616,7 @@ extern_protocol!(
         /// - `count` might not be bounds-checked.
         #[unsafe(method(updateTextureMappings:heap:operations:count:))]
         #[unsafe(method_family = none)]
-        unsafe fn updateTextureMappings_heap_operations_count(
+        unsafe fn update_texture_mappings_heap_operations_count(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             heap: Option<&ProtocolObject<dyn MTLHeap>>,
@@ -657,7 +657,7 @@ extern_protocol!(
         /// - `count` might not be bounds-checked.
         #[unsafe(method(copyTextureMappingsFromTexture:toTexture:operations:count:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyTextureMappingsFromTexture_toTexture_operations_count(
+        unsafe fn copy_texture_mappings_from_texture_to_texture_operations_count(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             destination_texture: &ProtocolObject<dyn MTLTexture>,
@@ -694,7 +694,7 @@ extern_protocol!(
         /// - `count` might not be bounds-checked.
         #[unsafe(method(updateBufferMappings:heap:operations:count:))]
         #[unsafe(method_family = none)]
-        unsafe fn updateBufferMappings_heap_operations_count(
+        unsafe fn update_buffer_mappings_heap_operations_count(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             heap: Option<&ProtocolObject<dyn MTLHeap>>,
@@ -736,7 +736,7 @@ extern_protocol!(
         /// - `count` might not be bounds-checked.
         #[unsafe(method(copyBufferMappingsFromBuffer:toBuffer:operations:count:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyBufferMappingsFromBuffer_toBuffer_operations_count(
+        unsafe fn copy_buffer_mappings_from_buffer_to_buffer_operations_count(
             &self,
             source_buffer: &ProtocolObject<dyn MTLBuffer>,
             destination_buffer: &ProtocolObject<dyn MTLBuffer>,

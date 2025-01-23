@@ -117,24 +117,24 @@ impl MTLVertexAttribute {
 
         #[unsafe(method(attributeIndex))]
         #[unsafe(method_family = none)]
-        pub fn attributeIndex(&self) -> NSUInteger;
+        pub fn attribute_index(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLDataType")]
         #[unsafe(method(attributeType))]
         #[unsafe(method_family = none)]
-        pub fn attributeType(&self) -> MTLDataType;
+        pub fn attribute_type(&self) -> MTLDataType;
 
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
-        pub fn isActive(&self) -> bool;
+        pub fn is_active(&self) -> bool;
 
         #[unsafe(method(isPatchData))]
         #[unsafe(method_family = none)]
-        pub fn isPatchData(&self) -> bool;
+        pub fn is_patch_data(&self) -> bool;
 
         #[unsafe(method(isPatchControlPointData))]
         #[unsafe(method_family = none)]
-        pub fn isPatchControlPointData(&self) -> bool;
+        pub fn is_patch_control_point_data(&self) -> bool;
     );
 }
 
@@ -177,24 +177,24 @@ impl MTLAttribute {
 
         #[unsafe(method(attributeIndex))]
         #[unsafe(method_family = none)]
-        pub fn attributeIndex(&self) -> NSUInteger;
+        pub fn attribute_index(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLDataType")]
         #[unsafe(method(attributeType))]
         #[unsafe(method_family = none)]
-        pub fn attributeType(&self) -> MTLDataType;
+        pub fn attribute_type(&self) -> MTLDataType;
 
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
-        pub fn isActive(&self) -> bool;
+        pub fn is_active(&self) -> bool;
 
         #[unsafe(method(isPatchData))]
         #[unsafe(method_family = none)]
-        pub fn isPatchData(&self) -> bool;
+        pub fn is_patch_data(&self) -> bool;
 
         #[unsafe(method(isPatchControlPointData))]
         #[unsafe(method_family = none)]
-        pub fn isPatchControlPointData(&self) -> bool;
+        pub fn is_patch_control_point_data(&self) -> bool;
     );
 }
 
@@ -332,7 +332,7 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
@@ -343,27 +343,27 @@ extern_protocol!(
         /// The overall kind of entry point: compute, vertex, or fragment.
         #[unsafe(method(functionType))]
         #[unsafe(method_family = none)]
-        fn functionType(&self) -> MTLFunctionType;
+        fn function_type(&self) -> MTLFunctionType;
 
         /// Returns the patch type. MTLPatchTypeNone if it is not a post tessellation vertex shader.
         #[unsafe(method(patchType))]
         #[unsafe(method_family = none)]
-        fn patchType(&self) -> MTLPatchType;
+        fn patch_type(&self) -> MTLPatchType;
 
         /// Returns the number of patch control points if it was specified in the shader. Returns -1 if it
         /// was not specified.
         #[unsafe(method(patchControlPointCount))]
         #[unsafe(method_family = none)]
-        fn patchControlPointCount(&self) -> NSInteger;
+        fn patch_control_point_count(&self) -> NSInteger;
 
         #[unsafe(method(vertexAttributes))]
         #[unsafe(method_family = none)]
-        fn vertexAttributes(&self) -> Option<Retained<NSArray<MTLVertexAttribute>>>;
+        fn vertex_attributes(&self) -> Option<Retained<NSArray<MTLVertexAttribute>>>;
 
         /// Returns an array describing the attributes
         #[unsafe(method(stageInputAttributes))]
         #[unsafe(method_family = none)]
-        fn stageInputAttributes(&self) -> Option<Retained<NSArray<MTLAttribute>>>;
+        fn stage_input_attributes(&self) -> Option<Retained<NSArray<MTLAttribute>>>;
 
         /// The name of the function in the shading language.
         #[unsafe(method(name))]
@@ -373,7 +373,7 @@ extern_protocol!(
         /// A dictionary containing information about all function contents, keyed by the constant names.
         #[unsafe(method(functionConstantsDictionary))]
         #[unsafe(method_family = none)]
-        fn functionConstantsDictionary(
+        fn function_constants_dictionary(
             &self,
         ) -> Retained<NSDictionary<NSString, MTLFunctionConstant>>;
 
@@ -385,7 +385,7 @@ extern_protocol!(
         /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(newArgumentEncoderWithBufferIndex:))]
         #[unsafe(method_family = new)]
-        unsafe fn newArgumentEncoderWithBufferIndex(
+        unsafe fn new_argument_encoder_with_buffer_index(
             &self,
             buffer_index: NSUInteger,
         ) -> Retained<ProtocolObject<dyn MTLArgumentEncoder>>;
@@ -399,7 +399,7 @@ extern_protocol!(
         #[deprecated = "Use MTLDevice's newArgumentEncoderWithBufferBinding: instead"]
         #[unsafe(method(newArgumentEncoderWithBufferIndex:reflection:))]
         #[unsafe(method_family = new)]
-        unsafe fn newArgumentEncoderWithBufferIndex_reflection(
+        unsafe fn new_argument_encoder_with_buffer_index_reflection(
             &self,
             buffer_index: NSUInteger,
             reflection: Option<&mut Option<Retained<MTLAutoreleasedArgument>>>,
@@ -609,7 +609,7 @@ impl MTLCompileOptions {
         /// The default value is nil.
         #[unsafe(method(preprocessorMacros))]
         #[unsafe(method_family = none)]
-        pub fn preprocessorMacros(&self) -> Option<Retained<NSDictionary<NSString, NSObject>>>;
+        pub fn preprocessor_macros(&self) -> Option<Retained<NSDictionary<NSString, NSObject>>>;
 
         /// Setter for [`preprocessorMacros`][Self::preprocessorMacros].
         ///
@@ -620,7 +620,7 @@ impl MTLCompileOptions {
         /// `preprocessor_macros` generic should be of the correct type.
         #[unsafe(method(setPreprocessorMacros:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreprocessorMacros(
+        pub unsafe fn set_preprocessor_macros(
             &self,
             preprocessor_macros: Option<&NSDictionary<NSString, NSObject>>,
         );
@@ -629,33 +629,33 @@ impl MTLCompileOptions {
         #[deprecated = "Use mathMode instead"]
         #[unsafe(method(fastMathEnabled))]
         #[unsafe(method_family = none)]
-        pub fn fastMathEnabled(&self) -> bool;
+        pub fn fast_math_enabled(&self) -> bool;
 
         /// Setter for [`fastMathEnabled`][Self::fastMathEnabled].
         #[deprecated = "Use mathMode instead"]
         #[unsafe(method(setFastMathEnabled:))]
         #[unsafe(method_family = none)]
-        pub fn setFastMathEnabled(&self, fast_math_enabled: bool);
+        pub fn set_fast_math_enabled(&self, fast_math_enabled: bool);
 
         /// Sets the floating-point arithmetic optimizations. Default depends on the language standard version.
         #[unsafe(method(mathMode))]
         #[unsafe(method_family = none)]
-        pub fn mathMode(&self) -> MTLMathMode;
+        pub fn math_mode(&self) -> MTLMathMode;
 
         /// Setter for [`mathMode`][Self::mathMode].
         #[unsafe(method(setMathMode:))]
         #[unsafe(method_family = none)]
-        pub fn setMathMode(&self, math_mode: MTLMathMode);
+        pub fn set_math_mode(&self, math_mode: MTLMathMode);
 
         /// Sets the default math functions for single precision floating-point. Default is `MTLMathFloatingPointFunctionsFast`.
         #[unsafe(method(mathFloatingPointFunctions))]
         #[unsafe(method_family = none)]
-        pub fn mathFloatingPointFunctions(&self) -> MTLMathFloatingPointFunctions;
+        pub fn math_floating_point_functions(&self) -> MTLMathFloatingPointFunctions;
 
         /// Setter for [`mathFloatingPointFunctions`][Self::mathFloatingPointFunctions].
         #[unsafe(method(setMathFloatingPointFunctions:))]
         #[unsafe(method_family = none)]
-        pub fn setMathFloatingPointFunctions(
+        pub fn set_math_floating_point_functions(
             &self,
             math_floating_point_functions: MTLMathFloatingPointFunctions,
         );
@@ -663,12 +663,12 @@ impl MTLCompileOptions {
         /// set the metal language version used to interpret the source.
         #[unsafe(method(languageVersion))]
         #[unsafe(method_family = none)]
-        pub fn languageVersion(&self) -> MTLLanguageVersion;
+        pub fn language_version(&self) -> MTLLanguageVersion;
 
         /// Setter for [`languageVersion`][Self::languageVersion].
         #[unsafe(method(setLanguageVersion:))]
         #[unsafe(method_family = none)]
-        pub fn setLanguageVersion(&self, language_version: MTLLanguageVersion);
+        pub fn set_language_version(&self, language_version: MTLLanguageVersion);
 
         /// Which type the library should be compiled as. The default value is MTLLibraryTypeExecutable.
         ///
@@ -677,12 +677,12 @@ impl MTLCompileOptions {
         /// MTLDynamicLibrary contains no qualified functions, but it's unqualified functions and variables can be used as an external dependency for compiling other libraries.
         #[unsafe(method(libraryType))]
         #[unsafe(method_family = none)]
-        pub fn libraryType(&self) -> MTLLibraryType;
+        pub fn library_type(&self) -> MTLLibraryType;
 
         /// Setter for [`libraryType`][Self::libraryType].
         #[unsafe(method(setLibraryType:))]
         #[unsafe(method_family = none)]
-        pub fn setLibraryType(&self, library_type: MTLLibraryType);
+        pub fn set_library_type(&self, library_type: MTLLibraryType);
 
         /// The install name of this dynamic library.
         ///
@@ -707,14 +707,14 @@ impl MTLCompileOptions {
         /// This propery should not be null if the property type is set to MTLLibraryTypeDynamic: the compilation will fail in that scenario.
         #[unsafe(method(installName))]
         #[unsafe(method_family = none)]
-        pub fn installName(&self) -> Option<Retained<NSString>>;
+        pub fn install_name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`installName`][Self::installName].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInstallName:))]
         #[unsafe(method_family = none)]
-        pub fn setInstallName(&self, install_name: Option<&NSString>);
+        pub fn set_install_name(&self, install_name: Option<&NSString>);
 
         #[cfg(feature = "MTLDynamicLibrary")]
         /// A set of MTLDynamicLibrary instances to link against.
@@ -732,7 +732,7 @@ impl MTLCompileOptions {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLibraries:))]
         #[unsafe(method_family = none)]
-        pub fn setLibraries(
+        pub fn set_libraries(
             &self,
             libraries: Option<&NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>,
         );
@@ -740,32 +740,32 @@ impl MTLCompileOptions {
         /// If YES,  set the compiler to compile shaders to preserve invariance.  The default is false.
         #[unsafe(method(preserveInvariance))]
         #[unsafe(method_family = none)]
-        pub fn preserveInvariance(&self) -> bool;
+        pub fn preserve_invariance(&self) -> bool;
 
         /// Setter for [`preserveInvariance`][Self::preserveInvariance].
         #[unsafe(method(setPreserveInvariance:))]
         #[unsafe(method_family = none)]
-        pub fn setPreserveInvariance(&self, preserve_invariance: bool);
+        pub fn set_preserve_invariance(&self, preserve_invariance: bool);
 
         /// Sets the compiler optimization level.
         #[unsafe(method(optimizationLevel))]
         #[unsafe(method_family = none)]
-        pub fn optimizationLevel(&self) -> MTLLibraryOptimizationLevel;
+        pub fn optimization_level(&self) -> MTLLibraryOptimizationLevel;
 
         /// Setter for [`optimizationLevel`][Self::optimizationLevel].
         #[unsafe(method(setOptimizationLevel:))]
         #[unsafe(method_family = none)]
-        pub fn setOptimizationLevel(&self, optimization_level: MTLLibraryOptimizationLevel);
+        pub fn set_optimization_level(&self, optimization_level: MTLLibraryOptimizationLevel);
 
         /// Adds a compiler command to force the default visibility of symbols to be hidden
         #[unsafe(method(compileSymbolVisibility))]
         #[unsafe(method_family = none)]
-        pub fn compileSymbolVisibility(&self) -> MTLCompileSymbolVisibility;
+        pub fn compile_symbol_visibility(&self) -> MTLCompileSymbolVisibility;
 
         /// Setter for [`compileSymbolVisibility`][Self::compileSymbolVisibility].
         #[unsafe(method(setCompileSymbolVisibility:))]
         #[unsafe(method_family = none)]
-        pub fn setCompileSymbolVisibility(
+        pub fn set_compile_symbol_visibility(
             &self,
             compile_symbol_visibility: MTLCompileSymbolVisibility,
         );
@@ -773,12 +773,12 @@ impl MTLCompileOptions {
         /// Adds a compiler command to allow the reference of undefined symbols
         #[unsafe(method(allowReferencingUndefinedSymbols))]
         #[unsafe(method_family = none)]
-        pub fn allowReferencingUndefinedSymbols(&self) -> bool;
+        pub fn allow_referencing_undefined_symbols(&self) -> bool;
 
         /// Setter for [`allowReferencingUndefinedSymbols`][Self::allowReferencingUndefinedSymbols].
         #[unsafe(method(setAllowReferencingUndefinedSymbols:))]
         #[unsafe(method_family = none)]
-        pub fn setAllowReferencingUndefinedSymbols(
+        pub fn set_allow_referencing_undefined_symbols(
             &self,
             allow_referencing_undefined_symbols: bool,
         );
@@ -786,12 +786,12 @@ impl MTLCompileOptions {
         /// Adds a compiler command to specify the total threads per threadgroup
         #[unsafe(method(maxTotalThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
+        pub fn max_total_threads_per_threadgroup(&self) -> NSUInteger;
 
         /// Setter for [`maxTotalThreadsPerThreadgroup`][Self::maxTotalThreadsPerThreadgroup].
         #[unsafe(method(setMaxTotalThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub fn setMaxTotalThreadsPerThreadgroup(
+        pub fn set_max_total_threads_per_threadgroup(
             &self,
             max_total_threads_per_threadgroup: NSUInteger,
         );
@@ -802,23 +802,26 @@ impl MTLCompileOptions {
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+        pub fn required_threads_per_threadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`requiredThreadsPerThreadgroup`][Self::requiredThreadsPerThreadgroup].
         #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub fn setRequiredThreadsPerThreadgroup(&self, required_threads_per_threadgroup: MTLSize);
+        pub fn set_required_threads_per_threadgroup(
+            &self,
+            required_threads_per_threadgroup: MTLSize,
+        );
 
         /// If YES,  set the compiler to enable any logging in the shader. The default is false.
         #[unsafe(method(enableLogging))]
         #[unsafe(method_family = none)]
-        pub fn enableLogging(&self) -> bool;
+        pub fn enable_logging(&self) -> bool;
 
         /// Setter for [`enableLogging`][Self::enableLogging].
         #[unsafe(method(setEnableLogging:))]
         #[unsafe(method_family = none)]
-        pub fn setEnableLogging(&self, enable_logging: bool);
+        pub fn set_enable_logging(&self, enable_logging: bool);
     );
 }
 
@@ -939,7 +942,7 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
@@ -950,7 +953,7 @@ extern_protocol!(
         /// Returns a pointer to a function object, return nil if the function is not found in the library.
         #[unsafe(method(newFunctionWithName:))]
         #[unsafe(method_family = new)]
-        fn newFunctionWithName(
+        fn new_function_with_name(
             &self,
             function_name: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
@@ -962,7 +965,7 @@ extern_protocol!(
         /// avoid waiting on the compiler.
         #[unsafe(method(newFunctionWithName:constantValues:error:_))]
         #[unsafe(method_family = new)]
-        fn newFunctionWithName_constantValues_error(
+        fn new_function_with_name_constant_values_error(
             &self,
             name: &NSString,
             constant_values: &MTLFunctionConstantValues,
@@ -974,7 +977,7 @@ extern_protocol!(
         /// This method is asynchronous since it is will call the compiler.
         #[unsafe(method(newFunctionWithName:constantValues:completionHandler:))]
         #[unsafe(method_family = none)]
-        fn newFunctionWithName_constantValues_completionHandler(
+        fn new_function_with_name_constant_values_completion_handler(
             &self,
             name: &NSString,
             constant_values: &MTLFunctionConstantValues,
@@ -991,7 +994,7 @@ extern_protocol!(
         /// - Returns: An object containing the reflection information, or `nil` if no function in the library matches the name.
         #[unsafe(method(reflectionForFunctionWithName:))]
         #[unsafe(method_family = none)]
-        fn reflectionForFunctionWithName(
+        fn reflection_for_function_with_name(
             &self,
             function_name: &NSString,
         ) -> Option<Retained<MTLFunctionReflection>>;
@@ -1000,7 +1003,7 @@ extern_protocol!(
         /// Create a new MTLFunction object asynchronously.
         #[unsafe(method(newFunctionWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        fn newFunctionWithDescriptor_completionHandler(
+        fn new_function_with_descriptor_completion_handler(
             &self,
             descriptor: &MTLFunctionDescriptor,
             completion_handler: &block2::DynBlock<
@@ -1012,7 +1015,7 @@ extern_protocol!(
         /// Create  a new MTLFunction object synchronously.
         #[unsafe(method(newFunctionWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        fn newFunctionWithDescriptor_error(
+        fn new_function_with_descriptor_error(
             &self,
             descriptor: &MTLFunctionDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLFunction>>, Retained<NSError>>;
@@ -1021,7 +1024,7 @@ extern_protocol!(
         /// Create a new MTLFunction object asynchronously.
         #[unsafe(method(newIntersectionFunctionWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        fn newIntersectionFunctionWithDescriptor_completionHandler(
+        fn new_intersection_function_with_descriptor_completion_handler(
             &self,
             descriptor: &MTLIntersectionFunctionDescriptor,
             completion_handler: &block2::DynBlock<
@@ -1033,7 +1036,7 @@ extern_protocol!(
         /// Create  a new MTLFunction object synchronously.
         #[unsafe(method(newIntersectionFunctionWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        fn newIntersectionFunctionWithDescriptor_error(
+        fn new_intersection_function_with_descriptor_error(
             &self,
             descriptor: &MTLIntersectionFunctionDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLFunction>>, Retained<NSError>>;
@@ -1041,7 +1044,7 @@ extern_protocol!(
         /// The array contains NSString objects, with the name of each function in library.
         #[unsafe(method(functionNames))]
         #[unsafe(method_family = none)]
-        fn functionNames(&self) -> Retained<NSArray<NSString>>;
+        fn function_names(&self) -> Retained<NSArray<NSString>>;
 
         /// The library type provided when this MTLLibrary was created.
         /// Libraries with MTLLibraryTypeExecutable can be used to obtain MTLFunction from.
@@ -1059,6 +1062,6 @@ extern_protocol!(
         /// See: MTLCompileOptions
         #[unsafe(method(installName))]
         #[unsafe(method_family = none)]
-        fn installName(&self) -> Option<Retained<NSString>>;
+        fn install_name(&self) -> Option<Retained<NSString>>;
     }
 );

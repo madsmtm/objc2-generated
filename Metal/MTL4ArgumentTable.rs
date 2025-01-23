@@ -37,36 +37,36 @@ impl MTL4ArgumentTableDescriptor {
         /// The maximum value of this parameter is 31.
         #[unsafe(method(maxBufferBindCount))]
         #[unsafe(method_family = none)]
-        pub fn maxBufferBindCount(&self) -> NSUInteger;
+        pub fn max_buffer_bind_count(&self) -> NSUInteger;
 
         /// Setter for [`maxBufferBindCount`][Self::maxBufferBindCount].
         #[unsafe(method(setMaxBufferBindCount:))]
         #[unsafe(method_family = none)]
-        pub fn setMaxBufferBindCount(&self, max_buffer_bind_count: NSUInteger);
+        pub fn set_max_buffer_bind_count(&self, max_buffer_bind_count: NSUInteger);
 
         /// Determines the number of texture-binding slots for the argument table.
         ///
         /// The maximum value of this parameter is 128.
         #[unsafe(method(maxTextureBindCount))]
         #[unsafe(method_family = none)]
-        pub fn maxTextureBindCount(&self) -> NSUInteger;
+        pub fn max_texture_bind_count(&self) -> NSUInteger;
 
         /// Setter for [`maxTextureBindCount`][Self::maxTextureBindCount].
         #[unsafe(method(setMaxTextureBindCount:))]
         #[unsafe(method_family = none)]
-        pub fn setMaxTextureBindCount(&self, max_texture_bind_count: NSUInteger);
+        pub fn set_max_texture_bind_count(&self, max_texture_bind_count: NSUInteger);
 
         /// Determines the number of sampler state-binding slots for the argument table.
         ///
         /// The maximum value of this parameter is 16.
         #[unsafe(method(maxSamplerStateBindCount))]
         #[unsafe(method_family = none)]
-        pub fn maxSamplerStateBindCount(&self) -> NSUInteger;
+        pub fn max_sampler_state_bind_count(&self) -> NSUInteger;
 
         /// Setter for [`maxSamplerStateBindCount`][Self::maxSamplerStateBindCount].
         #[unsafe(method(setMaxSamplerStateBindCount:))]
         #[unsafe(method_family = none)]
-        pub fn setMaxSamplerStateBindCount(&self, max_sampler_state_bind_count: NSUInteger);
+        pub fn set_max_sampler_state_bind_count(&self, max_sampler_state_bind_count: NSUInteger);
 
         /// Configures whether Metal initializes the bindings to nil values upon creation of argument table.
         ///
@@ -75,12 +75,12 @@ impl MTL4ArgumentTableDescriptor {
         /// ://com.apple.documentation/documentation/swift/false>.
         #[unsafe(method(initializeBindings))]
         #[unsafe(method_family = none)]
-        pub fn initializeBindings(&self) -> bool;
+        pub fn initialize_bindings(&self) -> bool;
 
         /// Setter for [`initializeBindings`][Self::initializeBindings].
         #[unsafe(method(setInitializeBindings:))]
         #[unsafe(method_family = none)]
-        pub fn setInitializeBindings(&self, initialize_bindings: bool);
+        pub fn set_initialize_bindings(&self, initialize_bindings: bool);
 
         /// Controls whether Metal should reserve memory for attribute strides in the argument table.
         ///
@@ -92,12 +92,12 @@ impl MTL4ArgumentTableDescriptor {
         /// ://com.apple.documentation/documentation/swift/false>.
         #[unsafe(method(supportAttributeStrides))]
         #[unsafe(method_family = none)]
-        pub fn supportAttributeStrides(&self) -> bool;
+        pub fn support_attribute_strides(&self) -> bool;
 
         /// Setter for [`supportAttributeStrides`][Self::supportAttributeStrides].
         #[unsafe(method(setSupportAttributeStrides:))]
         #[unsafe(method_family = none)]
-        pub fn setSupportAttributeStrides(&self, support_attribute_strides: bool);
+        pub fn set_support_attribute_strides(&self, support_attribute_strides: bool);
 
         /// Assigns an optional label with the argument table for debug purposes.
         #[unsafe(method(label))]
@@ -109,7 +109,7 @@ impl MTL4ArgumentTableDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        pub fn set_label(&self, label: Option<&NSString>);
     );
 }
 
@@ -153,7 +153,11 @@ extern_protocol!(
         /// `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setAddress:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAddress_atIndex(&self, gpu_address: MTLGPUAddress, binding_index: NSUInteger);
+        unsafe fn set_address_at_index(
+            &self,
+            gpu_address: MTLGPUAddress,
+            binding_index: NSUInteger,
+        );
 
         #[cfg(feature = "MTLGPUAddress")]
         /// Binds a GPU address to a buffer binding slot, providing a dynamic vertex stride.
@@ -175,7 +179,7 @@ extern_protocol!(
         /// - `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setAddress:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAddress_attributeStride_atIndex(
+        unsafe fn set_address_attribute_stride_at_index(
             &self,
             gpu_address: MTLGPUAddress,
             stride: NSUInteger,
@@ -197,7 +201,7 @@ extern_protocol!(
         /// `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setResource:atBufferIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setResource_atBufferIndex(
+        unsafe fn set_resource_at_buffer_index(
             &self,
             resource_id: MTLResourceID,
             binding_index: NSUInteger,
@@ -218,7 +222,11 @@ extern_protocol!(
         /// `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTexture_atIndex(&self, resource_id: MTLResourceID, binding_index: NSUInteger);
+        unsafe fn set_texture_at_index(
+            &self,
+            resource_id: MTLResourceID,
+            binding_index: NSUInteger,
+        );
 
         #[cfg(feature = "MTLTypes")]
         /// Binds a sampler state to a sampler state binding slot.
@@ -235,7 +243,7 @@ extern_protocol!(
         /// `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSamplerState_atIndex(
+        unsafe fn set_sampler_state_at_index(
             &self,
             resource_id: MTLResourceID,
             binding_index: NSUInteger,

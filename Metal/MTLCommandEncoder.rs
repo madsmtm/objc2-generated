@@ -141,12 +141,12 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         /// Declare that all command generation from this encoder is complete, and detach from the MTLCommandBuffer.
         #[unsafe(method(endEncoding))]
         #[unsafe(method_family = none)]
-        fn endEncoding(&self);
+        fn end_encoding(&self);
 
         /// Encodes a consumer barrier on work you commit to the same command queue.
         ///
@@ -170,7 +170,7 @@ extern_protocol!(
         /// This argument applies to work you encode in the current command encoder.
         #[unsafe(method(barrierAfterQueueStages:beforeStages:))]
         #[unsafe(method_family = none)]
-        fn barrierAfterQueueStages_beforeStages(
+        fn barrier_after_queue_stages_before_stages(
             &self,
             after_queue_stages: MTLStages,
             before_stages: MTLStages,
@@ -179,16 +179,16 @@ extern_protocol!(
         /// Inserts a debug string into the command buffer.  This does not change any API behavior, but can be useful when debugging.
         #[unsafe(method(insertDebugSignpost:))]
         #[unsafe(method_family = none)]
-        fn insertDebugSignpost(&self, string: &NSString);
+        fn insert_debug_signpost(&self, string: &NSString);
 
         /// Push a new named string onto a stack of string labels.
         #[unsafe(method(pushDebugGroup:))]
         #[unsafe(method_family = none)]
-        fn pushDebugGroup(&self, string: &NSString);
+        fn push_debug_group(&self, string: &NSString);
 
         /// Pop the latest named string off of the stack.
         #[unsafe(method(popDebugGroup))]
         #[unsafe(method_family = none)]
-        fn popDebugGroup(&self);
+        fn pop_debug_group(&self);
     }
 );

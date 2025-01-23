@@ -88,19 +88,19 @@ impl MTLComputePipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        pub fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         /// The function to use with the MTLComputePipelineState
         #[unsafe(method(computeFunction))]
         #[unsafe(method_family = none)]
-        pub fn computeFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
+        pub fn compute_function(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`computeFunction`][Self::computeFunction].
         #[unsafe(method(setComputeFunction:))]
         #[unsafe(method_family = none)]
-        pub fn setComputeFunction(
+        pub fn set_compute_function(
             &self,
             compute_function: Option<&ProtocolObject<dyn MTLFunction>>,
         );
@@ -108,12 +108,12 @@ impl MTLComputePipelineDescriptor {
         /// An optimization flag, set if the thread group size will always be a multiple of thread execution width
         #[unsafe(method(threadGroupSizeIsMultipleOfThreadExecutionWidth))]
         #[unsafe(method_family = none)]
-        pub fn threadGroupSizeIsMultipleOfThreadExecutionWidth(&self) -> bool;
+        pub fn thread_group_size_is_multiple_of_thread_execution_width(&self) -> bool;
 
         /// Setter for [`threadGroupSizeIsMultipleOfThreadExecutionWidth`][Self::threadGroupSizeIsMultipleOfThreadExecutionWidth].
         #[unsafe(method(setThreadGroupSizeIsMultipleOfThreadExecutionWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setThreadGroupSizeIsMultipleOfThreadExecutionWidth(
+        pub unsafe fn set_thread_group_size_is_multiple_of_thread_execution_width(
             &self,
             thread_group_size_is_multiple_of_thread_execution_width: bool,
         );
@@ -121,12 +121,12 @@ impl MTLComputePipelineDescriptor {
         /// Optional property. Set the maxTotalThreadsPerThreadgroup. If it is not set, returns zero.
         #[unsafe(method(maxTotalThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
+        pub fn max_total_threads_per_threadgroup(&self) -> NSUInteger;
 
         /// Setter for [`maxTotalThreadsPerThreadgroup`][Self::maxTotalThreadsPerThreadgroup].
         #[unsafe(method(setMaxTotalThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub fn setMaxTotalThreadsPerThreadgroup(
+        pub fn set_max_total_threads_per_threadgroup(
             &self,
             max_total_threads_per_threadgroup: NSUInteger,
         );
@@ -135,7 +135,7 @@ impl MTLComputePipelineDescriptor {
         /// An MTLStageInputOutputDescriptor to fetch data from buffers
         #[unsafe(method(stageInputDescriptor))]
         #[unsafe(method_family = none)]
-        pub fn stageInputDescriptor(&self) -> Option<Retained<MTLStageInputOutputDescriptor>>;
+        pub fn stage_input_descriptor(&self) -> Option<Retained<MTLStageInputOutputDescriptor>>;
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Setter for [`stageInputDescriptor`][Self::stageInputDescriptor].
@@ -143,7 +143,7 @@ impl MTLComputePipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStageInputDescriptor:))]
         #[unsafe(method_family = none)]
-        pub fn setStageInputDescriptor(
+        pub fn set_stage_input_descriptor(
             &self,
             stage_input_descriptor: Option<&MTLStageInputOutputDescriptor>,
         );
@@ -157,12 +157,12 @@ impl MTLComputePipelineDescriptor {
         /// This flag makes this pipeline usable with indirect command buffers.
         #[unsafe(method(supportIndirectCommandBuffers))]
         #[unsafe(method_family = none)]
-        pub fn supportIndirectCommandBuffers(&self) -> bool;
+        pub fn support_indirect_command_buffers(&self) -> bool;
 
         /// Setter for [`supportIndirectCommandBuffers`][Self::supportIndirectCommandBuffers].
         #[unsafe(method(setSupportIndirectCommandBuffers:))]
         #[unsafe(method_family = none)]
-        pub fn setSupportIndirectCommandBuffers(&self, support_indirect_command_buffers: bool);
+        pub fn set_support_indirect_command_buffers(&self, support_indirect_command_buffers: bool);
 
         #[cfg(feature = "MTLDynamicLibrary")]
         /// The set of MTLDynamicLibrary to use to resolve external symbols before considering symbols from dependent MTLDynamicLibrary.
@@ -175,7 +175,7 @@ impl MTLComputePipelineDescriptor {
         #[deprecated]
         #[unsafe(method(insertLibraries))]
         #[unsafe(method_family = none)]
-        pub fn insertLibraries(
+        pub fn insert_libraries(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>>;
 
@@ -186,7 +186,7 @@ impl MTLComputePipelineDescriptor {
         #[deprecated]
         #[unsafe(method(setInsertLibraries:))]
         #[unsafe(method_family = none)]
-        pub fn setInsertLibraries(
+        pub fn set_insert_libraries(
             &self,
             insert_libraries: Option<&NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>,
         );
@@ -201,7 +201,7 @@ impl MTLComputePipelineDescriptor {
         /// See: MTLDynamicLibrary
         #[unsafe(method(preloadedLibraries))]
         #[unsafe(method_family = none)]
-        pub fn preloadedLibraries(
+        pub fn preloaded_libraries(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
@@ -211,7 +211,7 @@ impl MTLComputePipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreloadedLibraries:))]
         #[unsafe(method_family = none)]
-        pub fn setPreloadedLibraries(
+        pub fn set_preloaded_libraries(
             &self,
             preloaded_libraries: &NSArray<ProtocolObject<dyn MTLDynamicLibrary>>,
         );
@@ -224,7 +224,7 @@ impl MTLComputePipelineDescriptor {
         /// See: MTLBinaryArchive
         #[unsafe(method(binaryArchives))]
         #[unsafe(method_family = none)]
-        pub fn binaryArchives(
+        pub fn binary_archives(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
@@ -234,7 +234,7 @@ impl MTLComputePipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
-        pub fn setBinaryArchives(
+        pub fn set_binary_archives(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
         );
@@ -250,7 +250,7 @@ impl MTLComputePipelineDescriptor {
         /// See: MTLLinkedFunctions
         #[unsafe(method(linkedFunctions))]
         #[unsafe(method_family = none)]
-        pub fn linkedFunctions(&self) -> Option<Retained<MTLLinkedFunctions>>;
+        pub fn linked_functions(&self) -> Option<Retained<MTLLinkedFunctions>>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`linkedFunctions`][Self::linkedFunctions].
@@ -258,27 +258,27 @@ impl MTLComputePipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLinkedFunctions:))]
         #[unsafe(method_family = none)]
-        pub fn setLinkedFunctions(&self, linked_functions: Option<&MTLLinkedFunctions>);
+        pub fn set_linked_functions(&self, linked_functions: Option<&MTLLinkedFunctions>);
 
         /// This flag makes this pipeline support creating a new pipeline by adding binary functions.
         #[unsafe(method(supportAddingBinaryFunctions))]
         #[unsafe(method_family = none)]
-        pub fn supportAddingBinaryFunctions(&self) -> bool;
+        pub fn support_adding_binary_functions(&self) -> bool;
 
         /// Setter for [`supportAddingBinaryFunctions`][Self::supportAddingBinaryFunctions].
         #[unsafe(method(setSupportAddingBinaryFunctions:))]
         #[unsafe(method_family = none)]
-        pub fn setSupportAddingBinaryFunctions(&self, support_adding_binary_functions: bool);
+        pub fn set_support_adding_binary_functions(&self, support_adding_binary_functions: bool);
 
         /// The maximum depth of the call stack in stack frames from the kernel. Defaults to 1 additional stack frame.
         #[unsafe(method(maxCallStackDepth))]
         #[unsafe(method_family = none)]
-        pub fn maxCallStackDepth(&self) -> NSUInteger;
+        pub fn max_call_stack_depth(&self) -> NSUInteger;
 
         /// Setter for [`maxCallStackDepth`][Self::maxCallStackDepth].
         #[unsafe(method(setMaxCallStackDepth:))]
         #[unsafe(method_family = none)]
-        pub fn setMaxCallStackDepth(&self, max_call_stack_depth: NSUInteger);
+        pub fn set_max_call_stack_depth(&self, max_call_stack_depth: NSUInteger);
 
         #[cfg(feature = "MTLPipeline")]
         /// Toggle that determines whether Metal Shader Validation should be enabled or disabled for the pipeline.
@@ -286,13 +286,13 @@ impl MTLComputePipelineDescriptor {
         /// The value can be overridden using `MTL_SHADER_VALIDATION_ENABLE_PIPELINES` or `MTL_SHADER_VALIDATION_DISABLE_PIPELINES` Environment Variables.
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
-        pub fn shaderValidation(&self) -> MTLShaderValidation;
+        pub fn shader_validation(&self) -> MTLShaderValidation;
 
         #[cfg(feature = "MTLPipeline")]
         /// Setter for [`shaderValidation`][Self::shaderValidation].
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
-        pub fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+        pub fn set_shader_validation(&self, shader_validation: MTLShaderValidation);
 
         #[cfg(feature = "MTLTypes")]
         /// Sets the required threads-per-threadgroup during dispatches. The `threadsPerThreadgroup` argument of any dispatch must match this value if it is set.
@@ -300,13 +300,16 @@ impl MTLComputePipelineDescriptor {
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+        pub fn required_threads_per_threadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`requiredThreadsPerThreadgroup`][Self::requiredThreadsPerThreadgroup].
         #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub fn setRequiredThreadsPerThreadgroup(&self, required_threads_per_threadgroup: MTLSize);
+        pub fn set_required_threads_per_threadgroup(
+            &self,
+            required_threads_per_threadgroup: MTLSize,
+        );
     );
 }
 
@@ -361,7 +364,7 @@ extern_protocol!(
         /// otherwise `nil`.
         #[unsafe(method(functionHandleWithName:))]
         #[unsafe(method_family = none)]
-        fn functionHandleWithName(
+        fn function_handle_with_name(
             &self,
             name: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
@@ -376,7 +379,7 @@ extern_protocol!(
         /// pipeline state, otherwise `nil`.
         #[unsafe(method(functionHandleWithBinaryFunction:))]
         #[unsafe(method_family = none)]
-        fn functionHandleWithBinaryFunction(
+        fn function_handle_with_binary_function(
             &self,
             function: &ProtocolObject<dyn MTL4BinaryFunction>,
         ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
@@ -391,7 +394,7 @@ extern_protocol!(
         /// - Returns: A new compute pipeline state upon success, otherwise `nil`.
         #[unsafe(method(newComputePipelineStateWithBinaryFunctions:error:_))]
         #[unsafe(method_family = new)]
-        fn newComputePipelineStateWithBinaryFunctions_error(
+        fn new_compute_pipeline_state_with_binary_functions_error(
             &self,
             additional_binary_functions: &NSArray<ProtocolObject<dyn MTL4BinaryFunction>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
@@ -405,23 +408,23 @@ extern_protocol!(
         /// The maximum total number of threads that can be in a single compute threadgroup.
         #[unsafe(method(maxTotalThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
+        fn max_total_threads_per_threadgroup(&self) -> NSUInteger;
 
         /// For most efficient execution, the threadgroup size should be a multiple of this when executing the kernel.
         #[unsafe(method(threadExecutionWidth))]
         #[unsafe(method_family = none)]
-        fn threadExecutionWidth(&self) -> NSUInteger;
+        fn thread_execution_width(&self) -> NSUInteger;
 
         /// The length in bytes of threadgroup memory that is statically allocated.
         #[unsafe(method(staticThreadgroupMemoryLength))]
         #[unsafe(method_family = none)]
-        fn staticThreadgroupMemoryLength(&self) -> NSUInteger;
+        fn static_threadgroup_memory_length(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTypes")]
         /// Returns imageblock memory length for given image block dimensions.
         #[unsafe(method(imageblockMemoryLengthForDimensions:))]
         #[unsafe(method_family = none)]
-        unsafe fn imageblockMemoryLengthForDimensions(
+        unsafe fn imageblock_memory_length_for_dimensions(
             &self,
             imageblock_dimensions: MTLSize,
         ) -> NSUInteger;
@@ -429,19 +432,19 @@ extern_protocol!(
         /// Tells whether this pipeline state is usable through an Indirect Command Buffer.
         #[unsafe(method(supportIndirectCommandBuffers))]
         #[unsafe(method_family = none)]
-        fn supportIndirectCommandBuffers(&self) -> bool;
+        fn support_indirect_command_buffers(&self) -> bool;
 
         #[cfg(feature = "MTLTypes")]
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpu_resource_id(&self) -> MTLResourceID;
 
         #[cfg(all(feature = "MTLFunctionHandle", feature = "MTLLibrary"))]
         /// Get the function handle for the specified function from the pipeline state.
         #[unsafe(method(functionHandleWithFunction:))]
         #[unsafe(method_family = none)]
-        fn functionHandleWithFunction(
+        fn function_handle_with_function(
             &self,
             function: &ProtocolObject<dyn MTLFunction>,
         ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
@@ -450,7 +453,7 @@ extern_protocol!(
         /// Allocate a new compute pipeline state by adding binary functions to this pipeline state.
         #[unsafe(method(newComputePipelineStateWithAdditionalBinaryFunctions:error:_))]
         #[unsafe(method_family = new)]
-        fn newComputePipelineStateWithAdditionalBinaryFunctions_error(
+        fn new_compute_pipeline_state_with_additional_binary_functions_error(
             &self,
             functions: &NSArray<ProtocolObject<dyn MTLFunction>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
@@ -459,7 +462,7 @@ extern_protocol!(
         /// Allocate a visible function table for the pipeline with the provided descriptor.
         #[unsafe(method(newVisibleFunctionTableWithDescriptor:))]
         #[unsafe(method_family = new)]
-        fn newVisibleFunctionTableWithDescriptor(
+        fn new_visible_function_table_with_descriptor(
             &self,
             descriptor: &MTLVisibleFunctionTableDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
@@ -468,7 +471,7 @@ extern_protocol!(
         /// Allocate an intersection function table for the pipeline with the provided descriptor.
         #[unsafe(method(newIntersectionFunctionTableWithDescriptor:))]
         #[unsafe(method_family = new)]
-        fn newIntersectionFunctionTableWithDescriptor(
+        fn new_intersection_function_table_with_descriptor(
             &self,
             descriptor: &MTLIntersectionFunctionTableDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLIntersectionFunctionTable>>>;
@@ -483,12 +486,12 @@ extern_protocol!(
         /// This might not be thread-safe.
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
-        unsafe fn shaderValidation(&self) -> MTLShaderValidation;
+        unsafe fn shader_validation(&self) -> MTLShaderValidation;
 
         #[cfg(feature = "MTLTypes")]
         /// The required size of every compute threadgroup.
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+        fn required_threads_per_threadgroup(&self) -> MTLSize;
     }
 );

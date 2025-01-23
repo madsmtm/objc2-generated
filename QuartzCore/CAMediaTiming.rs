@@ -19,13 +19,13 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(beginTime))]
         #[unsafe(method_family = none)]
-        fn beginTime(&self) -> CFTimeInterval;
+        fn begin_time(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`beginTime`][Self::beginTime].
         #[unsafe(method(setBeginTime:))]
         #[unsafe(method_family = none)]
-        fn setBeginTime(&self, begin_time: CFTimeInterval);
+        fn set_begin_time(&self, begin_time: CFTimeInterval);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(duration))]
@@ -36,7 +36,7 @@ extern_protocol!(
         /// Setter for [`duration`][Self::duration].
         #[unsafe(method(setDuration:))]
         #[unsafe(method_family = none)]
-        fn setDuration(&self, duration: CFTimeInterval);
+        fn set_duration(&self, duration: CFTimeInterval);
 
         #[unsafe(method(speed))]
         #[unsafe(method_family = none)]
@@ -45,38 +45,38 @@ extern_protocol!(
         /// Setter for [`speed`][Self::speed].
         #[unsafe(method(setSpeed:))]
         #[unsafe(method_family = none)]
-        fn setSpeed(&self, speed: c_float);
+        fn set_speed(&self, speed: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(timeOffset))]
         #[unsafe(method_family = none)]
-        fn timeOffset(&self) -> CFTimeInterval;
+        fn time_offset(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`timeOffset`][Self::timeOffset].
         #[unsafe(method(setTimeOffset:))]
         #[unsafe(method_family = none)]
-        fn setTimeOffset(&self, time_offset: CFTimeInterval);
+        fn set_time_offset(&self, time_offset: CFTimeInterval);
 
         #[unsafe(method(repeatCount))]
         #[unsafe(method_family = none)]
-        fn repeatCount(&self) -> c_float;
+        fn repeat_count(&self) -> c_float;
 
         /// Setter for [`repeatCount`][Self::repeatCount].
         #[unsafe(method(setRepeatCount:))]
         #[unsafe(method_family = none)]
-        fn setRepeatCount(&self, repeat_count: c_float);
+        fn set_repeat_count(&self, repeat_count: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(repeatDuration))]
         #[unsafe(method_family = none)]
-        fn repeatDuration(&self) -> CFTimeInterval;
+        fn repeat_duration(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`repeatDuration`][Self::repeatDuration].
         #[unsafe(method(setRepeatDuration:))]
         #[unsafe(method_family = none)]
-        fn setRepeatDuration(&self, repeat_duration: CFTimeInterval);
+        fn set_repeat_duration(&self, repeat_duration: CFTimeInterval);
 
         #[unsafe(method(autoreverses))]
         #[unsafe(method_family = none)]
@@ -85,18 +85,18 @@ extern_protocol!(
         /// Setter for [`autoreverses`][Self::autoreverses].
         #[unsafe(method(setAutoreverses:))]
         #[unsafe(method_family = none)]
-        fn setAutoreverses(&self, autoreverses: bool);
+        fn set_autoreverses(&self, autoreverses: bool);
 
         #[unsafe(method(fillMode))]
         #[unsafe(method_family = none)]
-        fn fillMode(&self) -> Retained<CAMediaTimingFillMode>;
+        fn fill_mode(&self) -> Retained<CAMediaTimingFillMode>;
 
         /// Setter for [`fillMode`][Self::fillMode].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFillMode:))]
         #[unsafe(method_family = none)]
-        fn setFillMode(&self, fill_mode: &CAMediaTimingFillMode);
+        fn set_fill_mode(&self, fill_mode: &CAMediaTimingFillMode);
     }
 );
 

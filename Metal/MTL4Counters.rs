@@ -112,7 +112,7 @@ impl MTL4CounterHeapDescriptor {
         /// Setter for [`type`][Self::type].
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
-        pub fn setType(&self, r#type: MTL4CounterHeapType);
+        pub fn set_type(&self, r#type: MTL4CounterHeapType);
 
         /// Assigns the number of entries in the heap.
         ///
@@ -128,7 +128,7 @@ impl MTL4CounterHeapDescriptor {
         /// This might not be bounds-checked.
         #[unsafe(method(setCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCount(&self, count: NSUInteger);
+        pub unsafe fn set_count(&self, count: NSUInteger);
     );
 }
 
@@ -169,7 +169,7 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         /// Queries the number of entries in the heap.
         #[unsafe(method(count))]
@@ -198,7 +198,7 @@ extern_protocol!(
         /// `range` might not be bounds-checked.
         #[unsafe(method(resolveCounterRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Retained<NSData>>;
+        unsafe fn resolve_counter_range(&self, range: NSRange) -> Option<Retained<NSData>>;
 
         /// Invalidates a range of entries in this counter heap.
         ///
@@ -214,6 +214,6 @@ extern_protocol!(
         /// `range` might not be bounds-checked.
         #[unsafe(method(invalidateCounterRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn invalidateCounterRange(&self, range: NSRange);
+        unsafe fn invalidate_counter_range(&self, range: NSRange);
     }
 );

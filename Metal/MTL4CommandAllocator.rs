@@ -40,7 +40,7 @@ impl MTL4CommandAllocatorDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub fn setLabel(&self, label: Option<&NSString>);
+        pub fn set_label(&self, label: Option<&NSString>);
     );
 }
 
@@ -86,7 +86,7 @@ extern_protocol!(
         /// - Returns: a size in bytes.
         #[unsafe(method(allocatedSize))]
         #[unsafe(method_family = none)]
-        fn allocatedSize(&self) -> u64;
+        fn allocated_size(&self) -> u64;
 
         /// Marks the command allocator's heaps for reuse.
         ///

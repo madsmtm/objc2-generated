@@ -31,12 +31,12 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         /// The number of bytes required to store the encoded resource bindings.
         #[unsafe(method(encodedLength))]
         #[unsafe(method_family = none)]
-        fn encodedLength(&self) -> NSUInteger;
+        fn encoded_length(&self) -> NSUInteger;
 
         /// The alignment in bytes required to store the encoded resource bindings.
         #[unsafe(method(alignment))]
@@ -58,7 +58,7 @@ extern_protocol!(
         /// - `offset` might not be bounds-checked.
         #[unsafe(method(setArgumentBuffer:offset:))]
         #[unsafe(method_family = none)]
-        unsafe fn setArgumentBuffer_offset(
+        unsafe fn set_argument_buffer_offset(
             &self,
             argument_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
@@ -80,7 +80,7 @@ extern_protocol!(
         /// - `startOffset` might not be bounds-checked.
         #[unsafe(method(setArgumentBuffer:startOffset:arrayElement:))]
         #[unsafe(method_family = none)]
-        unsafe fn setArgumentBuffer_startOffset_arrayElement(
+        unsafe fn set_argument_buffer_start_offset_array_element(
             &self,
             argument_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             start_offset: NSUInteger,
@@ -103,7 +103,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setBuffer_offset_atIndex(
+        unsafe fn set_buffer_offset_at_index(
             &self,
             buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
@@ -125,7 +125,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setBuffers_offsets_withRange(
+        unsafe fn set_buffers_offsets_with_range(
             &self,
             buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
             offsets: NonNull<NSUInteger>,
@@ -146,7 +146,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTexture_atIndex(
+        unsafe fn set_texture_at_index(
             &self,
             texture: Option<&ProtocolObject<dyn MTLTexture>>,
             index: NSUInteger,
@@ -165,7 +165,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setTextures:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTextures_withRange(
+        unsafe fn set_textures_with_range(
             &self,
             textures: NonNull<*const ProtocolObject<dyn MTLTexture>>,
             range: NSRange,
@@ -179,7 +179,7 @@ extern_protocol!(
         /// `index` might not be bounds-checked.
         #[unsafe(method(setSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSamplerState_atIndex(
+        unsafe fn set_sampler_state_at_index(
             &self,
             sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             index: NSUInteger,
@@ -194,7 +194,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSamplerStates_withRange(
+        unsafe fn set_sampler_states_with_range(
             &self,
             samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             range: NSRange,
@@ -207,7 +207,7 @@ extern_protocol!(
         /// `index` might not be bounds-checked.
         #[unsafe(method(constantDataAtIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn constantDataAtIndex(&self, index: NSUInteger) -> NonNull<c_void>;
+        unsafe fn constant_data_at_index(&self, index: NSUInteger) -> NonNull<c_void>;
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         /// Sets a render pipeline state at a given bind point index
@@ -217,7 +217,7 @@ extern_protocol!(
         /// `index` might not be bounds-checked.
         #[unsafe(method(setRenderPipelineState:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setRenderPipelineState_atIndex(
+        unsafe fn set_render_pipeline_state_at_index(
             &self,
             pipeline: Option<&ProtocolObject<dyn MTLRenderPipelineState>>,
             index: NSUInteger,
@@ -232,7 +232,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setRenderPipelineStates:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setRenderPipelineStates_withRange(
+        unsafe fn set_render_pipeline_states_with_range(
             &self,
             pipelines: NonNull<*const ProtocolObject<dyn MTLRenderPipelineState>>,
             range: NSRange,
@@ -246,7 +246,7 @@ extern_protocol!(
         /// `index` might not be bounds-checked.
         #[unsafe(method(setComputePipelineState:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setComputePipelineState_atIndex(
+        unsafe fn set_compute_pipeline_state_at_index(
             &self,
             pipeline: Option<&ProtocolObject<dyn MTLComputePipelineState>>,
             index: NSUInteger,
@@ -261,7 +261,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setComputePipelineStates:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setComputePipelineStates_withRange(
+        unsafe fn set_compute_pipeline_states_with_range(
             &self,
             pipelines: NonNull<*const ProtocolObject<dyn MTLComputePipelineState>>,
             range: NSRange,
@@ -281,7 +281,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setIndirectCommandBuffer:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIndirectCommandBuffer_atIndex(
+        unsafe fn set_indirect_command_buffer_at_index(
             &self,
             indirect_command_buffer: Option<&ProtocolObject<dyn MTLIndirectCommandBuffer>>,
             index: NSUInteger,
@@ -300,7 +300,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setIndirectCommandBuffers:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIndirectCommandBuffers_withRange(
+        unsafe fn set_indirect_command_buffers_with_range(
             &self,
             buffers: NonNull<*const ProtocolObject<dyn MTLIndirectCommandBuffer>>,
             range: NSRange,
@@ -318,7 +318,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setAccelerationStructure:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccelerationStructure_atIndex(
+        unsafe fn set_acceleration_structure_at_index(
             &self,
             acceleration_structure: Option<&ProtocolObject<dyn MTLAccelerationStructure>>,
             index: NSUInteger,
@@ -333,7 +333,7 @@ extern_protocol!(
         /// `index` might not be bounds-checked.
         #[unsafe(method(newArgumentEncoderForBufferAtIndex:))]
         #[unsafe(method_family = new)]
-        unsafe fn newArgumentEncoderForBufferAtIndex(
+        unsafe fn new_argument_encoder_for_buffer_at_index(
             &self,
             index: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLArgumentEncoder>>>;
@@ -352,7 +352,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setVisibleFunctionTable_atIndex(
+        unsafe fn set_visible_function_table_at_index(
             &self,
             visible_function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
             index: NSUInteger,
@@ -371,7 +371,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setVisibleFunctionTables_withRange(
+        unsafe fn set_visible_function_tables_with_range(
             &self,
             visible_function_tables: NonNull<*const ProtocolObject<dyn MTLVisibleFunctionTable>>,
             range: NSRange,
@@ -391,7 +391,7 @@ extern_protocol!(
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIntersectionFunctionTable_atIndex(
+        unsafe fn set_intersection_function_table_at_index(
             &self,
             intersection_function_table: Option<&ProtocolObject<dyn MTLIntersectionFunctionTable>>,
             index: NSUInteger,
@@ -410,7 +410,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIntersectionFunctionTables_withRange(
+        unsafe fn set_intersection_function_tables_with_range(
             &self,
             intersection_function_tables: NonNull<
                 *const ProtocolObject<dyn MTLIntersectionFunctionTable>,
@@ -426,7 +426,7 @@ extern_protocol!(
         /// `index` might not be bounds-checked.
         #[unsafe(method(setDepthStencilState:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthStencilState_atIndex(
+        unsafe fn set_depth_stencil_state_at_index(
             &self,
             depth_stencil_state: Option<&ProtocolObject<dyn MTLDepthStencilState>>,
             index: NSUInteger,
@@ -441,7 +441,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setDepthStencilStates:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthStencilStates_withRange(
+        unsafe fn set_depth_stencil_states_with_range(
             &self,
             depth_stencil_states: NonNull<*const ProtocolObject<dyn MTLDepthStencilState>>,
             range: NSRange,

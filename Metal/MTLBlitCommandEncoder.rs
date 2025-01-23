@@ -51,7 +51,7 @@ extern_protocol!(
         /// has written, a CommandBuffer containing this synchronization must be executed.  After completion of the CommandBuffer, the CPU can access the contents of the resource safely.
         #[unsafe(method(synchronizeResource:))]
         #[unsafe(method_family = none)]
-        fn synchronizeResource(&self, resource: &ProtocolObject<dyn MTLResource>);
+        fn synchronize_resource(&self, resource: &ProtocolObject<dyn MTLResource>);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -74,7 +74,7 @@ extern_protocol!(
         /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(synchronizeTexture:slice:level:))]
         #[unsafe(method_family = none)]
-        unsafe fn synchronizeTexture_slice_level(
+        unsafe fn synchronize_texture_slice_level(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             slice: NSUInteger,
@@ -98,7 +98,7 @@ extern_protocol!(
         /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
+        unsafe fn copy_from_texture_source_slice_source_level_source_origin_source_size_to_texture_destination_slice_destination_level_destination_origin(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             source_slice: NSUInteger,
@@ -131,7 +131,7 @@ extern_protocol!(
         /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
+        unsafe fn copy_from_buffer_source_offset_source_bytes_per_row_source_bytes_per_image_source_size_to_texture_destination_slice_destination_level_destination_origin(
             &self,
             source_buffer: &ProtocolObject<dyn MTLBuffer>,
             source_offset: NSUInteger,
@@ -164,7 +164,7 @@ extern_protocol!(
         /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(
+        unsafe fn copy_from_buffer_source_offset_source_bytes_per_row_source_bytes_per_image_source_size_to_texture_destination_slice_destination_level_destination_origin_options(
             &self,
             source_buffer: &ProtocolObject<dyn MTLBuffer>,
             source_offset: NSUInteger,
@@ -198,7 +198,7 @@ extern_protocol!(
         /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(
+        unsafe fn copy_from_texture_source_slice_source_level_source_origin_source_size_to_buffer_destination_offset_destination_bytes_per_row_destination_bytes_per_image(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             source_slice: NSUInteger,
@@ -231,7 +231,7 @@ extern_protocol!(
         /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(
+        unsafe fn copy_from_texture_source_slice_source_level_source_origin_source_size_to_buffer_destination_offset_destination_bytes_per_row_destination_bytes_per_image_options(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             source_slice: NSUInteger,
@@ -253,7 +253,7 @@ extern_protocol!(
         /// Generate mipmaps for a texture from the base level up to the max level.
         #[unsafe(method(generateMipmapsForTexture:))]
         #[unsafe(method_family = none)]
-        fn generateMipmapsForTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
+        fn generate_mipmaps_for_texture(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -263,7 +263,7 @@ extern_protocol!(
         /// Fill a buffer with a fixed value in each byte.
         #[unsafe(method(fillBuffer:range:value:))]
         #[unsafe(method_family = none)]
-        fn fillBuffer_range_value(
+        fn fill_buffer_range_value(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
             range: NSRange,
@@ -296,7 +296,7 @@ extern_protocol!(
         /// - `levelCount` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(
+        unsafe fn copy_from_texture_source_slice_source_level_to_texture_destination_slice_destination_level_slice_count_level_count(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             source_slice: NSUInteger,
@@ -333,7 +333,7 @@ extern_protocol!(
         /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromTexture:toTexture:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyFromTexture_toTexture(
+        unsafe fn copy_from_texture_to_texture(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             destination_texture: &ProtocolObject<dyn MTLTexture>,
@@ -359,7 +359,7 @@ extern_protocol!(
         /// - `size` might not be bounds-checked.
         #[unsafe(method(copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(
+        unsafe fn copy_from_buffer_source_offset_to_buffer_destination_offset_size(
             &self,
             source_buffer: &ProtocolObject<dyn MTLBuffer>,
             source_offset: NSUInteger,
@@ -375,7 +375,7 @@ extern_protocol!(
         /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[unsafe(method(updateFence:))]
         #[unsafe(method_family = none)]
-        fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        fn update_fence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(feature = "MTLFence")]
         /// Prevent further GPU work until the fence is reached.
@@ -384,7 +384,7 @@ extern_protocol!(
         /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[unsafe(method(waitForFence:))]
         #[unsafe(method_family = none)]
-        fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        fn wait_for_fence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -406,7 +406,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:))]
         #[unsafe(method_family = none)]
-        unsafe fn getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset(
+        unsafe fn get_texture_access_counters_region_mip_level_slice_reset_counters_counters_buffer_counters_buffer_offset(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             region: MTLRegion,
@@ -433,7 +433,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(resetTextureAccessCounters:region:mipLevel:slice:))]
         #[unsafe(method_family = none)]
-        unsafe fn resetTextureAccessCounters_region_mipLevel_slice(
+        unsafe fn reset_texture_access_counters_region_mip_level_slice(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             region: MTLRegion,
@@ -449,7 +449,7 @@ extern_protocol!(
         /// Optimizes the texture data to ensure the best possible performance when accessing content on the GPU at the expense of CPU-access performance.
         #[unsafe(method(optimizeContentsForGPUAccess:))]
         #[unsafe(method_family = none)]
-        fn optimizeContentsForGPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
+        fn optimize_contents_for_gpu_access(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -464,7 +464,7 @@ extern_protocol!(
         /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(optimizeContentsForGPUAccess:slice:level:))]
         #[unsafe(method_family = none)]
-        unsafe fn optimizeContentsForGPUAccess_slice_level(
+        unsafe fn optimize_contents_for_gpu_access_slice_level(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             slice: NSUInteger,
@@ -484,7 +484,7 @@ extern_protocol!(
         /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(optimizeContentsForCPUAccess:))]
         #[unsafe(method_family = none)]
-        unsafe fn optimizeContentsForCPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
+        unsafe fn optimize_contents_for_cpu_access(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -499,7 +499,7 @@ extern_protocol!(
         /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(optimizeContentsForCPUAccess:slice:level:))]
         #[unsafe(method_family = none)]
-        unsafe fn optimizeContentsForCPUAccess_slice_level(
+        unsafe fn optimize_contents_for_cpu_access_slice_level(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             slice: NSUInteger,
@@ -520,7 +520,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(resetCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn resetCommandsInBuffer_withRange(
+        unsafe fn reset_commands_in_buffer_with_range(
             &self,
             buffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
             range: NSRange,
@@ -543,7 +543,7 @@ extern_protocol!(
         /// - `destinationIndex` might not be bounds-checked.
         #[unsafe(method(copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(
+        unsafe fn copy_indirect_command_buffer_source_range_destination_destination_index(
             &self,
             source: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
             source_range: NSRange,
@@ -565,7 +565,7 @@ extern_protocol!(
         /// - `range` might not be bounds-checked.
         #[unsafe(method(optimizeIndirectCommandBuffer:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn optimizeIndirectCommandBuffer_withRange(
+        unsafe fn optimize_indirect_command_buffer_with_range(
             &self,
             indirect_command_buffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
             range: NSRange,
@@ -596,7 +596,7 @@ extern_protocol!(
         /// `sampleIndex` might not be bounds-checked.
         #[unsafe(method(sampleCountersInBuffer:atSampleIndex:withBarrier:))]
         #[unsafe(method_family = none)]
-        unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
+        unsafe fn sample_counters_in_buffer_at_sample_index_with_barrier(
             &self,
             sample_buffer: &ProtocolObject<dyn MTLCounterSampleBuffer>,
             sample_index: NSUInteger,
@@ -632,7 +632,7 @@ extern_protocol!(
         /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(resolveCounters:inRange:destinationBuffer:destinationOffset:))]
         #[unsafe(method_family = none)]
-        unsafe fn resolveCounters_inRange_destinationBuffer_destinationOffset(
+        unsafe fn resolve_counters_in_range_destination_buffer_destination_offset(
             &self,
             sample_buffer: &ProtocolObject<dyn MTLCounterSampleBuffer>,
             range: NSRange,
@@ -664,7 +664,7 @@ extern_protocol!(
         /// - `destination_tensor` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:))]
         #[unsafe(method_family = none)]
-        unsafe fn copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions(
+        unsafe fn copy_from_tensor_source_origin_source_dimensions_to_tensor_destination_origin_destination_dimensions(
             &self,
             source_tensor: &ProtocolObject<dyn MTLTensor>,
             source_origin: &MTLTensorExtents,

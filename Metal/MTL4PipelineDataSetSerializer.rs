@@ -83,7 +83,7 @@ impl MTL4PipelineDataSetSerializerDescriptor {
         /// Setter for [`configuration`][Self::configuration].
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
-        pub fn setConfiguration(&self, configuration: MTL4PipelineDataSetSerializerConfiguration);
+        pub fn set_configuration(&self, configuration: MTL4PipelineDataSetSerializerConfiguration);
     );
 }
 
@@ -135,7 +135,7 @@ extern_protocol!(
         /// - Returns: a boolean indicating whether the operation was successful.
         #[unsafe(method(serializeAsArchiveAndFlushToURL:error:_))]
         #[unsafe(method_family = none)]
-        fn serializeAsArchiveAndFlushToURL_error(
+        fn serialize_as_archive_and_flush_to_url_error(
             &self,
             url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
@@ -147,7 +147,7 @@ extern_protocol!(
         /// - Returns: an `NSData` instance containing the pipeline script.
         #[unsafe(method(serializeAsPipelinesScriptWithError:_))]
         #[unsafe(method_family = none)]
-        fn serializeAsPipelinesScriptWithError(
+        fn serialize_as_pipelines_script_with_error(
             &self,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
     }

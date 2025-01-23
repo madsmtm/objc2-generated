@@ -83,7 +83,7 @@ impl MTLPipelineBufferDescriptor {
         /// Setter for [`mutability`][Self::mutability].
         #[unsafe(method(setMutability:))]
         #[unsafe(method_family = none)]
-        pub fn setMutability(&self, mutability: MTLMutability);
+        pub fn set_mutability(&self, mutability: MTLMutability);
     );
 }
 
@@ -125,7 +125,7 @@ impl MTLPipelineBufferDescriptorArray {
         /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             buffer_index: NSUInteger,
         ) -> Retained<MTLPipelineBufferDescriptor>;
@@ -135,7 +135,7 @@ impl MTLPipelineBufferDescriptorArray {
         /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             buffer: Option<&MTLPipelineBufferDescriptor>,
             buffer_index: NSUInteger,

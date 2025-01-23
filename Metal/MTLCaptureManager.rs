@@ -93,7 +93,7 @@ impl MTLCaptureDescriptor {
         /// MTLCaptureScope captures between the next begin and end of the scope.
         #[unsafe(method(captureObject))]
         #[unsafe(method_family = none)]
-        pub fn captureObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn capture_object(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`captureObject`][Self::captureObject].
         ///
@@ -102,7 +102,7 @@ impl MTLCaptureDescriptor {
         /// `capture_object` should be of the correct type.
         #[unsafe(method(setCaptureObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCaptureObject(&self, capture_object: Option<&AnyObject>);
+        pub unsafe fn set_capture_object(&self, capture_object: Option<&AnyObject>);
 
         /// The destination you want the GPU trace to be captured to.
         #[unsafe(method(destination))]
@@ -112,20 +112,20 @@ impl MTLCaptureDescriptor {
         /// Setter for [`destination`][Self::destination].
         #[unsafe(method(setDestination:))]
         #[unsafe(method_family = none)]
-        pub fn setDestination(&self, destination: MTLCaptureDestination);
+        pub fn set_destination(&self, destination: MTLCaptureDestination);
 
         /// URL the GPU Trace document will be captured to.
         /// Must be specified when destiation is MTLCaptureDestinationGPUTraceDocument.
         #[unsafe(method(outputURL))]
         #[unsafe(method_family = none)]
-        pub fn outputURL(&self) -> Option<Retained<NSURL>>;
+        pub fn output_url(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`outputURL`][Self::outputURL].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputURL:))]
         #[unsafe(method_family = none)]
-        pub fn setOutputURL(&self, output_url: Option<&NSURL>);
+        pub fn set_output_url(&self, output_url: Option<&NSURL>);
     );
 }
 
@@ -169,7 +169,7 @@ impl MTLCaptureManager {
         /// : only MTLCommandBuffers created after starting a capture and committed before stopping it are captured.
         #[unsafe(method(sharedCaptureManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedCaptureManager() -> Retained<MTLCaptureManager>;
+        pub unsafe fn shared_capture_manager() -> Retained<MTLCaptureManager>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -178,7 +178,7 @@ impl MTLCaptureManager {
         #[cfg(all(feature = "MTLCaptureScope", feature = "MTLDevice"))]
         #[unsafe(method(newCaptureScopeWithDevice:))]
         #[unsafe(method_family = new)]
-        pub fn newCaptureScopeWithDevice(
+        pub fn new_capture_scope_with_device(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
@@ -186,7 +186,7 @@ impl MTLCaptureManager {
         #[cfg(all(feature = "MTLCaptureScope", feature = "MTLCommandQueue"))]
         #[unsafe(method(newCaptureScopeWithCommandQueue:))]
         #[unsafe(method_family = new)]
-        pub fn newCaptureScopeWithCommandQueue(
+        pub fn new_capture_scope_with_command_queue(
             &self,
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
         ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
@@ -194,14 +194,14 @@ impl MTLCaptureManager {
         #[cfg(all(feature = "MTL4CommandQueue", feature = "MTLCaptureScope"))]
         #[unsafe(method(newCaptureScopeWithMTL4CommandQueue:))]
         #[unsafe(method_family = new)]
-        pub fn newCaptureScopeWithMTL4CommandQueue(
+        pub fn new_capture_scope_with_mtl4_command_queue(
             &self,
             command_queue: &ProtocolObject<dyn MTL4CommandQueue>,
         ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
 
         #[unsafe(method(supportsDestination:))]
         #[unsafe(method_family = none)]
-        pub fn supportsDestination(&self, destination: MTLCaptureDestination) -> bool;
+        pub fn supports_destination(&self, destination: MTLCaptureDestination) -> bool;
 
         /// Start capturing until stopCapture is called.
         ///
@@ -214,7 +214,7 @@ impl MTLCaptureManager {
         /// Only MTLCommandBuffer​s created after starting and committed before stopping it are captured.
         #[unsafe(method(startCaptureWithDescriptor:error:_))]
         #[unsafe(method_family = none)]
-        pub fn startCaptureWithDescriptor_error(
+        pub fn start_capture_with_descriptor_error(
             &self,
             descriptor: &MTLCaptureDescriptor,
         ) -> Result<(), Retained<NSError>>;
@@ -223,13 +223,13 @@ impl MTLCaptureManager {
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[unsafe(method(startCaptureWithDevice:))]
         #[unsafe(method_family = none)]
-        pub fn startCaptureWithDevice(&self, device: &ProtocolObject<dyn MTLDevice>);
+        pub fn start_capture_with_device(&self, device: &ProtocolObject<dyn MTLDevice>);
 
         #[cfg(feature = "MTLCommandQueue")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[unsafe(method(startCaptureWithCommandQueue:))]
         #[unsafe(method_family = none)]
-        pub fn startCaptureWithCommandQueue(
+        pub fn start_capture_with_command_queue(
             &self,
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
         );
@@ -238,29 +238,31 @@ impl MTLCaptureManager {
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[unsafe(method(startCaptureWithScope:))]
         #[unsafe(method_family = none)]
-        pub fn startCaptureWithScope(&self, capture_scope: &ProtocolObject<dyn MTLCaptureScope>);
+        pub fn start_capture_with_scope(&self, capture_scope: &ProtocolObject<dyn MTLCaptureScope>);
 
         #[unsafe(method(stopCapture))]
         #[unsafe(method_family = none)]
-        pub fn stopCapture(&self);
+        pub fn stop_capture(&self);
 
         #[cfg(feature = "MTLCaptureScope")]
         #[unsafe(method(defaultCaptureScope))]
         #[unsafe(method_family = none)]
-        pub fn defaultCaptureScope(&self) -> Option<Retained<ProtocolObject<dyn MTLCaptureScope>>>;
+        pub fn default_capture_scope(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLCaptureScope>>>;
 
         #[cfg(feature = "MTLCaptureScope")]
         /// Setter for [`defaultCaptureScope`][Self::defaultCaptureScope].
         #[unsafe(method(setDefaultCaptureScope:))]
         #[unsafe(method_family = none)]
-        pub fn setDefaultCaptureScope(
+        pub fn set_default_capture_scope(
             &self,
             default_capture_scope: Option<&ProtocolObject<dyn MTLCaptureScope>>,
         );
 
         #[unsafe(method(isCapturing))]
         #[unsafe(method_family = none)]
-        pub fn isCapturing(&self) -> bool;
+        pub fn is_capturing(&self) -> bool;
     );
 }
 

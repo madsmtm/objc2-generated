@@ -70,7 +70,7 @@ impl MTLHeapDescriptor {
         /// Setter for [`size`][Self::size].
         #[unsafe(method(setSize:))]
         #[unsafe(method_family = none)]
-        pub fn setSize(&self, size: NSUInteger);
+        pub fn set_size(&self, size: NSUInteger);
 
         #[cfg(feature = "MTLResource")]
         /// Storage mode for the heap. Default is MTLStorageModePrivate.
@@ -79,13 +79,13 @@ impl MTLHeapDescriptor {
         /// MTLStorageModeManaged and MTLStorageModeMemoryless are disallowed.
         #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
-        pub fn storageMode(&self) -> MTLStorageMode;
+        pub fn storage_mode(&self) -> MTLStorageMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`storageMode`][Self::storageMode].
         #[unsafe(method(setStorageMode:))]
         #[unsafe(method_family = none)]
-        pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
+        pub fn set_storage_mode(&self, storage_mode: MTLStorageMode);
 
         #[cfg(feature = "MTLResource")]
         /// CPU cache mode for the heap. Default is MTLCPUCacheModeDefaultCache.
@@ -94,25 +94,25 @@ impl MTLHeapDescriptor {
         /// CPU cache mode is ignored for MTLStorageModePrivate.
         #[unsafe(method(cpuCacheMode))]
         #[unsafe(method_family = none)]
-        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        pub fn cpu_cache_mode(&self) -> MTLCPUCacheMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`cpuCacheMode`][Self::cpuCacheMode].
         #[unsafe(method(setCpuCacheMode:))]
         #[unsafe(method_family = none)]
-        pub fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
+        pub fn set_cpu_cache_mode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
         #[cfg(feature = "MTLResource")]
         /// The sparse page size to use for resources created from the heap.
         #[unsafe(method(sparsePageSize))]
         #[unsafe(method_family = none)]
-        pub fn sparsePageSize(&self) -> MTLSparsePageSize;
+        pub fn sparse_page_size(&self) -> MTLSparsePageSize;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`sparsePageSize`][Self::sparsePageSize].
         #[unsafe(method(setSparsePageSize:))]
         #[unsafe(method_family = none)]
-        pub fn setSparsePageSize(&self, sparse_page_size: MTLSparsePageSize);
+        pub fn set_sparse_page_size(&self, sparse_page_size: MTLSparsePageSize);
 
         #[cfg(feature = "MTLResource")]
         /// Set hazard tracking mode for the heap. The default value is MTLHazardTrackingModeDefault.
@@ -125,13 +125,13 @@ impl MTLHeapDescriptor {
         /// All resources created from this heap shared the same hazard tracking mode.
         #[unsafe(method(hazardTrackingMode))]
         #[unsafe(method_family = none)]
-        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        pub fn hazard_tracking_mode(&self) -> MTLHazardTrackingMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`hazardTrackingMode`][Self::hazardTrackingMode].
         #[unsafe(method(setHazardTrackingMode:))]
         #[unsafe(method_family = none)]
-        pub fn setHazardTrackingMode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
+        pub fn set_hazard_tracking_mode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
 
         #[cfg(feature = "MTLResource")]
         /// A packed tuple of the storageMode, cpuCacheMode and hazardTrackingMode properties.
@@ -139,13 +139,13 @@ impl MTLHeapDescriptor {
         /// Modifications to this property are reflected in the other properties and vice versa.
         #[unsafe(method(resourceOptions))]
         #[unsafe(method_family = none)]
-        pub fn resourceOptions(&self) -> MTLResourceOptions;
+        pub fn resource_options(&self) -> MTLResourceOptions;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`resourceOptions`][Self::resourceOptions].
         #[unsafe(method(setResourceOptions:))]
         #[unsafe(method_family = none)]
-        pub fn setResourceOptions(&self, resource_options: MTLResourceOptions);
+        pub fn set_resource_options(&self, resource_options: MTLResourceOptions);
 
         /// The type of the heap. The default value is MTLHeapTypeAutomatic.
         ///
@@ -157,7 +157,7 @@ impl MTLHeapDescriptor {
         /// Setter for [`type`][Self::type].
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
-        pub fn setType(&self, r#type: MTLHeapType);
+        pub fn set_type(&self, r#type: MTLHeapType);
 
         #[cfg(feature = "MTLResource")]
         /// Specifies the largest sparse page size that the Metal heap supports.
@@ -170,13 +170,13 @@ impl MTLHeapDescriptor {
         /// placement sparse page of the Metal heap that this property controls.
         #[unsafe(method(maxCompatiblePlacementSparsePageSize))]
         #[unsafe(method_family = none)]
-        pub fn maxCompatiblePlacementSparsePageSize(&self) -> MTLSparsePageSize;
+        pub fn max_compatible_placement_sparse_page_size(&self) -> MTLSparsePageSize;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`maxCompatiblePlacementSparsePageSize`][Self::maxCompatiblePlacementSparsePageSize].
         #[unsafe(method(setMaxCompatiblePlacementSparsePageSize:))]
         #[unsafe(method_family = none)]
-        pub fn setMaxCompatiblePlacementSparsePageSize(
+        pub fn set_max_compatible_placement_sparse_page_size(
             &self,
             max_compatible_placement_sparse_page_size: MTLSparsePageSize,
         );
@@ -217,7 +217,7 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         /// The device this heap was created against. This heap can only be used with this device.
@@ -231,7 +231,7 @@ extern_protocol!(
         /// All resources created from this heap share the same storage mode.
         #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
-        fn storageMode(&self) -> MTLStorageMode;
+        fn storage_mode(&self) -> MTLStorageMode;
 
         #[cfg(feature = "MTLResource")]
         /// CPU cache mode for the heap. Default is MTLCPUCacheModeDefaultCache.
@@ -239,7 +239,7 @@ extern_protocol!(
         /// All resources created from this heap share the same cache mode.
         #[unsafe(method(cpuCacheMode))]
         #[unsafe(method_family = none)]
-        fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        fn cpu_cache_mode(&self) -> MTLCPUCacheMode;
 
         #[cfg(feature = "MTLResource")]
         /// Whether or not the heap is hazard tracked.
@@ -251,13 +251,13 @@ extern_protocol!(
         /// however resources cannot opt-in to hazard tracking when the heap is not hazard tracked.
         #[unsafe(method(hazardTrackingMode))]
         #[unsafe(method_family = none)]
-        fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        fn hazard_tracking_mode(&self) -> MTLHazardTrackingMode;
 
         #[cfg(feature = "MTLResource")]
         /// A packed tuple of the storageMode, cpuCacheMode and hazardTrackingMode properties.
         #[unsafe(method(resourceOptions))]
         #[unsafe(method_family = none)]
-        fn resourceOptions(&self) -> MTLResourceOptions;
+        fn resource_options(&self) -> MTLResourceOptions;
 
         /// Heap size in bytes, specified at creation time and rounded up to device specific alignment.
         #[unsafe(method(size))]
@@ -267,19 +267,19 @@ extern_protocol!(
         /// The size in bytes, of all resources allocated from the heap.
         #[unsafe(method(usedSize))]
         #[unsafe(method_family = none)]
-        fn usedSize(&self) -> NSUInteger;
+        fn used_size(&self) -> NSUInteger;
 
         /// The size in bytes of the current heap allocation.
         #[unsafe(method(currentAllocatedSize))]
         #[unsafe(method_family = none)]
-        fn currentAllocatedSize(&self) -> NSUInteger;
+        fn current_allocated_size(&self) -> NSUInteger;
 
         /// The maximum size that can be successfully allocated from the heap in bytes, taking into notice given alignment. Alignment needs to be zero, or power of two.
         ///
         /// Provides a measure of fragmentation within the heap.
         #[unsafe(method(maxAvailableSizeWithAlignment:))]
         #[unsafe(method_family = none)]
-        fn maxAvailableSizeWithAlignment(&self, alignment: NSUInteger) -> NSUInteger;
+        fn max_available_size_with_alignment(&self, alignment: NSUInteger) -> NSUInteger;
 
         #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         /// Create a new buffer backed by heap memory.
@@ -289,7 +289,7 @@ extern_protocol!(
         /// Returns: The buffer or nil if heap is full.
         #[unsafe(method(newBufferWithLength:options:))]
         #[unsafe(method_family = new)]
-        fn newBufferWithLength_options(
+        fn new_buffer_with_length_options(
             &self,
             length: NSUInteger,
             options: MTLResourceOptions,
@@ -303,7 +303,7 @@ extern_protocol!(
         /// Returns: The texture or nil if heap is full.
         #[unsafe(method(newTextureWithDescriptor:))]
         #[unsafe(method_family = new)]
-        fn newTextureWithDescriptor(
+        fn new_texture_with_descriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -312,7 +312,7 @@ extern_protocol!(
         /// Set or query the purgeability state of the heap.
         #[unsafe(method(setPurgeableState:))]
         #[unsafe(method_family = none)]
-        fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
+        fn set_purgeable_state(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         /// The type of the heap. The default value is MTLHeapTypeAutomatic.
         ///
@@ -341,7 +341,7 @@ extern_protocol!(
         /// `offset` might not be bounds-checked.
         #[unsafe(method(newBufferWithLength:options:offset:))]
         #[unsafe(method_family = new)]
-        unsafe fn newBufferWithLength_options_offset(
+        unsafe fn new_buffer_with_length_options_offset(
             &self,
             length: NSUInteger,
             options: MTLResourceOptions,
@@ -366,7 +366,7 @@ extern_protocol!(
         /// `offset` might not be bounds-checked.
         #[unsafe(method(newTextureWithDescriptor:offset:))]
         #[unsafe(method_family = new)]
-        unsafe fn newTextureWithDescriptor_offset(
+        unsafe fn new_texture_with_descriptor_offset(
             &self,
             descriptor: &MTLTextureDescriptor,
             offset: NSUInteger,
@@ -382,7 +382,7 @@ extern_protocol!(
         /// `size` might not be bounds-checked.
         #[unsafe(method(newAccelerationStructureWithSize:))]
         #[unsafe(method_family = new)]
-        unsafe fn newAccelerationStructureWithSize(
+        unsafe fn new_acceleration_structure_with_size(
             &self,
             size: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
@@ -395,7 +395,7 @@ extern_protocol!(
         /// Returns: The acceleration structure or nil if heap is full. Note that the MTLAccelerationStructure merely represents storage for an acceleration structure. It will still need to be populated via a build, copy, refit, etc.
         #[unsafe(method(newAccelerationStructureWithDescriptor:))]
         #[unsafe(method_family = new)]
-        fn newAccelerationStructureWithDescriptor(
+        fn new_acceleration_structure_with_descriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
@@ -419,7 +419,7 @@ extern_protocol!(
         /// - `offset` might not be bounds-checked.
         #[unsafe(method(newAccelerationStructureWithSize:offset:))]
         #[unsafe(method_family = new)]
-        unsafe fn newAccelerationStructureWithSize_offset(
+        unsafe fn new_acceleration_structure_with_size_offset(
             &self,
             size: NSUInteger,
             offset: NSUInteger,
@@ -444,7 +444,7 @@ extern_protocol!(
         /// `offset` might not be bounds-checked.
         #[unsafe(method(newAccelerationStructureWithDescriptor:offset:))]
         #[unsafe(method_family = new)]
-        unsafe fn newAccelerationStructureWithDescriptor_offset(
+        unsafe fn new_acceleration_structure_with_descriptor_offset(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
             offset: NSUInteger,
