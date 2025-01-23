@@ -23,6 +23,6 @@ extern_protocol!(
         /// Setter for [`label`][Self::label].
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
     }
 );

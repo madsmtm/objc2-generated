@@ -39,15 +39,15 @@ impl CAEmitterCell {
     extern_methods!(
         #[unsafe(method(emitterCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emitterCell() -> Retained<Self>;
+        pub unsafe fn emitter_cell() -> Retained<Self>;
 
         #[unsafe(method(defaultValueForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
+        pub unsafe fn default_value_for_key(key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(shouldArchiveValueForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
+        pub unsafe fn should_archive_value_for_key(&self, key: &NSString) -> bool;
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -56,25 +56,25 @@ impl CAEmitterCell {
         /// Setter for [`name`][Self::name].
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub unsafe fn set_name(&self, name: Option<&NSString>);
 
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub unsafe fn is_enabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub unsafe fn set_enabled(&self, enabled: bool);
 
         #[unsafe(method(birthRate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn birthRate(&self) -> c_float;
+        pub unsafe fn birth_rate(&self) -> c_float;
 
         /// Setter for [`birthRate`][Self::birthRate].
         #[unsafe(method(setBirthRate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBirthRate(&self, birth_rate: c_float);
+        pub unsafe fn set_birth_rate(&self, birth_rate: c_float);
 
         #[unsafe(method(lifetime))]
         #[unsafe(method_family = none)]
@@ -83,49 +83,49 @@ impl CAEmitterCell {
         /// Setter for [`lifetime`][Self::lifetime].
         #[unsafe(method(setLifetime:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLifetime(&self, lifetime: c_float);
+        pub unsafe fn set_lifetime(&self, lifetime: c_float);
 
         #[unsafe(method(lifetimeRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lifetimeRange(&self) -> c_float;
+        pub unsafe fn lifetime_range(&self) -> c_float;
 
         /// Setter for [`lifetimeRange`][Self::lifetimeRange].
         #[unsafe(method(setLifetimeRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLifetimeRange(&self, lifetime_range: c_float);
+        pub unsafe fn set_lifetime_range(&self, lifetime_range: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(emissionLatitude))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emissionLatitude(&self) -> CGFloat;
+        pub unsafe fn emission_latitude(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emissionLatitude`][Self::emissionLatitude].
         #[unsafe(method(setEmissionLatitude:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmissionLatitude(&self, emission_latitude: CGFloat);
+        pub unsafe fn set_emission_latitude(&self, emission_latitude: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(emissionLongitude))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emissionLongitude(&self) -> CGFloat;
+        pub unsafe fn emission_longitude(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emissionLongitude`][Self::emissionLongitude].
         #[unsafe(method(setEmissionLongitude:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmissionLongitude(&self, emission_longitude: CGFloat);
+        pub unsafe fn set_emission_longitude(&self, emission_longitude: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(emissionRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emissionRange(&self) -> CGFloat;
+        pub unsafe fn emission_range(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emissionRange`][Self::emissionRange].
         #[unsafe(method(setEmissionRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmissionRange(&self, emission_range: CGFloat);
+        pub unsafe fn set_emission_range(&self, emission_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(velocity))]
@@ -136,51 +136,51 @@ impl CAEmitterCell {
         /// Setter for [`velocity`][Self::velocity].
         #[unsafe(method(setVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVelocity(&self, velocity: CGFloat);
+        pub unsafe fn set_velocity(&self, velocity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(velocityRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn velocityRange(&self) -> CGFloat;
+        pub unsafe fn velocity_range(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`velocityRange`][Self::velocityRange].
         #[unsafe(method(setVelocityRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVelocityRange(&self, velocity_range: CGFloat);
+        pub unsafe fn set_velocity_range(&self, velocity_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(xAcceleration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn xAcceleration(&self) -> CGFloat;
+        pub unsafe fn x_acceleration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`xAcceleration`][Self::xAcceleration].
         #[unsafe(method(setXAcceleration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setXAcceleration(&self, x_acceleration: CGFloat);
+        pub unsafe fn set_x_acceleration(&self, x_acceleration: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(yAcceleration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn yAcceleration(&self) -> CGFloat;
+        pub unsafe fn y_acceleration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`yAcceleration`][Self::yAcceleration].
         #[unsafe(method(setYAcceleration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setYAcceleration(&self, y_acceleration: CGFloat);
+        pub unsafe fn set_y_acceleration(&self, y_acceleration: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(zAcceleration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn zAcceleration(&self) -> CGFloat;
+        pub unsafe fn z_acceleration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`zAcceleration`][Self::zAcceleration].
         #[unsafe(method(setZAcceleration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setZAcceleration(&self, z_acceleration: CGFloat);
+        pub unsafe fn set_z_acceleration(&self, z_acceleration: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scale))]
@@ -191,29 +191,29 @@ impl CAEmitterCell {
         /// Setter for [`scale`][Self::scale].
         #[unsafe(method(setScale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScale(&self, scale: CGFloat);
+        pub unsafe fn set_scale(&self, scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scaleRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scaleRange(&self) -> CGFloat;
+        pub unsafe fn scale_range(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`scaleRange`][Self::scaleRange].
         #[unsafe(method(setScaleRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScaleRange(&self, scale_range: CGFloat);
+        pub unsafe fn set_scale_range(&self, scale_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scaleSpeed))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scaleSpeed(&self) -> CGFloat;
+        pub unsafe fn scale_speed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`scaleSpeed`][Self::scaleSpeed].
         #[unsafe(method(setScaleSpeed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScaleSpeed(&self, scale_speed: CGFloat);
+        pub unsafe fn set_scale_speed(&self, scale_speed: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(spin))]
@@ -224,18 +224,18 @@ impl CAEmitterCell {
         /// Setter for [`spin`][Self::spin].
         #[unsafe(method(setSpin:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSpin(&self, spin: CGFloat);
+        pub unsafe fn set_spin(&self, spin: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(spinRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn spinRange(&self) -> CGFloat;
+        pub unsafe fn spin_range(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`spinRange`][Self::spinRange].
         #[unsafe(method(setSpinRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSpinRange(&self, spin_range: CGFloat);
+        pub unsafe fn set_spin_range(&self, spin_range: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(color))]
@@ -246,79 +246,79 @@ impl CAEmitterCell {
         /// Setter for [`color`][Self::color].
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setColor(&self, color: Option<&CGColor>);
+        pub unsafe fn set_color(&self, color: Option<&CGColor>);
 
         #[unsafe(method(redRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn redRange(&self) -> c_float;
+        pub unsafe fn red_range(&self) -> c_float;
 
         /// Setter for [`redRange`][Self::redRange].
         #[unsafe(method(setRedRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRedRange(&self, red_range: c_float);
+        pub unsafe fn set_red_range(&self, red_range: c_float);
 
         #[unsafe(method(greenRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn greenRange(&self) -> c_float;
+        pub unsafe fn green_range(&self) -> c_float;
 
         /// Setter for [`greenRange`][Self::greenRange].
         #[unsafe(method(setGreenRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setGreenRange(&self, green_range: c_float);
+        pub unsafe fn set_green_range(&self, green_range: c_float);
 
         #[unsafe(method(blueRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn blueRange(&self) -> c_float;
+        pub unsafe fn blue_range(&self) -> c_float;
 
         /// Setter for [`blueRange`][Self::blueRange].
         #[unsafe(method(setBlueRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBlueRange(&self, blue_range: c_float);
+        pub unsafe fn set_blue_range(&self, blue_range: c_float);
 
         #[unsafe(method(alphaRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alphaRange(&self) -> c_float;
+        pub unsafe fn alpha_range(&self) -> c_float;
 
         /// Setter for [`alphaRange`][Self::alphaRange].
         #[unsafe(method(setAlphaRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAlphaRange(&self, alpha_range: c_float);
+        pub unsafe fn set_alpha_range(&self, alpha_range: c_float);
 
         #[unsafe(method(redSpeed))]
         #[unsafe(method_family = none)]
-        pub unsafe fn redSpeed(&self) -> c_float;
+        pub unsafe fn red_speed(&self) -> c_float;
 
         /// Setter for [`redSpeed`][Self::redSpeed].
         #[unsafe(method(setRedSpeed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRedSpeed(&self, red_speed: c_float);
+        pub unsafe fn set_red_speed(&self, red_speed: c_float);
 
         #[unsafe(method(greenSpeed))]
         #[unsafe(method_family = none)]
-        pub unsafe fn greenSpeed(&self) -> c_float;
+        pub unsafe fn green_speed(&self) -> c_float;
 
         /// Setter for [`greenSpeed`][Self::greenSpeed].
         #[unsafe(method(setGreenSpeed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setGreenSpeed(&self, green_speed: c_float);
+        pub unsafe fn set_green_speed(&self, green_speed: c_float);
 
         #[unsafe(method(blueSpeed))]
         #[unsafe(method_family = none)]
-        pub unsafe fn blueSpeed(&self) -> c_float;
+        pub unsafe fn blue_speed(&self) -> c_float;
 
         /// Setter for [`blueSpeed`][Self::blueSpeed].
         #[unsafe(method(setBlueSpeed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBlueSpeed(&self, blue_speed: c_float);
+        pub unsafe fn set_blue_speed(&self, blue_speed: c_float);
 
         #[unsafe(method(alphaSpeed))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alphaSpeed(&self) -> c_float;
+        pub unsafe fn alpha_speed(&self) -> c_float;
 
         /// Setter for [`alphaSpeed`][Self::alphaSpeed].
         #[unsafe(method(setAlphaSpeed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAlphaSpeed(&self, alpha_speed: c_float);
+        pub unsafe fn set_alpha_speed(&self, alpha_speed: c_float);
 
         #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
@@ -327,65 +327,65 @@ impl CAEmitterCell {
         /// Setter for [`contents`][Self::contents].
         #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
+        pub unsafe fn set_contents(&self, contents: Option<&AnyObject>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentsRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentsRect(&self) -> CGRect;
+        pub unsafe fn contents_rect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentsRect`][Self::contentsRect].
         #[unsafe(method(setContentsRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentsRect(&self, contents_rect: CGRect);
+        pub unsafe fn set_contents_rect(&self, contents_rect: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentsScale))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentsScale(&self) -> CGFloat;
+        pub unsafe fn contents_scale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentsScale`][Self::contentsScale].
         #[unsafe(method(setContentsScale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentsScale(&self, contents_scale: CGFloat);
+        pub unsafe fn set_contents_scale(&self, contents_scale: CGFloat);
 
         #[unsafe(method(minificationFilter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minificationFilter(&self) -> Retained<NSString>;
+        pub unsafe fn minification_filter(&self) -> Retained<NSString>;
 
         /// Setter for [`minificationFilter`][Self::minificationFilter].
         #[unsafe(method(setMinificationFilter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinificationFilter(&self, minification_filter: &NSString);
+        pub unsafe fn set_minification_filter(&self, minification_filter: &NSString);
 
         #[unsafe(method(magnificationFilter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn magnificationFilter(&self) -> Retained<NSString>;
+        pub unsafe fn magnification_filter(&self) -> Retained<NSString>;
 
         /// Setter for [`magnificationFilter`][Self::magnificationFilter].
         #[unsafe(method(setMagnificationFilter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMagnificationFilter(&self, magnification_filter: &NSString);
+        pub unsafe fn set_magnification_filter(&self, magnification_filter: &NSString);
 
         #[unsafe(method(minificationFilterBias))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minificationFilterBias(&self) -> c_float;
+        pub unsafe fn minification_filter_bias(&self) -> c_float;
 
         /// Setter for [`minificationFilterBias`][Self::minificationFilterBias].
         #[unsafe(method(setMinificationFilterBias:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinificationFilterBias(&self, minification_filter_bias: c_float);
+        pub unsafe fn set_minification_filter_bias(&self, minification_filter_bias: c_float);
 
         #[unsafe(method(emitterCells))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emitterCells(&self) -> Option<Retained<NSArray<CAEmitterCell>>>;
+        pub unsafe fn emitter_cells(&self) -> Option<Retained<NSArray<CAEmitterCell>>>;
 
         /// Setter for [`emitterCells`][Self::emitterCells].
         #[unsafe(method(setEmitterCells:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmitterCells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
+        pub unsafe fn set_emitter_cells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
 
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
@@ -394,7 +394,7 @@ impl CAEmitterCell {
         /// Setter for [`style`][Self::style].
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
+        pub unsafe fn set_style(&self, style: Option<&NSDictionary>);
     );
 }
 

@@ -12,11 +12,11 @@ extern_protocol!(
     pub unsafe trait MTLCaptureScope: NSObjectProtocol {
         #[unsafe(method(beginScope))]
         #[unsafe(method_family = none)]
-        fn beginScope(&self);
+        fn begin_scope(&self);
 
         #[unsafe(method(endScope))]
         #[unsafe(method_family = none)]
-        fn endScope(&self);
+        fn end_scope(&self);
 
         /// Scope label
         ///
@@ -28,7 +28,7 @@ extern_protocol!(
         /// Setter for [`label`][Self::label].
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        unsafe fn setLabel(&self, label: Option<&NSString>);
+        unsafe fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         #[unsafe(method(device))]
@@ -39,6 +39,6 @@ extern_protocol!(
         /// If set, this scope will only capture Metal commands from the associated command queue. Defaults to nil (all command queues from the associated device are captured).
         #[unsafe(method(commandQueue))]
         #[unsafe(method_family = none)]
-        unsafe fn commandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
+        unsafe fn command_queue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
     }
 );

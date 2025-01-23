@@ -45,7 +45,7 @@ extern_protocol!(
         /// In the absence of any handlers, log messages go through the default handler.
         #[unsafe(method(addLogHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn addLogHandler(
+        unsafe fn add_log_handler(
             &self,
             block: &block2::DynBlock<
                 dyn Fn(*mut NSString, *mut NSString, MTLLogLevel, NonNull<NSString>),
@@ -84,17 +84,17 @@ impl MTLLogStateDescriptor {
         /// Setter for [`level`][Self::level].
         #[unsafe(method(setLevel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLevel(&self, level: MTLLogLevel);
+        pub unsafe fn set_level(&self, level: MTLLogLevel);
 
         /// bufferSize indicates the size of the buffer where GPU will store the logging content from shaders. Minimum value is 1KB
         #[unsafe(method(bufferSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bufferSize(&self) -> NSInteger;
+        pub unsafe fn buffer_size(&self) -> NSInteger;
 
         /// Setter for [`bufferSize`][Self::bufferSize].
         #[unsafe(method(setBufferSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBufferSize(&self, buffer_size: NSInteger);
+        pub unsafe fn set_buffer_size(&self, buffer_size: NSInteger);
     );
 }
 

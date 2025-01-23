@@ -29,7 +29,7 @@ impl CARenderer {
         #[deprecated = "+rendererWithMTLTexture"]
         #[unsafe(method(rendererWithCGLContext:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rendererWithCGLContext_options(
+        pub unsafe fn renderer_with_cgl_context_options(
             ctx: NonNull<c_void>,
             dict: Option<&NSDictionary>,
         ) -> Retained<CARenderer>;
@@ -37,7 +37,7 @@ impl CARenderer {
         #[cfg(feature = "objc2-metal")]
         #[unsafe(method(rendererWithMTLTexture:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rendererWithMTLTexture_options(
+        pub unsafe fn renderer_with_mtl_texture_options(
             tex: &ProtocolObject<dyn MTLTexture>,
             dict: Option<&NSDictionary>,
         ) -> Retained<CARenderer>;
@@ -51,7 +51,7 @@ impl CARenderer {
         /// Setter for [`layer`][Self::layer].
         #[unsafe(method(setLayer:))]
         #[unsafe(method_family = none)]
-        pub fn setLayer(&self, layer: Option<&CALayer>);
+        pub fn set_layer(&self, layer: Option<&CALayer>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bounds))]
@@ -62,22 +62,26 @@ impl CARenderer {
         /// Setter for [`bounds`][Self::bounds].
         #[unsafe(method(setBounds:))]
         #[unsafe(method_family = none)]
-        pub fn setBounds(&self, bounds: CGRect);
+        pub fn set_bounds(&self, bounds: CGRect);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-video"))]
         #[unsafe(method(beginFrameAtTime:timeStamp:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginFrameAtTime_timeStamp(&self, t: CFTimeInterval, ts: *mut CVTimeStamp);
+        pub unsafe fn begin_frame_at_time_time_stamp(
+            &self,
+            t: CFTimeInterval,
+            ts: *mut CVTimeStamp,
+        );
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(updateBounds))]
         #[unsafe(method_family = none)]
-        pub fn updateBounds(&self) -> CGRect;
+        pub fn update_bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(addUpdateRect:))]
         #[unsafe(method_family = none)]
-        pub fn addUpdateRect(&self, r: CGRect);
+        pub fn add_update_rect(&self, r: CGRect);
 
         #[unsafe(method(render))]
         #[unsafe(method_family = none)]
@@ -86,16 +90,16 @@ impl CARenderer {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(nextFrameTime))]
         #[unsafe(method_family = none)]
-        pub fn nextFrameTime(&self) -> CFTimeInterval;
+        pub fn next_frame_time(&self) -> CFTimeInterval;
 
         #[unsafe(method(endFrame))]
         #[unsafe(method_family = none)]
-        pub fn endFrame(&self);
+        pub fn end_frame(&self);
 
         #[cfg(feature = "objc2-metal")]
         #[unsafe(method(setDestination:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDestination(&self, tex: &ProtocolObject<dyn MTLTexture>);
+        pub unsafe fn set_destination(&self, tex: &ProtocolObject<dyn MTLTexture>);
     );
 }
 

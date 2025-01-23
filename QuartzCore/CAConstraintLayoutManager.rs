@@ -53,11 +53,11 @@ impl CALayer {
         /// Setter for [`constraints`][Self::constraints].
         #[unsafe(method(setConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<CAConstraint>>);
+        pub unsafe fn set_constraints(&self, constraints: Option<&NSArray<CAConstraint>>);
 
         #[unsafe(method(addConstraint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addConstraint(&self, c: &CAConstraint);
+        pub unsafe fn add_constraint(&self, c: &CAConstraint);
     );
 }
 
@@ -83,7 +83,7 @@ impl CAConstraintLayoutManager {
     extern_methods!(
         #[unsafe(method(layoutManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutManager() -> Retained<Self>;
+        pub unsafe fn layout_manager() -> Retained<Self>;
     );
 }
 
@@ -126,7 +126,7 @@ impl CAConstraint {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(constraintWithAttribute:relativeTo:attribute:scale:offset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraintWithAttribute_relativeTo_attribute_scale_offset(
+        pub unsafe fn constraint_with_attribute_relative_to_attribute_scale_offset(
             attr: CAConstraintAttribute,
             src_id: &NSString,
             src_attr: CAConstraintAttribute,
@@ -137,7 +137,7 @@ impl CAConstraint {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(constraintWithAttribute:relativeTo:attribute:offset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraintWithAttribute_relativeTo_attribute_offset(
+        pub unsafe fn constraint_with_attribute_relative_to_attribute_offset(
             attr: CAConstraintAttribute,
             src_id: &NSString,
             src_attr: CAConstraintAttribute,
@@ -146,7 +146,7 @@ impl CAConstraint {
 
         #[unsafe(method(constraintWithAttribute:relativeTo:attribute:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraintWithAttribute_relativeTo_attribute(
+        pub unsafe fn constraint_with_attribute_relative_to_attribute(
             attr: CAConstraintAttribute,
             src_id: &NSString,
             src_attr: CAConstraintAttribute,
@@ -155,7 +155,7 @@ impl CAConstraint {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithAttribute:relativeTo:attribute:scale:offset:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAttribute_relativeTo_attribute_scale_offset(
+        pub unsafe fn init_with_attribute_relative_to_attribute_scale_offset(
             this: Allocated<Self>,
             attr: CAConstraintAttribute,
             src_id: &NSString,
@@ -170,11 +170,11 @@ impl CAConstraint {
 
         #[unsafe(method(sourceName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceName(&self) -> Retained<NSString>;
+        pub unsafe fn source_name(&self) -> Retained<NSString>;
 
         #[unsafe(method(sourceAttribute))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceAttribute(&self) -> CAConstraintAttribute;
+        pub unsafe fn source_attribute(&self) -> CAConstraintAttribute;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scale))]

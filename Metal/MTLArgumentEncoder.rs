@@ -29,12 +29,12 @@ extern_protocol!(
         /// Setter for [`label`][Self::label].
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        unsafe fn setLabel(&self, label: Option<&NSString>);
+        unsafe fn set_label(&self, label: Option<&NSString>);
 
         /// The number of bytes required to store the encoded resource bindings.
         #[unsafe(method(encodedLength))]
         #[unsafe(method_family = none)]
-        fn encodedLength(&self) -> NSUInteger;
+        fn encoded_length(&self) -> NSUInteger;
 
         /// The alignment in bytes required to store the encoded resource bindings.
         #[unsafe(method(alignment))]
@@ -49,7 +49,7 @@ extern_protocol!(
         /// Sets the destination buffer and offset at which the arguments will be encoded.
         #[unsafe(method(setArgumentBuffer:offset:))]
         #[unsafe(method_family = none)]
-        unsafe fn setArgumentBuffer_offset(
+        unsafe fn set_argument_buffer_offset(
             &self,
             argument_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
@@ -64,7 +64,7 @@ extern_protocol!(
         /// the desired element of IAB array targetted by encoding
         #[unsafe(method(setArgumentBuffer:startOffset:arrayElement:))]
         #[unsafe(method_family = none)]
-        unsafe fn setArgumentBuffer_startOffset_arrayElement(
+        unsafe fn set_argument_buffer_start_offset_array_element(
             &self,
             argument_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             start_offset: NSUInteger,
@@ -79,7 +79,7 @@ extern_protocol!(
         /// Set a buffer at the given bind point index.
         #[unsafe(method(setBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setBuffer_offset_atIndex(
+        unsafe fn set_buffer_offset_at_index(
             &self,
             buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
             offset: NSUInteger,
@@ -94,7 +94,7 @@ extern_protocol!(
         /// Set an array of buffers at the given bind point index range.
         #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setBuffers_offsets_withRange(
+        unsafe fn set_buffers_offsets_with_range(
             &self,
             buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
             offsets: NonNull<NSUInteger>,
@@ -109,7 +109,7 @@ extern_protocol!(
         /// Set a texture at the given bind point index.
         #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTexture_atIndex(
+        unsafe fn set_texture_at_index(
             &self,
             texture: Option<&ProtocolObject<dyn MTLTexture>>,
             index: NSUInteger,
@@ -123,7 +123,7 @@ extern_protocol!(
         /// Set an array of textures at the given bind point index range.
         #[unsafe(method(setTextures:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTextures_withRange(
+        unsafe fn set_textures_with_range(
             &self,
             textures: NonNull<*const ProtocolObject<dyn MTLTexture>>,
             range: NSRange,
@@ -133,7 +133,7 @@ extern_protocol!(
         /// Set a sampler at the given bind point index.
         #[unsafe(method(setSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSamplerState_atIndex(
+        unsafe fn set_sampler_state_at_index(
             &self,
             sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
             index: NSUInteger,
@@ -143,7 +143,7 @@ extern_protocol!(
         /// Set an array of samplers at the given bind point index range.
         #[unsafe(method(setSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSamplerStates_withRange(
+        unsafe fn set_sampler_states_with_range(
             &self,
             samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
             range: NSRange,
@@ -152,13 +152,13 @@ extern_protocol!(
         /// Returns a pointer to the constant data at the given bind point index.
         #[unsafe(method(constantDataAtIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn constantDataAtIndex(&self, index: NSUInteger) -> NonNull<c_void>;
+        unsafe fn constant_data_at_index(&self, index: NSUInteger) -> NonNull<c_void>;
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Sets a render pipeline state at a given bind point index
         #[unsafe(method(setRenderPipelineState:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setRenderPipelineState_atIndex(
+        unsafe fn set_render_pipeline_state_at_index(
             &self,
             pipeline: Option<&ProtocolObject<dyn MTLRenderPipelineState>>,
             index: NSUInteger,
@@ -168,7 +168,7 @@ extern_protocol!(
         /// Set an array of render pipeline states at a given bind point index range
         #[unsafe(method(setRenderPipelineStates:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setRenderPipelineStates_withRange(
+        unsafe fn set_render_pipeline_states_with_range(
             &self,
             pipelines: NonNull<*const ProtocolObject<dyn MTLRenderPipelineState>>,
             range: NSRange,
@@ -178,7 +178,7 @@ extern_protocol!(
         /// Sets a compute pipeline state at a given bind point index
         #[unsafe(method(setComputePipelineState:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setComputePipelineState_atIndex(
+        unsafe fn set_compute_pipeline_state_at_index(
             &self,
             pipeline: Option<&ProtocolObject<dyn MTLComputePipelineState>>,
             index: NSUInteger,
@@ -188,7 +188,7 @@ extern_protocol!(
         /// Set an array of compute pipeline states at a given bind point index range
         #[unsafe(method(setComputePipelineStates:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setComputePipelineStates_withRange(
+        unsafe fn set_compute_pipeline_states_with_range(
             &self,
             pipelines: NonNull<*const ProtocolObject<dyn MTLComputePipelineState>>,
             range: NSRange,
@@ -202,7 +202,7 @@ extern_protocol!(
         /// Sets an indirect command buffer at a given bind point index
         #[unsafe(method(setIndirectCommandBuffer:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIndirectCommandBuffer_atIndex(
+        unsafe fn set_indirect_command_buffer_at_index(
             &self,
             indirect_command_buffer: Option<&ProtocolObject<dyn MTLIndirectCommandBuffer>>,
             index: NSUInteger,
@@ -216,7 +216,7 @@ extern_protocol!(
         /// Set an array of indirect command buffers at the given bind point index range.
         #[unsafe(method(setIndirectCommandBuffers:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIndirectCommandBuffers_withRange(
+        unsafe fn set_indirect_command_buffers_with_range(
             &self,
             buffers: NonNull<*const ProtocolObject<dyn MTLIndirectCommandBuffer>>,
             range: NSRange,
@@ -229,7 +229,7 @@ extern_protocol!(
         ))]
         #[unsafe(method(setAccelerationStructure:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccelerationStructure_atIndex(
+        unsafe fn set_acceleration_structure_at_index(
             &self,
             acceleration_structure: Option<&ProtocolObject<dyn MTLAccelerationStructure>>,
             index: NSUInteger,
@@ -240,7 +240,7 @@ extern_protocol!(
         /// Returns nil if the resource at the given index is not an argument buffer.
         #[unsafe(method(newArgumentEncoderForBufferAtIndex:))]
         #[unsafe(method_family = new)]
-        unsafe fn newArgumentEncoderForBufferAtIndex(
+        unsafe fn new_argument_encoder_for_buffer_at_index(
             &self,
             index: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLArgumentEncoder>>>;
@@ -253,7 +253,7 @@ extern_protocol!(
         /// Set a visible function table at the given buffer index
         #[unsafe(method(setVisibleFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setVisibleFunctionTable_atIndex(
+        unsafe fn set_visible_function_table_at_index(
             &self,
             visible_function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
             index: NSUInteger,
@@ -267,7 +267,7 @@ extern_protocol!(
         /// Set visible function tables at the given buffer index range
         #[unsafe(method(setVisibleFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setVisibleFunctionTables_withRange(
+        unsafe fn set_visible_function_tables_with_range(
             &self,
             visible_function_tables: NonNull<*const ProtocolObject<dyn MTLVisibleFunctionTable>>,
             range: NSRange,
@@ -281,7 +281,7 @@ extern_protocol!(
         /// Set an intersection function table at the given buffer index
         #[unsafe(method(setIntersectionFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIntersectionFunctionTable_atIndex(
+        unsafe fn set_intersection_function_table_at_index(
             &self,
             intersection_function_table: Option<&ProtocolObject<dyn MTLIntersectionFunctionTable>>,
             index: NSUInteger,
@@ -295,7 +295,7 @@ extern_protocol!(
         /// Set intersection function tables at the given buffer index range
         #[unsafe(method(setIntersectionFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIntersectionFunctionTables_withRange(
+        unsafe fn set_intersection_function_tables_with_range(
             &self,
             intersection_function_tables: NonNull<
                 *const ProtocolObject<dyn MTLIntersectionFunctionTable>,

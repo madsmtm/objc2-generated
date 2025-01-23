@@ -20,12 +20,12 @@ impl CARemoteLayerServer {
     extern_methods!(
         #[unsafe(method(sharedServer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedServer() -> Retained<CARemoteLayerServer>;
+        pub unsafe fn shared_server() -> Retained<CARemoteLayerServer>;
 
         #[cfg(feature = "libc")]
         #[unsafe(method(serverPort))]
         #[unsafe(method_family = none)]
-        pub unsafe fn serverPort(&self) -> libc::mach_port_t;
+        pub unsafe fn server_port(&self) -> libc::mach_port_t;
     );
 }
 
@@ -48,6 +48,6 @@ impl CALayer {
     extern_methods!(
         #[unsafe(method(layerWithRemoteClientId:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layerWithRemoteClientId(client_id: u32) -> Retained<CALayer>;
+        pub unsafe fn layer_with_remote_client_id(client_id: u32) -> Retained<CALayer>;
     );
 }

@@ -36,7 +36,7 @@ impl MTLBlitPassSampleBufferAttachmentDescriptor {
         /// will be taken for that action.
         #[unsafe(method(sampleBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sampleBuffer(
+        pub unsafe fn sample_buffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
@@ -44,7 +44,7 @@ impl MTLBlitPassSampleBufferAttachmentDescriptor {
         /// Setter for [`sampleBuffer`][Self::sampleBuffer].
         #[unsafe(method(setSampleBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSampleBuffer(
+        pub unsafe fn set_sample_buffer(
             &self,
             sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
         );
@@ -57,12 +57,12 @@ impl MTLBlitPassSampleBufferAttachmentDescriptor {
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a blit pass will fail.
         #[unsafe(method(startOfEncoderSampleIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
+        pub unsafe fn start_of_encoder_sample_index(&self) -> NSUInteger;
 
         /// Setter for [`startOfEncoderSampleIndex`][Self::startOfEncoderSampleIndex].
         #[unsafe(method(setStartOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStartOfEncoderSampleIndex(
+        pub unsafe fn set_start_of_encoder_sample_index(
             &self,
             start_of_encoder_sample_index: NSUInteger,
         );
@@ -75,12 +75,15 @@ impl MTLBlitPassSampleBufferAttachmentDescriptor {
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a blit pass will fail.
         #[unsafe(method(endOfEncoderSampleIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
+        pub unsafe fn end_of_encoder_sample_index(&self) -> NSUInteger;
 
         /// Setter for [`endOfEncoderSampleIndex`][Self::endOfEncoderSampleIndex].
         #[unsafe(method(setEndOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
+        pub unsafe fn set_end_of_encoder_sample_index(
+            &self,
+            end_of_encoder_sample_index: NSUInteger,
+        );
     );
 }
 
@@ -112,14 +115,14 @@ impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
     extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Retained<MTLBlitPassSampleBufferAttachmentDescriptor>;
 
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             attachment: Option<&MTLBlitPassSampleBufferAttachmentDescriptor>,
             attachment_index: NSUInteger,
@@ -166,12 +169,12 @@ impl MTLBlitPassDescriptor {
         /// Create an autoreleased default frame buffer descriptor
         #[unsafe(method(blitPassDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn blitPassDescriptor() -> Retained<MTLBlitPassDescriptor>;
+        pub unsafe fn blit_pass_descriptor() -> Retained<MTLBlitPassDescriptor>;
 
         /// An array of sample buffers and associated sample indices.
         #[unsafe(method(sampleBufferAttachments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sampleBufferAttachments(
+        pub unsafe fn sample_buffer_attachments(
             &self,
         ) -> Retained<MTLBlitPassSampleBufferAttachmentDescriptorArray>;
     );

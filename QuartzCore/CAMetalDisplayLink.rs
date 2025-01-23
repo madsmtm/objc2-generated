@@ -30,12 +30,12 @@ impl CAMetalDisplayLinkUpdate {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(targetTimestamp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn targetTimestamp(&self) -> CFTimeInterval;
+        pub unsafe fn target_timestamp(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(targetPresentationTimestamp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn targetPresentationTimestamp(&self) -> CFTimeInterval;
+        pub unsafe fn target_presentation_timestamp(&self) -> CFTimeInterval;
     );
 }
 
@@ -57,7 +57,7 @@ extern_protocol!(
     pub unsafe trait CAMetalDisplayLinkDelegate {
         #[unsafe(method(metalDisplayLink:needsUpdate:))]
         #[unsafe(method_family = none)]
-        unsafe fn metalDisplayLink_needsUpdate(
+        unsafe fn metal_display_link_needs_update(
             &self,
             link: &CAMetalDisplayLink,
             update: &CAMetalDisplayLinkUpdate,
@@ -81,18 +81,22 @@ impl CAMetalDisplayLink {
         #[cfg(all(feature = "CALayer", feature = "CAMetalLayer"))]
         #[unsafe(method(initWithMetalLayer:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithMetalLayer(
+        pub unsafe fn init_with_metal_layer(
             this: Allocated<Self>,
             layer: &CAMetalLayer,
         ) -> Retained<Self>;
 
         #[unsafe(method(addToRunLoop:forMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn add_to_run_loop_for_mode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeFromRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
+        pub unsafe fn remove_from_run_loop_for_mode(
+            &self,
+            runloop: &NSRunLoop,
+            mode: &NSRunLoopMode,
+        );
 
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
@@ -108,42 +112,42 @@ impl CAMetalDisplayLink {
         /// Setter for [`delegate`][Self::delegate].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub unsafe fn set_delegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CAMetalDisplayLinkDelegate>>,
         );
 
         #[unsafe(method(preferredFrameLatency))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredFrameLatency(&self) -> c_float;
+        pub unsafe fn preferred_frame_latency(&self) -> c_float;
 
         /// Setter for [`preferredFrameLatency`][Self::preferredFrameLatency].
         #[unsafe(method(setPreferredFrameLatency:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredFrameLatency(&self, preferred_frame_latency: c_float);
+        pub unsafe fn set_preferred_frame_latency(&self, preferred_frame_latency: c_float);
 
         #[cfg(feature = "CAFrameRateRange")]
         #[unsafe(method(preferredFrameRateRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
+        pub unsafe fn preferred_frame_rate_range(&self) -> CAFrameRateRange;
 
         #[cfg(feature = "CAFrameRateRange")]
         /// Setter for [`preferredFrameRateRange`][Self::preferredFrameRateRange].
         #[unsafe(method(setPreferredFrameRateRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredFrameRateRange(
+        pub unsafe fn set_preferred_frame_rate_range(
             &self,
             preferred_frame_rate_range: CAFrameRateRange,
         );
 
         #[unsafe(method(isPaused))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isPaused(&self) -> bool;
+        pub unsafe fn is_paused(&self) -> bool;
 
         /// Setter for [`isPaused`][Self::isPaused].
         #[unsafe(method(setPaused:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPaused(&self, paused: bool);
+        pub unsafe fn set_paused(&self, paused: bool);
     );
 }
 

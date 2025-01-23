@@ -31,7 +31,7 @@ impl MTLFunctionConstantValues {
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(setConstantValue:type:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConstantValue_type_atIndex(
+        pub unsafe fn set_constant_value_type_at_index(
             &self,
             value: NonNull<c_void>,
             r#type: MTLDataType,
@@ -41,7 +41,7 @@ impl MTLFunctionConstantValues {
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(setConstantValues:type:withRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConstantValues_type_withRange(
+        pub unsafe fn set_constant_values_type_with_range(
             &self,
             values: NonNull<c_void>,
             r#type: MTLDataType,
@@ -51,7 +51,7 @@ impl MTLFunctionConstantValues {
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(setConstantValue:type:withName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConstantValue_type_withName(
+        pub unsafe fn set_constant_value_type_with_name(
             &self,
             value: NonNull<c_void>,
             r#type: MTLDataType,

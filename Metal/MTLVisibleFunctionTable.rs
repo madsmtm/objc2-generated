@@ -31,17 +31,18 @@ impl MTLVisibleFunctionTableDescriptor {
         /// Create an autoreleased visible function table descriptor
         #[unsafe(method(visibleFunctionTableDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn visibleFunctionTableDescriptor() -> Retained<MTLVisibleFunctionTableDescriptor>;
+        pub unsafe fn visible_function_table_descriptor(
+        ) -> Retained<MTLVisibleFunctionTableDescriptor>;
 
         /// The number of functions in the table.
         #[unsafe(method(functionCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn functionCount(&self) -> NSUInteger;
+        pub unsafe fn function_count(&self) -> NSUInteger;
 
         /// Setter for [`functionCount`][Self::functionCount].
         #[unsafe(method(setFunctionCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFunctionCount(&self, function_count: NSUInteger);
+        pub unsafe fn set_function_count(&self, function_count: NSUInteger);
     );
 }
 
@@ -66,12 +67,12 @@ extern_protocol!(
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        unsafe fn gpu_resource_id(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLFunctionHandle")]
         #[unsafe(method(setFunction:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setFunction_atIndex(
+        unsafe fn set_function_at_index(
             &self,
             function: Option<&ProtocolObject<dyn MTLFunctionHandle>>,
             index: NSUInteger,
@@ -80,7 +81,7 @@ extern_protocol!(
         #[cfg(feature = "MTLFunctionHandle")]
         #[unsafe(method(setFunctions:withRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setFunctions_withRange(
+        unsafe fn set_functions_with_range(
             &self,
             functions: NonNull<*const ProtocolObject<dyn MTLFunctionHandle>>,
             range: NSRange,

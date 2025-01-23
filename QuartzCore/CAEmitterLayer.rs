@@ -55,22 +55,22 @@ impl CAEmitterLayer {
         #[cfg(feature = "CAEmitterCell")]
         #[unsafe(method(emitterCells))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emitterCells(&self) -> Option<Retained<NSArray<CAEmitterCell>>>;
+        pub unsafe fn emitter_cells(&self) -> Option<Retained<NSArray<CAEmitterCell>>>;
 
         #[cfg(feature = "CAEmitterCell")]
         /// Setter for [`emitterCells`][Self::emitterCells].
         #[unsafe(method(setEmitterCells:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmitterCells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
+        pub unsafe fn set_emitter_cells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
 
         #[unsafe(method(birthRate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn birthRate(&self) -> c_float;
+        pub unsafe fn birth_rate(&self) -> c_float;
 
         /// Setter for [`birthRate`][Self::birthRate].
         #[unsafe(method(setBirthRate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBirthRate(&self, birth_rate: c_float);
+        pub unsafe fn set_birth_rate(&self, birth_rate: c_float);
 
         #[unsafe(method(lifetime))]
         #[unsafe(method_family = none)]
@@ -79,87 +79,87 @@ impl CAEmitterLayer {
         /// Setter for [`lifetime`][Self::lifetime].
         #[unsafe(method(setLifetime:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLifetime(&self, lifetime: c_float);
+        pub unsafe fn set_lifetime(&self, lifetime: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(emitterPosition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emitterPosition(&self) -> CGPoint;
+        pub unsafe fn emitter_position(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emitterPosition`][Self::emitterPosition].
         #[unsafe(method(setEmitterPosition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmitterPosition(&self, emitter_position: CGPoint);
+        pub unsafe fn set_emitter_position(&self, emitter_position: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(emitterZPosition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emitterZPosition(&self) -> CGFloat;
+        pub unsafe fn emitter_z_position(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emitterZPosition`][Self::emitterZPosition].
         #[unsafe(method(setEmitterZPosition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmitterZPosition(&self, emitter_z_position: CGFloat);
+        pub unsafe fn set_emitter_z_position(&self, emitter_z_position: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(emitterSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emitterSize(&self) -> CGSize;
+        pub unsafe fn emitter_size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emitterSize`][Self::emitterSize].
         #[unsafe(method(setEmitterSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmitterSize(&self, emitter_size: CGSize);
+        pub unsafe fn set_emitter_size(&self, emitter_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(emitterDepth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emitterDepth(&self) -> CGFloat;
+        pub unsafe fn emitter_depth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emitterDepth`][Self::emitterDepth].
         #[unsafe(method(setEmitterDepth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmitterDepth(&self, emitter_depth: CGFloat);
+        pub unsafe fn set_emitter_depth(&self, emitter_depth: CGFloat);
 
         #[unsafe(method(emitterShape))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emitterShape(&self) -> Retained<CAEmitterLayerEmitterShape>;
+        pub unsafe fn emitter_shape(&self) -> Retained<CAEmitterLayerEmitterShape>;
 
         /// Setter for [`emitterShape`][Self::emitterShape].
         #[unsafe(method(setEmitterShape:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmitterShape(&self, emitter_shape: &CAEmitterLayerEmitterShape);
+        pub unsafe fn set_emitter_shape(&self, emitter_shape: &CAEmitterLayerEmitterShape);
 
         #[unsafe(method(emitterMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn emitterMode(&self) -> Retained<CAEmitterLayerEmitterMode>;
+        pub unsafe fn emitter_mode(&self) -> Retained<CAEmitterLayerEmitterMode>;
 
         /// Setter for [`emitterMode`][Self::emitterMode].
         #[unsafe(method(setEmitterMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEmitterMode(&self, emitter_mode: &CAEmitterLayerEmitterMode);
+        pub unsafe fn set_emitter_mode(&self, emitter_mode: &CAEmitterLayerEmitterMode);
 
         #[unsafe(method(renderMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn renderMode(&self) -> Retained<CAEmitterLayerRenderMode>;
+        pub unsafe fn render_mode(&self) -> Retained<CAEmitterLayerRenderMode>;
 
         /// Setter for [`renderMode`][Self::renderMode].
         #[unsafe(method(setRenderMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRenderMode(&self, render_mode: &CAEmitterLayerRenderMode);
+        pub unsafe fn set_render_mode(&self, render_mode: &CAEmitterLayerRenderMode);
 
         #[unsafe(method(preservesDepth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preservesDepth(&self) -> bool;
+        pub unsafe fn preserves_depth(&self) -> bool;
 
         /// Setter for [`preservesDepth`][Self::preservesDepth].
         #[unsafe(method(setPreservesDepth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreservesDepth(&self, preserves_depth: bool);
+        pub unsafe fn set_preserves_depth(&self, preserves_depth: bool);
 
         #[unsafe(method(velocity))]
         #[unsafe(method_family = none)]
@@ -168,7 +168,7 @@ impl CAEmitterLayer {
         /// Setter for [`velocity`][Self::velocity].
         #[unsafe(method(setVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVelocity(&self, velocity: c_float);
+        pub unsafe fn set_velocity(&self, velocity: c_float);
 
         #[unsafe(method(scale))]
         #[unsafe(method_family = none)]
@@ -177,7 +177,7 @@ impl CAEmitterLayer {
         /// Setter for [`scale`][Self::scale].
         #[unsafe(method(setScale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScale(&self, scale: c_float);
+        pub unsafe fn set_scale(&self, scale: c_float);
 
         #[unsafe(method(spin))]
         #[unsafe(method_family = none)]
@@ -186,7 +186,7 @@ impl CAEmitterLayer {
         /// Setter for [`spin`][Self::spin].
         #[unsafe(method(setSpin:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSpin(&self, spin: c_float);
+        pub unsafe fn set_spin(&self, spin: c_float);
 
         #[unsafe(method(seed))]
         #[unsafe(method_family = none)]
@@ -195,7 +195,7 @@ impl CAEmitterLayer {
         /// Setter for [`seed`][Self::seed].
         #[unsafe(method(setSeed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSeed(&self, seed: c_uint);
+        pub unsafe fn set_seed(&self, seed: c_uint);
     );
 }
 
@@ -214,7 +214,7 @@ impl CAEmitterLayer {
 
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
+        pub unsafe fn init_with_layer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     );
 }
 

@@ -386,7 +386,7 @@ impl MTLType {
     extern_methods!(
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataType(&self) -> MTLDataType;
+        pub unsafe fn data_type(&self) -> MTLDataType;
     );
 }
 
@@ -426,27 +426,27 @@ impl MTLStructMember {
 
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
-        pub fn dataType(&self) -> MTLDataType;
+        pub fn data_type(&self) -> MTLDataType;
 
         #[unsafe(method(structType))]
         #[unsafe(method_family = none)]
-        pub fn structType(&self) -> Option<Retained<MTLStructType>>;
+        pub fn struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(arrayType))]
         #[unsafe(method_family = none)]
-        pub fn arrayType(&self) -> Option<Retained<MTLArrayType>>;
+        pub fn array_type(&self) -> Option<Retained<MTLArrayType>>;
 
         #[unsafe(method(textureReferenceType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textureReferenceType(&self) -> Option<Retained<MTLTextureReferenceType>>;
+        pub unsafe fn texture_reference_type(&self) -> Option<Retained<MTLTextureReferenceType>>;
 
         #[unsafe(method(pointerType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointerType(&self) -> Option<Retained<MTLPointerType>>;
+        pub unsafe fn pointer_type(&self) -> Option<Retained<MTLPointerType>>;
 
         #[unsafe(method(argumentIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn argumentIndex(&self) -> NSUInteger;
+        pub unsafe fn argument_index(&self) -> NSUInteger;
     );
 }
 
@@ -482,7 +482,7 @@ impl MTLStructType {
 
         #[unsafe(method(memberByName:))]
         #[unsafe(method_family = none)]
-        pub fn memberByName(&self, name: &NSString) -> Option<Retained<MTLStructMember>>;
+        pub fn member_by_name(&self, name: &NSString) -> Option<Retained<MTLStructMember>>;
     );
 }
 
@@ -514,11 +514,11 @@ impl MTLArrayType {
     extern_methods!(
         #[unsafe(method(elementType))]
         #[unsafe(method_family = none)]
-        pub fn elementType(&self) -> MTLDataType;
+        pub fn element_type(&self) -> MTLDataType;
 
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
-        pub fn arrayLength(&self) -> NSUInteger;
+        pub fn array_length(&self) -> NSUInteger;
 
         #[unsafe(method(stride))]
         #[unsafe(method_family = none)]
@@ -526,25 +526,25 @@ impl MTLArrayType {
 
         #[unsafe(method(argumentIndexStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn argumentIndexStride(&self) -> NSUInteger;
+        pub unsafe fn argument_index_stride(&self) -> NSUInteger;
 
         #[unsafe(method(elementStructType))]
         #[unsafe(method_family = none)]
-        pub fn elementStructType(&self) -> Option<Retained<MTLStructType>>;
+        pub fn element_struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(elementArrayType))]
         #[unsafe(method_family = none)]
-        pub fn elementArrayType(&self) -> Option<Retained<MTLArrayType>>;
+        pub fn element_array_type(&self) -> Option<Retained<MTLArrayType>>;
 
         #[unsafe(method(elementTextureReferenceType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementTextureReferenceType(
+        pub unsafe fn element_texture_reference_type(
             &self,
         ) -> Option<Retained<MTLTextureReferenceType>>;
 
         #[unsafe(method(elementPointerType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementPointerType(&self) -> Option<Retained<MTLPointerType>>;
+        pub unsafe fn element_pointer_type(&self) -> Option<Retained<MTLPointerType>>;
     );
 }
 
@@ -576,7 +576,7 @@ impl MTLPointerType {
     extern_methods!(
         #[unsafe(method(elementType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementType(&self) -> MTLDataType;
+        pub unsafe fn element_type(&self) -> MTLDataType;
 
         #[unsafe(method(access))]
         #[unsafe(method_family = none)]
@@ -588,19 +588,19 @@ impl MTLPointerType {
 
         #[unsafe(method(dataSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataSize(&self) -> NSUInteger;
+        pub unsafe fn data_size(&self) -> NSUInteger;
 
         #[unsafe(method(elementIsArgumentBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementIsArgumentBuffer(&self) -> bool;
+        pub unsafe fn element_is_argument_buffer(&self) -> bool;
 
         #[unsafe(method(elementStructType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementStructType(&self) -> Option<Retained<MTLStructType>>;
+        pub unsafe fn element_struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(elementArrayType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementArrayType(&self) -> Option<Retained<MTLArrayType>>;
+        pub unsafe fn element_array_type(&self) -> Option<Retained<MTLArrayType>>;
     );
 }
 
@@ -632,12 +632,12 @@ impl MTLTextureReferenceType {
     extern_methods!(
         #[unsafe(method(textureDataType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textureDataType(&self) -> MTLDataType;
+        pub unsafe fn texture_data_type(&self) -> MTLDataType;
 
         #[cfg(feature = "MTLTexture")]
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textureType(&self) -> MTLTextureType;
+        pub unsafe fn texture_type(&self) -> MTLTextureType;
 
         #[unsafe(method(access))]
         #[unsafe(method_family = none)]
@@ -645,7 +645,7 @@ impl MTLTextureReferenceType {
 
         #[unsafe(method(isDepthTexture))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDepthTexture(&self) -> bool;
+        pub unsafe fn is_depth_texture(&self) -> bool;
     );
 }
 
@@ -701,60 +701,60 @@ impl MTLArgument {
         #[deprecated]
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
-        pub fn isActive(&self) -> bool;
+        pub fn is_active(&self) -> bool;
 
         #[deprecated]
         #[unsafe(method(bufferAlignment))]
         #[unsafe(method_family = none)]
-        pub fn bufferAlignment(&self) -> NSUInteger;
+        pub fn buffer_alignment(&self) -> NSUInteger;
 
         #[deprecated]
         #[unsafe(method(bufferDataSize))]
         #[unsafe(method_family = none)]
-        pub fn bufferDataSize(&self) -> NSUInteger;
+        pub fn buffer_data_size(&self) -> NSUInteger;
 
         #[deprecated]
         #[unsafe(method(bufferDataType))]
         #[unsafe(method_family = none)]
-        pub fn bufferDataType(&self) -> MTLDataType;
+        pub fn buffer_data_type(&self) -> MTLDataType;
 
         #[deprecated]
         #[unsafe(method(bufferStructType))]
         #[unsafe(method_family = none)]
-        pub fn bufferStructType(&self) -> Option<Retained<MTLStructType>>;
+        pub fn buffer_struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(bufferPointerType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bufferPointerType(&self) -> Option<Retained<MTLPointerType>>;
+        pub unsafe fn buffer_pointer_type(&self) -> Option<Retained<MTLPointerType>>;
 
         #[deprecated]
         #[unsafe(method(threadgroupMemoryAlignment))]
         #[unsafe(method_family = none)]
-        pub fn threadgroupMemoryAlignment(&self) -> NSUInteger;
+        pub fn threadgroup_memory_alignment(&self) -> NSUInteger;
 
         #[deprecated]
         #[unsafe(method(threadgroupMemoryDataSize))]
         #[unsafe(method_family = none)]
-        pub fn threadgroupMemoryDataSize(&self) -> NSUInteger;
+        pub fn threadgroup_memory_data_size(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTexture")]
         #[deprecated]
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        pub fn textureType(&self) -> MTLTextureType;
+        pub fn texture_type(&self) -> MTLTextureType;
 
         #[deprecated]
         #[unsafe(method(textureDataType))]
         #[unsafe(method_family = none)]
-        pub fn textureDataType(&self) -> MTLDataType;
+        pub fn texture_data_type(&self) -> MTLDataType;
 
         #[unsafe(method(isDepthTexture))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDepthTexture(&self) -> bool;
+        pub unsafe fn is_depth_texture(&self) -> bool;
 
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
-        pub unsafe fn arrayLength(&self) -> NSUInteger;
+        pub unsafe fn array_length(&self) -> NSUInteger;
     );
 }
 
@@ -792,11 +792,11 @@ extern_protocol!(
 
         #[unsafe(method(isUsed))]
         #[unsafe(method_family = none)]
-        unsafe fn isUsed(&self) -> bool;
+        unsafe fn is_used(&self) -> bool;
 
         #[unsafe(method(isArgument))]
         #[unsafe(method_family = none)]
-        unsafe fn isArgument(&self) -> bool;
+        unsafe fn is_argument(&self) -> bool;
     }
 );
 
@@ -805,23 +805,23 @@ extern_protocol!(
     pub unsafe trait MTLBufferBinding: MTLBinding {
         #[unsafe(method(bufferAlignment))]
         #[unsafe(method_family = none)]
-        unsafe fn bufferAlignment(&self) -> NSUInteger;
+        unsafe fn buffer_alignment(&self) -> NSUInteger;
 
         #[unsafe(method(bufferDataSize))]
         #[unsafe(method_family = none)]
-        unsafe fn bufferDataSize(&self) -> NSUInteger;
+        unsafe fn buffer_data_size(&self) -> NSUInteger;
 
         #[unsafe(method(bufferDataType))]
         #[unsafe(method_family = none)]
-        unsafe fn bufferDataType(&self) -> MTLDataType;
+        unsafe fn buffer_data_type(&self) -> MTLDataType;
 
         #[unsafe(method(bufferStructType))]
         #[unsafe(method_family = none)]
-        unsafe fn bufferStructType(&self) -> Option<Retained<MTLStructType>>;
+        unsafe fn buffer_struct_type(&self) -> Option<Retained<MTLStructType>>;
 
         #[unsafe(method(bufferPointerType))]
         #[unsafe(method_family = none)]
-        unsafe fn bufferPointerType(&self) -> Option<Retained<MTLPointerType>>;
+        unsafe fn buffer_pointer_type(&self) -> Option<Retained<MTLPointerType>>;
     }
 );
 
@@ -830,11 +830,11 @@ extern_protocol!(
     pub unsafe trait MTLThreadgroupBinding: MTLBinding {
         #[unsafe(method(threadgroupMemoryAlignment))]
         #[unsafe(method_family = none)]
-        unsafe fn threadgroupMemoryAlignment(&self) -> NSUInteger;
+        unsafe fn threadgroup_memory_alignment(&self) -> NSUInteger;
 
         #[unsafe(method(threadgroupMemoryDataSize))]
         #[unsafe(method_family = none)]
-        unsafe fn threadgroupMemoryDataSize(&self) -> NSUInteger;
+        unsafe fn threadgroup_memory_data_size(&self) -> NSUInteger;
     }
 );
 
@@ -844,19 +844,19 @@ extern_protocol!(
         #[cfg(feature = "MTLTexture")]
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        unsafe fn textureType(&self) -> MTLTextureType;
+        unsafe fn texture_type(&self) -> MTLTextureType;
 
         #[unsafe(method(textureDataType))]
         #[unsafe(method_family = none)]
-        unsafe fn textureDataType(&self) -> MTLDataType;
+        unsafe fn texture_data_type(&self) -> MTLDataType;
 
         #[unsafe(method(isDepthTexture))]
         #[unsafe(method_family = none)]
-        unsafe fn isDepthTexture(&self) -> bool;
+        unsafe fn is_depth_texture(&self) -> bool;
 
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
-        unsafe fn arrayLength(&self) -> NSUInteger;
+        unsafe fn array_length(&self) -> NSUInteger;
     }
 );
 
@@ -865,10 +865,10 @@ extern_protocol!(
     pub unsafe trait MTLObjectPayloadBinding: MTLBinding {
         #[unsafe(method(objectPayloadAlignment))]
         #[unsafe(method_family = none)]
-        unsafe fn objectPayloadAlignment(&self) -> NSUInteger;
+        unsafe fn object_payload_alignment(&self) -> NSUInteger;
 
         #[unsafe(method(objectPayloadDataSize))]
         #[unsafe(method_family = none)]
-        unsafe fn objectPayloadDataSize(&self) -> NSUInteger;
+        unsafe fn object_payload_data_size(&self) -> NSUInteger;
     }
 );

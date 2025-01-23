@@ -12,7 +12,7 @@ extern_protocol!(
         #[cfg(feature = "MTLLibrary")]
         #[unsafe(method(functionType))]
         #[unsafe(method_family = none)]
-        fn functionType(&self) -> MTLFunctionType;
+        fn function_type(&self) -> MTLFunctionType;
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
