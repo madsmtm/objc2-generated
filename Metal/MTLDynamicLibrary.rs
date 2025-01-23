@@ -70,7 +70,7 @@ extern_protocol!(
         /// Setter for [`label`][Self::label].
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
@@ -81,7 +81,7 @@ extern_protocol!(
         /// The installName of this dynamic library. Can not be nil.
         #[unsafe(method(installName))]
         #[unsafe(method_family = none)]
-        fn installName(&self) -> Retained<NSString>;
+        fn install_name(&self) -> Retained<NSString>;
 
         /// Writes the contents of the MTLDynamicLibrary to a file.
         ///
@@ -96,6 +96,6 @@ extern_protocol!(
         /// Returns: Whether or not the writing the file succeeded.
         #[unsafe(method(serializeToURL:error:_))]
         #[unsafe(method_family = none)]
-        fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
+        fn serialize_to_url_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
     }
 );

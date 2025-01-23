@@ -24,7 +24,7 @@ extern_protocol!(
         /// Setter for [`label`][Self::label].
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
     }
 );
 
@@ -74,7 +74,7 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[unsafe(method(notifyListener:atValue:block:))]
         #[unsafe(method_family = none)]
-        unsafe fn notifyListener_atValue_block(
+        unsafe fn notify_listener_at_value_block(
             &self,
             listener: &MTLSharedEventListener,
             value: u64,
@@ -83,20 +83,24 @@ extern_protocol!(
 
         #[unsafe(method(newSharedEventHandle))]
         #[unsafe(method_family = new)]
-        unsafe fn newSharedEventHandle(&self) -> Retained<MTLSharedEventHandle>;
+        unsafe fn new_shared_event_handle(&self) -> Retained<MTLSharedEventHandle>;
 
         #[unsafe(method(waitUntilSignaledValue:timeoutMS:))]
         #[unsafe(method_family = none)]
-        unsafe fn waitUntilSignaledValue_timeoutMS(&self, value: u64, milliseconds: u64) -> bool;
+        unsafe fn wait_until_signaled_value_timeout_ms(
+            &self,
+            value: u64,
+            milliseconds: u64,
+        ) -> bool;
 
         #[unsafe(method(signaledValue))]
         #[unsafe(method_family = none)]
-        unsafe fn signaledValue(&self) -> u64;
+        unsafe fn signaled_value(&self) -> u64;
 
         /// Setter for [`signaledValue`][Self::signaledValue].
         #[unsafe(method(setSignaledValue:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSignaledValue(&self, signaled_value: u64);
+        unsafe fn set_signaled_value(&self, signaled_value: u64);
     }
 );
 

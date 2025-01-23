@@ -31,7 +31,7 @@ impl MTLLinkedFunctions {
         /// Create an autoreleased MTLLinkedFunctions object.
         #[unsafe(method(linkedFunctions))]
         #[unsafe(method_family = none)]
-        pub fn linkedFunctions() -> Retained<MTLLinkedFunctions>;
+        pub fn linked_functions() -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLibrary")]
         /// The array of functions to be AIR linked.
@@ -43,20 +43,21 @@ impl MTLLinkedFunctions {
         /// Setter for [`functions`][Self::functions].
         #[unsafe(method(setFunctions:))]
         #[unsafe(method_family = none)]
-        pub fn setFunctions(&self, functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>);
+        pub fn set_functions(&self, functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>);
 
         #[cfg(feature = "MTLLibrary")]
         /// The array of functions compiled to binary to be linked.
         #[unsafe(method(binaryFunctions))]
         #[unsafe(method_family = none)]
-        pub fn binaryFunctions(&self)
-            -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
+        pub fn binary_functions(
+            &self,
+        ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`binaryFunctions`][Self::binaryFunctions].
         #[unsafe(method(setBinaryFunctions:))]
         #[unsafe(method_family = none)]
-        pub fn setBinaryFunctions(
+        pub fn set_binary_functions(
             &self,
             binary_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
         );
@@ -73,7 +74,7 @@ impl MTLLinkedFunctions {
         /// Setter for [`groups`][Self::groups].
         #[unsafe(method(setGroups:))]
         #[unsafe(method_family = none)]
-        pub fn setGroups(
+        pub fn set_groups(
             &self,
             groups: Option<&NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>,
         );
@@ -85,7 +86,7 @@ impl MTLLinkedFunctions {
         /// Function pointer support is not required to link private functions.
         #[unsafe(method(privateFunctions))]
         #[unsafe(method_family = none)]
-        pub fn privateFunctions(
+        pub fn private_functions(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
@@ -93,7 +94,7 @@ impl MTLLinkedFunctions {
         /// Setter for [`privateFunctions`][Self::privateFunctions].
         #[unsafe(method(setPrivateFunctions:))]
         #[unsafe(method_family = none)]
-        pub fn setPrivateFunctions(
+        pub fn set_private_functions(
             &self,
             private_functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>,
         );

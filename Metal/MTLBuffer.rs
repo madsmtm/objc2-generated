@@ -45,13 +45,13 @@ extern_protocol!(
         /// Parameter `range`: The range of bytes that have been modified.
         #[unsafe(method(didModifyRange:))]
         #[unsafe(method_family = none)]
-        fn didModifyRange(&self, range: NSRange);
+        fn did_modify_range(&self, range: NSRange);
 
         #[cfg(feature = "MTLTexture")]
         /// Create a 2D texture or texture buffer that shares storage with this buffer.
         #[unsafe(method(newTextureWithDescriptor:offset:bytesPerRow:))]
         #[unsafe(method_family = new)]
-        fn newTextureWithDescriptor_offset_bytesPerRow(
+        fn new_texture_with_descriptor_offset_bytes_per_row(
             &self,
             descriptor: &MTLTextureDescriptor,
             offset: NSUInteger,
@@ -66,24 +66,24 @@ extern_protocol!(
         /// Parameter `range`: The range of bytes the marker is using.
         #[unsafe(method(addDebugMarker:range:))]
         #[unsafe(method_family = none)]
-        fn addDebugMarker_range(&self, marker: &NSString, range: NSRange);
+        fn add_debug_marker_range(&self, marker: &NSString, range: NSRange);
 
         /// Removes all debug markers from a buffer.
         #[unsafe(method(removeAllDebugMarkers))]
         #[unsafe(method_family = none)]
-        fn removeAllDebugMarkers(&self);
+        fn remove_all_debug_markers(&self);
 
         /// For Metal buffer objects that are remote views, this returns the buffer associated with the storage on the originating device.
         #[unsafe(method(remoteStorageBuffer))]
         #[unsafe(method_family = none)]
-        fn remoteStorageBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        fn remote_storage_buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(feature = "MTLDevice")]
         /// On Metal devices that support peer to peer transfers, this method is used to create a remote buffer view on another device
         /// within the peer group.  The receiver must use MTLStorageModePrivate or be backed by an IOSurface.
         #[unsafe(method(newRemoteBufferViewForDevice:))]
         #[unsafe(method_family = new)]
-        fn newRemoteBufferViewForDevice(
+        fn new_remote_buffer_view_for_device(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -91,6 +91,6 @@ extern_protocol!(
         /// Represents the GPU virtual address of a buffer resource
         #[unsafe(method(gpuAddress))]
         #[unsafe(method_family = none)]
-        fn gpuAddress(&self) -> u64;
+        fn gpu_address(&self) -> u64;
     }
 );

@@ -27,7 +27,7 @@ impl CAValueFunction {
     extern_methods!(
         #[unsafe(method(functionWithName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn functionWithName(name: &CAValueFunctionName) -> Option<Retained<Self>>;
+        pub unsafe fn function_with_name(name: &CAValueFunctionName) -> Option<Retained<Self>>;
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]

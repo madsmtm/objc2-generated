@@ -572,20 +572,20 @@ impl MTLArgumentDescriptor {
         /// Create an autoreleased default argument descriptor
         #[unsafe(method(argumentDescriptor))]
         #[unsafe(method_family = none)]
-        pub fn argumentDescriptor() -> Retained<MTLArgumentDescriptor>;
+        pub fn argument_descriptor() -> Retained<MTLArgumentDescriptor>;
 
         #[cfg(feature = "MTLArgument")]
         /// For constants, the data type. Otherwise, MTLDataTypeTexture, MTLDataTypeSampler, or
         /// MTLDataTypePointer.
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataType(&self) -> MTLDataType;
+        pub unsafe fn data_type(&self) -> MTLDataType;
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`dataType`][Self::dataType].
         #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
-        pub fn setDataType(&self, data_type: MTLDataType);
+        pub fn set_data_type(&self, data_type: MTLDataType);
 
         /// The binding point index of the argument
         #[unsafe(method(index))]
@@ -595,17 +595,17 @@ impl MTLArgumentDescriptor {
         /// Setter for [`index`][Self::index].
         #[unsafe(method(setIndex:))]
         #[unsafe(method_family = none)]
-        pub fn setIndex(&self, index: NSUInteger);
+        pub fn set_index(&self, index: NSUInteger);
 
         /// The length of an array of constants, textures, or samplers, or 0 for non-array arguments
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
-        pub unsafe fn arrayLength(&self) -> NSUInteger;
+        pub unsafe fn array_length(&self) -> NSUInteger;
 
         /// Setter for [`arrayLength`][Self::arrayLength].
         #[unsafe(method(setArrayLength:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setArrayLength(&self, array_length: NSUInteger);
+        pub unsafe fn set_array_length(&self, array_length: NSUInteger);
 
         #[cfg(feature = "MTLArgument")]
         /// Access flags for the argument
@@ -617,19 +617,19 @@ impl MTLArgumentDescriptor {
         /// Setter for [`access`][Self::access].
         #[unsafe(method(setAccess:))]
         #[unsafe(method_family = none)]
-        pub fn setAccess(&self, access: MTLBindingAccess);
+        pub fn set_access(&self, access: MTLBindingAccess);
 
         #[cfg(feature = "MTLTexture")]
         /// For texture arguments, the texture type
         #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textureType(&self) -> MTLTextureType;
+        pub unsafe fn texture_type(&self) -> MTLTextureType;
 
         #[cfg(feature = "MTLTexture")]
         /// Setter for [`textureType`][Self::textureType].
         #[unsafe(method(setTextureType:))]
         #[unsafe(method_family = none)]
-        pub fn setTextureType(&self, texture_type: MTLTextureType);
+        pub fn set_texture_type(&self, texture_type: MTLTextureType);
 
         /// if set forces the constant block to be aligned to the given alignment
         ///
@@ -637,12 +637,12 @@ impl MTLArgumentDescriptor {
         /// explicit "alignas" is applied to the constant in the metal shader language.
         #[unsafe(method(constantBlockAlignment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constantBlockAlignment(&self) -> NSUInteger;
+        pub unsafe fn constant_block_alignment(&self) -> NSUInteger;
 
         /// Setter for [`constantBlockAlignment`][Self::constantBlockAlignment].
         #[unsafe(method(setConstantBlockAlignment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConstantBlockAlignment(&self, constant_block_alignment: NSUInteger);
+        pub unsafe fn set_constant_block_alignment(&self, constant_block_alignment: NSUInteger);
     );
 }
 
@@ -717,7 +717,7 @@ extern_protocol!(
         /// to identify the GPU across task boundaries.
         #[unsafe(method(registryID))]
         #[unsafe(method_family = none)]
-        fn registryID(&self) -> u64;
+        fn registry_id(&self) -> u64;
 
         /// Returns the device's architecture information.
         #[unsafe(method(architecture))]
@@ -728,17 +728,17 @@ extern_protocol!(
         /// The maximum number of threads along each dimension.
         #[unsafe(method(maxThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        fn maxThreadsPerThreadgroup(&self) -> MTLSize;
+        fn max_threads_per_threadgroup(&self) -> MTLSize;
 
         /// On systems that support automatic graphics switching, this will return YES for the the low power device.
         #[unsafe(method(isLowPower))]
         #[unsafe(method_family = none)]
-        fn isLowPower(&self) -> bool;
+        fn is_low_power(&self) -> bool;
 
         /// On systems that include more that one GPU, this will return YES for any device that does not support any displays.  Only available on Mac OS X.
         #[unsafe(method(isHeadless))]
         #[unsafe(method_family = none)]
-        fn isHeadless(&self) -> bool;
+        fn is_headless(&self) -> bool;
 
         /// If this GPU is removable, this property will return YES.
         ///
@@ -746,7 +746,7 @@ extern_protocol!(
         /// the application that the device has been removed.
         #[unsafe(method(isRemovable))]
         #[unsafe(method_family = none)]
-        fn isRemovable(&self) -> bool;
+        fn is_removable(&self) -> bool;
 
         /// Returns YES if this GPU shares its memory with the rest of the machine (CPU, etc.)
         ///
@@ -754,7 +754,7 @@ extern_protocol!(
         /// of the machine.  This property will return YES for GPUs that fall into that category.
         #[unsafe(method(hasUnifiedMemory))]
         #[unsafe(method_family = none)]
-        fn hasUnifiedMemory(&self) -> bool;
+        fn has_unified_memory(&self) -> bool;
 
         /// Returns an approximation of how much memory this device can use with good performance.
         ///
@@ -763,7 +763,7 @@ extern_protocol!(
         /// performance penalty.
         #[unsafe(method(recommendedMaxWorkingSetSize))]
         #[unsafe(method_family = none)]
-        fn recommendedMaxWorkingSetSize(&self) -> u64;
+        fn recommended_max_working_set_size(&self) -> u64;
 
         /// Returns an enum that indicates where the GPU is located relative to the host computer.
         ///
@@ -781,7 +781,7 @@ extern_protocol!(
         /// daisy-chained off of another eGPU attached to a host Thunderbolt port.
         #[unsafe(method(locationNumber))]
         #[unsafe(method_family = none)]
-        fn locationNumber(&self) -> NSUInteger;
+        fn location_number(&self) -> NSUInteger;
 
         /// Upper bound of System RAM
         /// <
@@ -792,68 +792,68 @@ extern_protocol!(
         /// such may not be reachable under real-world conditions. For Built-in GPUs this value is 0.
         #[unsafe(method(maxTransferRate))]
         #[unsafe(method_family = none)]
-        fn maxTransferRate(&self) -> u64;
+        fn max_transfer_rate(&self) -> u64;
 
         /// If YES, device supports MTLPixelFormatDepth24Unorm_Stencil8.
         #[unsafe(method(isDepth24Stencil8PixelFormatSupported))]
         #[unsafe(method_family = none)]
-        fn isDepth24Stencil8PixelFormatSupported(&self) -> bool;
+        fn is_depth24_stencil8_pixel_format_supported(&self) -> bool;
 
         /// Query support tier for read-write texture formats.
         ///
         /// Returns: MTLReadWriteTextureTier enum value.
         #[unsafe(method(readWriteTextureSupport))]
         #[unsafe(method_family = none)]
-        fn readWriteTextureSupport(&self) -> MTLReadWriteTextureTier;
+        fn read_write_texture_support(&self) -> MTLReadWriteTextureTier;
 
         /// Query support tier for Argument Buffers.
         ///
         /// Returns: MTLArgumentBuffersTier enum value.
         #[unsafe(method(argumentBuffersSupport))]
         #[unsafe(method_family = none)]
-        fn argumentBuffersSupport(&self) -> MTLArgumentBuffersTier;
+        fn argument_buffers_support(&self) -> MTLArgumentBuffersTier;
 
         /// Query device for raster order groups support.
         ///
         /// Returns: BOOL value. If YES, the device supports raster order groups. If NO, the device does not.
         #[unsafe(method(areRasterOrderGroupsSupported))]
         #[unsafe(method_family = none)]
-        unsafe fn areRasterOrderGroupsSupported(&self) -> bool;
+        unsafe fn are_raster_order_groups_supported(&self) -> bool;
 
         /// Query device for 32-bit Float texture filtering support. Specifically, R32Float, RG32Float, and RGBA32Float.
         ///
         /// Returns: BOOL value. If YES, the device supports filtering 32-bit Float textures. If NO, the device does not.
         #[unsafe(method(supports32BitFloatFiltering))]
         #[unsafe(method_family = none)]
-        fn supports32BitFloatFiltering(&self) -> bool;
+        fn supports32_bit_float_filtering(&self) -> bool;
 
         /// Query device for 32-bit MSAA texture support. Specifically, added support for allocating 32-bit Integer format textures (R32Uint, R32Sint, RG32Uint, RG32Sint, RGBA32Uint, and RGBA32Sint) and resolving 32-bit Float format textures (R32Float, RG32Float, and RGBA32Float).
         ///
         /// Returns: BOOL value. If YES, the device supports these additional 32-bit MSAA texture capabilities. If NO, the devices does not.
         #[unsafe(method(supports32BitMSAA))]
         #[unsafe(method_family = none)]
-        fn supports32BitMSAA(&self) -> bool;
+        fn supports32_bit_msaa(&self) -> bool;
 
         /// Query device for whether it supports the `calculate_clampled_lod` and `calculate_unclamped_lod` Metal shading language functionality.
         ///
         /// Returns: BOOL value. If YES, the device supports the calculate LOD functionality. If NO, the device does not.
         #[unsafe(method(supportsQueryTextureLOD))]
         #[unsafe(method_family = none)]
-        fn supportsQueryTextureLOD(&self) -> bool;
+        fn supports_query_texture_lod(&self) -> bool;
 
         /// Query device for BC Texture format support
         ///
         /// Returns: BOOL value. If YES, the device supports compressed BC Texture formats. If NO, the device does not.
         #[unsafe(method(supportsBCTextureCompression))]
         #[unsafe(method_family = none)]
-        fn supportsBCTextureCompression(&self) -> bool;
+        fn supports_bc_texture_compression(&self) -> bool;
 
         /// Query device for pull model interpolation support which allows a fragment shader to compute multiple interpolations (at center, at centroid, at offset, at sample) of a fragment input.
         ///
         /// Returns: BOOL value. If YES, the device supports pull model interpolation. If NO, the device does not.
         #[unsafe(method(supportsPullModelInterpolation))]
         #[unsafe(method_family = none)]
-        fn supportsPullModelInterpolation(&self) -> bool;
+        fn supports_pull_model_interpolation(&self) -> bool;
 
         /// Query device for Barycentric coordinates support; deprecated, use supportsShaderBarycentricCoordinates
         ///
@@ -861,25 +861,25 @@ extern_protocol!(
         #[deprecated]
         #[unsafe(method(areBarycentricCoordsSupported))]
         #[unsafe(method_family = none)]
-        unsafe fn areBarycentricCoordsSupported(&self) -> bool;
+        unsafe fn are_barycentric_coords_supported(&self) -> bool;
 
         /// Query device for Barycentric Coordinates support.
         ///
         /// Returns: BOOL value. If YES, the device supports barycentric coordinates. If NO, the device does not.
         #[unsafe(method(supportsShaderBarycentricCoordinates))]
         #[unsafe(method_family = none)]
-        fn supportsShaderBarycentricCoordinates(&self) -> bool;
+        fn supports_shader_barycentric_coordinates(&self) -> bool;
 
         /// The current size in bytes of all resources allocated by this device
         #[unsafe(method(currentAllocatedSize))]
         #[unsafe(method_family = none)]
-        fn currentAllocatedSize(&self) -> NSUInteger;
+        fn current_allocated_size(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLLogState")]
         /// This method will create a new MTLLogState.
         #[unsafe(method(newLogStateWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newLogStateWithDescriptor_error(
+        unsafe fn new_log_state_with_descriptor_error(
             &self,
             descriptor: &MTLLogStateDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLLogState>>, Retained<NSError>>;
@@ -890,7 +890,7 @@ extern_protocol!(
         /// Returns: The new command queue object
         #[unsafe(method(newCommandQueue))]
         #[unsafe(method_family = new)]
-        fn newCommandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
+        fn new_command_queue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
 
         #[cfg(feature = "MTLCommandQueue")]
         /// Create and return a new command queue with a given upper bound on non-completed command buffers.
@@ -898,7 +898,7 @@ extern_protocol!(
         /// Returns: The new command queue object
         #[unsafe(method(newCommandQueueWithMaxCommandBufferCount:))]
         #[unsafe(method_family = new)]
-        fn newCommandQueueWithMaxCommandBufferCount(
+        fn new_command_queue_with_max_command_buffer_count(
             &self,
             max_command_buffer_count: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
@@ -907,7 +907,7 @@ extern_protocol!(
         /// Create a MTLCommandQueue according to MTLCommandQueueDescriptor.
         #[unsafe(method(newCommandQueueWithDescriptor:))]
         #[unsafe(method_family = new)]
-        unsafe fn newCommandQueueWithDescriptor(
+        unsafe fn new_command_queue_with_descriptor(
             &self,
             descriptor: &MTLCommandQueueDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
@@ -918,7 +918,7 @@ extern_protocol!(
         /// This method can be used to help determine the required heap size.
         #[unsafe(method(heapTextureSizeAndAlignWithDescriptor:))]
         #[unsafe(method_family = none)]
-        fn heapTextureSizeAndAlignWithDescriptor(
+        fn heap_texture_size_and_align_with_descriptor(
             &self,
             desc: &MTLTextureDescriptor,
         ) -> MTLSizeAndAlign;
@@ -929,7 +929,7 @@ extern_protocol!(
         /// This method can be used to help determine the required heap size.
         #[unsafe(method(heapBufferSizeAndAlignWithLength:options:))]
         #[unsafe(method_family = none)]
-        fn heapBufferSizeAndAlignWithLength_options(
+        fn heap_buffer_size_and_align_with_length_options(
             &self,
             length: NSUInteger,
             options: MTLResourceOptions,
@@ -939,7 +939,7 @@ extern_protocol!(
         /// Create a new heap with the given descriptor.
         #[unsafe(method(newHeapWithDescriptor:))]
         #[unsafe(method_family = new)]
-        fn newHeapWithDescriptor(
+        fn new_heap_with_descriptor(
             &self,
             descriptor: &MTLHeapDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLHeap>>>;
@@ -952,7 +952,7 @@ extern_protocol!(
         /// Create a buffer by allocating new memory.
         #[unsafe(method(newBufferWithLength:options:))]
         #[unsafe(method_family = new)]
-        fn newBufferWithLength_options(
+        fn new_buffer_with_length_options(
             &self,
             length: NSUInteger,
             options: MTLResourceOptions,
@@ -966,7 +966,7 @@ extern_protocol!(
         /// Create a buffer by allocating new memory and specifing the initial contents to be copied into it.
         #[unsafe(method(newBufferWithBytes:length:options:))]
         #[unsafe(method_family = new)]
-        unsafe fn newBufferWithBytes_length_options(
+        unsafe fn new_buffer_with_bytes_length_options(
             &self,
             pointer: NonNull<c_void>,
             length: NSUInteger,
@@ -982,7 +982,7 @@ extern_protocol!(
         /// Create a buffer by wrapping an existing part of the address space.
         #[unsafe(method(newBufferWithBytesNoCopy:length:options:deallocator:))]
         #[unsafe(method_family = new)]
-        unsafe fn newBufferWithBytesNoCopy_length_options_deallocator(
+        unsafe fn new_buffer_with_bytes_no_copy_length_options_deallocator(
             &self,
             pointer: NonNull<c_void>,
             length: NSUInteger,
@@ -994,7 +994,7 @@ extern_protocol!(
         /// Create a depth/stencil test state object.
         #[unsafe(method(newDepthStencilStateWithDescriptor:))]
         #[unsafe(method_family = new)]
-        fn newDepthStencilStateWithDescriptor(
+        fn new_depth_stencil_state_with_descriptor(
             &self,
             descriptor: &MTLDepthStencilDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLDepthStencilState>>>;
@@ -1007,7 +1007,7 @@ extern_protocol!(
         /// Allocate a new texture with privately owned storage.
         #[unsafe(method(newTextureWithDescriptor:))]
         #[unsafe(method_family = new)]
-        fn newTextureWithDescriptor(
+        fn new_texture_with_descriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -1029,7 +1029,7 @@ extern_protocol!(
         /// Returns: A new texture object.
         #[unsafe(method(newTextureWithDescriptor:iosurface:plane:))]
         #[unsafe(method_family = new)]
-        unsafe fn newTextureWithDescriptor_iosurface_plane(
+        unsafe fn new_texture_with_descriptor_iosurface_plane(
             &self,
             descriptor: &MTLTextureDescriptor,
             iosurface: &IOSurfaceRef,
@@ -1051,7 +1051,7 @@ extern_protocol!(
         /// Returns: A new texture object.
         #[unsafe(method(newSharedTextureWithDescriptor:))]
         #[unsafe(method_family = new)]
-        unsafe fn newSharedTextureWithDescriptor(
+        unsafe fn new_shared_texture_with_descriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -1073,7 +1073,7 @@ extern_protocol!(
         /// Returns: A new texture object.
         #[unsafe(method(newSharedTextureWithHandle:))]
         #[unsafe(method_family = new)]
-        unsafe fn newSharedTextureWithHandle(
+        unsafe fn new_shared_texture_with_handle(
             &self,
             shared_handle: &MTLSharedTextureHandle,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -1082,7 +1082,7 @@ extern_protocol!(
         /// Create a new sampler.
         #[unsafe(method(newSamplerStateWithDescriptor:))]
         #[unsafe(method_family = new)]
-        fn newSamplerStateWithDescriptor(
+        fn new_sampler_state_with_descriptor(
             &self,
             descriptor: &MTLSamplerDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLSamplerState>>>;
@@ -1093,12 +1093,12 @@ extern_protocol!(
         /// use newDefaultLibraryWithBundle:error: to get an NSError in case of failure.
         #[unsafe(method(newDefaultLibrary))]
         #[unsafe(method_family = new)]
-        fn newDefaultLibrary(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
+        fn new_default_library(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[unsafe(method(newDefaultLibraryWithBundle:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newDefaultLibraryWithBundle_error(
+        unsafe fn new_default_library_with_bundle_error(
             &self,
             bundle: &NSBundle,
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
@@ -1108,7 +1108,7 @@ extern_protocol!(
         #[deprecated = "Use -newLibraryWithURL:error: instead"]
         #[unsafe(method(newLibraryWithFile:error:_))]
         #[unsafe(method_family = new)]
-        fn newLibraryWithFile_error(
+        fn new_library_with_file_error(
             &self,
             filepath: &NSString,
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
@@ -1117,7 +1117,7 @@ extern_protocol!(
         /// Load a MTLLibrary from a metallib file.
         #[unsafe(method(newLibraryWithURL:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newLibraryWithURL_error(
+        unsafe fn new_library_with_url_error(
             &self,
             url: &NSURL,
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
@@ -1126,7 +1126,7 @@ extern_protocol!(
         /// Load a MTLLibrary from source.
         #[unsafe(method(newLibraryWithSource:options:error:_))]
         #[unsafe(method_family = new)]
-        fn newLibraryWithSource_options_error(
+        fn new_library_with_source_options_error(
             &self,
             source: &NSString,
             options: Option<&MTLCompileOptions>,
@@ -1136,7 +1136,7 @@ extern_protocol!(
         /// Load a MTLLibrary from source.
         #[unsafe(method(newLibraryWithSource:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newLibraryWithSource_options_completionHandler(
+        unsafe fn new_library_with_source_options_completion_handler(
             &self,
             source: &NSString,
             options: Option<&MTLCompileOptions>,
@@ -1147,7 +1147,7 @@ extern_protocol!(
         /// Returns a library generated using the graphs in the descriptor.
         #[unsafe(method(newLibraryWithStitchedDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newLibraryWithStitchedDescriptor_error(
+        unsafe fn new_library_with_stitched_descriptor_error(
             &self,
             descriptor: &MTLStitchedLibraryDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
@@ -1160,7 +1160,7 @@ extern_protocol!(
         /// Generates a new library using the graphs in the descriptor.
         #[unsafe(method(newLibraryWithStitchedDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newLibraryWithStitchedDescriptor_completionHandler(
+        unsafe fn new_library_with_stitched_descriptor_completion_handler(
             &self,
             descriptor: &MTLStitchedLibraryDescriptor,
             completion_handler: MTLNewLibraryCompletionHandler,
@@ -1170,7 +1170,7 @@ extern_protocol!(
         /// Create and compile a new MTLRenderPipelineState object synchronously.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        fn newRenderPipelineStateWithDescriptor_error(
+        fn new_render_pipeline_state_with_descriptor_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
@@ -1179,7 +1179,7 @@ extern_protocol!(
         /// Create and compile a new MTLRenderPipelineState object synchronously and returns additional reflection information.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:options:reflection:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateWithDescriptor_options_reflection_error(
+        unsafe fn new_render_pipeline_state_with_descriptor_options_reflection_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
             options: MTLPipelineOption,
@@ -1190,7 +1190,7 @@ extern_protocol!(
         /// Create and compile a new MTLRenderPipelineState object asynchronously.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newRenderPipelineStateWithDescriptor_completionHandler(
+        unsafe fn new_render_pipeline_state_with_descriptor_completion_handler(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
             completion_handler: MTLNewRenderPipelineStateCompletionHandler,
@@ -1200,7 +1200,7 @@ extern_protocol!(
         /// Create and compile a new MTLRenderPipelineState object asynchronously and returns additional reflection information
         #[unsafe(method(newRenderPipelineStateWithDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newRenderPipelineStateWithDescriptor_options_completionHandler(
+        unsafe fn new_render_pipeline_state_with_descriptor_options_completion_handler(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
             options: MTLPipelineOption,
@@ -1211,7 +1211,7 @@ extern_protocol!(
         /// Create and compile a new MTLComputePipelineState object synchronously.
         #[unsafe(method(newComputePipelineStateWithFunction:error:_))]
         #[unsafe(method_family = new)]
-        fn newComputePipelineStateWithFunction_error(
+        fn new_compute_pipeline_state_with_function_error(
             &self,
             compute_function: &ProtocolObject<dyn MTLFunction>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
@@ -1220,7 +1220,7 @@ extern_protocol!(
         /// Create and compile a new MTLComputePipelineState object synchronously.
         #[unsafe(method(newComputePipelineStateWithFunction:options:reflection:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newComputePipelineStateWithFunction_options_reflection_error(
+        unsafe fn new_compute_pipeline_state_with_function_options_reflection_error(
             &self,
             compute_function: &ProtocolObject<dyn MTLFunction>,
             options: MTLPipelineOption,
@@ -1235,7 +1235,7 @@ extern_protocol!(
         /// Create and compile a new MTLComputePipelineState object asynchronously.
         #[unsafe(method(newComputePipelineStateWithFunction:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newComputePipelineStateWithFunction_completionHandler(
+        unsafe fn new_compute_pipeline_state_with_function_completion_handler(
             &self,
             compute_function: &ProtocolObject<dyn MTLFunction>,
             completion_handler: MTLNewComputePipelineStateCompletionHandler,
@@ -1249,7 +1249,7 @@ extern_protocol!(
         /// Create and compile a new MTLComputePipelineState object asynchronously.
         #[unsafe(method(newComputePipelineStateWithFunction:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newComputePipelineStateWithFunction_options_completionHandler(
+        unsafe fn new_compute_pipeline_state_with_function_options_completion_handler(
             &self,
             compute_function: &ProtocolObject<dyn MTLFunction>,
             options: MTLPipelineOption,
@@ -1260,7 +1260,7 @@ extern_protocol!(
         /// Create and compile a new MTLComputePipelineState object synchronously.
         #[unsafe(method(newComputePipelineStateWithDescriptor:options:reflection:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newComputePipelineStateWithDescriptor_options_reflection_error(
+        unsafe fn new_compute_pipeline_state_with_descriptor_options_reflection_error(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
             options: MTLPipelineOption,
@@ -1271,7 +1271,7 @@ extern_protocol!(
         /// Create and compile a new MTLComputePipelineState object asynchronously.
         #[unsafe(method(newComputePipelineStateWithDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newComputePipelineStateWithDescriptor_options_completionHandler(
+        unsafe fn new_compute_pipeline_state_with_descriptor_options_completion_handler(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
             options: MTLPipelineOption,
@@ -1282,45 +1282,49 @@ extern_protocol!(
         /// Create a new MTLFence object
         #[unsafe(method(newFence))]
         #[unsafe(method_family = new)]
-        fn newFence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
+        fn new_fence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
 
         /// Returns TRUE if the feature set is supported by this MTLDevice.
         #[deprecated = "Use supportsFamily instead"]
         #[unsafe(method(supportsFeatureSet:))]
         #[unsafe(method_family = none)]
-        fn supportsFeatureSet(&self, feature_set: MTLFeatureSet) -> bool;
+        fn supports_feature_set(&self, feature_set: MTLFeatureSet) -> bool;
 
         /// Returns TRUE if the GPU Family is supported by this MTLDevice.
         #[unsafe(method(supportsFamily:))]
         #[unsafe(method_family = none)]
-        fn supportsFamily(&self, gpu_family: MTLGPUFamily) -> bool;
+        fn supports_family(&self, gpu_family: MTLGPUFamily) -> bool;
 
         /// Query device if it support textures with a given sampleCount.
         ///
         /// Returns: BOOL value. If YES, device supports the given sampleCount for textures. If NO, device does not support the given sampleCount.
         #[unsafe(method(supportsTextureSampleCount:))]
         #[unsafe(method_family = none)]
-        fn supportsTextureSampleCount(&self, sample_count: NSUInteger) -> bool;
+        fn supports_texture_sample_count(&self, sample_count: NSUInteger) -> bool;
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Returns the minimum alignment required for offset and rowBytes when creating a linear texture. An error is thrown for queries with invalid pixel formats (depth, stencil, or compressed formats).
         #[unsafe(method(minimumLinearTextureAlignmentForPixelFormat:))]
         #[unsafe(method_family = none)]
-        fn minimumLinearTextureAlignmentForPixelFormat(&self, format: MTLPixelFormat)
-            -> NSUInteger;
+        fn minimum_linear_texture_alignment_for_pixel_format(
+            &self,
+            format: MTLPixelFormat,
+        ) -> NSUInteger;
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Returns the minimum alignment required for offset and rowBytes when creating a texture buffer from a buffer.
         #[unsafe(method(minimumTextureBufferAlignmentForPixelFormat:))]
         #[unsafe(method_family = none)]
-        fn minimumTextureBufferAlignmentForPixelFormat(&self, format: MTLPixelFormat)
-            -> NSUInteger;
+        fn minimum_texture_buffer_alignment_for_pixel_format(
+            &self,
+            format: MTLPixelFormat,
+        ) -> NSUInteger;
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Create and compile a new MTLRenderPipelineState object synchronously given a MTLTileRenderPipelineDescriptor.
         #[unsafe(method(newRenderPipelineStateWithTileDescriptor:options:reflection:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateWithTileDescriptor_options_reflection_error(
+        unsafe fn new_render_pipeline_state_with_tile_descriptor_options_reflection_error(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
             options: MTLPipelineOption,
@@ -1331,7 +1335,7 @@ extern_protocol!(
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLTileRenderPipelineDescriptor.
         #[unsafe(method(newRenderPipelineStateWithTileDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(
+        unsafe fn new_render_pipeline_state_with_tile_descriptor_options_completion_handler(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
             options: MTLPipelineOption,
@@ -1342,7 +1346,7 @@ extern_protocol!(
         /// Create and compile a new MTLRenderPipelineState object synchronously given a MTLMeshRenderPipelineDescriptor.
         #[unsafe(method(newRenderPipelineStateWithMeshDescriptor:options:reflection:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateWithMeshDescriptor_options_reflection_error(
+        unsafe fn new_render_pipeline_state_with_mesh_descriptor_options_reflection_error(
             &self,
             descriptor: &MTLMeshRenderPipelineDescriptor,
             options: MTLPipelineOption,
@@ -1353,7 +1357,7 @@ extern_protocol!(
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLMeshRenderPipelineDescriptor.
         #[unsafe(method(newRenderPipelineStateWithMeshDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(
+        unsafe fn new_render_pipeline_state_with_mesh_descriptor_options_completion_handler(
             &self,
             descriptor: &MTLMeshRenderPipelineDescriptor,
             options: MTLPipelineOption,
@@ -1363,21 +1367,21 @@ extern_protocol!(
         /// The maximum threadgroup memory available, in bytes.
         #[unsafe(method(maxThreadgroupMemoryLength))]
         #[unsafe(method_family = none)]
-        fn maxThreadgroupMemoryLength(&self) -> NSUInteger;
+        fn max_threadgroup_memory_length(&self) -> NSUInteger;
 
         /// The maximum number of unique argument buffer samplers per app.
         ///
         /// This limit is only applicable to samplers that have their supportArgumentBuffers property set to true. A MTLSamplerState object is considered unique if the configuration of its originating MTLSamplerDescriptor properties is unique. For example, two samplers with equal minFilter values but different magFilter values are considered unique.
         #[unsafe(method(maxArgumentBufferSamplerCount))]
         #[unsafe(method_family = none)]
-        fn maxArgumentBufferSamplerCount(&self) -> NSUInteger;
+        fn max_argument_buffer_sampler_count(&self) -> NSUInteger;
 
         /// Query device for programmable sample position support.
         ///
         /// Returns: BOOL value. If YES, the device supports programmable sample positions. If NO, the device does not.
         #[unsafe(method(areProgrammableSamplePositionsSupported))]
         #[unsafe(method_family = none)]
-        unsafe fn areProgrammableSamplePositionsSupported(&self) -> bool;
+        unsafe fn are_programmable_sample_positions_supported(&self) -> bool;
 
         #[cfg(feature = "MTLTypes")]
         /// Retrieve the default sample positions.
@@ -1387,7 +1391,7 @@ extern_protocol!(
         /// Parameter `count`: Specifies the sample count for which to retrieve the default positions, the length of the positions array, and must be set to a valid sample count.
         #[unsafe(method(getDefaultSamplePositions:count:))]
         #[unsafe(method_family = none)]
-        unsafe fn getDefaultSamplePositions_count(
+        unsafe fn get_default_sample_positions_count(
             &self,
             positions: NonNull<MTLSamplePosition>,
             count: NSUInteger,
@@ -1397,7 +1401,7 @@ extern_protocol!(
         /// Creates an argument encoder for an array of argument descriptors which will be encoded sequentially.
         #[unsafe(method(newArgumentEncoderWithArguments:))]
         #[unsafe(method_family = new)]
-        fn newArgumentEncoderWithArguments(
+        fn new_argument_encoder_with_arguments(
             &self,
             arguments: &NSArray<MTLArgumentDescriptor>,
         ) -> Option<Retained<ProtocolObject<dyn MTLArgumentEncoder>>>;
@@ -1409,7 +1413,7 @@ extern_protocol!(
         /// Returns: YES if the device supports creation of rendering using a MTLRasterizationRateMap with the given number of layers.
         #[unsafe(method(supportsRasterizationRateMapWithLayerCount:))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsRasterizationRateMapWithLayerCount(
+        unsafe fn supports_rasterization_rate_map_with_layer_count(
             &self,
             layer_count: NSUInteger,
         ) -> bool;
@@ -1422,7 +1426,7 @@ extern_protocol!(
         /// Returns: A MTLRasterizationRateMap instance that can be used for rendering on this MTLDevice, or nil if the device does not support the combination of parameters stored in the descriptor.
         #[unsafe(method(newRasterizationRateMapWithDescriptor:))]
         #[unsafe(method_family = new)]
-        unsafe fn newRasterizationRateMapWithDescriptor(
+        unsafe fn new_rasterization_rate_map_with_descriptor(
             &self,
             descriptor: &MTLRasterizationRateMapDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLRasterizationRateMap>>>;
@@ -1443,7 +1447,7 @@ extern_protocol!(
         /// The returned buffer can be safely executed without first encoding into (but is wasteful).
         #[unsafe(method(newIndirectCommandBufferWithDescriptor:maxCommandCount:options:))]
         #[unsafe(method_family = new)]
-        unsafe fn newIndirectCommandBufferWithDescriptor_maxCommandCount_options(
+        unsafe fn new_indirect_command_buffer_with_descriptor_max_command_count_options(
             &self,
             descriptor: &MTLIndirectCommandBufferDescriptor,
             max_count: NSUInteger,
@@ -1454,19 +1458,19 @@ extern_protocol!(
         /// Returns a new single-device non-shareable Metal event object
         #[unsafe(method(newEvent))]
         #[unsafe(method_family = new)]
-        fn newEvent(&self) -> Option<Retained<ProtocolObject<dyn MTLEvent>>>;
+        fn new_event(&self) -> Option<Retained<ProtocolObject<dyn MTLEvent>>>;
 
         #[cfg(feature = "MTLEvent")]
         /// Returns a shareable multi-device event.
         #[unsafe(method(newSharedEvent))]
         #[unsafe(method_family = new)]
-        fn newSharedEvent(&self) -> Option<Retained<ProtocolObject<dyn MTLSharedEvent>>>;
+        fn new_shared_event(&self) -> Option<Retained<ProtocolObject<dyn MTLSharedEvent>>>;
 
         #[cfg(feature = "MTLEvent")]
         /// Creates a shareable multi-device event from an existing shared event handle.
         #[unsafe(method(newSharedEventWithHandle:))]
         #[unsafe(method_family = new)]
-        unsafe fn newSharedEventWithHandle(
+        unsafe fn new_shared_event_with_handle(
             &self,
             shared_event_handle: &MTLSharedEventHandle,
         ) -> Option<Retained<ProtocolObject<dyn MTLSharedEvent>>>;
@@ -1475,18 +1479,18 @@ extern_protocol!(
         /// a unique 64-bit identifier associated with all devices in the same peer group.
         #[unsafe(method(peerGroupID))]
         #[unsafe(method_family = none)]
-        unsafe fn peerGroupID(&self) -> u64;
+        unsafe fn peer_group_id(&self) -> u64;
 
         /// All Metal devices that are part of the same peer group will have a unique index value within the group in
         /// the range from 0 to peerCount - 1.
         #[unsafe(method(peerIndex))]
         #[unsafe(method_family = none)]
-        unsafe fn peerIndex(&self) -> u32;
+        unsafe fn peer_index(&self) -> u32;
 
         /// For Metal devices that are part of a peer group, this property returns the total number of devices in that group.
         #[unsafe(method(peerCount))]
         #[unsafe(method_family = none)]
-        unsafe fn peerCount(&self) -> u32;
+        unsafe fn peer_count(&self) -> u32;
 
         #[cfg(feature = "MTLIOCommandQueue")]
         /// Create and return a handle that points to a raw file on disk. This object can be used by
@@ -1496,7 +1500,7 @@ extern_protocol!(
         #[deprecated]
         #[unsafe(method(newIOHandleWithURL:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newIOHandleWithURL_error(
+        unsafe fn new_io_handle_with_url_error(
             &self,
             url: &NSURL,
         ) -> Result<Retained<ProtocolObject<dyn MTLIOFileHandle>>, Retained<NSError>>;
@@ -1507,7 +1511,7 @@ extern_protocol!(
         /// with details of the error.
         #[unsafe(method(newIOCommandQueueWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newIOCommandQueueWithDescriptor_error(
+        unsafe fn new_io_command_queue_with_descriptor_error(
             &self,
             descriptor: &MTLIOCommandQueueDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLIOCommandQueue>>, Retained<NSError>>;
@@ -1521,7 +1525,7 @@ extern_protocol!(
         #[deprecated]
         #[unsafe(method(newIOHandleWithURL:compressionMethod:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newIOHandleWithURL_compressionMethod_error(
+        unsafe fn new_io_handle_with_url_compression_method_error(
             &self,
             url: &NSURL,
             compression_method: MTLIOCompressionMethod,
@@ -1534,7 +1538,7 @@ extern_protocol!(
         /// with details of the error.
         #[unsafe(method(newIOFileHandleWithURL:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newIOFileHandleWithURL_error(
+        unsafe fn new_io_file_handle_with_url_error(
             &self,
             url: &NSURL,
         ) -> Result<Retained<ProtocolObject<dyn MTLIOFileHandle>>, Retained<NSError>>;
@@ -1547,7 +1551,7 @@ extern_protocol!(
         /// with details of the error.
         #[unsafe(method(newIOFileHandleWithURL:compressionMethod:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newIOFileHandleWithURL_compressionMethod_error(
+        unsafe fn new_io_file_handle_with_url_compression_method_error(
             &self,
             url: &NSURL,
             compression_method: MTLIOCompressionMethod,
@@ -1561,7 +1565,7 @@ extern_protocol!(
         /// Returns tile size for sparse texture with given type, pixel format and sample count.
         #[unsafe(method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:))]
         #[unsafe(method_family = none)]
-        unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(
+        unsafe fn sparse_tile_size_with_texture_type_pixel_format_sample_count(
             &self,
             texture_type: MTLTextureType,
             pixel_format: MTLPixelFormat,
@@ -1571,7 +1575,7 @@ extern_protocol!(
         /// Returns the number of bytes required to map one sparse texture tile.
         #[unsafe(method(sparseTileSizeInBytes))]
         #[unsafe(method_family = none)]
-        unsafe fn sparseTileSizeInBytes(&self) -> NSUInteger;
+        unsafe fn sparse_tile_size_in_bytes(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTypes")]
         /// Converts regions in pixels to regions in sparse tiles using specified alignment mode.
@@ -1579,7 +1583,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:))]
         #[unsafe(method_family = none)]
-        unsafe fn convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions(
+        unsafe fn convert_sparse_pixel_regions_to_tile_regions_with_tile_size_alignment_mode_num_regions(
             &self,
             pixel_regions: NonNull<MTLRegion>,
             tile_regions: NonNull<MTLRegion>,
@@ -1594,7 +1598,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:))]
         #[unsafe(method_family = none)]
-        unsafe fn convertSparseTileRegions_toPixelRegions_withTileSize_numRegions(
+        unsafe fn convert_sparse_tile_regions_to_pixel_regions_with_tile_size_num_regions(
             &self,
             tile_regions: NonNull<MTLRegion>,
             pixel_regions: NonNull<MTLRegion>,
@@ -1605,7 +1609,7 @@ extern_protocol!(
         /// Returns the number of bytes required to map one sparse texture tile for a given MTLSparsePageSize
         #[unsafe(method(sparseTileSizeInBytesForSparsePageSize:))]
         #[unsafe(method_family = none)]
-        unsafe fn sparseTileSizeInBytesForSparsePageSize(
+        unsafe fn sparse_tile_size_in_bytes_for_sparse_page_size(
             &self,
             sparse_page_size: MTLSparsePageSize,
         ) -> NSUInteger;
@@ -1618,7 +1622,7 @@ extern_protocol!(
         /// Returns tile size for sparse texture with given type, pixel format and sample count.
         #[unsafe(method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:))]
         #[unsafe(method_family = none)]
-        unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize(
+        unsafe fn sparse_tile_size_with_texture_type_pixel_format_sample_count_sparse_page_size(
             &self,
             texture_type: MTLTextureType,
             pixel_format: MTLPixelFormat,
@@ -1628,13 +1632,13 @@ extern_protocol!(
 
         #[unsafe(method(maxBufferLength))]
         #[unsafe(method_family = none)]
-        fn maxBufferLength(&self) -> NSUInteger;
+        fn max_buffer_length(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLCounters")]
         /// Returns the set of Counter Sets exposed by the device.
         #[unsafe(method(counterSets))]
         #[unsafe(method_family = none)]
-        unsafe fn counterSets(
+        unsafe fn counter_sets(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLCounterSet>>>>;
 
@@ -1648,7 +1652,7 @@ extern_protocol!(
         /// Parameter `error`: An error return on failure.
         #[unsafe(method(newCounterSampleBufferWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newCounterSampleBufferWithDescriptor_error(
+        unsafe fn new_counter_sample_buffer_with_descriptor_error(
             &self,
             descriptor: &MTLCounterSampleBufferDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>, Retained<NSError>>;
@@ -1660,7 +1664,7 @@ extern_protocol!(
         /// Parameter `gpuTimestamp`: The timestamp on the GPU
         #[unsafe(method(sampleTimestamps:gpuTimestamp:))]
         #[unsafe(method_family = none)]
-        unsafe fn sampleTimestamps_gpuTimestamp(
+        unsafe fn sample_timestamps_gpu_timestamp(
             &self,
             cpu_timestamp: NonNull<MTLTimestamp>,
             gpu_timestamp: NonNull<MTLTimestamp>,
@@ -1669,7 +1673,7 @@ extern_protocol!(
         #[cfg(all(feature = "MTLArgument", feature = "MTLArgumentEncoder"))]
         #[unsafe(method(newArgumentEncoderWithBufferBinding:))]
         #[unsafe(method_family = new)]
-        unsafe fn newArgumentEncoderWithBufferBinding(
+        unsafe fn new_argument_encoder_with_buffer_binding(
             &self,
             buffer_binding: &ProtocolObject<dyn MTLBufferBinding>,
         ) -> Retained<ProtocolObject<dyn MTLArgumentEncoder>>;
@@ -1681,7 +1685,7 @@ extern_protocol!(
         /// Returns: BOOL value. If YES, the device supports counter sampling at given point.
         #[unsafe(method(supportsCounterSampling:))]
         #[unsafe(method_family = none)]
-        fn supportsCounterSampling(&self, sampling_point: MTLCounterSamplingPoint) -> bool;
+        fn supports_counter_sampling(&self, sampling_point: MTLCounterSamplingPoint) -> bool;
 
         /// Query device for vertex amplification support.
         ///
@@ -1690,21 +1694,21 @@ extern_protocol!(
         /// Returns: BOOL value. If YES, the device supports vertex amplification with the given count. If NO, the device does not.
         #[unsafe(method(supportsVertexAmplificationCount:))]
         #[unsafe(method_family = none)]
-        fn supportsVertexAmplificationCount(&self, count: NSUInteger) -> bool;
+        fn supports_vertex_amplification_count(&self, count: NSUInteger) -> bool;
 
         /// Query device support for creating and using dynamic libraries in a compute pipeline.
         ///
         /// Returns: BOOL value. If YES, the device supports creating and using dynamic libraries in a compute pipeline. If NO, the device does not.
         #[unsafe(method(supportsDynamicLibraries))]
         #[unsafe(method_family = none)]
-        fn supportsDynamicLibraries(&self) -> bool;
+        fn supports_dynamic_libraries(&self) -> bool;
 
         /// Query device support for creating and using dynamic libraries in render pipeline stages.
         ///
         /// Returns: BOOL value. If YES, the device supports creating and using dynamic libraries in render pipeline stages. If NO, the device does not.
         #[unsafe(method(supportsRenderDynamicLibraries))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsRenderDynamicLibraries(&self) -> bool;
+        unsafe fn supports_render_dynamic_libraries(&self) -> bool;
 
         #[cfg(all(feature = "MTLDynamicLibrary", feature = "MTLLibrary"))]
         /// Creates a MTLDynamicLibrary by compiling the code in a MTLLibrary.
@@ -1718,7 +1722,7 @@ extern_protocol!(
         /// Returns: On success, the MTLDynamicLibrary containing compiled code. On failure, nil.
         #[unsafe(method(newDynamicLibrary:error:_))]
         #[unsafe(method_family = new)]
-        fn newDynamicLibrary_error(
+        fn new_dynamic_library_error(
             &self,
             library: &ProtocolObject<dyn MTLLibrary>,
         ) -> Result<Retained<ProtocolObject<dyn MTLDynamicLibrary>>, Retained<NSError>>;
@@ -1735,7 +1739,7 @@ extern_protocol!(
         /// Returns: On success, the MTLDynamicLibrary containing compiled code (either loaded or compiled). On failure, nil.
         #[unsafe(method(newDynamicLibraryWithURL:error:_))]
         #[unsafe(method_family = new)]
-        fn newDynamicLibraryWithURL_error(
+        fn new_dynamic_library_with_url_error(
             &self,
             url: &NSURL,
         ) -> Result<Retained<ProtocolObject<dyn MTLDynamicLibrary>>, Retained<NSError>>;
@@ -1752,7 +1756,7 @@ extern_protocol!(
         /// Returns: On success, the created MTLBinaryArchive. On failure, nil.
         #[unsafe(method(newBinaryArchiveWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        fn newBinaryArchiveWithDescriptor_error(
+        fn new_binary_archive_with_descriptor_error(
             &self,
             descriptor: &MTLBinaryArchiveDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLBinaryArchive>>, Retained<NSError>>;
@@ -1762,12 +1766,12 @@ extern_protocol!(
         /// Returns: BOOL value. If YES, the device supports ray tracing from compute pipelines. If NO, the device does not.
         #[unsafe(method(supportsRaytracing))]
         #[unsafe(method_family = none)]
-        fn supportsRaytracing(&self) -> bool;
+        fn supports_raytracing(&self) -> bool;
 
         #[cfg(feature = "MTLAccelerationStructure")]
         #[unsafe(method(accelerationStructureSizesWithDescriptor:))]
         #[unsafe(method_family = none)]
-        fn accelerationStructureSizesWithDescriptor(
+        fn acceleration_structure_sizes_with_descriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
         ) -> MTLAccelerationStructureSizes;
@@ -1779,7 +1783,7 @@ extern_protocol!(
         ))]
         #[unsafe(method(newAccelerationStructureWithSize:))]
         #[unsafe(method_family = new)]
-        fn newAccelerationStructureWithSize(
+        fn new_acceleration_structure_with_size(
             &self,
             size: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
@@ -1791,7 +1795,7 @@ extern_protocol!(
         ))]
         #[unsafe(method(newAccelerationStructureWithDescriptor:))]
         #[unsafe(method_family = new)]
-        unsafe fn newAccelerationStructureWithDescriptor(
+        unsafe fn new_acceleration_structure_with_descriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
@@ -1801,7 +1805,7 @@ extern_protocol!(
         /// This method can be used to help determine the required heap size.
         #[unsafe(method(heapAccelerationStructureSizeAndAlignWithSize:))]
         #[unsafe(method_family = none)]
-        unsafe fn heapAccelerationStructureSizeAndAlignWithSize(
+        unsafe fn heap_acceleration_structure_size_and_align_with_size(
             &self,
             size: NSUInteger,
         ) -> MTLSizeAndAlign;
@@ -1812,7 +1816,7 @@ extern_protocol!(
         /// This method can be used to help determine the required heap size.
         #[unsafe(method(heapAccelerationStructureSizeAndAlignWithDescriptor:))]
         #[unsafe(method_family = none)]
-        unsafe fn heapAccelerationStructureSizeAndAlignWithDescriptor(
+        unsafe fn heap_acceleration_structure_size_and_align_with_descriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
         ) -> MTLSizeAndAlign;
@@ -1822,40 +1826,40 @@ extern_protocol!(
         /// Returns: BOOL value. If YES, the device supports function pointers from compute pipelines. If NO, the device does not.
         #[unsafe(method(supportsFunctionPointers))]
         #[unsafe(method_family = none)]
-        fn supportsFunctionPointers(&self) -> bool;
+        fn supports_function_pointers(&self) -> bool;
 
         /// Query device support for using function pointers from render pipeline stages.
         ///
         /// Returns: BOOL value. If YES, the device supports function pointers from render pipeline stages. If NO, the device does not.
         #[unsafe(method(supportsFunctionPointersFromRender))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsFunctionPointersFromRender(&self) -> bool;
+        unsafe fn supports_function_pointers_from_render(&self) -> bool;
 
         /// Query device support for using ray tracing from render pipeline stages.
         ///
         /// Returns: BOOL value. If YES, the device supports ray tracing from render pipeline stages. If NO, the device does not.
         #[unsafe(method(supportsRaytracingFromRender))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsRaytracingFromRender(&self) -> bool;
+        unsafe fn supports_raytracing_from_render(&self) -> bool;
 
         /// Query device support for using ray tracing primitive motion blur.
         ///
         /// Returns: BOOL value. If YES, the device supports the primitive motion blur api. If NO, the device does not.
         #[unsafe(method(supportsPrimitiveMotionBlur))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsPrimitiveMotionBlur(&self) -> bool;
+        unsafe fn supports_primitive_motion_blur(&self) -> bool;
 
         /// Allow this device to use additional CPU threads (scaled automatically to the host machine) to be used for compilation tasks. Default is `NO`.
         ///
         /// Use the `maximumConcurrentCompilationTaskCount` property to determine the current number of concurrent CPU threads that this device is using.
         #[unsafe(method(shouldMaximizeConcurrentCompilation))]
         #[unsafe(method_family = none)]
-        unsafe fn shouldMaximizeConcurrentCompilation(&self) -> bool;
+        unsafe fn should_maximize_concurrent_compilation(&self) -> bool;
 
         /// Setter for [`shouldMaximizeConcurrentCompilation`][Self::shouldMaximizeConcurrentCompilation].
         #[unsafe(method(setShouldMaximizeConcurrentCompilation:))]
         #[unsafe(method_family = none)]
-        unsafe fn setShouldMaximizeConcurrentCompilation(
+        unsafe fn set_should_maximize_concurrent_compilation(
             &self,
             should_maximize_concurrent_compilation: bool,
         );
@@ -1865,13 +1869,13 @@ extern_protocol!(
         /// The property returns a different value depending on the value of the property `shouldMaximizeConcurrentCompilation`.
         #[unsafe(method(maximumConcurrentCompilationTaskCount))]
         #[unsafe(method_family = none)]
-        unsafe fn maximumConcurrentCompilationTaskCount(&self) -> NSUInteger;
+        unsafe fn maximum_concurrent_compilation_task_count(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLResidencySet")]
         /// Creates a new residency set with a descriptor.
         #[unsafe(method(newResidencySetWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newResidencySetWithDescriptor_error(
+        unsafe fn new_residency_set_with_descriptor_error(
             &self,
             desc: &MTLResidencySetDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLResidencySet>>, Retained<NSError>>;

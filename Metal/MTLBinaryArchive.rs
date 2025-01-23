@@ -65,7 +65,7 @@ impl MTLBinaryArchiveDescriptor {
         /// Setter for [`url`][Self::url].
         #[unsafe(method(setUrl:))]
         #[unsafe(method_family = none)]
-        pub fn setUrl(&self, url: Option<&NSURL>);
+        pub fn set_url(&self, url: Option<&NSURL>);
     );
 }
 
@@ -116,7 +116,7 @@ extern_protocol!(
         /// Setter for [`label`][Self::label].
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        fn setLabel(&self, label: Option<&NSString>);
+        fn set_label(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
@@ -134,7 +134,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addComputePipelineFunctionsWithDescriptor:error:_))]
         #[unsafe(method_family = none)]
-        fn addComputePipelineFunctionsWithDescriptor_error(
+        fn add_compute_pipeline_functions_with_descriptor_error(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
         ) -> Result<(), Retained<NSError>>;
@@ -149,7 +149,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addRenderPipelineFunctionsWithDescriptor:error:_))]
         #[unsafe(method_family = none)]
-        fn addRenderPipelineFunctionsWithDescriptor_error(
+        fn add_render_pipeline_functions_with_descriptor_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
         ) -> Result<(), Retained<NSError>>;
@@ -164,7 +164,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addTileRenderPipelineFunctionsWithDescriptor:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn addTileRenderPipelineFunctionsWithDescriptor_error(
+        unsafe fn add_tile_render_pipeline_functions_with_descriptor_error(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
         ) -> Result<(), Retained<NSError>>;
@@ -179,7 +179,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addMeshRenderPipelineFunctionsWithDescriptor:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn addMeshRenderPipelineFunctionsWithDescriptor_error(
+        unsafe fn add_mesh_render_pipeline_functions_with_descriptor_error(
             &self,
             descriptor: &MTLMeshRenderPipelineDescriptor,
         ) -> Result<(), Retained<NSError>>;
@@ -194,7 +194,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addLibraryWithDescriptor:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn addLibraryWithDescriptor_error(
+        unsafe fn add_library_with_descriptor_error(
             &self,
             descriptor: &MTLStitchedLibraryDescriptor,
         ) -> Result<(), Retained<NSError>>;
@@ -210,7 +210,7 @@ extern_protocol!(
         /// Returns: Whether or not the writing the file succeeded.
         #[unsafe(method(serializeToURL:error:_))]
         #[unsafe(method_family = none)]
-        fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
+        fn serialize_to_url_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "MTLLibrary"))]
         /// Add a `visible` or `intersection` function to the archive.
@@ -224,7 +224,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addFunctionWithDescriptor:library:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn addFunctionWithDescriptor_library_error(
+        unsafe fn add_function_with_descriptor_library_error(
             &self,
             descriptor: &MTLFunctionDescriptor,
             library: &ProtocolObject<dyn MTLLibrary>,

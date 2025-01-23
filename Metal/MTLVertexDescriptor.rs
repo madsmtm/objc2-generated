@@ -190,25 +190,25 @@ impl MTLVertexBufferLayoutDescriptor {
         /// Setter for [`stride`][Self::stride].
         #[unsafe(method(setStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStride(&self, stride: NSUInteger);
+        pub unsafe fn set_stride(&self, stride: NSUInteger);
 
         #[unsafe(method(stepFunction))]
         #[unsafe(method_family = none)]
-        pub fn stepFunction(&self) -> MTLVertexStepFunction;
+        pub fn step_function(&self) -> MTLVertexStepFunction;
 
         /// Setter for [`stepFunction`][Self::stepFunction].
         #[unsafe(method(setStepFunction:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStepFunction(&self, step_function: MTLVertexStepFunction);
+        pub unsafe fn set_step_function(&self, step_function: MTLVertexStepFunction);
 
         #[unsafe(method(stepRate))]
         #[unsafe(method_family = none)]
-        pub fn stepRate(&self) -> NSUInteger;
+        pub fn step_rate(&self) -> NSUInteger;
 
         /// Setter for [`stepRate`][Self::stepRate].
         #[unsafe(method(setStepRate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStepRate(&self, step_rate: NSUInteger);
+        pub unsafe fn set_step_rate(&self, step_rate: NSUInteger);
     );
 }
 
@@ -245,14 +245,14 @@ impl MTLVertexBufferLayoutDescriptorArray {
     extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             index: NSUInteger,
         ) -> Retained<MTLVertexBufferLayoutDescriptor>;
 
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             buffer_desc: Option<&MTLVertexBufferLayoutDescriptor>,
             index: NSUInteger,
@@ -297,7 +297,7 @@ impl MTLVertexAttributeDescriptor {
         /// Setter for [`format`][Self::format].
         #[unsafe(method(setFormat:))]
         #[unsafe(method_family = none)]
-        pub fn setFormat(&self, format: MTLVertexFormat);
+        pub fn set_format(&self, format: MTLVertexFormat);
 
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
@@ -306,16 +306,16 @@ impl MTLVertexAttributeDescriptor {
         /// Setter for [`offset`][Self::offset].
         #[unsafe(method(setOffset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOffset(&self, offset: NSUInteger);
+        pub unsafe fn set_offset(&self, offset: NSUInteger);
 
         #[unsafe(method(bufferIndex))]
         #[unsafe(method_family = none)]
-        pub fn bufferIndex(&self) -> NSUInteger;
+        pub fn buffer_index(&self) -> NSUInteger;
 
         /// Setter for [`bufferIndex`][Self::bufferIndex].
         #[unsafe(method(setBufferIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
+        pub unsafe fn set_buffer_index(&self, buffer_index: NSUInteger);
     );
 }
 
@@ -352,14 +352,14 @@ impl MTLVertexAttributeDescriptorArray {
     extern_methods!(
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(
+        pub unsafe fn object_at_indexed_subscript(
             &self,
             index: NSUInteger,
         ) -> Retained<MTLVertexAttributeDescriptor>;
 
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(
+        pub unsafe fn set_object_at_indexed_subscript(
             &self,
             attribute_desc: Option<&MTLVertexAttributeDescriptor>,
             index: NSUInteger,
@@ -399,7 +399,7 @@ impl MTLVertexDescriptor {
     extern_methods!(
         #[unsafe(method(vertexDescriptor))]
         #[unsafe(method_family = none)]
-        pub fn vertexDescriptor() -> Retained<MTLVertexDescriptor>;
+        pub fn vertex_descriptor() -> Retained<MTLVertexDescriptor>;
 
         #[unsafe(method(layouts))]
         #[unsafe(method_family = none)]

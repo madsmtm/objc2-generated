@@ -39,21 +39,21 @@ impl CAScrollLayer {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollToPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollToPoint(&self, p: CGPoint);
+        pub unsafe fn scroll_to_point(&self, p: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollToRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollToRect(&self, r: CGRect);
+        pub unsafe fn scroll_to_rect(&self, r: CGRect);
 
         #[unsafe(method(scrollMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollMode(&self) -> Retained<CAScrollLayerScrollMode>;
+        pub unsafe fn scroll_mode(&self) -> Retained<CAScrollLayerScrollMode>;
 
         /// Setter for [`scrollMode`][Self::scrollMode].
         #[unsafe(method(setScrollMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScrollMode(&self, scroll_mode: &CAScrollLayerScrollMode);
+        pub unsafe fn set_scroll_mode(&self, scroll_mode: &CAScrollLayerScrollMode);
     );
 }
 
@@ -72,7 +72,7 @@ impl CAScrollLayer {
 
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
+        pub unsafe fn init_with_layer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     );
 }
 
@@ -93,17 +93,17 @@ impl CALayer {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollPoint(&self, p: CGPoint);
+        pub unsafe fn scroll_point(&self, p: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollRectToVisible:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollRectToVisible(&self, r: CGRect);
+        pub unsafe fn scroll_rect_to_visible(&self, r: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(visibleRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn visibleRect(&self) -> CGRect;
+        pub unsafe fn visible_rect(&self) -> CGRect;
     );
 }
 

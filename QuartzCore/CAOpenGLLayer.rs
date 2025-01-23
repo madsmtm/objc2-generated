@@ -36,13 +36,13 @@ impl CAOpenGLLayer {
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(isAsynchronous))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isAsynchronous(&self) -> bool;
+        pub unsafe fn is_asynchronous(&self) -> bool;
 
         /// Setter for [`isAsynchronous`][Self::isAsynchronous].
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(setAsynchronous:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAsynchronous(&self, asynchronous: bool);
+        pub unsafe fn set_asynchronous(&self, asynchronous: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "OpenGL is deprecated"]
@@ -55,18 +55,18 @@ impl CAOpenGLLayer {
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(setColorspace:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpace>);
+        pub unsafe fn set_colorspace(&self, colorspace: Option<&CGColorSpace>);
 
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(wantsExtendedDynamicRangeContent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
+        pub unsafe fn wants_extended_dynamic_range_content(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(setWantsExtendedDynamicRangeContent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWantsExtendedDynamicRangeContent(
+        pub unsafe fn set_wants_extended_dynamic_range_content(
             &self,
             wants_extended_dynamic_range_content: bool,
         );
@@ -88,7 +88,7 @@ impl CAOpenGLLayer {
 
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
+        pub unsafe fn init_with_layer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     );
 }
 
