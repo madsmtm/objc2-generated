@@ -117,9 +117,13 @@ pub unsafe extern "C-unwind" fn CFMachPortCreateWithPort(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CFMachPortGetPort(port: &CFMachPort) -> libc::mach_port_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn CFMachPortGetPort(port: &CFMachPort) -> libc::mach_port_t {
+    extern "C-unwind" {
+        fn CFMachPortGetPort(port: &CFMachPort) -> libc::mach_port_t;
+    }
+    unsafe { CFMachPortGetPort(port) }
 }
 
 extern "C-unwind" {
@@ -127,12 +131,16 @@ extern "C-unwind" {
     pub fn CFMachPortGetContext(port: &CFMachPort, context: *mut CFMachPortContext);
 }
 
-extern "C-unwind" {
-    pub fn CFMachPortInvalidate(port: &CFMachPort);
+#[inline]
+pub extern "C-unwind" fn CFMachPortInvalidate(port: &CFMachPort) {
+    extern "C-unwind" {
+        fn CFMachPortInvalidate(port: &CFMachPort);
+    }
+    unsafe { CFMachPortInvalidate(port) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFMachPortIsValid(port: &CFMachPort) -> bool {
+pub extern "C-unwind" fn CFMachPortIsValid(port: &CFMachPort) -> bool {
     extern "C-unwind" {
         fn CFMachPortIsValid(port: &CFMachPort) -> Boolean;
     }
@@ -140,8 +148,14 @@ pub unsafe extern "C-unwind" fn CFMachPortIsValid(port: &CFMachPort) -> bool {
     ret != 0
 }
 
-extern "C-unwind" {
-    pub fn CFMachPortGetInvalidationCallBack(port: &CFMachPort) -> CFMachPortInvalidationCallBack;
+#[inline]
+pub extern "C-unwind" fn CFMachPortGetInvalidationCallBack(
+    port: &CFMachPort,
+) -> CFMachPortInvalidationCallBack {
+    extern "C-unwind" {
+        fn CFMachPortGetInvalidationCallBack(port: &CFMachPort) -> CFMachPortInvalidationCallBack;
+    }
+    unsafe { CFMachPortGetInvalidationCallBack(port) }
 }
 
 extern "C-unwind" {
@@ -153,7 +167,7 @@ extern "C-unwind" {
 
 #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFMachPortCreateRunLoopSource(
+pub extern "C-unwind" fn CFMachPortCreateRunLoopSource(
     allocator: Option<&CFAllocator>,
     port: Option<&CFMachPort>,
     order: CFIndex,

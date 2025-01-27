@@ -21,7 +21,7 @@ unsafe impl ConcreteType for CFTimeZone {
 
 #[cfg(feature = "CFDate")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneCopySystem() -> Option<CFRetained<CFTimeZone>> {
+pub extern "C-unwind" fn CFTimeZoneCopySystem() -> Option<CFRetained<CFTimeZone>> {
     extern "C-unwind" {
         fn CFTimeZoneCopySystem() -> Option<NonNull<CFTimeZone>>;
     }
@@ -35,7 +35,7 @@ extern "C-unwind" {
 
 #[cfg(feature = "CFDate")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneCopyDefault() -> Option<CFRetained<CFTimeZone>> {
+pub extern "C-unwind" fn CFTimeZoneCopyDefault() -> Option<CFRetained<CFTimeZone>> {
     extern "C-unwind" {
         fn CFTimeZoneCopyDefault() -> Option<NonNull<CFTimeZone>>;
     }
@@ -43,14 +43,18 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCopyDefault() -> Option<CFRetained<CFT
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFDate")]
-    pub fn CFTimeZoneSetDefault(tz: &CFTimeZone);
+#[cfg(feature = "CFDate")]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneSetDefault(tz: &CFTimeZone) {
+    extern "C-unwind" {
+        fn CFTimeZoneSetDefault(tz: &CFTimeZone);
+    }
+    unsafe { CFTimeZoneSetDefault(tz) }
 }
 
 #[cfg(feature = "CFArray")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneCopyKnownNames() -> Option<CFRetained<CFArray>> {
+pub extern "C-unwind" fn CFTimeZoneCopyKnownNames() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn CFTimeZoneCopyKnownNames() -> Option<NonNull<CFArray>>;
     }
@@ -60,8 +64,8 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCopyKnownNames() -> Option<CFRetained<
 
 #[cfg(feature = "CFDictionary")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneCopyAbbreviationDictionary(
-) -> Option<CFRetained<CFDictionary>> {
+pub extern "C-unwind" fn CFTimeZoneCopyAbbreviationDictionary() -> Option<CFRetained<CFDictionary>>
+{
     extern "C-unwind" {
         fn CFTimeZoneCopyAbbreviationDictionary() -> Option<NonNull<CFDictionary>>;
     }
@@ -94,7 +98,7 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCreate(
 
 #[cfg(all(feature = "CFBase", feature = "CFDate"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneCreateWithTimeIntervalFromGMT(
+pub extern "C-unwind" fn CFTimeZoneCreateWithTimeIntervalFromGMT(
     allocator: Option<&CFAllocator>,
     ti: CFTimeInterval,
 ) -> Option<CFRetained<CFTimeZone>> {
@@ -110,7 +114,7 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCreateWithTimeIntervalFromGMT(
 
 #[cfg(all(feature = "CFBase", feature = "CFDate"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneCreateWithName(
+pub extern "C-unwind" fn CFTimeZoneCreateWithName(
     allocator: Option<&CFAllocator>,
     name: Option<&CFString>,
     try_abbrev: bool,
@@ -128,7 +132,7 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCreateWithName(
 
 #[cfg(all(feature = "CFBase", feature = "CFDate"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<CFRetained<CFString>> {
+pub extern "C-unwind" fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<NonNull<CFString>>;
     }
@@ -138,7 +142,7 @@ pub unsafe extern "C-unwind" fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<CFR
 
 #[cfg(all(feature = "CFData", feature = "CFDate"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<CFRetained<CFData>> {
+pub extern "C-unwind" fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
         fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<NonNull<CFData>>;
     }
@@ -146,14 +150,21 @@ pub unsafe extern "C-unwind" fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<CFR
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFDate")]
-    pub fn CFTimeZoneGetSecondsFromGMT(tz: &CFTimeZone, at: CFAbsoluteTime) -> CFTimeInterval;
+#[cfg(feature = "CFDate")]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneGetSecondsFromGMT(
+    tz: &CFTimeZone,
+    at: CFAbsoluteTime,
+) -> CFTimeInterval {
+    extern "C-unwind" {
+        fn CFTimeZoneGetSecondsFromGMT(tz: &CFTimeZone, at: CFAbsoluteTime) -> CFTimeInterval;
+    }
+    unsafe { CFTimeZoneGetSecondsFromGMT(tz, at) }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDate"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneCopyAbbreviation(
+pub extern "C-unwind" fn CFTimeZoneCopyAbbreviation(
     tz: &CFTimeZone,
     at: CFAbsoluteTime,
 ) -> Option<CFRetained<CFString>> {
@@ -169,7 +180,7 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCopyAbbreviation(
 
 #[cfg(feature = "CFDate")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneIsDaylightSavingTime(
+pub extern "C-unwind" fn CFTimeZoneIsDaylightSavingTime(
     tz: &CFTimeZone,
     at: CFAbsoluteTime,
 ) -> bool {
@@ -180,20 +191,34 @@ pub unsafe extern "C-unwind" fn CFTimeZoneIsDaylightSavingTime(
     ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFDate")]
-    pub fn CFTimeZoneGetDaylightSavingTimeOffset(
-        tz: &CFTimeZone,
-        at: CFAbsoluteTime,
-    ) -> CFTimeInterval;
+#[cfg(feature = "CFDate")]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneGetDaylightSavingTimeOffset(
+    tz: &CFTimeZone,
+    at: CFAbsoluteTime,
+) -> CFTimeInterval {
+    extern "C-unwind" {
+        fn CFTimeZoneGetDaylightSavingTimeOffset(
+            tz: &CFTimeZone,
+            at: CFAbsoluteTime,
+        ) -> CFTimeInterval;
+    }
+    unsafe { CFTimeZoneGetDaylightSavingTimeOffset(tz, at) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFDate")]
-    pub fn CFTimeZoneGetNextDaylightSavingTimeTransition(
-        tz: &CFTimeZone,
-        at: CFAbsoluteTime,
-    ) -> CFAbsoluteTime;
+#[cfg(feature = "CFDate")]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneGetNextDaylightSavingTimeTransition(
+    tz: &CFTimeZone,
+    at: CFAbsoluteTime,
+) -> CFAbsoluteTime {
+    extern "C-unwind" {
+        fn CFTimeZoneGetNextDaylightSavingTimeTransition(
+            tz: &CFTimeZone,
+            at: CFAbsoluteTime,
+        ) -> CFAbsoluteTime;
+    }
+    unsafe { CFTimeZoneGetNextDaylightSavingTimeTransition(tz, at) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle?language=objc)
@@ -230,7 +255,7 @@ unsafe impl RefEncode for CFTimeZoneNameStyle {
 
 #[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFLocale"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneCopyLocalizedName(
+pub extern "C-unwind" fn CFTimeZoneCopyLocalizedName(
     tz: &CFTimeZone,
     style: CFTimeZoneNameStyle,
     locale: Option<&CFLocale>,

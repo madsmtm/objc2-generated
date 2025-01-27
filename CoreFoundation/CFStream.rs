@@ -238,7 +238,7 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithBuffer(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithAllocatedBuffers(
+pub extern "C-unwind" fn CFWriteStreamCreateWithAllocatedBuffers(
     alloc: Option<&CFAllocator>,
     buffer_allocator: Option<&CFAllocator>,
 ) -> Option<CFRetained<CFWriteStream>> {
@@ -254,7 +254,7 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithAllocatedBuffers(
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFile(
+pub extern "C-unwind" fn CFReadStreamCreateWithFile(
     alloc: Option<&CFAllocator>,
     file_url: Option<&CFURL>,
 ) -> Option<CFRetained<CFReadStream>> {
@@ -270,7 +270,7 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFile(
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithFile(
+pub extern "C-unwind" fn CFWriteStreamCreateWithFile(
     alloc: Option<&CFAllocator>,
     file_url: Option<&CFURL>,
 ) -> Option<CFRetained<CFWriteStream>> {
@@ -458,19 +458,27 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFReadStreamGetStatus(stream: &CFReadStream) -> CFStreamStatus;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFReadStreamGetStatus(stream: &CFReadStream) -> CFStreamStatus {
+    extern "C-unwind" {
+        fn CFReadStreamGetStatus(stream: &CFReadStream) -> CFStreamStatus;
+    }
+    unsafe { CFReadStreamGetStatus(stream) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamGetStatus(stream: &CFWriteStream) -> CFStreamStatus;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFWriteStreamGetStatus(stream: &CFWriteStream) -> CFStreamStatus {
+    extern "C-unwind" {
+        fn CFWriteStreamGetStatus(stream: &CFWriteStream) -> CFStreamStatus;
+    }
+    unsafe { CFWriteStreamGetStatus(stream) }
 }
 
 #[cfg(feature = "CFError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFReadStreamCopyError(
+pub extern "C-unwind" fn CFReadStreamCopyError(
     stream: &CFReadStream,
 ) -> Option<CFRetained<CFError>> {
     extern "C-unwind" {
@@ -482,7 +490,7 @@ pub unsafe extern "C-unwind" fn CFReadStreamCopyError(
 
 #[cfg(feature = "CFError")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFWriteStreamCopyError(
+pub extern "C-unwind" fn CFWriteStreamCopyError(
     stream: &CFWriteStream,
 ) -> Option<CFRetained<CFError>> {
     extern "C-unwind" {
@@ -493,7 +501,7 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCopyError(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFReadStreamOpen(stream: &CFReadStream) -> bool {
+pub extern "C-unwind" fn CFReadStreamOpen(stream: &CFReadStream) -> bool {
     extern "C-unwind" {
         fn CFReadStreamOpen(stream: &CFReadStream) -> Boolean;
     }
@@ -502,7 +510,7 @@ pub unsafe extern "C-unwind" fn CFReadStreamOpen(stream: &CFReadStream) -> bool 
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFWriteStreamOpen(stream: &CFWriteStream) -> bool {
+pub extern "C-unwind" fn CFWriteStreamOpen(stream: &CFWriteStream) -> bool {
     extern "C-unwind" {
         fn CFWriteStreamOpen(stream: &CFWriteStream) -> Boolean;
     }
@@ -510,16 +518,24 @@ pub unsafe extern "C-unwind" fn CFWriteStreamOpen(stream: &CFWriteStream) -> boo
     ret != 0
 }
 
-extern "C-unwind" {
-    pub fn CFReadStreamClose(stream: &CFReadStream);
-}
-
-extern "C-unwind" {
-    pub fn CFWriteStreamClose(stream: &CFWriteStream);
+#[inline]
+pub extern "C-unwind" fn CFReadStreamClose(stream: &CFReadStream) {
+    extern "C-unwind" {
+        fn CFReadStreamClose(stream: &CFReadStream);
+    }
+    unsafe { CFReadStreamClose(stream) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFReadStreamHasBytesAvailable(stream: &CFReadStream) -> bool {
+pub extern "C-unwind" fn CFWriteStreamClose(stream: &CFWriteStream) {
+    extern "C-unwind" {
+        fn CFWriteStreamClose(stream: &CFWriteStream);
+    }
+    unsafe { CFWriteStreamClose(stream) }
+}
+
+#[inline]
+pub extern "C-unwind" fn CFReadStreamHasBytesAvailable(stream: &CFReadStream) -> bool {
     extern "C-unwind" {
         fn CFReadStreamHasBytesAvailable(stream: &CFReadStream) -> Boolean;
     }
@@ -546,7 +562,7 @@ extern "C-unwind" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFWriteStreamCanAcceptBytes(stream: &CFWriteStream) -> bool {
+pub extern "C-unwind" fn CFWriteStreamCanAcceptBytes(stream: &CFWriteStream) -> bool {
     extern "C-unwind" {
         fn CFWriteStreamCanAcceptBytes(stream: &CFWriteStream) -> Boolean;
     }
@@ -565,7 +581,7 @@ extern "C-unwind" {
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFReadStreamCopyProperty(
+pub extern "C-unwind" fn CFReadStreamCopyProperty(
     stream: &CFReadStream,
     property_name: Option<&CFStreamPropertyKey>,
 ) -> Option<CFRetained<CFType>> {
@@ -581,7 +597,7 @@ pub unsafe extern "C-unwind" fn CFReadStreamCopyProperty(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFWriteStreamCopyProperty(
+pub extern "C-unwind" fn CFWriteStreamCopyProperty(
     stream: &CFWriteStream,
     property_name: Option<&CFStreamPropertyKey>,
 ) -> Option<CFRetained<CFType>> {
@@ -671,40 +687,72 @@ pub unsafe extern "C-unwind" fn CFWriteStreamSetClient(
     ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
-    pub fn CFReadStreamScheduleWithRunLoop(
-        stream: &CFReadStream,
-        run_loop: Option<&CFRunLoop>,
-        run_loop_mode: Option<&CFRunLoopMode>,
-    );
+#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[inline]
+pub extern "C-unwind" fn CFReadStreamScheduleWithRunLoop(
+    stream: &CFReadStream,
+    run_loop: Option<&CFRunLoop>,
+    run_loop_mode: Option<&CFRunLoopMode>,
+) {
+    extern "C-unwind" {
+        fn CFReadStreamScheduleWithRunLoop(
+            stream: &CFReadStream,
+            run_loop: Option<&CFRunLoop>,
+            run_loop_mode: Option<&CFRunLoopMode>,
+        );
+    }
+    unsafe { CFReadStreamScheduleWithRunLoop(stream, run_loop, run_loop_mode) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
-    pub fn CFWriteStreamScheduleWithRunLoop(
-        stream: &CFWriteStream,
-        run_loop: Option<&CFRunLoop>,
-        run_loop_mode: Option<&CFRunLoopMode>,
-    );
+#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[inline]
+pub extern "C-unwind" fn CFWriteStreamScheduleWithRunLoop(
+    stream: &CFWriteStream,
+    run_loop: Option<&CFRunLoop>,
+    run_loop_mode: Option<&CFRunLoopMode>,
+) {
+    extern "C-unwind" {
+        fn CFWriteStreamScheduleWithRunLoop(
+            stream: &CFWriteStream,
+            run_loop: Option<&CFRunLoop>,
+            run_loop_mode: Option<&CFRunLoopMode>,
+        );
+    }
+    unsafe { CFWriteStreamScheduleWithRunLoop(stream, run_loop, run_loop_mode) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
-    pub fn CFReadStreamUnscheduleFromRunLoop(
-        stream: &CFReadStream,
-        run_loop: Option<&CFRunLoop>,
-        run_loop_mode: Option<&CFRunLoopMode>,
-    );
+#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[inline]
+pub extern "C-unwind" fn CFReadStreamUnscheduleFromRunLoop(
+    stream: &CFReadStream,
+    run_loop: Option<&CFRunLoop>,
+    run_loop_mode: Option<&CFRunLoopMode>,
+) {
+    extern "C-unwind" {
+        fn CFReadStreamUnscheduleFromRunLoop(
+            stream: &CFReadStream,
+            run_loop: Option<&CFRunLoop>,
+            run_loop_mode: Option<&CFRunLoopMode>,
+        );
+    }
+    unsafe { CFReadStreamUnscheduleFromRunLoop(stream, run_loop, run_loop_mode) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
-    pub fn CFWriteStreamUnscheduleFromRunLoop(
-        stream: &CFWriteStream,
-        run_loop: Option<&CFRunLoop>,
-        run_loop_mode: Option<&CFRunLoopMode>,
-    );
+#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[inline]
+pub extern "C-unwind" fn CFWriteStreamUnscheduleFromRunLoop(
+    stream: &CFWriteStream,
+    run_loop: Option<&CFRunLoop>,
+    run_loop_mode: Option<&CFRunLoopMode>,
+) {
+    extern "C-unwind" {
+        fn CFWriteStreamUnscheduleFromRunLoop(
+            stream: &CFWriteStream,
+            run_loop: Option<&CFRunLoop>,
+            run_loop_mode: Option<&CFRunLoopMode>,
+        );
+    }
+    unsafe { CFWriteStreamUnscheduleFromRunLoop(stream, run_loop, run_loop_mode) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerrordomain?language=objc)
@@ -733,12 +781,20 @@ unsafe impl RefEncode for CFStreamErrorDomain {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFReadStreamGetError(stream: &CFReadStream) -> CFStreamError;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFReadStreamGetError(stream: &CFReadStream) -> CFStreamError {
+    extern "C-unwind" {
+        fn CFReadStreamGetError(stream: &CFReadStream) -> CFStreamError;
+    }
+    unsafe { CFReadStreamGetError(stream) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamGetError(stream: &CFWriteStream) -> CFStreamError;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFWriteStreamGetError(stream: &CFWriteStream) -> CFStreamError {
+    extern "C-unwind" {
+        fn CFWriteStreamGetError(stream: &CFWriteStream) -> CFStreamError;
+    }
+    unsafe { CFWriteStreamGetError(stream) }
 }

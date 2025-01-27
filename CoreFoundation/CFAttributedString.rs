@@ -85,7 +85,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringCreateWithSubstring(
 /// Creates an immutable attributed string copy.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFAttributedStringCreateCopy(
+pub extern "C-unwind" fn CFAttributedStringCreateCopy(
     alloc: Option<&CFAllocator>,
     a_str: Option<&CFAttributedString>,
 ) -> Option<CFRetained<CFAttributedString>> {
@@ -102,7 +102,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringCreateCopy(
 /// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFAttributedStringGetString(
+pub extern "C-unwind" fn CFAttributedStringGetString(
     a_str: &CFAttributedString,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -112,10 +112,14 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetString(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the length of the attributed string in characters; same as CFStringGetLength(CFAttributedStringGetString(aStr))
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringGetLength(a_str: &CFAttributedString) -> CFIndex;
+/// Returns the length of the attributed string in characters; same as CFStringGetLength(CFAttributedStringGetString(aStr))
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFAttributedStringGetLength(a_str: &CFAttributedString) -> CFIndex {
+    extern "C-unwind" {
+        fn CFAttributedStringGetLength(a_str: &CFAttributedString) -> CFIndex;
+    }
+    unsafe { CFAttributedStringGetLength(a_str) }
 }
 
 /// Returns the attributes at the specified location. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same set of attributes apply. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributesAndLongestEffectiveRange().  It's a programming error for loc to specify a location outside the bounds of the attributed string.
@@ -222,7 +226,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributeAndLongestEffectiv
 /// Creates a mutable attributed string copy. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFAttributedStringCreateMutableCopy(
+pub extern "C-unwind" fn CFAttributedStringCreateMutableCopy(
     alloc: Option<&CFAllocator>,
     max_length: CFIndex,
     a_str: Option<&CFAttributedString>,
@@ -241,7 +245,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringCreateMutableCopy(
 /// Creates a mutable empty attributed string. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFAttributedStringCreateMutable(
+pub extern "C-unwind" fn CFAttributedStringCreateMutable(
     alloc: Option<&CFAllocator>,
     max_length: CFIndex,
 ) -> Option<CFRetained<CFMutableAttributedString>> {
@@ -272,7 +276,7 @@ extern "C-unwind" {
 /// (Note: This function is not yet implemented and will return NULL except for toll-free bridged instances.)
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFAttributedStringGetMutableString(
+pub extern "C-unwind" fn CFAttributedStringGetMutableString(
     a_str: Option<&CFMutableAttributedString>,
 ) -> Option<CFRetained<CFMutableString>> {
     extern "C-unwind" {
@@ -337,14 +341,22 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
-    pub fn CFAttributedStringBeginEditing(a_str: Option<&CFMutableAttributedString>);
+/// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
+#[inline]
+pub extern "C-unwind" fn CFAttributedStringBeginEditing(a_str: Option<&CFMutableAttributedString>) {
+    extern "C-unwind" {
+        fn CFAttributedStringBeginEditing(a_str: Option<&CFMutableAttributedString>);
+    }
+    unsafe { CFAttributedStringBeginEditing(a_str) }
 }
 
-extern "C-unwind" {
-    /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
-    pub fn CFAttributedStringEndEditing(a_str: Option<&CFMutableAttributedString>);
+/// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
+#[inline]
+pub extern "C-unwind" fn CFAttributedStringEndEditing(a_str: Option<&CFMutableAttributedString>) {
+    extern "C-unwind" {
+        fn CFAttributedStringEndEditing(a_str: Option<&CFMutableAttributedString>);
+    }
+    unsafe { CFAttributedStringEndEditing(a_str) }
 }
 
 extern "C-unwind" {

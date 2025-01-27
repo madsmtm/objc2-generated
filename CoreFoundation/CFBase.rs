@@ -243,12 +243,16 @@ unsafe impl ConcreteType for CFAllocator {
     }
 }
 
-extern "C-unwind" {
-    pub fn CFAllocatorSetDefault(allocator: Option<&CFAllocator>);
+#[inline]
+pub extern "C-unwind" fn CFAllocatorSetDefault(allocator: Option<&CFAllocator>) {
+    extern "C-unwind" {
+        fn CFAllocatorSetDefault(allocator: Option<&CFAllocator>);
+    }
+    unsafe { CFAllocatorSetDefault(allocator) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFAllocatorGetDefault() -> Option<CFRetained<CFAllocator>> {
+pub extern "C-unwind" fn CFAllocatorGetDefault() -> Option<CFRetained<CFAllocator>> {
     extern "C-unwind" {
         fn CFAllocatorGetDefault() -> Option<NonNull<CFAllocator>>;
     }
@@ -290,12 +294,20 @@ extern "C-unwind" {
     ) -> *mut c_void;
 }
 
-extern "C-unwind" {
-    pub fn CFAllocatorAllocateBytes(
-        allocator: Option<&CFAllocator>,
-        size: CFIndex,
-        hint: CFOptionFlags,
-    ) -> *mut c_void;
+#[inline]
+pub extern "C-unwind" fn CFAllocatorAllocateBytes(
+    allocator: Option<&CFAllocator>,
+    size: CFIndex,
+    hint: CFOptionFlags,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn CFAllocatorAllocateBytes(
+            allocator: Option<&CFAllocator>,
+            size: CFIndex,
+            hint: CFOptionFlags,
+        ) -> *mut c_void;
+    }
+    unsafe { CFAllocatorAllocateBytes(allocator, size, hint) }
 }
 
 extern "C-unwind" {
@@ -307,12 +319,20 @@ extern "C-unwind" {
     ) -> *mut c_void;
 }
 
-extern "C-unwind" {
-    pub fn CFAllocatorAllocate(
-        allocator: Option<&CFAllocator>,
-        size: CFIndex,
-        hint: CFOptionFlags,
-    ) -> *mut c_void;
+#[inline]
+pub extern "C-unwind" fn CFAllocatorAllocate(
+    allocator: Option<&CFAllocator>,
+    size: CFIndex,
+    hint: CFOptionFlags,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn CFAllocatorAllocate(
+            allocator: Option<&CFAllocator>,
+            size: CFIndex,
+            hint: CFOptionFlags,
+        ) -> *mut c_void;
+    }
+    unsafe { CFAllocatorAllocate(allocator, size, hint) }
 }
 
 extern "C-unwind" {
@@ -328,12 +348,20 @@ extern "C-unwind" {
     pub fn CFAllocatorDeallocate(allocator: Option<&CFAllocator>, ptr: *mut c_void);
 }
 
-extern "C-unwind" {
-    pub fn CFAllocatorGetPreferredSizeForSize(
-        allocator: Option<&CFAllocator>,
-        size: CFIndex,
-        hint: CFOptionFlags,
-    ) -> CFIndex;
+#[inline]
+pub extern "C-unwind" fn CFAllocatorGetPreferredSizeForSize(
+    allocator: Option<&CFAllocator>,
+    size: CFIndex,
+    hint: CFOptionFlags,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFAllocatorGetPreferredSizeForSize(
+            allocator: Option<&CFAllocator>,
+            size: CFIndex,
+            hint: CFOptionFlags,
+        ) -> CFIndex;
+    }
+    unsafe { CFAllocatorGetPreferredSizeForSize(allocator, size, hint) }
 }
 
 extern "C-unwind" {
@@ -394,9 +422,7 @@ pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> Option<CFReta
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFGetAllocator(
-    cf: Option<&CFType>,
-) -> Option<CFRetained<CFAllocator>> {
+pub extern "C-unwind" fn CFGetAllocator(cf: Option<&CFType>) -> Option<CFRetained<CFAllocator>> {
     extern "C-unwind" {
         fn CFGetAllocator(cf: Option<&CFType>) -> Option<NonNull<CFAllocator>>;
     }

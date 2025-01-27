@@ -87,7 +87,7 @@ pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseValue(
 
 #[cfg(feature = "CFDictionary")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseDictionary(
+pub extern "C-unwind" fn CFUserNotificationGetResponseDictionary(
     user_notification: &CFUserNotification,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -109,8 +109,12 @@ extern "C-unwind" {
     ) -> i32;
 }
 
-extern "C-unwind" {
-    pub fn CFUserNotificationCancel(user_notification: &CFUserNotification) -> i32;
+#[inline]
+pub extern "C-unwind" fn CFUserNotificationCancel(user_notification: &CFUserNotification) -> i32 {
+    extern "C-unwind" {
+        fn CFUserNotificationCancel(user_notification: &CFUserNotification) -> i32;
+    }
+    unsafe { CFUserNotificationCancel(user_notification) }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
@@ -135,18 +139,42 @@ pub unsafe extern "C-unwind" fn CFUserNotificationCreateRunLoopSource(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFURL"))]
-    pub fn CFUserNotificationDisplayNotice(
-        timeout: CFTimeInterval,
-        flags: CFOptionFlags,
-        icon_url: Option<&CFURL>,
-        sound_url: Option<&CFURL>,
-        localization_url: Option<&CFURL>,
-        alert_header: Option<&CFString>,
-        alert_message: Option<&CFString>,
-        default_button_title: Option<&CFString>,
-    ) -> i32;
+#[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFURL"))]
+#[inline]
+pub extern "C-unwind" fn CFUserNotificationDisplayNotice(
+    timeout: CFTimeInterval,
+    flags: CFOptionFlags,
+    icon_url: Option<&CFURL>,
+    sound_url: Option<&CFURL>,
+    localization_url: Option<&CFURL>,
+    alert_header: Option<&CFString>,
+    alert_message: Option<&CFString>,
+    default_button_title: Option<&CFString>,
+) -> i32 {
+    extern "C-unwind" {
+        fn CFUserNotificationDisplayNotice(
+            timeout: CFTimeInterval,
+            flags: CFOptionFlags,
+            icon_url: Option<&CFURL>,
+            sound_url: Option<&CFURL>,
+            localization_url: Option<&CFURL>,
+            alert_header: Option<&CFString>,
+            alert_message: Option<&CFString>,
+            default_button_title: Option<&CFString>,
+        ) -> i32;
+    }
+    unsafe {
+        CFUserNotificationDisplayNotice(
+            timeout,
+            flags,
+            icon_url,
+            sound_url,
+            localization_url,
+            alert_header,
+            alert_message,
+            default_button_title,
+        )
+    }
 }
 
 extern "C-unwind" {

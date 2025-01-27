@@ -74,7 +74,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleGetMainBundle() -> Option<CFRetained<CFBundle>> {
+pub extern "C-unwind" fn CFBundleGetMainBundle() -> Option<CFRetained<CFBundle>> {
     extern "C-unwind" {
         fn CFBundleGetMainBundle() -> Option<NonNull<CFBundle>>;
     }
@@ -84,7 +84,7 @@ pub unsafe extern "C-unwind" fn CFBundleGetMainBundle() -> Option<CFRetained<CFB
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleGetBundleWithIdentifier(
+pub extern "C-unwind" fn CFBundleGetBundleWithIdentifier(
     bundle_id: Option<&CFString>,
 ) -> Option<CFRetained<CFBundle>> {
     extern "C-unwind" {
@@ -98,7 +98,7 @@ pub unsafe extern "C-unwind" fn CFBundleGetBundleWithIdentifier(
 
 #[cfg(feature = "CFArray")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleGetAllBundles() -> Option<CFRetained<CFArray>> {
+pub extern "C-unwind" fn CFBundleGetAllBundles() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn CFBundleGetAllBundles() -> Option<NonNull<CFArray>>;
     }
@@ -120,7 +120,7 @@ unsafe impl ConcreteType for CFBundle {
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCreate(
+pub extern "C-unwind" fn CFBundleCreate(
     allocator: Option<&CFAllocator>,
     bundle_url: Option<&CFURL>,
 ) -> Option<CFRetained<CFBundle>> {
@@ -136,7 +136,7 @@ pub unsafe extern "C-unwind" fn CFBundleCreate(
 
 #[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCreateBundlesFromDirectory(
+pub extern "C-unwind" fn CFBundleCreateBundlesFromDirectory(
     allocator: Option<&CFAllocator>,
     directory_url: Option<&CFURL>,
     bundle_type: Option<&CFString>,
@@ -154,9 +154,7 @@ pub unsafe extern "C-unwind" fn CFBundleCreateBundlesFromDirectory(
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyBundleURL(
-    bundle: &CFBundle,
-) -> Option<CFRetained<CFURL>> {
+pub extern "C-unwind" fn CFBundleCopyBundleURL(bundle: &CFBundle) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
         fn CFBundleCopyBundleURL(bundle: &CFBundle) -> Option<NonNull<CFURL>>;
     }
@@ -166,7 +164,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyBundleURL(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleGetValueForInfoDictionaryKey(
+pub extern "C-unwind" fn CFBundleGetValueForInfoDictionaryKey(
     bundle: &CFBundle,
     key: Option<&CFString>,
 ) -> Option<CFRetained<CFType>> {
@@ -182,7 +180,7 @@ pub unsafe extern "C-unwind" fn CFBundleGetValueForInfoDictionaryKey(
 
 #[cfg(feature = "CFDictionary")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleGetInfoDictionary(
+pub extern "C-unwind" fn CFBundleGetInfoDictionary(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -194,7 +192,7 @@ pub unsafe extern "C-unwind" fn CFBundleGetInfoDictionary(
 
 #[cfg(feature = "CFDictionary")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleGetLocalInfoDictionary(
+pub extern "C-unwind" fn CFBundleGetLocalInfoDictionary(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -214,9 +212,7 @@ extern "C-unwind" {
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleGetIdentifier(
-    bundle: &CFBundle,
-) -> Option<CFRetained<CFString>> {
+pub extern "C-unwind" fn CFBundleGetIdentifier(bundle: &CFBundle) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFBundleGetIdentifier(bundle: &CFBundle) -> Option<NonNull<CFString>>;
     }
@@ -224,13 +220,17 @@ pub unsafe extern "C-unwind" fn CFBundleGetIdentifier(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFBundleGetVersionNumber(bundle: &CFBundle) -> u32;
+#[inline]
+pub extern "C-unwind" fn CFBundleGetVersionNumber(bundle: &CFBundle) -> u32 {
+    extern "C-unwind" {
+        fn CFBundleGetVersionNumber(bundle: &CFBundle) -> u32;
+    }
+    unsafe { CFBundleGetVersionNumber(bundle) }
 }
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleGetDevelopmentRegion(
+pub extern "C-unwind" fn CFBundleGetDevelopmentRegion(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -242,7 +242,7 @@ pub unsafe extern "C-unwind" fn CFBundleGetDevelopmentRegion(
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopySupportFilesDirectoryURL(
+pub extern "C-unwind" fn CFBundleCopySupportFilesDirectoryURL(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
@@ -254,7 +254,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopySupportFilesDirectoryURL(
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyResourcesDirectoryURL(
+pub extern "C-unwind" fn CFBundleCopyResourcesDirectoryURL(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
@@ -266,7 +266,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyResourcesDirectoryURL(
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyPrivateFrameworksURL(
+pub extern "C-unwind" fn CFBundleCopyPrivateFrameworksURL(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
@@ -278,7 +278,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyPrivateFrameworksURL(
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopySharedFrameworksURL(
+pub extern "C-unwind" fn CFBundleCopySharedFrameworksURL(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
@@ -290,7 +290,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopySharedFrameworksURL(
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopySharedSupportURL(
+pub extern "C-unwind" fn CFBundleCopySharedSupportURL(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
@@ -302,7 +302,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopySharedSupportURL(
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyBuiltInPlugInsURL(
+pub extern "C-unwind" fn CFBundleCopyBuiltInPlugInsURL(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
@@ -314,7 +314,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyBuiltInPlugInsURL(
 
 #[cfg(all(feature = "CFDictionary", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyInfoDictionaryInDirectory(
+pub extern "C-unwind" fn CFBundleCopyInfoDictionaryInDirectory(
     bundle_url: Option<&CFURL>,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -346,7 +346,7 @@ pub unsafe extern "C-unwind" fn CFBundleGetPackageInfoInDirectory(
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyResourceURL(
+pub extern "C-unwind" fn CFBundleCopyResourceURL(
     bundle: &CFBundle,
     resource_name: Option<&CFString>,
     resource_type: Option<&CFString>,
@@ -367,7 +367,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyResourceURL(
 
 #[cfg(all(feature = "CFArray", feature = "CFBase"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLsOfType(
+pub extern "C-unwind" fn CFBundleCopyResourceURLsOfType(
     bundle: &CFBundle,
     resource_type: Option<&CFString>,
     sub_dir_name: Option<&CFString>,
@@ -385,7 +385,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLsOfType(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyLocalizedString(
+pub extern "C-unwind" fn CFBundleCopyLocalizedString(
     bundle: &CFBundle,
     key: Option<&CFString>,
     value: Option<&CFString>,
@@ -405,7 +405,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyLocalizedString(
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLInDirectory(
+pub extern "C-unwind" fn CFBundleCopyResourceURLInDirectory(
     bundle_url: Option<&CFURL>,
     resource_name: Option<&CFString>,
     resource_type: Option<&CFString>,
@@ -427,7 +427,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLInDirectory(
 
 #[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLsOfTypeInDirectory(
+pub extern "C-unwind" fn CFBundleCopyResourceURLsOfTypeInDirectory(
     bundle_url: Option<&CFURL>,
     resource_type: Option<&CFString>,
     sub_dir_name: Option<&CFString>,
@@ -447,7 +447,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLsOfTypeInDirectory(
 
 #[cfg(feature = "CFArray")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyBundleLocalizations(
+pub extern "C-unwind" fn CFBundleCopyBundleLocalizations(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -489,7 +489,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyLocalizationsForPreferences(
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLForLocalization(
+pub extern "C-unwind" fn CFBundleCopyResourceURLForLocalization(
     bundle: &CFBundle,
     resource_name: Option<&CFString>,
     resource_type: Option<&CFString>,
@@ -519,7 +519,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLForLocalization(
 
 #[cfg(all(feature = "CFArray", feature = "CFBase"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLsOfTypeForLocalization(
+pub extern "C-unwind" fn CFBundleCopyResourceURLsOfTypeForLocalization(
     bundle: &CFBundle,
     resource_type: Option<&CFString>,
     sub_dir_name: Option<&CFString>,
@@ -546,7 +546,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyResourceURLsOfTypeForLocalization(
 
 #[cfg(all(feature = "CFDictionary", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyInfoDictionaryForURL(
+pub extern "C-unwind" fn CFBundleCopyInfoDictionaryForURL(
     url: Option<&CFURL>,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -558,7 +558,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyInfoDictionaryForURL(
 
 #[cfg(all(feature = "CFArray", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyLocalizationsForURL(
+pub extern "C-unwind" fn CFBundleCopyLocalizationsForURL(
     url: Option<&CFURL>,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -570,7 +570,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyLocalizationsForURL(
 
 #[cfg(all(feature = "CFArray", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyExecutableArchitecturesForURL(
+pub extern "C-unwind" fn CFBundleCopyExecutableArchitecturesForURL(
     url: Option<&CFURL>,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -584,9 +584,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyExecutableArchitecturesForURL(
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyExecutableURL(
-    bundle: &CFBundle,
-) -> Option<CFRetained<CFURL>> {
+pub extern "C-unwind" fn CFBundleCopyExecutableURL(bundle: &CFBundle) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
         fn CFBundleCopyExecutableURL(bundle: &CFBundle) -> Option<NonNull<CFURL>>;
     }
@@ -607,7 +605,7 @@ pub const kCFBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 #[cfg(feature = "CFArray")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyExecutableArchitectures(
+pub extern "C-unwind" fn CFBundleCopyExecutableArchitectures(
     bundle: &CFBundle,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -656,7 +654,7 @@ pub unsafe extern "C-unwind" fn CFBundleLoadExecutable(bundle: &CFBundle) -> boo
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleIsExecutableLoaded(bundle: &CFBundle) -> bool {
+pub extern "C-unwind" fn CFBundleIsExecutableLoaded(bundle: &CFBundle) -> bool {
     extern "C-unwind" {
         fn CFBundleIsExecutableLoaded(bundle: &CFBundle) -> Boolean;
     }
@@ -668,12 +666,19 @@ extern "C-unwind" {
     pub fn CFBundleUnloadExecutable(bundle: &CFBundle);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBundleGetFunctionPointerForName(
-        bundle: &CFBundle,
-        function_name: Option<&CFString>,
-    ) -> *mut c_void;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFBundleGetFunctionPointerForName(
+    bundle: &CFBundle,
+    function_name: Option<&CFString>,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn CFBundleGetFunctionPointerForName(
+            bundle: &CFBundle,
+            function_name: Option<&CFString>,
+        ) -> *mut c_void;
+    }
+    unsafe { CFBundleGetFunctionPointerForName(bundle, function_name) }
 }
 
 extern "C-unwind" {
@@ -685,12 +690,19 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBundleGetDataPointerForName(
-        bundle: &CFBundle,
-        symbol_name: Option<&CFString>,
-    ) -> *mut c_void;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFBundleGetDataPointerForName(
+    bundle: &CFBundle,
+    symbol_name: Option<&CFString>,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn CFBundleGetDataPointerForName(
+            bundle: &CFBundle,
+            symbol_name: Option<&CFString>,
+        ) -> *mut c_void;
+    }
+    unsafe { CFBundleGetDataPointerForName(bundle, symbol_name) }
 }
 
 extern "C-unwind" {
@@ -704,7 +716,7 @@ extern "C-unwind" {
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleCopyAuxiliaryExecutableURL(
+pub extern "C-unwind" fn CFBundleCopyAuxiliaryExecutableURL(
     bundle: &CFBundle,
     executable_name: Option<&CFString>,
 ) -> Option<CFRetained<CFURL>> {
@@ -719,7 +731,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyAuxiliaryExecutableURL(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleIsExecutableLoadable(bundle: &CFBundle) -> bool {
+pub extern "C-unwind" fn CFBundleIsExecutableLoadable(bundle: &CFBundle) -> bool {
     extern "C-unwind" {
         fn CFBundleIsExecutableLoadable(bundle: &CFBundle) -> Boolean;
     }
@@ -729,7 +741,7 @@ pub unsafe extern "C-unwind" fn CFBundleIsExecutableLoadable(bundle: &CFBundle) 
 
 #[cfg(feature = "CFURL")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleIsExecutableLoadableForURL(url: Option<&CFURL>) -> bool {
+pub extern "C-unwind" fn CFBundleIsExecutableLoadableForURL(url: Option<&CFURL>) -> bool {
     extern "C-unwind" {
         fn CFBundleIsExecutableLoadableForURL(url: Option<&CFURL>) -> Boolean;
     }
@@ -739,7 +751,7 @@ pub unsafe extern "C-unwind" fn CFBundleIsExecutableLoadableForURL(url: Option<&
 
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleIsArchitectureLoadable(arch: libc::cpu_type_t) -> bool {
+pub extern "C-unwind" fn CFBundleIsArchitectureLoadable(arch: libc::cpu_type_t) -> bool {
     extern "C-unwind" {
         fn CFBundleIsArchitectureLoadable(arch: libc::cpu_type_t) -> Boolean;
     }
@@ -748,9 +760,7 @@ pub unsafe extern "C-unwind" fn CFBundleIsArchitectureLoadable(arch: libc::cpu_t
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFBundleGetPlugIn(
-    bundle: &CFBundle,
-) -> Option<CFRetained<CFPlugIn>> {
+pub extern "C-unwind" fn CFBundleGetPlugIn(bundle: &CFBundle) -> Option<CFRetained<CFPlugIn>> {
     extern "C-unwind" {
         fn CFBundleGetPlugIn(bundle: &CFBundle) -> Option<NonNull<CFPlugIn>>;
     }

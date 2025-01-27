@@ -44,7 +44,7 @@ unsafe impl ConcreteType for CFBoolean {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFBooleanGetValue(boolean: &CFBoolean) -> bool {
+pub extern "C-unwind" fn CFBooleanGetValue(boolean: &CFBoolean) -> bool {
     extern "C-unwind" {
         fn CFBooleanGetValue(boolean: &CFBoolean) -> Boolean;
     }
@@ -163,18 +163,26 @@ pub unsafe extern "C-unwind" fn CFNumberCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFNumberGetType(number: &CFNumber) -> CFNumberType;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFNumberGetType(number: &CFNumber) -> CFNumberType {
+    extern "C-unwind" {
+        fn CFNumberGetType(number: &CFNumber) -> CFNumberType;
+    }
+    unsafe { CFNumberGetType(number) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex {
+    extern "C-unwind" {
+        fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex;
+    }
+    unsafe { CFNumberGetByteSize(number) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFNumberIsFloatType(number: &CFNumber) -> bool {
+pub extern "C-unwind" fn CFNumberIsFloatType(number: &CFNumber) -> bool {
     extern "C-unwind" {
         fn CFNumberIsFloatType(number: &CFNumber) -> Boolean;
     }

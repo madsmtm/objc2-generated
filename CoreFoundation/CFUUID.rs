@@ -86,9 +86,7 @@ unsafe impl ConcreteType for CFUUID {
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFUUIDCreate(
-    alloc: Option<&CFAllocator>,
-) -> Option<CFRetained<CFUUID>> {
+pub extern "C-unwind" fn CFUUIDCreate(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFUUID>> {
     extern "C-unwind" {
         fn CFUUIDCreate(alloc: Option<&CFAllocator>) -> Option<NonNull<CFUUID>>;
     }
@@ -98,7 +96,7 @@ pub unsafe extern "C-unwind" fn CFUUIDCreate(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFUUIDCreateWithBytes(
+pub extern "C-unwind" fn CFUUIDCreateWithBytes(
     alloc: Option<&CFAllocator>,
     byte0: u8,
     byte1: u8,
@@ -149,7 +147,7 @@ pub unsafe extern "C-unwind" fn CFUUIDCreateWithBytes(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFUUIDCreateFromString(
+pub extern "C-unwind" fn CFUUIDCreateFromString(
     alloc: Option<&CFAllocator>,
     uuid_str: Option<&CFString>,
 ) -> Option<CFRetained<CFUUID>> {
@@ -165,7 +163,7 @@ pub unsafe extern "C-unwind" fn CFUUIDCreateFromString(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFUUIDCreateString(
+pub extern "C-unwind" fn CFUUIDCreateString(
     alloc: Option<&CFAllocator>,
     uuid: Option<&CFUUID>,
 ) -> Option<CFRetained<CFString>> {
@@ -181,7 +179,7 @@ pub unsafe extern "C-unwind" fn CFUUIDCreateString(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFUUIDGetConstantUUIDWithBytes(
+pub extern "C-unwind" fn CFUUIDGetConstantUUIDWithBytes(
     alloc: Option<&CFAllocator>,
     byte0: u8,
     byte1: u8,
@@ -230,13 +228,17 @@ pub unsafe extern "C-unwind" fn CFUUIDGetConstantUUIDWithBytes(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFUUIDGetUUIDBytes(uuid: &CFUUID) -> CFUUIDBytes;
+#[inline]
+pub extern "C-unwind" fn CFUUIDGetUUIDBytes(uuid: &CFUUID) -> CFUUIDBytes {
+    extern "C-unwind" {
+        fn CFUUIDGetUUIDBytes(uuid: &CFUUID) -> CFUUIDBytes;
+    }
+    unsafe { CFUUIDGetUUIDBytes(uuid) }
 }
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFUUIDCreateFromUUIDBytes(
+pub extern "C-unwind" fn CFUUIDCreateFromUUIDBytes(
     alloc: Option<&CFAllocator>,
     bytes: CFUUIDBytes,
 ) -> Option<CFRetained<CFUUID>> {

@@ -200,9 +200,7 @@ pub unsafe extern "C-unwind" fn CFErrorCreateWithUserInfoKeysAndValues(
 /// Returns: The error domain of the CFError. Since this is a "Get" function, the caller shouldn't CFRelease the return value.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFErrorGetDomain(
-    err: &CFError,
-) -> Option<CFRetained<CFErrorDomain>> {
+pub extern "C-unwind" fn CFErrorGetDomain(err: &CFError) -> Option<CFRetained<CFErrorDomain>> {
     extern "C-unwind" {
         fn CFErrorGetDomain(err: &CFError) -> Option<NonNull<CFErrorDomain>>;
     }
@@ -210,14 +208,18 @@ pub unsafe extern "C-unwind" fn CFErrorGetDomain(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the error code the CFError was created with.
-    ///
-    /// Parameter `err`: The CFError whose error code is to be returned. If this reference is not a valid CFError, the behavior is undefined.
-    ///
-    /// Returns: The error code of the CFError (not an error return for the current call).
-    #[cfg(feature = "CFBase")]
-    pub fn CFErrorGetCode(err: &CFError) -> CFIndex;
+/// Returns the error code the CFError was created with.
+///
+/// Parameter `err`: The CFError whose error code is to be returned. If this reference is not a valid CFError, the behavior is undefined.
+///
+/// Returns: The error code of the CFError (not an error return for the current call).
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFErrorGetCode(err: &CFError) -> CFIndex {
+    extern "C-unwind" {
+        fn CFErrorGetCode(err: &CFError) -> CFIndex;
+    }
+    unsafe { CFErrorGetCode(err) }
 }
 
 /// Returns CFError userInfo dictionary.
@@ -229,9 +231,7 @@ extern "C-unwind" {
 /// Returns: The user info of the CFError.
 #[cfg(feature = "CFDictionary")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFErrorCopyUserInfo(
-    err: &CFError,
-) -> Option<CFRetained<CFDictionary>> {
+pub extern "C-unwind" fn CFErrorCopyUserInfo(err: &CFError) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn CFErrorCopyUserInfo(err: &CFError) -> Option<NonNull<CFDictionary>>;
     }
@@ -253,9 +253,7 @@ pub unsafe extern "C-unwind" fn CFErrorCopyUserInfo(
 /// Returns: A CFString with human-presentable description of the CFError. Never NULL.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFErrorCopyDescription(
-    err: &CFError,
-) -> Option<CFRetained<CFString>> {
+pub extern "C-unwind" fn CFErrorCopyDescription(err: &CFError) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFErrorCopyDescription(err: &CFError) -> Option<NonNull<CFString>>;
     }
@@ -274,9 +272,7 @@ pub unsafe extern "C-unwind" fn CFErrorCopyDescription(
 /// Returns: A CFString with the localized, end-user presentable failure reason of the CFError, or NULL.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFErrorCopyFailureReason(
-    err: &CFError,
-) -> Option<CFRetained<CFString>> {
+pub extern "C-unwind" fn CFErrorCopyFailureReason(err: &CFError) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFErrorCopyFailureReason(err: &CFError) -> Option<NonNull<CFString>>;
     }
@@ -295,7 +291,7 @@ pub unsafe extern "C-unwind" fn CFErrorCopyFailureReason(
 /// Returns: A CFString with the localized, end-user presentable recovery suggestion of the CFError, or NULL.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFErrorCopyRecoverySuggestion(
+pub extern "C-unwind" fn CFErrorCopyRecoverySuggestion(
     err: &CFError,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {

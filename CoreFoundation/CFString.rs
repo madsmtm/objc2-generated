@@ -271,7 +271,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithSubstring(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringCreateCopy(
+pub extern "C-unwind" fn CFStringCreateCopy(
     alloc: Option<&CFAllocator>,
     the_string: Option<&CFString>,
 ) -> Option<CFRetained<CFString>> {
@@ -287,7 +287,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateCopy(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringCreateMutable(
+pub extern "C-unwind" fn CFStringCreateMutable(
     alloc: Option<&CFAllocator>,
     max_length: CFIndex,
 ) -> Option<CFRetained<CFMutableString>> {
@@ -303,7 +303,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateMutable(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringCreateMutableCopy(
+pub extern "C-unwind" fn CFStringCreateMutableCopy(
     alloc: Option<&CFAllocator>,
     max_length: CFIndex,
     the_string: Option<&CFString>,
@@ -349,10 +349,14 @@ pub unsafe extern "C-unwind" fn CFStringCreateMutableWithExternalCharactersNoCop
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// * Basic accessors for the contents **
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetLength(the_string: &CFString) -> CFIndex;
+/// * Basic accessors for the contents **
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetLength(the_string: &CFString) -> CFIndex {
+    extern "C-unwind" {
+        fn CFStringGetLength(the_string: &CFString) -> CFIndex;
+    }
+    unsafe { CFStringGetLength(the_string) }
 }
 
 extern "C-unwind" {
@@ -405,25 +409,43 @@ pub unsafe extern "C-unwind" fn CFStringGetCString(
     ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetPascalStringPtr(
-        the_string: &CFString,
-        encoding: CFStringEncoding,
-    ) -> ConstStringPtr;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetPascalStringPtr(
+    the_string: &CFString,
+    encoding: CFStringEncoding,
+) -> ConstStringPtr {
+    extern "C-unwind" {
+        fn CFStringGetPascalStringPtr(
+            the_string: &CFString,
+            encoding: CFStringEncoding,
+        ) -> ConstStringPtr;
+    }
+    unsafe { CFStringGetPascalStringPtr(the_string, encoding) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetCStringPtr(
-        the_string: &CFString,
-        encoding: CFStringEncoding,
-    ) -> *const c_char;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetCStringPtr(
+    the_string: &CFString,
+    encoding: CFStringEncoding,
+) -> *const c_char {
+    extern "C-unwind" {
+        fn CFStringGetCStringPtr(
+            the_string: &CFString,
+            encoding: CFStringEncoding,
+        ) -> *const c_char;
+    }
+    unsafe { CFStringGetCStringPtr(the_string, encoding) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetCharactersPtr(the_string: &CFString) -> *const UniChar;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetCharactersPtr(the_string: &CFString) -> *const UniChar {
+    extern "C-unwind" {
+        fn CFStringGetCharactersPtr(the_string: &CFString) -> *const UniChar;
+    }
+    unsafe { CFStringGetCharactersPtr(the_string) }
 }
 
 #[cfg(feature = "CFBase")]
@@ -466,7 +488,7 @@ pub unsafe extern "C-unwind" fn CFStringGetBytes(
 
 #[cfg(all(feature = "CFBase", feature = "CFData"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringCreateFromExternalRepresentation(
+pub extern "C-unwind" fn CFStringCreateFromExternalRepresentation(
     alloc: Option<&CFAllocator>,
     data: Option<&CFData>,
     encoding: CFStringEncoding,
@@ -484,7 +506,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateFromExternalRepresentation(
 
 #[cfg(all(feature = "CFBase", feature = "CFData"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringCreateExternalRepresentation(
+pub extern "C-unwind" fn CFStringCreateExternalRepresentation(
     alloc: Option<&CFAllocator>,
     the_string: Option<&CFString>,
     encoding: CFStringEncoding,
@@ -503,26 +525,45 @@ pub unsafe extern "C-unwind" fn CFStringCreateExternalRepresentation(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetSmallestEncoding(the_string: &CFString) -> CFStringEncoding;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetSmallestEncoding(the_string: &CFString) -> CFStringEncoding {
+    extern "C-unwind" {
+        fn CFStringGetSmallestEncoding(the_string: &CFString) -> CFStringEncoding;
+    }
+    unsafe { CFStringGetSmallestEncoding(the_string) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetFastestEncoding(the_string: &CFString) -> CFStringEncoding;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetFastestEncoding(the_string: &CFString) -> CFStringEncoding {
+    extern "C-unwind" {
+        fn CFStringGetFastestEncoding(the_string: &CFString) -> CFStringEncoding;
+    }
+    unsafe { CFStringGetFastestEncoding(the_string) }
 }
 
-extern "C-unwind" {
-    pub fn CFStringGetSystemEncoding() -> CFStringEncoding;
+#[inline]
+pub extern "C-unwind" fn CFStringGetSystemEncoding() -> CFStringEncoding {
+    extern "C-unwind" {
+        fn CFStringGetSystemEncoding() -> CFStringEncoding;
+    }
+    unsafe { CFStringGetSystemEncoding() }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetMaximumSizeForEncoding(
-        length: CFIndex,
-        encoding: CFStringEncoding,
-    ) -> CFIndex;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetMaximumSizeForEncoding(
+    length: CFIndex,
+    encoding: CFStringEncoding,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFStringGetMaximumSizeForEncoding(
+            length: CFIndex,
+            encoding: CFStringEncoding,
+        ) -> CFIndex;
+    }
+    unsafe { CFStringGetMaximumSizeForEncoding(length, encoding) }
 }
 
 /// * FileSystem path conversion functions **
@@ -544,9 +585,15 @@ pub unsafe extern "C-unwind" fn CFStringGetFileSystemRepresentation(
     ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetMaximumSizeOfFileSystemRepresentation(string: &CFString) -> CFIndex;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetMaximumSizeOfFileSystemRepresentation(
+    string: &CFString,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFStringGetMaximumSizeOfFileSystemRepresentation(string: &CFString) -> CFIndex;
+    }
+    unsafe { CFStringGetMaximumSizeOfFileSystemRepresentation(string) }
 }
 
 #[cfg(feature = "CFBase")]
@@ -626,13 +673,21 @@ extern "C-unwind" {
     ) -> CFComparisonResult;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringCompare(
-        the_string1: &CFString,
-        the_string2: Option<&CFString>,
-        compare_options: CFStringCompareFlags,
-    ) -> CFComparisonResult;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringCompare(
+    the_string1: &CFString,
+    the_string2: Option<&CFString>,
+    compare_options: CFStringCompareFlags,
+) -> CFComparisonResult {
+    extern "C-unwind" {
+        fn CFStringCompare(
+            the_string1: &CFString,
+            the_string2: Option<&CFString>,
+            compare_options: CFStringCompareFlags,
+        ) -> CFComparisonResult;
+    }
+    unsafe { CFStringCompare(the_string1, the_string2, compare_options) }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
@@ -728,18 +783,26 @@ pub unsafe extern "C-unwind" fn CFStringCreateArrayWithFindResults(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringFind(
-        the_string: &CFString,
-        string_to_find: Option<&CFString>,
-        compare_options: CFStringCompareFlags,
-    ) -> CFRange;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringFind(
+    the_string: &CFString,
+    string_to_find: Option<&CFString>,
+    compare_options: CFStringCompareFlags,
+) -> CFRange {
+    extern "C-unwind" {
+        fn CFStringFind(
+            the_string: &CFString,
+            string_to_find: Option<&CFString>,
+            compare_options: CFStringCompareFlags,
+        ) -> CFRange;
+    }
+    unsafe { CFStringFind(the_string, string_to_find, compare_options) }
 }
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringHasPrefix(
+pub extern "C-unwind" fn CFStringHasPrefix(
     the_string: &CFString,
     prefix: Option<&CFString>,
 ) -> bool {
@@ -752,7 +815,7 @@ pub unsafe extern "C-unwind" fn CFStringHasPrefix(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringHasSuffix(
+pub extern "C-unwind" fn CFStringHasSuffix(
     the_string: &CFString,
     suffix: Option<&CFString>,
 ) -> bool {
@@ -905,7 +968,7 @@ extern "C-unwind" {
 
 #[cfg(feature = "CFLocale")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringIsHyphenationAvailableForLocale(
+pub extern "C-unwind" fn CFStringIsHyphenationAvailableForLocale(
     locale: Option<&CFLocale>,
 ) -> bool {
     extern "C-unwind" {
@@ -936,7 +999,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateByCombiningStrings(
 
 #[cfg(all(feature = "CFArray", feature = "CFBase"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringCreateArrayBySeparatingStrings(
+pub extern "C-unwind" fn CFStringCreateArrayBySeparatingStrings(
     alloc: Option<&CFAllocator>,
     the_string: Option<&CFString>,
     separator_string: Option<&CFString>,
@@ -953,21 +1016,36 @@ pub unsafe extern "C-unwind" fn CFStringCreateArrayBySeparatingStrings(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// * Parsing non-localized numbers from strings **
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetIntValue(str: &CFString) -> i32;
+/// * Parsing non-localized numbers from strings **
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetIntValue(str: &CFString) -> i32 {
+    extern "C-unwind" {
+        fn CFStringGetIntValue(str: &CFString) -> i32;
+    }
+    unsafe { CFStringGetIntValue(str) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetDoubleValue(str: &CFString) -> c_double;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringGetDoubleValue(str: &CFString) -> c_double {
+    extern "C-unwind" {
+        fn CFStringGetDoubleValue(str: &CFString) -> c_double;
+    }
+    unsafe { CFStringGetDoubleValue(str) }
 }
 
-extern "C-unwind" {
-    /// * MutableString functions **
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringAppend(the_string: Option<&CFMutableString>, appended_string: Option<&CFString>);
+/// * MutableString functions **
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringAppend(
+    the_string: Option<&CFMutableString>,
+    appended_string: Option<&CFString>,
+) {
+    extern "C-unwind" {
+        fn CFStringAppend(the_string: Option<&CFMutableString>, appended_string: Option<&CFString>);
+    }
+    unsafe { CFStringAppend(the_string, appended_string) }
 }
 
 extern "C-unwind" {
@@ -1020,9 +1098,16 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringReplaceAll(the_string: Option<&CFMutableString>, replacement: Option<&CFString>);
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringReplaceAll(
+    the_string: Option<&CFMutableString>,
+    replacement: Option<&CFString>,
+) {
+    extern "C-unwind" {
+        fn CFStringReplaceAll(the_string: Option<&CFMutableString>, replacement: Option<&CFString>);
+    }
+    unsafe { CFStringReplaceAll(the_string, replacement) }
 }
 
 extern "C-unwind" {
@@ -1056,29 +1141,61 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringTrim(the_string: Option<&CFMutableString>, trim_string: Option<&CFString>);
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringTrim(
+    the_string: Option<&CFMutableString>,
+    trim_string: Option<&CFString>,
+) {
+    extern "C-unwind" {
+        fn CFStringTrim(the_string: Option<&CFMutableString>, trim_string: Option<&CFString>);
+    }
+    unsafe { CFStringTrim(the_string, trim_string) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringTrimWhitespace(the_string: Option<&CFMutableString>);
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringTrimWhitespace(the_string: Option<&CFMutableString>) {
+    extern "C-unwind" {
+        fn CFStringTrimWhitespace(the_string: Option<&CFMutableString>);
+    }
+    unsafe { CFStringTrimWhitespace(the_string) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
-    pub fn CFStringLowercase(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>);
+#[cfg(all(feature = "CFBase", feature = "CFLocale"))]
+#[inline]
+pub extern "C-unwind" fn CFStringLowercase(
+    the_string: Option<&CFMutableString>,
+    locale: Option<&CFLocale>,
+) {
+    extern "C-unwind" {
+        fn CFStringLowercase(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>);
+    }
+    unsafe { CFStringLowercase(the_string, locale) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
-    pub fn CFStringUppercase(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>);
+#[cfg(all(feature = "CFBase", feature = "CFLocale"))]
+#[inline]
+pub extern "C-unwind" fn CFStringUppercase(
+    the_string: Option<&CFMutableString>,
+    locale: Option<&CFLocale>,
+) {
+    extern "C-unwind" {
+        fn CFStringUppercase(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>);
+    }
+    unsafe { CFStringUppercase(the_string, locale) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
-    pub fn CFStringCapitalize(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>);
+#[cfg(all(feature = "CFBase", feature = "CFLocale"))]
+#[inline]
+pub extern "C-unwind" fn CFStringCapitalize(
+    the_string: Option<&CFMutableString>,
+    locale: Option<&CFLocale>,
+) {
+    extern "C-unwind" {
+        fn CFStringCapitalize(the_string: Option<&CFMutableString>, locale: Option<&CFLocale>);
+    }
+    unsafe { CFStringCapitalize(the_string, locale) }
 }
 
 /// This is the type of Unicode normalization forms as described in
@@ -1131,36 +1248,44 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// Folds the string into the form specified by the flags.
-    /// Character foldings are operations that convert any of a set of characters
-    /// sharing similar semantics into a single representative from that set.
-    /// This function can be used to preprocess strings that are to be compared,
-    /// searched, or indexed.
-    /// Note that folding does not include normalization, so it is necessary
-    /// to use CFStringNormalize in addition to CFStringFold in order to obtain
-    /// the effect of kCFCompareNonliteral.
-    ///
-    /// Parameter `theString`: The string which is to be folded.  If this parameter is not
-    /// a valid mutable CFString, the behavior is undefined.
-    ///
-    /// Parameter `theFlags`: The equivalency flags which describes the character folding form.
-    /// Only those flags containing the word "insensitive" are recognized here; other flags are ignored.
-    /// Folding with kCFCompareCaseInsensitive removes case distinctions in accordance with the mapping
-    /// specified by ftp://ftp.unicode.org/Public/UNIDATA/CaseFolding.txt.  Folding with
-    /// kCFCompareDiacriticInsensitive removes distinctions of accents and other diacritics.  Folding
-    /// with kCFCompareWidthInsensitive removes character width distinctions by mapping characters in
-    /// the range U+FF00-U+FFEF to their ordinary equivalents.
-    ///
-    /// Parameter `theLocale`: The locale tailoring the character folding behavior. If NULL,
-    /// it's considered to be the system locale returned from CFLocaleGetSystem().
-    /// If non-NULL and not a valid CFLocale object, the behavior is undefined.
-    #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
-    pub fn CFStringFold(
-        the_string: Option<&CFMutableString>,
-        the_flags: CFStringCompareFlags,
-        the_locale: Option<&CFLocale>,
-    );
+/// Folds the string into the form specified by the flags.
+/// Character foldings are operations that convert any of a set of characters
+/// sharing similar semantics into a single representative from that set.
+/// This function can be used to preprocess strings that are to be compared,
+/// searched, or indexed.
+/// Note that folding does not include normalization, so it is necessary
+/// to use CFStringNormalize in addition to CFStringFold in order to obtain
+/// the effect of kCFCompareNonliteral.
+///
+/// Parameter `theString`: The string which is to be folded.  If this parameter is not
+/// a valid mutable CFString, the behavior is undefined.
+///
+/// Parameter `theFlags`: The equivalency flags which describes the character folding form.
+/// Only those flags containing the word "insensitive" are recognized here; other flags are ignored.
+/// Folding with kCFCompareCaseInsensitive removes case distinctions in accordance with the mapping
+/// specified by ftp://ftp.unicode.org/Public/UNIDATA/CaseFolding.txt.  Folding with
+/// kCFCompareDiacriticInsensitive removes distinctions of accents and other diacritics.  Folding
+/// with kCFCompareWidthInsensitive removes character width distinctions by mapping characters in
+/// the range U+FF00-U+FFEF to their ordinary equivalents.
+///
+/// Parameter `theLocale`: The locale tailoring the character folding behavior. If NULL,
+/// it's considered to be the system locale returned from CFLocaleGetSystem().
+/// If non-NULL and not a valid CFLocale object, the behavior is undefined.
+#[cfg(all(feature = "CFBase", feature = "CFLocale"))]
+#[inline]
+pub extern "C-unwind" fn CFStringFold(
+    the_string: Option<&CFMutableString>,
+    the_flags: CFStringCompareFlags,
+    the_locale: Option<&CFLocale>,
+) {
+    extern "C-unwind" {
+        fn CFStringFold(
+            the_string: Option<&CFMutableString>,
+            the_flags: CFStringCompareFlags,
+            the_locale: Option<&CFLocale>,
+        );
+    }
+    unsafe { CFStringFold(the_string, the_flags, the_locale) }
 }
 
 #[cfg(feature = "CFBase")]
@@ -1281,7 +1406,7 @@ extern "C" {
 
 /// * General encoding related functionality **
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringIsEncodingAvailable(encoding: CFStringEncoding) -> bool {
+pub extern "C-unwind" fn CFStringIsEncodingAvailable(encoding: CFStringEncoding) -> bool {
     extern "C-unwind" {
         fn CFStringIsEncodingAvailable(encoding: CFStringEncoding) -> Boolean;
     }
@@ -1289,13 +1414,17 @@ pub unsafe extern "C-unwind" fn CFStringIsEncodingAvailable(encoding: CFStringEn
     ret != 0
 }
 
-extern "C-unwind" {
-    pub fn CFStringGetListOfAvailableEncodings() -> *const CFStringEncoding;
+#[inline]
+pub extern "C-unwind" fn CFStringGetListOfAvailableEncodings() -> *const CFStringEncoding {
+    extern "C-unwind" {
+        fn CFStringGetListOfAvailableEncodings() -> *const CFStringEncoding;
+    }
+    unsafe { CFStringGetListOfAvailableEncodings() }
 }
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringGetNameOfEncoding(
+pub extern "C-unwind" fn CFStringGetNameOfEncoding(
     encoding: CFStringEncoding,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -1305,30 +1434,60 @@ pub unsafe extern "C-unwind" fn CFStringGetNameOfEncoding(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFStringConvertEncodingToNSStringEncoding(encoding: CFStringEncoding) -> c_ulong;
+#[inline]
+pub extern "C-unwind" fn CFStringConvertEncodingToNSStringEncoding(
+    encoding: CFStringEncoding,
+) -> c_ulong {
+    extern "C-unwind" {
+        fn CFStringConvertEncodingToNSStringEncoding(encoding: CFStringEncoding) -> c_ulong;
+    }
+    unsafe { CFStringConvertEncodingToNSStringEncoding(encoding) }
 }
 
-extern "C-unwind" {
-    pub fn CFStringConvertNSStringEncodingToEncoding(encoding: c_ulong) -> CFStringEncoding;
+#[inline]
+pub extern "C-unwind" fn CFStringConvertNSStringEncodingToEncoding(
+    encoding: c_ulong,
+) -> CFStringEncoding {
+    extern "C-unwind" {
+        fn CFStringConvertNSStringEncodingToEncoding(encoding: c_ulong) -> CFStringEncoding;
+    }
+    unsafe { CFStringConvertNSStringEncodingToEncoding(encoding) }
 }
 
-extern "C-unwind" {
-    pub fn CFStringConvertEncodingToWindowsCodepage(encoding: CFStringEncoding) -> u32;
+#[inline]
+pub extern "C-unwind" fn CFStringConvertEncodingToWindowsCodepage(
+    encoding: CFStringEncoding,
+) -> u32 {
+    extern "C-unwind" {
+        fn CFStringConvertEncodingToWindowsCodepage(encoding: CFStringEncoding) -> u32;
+    }
+    unsafe { CFStringConvertEncodingToWindowsCodepage(encoding) }
 }
 
-extern "C-unwind" {
-    pub fn CFStringConvertWindowsCodepageToEncoding(codepage: u32) -> CFStringEncoding;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringConvertIANACharSetNameToEncoding(the_string: &CFString) -> CFStringEncoding;
+#[inline]
+pub extern "C-unwind" fn CFStringConvertWindowsCodepageToEncoding(
+    codepage: u32,
+) -> CFStringEncoding {
+    extern "C-unwind" {
+        fn CFStringConvertWindowsCodepageToEncoding(codepage: u32) -> CFStringEncoding;
+    }
+    unsafe { CFStringConvertWindowsCodepageToEncoding(codepage) }
 }
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringConvertEncodingToIANACharSetName(
+pub extern "C-unwind" fn CFStringConvertIANACharSetNameToEncoding(
+    the_string: &CFString,
+) -> CFStringEncoding {
+    extern "C-unwind" {
+        fn CFStringConvertIANACharSetNameToEncoding(the_string: &CFString) -> CFStringEncoding;
+    }
+    unsafe { CFStringConvertIANACharSetNameToEncoding(the_string) }
+}
+
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFStringConvertEncodingToIANACharSetName(
     encoding: CFStringEncoding,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -1340,10 +1499,16 @@ pub unsafe extern "C-unwind" fn CFStringConvertEncodingToIANACharSetName(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFStringGetMostCompatibleMacStringEncoding(
-        encoding: CFStringEncoding,
-    ) -> CFStringEncoding;
+#[inline]
+pub extern "C-unwind" fn CFStringGetMostCompatibleMacStringEncoding(
+    encoding: CFStringEncoding,
+) -> CFStringEncoding {
+    extern "C-unwind" {
+        fn CFStringGetMostCompatibleMacStringEncoding(
+            encoding: CFStringEncoding,
+        ) -> CFStringEncoding;
+    }
+    unsafe { CFStringGetMostCompatibleMacStringEncoding(encoding) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringinlinebuffer?language=objc)
@@ -1393,12 +1558,20 @@ unsafe impl RefEncode for CFStringInlineBuffer {
 
 // TODO: pub fn CFStringGetSurrogatePairForLongCharacter(character: UTF32Char,surrogates: *mut UniChar,) -> Boolean;
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFShow(obj: Option<&CFType>);
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFShow(obj: Option<&CFType>) {
+    extern "C-unwind" {
+        fn CFShow(obj: Option<&CFType>);
+    }
+    unsafe { CFShow(obj) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFShowStr(str: Option<&CFString>);
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFShowStr(str: Option<&CFString>) {
+    extern "C-unwind" {
+        fn CFShowStr(str: Option<&CFString>);
+    }
+    unsafe { CFShowStr(str) }
 }

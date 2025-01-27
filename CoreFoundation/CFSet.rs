@@ -282,7 +282,7 @@ pub unsafe extern "C-unwind" fn CFSetCreate(
 /// Returns: A reference to the new immutable CFSet.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFSetCreateCopy(
+pub extern "C-unwind" fn CFSetCreateCopy(
     allocator: Option<&CFAllocator>,
     the_set: Option<&CFSet>,
 ) -> Option<CFRetained<CFSet>> {
@@ -404,15 +404,19 @@ pub unsafe extern "C-unwind" fn CFSetCreateMutableCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the number of values currently in the set.
-    ///
-    /// Parameter `theSet`: The set to be queried. If this parameter is not a valid
-    /// CFSet, the behavior is undefined.
-    ///
-    /// Returns: The number of values in the set.
-    #[cfg(feature = "CFBase")]
-    pub fn CFSetGetCount(the_set: &CFSet) -> CFIndex;
+/// Returns the number of values currently in the set.
+///
+/// Parameter `theSet`: The set to be queried. If this parameter is not a valid
+/// CFSet, the behavior is undefined.
+///
+/// Returns: The number of values in the set.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFSetGetCount(the_set: &CFSet) -> CFIndex {
+    extern "C-unwind" {
+        fn CFSetGetCount(the_set: &CFSet) -> CFIndex;
+    }
+    unsafe { CFSetGetCount(the_set) }
 }
 
 extern "C-unwind" {
@@ -616,11 +620,15 @@ extern "C-unwind" {
     pub fn CFSetRemoveValue(the_set: Option<&CFMutableSet>, value: *const c_void);
 }
 
-extern "C-unwind" {
-    /// Removes all the values from the set, making it empty.
-    ///
-    /// Parameter `theSet`: The set from which all of the values are to be
-    /// removed. If this parameter is not a valid mutable CFSet,
-    /// the behavior is undefined.
-    pub fn CFSetRemoveAllValues(the_set: Option<&CFMutableSet>);
+/// Removes all the values from the set, making it empty.
+///
+/// Parameter `theSet`: The set from which all of the values are to be
+/// removed. If this parameter is not a valid mutable CFSet,
+/// the behavior is undefined.
+#[inline]
+pub extern "C-unwind" fn CFSetRemoveAllValues(the_set: Option<&CFMutableSet>) {
+    extern "C-unwind" {
+        fn CFSetRemoveAllValues(the_set: Option<&CFMutableSet>);
+    }
+    unsafe { CFSetRemoveAllValues(the_set) }
 }

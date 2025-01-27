@@ -117,7 +117,7 @@ pub unsafe extern "C-unwind" fn CFMessagePortCreateLocal(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFMessagePortCreateRemote(
+pub extern "C-unwind" fn CFMessagePortCreateRemote(
     allocator: Option<&CFAllocator>,
     name: Option<&CFString>,
 ) -> Option<CFRetained<CFMessagePort>> {
@@ -132,7 +132,7 @@ pub unsafe extern "C-unwind" fn CFMessagePortCreateRemote(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFMessagePortIsRemote(ms: &CFMessagePort) -> bool {
+pub extern "C-unwind" fn CFMessagePortIsRemote(ms: &CFMessagePort) -> bool {
     extern "C-unwind" {
         fn CFMessagePortIsRemote(ms: &CFMessagePort) -> Boolean;
     }
@@ -142,9 +142,7 @@ pub unsafe extern "C-unwind" fn CFMessagePortIsRemote(ms: &CFMessagePort) -> boo
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFMessagePortGetName(
-    ms: &CFMessagePort,
-) -> Option<CFRetained<CFString>> {
+pub extern "C-unwind" fn CFMessagePortGetName(ms: &CFMessagePort) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFMessagePortGetName(ms: &CFMessagePort) -> Option<NonNull<CFString>>;
     }
@@ -154,7 +152,7 @@ pub unsafe extern "C-unwind" fn CFMessagePortGetName(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFMessagePortSetName(
+pub extern "C-unwind" fn CFMessagePortSetName(
     ms: &CFMessagePort,
     new_name: Option<&CFString>,
 ) -> bool {
@@ -170,12 +168,16 @@ extern "C-unwind" {
     pub fn CFMessagePortGetContext(ms: &CFMessagePort, context: *mut CFMessagePortContext);
 }
 
-extern "C-unwind" {
-    pub fn CFMessagePortInvalidate(ms: &CFMessagePort);
+#[inline]
+pub extern "C-unwind" fn CFMessagePortInvalidate(ms: &CFMessagePort) {
+    extern "C-unwind" {
+        fn CFMessagePortInvalidate(ms: &CFMessagePort);
+    }
+    unsafe { CFMessagePortInvalidate(ms) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFMessagePortIsValid(ms: &CFMessagePort) -> bool {
+pub extern "C-unwind" fn CFMessagePortIsValid(ms: &CFMessagePort) -> bool {
     extern "C-unwind" {
         fn CFMessagePortIsValid(ms: &CFMessagePort) -> Boolean;
     }
@@ -183,10 +185,16 @@ pub unsafe extern "C-unwind" fn CFMessagePortIsValid(ms: &CFMessagePort) -> bool
     ret != 0
 }
 
-extern "C-unwind" {
-    pub fn CFMessagePortGetInvalidationCallBack(
-        ms: &CFMessagePort,
-    ) -> CFMessagePortInvalidationCallBack;
+#[inline]
+pub extern "C-unwind" fn CFMessagePortGetInvalidationCallBack(
+    ms: &CFMessagePort,
+) -> CFMessagePortInvalidationCallBack {
+    extern "C-unwind" {
+        fn CFMessagePortGetInvalidationCallBack(
+            ms: &CFMessagePort,
+        ) -> CFMessagePortInvalidationCallBack;
+    }
+    unsafe { CFMessagePortGetInvalidationCallBack(ms) }
 }
 
 extern "C-unwind" {
@@ -211,7 +219,7 @@ extern "C-unwind" {
 
 #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CFMessagePortCreateRunLoopSource(
+pub extern "C-unwind" fn CFMessagePortCreateRunLoopSource(
     allocator: Option<&CFAllocator>,
     local: Option<&CFMessagePort>,
     order: CFIndex,

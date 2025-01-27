@@ -15,8 +15,12 @@ pub type CFTimeInterval = c_double;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetime?language=objc)
 pub type CFAbsoluteTime = CFTimeInterval;
 
-extern "C-unwind" {
-    pub fn CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime;
+#[inline]
+pub extern "C-unwind" fn CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime {
+    extern "C-unwind" {
+        fn CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime;
+    }
+    unsafe { CFAbsoluteTimeGetCurrent() }
 }
 
 extern "C" {
@@ -55,7 +59,7 @@ unsafe impl ConcreteType for CFDate {
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFDateCreate(
+pub extern "C-unwind" fn CFDateCreate(
     allocator: Option<&CFAllocator>,
     at: CFAbsoluteTime,
 ) -> Option<CFRetained<CFDate>> {
@@ -69,15 +73,26 @@ pub unsafe extern "C-unwind" fn CFDateCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime;
+#[inline]
+pub extern "C-unwind" fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime {
+    extern "C-unwind" {
+        fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime;
+    }
+    unsafe { CFDateGetAbsoluteTime(the_date) }
 }
 
-extern "C-unwind" {
-    pub fn CFDateGetTimeIntervalSinceDate(
-        the_date: &CFDate,
-        other_date: Option<&CFDate>,
-    ) -> CFTimeInterval;
+#[inline]
+pub extern "C-unwind" fn CFDateGetTimeIntervalSinceDate(
+    the_date: &CFDate,
+    other_date: Option<&CFDate>,
+) -> CFTimeInterval {
+    extern "C-unwind" {
+        fn CFDateGetTimeIntervalSinceDate(
+            the_date: &CFDate,
+            other_date: Option<&CFDate>,
+        ) -> CFTimeInterval;
+    }
+    unsafe { CFDateGetTimeIntervalSinceDate(the_date, other_date) }
 }
 
 extern "C-unwind" {

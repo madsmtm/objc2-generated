@@ -79,7 +79,7 @@ unsafe impl ConcreteType for CFNotificationCenter {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFNotificationCenterGetLocalCenter(
+pub extern "C-unwind" fn CFNotificationCenterGetLocalCenter(
 ) -> Option<CFRetained<CFNotificationCenter>> {
     extern "C-unwind" {
         fn CFNotificationCenterGetLocalCenter() -> Option<NonNull<CFNotificationCenter>>;
@@ -89,7 +89,7 @@ pub unsafe extern "C-unwind" fn CFNotificationCenterGetLocalCenter(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFNotificationCenterGetDistributedCenter(
+pub extern "C-unwind" fn CFNotificationCenterGetDistributedCenter(
 ) -> Option<CFRetained<CFNotificationCenter>> {
     extern "C-unwind" {
         fn CFNotificationCenterGetDistributedCenter() -> Option<NonNull<CFNotificationCenter>>;
@@ -99,7 +99,7 @@ pub unsafe extern "C-unwind" fn CFNotificationCenterGetDistributedCenter(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFNotificationCenterGetDarwinNotifyCenter(
+pub extern "C-unwind" fn CFNotificationCenterGetDarwinNotifyCenter(
 ) -> Option<CFRetained<CFNotificationCenter>> {
     extern "C-unwind" {
         fn CFNotificationCenterGetDarwinNotifyCenter() -> Option<NonNull<CFNotificationCenter>>;

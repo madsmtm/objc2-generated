@@ -352,15 +352,19 @@ pub unsafe extern "C-unwind" fn CFArrayCreateMutableCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the number of values currently in the array.
-    ///
-    /// Parameter `theArray`: The array to be queried. If this parameter is not a valid
-    /// CFArray, the behavior is undefined.
-    ///
-    /// Returns: The number of values in the array.
-    #[cfg(feature = "CFBase")]
-    pub fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
+/// Returns the number of values currently in the array.
+///
+/// Parameter `theArray`: The array to be queried. If this parameter is not a valid
+/// CFArray, the behavior is undefined.
+///
+/// Returns: The number of values in the array.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFArrayGetCount(the_array: &CFArray) -> CFIndex {
+    extern "C-unwind" {
+        fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
+    }
+    unsafe { CFArrayGetCount(the_array) }
 }
 
 extern "C-unwind" {
@@ -705,13 +709,17 @@ extern "C-unwind" {
     pub fn CFArrayRemoveValueAtIndex(the_array: Option<&CFMutableArray>, idx: CFIndex);
 }
 
-extern "C-unwind" {
-    /// Removes all the values from the array, making it empty.
-    ///
-    /// Parameter `theArray`: The array from which all of the values are to be
-    /// removed. If this parameter is not a valid mutable CFArray,
-    /// the behavior is undefined.
-    pub fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>);
+/// Removes all the values from the array, making it empty.
+///
+/// Parameter `theArray`: The array from which all of the values are to be
+/// removed. If this parameter is not a valid mutable CFArray,
+/// the behavior is undefined.
+#[inline]
+pub extern "C-unwind" fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>) {
+    extern "C-unwind" {
+        fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>);
+    }
+    unsafe { CFArrayRemoveAllValues(the_array) }
 }
 
 extern "C-unwind" {

@@ -34,7 +34,7 @@ unsafe impl ConcreteType for CFFileSecurity {
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFFileSecurityCreate(
+pub extern "C-unwind" fn CFFileSecurityCreate(
     allocator: Option<&CFAllocator>,
 ) -> Option<CFRetained<CFFileSecurity>> {
     extern "C-unwind" {
@@ -47,7 +47,7 @@ pub unsafe extern "C-unwind" fn CFFileSecurityCreate(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFFileSecurityCreateCopy(
+pub extern "C-unwind" fn CFFileSecurityCreateCopy(
     allocator: Option<&CFAllocator>,
     file_sec: Option<&CFFileSecurity>,
 ) -> Option<CFRetained<CFFileSecurity>> {
@@ -79,7 +79,7 @@ pub unsafe extern "C-unwind" fn CFFileSecurityCopyOwnerUUID(
 
 #[cfg(feature = "CFUUID")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFFileSecuritySetOwnerUUID(
+pub extern "C-unwind" fn CFFileSecuritySetOwnerUUID(
     file_sec: &CFFileSecurity,
     owner_uuid: Option<&CFUUID>,
 ) -> bool {
@@ -111,7 +111,7 @@ pub unsafe extern "C-unwind" fn CFFileSecurityCopyGroupUUID(
 
 #[cfg(feature = "CFUUID")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFFileSecuritySetGroupUUID(
+pub extern "C-unwind" fn CFFileSecuritySetGroupUUID(
     file_sec: &CFFileSecurity,
     group_uuid: Option<&CFUUID>,
 ) -> bool {
@@ -140,7 +140,7 @@ pub unsafe extern "C-unwind" fn CFFileSecurityGetOwner(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFFileSecuritySetOwner(
+pub extern "C-unwind" fn CFFileSecuritySetOwner(
     file_sec: &CFFileSecurity,
     owner: libc::uid_t,
 ) -> bool {
@@ -166,7 +166,7 @@ pub unsafe extern "C-unwind" fn CFFileSecurityGetGroup(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFFileSecuritySetGroup(
+pub extern "C-unwind" fn CFFileSecuritySetGroup(
     file_sec: &CFFileSecurity,
     group: libc::gid_t,
 ) -> bool {
@@ -192,7 +192,7 @@ pub unsafe extern "C-unwind" fn CFFileSecurityGetMode(
 
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFFileSecuritySetMode(
+pub extern "C-unwind" fn CFFileSecuritySetMode(
     file_sec: &CFFileSecurity,
     mode: libc::mode_t,
 ) -> bool {
@@ -239,7 +239,7 @@ unsafe impl RefEncode for CFFileSecurityClearOptions {
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFFileSecurityClearProperties(
+pub extern "C-unwind" fn CFFileSecurityClearProperties(
     file_sec: &CFFileSecurity,
     clear_property_mask: CFFileSecurityClearOptions,
 ) -> bool {

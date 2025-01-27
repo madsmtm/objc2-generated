@@ -85,7 +85,7 @@ pub unsafe extern "C-unwind" fn CFDataCreateWithBytesNoCopy(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFDataCreateCopy(
+pub extern "C-unwind" fn CFDataCreateCopy(
     allocator: Option<&CFAllocator>,
     the_data: Option<&CFData>,
 ) -> Option<CFRetained<CFData>> {
@@ -101,7 +101,7 @@ pub unsafe extern "C-unwind" fn CFDataCreateCopy(
 
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFDataCreateMutable(
+pub extern "C-unwind" fn CFDataCreateMutable(
     allocator: Option<&CFAllocator>,
     capacity: CFIndex,
 ) -> Option<CFRetained<CFMutableData>> {
@@ -133,17 +133,29 @@ pub unsafe extern "C-unwind" fn CFDataCreateMutableCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFDataGetLength(the_data: &CFData) -> CFIndex;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFDataGetLength(the_data: &CFData) -> CFIndex {
+    extern "C-unwind" {
+        fn CFDataGetLength(the_data: &CFData) -> CFIndex;
+    }
+    unsafe { CFDataGetLength(the_data) }
 }
 
-extern "C-unwind" {
-    pub fn CFDataGetBytePtr(the_data: &CFData) -> *const u8;
+#[inline]
+pub extern "C-unwind" fn CFDataGetBytePtr(the_data: &CFData) -> *const u8 {
+    extern "C-unwind" {
+        fn CFDataGetBytePtr(the_data: &CFData) -> *const u8;
+    }
+    unsafe { CFDataGetBytePtr(the_data) }
 }
 
-extern "C-unwind" {
-    pub fn CFDataGetMutableBytePtr(the_data: Option<&CFMutableData>) -> *mut u8;
+#[inline]
+pub extern "C-unwind" fn CFDataGetMutableBytePtr(the_data: Option<&CFMutableData>) -> *mut u8 {
+    extern "C-unwind" {
+        fn CFDataGetMutableBytePtr(the_data: Option<&CFMutableData>) -> *mut u8;
+    }
+    unsafe { CFDataGetMutableBytePtr(the_data) }
 }
 
 extern "C-unwind" {
@@ -151,14 +163,25 @@ extern "C-unwind" {
     pub fn CFDataGetBytes(the_data: &CFData, range: CFRange, buffer: *mut u8);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFDataSetLength(the_data: Option<&CFMutableData>, length: CFIndex);
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFDataSetLength(the_data: Option<&CFMutableData>, length: CFIndex) {
+    extern "C-unwind" {
+        fn CFDataSetLength(the_data: Option<&CFMutableData>, length: CFIndex);
+    }
+    unsafe { CFDataSetLength(the_data, length) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFDataIncreaseLength(the_data: Option<&CFMutableData>, extra_length: CFIndex);
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFDataIncreaseLength(
+    the_data: Option<&CFMutableData>,
+    extra_length: CFIndex,
+) {
+    extern "C-unwind" {
+        fn CFDataIncreaseLength(the_data: Option<&CFMutableData>, extra_length: CFIndex);
+    }
+    unsafe { CFDataIncreaseLength(the_data, extra_length) }
 }
 
 extern "C-unwind" {
@@ -176,9 +199,13 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFDataDeleteBytes(the_data: Option<&CFMutableData>, range: CFRange);
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFDataDeleteBytes(the_data: Option<&CFMutableData>, range: CFRange) {
+    extern "C-unwind" {
+        fn CFDataDeleteBytes(the_data: Option<&CFMutableData>, range: CFRange);
+    }
+    unsafe { CFDataDeleteBytes(the_data, range) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasearchflags?language=objc)

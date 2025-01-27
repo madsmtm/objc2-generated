@@ -370,7 +370,7 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreate(
 /// Returns: A reference to the new immutable CFDictionary.
 #[cfg(feature = "CFBase")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFDictionaryCreateCopy(
+pub extern "C-unwind" fn CFDictionaryCreateCopy(
     allocator: Option<&CFAllocator>,
     the_dict: Option<&CFDictionary>,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -525,15 +525,19 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreateMutableCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the number of values currently in the dictionary.
-    ///
-    /// Parameter `theDict`: The dictionary to be queried. If this parameter is
-    /// not a valid CFDictionary, the behavior is undefined.
-    ///
-    /// Returns: The number of values in the dictionary.
-    #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryGetCount(the_dict: &CFDictionary) -> CFIndex;
+/// Returns the number of values currently in the dictionary.
+///
+/// Parameter `theDict`: The dictionary to be queried. If this parameter is
+/// not a valid CFDictionary, the behavior is undefined.
+///
+/// Returns: The number of values in the dictionary.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub extern "C-unwind" fn CFDictionaryGetCount(the_dict: &CFDictionary) -> CFIndex {
+    extern "C-unwind" {
+        fn CFDictionaryGetCount(the_dict: &CFDictionary) -> CFIndex;
+    }
+    unsafe { CFDictionaryGetCount(the_dict) }
 }
 
 extern "C-unwind" {
@@ -834,11 +838,15 @@ extern "C-unwind" {
     pub fn CFDictionaryRemoveValue(the_dict: Option<&CFMutableDictionary>, key: *const c_void);
 }
 
-extern "C-unwind" {
-    /// Removes all the values from the dictionary, making it empty.
-    ///
-    /// Parameter `theDict`: The dictionary from which all of the values are to be
-    /// removed. If this parameter is not a valid mutable
-    /// CFDictionary, the behavior is undefined.
-    pub fn CFDictionaryRemoveAllValues(the_dict: Option<&CFMutableDictionary>);
+/// Removes all the values from the dictionary, making it empty.
+///
+/// Parameter `theDict`: The dictionary from which all of the values are to be
+/// removed. If this parameter is not a valid mutable
+/// CFDictionary, the behavior is undefined.
+#[inline]
+pub extern "C-unwind" fn CFDictionaryRemoveAllValues(the_dict: Option<&CFMutableDictionary>) {
+    extern "C-unwind" {
+        fn CFDictionaryRemoveAllValues(the_dict: Option<&CFMutableDictionary>);
+    }
+    unsafe { CFDictionaryRemoveAllValues(the_dict) }
 }
