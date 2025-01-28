@@ -170,7 +170,7 @@ impl IOSurface {
         #[cfg(feature = "objc2-foundation")]
         #[unsafe(method(initWithProperties:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithProperties(
+        pub fn initWithProperties(
             this: Allocated<Self>,
             properties: &NSDictionary<IOSurfacePropertyKey, AnyObject>,
         ) -> Option<Retained<Self>>;
@@ -178,7 +178,7 @@ impl IOSurface {
         #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
         #[unsafe(method(lockWithOptions:seed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lockWithOptions_seed(
+        pub fn lockWithOptions_seed(
             &self,
             options: IOSurfaceLockOptions,
             seed: *mut u32,
@@ -187,7 +187,7 @@ impl IOSurface {
         #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
         #[unsafe(method(unlockWithOptions:seed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unlockWithOptions_seed(
+        pub fn unlockWithOptions_seed(
             &self,
             options: IOSurfaceLockOptions,
             seed: *mut u32,
@@ -195,79 +195,79 @@ impl IOSurface {
 
         #[unsafe(method(allocationSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allocationSize(&self) -> NSInteger;
+        pub fn allocationSize(&self) -> NSInteger;
 
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
-        pub unsafe fn width(&self) -> NSInteger;
+        pub fn width(&self) -> NSInteger;
 
         #[unsafe(method(height))]
         #[unsafe(method_family = none)]
-        pub unsafe fn height(&self) -> NSInteger;
+        pub fn height(&self) -> NSInteger;
 
         #[unsafe(method(baseAddress))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseAddress(&self) -> NonNull<c_void>;
+        pub fn baseAddress(&self) -> NonNull<c_void>;
 
         #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelFormat(&self) -> OSType;
+        pub fn pixelFormat(&self) -> OSType;
 
         #[unsafe(method(bytesPerRow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bytesPerRow(&self) -> NSInteger;
+        pub fn bytesPerRow(&self) -> NSInteger;
 
         #[unsafe(method(bytesPerElement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bytesPerElement(&self) -> NSInteger;
+        pub fn bytesPerElement(&self) -> NSInteger;
 
         #[unsafe(method(elementWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementWidth(&self) -> NSInteger;
+        pub fn elementWidth(&self) -> NSInteger;
 
         #[unsafe(method(elementHeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementHeight(&self) -> NSInteger;
+        pub fn elementHeight(&self) -> NSInteger;
 
         #[unsafe(method(surfaceID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn surfaceID(&self) -> u32;
+        pub fn surfaceID(&self) -> u32;
 
         #[unsafe(method(seed))]
         #[unsafe(method_family = none)]
-        pub unsafe fn seed(&self) -> u32;
+        pub fn seed(&self) -> u32;
 
         #[unsafe(method(planeCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn planeCount(&self) -> NSUInteger;
+        pub fn planeCount(&self) -> NSUInteger;
 
         #[unsafe(method(widthOfPlaneAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn widthOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
+        pub fn widthOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
 
         #[unsafe(method(heightOfPlaneAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn heightOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
+        pub fn heightOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
 
         #[unsafe(method(bytesPerRowOfPlaneAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bytesPerRowOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
+        pub fn bytesPerRowOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
 
         #[unsafe(method(bytesPerElementOfPlaneAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bytesPerElementOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
+        pub fn bytesPerElementOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
 
         #[unsafe(method(elementWidthOfPlaneAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementWidthOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
+        pub fn elementWidthOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
 
         #[unsafe(method(elementHeightOfPlaneAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementHeightOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
+        pub fn elementHeightOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NSInteger;
 
         #[unsafe(method(baseAddressOfPlaneAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseAddressOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NonNull<c_void>;
+        pub fn baseAddressOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-foundation")]
         #[unsafe(method(setAttachment:forKey:))]
@@ -277,46 +277,46 @@ impl IOSurface {
         #[cfg(feature = "objc2-foundation")]
         #[unsafe(method(attachmentForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
+        pub fn attachmentForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
         #[unsafe(method(removeAttachmentForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAttachmentForKey(&self, key: &NSString);
+        pub fn removeAttachmentForKey(&self, key: &NSString);
 
         #[cfg(feature = "objc2-foundation")]
         #[unsafe(method(setAllAttachments:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllAttachments(&self, dict: &NSDictionary<NSString, AnyObject>);
+        pub fn setAllAttachments(&self, dict: &NSDictionary<NSString, AnyObject>);
 
         #[cfg(feature = "objc2-foundation")]
         #[unsafe(method(allAttachments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allAttachments(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+        pub fn allAttachments(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[unsafe(method(removeAllAttachments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAllAttachments(&self);
+        pub fn removeAllAttachments(&self);
 
         #[unsafe(method(isInUse))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isInUse(&self) -> bool;
+        pub fn isInUse(&self) -> bool;
 
         #[unsafe(method(incrementUseCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn incrementUseCount(&self);
+        pub fn incrementUseCount(&self);
 
         #[unsafe(method(decrementUseCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decrementUseCount(&self);
+        pub fn decrementUseCount(&self);
 
         #[unsafe(method(localUseCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localUseCount(&self) -> i32;
+        pub fn localUseCount(&self) -> i32;
 
         #[unsafe(method(allowsPixelSizeCasting))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsPixelSizeCasting(&self) -> bool;
+        pub fn allowsPixelSizeCasting(&self) -> bool;
 
         #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
         #[unsafe(method(setPurgeable:oldState:))]
@@ -335,12 +335,20 @@ impl IOSurface {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "objc2")]
+impl DefaultRetained for IOSurface {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
