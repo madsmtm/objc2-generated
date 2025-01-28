@@ -8,6 +8,8 @@ use objc2_cloud_kit::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-health-kit")]
 use objc2_health_kit::*;
+#[cfg(feature = "objc2-intents")]
+use objc2_intents::*;
 #[cfg(feature = "objc2-ui-kit")]
 use objc2_ui_kit::*;
 
@@ -251,6 +253,16 @@ extern_protocol!(
         #[unsafe(method(handleActivity:))]
         #[unsafe(method_family = none)]
         unsafe fn handleActivity(&self, user_activity: &NSUserActivity);
+
+        #[cfg(all(feature = "block2", feature = "objc2-intents"))]
+        #[optional]
+        #[unsafe(method(handleIntent:completionHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn handleIntent_completionHandler(
+            &self,
+            intent: &INIntent,
+            completion_handler: &block2::Block<dyn Fn(NonNull<INIntentResponse>)>,
+        );
 
         #[cfg(feature = "WKBackgroundTask")]
         #[optional]
