@@ -364,7 +364,7 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilitySetCallback(
 /// FALSE otherwise.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkReachabilityScheduleWithRunLoop(
+pub extern "C-unwind" fn SCNetworkReachabilityScheduleWithRunLoop(
     target: &SCNetworkReachability,
     run_loop: &CFRunLoop,
     run_loop_mode: &CFString,
@@ -396,7 +396,7 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilityScheduleWithRunLoop(
 /// FALSE otherwise.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkReachabilityUnscheduleFromRunLoop(
+pub extern "C-unwind" fn SCNetworkReachabilityUnscheduleFromRunLoop(
     target: &SCNetworkReachability,
     run_loop: &CFRunLoop,
     run_loop_mode: &CFString,

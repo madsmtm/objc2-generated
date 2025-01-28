@@ -21,7 +21,7 @@ use crate::*;
 /// Returns: Returns TRUE if successful; FALSE otherwise.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesSetComputerName(
+pub extern "C-unwind" fn SCPreferencesSetComputerName(
     prefs: &SCPreferences,
     name: Option<&CFString>,
     name_encoding: CFStringEncoding,
@@ -54,7 +54,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesSetComputerName(
 /// Returns: Returns TRUE if successful; FALSE otherwise.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesSetLocalHostName(
+pub extern "C-unwind" fn SCPreferencesSetLocalHostName(
     prefs: &SCPreferences,
     name: Option<&CFString>,
 ) -> bool {

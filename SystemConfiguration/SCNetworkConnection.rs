@@ -317,7 +317,7 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCreateWithServiceID(
 ///
 /// Returns: Returns the service ID associated with the SCNetworkConnection.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyServiceID(
+pub extern "C-unwind" fn SCNetworkConnectionCopyServiceID(
     connection: &SCNetworkConnection,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -329,28 +329,34 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyServiceID(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the status of the SCNetworkConnection.
-    /// A status is one of the following values:
-    /// <pre>
-    ///
-    /// ```text
-    /// &#32
-    ///     kSCNetworkConnectionInvalid
-    ///     kSCNetworkConnectionDisconnected
-    ///     kSCNetworkConnectionConnecting
-    ///     kSCNetworkConnectionDisconnecting
-    ///     kSCNetworkConnectionConnected
-    /// ```
-    ///
-    /// </pre>
-    ///
-    /// Parameter `connection`: The SCNetworkConnection to obtain status from.
-    ///
-    /// Returns: Returns the status value.
-    pub fn SCNetworkConnectionGetStatus(
-        connection: &SCNetworkConnection,
-    ) -> SCNetworkConnectionStatus;
+/// Returns the status of the SCNetworkConnection.
+/// A status is one of the following values:
+/// <pre>
+///
+/// ```text
+/// &#32
+///     kSCNetworkConnectionInvalid
+///     kSCNetworkConnectionDisconnected
+///     kSCNetworkConnectionConnecting
+///     kSCNetworkConnectionDisconnecting
+///     kSCNetworkConnectionConnected
+/// ```
+///
+/// </pre>
+///
+/// Parameter `connection`: The SCNetworkConnection to obtain status from.
+///
+/// Returns: Returns the status value.
+#[inline]
+pub extern "C-unwind" fn SCNetworkConnectionGetStatus(
+    connection: &SCNetworkConnection,
+) -> SCNetworkConnectionStatus {
+    extern "C-unwind" {
+        fn SCNetworkConnectionGetStatus(
+            connection: &SCNetworkConnection,
+        ) -> SCNetworkConnectionStatus;
+    }
+    unsafe { SCNetworkConnectionGetStatus(connection) }
 }
 
 /// Returns the extended status of the connection.
@@ -397,7 +403,7 @@ extern "C-unwind" {
 /// Returns: Returns the status dictionary.
 /// If NULL is returned, the error can be retrieved using the SCError function.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyExtendedStatus(
+pub extern "C-unwind" fn SCNetworkConnectionCopyExtendedStatus(
     connection: &SCNetworkConnection,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -447,7 +453,7 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyExtendedStatus(
 /// Returns: Returns the statistics dictionary.
 /// If NULL is returned, the error can be retrieved using the SCError function.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyStatistics(
+pub extern "C-unwind" fn SCNetworkConnectionCopyStatistics(
     connection: &SCNetworkConnection,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -540,7 +546,7 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionStart(
 /// FALSE if the disconnection request failed.
 /// The error must be retrieved from the SCError function.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkConnectionStop(
+pub extern "C-unwind" fn SCNetworkConnectionStop(
     connection: &SCNetworkConnection,
     force_disconnect: bool,
 ) -> bool {
@@ -564,7 +570,7 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionStop(
 /// The dictionary can be empty if no user options were used.
 /// If NULL is returned, the error can be retrieved using the SCError function.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyUserOptions(
+pub extern "C-unwind" fn SCNetworkConnectionCopyUserOptions(
     connection: &SCNetworkConnection,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -588,7 +594,7 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyUserOptions(
 /// FALSE if the scheduling failed.
 /// The error can be retrieved using the SCError function.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkConnectionScheduleWithRunLoop(
+pub extern "C-unwind" fn SCNetworkConnectionScheduleWithRunLoop(
     connection: &SCNetworkConnection,
     run_loop: &CFRunLoop,
     run_loop_mode: &CFString,
@@ -617,7 +623,7 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionScheduleWithRunLoop(
 /// FALSE if the unscheduling failed.
 /// The error can be retrieved using the SCError function.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkConnectionUnscheduleFromRunLoop(
+pub extern "C-unwind" fn SCNetworkConnectionUnscheduleFromRunLoop(
     connection: &SCNetworkConnection,
     run_loop: &CFRunLoop,
     run_loop_mode: &CFString,

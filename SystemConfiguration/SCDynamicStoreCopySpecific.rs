@@ -86,7 +86,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyConsoleUser(
 /// You must release the returned value.
 #[cfg(feature = "SCDynamicStore")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreCopyLocalHostName(
+pub extern "C-unwind" fn SCDynamicStoreCopyLocalHostName(
     store: Option<&SCDynamicStore>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -110,7 +110,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyLocalHostName(
 /// You must release the returned value.
 #[cfg(feature = "SCDynamicStore")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreCopyLocation(
+pub extern "C-unwind" fn SCDynamicStoreCopyLocation(
     store: Option<&SCDynamicStore>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -335,7 +335,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyLocation(
 /// You must release the returned value.
 #[cfg(feature = "SCDynamicStore")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreCopyProxies(
+pub extern "C-unwind" fn SCDynamicStoreCopyProxies(
     store: Option<&SCDynamicStore>,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {

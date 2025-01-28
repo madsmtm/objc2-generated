@@ -16,7 +16,7 @@ use crate::*;
 /// if the specified path does not exist.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesPathCreateUniqueChild(
+pub extern "C-unwind" fn SCPreferencesPathCreateUniqueChild(
     prefs: &SCPreferences,
     prefix: &CFString,
 ) -> Option<CFRetained<CFString>> {
@@ -41,7 +41,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesPathCreateUniqueChild(
 /// if the path does not exist.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesPathGetValue(
+pub extern "C-unwind" fn SCPreferencesPathGetValue(
     prefs: &SCPreferences,
     path: &CFString,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -66,7 +66,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesPathGetValue(
 /// if the path is not a link or does not exist.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesPathGetLink(
+pub extern "C-unwind" fn SCPreferencesPathGetLink(
     prefs: &SCPreferences,
     path: &CFString,
 ) -> Option<CFRetained<CFString>> {
@@ -121,7 +121,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesPathSetValue(
 /// Returns: Returns TRUE if successful; FALSE otherwise.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesPathSetLink(
+pub extern "C-unwind" fn SCPreferencesPathSetLink(
     prefs: &SCPreferences,
     path: &CFString,
     link: &CFString,
@@ -146,7 +146,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesPathSetLink(
 /// Returns: Returns TRUE if successful; FALSE otherwise.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesPathRemoveValue(
+pub extern "C-unwind" fn SCPreferencesPathRemoveValue(
     prefs: &SCPreferences,
     path: &CFString,
 ) -> bool {

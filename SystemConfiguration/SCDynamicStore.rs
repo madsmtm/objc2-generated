@@ -257,7 +257,7 @@ extern "C" {
 /// Returns: A reference to the new CFRunLoopSource.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreCreateRunLoopSource(
+pub extern "C-unwind" fn SCDynamicStoreCreateRunLoopSource(
     allocator: Option<&CFAllocator>,
     store: &SCDynamicStore,
     order: CFIndex,
@@ -285,7 +285,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCreateRunLoopSource(
 /// encountered.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreCopyKeyList(
+pub extern "C-unwind" fn SCDynamicStoreCopyKeyList(
     store: Option<&SCDynamicStore>,
     pattern: &CFString,
 ) -> Option<CFRetained<CFArray>> {
@@ -367,7 +367,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreAddTemporaryValue(
 /// key; NULL if no value was located or an error was encountered.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreCopyValue(
+pub extern "C-unwind" fn SCDynamicStoreCopyValue(
     store: Option<&SCDynamicStore>,
     key: &CFString,
 ) -> Option<CFRetained<CFPropertyList>> {
@@ -480,7 +480,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreSetMultiple(
 /// Returns: Returns TRUE if the key was removed; FALSE if no value was
 /// located or an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreRemoveValue(
+pub extern "C-unwind" fn SCDynamicStoreRemoveValue(
     store: Option<&SCDynamicStore>,
     key: &CFString,
 ) -> bool {
@@ -502,7 +502,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreRemoveValue(
 ///
 /// Returns: Returns TRUE if the notification was processed; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreNotifyValue(
+pub extern "C-unwind" fn SCDynamicStoreNotifyValue(
     store: Option<&SCDynamicStore>,
     key: &CFString,
 ) -> bool {
@@ -555,7 +555,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreSetNotificationKeys(
 /// NULL if an error was encountered.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreCopyNotifiedKeys(
+pub extern "C-unwind" fn SCDynamicStoreCopyNotifiedKeys(
     store: &SCDynamicStore,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {

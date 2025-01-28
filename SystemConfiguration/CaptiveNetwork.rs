@@ -42,7 +42,7 @@ pub unsafe extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> boo
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
+pub extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
     extern "C-unwind" {
         fn CNMarkPortalOnline(interface_name: &CFString) -> Boolean;
     }
@@ -58,7 +58,7 @@ pub unsafe extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) ->
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool {
+pub extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool {
     extern "C-unwind" {
         fn CNMarkPortalOffline(interface_name: &CFString) -> Boolean;
     }
@@ -72,7 +72,7 @@ pub unsafe extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -
 /// Returns NULL if an error was encountered.
 /// You MUST release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArray>> {
+pub extern "C-unwind" fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn CNCopySupportedInterfaces() -> Option<NonNull<CFArray>>;
     }
@@ -136,7 +136,7 @@ extern "C" {
 /// You MUST release the returned value.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CNCopyCurrentNetworkInfo(
+pub extern "C-unwind" fn CNCopyCurrentNetworkInfo(
     interface_name: &CFString,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {

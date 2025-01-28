@@ -24,7 +24,7 @@ use crate::*;
 ///
 /// Returns: Returns a string containing the formatted key.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkGlobalEntity(
+pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkGlobalEntity(
     allocator: Option<&CFAllocator>,
     domain: &CFString,
     entity: &CFString,
@@ -57,7 +57,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkGlobalEntity(
 ///
 /// Returns: Returns a string containing the formatted key.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterface(
+pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterface(
     allocator: Option<&CFAllocator>,
     domain: &CFString,
 ) -> CFRetained<CFString> {
@@ -94,7 +94,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterface(
 ///
 /// Returns: Returns a string containing the formatted key.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterfaceEntity(
+pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterfaceEntity(
     allocator: Option<&CFAllocator>,
     domain: &CFString,
     ifname: &CFString,
@@ -136,7 +136,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterfaceEntity(
 ///
 /// Returns: Returns a string containing the formatted key.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkServiceEntity(
+pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkServiceEntity(
     allocator: Option<&CFAllocator>,
     domain: &CFString,
     service_id: &CFString,
@@ -170,7 +170,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkServiceEntity(
 /// Returns: Returns a notification string for the current computer or
 /// host name.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateComputerName(
+pub extern "C-unwind" fn SCDynamicStoreKeyCreateComputerName(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
@@ -195,7 +195,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateComputerName(
 ///
 /// Returns: Returns a notification string for the current console user.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateConsoleUser(
+pub extern "C-unwind" fn SCDynamicStoreKeyCreateConsoleUser(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
@@ -221,7 +221,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateConsoleUser(
 ///
 /// Returns: Returns a notification string for the HostNames entity.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateHostNames(
+pub extern "C-unwind" fn SCDynamicStoreKeyCreateHostNames(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
@@ -247,7 +247,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateHostNames(
 /// Returns: Returns a notification string for the current location
 /// identifier.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateLocation(
+pub extern "C-unwind" fn SCDynamicStoreKeyCreateLocation(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
@@ -273,7 +273,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateLocation(
 ///
 /// Returns: Returns a notification string for the current proxy settings.
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateProxies(
+pub extern "C-unwind" fn SCDynamicStoreKeyCreateProxies(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {

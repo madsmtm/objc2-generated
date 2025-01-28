@@ -125,7 +125,7 @@ pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByName(
 /// Returns: Returns TRUE if the notification was sent; FALSE otherwise.
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceRefreshConfiguration(if_name: &CFString) -> bool {
+pub extern "C-unwind" fn SCNetworkInterfaceRefreshConfiguration(if_name: &CFString) -> bool {
     extern "C-unwind" {
         fn SCNetworkInterfaceRefreshConfiguration(if_name: &CFString) -> Boolean;
     }

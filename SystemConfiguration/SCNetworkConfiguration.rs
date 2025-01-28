@@ -252,7 +252,7 @@ unsafe impl ConcreteType for SCNetworkInterface {
 /// Returns: The list of interfaces on the system.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyAll() -> CFRetained<CFArray> {
+pub extern "C-unwind" fn SCNetworkInterfaceCopyAll() -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn SCNetworkInterfaceCopyAll() -> Option<NonNull<CFArray>>;
     }
@@ -269,7 +269,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyAll() -> CFRetained<CFArra
 /// Returns: The list of SCNetworkInterface types supported by the interface;
 /// NULL if no interface types are supported.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetSupportedInterfaceTypes(
+pub extern "C-unwind" fn SCNetworkInterfaceGetSupportedInterfaceTypes(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -289,7 +289,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetSupportedInterfaceTypes(
 /// Returns: The list of SCNetworkProtocol types supported by the interface;
 /// NULL if no protocol types are supported.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetSupportedProtocolTypes(
+pub extern "C-unwind" fn SCNetworkInterfaceGetSupportedProtocolTypes(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -313,7 +313,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetSupportedProtocolTypes(
 /// Returns: A reference to the new SCNetworkInterface.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceCreateWithInterface(
+pub extern "C-unwind" fn SCNetworkInterfaceCreateWithInterface(
     interface: &SCNetworkInterface,
     interface_type: &CFString,
 ) -> Option<CFRetained<SCNetworkInterface>> {
@@ -335,7 +335,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceCreateWithInterface(
 /// Returns: The BSD name associated with the interface (e.g. "en0");
 /// NULL if no BSD name is available.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetBSDName(
+pub extern "C-unwind" fn SCNetworkInterfaceGetBSDName(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -355,7 +355,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetBSDName(
 /// NULL if no configuration settings are associated with the interface
 /// or an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetConfiguration(
+pub extern "C-unwind" fn SCNetworkInterfaceGetConfiguration(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -377,7 +377,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetConfiguration(
 /// NULL if no configuration settings are associated with the interface
 /// or an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetExtendedConfiguration(
+pub extern "C-unwind" fn SCNetworkInterfaceGetExtendedConfiguration(
     interface: &SCNetworkInterface,
     extended_type: &CFString,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -397,7 +397,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetExtendedConfiguration(
 ///
 /// Returns: A string representing the hardware (MAC) address for the interface.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetHardwareAddressString(
+pub extern "C-unwind" fn SCNetworkInterfaceGetHardwareAddressString(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -416,7 +416,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetHardwareAddressString(
 /// Returns: The underlying network interface;
 /// NULL if this is a leaf interface.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetInterface(
+pub extern "C-unwind" fn SCNetworkInterfaceGetInterface(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<SCNetworkInterface>> {
     extern "C-unwind" {
@@ -434,7 +434,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetInterface(
 ///
 /// Returns: The interface type.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetInterfaceType(
+pub extern "C-unwind" fn SCNetworkInterfaceGetInterfaceType(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -454,7 +454,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetInterfaceType(
 /// Returns: A localized, display name for the interface;
 /// NULL if no name is available.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetLocalizedDisplayName(
+pub extern "C-unwind" fn SCNetworkInterfaceGetLocalizedDisplayName(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -568,7 +568,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMediaOptions(
 /// Returns: An array of available media subtypes CFString's (e.g. 10BaseT/UTP,
 /// 100baseTX, etc).  NULL if no subtypes are available.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMediaSubTypes(
+pub extern "C-unwind" fn SCNetworkInterfaceCopyMediaSubTypes(
     available: &CFArray,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -593,7 +593,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMediaSubTypes(
 /// <full
 /// -duplex,flow-control>).  NULL if no options are available.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMediaSubTypeOptions(
+pub extern "C-unwind" fn SCNetworkInterfaceCopyMediaSubTypeOptions(
     available: &CFArray,
     sub_type: &CFString,
 ) -> Option<CFRetained<CFArray>> {
@@ -657,7 +657,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMTU(
 ///
 /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceSetMediaOptions(
+pub extern "C-unwind" fn SCNetworkInterfaceSetMediaOptions(
     interface: &SCNetworkInterface,
     subtype: Option<&CFString>,
     options: Option<&CFArray>,
@@ -683,7 +683,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceSetMediaOptions(
 ///
 /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceSetMTU(
+pub extern "C-unwind" fn SCNetworkInterfaceSetMTU(
     interface: &SCNetworkInterface,
     mtu: c_int,
 ) -> bool {
@@ -714,7 +714,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceSetMTU(
 ///
 /// Returns: Returns TRUE if the notification was sent; FALSE otherwise.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkInterfaceForceConfigurationRefresh(
+pub extern "C-unwind" fn SCNetworkInterfaceForceConfigurationRefresh(
     interface: &SCNetworkInterface,
 ) -> bool {
     extern "C-unwind" {
@@ -732,9 +732,7 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceForceConfigurationRefresh(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceCopyAll(
-    prefs: &SCPreferences,
-) -> CFRetained<CFArray> {
+pub extern "C-unwind" fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
     }
@@ -752,7 +750,7 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceCopyAll(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceCopyAvailableMemberInterfaces(
+pub extern "C-unwind" fn SCBondInterfaceCopyAvailableMemberInterfaces(
     prefs: &SCPreferences,
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -773,7 +771,7 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceCopyAvailableMemberInterfaces(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceCreate(
+pub extern "C-unwind" fn SCBondInterfaceCreate(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<SCBondInterface>> {
     extern "C-unwind" {
@@ -789,7 +787,7 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceCreate(
 ///
 /// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceRemove(bond: &SCBondInterface) -> bool {
+pub extern "C-unwind" fn SCBondInterfaceRemove(bond: &SCBondInterface) -> bool {
     extern "C-unwind" {
         fn SCBondInterfaceRemove(bond: &SCBondInterface) -> Boolean;
     }
@@ -803,7 +801,7 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceRemove(bond: &SCBondInterface) ->
 ///
 /// Returns: The list of interfaces.
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceGetMemberInterfaces(
+pub extern "C-unwind" fn SCBondInterfaceGetMemberInterfaces(
     bond: &SCBondInterface,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -820,7 +818,7 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceGetMemberInterfaces(
 /// Returns: The configuration settings associated with the Ethernet Bond interface;
 /// NULL if no changes to the default configuration have been saved.
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceGetOptions(
+pub extern "C-unwind" fn SCBondInterfaceGetOptions(
     bond: &SCBondInterface,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -858,7 +856,7 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceSetMemberInterfaces(
 ///
 /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
+pub extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
     bond: &SCBondInterface,
     new_name: &CFString,
 ) -> bool {
@@ -899,7 +897,7 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceSetOptions(
 /// Returns: The status associated with the interface.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceCopyStatus(
+pub extern "C-unwind" fn SCBondInterfaceCopyStatus(
     bond: &SCBondInterface,
 ) -> Option<CFRetained<SCBondStatus>> {
     extern "C-unwind" {
@@ -928,7 +926,7 @@ unsafe impl ConcreteType for SCBondStatus {
 ///
 /// Returns: The list of interfaces.
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondStatusGetMemberInterfaces(
+pub extern "C-unwind" fn SCBondStatusGetMemberInterfaces(
     bond_status: &SCBondStatus,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -952,7 +950,7 @@ pub unsafe extern "C-unwind" fn SCBondStatusGetMemberInterfaces(
 /// Bond is returned.  As long as one member interface is active
 /// then the bond should be operational.
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondStatusGetInterfaceStatus(
+pub extern "C-unwind" fn SCBondStatusGetInterfaceStatus(
     bond_status: &SCBondStatus,
     interface: Option<&SCNetworkInterface>,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -972,9 +970,7 @@ pub unsafe extern "C-unwind" fn SCBondStatusGetInterfaceStatus(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceCopyAll(
-    prefs: &SCPreferences,
-) -> CFRetained<CFArray> {
+pub extern "C-unwind" fn SCVLANInterfaceCopyAll(prefs: &SCPreferences) -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn SCVLANInterfaceCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
     }
@@ -989,8 +985,7 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceCopyAll(
 /// Returns: The list of interfaces.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces(
-) -> CFRetained<CFArray> {
+pub extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces() -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn SCVLANInterfaceCopyAvailablePhysicalInterfaces() -> Option<NonNull<CFArray>>;
     }
@@ -1017,7 +1012,7 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces(
 /// = 4094)
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceCreate(
+pub extern "C-unwind" fn SCVLANInterfaceCreate(
     prefs: &SCPreferences,
     physical: &SCNetworkInterface,
     tag: &CFNumber,
@@ -1039,7 +1034,7 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceCreate(
 ///
 /// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> bool {
+pub extern "C-unwind" fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> bool {
     extern "C-unwind" {
         fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> Boolean;
     }
@@ -1053,7 +1048,7 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) ->
 ///
 /// Returns: The list of interfaces.
 #[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceGetPhysicalInterface(
+pub extern "C-unwind" fn SCVLANInterfaceGetPhysicalInterface(
     vlan: &SCVLANInterface,
 ) -> Option<CFRetained<SCNetworkInterface>> {
     extern "C-unwind" {
@@ -1071,7 +1066,7 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceGetPhysicalInterface(
 ///
 /// Returns: The tag.
 #[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceGetTag(
+pub extern "C-unwind" fn SCVLANInterfaceGetTag(
     vlan: &SCVLANInterface,
 ) -> Option<CFRetained<CFNumber>> {
     extern "C-unwind" {
@@ -1088,7 +1083,7 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceGetTag(
 /// Returns: The configuration settings associated with the VLAN interface;
 /// NULL if no changes to the default configuration have been saved.
 #[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceGetOptions(
+pub extern "C-unwind" fn SCVLANInterfaceGetOptions(
     vlan: &SCVLANInterface,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -1114,7 +1109,7 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceGetOptions(
 /// <
 /// = 4094)
 #[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
+pub extern "C-unwind" fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
     vlan: &SCVLANInterface,
     physical: &SCNetworkInterface,
     tag: &CFNumber,
@@ -1138,7 +1133,7 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
 ///
 /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
+pub extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
     vlan: &SCVLANInterface,
     new_name: &CFString,
 ) -> bool {
@@ -1192,7 +1187,7 @@ unsafe impl ConcreteType for SCNetworkProtocol {
 /// NULL if no configuration settings are associated with the protocol
 /// or an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkProtocolGetConfiguration(
+pub extern "C-unwind" fn SCNetworkProtocolGetConfiguration(
     protocol: &SCNetworkProtocol,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -1210,7 +1205,7 @@ pub unsafe extern "C-unwind" fn SCNetworkProtocolGetConfiguration(
 ///
 /// Returns: TRUE if the protocol is enabled.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkProtocolGetEnabled(protocol: &SCNetworkProtocol) -> bool {
+pub extern "C-unwind" fn SCNetworkProtocolGetEnabled(protocol: &SCNetworkProtocol) -> bool {
     extern "C-unwind" {
         fn SCNetworkProtocolGetEnabled(protocol: &SCNetworkProtocol) -> Boolean;
     }
@@ -1224,7 +1219,7 @@ pub unsafe extern "C-unwind" fn SCNetworkProtocolGetEnabled(protocol: &SCNetwork
 ///
 /// Returns: The protocol type.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkProtocolGetProtocolType(
+pub extern "C-unwind" fn SCNetworkProtocolGetProtocolType(
     protocol: &SCNetworkProtocol,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -1266,7 +1261,7 @@ pub unsafe extern "C-unwind" fn SCNetworkProtocolSetConfiguration(
 ///
 /// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkProtocolSetEnabled(
+pub extern "C-unwind" fn SCNetworkProtocolSetEnabled(
     protocol: &SCNetworkProtocol,
     enabled: bool,
 ) -> bool {
@@ -1301,7 +1296,7 @@ unsafe impl ConcreteType for SCNetworkService {
 /// Returns: TRUE if the protocol was added to the service; FALSE if the
 /// protocol was already present or an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceAddProtocolType(
+pub extern "C-unwind" fn SCNetworkServiceAddProtocolType(
     service: &SCNetworkService,
     protocol_type: &CFString,
 ) -> bool {
@@ -1323,7 +1318,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceAddProtocolType(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceCopyAll(
+pub extern "C-unwind" fn SCNetworkServiceCopyAll(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -1340,7 +1335,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCopyAll(
 /// Returns: The list of SCNetworkProtocol protocols associated with the service.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceCopyProtocols(
+pub extern "C-unwind" fn SCNetworkServiceCopyProtocols(
     service: &SCNetworkService,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -1359,7 +1354,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCopyProtocols(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceCreate(
+pub extern "C-unwind" fn SCNetworkServiceCreate(
     prefs: &SCPreferences,
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<SCNetworkService>> {
@@ -1385,7 +1380,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCreate(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceCopy(
+pub extern "C-unwind" fn SCNetworkServiceCopy(
     prefs: &SCPreferences,
     service_id: &CFString,
 ) -> Option<CFRetained<SCNetworkService>> {
@@ -1408,7 +1403,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCopy(
 ///
 /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceEstablishDefaultConfiguration(
+pub extern "C-unwind" fn SCNetworkServiceEstablishDefaultConfiguration(
     service: &SCNetworkService,
 ) -> bool {
     extern "C-unwind" {
@@ -1424,7 +1419,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceEstablishDefaultConfiguration(
 ///
 /// Returns: TRUE if the service is enabled.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceGetEnabled(service: &SCNetworkService) -> bool {
+pub extern "C-unwind" fn SCNetworkServiceGetEnabled(service: &SCNetworkService) -> bool {
     extern "C-unwind" {
         fn SCNetworkServiceGetEnabled(service: &SCNetworkService) -> Boolean;
     }
@@ -1439,7 +1434,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceGetEnabled(service: &SCNetworkSe
 /// Returns: A reference to the SCNetworkInterface associated with the service;
 /// NULL if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceGetInterface(
+pub extern "C-unwind" fn SCNetworkServiceGetInterface(
     service: &SCNetworkService,
 ) -> Option<CFRetained<SCNetworkInterface>> {
     extern "C-unwind" {
@@ -1457,7 +1452,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceGetInterface(
 ///
 /// Returns: The [user specified] name.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceGetName(
+pub extern "C-unwind" fn SCNetworkServiceGetName(
     service: &SCNetworkService,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -1476,7 +1471,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceGetName(
 /// NULL if this protocol has not been added or if an error was encountered.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceCopyProtocol(
+pub extern "C-unwind" fn SCNetworkServiceCopyProtocol(
     service: &SCNetworkService,
     protocol_type: &CFString,
 ) -> Option<CFRetained<SCNetworkProtocol>> {
@@ -1496,7 +1491,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCopyProtocol(
 ///
 /// Returns: The service identifier.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceGetServiceID(
+pub extern "C-unwind" fn SCNetworkServiceGetServiceID(
     service: &SCNetworkService,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -1512,7 +1507,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceGetServiceID(
 ///
 /// Returns: TRUE if the service was removed; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceRemove(service: &SCNetworkService) -> bool {
+pub extern "C-unwind" fn SCNetworkServiceRemove(service: &SCNetworkService) -> bool {
     extern "C-unwind" {
         fn SCNetworkServiceRemove(service: &SCNetworkService) -> Boolean;
     }
@@ -1529,7 +1524,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceRemove(service: &SCNetworkServic
 /// Returns: TRUE if the protocol was removed to the service; FALSE if the
 /// protocol was not configured or an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceRemoveProtocolType(
+pub extern "C-unwind" fn SCNetworkServiceRemoveProtocolType(
     service: &SCNetworkService,
     protocol_type: &CFString,
 ) -> bool {
@@ -1551,7 +1546,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceRemoveProtocolType(
 ///
 /// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceSetEnabled(
+pub extern "C-unwind" fn SCNetworkServiceSetEnabled(
     service: &SCNetworkService,
     enabled: bool,
 ) -> bool {
@@ -1575,7 +1570,7 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceSetEnabled(
 /// error will be returned if you attemp to name two services with the
 /// same string.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkServiceSetName(
+pub extern "C-unwind" fn SCNetworkServiceSetName(
     service: &SCNetworkService,
     name: Option<&CFString>,
 ) -> bool {
@@ -1612,7 +1607,7 @@ unsafe impl ConcreteType for SCNetworkSet {
 /// more than one set.  An error will be returned if you attempt
 /// to add a service to more than one set on a pre-10.5 system.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetAddService(
+pub extern "C-unwind" fn SCNetworkSetAddService(
     set: &SCNetworkSet,
     service: &SCNetworkService,
 ) -> bool {
@@ -1632,7 +1627,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetAddService(
 ///
 /// Returns: TRUE if the interface is represented in the set; FALSE if not.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetContainsInterface(
+pub extern "C-unwind" fn SCNetworkSetContainsInterface(
     set: &SCNetworkSet,
     interface: &SCNetworkInterface,
 ) -> bool {
@@ -1654,9 +1649,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetContainsInterface(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetCopyAll(
-    prefs: &SCPreferences,
-) -> Option<CFRetained<CFArray>> {
+pub extern "C-unwind" fn SCNetworkSetCopyAll(prefs: &SCPreferences) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn SCNetworkSetCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
     }
@@ -1671,7 +1664,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCopyAll(
 /// Returns: The current set; NULL if no current set has been defined.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetCopyCurrent(
+pub extern "C-unwind" fn SCNetworkSetCopyCurrent(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<SCNetworkSet>> {
     extern "C-unwind" {
@@ -1688,7 +1681,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCopyCurrent(
 /// Returns: The list of SCNetworkService services associated with the set.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetCopyServices(
+pub extern "C-unwind" fn SCNetworkSetCopyServices(
     set: &SCNetworkSet,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -1706,7 +1699,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCopyServices(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetCreate(
+pub extern "C-unwind" fn SCNetworkSetCreate(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<SCNetworkSet>> {
     extern "C-unwind" {
@@ -1728,7 +1721,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCreate(
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetCopy(
+pub extern "C-unwind" fn SCNetworkSetCopy(
     prefs: &SCPreferences,
     set_id: &CFString,
 ) -> Option<CFRetained<SCNetworkSet>> {
@@ -1748,9 +1741,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCopy(
 ///
 /// Returns: The [user specified] name.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetGetName(
-    set: &SCNetworkSet,
-) -> Option<CFRetained<CFString>> {
+pub extern "C-unwind" fn SCNetworkSetGetName(set: &SCNetworkSet) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn SCNetworkSetGetName(set: &SCNetworkSet) -> Option<NonNull<CFString>>;
     }
@@ -1764,9 +1755,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetGetName(
 ///
 /// Returns: The set identifier.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetGetSetID(
-    set: &SCNetworkSet,
-) -> Option<CFRetained<CFString>> {
+pub extern "C-unwind" fn SCNetworkSetGetSetID(set: &SCNetworkSet) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn SCNetworkSetGetSetID(set: &SCNetworkSet) -> Option<NonNull<CFString>>;
     }
@@ -1784,7 +1773,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetGetSetID(
 /// NULL if no service order has been specified or if an error
 /// was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetGetServiceOrder(
+pub extern "C-unwind" fn SCNetworkSetGetServiceOrder(
     set: &SCNetworkSet,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -1800,7 +1789,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetGetServiceOrder(
 ///
 /// Returns: TRUE if the set was removed; FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetRemove(set: &SCNetworkSet) -> bool {
+pub extern "C-unwind" fn SCNetworkSetRemove(set: &SCNetworkSet) -> bool {
     extern "C-unwind" {
         fn SCNetworkSetRemove(set: &SCNetworkSet) -> Boolean;
     }
@@ -1817,7 +1806,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetRemove(set: &SCNetworkSet) -> bool {
 /// Returns: TRUE if the service was removed from the set; FALSE if the
 /// service was not already present or an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetRemoveService(
+pub extern "C-unwind" fn SCNetworkSetRemoveService(
     set: &SCNetworkSet,
     service: &SCNetworkService,
 ) -> bool {
@@ -1835,7 +1824,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetRemoveService(
 /// Returns: TRUE if the current set was updated;
 /// FALSE if an error was encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetSetCurrent(set: &SCNetworkSet) -> bool {
+pub extern "C-unwind" fn SCNetworkSetSetCurrent(set: &SCNetworkSet) -> bool {
     extern "C-unwind" {
         fn SCNetworkSetSetCurrent(set: &SCNetworkSet) -> Boolean;
     }
@@ -1855,10 +1844,7 @@ pub unsafe extern "C-unwind" fn SCNetworkSetSetCurrent(set: &SCNetworkSet) -> bo
 /// for all set should be unique.  As such, an error will be returned if
 /// you attemp to name two sets with the same string.
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkSetSetName(
-    set: &SCNetworkSet,
-    name: Option<&CFString>,
-) -> bool {
+pub extern "C-unwind" fn SCNetworkSetSetName(set: &SCNetworkSet, name: Option<&CFString>) -> bool {
     extern "C-unwind" {
         fn SCNetworkSetSetName(set: &SCNetworkSet, name: Option<&CFString>) -> Boolean;
     }

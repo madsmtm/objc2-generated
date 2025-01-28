@@ -23,7 +23,7 @@ use crate::*;
 /// A non-NULL return value must be released using CFRelease().
 #[cfg(feature = "SCDynamicStore")]
 #[inline]
-pub unsafe extern "C-unwind" fn SCDynamicStoreCopyDHCPInfo(
+pub extern "C-unwind" fn SCDynamicStoreCopyDHCPInfo(
     store: Option<&SCDynamicStore>,
     service_id: Option<&CFString>,
 ) -> Option<CFRetained<CFDictionary>> {

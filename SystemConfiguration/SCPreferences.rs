@@ -152,7 +152,7 @@ unsafe impl ConcreteType for SCPreferences {
 /// Returns: Returns a reference to the new SCPreferences.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesCreate(
+pub extern "C-unwind" fn SCPreferencesCreate(
     allocator: Option<&CFAllocator>,
     name: &CFString,
     prefs_id: Option<&CFString>,
@@ -227,7 +227,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesCreateWithAuthorization(
 /// Returns: Returns TRUE if the lock was obtained;
 /// FALSE if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesLock(prefs: &SCPreferences, wait: bool) -> bool {
+pub extern "C-unwind" fn SCPreferencesLock(prefs: &SCPreferences, wait: bool) -> bool {
     extern "C-unwind" {
         fn SCPreferencesLock(prefs: &SCPreferences, wait: Boolean) -> Boolean;
     }
@@ -252,7 +252,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesLock(prefs: &SCPreferences, wait: b
 /// Returns: Returns TRUE if the lock was obtained;
 /// FALSE if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesCommitChanges(prefs: &SCPreferences) -> bool {
+pub extern "C-unwind" fn SCPreferencesCommitChanges(prefs: &SCPreferences) -> bool {
     extern "C-unwind" {
         fn SCPreferencesCommitChanges(prefs: &SCPreferences) -> Boolean;
     }
@@ -268,7 +268,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesCommitChanges(prefs: &SCPreferences
 /// Returns: Returns TRUE if the lock was obtained;
 /// FALSE if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesApplyChanges(prefs: &SCPreferences) -> bool {
+pub extern "C-unwind" fn SCPreferencesApplyChanges(prefs: &SCPreferences) -> bool {
     extern "C-unwind" {
         fn SCPreferencesApplyChanges(prefs: &SCPreferences) -> Boolean;
     }
@@ -287,7 +287,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesApplyChanges(prefs: &SCPreferences)
 /// Returns: Returns TRUE if the lock was obtained;
 /// FALSE if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesUnlock(prefs: &SCPreferences) -> bool {
+pub extern "C-unwind" fn SCPreferencesUnlock(prefs: &SCPreferences) -> bool {
     extern "C-unwind" {
         fn SCPreferencesUnlock(prefs: &SCPreferences) -> Boolean;
     }
@@ -303,7 +303,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesUnlock(prefs: &SCPreferences) -> bo
 /// Returns: Returns a CFDataRef that reflects the signature of the configuration
 /// preferences at the time of the call to the SCPreferencesCreate function.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesGetSignature(
+pub extern "C-unwind" fn SCPreferencesGetSignature(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
@@ -320,7 +320,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesGetSignature(
 /// Returns: Returns the list of keys.
 /// You must release the returned value.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesCopyKeyList(
+pub extern "C-unwind" fn SCPreferencesCopyKeyList(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -345,7 +345,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesCopyKeyList(
 /// Returns: Returns the value associated with the specified preference key;
 /// NULL if no value was located.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesGetValue(
+pub extern "C-unwind" fn SCPreferencesGetValue(
     prefs: &SCPreferences,
     key: &CFString,
 ) -> Option<CFRetained<CFPropertyList>> {
@@ -437,10 +437,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesSetValue(
 /// Returns: Returns TRUE if the value was removed;
 /// FALSE if the key did not exist or if an error occurred.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesRemoveValue(
-    prefs: &SCPreferences,
-    key: &CFString,
-) -> bool {
+pub extern "C-unwind" fn SCPreferencesRemoveValue(prefs: &SCPreferences, key: &CFString) -> bool {
     extern "C-unwind" {
         fn SCPreferencesRemoveValue(prefs: &SCPreferences, key: &CFString) -> Boolean;
     }
@@ -494,7 +491,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesSetCallback(
 /// Returns: Returns TRUE if the notifications are successfully scheduled;
 /// FALSE otherwise.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesScheduleWithRunLoop(
+pub extern "C-unwind" fn SCPreferencesScheduleWithRunLoop(
     prefs: &SCPreferences,
     run_loop: &CFRunLoop,
     run_loop_mode: &CFString,
@@ -525,7 +522,7 @@ pub unsafe extern "C-unwind" fn SCPreferencesScheduleWithRunLoop(
 /// Returns: Returns TRUE if the notifications are successfully unscheduled;
 /// FALSE otherwise.
 #[inline]
-pub unsafe extern "C-unwind" fn SCPreferencesUnscheduleFromRunLoop(
+pub extern "C-unwind" fn SCPreferencesUnscheduleFromRunLoop(
     prefs: &SCPreferences,
     run_loop: &CFRunLoop,
     run_loop_mode: &CFString,
@@ -541,15 +538,19 @@ pub unsafe extern "C-unwind" fn SCPreferencesUnscheduleFromRunLoop(
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Synchronizes accessed preferences with committed changes.
-    ///
-    /// Any references to preference values returned by calls to the
-    /// SCPreferencesGetValue function are no longer valid unless they
-    /// were explicitly retained or copied.  Any preference values
-    /// that were updated (add, set, remove) but not committed will
-    /// be discarded.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    pub fn SCPreferencesSynchronize(prefs: &SCPreferences);
+/// Synchronizes accessed preferences with committed changes.
+///
+/// Any references to preference values returned by calls to the
+/// SCPreferencesGetValue function are no longer valid unless they
+/// were explicitly retained or copied.  Any preference values
+/// that were updated (add, set, remove) but not committed will
+/// be discarded.
+///
+/// Parameter `prefs`: The preferences session.
+#[inline]
+pub extern "C-unwind" fn SCPreferencesSynchronize(prefs: &SCPreferences) {
+    extern "C-unwind" {
+        fn SCPreferencesSynchronize(prefs: &SCPreferences);
+    }
+    unsafe { SCPreferencesSynchronize(prefs) }
 }
