@@ -494,8 +494,6 @@ pub use self::__MTLDevice::MTLArgumentDescriptor;
 pub use self::__MTLDevice::MTLAutoreleasedComputePipelineReflection;
 #[cfg(all(feature = "MTLDevice", feature = "MTLRenderPipeline"))]
 pub use self::__MTLDevice::MTLAutoreleasedRenderPipelineReflection;
-#[cfg(feature = "MTLDevice")]
-pub use self::__MTLDevice::MTLCopyAllDevices;
 #[cfg(all(feature = "MTLDevice", feature = "block2"))]
 pub use self::__MTLDevice::MTLCopyAllDevicesWithObserver;
 #[cfg(feature = "MTLDevice")]

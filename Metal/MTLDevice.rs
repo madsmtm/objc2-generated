@@ -51,20 +51,6 @@ pub extern "C-unwind" fn MTLCreateSystemDefaultDevice(
     unsafe { Retained::from_raw(ret) }
 }
 
-/// Returns all Metal devices in the system.
-///
-/// On macOS and macCatalyst, this API will not cause the system to switch devices and leaves the decision about which GPU to use up to the application based on whatever criteria it deems appropriate.
-/// On iOS, tvOS and visionOS, this API returns an array containing the same device that MTLCreateSystemDefaultDevice would have returned, or an empty array if it would have failed.
-#[inline]
-pub extern "C-unwind" fn MTLCopyAllDevices() -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>> {
-    extern "C-unwind" {
-        fn MTLCopyAllDevices() -> *mut NSArray<ProtocolObject<dyn MTLDevice>>;
-    }
-    let ret = unsafe { MTLCopyAllDevices() };
-    unsafe { Retained::from_raw(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
-
 /// Type for device notifications
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname?language=objc)
