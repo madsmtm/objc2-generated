@@ -341,8 +341,6 @@ pub use self::__Authorization::AuthorizationCreate;
 pub use self::__Authorization::AuthorizationCreateFromExternalForm;
 #[cfg(feature = "Authorization")]
 pub use self::__Authorization::AuthorizationEnvironment;
-#[cfg(all(feature = "Authorization", feature = "libc"))]
-pub use self::__Authorization::AuthorizationExecuteWithPrivileges;
 #[cfg(feature = "Authorization")]
 pub use self::__Authorization::AuthorizationExternalForm;
 #[cfg(feature = "Authorization")]
