@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-java-script-core")]
+use objc2_java_script_core::*;
 
 use crate::*;
 
@@ -158,6 +160,15 @@ impl WebScriptObject {
         #[unsafe(method_family = none)]
         pub unsafe fn throwException(exception_message: Option<&NSString>) -> bool;
 
+        #[cfg(feature = "objc2-java-script-core")]
+        /// Returns: The equivalent JSObjectRef for this WebScriptObject.
+        ///
+        /// Use this method to bridge between the WebScriptObject and
+        /// JavaScriptCore APIs.
+        #[unsafe(method(JSObject))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn JSObject(&self) -> JSObjectRef;
+
         /// Parameter `name`: The name of the method to call in the script environment.
         ///
         /// Parameter `arguments`: The arguments to pass to the script environment.
@@ -241,6 +252,16 @@ impl WebScriptObject {
         #[unsafe(method(setException:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setException(&self, description: Option<&NSString>);
+
+        #[cfg(feature = "objc2-java-script-core")]
+        /// Returns: The equivalent Objective-C JSValue for this WebScriptObject.
+        ///
+        /// Use this method to bridge between the WebScriptObject and
+        /// JavaScriptCore Objective-C APIs.
+        #[deprecated]
+        #[unsafe(method(JSValue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn JSValue(&self) -> Option<Retained<JSValue>>;
     );
 }
 

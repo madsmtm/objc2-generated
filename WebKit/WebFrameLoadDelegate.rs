@@ -6,6 +6,8 @@ use objc2::__framework_prelude::*;
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-java-script-core")]
+use objc2_java_script_core::*;
 
 use crate::*;
 
@@ -326,6 +328,36 @@ extern_protocol!(
             &self,
             web_view: Option<&WebView>,
             window_script_object: Option<&WebScriptObject>,
+        );
+
+        #[cfg(all(
+            feature = "WebFrame",
+            feature = "WebView",
+            feature = "objc2-app-kit",
+            feature = "objc2-java-script-core"
+        ))]
+        #[cfg(target_os = "macos")]
+        /// Notifies the delegate that a new JavaScript context has been created created.
+        ///
+        /// Parameter `webView`: The WebView sending the message.
+        ///
+        /// Parameter `context`: The JSContext representing the frame's JavaScript window object.
+        ///
+        /// Parameter `frame`: The WebFrame to which the context belongs.
+        ///
+        /// If a delegate implements webView:didCreateJavaScriptContext:forFrame: along with either
+        /// webView:didClearWindowObject:forFrame: or webView:windowScriptObjectAvailable:, only
+        /// webView:didCreateJavaScriptContext:forFrame will be invoked. This enables a delegate to implement
+        /// multiple versions to maintain backwards compatibility with older versions of WebKit.
+        #[deprecated]
+        #[optional]
+        #[unsafe(method(webView:didCreateJavaScriptContext:forFrame:))]
+        #[unsafe(method_family = none)]
+        unsafe fn webView_didCreateJavaScriptContext_forFrame(
+            &self,
+            web_view: Option<&WebView>,
+            context: Option<&JSContext>,
+            frame: Option<&WebFrame>,
         );
     }
 );
