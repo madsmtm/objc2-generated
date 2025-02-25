@@ -24,6 +24,8 @@ extern "C" {}
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-ar-kit")]
+use objc2_ar_kit::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-location")]
@@ -3111,9 +3113,10 @@ impl SRFaceMetrics {
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> SRFaceMetricsContext;
 
+        #[cfg(feature = "objc2-ar-kit")]
         #[unsafe(method(faceAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn faceAnchor(&self) -> NonNull<c_int>;
+        pub unsafe fn faceAnchor(&self) -> Retained<ARFaceAnchor>;
 
         /// Detected whole face expressions
         #[unsafe(method(wholeFaceExpressions))]
