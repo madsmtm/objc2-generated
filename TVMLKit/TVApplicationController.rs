@@ -4,8 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-java-script-core")]
-use objc2_java_script_core::*;
+#[cfg(feature = "objc2-javascript-core")]
+use objc2_javascript_core::*;
 #[cfg(feature = "objc2-ui-kit")]
 use objc2_ui_kit::*;
 
@@ -107,7 +107,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvapplicationcontrollerdelegate?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub unsafe trait TVApplicationControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "objc2-java-script-core")]
+        #[cfg(feature = "objc2-javascript-core")]
         /// This method lets delegate to add JavaScript classes and objects.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[optional]
@@ -230,7 +230,7 @@ impl TVApplicationController {
             mtm: MainThreadMarker,
         ) -> Retained<UINavigationController>;
 
-        #[cfg(all(feature = "block2", feature = "objc2-java-script-core"))]
+        #[cfg(all(feature = "block2", feature = "objc2-javascript-core"))]
         /// Adds the block to the JavaScript execution queue and invokes
         /// completion block once the evaluation block has finished execution. JSContext is
         /// valid within the scope of evaluation block and should not be referenced by the

@@ -6,8 +6,8 @@ use objc2::__framework_prelude::*;
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-java-script-core")]
-use objc2_java_script_core::*;
+#[cfg(feature = "objc2-javascript-core")]
+use objc2_javascript_core::*;
 
 use crate::*;
 
@@ -334,7 +334,7 @@ extern_protocol!(
             feature = "WebFrame",
             feature = "WebView",
             feature = "objc2-app-kit",
-            feature = "objc2-java-script-core"
+            feature = "objc2-javascript-core"
         ))]
         #[cfg(target_os = "macos")]
         /// Notifies the delegate that a new JavaScript context has been created created.

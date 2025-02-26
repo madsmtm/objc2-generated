@@ -4,8 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-java-script-core")]
-use objc2_java_script_core::*;
+#[cfg(feature = "objc2-javascript-core")]
+use objc2_javascript_core::*;
 
 use crate::*;
 
@@ -243,7 +243,7 @@ impl WebFrame {
         #[unsafe(method_family = none)]
         pub unsafe fn windowObject(&self) -> Option<Retained<WebScriptObject>>;
 
-        #[cfg(feature = "objc2-java-script-core")]
+        #[cfg(feature = "objc2-javascript-core")]
         /// The frame's global JavaScript execution context.
         ///
         /// Use this method to bridge between the WebKit and JavaScriptCore APIs.
@@ -252,7 +252,7 @@ impl WebFrame {
         #[unsafe(method_family = none)]
         pub unsafe fn globalContext(&self) -> JSGlobalContextRef;
 
-        #[cfg(feature = "objc2-java-script-core")]
+        #[cfg(feature = "objc2-javascript-core")]
         /// The frame's global JavaScript execution context.
         ///
         /// Use this method to bridge between the WebKit and Objective-C JavaScriptCore API.

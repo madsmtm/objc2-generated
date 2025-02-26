@@ -2,14 +2,14 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-java-script-core")]
+#[cfg(feature = "objc2-javascript-core")]
 #[cfg(not(target_os = "watchos"))]
-use objc2_java_script_core::*;
+use objc2_javascript_core::*;
 
 use crate::*;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-java-script-core")]
+    #[cfg(feature = "objc2-javascript-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNExportJavaScriptModule(context: &JSContext);
 }

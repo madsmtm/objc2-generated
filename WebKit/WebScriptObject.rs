@@ -4,8 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-java-script-core")]
-use objc2_java_script_core::*;
+#[cfg(feature = "objc2-javascript-core")]
+use objc2_javascript_core::*;
 
 use crate::*;
 
@@ -160,7 +160,7 @@ impl WebScriptObject {
         #[unsafe(method_family = none)]
         pub unsafe fn throwException(exception_message: Option<&NSString>) -> bool;
 
-        #[cfg(feature = "objc2-java-script-core")]
+        #[cfg(feature = "objc2-javascript-core")]
         /// Returns: The equivalent JSObjectRef for this WebScriptObject.
         ///
         /// Use this method to bridge between the WebScriptObject and
@@ -253,7 +253,7 @@ impl WebScriptObject {
         #[unsafe(method_family = none)]
         pub unsafe fn setException(&self, description: Option<&NSString>);
 
-        #[cfg(feature = "objc2-java-script-core")]
+        #[cfg(feature = "objc2-javascript-core")]
         /// Returns: The equivalent Objective-C JSValue for this WebScriptObject.
         ///
         /// Use this method to bridge between the WebScriptObject and

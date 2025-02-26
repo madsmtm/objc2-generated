@@ -282,7 +282,7 @@ pub use self::__SCNHitTest::SCNHitTestRootNodeKey;
 pub use self::__SCNHitTest::SCNHitTestSearchMode;
 #[cfg(feature = "SCNHitTest")]
 pub use self::__SCNHitTest::SCNHitTestSortResultsKey;
-#[cfg(all(feature = "SCNJavascript", feature = "objc2-java-script-core"))]
+#[cfg(all(feature = "SCNJavascript", feature = "objc2-javascript-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SCNJavascript::SCNExportJavaScriptModule;
 #[cfg(all(feature = "SCNLayer", feature = "objc2-quartz-core"))]

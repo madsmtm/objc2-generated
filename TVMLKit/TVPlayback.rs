@@ -6,8 +6,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-av-foundation")]
 use objc2_av_foundation::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-java-script-core")]
-use objc2_java_script_core::*;
+#[cfg(feature = "objc2-javascript-core")]
+use objc2_javascript_core::*;
 
 use crate::*;
 
@@ -162,7 +162,7 @@ extern_protocol!(
             &self,
         ) -> Option<Retained<NSDictionary<TVPlaybackEventProperty, AnyObject>>>;
 
-        #[cfg(feature = "objc2-java-script-core")]
+        #[cfg(feature = "objc2-javascript-core")]
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[optional]
         #[unsafe(method(processReturnJSValue:inContext:))]
