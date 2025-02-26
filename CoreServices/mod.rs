@@ -121,8 +121,6 @@ pub use self::__FSEvents::kFSEventStreamEventFlagUnmount;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::kFSEventStreamEventFlagUserDropped;
 #[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::kFSEventStreamEventIdSinceNow;
-#[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::FSEventStreamCallback;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::FSEventStreamContext;

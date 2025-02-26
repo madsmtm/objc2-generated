@@ -89,9 +89,6 @@ pub const kFSEventStreamEventFlagItemCloned: c_uint = 0x00400000;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreameventid?language=objc)
 pub type FSEventStreamEventId = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kfseventstreameventidsincenow?language=objc)
-pub const kFSEventStreamEventIdSinceNow: c_ulong = 0xFFFFFFFFFFFFFFFF;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/__fseventstream?language=objc)
 #[repr(C)]
 #[derive(Debug)]
