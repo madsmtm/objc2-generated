@@ -64,8 +64,6 @@ pub use self::__RPBroadcastExtension::RPVideoSampleOrientationKey;
 pub use self::__RPError::RPRecordingErrorCode;
 #[cfg(feature = "RPError")]
 pub use self::__RPError::RPRecordingErrorDomain;
-#[cfg(feature = "RPError")]
-pub use self::__RPError::SCStreamErrorDomain;
 #[cfg(all(feature = "RPPreviewViewController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub use self::__RPPreviewViewController::RPPreviewViewController;

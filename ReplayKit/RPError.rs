@@ -11,11 +11,6 @@ extern "C" {
     pub static RPRecordingErrorDomain: &'static NSString;
 }
 
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/scstreamerrordomain?language=objc)
-    pub static SCStreamErrorDomain: &'static NSString;
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
