@@ -56,23 +56,23 @@ unsafe impl RefEncode for SecKeychainSettings {
 pub struct SecAuthenticationType(pub FourCharCode);
 impl SecAuthenticationType {
     #[doc(alias = "kSecAuthenticationTypeNTLM")]
-    pub const NTLM: Self = Self(AUTH_TYPE_FIX_(0x6e746c6d));
+    pub const NTLM: Self = Self(AUTH_TYPE_FIX_!(0x6e746c6d));
     #[doc(alias = "kSecAuthenticationTypeMSN")]
-    pub const MSN: Self = Self(AUTH_TYPE_FIX_(0x6d736e61));
+    pub const MSN: Self = Self(AUTH_TYPE_FIX_!(0x6d736e61));
     #[doc(alias = "kSecAuthenticationTypeDPA")]
-    pub const DPA: Self = Self(AUTH_TYPE_FIX_(0x64706161));
+    pub const DPA: Self = Self(AUTH_TYPE_FIX_!(0x64706161));
     #[doc(alias = "kSecAuthenticationTypeRPA")]
-    pub const RPA: Self = Self(AUTH_TYPE_FIX_(0x72706161));
+    pub const RPA: Self = Self(AUTH_TYPE_FIX_!(0x72706161));
     #[doc(alias = "kSecAuthenticationTypeHTTPBasic")]
-    pub const HTTPBasic: Self = Self(AUTH_TYPE_FIX_(0x68747470));
+    pub const HTTPBasic: Self = Self(AUTH_TYPE_FIX_!(0x68747470));
     #[doc(alias = "kSecAuthenticationTypeHTTPDigest")]
-    pub const HTTPDigest: Self = Self(AUTH_TYPE_FIX_(0x68747464));
+    pub const HTTPDigest: Self = Self(AUTH_TYPE_FIX_!(0x68747464));
     #[doc(alias = "kSecAuthenticationTypeHTMLForm")]
-    pub const HTMLForm: Self = Self(AUTH_TYPE_FIX_(0x666f726d));
+    pub const HTMLForm: Self = Self(AUTH_TYPE_FIX_!(0x666f726d));
     #[doc(alias = "kSecAuthenticationTypeDefault")]
-    pub const Default: Self = Self(AUTH_TYPE_FIX_(0x64666c74));
+    pub const Default: Self = Self(AUTH_TYPE_FIX_!(0x64666c74));
     #[doc(alias = "kSecAuthenticationTypeAny")]
-    pub const Any: Self = Self(AUTH_TYPE_FIX_(0));
+    pub const Any: Self = Self(AUTH_TYPE_FIX_!(0));
 }
 
 #[cfg(feature = "objc2")]

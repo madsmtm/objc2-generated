@@ -21,6 +21,12 @@
 #[link(name = "IOKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "usb")]
+#[path = "usb/mod.rs"]
+mod __usb;
+
+#[cfg(feature = "usb")]
+pub use self::__usb::*;
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
@@ -2448,9 +2454,6 @@ pub const kIORPCMessageOnqueue: c_uint = 0x00000020;
 pub const kIORPCMessageError: c_uint = 0x00000040;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorpcmessagesimplereply?language=objc)
 pub const kIORPCMessageSimpleReply: c_uint = 0x00000080;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorpcmessageidkernel?language=objc)
-pub const kIORPCMessageIDKernel: c_ulong = 1 << 63;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iorpcmessage?language=objc)
 #[repr(C)]
