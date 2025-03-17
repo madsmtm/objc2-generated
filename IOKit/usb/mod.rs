@@ -1273,8 +1273,6 @@ pub use self::__USB::kUSBAddress_Mask;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBAddress_Shift;
 #[cfg(feature = "USB")]
-pub use self::__USB::kUSBAllStreams;
-#[cfg(feature = "USB")]
 pub use self::__USB::kUSBCTBNotEnoughPowerNotificationType;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBCTBUnsupportedNotificationType;
