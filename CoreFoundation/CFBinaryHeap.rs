@@ -134,14 +134,15 @@ pub type CFBinaryHeapApplierFunction =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheap?language=objc)
 #[repr(C)]
-pub struct CFBinaryHeap {
+pub struct CFBinaryHeap<T: ?Sized = Opaque> {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+    _generics: PhantomData<(*mut T,)>,
 }
 
 cf_type!(
     #[encoding_name = "__CFBinaryHeap"]
-    unsafe impl CFBinaryHeap {}
+    unsafe impl<T: ?Sized> CFBinaryHeap<T> {}
 );
 
 #[cfg(feature = "CFBase")]

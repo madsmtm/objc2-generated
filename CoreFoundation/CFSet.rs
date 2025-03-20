@@ -157,28 +157,30 @@ pub type CFSetApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfset?language=objc)
 #[repr(C)]
-pub struct CFSet {
+pub struct CFSet<T: ?Sized = Opaque> {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+    _generics: PhantomData<(*mut T,)>,
 }
 
 cf_type!(
     #[encoding_name = "__CFSet"]
-    unsafe impl CFSet {}
+    unsafe impl<T: ?Sized> CFSet<T> {}
 );
 
 /// This is the type of a reference to mutable CFSets.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutableset?language=objc)
 #[repr(C)]
-pub struct CFMutableSet {
+pub struct CFMutableSet<T: ?Sized = Opaque> {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+    _generics: PhantomData<(*mut T,)>,
 }
 
 cf_type!(
     #[encoding_name = "__CFSet"]
-    unsafe impl CFMutableSet: CFSet {}
+    unsafe impl<T: ?Sized> CFMutableSet<T>: CFSet<T> {}
 );
 
 #[cfg(feature = "CFBase")]

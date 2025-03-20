@@ -103,28 +103,30 @@ pub type CFArrayApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_vo
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarray?language=objc)
 #[repr(C)]
-pub struct CFArray {
+pub struct CFArray<T: ?Sized = Opaque> {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+    _generics: PhantomData<(*mut T,)>,
 }
 
 cf_type!(
     #[encoding_name = "__CFArray"]
-    unsafe impl CFArray {}
+    unsafe impl<T: ?Sized> CFArray<T> {}
 );
 
 /// This is the type of a reference to mutable CFArrays.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablearray?language=objc)
 #[repr(C)]
-pub struct CFMutableArray {
+pub struct CFMutableArray<T: ?Sized = Opaque> {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+    _generics: PhantomData<(*mut T,)>,
 }
 
 cf_type!(
     #[encoding_name = "__CFArray"]
-    unsafe impl CFMutableArray: CFArray {}
+    unsafe impl<T: ?Sized> CFMutableArray<T>: CFArray<T> {}
 );
 
 #[cfg(feature = "CFBase")]

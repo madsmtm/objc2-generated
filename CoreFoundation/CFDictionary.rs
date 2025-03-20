@@ -191,28 +191,30 @@ pub type CFDictionaryApplierFunction =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionary?language=objc)
 #[repr(C)]
-pub struct CFDictionary {
+pub struct CFDictionary<K: ?Sized = Opaque, V: ?Sized = Opaque> {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+    _generics: PhantomData<(*mut K, *mut V)>,
 }
 
 cf_type!(
     #[encoding_name = "__CFDictionary"]
-    unsafe impl CFDictionary {}
+    unsafe impl<K: ?Sized, V: ?Sized> CFDictionary<K, V> {}
 );
 
 /// This is the type of a reference to mutable CFDictionarys.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledictionary?language=objc)
 #[repr(C)]
-pub struct CFMutableDictionary {
+pub struct CFMutableDictionary<K: ?Sized = Opaque, V: ?Sized = Opaque> {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+    _generics: PhantomData<(*mut K, *mut V)>,
 }
 
 cf_type!(
     #[encoding_name = "__CFDictionary"]
-    unsafe impl CFMutableDictionary: CFDictionary {}
+    unsafe impl<K: ?Sized, V: ?Sized> CFMutableDictionary<K, V>: CFDictionary<K, V> {}
 );
 
 #[cfg(feature = "CFBase")]
