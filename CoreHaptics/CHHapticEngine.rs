@@ -9,6 +9,8 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhaptictimeimmediate?language=objc)
+pub const CHHapticTimeImmediate: NSTimeInterval = 0.0;
 /// A block which is called asynchronously when a call to start or stop the haptic engine completes.
 ///
 /// Parameter `error`: If the call fails, this is set to a valid NSError describing the error.

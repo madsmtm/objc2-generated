@@ -10,6 +10,18 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentconfigurationinfo_validationresult?language=objc)
+pub const kAudioComponentConfigurationInfo_ValidationResult: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"ValidationResult\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentvalidationparameter_timeout?language=objc)
+pub const kAudioComponentValidationParameter_TimeOut: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"TimeOut\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentvalidationparameter_forcevalidation?language=objc)
+pub const kAudioComponentValidationParameter_ForceValidation: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"ForceValidation\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentvalidationparameter_loadoutofprocess?language=objc)
+pub const kAudioComponentValidationParameter_LoadOutOfProcess: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"LoadOutOfProcess\0") };
 /// Flags found in AudioComponentDescription.componentFlags.
 ///
 ///

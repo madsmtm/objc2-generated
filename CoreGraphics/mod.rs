@@ -786,6 +786,8 @@ pub use self::__CGDataProvider::CGDataProviderSequentialCallbacks;
 pub use self::__CGDataProvider::CGDataProviderSkipForwardCallback;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::kCGDisplayShowDuplicateLowResolutionModes;
+#[cfg(feature = "CGDirectDisplay")]
+pub use self::__CGDirectDisplay::kCGNullDirectDisplay;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGCaptureAllDisplays;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
@@ -1064,6 +1066,14 @@ pub use self::__CGDisplayConfiguration::CGDisplayVendorNumber;
 pub use self::__CGDisplayConfiguration::CGRestorePermanentDisplayConfiguration;
 #[cfg(feature = "CGDisplayConfiguration")]
 pub(crate) use self::__CGDisplayConfiguration::_CGDisplayConfigRef;
+#[cfg(feature = "CGDisplayFade")]
+pub use self::__CGDisplayFade::kCGDisplayBlendNormal;
+#[cfg(feature = "CGDisplayFade")]
+pub use self::__CGDisplayFade::kCGDisplayBlendSolidColor;
+#[cfg(feature = "CGDisplayFade")]
+pub use self::__CGDisplayFade::kCGDisplayFadeReservationInvalidToken;
+#[cfg(feature = "CGDisplayFade")]
+pub use self::__CGDisplayFade::kCGMaxDisplayReservationInterval;
 #[cfg(all(feature = "CGDisplayFade", feature = "CGError"))]
 pub use self::__CGDisplayFade::CGAcquireDisplayFadeReservation;
 #[cfg(all(
@@ -1290,6 +1300,12 @@ pub use self::__CGEventSource::CGEventSourceSetLocalEventsSuppressionInterval;
 pub use self::__CGEventSource::CGEventSourceSetPixelsPerLine;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceSetUserData;
+#[cfg(feature = "CGEventTypes")]
+pub use self::__CGEventTypes::kCGEventMaskForAllEvents;
+#[cfg(feature = "CGEventTypes")]
+pub use self::__CGEventTypes::kCGNotifyEventTapAdded;
+#[cfg(feature = "CGEventTypes")]
+pub use self::__CGEventTypes::kCGNotifyEventTapRemoved;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGEvent;
 #[cfg(feature = "CGEventTypes")]
@@ -2106,6 +2122,16 @@ pub use self::__CGPattern::CGPatternDrawPatternCallback;
 pub use self::__CGPattern::CGPatternReleaseInfoCallback;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternTiling;
+#[cfg(feature = "CGRemoteOperation")]
+pub use self::__CGRemoteOperation::kCGEventFilterMaskPermitAllEvents;
+#[cfg(feature = "CGRemoteOperation")]
+pub use self::__CGRemoteOperation::kCGEventSupressionStateRemoteMouseDrag;
+#[cfg(feature = "CGRemoteOperation")]
+pub use self::__CGRemoteOperation::kCGEventSupressionStateSupressionInterval;
+#[cfg(feature = "CGRemoteOperation")]
+pub use self::__CGRemoteOperation::kCGMouseDownEventMaskingDeadSwitchTimeout;
+#[cfg(feature = "CGRemoteOperation")]
+pub use self::__CGRemoteOperation::kCGNumberOfEventSupressionStates;
 #[cfg(all(feature = "CGError", feature = "CGRemoteOperation", feature = "libc"))]
 pub use self::__CGRemoteOperation::CGAssociateMouseAndMouseCursorPosition;
 #[cfg(feature = "CGRemoteOperation")]
@@ -2167,6 +2193,10 @@ pub use self::__CGRemoteOperation::CGWindowServerCFMachPort;
 #[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGWindowServerCreateServerPort;
 #[cfg(feature = "CGSession")]
+pub use self::__CGSession::kCGNotifyGUIConsoleSessionChanged;
+#[cfg(feature = "CGSession")]
+pub use self::__CGSession::kCGNotifyGUISessionUserChanged;
+#[cfg(feature = "CGSession")]
 pub use self::__CGSession::CGSessionCopyCurrentDictionary;
 #[cfg(feature = "CGShading")]
 pub use self::__CGShading::CGShading;
@@ -2184,6 +2214,8 @@ pub use self::__CGShading::CGShadingCreateAxial;
 pub use self::__CGShading::CGShadingCreateRadial;
 #[cfg(feature = "CGToneMapping")]
 pub use self::__CGToneMapping::CGToneMapping;
+#[cfg(feature = "CGWindow")]
+pub use self::__CGWindow::kCGNullWindowID;
 #[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowAlpha;
 #[cfg(feature = "CGWindow")]
@@ -2234,6 +2266,42 @@ pub use self::__CGWindow::CGWindowListCreateImageFromArray;
 pub use self::__CGWindow::CGWindowListOption;
 #[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::CGWindowSharingType;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGAssistiveTechHighWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGBackstopMenuLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGCursorWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGDesktopIconWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGDesktopWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGDockWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGDraggingWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGFloatingWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGHelpWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGMainMenuWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGModalPanelWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGNormalWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGOverlayWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGPopUpMenuWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGScreenSaverWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGStatusWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGTornOffMenuWindowLevel;
+#[cfg(feature = "CGWindowLevel")]
+pub use self::__CGWindowLevel::kCGUtilityWindowLevel;
 #[cfg(feature = "CGWindowLevel")]
 pub use self::__CGWindowLevel::CGWindowLevel;
 #[cfg(feature = "CGWindowLevel")]

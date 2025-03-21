@@ -1017,6 +1017,8 @@ pub use self::__Bluetooth::kBluetoothHCIEventUserPasskeyRequest;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothHCIEventVendorSpecific;
 #[cfg(feature = "Bluetooth")]
+pub use self::__Bluetooth::kBluetoothHCIInquiryResultsMaxResults;
+#[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothHCILoopbackModeLocal;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothHCILoopbackModeOff;
@@ -1251,6 +1253,12 @@ pub use self::__Bluetooth::kBluetoothLEMaxTXTimeMax;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothLEMaxTXTimeMin;
 #[cfg(feature = "Bluetooth")]
+pub use self::__Bluetooth::kBluetoothLESMPMaxEncryptionKeySize;
+#[cfg(feature = "Bluetooth")]
+pub use self::__Bluetooth::kBluetoothLESMPMinEncryptionKeySize;
+#[cfg(feature = "Bluetooth")]
+pub use self::__Bluetooth::kBluetoothLESMPTimeout;
+#[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothLESecurityManagerBonding;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothLESecurityManagerNoBonding;
@@ -1464,6 +1472,10 @@ pub use self::__Bluetooth::kBluetoothVoiceSettingInputSampleSize8Bit;
 pub use self::__Bluetooth::kBluetoothVoiceSettingInputSampleSizeMask;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothVoiceSettingPCMBitPositionMask;
+#[cfg(feature = "Bluetooth")]
+pub use self::__Bluetooth::kInfoStringMaxLength;
+#[cfg(feature = "Bluetooth")]
+pub use self::__Bluetooth::kMaxChannelIDPerSide;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kMaximumNumberOfInquiryAccessCodes;
 #[cfg(feature = "Bluetooth")]
@@ -2442,6 +2454,16 @@ pub use self::__BluetoothAssignedNumbers::SDPAttributeDeviceIdentificationRecord
 pub use self::__BluetoothAssignedNumbers::SDPAttributeIdentifierCodes;
 #[cfg(feature = "BluetoothAssignedNumbers")]
 pub use self::__BluetoothAssignedNumbers::SDPServiceClasses;
+#[cfg(feature = "IOBluetoothTypes")]
+pub use self::__IOBluetoothTypes::kIOBluetoothConnectionAlreadyExists;
+#[cfg(feature = "IOBluetoothTypes")]
+pub use self::__IOBluetoothTypes::kIOBluetoothDeviceResetError;
+#[cfg(feature = "IOBluetoothTypes")]
+pub use self::__IOBluetoothTypes::kIOBluetoothHCIPowerStatesNotSupported;
+#[cfg(feature = "IOBluetoothTypes")]
+pub use self::__IOBluetoothTypes::kIOBluetoothNoHCIController;
+#[cfg(feature = "IOBluetoothUserLib")]
+pub use self::__IOBluetoothUserLib::kIOBluetoothObjectIDNULL;
 #[cfg(all(feature = "IOBluetoothUserLib", feature = "objc2-core-foundation"))]
 pub use self::__IOBluetoothUserLib::IOBluetoothAddSCOAudioDevice;
 #[cfg(feature = "IOBluetoothUserLib")]
@@ -2551,6 +2573,16 @@ pub use self::__OBEXBluetooth::IOBluetoothOBEXSessionOpenConnectionCallback;
 pub use self::__OBEXBluetooth::IOBluetoothOBEXSessionOpenTransportConnection;
 #[cfg(feature = "objc")]
 pub use self::__objc::*;
+#[cfg(feature = "OBEX")]
+pub use self::__OBEX::kCharsetStringISO88591;
+#[cfg(feature = "OBEX")]
+pub use self::__OBEX::kCharsetStringUTF8;
+#[cfg(feature = "OBEX")]
+pub use self::__OBEX::kEncodingString8Bit;
+#[cfg(feature = "OBEX")]
+pub use self::__OBEX::kEncodingStringBase64;
+#[cfg(feature = "OBEX")]
+pub use self::__OBEX::kEncodingStringQuotedPrintable;
 #[cfg(all(feature = "OBEX", feature = "objc2-core-foundation"))]
 pub use self::__OBEX::kOBEXHeaderIDKeyAppParameters;
 #[cfg(all(feature = "OBEX", feature = "objc2-core-foundation"))]

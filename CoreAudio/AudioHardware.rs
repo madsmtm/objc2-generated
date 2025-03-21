@@ -12,6 +12,97 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceuidkey?language=objc)
+pub const kAudioEndPointDeviceUIDKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicenamekey?language=objc)
+pub const kAudioEndPointDeviceNameKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceendpointlistkey?language=objc)
+pub const kAudioEndPointDeviceEndPointListKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"endpoints\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicemainendpointkey?language=objc)
+pub const kAudioEndPointDeviceMainEndPointKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"main\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicemasterendpointkey?language=objc)
+pub const kAudioEndPointDeviceMasterEndPointKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceisprivatekey?language=objc)
+pub const kAudioEndPointDeviceIsPrivateKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"private\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointuidkey?language=objc)
+pub const kAudioEndPointUIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointnamekey?language=objc)
+pub const kAudioEndPointNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointinputchannelskey?language=objc)
+pub const kAudioEndPointInputChannelsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-in\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointoutputchannelskey?language=objc)
+pub const kAudioEndPointOutputChannelsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-out\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceuidkey?language=objc)
+pub const kAudioAggregateDeviceUIDKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicenamekey?language=objc)
+pub const kAudioAggregateDeviceNameKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicesubdevicelistkey?language=objc)
+pub const kAudioAggregateDeviceSubDeviceListKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"subdevices\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicemainsubdevicekey?language=objc)
+pub const kAudioAggregateDeviceMainSubDeviceKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceclockdevicekey?language=objc)
+pub const kAudioAggregateDeviceClockDeviceKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clock\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceisprivatekey?language=objc)
+pub const kAudioAggregateDeviceIsPrivateKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"private\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceisstackedkey?language=objc)
+pub const kAudioAggregateDeviceIsStackedKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"stacked\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicetaplistkey?language=objc)
+pub const kAudioAggregateDeviceTapListKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"taps\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicetapautostartkey?language=objc)
+pub const kAudioAggregateDeviceTapAutoStartKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"tapautostart\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceuidkey?language=objc)
+pub const kAudioSubDeviceUIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicenamekey?language=objc)
+pub const kAudioSubDeviceNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceinputchannelskey?language=objc)
+pub const kAudioSubDeviceInputChannelsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-in\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceoutputchannelskey?language=objc)
+pub const kAudioSubDeviceOutputChannelsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-out\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceextrainputlatencykey?language=objc)
+pub const kAudioSubDeviceExtraInputLatencyKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-in\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceextraoutputlatencykey?language=objc)
+pub const kAudioSubDeviceExtraOutputLatencyKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-out\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationkey?language=objc)
+pub const kAudioSubDeviceDriftCompensationKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"drift\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationqualitykey?language=objc)
+pub const kAudioSubDeviceDriftCompensationQualityKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"drift quality\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapuidkey?language=objc)
+pub const kAudioSubTapUIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapextrainputlatencykey?language=objc)
+pub const kAudioSubTapExtraInputLatencyKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-in\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapextraoutputlatencykey?language=objc)
+pub const kAudioSubTapExtraOutputLatencyKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-out\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapdriftcompensationkey?language=objc)
+pub const kAudioSubTapDriftCompensationKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"drift\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapdriftcompensationqualitykey?language=objc)
+pub const kAudioSubTapDriftCompensationQualityKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"drift quality\0") };
 /// A UInt32 that provides a handle on a specific AudioObject.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectid?language=objc)

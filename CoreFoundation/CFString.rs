@@ -7,6 +7,8 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringencodinginvalidid?language=objc)
+pub const kCFStringEncodingInvalidId: c_uint = 0xffffffff;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringencoding?language=objc)
 pub type CFStringEncoding = u32;
 

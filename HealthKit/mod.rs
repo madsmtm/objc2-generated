@@ -1407,6 +1407,8 @@ pub use self::__HKTypeIdentifiers::HKWorkoutTypeIdentifier;
 pub use self::__HKUnit::HKMetricPrefix;
 #[cfg(feature = "HKUnit")]
 pub use self::__HKUnit::HKUnit;
+#[cfg(feature = "HKUnit")]
+pub use self::__HKUnit::HKUnitMolarMassBloodGlucose;
 #[cfg(all(
     feature = "HKObject",
     feature = "HKSample",

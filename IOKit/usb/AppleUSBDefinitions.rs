@@ -6,6 +6,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousb20bitratelow?language=objc)
+pub const kIOUSB20BitrateLow: c_uint = 1500 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousb20bitratefull?language=objc)
+pub const kIOUSB20BitrateFull: c_uint = 12 * 1000 * 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousb20bitratehigh?language=objc)
+pub const kIOUSB20BitrateHigh: c_uint = 480 * 1000 * 1000;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbapplevendorid?language=objc)
 pub const kIOUSBAppleVendorID: c_uint = 0x05AC;
 

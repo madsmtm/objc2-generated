@@ -140,6 +140,8 @@ pub use self::__ColorSyncDevice::ColorSyncRegisterDevice;
 #[cfg(feature = "ColorSyncDevice")]
 pub use self::__ColorSyncDevice::ColorSyncUnregisterDevice;
 #[cfg(feature = "ColorSyncProfile")]
+pub use self::__ColorSyncProfile::icVersion4Number;
+#[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::kColorSyncACESCGLinearProfile;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::kColorSyncAdobeRGB1998Profile;
@@ -345,6 +347,10 @@ pub use self::__ColorSyncProfile::ColorSyncProfileSetTag;
 pub use self::__ColorSyncProfile::ColorSyncProfileUninstall;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::ColorSyncProfileVerify;
+#[cfg(feature = "ColorSyncProfile")]
+pub use self::__ColorSyncProfile::COLORSYNC_MD5_LENGTH;
+#[cfg(feature = "ColorSyncProfile")]
+pub use self::__ColorSyncProfile::COLORSYNC_PROFILE_INSTALL_ENTITLEMENT;
 #[cfg(feature = "ColorSyncTransform")]
 pub use self::__ColorSyncTransform::kColorSyncAlphaInfoMask;
 #[cfg(feature = "ColorSyncTransform")]
@@ -479,9 +485,12 @@ pub use self::__ColorSyncTransform::ColorSyncTransformCreate;
 pub use self::__ColorSyncTransform::ColorSyncTransformGetProfileSequence;
 #[cfg(feature = "ColorSyncTransform")]
 pub use self::__ColorSyncTransform::ColorSyncTransformSetProperty;
+use core::ffi::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_api_version?language=objc)
+pub const COLORSYNC_API_VERSION: c_uint = 0x0F000005;
 extern "C-unwind" {
     pub fn ColorSyncAPIVersion() -> u32;
 }

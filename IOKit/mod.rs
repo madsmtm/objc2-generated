@@ -37,6 +37,598 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnerror?language=objc)
+pub const kIOReturnError: c_uint = iokit_common_err!(0x2bc);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnomemory?language=objc)
+pub const kIOReturnNoMemory: c_uint = iokit_common_err!(0x2bd);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnoresources?language=objc)
+pub const kIOReturnNoResources: c_uint = iokit_common_err!(0x2be);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnipcerror?language=objc)
+pub const kIOReturnIPCError: c_uint = iokit_common_err!(0x2bf);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnodevice?language=objc)
+pub const kIOReturnNoDevice: c_uint = iokit_common_err!(0x2c0);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotprivileged?language=objc)
+pub const kIOReturnNotPrivileged: c_uint = iokit_common_err!(0x2c1);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnbadargument?language=objc)
+pub const kIOReturnBadArgument: c_uint = iokit_common_err!(0x2c2);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnlockedread?language=objc)
+pub const kIOReturnLockedRead: c_uint = iokit_common_err!(0x2c3);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnlockedwrite?language=objc)
+pub const kIOReturnLockedWrite: c_uint = iokit_common_err!(0x2c4);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnexclusiveaccess?language=objc)
+pub const kIOReturnExclusiveAccess: c_uint = iokit_common_err!(0x2c5);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnbadmessageid?language=objc)
+pub const kIOReturnBadMessageID: c_uint = iokit_common_err!(0x2c6);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnunsupported?language=objc)
+pub const kIOReturnUnsupported: c_uint = iokit_common_err!(0x2c7);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnvmerror?language=objc)
+pub const kIOReturnVMError: c_uint = iokit_common_err!(0x2c8);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturninternalerror?language=objc)
+pub const kIOReturnInternalError: c_uint = iokit_common_err!(0x2c9);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnioerror?language=objc)
+pub const kIOReturnIOError: c_uint = iokit_common_err!(0x2ca);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturncannotlock?language=objc)
+pub const kIOReturnCannotLock: c_uint = iokit_common_err!(0x2cc);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotopen?language=objc)
+pub const kIOReturnNotOpen: c_uint = iokit_common_err!(0x2cd);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotreadable?language=objc)
+pub const kIOReturnNotReadable: c_uint = iokit_common_err!(0x2ce);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotwritable?language=objc)
+pub const kIOReturnNotWritable: c_uint = iokit_common_err!(0x2cf);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotaligned?language=objc)
+pub const kIOReturnNotAligned: c_uint = iokit_common_err!(0x2d0);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnbadmedia?language=objc)
+pub const kIOReturnBadMedia: c_uint = iokit_common_err!(0x2d1);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnstillopen?language=objc)
+pub const kIOReturnStillOpen: c_uint = iokit_common_err!(0x2d2);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnrlderror?language=objc)
+pub const kIOReturnRLDError: c_uint = iokit_common_err!(0x2d3);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturndmaerror?language=objc)
+pub const kIOReturnDMAError: c_uint = iokit_common_err!(0x2d4);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnbusy?language=objc)
+pub const kIOReturnBusy: c_uint = iokit_common_err!(0x2d5);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturntimeout?language=objc)
+pub const kIOReturnTimeout: c_uint = iokit_common_err!(0x2d6);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnoffline?language=objc)
+pub const kIOReturnOffline: c_uint = iokit_common_err!(0x2d7);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotready?language=objc)
+pub const kIOReturnNotReady: c_uint = iokit_common_err!(0x2d8);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotattached?language=objc)
+pub const kIOReturnNotAttached: c_uint = iokit_common_err!(0x2d9);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnochannels?language=objc)
+pub const kIOReturnNoChannels: c_uint = iokit_common_err!(0x2da);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnospace?language=objc)
+pub const kIOReturnNoSpace: c_uint = iokit_common_err!(0x2db);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnportexists?language=objc)
+pub const kIOReturnPortExists: c_uint = iokit_common_err!(0x2dd);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturncannotwire?language=objc)
+pub const kIOReturnCannotWire: c_uint = iokit_common_err!(0x2de);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnointerrupt?language=objc)
+pub const kIOReturnNoInterrupt: c_uint = iokit_common_err!(0x2df);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnoframes?language=objc)
+pub const kIOReturnNoFrames: c_uint = iokit_common_err!(0x2e0);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnmessagetoolarge?language=objc)
+pub const kIOReturnMessageTooLarge: c_uint = iokit_common_err!(0x2e1);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotpermitted?language=objc)
+pub const kIOReturnNotPermitted: c_uint = iokit_common_err!(0x2e2);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnopower?language=objc)
+pub const kIOReturnNoPower: c_uint = iokit_common_err!(0x2e3);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnomedia?language=objc)
+pub const kIOReturnNoMedia: c_uint = iokit_common_err!(0x2e4);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnunformattedmedia?language=objc)
+pub const kIOReturnUnformattedMedia: c_uint = iokit_common_err!(0x2e5);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnunsupportedmode?language=objc)
+pub const kIOReturnUnsupportedMode: c_uint = iokit_common_err!(0x2e6);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnunderrun?language=objc)
+pub const kIOReturnUnderrun: c_uint = iokit_common_err!(0x2e7);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnoverrun?language=objc)
+pub const kIOReturnOverrun: c_uint = iokit_common_err!(0x2e8);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturndeviceerror?language=objc)
+pub const kIOReturnDeviceError: c_uint = iokit_common_err!(0x2e9);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnocompletion?language=objc)
+pub const kIOReturnNoCompletion: c_uint = iokit_common_err!(0x2ea);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnaborted?language=objc)
+pub const kIOReturnAborted: c_uint = iokit_common_err!(0x2eb);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnobandwidth?language=objc)
+pub const kIOReturnNoBandwidth: c_uint = iokit_common_err!(0x2ec);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotresponding?language=objc)
+pub const kIOReturnNotResponding: c_uint = iokit_common_err!(0x2ed);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnisotooold?language=objc)
+pub const kIOReturnIsoTooOld: c_uint = iokit_common_err!(0x2ee);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnisotoonew?language=objc)
+pub const kIOReturnIsoTooNew: c_uint = iokit_common_err!(0x2ef);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturnnotfound?language=objc)
+pub const kIOReturnNotFound: c_uint = iokit_common_err!(0x2f0);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioreturninvalid?language=objc)
+pub const kIOReturnInvalid: c_uint = iokit_common_err!(0x1);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiokitbuildversionkey?language=objc)
+pub const kIOKitBuildVersionKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOKitBuildVersion\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiokitdiagnosticskey?language=objc)
+pub const kIOKitDiagnosticsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOKitDiagnostics\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryplaneskey?language=objc)
+pub const kIORegistryPlanesKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryPlanes\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocataloguekey?language=objc)
+pub const kIOCatalogueKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCatalogue\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioserviceplane?language=objc)
+pub const kIOServicePlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOService\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopowerplane?language=objc)
+pub const kIOPowerPlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPower\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodevicetreeplane?language=objc)
+pub const kIODeviceTreePlane: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IODeviceTree\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioaudioplane?language=objc)
+pub const kIOAudioPlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAudio\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofirewireplane?language=objc)
+pub const kIOFireWirePlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFireWire\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbplane?language=objc)
+pub const kIOUSBPlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUSB\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryentryidkey?language=objc)
+pub const kIORegistryEntryIDKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryEntryID\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryentrypropertykeyskey?language=objc)
+pub const kIORegistryEntryPropertyKeysKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryEntryPropertyKeys\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryentryallowablesetpropertieskey?language=objc)
+pub const kIORegistryEntryAllowableSetPropertiesKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryEntryAllowableSetProperties\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryentrydefaultlockingsetpropertieskey?language=objc)
+pub const kIORegistryEntryDefaultLockingSetPropertiesKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryEntryDefaultLockingSetProperties\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioserviceclass?language=objc)
+pub const kIOServiceClass: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOService\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioresourcesclass?language=objc)
+pub const kIOResourcesClass: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOResources\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioclasskey?language=objc)
+pub const kIOClassKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOClass\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioprobescorekey?language=objc)
+pub const kIOProbeScoreKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOProbeScore\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiokitdebugkey?language=objc)
+pub const kIOKitDebugKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOKitDebug\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclasskey?language=objc)
+pub const kIOUserClassKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClass\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclasseskey?language=objc)
+pub const kIOUserClassesKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClasses\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosupportedpropertieskey?language=objc)
+pub const kIOSupportedPropertiesKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOSupportedProperties\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserservicepropertieskey?language=objc)
+pub const kIOUserServicePropertiesKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServiceProperties\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioproviderclasskey?language=objc)
+pub const kIOProviderClassKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOProviderClass\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionamematchkey?language=objc)
+pub const kIONameMatchKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IONameMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopropertymatchkey?language=objc)
+pub const kIOPropertyMatchKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPropertyMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopropertyexistsmatchkey?language=objc)
+pub const kIOPropertyExistsMatchKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPropertyExistsMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopathmatchkey?language=objc)
+pub const kIOPathMatchKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPathMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiolocationmatchkey?language=objc)
+pub const kIOLocationMatchKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLocationMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioparentmatchkey?language=objc)
+pub const kIOParentMatchKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOParentMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioresourcematchkey?language=objc)
+pub const kIOResourceMatchKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOResourceMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioresourcematchedkey?language=objc)
+pub const kIOResourceMatchedKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOResourceMatched\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchedservicecountkey?language=objc)
+pub const kIOMatchedServiceCountKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMatchedServiceCountMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionamematchedkey?language=objc)
+pub const kIONameMatchedKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IONameMatched\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchcategorykey?language=objc)
+pub const kIOMatchCategoryKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMatchCategory\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodefaultmatchcategorykey?language=objc)
+pub const kIODefaultMatchCategoryKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IODefaultMatchCategory\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchedpersonalitykey?language=objc)
+pub const kIOMatchedPersonalityKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMatchedPersonality\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorematchpersonalitykey?language=objc)
+pub const kIORematchPersonalityKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IORematchPersonality\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorematchcountkey?language=objc)
+pub const kIORematchCountKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IORematchCount\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodextmatchcountkey?language=objc)
+pub const kIODEXTMatchCountKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IODEXTMatchCount\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousercliententitlementskey?language=objc)
+pub const kIOUserClientEntitlementsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientEntitlements\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioservicedextentitlementskey?language=objc)
+pub const kIOServiceDEXTEntitlementsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceDEXTEntitlements\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitentitlementkey?language=objc)
+pub const kIODriverKitEntitlementKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementskey?language=objc)
+pub const kIODriverKitUserClientEntitlementsKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.userclient-access\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitrequiredentitlementskey?language=objc)
+pub const kIODriverKitRequiredEntitlementsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.driverkit.driver-access\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkittestdriverentitlementkey?language=objc)
+pub const kIODriverKitTestDriverEntitlementKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.driverkit.test-driver\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementallowanykey?language=objc)
+pub const kIODriverKitUserClientEntitlementAllowAnyKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(
+        b"com.apple.developer.driverkit.allow-any-userclient-access\0",
+    )
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementadministratorkey?language=objc)
+pub const kIODriverKitUserClientEntitlementAdministratorKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.administrator\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementcommunicateswithdriverskey?language=objc)
+pub const kIODriverKitUserClientEntitlementCommunicatesWithDriversKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(
+        b"com.apple.developer.driverkit.communicates-with-drivers\0",
+    )
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementallowthirdpartyuserclientskey?language=objc)
+pub const kIODriverKitUserClientEntitlementAllowThirdPartyUserClientsKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(
+        b"com.apple.developer.driverkit.allow-third-party-userclients\0",
+    )
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusbtransportentitlementkey?language=objc)
+pub const kIODriverKitUSBTransportEntitlementKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.transport.usb\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkithidtransportentitlementkey?language=objc)
+pub const kIODriverKitHIDTransportEntitlementKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.transport.hid\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkithidfamilydeviceentitlementkey?language=objc)
+pub const kIODriverKitHIDFamilyDeviceEntitlementKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.family.hid.device\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkithidfamilyeventserviceentitlementkey?language=objc)
+pub const kIODriverKitHIDFamilyEventServiceEntitlementKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.family.hid.eventservice\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkittransportbuiltinentitlementkey?language=objc)
+pub const kIODriverKitTransportBuiltinEntitlementKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.builtin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramreadaccesskey?language=objc)
+pub const kIONVRAMReadAccessKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.nvram-read-access\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramwriteaccesskey?language=objc)
+pub const kIONVRAMWriteAccessKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.nvram-write-access\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioresourcessetpropertykey?language=objc)
+pub const kIOResourcesSetPropertyKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.ioresources.setproperty\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramsystemallowkey?language=objc)
+pub const kIONVRAMSystemAllowKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.system-nvram-allow\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchdeferkey?language=objc)
+pub const kIOMatchDeferKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMatchDefer\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioallcpuinitializedkey?language=objc)
+pub const kIOAllCPUInitializedKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAllCPUInitialized\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientclasskey?language=objc)
+pub const kIOUserClientClassKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientClass\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomapperidkey?language=objc)
+pub const kIOMapperIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMapperID\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientcrossendiankey?language=objc)
+pub const kIOUserClientCrossEndianKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientCrossEndian\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientcrossendiancompatiblekey?language=objc)
+pub const kIOUserClientCrossEndianCompatibleKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientCrossEndianCompatible\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientsharedinstancekey?language=objc)
+pub const kIOUserClientSharedInstanceKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientSharedInstance\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientdefaultlockingkey?language=objc)
+pub const kIOUserClientDefaultLockingKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientDefaultLocking\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientdefaultlockingsetpropertieskey?language=objc)
+pub const kIOUserClientDefaultLockingSetPropertiesKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientDefaultLockingSetProperties\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientdefaultlockingsinglethreadexternalmethodkey?language=objc)
+pub const kIOUserClientDefaultLockingSingleThreadExternalMethodKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"IOUserClientDefaultLockingSingleThreadExternalMethod\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientcreatorkey?language=objc)
+pub const kIOUserClientCreatorKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientCreator\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouseruserclientkey?language=objc)
+pub const kIOUserUserClientKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserUserClient\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserserveroneprocesskey?language=objc)
+pub const kIOUserServerOneProcessKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServerOneProcess\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserserverpreserveuserspacerebootkey?language=objc)
+pub const kIOUserServerPreserveUserspaceRebootKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServerPreserveUserspaceReboot\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopublishnotification?language=objc)
+pub const kIOPublishNotification: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServicePublish\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofirstpublishnotification?language=objc)
+pub const kIOFirstPublishNotification: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceFirstPublish\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchednotification?language=objc)
+pub const kIOMatchedNotification: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceMatched\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofirstmatchnotification?language=objc)
+pub const kIOFirstMatchNotification: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceFirstMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioterminatednotification?language=objc)
+pub const kIOTerminatedNotification: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceTerminate\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowillterminatenotification?language=objc)
+pub const kIOWillTerminateNotification: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceWillTerminate\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiogeneralinterest?language=objc)
+pub const kIOGeneralInterest: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOGeneralInterest\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobusyinterest?language=objc)
+pub const kIOBusyInterest: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBusyInterest\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioapppowerstateinterest?language=objc)
+pub const kIOAppPowerStateInterest: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAppPowerStateInterest\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioprioritypowerstateinterest?language=objc)
+pub const kIOPriorityPowerStateInterest: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPriorityPowerStateInterest\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioplatformdevicemessagekey?language=objc)
+pub const kIOPlatformDeviceMessageKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPlatformDeviceMessage\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocfplugintypeskey?language=objc)
+pub const kIOCFPlugInTypesKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCFPlugInTypes\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocompatibilitymatchkey?language=objc)
+pub const kIOCompatibilityMatchKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCompatibilityMatch\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocompatibilitypropertieskey?language=objc)
+pub const kIOCompatibilityPropertiesKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCompatibilityProperties\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopathkey?language=objc)
+pub const kIOPathKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPath\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocommandpoolsizekey?language=objc)
+pub const kIOCommandPoolSizeKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCommandPoolSize\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumprioritycountkey?language=objc)
+pub const kIOMaximumPriorityCountKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumPriorityCount\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumblockcountreadkey?language=objc)
+pub const kIOMaximumBlockCountReadKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumBlockCountRead\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumblockcountwritekey?language=objc)
+pub const kIOMaximumBlockCountWriteKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumBlockCountWrite\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumbytecountreadkey?language=objc)
+pub const kIOMaximumByteCountReadKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumByteCountRead\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumbytecountwritekey?language=objc)
+pub const kIOMaximumByteCountWriteKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumByteCountWrite\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentcountreadkey?language=objc)
+pub const kIOMaximumSegmentCountReadKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentCountRead\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentcountwritekey?language=objc)
+pub const kIOMaximumSegmentCountWriteKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentCountWrite\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentbytecountreadkey?language=objc)
+pub const kIOMaximumSegmentByteCountReadKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentByteCountRead\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentbytecountwritekey?language=objc)
+pub const kIOMaximumSegmentByteCountWriteKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentByteCountWrite\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiominimumsegmentalignmentbytecountkey?language=objc)
+pub const kIOMinimumSegmentAlignmentByteCountKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMinimumSegmentAlignmentByteCount\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentaddressablebitcountkey?language=objc)
+pub const kIOMaximumSegmentAddressableBitCountKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentAddressableBitCount\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiominimumsaturationbytecountkey?language=objc)
+pub const kIOMinimumSaturationByteCountKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMinimumSaturationByteCount\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumswapwritekey?language=objc)
+pub const kIOMaximumSwapWriteKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSwapWrite\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioiconkey?language=objc)
+pub const kIOIconKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOIcon\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobundleresourcefilekey?language=objc)
+pub const kIOBundleResourceFileKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBundleResourceFile\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobusbadgekey?language=objc)
+pub const kIOBusBadgeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBusBadge\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodeviceiconkey?language=objc)
+pub const kIODeviceIconKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IODeviceIcon\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioplatformserialnumberkey?language=objc)
+pub const kIOPlatformSerialNumberKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPlatformSerialNumber\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioplatformuuidkey?language=objc)
+pub const kIOPlatformUUIDKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPlatformUUID\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvrambootargskey?language=objc)
+pub const kIONVRAMBootArgsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"boot-args\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramdeletepropertykey?language=objc)
+pub const kIONVRAMDeletePropertyKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IONVRAM-DELETE-PROPERTY\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramsyncnowpropertykey?language=objc)
+pub const kIONVRAMSyncNowPropertyKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IONVRAM-SYNCNOW-PROPERTY\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramactivatecsrconfigpropertykey?language=objc)
+pub const kIONVRAMActivateCSRConfigPropertyKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IONVRAM-ARMCSR-PROPERTY\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodtnvrampanicinfokey?language=objc)
+pub const kIODTNVRAMPanicInfoKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"aapl,panic-info\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramdeletepropertykeywret?language=objc)
+pub const kIONVRAMDeletePropertyKeyWRet: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IONVRAM-DELETEWRET-PROPERTY\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobootdevicekey?language=objc)
+pub const kIOBootDeviceKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBootDevice\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobootdevicepathkey?language=objc)
+pub const kIOBootDevicePathKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBootDevicePath\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobootdevicesizekey?language=objc)
+pub const kIOBootDeviceSizeKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBootDeviceSize\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kosbuildversionkey?language=objc)
+pub const kOSBuildVersionKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"OS Build Version\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationitemcreatekey?language=objc)
+pub const kIOStateNotificationItemCreateKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.create\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationitemsetkey?language=objc)
+pub const kIOStateNotificationItemSetKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.set\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationitemcopykey?language=objc)
+pub const kIOStateNotificationItemCopyKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.copy\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationnamekey?language=objc)
+pub const kIOStateNotificationNameKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationentitlementsetkey?language=objc)
+pub const kIOStateNotificationEntitlementSetKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.entitlement-set\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationentitlementgetkey?language=objc)
+pub const kIOStateNotificationEntitlementGetKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.entitlement-get\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstateclamshellkey?language=objc)
+pub const kIOSystemStateClamshellKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.clamshell\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatesleepdescriptionkey?language=objc)
+pub const kIOSystemStateSleepDescriptionKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.sleepdescription\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatesleepdescriptionreasonkey?language=objc)
+pub const kIOSystemStateSleepDescriptionReasonKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.sleepreason\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatesleepdescriptionhibernatestatekey?language=objc)
+pub const kIOSystemStateSleepDescriptionHibernateStateKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.hibernatestate\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatewakedescriptionkey?language=objc)
+pub const kIOSystemStateWakeDescriptionKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.wakedescription\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatewakedescriptionwakereasonkey?language=objc)
+pub const kIOSystemStateWakeDescriptionWakeReasonKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.wakereason\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatewakedescriptioncontinuoustimeoffsetkey?language=objc)
+pub const kIOSystemStateWakeDescriptionContinuousTimeOffsetKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(
+        b"com.apple.iokit.pm.wakedescription.continuous-time-offset\0",
+    )
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatehaltdescriptionkey?language=objc)
+pub const kIOSystemStateHaltDescriptionKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.haltdescription\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatehaltdescriptionhaltstatekey?language=objc)
+pub const kIOSystemStateHaltDescriptionHaltStateKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.haltstate\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatepowersourcedescriptionkey?language=objc)
+pub const kIOSystemStatePowerSourceDescriptionKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.powersourcedescription\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatepowersourcedescriptionacattachedkey?language=objc)
+pub const kIOSystemStatePowerSourceDescriptionACAttachedKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.acattached\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdkey?language=objc)
+pub const kIOBSDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBSD\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdnamekey?language=objc)
+pub const kIOBSDNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdnameskey?language=objc)
+pub const kIOBSDNamesKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Names\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdmajorkey?language=objc)
+pub const kIOBSDMajorKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Major\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdminorkey?language=objc)
+pub const kIOBSDMinorKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Minor\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdunitkey?language=objc)
+pub const kIOBSDUnitKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Unit\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessageserviceisterminated?language=objc)
+pub const kIOMessageServiceIsTerminated: c_uint = iokit_common_msg!(0x010);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessageserviceissuspended?language=objc)
+pub const kIOMessageServiceIsSuspended: c_uint = iokit_common_msg!(0x020);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessageserviceisresumed?language=objc)
+pub const kIOMessageServiceIsResumed: c_uint = iokit_common_msg!(0x030);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessageserviceisrequestingclose?language=objc)
+pub const kIOMessageServiceIsRequestingClose: c_uint = iokit_common_msg!(0x100);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessageserviceisattemptingopen?language=objc)
+pub const kIOMessageServiceIsAttemptingOpen: c_uint = iokit_common_msg!(0x101);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessageservicewasclosed?language=objc)
+pub const kIOMessageServiceWasClosed: c_uint = iokit_common_msg!(0x110);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessageservicebusystatechange?language=objc)
+pub const kIOMessageServiceBusyStateChange: c_uint = iokit_common_msg!(0x120);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessageconsolesecuritychange?language=objc)
+pub const kIOMessageConsoleSecurityChange: c_uint = iokit_common_msg!(0x128);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessageservicepropertychange?language=objc)
+pub const kIOMessageServicePropertyChange: c_uint = iokit_common_msg!(0x130);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagecopyclientid?language=objc)
+pub const kIOMessageCopyClientID: c_uint = iokit_common_msg!(0x330);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemcapabilitychange?language=objc)
+pub const kIOMessageSystemCapabilityChange: c_uint = iokit_common_msg!(0x340);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicesignaledwakeup?language=objc)
+pub const kIOMessageDeviceSignaledWakeup: c_uint = iokit_common_msg!(0x350);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicewillpoweroff?language=objc)
+pub const kIOMessageDeviceWillPowerOff: c_uint = iokit_common_msg!(0x210);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicehaspoweredon?language=objc)
+pub const kIOMessageDeviceHasPoweredOn: c_uint = iokit_common_msg!(0x230);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillpoweroff?language=objc)
+pub const kIOMessageSystemWillPowerOff: c_uint = iokit_common_msg!(0x250);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillrestart?language=objc)
+pub const kIOMessageSystemWillRestart: c_uint = iokit_common_msg!(0x310);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystempagingoff?language=objc)
+pub const kIOMessageSystemPagingOff: c_uint = iokit_common_msg!(0x255);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagecansystemsleep?language=objc)
+pub const kIOMessageCanSystemSleep: c_uint = iokit_common_msg!(0x270);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillnotsleep?language=objc)
+pub const kIOMessageSystemWillNotSleep: c_uint = iokit_common_msg!(0x290);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillsleep?language=objc)
+pub const kIOMessageSystemWillSleep: c_uint = iokit_common_msg!(0x280);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillpoweron?language=objc)
+pub const kIOMessageSystemWillPowerOn: c_uint = iokit_common_msg!(0x320);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemhaspoweredon?language=objc)
+pub const kIOMessageSystemHasPoweredOn: c_uint = iokit_common_msg!(0x300);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagecandevicepoweroff?language=objc)
+pub const kIOMessageCanDevicePowerOff: c_uint = iokit_common_msg!(0x200);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicewillnotpoweroff?language=objc)
+pub const kIOMessageDeviceWillNotPowerOff: c_uint = iokit_common_msg!(0x220);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillnotpoweroff?language=objc)
+pub const kIOMessageSystemWillNotPowerOff: c_uint = iokit_common_msg!(0x260);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagecansystempoweroff?language=objc)
+pub const kIOMessageCanSystemPowerOff: c_uint = iokit_common_msg!(0x240);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicewillpoweron?language=objc)
+pub const kIOMessageDeviceWillPowerOn: c_uint = iokit_common_msg!(0x215);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicehaspoweredoff?language=objc)
+pub const kIOMessageDeviceHasPoweredOff: c_uint = iokit_common_msg!(0x225);
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserserverclasskey?language=objc)
+pub const kIOUserServerClassKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServer\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserservernamekey?language=objc)
+pub const kIOUserServerNameKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServerName\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserservertagkey?language=objc)
+pub const kIOUserServerTagKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServerTag\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodefaultmemorytype?language=objc)
 pub const kIODefaultMemoryType: c_uint = 0;
 

@@ -8,6 +8,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemaxtimescale?language=objc)
+pub const kCMTimeMaxTimescale: c_uint = 0x7fffffff;
 /// Numerator of rational CMTime.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimevalue?language=objc)

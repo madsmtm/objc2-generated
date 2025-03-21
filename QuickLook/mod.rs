@@ -34,6 +34,8 @@ mod __QLThumbnail;
 #[path = "QLThumbnailImage.rs"]
 mod __QLThumbnailImage;
 
+#[cfg(feature = "QLBase")]
+pub use self::__QLBase::QUICKLOOK_VERSION;
 #[cfg(feature = "QLGenerator")]
 pub use self::__QLGenerator::kQLPreviewContentIDScheme;
 #[cfg(feature = "QLGenerator")]
@@ -60,6 +62,10 @@ pub use self::__QLGenerator::kQLPreviewPropertyStringEncodingKey;
 pub use self::__QLGenerator::kQLPreviewPropertyTextEncodingNameKey;
 #[cfg(feature = "QLGenerator")]
 pub use self::__QLGenerator::kQLPreviewPropertyWidthKey;
+#[cfg(feature = "QLGenerator")]
+pub use self::__QLGenerator::kQLReturnHasMore;
+#[cfg(feature = "QLGenerator")]
+pub use self::__QLGenerator::kQLReturnMask;
 #[cfg(feature = "QLGenerator")]
 pub use self::__QLGenerator::kQLThumbnailPropertyBadgeImageKey;
 #[cfg(feature = "QLGenerator")]

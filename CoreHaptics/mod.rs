@@ -67,6 +67,8 @@ pub use self::__CHHapticEngine::CHHapticEngineResetHandler;
 pub use self::__CHHapticEngine::CHHapticEngineStoppedHandler;
 #[cfg(feature = "CHHapticEngine")]
 pub use self::__CHHapticEngine::CHHapticEngineStoppedReason;
+#[cfg(feature = "CHHapticEngine")]
+pub use self::__CHHapticEngine::CHHapticTimeImmediate;
 #[cfg(feature = "CHHapticErrors")]
 pub use self::__CHHapticErrors::CHHapticErrorCode;
 #[cfg(feature = "CHHapticEvent")]

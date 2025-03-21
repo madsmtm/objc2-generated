@@ -10,6 +10,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnulldirectdisplay?language=objc)
+pub const kCGNullDirectDisplay: CGDirectDisplayID = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdirectdisplayid?language=objc)
 pub type CGDirectDisplayID = u32;
 

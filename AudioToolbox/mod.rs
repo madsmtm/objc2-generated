@@ -980,6 +980,30 @@ pub use self::__AudioCodec::kAudioDecoderComponentType;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioEncoderComponentType;
 #[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_AvailableValues;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_CurrentValue;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_Hint;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_LimitedValues;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_Parameters;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_SettingKey;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_SettingName;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_Summary;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_TopLevelKey;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_Unit;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_ValueType;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioSettings_Version;
+#[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioUnityCodecComponentType;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kDynamicRangeCompressionProfile_GeneralCompression;
@@ -1083,6 +1107,14 @@ pub use self::__AudioCodec::AudioCodecUninitializeProc;
 pub use self::__AudioCodec::AudioSettingsFlags;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::MagicCookieInfo;
+#[cfg(feature = "AudioComponent")]
+pub use self::__AudioComponent::kAudioComponentConfigurationInfo_ValidationResult;
+#[cfg(feature = "AudioComponent")]
+pub use self::__AudioComponent::kAudioComponentValidationParameter_ForceValidation;
+#[cfg(feature = "AudioComponent")]
+pub use self::__AudioComponent::kAudioComponentValidationParameter_LoadOutOfProcess;
+#[cfg(feature = "AudioComponent")]
+pub use self::__AudioComponent::kAudioComponentValidationParameter_TimeOut;
 #[cfg(feature = "AudioComponent")]
 pub use self::__AudioComponent::AudioComponent;
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
@@ -1295,6 +1327,50 @@ pub use self::__AudioConverter::AudioConverterReset;
 pub use self::__AudioConverter::AudioConverterSetProperty;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::OpaqueAudioConverter;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Album;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_ApproximateDurationInSeconds;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Artist;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_ChannelLayout;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Comments;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Composer;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Copyright;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_EncodingApplication;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Genre;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_ISRC;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_KeySignature;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Lyricist;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_NominalBitRate;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_RecordedDate;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_SourceBitDepth;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_SourceEncoder;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_SubTitle;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Tempo;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_TimeSignature;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Title;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_TrackNumber;
+#[cfg(feature = "AudioFile")]
+pub use self::__AudioFile::kAFInfoDictionary_Year;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::kAudioFile3GP2Type;
 #[cfg(feature = "AudioFile")]
@@ -2273,8 +2349,12 @@ pub use self::__AudioSession::kAudioSessionUnspecifiedError;
 pub use self::__AudioSession::kAudioSessionUnsupportedPropertyError;
 #[cfg(all(feature = "AudioSession", feature = "objc2-core-foundation"))]
 pub use self::__AudioSession::kAudioSession_AudioRouteChangeKey_CurrentRouteDescription;
+#[cfg(feature = "AudioSession")]
+pub use self::__AudioSession::kAudioSession_AudioRouteChangeKey_OldRoute;
 #[cfg(all(feature = "AudioSession", feature = "objc2-core-foundation"))]
 pub use self::__AudioSession::kAudioSession_AudioRouteChangeKey_PreviousRouteDescription;
+#[cfg(feature = "AudioSession")]
+pub use self::__AudioSession::kAudioSession_AudioRouteChangeKey_Reason;
 #[cfg(all(feature = "AudioSession", feature = "objc2-core-foundation"))]
 pub use self::__AudioSession::kAudioSession_AudioRouteKey_Inputs;
 #[cfg(all(feature = "AudioSession", feature = "objc2-core-foundation"))]
@@ -2317,6 +2397,8 @@ pub use self::__AudioSession::AudioSessionSetActive;
 pub use self::__AudioSession::AudioSessionSetActiveWithFlags;
 #[cfg(feature = "AudioSession")]
 pub use self::__AudioSession::AudioSessionSetProperty;
+#[cfg(feature = "AudioUnit")]
+pub use self::__AudioUnit::AUDIO_UNIT_VERSION;
 #[cfg(feature = "AudioUnitCarbonView")]
 pub use self::__AudioUnitCarbonView::kAUCarbonViewSubType_Generic;
 #[cfg(feature = "AudioUnitCarbonView")]
@@ -2949,6 +3031,36 @@ pub use self::__AudioUnitProperties::kAUNetSendProperty_ServiceName;
 pub use self::__AudioUnitProperties::kAUNetSendProperty_TransmissionFormat;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
 pub use self::__AudioUnitProperties::kAUNetSendProperty_TransmissionFormatIndex;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetCPULoadKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetDataKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetElementNameKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetExternalFileRefs;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetMASDataKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetManufacturerKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetNameKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetNumberKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetPartKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetRenderQualityKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetSubtypeKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetTypeKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetVSTDataKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetVSTPresetKey;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAUPresetVersionKey;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
 pub use self::__AudioUnitProperties::kAUSamplerProperty_BankAndPreset;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
@@ -3011,6 +3123,26 @@ pub use self::__AudioUnitProperties::kAudioOutputUnitProperty_StartTime;
 pub use self::__AudioUnitProperties::kAudioOutputUnitProperty_StartTimestampsAtZero;
 #[cfg(feature = "AudioUnitProperties")]
 pub use self::__AudioUnitProperties::kAudioUnitClumpID_System;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_AvailableArchitectures;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_BusCountWritable;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_ChannelConfigurations;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_HasCustomView;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_IconURL;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_InitialInputs;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_InitialOutputs;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_MIDIProtocol;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_MigrateFromPlugin;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioUnitProperties::kAudioUnitConfigurationInfo_SupportedChannelLayoutTags;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
 pub use self::__AudioUnitProperties::kAudioUnitMigrateProperty_FromPlugin;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
@@ -4214,6 +4346,18 @@ use objc2_core_midi::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audio_toolbox_version?language=objc)
+pub const AUDIO_TOOLBOX_VERSION: c_uint = 1060;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_name?language=objc)
+pub const kInstrumentInfoKey_Name: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_msb?language=objc)
+pub const kInstrumentInfoKey_MSB: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"MSB\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_lsb?language=objc)
+pub const kInstrumentInfoKey_LSB: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"LSB\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_program?language=objc)
+pub const kInstrumentInfoKey_Program: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"program\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareserviceproperty_servicerestarted?language=objc)
 #[cfg(feature = "objc2-core-audio")]
 pub const kAudioHardwareServiceProperty_ServiceRestarted: AudioObjectPropertySelector = 0x73727374;

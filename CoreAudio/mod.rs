@@ -37,6 +37,16 @@ mod __HostTime;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioAggregateDeviceClassID;
 #[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioAggregateDeviceClockDeviceKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioAggregateDeviceIsPrivateKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioAggregateDeviceIsStackedKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioAggregateDeviceMainSubDeviceKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioAggregateDeviceNameKey;
+#[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioAggregateDevicePropertyActiveSubDeviceList;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioAggregateDevicePropertyClockDevice;
@@ -50,6 +60,14 @@ pub use self::__AudioHardware::kAudioAggregateDevicePropertyMainSubDevice;
 pub use self::__AudioHardware::kAudioAggregateDevicePropertySubTapList;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioAggregateDevicePropertyTapList;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioAggregateDeviceSubDeviceListKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioAggregateDeviceTapAutoStartKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioAggregateDeviceTapListKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioAggregateDeviceUIDKey;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioAggregateDriftCompensationHighQuality;
 #[cfg(feature = "AudioHardware")]
@@ -341,11 +359,31 @@ pub use self::__AudioHardware::kAudioEndPointClassID;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioEndPointDeviceClassID;
 #[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointDeviceEndPointListKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointDeviceIsPrivateKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointDeviceMainEndPointKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointDeviceMasterEndPointKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointDeviceNameKey;
+#[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioEndPointDevicePropertyComposition;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioEndPointDevicePropertyEndPointList;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioEndPointDevicePropertyIsPrivate;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointDeviceUIDKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointInputChannelsKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointNameKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointOutputChannelsKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioEndPointUIDKey;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioHardwareBadDeviceError;
 #[cfg(feature = "AudioHardware")]
@@ -627,6 +665,8 @@ pub use self::__AudioHardware::kAudioSubDeviceClassID;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubDeviceDriftCompensationHighQuality;
 #[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubDeviceDriftCompensationKey;
+#[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubDeviceDriftCompensationLowQuality;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubDeviceDriftCompensationMaxQuality;
@@ -635,19 +675,43 @@ pub use self::__AudioHardware::kAudioSubDeviceDriftCompensationMediumQuality;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubDeviceDriftCompensationMinQuality;
 #[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubDeviceDriftCompensationQualityKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubDeviceExtraInputLatencyKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubDeviceExtraOutputLatencyKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubDeviceInputChannelsKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubDeviceNameKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubDeviceOutputChannelsKey;
+#[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubDevicePropertyDriftCompensation;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubDevicePropertyDriftCompensationQuality;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubDevicePropertyExtraLatency;
 #[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubDeviceUIDKey;
+#[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubTapClassID;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubTapDriftCompensationKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubTapDriftCompensationQualityKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubTapExtraInputLatencyKey;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubTapExtraOutputLatencyKey;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubTapPropertyDriftCompensation;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubTapPropertyDriftCompensationQuality;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSubTapPropertyExtraLatency;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioSubTapUIDKey;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioSystemObjectClassID;
 #[cfg(feature = "AudioHardware")]
@@ -752,6 +816,8 @@ pub use self::__AudioHardware::AudioStreamRangedDescription;
 pub use self::__AudioHardware::CATapDescription;
 #[cfg(all(feature = "AudioHardware", feature = "objc2"))]
 pub use self::__AudioHardware::CATapMuteBehavior;
+#[cfg(feature = "AudioHardwareDeprecated")]
+pub use self::__AudioHardwareDeprecated::kAudioAggregateDeviceMasterSubDeviceKey;
 #[cfg(all(feature = "AudioHardware", feature = "AudioHardwareDeprecated"))]
 pub use self::__AudioHardwareDeprecated::kAudioAggregateDevicePropertyMasterSubDevice;
 #[cfg(all(feature = "AudioHardware", feature = "AudioHardwareDeprecated"))]
@@ -844,6 +910,8 @@ pub use self::__AudioHardwareDeprecated::kAudioHardwarePropertyPlugInForBundleID
 pub use self::__AudioHardwareDeprecated::kAudioHardwarePropertyProcessIsMaster;
 #[cfg(all(feature = "AudioHardware", feature = "AudioHardwareDeprecated"))]
 pub use self::__AudioHardwareDeprecated::kAudioHardwarePropertyRunLoop;
+#[cfg(feature = "AudioHardwareDeprecated")]
+pub use self::__AudioHardwareDeprecated::kAudioHardwareRunLoopMode;
 #[cfg(all(feature = "AudioHardware", feature = "AudioHardwareDeprecated"))]
 pub use self::__AudioHardwareDeprecated::kAudioISubOwnerControlClassID;
 #[cfg(all(feature = "AudioHardware", feature = "AudioHardwareDeprecated"))]

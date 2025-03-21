@@ -25,6 +25,8 @@ use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_api_version?language=objc)
+pub const DISPATCH_API_VERSION: c_uint = 20181008;
 extern "C" {
     /// Create a dispatch_time_t relative to the current value of the default or
     /// wall time clock, or modify an existing dispatch_time_t.

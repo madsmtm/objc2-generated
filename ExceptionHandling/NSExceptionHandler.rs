@@ -7,6 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nslogandhandleeveryexceptionmask?language=objc)
+pub const NSLogAndHandleEveryExceptionMask: c_uint = NSLogUncaughtExceptionMask
+    | NSLogUncaughtSystemExceptionMask
+    | NSLogUncaughtRuntimeErrorMask
+    | NSHandleUncaughtExceptionMask
+    | NSHandleUncaughtSystemExceptionMask
+    | NSHandleUncaughtRuntimeErrorMask
+    | NSLogTopLevelExceptionMask
+    | NSHandleTopLevelExceptionMask
+    | NSLogOtherExceptionMask
+    | NSHandleOtherExceptionMask;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangoneveryexceptionmask?language=objc)
+pub const NSHangOnEveryExceptionMask: c_uint = NSHangOnUncaughtExceptionMask
+    | NSHangOnUncaughtSystemExceptionMask
+    | NSHangOnUncaughtRuntimeErrorMask
+    | NSHangOnTopLevelExceptionMask
+    | NSHangOnOtherExceptionMask;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsuncaughtsystemexceptionexception?language=objc)
     pub static NSUncaughtSystemExceptionException: Option<&'static NSString>;

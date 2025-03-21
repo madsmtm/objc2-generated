@@ -273,6 +273,8 @@ pub use self::__GKState::GKState;
 pub use self::__GKStateMachine::GKStateMachine;
 #[cfg(feature = "GKStrategist")]
 pub use self::__GKStrategist::GKStrategist;
+#[cfg(feature = "GKVersion")]
+pub use self::__GKVersion::GK_VERSION;
 #[cfg(feature = "SceneKit_Additions")]
 pub use self::__SceneKit_Additions::SCNNodeGameplayKit;
 #[cfg(feature = "SpriteKit_Additions")]

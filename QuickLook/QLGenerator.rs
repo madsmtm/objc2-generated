@@ -12,6 +12,10 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlreturnmask?language=objc)
+pub const kQLReturnMask: c_uint = 0xaf00;
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlreturnhasmore?language=objc)
+pub const kQLReturnHasMore: c_uint = kQLReturnMask | 10;
 /// This is the type of a reference to Thumbnail requests.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequest?language=objc)

@@ -819,6 +819,8 @@ pub use self::__CMIOHardwareSystem::kCMIOSystemObjectClassID;
 pub use self::__CMIOHardwareSystem::CMIOHardwarePropertyID;
 #[cfg(all(feature = "CMIOSampleBuffer", feature = "objc2-core-foundation"))]
 pub use self::__CMIOSampleBuffer::kCMIOBlockBufferAttachmentKey_CVPixelBufferReference;
+#[cfg(feature = "CMIOSampleBuffer")]
+pub use self::__CMIOSampleBuffer::kCMIOInvalidSequenceNumber;
 #[cfg(all(feature = "CMIOSampleBuffer", feature = "objc2-core-foundation"))]
 pub use self::__CMIOSampleBuffer::kCMIOSampleBufferAttachmentKey_CAAudioTimeStamp;
 #[cfg(all(feature = "CMIOSampleBuffer", feature = "objc2-core-foundation"))]

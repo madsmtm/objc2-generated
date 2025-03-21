@@ -7,6 +7,8 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkunitmolarmassbloodglucose?language=objc)
+pub const HKUnitMolarMassBloodGlucose: c_float = 180.15588000005408;
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkunit?language=objc)
     #[unsafe(super(NSObject))]

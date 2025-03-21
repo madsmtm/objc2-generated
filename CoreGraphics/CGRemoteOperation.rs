@@ -8,6 +8,21 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgmousedowneventmaskingdeadswitchtimeout?language=objc)
+pub const kCGMouseDownEventMaskingDeadSwitchTimeout: c_float = 60.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventfiltermaskpermitallevents?language=objc)
+pub const kCGEventFilterMaskPermitAllEvents: c_uint = CGEventFilterMask::PermitLocalMouseEvents.0
+    | CGEventFilterMask::PermitLocalKeyboardEvents.0
+    | CGEventFilterMask::PermitSystemDefinedEvents.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventsupressionstatesupressioninterval?language=objc)
+pub const kCGEventSupressionStateSupressionInterval: c_uint =
+    CGEventSuppressionState::EventSuppressionStateSuppressionInterval.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventsupressionstateremotemousedrag?language=objc)
+pub const kCGEventSupressionStateRemoteMouseDrag: c_uint =
+    CGEventSuppressionState::EventSuppressionStateRemoteMouseDrag.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnumberofeventsupressionstates?language=objc)
+pub const kCGNumberOfEventSupressionStates: c_uint =
+    CGEventSuppressionState::NumberOfEventSuppressionStates.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventerr?language=objc)
 #[cfg(feature = "CGError")]
 pub type CGEventErr = CGError;

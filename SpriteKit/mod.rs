@@ -322,6 +322,8 @@ pub use self::__SKTransition::SKTransitionDirection;
 pub use self::__SKUniform::SKUniform;
 #[cfg(feature = "SKUniform")]
 pub use self::__SKUniform::SKUniformType;
+#[cfg(feature = "SKVersion")]
+pub use self::__SKVersion::SK_VERSION;
 #[cfg(all(feature = "SKNode", feature = "SKVideoNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub use self::__SKVideoNode::SKVideoNode;

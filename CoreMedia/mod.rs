@@ -1768,11 +1768,15 @@ pub use self::__CMSync::kCMTimebaseError_ReadOnly;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMTimebaseError_TimerIntervalTooShort;
 #[cfg(feature = "CMSync")]
+pub use self::__CMSync::kCMTimebaseFarFutureCFAbsoluteTime;
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMTimebaseNotificationKey_EventTime;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMTimebaseNotification_EffectiveRateChanged;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMTimebaseNotification_TimeJumped;
+#[cfg(feature = "CMSync")]
+pub use self::__CMSync::kCMTimebaseVeryLongCFTimeInterval;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMClock;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
@@ -2178,6 +2182,8 @@ pub use self::__CMTime::kCMTimeFlagsKey;
 pub use self::__CMTime::kCMTimeIndefinite;
 #[cfg(feature = "CMTime")]
 pub use self::__CMTime::kCMTimeInvalid;
+#[cfg(feature = "CMTime")]
+pub use self::__CMTime::kCMTimeMaxTimescale;
 #[cfg(feature = "CMTime")]
 pub use self::__CMTime::kCMTimeNegativeInfinity;
 #[cfg(feature = "CMTime")]

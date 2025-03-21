@@ -8,6 +8,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmduplexdefault?language=objc)
+pub const kPMDuplexDefault: c_uint = kPMDuplexNone;
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationtypedefault?language=objc)
+pub const kPMDestinationTypeDefault: c_uint = kPMDestinationPrinter;
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcolorspacemodelcount?language=objc)
+pub const kPMColorSpaceModelCount: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmobject?language=objc)
 pub type PMObject = *const c_void;
 

@@ -17,6 +17,12 @@ mod __USB;
 mod __USBSpec;
 
 #[cfg(feature = "AppleUSBDefinitions")]
+pub use self::__AppleUSBDefinitions::kIOUSB20BitrateFull;
+#[cfg(feature = "AppleUSBDefinitions")]
+pub use self::__AppleUSBDefinitions::kIOUSB20BitrateHigh;
+#[cfg(feature = "AppleUSBDefinitions")]
+pub use self::__AppleUSBDefinitions::kIOUSB20BitrateLow;
+#[cfg(feature = "AppleUSBDefinitions")]
 pub use self::__AppleUSBDefinitions::kIOUSB30RetimerDepthLimit;
 #[cfg(feature = "AppleUSBDefinitions")]
 pub use self::__AppleUSBDefinitions::kIOUSBAppleVendorID;
@@ -423,11 +429,315 @@ pub use self::__AppleUSBDefinitions::IOUSBSuperSpeedPlusIsochronousEndpointCompa
 #[cfg(feature = "AppleUSBDefinitions")]
 pub use self::__AppleUSBDefinitions::UASPipeDescriptor;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kAppleCurrentExtra;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kAppleCurrentExtraInSleep;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kAppleMaxPortCurrent;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kAppleMaxPortCurrentInSleep;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kIOUSBBillboardEntitlement;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kIOUSBHostControllerInterfaceEntitlement;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kIOUSBHostDeviceClassName;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kIOUSBHostInterfaceClassName;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kIOUSBHostVMEntitlement;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kIOUSBTransportDextEntitlement;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyAdditionalFailureInfo;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyAddtionalInfoURL;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyAddtionalInfoURLIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyAlternateMode;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyAlternateModeString;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyAlternateModeStringIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyBcdVersion;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyConfigured;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyNumberOfAlternateModes;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyPreferredAlternateMode;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertySVID;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertyVCONNPower;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostBillboardDevicePropertydwAlternateModeVdo;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyCompanion;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyCompanionControllerName;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyControlRequestPolicy;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyDeferRegisterService;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyFullSpeedCompanion;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyHighSpeedCompanion;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyInterruptRMBS;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyIsochronousRMBS;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyIsochronousRequiresContiguous;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyLowSpeedCompanion;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyMuxEnabled;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyPersistFullSpeedIsochronous;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyPortWakeSourcesPolicy;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyRTD3Supported;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyRevision;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertySleepSupported;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertySoftRetryPolicy;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyStreamPolicy;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertySuperSpeedCompanion;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyTierLimit;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyUSB2LPMPolicy;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyUSB3LPMPolicy;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostControllerPropertyUSB4LPMPolicy;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDescriptorOverrideProductStringIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDescriptorOverrideSerialNumberStringIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDescriptorOverrideVendorStringIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyAddress;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyConfigurationCurrentOverride;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyConfigurationDescriptorOverride;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyContainerID;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyCurrentConfiguration;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyDescriptorOverride;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyDesiredChargingCurrent;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyDeviceDescriptorOverride;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyDeviceECID;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyDeviceUDID;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyDisablePortLPM;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyEnableLPM;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyEnumerationState;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyFailedRequestedPower;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyManufacturerStringIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyMaxPacketSize;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyNumConfigs;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyPowerSinkCapability;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyPreferredConfiguration;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyPreferredRecoveryConfiguration;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyProductString;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyProductStringIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyRemoteWakeOverride;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyResetDurationOverride;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyResumeRecoveryTime;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertySerialNumberString;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertySerialNumberStringIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertySignature;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyStandardVersion;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyStreamsSupported;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyTunnel;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyVendorString;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostHubPropertyHubPowerSupplyType;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostHubPropertyIdlePolicy;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostHubPropertyPortSequenceDelay;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostHubPropertyPowerSupply;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostHubPropertyStartupDelay;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostInterfacePropertyAlternateSetting;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostInterfacePropertyNumEndpoints;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostInterfacePropertyString;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostInterfacePropertyStringIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyConfigurationValue;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyDeviceClass;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyDeviceProtocol;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyDeviceReleaseNumber;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyDeviceReleaseNumberRange;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyDeviceSubClass;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyInterfaceClass;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyInterfaceNumber;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyInterfaceProtocol;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyInterfaceSubClass;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyPortType;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyProductID;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyProductIDArray;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyProductIDMask;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertySpeed;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostMatchingPropertyVendorID;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyBusCurrentAllocation;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyBusCurrentSleepAllocation;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyCardReader;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyCardReaderValidateDescriptors;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyCompanionIndex;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyCompanionPortNumber;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyConnectable;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyConnectorType;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyDisconnectInterval;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyExternalDevicePowerController;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyExternalDeviceResetController;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyLinkSpeedLimit;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyMux;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyOvercurrent;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyPortNumber;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyPowerSource;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyRemovable;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertySimulateInterrupt;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyStatus;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyTestMode;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyUSB3Mode;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyUsb3ComplianceMode;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyUsbCPortNumber;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyAllowSoftRetry;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyBusCurrentPoolID;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyDebugOptions;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyExclusiveOwner;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyFailedRemoteWake;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyForceHardwareException;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyForceLinkSpeed;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyForcePower;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyLocationID;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertySleepPortCurrentLimit;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertySleepPowerSupply;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertySmcBusCurrentPoolID;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyWakePortCurrentLimit;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyWakePowerSupply;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostUserClientPropertyBufferAllocations;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostUserClientPropertyBufferStatistics;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostUserClientPropertyEnableDataToggleReset;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostUserClientPropertyEnableReset;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostUserClientPropertyEntitlement;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostUserClientPropertyEntitlementExceptionAllowUnlocked;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostUserClientPropertyEntitlementRequired;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub use self::__IOUSBHostFamilyDefinitions::tIOUSBHostConnectionSpeed;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub use self::__IOUSBHostFamilyDefinitions::tIOUSBHostPortStatus;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub use self::__IOUSBHostFamilyDefinitions::tIOUSBHostPortType;
+#[cfg(feature = "IOUSBLib")]
+pub use self::__IOUSBLib::kIOUSBDeviceClassName;
+#[cfg(feature = "IOUSBLib")]
+pub use self::__IOUSBLib::kIOUSBInterfaceClassName;
 #[cfg(all(
     feature = "AppleUSBDefinitions",
     feature = "IOUSBLib",
@@ -819,6 +1129,8 @@ pub use self::__USBSpec::kUSB100mA;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSB100mAAvailable;
 #[cfg(feature = "USBSpec")]
+pub use self::__USBSpec::kUSB1284DeviceID;
+#[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSB150mA;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSB150mAAvailable;
@@ -840,6 +1152,8 @@ pub use self::__USBSpec::kUSB900mAAvailable;
 pub use self::__USBSpec::kUSBATMNetworkingSubClass;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBAdaptiveIsocSyncType;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBAlternateSetting;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBAnyDesc;
 #[cfg(feature = "USBSpec")]
@@ -897,6 +1211,8 @@ pub use self::__USBSpec::kUSBBillboardVConn5Watt;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBBillboardVConn6Watt;
 #[cfg(feature = "USBSpec")]
+pub use self::__USBSpec::kUSBBillboardVConnNoPowerReq;
+#[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBBillboardVConnReserved;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBBluetoothProgrammingInterfaceProtocol;
@@ -931,11 +1247,17 @@ pub use self::__USBSpec::kUSBCommunicationControlInterfaceClass;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBCommunicationDataInterfaceClass;
 #[cfg(feature = "USBSpec")]
+pub use self::__USBSpec::kUSBCompatibilityMatch;
+#[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBCompositeClass;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBCompositeSubClass;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBConfDesc;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBConfigurationValue;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBContainerID;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBContentSecurityInterfaceClass;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
@@ -970,10 +1292,22 @@ pub use self::__USBSpec::kUSBDeviceCapabilitySuperSpeedUSB;
 pub use self::__USBSpec::kUSBDeviceCapabilityUSB20Extension;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBDeviceCapabilityWirelessUSB;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBDeviceClass;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBDeviceDesc;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBDeviceMaxPacketSize;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBDeviceNumConfigs;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBDeviceProtocol;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBDeviceQualifierDesc;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBDeviceReleaseNumber;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBDeviceSubClass;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBDiagnosticClass;
 #[cfg(feature = "USBSpec")]
@@ -1044,10 +1378,22 @@ pub use self::__USBSpec::kUSBIn;
 pub use self::__USBSpec::kUSBInterface;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBInterfaceAssociationDesc;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBInterfaceClass;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBInterfaceDesc;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBInterfaceNumber;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBInterfacePowerDesc;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBInterfaceProtocol;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBInterfaceString;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBInterfaceStringIndex;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBInterfaceSubClass;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBInterrupt;
 #[cfg(feature = "USBSpec")]
@@ -1058,6 +1404,8 @@ pub use self::__USBSpec::kUSBIsoc;
 pub use self::__USBSpec::kUSBLowPowerSuspendStateBit;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBMIDIStreamingSubClass;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBManufacturerStringIndex;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBMassStorageATAPISubClass;
 #[cfg(feature = "USBSpec")]
@@ -1082,6 +1430,8 @@ pub use self::__USBSpec::kUSBNoSynchronizationIsocSyncType;
 pub use self::__USBSpec::kUSBNone;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBNotificationInterruptUsageType;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBNumEndpoints;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBNumLockKey;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
@@ -1106,6 +1456,14 @@ pub use self::__USBSpec::kUSBPhysicalInterfaceClass;
 pub use self::__USBSpec::kUSBPrintingClass;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBPrintingInterfaceClass;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBProductID;
+#[cfg(feature = "USBSpec")]
+pub use self::__USBSpec::kUSBProductName;
+#[cfg(feature = "USBSpec")]
+pub use self::__USBSpec::kUSBProductString;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBProductStringIndex;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBRFControllerSubClass;
 #[cfg(feature = "USBSpec")]
@@ -1148,12 +1506,20 @@ pub use self::__USBSpec::kUSBRqSetInterface;
 pub use self::__USBSpec::kUSBRqSyncFrame;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBScrollLockKey;
+#[cfg(feature = "USBSpec")]
+pub use self::__USBSpec::kUSBSerialNumberString;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBSerialNumberStringIndex;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBSetIsochDelay;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBSetSel;
+#[cfg(feature = "USBSpec")]
+pub use self::__USBSpec::kUSBSpecReleaseNumber;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBStandard;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBStandardVersion;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBStringDesc;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
@@ -1174,12 +1540,18 @@ pub use self::__USBSpec::kUSBSynchronousIsocSyncType;
 pub use self::__USBSpec::kUSBTestMeasurementSubClass;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USBSpec"))]
 pub use self::__USBSpec::kUSBVendor;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USBSpec"))]
+pub use self::__USBSpec::kUSBVendorID;
+#[cfg(feature = "USBSpec")]
+pub use self::__USBSpec::kUSBVendorName;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBVendorSpecificClass;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBVendorSpecificInterfaceClass;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBVendorSpecificProtocol;
+#[cfg(feature = "USBSpec")]
+pub use self::__USBSpec::kUSBVendorString;
 #[cfg(feature = "USBSpec")]
 pub use self::__USBSpec::kUSBVideoControlSubClass;
 #[cfg(feature = "USBSpec")]
@@ -1212,12 +1584,38 @@ pub use self::__USBSpec::KUSBInterfaceAssociationDescriptorProtocol;
 pub use self::__USBSpec::USBClassSpecificDesc;
 #[cfg(feature = "USB")]
 pub use self::__USB::addPacketShift;
+#[cfg(feature = "USB")]
+pub use self::__USB::kAppleAcpiRootHubDepth;
+#[cfg(feature = "USB")]
+pub use self::__USB::kAppleCurrentAvailable;
+#[cfg(feature = "USB")]
+pub use self::__USB::kAppleCurrentInSleep;
+#[cfg(feature = "USB")]
+pub use self::__USB::kAppleExternalSuperSpeedPorts;
+#[cfg(feature = "USB")]
+pub use self::__USB::kAppleInternalUSBDevice;
+#[cfg(feature = "USB")]
+pub use self::__USB::kApplePortCurrentInSleep;
+#[cfg(feature = "USB")]
+pub use self::__USB::kApplePowerSupply;
+#[cfg(feature = "USB")]
+pub use self::__USB::kAppleRevocableExtraCurrent;
+#[cfg(feature = "USB")]
+pub use self::__USB::kAppleStandardPortCurrentInSleep;
+#[cfg(feature = "USB")]
+pub use self::__USB::kAppleUnconnectedSuperSpeedPorts;
+#[cfg(feature = "USB")]
+pub use self::__USB::kCallInterfaceOpenWithGate;
 #[cfg(all(feature = "USB", feature = "USBSpec"))]
 pub use self::__USB::kClearDeviceFeature;
 #[cfg(all(feature = "USB", feature = "USBSpec"))]
 pub use self::__USB::kClearEndpointFeature;
 #[cfg(all(feature = "USB", feature = "USBSpec"))]
 pub use self::__USB::kClearInterfaceFeature;
+#[cfg(feature = "USB")]
+pub use self::__USB::kConfigurationDescriptorOverride;
+#[cfg(feature = "USB")]
+pub use self::__USB::kEHCIIsochMaxBusStall;
 #[cfg(all(feature = "USB", feature = "USBSpec"))]
 pub use self::__USB::kGetConfiguration;
 #[cfg(all(feature = "USB", feature = "USBSpec"))]
@@ -1241,15 +1639,163 @@ pub use self::__USB::kIOUSBAnySubClass;
 #[cfg(feature = "USB")]
 pub use self::__USB::kIOUSBAnyVendor;
 #[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBBitstufErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBBufferOverrunErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBBufferUnderrunErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBCRCErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBClearPipeStallNotRecursive;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBConfigNotFound;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBDataToggleErr;
+#[cfg(feature = "USB")]
 pub use self::__USB::kIOUSBDeviceCapabilityDescriptorLengthMin;
 #[cfg(feature = "USB")]
 pub use self::__USB::kIOUSBDeviceCapabilityDescriptorType;
 #[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBDeviceCountExceeded;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBDeviceNotHighSpeed;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBDevicePortWasNotSuspended;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBDeviceTransferredToCompanion;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBEndpointCountExceeded;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBEndpointNotFound;
+#[cfg(feature = "USB")]
 pub use self::__USB::kIOUSBFindInterfaceDontCare;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBHighSpeedSplitError;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBInterfaceNotFound;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBInvalidSSEndpoint;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBLinkErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBLowLatencyBufferNotPreviouslyAllocated;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBLowLatencyFrameListNotPreviouslyAllocated;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageCompositeDriverReconfigured;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageConfigurationSet;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageController;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageDeviceCountExceeded;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageEndpointCountExceeded;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageExpressCardCantWake;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageFromThirdParty;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubCountExceeded;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubIsDeviceConnected;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubIsPortEnabled;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubPortClearTT;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubPortDeviceDisconnected;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubReEnumeratePort;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubResetPort;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubResumePort;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubSetPortRecoveryTime;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageHubSuspendPort;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageLegacyReEnumerateDevice;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageLegacyResetDevice;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageLegacySuspendDevice;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageNotEnoughPower;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageOvercurrentCondition;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessagePortHasBeenReset;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessagePortHasBeenResumed;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessagePortHasBeenSuspended;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessagePortWasNotSuspended;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageReallocateExtraCurrent;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageReleaseExtraCurrent;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageRootHubWakeEvent;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageTDMLowBattery;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBMessageUnsupportedConfiguration;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBNoAsyncPortErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBNotEnoughPipesErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBNotEnoughPowerErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBNotSent1Err;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBNotSent2Err;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBPIDCheckErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBPipeStalled;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBPortWasSuspended;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBReserved1Err;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBReserved2Err;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBStreamsNotSupported;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBSyncRequestOnWLThread;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBTooManyPipesErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBTooManyTransactionsPending;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBTransactionReturned;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBTransactionTimeout;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBUnknownPipeErr;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB"))]
 pub use self::__USB::kIOUSBVendorIDApple;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB"))]
 pub use self::__USB::kIOUSBVendorIDAppleComputer;
+#[cfg(feature = "USB")]
+pub use self::__USB::kIOUSBWrongPIDErr;
+#[cfg(feature = "USB")]
+pub use self::__USB::kMaxBusStall10uS;
+#[cfg(feature = "USB")]
+pub use self::__USB::kMaxBusStall25uS;
+#[cfg(feature = "USB")]
+pub use self::__USB::kOHCIIsochMaxBusStall;
+#[cfg(feature = "USB")]
+pub use self::__USB::kOverrideAllowLowPower;
+#[cfg(feature = "USB")]
+pub use self::__USB::kOverrideAttachedToCPU;
+#[cfg(feature = "USB")]
+pub use self::__USB::kOverrideIfAtLocationID;
 #[cfg(all(feature = "USB", feature = "USBSpec"))]
 pub use self::__USB::kSetAddress;
 #[cfg(all(feature = "USB", feature = "USBSpec"))]
@@ -1269,9 +1815,13 @@ pub use self::__USB::kSuperSpeedBusBitMask;
 #[cfg(all(feature = "USB", feature = "USBSpec"))]
 pub use self::__USB::kSyncFrame;
 #[cfg(feature = "USB")]
+pub use self::__USB::kUHCIIsochMaxBusStall;
+#[cfg(feature = "USB")]
 pub use self::__USB::kUSBAddress_Mask;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBAddress_Shift;
+#[cfg(feature = "USB")]
+pub use self::__USB::kUSBBusID;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBCTBNotEnoughPowerNotificationType;
 #[cfg(feature = "USB")]
@@ -1283,17 +1833,41 @@ pub use self::__USB::kUSBCUnsupportedTBPortNotificationType;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBConnectable;
 #[cfg(feature = "USB")]
+pub use self::__USB::kUSBControllerNeedsContiguousMemoryForIsoch;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBControllerSleepSupported;
+#[cfg(feature = "USB")]
 pub use self::__USB::kUSBDefaultControlCompletionTimeoutMS;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBDefaultControlNoDataTimeoutMS;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBDeviceConfigurationCurrentOverride;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBDeviceCountExceededNotificationType;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBDeviceCurrentConfiguration;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBDeviceFailedRequestedPower;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBDeviceIDMask;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBDeviceIDShift;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBDeviceMask;
+#[cfg(feature = "USB")]
+pub use self::__USB::kUSBDevicePropertyAddress;
+#[cfg(feature = "USB")]
+pub use self::__USB::kUSBDevicePropertyBusPowerAvailable;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBDevicePropertyLocationID;
+#[cfg(feature = "USB")]
+pub use self::__USB::kUSBDevicePropertySpeed;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBDeviceRemoteWakeOverride;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBDeviceResetDurationOverride;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBDeviceResumeRecoveryTime;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBDeviceSpeedFull;
 #[cfg(feature = "USB")]
@@ -1315,6 +1889,8 @@ pub use self::__USB::kUSBEndpointPropertiesVersion3;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBEndpointTransferTypeUCMask;
 #[cfg(feature = "USB")]
+pub use self::__USB::kUSBExpressCardCantWake;
+#[cfg(feature = "USB")]
 pub use self::__USB::kUSBFullSpeedMicrosecondsInFrame;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBGangOverCurrentNotificationType;
@@ -1324,6 +1900,10 @@ pub use self::__USB::kUSBHighSpeedMicrosecondsInFrame;
 pub use self::__USB::kUSBHostConnectorType;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBHubCountExceededNotificationType;
+#[cfg(feature = "USB")]
+pub use self::__USB::kUSBHubDontAllowLowPower;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBHubPropertyPowerSupply;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBIndividualOverCurrentNotificationType;
 #[cfg(feature = "USB")]
@@ -1367,9 +1947,29 @@ pub use self::__USB::kUSBNotificationPreForcedResumeBit;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBNotificationPreForcedSuspendBit;
 #[cfg(feature = "USB")]
+pub use self::__USB::kUSBOutOfSpecMPSOK;
+#[cfg(feature = "USB")]
 pub use self::__USB::kUSBPRimeStream;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBPipeIDMask;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBPortPropertyBusCurrentAllocation;
+#[cfg(feature = "USB")]
+pub use self::__USB::kUSBPreferredConfiguration;
+#[cfg(feature = "USB")]
+pub use self::__USB::kUSBPreferredInterface;
+#[cfg(feature = "USB")]
+pub use self::__USB::kUSBPreferredInterfacePriority;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBProductIDMask;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBProductIdsArrayName;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBPropertyDebugLevel;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBPropertyRemovable;
+#[cfg(all(feature = "IOUSBHostFamilyDefinitions", feature = "USB"))]
+pub use self::__USB::kUSBPropertyTestMode;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBRqDirnMask;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB"))]
@@ -1391,6 +1991,8 @@ pub use self::__USB::kUSBStreamIDAllStreamsMask;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBStreamIDMask;
 #[cfg(feature = "USB")]
+pub use self::__USB::kUSBSuspendPort;
+#[cfg(feature = "USB")]
 pub use self::__USB::kUSBTDMLowBatteryType;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBTooManyDevicesAddress;
@@ -1398,6 +2000,8 @@ pub use self::__USB::kUSBTooManyDevicesAddress;
 pub use self::__USB::kUSBUCRequestWithoutUSBNotificationMask;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBUnsupportedNotificationType;
+#[cfg(feature = "USB")]
+pub use self::__USB::kUSBUserClientEntitlementRequired;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSB_EPDesc_MaxMPS;
 #[cfg(feature = "USB")]
@@ -1430,6 +2034,8 @@ pub use self::__USB::kUSB_SSCompDesc_Isoc_Mult_Mask;
 pub use self::__USB::kUSB_SSCompDesc_Isoc_Mult_Shift;
 #[cfg(feature = "USB")]
 pub use self::__USB::kUSBiOSDeviceNotEnoughPowerNotificationType;
+#[cfg(feature = "USB")]
+pub use self::__USB::kXHCIIsochMaxBusStall;
 #[cfg(feature = "USB")]
 pub use self::__USB::kXHCISSRootHubAddress;
 #[cfg(feature = "USB")]

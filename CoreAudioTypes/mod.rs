@@ -869,3 +869,5 @@ pub use self::__CoreAudioBaseTypes::SMPTETime;
 pub use self::__CoreAudioBaseTypes::SMPTETimeFlags;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::SMPTETimeType;
+#[cfg(feature = "CoreAudioBaseTypes")]
+pub use self::__CoreAudioBaseTypes::COREAUDIOTYPES_VERSION;

@@ -324,6 +324,8 @@ pub use self::__Authorization::errAuthorizationToolEnvironmentError;
 #[cfg(feature = "Authorization")]
 pub use self::__Authorization::errAuthorizationToolExecuteFailure;
 #[cfg(feature = "Authorization")]
+pub use self::__Authorization::kAuthorizationExternalFormLength;
+#[cfg(feature = "Authorization")]
 pub use self::__Authorization::kAuthorizationFlagCanNotPreAuthorize;
 #[cfg(all(feature = "Authorization", feature = "block2"))]
 pub use self::__Authorization::AuthorizationAsyncCallback;
@@ -364,11 +366,31 @@ pub use self::__Authorization::AuthorizationRights;
 #[cfg(feature = "Authorization")]
 pub use self::__Authorization::AuthorizationString;
 #[cfg(feature = "AuthorizationDB")]
+pub use self::__AuthorizationDB::kAuthorizationComment;
+#[cfg(feature = "AuthorizationDB")]
+pub use self::__AuthorizationDB::kAuthorizationRightRule;
+#[cfg(feature = "AuthorizationDB")]
+pub use self::__AuthorizationDB::kAuthorizationRuleAuthenticateAsAdmin;
+#[cfg(feature = "AuthorizationDB")]
+pub use self::__AuthorizationDB::kAuthorizationRuleAuthenticateAsSessionUser;
+#[cfg(feature = "AuthorizationDB")]
+pub use self::__AuthorizationDB::kAuthorizationRuleClassAllow;
+#[cfg(feature = "AuthorizationDB")]
+pub use self::__AuthorizationDB::kAuthorizationRuleClassDeny;
+#[cfg(feature = "AuthorizationDB")]
+pub use self::__AuthorizationDB::kAuthorizationRuleIsAdmin;
+#[cfg(feature = "AuthorizationDB")]
 pub use self::__AuthorizationDB::AuthorizationRightGet;
 #[cfg(all(feature = "Authorization", feature = "AuthorizationDB"))]
 pub use self::__AuthorizationDB::AuthorizationRightRemove;
 #[cfg(all(feature = "Authorization", feature = "AuthorizationDB"))]
 pub use self::__AuthorizationDB::AuthorizationRightSet;
+#[cfg(feature = "AuthorizationPlugin")]
+pub use self::__AuthorizationPlugin::kAuthorizationCallbacksVersion;
+#[cfg(feature = "AuthorizationPlugin")]
+pub use self::__AuthorizationPlugin::kAuthorizationPluginInterfaceVersion;
+#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
+pub use self::__AuthorizationPlugin::AuthorizationCallbacks;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationContextFlags;
 #[cfg(feature = "AuthorizationPlugin")]
@@ -378,7 +400,11 @@ pub use self::__AuthorizationPlugin::AuthorizationMechanismId;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationMechanismRef;
 #[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
+pub use self::__AuthorizationPlugin::AuthorizationPluginCreate;
+#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
 pub use self::__AuthorizationPlugin::AuthorizationPluginId;
+#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
+pub use self::__AuthorizationPlugin::AuthorizationPluginInterface;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationPluginRef;
 #[cfg(feature = "AuthorizationPlugin")]
@@ -386,21 +412,27 @@ pub use self::__AuthorizationPlugin::AuthorizationResult;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationSessionId;
 #[cfg(feature = "AuthorizationPlugin")]
+pub use self::__AuthorizationPlugin::AuthorizationValue;
+#[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationValueVector;
 #[cfg(feature = "AuthorizationPlugin")]
 pub(crate) use self::__AuthorizationPlugin::__OpaqueAuthorizationEngine;
-#[cfg(feature = "AuthorizationPlugin")]
-pub use self::__AuthorizationPlugin::kAuthorizationCallbacksVersion;
-#[cfg(feature = "AuthorizationPlugin")]
-pub use self::__AuthorizationPlugin::kAuthorizationPluginInterfaceVersion;
-#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
-pub use self::__AuthorizationPlugin::AuthorizationCallbacks;
-#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
-pub use self::__AuthorizationPlugin::AuthorizationPluginCreate;
-#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
-pub use self::__AuthorizationPlugin::AuthorizationPluginInterface;
-#[cfg(feature = "AuthorizationPlugin")]
-pub use self::__AuthorizationPlugin::AuthorizationValue;
+#[cfg(feature = "AuthorizationTags")]
+pub use self::__AuthorizationTags::kAuthorizationEnvironmentIcon;
+#[cfg(feature = "AuthorizationTags")]
+pub use self::__AuthorizationTags::kAuthorizationEnvironmentPassword;
+#[cfg(feature = "AuthorizationTags")]
+pub use self::__AuthorizationTags::kAuthorizationEnvironmentPrompt;
+#[cfg(feature = "AuthorizationTags")]
+pub use self::__AuthorizationTags::kAuthorizationEnvironmentShared;
+#[cfg(feature = "AuthorizationTags")]
+pub use self::__AuthorizationTags::kAuthorizationEnvironmentUsername;
+#[cfg(feature = "AuthorizationTags")]
+pub use self::__AuthorizationTags::kAuthorizationFlags;
+#[cfg(feature = "AuthorizationTags")]
+pub use self::__AuthorizationTags::kAuthorizationPamResult;
+#[cfg(feature = "AuthorizationTags")]
+pub use self::__AuthorizationTags::kAuthorizationRightExecute;
 #[cfg(feature = "CMSDecoder")]
 pub use self::__CMSDecoder::CMSDecoder;
 #[cfg(feature = "CMSDecoder")]
@@ -3113,6 +3145,8 @@ pub use self::__SecImportExport::SecKeychainItemExport;
 pub use self::__SecImportExport::SecKeychainItemImport;
 #[cfg(feature = "SecImportExport")]
 pub use self::__SecImportExport::SecPKCS12Import;
+#[cfg(feature = "SecImportExport")]
+pub use self::__SecImportExport::SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION;
 #[cfg(feature = "SecItem")]
 pub use self::__SecItem::kSecAttrAccess;
 #[cfg(feature = "SecItem")]
@@ -6046,6 +6080,16 @@ pub use self::__cssmapple::gGuidAppleX509TP;
 #[cfg(all(feature = "cssmapple", feature = "cssmconfig", feature = "cssmtype"))]
 pub use self::__cssmapple::gGuidCssm;
 #[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::kKeychainDbSuffix;
+#[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::kKeychainSuffix;
+#[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::kSystemKeychainDir;
+#[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::kSystemKeychainName;
+#[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::kSystemUnlockFile;
+#[cfg(feature = "cssmapple")]
 pub use self::__cssmapple::CSSMERR_CSP_APPLE_SSLv2_ROLLBACK;
 #[cfg(feature = "cssmapple")]
 pub use self::__cssmapple::CSSM_ALGID_SHA224WithECDSA;
@@ -6571,6 +6615,8 @@ pub use self::__cssmapple::CSSM_APPLE_PRIVATE_CSPDL_CODE_9;
 pub use self::__cssmapple::CSSM_APPLE_TP_ACTION_DATA;
 #[cfg(all(feature = "cssmapple", feature = "cssmconfig"))]
 pub use self::__cssmapple::CSSM_APPLE_TP_ACTION_FLAGS;
+#[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::CSSM_APPLE_TP_ACTION_VERSION;
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "certextensions",
@@ -6582,6 +6628,8 @@ pub use self::__cssmapple::CSSM_APPLE_TP_ACTION_FLAGS;
 pub use self::__cssmapple::CSSM_APPLE_TP_CERT_REQUEST;
 #[cfg(all(feature = "cssmapple", feature = "cssmconfig", feature = "cssmtype"))]
 pub use self::__cssmapple::CSSM_APPLE_TP_CRL_OPTIONS;
+#[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::CSSM_APPLE_TP_CRL_OPTS_VERSION;
 #[cfg(all(feature = "cssmapple", feature = "cssmconfig"))]
 pub use self::__cssmapple::CSSM_APPLE_TP_CRL_OPT_FLAGS;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmapple"))]
@@ -6592,8 +6640,12 @@ pub use self::__cssmapple::CSSM_APPLE_TP_NAME_OID;
     feature = "cssmconfig"
 ))]
 pub use self::__cssmapple::CSSM_APPLE_TP_SMIME_OPTIONS;
+#[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::CSSM_APPLE_TP_SMIME_OPTS_VERSION;
 #[cfg(all(feature = "cssmapple", feature = "cssmconfig"))]
 pub use self::__cssmapple::CSSM_APPLE_TP_SSL_OPTIONS;
+#[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::CSSM_APPLE_TP_SSL_OPTS_VERSION;
 #[cfg(feature = "cssmapple")]
 pub use self::__cssmapple::CSSM_APPLE_UNLOCK_TYPE_KEYBAG;
 #[cfg(feature = "cssmapple")]
@@ -6787,6 +6839,8 @@ pub use self::__cssmapple::CSSM_TP_APPLE_EVIDENCE_HEADER;
     feature = "cssmtype"
 ))]
 pub use self::__cssmapple::CSSM_TP_APPLE_EVIDENCE_INFO;
+#[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::CSSM_TP_APPLE_EVIDENCE_VERSION;
 #[cfg(feature = "cssmapple")]
 pub use self::__cssmapple::CSSM_WORDID_ASYMMETRIC_KEY;
 #[cfg(feature = "cssmapple")]

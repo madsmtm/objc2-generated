@@ -9,6 +9,8 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationexternalformlength?language=objc)
+pub const kAuthorizationExternalFormLength: c_uint = 32;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationsuccess?language=objc)
 pub const errAuthorizationSuccess: OSStatus = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationinvalidset?language=objc)

@@ -43,6 +43,8 @@ pub use self::__NSExceptionHandler::NSHandleUncaughtRuntimeErrorMask;
 #[cfg(feature = "NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHandleUncaughtSystemExceptionMask;
 #[cfg(feature = "NSExceptionHandler")]
+pub use self::__NSExceptionHandler::NSHangOnEveryExceptionMask;
+#[cfg(feature = "NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHangOnOtherExceptionMask;
 #[cfg(feature = "NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHangOnTopLevelExceptionMask;
@@ -52,6 +54,8 @@ pub use self::__NSExceptionHandler::NSHangOnUncaughtExceptionMask;
 pub use self::__NSExceptionHandler::NSHangOnUncaughtRuntimeErrorMask;
 #[cfg(feature = "NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHangOnUncaughtSystemExceptionMask;
+#[cfg(feature = "NSExceptionHandler")]
+pub use self::__NSExceptionHandler::NSLogAndHandleEveryExceptionMask;
 #[cfg(feature = "NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSLogOtherExceptionMask;
 #[cfg(feature = "NSExceptionHandler")]

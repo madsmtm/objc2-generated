@@ -6,6 +6,8 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport?language=objc)
+pub const NSFoundationVersionWithFileManagerResourceForkSupport: c_uint = 412;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileattributekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]

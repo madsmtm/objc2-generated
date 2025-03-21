@@ -10,6 +10,14 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/icversion4number?language=objc)
+pub const icVersion4Number: c_uint = 0x04000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_profile_install_entitlement?language=objc)
+pub const COLORSYNC_PROFILE_INSTALL_ENTITLEMENT: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.ColorSync.profile.install\0")
+};
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_md5_length?language=objc)
+pub const COLORSYNC_MD5_LENGTH: c_uint = 16;
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofile?language=objc)
 #[repr(C)]
 pub struct ColorSyncProfile {

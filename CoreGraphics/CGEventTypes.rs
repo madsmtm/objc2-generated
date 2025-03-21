@@ -10,6 +10,14 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventmaskforallevents?language=objc)
+pub const kCGEventMaskForAllEvents: c_uint = !0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyeventtapadded?language=objc)
+pub const kCGNotifyEventTapAdded: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.eventTapAdded\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyeventtapremoved?language=objc)
+pub const kCGNotifyEventTapRemoved: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.eventTapRemoved\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent?language=objc)
 #[repr(C)]
 pub struct CGEvent {

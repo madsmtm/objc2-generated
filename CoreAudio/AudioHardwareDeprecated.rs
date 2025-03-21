@@ -10,6 +10,12 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarerunloopmode?language=objc)
+pub const kAudioHardwareRunLoopMode: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.audio.CoreAudio\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicemastersubdevicekey?language=objc)
+pub const kAudioAggregateDeviceMasterSubDeviceKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyscopeinput?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyScopeInput: AudioObjectPropertyScope = kAudioObjectPropertyScopeInput;

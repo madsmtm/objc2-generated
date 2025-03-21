@@ -6,6 +6,27 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationrightrule?language=objc)
+pub const kAuthorizationRightRule: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"rule\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleisadmin?language=objc)
+pub const kAuthorizationRuleIsAdmin: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"is-admin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleauthenticateassessionuser?language=objc)
+pub const kAuthorizationRuleAuthenticateAsSessionUser: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"authenticate-session-owner\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleauthenticateasadmin?language=objc)
+pub const kAuthorizationRuleAuthenticateAsAdmin: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"authenticate-admin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleclassallow?language=objc)
+pub const kAuthorizationRuleClassAllow: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"allow\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleclassdeny?language=objc)
+pub const kAuthorizationRuleClassDeny: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"deny\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationcomment?language=objc)
+pub const kAuthorizationComment: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"comment\0") };
 extern "C-unwind" {
     /// Retrieves a right definition as a dictionary.  There are no restrictions to keep anyone from retrieving these definitions.
     ///

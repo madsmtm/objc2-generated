@@ -67,6 +67,7 @@ pub use self::__SMErrors::kSMErrorServiceUnavailable;
 pub use self::__SMErrors::kSMErrorToolNotValid;
 #[cfg(all(feature = "SMLoginItem", feature = "objc2-core-foundation"))]
 pub use self::__SMLoginItem::SMLoginItemSetEnabled;
+use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -75,6 +76,12 @@ use objc2_security::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmrightblessprivilegedhelper?language=objc)
+pub const kSMRightBlessPrivilegedHelper: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.ServiceManagement.blesshelper\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmrightmodifysystemdaemons?language=objc)
+pub const kSMRightModifySystemDaemons: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.ServiceManagement.daemons.modify\0") };
 extern "C" {
     /// A constant representing the privileged Mach bootstrap context. Modifications
     /// to this context require root privileges.

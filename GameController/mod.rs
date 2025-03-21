@@ -1117,6 +1117,8 @@ pub use self::__GCSteeringWheelElement::GCSteeringWheelElement;
 pub use self::__GCSwitchElement::GCSwitchElement;
 #[cfg(feature = "GCSwitchPositionInput")]
 pub use self::__GCSwitchPositionInput::GCSwitchPositionInput;
+#[cfg(feature = "GCSyntheticDeviceKeys")]
+pub use self::__GCSyntheticDeviceKeys::kIOHIDGCSyntheticDeviceKey;
 #[cfg(feature = "GCTouchedStateInput")]
 pub use self::__GCTouchedStateInput::GCTouchedStateInput;
 #[cfg(feature = "GCTypes")]

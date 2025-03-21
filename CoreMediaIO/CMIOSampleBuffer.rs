@@ -10,6 +10,8 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioinvalidsequencenumber?language=objc)
+pub const kCMIOInvalidSequenceNumber: c_uint = !(0);
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodiscontinuities?language=objc)
 pub const kCMIOSampleBufferNoDiscontinuities: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_unknowndiscontinuity?language=objc)
