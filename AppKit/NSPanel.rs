@@ -172,12 +172,3 @@ pub const NSAlertOtherReturn: c_int = -1;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalerterrorreturn?language=objc)
 #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
 pub const NSAlertErrorReturn: c_int = -2;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsokbutton?language=objc)
-#[cfg(all(feature = "NSApplication", feature = "NSWindow"))]
-#[deprecated]
-pub const NSOKButton: NSModalResponse = NSModalResponseOK;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscancelbutton?language=objc)
-#[cfg(all(feature = "NSApplication", feature = "NSWindow"))]
-#[deprecated]
-pub const NSCancelButton: NSModalResponse = NSModalResponseCancel;
