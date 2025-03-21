@@ -902,6 +902,8 @@ pub use self::__NSCalendar::NSDateComponentUndefined;
 pub use self::__NSCalendar::NSDateComponents;
 #[cfg(feature = "NSCalendar")]
 pub use self::__NSCalendar::NSUndefinedDateComponent;
+#[cfg(feature = "NSCalendar")]
+pub use self::__NSCalendar::NSWrapCalendarComponents;
 #[cfg(all(feature = "NSCalendarDate", feature = "NSDate"))]
 pub use self::__NSCalendarDate::NSCalendarDate;
 #[cfg(feature = "NSCharacterSet")]

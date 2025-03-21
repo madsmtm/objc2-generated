@@ -28,6 +28,8 @@ mod __CoreAudioBaseTypes;
 #[cfg(feature = "AudioSessionTypes")]
 pub use self::__AudioSessionTypes::AVAudioSessionErrorCode;
 #[cfg(feature = "AudioSessionTypes")]
+pub use self::__AudioSessionTypes::AVAudioSessionErrorInsufficientPriority;
+#[cfg(feature = "AudioSessionTypes")]
 pub use self::__AudioSessionTypes::AudioSessionID;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::kAppleLosslessFormatFlag_16BitSourceData;

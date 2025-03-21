@@ -225,6 +225,10 @@ unsafe impl RefEncode for NSCalendarOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswrapcalendarcomponents?language=objc)
+#[deprecated]
+pub const NSWrapCalendarComponents: NSUInteger = NSCalendarOptions::WrapComponents.0;
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar?language=objc)
     #[unsafe(super(NSObject))]

@@ -5048,6 +5048,10 @@ pub use self::__NSPanel::NSAlertDefaultReturn;
 pub use self::__NSPanel::NSAlertErrorReturn;
 #[cfg(feature = "NSPanel")]
 pub use self::__NSPanel::NSAlertOtherReturn;
+#[cfg(all(feature = "NSApplication", feature = "NSPanel", feature = "NSWindow"))]
+pub use self::__NSPanel::NSCancelButton;
+#[cfg(all(feature = "NSApplication", feature = "NSPanel", feature = "NSWindow"))]
+pub use self::__NSPanel::NSOKButton;
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
 pub use self::__NSPanel::NSPanel;
 #[cfg(feature = "NSPanel")]
@@ -5510,6 +5514,18 @@ pub use self::__NSRunningApplication::NSApplicationActivationOptions;
 pub use self::__NSRunningApplication::NSApplicationActivationPolicy;
 #[cfg(feature = "NSRunningApplication")]
 pub use self::__NSRunningApplication::NSRunningApplication;
+#[cfg(all(
+    feature = "NSApplication",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
+))]
+pub use self::__NSSavePanel::NSFileHandlingPanelCancelButton;
+#[cfg(all(
+    feature = "NSApplication",
+    feature = "NSSavePanel",
+    feature = "NSWindow"
+))]
+pub use self::__NSSavePanel::NSFileHandlingPanelOKButton;
 #[cfg(feature = "NSSavePanel")]
 pub use self::__NSSavePanel::NSOpenSavePanelDelegate;
 #[cfg(all(

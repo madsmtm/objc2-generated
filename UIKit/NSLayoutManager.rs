@@ -941,22 +941,26 @@ extern_protocol!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterzeroadvancementaction?language=objc)
 #[deprecated]
-pub const NSControlCharacterZeroAdvancementAction: c_uint = 1;
+pub const NSControlCharacterZeroAdvancementAction: NSInteger =
+    NSControlCharacterAction::ZeroAdvancement.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterwhitespaceaction?language=objc)
 #[deprecated]
-pub const NSControlCharacterWhitespaceAction: c_uint = 2;
+pub const NSControlCharacterWhitespaceAction: NSInteger = NSControlCharacterAction::Whitespace.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterhorizontaltabaction?language=objc)
 #[deprecated]
-pub const NSControlCharacterHorizontalTabAction: c_uint = 4;
+pub const NSControlCharacterHorizontalTabAction: NSInteger =
+    NSControlCharacterAction::HorizontalTab.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterlinebreakaction?language=objc)
 #[deprecated]
-pub const NSControlCharacterLineBreakAction: c_uint = 8;
+pub const NSControlCharacterLineBreakAction: NSInteger = NSControlCharacterAction::LineBreak.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterparagraphbreakaction?language=objc)
 #[deprecated]
-pub const NSControlCharacterParagraphBreakAction: c_uint = 16;
+pub const NSControlCharacterParagraphBreakAction: NSInteger =
+    NSControlCharacterAction::ParagraphBreak.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharactercontainerbreakaction?language=objc)
 #[deprecated]
-pub const NSControlCharacterContainerBreakAction: c_uint = 32;
+pub const NSControlCharacterContainerBreakAction: NSInteger =
+    NSControlCharacterAction::ContainerBreak.0;
 
 /// NSLayoutManagerDeprecated.
 impl NSLayoutManager {

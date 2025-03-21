@@ -28,20 +28,20 @@ pub enum NSCursorFrameResizePosition {
     Right = 1 << 3,
     /// The top left corner of the frame.
     #[doc(alias = "NSCursorFrameResizePositionTopLeft")]
-    TopLeft =
-        NSCursorFrameResizePosition::Top as usize | NSCursorFrameResizePosition::Left as usize,
+    TopLeft = NSCursorFrameResizePosition::Top as NSUInteger
+        | NSCursorFrameResizePosition::Left as NSUInteger,
     /// The top right corner of the frame.
     #[doc(alias = "NSCursorFrameResizePositionTopRight")]
-    TopRight =
-        NSCursorFrameResizePosition::Top as usize | NSCursorFrameResizePosition::Right as usize,
+    TopRight = NSCursorFrameResizePosition::Top as NSUInteger
+        | NSCursorFrameResizePosition::Right as NSUInteger,
     /// The bottom left corner of the frame.
     #[doc(alias = "NSCursorFrameResizePositionBottomLeft")]
-    BottomLeft =
-        NSCursorFrameResizePosition::Bottom as usize | NSCursorFrameResizePosition::Left as usize,
+    BottomLeft = NSCursorFrameResizePosition::Bottom as NSUInteger
+        | NSCursorFrameResizePosition::Left as NSUInteger,
     /// The bottom right corner of the frame.
     #[doc(alias = "NSCursorFrameResizePositionBottomRight")]
-    BottomRight =
-        NSCursorFrameResizePosition::Bottom as usize | NSCursorFrameResizePosition::Right as usize,
+    BottomRight = NSCursorFrameResizePosition::Bottom as NSUInteger
+        | NSCursorFrameResizePosition::Right as NSUInteger,
 }
 
 unsafe impl Encode for NSCursorFrameResizePosition {

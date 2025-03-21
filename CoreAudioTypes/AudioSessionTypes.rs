@@ -103,3 +103,8 @@ unsafe impl Encode for AVAudioSessionErrorCode {
 unsafe impl RefEncode for AVAudioSessionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosessionerrorinsufficientpriority?language=objc)
+#[deprecated]
+pub const AVAudioSessionErrorInsufficientPriority: AVAudioInteger =
+    AVAudioSessionErrorCode::InsufficientPriority.0;

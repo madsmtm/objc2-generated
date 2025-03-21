@@ -2488,7 +2488,7 @@ pub const kAudioUnitParameterFlag_Output: c_uint = 1 << 2;
 pub const kAudioUnitParameterFlag_Group: c_uint = 1 << 3;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitparameterflag_hasname?language=objc)
-pub const kAudioUnitParameterFlag_HasName: c_uint =
+pub const kAudioUnitParameterFlag_HasName: u32 =
     AudioUnitParameterOptions::Flag_ValuesHaveStrings.0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_srcalgorithm?language=objc)

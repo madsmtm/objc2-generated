@@ -87,19 +87,18 @@ impl tIOUSBHostPortStatus {
     pub const IOUSBHostPortStatusPortTypePhase: Self = Self(IOUSBHostFamilyBitRangePhase!(0, 3));
     #[doc(alias = "kIOUSBHostPortStatusPortTypeStandard")]
     pub const IOUSBHostPortStatusPortTypeStandard: Self = Self(
-        (tIOUSBHostPortType::IOUSBHostPortTypeStandard.0 << IOUSBHostFamilyBitRangePhase!(0, 3)),
+        tIOUSBHostPortType::IOUSBHostPortTypeStandard.0 << IOUSBHostFamilyBitRangePhase!(0, 3),
     );
     #[doc(alias = "kIOUSBHostPortStatusPortTypeCaptive")]
-    pub const IOUSBHostPortStatusPortTypeCaptive: Self = Self(
-        (tIOUSBHostPortType::IOUSBHostPortTypeCaptive.0 << IOUSBHostFamilyBitRangePhase!(0, 3)),
-    );
+    pub const IOUSBHostPortStatusPortTypeCaptive: Self =
+        Self(tIOUSBHostPortType::IOUSBHostPortTypeCaptive.0 << IOUSBHostFamilyBitRangePhase!(0, 3));
     #[doc(alias = "kIOUSBHostPortStatusPortTypeInternal")]
     pub const IOUSBHostPortStatusPortTypeInternal: Self = Self(
-        (tIOUSBHostPortType::IOUSBHostPortTypeInternal.0 << IOUSBHostFamilyBitRangePhase!(0, 3)),
+        tIOUSBHostPortType::IOUSBHostPortTypeInternal.0 << IOUSBHostFamilyBitRangePhase!(0, 3),
     );
     #[doc(alias = "kIOUSBHostPortStatusPortTypeAccessory")]
     pub const IOUSBHostPortStatusPortTypeAccessory: Self = Self(
-        (tIOUSBHostPortType::IOUSBHostPortTypeAccessory.0 << IOUSBHostFamilyBitRangePhase!(0, 3)),
+        tIOUSBHostPortType::IOUSBHostPortTypeAccessory.0 << IOUSBHostFamilyBitRangePhase!(0, 3),
     );
     #[doc(alias = "kIOUSBHostPortStatusPortTypeReserved")]
     pub const IOUSBHostPortStatusPortTypeReserved: Self = Self(IOUSBHostFamilyBitRange!(4, 7));
@@ -110,38 +109,38 @@ impl tIOUSBHostPortStatus {
         Self(IOUSBHostFamilyBitRangePhase!(8, 10));
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedNone")]
     pub const IOUSBHostPortStatusConnectedSpeedNone: Self = Self(
-        (tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedNone.0
-            << IOUSBHostFamilyBitRangePhase!(8, 10)),
+        tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedNone.0
+            << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedFull")]
     pub const IOUSBHostPortStatusConnectedSpeedFull: Self = Self(
-        (tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedFull.0
-            << IOUSBHostFamilyBitRangePhase!(8, 10)),
+        tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedFull.0
+            << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedLow")]
     pub const IOUSBHostPortStatusConnectedSpeedLow: Self = Self(
-        (tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedLow.0
-            << IOUSBHostFamilyBitRangePhase!(8, 10)),
+        tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedLow.0
+            << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedHigh")]
     pub const IOUSBHostPortStatusConnectedSpeedHigh: Self = Self(
-        (tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedHigh.0
-            << IOUSBHostFamilyBitRangePhase!(8, 10)),
+        tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedHigh.0
+            << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedSuper")]
     pub const IOUSBHostPortStatusConnectedSpeedSuper: Self = Self(
-        (tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuper.0
-            << IOUSBHostFamilyBitRangePhase!(8, 10)),
+        tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuper.0
+            << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedSuperPlus")]
     pub const IOUSBHostPortStatusConnectedSpeedSuperPlus: Self = Self(
-        (tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuperPlus.0
-            << IOUSBHostFamilyBitRangePhase!(8, 10)),
+        tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuperPlus.0
+            << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedSuperPlusBy2")]
     pub const IOUSBHostPortStatusConnectedSpeedSuperPlusBy2: Self = Self(
-        (tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuperPlusBy2.0
-            << IOUSBHostFamilyBitRangePhase!(8, 10)),
+        tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuperPlusBy2.0
+            << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
     #[doc(alias = "kIOUSBHostPortStatusResetting")]
     pub const IOUSBHostPortStatusResetting: Self = Self(IOUSBHostFamilyBit!(11));

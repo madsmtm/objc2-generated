@@ -444,54 +444,52 @@ pub const kIOUSBEndpointDescriptorTransferType: c_uint = IOUSBBitRange!(0, 1);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptortransfertypephase?language=objc)
 pub const kIOUSBEndpointDescriptorTransferTypePhase: c_uint = IOUSBBitRangePhase!(0, 1);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptortransfertypecontrol?language=objc)
-pub const kIOUSBEndpointDescriptorTransferTypeControl: c_uint = (0 << IOUSBBitRangePhase!(0, 1));
+pub const kIOUSBEndpointDescriptorTransferTypeControl: c_uint = 0 << IOUSBBitRangePhase!(0, 1);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptortransfertypeisochronous?language=objc)
-pub const kIOUSBEndpointDescriptorTransferTypeIsochronous: c_uint =
-    (1 << IOUSBBitRangePhase!(0, 1));
+pub const kIOUSBEndpointDescriptorTransferTypeIsochronous: c_uint = 1 << IOUSBBitRangePhase!(0, 1);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptortransfertypebulk?language=objc)
-pub const kIOUSBEndpointDescriptorTransferTypeBulk: c_uint = (2 << IOUSBBitRangePhase!(0, 1));
+pub const kIOUSBEndpointDescriptorTransferTypeBulk: c_uint = 2 << IOUSBBitRangePhase!(0, 1);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptortransfertypeinterrupt?language=objc)
-pub const kIOUSBEndpointDescriptorTransferTypeInterrupt: c_uint = (3 << IOUSBBitRangePhase!(0, 1));
+pub const kIOUSBEndpointDescriptorTransferTypeInterrupt: c_uint = 3 << IOUSBBitRangePhase!(0, 1);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorsynchronizationtype?language=objc)
 pub const kIOUSBEndpointDescriptorSynchronizationType: c_uint = IOUSBBitRange!(2, 3);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorsynchronizationtypephase?language=objc)
 pub const kIOUSBEndpointDescriptorSynchronizationTypePhase: c_uint = IOUSBBitRangePhase!(2, 3);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorsynchronizationtypenone?language=objc)
-pub const kIOUSBEndpointDescriptorSynchronizationTypeNone: c_uint =
-    (0 << IOUSBBitRangePhase!(2, 3));
+pub const kIOUSBEndpointDescriptorSynchronizationTypeNone: c_uint = 0 << IOUSBBitRangePhase!(2, 3);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorsynchronizationtypeasynchronous?language=objc)
 pub const kIOUSBEndpointDescriptorSynchronizationTypeAsynchronous: c_uint =
-    (1 << IOUSBBitRangePhase!(2, 3));
+    1 << IOUSBBitRangePhase!(2, 3);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorsynchronizationtypeadaptive?language=objc)
 pub const kIOUSBEndpointDescriptorSynchronizationTypeAdaptive: c_uint =
-    (2 << IOUSBBitRangePhase!(2, 3));
+    2 << IOUSBBitRangePhase!(2, 3);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorsynchronizationtypesynchronous?language=objc)
 pub const kIOUSBEndpointDescriptorSynchronizationTypeSynchronous: c_uint =
-    (3 << IOUSBBitRangePhase!(2, 3));
+    3 << IOUSBBitRangePhase!(2, 3);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetype?language=objc)
 pub const kIOUSBEndpointDescriptorUsageType: c_uint = IOUSBBitRange!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetypephase?language=objc)
 pub const kIOUSBEndpointDescriptorUsageTypePhase: c_uint = IOUSBBitRangePhase!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetypeinterruptperiodic?language=objc)
 pub const kIOUSBEndpointDescriptorUsageTypeInterruptPeriodic: c_uint =
-    (0 << IOUSBBitRangePhase!(4, 5));
+    0 << IOUSBBitRangePhase!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetypeinterruptnotification?language=objc)
 pub const kIOUSBEndpointDescriptorUsageTypeInterruptNotification: c_uint =
-    (1 << IOUSBBitRangePhase!(4, 5));
+    1 << IOUSBBitRangePhase!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetypeinterruptreserved1?language=objc)
 pub const kIOUSBEndpointDescriptorUsageTypeInterruptReserved1: c_uint =
-    (2 << IOUSBBitRangePhase!(4, 5));
+    2 << IOUSBBitRangePhase!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetypeinterruptreserved2?language=objc)
 pub const kIOUSBEndpointDescriptorUsageTypeInterruptReserved2: c_uint =
-    (3 << IOUSBBitRangePhase!(4, 5));
+    3 << IOUSBBitRangePhase!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetypeisocdata?language=objc)
-pub const kIOUSBEndpointDescriptorUsageTypeIsocData: c_uint = (0 << IOUSBBitRangePhase!(4, 5));
+pub const kIOUSBEndpointDescriptorUsageTypeIsocData: c_uint = 0 << IOUSBBitRangePhase!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetypeisocfeedback?language=objc)
-pub const kIOUSBEndpointDescriptorUsageTypeIsocFeedback: c_uint = (1 << IOUSBBitRangePhase!(4, 5));
+pub const kIOUSBEndpointDescriptorUsageTypeIsocFeedback: c_uint = 1 << IOUSBBitRangePhase!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetypeisocimplicit?language=objc)
-pub const kIOUSBEndpointDescriptorUsageTypeIsocImplicit: c_uint = (2 << IOUSBBitRangePhase!(4, 5));
+pub const kIOUSBEndpointDescriptorUsageTypeIsocImplicit: c_uint = 2 << IOUSBBitRangePhase!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorusagetypeisocreserved?language=objc)
-pub const kIOUSBEndpointDescriptorUsageTypeIsocReserved: c_uint = (3 << IOUSBBitRangePhase!(4, 5));
+pub const kIOUSBEndpointDescriptorUsageTypeIsocReserved: c_uint = 3 << IOUSBBitRangePhase!(4, 5);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorpacketsize?language=objc)
 pub const kIOUSBEndpointDescriptorPacketSize: c_uint = IOUSBBitRange!(0, 10);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbendpointdescriptorpacketsizephase?language=objc)
@@ -1467,20 +1465,20 @@ unsafe impl RefEncode for IOUSBSuperSpeedHubDescriptor {
 pub const kIOUSBSuperSpeedHubCharacteristicsPowerSwitchingMask: c_uint = IOUSBBitRange!(0, 1);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedhubcharacteristicspowerswitchingganged?language=objc)
 pub const kIOUSBSuperSpeedHubCharacteristicsPowerSwitchingGanged: c_uint =
-    (0 << IOUSBBitRangePhase!(0, 1));
+    0 << IOUSBBitRangePhase!(0, 1);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedhubcharacteristicspowerswitchingindividual?language=objc)
 pub const kIOUSBSuperSpeedHubCharacteristicsPowerSwitchingIndividual: c_uint =
-    (1 << IOUSBBitRangePhase!(0, 1));
+    1 << IOUSBBitRangePhase!(0, 1);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedhubcharacteristicscompounddevice?language=objc)
 pub const kIOUSBSuperSpeedHubCharacteristicsCompoundDevice: c_uint = IOUSBBit!(2);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedhubcharacteristicsovercurrentmask?language=objc)
 pub const kIOUSBSuperSpeedHubCharacteristicsOverCurrentMask: c_uint = IOUSBBitRange!(3, 4);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedhubcharacteristicsovercurrentglobal?language=objc)
 pub const kIOUSBSuperSpeedHubCharacteristicsOverCurrentGlobal: c_uint =
-    (0 << IOUSBBitRangePhase!(3, 4));
+    0 << IOUSBBitRangePhase!(3, 4);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedhubcharacteristicsovercurrentindividual?language=objc)
 pub const kIOUSBSuperSpeedHubCharacteristicsOverCurrentIndividual: c_uint =
-    (1 << IOUSBBitRangePhase!(3, 4));
+    1 << IOUSBBitRangePhase!(3, 4);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedhubcharacteristicsreserved?language=objc)
 pub const kIOUSBSuperSpeedHubCharacteristicsReserved: c_uint = IOUSBBitRange!(5, 15);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbsuperspeedhubdecodelatencymax?language=objc)

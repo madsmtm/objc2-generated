@@ -600,3 +600,12 @@ impl NSSavePanel {
         pub unsafe fn setAllowedFileTypes(&self, allowed_file_types: Option<&NSArray<NSString>>);
     );
 }
+
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilehandlingpanelcancelbutton?language=objc)
+#[cfg(all(feature = "NSApplication", feature = "NSWindow"))]
+#[deprecated]
+pub const NSFileHandlingPanelCancelButton: NSModalResponse = NSModalResponseCancel;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilehandlingpanelokbutton?language=objc)
+#[cfg(all(feature = "NSApplication", feature = "NSWindow"))]
+#[deprecated]
+pub const NSFileHandlingPanelOKButton: NSModalResponse = NSModalResponseOK;
