@@ -312,7 +312,7 @@ extern_class!(
     /// **************    Mutable Set    ***************
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableset?language=objc)
-    #[unsafe(super(NSSet<ObjectType, >, NSObject))]
+    #[unsafe(super(NSSet<ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableSet<ObjectType: ?Sized = AnyObject>;
 );
@@ -444,7 +444,7 @@ extern_class!(
     /// **************    Counted Set    ***************
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountedset?language=objc)
-    #[unsafe(super(NSMutableSet<ObjectType, >, NSSet<ObjectType, >, NSObject))]
+    #[unsafe(super(NSMutableSet<ObjectType>, NSSet<ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSCountedSet<ObjectType: ?Sized = AnyObject>;
 );

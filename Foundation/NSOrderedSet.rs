@@ -623,7 +623,7 @@ extern_class!(
     /// **************       Mutable Ordered Set     ***************
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableorderedset?language=objc)
-    #[unsafe(super(NSOrderedSet<ObjectType, >, NSObject))]
+    #[unsafe(super(NSOrderedSet<ObjectType>, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableOrderedSet<ObjectType: ?Sized = AnyObject>;
 );

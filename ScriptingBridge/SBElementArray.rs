@@ -29,7 +29,7 @@ extern_class!(
     /// The `SBElementArray` class is not designed for subclassing.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scriptingbridge/sbelementarray?language=objc)
-    #[unsafe(super(NSMutableArray<ObjectType, >, NSArray<ObjectType, >, NSObject))]
+    #[unsafe(super(NSMutableArray<ObjectType>, NSArray<ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct SBElementArray<ObjectType: ?Sized = AnyObject>;
 );

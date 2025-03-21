@@ -618,7 +618,7 @@ extern_class!(
     /// **************    Mutable Array        ***************
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablearray?language=objc)
-    #[unsafe(super(NSArray<ObjectType, >, NSObject))]
+    #[unsafe(super(NSArray<ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableArray<ObjectType: ?Sized = AnyObject>;
 );

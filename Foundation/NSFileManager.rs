@@ -977,7 +977,7 @@ extern_protocol!(
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdirectoryenumerator?language=objc)
-    #[unsafe(super(NSEnumerator<ObjectType, >, NSObject))]
+    #[unsafe(super(NSEnumerator<ObjectType>, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSEnumerator")]
     pub struct NSDirectoryEnumerator<ObjectType: ?Sized = AnyObject>;

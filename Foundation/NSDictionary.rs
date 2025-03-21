@@ -470,7 +470,7 @@ extern_class!(
     /// **************    Mutable Dictionary    ***************
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutabledictionary?language=objc)
-    #[unsafe(super(NSDictionary<KeyType, ObjectType, >, NSObject))]
+    #[unsafe(super(NSDictionary<KeyType, ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
