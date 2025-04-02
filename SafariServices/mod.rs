@@ -112,7 +112,6 @@ pub use self::__SFSafariToolbarItem::SFSafariToolbarItem;
 pub use self::__SFSafariWindow::SFSafariWindow;
 #[cfg(feature = "SFUniversalLink")]
 pub use self::__SFUniversalLink::SFUniversalLink;
-use core::ffi::*;
 use objc2::__framework_prelude::*;
 
 use crate::*;
@@ -143,14 +142,4 @@ unsafe impl Encode for SFSafariServicesVersion {
 
 unsafe impl RefEncode for SFSafariServicesVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/_sfsafariservicesavailable?language=objc)
-    pub static _SFSafariServicesAvailable: *mut c_void;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/_sfsafariservicesversion?language=objc)
-    pub static _SFSafariServicesVersion: SFSafariServicesVersion;
 }
