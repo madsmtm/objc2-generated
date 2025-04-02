@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -29,8 +31,11 @@ pub struct VTFrameSilo {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueVTFrameSilo"]
     unsafe impl VTFrameSilo {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueVTFrameSilo"> for VTFrameSilo {}
 );
 
 unsafe impl ConcreteType for VTFrameSilo {

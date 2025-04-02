@@ -41,8 +41,11 @@ pub struct CFDate {
 }
 
 cf_type!(
-    #[encoding_name = "__CFDate"]
     unsafe impl CFDate {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFDate"> for CFDate {}
 );
 
 #[cfg(feature = "CFBase")]
@@ -112,8 +115,11 @@ pub struct CFTimeZone {
 }
 
 cf_type!(
-    #[encoding_name = "__CFTimeZone"]
     unsafe impl CFTimeZone {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFTimeZone"> for CFTimeZone {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregoriandate?language=objc)

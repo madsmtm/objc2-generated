@@ -20,8 +20,11 @@ pub struct CTRunDelegate {
 }
 
 cf_type!(
-    #[encoding_name = "__CTRunDelegate"]
     unsafe impl CTRunDelegate {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTRunDelegate"> for CTRunDelegate {}
 );
 
 unsafe impl ConcreteType for CTRunDelegate {

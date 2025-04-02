@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -18,8 +20,11 @@ pub struct DASession {
 }
 
 cf_type!(
-    #[encoding_name = "__DASession"]
     unsafe impl DASession {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__DASession"> for DASession {}
 );
 
 unsafe impl ConcreteType for DASession {
@@ -89,8 +94,11 @@ pub struct DAApprovalSession {
 }
 
 cf_type!(
-    #[encoding_name = "__DASession"]
     unsafe impl DAApprovalSession {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__DASession"> for DAApprovalSession {}
 );
 
 unsafe impl ConcreteType for DAApprovalSession {

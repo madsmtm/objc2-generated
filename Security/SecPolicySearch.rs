@@ -3,6 +3,8 @@
 use core::cell::UnsafeCell;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -17,8 +19,11 @@ pub struct SecPolicySearch {
 }
 
 cf_type!(
-    #[encoding_name = "OpaquePolicySearchRef"]
     unsafe impl SecPolicySearch {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaquePolicySearchRef"> for SecPolicySearch {}
 );
 
 unsafe impl ConcreteType for SecPolicySearch {

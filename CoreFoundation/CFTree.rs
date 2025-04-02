@@ -109,8 +109,11 @@ pub struct CFTree {
 }
 
 cf_type!(
-    #[encoding_name = "__CFTree"]
     unsafe impl CFTree {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFTree"> for CFTree {}
 );
 
 #[cfg(feature = "CFBase")]

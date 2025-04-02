@@ -17,8 +17,11 @@ pub struct CTRubyAnnotation {
 }
 
 cf_type!(
-    #[encoding_name = "__CTRubyAnnotation"]
     unsafe impl CTRubyAnnotation {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTRubyAnnotation"> for CTRubyAnnotation {}
 );
 
 unsafe impl ConcreteType for CTRubyAnnotation {

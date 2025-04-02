@@ -1120,6 +1120,7 @@ pub use self::__CFOpenDirectoryConstants::ODPolicyType;
 pub use self::__CFOpenDirectoryConstants::ODRecordType;
 use core::cell::UnsafeCell;
 use core::marker::{PhantomData, PhantomPinned};
+use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
@@ -1136,8 +1137,10 @@ pub struct ODContextRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "__ODContext"]
     unsafe impl ODContextRef {}
+);
+cf_objc2_type!(
+    unsafe impl RefEncode<"__ODContext"> for ODContextRef {}
 );
 
 /// Opaque reference for the ODNode object
@@ -1151,8 +1154,10 @@ pub struct ODNodeRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "__ODNode"]
     unsafe impl ODNodeRef {}
+);
+cf_objc2_type!(
+    unsafe impl RefEncode<"__ODNode"> for ODNodeRef {}
 );
 
 /// Opaque reference for the ODQuery object
@@ -1166,8 +1171,10 @@ pub struct ODQueryRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "__ODQuery"]
     unsafe impl ODQueryRef {}
+);
+cf_objc2_type!(
+    unsafe impl RefEncode<"__ODQuery"> for ODQueryRef {}
 );
 
 /// Opaque reference for the ODRecord object
@@ -1181,8 +1188,10 @@ pub struct ODRecordRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "__ODRecord"]
     unsafe impl ODRecordRef {}
+);
+cf_objc2_type!(
+    unsafe impl RefEncode<"__ODRecord"> for ODRecordRef {}
 );
 
 /// Opaque reference for ODSession object
@@ -1196,8 +1205,10 @@ pub struct ODSessionRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "__ODSession"]
     unsafe impl ODSessionRef {}
+);
+cf_objc2_type!(
+    unsafe impl RefEncode<"__ODSession"> for ODSessionRef {}
 );
 
 extern "C" {

@@ -18,8 +18,11 @@ pub struct SKSearch {
 }
 
 cf_type!(
-    #[encoding_name = "__SKSearch"]
     unsafe impl SKSearch {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SKSearch"> for SKSearch {}
 );
 
 unsafe impl ConcreteType for SKSearch {
@@ -139,8 +142,11 @@ pub struct SKSearchGroup {
 }
 
 cf_type!(
-    #[encoding_name = "__SKSearchGroup"]
     unsafe impl SKSearchGroup {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SKSearchGroup"> for SKSearchGroup {}
 );
 
 unsafe impl ConcreteType for SKSearchGroup {
@@ -162,8 +168,11 @@ pub struct SKSearchResults {
 }
 
 cf_type!(
-    #[encoding_name = "__SKSearchResults"]
     unsafe impl SKSearchResults {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SKSearchResults"> for SKSearchResults {}
 );
 
 unsafe impl ConcreteType for SKSearchResults {

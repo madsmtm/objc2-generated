@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -32,8 +34,11 @@ pub struct CMClock {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueCMClock"]
     unsafe impl CMClock {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueCMClock"> for CMClock {}
 );
 
 /// Models a timeline under application control.
@@ -59,8 +64,11 @@ pub struct CMTimebase {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueCMTimebase"]
     unsafe impl CMTimebase {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueCMTimebase"> for CMTimebase {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclockortimebase?language=objc)

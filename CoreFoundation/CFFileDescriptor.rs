@@ -20,8 +20,11 @@ pub struct CFFileDescriptor {
 }
 
 cf_type!(
-    #[encoding_name = "__CFFileDescriptor"]
     unsafe impl CFFileDescriptor {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFFileDescriptor"> for CFFileDescriptor {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcffiledescriptorreadcallback?language=objc)

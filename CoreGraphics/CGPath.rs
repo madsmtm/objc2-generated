@@ -18,8 +18,11 @@ pub struct CGMutablePath {
 }
 
 cf_type!(
-    #[encoding_name = "CGPath"]
     unsafe impl CGMutablePath: CGPath {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGPath"> for CGMutablePath {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath?language=objc)
@@ -30,8 +33,11 @@ pub struct CGPath {
 }
 
 cf_type!(
-    #[encoding_name = "CGPath"]
     unsafe impl CGPath {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGPath"> for CGPath {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin?language=objc)

@@ -18,8 +18,11 @@ pub struct CTFontDescriptor {
 }
 
 cf_type!(
-    #[encoding_name = "__CTFontDescriptor"]
     unsafe impl CTFontDescriptor {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTFontDescriptor"> for CTFontDescriptor {}
 );
 
 unsafe impl ConcreteType for CTFontDescriptor {

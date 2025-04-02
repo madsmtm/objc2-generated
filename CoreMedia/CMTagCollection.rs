@@ -60,8 +60,11 @@ pub struct CMTagCollection {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueCMTagCollection"]
     unsafe impl CMTagCollection {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueCMTagCollection"> for CMTagCollection {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmutabletagcollection?language=objc)
@@ -72,8 +75,11 @@ pub struct CMMutableTagCollection {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueCMTagCollection"]
     unsafe impl CMMutableTagCollection: CMTagCollection {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueCMTagCollection"> for CMMutableTagCollection {}
 );
 
 unsafe impl ConcreteType for CMTagCollection {

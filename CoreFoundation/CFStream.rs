@@ -142,8 +142,11 @@ pub struct CFReadStream {
 }
 
 cf_type!(
-    #[encoding_name = "__CFReadStream"]
     unsafe impl CFReadStream {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFReadStream"> for CFReadStream {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestream?language=objc)
@@ -154,8 +157,11 @@ pub struct CFWriteStream {
 }
 
 cf_type!(
-    #[encoding_name = "__CFWriteStream"]
     unsafe impl CFWriteStream {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFWriteStream"> for CFWriteStream {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamclientcallback?language=objc)

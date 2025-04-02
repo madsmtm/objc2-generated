@@ -57,8 +57,11 @@ pub struct CMBlockBuffer {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueCMBlockBuffer"]
     unsafe impl CMBlockBuffer {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueCMBlockBuffer"> for CMBlockBuffer {}
 );
 
 /// Used with functions that accept a memory block allocator, this structure allows a client to provide a custom facility for

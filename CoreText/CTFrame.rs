@@ -20,8 +20,11 @@ pub struct CTFrame {
 }
 
 cf_type!(
-    #[encoding_name = "__CTFrame"]
     unsafe impl CTFrame {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTFrame"> for CTFrame {}
 );
 
 unsafe impl ConcreteType for CTFrame {

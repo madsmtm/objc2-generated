@@ -20,8 +20,11 @@ pub struct CGImageMetadata {
 }
 
 cf_type!(
-    #[encoding_name = "CGImageMetadata"]
     unsafe impl CGImageMetadata {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGImageMetadata"> for CGImageMetadata {}
 );
 
 unsafe impl ConcreteType for CGImageMetadata {
@@ -55,8 +58,11 @@ pub struct CGMutableImageMetadata {
 }
 
 cf_type!(
-    #[encoding_name = "CGImageMetadata"]
     unsafe impl CGMutableImageMetadata: CGImageMetadata {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGImageMetadata"> for CGMutableImageMetadata {}
 );
 
 /// Creates an empty CGMutableImageMetadataRef
@@ -108,8 +114,11 @@ pub struct CGImageMetadataTag {
 }
 
 cf_type!(
-    #[encoding_name = "CGImageMetadataTag"]
     unsafe impl CGImageMetadataTag {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGImageMetadataTag"> for CGImageMetadataTag {}
 );
 
 unsafe impl ConcreteType for CGImageMetadataTag {

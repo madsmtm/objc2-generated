@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -71,8 +73,11 @@ pub struct CFHTTPMessage {
 }
 
 cf_type!(
-    #[encoding_name = "__CFHTTPMessage"]
     unsafe impl CFHTTPMessage {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFHTTPMessage"> for CFHTTPMessage {}
 );
 
 unsafe impl ConcreteType for CFHTTPMessage {

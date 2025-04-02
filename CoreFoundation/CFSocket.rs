@@ -17,8 +17,11 @@ pub struct CFSocket {
 }
 
 cf_type!(
-    #[encoding_name = "__CFSocket"]
     unsafe impl CFSocket {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFSocket"> for CFSocket {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror?language=objc)

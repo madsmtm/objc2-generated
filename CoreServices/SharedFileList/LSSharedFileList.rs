@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-security")]
 use objc2_security::*;
@@ -18,8 +20,11 @@ pub struct LSSharedFileList {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueLSSharedFileListRef"]
     unsafe impl LSSharedFileList {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueLSSharedFileListRef"> for LSSharedFileList {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistitem?language=objc)
@@ -30,8 +35,11 @@ pub struct LSSharedFileListItem {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueLSSharedFileListItemRef"]
     unsafe impl LSSharedFileListItem {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueLSSharedFileListItemRef"> for LSSharedFileListItem {}
 );
 
 extern "C" {

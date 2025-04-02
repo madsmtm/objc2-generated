@@ -18,8 +18,11 @@ pub struct CFHost {
 }
 
 cf_type!(
-    #[encoding_name = "__CFHost"]
     unsafe impl CFHost {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFHost"> for CFHost {}
 );
 
 extern "C" {

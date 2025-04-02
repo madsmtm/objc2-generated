@@ -25,6 +25,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -52,8 +54,11 @@ pub struct LSMMap {
 }
 
 cf_type!(
-    #[encoding_name = "__LSMMap"]
     unsafe impl LSMMap {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__LSMMap"> for LSMMap {}
 );
 
 unsafe impl ConcreteType for LSMMap {
@@ -78,8 +83,11 @@ pub struct LSMText {
 }
 
 cf_type!(
-    #[encoding_name = "__LSMText"]
     unsafe impl LSMText {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__LSMText"> for LSMText {}
 );
 
 unsafe impl ConcreteType for LSMText {
@@ -104,8 +112,11 @@ pub struct LSMResult {
 }
 
 cf_type!(
-    #[encoding_name = "__LSMResult"]
     unsafe impl LSMResult {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__LSMResult"> for LSMResult {}
 );
 
 unsafe impl ConcreteType for LSMResult {

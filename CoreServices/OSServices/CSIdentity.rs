@@ -20,8 +20,11 @@ pub struct CSIdentity {
 }
 
 cf_type!(
-    #[encoding_name = "__CSIdentity"]
     unsafe impl CSIdentity {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CSIdentity"> for CSIdentity {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityquery?language=objc)
@@ -32,8 +35,11 @@ pub struct CSIdentityQuery {
 }
 
 cf_type!(
-    #[encoding_name = "__CSIdentityQuery"]
     unsafe impl CSIdentityQuery {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CSIdentityQuery"> for CSIdentityQuery {}
 );
 
 extern "C" {

@@ -17,8 +17,11 @@ pub struct CFMachPort {
 }
 
 cf_type!(
-    #[encoding_name = "__CFMachPort"]
     unsafe impl CFMachPort {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFMachPort"> for CFMachPort {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcontext?language=objc)

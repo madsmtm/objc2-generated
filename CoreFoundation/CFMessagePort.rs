@@ -17,8 +17,11 @@ pub struct CFMessagePort {
 }
 
 cf_type!(
-    #[encoding_name = "__CFMessagePort"]
     unsafe impl CFMessagePort {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFMessagePort"> for CFMessagePort {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmessageportsuccess?language=objc)

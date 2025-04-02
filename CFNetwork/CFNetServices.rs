@@ -18,8 +18,11 @@ pub struct CFNetService {
 }
 
 cf_type!(
-    #[encoding_name = "__CFNetService"]
     unsafe impl CFNetService {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFNetService"> for CFNetService {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitor?language=objc)
@@ -30,8 +33,11 @@ pub struct CFNetServiceMonitor {
 }
 
 cf_type!(
-    #[encoding_name = "__CFNetServiceMonitor"]
     unsafe impl CFNetServiceMonitor {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFNetServiceMonitor"> for CFNetServiceMonitor {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowser?language=objc)
@@ -42,8 +48,11 @@ pub struct CFNetServiceBrowser {
 }
 
 cf_type!(
-    #[encoding_name = "__CFNetServiceBrowser"]
     unsafe impl CFNetServiceBrowser {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFNetServiceBrowser"> for CFNetServiceBrowser {}
 );
 
 extern "C" {

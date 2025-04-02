@@ -22,8 +22,11 @@ pub struct CFNumberFormatter {
 }
 
 cf_type!(
-    #[encoding_name = "__CFNumberFormatter"]
     unsafe impl CFNumberFormatter {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFNumberFormatter"> for CFNumberFormatter {}
 );
 
 #[cfg(feature = "CFBase")]

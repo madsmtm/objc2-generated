@@ -3,6 +3,8 @@
 use core::cell::UnsafeCell;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -15,8 +17,11 @@ pub struct CSIdentityAuthority {
 }
 
 cf_type!(
-    #[encoding_name = "__CSIdentityAuthority"]
     unsafe impl CSIdentityAuthority {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CSIdentityAuthority"> for CSIdentityAuthority {}
 );
 
 unsafe impl ConcreteType for CSIdentityAuthority {

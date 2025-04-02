@@ -18,8 +18,11 @@ pub struct CTFontCollection {
 }
 
 cf_type!(
-    #[encoding_name = "__CTFontCollection"]
     unsafe impl CTFontCollection {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTFontCollection"> for CTFontCollection {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctmutablefontcollection?language=objc)
@@ -30,8 +33,11 @@ pub struct CTMutableFontCollection {
 }
 
 cf_type!(
-    #[encoding_name = "__CTFontCollection"]
     unsafe impl CTMutableFontCollection: CTFontCollection {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTFontCollection"> for CTMutableFontCollection {}
 );
 
 unsafe impl ConcreteType for CTFontCollection {

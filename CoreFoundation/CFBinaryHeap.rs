@@ -141,8 +141,11 @@ pub struct CFBinaryHeap<T: ?Sized = Opaque> {
 }
 
 cf_type!(
-    #[encoding_name = "__CFBinaryHeap"]
     unsafe impl<T: ?Sized> CFBinaryHeap<T> {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl<T: ?Sized> RefEncode<"__CFBinaryHeap"> for CFBinaryHeap<T> {}
 );
 
 #[cfg(feature = "CFBase")]

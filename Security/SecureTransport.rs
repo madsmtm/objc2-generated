@@ -18,8 +18,11 @@ pub struct SSLContext {
 }
 
 cf_type!(
-    #[encoding_name = "SSLContext"]
     unsafe impl SSLContext {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"SSLContext"> for SSLContext {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslconnectionref?language=objc)

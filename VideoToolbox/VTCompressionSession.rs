@@ -33,8 +33,11 @@ pub struct VTCompressionSession {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueVTCompressionSession"]
     unsafe impl VTCompressionSession {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueVTCompressionSession"> for VTCompressionSession {}
 );
 
 /// Prototype for callback invoked when frame compression is complete.

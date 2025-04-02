@@ -21,8 +21,11 @@ pub struct SecCertificate {
 }
 
 cf_type!(
-    #[encoding_name = "__SecCertificate"]
     unsafe impl SecCertificate {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecCertificate"> for SecCertificate {}
 );
 
 /// CFType representing an identity, which contains
@@ -37,8 +40,11 @@ pub struct SecIdentity {
 }
 
 cf_type!(
-    #[encoding_name = "__SecIdentity"]
     unsafe impl SecIdentity {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecIdentity"> for SecIdentity {}
 );
 
 /// CFType representing a cryptographic key. See
@@ -52,8 +58,11 @@ pub struct SecKey {
 }
 
 cf_type!(
-    #[encoding_name = "__SecKey"]
     unsafe impl SecKey {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecKey"> for SecKey {}
 );
 
 /// CFType representing a X.509 certificate trust policy.
@@ -67,8 +76,11 @@ pub struct SecPolicy {
 }
 
 cf_type!(
-    #[encoding_name = "__SecPolicy"]
     unsafe impl SecPolicy {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecPolicy"> for SecPolicy {}
 );
 
 /// CFType representing access control for an item.
@@ -82,8 +94,11 @@ pub struct SecAccessControl {
 }
 
 cf_type!(
-    #[encoding_name = "__SecAccessControl"]
     unsafe impl SecAccessControl {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecAccessControl"> for SecAccessControl {}
 );
 
 /// Contains information about a keychain.
@@ -96,8 +111,11 @@ pub struct SecKeychain {
 }
 
 cf_type!(
-    #[encoding_name = "__SecKeychain"]
     unsafe impl SecKeychain {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecKeychain"> for SecKeychain {}
 );
 
 /// Contains information about a keychain item.
@@ -110,8 +128,11 @@ pub struct SecKeychainItem {
 }
 
 cf_type!(
-    #[encoding_name = "__SecKeychainItem"]
     unsafe impl SecKeychainItem {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecKeychainItem"> for SecKeychainItem {}
 );
 
 /// Contains information about a keychain search.
@@ -124,8 +145,11 @@ pub struct SecKeychainSearch {
 }
 
 cf_type!(
-    #[encoding_name = "__SecKeychainSearch"]
     unsafe impl SecKeychainSearch {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecKeychainSearch"> for SecKeychainSearch {}
 );
 
 /// Represents a keychain attribute type.
@@ -209,8 +233,11 @@ pub struct SecTrustedApplication {
 }
 
 cf_type!(
-    #[encoding_name = "__SecTrustedApplication"]
     unsafe impl SecTrustedApplication {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecTrustedApplication"> for SecTrustedApplication {}
 );
 
 /// Contains information about an access.
@@ -223,8 +250,11 @@ pub struct SecAccess {
 }
 
 cf_type!(
-    #[encoding_name = "__SecAccess"]
     unsafe impl SecAccess {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecAccess"> for SecAccess {}
 );
 
 /// Contains information about an access control list (ACL) entry.
@@ -237,8 +267,11 @@ pub struct SecACL {
 }
 
 cf_type!(
-    #[encoding_name = "__SecACL"]
     unsafe impl SecACL {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecACL"> for SecACL {}
 );
 
 /// Contains information about a password.
@@ -251,8 +284,11 @@ pub struct SecPassword {
 }
 
 cf_type!(
-    #[encoding_name = "__SecPassword"]
     unsafe impl SecPassword {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecPassword"> for SecPassword {}
 );
 
 /// Represents an attribute.

@@ -18,8 +18,11 @@ pub struct CVPixelBufferPool {
 }
 
 cf_type!(
-    #[encoding_name = "__CVPixelBufferPool"]
     unsafe impl CVPixelBufferPool {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CVPixelBufferPool"> for CVPixelBufferPool {}
 );
 
 extern "C" {

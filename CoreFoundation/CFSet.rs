@@ -164,8 +164,11 @@ pub struct CFSet<T: ?Sized = Opaque> {
 }
 
 cf_type!(
-    #[encoding_name = "__CFSet"]
     unsafe impl<T: ?Sized> CFSet<T> {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl<T: ?Sized> RefEncode<"__CFSet"> for CFSet<T> {}
 );
 
 /// This is the type of a reference to mutable CFSets.
@@ -179,8 +182,11 @@ pub struct CFMutableSet<T: ?Sized = Opaque> {
 }
 
 cf_type!(
-    #[encoding_name = "__CFSet"]
     unsafe impl<T: ?Sized> CFMutableSet<T>: CFSet<T> {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl<T: ?Sized> RefEncode<"__CFSet"> for CFMutableSet<T> {}
 );
 
 #[cfg(feature = "CFBase")]

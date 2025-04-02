@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 
 use crate::*;
 
@@ -18,8 +20,11 @@ pub struct CFBitVector {
 }
 
 cf_type!(
-    #[encoding_name = "__CFBitVector"]
     unsafe impl CFBitVector {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFBitVector"> for CFBitVector {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebitvector?language=objc)
@@ -30,8 +35,11 @@ pub struct CFMutableBitVector {
 }
 
 cf_type!(
-    #[encoding_name = "__CFBitVector"]
     unsafe impl CFMutableBitVector: CFBitVector {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFBitVector"> for CFMutableBitVector {}
 );
 
 #[cfg(feature = "CFBase")]

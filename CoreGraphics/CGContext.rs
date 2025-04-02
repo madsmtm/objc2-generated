@@ -18,8 +18,11 @@ pub struct CGContext {
 }
 
 cf_type!(
-    #[encoding_name = "CGContext"]
     unsafe impl CGContext {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGContext"> for CGContext {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode?language=objc)

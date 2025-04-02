@@ -20,8 +20,11 @@ pub struct SCNetworkReachability {
 }
 
 cf_type!(
-    #[encoding_name = "__SCNetworkReachability"]
     unsafe impl SCNetworkReachability {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SCNetworkReachability"> for SCNetworkReachability {}
 );
 
 /// Structure containing user-specified data and callbacks for SCNetworkReachability.

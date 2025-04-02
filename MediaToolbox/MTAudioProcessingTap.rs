@@ -22,8 +22,11 @@ pub struct MTAudioProcessingTap {
 }
 
 cf_type!(
-    #[encoding_name = "opaqueMTAudioProcessingTap"]
     unsafe impl MTAudioProcessingTap {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"opaqueMTAudioProcessingTap"> for MTAudioProcessingTap {}
 );
 
 unsafe impl ConcreteType for MTAudioProcessingTap {

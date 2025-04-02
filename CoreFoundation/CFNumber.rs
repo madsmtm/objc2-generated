@@ -17,8 +17,11 @@ pub struct CFBoolean {
 }
 
 cf_type!(
-    #[encoding_name = "__CFBoolean"]
     unsafe impl CFBoolean {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFBoolean"> for CFBoolean {}
 );
 
 extern "C" {
@@ -114,8 +117,11 @@ pub struct CFNumber {
 }
 
 cf_type!(
-    #[encoding_name = "__CFNumber"]
     unsafe impl CFNumber {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFNumber"> for CFNumber {}
 );
 
 extern "C" {

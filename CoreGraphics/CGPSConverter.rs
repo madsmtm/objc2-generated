@@ -18,8 +18,11 @@ pub struct CGPSConverter {
 }
 
 cf_type!(
-    #[encoding_name = "CGPSConverter"]
     unsafe impl CGPSConverter {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGPSConverter"> for CGPSConverter {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterbegindocumentcallback?language=objc)

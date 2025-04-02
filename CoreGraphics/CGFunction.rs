@@ -18,8 +18,11 @@ pub struct CGFunction {
 }
 
 cf_type!(
-    #[encoding_name = "CGFunction"]
     unsafe impl CGFunction {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGFunction"> for CGFunction {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctionevaluatecallback?language=objc)

@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -16,8 +18,11 @@ pub struct CGLayer {
 }
 
 cf_type!(
-    #[encoding_name = "CGLayer"]
     unsafe impl CGLayer {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGLayer"> for CGLayer {}
 );
 
 #[cfg(feature = "CGContext")]

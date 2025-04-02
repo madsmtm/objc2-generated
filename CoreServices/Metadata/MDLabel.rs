@@ -20,8 +20,11 @@ pub struct MDLabel {
 }
 
 cf_type!(
-    #[encoding_name = "__MDLabel"]
     unsafe impl MDLabel {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__MDLabel"> for MDLabel {}
 );
 
 unsafe impl ConcreteType for MDLabel {

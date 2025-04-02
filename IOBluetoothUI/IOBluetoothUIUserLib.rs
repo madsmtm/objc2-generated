@@ -4,6 +4,7 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
@@ -18,8 +19,10 @@ pub struct IOBluetoothDeviceSelectorControllerRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothDeviceSelectorControllerRef {}
+);
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothDeviceSelectorControllerRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothpairingcontrollerref?language=objc)
@@ -31,8 +34,10 @@ pub struct IOBluetoothPairingControllerRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothPairingControllerRef {}
+);
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothPairingControllerRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothservicebrowsercontrollerref?language=objc)
@@ -44,8 +49,10 @@ pub struct IOBluetoothServiceBrowserControllerRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothServiceBrowserControllerRef {}
+);
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothServiceBrowserControllerRef {}
 );
 
 /// Option values to customize the behavior of an IOBluetoothServiceBrowserController object.

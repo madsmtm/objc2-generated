@@ -18,8 +18,11 @@ pub struct CFNetDiagnostic {
 }
 
 cf_type!(
-    #[encoding_name = "__CFNetDiagnostic"]
     unsafe impl CFNetDiagnostic {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFNetDiagnostic"> for CFNetDiagnostic {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues?language=objc)

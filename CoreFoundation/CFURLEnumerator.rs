@@ -17,8 +17,11 @@ pub struct CFURLEnumerator {
 }
 
 cf_type!(
-    #[encoding_name = "__CFURLEnumerator"]
     unsafe impl CFURLEnumerator {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFURLEnumerator"> for CFURLEnumerator {}
 );
 
 #[cfg(feature = "CFBase")]

@@ -20,8 +20,11 @@ pub struct CTLine {
 }
 
 cf_type!(
-    #[encoding_name = "__CTLine"]
     unsafe impl CTLine {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTLine"> for CTLine {}
 );
 
 /// Options for CTLineGetBoundsWithOptions.

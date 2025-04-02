@@ -26,8 +26,11 @@ pub struct CGEvent {
 }
 
 cf_type!(
-    #[encoding_name = "__CGEvent"]
     unsafe impl CGEvent {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CGEvent"> for CGEvent {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton?language=objc)
@@ -575,8 +578,11 @@ pub struct CGEventSource {
 }
 
 cf_type!(
-    #[encoding_name = "__CGEventSource"]
     unsafe impl CGEventSource {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CGEventSource"> for CGEventSource {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid?language=objc)

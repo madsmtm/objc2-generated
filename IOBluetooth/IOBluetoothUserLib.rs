@@ -22,8 +22,11 @@ pub struct IOBluetoothObjectRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothObjectRef {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothObjectRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceref?language=objc)
@@ -35,8 +38,11 @@ pub struct IOBluetoothDeviceRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothDeviceRef {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothDeviceRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelref?language=objc)
@@ -48,8 +54,11 @@ pub struct IOBluetoothL2CAPChannelRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothL2CAPChannelRef {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothL2CAPChannelRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothrfcommchannelref?language=objc)
@@ -61,8 +70,11 @@ pub struct IOBluetoothRFCOMMChannelRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothRFCOMMChannelRef {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothRFCOMMChannelRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpservicerecordref?language=objc)
@@ -74,8 +86,11 @@ pub struct IOBluetoothSDPServiceRecordRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothSDPServiceRecordRef {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothSDPServiceRecordRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpuuidref?language=objc)
@@ -87,8 +102,11 @@ pub struct IOBluetoothSDPUUIDRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothSDPUUIDRef {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothSDPUUIDRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpdataelementref?language=objc)
@@ -100,8 +118,11 @@ pub struct IOBluetoothSDPDataElementRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothSDPDataElementRef {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothSDPDataElementRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotificationref?language=objc)
@@ -113,8 +134,11 @@ pub struct IOBluetoothUserNotificationRef {
 
 #[cfg(feature = "objc2-core-foundation")]
 cf_type!(
-    #[encoding_name = "OpaqueIOBluetoothObjectRef"]
     unsafe impl IOBluetoothUserNotificationRef {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothUserNotificationRef {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobjectid?language=objc)

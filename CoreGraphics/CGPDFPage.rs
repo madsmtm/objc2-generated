@@ -18,8 +18,11 @@ pub struct CGPDFPage {
 }
 
 cf_type!(
-    #[encoding_name = "CGPDFPage"]
     unsafe impl CGPDFPage {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGPDFPage"> for CGPDFPage {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox?language=objc)

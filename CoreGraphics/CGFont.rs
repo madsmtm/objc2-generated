@@ -18,8 +18,11 @@ pub struct CGFont {
 }
 
 cf_type!(
-    #[encoding_name = "CGFont"]
     unsafe impl CGFont {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGFont"> for CGFont {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontindex?language=objc)

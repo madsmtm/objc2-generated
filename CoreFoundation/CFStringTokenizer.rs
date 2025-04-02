@@ -47,8 +47,11 @@ pub struct CFStringTokenizer {
 }
 
 cf_type!(
-    #[encoding_name = "__CFStringTokenizer"]
     unsafe impl CFStringTokenizer {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFStringTokenizer"> for CFStringTokenizer {}
 );
 
 /// Tokenization Unit

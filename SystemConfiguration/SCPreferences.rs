@@ -23,8 +23,11 @@ pub struct SCPreferences {
 }
 
 cf_type!(
-    #[encoding_name = "__SCPreferences"]
     unsafe impl SCPreferences {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SCPreferences"> for SCPreferences {}
 );
 
 /// Used with the SCPreferencesCallBack callback

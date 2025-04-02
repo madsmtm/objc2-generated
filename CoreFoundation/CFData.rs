@@ -17,8 +17,11 @@ pub struct CFData {
 }
 
 cf_type!(
-    #[encoding_name = "__CFData"]
     unsafe impl CFData {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFData"> for CFData {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledata?language=objc)
@@ -29,8 +32,11 @@ pub struct CFMutableData {
 }
 
 cf_type!(
-    #[encoding_name = "__CFData"]
     unsafe impl CFMutableData: CFData {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFData"> for CFMutableData {}
 );
 
 #[cfg(feature = "CFBase")]

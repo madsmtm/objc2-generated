@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -49,8 +51,11 @@ pub struct DADissenter {
 }
 
 cf_type!(
-    #[encoding_name = "__DADissenter"]
     unsafe impl DADissenter {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__DADissenter"> for DADissenter {}
 );
 
 /// Creates a new dissenter object.

@@ -89,8 +89,11 @@ pub struct CFBag<T: ?Sized = Opaque> {
 }
 
 cf_type!(
-    #[encoding_name = "__CFBag"]
     unsafe impl<T: ?Sized> CFBag<T> {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl<T: ?Sized> RefEncode<"__CFBag"> for CFBag<T> {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebag?language=objc)
@@ -102,8 +105,11 @@ pub struct CFMutableBag<T: ?Sized = Opaque> {
 }
 
 cf_type!(
-    #[encoding_name = "__CFBag"]
     unsafe impl<T: ?Sized> CFMutableBag<T>: CFBag<T> {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl<T: ?Sized> RefEncode<"__CFBag"> for CFMutableBag<T> {}
 );
 
 #[cfg(feature = "CFBase")]

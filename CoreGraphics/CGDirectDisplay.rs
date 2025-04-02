@@ -29,8 +29,11 @@ pub struct CGDisplayMode {
 }
 
 cf_type!(
-    #[encoding_name = "CGDisplayMode"]
     unsafe impl CGDisplayMode {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGDisplayMode"> for CGDisplayMode {}
 );
 
 extern "C-unwind" {

@@ -47,8 +47,11 @@ pub struct CMTaggedBufferGroup {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueCMTaggedBufferGroup"]
     unsafe impl CMTaggedBufferGroup {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueCMTaggedBufferGroup"> for CMTaggedBufferGroup {}
 );
 
 unsafe impl ConcreteType for CMTaggedBufferGroup {

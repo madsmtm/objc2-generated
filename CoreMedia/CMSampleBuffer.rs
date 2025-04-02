@@ -63,8 +63,11 @@ pub struct CMSampleBuffer {
 }
 
 cf_type!(
-    #[encoding_name = "opaqueCMSampleBuffer"]
     unsafe impl CMSampleBuffer {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"opaqueCMSampleBuffer"> for CMSampleBuffer {}
 );
 
 /// Collection of timing info for a sample in a CMSampleBuffer. A single CMSampleTimingInfo struct can

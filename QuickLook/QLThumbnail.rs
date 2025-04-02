@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -18,8 +20,11 @@ pub struct QLThumbnail {
 }
 
 cf_type!(
-    #[encoding_name = "__QLThumbnail"]
     unsafe impl QLThumbnail {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__QLThumbnail"> for QLThumbnail {}
 );
 
 unsafe impl ConcreteType for QLThumbnail {

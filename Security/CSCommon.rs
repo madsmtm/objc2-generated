@@ -252,8 +252,11 @@ pub struct SecCode {
 }
 
 cf_type!(
-    #[encoding_name = "__SecCode"]
     unsafe impl SecCode {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecCode"> for SecCode {}
 );
 
 /// This is the type of a reference to static code on disk.
@@ -266,8 +269,11 @@ pub struct SecStaticCode {
 }
 
 cf_type!(
-    #[encoding_name = "__SecCode"]
     unsafe impl SecStaticCode {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecCode"> for SecStaticCode {}
 );
 
 /// This is the type of a reference to a code requirement.
@@ -280,8 +286,11 @@ pub struct SecRequirement {
 }
 
 cf_type!(
-    #[encoding_name = "__SecRequirement"]
     unsafe impl SecRequirement {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecRequirement"> for SecRequirement {}
 );
 
 /// An abstract handle to identify a particular Guest in the context of its Host.

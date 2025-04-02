@@ -22,8 +22,11 @@ pub struct CFRunLoop {
 }
 
 cf_type!(
-    #[encoding_name = "__CFRunLoop"]
     unsafe impl CFRunLoop {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFRunLoop"> for CFRunLoop {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsource?language=objc)
@@ -34,8 +37,11 @@ pub struct CFRunLoopSource {
 }
 
 cf_type!(
-    #[encoding_name = "__CFRunLoopSource"]
     unsafe impl CFRunLoopSource {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFRunLoopSource"> for CFRunLoopSource {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobserver?language=objc)
@@ -46,8 +52,11 @@ pub struct CFRunLoopObserver {
 }
 
 cf_type!(
-    #[encoding_name = "__CFRunLoopObserver"]
     unsafe impl CFRunLoopObserver {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFRunLoopObserver"> for CFRunLoopObserver {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimer?language=objc)
@@ -58,8 +67,11 @@ pub struct CFRunLoopTimer {
 }
 
 cf_type!(
-    #[encoding_name = "__CFRunLoopTimer"]
     unsafe impl CFRunLoopTimer {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFRunLoopTimer"> for CFRunLoopTimer {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult?language=objc)

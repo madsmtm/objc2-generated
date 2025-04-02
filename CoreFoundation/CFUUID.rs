@@ -16,8 +16,11 @@ pub struct CFUUID {
 }
 
 cf_type!(
-    #[encoding_name = "__CFUUID"]
     unsafe impl CFUUID {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFUUID"> for CFUUID {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidbytes?language=objc)

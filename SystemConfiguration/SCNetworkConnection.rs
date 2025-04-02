@@ -20,8 +20,11 @@ pub struct SCNetworkConnection {
 }
 
 cf_type!(
-    #[encoding_name = "__SCNetworkConnection"]
     unsafe impl SCNetworkConnection {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SCNetworkConnection"> for SCNetworkConnection {}
 );
 
 /// Structure containing user-specified data and callbacks

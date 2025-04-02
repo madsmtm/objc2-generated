@@ -41,8 +41,11 @@ pub struct CMBufferQueue {
 }
 
 cf_type!(
-    #[encoding_name = "opaqueCMBufferQueue"]
     unsafe impl CMBufferQueue {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"opaqueCMBufferQueue"> for CMBufferQueue {}
 );
 
 /// A reference to a CMBuffer.

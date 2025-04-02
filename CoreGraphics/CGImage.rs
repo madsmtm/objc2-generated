@@ -18,8 +18,11 @@ pub struct CGImage {
 }
 
 cf_type!(
-    #[encoding_name = "CGImage"]
     unsafe impl CGImage {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGImage"> for CGImage {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo?language=objc)

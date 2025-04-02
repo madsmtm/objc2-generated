@@ -20,8 +20,11 @@ pub struct MDQuery {
 }
 
 cf_type!(
-    #[encoding_name = "__MDQuery"]
     unsafe impl MDQuery {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__MDQuery"> for MDQuery {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdqueryoptionflags?language=objc)

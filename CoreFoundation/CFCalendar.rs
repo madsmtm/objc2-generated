@@ -17,8 +17,11 @@ pub struct CFCalendar {
 }
 
 cf_type!(
-    #[encoding_name = "__CFCalendar"]
     unsafe impl CFCalendar {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFCalendar"> for CFCalendar {}
 );
 
 #[cfg(feature = "CFBase")]

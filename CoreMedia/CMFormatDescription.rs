@@ -31,8 +31,11 @@ pub struct CMFormatDescription {
 }
 
 cf_type!(
-    #[encoding_name = "opaqueCMFormatDescription"]
     unsafe impl CMFormatDescription {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"opaqueCMFormatDescription"> for CMFormatDescription {}
 );
 
 /// The type of media described by a CMFormatDescription.

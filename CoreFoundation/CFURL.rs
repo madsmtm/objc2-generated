@@ -44,8 +44,11 @@ pub struct CFURL {
 }
 
 cf_type!(
-    #[encoding_name = "__CFURL"]
     unsafe impl CFURL {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFURL"> for CFURL {}
 );
 
 #[cfg(feature = "CFBase")]

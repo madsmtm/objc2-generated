@@ -18,8 +18,11 @@ pub struct CGPDFDocument {
 }
 
 cf_type!(
-    #[encoding_name = "CGPDFDocument"]
     unsafe impl CGPDFDocument {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGPDFDocument"> for CGPDFDocument {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions?language=objc)

@@ -98,8 +98,11 @@ pub struct AXUIElement {
 }
 
 cf_type!(
-    #[encoding_name = "__AXUIElement"]
     unsafe impl AXUIElement {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__AXUIElement"> for AXUIElement {}
 );
 
 /// Pass this option to
@@ -1379,8 +1382,11 @@ pub struct AXTextMarker {
 }
 
 cf_type!(
-    #[encoding_name = "__AXTextMarker"]
     unsafe impl AXTextMarker {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__AXTextMarker"> for AXTextMarker {}
 );
 
 unsafe impl ConcreteType for AXTextMarker {
@@ -1473,8 +1479,11 @@ pub struct AXTextMarkerRange {
 }
 
 cf_type!(
-    #[encoding_name = "__AXTextMarkerRange"]
     unsafe impl AXTextMarkerRange {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__AXTextMarkerRange"> for AXTextMarkerRange {}
 );
 
 unsafe impl ConcreteType for AXTextMarkerRange {
@@ -1626,8 +1635,11 @@ pub struct AXObserver {
 }
 
 cf_type!(
-    #[encoding_name = "__AXObserver"]
     unsafe impl AXObserver {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__AXObserver"> for AXObserver {}
 );
 
 /// Parameter `observer`: An AXObserverRef object to observe the notifications.

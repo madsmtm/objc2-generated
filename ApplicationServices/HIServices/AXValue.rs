@@ -69,8 +69,11 @@ pub struct AXValue {
 }
 
 cf_type!(
-    #[encoding_name = "__AXValue"]
     unsafe impl AXValue {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__AXValue"> for AXValue {}
 );
 
 unsafe impl ConcreteType for AXValue {

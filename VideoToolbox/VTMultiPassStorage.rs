@@ -3,6 +3,8 @@
 use core::cell::UnsafeCell;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -22,8 +24,11 @@ pub struct VTMultiPassStorage {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueVTMultiPassStorage"]
     unsafe impl VTMultiPassStorage {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueVTMultiPassStorage"> for VTMultiPassStorage {}
 );
 
 unsafe impl ConcreteType for VTMultiPassStorage {

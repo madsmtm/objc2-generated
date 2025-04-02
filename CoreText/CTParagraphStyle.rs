@@ -18,8 +18,11 @@ pub struct CTParagraphStyle {
 }
 
 cf_type!(
-    #[encoding_name = "__CTParagraphStyle"]
     unsafe impl CTParagraphStyle {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTParagraphStyle"> for CTParagraphStyle {}
 );
 
 unsafe impl ConcreteType for CTParagraphStyle {

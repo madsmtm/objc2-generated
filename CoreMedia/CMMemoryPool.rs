@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -45,8 +47,11 @@ pub struct CMMemoryPool {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueCMMemoryPool"]
     unsafe impl CMMemoryPool {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueCMMemoryPool"> for CMMemoryPool {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypoolerror_allocationfailed?language=objc)

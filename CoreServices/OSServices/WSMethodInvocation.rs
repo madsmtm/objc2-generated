@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -156,8 +158,11 @@ pub struct WSMethodInvocation {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueWSMethodInvocationRef"]
     unsafe impl WSMethodInvocation {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueWSMethodInvocationRef"> for WSMethodInvocation {}
 );
 
 unsafe impl ConcreteType for WSMethodInvocation {

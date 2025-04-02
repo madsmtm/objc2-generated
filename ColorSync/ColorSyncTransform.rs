@@ -18,8 +18,11 @@ pub struct ColorSyncTransform {
 }
 
 cf_type!(
-    #[encoding_name = "ColorSyncTransform"]
     unsafe impl ColorSyncTransform {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"ColorSyncTransform"> for ColorSyncTransform {}
 );
 
 unsafe impl ConcreteType for ColorSyncTransform {

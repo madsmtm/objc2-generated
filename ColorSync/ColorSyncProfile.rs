@@ -26,8 +26,11 @@ pub struct ColorSyncProfile {
 }
 
 cf_type!(
-    #[encoding_name = "ColorSyncProfile"]
     unsafe impl ColorSyncProfile {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"ColorSyncProfile"> for ColorSyncProfile {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmutableprofile?language=objc)
@@ -38,8 +41,11 @@ pub struct ColorSyncMutableProfile {
 }
 
 cf_type!(
-    #[encoding_name = "ColorSyncProfile"]
     unsafe impl ColorSyncMutableProfile: ColorSyncProfile {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"ColorSyncProfile"> for ColorSyncMutableProfile {}
 );
 
 extern "C" {

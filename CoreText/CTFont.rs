@@ -20,8 +20,11 @@ pub struct CTFont {
 }
 
 cf_type!(
-    #[encoding_name = "__CTFont"]
     unsafe impl CTFont {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTFont"> for CTFont {}
 );
 
 unsafe impl ConcreteType for CTFont {

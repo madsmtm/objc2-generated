@@ -197,8 +197,11 @@ pub struct CFString {
 }
 
 cf_type!(
-    #[encoding_name = "__CFString"]
     unsafe impl CFString {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFString"> for CFString {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablestring?language=objc)
@@ -209,8 +212,11 @@ pub struct CFMutableString {
 }
 
 cf_type!(
-    #[encoding_name = "__CFString"]
     unsafe impl CFMutableString: CFString {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFString"> for CFMutableString {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylist?language=objc)
@@ -276,8 +282,11 @@ pub struct CFNull {
 }
 
 cf_type!(
-    #[encoding_name = "__CFNull"]
     unsafe impl CFNull {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFNull"> for CFNull {}
 );
 
 unsafe impl ConcreteType for CFNull {
@@ -304,8 +313,11 @@ pub struct CFAllocator {
 }
 
 cf_type!(
-    #[encoding_name = "__CFAllocator"]
     unsafe impl CFAllocator {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFAllocator"> for CFAllocator {}
 );
 
 extern "C" {

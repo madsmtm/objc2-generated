@@ -32,8 +32,11 @@ pub struct VTDecompressionSession {
 }
 
 cf_type!(
-    #[encoding_name = "OpaqueVTDecompressionSession"]
     unsafe impl VTDecompressionSession {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaqueVTDecompressionSession"> for VTDecompressionSession {}
 );
 
 /// Prototype for callback invoked when frame decompression is complete.

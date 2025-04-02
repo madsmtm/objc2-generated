@@ -110,8 +110,11 @@ pub struct CFArray<T: ?Sized = Opaque> {
 }
 
 cf_type!(
-    #[encoding_name = "__CFArray"]
     unsafe impl<T: ?Sized> CFArray<T> {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl<T: ?Sized> RefEncode<"__CFArray"> for CFArray<T> {}
 );
 
 /// This is the type of a reference to mutable CFArrays.
@@ -125,8 +128,11 @@ pub struct CFMutableArray<T: ?Sized = Opaque> {
 }
 
 cf_type!(
-    #[encoding_name = "__CFArray"]
     unsafe impl<T: ?Sized> CFMutableArray<T>: CFArray<T> {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl<T: ?Sized> RefEncode<"__CFArray"> for CFMutableArray<T> {}
 );
 
 #[cfg(feature = "CFBase")]

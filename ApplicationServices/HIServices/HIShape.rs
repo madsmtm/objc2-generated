@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -18,8 +20,11 @@ pub struct HIShape {
 }
 
 cf_type!(
-    #[encoding_name = "__HIShape"]
     unsafe impl HIShape {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__HIShape"> for HIShape {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/himutableshape?language=objc)
@@ -30,8 +35,11 @@ pub struct HIMutableShape {
 }
 
 cf_type!(
-    #[encoding_name = "__HIShape"]
     unsafe impl HIMutableShape: HIShape {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__HIShape"> for HIMutableShape {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeenumerateinit?language=objc)

@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 
 use crate::*;
 
@@ -22,8 +24,11 @@ pub struct CFError {
 }
 
 cf_type!(
-    #[encoding_name = "__CFError"]
     unsafe impl CFError {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFError"> for CFError {}
 );
 
 #[cfg(feature = "CFBase")]

@@ -20,8 +20,11 @@ pub struct CTRun {
 }
 
 cf_type!(
-    #[encoding_name = "__CTRun"]
     unsafe impl CTRun {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTRun"> for CTRun {}
 );
 
 /// A bitfield passed back by CTRunGetStatus that is used to

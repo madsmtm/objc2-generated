@@ -18,8 +18,11 @@ pub struct CFHTTPAuthentication {
 }
 
 cf_type!(
-    #[encoding_name = "_CFHTTPAuthentication"]
     unsafe impl CFHTTPAuthentication {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"_CFHTTPAuthentication"> for CFHTTPAuthentication {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttpauthentication?language=objc)

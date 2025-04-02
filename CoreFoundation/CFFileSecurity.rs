@@ -16,8 +16,11 @@ pub struct CFFileSecurity {
 }
 
 cf_type!(
-    #[encoding_name = "__CFFileSecurity"]
     unsafe impl CFFileSecurity {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFFileSecurity"> for CFFileSecurity {}
 );
 
 #[cfg(feature = "CFBase")]

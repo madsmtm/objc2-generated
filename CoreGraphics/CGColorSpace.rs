@@ -18,8 +18,11 @@ pub struct CGColorSpace {
 }
 
 cf_type!(
-    #[encoding_name = "CGColorSpace"]
     unsafe impl CGColorSpace {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGColorSpace"> for CGColorSpace {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent?language=objc)

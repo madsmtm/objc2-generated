@@ -19,8 +19,11 @@ pub struct CFCharacterSet {
 }
 
 cf_type!(
-    #[encoding_name = "__CFCharacterSet"]
     unsafe impl CFCharacterSet {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFCharacterSet"> for CFCharacterSet {}
 );
 
 /// This is the type of a reference to mutable CFMutableCharacterSets.
@@ -33,8 +36,11 @@ pub struct CFMutableCharacterSet {
 }
 
 cf_type!(
-    #[encoding_name = "__CFCharacterSet"]
     unsafe impl CFMutableCharacterSet: CFCharacterSet {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFCharacterSet"> for CFMutableCharacterSet {}
 );
 
 /// Type of the predefined CFCharacterSet selector values.

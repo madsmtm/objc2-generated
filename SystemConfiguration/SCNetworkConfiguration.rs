@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -19,8 +21,11 @@ pub struct SCNetworkInterface {
 }
 
 cf_type!(
-    #[encoding_name = "__SCNetworkInterface"]
     unsafe impl SCNetworkInterface {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SCNetworkInterface"> for SCNetworkInterface {}
 );
 
 extern "C" {
@@ -129,8 +134,11 @@ pub struct SCBondStatus {
 }
 
 cf_type!(
-    #[encoding_name = "__SCBondStatus"]
     unsafe impl SCBondStatus {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SCBondStatus"> for SCBondStatus {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusok?language=objc)
@@ -176,8 +184,11 @@ pub struct SCNetworkProtocol {
 }
 
 cf_type!(
-    #[encoding_name = "__SCNetworkProtocol"]
     unsafe impl SCNetworkProtocol {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SCNetworkProtocol"> for SCNetworkProtocol {}
 );
 
 extern "C" {
@@ -216,8 +227,11 @@ pub struct SCNetworkService {
 }
 
 cf_type!(
-    #[encoding_name = "__SCNetworkService"]
     unsafe impl SCNetworkService {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SCNetworkService"> for SCNetworkService {}
 );
 
 /// This is the type of a reference to an object that represents
@@ -231,8 +245,11 @@ pub struct SCNetworkSet {
 }
 
 cf_type!(
-    #[encoding_name = "__SCNetworkSet"]
     unsafe impl SCNetworkSet {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SCNetworkSet"> for SCNetworkSet {}
 );
 
 unsafe impl ConcreteType for SCNetworkInterface {

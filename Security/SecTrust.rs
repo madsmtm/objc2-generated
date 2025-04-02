@@ -95,8 +95,11 @@ pub struct SecTrust {
 }
 
 cf_type!(
-    #[encoding_name = "__SecTrust"]
     unsafe impl SecTrust {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SecTrust"> for SecTrust {}
 );
 
 extern "C" {

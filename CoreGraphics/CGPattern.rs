@@ -18,8 +18,11 @@ pub struct CGPattern {
 }
 
 cf_type!(
-    #[encoding_name = "CGPattern"]
     unsafe impl CGPattern {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGPattern"> for CGPattern {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterntiling?language=objc)

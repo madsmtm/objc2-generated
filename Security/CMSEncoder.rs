@@ -18,8 +18,11 @@ pub struct CMSEncoder {
 }
 
 cf_type!(
-    #[encoding_name = "_CMSEncoder"]
     unsafe impl CMSEncoder {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"_CMSEncoder"> for CMSEncoder {}
 );
 
 unsafe impl ConcreteType for CMSEncoder {

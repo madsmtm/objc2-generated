@@ -27,8 +27,11 @@ pub struct CGDisplayStream {
 }
 
 cf_type!(
-    #[encoding_name = "CGDisplayStream"]
     unsafe impl CGDisplayStream {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGDisplayStream"> for CGDisplayStream {}
 );
 
 /// An opaque reference to a single frame's extra metadata that describes useful frame delta information
@@ -46,8 +49,11 @@ pub struct CGDisplayStreamUpdate {
 }
 
 cf_type!(
-    #[encoding_name = "CGDisplayStreamUpdate"]
     unsafe impl CGDisplayStreamUpdate {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGDisplayStreamUpdate"> for CGDisplayStreamUpdate {}
 );
 
 /// Used to select which array of rectangles to be returned by CGDisplayUpdateGetRects

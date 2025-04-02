@@ -21,8 +21,11 @@ pub struct SCDynamicStore {
 }
 
 cf_type!(
-    #[encoding_name = "__SCDynamicStore"]
     unsafe impl SCDynamicStore {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SCDynamicStore"> for SCDynamicStore {}
 );
 
 /// Structure containing user-specified data and callbacks for an

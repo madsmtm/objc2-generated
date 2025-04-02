@@ -17,8 +17,11 @@ pub struct CFXMLParser {
 }
 
 cf_type!(
-    #[encoding_name = "__CFXMLParser"]
     unsafe impl CFXMLParser {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFXMLParser"> for CFXMLParser {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions?language=objc)

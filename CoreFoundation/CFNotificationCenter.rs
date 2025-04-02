@@ -22,8 +22,11 @@ pub struct CFNotificationCenter {
 }
 
 cf_type!(
-    #[encoding_name = "__CFNotificationCenter"]
     unsafe impl CFNotificationCenter {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFNotificationCenter"> for CFNotificationCenter {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcallback?language=objc)

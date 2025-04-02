@@ -18,8 +18,11 @@ pub struct CGColorConversionInfo {
 }
 
 cf_type!(
-    #[encoding_name = "CGColorConversionInfo"]
     unsafe impl CGColorConversionInfo {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGColorConversionInfo"> for CGColorConversionInfo {}
 );
 
 unsafe impl ConcreteType for CGColorConversionInfo {

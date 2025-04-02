@@ -26,8 +26,11 @@ pub struct CFLocale {
 }
 
 cf_type!(
-    #[encoding_name = "__CFLocale"]
     unsafe impl CFLocale {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFLocale"> for CFLocale {}
 );
 
 #[cfg(feature = "CFBase")]

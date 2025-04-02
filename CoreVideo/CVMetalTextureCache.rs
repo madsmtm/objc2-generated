@@ -28,8 +28,11 @@ pub struct CVMetalTextureCache {
 }
 
 cf_type!(
-    #[encoding_name = "__CVMetalTextureCache"]
     unsafe impl CVMetalTextureCache {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CVMetalTextureCache"> for CVMetalTextureCache {}
 );
 
 unsafe impl ConcreteType for CVMetalTextureCache {

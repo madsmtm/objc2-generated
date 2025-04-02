@@ -19,8 +19,11 @@ pub struct CTGlyphInfo {
 }
 
 cf_type!(
-    #[encoding_name = "__CTGlyphInfo"]
     unsafe impl CTGlyphInfo {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CTGlyphInfo"> for CTGlyphInfo {}
 );
 
 unsafe impl ConcreteType for CTGlyphInfo {

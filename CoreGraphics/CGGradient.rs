@@ -17,8 +17,11 @@ pub struct CGGradient {
 }
 
 cf_type!(
-    #[encoding_name = "CGGradient"]
     unsafe impl CGGradient {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGGradient"> for CGGradient {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions?language=objc)

@@ -26,8 +26,11 @@ pub struct QLThumbnailRequest {
 }
 
 cf_type!(
-    #[encoding_name = "__QLThumbnailRequest"]
     unsafe impl QLThumbnailRequest {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__QLThumbnailRequest"> for QLThumbnailRequest {}
 );
 
 unsafe impl ConcreteType for QLThumbnailRequest {
@@ -347,8 +350,11 @@ pub struct QLPreviewRequest {
 }
 
 cf_type!(
-    #[encoding_name = "__QLPreviewRequest"]
     unsafe impl QLPreviewRequest {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__QLPreviewRequest"> for QLPreviewRequest {}
 );
 
 unsafe impl ConcreteType for QLPreviewRequest {

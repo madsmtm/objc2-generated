@@ -18,8 +18,11 @@ pub struct Pasteboard {
 }
 
 cf_type!(
-    #[encoding_name = "OpaquePasteboardRef"]
     unsafe impl Pasteboard {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"OpaquePasteboardRef"> for Pasteboard {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboarditemid?language=objc)

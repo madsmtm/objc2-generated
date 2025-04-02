@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 
 use crate::*;
 
@@ -257,8 +259,11 @@ pub struct CFPlugInInstance {
 }
 
 cf_type!(
-    #[encoding_name = "__CFPlugInInstance"]
     unsafe impl CFPlugInInstance {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFPlugInInstance"> for CFPlugInInstance {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetinterfacefunction?language=objc)

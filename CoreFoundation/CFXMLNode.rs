@@ -21,8 +21,11 @@ pub struct CFXMLNode {
 }
 
 cf_type!(
-    #[encoding_name = "__CFXMLNode"]
     unsafe impl CFXMLNode {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFXMLNode"> for CFXMLNode {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltree?language=objc)

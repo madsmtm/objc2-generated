@@ -18,8 +18,11 @@ pub struct CGDataProvider {
 }
 
 cf_type!(
-    #[encoding_name = "CGDataProvider"]
     unsafe impl CGDataProvider {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGDataProvider"> for CGDataProvider {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytescallback?language=objc)

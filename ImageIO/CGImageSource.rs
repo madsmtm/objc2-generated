@@ -20,8 +20,11 @@ pub struct CGImageSource {
 }
 
 cf_type!(
-    #[encoding_name = "CGImageSource"]
     unsafe impl CGImageSource {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGImageSource"> for CGImageSource {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus?language=objc)

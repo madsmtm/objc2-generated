@@ -18,8 +18,11 @@ pub struct CGDataConsumer {
 }
 
 cf_type!(
-    #[encoding_name = "CGDataConsumer"]
     unsafe impl CGDataConsumer {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"CGDataConsumer"> for CGDataConsumer {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumerputbytescallback?language=objc)

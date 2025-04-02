@@ -22,8 +22,11 @@ pub struct CFDateFormatter {
 }
 
 cf_type!(
-    #[encoding_name = "__CFDateFormatter"]
     unsafe impl CFDateFormatter {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CFDateFormatter"> for CFDateFormatter {}
 );
 
 #[cfg(all(feature = "CFBase", feature = "CFLocale"))]

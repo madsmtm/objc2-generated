@@ -67,8 +67,11 @@ pub struct CVBuffer {
 }
 
 cf_type!(
-    #[encoding_name = "__CVBuffer"]
     unsafe impl CVBuffer {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__CVBuffer"> for CVBuffer {}
 );
 
 extern "C-unwind" {

@@ -198,8 +198,11 @@ pub struct CFDictionary<K: ?Sized = Opaque, V: ?Sized = Opaque> {
 }
 
 cf_type!(
-    #[encoding_name = "__CFDictionary"]
     unsafe impl<K: ?Sized, V: ?Sized> CFDictionary<K, V> {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl<K: ?Sized, V: ?Sized> RefEncode<"__CFDictionary"> for CFDictionary<K, V> {}
 );
 
 /// This is the type of a reference to mutable CFDictionarys.
@@ -213,8 +216,11 @@ pub struct CFMutableDictionary<K: ?Sized = Opaque, V: ?Sized = Opaque> {
 }
 
 cf_type!(
-    #[encoding_name = "__CFDictionary"]
     unsafe impl<K: ?Sized, V: ?Sized> CFMutableDictionary<K, V>: CFDictionary<K, V> {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl<K: ?Sized, V: ?Sized> RefEncode<"__CFDictionary"> for CFMutableDictionary<K, V> {}
 );
 
 #[cfg(feature = "CFBase")]

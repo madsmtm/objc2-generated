@@ -18,8 +18,11 @@ pub struct SKIndex {
 }
 
 cf_type!(
-    #[encoding_name = "__SKIndex"]
     unsafe impl SKIndex {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SKIndex"> for SKIndex {}
 );
 
 unsafe impl ConcreteType for SKIndex {
@@ -41,8 +44,11 @@ pub struct SKIndexDocumentIterator {
 }
 
 cf_type!(
-    #[encoding_name = "__SKIndexDocumentIterator"]
     unsafe impl SKIndexDocumentIterator {}
+);
+#[cfg(feature = "objc2")]
+cf_objc2_type!(
+    unsafe impl RefEncode<"__SKIndexDocumentIterator"> for SKIndexDocumentIterator {}
 );
 
 unsafe impl ConcreteType for SKIndexDocumentIterator {
