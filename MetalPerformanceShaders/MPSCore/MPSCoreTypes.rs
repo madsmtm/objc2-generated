@@ -217,6 +217,8 @@ impl MPSDataType {
     pub const SignedBit: Self = Self(0x20000000);
     #[doc(alias = "MPSDataTypeIntBit")]
     pub const IntBit: Self = Self(MPSDataType::SignedBit.0);
+    #[doc(alias = "MPSDataTypeInt2")]
+    pub const Int2: Self = Self(MPSDataType::SignedBit.0 | 2);
     #[doc(alias = "MPSDataTypeInt4")]
     pub const Int4: Self = Self(MPSDataType::SignedBit.0 | 4);
     #[doc(alias = "MPSDataTypeInt8")]
@@ -227,6 +229,8 @@ impl MPSDataType {
     pub const Int32: Self = Self(MPSDataType::SignedBit.0 | 32);
     #[doc(alias = "MPSDataTypeInt64")]
     pub const Int64: Self = Self(MPSDataType::SignedBit.0 | 64);
+    #[doc(alias = "MPSDataTypeUInt2")]
+    pub const UInt2: Self = Self(2);
     #[doc(alias = "MPSDataTypeUInt4")]
     pub const UInt4: Self = Self(4);
     #[doc(alias = "MPSDataTypeUInt8")]

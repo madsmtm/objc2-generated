@@ -110,10 +110,10 @@ impl UIWritingToolsCoordinatorContext {
 
         /// The portion of your view’s text to evaluate.
         ///
-        /// The `NSWritingToolsCoordinator/Context` object initializes the value of this
+        /// The `UIWritingToolsCoordinator/Context` object initializes the value of this
         /// property at creation time and doesn’t change it during the course of an operation.
         /// Instead, it suggests changes to the text in the indicated range and reports
-        /// those changes to your ``NS/UIWritingToolsCoordinatorDelegate`` object. Use the methods
+        /// those changes to your ``UIWritingToolsCoordinator/Delegate`` object. Use the methods
         /// of your delegate object to integrate those changes back into your view’s text storage.
         ///
         /// It’s your responsibility to track the location of this text in your
@@ -128,7 +128,7 @@ impl UIWritingToolsCoordinatorContext {
 
         /// The unique identifier of the context object.
         ///
-        /// The ``UIWritingToolsCoordinator.Context`` object initializes the value of this property
+        /// The ``UIWritingToolsCoordinator/Context`` object initializes the value of this property
         /// at creation time. Use this value to identify the context object within your app.
         #[unsafe(method(range))]
         #[unsafe(method_family = none)]
@@ -136,7 +136,7 @@ impl UIWritingToolsCoordinatorContext {
 
         /// The unique identifier of the context object.
         ///
-        /// The ``UIWritingToolsCoordinator.Context`` object initializes the value of
+        /// The ``UIWritingToolsCoordinator/Context`` object initializes the value of
         /// this property at creation time. Use this value to identify the
         /// context object within your app.
         #[unsafe(method(identifier))]
@@ -155,7 +155,7 @@ impl UIWritingToolsCoordinatorContext {
         /// to the text.
         ///
         /// While the Writing Tools operation is active, make sure Writing Tools has
-        /// exclusive access to the text in this range. Your ``UIWritingToolsCoordinatorDelegate``
+        /// exclusive access to the text in this range. Your ``UIWritingToolsCoordinator/Delegate``
         /// object can make changes to the text as part of incorporating Writing Tools
         /// results, but don’t allow changes to come from other sources. For example,
         /// don’t let someone edit the text in this range directly until Writing Tools finishes.

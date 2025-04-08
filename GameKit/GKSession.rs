@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for GKSession {}
 impl GKSession {
     extern_methods!(
         #[cfg(feature = "GKPublicConstants")]
-        #[deprecated]
+        #[deprecated = "No longer available"]
         #[unsafe(method(initWithSessionID:displayName:sessionMode:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSessionID_displayName_sessionMode(
@@ -35,7 +35,7 @@ impl GKSession {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "GKPublicProtocols")]
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn GKSessionDelegate>>>;
@@ -43,7 +43,7 @@ impl GKSession {
         #[cfg(feature = "GKPublicProtocols")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
@@ -59,7 +59,7 @@ impl GKSession {
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "GKPublicConstants")]
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(sessionMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionMode(&self) -> GKSessionMode;
@@ -149,7 +149,7 @@ impl GKSession {
 
         #[cfg(feature = "GKPublicConstants")]
         /// Returns peers according to connection state
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(peersWithConnectionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn peersWithConnectionState(

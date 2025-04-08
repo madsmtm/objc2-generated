@@ -522,6 +522,54 @@ mod __WKUserContentController;
 #[cfg(feature = "WKUserScript")]
 #[path = "WKUserScript.rs"]
 mod __WKUserScript;
+#[cfg(feature = "WKWebExtension")]
+#[path = "WKWebExtension.rs"]
+mod __WKWebExtension;
+#[cfg(feature = "WKWebExtensionAction")]
+#[path = "WKWebExtensionAction.rs"]
+mod __WKWebExtensionAction;
+#[cfg(feature = "WKWebExtensionCommand")]
+#[path = "WKWebExtensionCommand.rs"]
+mod __WKWebExtensionCommand;
+#[cfg(feature = "WKWebExtensionContext")]
+#[path = "WKWebExtensionContext.rs"]
+mod __WKWebExtensionContext;
+#[cfg(feature = "WKWebExtensionController")]
+#[path = "WKWebExtensionController.rs"]
+mod __WKWebExtensionController;
+#[cfg(feature = "WKWebExtensionControllerConfiguration")]
+#[path = "WKWebExtensionControllerConfiguration.rs"]
+mod __WKWebExtensionControllerConfiguration;
+#[cfg(feature = "WKWebExtensionControllerDelegate")]
+#[path = "WKWebExtensionControllerDelegate.rs"]
+mod __WKWebExtensionControllerDelegate;
+#[cfg(feature = "WKWebExtensionDataRecord")]
+#[path = "WKWebExtensionDataRecord.rs"]
+mod __WKWebExtensionDataRecord;
+#[cfg(feature = "WKWebExtensionDataType")]
+#[path = "WKWebExtensionDataType.rs"]
+mod __WKWebExtensionDataType;
+#[cfg(feature = "WKWebExtensionMatchPattern")]
+#[path = "WKWebExtensionMatchPattern.rs"]
+mod __WKWebExtensionMatchPattern;
+#[cfg(feature = "WKWebExtensionMessagePort")]
+#[path = "WKWebExtensionMessagePort.rs"]
+mod __WKWebExtensionMessagePort;
+#[cfg(feature = "WKWebExtensionPermission")]
+#[path = "WKWebExtensionPermission.rs"]
+mod __WKWebExtensionPermission;
+#[cfg(feature = "WKWebExtensionTab")]
+#[path = "WKWebExtensionTab.rs"]
+mod __WKWebExtensionTab;
+#[cfg(feature = "WKWebExtensionTabConfiguration")]
+#[path = "WKWebExtensionTabConfiguration.rs"]
+mod __WKWebExtensionTabConfiguration;
+#[cfg(feature = "WKWebExtensionWindow")]
+#[path = "WKWebExtensionWindow.rs"]
+mod __WKWebExtensionWindow;
+#[cfg(feature = "WKWebExtensionWindowConfiguration")]
+#[path = "WKWebExtensionWindowConfiguration.rs"]
+mod __WKWebExtensionWindowConfiguration;
 #[cfg(feature = "WKWebView")]
 #[path = "WKWebView.rs"]
 mod __WKWebView;
@@ -1840,6 +1888,130 @@ pub use self::__WKUserContentController::WKUserContentController;
 pub use self::__WKUserScript::WKUserScript;
 #[cfg(feature = "WKUserScript")]
 pub use self::__WKUserScript::WKUserScriptInjectionTime;
+#[cfg(feature = "WKWebExtension")]
+pub use self::__WKWebExtension::WKWebExtension;
+#[cfg(feature = "WKWebExtension")]
+pub use self::__WKWebExtension::WKWebExtensionError;
+#[cfg(feature = "WKWebExtension")]
+pub use self::__WKWebExtension::WKWebExtensionErrorDomain;
+#[cfg(feature = "WKWebExtensionAction")]
+pub use self::__WKWebExtensionAction::WKWebExtensionAction;
+#[cfg(feature = "WKWebExtensionCommand")]
+pub use self::__WKWebExtensionCommand::WKWebExtensionCommand;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContext;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextDeniedPermissionMatchPatternsWereRemovedNotification;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextDeniedPermissionsWereRemovedNotification;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextError;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextErrorDomain;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextErrorsDidUpdateNotification;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextGrantedPermissionMatchPatternsWereRemovedNotification;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextGrantedPermissionsWereRemovedNotification;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextNotificationUserInfoKey;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextNotificationUserInfoKeyMatchPatterns;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextNotificationUserInfoKeyPermissions;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextPermissionMatchPatternsWereDeniedNotification;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextPermissionMatchPatternsWereGrantedNotification;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextPermissionStatus;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextPermissionsWereDeniedNotification;
+#[cfg(feature = "WKWebExtensionContext")]
+pub use self::__WKWebExtensionContext::WKWebExtensionContextPermissionsWereGrantedNotification;
+#[cfg(feature = "WKWebExtensionController")]
+pub use self::__WKWebExtensionController::WKWebExtensionController;
+#[cfg(feature = "WKWebExtensionControllerConfiguration")]
+pub use self::__WKWebExtensionControllerConfiguration::WKWebExtensionControllerConfiguration;
+#[cfg(feature = "WKWebExtensionControllerDelegate")]
+pub use self::__WKWebExtensionControllerDelegate::WKWebExtensionControllerDelegate;
+#[cfg(feature = "WKWebExtensionDataRecord")]
+pub use self::__WKWebExtensionDataRecord::WKWebExtensionDataRecord;
+#[cfg(feature = "WKWebExtensionDataRecord")]
+pub use self::__WKWebExtensionDataRecord::WKWebExtensionDataRecordError;
+#[cfg(feature = "WKWebExtensionDataRecord")]
+pub use self::__WKWebExtensionDataRecord::WKWebExtensionDataRecordErrorDomain;
+#[cfg(feature = "WKWebExtensionDataType")]
+pub use self::__WKWebExtensionDataType::WKWebExtensionDataType;
+#[cfg(feature = "WKWebExtensionDataType")]
+pub use self::__WKWebExtensionDataType::WKWebExtensionDataTypeLocal;
+#[cfg(feature = "WKWebExtensionDataType")]
+pub use self::__WKWebExtensionDataType::WKWebExtensionDataTypeSession;
+#[cfg(feature = "WKWebExtensionDataType")]
+pub use self::__WKWebExtensionDataType::WKWebExtensionDataTypeSynchronized;
+#[cfg(feature = "WKWebExtensionMatchPattern")]
+pub use self::__WKWebExtensionMatchPattern::WKWebExtensionMatchPattern;
+#[cfg(feature = "WKWebExtensionMatchPattern")]
+pub use self::__WKWebExtensionMatchPattern::WKWebExtensionMatchPatternError;
+#[cfg(feature = "WKWebExtensionMatchPattern")]
+pub use self::__WKWebExtensionMatchPattern::WKWebExtensionMatchPatternErrorDomain;
+#[cfg(feature = "WKWebExtensionMatchPattern")]
+pub use self::__WKWebExtensionMatchPattern::WKWebExtensionMatchPatternOptions;
+#[cfg(feature = "WKWebExtensionMessagePort")]
+pub use self::__WKWebExtensionMessagePort::WKWebExtensionMessagePort;
+#[cfg(feature = "WKWebExtensionMessagePort")]
+pub use self::__WKWebExtensionMessagePort::WKWebExtensionMessagePortError;
+#[cfg(feature = "WKWebExtensionMessagePort")]
+pub use self::__WKWebExtensionMessagePort::WKWebExtensionMessagePortErrorDomain;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermission;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionActiveTab;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionAlarms;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionClipboardWrite;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionContextMenus;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionCookies;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionDeclarativeNetRequest;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionDeclarativeNetRequestFeedback;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionDeclarativeNetRequestWithHostAccess;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionMenus;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionNativeMessaging;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionScripting;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionStorage;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionTabs;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionUnlimitedStorage;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionWebNavigation;
+#[cfg(feature = "WKWebExtensionPermission")]
+pub use self::__WKWebExtensionPermission::WKWebExtensionPermissionWebRequest;
+#[cfg(feature = "WKWebExtensionTab")]
+pub use self::__WKWebExtensionTab::WKWebExtensionTab;
+#[cfg(feature = "WKWebExtensionTab")]
+pub use self::__WKWebExtensionTab::WKWebExtensionTabChangedProperties;
+#[cfg(feature = "WKWebExtensionTabConfiguration")]
+pub use self::__WKWebExtensionTabConfiguration::WKWebExtensionTabConfiguration;
+#[cfg(feature = "WKWebExtensionWindow")]
+pub use self::__WKWebExtensionWindow::WKWebExtensionWindow;
+#[cfg(feature = "WKWebExtensionWindow")]
+pub use self::__WKWebExtensionWindow::WKWebExtensionWindowState;
+#[cfg(feature = "WKWebExtensionWindow")]
+pub use self::__WKWebExtensionWindow::WKWebExtensionWindowType;
+#[cfg(feature = "WKWebExtensionWindowConfiguration")]
+pub use self::__WKWebExtensionWindowConfiguration::WKWebExtensionWindowConfiguration;
 #[cfg(feature = "WKWebView")]
 pub use self::__WKWebView::WKFullscreenState;
 #[cfg(feature = "WKWebView")]

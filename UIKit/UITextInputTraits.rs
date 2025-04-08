@@ -603,6 +603,25 @@ extern_protocol!(
             &self,
             allowed_writing_tools_result_options: UIWritingToolsResultOptions,
         );
+
+        #[cfg(feature = "UIConversationContext")]
+        /// A reference to a conversation, such as a mail or messaging thread.
+        ///
+        /// Set this conversation context before the keyboard appears; the keyboard uses this context to initialize its conversation context value. When updates occur in the conversation, call ``UITextInputDelegate/conversationContext(_:didChange:)`` on the ``inputDelegate`` property for ``UITextInput`` objects, such as UITextView/inputDelegate`` or ``UITextField/inputDelegate``.
+        #[optional]
+        #[unsafe(method(conversationContext))]
+        #[unsafe(method_family = none)]
+        unsafe fn conversationContext(&self) -> Option<Retained<UIConversationContext>>;
+
+        #[cfg(feature = "UIConversationContext")]
+        /// Setter for [`conversationContext`][Self::conversationContext].
+        #[optional]
+        #[unsafe(method(setConversationContext:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setConversationContext(
+            &self,
+            conversation_context: Option<&UIConversationContext>,
+        );
     }
 );
 

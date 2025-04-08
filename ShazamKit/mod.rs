@@ -74,6 +74,8 @@ pub use self::__SHMatch::SHMatch;
 #[cfg(all(feature = "SHMatchedMediaItem", feature = "SHMediaItem"))]
 pub use self::__SHMatchedMediaItem::SHMatchedMediaItem;
 #[cfg(all(feature = "SHMatchedMediaItem", feature = "SHMediaItem"))]
+pub use self::__SHMatchedMediaItem::SHMediaItemConfidence;
+#[cfg(all(feature = "SHMatchedMediaItem", feature = "SHMediaItem"))]
 pub use self::__SHMatchedMediaItem::SHMediaItemFrequencySkew;
 #[cfg(all(feature = "SHMatchedMediaItem", feature = "SHMediaItem"))]
 pub use self::__SHMatchedMediaItem::SHMediaItemMatchOffset;

@@ -63,6 +63,17 @@ impl UITab {
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// Determines if the tab is enabled. When NO, tabs will have a disabled appearance and cannot be selected by the user.
+        /// Default is YES.
+        #[unsafe(method(isEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEnabled(&self) -> bool;
+
+        /// Setter for [`isEnabled`][Self::isEnabled].
+        #[unsafe(method(setEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setEnabled(&self, enabled: bool);
+
         /// The title of the tab.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -191,6 +202,12 @@ impl UITab {
         #[unsafe(method(setAllowsHiding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsHiding(&self, allows_hiding: bool);
+
+        /// Determines if the tab has a visible placement. Returns YES if the tab is visible in a tab bar
+        /// that supports different tab placements. Otherwise returns NO.
+        #[unsafe(method(hasVisiblePlacement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hasVisiblePlacement(&self) -> bool;
 
         #[cfg(all(
             feature = "UIImage",

@@ -69,6 +69,10 @@ extern_class!(
     pub struct BADownload;
 );
 
+unsafe impl Send for BADownload {}
+
+unsafe impl Sync for BADownload {}
+
 unsafe impl NSCoding for BADownload {}
 
 unsafe impl NSCopying for BADownload {}

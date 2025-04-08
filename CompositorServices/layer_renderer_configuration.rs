@@ -9,7 +9,16 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_configuration?language=objc)
+    /// An opaque type that stores the settings to apply to a Compositor layer renderer.
+    ///
+    /// You don’t create this type directly. If your ``CompositorLayer`` uses a custom
+    /// ``CompositorLayerConfiguration``, the compositor layer creates an instance of this type and
+    /// passes it to the provider’s
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// function. Use that instance to modify the default configuration settings
+    /// for your layer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_configuration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CP_OBJECT_cp_layer_renderer_configuration;
@@ -29,7 +38,16 @@ impl CP_OBJECT_cp_layer_renderer_configuration {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_t?language=objc)
+/// An opaque type that stores the settings to apply to a Compositor layer renderer.
+///
+/// You don’t create this type directly. If your ``CompositorLayer`` uses a custom
+/// ``CompositorLayerConfiguration``, the compositor layer creates an instance of this type and
+/// passes it to the provider’s
+/// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+/// function. Use that instance to modify the default configuration settings
+/// for your layer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_t?language=objc)
 pub type cp_layer_renderer_configuration_t = CP_OBJECT_cp_layer_renderer_configuration;
 
 extern "C-unwind" {

@@ -299,6 +299,15 @@ impl NSTextField {
         #[unsafe(method(setAllowsWritingTools:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsWritingTools(&self, allows_writing_tools: bool);
+
+        #[unsafe(method(allowsWritingToolsAffordance))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsWritingToolsAffordance(&self) -> bool;
+
+        /// Setter for [`allowsWritingToolsAffordance`][Self::allowsWritingToolsAffordance].
+        #[unsafe(method(setAllowsWritingToolsAffordance:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsWritingToolsAffordance(&self, allows_writing_tools_affordance: bool);
     );
 }
 

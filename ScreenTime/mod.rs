@@ -37,6 +37,8 @@ pub use self::__STScreenTimeConfiguration::STScreenTimeConfiguration;
 pub use self::__STScreenTimeConfiguration::STScreenTimeConfigurationObserver;
 #[cfg(feature = "STWebHistory")]
 pub use self::__STWebHistory::STWebHistory;
+#[cfg(feature = "STWebHistory")]
+pub use self::__STWebHistory::STWebHistoryProfileIdentifier;
 #[cfg(all(feature = "STWebpageController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub use self::__STWebpageController::STWebpageController;

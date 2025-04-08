@@ -294,7 +294,7 @@ impl GKAchievement {
 
         #[cfg(feature = "block2")]
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
-        #[deprecated]
+        #[deprecated = "This method is obsolete."]
         #[unsafe(method(selectChallengeablePlayerIDs:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectChallengeablePlayerIDs_withCompletionHandler(
@@ -450,11 +450,37 @@ impl GKAchievement {
 /// GKChallengeObsoletedUI.
 #[cfg(feature = "GKScore")]
 impl GKScore {
-    extern_methods!();
+    extern_methods!(
+        #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
+        /// * This method is obsolete. Calling this method does nothing and will return nil **
+        #[unsafe(method(challengeComposeControllerWithPlayers:message:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn challengeComposeControllerWithPlayers_message_completionHandler(
+            &self,
+            player_i_ds: Option<&NSArray<NSString>>,
+            message: Option<&NSString>,
+            completion_handler: GKChallengeComposeCompletionBlock,
+            mtm: MainThreadMarker,
+        ) -> Option<Retained<NSViewController>>;
+    );
 }
 
 /// GKChallengeObsoletedUI.
 #[cfg(feature = "GKAchievement")]
 impl GKAchievement {
-    extern_methods!();
+    extern_methods!(
+        #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
+        #[cfg(target_os = "macos")]
+        /// * This method is obsolete. Calling this method does nothing and will return nil **
+        #[unsafe(method(challengeComposeControllerWithPlayers:message:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn challengeComposeControllerWithPlayers_message_completionHandler(
+            &self,
+            player_i_ds: Option<&NSArray<NSString>>,
+            message: Option<&NSString>,
+            completion_handler: GKChallengeComposeCompletionBlock,
+            mtm: MainThreadMarker,
+        ) -> Option<Retained<NSViewController>>;
+    );
 }

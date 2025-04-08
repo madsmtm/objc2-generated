@@ -24,3 +24,11 @@ extern "C" {}
 #[cfg(feature = "BEMemory")]
 #[path = "BEMemory.rs"]
 mod __BEMemory;
+#[cfg(feature = "BEkevent")]
+#[path = "BEkevent.rs"]
+mod __BEkevent;
+
+#[cfg(all(feature = "BEkevent", feature = "libc"))]
+pub use self::__BEkevent::be_kevent;
+#[cfg(all(feature = "BEkevent", feature = "libc"))]
+pub use self::__BEkevent::be_kevent64;

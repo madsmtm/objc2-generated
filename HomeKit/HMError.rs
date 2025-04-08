@@ -231,6 +231,8 @@ impl HMErrorCode {
     pub const AccessoryIsSuspended: Self = Self(103);
     #[doc(alias = "HMErrorCodePartialCommunicationFailure")]
     pub const PartialCommunicationFailure: Self = Self(104);
+    #[doc(alias = "HMErrorCodeHomeUpgradeRequired")]
+    pub const HomeUpgradeRequired: Self = Self(105);
 }
 
 unsafe impl Encode for HMErrorCode {

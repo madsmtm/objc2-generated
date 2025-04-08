@@ -196,7 +196,9 @@ extern_protocol!(
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuinteractiondelegate?language=objc)
-    pub unsafe trait UIEditMenuInteractionDelegate: NSObjectProtocol {
+    pub unsafe trait UIEditMenuInteractionDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Called when the interaction begins.
         ///

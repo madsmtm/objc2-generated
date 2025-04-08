@@ -250,6 +250,44 @@ impl ASAuthorizationProviderExtensionLoginManager {
         pub unsafe fn resetUserSecureEnclaveKey(&self);
 
         #[cfg(feature = "block2")]
+        /// Provides a new or cached attestation for the specified key type.
+        ///
+        /// Parameter `keyType`: The key type for the attestation.
+        ///
+        /// Parameter `clientDataHash`: A SHA256 hash of a unique, single-use data block that embeds a challenge from your server.
+        ///
+        /// Parameter `completion`: A closure that the method calls upon completion with the following parameters:
+        /// * attestationCertificates An array of certificates that verify the validity of the key associated with the keyType. Send this to your server for processing.
+        /// * error A DCError instance that indicates the reason for failure, or nil on success.
+        #[unsafe(method(attestKey:clientDataHash:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn attestKey_clientDataHash_completion(
+            &self,
+            key_type: ASAuthorizationProviderExtensionKeyType,
+            client_data_hash: &NSData,
+            completion: &block2::Block<dyn Fn(*mut NSArray, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Provides a new or cached attestation for the specified pending key type.
+        ///
+        /// Parameter `keyType`: The pending key type for the attestation.
+        ///
+        /// Parameter `clientDataHash`: A SHA256 hash of a unique, single-use data block that embeds a challenge from your server.
+        ///
+        /// Parameter `completion`: A closure that the method calls upon completion with the following parameters:
+        /// * attestationCertificates An array of certificates that verify the validity of the pending key associated with the keyType. Send this to your server for processing.
+        /// * error A DCError instance that indicates the reason for failure, or nil on success.
+        #[unsafe(method(attestPendingKey:clientDataHash:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn attestPendingKey_clientDataHash_completion(
+            &self,
+            key_type: ASAuthorizationProviderExtensionKeyType,
+            client_data_hash: &NSData,
+            completion: &block2::Block<dyn Fn(*mut NSArray, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
         /// Asks authorization service to show extension view controller for registration. If the controller cannot be shown an error is returned.  This is only valid during registration.
         #[unsafe(method(presentRegistrationViewControllerWithCompletion:))]
         #[unsafe(method_family = none)]

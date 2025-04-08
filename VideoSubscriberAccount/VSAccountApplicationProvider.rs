@@ -19,10 +19,12 @@ unsafe impl NSObjectProtocol for VSAccountApplicationProvider {}
 
 impl VSAccountApplicationProvider {
     extern_methods!(
+        /// Unavailable for this class.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Unavailable for this class.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;

@@ -18,7 +18,15 @@ unsafe impl RefEncode for cp_frame_timing {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_frame_timing", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_t?language=objc)
+/// An opaque type that stores information about a frame’s
+/// encoding, rendering, and presentation deadlines.
+///
+/// Before you start drawing, call the ``cp_frame_predict_timing``
+/// function to update and retrieve the frame’s timing information.
+/// After you access the frame’s ``cp_drawable_t`` type, get the
+/// timing information using the ``cp_drawable_get_frame_timing`` function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_t?language=objc)
 pub type cp_frame_timing_t = *mut cp_frame_timing;
 
 extern "C-unwind" {

@@ -102,6 +102,10 @@ extern_class!(
     pub struct NSUnit;
 );
 
+unsafe impl Send for NSUnit {}
+
+unsafe impl Sync for NSUnit {}
+
 #[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSUnit {}
 
@@ -146,6 +150,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDimension;
 );
+
+unsafe impl Send for NSDimension {}
+
+unsafe impl Sync for NSDimension {}
 
 #[cfg(feature = "NSObject")]
 unsafe impl NSCoding for NSDimension {}

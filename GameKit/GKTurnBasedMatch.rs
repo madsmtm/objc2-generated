@@ -715,7 +715,7 @@ impl GKTurnBasedExchangeReply {
 
         #[unsafe(method(replyDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replyDate(&self) -> Option<Retained<NSDate>>;
+        pub unsafe fn replyDate(&self) -> Retained<NSDate>;
     );
 }
 

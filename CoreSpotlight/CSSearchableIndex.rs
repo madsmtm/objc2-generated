@@ -251,5 +251,21 @@ extern_protocol!(
             type_identifier: &NSString,
             in_place: bool,
         ) -> Result<Retained<NSURL>, Retained<NSError>>;
+
+        #[cfg(all(feature = "CSSearchableItem", feature = "block2"))]
+        #[optional]
+        #[unsafe(method(searchableItemsForIdentifiers:searchableItemsHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn searchableItemsForIdentifiers_searchableItemsHandler(
+            &self,
+            identifiers: &NSArray<NSString>,
+            searchable_items_handler: &block2::Block<dyn Fn(NonNull<NSArray<CSSearchableItem>>)>,
+        );
+
+        #[cfg(feature = "CSSearchableItem")]
+        #[optional]
+        #[unsafe(method(searchableItemsDidUpdate:))]
+        #[unsafe(method_family = none)]
+        unsafe fn searchableItemsDidUpdate(&self, items: &NSArray<CSSearchableItem>);
     }
 );

@@ -303,6 +303,24 @@ impl MFMailComposeViewController {
         #[unsafe(method(setPreferredSendingEmailAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSendingEmailAddress(&self, email_address: &NSString);
+
+        #[cfg(feature = "block2")]
+        /// Parameter `itemProvider`: specifying the intended content for collaboration
+        ///
+        /// Returns
+        /// <tt>
+        /// YES
+        /// </tt>
+        /// if the item provider was added to the composition successfully.
+        ///
+        /// If the return value is YES, the itemProvider was added to the composition.  The itemProvider must be non-nil.
+        #[unsafe(method(insertCollaborationItemProvider:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn insertCollaborationItemProvider_completionHandler(
+            &self,
+            item_provider: &NSItemProvider,
+            completion_handler: &block2::Block<dyn Fn(Bool)>,
+        );
     );
 }
 

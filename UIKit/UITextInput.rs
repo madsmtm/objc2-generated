@@ -697,6 +697,13 @@ extern_protocol!(
         #[unsafe(method(didDismissWritingTools))]
         #[unsafe(method_family = none)]
         unsafe fn didDismissWritingTools(&self);
+
+        #[cfg(feature = "UIInputSuggestion")]
+        /// Inserts the user or system’s input suggestion into the document.
+        #[optional]
+        #[unsafe(method(insertInputSuggestion:))]
+        #[unsafe(method_family = none)]
+        unsafe fn insertInputSuggestion(&self, input_suggestion: &UIInputSuggestion);
     }
 );
 
@@ -860,6 +867,16 @@ extern_protocol!(
         #[unsafe(method(textDidChange:))]
         #[unsafe(method_family = none)]
         unsafe fn textDidChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
+
+        #[cfg(all(feature = "UIConversationContext", feature = "UITextInputTraits"))]
+        /// Tells the input delegate when text has changed in the input object for a conversation.
+        #[unsafe(method(conversationContext:didChange:))]
+        #[unsafe(method_family = none)]
+        unsafe fn conversationContext_didChange(
+            &self,
+            context: Option<&UIConversationContext>,
+            text_input: Option<&ProtocolObject<dyn UITextInput>>,
+        );
     }
 );
 

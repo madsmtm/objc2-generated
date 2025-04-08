@@ -52,7 +52,10 @@ unsafe impl RefEncode for cp_layer_renderer_state {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer?language=objc)
+    /// An opaque type that provides the Metal types and timing
+    /// information you need to draw your content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CP_OBJECT_cp_layer_renderer;
@@ -72,7 +75,10 @@ impl CP_OBJECT_cp_layer_renderer {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_t?language=objc)
+/// An opaque type that provides the Metal types and timing
+/// information you need to draw your content.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_t?language=objc)
 pub type cp_layer_renderer_t = CP_OBJECT_cp_layer_renderer;
 
 /// Returns the configuration details you used to create the

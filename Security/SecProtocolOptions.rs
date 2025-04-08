@@ -9,7 +9,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options?language=objc)
+/// A `sec_protocol_options` instance is a container of options for security protocol instances,
+/// such as TLS. Protocol options are used to configure security protocols in the network stack.
+/// For example, clients may set the maximum and minimum allowed TLS versions through protocol
+/// options.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct sec_protocol_options {
@@ -23,7 +28,12 @@ unsafe impl RefEncode for sec_protocol_options {
         Encoding::Pointer(&Encoding::Struct("sec_protocol_options", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_t?language=objc)
+/// A `sec_protocol_options` instance is a container of options for security protocol instances,
+/// such as TLS. Protocol options are used to configure security protocols in the network stack.
+/// For example, clients may set the maximum and minimum allowed TLS versions through protocol
+/// options.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_t?language=objc)
 pub type sec_protocol_options_t = *mut sec_protocol_options;
 
 extern "C-unwind" {

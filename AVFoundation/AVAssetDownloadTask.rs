@@ -243,6 +243,24 @@ impl AVAssetDownloadConfiguration {
         #[unsafe(method(setDownloadsInterstitialAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDownloadsInterstitialAssets(&self, downloads_interstitial_assets: bool);
+
+        #[cfg(all(feature = "AVMediaFormat", feature = "AVPlayerMediaSelectionCriteria"))]
+        /// Sets media selection on interstitials for this asset
+        ///
+        /// Typically, interstitial assets have not been discovered when the main download is initiated.
+        /// This method allows the user to specify AVMediaSelectionCriteria for all interstitials that are discovered.
+        /// Each AVPlayerMediaSelectionCriteria in the array of criteria specfies a set of criteria for a variant to download.
+        ///
+        /// Parameter `criteria`: The array of selection criteria to set
+        ///
+        /// Parameter `mediaCharacteristic`: The AVMediaCharacteristic to which the criteria will be applied
+        #[unsafe(method(setInterstitialMediaSelectionCriteria:forMediaCharacteristic:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setInterstitialMediaSelectionCriteria_forMediaCharacteristic(
+            &self,
+            criteria: &NSArray<AVPlayerMediaSelectionCriteria>,
+            media_characteristic: &AVMediaCharacteristic,
+        );
     );
 }
 

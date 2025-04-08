@@ -1475,11 +1475,9 @@ extern "C" {
 
 extern "C" {
     /// Control spatial adaptation of the quantization parameter (QP) based on per-frame statistics.
-    /// If set to kVTQPModulationLevel_Disable, spatial QP adaptation is not applied based on per-frame statistics.
-    /// If set to kVTQPModulationLevel_Default, video encoder is allowed to apply spatial QP adaptation for each macro block (or coding unit) within a video frame.
+    /// If set to kVTAdaptiveQPLevel_Disable, spatial QP adaptation is not applied based on per-frame statistics.
+    /// If set to kVTAdaptiveQPLevel_Default, video encoder is allowed to apply spatial QP adaptation for each macro block (or coding unit) within a video frame.
     /// QP adaptation is based on spatial characteristics of a frame and the level of spatial QP adaptation is decided internally by the rate controller.
-    ///
-    /// This property must be disabled when low latency rate control is enabled. Support for this property is codec dependent.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_spatialadaptiveqplevel?language=objc)
     pub static kVTCompressionPropertyKey_SpatialAdaptiveQPLevel: &'static CFString;

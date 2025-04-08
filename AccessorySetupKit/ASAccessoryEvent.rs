@@ -74,6 +74,10 @@ extern_class!(
     pub struct ASAccessoryEvent;
 );
 
+unsafe impl Send for ASAccessoryEvent {}
+
+unsafe impl Sync for ASAccessoryEvent {}
+
 unsafe impl NSObjectProtocol for ASAccessoryEvent {}
 
 impl ASAccessoryEvent {

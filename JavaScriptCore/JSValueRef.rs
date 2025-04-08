@@ -94,12 +94,16 @@ unsafe impl RefEncode for JSTypedArrayType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct JSRelationCondition(pub u32);
 impl JSRelationCondition {
+    /// A constant identifying the type of JavaScript relation condition.
     #[doc(alias = "kJSRelationConditionUndefined")]
     pub const Undefined: Self = Self(0);
+    /// A constant identifying the type of JavaScript relation condition.
     #[doc(alias = "kJSRelationConditionEqual")]
     pub const Equal: Self = Self(1);
+    /// A constant identifying the type of JavaScript relation condition.
     #[doc(alias = "kJSRelationConditionGreaterThan")]
     pub const GreaterThan: Self = Self(2);
+    /// A constant identifying the type of JavaScript relation condition.
     #[doc(alias = "kJSRelationConditionLessThan")]
     pub const LessThan: Self = Self(3);
 }

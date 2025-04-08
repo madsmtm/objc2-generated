@@ -16,7 +16,9 @@ extern "C-unwind" {
     pub fn sec_release(obj: *mut c_void);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_object?language=objc)
+/// A `sec_object` is a generic, ARC-able type wrapper for common CoreFoundation Security types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_object?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct sec_object {
@@ -29,5 +31,7 @@ unsafe impl RefEncode for sec_object {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("sec_object", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_object_t?language=objc)
+/// A `sec_object` is a generic, ARC-able type wrapper for common CoreFoundation Security types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_object_t?language=objc)
 pub type sec_object_t = *mut sec_object;

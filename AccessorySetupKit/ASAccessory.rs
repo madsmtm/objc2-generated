@@ -70,6 +70,9 @@ bitflags::bitflags! {
 /// This option indicates that when connecting with low energy transport, the accessory supports activating Bluetooth classic transport profiles.
         #[doc(alias = "ASAccessorySupportBluetoothTransportBridging")]
         const BluetoothTransportBridging = 1<<2;
+/// The accessory supports Bluetooth Low Energy HID service.
+        #[doc(alias = "ASAccessorySupportBluetoothHID")]
+        const BluetoothHID = 1<<3;
     }
 }
 

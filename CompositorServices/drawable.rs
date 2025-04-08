@@ -55,7 +55,17 @@ unsafe impl RefEncode for cp_drawable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_drawable", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_t?language=objc)
+/// An opaque type that contains the textures and other information
+/// you need to set up your render pipeline.
+///
+/// Use the drawable type to retrieve the textures for your render pipelines,
+/// and use the drawable’s views to get details about how to render to those
+/// textures. Get the drawable for a frame using the ``cp_frame_query_drawable``
+/// function. The layer manages a limited number of reusable drawable types
+/// and recycles them after each use. Draw only one frame at a time to ensure
+/// each new frame’s drawable type is ready in time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_t?language=objc)
 pub type cp_drawable_t = *mut cp_drawable;
 
 extern "C-unwind" {

@@ -264,7 +264,7 @@ impl UICalendarView {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarviewdelegate?language=objc)
-    pub unsafe trait UICalendarViewDelegate: NSObjectProtocol {
+    pub unsafe trait UICalendarViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UICalendarViewDecoration",
             feature = "UIResponder",

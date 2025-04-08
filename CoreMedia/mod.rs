@@ -539,6 +539,10 @@ pub use self::__CMFormatDescription::kCMFormatDescriptionKey_PixelAspectRatioVer
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionLogTransferFunction_AppleLog;
 #[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_Equirectangular;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_HalfEquirectangular;
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_Rectilinear;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_ITU_R_2020;

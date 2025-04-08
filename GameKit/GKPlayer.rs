@@ -138,7 +138,7 @@ impl GKPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn isFriend(&self) -> bool;
 
-        #[deprecated = "Use either the gamePlayerID or teamPlayerID property to identify a player."]
+        #[deprecated = "Use ``GKPlayer/gamePlayerID`` or ``GKPlayer/teamPlayerID`` instead."]
         #[unsafe(method(playerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Retained<NSString>;

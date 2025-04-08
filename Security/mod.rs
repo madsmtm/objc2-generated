@@ -2056,6 +2056,8 @@ pub use self::__SecBase::errSecMissingAttributeWrappedKeyFormat;
 #[cfg(feature = "SecBase")]
 pub use self::__SecBase::errSecMissingEntitlement;
 #[cfg(feature = "SecBase")]
+pub use self::__SecBase::errSecMissingQualifiedCertStatement;
+#[cfg(feature = "SecBase")]
 pub use self::__SecBase::errSecMissingRequiredExtension;
 #[cfg(feature = "SecBase")]
 pub use self::__SecBase::errSecMissingValue;
@@ -3966,7 +3968,15 @@ pub use self::__SecPolicy::kSecPolicyAppleCodeSigning;
 #[cfg(feature = "SecPolicy")]
 pub use self::__SecPolicy::kSecPolicyAppleEAP;
 #[cfg(feature = "SecPolicy")]
+pub use self::__SecPolicy::kSecPolicyAppleEAPClient;
+#[cfg(feature = "SecPolicy")]
+pub use self::__SecPolicy::kSecPolicyAppleEAPServer;
+#[cfg(feature = "SecPolicy")]
 pub use self::__SecPolicy::kSecPolicyAppleIDValidation;
+#[cfg(feature = "SecPolicy")]
+pub use self::__SecPolicy::kSecPolicyAppleIPSecClient;
+#[cfg(feature = "SecPolicy")]
+pub use self::__SecPolicy::kSecPolicyAppleIPSecServer;
 #[cfg(feature = "SecPolicy")]
 pub use self::__SecPolicy::kSecPolicyAppleIPsec;
 #[cfg(feature = "SecPolicy")]
@@ -3983,6 +3993,10 @@ pub use self::__SecPolicy::kSecPolicyAppleRevocation;
 pub use self::__SecPolicy::kSecPolicyAppleSMIME;
 #[cfg(feature = "SecPolicy")]
 pub use self::__SecPolicy::kSecPolicyAppleSSL;
+#[cfg(feature = "SecPolicy")]
+pub use self::__SecPolicy::kSecPolicyAppleSSLClient;
+#[cfg(feature = "SecPolicy")]
+pub use self::__SecPolicy::kSecPolicyAppleSSLServer;
 #[cfg(feature = "SecPolicy")]
 pub use self::__SecPolicy::kSecPolicyAppleTimeStamping;
 #[cfg(feature = "SecPolicy")]
@@ -4443,6 +4457,10 @@ pub use self::__SecTrust::kSecTrustEvaluationDate;
 pub use self::__SecTrust::kSecTrustExtendedValidation;
 #[cfg(feature = "SecTrust")]
 pub use self::__SecTrust::kSecTrustOrganizationName;
+#[cfg(feature = "SecTrust")]
+pub use self::__SecTrust::kSecTrustQCStatements;
+#[cfg(feature = "SecTrust")]
+pub use self::__SecTrust::kSecTrustQWACValidation;
 #[cfg(feature = "SecTrust")]
 pub use self::__SecTrust::kSecTrustResultValue;
 #[cfg(feature = "SecTrust")]

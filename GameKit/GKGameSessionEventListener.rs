@@ -109,7 +109,7 @@ impl GKGameSession {
         #[unsafe(method_family = none)]
         pub unsafe fn addEventListener(listener: &NSObject);
 
-        #[deprecated = "-[GKLocalPlayer unregisterListener:] or -[GKLocalPlayer unregisterAllListeners:]"]
+        #[deprecated]
         #[unsafe(method(removeEventListener:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeEventListener(listener: &NSObject);

@@ -20,7 +20,18 @@ unsafe impl RefEncode for cp_view_texture_map {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_view_texture_map", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view_texture_map_t?language=objc)
+/// An opaque type that describes the relationship between a
+/// view and the underlying texture.
+///
+/// A texture map helps you locate the content for a specific view within
+/// a texture. Texture maps are especially important when a layer uses a
+/// single texture to manage multiple views. For example, a head-mounted
+/// display might store the images for both the left and right eyes in a
+/// single texture. Pass this type to other functions to get specific details
+/// about the current texture, such as its view bounds or its index into
+/// a texture array.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view_texture_map_t?language=objc)
 pub type cp_view_texture_map_t = *mut cp_view_texture_map;
 
 extern "C-unwind" {
@@ -86,7 +97,16 @@ unsafe impl RefEncode for cp_view {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_view", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view_t?language=objc)
+/// An opaque type that manages the information for how to render
+/// content into the current frame.
+///
+/// Compositor provides a view for each distinct render viewpoint.
+/// For example, a head-mounted display typically contains two views:
+/// one for each eye. Use the information in the views to set up your
+/// render pass descriptor. For example, use it to determine which
+/// part of a texture to fill with content.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view_t?language=objc)
 pub type cp_view_t = *mut cp_view;
 
 extern "C-unwind" {

@@ -154,13 +154,13 @@ impl GKMatchmakerViewController {
         pub unsafe fn setHostedPlayer_didConnect(&self, player: &GKPlayer, connected: bool);
 
         /// deprecated, set the message on the match request instead
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(defaultInvitationMessage))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultInvitationMessage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`defaultInvitationMessage`][Self::defaultInvitationMessage].
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDefaultInvitationMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultInvitationMessage(
@@ -224,6 +224,12 @@ impl GKMatchmakerViewController {
         #[unsafe(method(setHostedPlayer:connected:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHostedPlayer_connected(&self, player_id: &NSString, connected: bool);
+
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
+        #[deprecated]
+        #[unsafe(method(setHostedPlayerReady:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHostedPlayerReady(&self, player_id: &NSString);
     );
 }
 

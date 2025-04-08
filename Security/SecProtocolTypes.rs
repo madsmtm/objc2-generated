@@ -10,7 +10,12 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_trust?language=objc)
+/// These are os_object compatible and ARC-able wrappers around existing CoreFoundation
+/// Security types, including: SecTrustRef, SecIdentityRef, and SecCertificateRef. They allow
+/// clients to use these types in os_object-type APIs and data structures. The underlying
+/// CoreFoundation types may be extracted and used by clients as needed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_trust?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct sec_trust {
@@ -23,7 +28,12 @@ unsafe impl RefEncode for sec_trust {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("sec_trust", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_trust_t?language=objc)
+/// These are os_object compatible and ARC-able wrappers around existing CoreFoundation
+/// Security types, including: SecTrustRef, SecIdentityRef, and SecCertificateRef. They allow
+/// clients to use these types in os_object-type APIs and data structures. The underlying
+/// CoreFoundation types may be extracted and used by clients as needed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_trust_t?language=objc)
 pub type sec_trust_t = *mut sec_trust;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sec_identity?language=objc)

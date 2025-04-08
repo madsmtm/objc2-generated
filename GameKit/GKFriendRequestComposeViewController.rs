@@ -16,7 +16,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
-    #[deprecated]
+    #[deprecated = "No longer supported."]
     pub struct GKFriendRequestComposeViewController;
 );
 
@@ -99,13 +99,13 @@ impl GKFriendRequestComposeViewController {
 impl GKFriendRequestComposeViewController {
     extern_methods!(
         /// Get the maximum number of recipients permitted
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(maxNumberOfRecipients))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxNumberOfRecipients(mtm: MainThreadMarker) -> NSUInteger;
 
         /// Specify the message sent to the invitee. A default message will be used if you don't specify one.
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
@@ -123,12 +123,12 @@ impl GKFriendRequestComposeViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn addRecipientsWithPlayerIDs(&self, player_i_ds: &NSArray<NSString>);
 
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(addRecipientsWithEmailAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRecipientsWithEmailAddresses(&self, email_addresses: &NSArray<NSString>);
 
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(composeViewDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn composeViewDelegate(
@@ -137,7 +137,7 @@ impl GKFriendRequestComposeViewController {
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`composeViewDelegate`][Self::composeViewDelegate].
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setComposeViewDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setComposeViewDelegate(
@@ -153,12 +153,12 @@ extern_protocol!(
     /// Optional delegate
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontrollerdelegate?language=objc)
-    #[deprecated]
+    #[deprecated = "No longer supported."]
     pub unsafe trait GKFriendRequestComposeViewControllerDelegate {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// The compose view has finished
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(friendRequestComposeViewControllerDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn friendRequestComposeViewControllerDidFinish(

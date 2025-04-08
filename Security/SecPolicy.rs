@@ -83,6 +83,36 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplesslserver?language=objc)
+    pub static kSecPolicyAppleSSLServer: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplesslclient?language=objc)
+    pub static kSecPolicyAppleSSLClient: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleeapserver?language=objc)
+    pub static kSecPolicyAppleEAPServer: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleeapclient?language=objc)
+    pub static kSecPolicyAppleEAPClient: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleipsecserver?language=objc)
+    pub static kSecPolicyAppleIPSecServer: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleipsecclient?language=objc)
+    pub static kSecPolicyAppleIPSecClient: &'static CFString;
+}
+
+extern "C" {
     /// Predefined property key constants used to get or set values in
     /// a dictionary for a policy instance.
     ///

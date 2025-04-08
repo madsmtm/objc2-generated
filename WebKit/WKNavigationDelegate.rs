@@ -375,5 +375,23 @@ extern_protocol!(
             navigation_response: &WKNavigationResponse,
             download: &WKDownload,
         );
+
+        #[cfg(all(
+            feature = "WKBackForwardListItem",
+            feature = "WKWebView",
+            feature = "block2",
+            feature = "objc2-app-kit"
+        ))]
+        #[cfg(target_os = "macos")]
+        #[optional]
+        #[unsafe(method(webView:shouldGoToBackForwardListItem:willUseInstantBack:completionHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn webView_shouldGoToBackForwardListItem_willUseInstantBack_completionHandler(
+            &self,
+            web_view: &WKWebView,
+            back_forward_list_item: &WKBackForwardListItem,
+            will_use_instant_back: bool,
+            completion_handler: &block2::Block<dyn Fn(Bool)>,
+        );
     }
 );

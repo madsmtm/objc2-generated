@@ -36,6 +36,7 @@ impl GKScore {
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Initialize the achievement for a specific player. Use to submit participant scores when ending a turn-based match.
+        #[deprecated]
         #[unsafe(method(initWithLeaderboardIdentifier:player:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLeaderboardIdentifier_player(
@@ -63,21 +64,25 @@ impl GKScore {
         pub unsafe fn formattedValue(&self) -> Option<Retained<NSString>>;
 
         /// leaderboard identifier (required)
+        #[deprecated]
         #[unsafe(method(leaderboardIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn leaderboardIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`leaderboardIdentifier`][Self::leaderboardIdentifier].
+        #[deprecated]
         #[unsafe(method(setLeaderboardIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeaderboardIdentifier(&self, leaderboard_identifier: &NSString);
 
         /// optional additional context that allows a game to store and retrieve additional data associated with the store.  Default value of zero is returned if no value is set.
+        #[deprecated]
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> u64;
 
         /// Setter for [`context`][Self::context].
+        #[deprecated]
         #[unsafe(method(setContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContext(&self, context: u64);
@@ -90,9 +95,10 @@ impl GKScore {
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// The player that recorded the score.
+        #[deprecated]
         #[unsafe(method(player))]
         #[unsafe(method_family = none)]
-        pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
+        pub unsafe fn player(&self) -> Retained<GKPlayer>;
 
         /// The rank of the player within the leaderboard, only valid when returned from GKLeaderboard
         #[deprecated]
@@ -102,11 +108,13 @@ impl GKScore {
 
         /// Convenience property to make the leaderboard associated with this GKScore, the default leaderboard for this player. Default value is false.
         /// If true, reporting that score will make the category this score belongs to, the default leaderboard for this user
+        #[deprecated]
         #[unsafe(method(shouldSetDefaultLeaderboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldSetDefaultLeaderboard(&self) -> bool;
 
         /// Setter for [`shouldSetDefaultLeaderboard`][Self::shouldSetDefaultLeaderboard].
+        #[deprecated]
         #[unsafe(method(setShouldSetDefaultLeaderboard:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldSetDefaultLeaderboard(&self, should_set_default_leaderboard: bool);
@@ -117,6 +125,7 @@ impl GKScore {
         /// 1. Value not set
         /// 2. Local player not authenticated
         /// 3. Communications problem
+        #[deprecated]
         #[unsafe(method(reportScores:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportScores_withCompletionHandler(

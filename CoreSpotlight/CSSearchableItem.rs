@@ -32,6 +32,30 @@ extern "C" {
     pub static CSSearchQueryString: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitemupdatelisteneroptions?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CSSearchableItemUpdateListenerOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl CSSearchableItemUpdateListenerOptions: NSUInteger {
+        #[doc(alias = "CSSearchableItemUpdateListenerOptionDefault")]
+        const Default = 0;
+        #[doc(alias = "CSSearchableItemUpdateListenerOptionSummarization")]
+        const Summarization = 1<<1;
+        #[doc(alias = "CSSearchableItemUpdateListenerOptionPriority")]
+        const Priority = 1<<2;
+    }
+}
+
+unsafe impl Encode for CSSearchableItemUpdateListenerOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for CSSearchableItemUpdateListenerOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitem?language=objc)
     #[unsafe(super(NSObject))]
@@ -113,6 +137,18 @@ impl CSSearchableItem {
         #[unsafe(method(setIsUpdate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIsUpdate(&self, is_update: bool);
+
+        #[unsafe(method(updateListenerOptions))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateListenerOptions(&self) -> CSSearchableItemUpdateListenerOptions;
+
+        /// Setter for [`updateListenerOptions`][Self::updateListenerOptions].
+        #[unsafe(method(setUpdateListenerOptions:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUpdateListenerOptions(
+            &self,
+            update_listener_options: CSSearchableItemUpdateListenerOptions,
+        );
     );
 }
 

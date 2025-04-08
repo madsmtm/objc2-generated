@@ -246,5 +246,22 @@ impl CSSearchableItemAttributeSet {
         #[unsafe(method(setLikelyJunk:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLikelyJunk(&self, likely_junk: &NSNumber);
+
+        #[unsafe(method(isPriority))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isPriority(&self) -> Option<Retained<NSNumber>>;
+
+        #[unsafe(method(textContentSummary))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn textContentSummary(&self) -> Option<Retained<NSString>>;
+
+        #[unsafe(method(transcribedTextContent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn transcribedTextContent(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`transcribedTextContent`][Self::transcribedTextContent].
+        #[unsafe(method(setTranscribedTextContent:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTranscribedTextContent(&self, transcribed_text_content: Option<&NSString>);
     );
 }

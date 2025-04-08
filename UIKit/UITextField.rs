@@ -760,6 +760,26 @@ extern_protocol!(
             text_field: &UITextField,
             animator: &ProtocolObject<dyn UIEditMenuInteractionAnimating>,
         );
+
+        #[cfg(all(
+            feature = "UIControl",
+            feature = "UIInputSuggestion",
+            feature = "UIResponder",
+            feature = "UIView"
+        ))]
+        /// Tells the delegate when the keyboard delivers an input suggestion.
+        ///
+        /// - Parameters:
+        /// - textField: The text field that is currently the first responder.
+        /// - inputSuggestion: The input suggestion that the user or system selected.
+        #[optional]
+        #[unsafe(method(textField:insertInputSuggestion:))]
+        #[unsafe(method_family = none)]
+        unsafe fn textField_insertInputSuggestion(
+            &self,
+            text_field: &UITextField,
+            input_suggestion: &UIInputSuggestion,
+        );
     }
 );
 

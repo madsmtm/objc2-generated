@@ -325,11 +325,15 @@ pub use self::__PKConstants::PKPaymentNetworkElo;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkGirocard;
 #[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkHimyan;
+#[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkIDCredit;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkInterac;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkJCB;
+#[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkJaywan;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkMada;
 #[cfg(feature = "PKConstants")]

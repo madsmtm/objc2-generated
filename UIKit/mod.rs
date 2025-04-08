@@ -372,6 +372,12 @@ mod __UIContextualAction;
 #[cfg(feature = "UIControl")]
 #[path = "UIControl.rs"]
 mod __UIControl;
+#[cfg(feature = "UIConversationContext")]
+#[path = "UIConversationContext.rs"]
+mod __UIConversationContext;
+#[cfg(feature = "UIConversationEntry")]
+#[path = "UIConversationEntry.rs"]
+mod __UIConversationEntry;
 #[cfg(feature = "UIDataDetectors")]
 #[path = "UIDataDetectors.rs"]
 mod __UIDataDetectors;
@@ -582,6 +588,9 @@ mod __UIImpactFeedbackGenerator;
 #[cfg(feature = "UIIndirectScribbleInteraction")]
 #[path = "UIIndirectScribbleInteraction.rs"]
 mod __UIIndirectScribbleInteraction;
+#[cfg(feature = "UIInputSuggestion")]
+#[path = "UIInputSuggestion.rs"]
+mod __UIInputSuggestion;
 #[cfg(feature = "UIInputView")]
 #[path = "UIInputView.rs"]
 mod __UIInputView;
@@ -648,6 +657,12 @@ mod __UILocalizedIndexedCollation;
 #[cfg(feature = "UILongPressGestureRecognizer")]
 #[path = "UILongPressGestureRecognizer.rs"]
 mod __UILongPressGestureRecognizer;
+#[cfg(feature = "UIMailConversationContext")]
+#[path = "UIMailConversationContext.rs"]
+mod __UIMailConversationContext;
+#[cfg(feature = "UIMailConversationEntry")]
+#[path = "UIMailConversationEntry.rs"]
+mod __UIMailConversationEntry;
 #[cfg(feature = "UIManagedDocument")]
 #[path = "UIManagedDocument.rs"]
 mod __UIManagedDocument;
@@ -672,6 +687,12 @@ mod __UIMenuLeaf;
 #[cfg(feature = "UIMenuSystem")]
 #[path = "UIMenuSystem.rs"]
 mod __UIMenuSystem;
+#[cfg(feature = "UIMessageConversationContext")]
+#[path = "UIMessageConversationContext.rs"]
+mod __UIMessageConversationContext;
+#[cfg(feature = "UIMessageConversationEntry")]
+#[path = "UIMessageConversationEntry.rs"]
+mod __UIMessageConversationEntry;
 #[cfg(feature = "UIMotionEffect")]
 #[path = "UIMotionEffect.rs"]
 mod __UIMotionEffect;
@@ -921,6 +942,9 @@ mod __UISheetPresentationController;
 #[cfg(feature = "UISlider")]
 #[path = "UISlider.rs"]
 mod __UISlider;
+#[cfg(feature = "UISmartReplySuggestion")]
+#[path = "UISmartReplySuggestion.rs"]
+mod __UISmartReplySuggestion;
 #[cfg(feature = "UISnapBehavior")]
 #[path = "UISnapBehavior.rs"]
 mod __UISnapBehavior;
@@ -2963,6 +2987,10 @@ pub use self::__UIControl::UIControlContentVerticalAlignment;
 pub use self::__UIControl::UIControlEvents;
 #[cfg(feature = "UIControl")]
 pub use self::__UIControl::UIControlState;
+#[cfg(feature = "UIConversationContext")]
+pub use self::__UIConversationContext::UIConversationContext;
+#[cfg(feature = "UIConversationEntry")]
+pub use self::__UIConversationEntry::UIConversationEntry;
 #[cfg(feature = "UIDataDetectors")]
 pub use self::__UIDataDetectors::UIDataDetectorTypes;
 #[cfg(feature = "UIDataSourceTranslating")]
@@ -3683,6 +3711,8 @@ pub use self::__UIIndirectScribbleInteraction::UIIndirectScribbleInteraction;
 pub use self::__UIIndirectScribbleInteraction::UIIndirectScribbleInteractionDelegate;
 #[cfg(feature = "UIIndirectScribbleInteraction")]
 pub use self::__UIIndirectScribbleInteraction::UIScribbleElementIdentifier;
+#[cfg(feature = "UIInputSuggestion")]
+pub use self::__UIInputSuggestion::UIInputSuggestion;
 #[cfg(all(feature = "UIInputView", feature = "UIResponder", feature = "UIView"))]
 pub use self::__UIInputView::UIInputView;
 #[cfg(feature = "UIInputView")]
@@ -3805,6 +3835,15 @@ pub use self::__UILocalizedIndexedCollation::UILocalizedIndexedCollation;
     feature = "UILongPressGestureRecognizer"
 ))]
 pub use self::__UILongPressGestureRecognizer::UILongPressGestureRecognizer;
+#[cfg(all(
+    feature = "UIConversationContext",
+    feature = "UIMailConversationContext"
+))]
+pub use self::__UIMailConversationContext::UIMailConversationContext;
+#[cfg(all(feature = "UIConversationEntry", feature = "UIMailConversationEntry"))]
+pub use self::__UIMailConversationEntry::UIMailConversationEntry;
+#[cfg(feature = "UIMailConversationEntry")]
+pub use self::__UIMailConversationEntry::UIMailConversationEntryKind;
 #[cfg(all(feature = "UIDocument", feature = "UIManagedDocument"))]
 pub use self::__UIManagedDocument::UIManagedDocument;
 #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
@@ -3941,6 +3980,18 @@ pub use self::__UIMenuElement::UIMenuElementState;
 pub use self::__UIMenuLeaf::UIMenuLeaf;
 #[cfg(feature = "UIMenuSystem")]
 pub use self::__UIMenuSystem::UIMenuSystem;
+#[cfg(all(
+    feature = "UIConversationContext",
+    feature = "UIMessageConversationContext"
+))]
+pub use self::__UIMessageConversationContext::UIMessageConversationContext;
+#[cfg(all(
+    feature = "UIConversationEntry",
+    feature = "UIMessageConversationEntry"
+))]
+pub use self::__UIMessageConversationEntry::UIMessageConversationEntry;
+#[cfg(feature = "UIMessageConversationEntry")]
+pub use self::__UIMessageConversationEntry::UIMessageConversationEntryDataKind;
 #[cfg(feature = "UIMotionEffect")]
 pub use self::__UIMotionEffect::UIInterpolatingMotionEffect;
 #[cfg(feature = "UIMotionEffect")]
@@ -4603,6 +4654,8 @@ pub use self::__UISheetPresentationController::UISheetPresentationControllerDete
     feature = "UIView"
 ))]
 pub use self::__UISlider::UISlider;
+#[cfg(all(feature = "UIInputSuggestion", feature = "UISmartReplySuggestion"))]
+pub use self::__UISmartReplySuggestion::UISmartReplySuggestion;
 #[cfg(all(feature = "UIDynamicBehavior", feature = "UISnapBehavior"))]
 pub use self::__UISnapBehavior::UISnapBehavior;
 #[cfg(all(

@@ -23,7 +23,7 @@ extern_class!(
     #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
-    #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+    #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     pub struct GCExtendedGamepadSnapshot;
 );
 
@@ -33,24 +33,24 @@ unsafe impl NSObjectProtocol for GCExtendedGamepadSnapshot {}
 #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
 impl GCExtendedGamepadSnapshot {
     extern_methods!(
-        #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+        #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
         #[unsafe(method(snapshotData))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotData(&self) -> Retained<NSData>;
 
         /// Setter for [`snapshotData`][Self::snapshotData].
-        #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+        #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
         #[unsafe(method(setSnapshotData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSnapshotData(&self, snapshot_data: &NSData);
 
-        #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+        #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
         #[unsafe(method(initWithSnapshotData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSnapshotData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "GCController")]
-        #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+        #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
         #[unsafe(method(initWithController:snapshotData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithController_snapshotData(
@@ -77,15 +77,15 @@ impl GCExtendedGamepadSnapshot {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdataversion?language=objc)
 // NS_ENUM
-#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCExtendedGamepadSnapshotDataVersion(pub NSInteger);
 impl GCExtendedGamepadSnapshotDataVersion {
-    #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+    #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[doc(alias = "GCExtendedGamepadSnapshotDataVersion1")]
     pub const Version1: Self = Self(0x0100);
-    #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+    #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[doc(alias = "GCExtendedGamepadSnapshotDataVersion2")]
     pub const Version2: Self = Self(0x0101);
 }
@@ -163,7 +163,7 @@ unsafe impl RefEncode for GCExtendedGamepadSnapshotData {
 ///
 ///
 /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
-#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapshotDataFromNSData(
     snapshot_data: *mut GCExtendedGamepadSnapshotData,
@@ -183,7 +183,7 @@ pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapshotDataFromNSData(
 ///
 ///
 /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
-#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapshotData(
     snapshot_data: *mut GCExtendedGamepadSnapshotData,
@@ -251,7 +251,7 @@ unsafe impl RefEncode for GCExtendedGamepadSnapShotDataV100 {
 ///
 ///
 /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
-#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapShotDataV100FromNSData(
     snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
@@ -271,7 +271,7 @@ pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapShotDataV100FromNSData(
 ///
 ///
 /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
-#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapShotDataV100(
     snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,

@@ -180,6 +180,10 @@ unsafe impl NSObjectProtocol for GCMotion {}
 impl GCMotion {
     extern_methods!(
         #[cfg(feature = "GCController")]
+        /// A profile keeps a reference to the controller that it is mapping input from.
+        ///
+        ///
+        /// See: GCController
         #[unsafe(method(controller))]
         #[unsafe(method_family = none)]
         pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
@@ -274,7 +278,7 @@ impl GCMotion {
         pub unsafe fn acceleration(&self) -> GCAcceleration;
 
         /// The controller generating the motion data has sensors that can accurately determine the current attitude and rotation rate. If this is enabled the motion data for attitude and rotation rate are usable for inputs.
-        #[deprecated = "hasAttitudeAndRotationRate has been deprecated, use -hasAttitude and -hasRotationRate instead"]
+        #[deprecated = "Use -hasAttitude and -hasRotationRate methods instead"]
         #[unsafe(method(hasAttitudeAndRotationRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAttitudeAndRotationRate(&self) -> bool;

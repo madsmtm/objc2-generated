@@ -580,6 +580,8 @@ pub use self::__CFBundle::CFBundleCopyLocalizationsForURL;
 #[cfg(feature = "CFBundle")]
 pub use self::__CFBundle::CFBundleCopyLocalizedString;
 #[cfg(all(feature = "CFArray", feature = "CFBundle"))]
+pub use self::__CFBundle::CFBundleCopyLocalizedStringForLocalizations;
+#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
 pub use self::__CFBundle::CFBundleCopyPreferredLocalizationsFromArray;
 #[cfg(all(feature = "CFBundle", feature = "CFURL"))]
 pub use self::__CFBundle::CFBundleCopyPrivateFrameworksURL;

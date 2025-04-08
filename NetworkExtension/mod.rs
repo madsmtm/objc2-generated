@@ -3894,8 +3894,8 @@ impl NEFilterManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setGrade(&self, grade: NEFilterManagerGrade);
 
-        /// Causes the content filter to disable any other installed encrypted DNS settings. This should only be used if
-        /// the content filter expects to intercept cleartext UDP DNS packets.  On macOS disables encrypted DNS for Privacy Proxies.
+        /// Causes the content filter to disable any other installed encrypted DNS settings, including iCloud Private Relay system-wide DNS encryption. This should only be used if
+        /// the content filter expects to intercept cleartext UDP DNS packets.
         #[unsafe(method(disableEncryptedDNSSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableEncryptedDNSSettings(&self) -> bool;
@@ -7256,6 +7256,16 @@ impl NERelayManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        /// Determines if the user will have the ability to enable and disable the relay
+        #[unsafe(method(isUIToggleEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isUIToggleEnabled(&self) -> bool;
+
+        /// Setter for [`isUIToggleEnabled`][Self::isUIToggleEnabled].
+        #[unsafe(method(setUIToggleEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUIToggleEnabled(&self, ui_toggle_enabled: bool);
+
         /// An array of relay configurations describing one or more relay hops.
         #[unsafe(method(relays))]
         #[unsafe(method_family = none)]
@@ -7266,7 +7276,7 @@ impl NERelayManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setRelays(&self, relays: Option<&NSArray<NERelay>>);
 
-        /// An array of strings containing domain names. If this property is non-nil, the relay will only be used to access hosts within the specified domains. If the property is nil, the relay will be used for all domains.
+        /// An array of strings containing domain names. If this property is non-nil, the relay will be used to access hosts within the specified domains. If this and the match FQDNs property is nil, the relay will be used for all domains.
         #[unsafe(method(matchDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -7275,6 +7285,16 @@ impl NERelayManager {
         #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
+
+        /// An array of strings containing Fully Qualified Domain Names (FQDNs). If this property is non-nil, the relay will be used to access the specified hosts.  If this and the matchDomains property is nil, the relay will be used for all domains.
+        #[unsafe(method(matchFQDNs))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn matchFQDNs(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        /// Setter for [`matchFQDNs`][Self::matchFQDNs].
+        #[unsafe(method(setMatchFQDNs:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMatchFQDNs(&self, match_fqd_ns: Option<&NSArray<NSString>>);
 
         /// An array of strings containing domain names. If the destination host name of a connection shares a suffix with one of these strings then the relay will not be used.
         #[unsafe(method(excludedDomains))]
@@ -7285,6 +7305,16 @@ impl NERelayManager {
         #[unsafe(method(setExcludedDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedDomains(&self, excluded_domains: Option<&NSArray<NSString>>);
+
+        /// An array of strings containing Fully Qualified Domain Names (FQDNs). If the destination host matches one of these strings then the relay will not be used.  An excluded FQDN takes priority over the matchDomain property.  This means the relay will not be used if the hostname matches an FQDN in this array even if the matchDomains contains a domain that would have been considered a match.
+        #[unsafe(method(excludedFQDNs))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn excludedFQDNs(&self) -> Option<Retained<NSArray<NSString>>>;
+
+        /// Setter for [`excludedFQDNs`][Self::excludedFQDNs].
+        #[unsafe(method(setExcludedFQDNs:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setExcludedFQDNs(&self, excluded_fqd_ns: Option<&NSArray<NSString>>);
 
         /// An array of NEOnDemandRule objects. If nil, the associated relay will always apply. If non-nil, the array describes the networks on which the relay should be used or not.
         #[unsafe(method(onDemandRules))]

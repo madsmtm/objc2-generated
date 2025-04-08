@@ -682,7 +682,7 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn createWebArchiveDataWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(NonNull<NSData>, NonNull<NSError>)>,
+            completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         /// A Boolean value indicating whether horizontal swipe gestures

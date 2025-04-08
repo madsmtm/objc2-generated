@@ -120,6 +120,9 @@ mod __CPNavigationSession;
 #[cfg(feature = "CPNowPlayingButton")]
 #[path = "CPNowPlayingButton.rs"]
 mod __CPNowPlayingButton;
+#[cfg(feature = "CPNowPlayingMode")]
+#[path = "CPNowPlayingMode.rs"]
+mod __CPNowPlayingMode;
 #[cfg(feature = "CPNowPlayingTemplate")]
 #[path = "CPNowPlayingTemplate.rs"]
 mod __CPNowPlayingTemplate;
@@ -340,6 +343,18 @@ pub use self::__CPNowPlayingButton::CPNowPlayingPlaybackRateButton;
 pub use self::__CPNowPlayingButton::CPNowPlayingRepeatButton;
 #[cfg(feature = "CPNowPlayingButton")]
 pub use self::__CPNowPlayingButton::CPNowPlayingShuffleButton;
+#[cfg(feature = "CPNowPlayingMode")]
+pub use self::__CPNowPlayingMode::CPNowPlayingMode;
+#[cfg(feature = "CPNowPlayingMode")]
+pub use self::__CPNowPlayingMode::CPNowPlayingModeSports;
+#[cfg(feature = "CPNowPlayingMode")]
+pub use self::__CPNowPlayingMode::CPNowPlayingSportsClock;
+#[cfg(feature = "CPNowPlayingMode")]
+pub use self::__CPNowPlayingMode::CPNowPlayingSportsEventStatus;
+#[cfg(feature = "CPNowPlayingMode")]
+pub use self::__CPNowPlayingMode::CPNowPlayingSportsTeam;
+#[cfg(feature = "CPNowPlayingMode")]
+pub use self::__CPNowPlayingMode::CPNowPlayingSportsTeamLogo;
 #[cfg(all(feature = "CPNowPlayingTemplate", feature = "CPTemplate"))]
 pub use self::__CPNowPlayingTemplate::CPNowPlayingTemplate;
 #[cfg(feature = "CPNowPlayingTemplate")]

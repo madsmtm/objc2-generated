@@ -335,6 +335,24 @@ impl NSBundle {
             table_name: Option<&NSString>,
         ) -> Retained<NSString>;
 
+        #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Look up a localized string given a list of available localizations.
+        /// - Parameters:
+        /// - key: The key for the localized string to retrieve.
+        /// - value: A default value to return if a localized string for ``key`` cannot be found.
+        /// - tableName: The name of the strings file to search. If `nil`, the method uses tables in `Localizable.strings`.
+        /// - localizations: An array of BCP 47 language codes corresponding to available localizations. Bundle compares the array against its available localizations, and uses the best result to retrieve the localized string. If empty, we treat it as no localization is available, and may return a fallback.
+        /// - Returns: A localized version of the string designated by ``key`` in table ``tableName``.
+        #[unsafe(method(localizedStringForKey:value:table:localizations:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn localizedStringForKey_value_table_localizations(
+            &self,
+            key: &NSString,
+            value: Option<&NSString>,
+            table_name: Option<&NSString>,
+            localizations: &NSArray<NSString>,
+        ) -> Retained<NSString>;
+
         #[cfg(feature = "NSString")]
         #[unsafe(method(bundleIdentifier))]
         #[unsafe(method_family = none)]

@@ -961,3 +961,37 @@ impl NSFileProviderManager {
         ) -> Result<(), Retained<NSError>>;
     );
 }
+
+/// Diagnostics.
+impl NSFileProviderManager {
+    extern_methods!(
+        #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
+        /// Request diagnostics collection for the item.
+        ///
+        /// This will prompt the user about an issue with the sync in the provider and ask their permission
+        /// to collection diagnostic information and to send them to Apple for further analysis.
+        ///
+        /// This call is to be used wisely with care given there's global throttling on it preventing
+        /// spamming the users. Furthermore it should be used in collaboration with Apple when you
+        /// detect a misbehavior in the sync in your provider likely caused by a system bug and you need to
+        /// work with Apple in order to resolve it.
+        ///
+        /// This will return whether the call was allowed or not - not if it suceed
+        /// This method will only return an error if the user was not on a Seed build
+        ///
+        /// It is mandatory to provide an error for the item why the collection is requested.
+        /// The error won't be shown to the user (a generic message will be shown instead)
+        /// It will surface in the generated report though
+        ///
+        /// It is important to note that even if the call is allowed, it might not trigger diagnostic collection
+        /// nor prompt to the user depending on the system state and other throttling parameters
+        #[unsafe(method(requestDiagnosticCollectionForItemWithIdentifier:errorReason:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requestDiagnosticCollectionForItemWithIdentifier_errorReason_completionHandler(
+            &self,
+            item_identifier: &NSFileProviderItemIdentifier,
+            error_reason: &NSError,
+            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+        );
+    );
+}

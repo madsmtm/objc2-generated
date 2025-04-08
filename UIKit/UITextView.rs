@@ -416,6 +416,25 @@ extern_protocol!(
             text_view: &UITextView,
             view_controller: &UITextFormattingViewController,
         );
+
+        #[cfg(all(
+            feature = "UIInputSuggestion",
+            feature = "UIResponder",
+            feature = "UIView"
+        ))]
+        /// Tells the delegate when the keyboard delivers an input suggestion.
+        ///
+        /// - Parameters:
+        /// - textView: The text view that is currently the first responder.
+        /// - inputSuggestion: The input suggestion that the user or system selected.
+        #[optional]
+        #[unsafe(method(textView:insertInputSuggestion:))]
+        #[unsafe(method_family = none)]
+        unsafe fn textView_insertInputSuggestion(
+            &self,
+            text_view: &UITextView,
+            input_suggestion: &UIInputSuggestion,
+        );
     }
 );
 
@@ -899,6 +918,10 @@ impl UITextView {
             &self,
             allowed_writing_tools_result_options: UIWritingToolsResultOptions,
         );
+
+        #[unsafe(method(subclassForWritingToolsCoordinator))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn subclassForWritingToolsCoordinator(&self) -> &'static AnyClass;
 
         #[cfg(feature = "UIWritingToolsCoordinator")]
         #[unsafe(method(writingToolsCoordinator))]

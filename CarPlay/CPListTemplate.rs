@@ -318,6 +318,19 @@ impl CPListTemplate {
             empty_view_subtitle_variants: &NSArray<NSString>,
         );
 
+        /// If YES, a spinning activity indicator will be displayed while the list template contains no items.
+        /// The activity indicator will be displayed in addition to any
+        /// `emptyViewTitleVariants`or
+        /// `emptyViewSubtitleVariants.`
+        #[unsafe(method(showsSpinnerWhileEmpty))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn showsSpinnerWhileEmpty(&self) -> bool;
+
+        /// Setter for [`showsSpinnerWhileEmpty`][Self::showsSpinnerWhileEmpty].
+        #[unsafe(method(setShowsSpinnerWhileEmpty:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setShowsSpinnerWhileEmpty(&self, shows_spinner_while_empty: bool);
+
         /// The configuration of the Assistant Cell.
         ///
         /// Assigning to this property will dynamically update the List Template to reflect the visibility, position, and intent identifier of the Assistant Cell.

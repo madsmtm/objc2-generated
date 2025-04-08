@@ -17,7 +17,7 @@ unsafe impl NSObjectProtocol for GKBasePlayer {}
 
 impl GKBasePlayer {
     extern_methods!(
-        #[deprecated = "Use either the gamePlayerID or teamPlayerID property to identify a player."]
+        #[deprecated]
         #[unsafe(method(playerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;

@@ -398,6 +398,38 @@ pub extern "C-unwind" fn CFBundleCopyLocalizedString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns a localized string given a list of possible localizations. The one most suitable to use with the given ``bundle`` is returned.
+/// - Parameters:
+/// - bundle: The bundle to examine.
+/// - key: The key for the localized string to retrieve.
+/// - value: A default value to return if no value exists for ``key``.
+/// - tableName: The name of the strings file to search.
+/// - localizations: An array of BCP 47 language codes corresponding to available localizations. Bundle compares the array against its available localizations, and uses the best result to retrieve the localized string. If empty, we treat it as no localization is available, and may return a fallback.
+/// - Returns: A localized version of the string designated by ``key`` in table ``tableName``.
+#[cfg(feature = "CFArray")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBundleCopyLocalizedStringForLocalizations(
+    bundle: &CFBundle,
+    key: Option<&CFString>,
+    value: Option<&CFString>,
+    table_name: Option<&CFString>,
+    localizations: Option<&CFArray>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CFBundleCopyLocalizedStringForLocalizations(
+            bundle: &CFBundle,
+            key: Option<&CFString>,
+            value: Option<&CFString>,
+            table_name: Option<&CFString>,
+            localizations: Option<&CFArray>,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe {
+        CFBundleCopyLocalizedStringForLocalizations(bundle, key, value, table_name, localizations)
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
 #[cfg(feature = "CFURL")]
 #[inline]
 pub extern "C-unwind" fn CFBundleCopyResourceURLInDirectory(

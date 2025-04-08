@@ -15,6 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "BADownload")]
+unsafe impl Send for BAURLDownload {}
+
+#[cfg(feature = "BADownload")]
+unsafe impl Sync for BAURLDownload {}
+
+#[cfg(feature = "BADownload")]
 unsafe impl NSCoding for BAURLDownload {}
 
 #[cfg(feature = "BADownload")]

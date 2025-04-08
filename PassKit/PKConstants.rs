@@ -193,6 +193,16 @@ extern "C" {
     pub static PKPaymentNetworkBankAxept: Option<&'static PKPaymentNetwork>;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkhimyan?language=objc)
+    pub static PKPaymentNetworkHimyan: Option<&'static PKPaymentNetwork>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkjaywan?language=objc)
+    pub static PKPaymentNetworkJaywan: Option<&'static PKPaymentNetwork>;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield?language=objc)
 // NS_TYPED_ENUM
 pub type PKContactField = NSString;

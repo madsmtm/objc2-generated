@@ -13,6 +13,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use SharePlay instead"]
     pub struct GKVoiceChatService;
 );
 
@@ -20,33 +21,40 @@ unsafe impl NSObjectProtocol for GKVoiceChatService {}
 
 impl GKVoiceChatService {
     extern_methods!(
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(defaultVoiceChatService))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultVoiceChatService() -> Option<Retained<GKVoiceChatService>>;
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(isVoIPAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoIPAllowed() -> bool;
 
         #[cfg(feature = "GKPublicProtocols")]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(client))]
         #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn GKVoiceChatClient>>>;
 
         #[cfg(feature = "GKPublicProtocols")]
         /// Setter for [`client`][Self::client].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(stopVoiceChatWithParticipantID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopVoiceChatWithParticipantID(&self, participant_id: Option<&NSString>);
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(denyCallID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn denyCallID(&self, call_id: NSInteger);
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(receivedRealTimeData:fromParticipantID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn receivedRealTimeData_fromParticipantID(
@@ -55,6 +63,7 @@ impl GKVoiceChatService {
             participant_id: Option<&NSString>,
         );
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(receivedData:fromParticipantID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn receivedData_fromParticipantID(
@@ -63,46 +72,56 @@ impl GKVoiceChatService {
             participant_id: Option<&NSString>,
         );
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(isMicrophoneMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMicrophoneMuted(&self) -> bool;
 
         /// Setter for [`isMicrophoneMuted`][Self::isMicrophoneMuted].
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(setMicrophoneMuted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMicrophoneMuted(&self, microphone_muted: bool);
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(remoteParticipantVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteParticipantVolume(&self) -> c_float;
 
         /// Setter for [`remoteParticipantVolume`][Self::remoteParticipantVolume].
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(setRemoteParticipantVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemoteParticipantVolume(&self, remote_participant_volume: c_float);
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(isOutputMeteringEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOutputMeteringEnabled(&self) -> bool;
 
         /// Setter for [`isOutputMeteringEnabled`][Self::isOutputMeteringEnabled].
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(setOutputMeteringEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputMeteringEnabled(&self, output_metering_enabled: bool);
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(isInputMeteringEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInputMeteringEnabled(&self) -> bool;
 
         /// Setter for [`isInputMeteringEnabled`][Self::isInputMeteringEnabled].
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(setInputMeteringEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputMeteringEnabled(&self, input_metering_enabled: bool);
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(outputMeterLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputMeterLevel(&self) -> c_float;
 
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(inputMeterLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputMeterLevel(&self) -> c_float;

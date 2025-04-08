@@ -16,6 +16,10 @@ extern_class!(
     pub struct ASAccessorySession;
 );
 
+unsafe impl Send for ASAccessorySession {}
+
+unsafe impl Sync for ASAccessorySession {}
+
 unsafe impl NSObjectProtocol for ASAccessorySession {}
 
 impl ASAccessorySession {

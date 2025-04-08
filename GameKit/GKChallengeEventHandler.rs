@@ -93,12 +93,12 @@ unsafe impl NSObjectProtocol for GKChallengeEventHandler {}
 
 impl GKChallengeEventHandler {
     extern_methods!(
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(challengeEventHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeEventHandler() -> Option<Retained<GKChallengeEventHandler>>;
 
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -107,7 +107,7 @@ impl GKChallengeEventHandler {
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[deprecated]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

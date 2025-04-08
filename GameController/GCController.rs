@@ -148,6 +148,28 @@ unsafe impl NSObjectProtocol for GCController {}
 
 impl GCController {
     extern_methods!(
+        /// Get a list of controllers currently attached to the system.
+        ///
+        ///
+        /// See: GCControllerDidConnectNotification
+        ///
+        /// See: GCControllerDidDisconnectNotification
+        #[unsafe(method(controllers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn controllers() -> Retained<NSArray<GCController>>;
+
+        /// The most recently used game controller. If a user actuates a game controller
+        /// input, that controller will become the current one.
+        ///
+        ///
+        /// Note: This is useful for single player games where you only care about whether an
+        /// input is pressed, and not where it came from.  You will still need to
+        /// register for changes to GCController.current so that your UI can remain
+        /// up-to-date with the current controller.
+        #[unsafe(method(current))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn current() -> Option<Retained<GCController>>;
+
         #[cfg(feature = "block2")]
         /// Set this block to be notified when a user intends to suspend or resume the current game state. A controller will have a button
         /// dedicated to suspending and resuming play and invoking context sensitive actions. During event handling the system will
@@ -163,7 +185,7 @@ impl GCController {
         /// See: microGamepad
         ///
         /// See: extendedGamepad
-        #[deprecated = "controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists."]
+        #[deprecated = "Use the Menu button found on the controller's input profile, if it exists."]
         #[unsafe(method(controllerPausedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn controllerPausedHandler(
@@ -172,22 +194,13 @@ impl GCController {
 
         #[cfg(feature = "block2")]
         /// Setter for [`controllerPausedHandler`][Self::controllerPausedHandler].
-        #[deprecated = "controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists."]
+        #[deprecated = "Use the Menu button found on the controller's input profile, if it exists."]
         #[unsafe(method(setControllerPausedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControllerPausedHandler(
             &self,
             controller_paused_handler: Option<&block2::Block<dyn Fn(NonNull<GCController>)>>,
         );
-
-        /// The most recently used game controller. If a user actuates a game controller input, that controller will become the current one.
-        ///
-        ///
-        /// Note: This is useful for single player games where you only care about whether an input is pressed, and not where it came from. You
-        /// will still need to register for changes to GCController.current so that your UI can remain up-to-date with the current controller.
-        #[unsafe(method(current))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn current() -> Option<Retained<GCController>>;
 
         /// Whether the current application should monitor and respond to game controller events when it is not the frontmost application.
         ///
@@ -212,20 +225,6 @@ impl GCController {
         #[unsafe(method(isAttachedToDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAttachedToDevice(&self) -> bool;
-
-        /// A controller may represent a real device managed by the operating system, or a virtual snapshot created by the developer.
-        /// If a controller is directly created by the developer, it is considered to be a snapshot, allowing direct writes to any
-        /// GCControllerElement of its profiles. If the controller is not snapshot, the system will reject any write requests to GCControllerElement.
-        ///
-        ///
-        /// See: controllerWithMicroGamepad
-        ///
-        /// See: controllerWithExtendedGamepad
-        ///
-        /// See: capture
-        #[unsafe(method(isSnapshot))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn isSnapshot(&self) -> bool;
 
         /// A player index for the controller, defaults to GCControllerPlayerIndexUnset.
         ///
@@ -336,30 +335,87 @@ impl GCController {
         #[unsafe(method(haptics))]
         #[unsafe(method_family = none)]
         pub unsafe fn haptics(&self) -> Option<Retained<GCDeviceHaptics>>;
+    );
+}
 
-        /// Polls the state vector of the controller and saves it to a new and writable instance of GCController.
+/// Methods declared on superclass `NSObject`.
+impl GCController {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+/// Snapshot.
+impl GCController {
+    extern_methods!(
+        /// A controller may represent a real device managed by the operating system,
+        /// or a virtual snapshot created by the developer.  If a controller is created
+        /// by the developer, it is considered to be a snapshot, allowing direct writes
+        /// to any GCControllerElement of its profiles.  If the controller is not
+        /// snapshot, the system will reject any write requests to GCControllerElement.
         ///
-        /// If your application is heavily multithreaded this may also be useful to guarantee atomicity of input handling as
-        /// a snapshot will not change based on user input once it is taken.
+        ///
+        /// See: controllerWithMicroGamepad
+        ///
+        /// See: controllerWithExtendedGamepad
+        ///
+        /// See: capture
+        #[unsafe(method(isSnapshot))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isSnapshot(&self) -> bool;
+
+        /// Polls the state vector of the controller and saves it to a new and writable
+        /// instance of GCController.
+        ///
+        /// If your application is heavily multithreaded this may also be useful to
+        /// guarantee atomicity of input handling as a snapshot will not change based
+        /// on user input once it is taken.
         ///
         ///
         /// See: snapshot
         ///
-        /// Returns: A new controller with the duplicated state vector of the current controller
+        /// Returns: A new controller with the duplicated state vector of the current
+        /// controller.
         #[unsafe(method(capture))]
         #[unsafe(method_family = none)]
         pub unsafe fn capture(&self) -> Retained<GCController>;
 
-        /// Get a list of controllers currently attached to the system.
+        /// Creates a controller with a micro gamepad profile.
+        ///
+        /// This controller will be considered a snapshot, allowing developers to write
+        /// to any GCControllerElement of its profiles.
         ///
         ///
-        /// See: GCControllerDidConnectNotification
+        /// See: snapshot
         ///
-        /// See: GCControllerDidDisconnectNotification
-        #[unsafe(method(controllers))]
+        /// Returns: A new controller with a micro gamepad profile
+        #[unsafe(method(controllerWithMicroGamepad))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controllers() -> Retained<NSArray<GCController>>;
+        pub unsafe fn controllerWithMicroGamepad() -> Retained<GCController>;
 
+        /// Creates a controller with an extended gamepad profile.
+        ///
+        /// This controller will be considered a snapshot, allowing developers to write to any GCControllerElement of its profiles.
+        ///
+        ///
+        /// See: snapshot
+        ///
+        /// Returns: A new controller with an extended gamepad profile
+        #[unsafe(method(controllerWithExtendedGamepad))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn controllerWithExtendedGamepad() -> Retained<GCController>;
+    );
+}
+
+/// Discovery.
+impl GCController {
+    extern_methods!(
         #[cfg(feature = "block2")]
         /// Start discovery of new wireless controllers that are discoverable. This is an asynchronous and the supplied completionHandler
         /// will get called once no more devices can be found. If there are already multiple controllers available for use, there
@@ -402,42 +458,5 @@ impl GCController {
         #[unsafe(method(stopWirelessControllerDiscovery))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWirelessControllerDiscovery();
-
-        /// Creates a controller with a micro gamepad profile.
-        ///
-        /// This controller will be considered a snapshot, allowing developers to write to any GCControllerElement of its profiles.
-        ///
-        ///
-        /// See: snapshot
-        ///
-        /// Returns: A new controller with a micro gamepad profile
-        #[unsafe(method(controllerWithMicroGamepad))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn controllerWithMicroGamepad() -> Retained<GCController>;
-
-        /// Creates a controller with an extended gamepad profile.
-        ///
-        /// This controller will be considered a snapshot, allowing developers to write to any GCControllerElement of its profiles.
-        ///
-        ///
-        /// See: snapshot
-        ///
-        /// Returns: A new controller with an extended gamepad profile
-        #[unsafe(method(controllerWithExtendedGamepad))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn controllerWithExtendedGamepad() -> Retained<GCController>;
-    );
-}
-
-/// Methods declared on superclass `NSObject`.
-impl GCController {
-    extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

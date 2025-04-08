@@ -125,6 +125,26 @@ impl STWebpageController {
         #[unsafe(method_family = none)]
         pub unsafe fn URLIsBlocked(&self) -> bool;
 
+        #[cfg(feature = "STWebHistory")]
+        /// An optional identifier for the current browsing profile.
+        ///
+        /// The default value is `nil`. This identifier represents a profile and allows you to keep your browsing separate
+        /// for topics like work, personal, or school. Using `nil` will report web history without a profile identifier.
+        /// Web browsers with a "default" profile may want to use `nil` in order to match any web history reported prior
+        /// to this API.
+        #[unsafe(method(profileIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn profileIdentifier(&self) -> Option<Retained<STWebHistoryProfileIdentifier>>;
+
+        #[cfg(feature = "STWebHistory")]
+        /// Setter for [`profileIdentifier`][Self::profileIdentifier].
+        #[unsafe(method(setProfileIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setProfileIdentifier(
+            &self,
+            profile_identifier: Option<&STWebHistoryProfileIdentifier>,
+        );
+
         /// Changes the bundle identifier used to report web usage.
         ///
         /// This is only supported for web browsers that have been properly registered with Screen Time.

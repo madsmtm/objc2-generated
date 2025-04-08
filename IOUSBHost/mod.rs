@@ -259,7 +259,10 @@ pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCIDeviceCreate
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCIDeviceSpeed;
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCIDeviceState;
-#[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
+#[cfg(all(
+    feature = "IOUSBHostControllerInterfaceDefinitions",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCIDeviceUpdateCommandData1DescriptorAddress;
 #[cfg(all(
     feature = "IOUSBHostControllerInterfaceDefinitions",
@@ -345,7 +348,10 @@ pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCIIsochronousT
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCIIsochronousTransferData1Buffer;
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCIIsochronousTransferData1BufferPhase;
-#[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
+#[cfg(all(
+    feature = "IOUSBHostControllerInterfaceDefinitions",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCILinkData1TransferStructureAddress;
 #[cfg(all(
     feature = "IOUSBHostControllerInterfaceDefinitions",
@@ -400,7 +406,10 @@ pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCINormalTransf
     feature = "objc2-io-kit"
 ))]
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCINormalTransferData0LengthPhase;
-#[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
+#[cfg(all(
+    feature = "IOUSBHostControllerInterfaceDefinitions",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCINormalTransferData1Buffer;
 #[cfg(all(
     feature = "IOUSBHostControllerInterfaceDefinitions",

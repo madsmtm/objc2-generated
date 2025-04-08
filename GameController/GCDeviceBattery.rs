@@ -49,6 +49,10 @@ unsafe impl NSObjectProtocol for GCDeviceBattery {}
 
 impl GCDeviceBattery {
     extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
         /// This is the battery level for controller.
         /// Battery level ranges from 0.0 (fully discharged) to 1.0 (100% charged) and defaults to 0
         #[unsafe(method(batteryLevel))]
@@ -62,10 +66,6 @@ impl GCDeviceBattery {
         #[unsafe(method(batteryState))]
         #[unsafe(method_family = none)]
         pub unsafe fn batteryState(&self) -> GCDeviceBatteryState;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 

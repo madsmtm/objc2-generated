@@ -87,6 +87,67 @@ impl NSPasteboardItem {
             &self,
             r#type: &NSPasteboardType,
         ) -> Option<Retained<AnyObject>>;
+
+        #[cfg(all(feature = "NSPasteboard", feature = "block2"))]
+        /// Determines whether this pasteboard item matches the specified patterns, without notifying the user.
+        ///
+        /// Because this method only gives an indication of whether a pasteboard item matches a particular pattern and doesn’t allow the app to access the contents, the system doesn’t notify the user about reading the contents of the pasteboard.
+        ///
+        ///
+        /// Parameter `patterns`: The patterns to detect on the pasteboard item.
+        ///
+        /// Parameter `completionHandler`: A block that the system invokes after detecting patterns on the pasteboard item. The block receives either a set with the patterns found on the pasteboard item or an error if detection failed.
+        #[unsafe(method(detectPatternsForPatterns:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn detectPatternsForPatterns_completionHandler(
+            &self,
+            patterns: &NSSet<NSPasteboardDetectionPattern>,
+            completion_handler: &block2::Block<
+                dyn Fn(*mut NSSet<NSPasteboardDetectionPattern>, *mut NSError),
+            >,
+        );
+
+        #[cfg(all(feature = "NSPasteboard", feature = "block2"))]
+        /// Determines whether this pasteboard item matches the specified patterns, reading the contents if it finds a match.
+        ///
+        /// - Important: Calling this method notifies the user that the app has read the contents of the pasteboard, if a match is found.
+        ///
+        /// For details about the types returned for each pattern, see `NSPasteboardDetectionPattern`.
+        ///
+        ///
+        /// Parameter `patterns`: The patterns to detect on the pasteboard item.
+        ///
+        /// Parameter `completionHandler`: A block that the system invokes after detecting patterns on the pasteboard item. The block returns either dictionary with the patterns found on the pasteboard item or an error if detection failed. The dictionary keys specify the matched patterns, and the values specify the corresponding content of the pasteboard.
+        #[unsafe(method(detectValuesForPatterns:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn detectValuesForPatterns_completionHandler(
+            &self,
+            patterns: &NSSet<NSPasteboardDetectionPattern>,
+            completion_handler: &block2::Block<
+                dyn Fn(*mut NSDictionary<NSPasteboardDetectionPattern, AnyObject>, *mut NSError),
+            >,
+        );
+
+        #[cfg(all(feature = "NSPasteboard", feature = "block2"))]
+        /// Determines available metadata from the specified metadata types for this pasteboard item, without notifying the user.
+        ///
+        /// Because this method only gives access to limited types of metadata and doesn’t allow the app to access the contents, the system doesn’t notify the user about reading the contents of the pasteboard.
+        ///
+        /// For details about the metadata returned for each type, see `NSPasteboardMetadataType`.
+        ///
+        ///
+        /// Parameter `types`: The metadata types to detect on the pasteboard item.
+        ///
+        /// Parameter `completionHandler`: A block that the system invokes after detecting metadata on the pasteboard item. The block receives either a dictionary with the metadata types found on the pasteboard item or an error if detection failed. The dictionary keys specify the matched metadata types, and the values specify the corresponding metadata.
+        #[unsafe(method(detectMetadataForTypes:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn detectMetadataForTypes_completionHandler(
+            &self,
+            types: &NSSet<NSPasteboardMetadataType>,
+            completion_handler: &block2::Block<
+                dyn Fn(*mut NSDictionary<NSPasteboardMetadataType, AnyObject>, *mut NSError),
+            >,
+        );
     );
 }
 

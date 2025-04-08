@@ -39,6 +39,7 @@ unsafe impl NSObjectProtocol for GCExtendedGamepad {}
 impl GCExtendedGamepad {
     extern_methods!(
         #[cfg(feature = "GCController")]
+        /// A profile keeps a reference to the controller that this profile is mapping input from.
         #[unsafe(method(controller))]
         #[unsafe(method_family = none)]
         pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
@@ -64,7 +65,7 @@ impl GCExtendedGamepad {
         ///
         /// If your application is heavily multithreaded this may also be useful to guarantee atomicity of input handling as
         /// a snapshot will not change based on user input once it is taken.
-        #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController capture] instead"]
+        #[deprecated = "Use the -[GCController capture] method instead"]
         #[unsafe(method(saveSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveSnapshot(&self) -> Retained<GCExtendedGamepadSnapshot>;

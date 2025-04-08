@@ -378,15 +378,15 @@ impl GKLocalPlayer {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        /// presentFriendRequestCreatorFromWindow:
-        ///
-        /// Discussion:
-        /// MacOS only. When invoked, if no error is encountered, the caller application is backgrounded and the 'Messages' application is launched/foregrounded, with a formatted friend request message.
-        /// If an error occurs, controls are returned to the caller application, with an error describing the error.
-        ///
-        /// Possible reasons for error:
-        /// - The local player user account is not allowed to add friends
-        /// - The device is not allowing outgoing traffic at the time of the operation
+        #[unsafe(method(presentFriendRequestCreatorFromViewController:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn presentFriendRequestCreatorFromViewController_error(
+            &self,
+            view_controller: &NSViewController,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "objc2-app-kit")]
+        #[cfg(target_os = "macos")]
         #[unsafe(method(presentFriendRequestCreatorFromWindow:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentFriendRequestCreatorFromWindow_error(

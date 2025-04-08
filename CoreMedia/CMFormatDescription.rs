@@ -1213,6 +1213,10 @@ extern "C" {
     ///
     /// Indicates rectilinear projection. Generally less than 90 degree field of view with no barrel distortion.
     ///
+    /// Indicates equirectangular projection of a 360 degree sphere to a rectangular plane, where longitude and latitude of the sphere are mapped linearly to the x,y axes of the plane.
+    ///
+    /// Indicates half equirectangular projection of a 180 degree hemisphere to a rectangular plane, where longitude and latitude of the sphere are mapped linearly to the x,y axes of the plane
+    ///
     /// The value is a CFString holding one of the kCMFormatDescriptionProjectionKind_* constants.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_projectionkind?language=objc)
@@ -1222,6 +1226,16 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionprojectionkind_rectilinear?language=objc)
     pub static kCMFormatDescriptionProjectionKind_Rectilinear: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionprojectionkind_equirectangular?language=objc)
+    pub static kCMFormatDescriptionProjectionKind_Equirectangular: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionprojectionkind_halfequirectangular?language=objc)
+    pub static kCMFormatDescriptionProjectionKind_HalfEquirectangular: &'static CFString;
 }
 
 extern "C" {

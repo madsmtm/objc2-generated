@@ -118,7 +118,7 @@ impl GKAchievement {
         /// The identifier of the player that earned the achievement.
         #[unsafe(method(player))]
         #[unsafe(method_family = none)]
-        pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
+        pub unsafe fn player(&self) -> Retained<GKPlayer>;
     );
 }
 
@@ -157,7 +157,7 @@ impl GKAchievement {
 /// Obsoleted.
 impl GKAchievement {
     extern_methods!(
-        /// * This method is obsolete. Calling this initialiser does nothing and will return nil **
+        /// * This method is obsolete. Calling this initializer does nothing and will return nil **
         #[deprecated]
         #[unsafe(method(initWithIdentifier:forPlayer:))]
         #[unsafe(method_family = init)]

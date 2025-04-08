@@ -77,7 +77,9 @@ impl UICalendarSelectionSingleDate {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionsingledatedelegate?language=objc)
-    pub unsafe trait UICalendarSelectionSingleDateDelegate: NSObjectProtocol {
+    pub unsafe trait UICalendarSelectionSingleDateDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[cfg(feature = "UICalendarSelection")]
         /// Called after the user selects a date in the calendar view.
         ///

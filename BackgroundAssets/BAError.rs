@@ -43,6 +43,8 @@ impl BAErrorCode {
     pub const DownloadBackgroundActivityProhibited: Self = Self(111);
     #[doc(alias = "BAErrorCodeDownloadWouldExceedAllowance")]
     pub const DownloadWouldExceedAllowance: Self = Self(112);
+    #[doc(alias = "BAErrorCodeDownloadDoesNotExist")]
+    pub const DownloadDoesNotExist: Self = Self(113);
     #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByDomain")]
     pub const SessionDownloadDisallowedByDomain: Self = Self(202);
     #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByAllowance")]

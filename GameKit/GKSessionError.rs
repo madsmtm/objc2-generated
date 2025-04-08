@@ -14,40 +14,57 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror?language=objc)
 // NS_ENUM
+#[deprecated = "No longer supported"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKSessionError(pub c_int);
 impl GKSessionError {
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionInvalidParameterError")]
     pub const InvalidParameterError: Self = Self(30500);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionPeerNotFoundError")]
     pub const PeerNotFoundError: Self = Self(30501);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionDeclinedError")]
     pub const DeclinedError: Self = Self(30502);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionTimedOutError")]
     pub const TimedOutError: Self = Self(30503);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionCancelledError")]
     pub const CancelledError: Self = Self(30504);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionConnectionFailedError")]
     pub const ConnectionFailedError: Self = Self(30505);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionConnectionClosedError")]
     pub const ConnectionClosedError: Self = Self(30506);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionDataTooBigError")]
     pub const DataTooBigError: Self = Self(30507);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionNotConnectedError")]
     pub const NotConnectedError: Self = Self(30508);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionCannotEnableError")]
     pub const CannotEnableError: Self = Self(30509);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionInProgressError")]
     pub const InProgressError: Self = Self(30510);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionConnectivityError")]
     pub const ConnectivityError: Self = Self(30201);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionTransportError")]
     pub const TransportError: Self = Self(30202);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionInternalError")]
     pub const InternalError: Self = Self(30203);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionUnknownError")]
     pub const UnknownError: Self = Self(30204);
+    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionSystemError")]
     pub const SystemError: Self = Self(30205);
 }

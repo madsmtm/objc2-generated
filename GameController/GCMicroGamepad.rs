@@ -93,6 +93,7 @@ unsafe impl NSObjectProtocol for GCMicroGamepad {}
 impl GCMicroGamepad {
     extern_methods!(
         #[cfg(feature = "GCController")]
+        /// A profile keeps a reference to the controller that this profile is mapping input from.
         #[unsafe(method(controller))]
         #[unsafe(method_family = none)]
         pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
@@ -121,7 +122,7 @@ impl GCMicroGamepad {
         ///
         ///
         /// See: GCMicroGamepadSnapshot
-        #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController capture] instead"]
+        #[deprecated = "Use the -[GCController capture] method instead"]
         #[unsafe(method(saveSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveSnapshot(&self) -> Retained<GCMicroGamepadSnapshot>;

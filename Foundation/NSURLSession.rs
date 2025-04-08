@@ -1273,11 +1273,13 @@ impl NSURLSessionConfiguration {
             connection_proxy_dictionary: Option<&NSDictionary>,
         );
 
+        #[deprecated = "Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead"]
         #[unsafe(method(HTTPShouldUsePipelining))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
 
         /// Setter for [`HTTPShouldUsePipelining`][Self::HTTPShouldUsePipelining].
+        #[deprecated = "Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead"]
         #[unsafe(method(setHTTPShouldUsePipelining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPShouldUsePipelining(&self, http_should_use_pipelining: bool);
@@ -1370,11 +1372,13 @@ impl NSURLSessionConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setURLCache(&self, url_cache: Option<&NSURLCache>);
 
+        #[deprecated = "Not supported"]
         #[unsafe(method(shouldUseExtendedBackgroundIdleMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldUseExtendedBackgroundIdleMode(&self) -> bool;
 
         /// Setter for [`shouldUseExtendedBackgroundIdleMode`][Self::shouldUseExtendedBackgroundIdleMode].
+        #[deprecated = "Not supported"]
         #[unsafe(method(setShouldUseExtendedBackgroundIdleMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldUseExtendedBackgroundIdleMode(
@@ -1404,6 +1408,15 @@ impl NSURLSessionConfiguration {
             &self,
             multipath_service_type: NSURLSessionMultipathServiceType,
         );
+
+        #[unsafe(method(usesClassicLoadingMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn usesClassicLoadingMode(&self) -> bool;
+
+        /// Setter for [`usesClassicLoadingMode`][Self::usesClassicLoadingMode].
+        #[unsafe(method(setUsesClassicLoadingMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUsesClassicLoadingMode(&self, uses_classic_loading_mode: bool);
 
         #[deprecated = "Please use NSURLSessionConfiguration.defaultSessionConfiguration or other class methods to create instances"]
         #[unsafe(method(init))]
@@ -1873,6 +1886,7 @@ impl NSURLSessionTaskMetricsResourceFetchType {
     pub const Unknown: Self = Self(0);
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad")]
     pub const NetworkLoad: Self = Self(1);
+    #[deprecated = "Server push is no longer supported as of iOS 17 and aligned releases"]
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeServerPush")]
     pub const ServerPush: Self = Self(2);
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeLocalCache")]

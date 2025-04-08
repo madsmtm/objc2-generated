@@ -120,6 +120,9 @@ mod __GKPublicConstants;
 #[cfg(feature = "GKPublicProtocols")]
 #[path = "GKPublicProtocols.rs"]
 mod __GKPublicProtocols;
+#[cfg(feature = "GKReleaseState")]
+#[path = "GKReleaseState.rs"]
+mod __GKReleaseState;
 #[cfg(feature = "GKSavedGame")]
 #[path = "GKSavedGame.rs"]
 mod __GKSavedGame;
@@ -334,6 +337,8 @@ pub use self::__GKPublicConstants::GKVoiceChatServiceErrorDomain;
 pub use self::__GKPublicProtocols::GKSessionDelegate;
 #[cfg(feature = "GKPublicProtocols")]
 pub use self::__GKPublicProtocols::GKVoiceChatClient;
+#[cfg(feature = "GKReleaseState")]
+pub use self::__GKReleaseState::GKReleaseState;
 #[cfg(feature = "GKSavedGame")]
 pub use self::__GKSavedGame::GKSavedGame;
 #[cfg(feature = "GKSavedGameListener")]

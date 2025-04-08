@@ -41,15 +41,29 @@ unsafe impl NSObjectProtocol for EPDeveloperTool {}
 
 impl EPDeveloperTool {
     extern_methods!(
+        /// Initializes the object to manage the lifetime of the XPC connection.
+        ///
+        /// The XPC connection remains for the lifecycle of the object and deallocation is
+        /// required to trigger the teardown of the XPC connection.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The current authorization status of the current process.
+        /// - Returns: An EPDeveloperToolStatus indicating whether the current process has developer tool privileges.
         #[unsafe(method(authorizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus(&self) -> EPDeveloperToolStatus;
 
         #[cfg(feature = "block2")]
+        /// Checks whether developer tool privileges are already available and if not
+        /// populates an entry in Settings for user approval.
+        ///
+        /// This method does not show any UI to the user or guide them towards Settings for approval, if necessary.
+        ///
+        /// - Parameter handler: A block called asynchronously with whether the privilege is available.
+        ///
+        /// > New info
         /// > Concurrency Note: You can call this method from synchronous code using a completion handler,
         /// > as shown on this page, or you can call it as an asynchronous method that has the
         /// > following declaration:

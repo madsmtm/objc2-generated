@@ -906,6 +906,7 @@ impl NSURLRequest {
         /// Returns: YES if the receiver should transmit before the previous response
         /// is received.  NO if the receiver should wait for the previous response
         /// before transmitting.
+        #[deprecated = "Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead"]
         #[unsafe(method(HTTPShouldUsePipelining))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
@@ -1062,11 +1063,13 @@ impl NSMutableURLRequest {
         /// some servers report themselves as being HTTP 1.1 but do not support
         /// pipelining (disconnecting, sending resources misordered, omitting part of
         /// a resource, etc.).
+        #[deprecated = "Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead"]
         #[unsafe(method(HTTPShouldUsePipelining))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
 
         /// Setter for [`HTTPShouldUsePipelining`][Self::HTTPShouldUsePipelining].
+        #[deprecated = "Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead"]
         #[unsafe(method(setHTTPShouldUsePipelining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPShouldUsePipelining(&self, http_should_use_pipelining: bool);

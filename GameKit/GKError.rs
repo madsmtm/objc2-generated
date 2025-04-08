@@ -91,6 +91,8 @@ impl GKErrorCode {
     pub const LockdownMode: Self = Self(36);
     #[doc(alias = "GKErrorAppUnlisted")]
     pub const AppUnlisted: Self = Self(37);
+    #[doc(alias = "GKErrorDebugMode")]
+    pub const DebugMode: Self = Self(38);
     #[doc(alias = "GKErrorFriendListDescriptionMissing")]
     pub const FriendListDescriptionMissing: Self = Self(100);
     #[doc(alias = "GKErrorFriendListRestricted")]

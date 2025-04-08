@@ -77,7 +77,9 @@ impl UICalendarSelectionWeekOfYear {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionweekofyeardelegate?language=objc)
-    pub unsafe trait UICalendarSelectionWeekOfYearDelegate: NSObjectProtocol {
+    pub unsafe trait UICalendarSelectionWeekOfYearDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[cfg(feature = "UICalendarSelection")]
         /// Called after the user selects a week of year in the calendar view.
         ///

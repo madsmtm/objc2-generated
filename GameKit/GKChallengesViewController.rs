@@ -16,7 +16,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
-    #[deprecated]
+    #[deprecated = "No longer supported"]
     pub struct GKChallengesViewController;
 );
 
@@ -48,7 +48,7 @@ unsafe impl NSUserInterfaceItemIdentification for GKChallengesViewController {}
 #[cfg(target_os = "macos")]
 impl GKChallengesViewController {
     extern_methods!(
-        #[deprecated]
+        #[deprecated = "No longer supported"]
         #[unsafe(method(challengeDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeDelegate(
@@ -57,7 +57,7 @@ impl GKChallengesViewController {
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`challengeDelegate`][Self::challengeDelegate].
-        #[deprecated]
+        #[deprecated = "No longer supported"]
         #[unsafe(method(setChallengeDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChallengeDelegate(
@@ -113,9 +113,11 @@ impl GKChallengesViewController {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengesviewcontrollerdelegate?language=objc)
+    #[deprecated = "No longer supported"]
     pub unsafe trait GKChallengesViewControllerDelegate {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        #[deprecated = "No longer supported"]
         #[unsafe(method(challengesViewControllerDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn challengesViewControllerDidFinish(

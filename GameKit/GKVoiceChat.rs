@@ -66,11 +66,13 @@ impl GKVoiceChat {
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// stop receiving audio from the chat
+        #[deprecated = "No longer supported"]
         #[unsafe(method(setPlayer:muted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayer_muted(&self, player: &GKPlayer, is_muted: bool);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        #[deprecated = "No longer supported"]
         #[unsafe(method(playerVoiceChatStateDidChangeHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerVoiceChatStateDidChangeHandler(
@@ -79,6 +81,7 @@ impl GKVoiceChat {
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Setter for [`playerVoiceChatStateDidChangeHandler`][Self::playerVoiceChatStateDidChangeHandler].
+        #[deprecated = "No longer supported"]
         #[unsafe(method(setPlayerVoiceChatStateDidChangeHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayerVoiceChatStateDidChangeHandler(
@@ -116,6 +119,7 @@ impl GKVoiceChat {
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        #[deprecated = "No longer supported"]
         #[unsafe(method(players))]
         #[unsafe(method_family = none)]
         pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;

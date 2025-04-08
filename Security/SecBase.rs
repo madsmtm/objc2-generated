@@ -1113,6 +1113,8 @@ pub const errSecCertificateValidityPeriodTooLong: OSStatus = -67901;
 pub const errSecCertificateIsCA: OSStatus = -67902;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificateduplicateextension?language=objc)
 pub const errSecCertificateDuplicateExtension: OSStatus = -67903;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingqualifiedcertstatement?language=objc)
+pub const errSecMissingQualifiedCertStatement: OSStatus = -67904;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errsslprotocol?language=objc)
 pub const errSSLProtocol: OSStatus = -9800;

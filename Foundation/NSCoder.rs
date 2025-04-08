@@ -286,6 +286,23 @@ impl NSCoder {
             lengthp: *mut NSUInteger,
         ) -> *const u8;
 
+        /// Decode bytes from the decoder. The length of the bytes must be greater than or equal to the `length` parameter.
+        /// If the result exists, but is of insufficient length, then the decoder uses `failWithError` to fail the entire decode operation. The result of that is configurable on a per-NSCoder basis using `NSDecodingFailurePolicy`.
+        #[unsafe(method(decodeBytesWithMinimumLength:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn decodeBytesWithMinimumLength(&self, length: NSUInteger) -> *mut c_void;
+
+        #[cfg(feature = "NSString")]
+        /// Decode bytes from the decoder for a given key. The length of the bytes must be greater than or equal to the `length` parameter.
+        /// If the result exists, but is of insufficient length, then the decoder uses `failWithError` to fail the entire decode operation. The result of that is configurable on a per-NSCoder basis using `NSDecodingFailurePolicy`.
+        #[unsafe(method(decodeBytesForKey:minimumLength:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn decodeBytesForKey_minimumLength(
+            &self,
+            key: &NSString,
+            length: NSUInteger,
+        ) -> *const u8;
+
         #[cfg(feature = "NSString")]
         #[unsafe(method(encodeInteger:forKey:))]
         #[unsafe(method_family = none)]

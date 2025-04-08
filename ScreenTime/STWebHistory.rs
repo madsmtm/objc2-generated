@@ -7,6 +7,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An identifier representing a web history profile.
+///
+/// Profiles allow you to keep your web history separate for topics like work, personal, or school.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/screentime/stwebhistoryprofileidentifier?language=objc)
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type STWebHistoryProfileIdentifier = NSString;
+
 extern_class!(
     /// The object you use to delete web-usage data.
     ///
@@ -27,6 +35,46 @@ unsafe impl NSObjectProtocol for STWebHistory {}
 impl STWebHistory {
     extern_methods!(
         /// Creates a web history instance to delete web-usage data associated to the
+        /// bundle identifier and profile identifier you specify.
+        ///
+        /// The default value for `bundleIdentifier` is `Bundle.main.bundleIdentifier`.
+        /// This is the recommended identifier to use, except for example, if a helper
+        /// process is presenting web UI and you want to group that web-usage under the
+        /// main app’s bundle identifier.
+        ///
+        /// The default value for `profileIdentifier` is `nil`. This identifier can be used to delete
+        /// browsing history for a specific profile. Using `nil` will only delete web history reported
+        /// without a profile identifier.
+        ///
+        /// - Parameters:
+        /// - bundleIdentifier: The bundle identifier.
+        /// - profileIdentifier: The identifier of the current browsing profile.
+        /// - error: Any error that occurred while changing the bundle identifier.
+        #[unsafe(method(initWithBundleIdentifier:profileIdentifier:error:_))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithBundleIdentifier_profileIdentifier_error(
+            this: Allocated<Self>,
+            bundle_identifier: &NSString,
+            profile_identifier: Option<&STWebHistoryProfileIdentifier>,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        /// Creates a web history instance to delete web-usage data associated to the
+        /// profile identifier you specify.
+        ///
+        /// The default value for `profileIdentifier` is `nil`. This identifier can be used to delete
+        /// browsing history for a specific profile. Using `nil` will only delete web history reported
+        /// without a profile identifier.
+        ///
+        /// - Parameters:
+        /// - profileIdentifier: The identifier of the current browsing profile.
+        #[unsafe(method(initWithProfileIdentifier:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithProfileIdentifier(
+            this: Allocated<Self>,
+            profile_identifier: Option<&STWebHistoryProfileIdentifier>,
+        ) -> Retained<Self>;
+
+        /// Creates a web history instance to delete web-usage data associated to the
         /// bundle identifier you specify.
         ///
         /// The default value for `bundleIdentifier` is `Bundle.main.bundleIdentifier`.
@@ -43,6 +91,29 @@ impl STWebHistory {
             this: Allocated<Self>,
             bundle_identifier: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[cfg(feature = "block2")]
+        /// Fetches web history that occurred during the date interval you specify.
+        ///
+        /// - Parameters:
+        /// - interval: The date interval of web history you want to fetch.
+        #[unsafe(method(fetchHistoryDuringInterval:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fetchHistoryDuringInterval_completionHandler(
+            &self,
+            interval: &NSDateInterval,
+            completion_handler: &block2::Block<dyn Fn(*mut NSSet<NSURL>, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Fetches all web history associated with the bundle identifier and profile identifier
+        /// you specified during initialization.
+        #[unsafe(method(fetchAllHistoryWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fetchAllHistoryWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<dyn Fn(*mut NSSet<NSURL>, *mut NSError)>,
+        );
 
         /// Deletes all the web history for the URL you specify.
         ///

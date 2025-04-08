@@ -80,6 +80,12 @@ impl GKAchievementDescription {
         #[unsafe(method(rarityPercent))]
         #[unsafe(method_family = none)]
         pub unsafe fn rarityPercent(&self) -> Option<Retained<NSNumber>>;
+
+        #[cfg(feature = "GKReleaseState")]
+        /// The release state of the achievement in App Store Connect.
+        #[unsafe(method(releaseState))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn releaseState(&self) -> GKReleaseState;
     );
 }
 

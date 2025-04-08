@@ -6,7 +6,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgamepadvaluechangedhandler?language=objc)
+/// Set this block if you want to be notified when a value on a element changed. If multiple elements have changed this block will be called
+/// for each element that changed. As elements in a collection, such as the axis in a dpad, tend to change at the same time and thus
+/// will only call this once with the collection as the element.
+///
+///
+/// Parameter `gamepad`: this gamepad that is being used to map the raw input data into logical values on controller elements such as the dpad or the buttons.
+///
+/// Parameter `element`: the element that has been modified.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgamepadvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerElement",
     feature = "GCPhysicalInputProfile",
@@ -31,6 +40,7 @@ unsafe impl NSObjectProtocol for GCGamepad {}
 impl GCGamepad {
     extern_methods!(
         #[cfg(feature = "GCController")]
+        /// A profile keeps a reference to the controller that this profile is mapping input from.
         #[deprecated]
         #[unsafe(method(controller))]
         #[unsafe(method_family = none)]

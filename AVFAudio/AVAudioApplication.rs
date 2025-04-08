@@ -152,7 +152,7 @@ impl AVAudioApplication {
         ///
         /// Note: This is available on macOS only - for all other platforms input muting will be handled internally. It is recommended only to
         /// perform your input muting logic within this block, and to perform your UI updates for input mute state changes within the handler
-        /// for AVAudioApplicationInputMuteStateChangeNotification.
+        /// for AVAudioApplicationInputMuteStateChangeNotification. This handler should be set by the process doing the call's audio I/O.
         #[unsafe(method(setInputMuteStateChangeHandler:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputMuteStateChangeHandler_error(

@@ -146,6 +146,21 @@ impl WKWebViewConfiguration {
             user_content_controller: &WKUserContentController,
         );
 
+        #[cfg(feature = "WKWebExtensionController")]
+        /// The web extension controller to associate with the web view.
+        #[unsafe(method(webExtensionController))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn webExtensionController(&self) -> Option<Retained<WKWebExtensionController>>;
+
+        #[cfg(feature = "WKWebExtensionController")]
+        /// Setter for [`webExtensionController`][Self::webExtensionController].
+        #[unsafe(method(setWebExtensionController:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWebExtensionController(
+            &self,
+            web_extension_controller: Option<&WKWebExtensionController>,
+        );
+
         #[cfg(feature = "WKWebsiteDataStore")]
         /// The website data store to be used by the web view.
         #[unsafe(method(websiteDataStore))]

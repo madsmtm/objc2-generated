@@ -620,6 +620,7 @@ pub const IOUSBHostCIDeviceCreateCommandData0Route: c_uint = IOUSBBitRange!(4, 2
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicecreatecommanddata0routephase?language=objc)
 #[cfg(feature = "objc2-io-kit")]
 pub const IOUSBHostCIDeviceCreateCommandData0RoutePhase: c_uint = IOUSBBitRangePhase!(4, 23);
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicecreatecommanddata1deviceaddress?language=objc)
 #[cfg(feature = "objc2-io-kit")]
 pub const IOUSBHostCIDeviceCreateCommandData1DeviceAddress: c_uint = IOUSBBitRange64!(0, 7);
@@ -628,10 +629,11 @@ pub const IOUSBHostCIDeviceCreateCommandData1DeviceAddress: c_uint = IOUSBBitRan
 pub const IOUSBHostCIDeviceCreateCommandData1DeviceAddressPhase: c_uint = IOUSBBitRangePhase!(0, 7);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcideviceupdatecommanddata1descriptoraddress?language=objc)
-pub const IOUSBHostCIDeviceUpdateCommandData1DescriptorAddress: c_uint = 4294967295;
+#[cfg(feature = "objc2-io-kit")]
+pub const IOUSBHostCIDeviceUpdateCommandData1DescriptorAddress: c_ulong = IOUSBBitRange64!(0, 63);
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcideviceupdatecommanddata1descriptoraddressphase?language=objc)
 #[cfg(feature = "objc2-io-kit")]
-pub const IOUSBHostCIDeviceUpdateCommandData1DescriptorAddressPhase: c_uint =
+pub const IOUSBHostCIDeviceUpdateCommandData1DescriptorAddressPhase: c_ulong =
     IOUSBBitRangePhase!(0, 63);
 
 /// Endpoint state managed by IOUSBHostCIEndpointStateMachine
@@ -714,11 +716,13 @@ pub const IOUSBHostCINormalTransferData0Length: c_uint = IOUSBBitRange!(0, 27);
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcinormaltransferdata0lengthphase?language=objc)
 #[cfg(feature = "objc2-io-kit")]
 pub const IOUSBHostCINormalTransferData0LengthPhase: c_uint = IOUSBBitRangePhase!(0, 27);
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcinormaltransferdata1buffer?language=objc)
-pub const IOUSBHostCINormalTransferData1Buffer: c_uint = 4294967295;
+#[cfg(feature = "objc2-io-kit")]
+pub const IOUSBHostCINormalTransferData1Buffer: c_ulong = IOUSBBitRange64!(0, 63);
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcinormaltransferdata1bufferphase?language=objc)
 #[cfg(feature = "objc2-io-kit")]
-pub const IOUSBHostCINormalTransferData1BufferPhase: c_uint = IOUSBBitRangePhase!(0, 63);
+pub const IOUSBHostCINormalTransferData1BufferPhase: c_ulong = IOUSBBitRangePhase!(0, 63);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciisochronoustransfercontrolframenumber?language=objc)
 #[cfg(feature = "objc2-io-kit")]
@@ -730,50 +734,54 @@ pub const IOUSBHostCIIsochronousTransferControlFrameNumberPhase: c_uint =
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciisochronoustransfercontrolasap?language=objc)
 #[cfg(feature = "objc2-io-kit")]
 pub const IOUSBHostCIIsochronousTransferControlASAP: c_uint = IOUSBBit!(24);
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciisochronoustransferdata0length?language=objc)
 pub const IOUSBHostCIIsochronousTransferData0Length: c_uint = IOUSBHostCINormalTransferData0Length;
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciisochronoustransferdata0lengthphase?language=objc)
 pub const IOUSBHostCIIsochronousTransferData0LengthPhase: c_uint =
     IOUSBHostCINormalTransferData0LengthPhase;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciisochronoustransferdata1buffer?language=objc)
-pub const IOUSBHostCIIsochronousTransferData1Buffer: c_uint = IOUSBHostCINormalTransferData1Buffer;
+pub const IOUSBHostCIIsochronousTransferData1Buffer: c_ulong = IOUSBHostCINormalTransferData1Buffer;
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciisochronoustransferdata1bufferphase?language=objc)
-pub const IOUSBHostCIIsochronousTransferData1BufferPhase: c_uint =
+pub const IOUSBHostCIIsochronousTransferData1BufferPhase: c_ulong =
     IOUSBHostCINormalTransferData1BufferPhase;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkdata1transferstructureaddress?language=objc)
-pub const IOUSBHostCILinkData1TransferStructureAddress: c_uint = 4294967295;
+#[cfg(feature = "objc2-io-kit")]
+pub const IOUSBHostCILinkData1TransferStructureAddress: c_ulong = IOUSBBitRange64!(0, 63);
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkdata1transferstructureaddressphase?language=objc)
 #[cfg(feature = "objc2-io-kit")]
-pub const IOUSBHostCILinkData1TransferStructureAddressPhase: c_uint = IOUSBBitRangePhase!(0, 63);
+pub const IOUSBHostCILinkData1TransferStructureAddressPhase: c_ulong = IOUSBBitRangePhase!(0, 63);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcitransfercompletionmessagecontrolstatus?language=objc)
-pub const IOUSBHostCITransferCompletionMessageControlStatus: c_ulong = 3840;
+pub const IOUSBHostCITransferCompletionMessageControlStatus: c_uint = 3840;
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcitransfercompletionmessagecontrolstatusphase?language=objc)
-pub const IOUSBHostCITransferCompletionMessageControlStatusPhase: c_ulong = 8;
+pub const IOUSBHostCITransferCompletionMessageControlStatusPhase: c_uint = 8;
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcitransfercompletionmessagecontroldeviceaddress?language=objc)
 #[cfg(feature = "objc2-io-kit")]
-pub const IOUSBHostCITransferCompletionMessageControlDeviceAddress: c_ulong =
-    IOUSBBitRange!(16, 23);
+pub const IOUSBHostCITransferCompletionMessageControlDeviceAddress: c_uint = IOUSBBitRange!(16, 23);
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcitransfercompletionmessagecontroldeviceaddressphase?language=objc)
 #[cfg(feature = "objc2-io-kit")]
-pub const IOUSBHostCITransferCompletionMessageControlDeviceAddressPhase: c_ulong =
+pub const IOUSBHostCITransferCompletionMessageControlDeviceAddressPhase: c_uint =
     IOUSBBitRangePhase!(16, 23);
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcitransfercompletionmessagecontrolendpointaddress?language=objc)
 #[cfg(feature = "objc2-io-kit")]
-pub const IOUSBHostCITransferCompletionMessageControlEndpointAddress: c_ulong =
+pub const IOUSBHostCITransferCompletionMessageControlEndpointAddress: c_uint =
     IOUSBBitRange!(24, 31);
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcitransfercompletionmessagecontrolendpointaddressphase?language=objc)
 #[cfg(feature = "objc2-io-kit")]
-pub const IOUSBHostCITransferCompletionMessageControlEndpointAddressPhase: c_ulong =
+pub const IOUSBHostCITransferCompletionMessageControlEndpointAddressPhase: c_uint =
     IOUSBBitRangePhase!(24, 31);
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcitransfercompletionmessagedata0transferlength?language=objc)
 #[cfg(feature = "objc2-io-kit")]
-pub const IOUSBHostCITransferCompletionMessageData0TransferLength: c_ulong = IOUSBBitRange!(0, 27);
+pub const IOUSBHostCITransferCompletionMessageData0TransferLength: c_uint = IOUSBBitRange!(0, 27);
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcitransfercompletionmessagedata0transferlengthphase?language=objc)
 #[cfg(feature = "objc2-io-kit")]
-pub const IOUSBHostCITransferCompletionMessageData0TransferLengthPhase: c_ulong =
+pub const IOUSBHostCITransferCompletionMessageData0TransferLengthPhase: c_uint =
     IOUSBBitRangePhase!(0, 27);
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcitransfercompletionmessagedata1transferstructurephase?language=objc)
 #[cfg(feature = "objc2-io-kit")]
 pub const IOUSBHostCITransferCompletionMessageData1TransferStructurePhase: c_ulong =

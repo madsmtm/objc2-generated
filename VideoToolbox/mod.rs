@@ -39,6 +39,30 @@ mod __VTDecompressionSession;
 #[cfg(feature = "VTErrors")]
 #[path = "VTErrors.rs"]
 mod __VTErrors;
+#[cfg(feature = "VTFrameProcessor")]
+#[path = "VTFrameProcessor.rs"]
+mod __VTFrameProcessor;
+#[cfg(feature = "VTFrameProcessorConfiguration")]
+#[path = "VTFrameProcessorConfiguration.rs"]
+mod __VTFrameProcessorConfiguration;
+#[cfg(feature = "VTFrameProcessorErrors")]
+#[path = "VTFrameProcessorErrors.rs"]
+mod __VTFrameProcessorErrors;
+#[cfg(feature = "VTFrameProcessorFrame")]
+#[path = "VTFrameProcessorFrame.rs"]
+mod __VTFrameProcessorFrame;
+#[cfg(feature = "VTFrameProcessorParameters")]
+#[path = "VTFrameProcessorParameters.rs"]
+mod __VTFrameProcessorParameters;
+#[cfg(feature = "VTFrameProcessor_FrameRateConversion")]
+#[path = "VTFrameProcessor_FrameRateConversion.rs"]
+mod __VTFrameProcessor_FrameRateConversion;
+#[cfg(feature = "VTFrameProcessor_MotionBlur")]
+#[path = "VTFrameProcessor_MotionBlur.rs"]
+mod __VTFrameProcessor_MotionBlur;
+#[cfg(feature = "VTFrameProcessor_OpticalFlow")]
+#[path = "VTFrameProcessor_OpticalFlow.rs"]
+mod __VTFrameProcessor_OpticalFlow;
 #[cfg(feature = "VTFrameSilo")]
 #[path = "VTFrameSilo.rs"]
 mod __VTFrameSilo;
@@ -731,6 +755,50 @@ pub use self::__VTErrors::kVTVideoEncoderNotAvailableNowErr;
 pub use self::__VTErrors::VTDecodeInfoFlags;
 #[cfg(feature = "VTErrors")]
 pub use self::__VTErrors::VTEncodeInfoFlags;
+#[cfg(all(feature = "VTFrameProcessor", feature = "objc2"))]
+pub use self::__VTFrameProcessor::VTFrameProcessor;
+#[cfg(all(feature = "VTFrameProcessorConfiguration", feature = "objc2"))]
+pub use self::__VTFrameProcessorConfiguration::VTFrameProcessorConfiguration;
+#[cfg(all(feature = "VTFrameProcessorErrors", feature = "objc2"))]
+pub use self::__VTFrameProcessorErrors::VTFrameProcessorError;
+#[cfg(all(feature = "VTFrameProcessorErrors", feature = "objc2-foundation"))]
+pub use self::__VTFrameProcessorErrors::VTFrameProcessorErrorDomain;
+#[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2"))]
+pub use self::__VTFrameProcessorFrame::VTFrameProcessorFrame;
+#[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2"))]
+pub use self::__VTFrameProcessorFrame::VTFrameProcessorOpticalFlow;
+#[cfg(all(feature = "VTFrameProcessorParameters", feature = "objc2"))]
+pub use self::__VTFrameProcessorParameters::VTFrameProcessorParameters;
+#[cfg(all(feature = "VTFrameProcessor_FrameRateConversion", feature = "objc2"))]
+pub use self::__VTFrameProcessor_FrameRateConversion::VTFrameRateConversionConfiguration;
+#[cfg(all(feature = "VTFrameProcessor_FrameRateConversion", feature = "objc2"))]
+pub use self::__VTFrameProcessor_FrameRateConversion::VTFrameRateConversionConfigurationQualityPrioritization;
+#[cfg(all(feature = "VTFrameProcessor_FrameRateConversion", feature = "objc2"))]
+pub use self::__VTFrameProcessor_FrameRateConversion::VTFrameRateConversionConfigurationRevision;
+#[cfg(all(feature = "VTFrameProcessor_FrameRateConversion", feature = "objc2"))]
+pub use self::__VTFrameProcessor_FrameRateConversion::VTFrameRateConversionParameters;
+#[cfg(all(feature = "VTFrameProcessor_FrameRateConversion", feature = "objc2"))]
+pub use self::__VTFrameProcessor_FrameRateConversion::VTFrameRateConversionParametersSubmissionMode;
+#[cfg(all(feature = "VTFrameProcessor_MotionBlur", feature = "objc2"))]
+pub use self::__VTFrameProcessor_MotionBlur::VTMotionBlurConfiguration;
+#[cfg(all(feature = "VTFrameProcessor_MotionBlur", feature = "objc2"))]
+pub use self::__VTFrameProcessor_MotionBlur::VTMotionBlurConfigurationQualityPrioritization;
+#[cfg(all(feature = "VTFrameProcessor_MotionBlur", feature = "objc2"))]
+pub use self::__VTFrameProcessor_MotionBlur::VTMotionBlurConfigurationRevision;
+#[cfg(all(feature = "VTFrameProcessor_MotionBlur", feature = "objc2"))]
+pub use self::__VTFrameProcessor_MotionBlur::VTMotionBlurParameters;
+#[cfg(all(feature = "VTFrameProcessor_MotionBlur", feature = "objc2"))]
+pub use self::__VTFrameProcessor_MotionBlur::VTMotionBlurParametersSubmissionMode;
+#[cfg(all(feature = "VTFrameProcessor_OpticalFlow", feature = "objc2"))]
+pub use self::__VTFrameProcessor_OpticalFlow::VTOpticalFlowConfiguration;
+#[cfg(all(feature = "VTFrameProcessor_OpticalFlow", feature = "objc2"))]
+pub use self::__VTFrameProcessor_OpticalFlow::VTOpticalFlowConfigurationQualityPrioritization;
+#[cfg(all(feature = "VTFrameProcessor_OpticalFlow", feature = "objc2"))]
+pub use self::__VTFrameProcessor_OpticalFlow::VTOpticalFlowConfigurationRevision;
+#[cfg(all(feature = "VTFrameProcessor_OpticalFlow", feature = "objc2"))]
+pub use self::__VTFrameProcessor_OpticalFlow::VTOpticalFlowParameters;
+#[cfg(all(feature = "VTFrameProcessor_OpticalFlow", feature = "objc2"))]
+pub use self::__VTFrameProcessor_OpticalFlow::VTOpticalFlowParametersSubmissionMode;
 #[cfg(feature = "VTFrameSilo")]
 pub use self::__VTFrameSilo::VTFrameSilo;
 #[cfg(all(feature = "VTFrameSilo", feature = "objc2-core-media"))]

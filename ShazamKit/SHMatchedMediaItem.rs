@@ -23,6 +23,14 @@ extern "C" {
     pub static SHMediaItemFrequencySkew: &'static SHMediaItemProperty;
 }
 
+extern "C" {
+    /// The value ranges from 0.0 to 1.0, where 1.0 indicates the highest level of confidence.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemconfidence?language=objc)
+    #[cfg(feature = "SHMediaItem")]
+    pub static SHMediaItemConfidence: &'static SHMediaItemProperty;
+}
+
 extern_class!(
     /// `SHMatchedMediaItem`represents metadata that has been matched against a
     /// `SHCatalog`
@@ -87,6 +95,15 @@ impl SHMatchedMediaItem {
         #[unsafe(method(predictedCurrentMatchOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn predictedCurrentMatchOffset(&self) -> NSTimeInterval;
+
+        /// The level of confidence in the match result.
+        ///
+        /// Note: This may be fetched using the key
+        /// `SHMediaItemConfidence`
+        /// The value ranges from 0.0 to 1.0, where 1.0 indicates the highest level of confidence.
+        #[unsafe(method(confidence))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn confidence(&self) -> c_float;
     );
 }
 

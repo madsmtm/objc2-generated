@@ -23,7 +23,18 @@ unsafe impl RefEncode for cp_texture_topology {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_texture_topology", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_texture_topology_t?language=objc)
+/// An opaque type that specifies the configuration of one of the layer’s
+/// drawable textures.
+///
+/// For direct-to-screen drawing, you specify how you want Compositor to
+/// configure the required textures when you configure your layer. For a
+/// device with multiple displays, Compositor can configure the textures
+/// in different ways. For example, it can create a separate texture for
+/// each display, or it can combine the images from multiple displays into
+/// a single texture. A texture topology type contains the details of one
+/// of the textures Compositor creates for your app.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_texture_topology_t?language=objc)
 pub type cp_texture_topology_t = *mut cp_texture_topology;
 
 extern "C-unwind" {
@@ -66,7 +77,18 @@ extern "C-unwind" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_properties?language=objc)
+    /// An opaque type that describes the organization of the layer's textures
+    /// and the relationships between those textures and the views you use
+    /// for drawing.
+    ///
+    /// You might use the layer's properties to configure other parts of
+    /// your app. For example, use them to configure your app's render pipeline.
+    ///
+    /// You can obtain layer properties directly from your layer. If you don't
+    /// yet have the layer type, you can create an equivalent set of properties
+    /// using the ``cp_layer_renderer_properties_create_using_configuration`` function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_properties?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CP_OBJECT_cp_layer_renderer_properties;
@@ -86,7 +108,18 @@ impl CP_OBJECT_cp_layer_renderer_properties {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_t?language=objc)
+/// An opaque type that describes the organization of the layer's textures
+/// and the relationships between those textures and the views you use
+/// for drawing.
+///
+/// You might use the layer's properties to configure other parts of
+/// your app. For example, use them to configure your app's render pipeline.
+///
+/// You can obtain layer properties directly from your layer. If you don't
+/// yet have the layer type, you can create an equivalent set of properties
+/// using the ``cp_layer_renderer_properties_create_using_configuration`` function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_t?language=objc)
 pub type cp_layer_renderer_properties_t = CP_OBJECT_cp_layer_renderer_properties;
 
 /// Creates a new opaque type to store layer-related properties.

@@ -112,6 +112,8 @@ pub use self::__CSSearchableItem::CSSearchableItem;
 pub use self::__CSSearchableItem::CSSearchableItemActionType;
 #[cfg(feature = "CSSearchableItem")]
 pub use self::__CSSearchableItem::CSSearchableItemActivityIdentifier;
+#[cfg(feature = "CSSearchableItem")]
+pub use self::__CSSearchableItem::CSSearchableItemUpdateListenerOptions;
 #[cfg(feature = "CSSearchableItemAttributeSet")]
 pub use self::__CSSearchableItemAttributeSet::CSCustomAttributeKey;
 #[cfg(feature = "CSSearchableItemAttributeSet")]

@@ -13,7 +13,7 @@ extern_class!(
     /// run alongside the Writing Tools animations.
     ///
     /// When Writing Tools replaces text in one of your context objects,
-    /// it provides an `NS/UIWritingToolsAnimationParameters` object for
+    /// it provides a `UIWritingToolsCoordinator.AnimationParameters` object for
     /// you to use to configure any additional animations. During a Writing
     /// Tools session, you hide the text under evaluation and provide a
     /// targeted preview of your content. Writing Tools animations changes
@@ -23,7 +23,7 @@ extern_class!(
     /// removal of text in other parts of your view. Use this object to
     /// configure those animations.
     ///
-    /// You don’t create an `NS/UIWritingToolsCoordinator.AnimationParameters`
+    /// You don’t create a `UIWritingToolsCoordinator.AnimationParameters`
     /// object directly. Instead, the system creates one and passes it to the
     /// ``UIWritingToolsCoordinator/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)``
     /// method of your ``UIWritingToolsCoordinatorDelegate`` object. Use that

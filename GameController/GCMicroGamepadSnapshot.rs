@@ -24,7 +24,7 @@ extern_class!(
     #[unsafe(super(GCMicroGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
-    #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+    #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     pub struct GCMicroGamepadSnapshot;
 );
 
@@ -34,24 +34,24 @@ unsafe impl NSObjectProtocol for GCMicroGamepadSnapshot {}
 #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
 impl GCMicroGamepadSnapshot {
     extern_methods!(
-        #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+        #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
         #[unsafe(method(snapshotData))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotData(&self) -> Retained<NSData>;
 
         /// Setter for [`snapshotData`][Self::snapshotData].
-        #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+        #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
         #[unsafe(method(setSnapshotData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSnapshotData(&self, snapshot_data: &NSData);
 
-        #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+        #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
         #[unsafe(method(initWithSnapshotData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSnapshotData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "GCController")]
-        #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+        #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
         #[unsafe(method(initWithController:snapshotData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithController_snapshotData(
@@ -78,12 +78,12 @@ impl GCMicroGamepadSnapshot {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdataversion?language=objc)
 // NS_ENUM
-#[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCMicroGamepadSnapshotDataVersion(pub NSInteger);
 impl GCMicroGamepadSnapshotDataVersion {
-    #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+    #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[doc(alias = "GCMicroGamepadSnapshotDataVersion1")]
     pub const Version1: Self = Self(0x0100);
 }
@@ -135,7 +135,7 @@ unsafe impl RefEncode for GCMicroGamepadSnapshotData {
 ///
 ///
 /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
-#[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn GCMicroGamepadSnapshotDataFromNSData(
     snapshot_data: *mut GCMicroGamepadSnapshotData,
@@ -155,7 +155,7 @@ pub unsafe extern "C-unwind" fn GCMicroGamepadSnapshotDataFromNSData(
 ///
 ///
 /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCGamepadSnapshot.snapshotData
-#[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapshotData(
     snapshot_data: *mut GCMicroGamepadSnapshotData,
@@ -203,7 +203,7 @@ unsafe impl RefEncode for GCMicroGamepadSnapShotDataV100 {
 ///
 ///
 /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
-#[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn GCMicroGamepadSnapShotDataV100FromNSData(
     snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
@@ -223,7 +223,7 @@ pub unsafe extern "C-unwind" fn GCMicroGamepadSnapShotDataV100FromNSData(
 ///
 ///
 /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCGamepadSnapshot.snapshotData
-#[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
+#[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapShotDataV100(
     snapshot_data: *mut GCMicroGamepadSnapShotDataV100,

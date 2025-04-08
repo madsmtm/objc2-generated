@@ -231,7 +231,7 @@ impl UIWritingToolsCoordinator {
         /// uses the object in its ``UIInteraction/view`` property to host any visual effects.
         ///
         /// If you display your view’s text using multiple text containers, implement the
-        /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:singleContainerSubrangesOf:in:)``
+        /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)``
         /// method to request multiple previews.
         #[unsafe(method(effectContainerView))]
         #[unsafe(method_family = none)]
@@ -258,8 +258,8 @@ impl UIWritingToolsCoordinator {
         /// property to host any visual elements.
         ///
         /// If you display your view’s text using multiple text containers, implement the
-        /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:singleContainerSubrangesOf:in:)``
-        /// and ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:decorationContainerViewFor:in:)``
+        /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)``
+        /// and ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:requestsDecorationContainerViewFor:in:completion:)``
         /// methods to provide separate decoration views for each container.
         #[unsafe(method(decorationContainerView))]
         #[unsafe(method_family = none)]
@@ -329,7 +329,7 @@ impl UIWritingToolsCoordinator {
         /// Writing Tools can create plain text or rich text, and it can format text
         /// using lists or tables as needed. If your view doesn’t support specific
         /// types of content, specify the types you do support in this property.
-        /// The default value of this property is ``UIWritingToolsResult/default``,
+        /// The default value of this property is ``UIWritingToolsResultOptions/default``,
         /// which lets the system determine the type of content to generate.
         #[unsafe(method(preferredResultOptions))]
         #[unsafe(method_family = none)]
@@ -461,7 +461,7 @@ impl UIWritingToolsCoordinatorTextReplacementReason {
     /// An option to animate the replacement of text in your view.
     ///
     /// When Writing Tools requests an interactive change in your delegate’s
-    /// ``UIWritingToolsCoordinator/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)``
+    /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)``
     /// method, it passes a valid set of animation parameters to that method.
     /// Update your view’s text storage and use the provided ``UIWritingToolsCoordinator/AnimationParameters``
     /// type to create any view-specific animations you need to support the
@@ -471,7 +471,7 @@ impl UIWritingToolsCoordinatorTextReplacementReason {
     /// An option to replace the text in your view without animating the change.
     ///
     /// When Writing Tools requests a noninteractive change in your delegate’s
-    /// ``UIWritingToolsCoordinator/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)``
+    /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)``
     /// method, update your view’s text storage without animating the change.
     #[doc(alias = "UIWritingToolsCoordinatorTextReplacementReasonNoninteractive")]
     pub const Noninteractive: Self = Self(1);
@@ -488,7 +488,7 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextReplacementReason {
 /// Options that indicate how much of your content Writing Tools requested.
 ///
 /// At the start of any Writing Tools interaction, you provide the text for
-/// the system to evaluate from your ``NS/UIWritingToolsCoordinator/Delegate``
+/// the system to evaluate from your ``UIWritingToolsCoordinator/Delegate``
 /// object. The request for your content comes with a scope constant that
 /// indicates how much of your view’s text to provide.
 ///
@@ -654,7 +654,7 @@ extern_protocol!(
         /// example, it might use an entire paragraph, instead of only the selected sentence,
         /// to evaluate ways to rewrite that sentence. It’s best to include the text up
         /// to the nearest paragraph boundary before and after the selection. If you
-        /// include extra text in your context object, set the ``NS/UIWritingToolsCoordinator/Context/range``
+        /// include extra text in your context object, set the ``UIWritingToolsCoordinator/Context/range``
         /// property to the range of the selected text.
         ///
         /// > Note: When a context object stores only a subset of your view’s text, record
@@ -776,58 +776,6 @@ extern_protocol!(
             ranges: &NSArray<NSValue>,
             context: &UIWritingToolsCoordinatorContext,
             completion: &block2::Block<dyn Fn()>,
-        );
-
-        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-        /// Asks the delegate to provide the location of the character at the
-        /// specified point in your view’s coordinate system.
-        ///
-        /// - Parameters:
-        /// - writingToolsCoordinator: The coordinator object requesting
-        /// information from your custom view.
-        /// - point: A point in your view’s coordinate space. Find the
-        /// location of the text under this point, if any.
-        /// - completion: A handler to execute with the required information.
-        /// This handler has no return value and takes an
-        /// <doc
-        /// ://com.apple.documentation/documentation/foundation/nsrange>
-        /// and
-        /// <doc
-        /// ://com.apple.documentation/documentation/foundation/uuid>
-        /// as parameters. Set the range to the character’s location in one of your
-        /// ``UIWritingToolsCoordinator/Context`` objects, which you specify using
-        /// the
-        /// <doc
-        /// ://com.apple.documentation/documentation/foundation/uuid> parameter.
-        /// You must call this handler at some point during your method’s implementation.
-        ///
-        /// When someone interacts with your view during a proofreading operation, Writing Tools
-        /// calls this method to get the location of the interaction. If the interaction
-        /// occurs in the text of one of your ``UIWritingToolsCoordinator/Context`` objects,
-        /// configure an
-        /// <doc
-        /// ://com.apple.documentation/documentation/foundation/nsrange>
-        /// with the character’s location in that context object and a length of `1`. If
-        /// the interaction occurs outside of the text of your context objects, configure
-        /// the range with a location of `NSNotFound`.
-        ///
-        /// When specifying the location of a character in your context object, provide a
-        /// location relative to the start of your context object’s text. The first character
-        /// in a context object’s text is always at location `0`, and it’s your responsibility
-        /// to track the location of the context object’s text in your text storage object.
-        /// When the context object’s text begins in the middle of your text storage,
-        /// subtract the starting location of the context object’s text from the location
-        /// you specify in your range value. For example, if the context object’s text
-        /// starts at character `100` in your text storage, and an interaction occurs
-        /// with the character at location `102`, specify a range with a location of
-        /// `2` and a length of `1`.
-        #[unsafe(method(writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:))]
-        #[unsafe(method_family = none)]
-        unsafe fn writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion(
-            &self,
-            writing_tools_coordinator: &UIWritingToolsCoordinator,
-            point: CGPoint,
-            completion: &block2::Block<dyn Fn(NSRange, NonNull<NSUUID>)>,
         );
 
         #[cfg(all(
@@ -975,7 +923,7 @@ extern_protocol!(
         /// method to undo any changes you make to your content.
         ///
         /// For a single animation type, the system calls the
-        /// ``writingToolsCoordinator(_:previewFor:range:context:completion:)`` method,
+        /// ``writingToolsCoordinator(_:requestsPreviewFor:range:context:completion:)`` method,
         /// followed sequentially by this method and the ``writingToolsCoordinator(_:finish:for:in:completion:)``
         /// method. Each method executes asynchronously, but the system calls the next
         /// method in the sequence only after you call the completion handler of the previous
@@ -1084,7 +1032,7 @@ extern_protocol!(
         /// you finish your cleanup work, call the completion handler to notify Writing Tools.
         ///
         /// Writing Tools calls this method only after previous calls to the
-        /// ``writingToolsCoordinator(_:previewFor:range:context:completion:)``
+        /// ``writingToolsCoordinator(_:requestsPreviewFor:range:context:completion:)``
         /// and ``writingToolsCoordinator(_:prepareFor:range:context:completion:)``
         /// methods for the same animation type. However, Writing Tools can interleave
         /// calls to this method with calls to prepare an animation of a different
@@ -1146,7 +1094,7 @@ extern_protocol!(
         ///
         /// When configuring animations for your view, Writing Tools asks your delegate to
         /// provide separate previews for each of your view’s container object. Specifically,
-        /// it calls your delegate’s ``writingToolsCoordinator(_:previewFor:range:context:completion:)``
+        /// it calls your delegate’s ``writingToolsCoordinator(_:requestsPreviewFor:range:context:completion:)``
         /// method separately for each range of text you return in the completion handler.
         /// Your implementation of that method must create a preview suitable for animating
         /// the content from the underlying text container.
@@ -1189,7 +1137,7 @@ extern_protocol!(
         ///
         /// If your view uses multiple ``NSTextContainer`` objects to draw text in different
         /// regions, use this method to provide Writing Tools with the view to use for the
-        /// specified range of text. After calling your delegate’s ``writingToolsCoordinator(_:singleContainerSubrangesOf:in:)``
+        /// specified range of text. After calling your delegate’s ``writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)``
         /// method, Writing Tools calls this method for each subrange of text you provided.
         /// Find or provide a view situated visibly below the specified text in your text
         /// view. It's also satisfactory to provide a view that’s visually in front of the
@@ -1240,6 +1188,60 @@ extern_protocol!(
             writing_tools_coordinator: &UIWritingToolsCoordinator,
             new_state: UIWritingToolsCoordinatorState,
             completion: &block2::Block<dyn Fn()>,
+        );
+
+        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// Asks the delegate to provide the location of the character at the
+        /// specified point in your view’s coordinate system.
+        ///
+        /// - Parameters:
+        /// - writingToolsCoordinator: The coordinator object requesting
+        /// information from your custom view.
+        /// - point: A point in your view’s coordinate space. Find the
+        /// location of the text under this point, if any.
+        /// - completion: A handler to execute with the required information.
+        /// This handler has no return value and takes an
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsrange>
+        /// and
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/uuid>
+        /// as parameters. Set the range to the character’s location in one of your
+        /// ``UIWritingToolsCoordinator/Context`` objects, which you specify using
+        /// the
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/uuid> parameter.
+        /// You must call this handler at some point during your method’s implementation.
+        ///
+        /// When someone interacts with your view during a proofreading operation, Writing Tools
+        /// calls this method to get the location of the interaction. If the interaction
+        /// occurs in the text of one of your ``UIWritingToolsCoordinator/Context`` objects,
+        /// configure an
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsrange>
+        /// with the character’s location in that context object and a length of `1`. If
+        /// the interaction occurs outside of the text of your context objects, configure
+        /// the range with a location of `NSNotFound`.
+        ///
+        /// When specifying the location of a character in your context object, provide a
+        /// location relative to the start of your context object’s text. The first character
+        /// in a context object’s text is always at location `0`, and it’s your responsibility
+        /// to track the location of the context object’s text in your text storage object.
+        /// When the context object’s text begins in the middle of your text storage,
+        /// subtract the starting location of the context object’s text from the location
+        /// you specify in your range value. For example, if the context object’s text
+        /// starts at character `100` in your text storage, and an interaction occurs
+        /// with the character at location `102`, specify a range with a location of
+        /// `2` and a length of `1`.
+        #[deprecated = "In iOS 18.4 and later and visionOS 2.4 and later, UIWritingToolsCoordinator automatically determines the location of the character at the specified point in your view's coordinate system and no longer calls this method."]
+        #[optional]
+        #[unsafe(method(writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:))]
+        #[unsafe(method_family = none)]
+        unsafe fn writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion(
+            &self,
+            writing_tools_coordinator: &UIWritingToolsCoordinator,
+            point: CGPoint,
+            completion: &block2::Block<dyn Fn(NSRange, NonNull<NSUUID>)>,
         );
     }
 );

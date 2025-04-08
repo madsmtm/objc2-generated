@@ -5,4 +5,4 @@ use core::ffi::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sk_version?language=objc)
-pub const SK_VERSION: c_uint = 51000003;
+pub const SK_VERSION: c_uint = 51004002;

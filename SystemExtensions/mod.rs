@@ -613,6 +613,22 @@ impl OSSystemExtensionsWorkspace {
             &self,
             observer: &ProtocolObject<dyn OSSystemExtensionsWorkspaceObserver>,
         );
+
+        /// Get information about system extension(s) in an app with a bundle identifier
+        ///
+        ///
+        /// Parameter `bundleID`: BundleIdentifier of the application containing the system extension(s)
+        ///
+        /// Parameter `out_error`: Error parameter to be populated with relevant error information
+        ///
+        ///
+        /// Returns: A set of system extension property objects on success, nil otherwise.
+        #[unsafe(method(systemExtensionsForApplicationWithBundleID:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn systemExtensionsForApplicationWithBundleID_error(
+            &self,
+            bundle_id: &NSString,
+        ) -> Result<Retained<NSSet<OSSystemExtensionProperties>>, Retained<NSError>>;
     );
 }
 

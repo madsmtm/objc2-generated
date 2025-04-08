@@ -9,7 +9,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_capabilities?language=objc)
+    /// A type that stores the supported configurations for a layer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_capabilities?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CP_OBJECT_cp_layer_renderer_capabilities;
@@ -29,7 +31,9 @@ impl CP_OBJECT_cp_layer_renderer_capabilities {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_t?language=objc)
+/// A type that stores the supported configurations for a layer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_t?language=objc)
 pub type cp_layer_renderer_capabilities_t = CP_OBJECT_cp_layer_renderer_capabilities;
 
 extern "C-unwind" {

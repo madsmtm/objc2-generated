@@ -156,5 +156,18 @@ impl CPNowPlayingTemplate {
             &self,
             now_playing_buttons: &NSArray<CPNowPlayingButton>,
         );
+
+        #[cfg(feature = "CPNowPlayingMode")]
+        /// The currently-active now playing mode. See
+        /// `CPNowPlayingMode.`
+        #[unsafe(method(nowPlayingMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn nowPlayingMode(&self) -> Option<Retained<CPNowPlayingMode>>;
+
+        #[cfg(feature = "CPNowPlayingMode")]
+        /// Setter for [`nowPlayingMode`][Self::nowPlayingMode].
+        #[unsafe(method(setNowPlayingMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNowPlayingMode(&self, now_playing_mode: Option<&CPNowPlayingMode>);
     );
 }

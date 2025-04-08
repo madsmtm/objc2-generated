@@ -1164,8 +1164,9 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn worksWhenModal(&self) -> bool;
 
-        /// Normally, application termination is prohibited when a modal window or sheet is open, without consulting the application delegate.  Some windows like the open panel or toolbar customization sheet should not prevent application termination.  `-setPreventsApplicationTerminationWhenModal:NO` on a modal window or sheet will override the default behavior and allow application termination to proceed, either through the sudden termination path if enabled, or on to the next step of consulting the application delegate.  By default, `-preventsApplicationTerminationWhenModal` returns
-        /// `YES`
+        /// A Boolean value that indicates whether or not to prevent application termination when the receiving window is presented modally.
+        /// The value of this property is `YES` if the window should prevent application termination when modal; otherwise, `NO`.
+        /// The default value is `YES`. However, note that some window subclasses and some windows created indirectly (like those created by UI frameworks like AppKit and SwiftUI), may have different default values. For example, the Open panel and toolbar customization sheets should not prevent application termination, so those windows have `preventsApplicationTerminationWhenModal` set to `NO`. Some `NSAlert`s, like those that are simply informational, have windows that do not prevent application termination by default. Setting this property overrides the default behavior.
         #[unsafe(method(preventsApplicationTerminationWhenModal))]
         #[unsafe(method_family = none)]
         pub unsafe fn preventsApplicationTerminationWhenModal(&self) -> bool;

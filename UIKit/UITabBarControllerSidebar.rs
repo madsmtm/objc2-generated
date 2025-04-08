@@ -3,6 +3,7 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
 
@@ -129,6 +130,23 @@ impl UITabBarControllerSidebar {
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredLayout(&self, preferred_layout: UITabBarControllerSidebarLayout);
 
+        #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
+        /// Additional items to add to the overflow menu in the sidebar's navigation bar. Setting this property to a non-nil value will force the overflow button
+        /// to appear, regardless of if you provide any content in the element's callback. Items returned are displayed directly in the presented menu. When
+        /// set, the "Edit Sidebar" action will also be moved into the overflow menu after the app-provided items.
+        #[unsafe(method(navigationOverflowItems))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn navigationOverflowItems(&self) -> Option<Retained<UIDeferredMenuElement>>;
+
+        #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
+        /// Setter for [`navigationOverflowItems`][Self::navigationOverflowItems].
+        #[unsafe(method(setNavigationOverflowItems:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNavigationOverflowItems(
+            &self,
+            navigation_overflow_items: Option<&UIDeferredMenuElement>,
+        );
+
         #[cfg(feature = "UIContentConfiguration")]
         /// Content configuration for an optional header to display in the sidebar.
         /// The header is displayed above all tab content in the sidebar.
@@ -225,7 +243,9 @@ extern_protocol!(
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollersidebardelegate?language=objc)
-    pub unsafe trait UITabBarControllerSidebarDelegate: NSObjectProtocol {
+    pub unsafe trait UITabBarControllerSidebarDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[cfg(all(
             feature = "UIResponder",
             feature = "UITabBarController",
@@ -372,5 +392,97 @@ extern_protocol!(
             sidebar: &UITabBarControllerSidebar,
             tab: &UITab,
         ) -> Option<Retained<UIContextMenuConfiguration>>;
+
+        #[cfg(all(
+            feature = "UIDragItem",
+            feature = "UIDragSession",
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UITabBarController",
+            feature = "UIViewController"
+        ))]
+        /// Called when a new drag session has begun in the sidebar from the specified `tab`. Return drag items if the specified tab can be dragged, or an empty array if no drags should begin.
+        /// Note that if drag items are returned on tabs in groups that allow reordering, then tab reordering is disabled when the sidebar is not in editing.
+        #[optional]
+        #[unsafe(method(tabBarController:sidebar:itemsForBeginningDragSession:tab:))]
+        #[unsafe(method_family = none)]
+        unsafe fn tabBarController_sidebar_itemsForBeginningDragSession_tab(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            sidebar: &UITabBarControllerSidebar,
+            drag_session: &ProtocolObject<dyn UIDragSession>,
+            tab: &UITab,
+        ) -> Retained<NSArray<UIDragItem>>;
+
+        #[cfg(all(
+            feature = "UIDragItem",
+            feature = "UIDragSession",
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UITabBarController",
+            feature = "UIViewController"
+        ))]
+        /// Called when a new drag session is requesting items to add to the existing drag session in the sidebar from the specified `tab`.
+        /// Return items if the specified tab can add to the drag session, or an empty array if nothing should be added.
+        #[optional]
+        #[unsafe(method(tabBarController:sidebar:itemsForAddingToDragSession:tab:))]
+        #[unsafe(method_family = none)]
+        unsafe fn tabBarController_sidebar_itemsForAddingToDragSession_tab(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            sidebar: &UITabBarControllerSidebar,
+            drag_session: &ProtocolObject<dyn UIDragSession>,
+            tab: &UITab,
+        ) -> Retained<NSArray<UIDragItem>>;
+
+        #[cfg(all(
+            feature = "UIAction",
+            feature = "UIDragSession",
+            feature = "UIDropInteraction",
+            feature = "UIMenuElement",
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UITabBarController",
+            feature = "UITabGroup",
+            feature = "UIViewController"
+        ))]
+        /// Determines if items from the specified drop session can be dropped into the specified `sidebarAction`. If the operation is either a `.move` or `.copy`,
+        /// then the drop will proceed and `tabBarController:sidebar:sidebarAction:acceptItemsFromDropSession:` is called. By default, the drop will be
+        /// treated as a cancel operation if this is not implemented.
+        #[optional]
+        #[unsafe(method(tabBarController:sidebar:sidebarAction:group:operationForAcceptingItemsFromDropSession:))]
+        #[unsafe(method_family = none)]
+        unsafe fn tabBarController_sidebar_sidebarAction_group_operationForAcceptingItemsFromDropSession(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            sidebar: &UITabBarControllerSidebar,
+            sidebar_action: &UIAction,
+            group: &UITabGroup,
+            session: &ProtocolObject<dyn UIDropSession>,
+        ) -> UIDropOperation;
+
+        #[cfg(all(
+            feature = "UIAction",
+            feature = "UIDragSession",
+            feature = "UIMenuElement",
+            feature = "UIResponder",
+            feature = "UITab",
+            feature = "UITabBarController",
+            feature = "UITabGroup",
+            feature = "UIViewController"
+        ))]
+        /// Receive the drop from into the `sidebarAction` using the specified session. This is only called if the drop operation returned
+        /// from `tabBarController:sidebar:sidebarAction:operationForAcceptingItemsFromDropSession` is valid for a drop.
+        #[optional]
+        #[unsafe(method(tabBarController:sidebar:sidebarAction:group:acceptItemsFromDropSession:))]
+        #[unsafe(method_family = none)]
+        unsafe fn tabBarController_sidebar_sidebarAction_group_acceptItemsFromDropSession(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            sidebar: &UITabBarControllerSidebar,
+            sidebar_action: &UIAction,
+            group: &UITabGroup,
+            session: &ProtocolObject<dyn UIDropSession>,
+        );
     }
 );

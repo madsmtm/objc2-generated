@@ -74,7 +74,9 @@ impl UICalendarSelectionMultiDate {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionmultidatedelegate?language=objc)
-    pub unsafe trait UICalendarSelectionMultiDateDelegate: NSObjectProtocol {
+    pub unsafe trait UICalendarSelectionMultiDateDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[cfg(feature = "UICalendarSelection")]
         /// Called after the user selects a date in the calendar view.
         ///

@@ -98,6 +98,14 @@ impl NSTextInputContext {
         #[unsafe(method_family = none)]
         pub unsafe fn textInputClientDidEndScrollingOrZooming(&self);
 
+        #[unsafe(method(textInputClientDidUpdateSelection))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn textInputClientDidUpdateSelection(&self);
+
+        #[unsafe(method(textInputClientDidScroll))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn textInputClientDidScroll(&self);
+
         /// ** Text Input sources handling ***
         #[unsafe(method(keyboardInputSources))]
         #[unsafe(method_family = none)]

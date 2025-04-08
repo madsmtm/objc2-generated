@@ -137,6 +137,15 @@ extern "C" {
     /// name of the company or entity that owns the certificate if the
     /// kSecTrustExtendedValidation key is present.
     ///
+    /// This key will be present and have a value of CFStringRef if
+    /// the leaf certificate contains qualified certificate statements.
+    /// The string can be displayed to the user as a representation
+    /// of a qualified certificate's purpose.
+    ///
+    /// This key will be present and have a value of kCFBooleanTrue
+    /// if this chain was successfully validated as a Qualified Website
+    /// Authentication Certificate.
+    ///
     /// This key will be present if a trust evaluation has been performed.
     /// Its value is a CFNumberRef representing the SecTrustResultType result
     /// for the evaluation.
@@ -203,6 +212,16 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustcertificatetransparencywhitelist?language=objc)
     pub static kSecTrustCertificateTransparencyWhiteList: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustqcstatements?language=objc)
+    pub static kSecTrustQCStatements: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustqwacvalidation?language=objc)
+    pub static kSecTrustQWACValidation: &'static CFString;
 }
 
 /// Delivers the result from an asynchronous trust evaluation.
