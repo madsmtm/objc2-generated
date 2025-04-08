@@ -10,10 +10,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimebaseverylongcftimeinterval?language=objc)
-pub const kCMTimebaseVeryLongCFTimeInterval: CFTimeInterval = 256.0 * 365.0 * 24.0 * 60.0 * 60.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimebasefarfuturecfabsolutetime?language=objc)
-pub const kCMTimebaseFarFutureCFAbsoluteTime: CFAbsoluteTime = kCMTimebaseVeryLongCFTimeInterval;
 /// A timing source object.
 ///
 /// A clock represents a source of time information: generally, a piece of hardware that measures the passage of time.
