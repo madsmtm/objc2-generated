@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-avf-audio")]
 use objc2_avf_audio::*;
@@ -224,6 +226,17 @@ impl CXProvider {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Set delegate and optional queue for delegate callbacks to be performed on.
+        /// A nil queue implies that delegate callbacks should happen on the main queue. The delegate is stored weakly
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn CXProviderDelegate>>,
+            queue: Option<&DispatchQueue>,
+        );
 
         #[cfg(all(feature = "CXCallUpdate", feature = "block2"))]
         /// Report a new incoming call to the system.

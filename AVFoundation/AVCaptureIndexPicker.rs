@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -143,6 +145,27 @@ impl AVCaptureIndexPicker {
         pub unsafe fn setAccessibilityIdentifier(
             &self,
             accessibility_identifier: Option<&NSString>,
+        );
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// Configures the picker's `action` which is called on `actionQueue` whenever the index of the picker is changed.
+        ///
+        ///
+        /// Parameter `actionQueue`: A queue for the `action` to be called.
+        ///
+        /// Parameter `action`: An action called on `actionQueue` whenever the selected index of the picker is changed.
+        ///
+        ///
+        /// Because the camera system may be independent from the main thread or `
+        /// MainThreadOnly`, `action` is always called on an internal `DispatchSerialQueue` targeted at `actionQueue`.
+        ///
+        /// If `action` modifies a property of the camera system, `actionQueue` must represent the same exclusive execution context as the camera system (see `isSameExclusiveExecutionContext`).
+        #[unsafe(method(setActionQueue:action:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setActionQueue_action(
+            &self,
+            action_queue: &DispatchQueue,
+            action: &block2::Block<dyn Fn(NSInteger)>,
         );
     );
 }

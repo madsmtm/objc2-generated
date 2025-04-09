@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -643,6 +645,63 @@ impl AVPlayer {
 /// AVPlayerTimeObservation.
 impl AVPlayer {
     extern_methods!(
+        #[cfg(all(
+            feature = "block2",
+            feature = "dispatch2",
+            feature = "objc2-core-media"
+        ))]
+        /// Requests invocation of a block during playback to report changing time.
+        ///
+        /// Parameter `interval`: The interval of invocation of the block during normal playback, according to progress of the current time of the player.
+        ///
+        /// Parameter `queue`: The serial queue onto which block should be enqueued.  If you pass NULL, the main queue (obtained using dispatch_get_main_queue()) will be used.  Passing a
+        /// concurrent queue to this method will result in undefined behavior.
+        ///
+        /// Parameter `block`: The block to be invoked periodically.
+        ///
+        /// Returns: An object conforming to the NSObject protocol.  You must retain this returned value as long as you want the time observer to be invoked by the player.
+        /// Pass this object to -removeTimeObserver: to cancel time observation.
+        ///
+        /// The block is invoked periodically at the interval specified, interpreted according to the timeline of the current item.
+        /// The block is also invoked whenever time jumps and whenever playback starts or stops.
+        /// If the interval corresponds to a very short interval in real time, the player may invoke the block less frequently
+        /// than requested. Even so, the player will invoke the block sufficiently often for the client to update indications
+        /// of the current time appropriately in its end-user interface.
+        /// Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:.
+        /// Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior.
+        #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
+            &self,
+            interval: CMTime,
+            queue: Option<&DispatchQueue>,
+            block: &block2::Block<dyn Fn(CMTime)>,
+        ) -> Retained<AnyObject>;
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// Requests invocation of a block when specified times are traversed during normal playback.
+        ///
+        /// Parameter `times`: The times for which the observer requests notification, supplied as an array of NSValues carrying CMTimes.
+        ///
+        /// Parameter `queue`: The serial queue onto which block should be enqueued.  If you pass NULL, the main queue (obtained using dispatch_get_main_queue()) will be used.  Passing a
+        /// concurrent queue to this method will result in undefined behavior.
+        ///
+        /// Parameter `block`: The block to be invoked when any of the specified times is crossed during normal playback.
+        ///
+        /// Returns: An object conforming to the NSObject protocol.  You must retain this returned value as long as you want the time observer to be invoked by the player.
+        /// Pass this object to -removeTimeObserver: to cancel time observation.
+        ///
+        /// Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:.
+        /// Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior.
+        #[unsafe(method(addBoundaryTimeObserverForTimes:queue:usingBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addBoundaryTimeObserverForTimes_queue_usingBlock(
+            &self,
+            times: &NSArray<NSValue>,
+            queue: Option<&DispatchQueue>,
+            block: &block2::Block<dyn Fn()>,
+        ) -> Retained<AnyObject>;
+
         /// Cancels a previously registered time observer.
         ///
         /// Parameter `observer`: An object returned by a previous call to -addPeriodicTimeObserverForInterval:queue:usingBlock: or -addBoundaryTimeObserverForTimes:queue:usingBlock:.

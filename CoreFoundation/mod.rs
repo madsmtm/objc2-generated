@@ -1456,6 +1456,8 @@ pub use self::__CFMessagePort::CFMessagePortIsValid;
     feature = "CFMessagePort"
 ))]
 pub use self::__CFMessagePort::CFMessagePortSendRequest;
+#[cfg(all(feature = "CFMessagePort", feature = "dispatch2"))]
+pub use self::__CFMessagePort::CFMessagePortSetDispatchQueue;
 #[cfg(feature = "CFMessagePort")]
 pub use self::__CFMessagePort::CFMessagePortSetInvalidationCallBack;
 #[cfg(all(feature = "CFBase", feature = "CFMessagePort"))]
@@ -2220,6 +2222,8 @@ pub use self::__CFStream::CFReadStream;
 pub use self::__CFStream::CFReadStreamClientCallBack;
 #[cfg(feature = "CFStream")]
 pub use self::__CFStream::CFReadStreamClose;
+#[cfg(all(feature = "CFStream", feature = "dispatch2"))]
+pub use self::__CFStream::CFReadStreamCopyDispatchQueue;
 #[cfg(all(feature = "CFError", feature = "CFStream"))]
 pub use self::__CFStream::CFReadStreamCopyError;
 #[cfg(all(feature = "CFBase", feature = "CFStream"))]
@@ -2244,6 +2248,8 @@ pub use self::__CFStream::CFReadStreamRead;
 pub use self::__CFStream::CFReadStreamScheduleWithRunLoop;
 #[cfg(all(feature = "CFBase", feature = "CFStream"))]
 pub use self::__CFStream::CFReadStreamSetClient;
+#[cfg(all(feature = "CFStream", feature = "dispatch2"))]
+pub use self::__CFStream::CFReadStreamSetDispatchQueue;
 #[cfg(all(feature = "CFBase", feature = "CFStream"))]
 pub use self::__CFStream::CFReadStreamSetProperty;
 #[cfg(all(feature = "CFBase", feature = "CFRunLoop", feature = "CFStream"))]
@@ -2281,6 +2287,8 @@ pub use self::__CFStream::CFWriteStreamCanAcceptBytes;
 pub use self::__CFStream::CFWriteStreamClientCallBack;
 #[cfg(feature = "CFStream")]
 pub use self::__CFStream::CFWriteStreamClose;
+#[cfg(all(feature = "CFStream", feature = "dispatch2"))]
+pub use self::__CFStream::CFWriteStreamCopyDispatchQueue;
 #[cfg(all(feature = "CFError", feature = "CFStream"))]
 pub use self::__CFStream::CFWriteStreamCopyError;
 #[cfg(all(feature = "CFBase", feature = "CFStream"))]
@@ -2301,6 +2309,8 @@ pub use self::__CFStream::CFWriteStreamOpen;
 pub use self::__CFStream::CFWriteStreamScheduleWithRunLoop;
 #[cfg(all(feature = "CFBase", feature = "CFStream"))]
 pub use self::__CFStream::CFWriteStreamSetClient;
+#[cfg(all(feature = "CFStream", feature = "dispatch2"))]
+pub use self::__CFStream::CFWriteStreamSetDispatchQueue;
 #[cfg(all(feature = "CFBase", feature = "CFStream"))]
 pub use self::__CFStream::CFWriteStreamSetProperty;
 #[cfg(all(feature = "CFBase", feature = "CFRunLoop", feature = "CFStream"))]

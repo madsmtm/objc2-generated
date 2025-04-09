@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
@@ -87,6 +89,20 @@ impl ARSession {
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn ARSessionDelegate>>);
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which the delegate calls are performed.
+        ///
+        /// If not provided or nil, delegate calls will be performed on the main queue.
+        #[unsafe(method(delegateQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Setter for [`delegateQueue`][Self::delegateQueue].
+        #[unsafe(method(setDelegateQueue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegateQueue(&self, delegate_queue: Option<&DispatchQueue>);
 
         #[cfg(feature = "ARFrame")]
         /// The current frame of the session.

@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -538,6 +540,31 @@ pub extern "C-unwind" fn SCPreferencesUnscheduleFromRunLoop(
         ) -> Boolean;
     }
     let ret = unsafe { SCPreferencesUnscheduleFromRunLoop(prefs, run_loop, run_loop_mode) };
+    ret != 0
+}
+
+/// Schedule commit and apply notifications for the specified
+/// preferences session.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `queue`: The dispatch queue to run the callback function on.
+///
+/// Returns: Returns TRUE if the notifications are successfully scheduled;
+/// FALSE otherwise.
+#[cfg(feature = "dispatch2")]
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesSetDispatchQueue(
+    prefs: &SCPreferences,
+    queue: Option<&DispatchQueue>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesSetDispatchQueue(
+            prefs: &SCPreferences,
+            queue: Option<&DispatchQueue>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesSetDispatchQueue(prefs, queue) };
     ret != 0
 }
 

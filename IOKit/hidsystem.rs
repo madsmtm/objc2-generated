@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -2305,6 +2307,56 @@ extern "C-unwind" {
         device: &IOHIDUserDevice,
         block: IOHIDUserDeviceSetReportBlock,
     );
+}
+
+extern "C-unwind" {
+    /// Sets the dispatch queue to be associated with the IOHIDUserDevice.
+    /// This is necessary in order to receive asynchronous events from the kernel.
+    ///
+    ///
+    /// A call to IOHIDUserDeviceSetDispatchQueue should only be made once.
+    ///
+    /// After a dispatch queue is set, the IOHIDUserDevice must make a call to
+    /// activate via IOHIDUserDeviceActivate and cancel via IOHIDUserDeviceCancel.
+    /// All calls to "Register" functions should be done before activation and not
+    /// after cancellation.
+    ///
+    ///
+    /// Parameter `device`: Reference to an IOHIDUserDevice
+    ///
+    ///
+    /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
+    #[cfg(feature = "dispatch2")]
+    pub fn IOHIDUserDeviceSetDispatchQueue(device: &IOHIDUserDevice, queue: &DispatchQueue);
+}
+
+extern "C-unwind" {
+    /// Sets a cancellation handler for the dispatch queue associated with
+    /// IOHIDUserDeviceScheduleWithDispatchQueue.
+    ///
+    ///
+    /// The cancellation handler (if specified) will be submitted to the device's
+    /// dispatch queue in response to a call to to IOHIDUserDeviceCancel
+    /// after all the events have been handled.
+    ///
+    /// The IOHIDUserDeviceRef should only be released after the device has been
+    /// cancelled, and the cancel handler has been called. This is to ensure all
+    /// asynchronous objects are released. For example:
+    ///
+    /// dispatch_block_t cancelHandler = dispatch_block_create(0, ^{
+    /// CFRelease(device);
+    /// });
+    /// IOHIDUserDeviceSetCancelHandler(device, cancelHandler);
+    /// IOHIDUserDeviceActivate(device);
+    /// IOHIDUserDeviceCancel(device);
+    ///
+    ///
+    /// Parameter `device`: Reference to an IOHIDUserDevice.
+    ///
+    ///
+    /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
+    #[cfg(feature = "dispatch2")]
+    pub fn IOHIDUserDeviceSetCancelHandler(device: &IOHIDUserDevice, handler: dispatch_block_t);
 }
 
 extern "C-unwind" {

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -87,6 +89,20 @@ impl AVPlayerItemMetadataCollector {
             classifying_labels: Option<&NSArray<NSString>>,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate and a dispatch queue on which the delegate will be called.
+        ///
+        /// Parameter `delegate`: An object conforming to AVPlayerItemMetadataCollectorPushDelegate protocol.
+        ///
+        /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AVPlayerItemMetadataCollectorPushDelegate>>,
+            delegate_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
@@ -95,6 +111,14 @@ impl AVPlayerItemMetadataCollector {
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemMetadataCollectorPushDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which messages are sent to the delegate.
+        ///
+        /// This property is not key-value observable.
+        #[unsafe(method(delegateQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
     );
 }
 

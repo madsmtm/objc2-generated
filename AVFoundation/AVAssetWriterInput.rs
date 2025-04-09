@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -237,6 +239,51 @@ impl AVAssetWriterInput {
         #[unsafe(method(setExpectsMediaDataInRealTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpectsMediaDataInRealTime(&self, expects_media_data_in_real_time: bool);
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// Instructs the receiver to invoke a client-supplied block repeatedly, at its convenience, in order to gather media data for writing to the output file.
+        ///
+        ///
+        /// Parameter `queue`: The queue on which the block should be invoked.
+        ///
+        /// Parameter `block`: The block the input should invoke to obtain media data.
+        ///
+        ///
+        /// The block should append media data to the input either until the input's readyForMoreMediaData property becomes NO or until there is no more media data to supply (at which point it may choose to mark the input as finished via -markAsFinished). The block should then exit. After the block exits, if the input has not been marked as finished, once the input has processed the media data it has received and becomes ready for more media data again, it will invoke the block again in order to obtain more.
+        ///
+        /// A typical use of this method, with a block that supplies media data to an input while respecting the input's readyForMoreMediaData property, might look like this:
+        ///
+        /// [myAVAssetWriterInput requestMediaDataWhenReadyOnQueue:myInputSerialQueue usingBlock:^{
+        /// while ([myAVAssetWriterInput isReadyForMoreMediaData])
+        /// {
+        /// CMSampleBufferRef nextSampleBuffer = [self copyNextSampleBufferToWrite];
+        /// if (nextSampleBuffer)
+        /// {
+        /// [myAVAssetWriterInput appendSampleBuffer:nextSampleBuffer];
+        /// CFRelease(nextSampleBuffer);
+        /// }
+        /// else
+        /// {
+        /// [myAVAssetWriterInput markAsFinished];
+        /// break;
+        /// }
+        /// }
+        /// }];
+        ///
+        /// This method is not recommended for use with a push-style buffer source, such as AVCaptureAudioDataOutput or AVCaptureVideoDataOutput, because such a combination will likely require intermediate queueing of buffers.  Instead, this method is better suited to a pull-style buffer source such as AVAssetReaderOutput, as illustrated in the above example.
+        ///
+        /// When using a push-style buffer source, it is generally better to immediately append each buffer to the AVAssetWriterInput, directly via -[AVAssetWriter appendSampleBuffer:], as it is received.  Using this strategy, it is often possible to avoid  having to queue up buffers in between the buffer source and the AVAssetWriterInput.  Note that many of these push-style buffer sources also produce buffers in real-time, in which case the client should set expectsMediaDataInRealTime to YES.
+        ///
+        /// Before calling this method, you must ensure that the receiver is attached to an AVAssetWriter via a prior call to -addInput: and that -startWriting has been called on the asset writer.
+        ///
+        /// This method throws an exception if this method is called more than once.
+        #[unsafe(method(requestMediaDataWhenReadyOnQueue:usingBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(
+            &self,
+            queue: &DispatchQueue,
+            block: &block2::Block<dyn Fn()>,
+        );
 
         #[cfg(feature = "objc2-core-media")]
         /// Appends samples to the receiver.
@@ -642,6 +689,34 @@ impl AVAssetWriterInput {
         pub unsafe fn currentPassDescription(
             &self,
         ) -> Option<Retained<AVAssetWriterInputPassDescription>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Instructs the receiver to invoke a client-supplied block whenever a new pass has begun.
+        ///
+        ///
+        /// Parameter `queue`: The queue on which the block should be invoked.
+        ///
+        /// Parameter `block`: A block the receiver should invoke whenever a new pass has begun.
+        ///
+        ///
+        /// A typical block passed to this method will perform the following steps:
+        ///
+        /// 1. Query the value of the receiver's currentPassDescription property and reconfigure the source of media data (e.g. AVAssetReader) accordingly
+        /// 2. Call -requestMediaDataWhenReadyOnQueue:usingBlock: to begin appending data for the current pass
+        /// 3. Exit
+        ///
+        /// When all media data has been appended for the current request, call -markCurrentPassAsFinished to begin the process of determining whether an additional pass is warranted.  If an additional pass is warranted, the block passed to this method will be invoked to begin the next pass.  If no additional passes are needed, the block passed to this method will be invoked one final time so the client can invoke -markAsFinished in response to the value of currentPassDescription becoming nil.
+        ///
+        /// Before calling this method, you must ensure that the receiver is attached to an AVAssetWriter via a prior call to -addInput: and that -startWriting has been called on the asset writer.
+        ///
+        /// This method throws an exception if called more than once.
+        #[unsafe(method(respondToEachPassDescriptionOnQueue:usingBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn respondToEachPassDescriptionOnQueue_usingBlock(
+            &self,
+            queue: &DispatchQueue,
+            block: dispatch_block_t,
+        );
 
         /// Instructs the receiver to analyze the media data that has been appended and determine whether the results could be improved by re-encoding certain segments.
         ///

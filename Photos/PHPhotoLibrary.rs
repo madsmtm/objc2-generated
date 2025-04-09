@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -137,6 +139,23 @@ impl PHPhotoLibrary {
             &self,
             observer: &ProtocolObject<dyn PHPhotoLibraryAvailabilityObserver>,
         );
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        #[unsafe(method(performChanges:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performChanges_completionHandler(
+            &self,
+            change_block: dispatch_block_t,
+            completion_handler: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+        );
+
+        #[cfg(feature = "dispatch2")]
+        #[unsafe(method(performChangesAndWait:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performChangesAndWait_error(
+            &self,
+            change_block: dispatch_block_t,
+        ) -> Result<(), Retained<NSError>>;
 
         #[unsafe(method(registerChangeObserver:))]
         #[unsafe(method_family = none)]

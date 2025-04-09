@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-io-kit")]
@@ -33,6 +35,83 @@ impl IOUSBHostObject {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "IOUSBHostDefinitions",
+            feature = "block2",
+            feature = "dispatch2",
+            feature = "objc2-io-kit"
+        ))]
+        /// Initializes IOUSBHostObject object along with user client
+        ///
+        /// If the io_service_t is not found nil will be returned. If an IOUSBHostDevice or
+        /// IOUSBHostInterface user client is already created, nil will be returned.
+        /// Upon creation, exclusive ownership of the IOService will be established. When done
+        /// using the object destroy must be called on the object.
+        ///
+        /// Parameter `ioService`: io_service_t of the IOUSBHostDevice or IOUSBHostInterface
+        /// the user client is for. The IOUSBHostObject will keep a reference to the io_service_t
+        /// and release it after the IOUSBHostObject has been released.
+        ///
+        /// Parameter `options`: IOUSBHostObjectInitOptions. Default value is IOUSBHostObjectInitOptionsNone
+        ///
+        /// Parameter `queue`: A serial queue that all asynchronous io will be serviced. By
+        /// default a serial queue will be created on behalf of the client. Setting
+        /// a queue will create a dispatch source event handler for the target queue to service
+        /// all underlying io.
+        ///
+        /// Parameter `interestHandler`: IOUSBHostInterestHandler a generalInterest IOService handler. This is
+        /// to handle underlying service state changes such as termination. See
+        /// IOServiceAddInterestNotification in IOKitLib for more details. All notifications will be serviced
+        /// on an internal serial queue separate from the IO queue.
+        ///
+        /// Returns: An IOUSBHostDevice or IOUSBHostInterface. The object is to be released by the caller.
+        /// An IOReturn error code will be reported on failure.
+        #[unsafe(method(initWithIOService:options:queue:error:interestHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithIOService_options_queue_error_interestHandler(
+            this: Allocated<Self>,
+            io_service: io_service_t,
+            options: IOUSBHostObjectInitOptions,
+            queue: Option<&DispatchQueue>,
+            error: Option<&mut Option<Retained<NSError>>>,
+            interest_handler: IOUSBHostInterestHandler,
+        ) -> Option<Retained<Self>>;
+
+        #[cfg(all(feature = "block2", feature = "dispatch2", feature = "objc2-io-kit"))]
+        /// Initializes IOUSBHostObject object along with user client
+        ///
+        /// This method should be called from either IOUSBHostDevice or IOUSBHostInterface.
+        /// If the io_service_t is not found nil will be returned. If an IOUSBHostDevice or
+        /// IOUSBHostInterface user client is already created, nil will be returned.
+        /// Upon creation, exclusive ownership of the IOService will be established. When done
+        /// using the object destroy must be called on the object.
+        ///
+        /// Parameter `ioService`: io_service_t of the IOUSBHostDevice or IOUSBHostInterface
+        /// the user client is for. The IOUSBHostObject will keep a reference to the io_service_t
+        /// and release it after the IOUSBHostObject has been released.
+        ///
+        /// Parameter `queue`: A serial queue that all asynchronous io will be serviced. By
+        /// default a serial queue will be created on behalf of the client. Setting
+        /// a queue will create a dispatch source event handler for the target queue to service
+        /// all underlying io.
+        ///
+        /// Parameter `interestHandler`: IOUSBHostInterestHandler a generalInterest IOService handler. This is
+        /// to handle underlying service state changes such as termination. See
+        /// IOServiceAddInterestNotification in IOKitLib for more details. All notifications will be serviced
+        /// on an internal serial queue separate from the IO queue.
+        ///
+        /// Returns: An IOUSBHostDevice or IOUSBHostInterface. The object is to be released by the caller.
+        /// An IOReturn error code will be reported on failure.
+        #[unsafe(method(initWithIOService:queue:error:interestHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithIOService_queue_error_interestHandler(
+            this: Allocated<Self>,
+            io_service: io_service_t,
+            queue: Option<&DispatchQueue>,
+            error: Option<&mut Option<Retained<NSError>>>,
+            interest_handler: IOUSBHostInterestHandler,
+        ) -> Option<Retained<Self>>;
 
         /// Removes underlying allocations of the IOUSBHostObject object along with user client
         ///
@@ -69,6 +148,12 @@ impl IOUSBHostObject {
         #[unsafe(method(ioService))]
         #[unsafe(method_family = none)]
         pub unsafe fn ioService(&self) -> io_service_t;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue that all asynchronous io will be serviced.
+        #[unsafe(method(queue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn queue(&self) -> Retained<DispatchQueue>;
 
         #[cfg(feature = "objc2-io-kit")]
         /// Send a request on the default control endpoint

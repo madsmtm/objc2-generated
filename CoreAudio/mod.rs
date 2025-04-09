@@ -742,6 +742,13 @@ pub use self::__AudioHardware::kAudioVolumeControlClassID;
 pub use self::__AudioHardware::AudioClassID;
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 pub use self::__AudioHardware::AudioDeviceCreateIOProcID;
+#[cfg(all(
+    feature = "AudioHardware",
+    feature = "block2",
+    feature = "dispatch2",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AudioHardware::AudioDeviceCreateIOProcIDWithBlock;
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 pub use self::__AudioHardware::AudioDeviceDestroyIOProcID;
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
@@ -782,6 +789,8 @@ pub use self::__AudioHardware::AudioHardwarePowerHint;
 pub use self::__AudioHardware::AudioHardwareUnload;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::AudioObjectAddPropertyListener;
+#[cfg(all(feature = "AudioHardware", feature = "block2", feature = "dispatch2"))]
+pub use self::__AudioHardware::AudioObjectAddPropertyListenerBlock;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::AudioObjectGetPropertyData;
 #[cfg(feature = "AudioHardware")]
@@ -806,6 +815,8 @@ pub use self::__AudioHardware::AudioObjectPropertyScope;
 pub use self::__AudioHardware::AudioObjectPropertySelector;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::AudioObjectRemovePropertyListener;
+#[cfg(all(feature = "AudioHardware", feature = "block2", feature = "dispatch2"))]
+pub use self::__AudioHardware::AudioObjectRemovePropertyListenerBlock;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::AudioObjectSetPropertyData;
 #[cfg(feature = "AudioHardware")]

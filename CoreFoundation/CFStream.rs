@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -759,6 +761,41 @@ pub extern "C-unwind" fn CFWriteStreamUnscheduleFromRunLoop(
         );
     }
     unsafe { CFWriteStreamUnscheduleFromRunLoop(stream, run_loop, run_loop_mode) }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    pub fn CFReadStreamSetDispatchQueue(stream: &CFReadStream, q: Option<&DispatchQueue>);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    pub fn CFWriteStreamSetDispatchQueue(stream: &CFWriteStream, q: Option<&DispatchQueue>);
+}
+
+#[cfg(feature = "dispatch2")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFReadStreamCopyDispatchQueue(
+    stream: &CFReadStream,
+) -> Option<DispatchRetained<DispatchQueue>> {
+    extern "C-unwind" {
+        fn CFReadStreamCopyDispatchQueue(stream: &CFReadStream) -> Option<NonNull<DispatchQueue>>;
+    }
+    let ret = unsafe { CFReadStreamCopyDispatchQueue(stream) };
+    ret.map(|ret| unsafe { DispatchRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "dispatch2")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamCopyDispatchQueue(
+    stream: &CFWriteStream,
+) -> Option<DispatchRetained<DispatchQueue>> {
+    extern "C-unwind" {
+        fn CFWriteStreamCopyDispatchQueue(stream: &CFWriteStream)
+            -> Option<NonNull<DispatchQueue>>;
+    }
+    let ret = unsafe { CFWriteStreamCopyDispatchQueue(stream) };
+    ret.map(|ret| unsafe { DispatchRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerrordomain?language=objc)

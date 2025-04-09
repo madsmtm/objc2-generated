@@ -6756,6 +6756,10 @@ pub use self::__hid::IOHIDDeviceRegisterInputValueCallback;
 pub use self::__hid::IOHIDDeviceRegisterRemovalCallback;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDeviceScheduleWithRunLoop;
+#[cfg(all(feature = "dispatch2", feature = "hid"))]
+pub use self::__hid::IOHIDDeviceSetCancelHandler;
+#[cfg(all(feature = "dispatch2", feature = "hid"))]
+pub use self::__hid::IOHIDDeviceSetDispatchQueue;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDeviceSetInputValueMatching;
 #[cfg(feature = "hid")]
@@ -6894,10 +6898,14 @@ pub use self::__hid::IOHIDManagerRegisterInputValueCallback;
 pub use self::__hid::IOHIDManagerSaveToPropertyDomain;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDManagerScheduleWithRunLoop;
+#[cfg(all(feature = "dispatch2", feature = "hid"))]
+pub use self::__hid::IOHIDManagerSetCancelHandler;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDManagerSetDeviceMatching;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDManagerSetDeviceMatchingMultiple;
+#[cfg(all(feature = "dispatch2", feature = "hid"))]
+pub use self::__hid::IOHIDManagerSetDispatchQueue;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDManagerSetInputValueMatching;
 #[cfg(feature = "hid")]
@@ -6942,8 +6950,12 @@ pub use self::__hid::IOHIDQueueRegisterValueAvailableCallback;
 pub use self::__hid::IOHIDQueueRemoveElement;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDQueueScheduleWithRunLoop;
+#[cfg(all(feature = "dispatch2", feature = "hid"))]
+pub use self::__hid::IOHIDQueueSetCancelHandler;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDQueueSetDepth;
+#[cfg(all(feature = "dispatch2", feature = "hid"))]
+pub use self::__hid::IOHIDQueueSetDispatchQueue;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDQueueStart;
 #[cfg(feature = "hid")]
@@ -7024,14 +7036,6 @@ pub use self::__hid::IOHIDValueMultipleCallback;
 pub use self::__hid::IOHIDValueOptions;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDValueScaleType;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_NXEvent_location;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_NXParsedKeyMapping_;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_NXTabletPointData_tilt;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_evOffsets;
 #[cfg(all(feature = "graphics", feature = "hidsystem"))]
 pub use self::__hidsystem::evioLLEvent;
 #[cfg(feature = "hidsystem")]
@@ -7358,6 +7362,10 @@ pub use self::__hidsystem::IOHIDUserDeviceOptions;
 pub use self::__hidsystem::IOHIDUserDeviceRegisterGetReportBlock;
 #[cfg(all(feature = "block2", feature = "hid", feature = "hidsystem"))]
 pub use self::__hidsystem::IOHIDUserDeviceRegisterSetReportBlock;
+#[cfg(all(feature = "dispatch2", feature = "hidsystem"))]
+pub use self::__hidsystem::IOHIDUserDeviceSetCancelHandler;
+#[cfg(all(feature = "dispatch2", feature = "hidsystem"))]
+pub use self::__hidsystem::IOHIDUserDeviceSetDispatchQueue;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::IOHIDUserDeviceSetProperty;
 #[cfg(all(feature = "block2", feature = "hid", feature = "hidsystem"))]
@@ -7443,6 +7451,14 @@ pub use self::__hidsystem::NXTabletPointData;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::NXTabletProximityData;
 #[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_NXEvent_location;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_NXParsedKeyMapping_;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_NXTabletPointData_tilt;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_evOffsets;
+#[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::EVENT_SYSTEM_VERSION;
 #[cfg(feature = "usb")]
 pub use self::__usb::*;
@@ -7450,6 +7466,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -8613,6 +8631,21 @@ extern "C-unwind" {
     pub fn IONotificationPortSetImportanceReceiver(
         notify: IONotificationPortRef,
     ) -> libc::kern_return_t;
+}
+
+extern "C-unwind" {
+    /// Sets a dispatch queue to be used to listen for notifications.
+    ///
+    /// A notification object may deliver notifications to a dispatch client.
+    ///
+    /// Parameter `notify`: The notification object.
+    ///
+    /// Parameter `queue`: A dispatch queue.
+    #[cfg(feature = "dispatch2")]
+    pub fn IONotificationPortSetDispatchQueue(
+        notify: IONotificationPortRef,
+        queue: Option<&DispatchQueue>,
+    );
 }
 
 extern "C-unwind" {

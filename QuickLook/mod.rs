@@ -146,6 +146,8 @@ pub use self::__QLThumbnail::QLThumbnailCopyImage;
 pub use self::__QLThumbnail::QLThumbnailCopyOptions;
 #[cfg(feature = "QLThumbnail")]
 pub use self::__QLThumbnail::QLThumbnailCreate;
+#[cfg(all(feature = "QLThumbnail", feature = "dispatch2"))]
+pub use self::__QLThumbnail::QLThumbnailDispatchAsync;
 #[cfg(feature = "QLThumbnail")]
 pub use self::__QLThumbnail::QLThumbnailGetContentRect;
 #[cfg(feature = "QLThumbnail")]

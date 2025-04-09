@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
@@ -741,6 +743,82 @@ extern "C-unwind" {
         in_callback_run_loop_mode: Option<&CFString>,
         in_flags: u32,
         out_aq: NonNull<AudioQueueRef>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Creates a new audio queue for playing audio data.
+    ///
+    /// To create an playback audio queue, you allocate buffers, then queue buffers (using
+    /// AudioQueueEnqueueBuffer). The callback receives buffers and typically queues them again.
+    /// To schedule a buffer for playback, providing parameter and start time information, call
+    /// AudioQueueEnqueueBufferWithParameters.
+    ///
+    ///
+    /// Parameter `outAQ`: On return, this variable contains a pointer to the newly created playback audio queue
+    /// object.
+    ///
+    /// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be played. For
+    /// linear PCM, only interleaved formats are supported. Compressed formats are supported.
+    ///
+    /// Parameter `inFlags`: Reserved for future use. Pass 0.
+    ///
+    /// Parameter `inCallbackDispatchQueue`: The dispatch queue from which inCallbackBlock is to be called.
+    ///
+    /// Parameter `inCallbackBlock`: A pointer to a callback block to be called when the audio queue has finished playing
+    /// a buffer.
+    ///
+    /// Returns: An OSStatus result code.
+    #[cfg(all(
+        feature = "block2",
+        feature = "dispatch2",
+        feature = "objc2-core-audio-types"
+    ))]
+    pub fn AudioQueueNewOutputWithDispatchQueue(
+        out_aq: NonNull<AudioQueueRef>,
+        in_format: NonNull<AudioStreamBasicDescription>,
+        in_flags: u32,
+        in_callback_dispatch_queue: &DispatchQueue,
+        in_callback_block: AudioQueueOutputCallbackBlock,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Creates a new audio queue for recording audio data.
+    ///
+    /// Outline of how to use the queue for input:
+    ///
+    /// - create input queue
+    /// - allocate buffers
+    /// - enqueue buffers (AudioQueueEnqueueBuffer, not with parameters, no packet descriptions)
+    /// - the callback receives buffers and re-enqueues them
+    ///
+    ///
+    /// Parameter `outAQ`: On return, this variable contains a pointer to the newly created recording audio queue
+    /// object.
+    ///
+    /// Parameter `inFormat`: A pointer to a structure describing the format of the audio data to be recorded. For
+    /// linear PCM, only interleaved formats are supported. Compressed formats are supported.
+    ///
+    /// Parameter `inFlags`: Reserved for future use. Pass 0.
+    ///
+    /// Parameter `inCallbackDispatchQueue`: The dispatch queue from which inCallbackBlock is to be called.
+    ///
+    /// Parameter `inCallbackBlock`: A pointer to a callback block to be called when the audio queue has finished filling
+    /// a buffer.
+    ///
+    /// Returns: An OSStatus result code.
+    #[cfg(all(
+        feature = "block2",
+        feature = "dispatch2",
+        feature = "objc2-core-audio-types"
+    ))]
+    pub fn AudioQueueNewInputWithDispatchQueue(
+        out_aq: NonNull<AudioQueueRef>,
+        in_format: NonNull<AudioStreamBasicDescription>,
+        in_flags: u32,
+        in_callback_dispatch_queue: &DispatchQueue,
+        in_callback_block: AudioQueueInputCallbackBlock,
     ) -> OSStatus;
 }
 

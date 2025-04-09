@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -615,6 +617,20 @@ extern "C-unwind" {
         context: *mut c_void,
         cb: *const CFArrayCallBacks,
     );
+}
+
+extern "C-unwind" {
+    /// Set the dispatch queue on which query results will be delivered
+    /// by MDQueryExecute. It is not advisable to change set
+    /// dispatch queue after MDQueryExecute() has been called with
+    /// the query. Setting the dispatch queue for a synchronous
+    /// query (kMDQuerySynchronous) has no effect.
+    ///
+    /// Parameter `query`: The query for which the dispatch queue should be set.
+    ///
+    /// Parameter `queue`: The dispatch queue on which results should be delivered.
+    #[cfg(feature = "dispatch2")]
+    pub fn MDQuerySetDispatchQueue(query: &MDQuery, queue: Option<&DispatchQueue>);
 }
 
 /// Run the query, and populate the query with the results. Queries

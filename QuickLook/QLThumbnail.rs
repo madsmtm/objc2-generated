@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -85,6 +87,16 @@ pub unsafe extern "C-unwind" fn QLThumbnailCopyOptions(
     }
     let ret = unsafe { QLThumbnailCopyOptions(thumbnail) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "Use QLThumbnailGenerator in QuickLookThumbnailing to generate thumbnails."]
+    pub fn QLThumbnailDispatchAsync(
+        thumbnail: &QLThumbnail,
+        queue: Option<&DispatchQueue>,
+        completion: dispatch_block_t,
+    );
 }
 
 #[cfg(feature = "objc2-core-graphics")]

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -148,6 +150,54 @@ impl CBCentralManager {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `delegate`: The delegate that will receive central role events.
+        ///
+        /// Parameter `queue`: The dispatch queue on which the events will be dispatched.
+        ///
+        ///
+        /// The initialization call. The events of the central role will be dispatched on the provided queue.
+        /// If
+        /// <i>
+        /// nil
+        /// </i>
+        /// , the main queue will be used.
+        #[unsafe(method(initWithDelegate:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDelegate_queue(
+            this: Allocated<Self>,
+            delegate: Option<&ProtocolObject<dyn CBCentralManagerDelegate>>,
+            queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `delegate`: The delegate that will receive central role events.
+        ///
+        /// Parameter `queue`: The dispatch queue on which the events will be dispatched.
+        ///
+        /// Parameter `options`: An optional dictionary specifying options for the manager.
+        ///
+        ///
+        /// The initialization call. The events of the central role will be dispatched on the provided queue.
+        /// If
+        /// <i>
+        /// nil
+        /// </i>
+        /// , the main queue will be used.
+        ///
+        ///
+        /// See also: CBCentralManagerOptionShowPowerAlertKey
+        ///
+        /// See also: CBCentralManagerOptionRestoreIdentifierKey
+        #[unsafe(method(initWithDelegate:queue:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDelegate_queue_options(
+            this: Allocated<Self>,
+            delegate: Option<&ProtocolObject<dyn CBCentralManagerDelegate>>,
+            queue: Option<&DispatchQueue>,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
+        ) -> Retained<Self>;
 
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
         /// Parameter `identifiers`: A list of

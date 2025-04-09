@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -274,6 +276,31 @@ pub extern "C-unwind" fn SCDynamicStoreCreateRunLoopSource(
     }
     let ret = unsafe { SCDynamicStoreCreateRunLoopSource(allocator, store, order) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+/// Initiates notifications for the Notification
+/// Keys in store to the callback contained in store.
+///
+/// Parameter `store`: A reference to the dynamic store session.
+///
+/// Parameter `queue`: The dispatch queue to run the callback function on.
+/// Pass NULL to disable notifications, and release the queue.
+///
+/// Returns: Returns TRUE on success, FALSE on failure.
+#[cfg(feature = "dispatch2")]
+#[inline]
+pub unsafe extern "C-unwind" fn SCDynamicStoreSetDispatchQueue(
+    store: &SCDynamicStore,
+    queue: Option<&DispatchQueue>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCDynamicStoreSetDispatchQueue(
+            store: &SCDynamicStore,
+            queue: Option<&DispatchQueue>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCDynamicStoreSetDispatchQueue(store, queue) };
+    ret != 0
 }
 
 /// Returns an array of CFString keys representing the

@@ -131,6 +131,8 @@ pub use self::__CFODQuery::ODQueryCreateWithNodeType;
 pub use self::__CFODQuery::ODQueryScheduleWithRunLoop;
 #[cfg(all(feature = "CFODQuery", feature = "objc2-core-foundation"))]
 pub use self::__CFODQuery::ODQuerySetCallback;
+#[cfg(all(feature = "CFODQuery", feature = "dispatch2"))]
+pub use self::__CFODQuery::ODQuerySetDispatchQueue;
 #[cfg(feature = "CFODQuery")]
 pub use self::__CFODQuery::ODQuerySynchronize;
 #[cfg(all(feature = "CFODQuery", feature = "objc2-core-foundation"))]

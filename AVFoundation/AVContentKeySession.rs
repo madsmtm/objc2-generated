@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -114,6 +116,20 @@ impl AVContentKeySession {
             storage_url: &NSURL,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate. A delegate is required to handle content key initialization.
+        ///
+        /// Parameter `delegate`: An object conforming to the AVContentKeySessionDelegate protocol.
+        ///
+        /// Parameter `delegateQueue`: A dispatch queue on which delegate methods will be invoked whenever processes requiring content keys are executed asynchronously. Passing a value of nil for the delegateQueue parameter along with a non-nil value for the delegate parameter will result in an invalid argument exception.
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AVContentKeySessionDelegate>>,
+            delegate_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         /// The value of this property is an object conforming to the AVContentKeySessionDelegate protocol. The delegate is set using the setDelegate:queue: method.
@@ -122,6 +138,14 @@ impl AVContentKeySession {
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVContentKeySessionDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which all delegate methods will be invoked whenever processes requiring content keys are executed asynchronously.
+        ///
+        /// The value of this property is a dispatch_queue_t. The queue is set using the setDelegate:queue: method.
+        #[unsafe(method(delegateQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
 
         /// The storage URL provided when the AVContentKeySession was created. May be nil.
         ///

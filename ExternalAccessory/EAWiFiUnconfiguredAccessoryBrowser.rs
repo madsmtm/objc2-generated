@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -100,6 +102,28 @@ impl EAWiFiUnconfiguredAccessoryBrowser {
         pub unsafe fn unconfiguredAccessories(
             &self,
         ) -> Retained<NSSet<EAWiFiUnconfiguredAccessory>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Designated initializer.
+        ///
+        ///
+        /// Initializes an instance of the EAWiFiUnconfiguredAccessoryBrowser class
+        /// which can be further configured based on the application's interests.
+        ///
+        ///
+        /// Parameter `delegate`: The delegate that will receive the EAWiFiUnconfiguredAccessoryBrowserDelegate events.
+        ///
+        /// Parameter `queue`: The dispatch queue the delegate would like to receive events on. If nil the events will be on the main queue.
+        ///
+        ///
+        /// Returns: Instance object
+        #[unsafe(method(initWithDelegate:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDelegate_queue(
+            this: Allocated<Self>,
+            delegate: Option<&ProtocolObject<dyn EAWiFiUnconfiguredAccessoryBrowserDelegate>>,
+            queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
 
         /// Start the search for unconfigured accessories
         ///

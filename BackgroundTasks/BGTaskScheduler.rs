@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -102,6 +104,51 @@ impl BGTaskScheduler {
         #[unsafe(method(sharedScheduler))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedScheduler() -> Retained<BGTaskScheduler>;
+
+        #[cfg(all(feature = "BGTask", feature = "block2", feature = "dispatch2"))]
+        /// Register a launch handler for the task with the associated identifier that’s
+        /// executed on the specified queue.
+        ///
+        /// Every identifier in the
+        /// <doc
+        /// ://com.apple.documentation/documentation/bundleresources/information_property_list/bgtaskschedulerpermittedidentifiers>
+        /// requires a handler. Registration of all launch handlers must be complete
+        /// before the end of
+        /// <doc
+        /// ://com.apple.documentation/documentation/uikit/uiapplicationdelegate/1623053-applicationdidfinishlaunching>.
+        ///
+        /// - Important: Register each task identifier only once. The system kills the
+        /// app on the second registration of the same task identifier.
+        ///
+        /// - Parameters:
+        /// - identifier: A string containing the identifier of the task.
+        ///
+        /// - queue: A queue for executing the task. Pass `nil` to use a default
+        /// background queue.
+        ///
+        /// - launchHandler: The system runs the block of code for the launch handler
+        /// when it launches the app in the background. The block takes a single
+        /// parameter, a ``BGTask`` object used for assigning an expiration handler and
+        /// for setting a completion status. The block has no return value.
+        ///
+        /// - Returns: Returns
+        /// <doc
+        /// ://com.apple.documentation/documentation/objectivec/yes> if the launch
+        /// handler was registered. Returns
+        /// <doc
+        /// ://com.apple.documentation/documentation/objectivec/no> if the
+        /// identifier isn't included in the
+        /// <doc
+        /// ://com.apple.documentation/documentation/bundleresources/information_property_list/bgtaskschedulerpermittedidentifiers>
+        /// `Info.plist`.
+        #[unsafe(method(registerForTaskWithIdentifier:usingQueue:launchHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn registerForTaskWithIdentifier_usingQueue_launchHandler(
+            &self,
+            identifier: &NSString,
+            queue: Option<&DispatchQueue>,
+            launch_handler: &block2::Block<dyn Fn(NonNull<BGTask>)>,
+        ) -> bool;
 
         #[cfg(feature = "BGTaskRequest")]
         /// Submit a previously registered background task for execution.

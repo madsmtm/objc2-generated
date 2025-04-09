@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
@@ -282,4 +284,18 @@ extern "C-unwind" {
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
     );
+}
+
+extern "C-unwind" {
+    /// Performs the query and sends the results using the specified dispatch queue
+    ///
+    /// Schedule the query to run and deliver its results using the specified dispatch queue.
+    /// The previously set callback will be called using the same semantics as
+    /// ODQueryScheduleWithRunLoop
+    ///
+    /// Parameter `query`: an ODQueryRef to perform
+    ///
+    /// Parameter `queue`: a dispatch queue to receive the query results
+    #[cfg(feature = "dispatch2")]
+    pub fn ODQuerySetDispatchQueue(query: &ODQueryRef, queue: Option<&DispatchQueue>);
 }

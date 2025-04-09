@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -33,6 +35,17 @@ impl CXCallObserver {
         #[unsafe(method(calls))]
         #[unsafe(method_family = none)]
         pub unsafe fn calls(&self) -> Retained<NSArray<CXCall>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Set delegate and optional queue for delegate callbacks to be performed on.
+        /// A nil queue implies that delegate callbacks should happen on the main queue. The delegate is stored weakly
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn CXCallObserverDelegate>>,
+            queue: Option<&DispatchQueue>,
+        );
     );
 }
 

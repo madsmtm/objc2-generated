@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -229,12 +231,49 @@ impl CMIOExtensionProvider {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Returns a provider instance.
+        ///
+        /// Parameter `source`: The provider source.
+        ///
+        /// Parameter `clientQueue`: The client dispatch queue, or nil for the default dispatch queue.
+        ///
+        /// Returns: A CMIOExtensionProvider instance.
+        #[unsafe(method(providerWithSource:clientQueue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn providerWithSource_clientQueue(
+            source: &ProtocolObject<dyn CMIOExtensionProviderSource>,
+            client_queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Initialize a provider instance.
+        ///
+        /// Parameter `source`: The provider source.
+        ///
+        /// Parameter `clientQueue`: The client dispatch queue, or nil for the default dispatch queue.
+        ///
+        /// Returns: A CMIOExtensionProvider instance.
+        #[unsafe(method(initWithSource:clientQueue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithSource_clientQueue(
+            this: Allocated<Self>,
+            source: &ProtocolObject<dyn CMIOExtensionProviderSource>,
+            client_queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
+
         /// The provider source.
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
         pub unsafe fn source(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CMIOExtensionProviderSource>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which source methods from the provider/device/stream will be called.
+        #[unsafe(method(clientQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn clientQueue(&self) -> Retained<DispatchQueue>;
 
         #[cfg(feature = "CMIOExtensionProperties")]
         /// The array of connected clients.

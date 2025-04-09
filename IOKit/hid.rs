@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -1219,6 +1221,59 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the dispatch queue to be associated with the IOHIDQueue.
+    /// This is necessary in order to receive asynchronous events from the kernel.
+    ///
+    ///
+    /// An IOHIDQueue should not be associated with both a runloop and
+    /// dispatch queue. A call to IOHIDQueueSetDispatchQueue should only be made once.
+    ///
+    /// After a dispatch queue is set, the IOHIDQueue must make a call to activate
+    /// via IOHIDQueueActivate and cancel via IOHIDQueueCancel. All calls to "Register"
+    /// functions should be done before activation and not after cancellation.
+    ///
+    ///
+    /// Parameter `queue`: Reference to an IOHIDQueue
+    ///
+    ///
+    /// Parameter `dispatchQueue`: The dispatch queue to which the event handler block will be submitted.
+    #[cfg(feature = "dispatch2")]
+    pub fn IOHIDQueueSetDispatchQueue(queue: &IOHIDQueue, dispatch_queue: &DispatchQueue);
+}
+
+extern "C-unwind" {
+    /// Sets a cancellation handler for the dispatch queue associated with
+    /// IOHIDQueueSetDispatchQueue.
+    ///
+    ///
+    /// The cancellation handler (if specified) will be will be submitted to the
+    /// queue's dispatch queue in response to a call to IOHIDQueueCancel after all
+    /// the events have been handled.
+    ///
+    /// IOHIDQueueSetCancelHandler should not be used when scheduling with
+    /// a run loop.
+    ///
+    /// The IOHIDQueueRef should only be released after the queue has been
+    /// cancelled, and the cancel handler has been called. This is to ensure all
+    /// asynchronous objects are released. For example:
+    ///
+    /// dispatch_block_t cancelHandler = dispatch_block_create(0, ^{
+    /// CFRelease(queue);
+    /// });
+    /// IOHIDQueueSetCancelHandler(queue, cancelHandler);
+    /// IOHIDQueueActivate(queue);
+    /// IOHIDQueueCancel(queue);
+    ///
+    ///
+    /// Parameter `queue`: Reference to an IOHIDQueue.
+    ///
+    ///
+    /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
+    #[cfg(feature = "dispatch2")]
+    pub fn IOHIDQueueSetCancelHandler(queue: &IOHIDQueue, handler: dispatch_block_t);
+}
+
+extern "C-unwind" {
     /// Activates the IOHIDQueue object.
     ///
     ///
@@ -1586,6 +1641,49 @@ extern "C-unwind" {
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
     );
+}
+
+extern "C-unwind" {
+    /// Sets the dispatch queue to be associated with the IOHIDDevice.
+    /// This is necessary in order to receive asynchronous events from the kernel.
+    ///
+    /// An IOHIDDevice should not be associated with both a runloop and
+    /// dispatch queue. A call to IOHIDDeviceSetDispatchQueue should only be made once.
+    /// After a dispatch queue is set, the IOHIDDevice must make a call to activate
+    /// via IOHIDDeviceActivate and cancel via IOHIDDeviceCancel. All calls to "Register"
+    /// functions should be done before activation and not after cancellation.
+    ///
+    /// Parameter `device`: Reference to an IOHIDDevice
+    ///
+    /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
+    #[cfg(feature = "dispatch2")]
+    pub fn IOHIDDeviceSetDispatchQueue(device: &IOHIDDevice, queue: &DispatchQueue);
+}
+
+extern "C-unwind" {
+    /// Sets a cancellation handler for the dispatch queue associated with
+    /// IOHIDDeviceSetDispatchQueue.
+    ///
+    /// The cancellation handler (if specified) will be will be submitted to the
+    /// device's dispatch queue in response to a call to IOHIDDeviceCancel after
+    /// all the events have been handled.
+    /// IOHIDDeviceSetCancelHandler should not be used when scheduling with
+    /// a run loop.
+    /// The IOHIDDeviceRef should only be released after the device has been
+    /// cancelled, and the cancel handler has been called. This is to ensure all
+    /// asynchronous objects are released. For example:
+    /// dispatch_block_t cancelHandler = dispatch_block_create(0, ^{
+    /// CFRelease(device);
+    /// });
+    /// IOHIDDeviceSetCancelHandler(device, cancelHandler);
+    /// IOHIDDeviceActivate(device);
+    /// IOHIDDeviceCancel(device);
+    ///
+    /// Parameter `device`: Reference to an IOHIDDevice.
+    ///
+    /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
+    #[cfg(feature = "dispatch2")]
+    pub fn IOHIDDeviceSetCancelHandler(device: &IOHIDDevice, handler: dispatch_block_t);
 }
 
 extern "C-unwind" {
@@ -3560,6 +3658,59 @@ extern "C-unwind" {
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
     );
+}
+
+extern "C-unwind" {
+    /// Sets the dispatch queue to be associated with the IOHIDManager.
+    /// This is necessary in order to receive asynchronous events from the kernel.
+    ///
+    ///
+    /// An IOHIDManager should not be associated with both a runloop and
+    /// dispatch queue. A call to IOHIDManagerSetDispatchQueue should only be made once.
+    ///
+    /// After a dispatch queue is set, the IOHIDManager must make a call to activate
+    /// via IOHIDManagerActivate and cancel via IOHIDManagerCancel. All calls to "Register"
+    /// functions should be done before activation and not after cancellation.
+    ///
+    ///
+    /// Parameter `manager`: Reference to an IOHIDManager
+    ///
+    ///
+    /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
+    #[cfg(feature = "dispatch2")]
+    pub fn IOHIDManagerSetDispatchQueue(manager: &IOHIDManager, queue: &DispatchQueue);
+}
+
+extern "C-unwind" {
+    /// Sets a cancellation handler for the dispatch queue associated with
+    /// IOHIDManagerSetDispatchQueue.
+    ///
+    ///
+    /// The cancellation handler (if specified) will be will be submitted to the
+    /// manager's dispatch queue in response to a call to IOHIDManagerCancel after
+    /// all the events have been handled.
+    ///
+    /// IOHIDManagerSetCancelHandler should not be used when scheduling with
+    /// a run loop.
+    ///
+    /// The IOHIDManagerRef should only be released after the manager has been
+    /// cancelled, and the cancel handler has been called. This is to ensure all
+    /// asynchronous objects are released. For example:
+    ///
+    /// dispatch_block_t cancelHandler = dispatch_block_create(0, ^{
+    /// CFRelease(manager);
+    /// });
+    /// IOHIDManagerSetCancelHandler(manager, cancelHandler);
+    /// IOHIDManagerActivate(manager);
+    /// IOHIDManageCancel(manager);
+    ///
+    ///
+    /// Parameter `manager`: Reference to an IOHIDManager.
+    ///
+    ///
+    /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
+    #[cfg(feature = "dispatch2")]
+    pub fn IOHIDManagerSetCancelHandler(manager: &IOHIDManager, handler: dispatch_block_t);
 }
 
 extern "C-unwind" {

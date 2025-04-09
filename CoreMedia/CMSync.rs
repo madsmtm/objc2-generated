@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -514,6 +516,82 @@ extern "C-unwind" {
     pub fn CMTimebaseSetTimerToFireImmediately(
         timebase: &CMTimebase,
         timer: &CFRunLoopTimer,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Adds the timer dispatch source to the list of timers managed by the timebase.
+    ///
+    /// The timer source must have been created by calling
+    /// dispatch_source_create( DISPATCH_SOURCE_TYPE_TIMER, 0, 0, some_dispatch_queue )
+    /// and should have had an event handler associated with it via
+    /// dispatch_source_set_event_handler( timerSource, some_handler_block )
+    /// or dispatch_source_set_event_handler_f( timerSource, some_handler_function ).
+    /// Don't forget to call dispatch_resume( timerSource ) as dispatch sources are
+    /// created suspended.
+    ///
+    /// The timebase will retain the timer source, and will maintain its start time
+    /// according to the CMTime set using CMTimebaseSetTimerDispatchSourceNextFireTime.
+    /// Until the first call to CMTimebaseSetTimerDispatchSourceNextFireTime, the start time
+    /// will be set to DISPATCH_TIME_FOREVER.
+    #[cfg(feature = "dispatch2")]
+    pub fn CMTimebaseAddTimerDispatchSource(
+        timebase: &CMTimebase,
+        timer_source: &DispatchSource,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Removes the timer dispatch source from the list of timers managed by the timebase.
+    ///
+    /// The timebase will no longer maintain the timer source's start time.
+    /// If the timer source is cancelled, the timebase will eventually remove it
+    /// from its list and release it even if this function is not called.
+    #[cfg(feature = "dispatch2")]
+    pub fn CMTimebaseRemoveTimerDispatchSource(
+        timebase: &CMTimebase,
+        timer_source: &DispatchSource,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Sets the CMTime on the timebase's timeline at which the timer dispatch source should next be fired.
+    ///
+    /// The timer source must be on the list of timers managed by the timebase.
+    /// The timebase will continue to update the timer dispatch source's start time
+    /// according to time jumps and effective rate changes.
+    /// If fireTime is not numeric, or if the timebase is not moving, the start time
+    /// will be set to DISPATCH_TIME_FOREVER.
+    /// <BR
+    /// >
+    /// IMPORTANT NOTE: Due to the way that timer dispatch sources are implemented, if a timer passes
+    /// through a state in which it is due to fire, it may fire even if its rescheduled before
+    /// the event handler is run.  Clients should take care to avoid temporarily scheduling timers
+    /// in the past.  For example, set the timebase's rate or time before you set the timer's
+    /// next fire time, if you are doing both at once.  (If setting the timebase's rate or time
+    /// might put the timer's fire time in the past, you may need to set the fire time to
+    /// kCMTimeInvalid across the timebase change.)
+    #[cfg(all(feature = "CMTime", feature = "dispatch2"))]
+    pub fn CMTimebaseSetTimerDispatchSourceNextFireTime(
+        timebase: &CMTimebase,
+        timer_source: &DispatchSource,
+        fire_time: CMTime,
+        flags: u32,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Sets the timer dispatch source to fire immediately once, overriding any previous
+    /// CMTimebaseSetTimerDispatchSourceNextFireTime call.
+    ///
+    /// The timer source must be on the list of timers managed by the timebase.
+    /// This is equivalent to calling
+    /// dispatch_source_set_timer( timerSource, DISPATCH_TIME_NOW, 0, 0 );
+    /// except that the timebase gets to know that it shouldn't interfere.
+    #[cfg(feature = "dispatch2")]
+    pub fn CMTimebaseSetTimerDispatchSourceToFireImmediately(
+        timebase: &CMTimebase,
+        timer_source: &DispatchSource,
     ) -> OSStatus;
 }
 

@@ -156,6 +156,8 @@ pub use self::__FSEvents::FSEventStreamRelease;
 pub use self::__FSEvents::FSEventStreamRetain;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::FSEventStreamScheduleWithRunLoop;
+#[cfg(all(feature = "FSEvents", feature = "dispatch2"))]
+pub use self::__FSEvents::FSEventStreamSetDispatchQueue;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::FSEventStreamSetExclusionPaths;
 #[cfg(feature = "FSEvents")]

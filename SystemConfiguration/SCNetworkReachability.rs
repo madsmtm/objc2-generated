@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -413,5 +415,33 @@ pub extern "C-unwind" fn SCNetworkReachabilityUnscheduleFromRunLoop(
     }
     let ret =
         unsafe { SCNetworkReachabilityUnscheduleFromRunLoop(target, run_loop, run_loop_mode) };
+    ret != 0
+}
+
+/// Schedule or unschedule callbacks for the given target on the given
+/// dispatch queue.
+///
+/// Parameter `target`: The address or name that is set up for asynchronous
+/// notifications.  Must be non-NULL.
+///
+/// Parameter `queue`: A libdispatch queue to run the callback on.
+/// Pass NULL to unschedule callbacks.
+///
+/// Returns: Returns TRUE if the target is scheduled or unscheduled successfully;
+/// FALSE otherwise.
+#[cfg(feature = "dispatch2")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkReachabilitySetDispatchQueue(
+    target: &SCNetworkReachability,
+    queue: Option<&DispatchQueue>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkReachabilitySetDispatchQueue(
+            target: &SCNetworkReachability,
+            queue: Option<&DispatchQueue>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkReachabilitySetDispatchQueue(target, queue) };
     ret != 0
 }

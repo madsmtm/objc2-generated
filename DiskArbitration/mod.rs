@@ -171,6 +171,8 @@ pub use self::__DASession::DASession;
 pub use self::__DASession::DASessionCreate;
 #[cfg(feature = "DASession")]
 pub use self::__DASession::DASessionScheduleWithRunLoop;
+#[cfg(all(feature = "DASession", feature = "dispatch2"))]
+pub use self::__DASession::DASessionSetDispatchQueue;
 #[cfg(feature = "DASession")]
 pub use self::__DASession::DASessionUnscheduleFromRunLoop;
 use core::ffi::*;

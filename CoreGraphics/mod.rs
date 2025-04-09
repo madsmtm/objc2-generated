@@ -1129,6 +1129,15 @@ pub use self::__CGDisplayStream::CGDisplayStream;
 #[cfg(not(target_os = "watchos"))]
 pub use self::__CGDisplayStream::CGDisplayStreamCreate;
 #[cfg(all(
+    feature = "CGDirectDisplay",
+    feature = "CGDisplayStream",
+    feature = "block2",
+    feature = "dispatch2",
+    feature = "objc2-io-surface"
+))]
+#[cfg(not(target_os = "watchos"))]
+pub use self::__CGDisplayStream::CGDisplayStreamCreateWithDispatchQueue;
+#[cfg(all(
     feature = "CGDisplayStream",
     feature = "block2",
     feature = "objc2-io-surface"

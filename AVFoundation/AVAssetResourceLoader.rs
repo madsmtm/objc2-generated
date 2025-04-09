@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -26,6 +28,24 @@ impl AVAssetResourceLoader {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate that will mediate resource loading and the dispatch queue on which delegate methods will be invoked.
+        ///
+        /// Parameter `delegate`: An object conforming to the AVAssetResourceLoaderDelegate protocol.
+        ///
+        /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be invoked.
+        ///
+        /// If you employ an AVAssetResourceLoader delegate that loads media data for playback, you should set the value of your AVPlayer’s automaticallyWaitsToMinimizeStalling property to NO. Allowing the value of automaticallyWaitsToMinimizeStalling to remain YES — its default value — when an AVAssetResourceLoader delegate is used for the loading of media data can result in poor start-up times for playback and poor recovery from stalls, because the behaviors provided by AVPlayer when automaticallyWaitsToMinimizeStalling has a value of YES depend on predictions of the future availability of media data that that do not function as expected when data is loaded via a client-controlled means, using the AVAssetResourceLoader delegate interface.
+        ///
+        /// You can allow the value of automaticallyWaitsToMinimizeStalling to remain YES if you use an AVAssetResourceLoader delegate to manage content keys for FairPlay Streaming, to provide dynamically-generated master playlists for HTTP Live Streaming, or to respond to authentication challenges, but not to load media data for playback.
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AVAssetResourceLoaderDelegate>>,
+            delegate_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         /// The value of this property is an object conforming to the AVAssetResourceLoaderDelegate protocol. The delegate is set using the setDelegate:queue: method. The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.
@@ -34,6 +54,14 @@ impl AVAssetResourceLoader {
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAssetResourceLoaderDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which all delegate methods will be invoked.
+        ///
+        /// The value of this property is a dispatch_queue_t. The queue is set using the setDelegate:queue: method.
+        #[unsafe(method(delegateQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
     );
 }
 

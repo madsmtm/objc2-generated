@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -36,6 +38,15 @@ impl MKMapSnapshotter {
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
+            completion_handler: MKMapSnapshotCompletionHandler,
+        );
+
+        #[cfg(all(feature = "MKMapSnapshot", feature = "block2", feature = "dispatch2"))]
+        #[unsafe(method(startWithQueue:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn startWithQueue_completionHandler(
+            &self,
+            queue: &DispatchQueue,
             completion_handler: MKMapSnapshotCompletionHandler,
         );
 

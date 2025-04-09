@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
@@ -877,6 +879,60 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+extern "C-unwind" {
+    /// Registers the given AudioObjectPropertyListenerBlock to receive notifications
+    /// when the given properties change.
+    ///
+    /// Parameter `inObjectID`: The AudioObject to register the listener with.
+    ///
+    /// Parameter `inAddress`: The AudioObjectPropertyAddresses indicating which property the listener
+    /// should be notified about.
+    ///
+    /// Parameter `inDispatchQueue`: The dispatch queue on which the listener block will be dispatched. All
+    /// listener blocks will be dispatched asynchronously save for those dispatched
+    /// from the IO context (of which kAudioDevicePropertyDeviceIsRunning and
+    /// kAudioDeviceProcessorOverload are the only examples) which will be
+    /// dispatched synchronously. Note that this dispatch queue will be retained
+    /// until a matching call to AudioObjectRemovePropertyListenerBlock is made. If
+    /// this value is NULL, then the block will be directly invoked.
+    ///
+    /// Parameter `inListener`: The AudioObjectPropertyListenerBlock to call. Note that this block will be
+    /// Block_copy'd and the reference maintained until a matching call to
+    /// AudioObjectRemovePropertyListenerBlock is made.
+    ///
+    /// Returns: An OSStatus indicating success or failure.
+    #[cfg(all(feature = "block2", feature = "dispatch2"))]
+    pub fn AudioObjectAddPropertyListenerBlock(
+        in_object_id: AudioObjectID,
+        in_address: NonNull<AudioObjectPropertyAddress>,
+        in_dispatch_queue: Option<&DispatchQueue>,
+        in_listener: AudioObjectPropertyListenerBlock,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Unregisters the given AudioObjectPropertyListenerBlock from receiving
+    /// notifications when the given properties change.
+    ///
+    /// Parameter `inObjectID`: The AudioObject to unregister the listener from.
+    ///
+    /// Parameter `inAddress`: The AudioObjectPropertyAddress indicating from which property the listener
+    /// should be removed.
+    ///
+    /// Parameter `inDispatchQueue`: The dispatch queue on which the listener block was being dispatched to.
+    ///
+    /// Parameter `inListener`: The AudioObjectPropertyListenerBlock being removed.
+    ///
+    /// Returns: An OSStatus indicating success or failure.
+    #[cfg(all(feature = "block2", feature = "dispatch2"))]
+    pub fn AudioObjectRemovePropertyListenerBlock(
+        in_object_id: AudioObjectID,
+        in_address: NonNull<AudioObjectPropertyAddress>,
+        in_dispatch_queue: Option<&DispatchQueue>,
+        in_listener: AudioObjectPropertyListenerBlock,
+    ) -> OSStatus;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosystemobjectclassid?language=objc)
 pub const kAudioSystemObjectClassID: AudioClassID = 0x61737973;
 
@@ -1344,6 +1400,36 @@ extern "C-unwind" {
         in_proc: AudioDeviceIOProc,
         in_client_data: *mut c_void,
         out_io_proc_id: NonNull<AudioDeviceIOProcID>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Creates an AudioDeviceIOProcID from an AudioDeviceIOBlock
+    ///
+    /// Parameter `outIOProcID`: The newly created AudioDeviceIOProcID.
+    ///
+    /// Parameter `inDevice`: The AudioDevice to register the Block with.
+    ///
+    /// Parameter `inDispatchQueue`: The dispatch queue on which the IOBlock will be dispatched. All
+    /// IOBlocks are dispatched synchronously. Note that this dispatch queue will be
+    /// retained until a matching call to AudioDeviceDestroyIOProcID is made. If
+    /// this value is NULL, then the IOBlock will be directly invoked.
+    ///
+    /// Parameter `inIOBlock`: The AudioDeviceIOBlock to register.  Note that this block will be
+    /// Block_copy'd and the reference maintained until a matching call to
+    /// AudioDeviceDestroyIOProcID is made.
+    ///
+    /// Returns: An OSStatus indicating success or failure.
+    #[cfg(all(
+        feature = "block2",
+        feature = "dispatch2",
+        feature = "objc2-core-audio-types"
+    ))]
+    pub fn AudioDeviceCreateIOProcIDWithBlock(
+        out_io_proc_id: NonNull<AudioDeviceIOProcID>,
+        in_device: AudioObjectID,
+        in_dispatch_queue: Option<&DispatchQueue>,
+        in_io_block: AudioDeviceIOBlock,
     ) -> OSStatus;
 }
 

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -176,6 +178,20 @@ impl AVPlayerItemVideoOutput {
             out_item_time_for_display: *mut CMTime,
         ) -> Option<Retained<CVPixelBuffer>>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate and a dispatch queue on which the delegate will be called.
+        ///
+        /// Parameter `delegate`: An object conforming to AVPlayerItemOutputPullDelegate protocol.
+        ///
+        /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AVPlayerItemOutputPullDelegate>>,
+            delegate_queue: Option<&DispatchQueue>,
+        );
+
         /// Informs the receiver that the AVPlayerItemVideoOutput client is entering a quiescent state.
         ///
         /// Parameter `interval`: A wall clock time interval.
@@ -194,6 +210,12 @@ impl AVPlayerItemVideoOutput {
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemOutputPullDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue where the delegate is messaged.
+        #[unsafe(method(delegateQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
     );
 }
 
@@ -248,6 +270,22 @@ unsafe impl NSObjectProtocol for AVPlayerItemLegibleOutput {}
 
 impl AVPlayerItemLegibleOutput {
     extern_methods!(
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate and a dispatch queue on which the delegate will be called.
+        ///
+        /// Parameter `delegate`: An object conforming to AVPlayerItemLegibleOutputPushDelegate protocol.
+        ///
+        /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
+        ///
+        /// The delegate is held using a zeroing-weak reference, so it is safe to deallocate the delegate while the receiver still has a reference to it.
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AVPlayerItemLegibleOutputPushDelegate>>,
+            delegate_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
@@ -256,6 +294,14 @@ impl AVPlayerItemLegibleOutput {
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemLegibleOutputPushDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue where the delegate is messaged.
+        ///
+        /// This property is not key-value observable.
+        #[unsafe(method(delegateQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
 
         /// Permits advance invocation of the associated delegate, if any.
         ///
@@ -435,6 +481,20 @@ impl AVPlayerItemMetadataOutput {
             identifiers: Option<&NSArray<NSString>>,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate and a dispatch queue on which the delegate will be called.
+        ///
+        /// Parameter `delegate`: An object conforming to AVPlayerItemMetadataOutputPushDelegate protocol.
+        ///
+        /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AVPlayerItemMetadataOutputPushDelegate>>,
+            delegate_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
@@ -443,6 +503,14 @@ impl AVPlayerItemMetadataOutput {
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemMetadataOutputPushDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which messages are sent to the delegate.
+        ///
+        /// This property is not key-value observable.
+        #[unsafe(method(delegateQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
 
         /// Permits advance invocation of the associated delegate, if any.
         ///
@@ -543,6 +611,22 @@ impl AVPlayerItemRenderedLegibleOutput {
             video_display_size: CGSize,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate and a dispatch queue on which the delegate will be called.
+        ///
+        /// Parameter `delegate`: An object conforming to AVPlayerItemRenderedLegibleOutputPushDelegate protocol.
+        ///
+        /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
+        ///
+        /// The delegate is held using a zeroing-weak reference, so it is safe to deallocate the delegate while the receiver still has a reference to it.
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AVPlayerItemRenderedLegibleOutputPushDelegate>>,
+            delegate_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
@@ -551,6 +635,14 @@ impl AVPlayerItemRenderedLegibleOutput {
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemRenderedLegibleOutputPushDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue where the delegate is messaged.
+        ///
+        /// This property is not key-value observable.
+        #[unsafe(method(delegateQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
 
         /// Permits advance invocation of the associated delegate, if any.
         ///

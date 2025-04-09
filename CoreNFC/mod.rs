@@ -23,6 +23,8 @@ extern "C" {}
 
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -260,6 +262,12 @@ impl NFCReaderSession {
         #[unsafe(method(readingAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn readingAvailable() -> bool;
+
+        #[cfg(feature = "dispatch2")]
+        /// The NFCReaderSessionDelegate delegate callbacks and the completion block handlers for tag operation will be dispatched on this queue.
+        #[unsafe(method(sessionQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sessionQueue(&self) -> Retained<DispatchQueue>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -534,6 +542,29 @@ impl NFCTagReaderSession {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `pollingOption`: Configures the RF polling of the reader session; multiple options can be OR'ed together.  This option affects the possible NFC tag type discover.
+        ///
+        /// Parameter `delegate`: The session will hold a weak ARC reference to this
+        ///
+        /// ```text
+        ///  NFCTagReaderSessionDelegate @link/ object.
+        ///  @param queue         A dispatch queue where NFCTagReaderSessionDelegate delegate callbacks will be dispatched to.  A <i>nil</i> value will
+        ///                       cause the creation of a serial dispatch queue internally for the session.  The session object will retain the provided dispatch queue.
+        ///
+        ///  @return              A new NFCTagReaderSession instance.
+        ///  
+        ///
+        /// ```
+        #[unsafe(method(initWithPollingOption:delegate:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithPollingOption_delegate_queue(
+            this: Allocated<Self>,
+            polling_option: NFCPollingOption,
+            delegate: &ProtocolObject<dyn NFCTagReaderSessionDelegate>,
+            queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
+
         /// Restart the polling sequence in this session to discover new tags.  New tags discovered from polling will return in the subsequent
         ///
         /// ```text
@@ -700,6 +731,49 @@ impl NFCNDEFReaderSession {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `delegate`: The session will hold a weak ARC reference to this
+        ///
+        /// ```text
+        ///  NFCNDEFReaderSessionDelegate @link/ object.
+        ///  @param queue     A dispatch queue where NFCNDEFReaderSessionDelegate delegate callbacks will be dispatched to.  A <i>nil</i> value will
+        ///                   cause the creation of a serial dispatch queue internally for the session.  The session object will retain the provided dispatch queue.
+        ///  @param invalidateAfterFirstRead  Session will automatically invalidate after the first NDEF tag is read successfully when this is set to YES, and
+        ///                                   -readerSession:didInvalidateWithError: will return NFCReaderSessionInvalidationErrorFirstNDEFTagRead in this case.
+        ///                                   Set to NO if the delegate object implements the -readerSession:didDetectTags: optional method.
+        ///
+        ///  @return          A new NFCNDEFReaderSession instance.
+        ///
+        ///  @discussion      A NDEF reader session will scan and detect NFC Forum tags that contain a valid NDEF message.  NFC Forum Tag type 1 to 5 that
+        ///                   is NDEF formatted are supported.  A modal system UI will present once -beginSession is called to inform the start of the session; the UI sheet
+        ///                   is automatically dismissed when the session is invalidated either by the user or by calling -invalidateSession.  The alertMessage property shall be set
+        ///                   prior to -beginSession to display a message on the action sheet UI for the tag scanning operation.
+        ///
+        ///                   The reader session has the following properties:
+        ///                   + An opened session has a 60 seconds time limit restriction after -beginSession is called; -readerSession:didInvalidateWithError: will return
+        ///                   NFCReaderSessionInvalidationErrorSessionTimeout error when the time limit is reached.
+        ///                   + Only 1 active reader session is allowed in the system; -readerSession:didInvalidateWithError: will return NFCReaderSessionInvalidationErrorSystemIsBusy
+        ///                   when a new reader session is initiated by -beginSession when there is an active reader session.  
+        ///                   + -readerSession:didInvalidateWithError: will return NFCReaderSessionInvalidationErrorUserCanceled when user clicks on the done button on the UI.
+        ///                   + -readerSession:didInvalidateWithError: will return NFCReaderSessionInvalidationErrorSessionTerminatedUnexpectedly when the client application enters
+        ///                   the background state.
+        ///                   + -readerSession:didInvalidateWithError: will return NFCReaderErrorUnsupportedFeature when 1) reader mode feature is not available on the hardware,
+        ///                   2) client application does not have the required entitlement.
+        ///
+        ///                   The session's mode of operation is determined by the implementation of the delegate object.  The -readerSession:didDetectTags: optional method will
+        ///                   enable the read-write capability and suppress the -readerSession:didDetectNDEFs: callback for the session.
+        ///  
+        ///
+        /// ```
+        #[unsafe(method(initWithDelegate:queue:invalidateAfterFirstRead:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDelegate_queue_invalidateAfterFirstRead(
+            this: Allocated<Self>,
+            delegate: &ProtocolObject<dyn NFCNDEFReaderSessionDelegate>,
+            queue: Option<&DispatchQueue>,
+            invalidate_after_first_read: bool,
+        ) -> Retained<Self>;
 
         /// Restart the polling sequence in this session to discover new NDEF tags.  New tags discovered from polling will return in the subsequent
         ///
@@ -1959,6 +2033,27 @@ impl NFCISO15693ReaderSession {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `delegate`: The session will hold a weak ARC reference to this
+        ///
+        /// ```text
+        ///  NFCReaderSessionDelegate @link/ object.
+        ///  @param queue     A dispatch queue where NFCReaderSessionDelegate delegate callbacks will be dispatched to.  A <i>nil</i> value will
+        ///                   cause the creation of a serial dispatch queue internally for the session.  The session object will retain the provided dispatch queue.
+        ///
+        ///  @return          A new NFCISO15693ReaderSession instance.
+        ///  
+        ///
+        /// ```
+        #[deprecated = "No longer supported"]
+        #[unsafe(method(initWithDelegate:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDelegate_queue(
+            this: Allocated<Self>,
+            delegate: &ProtocolObject<dyn NFCReaderSessionDelegate>,
+            queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
 
         /// Restart the polling sequence in this session to discover new tags.  Tags that are returned previously by
         ///
@@ -3279,6 +3374,46 @@ impl NFCVASReaderSession {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `commandConfigurations`: NSArray of NFCVASCommandConfiguration objects.  Each NFCVASCommandConfiguration defines one GET VAS DATA command send to
+        /// a compatible tag when discovered.  The order of elements in the array defines the order of the command execution.
+        ///
+        /// Parameter `delegate`: The session will hold a weak ARC reference to this
+        ///
+        /// ```text
+        ///  NFCVASReaderSessionDelegate @link/ object.
+        ///  @param queue     A dispatch queue where NFCVASReaderSessionDelegate delegate callbacks will be dispatched to.  A <i>nil</i> value will
+        ///                   cause the creation of a serial dispatch queue internally for the session.  The session object will retain the provided dispatch queue.
+        ///
+        ///  @return          A new NFCVASReaderSession instance.
+        ///
+        ///  @discussion      A VAS reader session will automatically scan and detect tag that is compatible with the VAS protocol.  The session will advertise as a
+        ///                   VAS App Only terminal.  A modal system UI will present once -beginSession is called to inform the start of the session; the UI sheet
+        ///                   is automatically dismissed when the session is invalidated either by the user or by calling -invalidateSession.  The alertMessage property shall be set
+        ///                   prior to -beginSession to display a message on the action sheet UI for the tag scanning operation.
+        ///
+        ///                   The reader session has the following properties:
+        ///                   + An opened session has a 60 seconds time limit restriction after -beginSession is called; -readerSession:didInvalidateWithError: will return
+        ///                   NFCReaderSessionInvalidationErrorSessionTimeout error when the time limit is reached.
+        ///                   + Only 1 active reader session is allowed in the system; -readerSession:didInvalidateWithError: will return NFCReaderSessionInvalidationErrorSystemIsBusy
+        ///                   when a new reader session is initiated by -beginSession when there is an active reader session.
+        ///                   + -readerSession:didInvalidateWithError: will return NFCReaderSessionInvalidationErrorUserCanceled when user clicks on the done button on the UI.
+        ///                   + -readerSession:didInvalidateWithError: will return NFCReaderSessionInvalidationErrorSessionTerminatedUnexpectedly when the client application enters
+        ///                   the background state.
+        ///                   + -readerSession:didInvalidateWithError: will return NFCReaderErrorUnsupportedFeature when 1) reader mode feature is not available on the hardware,
+        ///                   2) client application does not have the required entitlement.
+        ///  
+        ///
+        /// ```
+        #[unsafe(method(initWithVASCommandConfigurations:delegate:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithVASCommandConfigurations_delegate_queue(
+            this: Allocated<Self>,
+            command_configurations: &NSArray<NFCVASCommandConfiguration>,
+            delegate: &ProtocolObject<dyn NFCVASReaderSessionDelegate>,
+            queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
     );
 }
 

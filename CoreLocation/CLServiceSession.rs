@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -112,11 +114,30 @@ impl CLServiceSession {
             authorization_requirement: CLServiceSessionAuthorizationRequirement,
         ) -> Retained<CLServiceSession>;
 
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        #[unsafe(method(sessionRequiringAuthorization:queue:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sessionRequiringAuthorization_queue_handler(
+            authorization_requirement: CLServiceSessionAuthorizationRequirement,
+            queue: &DispatchQueue,
+            handler: &block2::Block<dyn Fn(NonNull<CLServiceSessionDiagnostic>)>,
+        ) -> Retained<CLServiceSession>;
+
         #[unsafe(method(sessionRequiringAuthorization:fullAccuracyPurposeKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionRequiringAuthorization_fullAccuracyPurposeKey(
             authorization_requirement: CLServiceSessionAuthorizationRequirement,
             purpose_key: &NSString,
+        ) -> Retained<CLServiceSession>;
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        #[unsafe(method(sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sessionRequiringAuthorization_fullAccuracyPurposeKey_queue_handler(
+            authorization_requirement: CLServiceSessionAuthorizationRequirement,
+            purpose_key: &NSString,
+            queue: &DispatchQueue,
+            handler: &block2::Block<dyn Fn(NonNull<CLServiceSessionDiagnostic>)>,
         ) -> Retained<CLServiceSession>;
 
         #[unsafe(method(invalidate))]

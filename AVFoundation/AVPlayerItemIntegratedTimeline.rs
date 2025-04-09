@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -286,6 +288,52 @@ extern_protocol!(
 /// AVPlayerItemIntegratedTimelineObserver.
 impl AVPlayerItemIntegratedTimeline {
     extern_methods!(
+        #[cfg(all(
+            feature = "block2",
+            feature = "dispatch2",
+            feature = "objc2-core-media"
+        ))]
+        /// Requests invocation of a block during playback to report changing time.
+        ///
+        /// Parameter `interval`: The interval of invocation of the block during normal playback, according to progress of the current time in the integrated timeline.
+        ///
+        /// Parameter `queue`: The serial queue onto which block should be enqueued. If you pass NULL, the main queue (obtained using dispatch_get_main_queue()) will be used. Passing a concurrent queue to this method will result in undefined behavior.
+        ///
+        /// Parameter `block`: The block to be invoked periodically.
+        ///
+        /// Returns: An object conforming to the AVPlayerItemIntegratedTimelineObserver protocol. You must retain this returned value as long as you want the time observer to be invoked by the timeline. The block is invoked periodically at the interval specified, interpreted according to the integrated timeline. The block is also invoked across AVPlayerItemSegment and AVPlayerItem boundaries, whenever time jumps, and whenever playback starts or stops. Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:. Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior
+        #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
+            &self,
+            interval: CMTime,
+            queue: Option<&DispatchQueue>,
+            block: &block2::Block<dyn Fn(CMTime)>,
+        ) -> Retained<ProtocolObject<dyn AVPlayerItemIntegratedTimelineObserver>>;
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// Requests invocation of a block when an offset in a segment is traversed during playback.
+        ///
+        /// Parameter `segment`: AVPlayerItemSegment to monitor playback traversal of.
+        ///
+        /// Parameter `offsetsIntoSegment`: Offsets in the segment for which the observer requests notification, supplied as an array of NSValues carrying CMTimes.
+        ///
+        /// Parameter `queue`: The serial queue onto which block should be enqueued. If you pass NULL, the main queue (obtained using dispatch_get_main_queue()) will be used. Passing a concurrent queue to this method will result in undefined behavior.
+        ///
+        /// Parameter `block`: The block to be invoked when the offset is crossed during playback of a segment.
+        ///
+        /// Returns: An object conforming to the AVPlayerItemIntegratedTimelineObserver protocol. You must retain this returned value as long as you want the time observer to be invoked by the timeline. Pass this object to -removeTimeObserver: to cancel time observation. One can also configure single point segments with segmentTimes to trigger during traversal of the segment's playback. As the timeline duration and segments change, the installed time observer will be automatically adjusted to fire at the desired offset in the segment. A segment that is removed from the timeline will trigger the invocation of the block immediately with success set as false.
+        /// Each call to -addBoundaryTimeObserverForSegment:segment:offsetsInSegment:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:. Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior
+        #[unsafe(method(addBoundaryTimeObserverForSegment:offsetsIntoSegment:queue:usingBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addBoundaryTimeObserverForSegment_offsetsIntoSegment_queue_usingBlock(
+            &self,
+            segment: &AVPlayerItemSegment,
+            offsets_into_segment: &NSArray,
+            queue: Option<&DispatchQueue>,
+            block: &block2::Block<dyn Fn(Bool)>,
+        ) -> Retained<ProtocolObject<dyn AVPlayerItemIntegratedTimelineObserver>>;
+
         /// Cancels a previously registered time observer.
         ///
         /// Parameter `observer`: An object returned by a previous call to -addPeriodicTimeObserverForInterval or -addBoundaryTimeObserverForSegment.

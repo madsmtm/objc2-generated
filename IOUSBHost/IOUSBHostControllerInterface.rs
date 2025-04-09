@@ -2,8 +2,12 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -59,6 +63,46 @@ impl IOUSBHostControllerInterface {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "IOUSBHostControllerInterfaceDefinitions",
+            feature = "block2",
+            feature = "dispatch2",
+            feature = "objc2-io-kit"
+        ))]
+        /// Initializes IOUSBHostControllerInterface object along with a user client
+        ///
+        /// If the user client cannot be created, nil will be returned.
+        /// When done using the object, destroy must be called on the object.
+        ///
+        /// Parameter `capabilities`: NSData containing an array of IOUSBHostCIMessage structures.  The first must have an IOUSBHostCIMessageControlType of IOUSBHostCIMessageTypeControllerCapabilities,
+        /// followed by at least one message with an IOUSBHostCIMessageControlType of IOUSBHostCIMessageTypePortCapabilities.
+        ///
+        /// Parameter `queue`: A serial queue to service asynchronous operations. If nil, a serial queue will be created on behalf of the client.
+        ///
+        /// Parameter `interruptRateHz`: NSUInteger representing the rate in Hz at which interrupts will be delivered to the kernel driver.
+        /// A value ot 0 will send all interrupts to the kernel immediately.
+        ///
+        /// Parameter `commandHandler`: IOUSBHostControllerInterfaceCommandHandler used to process IOUSBHostCIMessage messages sent by the kernel driver.
+        ///
+        /// Parameter `doorbellHandler`: IOUSBHostControllerInterfaceDoorbellHandler used to process IOUSBHostCIDoorbell values sent by the kernel driver.
+        ///
+        /// Parameter `interestHandler`: IOServiceInterestCallback used to process service state changes such as termination. See IOServiceAddInterestNotification
+        /// in IOKitLib for more details. All notifications will be serviced on an internal serial queue separate from command and doorbell handlers.
+        ///
+        /// Returns: An IOUSBHostControllerInterface. The object is to be released by the caller.
+        #[unsafe(method(initWithCapabilities:queue:interruptRateHz:error:commandHandler:doorbellHandler:interestHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCapabilities_queue_interruptRateHz_error_commandHandler_doorbellHandler_interestHandler(
+            this: Allocated<Self>,
+            capabilities: &NSData,
+            queue: Option<&DispatchQueue>,
+            interrupt_rate_hz: NSUInteger,
+            error: Option<&mut Option<Retained<NSError>>>,
+            command_handler: IOUSBHostControllerInterfaceCommandHandler,
+            doorbell_handler: IOUSBHostControllerInterfaceDoorbellHandler,
+            interest_handler: IOServiceInterestCallback,
+        ) -> Option<Retained<Self>>;
+
         /// Removes underlying allocations of the IOUSBHostControllerInterface object along with user client
         ///
         /// When the IOUSBHostControllerInterface is no longer needed, destroy must be called. This will destroy
@@ -67,6 +111,12 @@ impl IOUSBHostControllerInterface {
         #[unsafe(method(destroy))]
         #[unsafe(method_family = none)]
         pub unsafe fn destroy(&self);
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue for asynchronous operations.
+        #[unsafe(method(queue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn queue(&self) -> Retained<DispatchQueue>;
 
         #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
         /// Enqueue an interrupt for delivery to the kernel service

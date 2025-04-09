@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -84,6 +86,16 @@ extern "C-unwind" {
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
     );
+}
+
+extern "C-unwind" {
+    /// Schedules the session on a dispatch queue.
+    ///
+    /// Parameter `session`: The session which is being scheduled.
+    ///
+    /// Parameter `queue`: The dispatch queue on which the session should be scheduled.  Pass NULL to unschedule.
+    #[cfg(feature = "dispatch2")]
+    pub fn DASessionSetDispatchQueue(session: &DASession, queue: Option<&DispatchQueue>);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsession?language=objc)

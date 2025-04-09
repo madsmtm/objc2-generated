@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
@@ -875,6 +877,27 @@ impl SKAction {
         pub unsafe fn performSelector_onTarget(
             selector: Sel,
             target: &AnyObject,
+        ) -> Retained<SKAction>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Creates an action that executes a block
+        ///
+        /// Parameter `block`: The block to run
+        #[unsafe(method(runBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn runBlock(block: dispatch_block_t) -> Retained<SKAction>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Creates an action that executes a block
+        ///
+        /// Parameter `block`: The block to run
+        ///
+        /// Parameter `queue`: The queue to perform the action on
+        #[unsafe(method(runBlock:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn runBlock_queue(
+            block: dispatch_block_t,
+            queue: &DispatchQueue,
         ) -> Retained<SKAction>;
 
         /// Creates an action that runs an action on a named child object

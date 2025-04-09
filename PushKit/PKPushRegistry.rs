@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -194,6 +196,23 @@ impl PKPushRegistry {
         #[unsafe(method(pushTokenForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pushTokenForType(&self, r#type: &PKPushType) -> Option<Retained<NSData>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Creates a push registry with the specified dispatch queue.
+        ///
+        /// - Parameters:
+        /// - queue: The dispatch queue on which to execute the delegate methods. It is recommended that
+        /// you specify a serial queue for this parameter. Specify `nil` to execute the delegate
+        /// methods on the app’s main queue.
+        ///
+        /// - Returns: A `PKPushRegistry` object that you can use to register for push tokens and use to
+        /// receive notifications.
+        #[unsafe(method(initWithQueue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithQueue(
+            this: Allocated<Self>,
+            queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
 
         /// Unavailable, use -initWithQueue: instead.
         #[unsafe(method(init))]

@@ -530,6 +530,8 @@ pub use self::__MDQuery::MDQuerySetBatchingParameters;
 pub use self::__MDQuery::MDQuerySetCreateResultFunction;
 #[cfg(feature = "MDQuery")]
 pub use self::__MDQuery::MDQuerySetCreateValueFunction;
+#[cfg(all(feature = "MDQuery", feature = "dispatch2"))]
+pub use self::__MDQuery::MDQuerySetDispatchQueue;
 #[cfg(feature = "MDQuery")]
 pub use self::__MDQuery::MDQuerySetMaxCount;
 #[cfg(feature = "MDQuery")]

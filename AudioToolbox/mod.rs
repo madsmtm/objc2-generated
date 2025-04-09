@@ -2063,10 +2063,24 @@ pub use self::__AudioQueue::AudioQueueLevelMeterState;
 pub use self::__AudioQueue::AudioQueueNewInput;
 #[cfg(all(
     feature = "AudioQueue",
+    feature = "block2",
+    feature = "dispatch2",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AudioQueue::AudioQueueNewInputWithDispatchQueue;
+#[cfg(all(
+    feature = "AudioQueue",
     feature = "objc2-core-audio-types",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__AudioQueue::AudioQueueNewOutput;
+#[cfg(all(
+    feature = "AudioQueue",
+    feature = "block2",
+    feature = "dispatch2",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AudioQueue::AudioQueueNewOutputWithDispatchQueue;
 #[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
 pub use self::__AudioQueue::AudioQueueOfflineRender;
 #[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
@@ -3672,6 +3686,14 @@ pub use self::__AudioUnitUtilities::AUListenerBase;
     feature = "objc2-core-foundation"
 ))]
 pub use self::__AudioUnitUtilities::AUListenerCreate;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities",
+    feature = "block2",
+    feature = "dispatch2"
+))]
+pub use self::__AudioUnitUtilities::AUListenerCreateWithDispatchQueue;
 #[cfg(feature = "AudioUnitUtilities")]
 pub use self::__AudioUnitUtilities::AUListenerDispose;
 #[cfg(all(

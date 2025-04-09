@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 use objc2_metal::*;
@@ -243,6 +245,20 @@ impl MPSGraphCompilationDescriptor {
             &self,
             compilation_completion_handler: MPSGraphCompilationCompletionHandler,
         );
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue used for the compilation.
+        ///
+        /// Default value is nil.
+        #[unsafe(method(dispatchQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dispatchQueue(&self) -> Retained<DispatchQueue>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Setter for [`dispatchQueue`][Self::dispatchQueue].
+        #[unsafe(method(setDispatchQueue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDispatchQueue(&self, dispatch_queue: &DispatchQueue);
 
         /// The optimization profile for the graph optimization.
         ///

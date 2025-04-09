@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -36,6 +38,30 @@ impl AVCaptureVideoDataOutput {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate that will accept captured buffers and dispatch queue on which the delegate will be called.
+        ///
+        ///
+        /// Parameter `sampleBufferDelegate`: An object conforming to the AVCaptureVideoDataOutputSampleBufferDelegate protocol that will receive sample buffers after they are captured.
+        ///
+        /// Parameter `sampleBufferCallbackQueue`: A dispatch queue on which all sample buffer delegate methods will be called.
+        ///
+        ///
+        /// When a new video sample buffer is captured it will be vended to the sample buffer delegate using the captureOutput:didOutputSampleBuffer:fromConnection: delegate method. All delegate methods will be called on the specified dispatch queue. If the queue is blocked when new frames are captured, those frames will be automatically dropped at a time determined by the value of the alwaysDiscardsLateVideoFrames property. This allows clients to process existing frames on the same queue without having to manage the potential memory usage increases that would otherwise occur when that processing is unable to keep up with the rate of incoming frames. If their frame processing is consistently unable to keep up with the rate of incoming frames, clients should consider using the minFrameDuration property, which will generally yield better performance characteristics and more consistent frame rates than frame dropping alone.
+        ///
+        /// Clients that need to minimize the chances of frames being dropped should specify a queue on which a sufficiently small amount of processing is being done outside of receiving sample buffers. However, if such clients migrate extra processing to another queue, they are responsible for ensuring that memory usage does not grow without bound from frames that have not been processed.
+        ///
+        /// A serial dispatch queue must be used to guarantee that video frames will be delivered in order. The sampleBufferCallbackQueue parameter may not be NULL, except when setting the sampleBufferDelegate to nil otherwise -setSampleBufferDelegate:queue: throws an NSInvalidArgumentException.
+        #[unsafe(method(setSampleBufferDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSampleBufferDelegate_queue(
+            &self,
+            sample_buffer_delegate: Option<
+                &ProtocolObject<dyn AVCaptureVideoDataOutputSampleBufferDelegate>,
+            >,
+            sample_buffer_callback_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         ///
@@ -45,6 +71,15 @@ impl AVCaptureVideoDataOutput {
         pub unsafe fn sampleBufferDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureVideoDataOutputSampleBufferDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which all sample buffer delegate methods will be called.
+        ///
+        ///
+        /// The value of this property is a dispatch_queue_t. The queue is set using the setSampleBufferDelegate:queue: method.
+        #[unsafe(method(sampleBufferCallbackQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sampleBufferCallbackQueue(&self) -> Option<Retained<DispatchQueue>>;
 
         /// Specifies the settings used to decode or re-encode video before it is output by the receiver.
         ///

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-io-surface")]
@@ -1106,6 +1108,19 @@ extern_protocol!(
         unsafe fn newLibraryWithURL_error(
             &self,
             url: &NSURL,
+        ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
+
+        #[cfg(all(feature = "MTLLibrary", feature = "dispatch2"))]
+        /// Load a MTLLibrary from a dispatch_data_t
+        ///
+        /// Parameter `data`: A metallib file already loaded as data in the form of dispatch_data_t.
+        ///
+        /// Parameter `error`: An error if we fail to open the metallib data.
+        #[unsafe(method(newLibraryWithData:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newLibraryWithData_error(
+            &self,
+            data: &DispatchData,
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLLibrary")]

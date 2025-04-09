@@ -567,6 +567,12 @@ pub use self::__CMIOHardwareObject::kCMIOObjectUnknown;
 pub use self::__CMIOHardwareObject::CMIOClassID;
 #[cfg(feature = "CMIOHardwareObject")]
 pub use self::__CMIOHardwareObject::CMIOObjectAddPropertyListener;
+#[cfg(all(
+    feature = "CMIOHardwareObject",
+    feature = "block2",
+    feature = "dispatch2"
+))]
+pub use self::__CMIOHardwareObject::CMIOObjectAddPropertyListenerBlock;
 #[cfg(feature = "CMIOHardwareObject")]
 pub use self::__CMIOHardwareObject::CMIOObjectGetPropertyData;
 #[cfg(feature = "CMIOHardwareObject")]
@@ -591,6 +597,12 @@ pub use self::__CMIOHardwareObject::CMIOObjectPropertyScope;
 pub use self::__CMIOHardwareObject::CMIOObjectPropertySelector;
 #[cfg(feature = "CMIOHardwareObject")]
 pub use self::__CMIOHardwareObject::CMIOObjectRemovePropertyListener;
+#[cfg(all(
+    feature = "CMIOHardwareObject",
+    feature = "block2",
+    feature = "dispatch2"
+))]
+pub use self::__CMIOHardwareObject::CMIOObjectRemovePropertyListenerBlock;
 #[cfg(feature = "CMIOHardwareObject")]
 pub use self::__CMIOHardwareObject::CMIOObjectSetPropertyData;
 #[cfg(feature = "CMIOHardwareObject")]

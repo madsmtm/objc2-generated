@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -308,6 +310,14 @@ impl SCNAction {
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock(
             block: &block2::Block<dyn Fn(NonNull<SCNNode>)>,
+        ) -> Retained<SCNAction>;
+
+        #[cfg(all(feature = "SCNNode", feature = "block2", feature = "dispatch2"))]
+        #[unsafe(method(runBlock:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn runBlock_queue(
+            block: &block2::Block<dyn Fn(NonNull<SCNNode>)>,
+            queue: &DispatchQueue,
         ) -> Retained<SCNAction>;
 
         #[unsafe(method(javaScriptActionWithScript:duration:))]

@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -363,6 +365,69 @@ pub unsafe extern "C-unwind" fn CGDisplayStreamCreate(
             output_height,
             pixel_format,
             properties,
+            handler,
+        )
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+/// Creates a new CGDisplayStream intended to be serviced by a block handler
+///
+/// This function creates a new CGDisplayStream that is to be used to get a stream of frame updates
+/// from a particular display.
+///
+/// Parameter `display`: The CGDirectDisplayID to use as the source for generated frames
+///
+/// Parameter `outputWidth`: The output width (in pixels, not points) of the frames to be generated.  Must not be zero.
+///
+/// Parameter `outputHeight`: The output height (in pixels, not points) of the frames to be generated.  Must not be zero.
+///
+/// Parameter `pixelFormat`: The desired CoreVideo/CoreMedia-style pixel format of the output IOSurfaces
+///
+/// Parameter `properties`: Any optional properties of the CGDisplayStream
+///
+/// Parameter `queue`: The dispatch_queue_t that will be used to invoke the callback handler.
+///
+/// Parameter `handler`: A block that will be called for frame deliver.
+///
+/// Returns: The new CGDisplayStream object.
+#[cfg(all(
+    feature = "CGDirectDisplay",
+    feature = "block2",
+    feature = "dispatch2",
+    feature = "objc2-io-surface"
+))]
+#[cfg(not(target_os = "watchos"))]
+#[deprecated = "Please use ScreenCaptureKit instead."]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayStreamCreateWithDispatchQueue(
+    display: CGDirectDisplayID,
+    output_width: usize,
+    output_height: usize,
+    pixel_format: i32,
+    properties: Option<&CFDictionary>,
+    queue: &DispatchQueue,
+    handler: CGDisplayStreamFrameAvailableHandler,
+) -> Option<CFRetained<CGDisplayStream>> {
+    extern "C-unwind" {
+        fn CGDisplayStreamCreateWithDispatchQueue(
+            display: CGDirectDisplayID,
+            output_width: usize,
+            output_height: usize,
+            pixel_format: i32,
+            properties: Option<&CFDictionary>,
+            queue: &DispatchQueue,
+            handler: CGDisplayStreamFrameAvailableHandler,
+        ) -> Option<NonNull<CGDisplayStream>>;
+    }
+    let ret = unsafe {
+        CGDisplayStreamCreateWithDispatchQueue(
+            display,
+            output_width,
+            output_height,
+            pixel_format,
+            properties,
+            queue,
             handler,
         )
     };

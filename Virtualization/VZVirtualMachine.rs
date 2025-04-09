@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -106,6 +108,24 @@ impl VZVirtualMachine {
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &VZVirtualMachineConfiguration,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "VZVirtualMachineConfiguration", feature = "dispatch2"))]
+        /// Initialize the virtual machine.
+        ///
+        /// Parameter `configuration`: The configuration of the virtual machine.
+        /// The configuration must be valid. Validation can be performed at runtime with [VZVirtualMachineConfiguration validateWithError:].
+        /// The configuration is copied by the initializer.
+        ///
+        /// Parameter `queue`: The serial queue on which the virtual machine operates.
+        /// Every operation on the virtual machine must be done on that queue. The callbacks and delegate methods are invoked on that queue.
+        /// If the queue is not serial, the behavior is undefined.
+        #[unsafe(method(initWithConfiguration:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithConfiguration_queue(
+            this: Allocated<Self>,
+            configuration: &VZVirtualMachineConfiguration,
+            queue: &DispatchQueue,
         ) -> Retained<Self>;
 
         /// Indicate whether or not virtualization is available.

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -865,6 +867,27 @@ impl SCStream {
             stream_config: &SCStreamConfiguration,
             delegate: Option<&ProtocolObject<dyn SCStreamDelegate>>,
         ) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// addStreamOutput:type:sampleHandlerQueue:error:
+        ///
+        /// Parameter `output`: an object that adheres to the SCStreamOutput protocol that will receive the frames and call its delegate frame call back on its sample handler queue
+        ///
+        /// Parameter `type`: the SCStreamOutput type
+        ///
+        /// Parameter `sampleHandlerQueue`: the return queue for the sample handler
+        ///
+        /// Parameter `error`: the error pertaining to the add stream output
+        ///
+        /// An SCStreamOutput protocol object instance can only be added to a session using -addStreamOutput: Returns a BOOL denoting if the add was successful
+        #[unsafe(method(addStreamOutput:type:sampleHandlerQueue:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addStreamOutput_type_sampleHandlerQueue_error(
+            &self,
+            output: &ProtocolObject<dyn SCStreamOutput>,
+            r#type: SCStreamOutputType,
+            sample_handler_queue: Option<&DispatchQueue>,
+        ) -> Result<(), Retained<NSError>>;
 
         /// removeStreamOutput:type:error:
         ///

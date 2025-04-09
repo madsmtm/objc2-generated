@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -397,6 +399,26 @@ impl AVCaptureSession {
         #[unsafe(method_family = none)]
         pub unsafe fn maxControlsCount(&self) -> NSInteger;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's controls delegate that receives events about the session's controls and the dispatch queue on which the delegate is called.
+        ///
+        ///
+        /// Parameter `controlsDelegate`: An object conforming to the `AVCaptureSessionControlsDelegate` protocol that receives events about the session's controls.
+        ///
+        /// Parameter `controlsDelegateCallbackQueue`: A dispatch queue on which all delegate methods are called.
+        ///
+        ///
+        /// Users can interact with an `AVCaptureSession`'s controls by performing specific gestures to enable their visibility. A delegate may be specified to be informed when the controls can be interacted with and are dismissed. All delegate methods will be called on the specified dispatch queue.
+        ///
+        /// A serial dispatch queue must be used to guarantee that delegate callbacks will be delivered in order. The `controlsDelegateCallbackQueue` parameter may not be `NULL`, except when setting the `controlsDelegate` to `nil` otherwise `-setControlsDelegate:queue:` throws an `NSInvalidArgumentException`.
+        #[unsafe(method(setControlsDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setControlsDelegate_queue(
+            &self,
+            controls_delegate: Option<&ProtocolObject<dyn AVCaptureSessionControlsDelegate>>,
+            controls_delegate_callback_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's controls delegate.
         ///
         ///
@@ -408,6 +430,15 @@ impl AVCaptureSession {
         pub unsafe fn controlsDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureSessionControlsDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which all controls delegate methods will be called.
+        ///
+        ///
+        /// The value of this property is a `dispatch_queue_t`. The queue is set using the `-setControlsDelegate:queue:` method.
+        #[unsafe(method(controlsDelegateCallbackQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn controlsDelegateCallbackQueue(&self) -> Option<Retained<DispatchQueue>>;
 
         #[cfg(feature = "AVCaptureControl")]
         /// An `NSArray` of `AVCaptureControl`s currently added to the session.

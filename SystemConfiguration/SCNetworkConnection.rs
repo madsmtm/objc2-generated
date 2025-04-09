@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -640,5 +642,31 @@ pub extern "C-unwind" fn SCNetworkConnectionUnscheduleFromRunLoop(
     }
     let ret =
         unsafe { SCNetworkConnectionUnscheduleFromRunLoop(connection, run_loop, run_loop_mode) };
+    ret != 0
+}
+
+/// Caller provides a dispatch queue on which the callback contained in connection will run.
+///
+/// Parameter `connection`: The SCNetworkConnection to notify.
+///
+/// Parameter `queue`: The libdispatch queue to run the callback on.
+/// Pass NULL to disable notifications, and release queue.
+///
+/// Returns: Returns TRUE if the notifications have been enabled/disabled as desired;
+/// FALSE if not.
+/// The error can be retrieved using the SCError function.
+#[cfg(feature = "dispatch2")]
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkConnectionSetDispatchQueue(
+    connection: &SCNetworkConnection,
+    queue: Option<&DispatchQueue>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkConnectionSetDispatchQueue(
+            connection: &SCNetworkConnection,
+            queue: Option<&DispatchQueue>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkConnectionSetDispatchQueue(connection, queue) };
     ret != 0
 }

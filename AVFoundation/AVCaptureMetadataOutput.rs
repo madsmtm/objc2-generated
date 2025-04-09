@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -36,6 +38,28 @@ impl AVCaptureMetadataOutput {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate that will accept metadata objects and dispatch queue on which the delegate will be called.
+        ///
+        ///
+        /// Parameter `objectsDelegate`: An object conforming to the AVCaptureMetadataOutputObjectsDelegate protocol that will receive metadata objects after they are captured.
+        ///
+        /// Parameter `objectsCallbackQueue`: A dispatch queue on which all delegate methods will be called.
+        ///
+        ///
+        /// When new metadata objects are captured in the receiver's connection, they will be vended to the delegate using the captureOutput:didOutputMetadataObjects:fromConnection: delegate method. All delegate methods will be called on the specified dispatch queue.
+        ///
+        /// Clients that need to minimize the chances of metadata being dropped should specify a queue on which a sufficiently small amount of processing is performed along with receiving metadata objects.
+        ///
+        /// A serial dispatch queue must be used to guarantee that metadata objects will be delivered in order. The objectsCallbackQueue parameter may not be NULL, except when setting the objectsDelegate to nil otherwise -setMetadataObjectsDelegate:queue: throws an NSInvalidArgumentException.
+        #[unsafe(method(setMetadataObjectsDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMetadataObjectsDelegate_queue(
+            &self,
+            objects_delegate: Option<&ProtocolObject<dyn AVCaptureMetadataOutputObjectsDelegate>>,
+            objects_callback_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         ///
@@ -45,6 +69,15 @@ impl AVCaptureMetadataOutput {
         pub unsafe fn metadataObjectsDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureMetadataOutputObjectsDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which all metadata object delegate methods will be called.
+        ///
+        ///
+        /// The value of this property is a dispatch_queue_t. The queue is set using the setMetadataObjectsDelegate:queue: method.
+        #[unsafe(method(metadataObjectsCallbackQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn metadataObjectsCallbackQueue(&self) -> Option<Retained<DispatchQueue>>;
 
         #[cfg(feature = "AVMetadataObject")]
         /// Indicates the receiver's supported metadata object types.

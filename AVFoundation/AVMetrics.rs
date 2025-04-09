@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -68,6 +70,20 @@ impl AVMetricEventStream {
         pub unsafe fn addPublisher(
             &self,
             publisher: &ProtocolObject<dyn AVMetricEventStreamPublisher>,
+        ) -> bool;
+
+        #[cfg(feature = "dispatch2")]
+        /// Set a subscriber delegate.
+        ///
+        /// Parameter `subscriber`: A subscriber delegate object conforming to AVMetricEventStreamSubscriber.
+        ///
+        /// Parameter `queue`: Dispatch queue for the delegate callbacks.
+        #[unsafe(method(setSubscriber:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSubscriber_queue(
+            &self,
+            subscriber: &ProtocolObject<dyn AVMetricEventStreamSubscriber>,
+            queue: Option<&DispatchQueue>,
         ) -> bool;
 
         /// Subscribe to a specific metric event class.

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -44,6 +46,19 @@ impl MTLSharedEventListener {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        #[unsafe(method(initWithDispatchQueue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDispatchQueue(
+            this: Allocated<Self>,
+            dispatch_queue: &DispatchQueue,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        #[unsafe(method(dispatchQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dispatchQueue(&self) -> Retained<DispatchQueue>;
     );
 }
 

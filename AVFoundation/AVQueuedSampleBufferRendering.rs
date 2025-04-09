@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -94,6 +96,22 @@ extern_protocol!(
         #[unsafe(method(isReadyForMoreMediaData))]
         #[unsafe(method_family = none)]
         unsafe fn isReadyForMoreMediaData(&self) -> bool;
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// Instructs the target to invoke a client-supplied block repeatedly, at its convenience, in order to gather sample buffers for playback.
+        ///
+        /// The block should enqueue sample buffers to the receiver either until the receiver's readyForMoreMediaData property becomes NO or until there is no more data to supply. When the receiver has decoded enough of the media data it has received that it becomes ready for more media data again, it will invoke the block again in order to obtain more.
+        ///
+        /// If this method is called multiple times, only the last call is effective. Call stopRequestingMediaData to cancel this request.
+        ///
+        /// Each call to requestMediaDataWhenReadyOnQueue:usingBlock: should be paired with a corresponding call to stopRequestingMediaData:. Releasing the AVQueuedSampleBufferRendering object without a call to stopRequestingMediaData will result in undefined behavior.
+        #[unsafe(method(requestMediaDataWhenReadyOnQueue:usingBlock:))]
+        #[unsafe(method_family = none)]
+        unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(
+            &self,
+            queue: &DispatchQueue,
+            block: &block2::Block<dyn Fn()>,
+        );
 
         /// Cancels any current requestMediaDataWhenReadyOnQueue:usingBlock: call.
         ///

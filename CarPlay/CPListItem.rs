@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -278,6 +280,31 @@ impl CPListItem {
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: &NSString);
+
+        #[cfg(all(feature = "CPListItemTypes", feature = "block2", feature = "dispatch2"))]
+        /// An optional action block, fired when the user selects this item in a list template.
+        ///
+        /// You must call the completion block after processing the user's selection.
+        #[unsafe(method(handler))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn handler(
+            &self,
+        ) -> *mut block2::Block<
+            dyn Fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, dispatch_block_t),
+        >;
+
+        #[cfg(all(feature = "CPListItemTypes", feature = "block2", feature = "dispatch2"))]
+        /// Setter for [`handler`][Self::handler].
+        #[unsafe(method(setHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHandler(
+            &self,
+            handler: Option<
+                &block2::Block<
+                    dyn Fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, dispatch_block_t),
+                >,
+            >,
+        );
 
         /// The primary text shown in a cell displaying this list item.
         #[unsafe(method(text))]

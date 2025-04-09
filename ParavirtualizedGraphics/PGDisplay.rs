@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 use objc2_app_kit::*;
@@ -112,6 +114,20 @@ impl PGDisplayDescriptor {
         #[unsafe(method(setSizeInMillimeters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSizeInMillimeters(&self, size_in_millimeters: NSSize);
+
+        #[cfg(feature = "dispatch2")]
+        /// Client supplied dispatch_queue on which to invoke client supplied blocks.
+        ///
+        /// Typical client provides serial queue, and redispatches if beneficial to process out of order.
+        #[unsafe(method(queue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn queue(&self) -> Option<Retained<DispatchQueue>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Setter for [`queue`][Self::queue].
+        #[unsafe(method(setQueue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setQueue(&self, queue: Option<&DispatchQueue>);
 
         #[cfg(feature = "block2")]
         /// The block to invoke to handle display mode change.
@@ -275,6 +291,12 @@ extern_protocol!(
         #[unsafe(method(sizeInMillimeters))]
         #[unsafe(method_family = none)]
         unsafe fn sizeInMillimeters(&self) -> NSSize;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch_queue on which to invoke client supplied blocks.
+        #[unsafe(method(queue))]
+        #[unsafe(method_family = none)]
+        unsafe fn queue(&self) -> Option<Retained<DispatchQueue>>;
 
         #[cfg(feature = "block2")]
         /// The block to invoke to handle display mode change.

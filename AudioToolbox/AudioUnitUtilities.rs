@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -113,6 +115,39 @@ pub type AUParameterListenerProc = Option<
         AudioUnitParameterValue,
     ),
 >;
+
+extern "C-unwind" {
+    /// Create an object for fielding notifications when AudioUnit parameter values change.
+    ///
+    /// Parameter `outListener`: On successful return, an AUParameterListenerRef.
+    ///
+    /// Parameter `inNotificationInterval`: The minimum time interval, in seconds, at which the callback will be called.
+    /// If multiple parameter value changes occur within this time interval, the
+    /// listener will only receive a notification for the last value change that
+    /// occurred before the callback.  If inNotificationInterval is 0, the inRunLoop
+    /// and inRunLoopMode arguments are ignored, and the callback will be issued
+    /// immediately, on the thread on which the parameter was changed.
+    ///
+    /// Parameter `inDispatchQueue`: Dispatch queue on which the callback is called.
+    ///
+    /// Parameter `inBlock`: Block called when the parameter's value changes.
+    ///
+    /// Note that only parameter changes issued through AUParameterSet will generate
+    /// notifications to listeners; thus, in most cases, AudioUnit clients should use
+    /// AUParameterSet in preference to AudioUnitSetParameterValue.
+    #[cfg(all(
+        feature = "AUComponent",
+        feature = "AudioComponent",
+        feature = "block2",
+        feature = "dispatch2"
+    ))]
+    pub fn AUListenerCreateWithDispatchQueue(
+        out_listener: NonNull<AUParameterListenerRef>,
+        in_notification_interval: f32,
+        in_dispatch_queue: &DispatchQueue,
+        in_block: AUParameterListenerBlock,
+    ) -> OSStatus;
+}
 
 extern "C-unwind" {
     /// Create an object for fielding notifications when AudioUnit parameter values change.

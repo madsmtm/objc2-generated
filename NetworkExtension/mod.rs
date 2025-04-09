@@ -23,6 +23,8 @@ extern "C" {}
 
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-security")]
@@ -4826,6 +4828,49 @@ unsafe impl NSObjectProtocol for NEHotspotHelper {}
 
 impl NEHotspotHelper {
     extern_methods!(
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// Register the application as a HotspotHelper.
+        ///
+        /// Once this API is invoked successfully, the application becomes
+        /// eligible to be launched in the background and participate in
+        /// various hotspot related functions.
+        ///
+        /// This function should be called once when the application starts up.
+        /// Invoking it again will have no effect and result in FALSE being returned.
+        ///
+        /// The 'options' dictionary may be nil, or contain the single property
+        /// kNEHotspotHelperOptionDisplayName.
+        ///
+        ///
+        /// Parameter `options`: If not nil, 'options' is an NSDictionary containing
+        /// kNEHotspotHelperOption* keys (currently just
+        /// kNEHotspotHelperOptionDisplayName).
+        ///
+        /// Parameter `queue`: The dispatch_queue_t to invoke the handle block on.
+        ///
+        /// Parameter `handler`: The NEHotspotHelperHandler block to execute to process
+        /// helper commands.
+        ///
+        /// Returns: YES if the registration was successful, NO otherwise.
+        ///
+        /// Note: Notes
+        ///
+        /// Note: 1
+        /// The application's Info.plist MUST include a UIBackgroundModes array
+        /// containing 'network-authentication'.
+        ///
+        /// Note: 2
+        /// The application MUST set 'com.apple.developer.networking.HotspotHelper'
+        /// as one of its entitlements. The value of the entitlement is a boolean
+        /// value true.
+        #[unsafe(method(registerWithOptions:queue:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn registerWithOptions_queue_handler(
+            options: Option<&NSDictionary<NSString, NSObject>>,
+            queue: &DispatchQueue,
+            handler: NEHotspotHelperHandler,
+        ) -> bool;
+
         /// Terminate the authentication session.
         ///
         /// The application invokes this method when it wants to logoff from the

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -22,6 +24,13 @@ impl CXCallController {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Initialize call controller with specified queue, which is used for calling completion blocks.
+        #[unsafe(method(initWithQueue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithQueue(this: Allocated<Self>, queue: &DispatchQueue)
+            -> Retained<Self>;
 
         #[cfg(feature = "CXCallObserver")]
         #[unsafe(method(callObserver))]

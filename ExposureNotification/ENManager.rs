@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -161,10 +163,33 @@ impl ENManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityHandler(&self, activity_handler: ENActivityHandler);
 
+        #[cfg(feature = "dispatch2")]
+        #[unsafe(method(dispatchQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dispatchQueue(&self) -> Retained<DispatchQueue>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Setter for [`dispatchQueue`][Self::dispatchQueue].
+        #[unsafe(method(setDispatchQueue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDispatchQueue(&self, dispatch_queue: &DispatchQueue);
+
         /// Overall status of Exposure Notification. KVO may be used to monitor for changes.
         #[unsafe(method(exposureNotificationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureNotificationStatus(&self) -> ENStatus;
+
+        #[cfg(feature = "dispatch2")]
+        /// Invoked exactly once when invalidation completes. This property is cleared before it's invoked to break retain cycles.
+        #[unsafe(method(invalidationHandler))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn invalidationHandler(&self) -> dispatch_block_t;
+
+        #[cfg(feature = "dispatch2")]
+        /// Setter for [`invalidationHandler`][Self::invalidationHandler].
+        #[unsafe(method(setInvalidationHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setInvalidationHandler(&self, invalidation_handler: dispatch_block_t);
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Activates the object to prepare it for use. Properties may not be usable until the completion handler reports success.

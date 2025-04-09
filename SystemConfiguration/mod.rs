@@ -114,6 +114,8 @@ pub use self::__SCDynamicStore::SCDynamicStoreCreateWithOptions;
 pub use self::__SCDynamicStore::SCDynamicStoreNotifyValue;
 #[cfg(feature = "SCDynamicStore")]
 pub use self::__SCDynamicStore::SCDynamicStoreRemoveValue;
+#[cfg(all(feature = "SCDynamicStore", feature = "dispatch2"))]
+pub use self::__SCDynamicStore::SCDynamicStoreSetDispatchQueue;
 #[cfg(feature = "SCDynamicStore")]
 pub use self::__SCDynamicStore::SCDynamicStoreSetMultiple;
 #[cfg(feature = "SCDynamicStore")]
@@ -434,6 +436,8 @@ pub use self::__SCNetworkConnection::SCNetworkConnectionGetStatus;
 pub use self::__SCNetworkConnection::SCNetworkConnectionPPPStatus;
 #[cfg(feature = "SCNetworkConnection")]
 pub use self::__SCNetworkConnection::SCNetworkConnectionScheduleWithRunLoop;
+#[cfg(all(feature = "SCNetworkConnection", feature = "dispatch2"))]
+pub use self::__SCNetworkConnection::SCNetworkConnectionSetDispatchQueue;
 #[cfg(feature = "SCNetworkConnection")]
 pub use self::__SCNetworkConnection::SCNetworkConnectionStart;
 #[cfg(feature = "SCNetworkConnection")]
@@ -462,6 +466,8 @@ pub use self::__SCNetworkReachability::SCNetworkReachabilityGetFlags;
 pub use self::__SCNetworkReachability::SCNetworkReachabilityScheduleWithRunLoop;
 #[cfg(feature = "SCNetworkReachability")]
 pub use self::__SCNetworkReachability::SCNetworkReachabilitySetCallback;
+#[cfg(all(feature = "SCNetworkReachability", feature = "dispatch2"))]
+pub use self::__SCNetworkReachability::SCNetworkReachabilitySetDispatchQueue;
 #[cfg(feature = "SCNetworkReachability")]
 pub use self::__SCNetworkReachability::SCNetworkReachabilityUnscheduleFromRunLoop;
 #[cfg(feature = "SCPreferences")]
@@ -496,6 +502,8 @@ pub use self::__SCPreferences::SCPreferencesRemoveValue;
 pub use self::__SCPreferences::SCPreferencesScheduleWithRunLoop;
 #[cfg(feature = "SCPreferences")]
 pub use self::__SCPreferences::SCPreferencesSetCallback;
+#[cfg(all(feature = "SCPreferences", feature = "dispatch2"))]
+pub use self::__SCPreferences::SCPreferencesSetDispatchQueue;
 #[cfg(feature = "SCPreferences")]
 pub use self::__SCPreferences::SCPreferencesSetValue;
 #[cfg(feature = "SCPreferences")]

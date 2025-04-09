@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 
 use crate::*;
@@ -82,5 +84,13 @@ impl CLBackgroundActivitySession {
         #[unsafe(method(backgroundActivitySession))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundActivitySession() -> Retained<Self>;
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        #[unsafe(method(backgroundActivitySessionWithQueue:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn backgroundActivitySessionWithQueue_handler(
+            queue: &DispatchQueue,
+            handler: &block2::Block<dyn Fn(NonNull<CLBackgroundActivitySessionDiagnostic>)>,
+        ) -> Retained<Self>;
     );
 }

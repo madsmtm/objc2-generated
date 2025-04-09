@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 
 use crate::*;
@@ -122,6 +124,23 @@ impl CLLocationUpdater {
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        #[unsafe(method(liveUpdaterWithQueue:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn liveUpdaterWithQueue_handler(
+            queue: &DispatchQueue,
+            handler: &block2::Block<dyn Fn(*mut CLUpdate)>,
+        ) -> Option<Retained<Self>>;
+
+        #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        #[unsafe(method(liveUpdaterWithConfiguration:queue:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn liveUpdaterWithConfiguration_queue_handler(
+            configuration: CLLiveUpdateConfiguration,
+            queue: &DispatchQueue,
+            handler: &block2::Block<dyn Fn(*mut CLUpdate)>,
+        ) -> Option<Retained<Self>>;
 
         #[unsafe(method(resume))]
         #[unsafe(method_family = none)]

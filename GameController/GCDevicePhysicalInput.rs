@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 
 use crate::*;
@@ -20,6 +22,26 @@ extern_protocol!(
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue that element value change handlers and other callbacks are
+        /// submitted on.
+        ///
+        /// The default queue is the
+        /// `handlerQueue`of the associated
+        /// `device.`Set
+        /// this property if your application wants to receive input callbacks on a
+        /// different queue.  You should set this property before configuring other
+        /// callbacks.
+        #[unsafe(method(queue))]
+        #[unsafe(method_family = none)]
+        unsafe fn queue(&self) -> Option<Retained<DispatchQueue>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Setter for [`queue`][Self::queue].
+        #[unsafe(method(setQueue:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setQueue(&self, queue: Option<&DispatchQueue>);
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block to be notified when a value on a element changed.  If multiple

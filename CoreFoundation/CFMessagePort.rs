@@ -4,6 +4,8 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -236,4 +238,9 @@ pub extern "C-unwind" fn CFMessagePortCreateRunLoopSource(
     }
     let ret = unsafe { CFMessagePortCreateRunLoopSource(allocator, local, order) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    pub fn CFMessagePortSetDispatchQueue(ms: &CFMessagePort, queue: Option<&DispatchQueue>);
 }

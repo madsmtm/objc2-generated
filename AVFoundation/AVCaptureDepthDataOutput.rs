@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -37,6 +39,28 @@ impl AVCaptureDepthDataOutput {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate that receives captured depth data and the dispatch queue on which the delegate is called.
+        ///
+        ///
+        /// Parameter `delegate`: An object conforming to the AVCaptureDepthDataOutputDelegate protocol that receives depth data in a streaming fashion.
+        ///
+        /// Parameter `callbackQueue`: A dispatch queue on which all delegate methods are called.
+        ///
+        ///
+        /// The depth data output vends captured depth data to its delegate using the methods specified in the AVCaptureDepthOutputDelegate protocol. All delegate methods are called on the specified dispatch queue. If the callback queue is blocked when new depth data is captured, that depth data is automatically dropped at a time determined by the value of the alwaysDiscardsLateDepthData property. This allows clients to process existing depth data on the same queue without having to manage the potential memory usage increases that would otherwise occur when that processing is unable to keep up with the rate of incoming depth data.
+        ///
+        /// Clients who need to minimize the chances of depth data being dropped should provide a dedicated queue and not share it with other data outputs. Processing of depth data may be deferred to another queue, but beware that the depth data pixel buffer maps may come from a finite buffer pool, which may be starved if your deferred processing fails to keep up.
+        ///
+        /// A serial dispatch queue must be used to guarantee that depth data will be delivered in order. The callbackQueue parameter may not be NULL, except when setting the delegate to nil otherwise -setDelegate:callbackQueue: throws an NSInvalidArgumentException.
+        #[unsafe(method(setDelegate:callbackQueue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_callbackQueue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AVCaptureDepthDataOutputDelegate>>,
+            callback_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         ///
@@ -46,6 +70,15 @@ impl AVCaptureDepthDataOutput {
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureDepthDataOutputDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which all delegate methods are called.
+        ///
+        ///
+        /// The value of this property is a dispatch_queue_t. The queue is set using the setDelegate:queue: method.
+        #[unsafe(method(delegateCallbackQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateCallbackQueue(&self) -> Option<Retained<DispatchQueue>>;
 
         /// Specifies whether the receiver should always discard any depth data that is not processed before the next depth data is captured.
         ///

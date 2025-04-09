@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
@@ -26,6 +28,11 @@ impl CLMonitorConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        #[cfg(feature = "dispatch2")]
+        #[unsafe(method(queue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn queue(&self) -> Retained<DispatchQueue>;
+
         #[cfg(all(
             feature = "CLMonitor",
             feature = "CLMonitoringEvent",
@@ -36,6 +43,20 @@ impl CLMonitorConfiguration {
         pub unsafe fn eventHandler(
             &self,
         ) -> NonNull<block2::Block<dyn Fn(NonNull<CLMonitor>, NonNull<CLMonitoringEvent>)>>;
+
+        #[cfg(all(
+            feature = "CLMonitor",
+            feature = "CLMonitoringEvent",
+            feature = "block2",
+            feature = "dispatch2"
+        ))]
+        #[unsafe(method(configWithMonitorName:queue:eventHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configWithMonitorName_queue_eventHandler(
+            name: &NSString,
+            queue: &DispatchQueue,
+            event_handler: &block2::Block<dyn Fn(NonNull<CLMonitor>, NonNull<CLMonitoringEvent>)>,
+        ) -> Retained<CLMonitorConfiguration>;
     );
 }
 

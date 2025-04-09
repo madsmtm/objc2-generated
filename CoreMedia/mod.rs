@@ -1805,6 +1805,8 @@ pub use self::__CMSync::CMSyncMightDrift;
 pub use self::__CMSync::CMTimebase;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseAddTimer;
+#[cfg(all(feature = "CMSync", feature = "dispatch2"))]
+pub use self::__CMSync::CMTimebaseAddTimerDispatchSource;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseCopyMaster;
 #[cfg(feature = "CMSync")]
@@ -1839,6 +1841,8 @@ pub use self::__CMSync::CMTimebaseGetUltimateMasterClock;
 pub use self::__CMSync::CMTimebaseNotificationBarrier;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseRemoveTimer;
+#[cfg(all(feature = "CMSync", feature = "dispatch2"))]
+pub use self::__CMSync::CMTimebaseRemoveTimerDispatchSource;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMTimebaseSetAnchorTime;
 #[cfg(feature = "CMSync")]
@@ -1851,6 +1855,10 @@ pub use self::__CMSync::CMTimebaseSetRate;
 pub use self::__CMSync::CMTimebaseSetRateAndAnchorTime;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMTimebaseSetTime;
+#[cfg(all(feature = "CMSync", feature = "CMTime", feature = "dispatch2"))]
+pub use self::__CMSync::CMTimebaseSetTimerDispatchSourceNextFireTime;
+#[cfg(all(feature = "CMSync", feature = "dispatch2"))]
+pub use self::__CMSync::CMTimebaseSetTimerDispatchSourceToFireImmediately;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMTimebaseSetTimerNextFireTime;
 #[cfg(feature = "CMSync")]

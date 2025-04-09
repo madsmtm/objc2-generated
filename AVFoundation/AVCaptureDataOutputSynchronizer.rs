@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
@@ -57,6 +59,26 @@ impl AVCaptureDataOutputSynchronizer {
         #[unsafe(method_family = none)]
         pub unsafe fn dataOutputs(&self) -> Retained<NSArray<AVCaptureOutput>>;
 
+        #[cfg(feature = "dispatch2")]
+        /// Sets the receiver's delegate that will accept synchronized data and the dispatch queue on which the delegate will be called.
+        ///
+        ///
+        /// Parameter `delegate`: An object conforming to the AVCaptureDataOutputSynchronizerDelegate protocol that will receive synchronized data from the provided data outputs.
+        ///
+        /// Parameter `delegateCallbackQueue`: A dispatch queue on which all AVCaptureDataOutputSynchronizerDelegate methods will be called.
+        ///
+        ///
+        /// AVCaptureDataOutputSynchronizer gathers data from its dataOutputs, and when it determines that all data has been received for a given timestamp, it calls the specified delegate on the specified delegateCallbackQueue. AVCaptureDataOutputSynchronizer overrides all the data outputs' delegates and callbacks. Data outputs under the control of AVCaptureDataOutputSynchronizer do not fire delegate callbacks. Delegate callbacks are restored to individual data outputs when you call this method with nil as your delegate and NULL as your delegateCallbackQueue.
+        ///
+        /// A serial dispatch queue must be used to guarantee that synchronized data will be delivered in order. The delegateCallbackQueue parameter may not be NULL, except when setting the delegate to nil otherwise -setDelegate:queue: throws an NSInvalidArgumentException.
+        #[unsafe(method(setDelegate:queue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate_queue(
+            &self,
+            delegate: Option<&ProtocolObject<dyn AVCaptureDataOutputSynchronizerDelegate>>,
+            delegate_callback_queue: Option<&DispatchQueue>,
+        );
+
         /// The receiver's delegate.
         ///
         ///
@@ -66,6 +88,15 @@ impl AVCaptureDataOutputSynchronizer {
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureDataOutputSynchronizerDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which all AVCaptureDataOutputSynchronizerDelegate methods will be called.
+        ///
+        ///
+        /// The value of this property is a dispatch_queue_t. The queue is set using the -setDelegate:queue: method.
+        #[unsafe(method(delegateCallbackQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegateCallbackQueue(&self) -> Option<Retained<DispatchQueue>>;
     );
 }
 
