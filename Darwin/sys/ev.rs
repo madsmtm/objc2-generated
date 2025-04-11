@@ -3,8 +3,6 @@
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -19,25 +17,6 @@ pub struct eventreq {
     pub er_wcnt: c_int,
     pub er_ecnt: c_int,
     pub er_eventbits: c_int,
-}
-
-unsafe impl Encode for eventreq {
-    const ENCODING: Encoding = Encoding::Struct(
-        "eventreq",
-        &[
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for eventreq {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/er_t?language=objc)

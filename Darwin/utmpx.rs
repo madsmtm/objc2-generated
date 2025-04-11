@@ -3,8 +3,6 @@
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -22,26 +20,6 @@ pub struct utmpx {
     pub ut_pad: [u32; 16],
 }
 
-unsafe impl Encode for utmpx {
-    const ENCODING: Encoding = Encoding::Struct(
-        "utmpx",
-        &[
-            <[c_char; 256]>::ENCODING,
-            <[c_char; 4]>::ENCODING,
-            <[c_char; 32]>::ENCODING,
-            <libc::pid_t>::ENCODING,
-            <c_short>::ENCODING,
-            <timeval>::ENCODING,
-            <[c_char; 256]>::ENCODING,
-            <[u32; 16]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for utmpx {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/lastlogx?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -49,21 +27,6 @@ pub struct lastlogx {
     pub ll_tv: timeval,
     pub ll_line: [c_char; 32],
     pub ll_host: [c_char; 256],
-}
-
-unsafe impl Encode for lastlogx {
-    const ENCODING: Encoding = Encoding::Struct(
-        "lastlogx",
-        &[
-            <timeval>::ENCODING,
-            <[c_char; 32]>::ENCODING,
-            <[c_char; 256]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for lastlogx {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

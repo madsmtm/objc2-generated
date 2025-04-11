@@ -3,8 +3,6 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 

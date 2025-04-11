@@ -3,8 +3,6 @@
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -16,30 +14,12 @@ pub struct itimerval {
     pub it_value: timeval,
 }
 
-unsafe impl Encode for itimerval {
-    const ENCODING: Encoding =
-        Encoding::Struct("itimerval", &[<timeval>::ENCODING, <timeval>::ENCODING]);
-}
-
-unsafe impl RefEncode for itimerval {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/timezone?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct timezone {
     pub tz_minuteswest: c_int,
     pub tz_dsttime: c_int,
-}
-
-unsafe impl Encode for timezone {
-    const ENCODING: Encoding =
-        Encoding::Struct("timezone", &[<c_int>::ENCODING, <c_int>::ENCODING]);
-}
-
-unsafe impl RefEncode for timezone {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/clockinfo?language=objc)
@@ -51,23 +31,6 @@ pub struct clockinfo {
     pub tickadj: c_int,
     pub stathz: c_int,
     pub profhz: c_int,
-}
-
-unsafe impl Encode for clockinfo {
-    const ENCODING: Encoding = Encoding::Struct(
-        "clockinfo",
-        &[
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for clockinfo {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

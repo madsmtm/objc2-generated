@@ -3,8 +3,6 @@
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -18,24 +16,6 @@ pub struct __darwin_ucontext64 {
     pub uc_link: *mut libc::__darwin_ucontext64,
     pub uc_mcsize: __darwin_size_t,
     pub uc_mcontext64: *mut libc::__darwin_mcontext64,
-}
-
-unsafe impl Encode for __darwin_ucontext64 {
-    const ENCODING: Encoding = Encoding::Struct(
-        "__darwin_ucontext64",
-        &[
-            <c_int>::ENCODING,
-            <__darwin_sigset_t>::ENCODING,
-            <libc::__darwin_sigaltstack>::ENCODING,
-            <*mut libc::__darwin_ucontext64>::ENCODING,
-            <__darwin_size_t>::ENCODING,
-            <*mut libc::__darwin_mcontext64>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for __darwin_ucontext64 {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ucontext64_t?language=objc)

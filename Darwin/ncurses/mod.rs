@@ -200,8 +200,6 @@ pub use self::__panel::update_panels;
 pub use self::__panel::PANEL;
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -2776,23 +2774,6 @@ pub struct MEVENT {
     pub y: c_int,
     pub z: c_int,
     pub bstate: libc::mmask_t,
-}
-
-unsafe impl Encode for MEVENT {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            <c_short>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <libc::mmask_t>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for MEVENT {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

@@ -20,15 +20,6 @@ pub struct TEXT {
     pub length: c_ushort,
 }
 
-unsafe impl Encode for TEXT {
-    const ENCODING: Encoding =
-        Encoding::Struct("?", &[<*const c_char>::ENCODING, <c_ushort>::ENCODING]);
-}
-
-unsafe impl RefEncode for TEXT {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/tagitem?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -46,31 +37,6 @@ pub struct tagITEM {
     pub right: *mut Self,
     pub up: *mut Self,
     pub down: *mut Self,
-}
-
-unsafe impl Encode for tagITEM {
-    const ENCODING: Encoding = Encoding::Struct(
-        "tagITEM",
-        &[
-            <libc::TEXT>::ENCODING,
-            <libc::TEXT>::ENCODING,
-            <*mut libc::tagMENU>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <libc::Item_Options>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            Encoding::Bool,
-            <*mut Self>::ENCODING,
-            <*mut Self>::ENCODING,
-            <*mut Self>::ENCODING,
-            <*mut Self>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for tagITEM {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/item?language=objc)
@@ -119,54 +85,6 @@ pub struct tagMENU {
     pub mark: *mut c_char,
     pub opt: libc::Menu_Options,
     pub status: c_ushort,
-}
-
-unsafe impl Encode for tagMENU {
-    const ENCODING: Encoding = Encoding::Struct(
-        "tagMENU",
-        &[
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <*mut c_char>::ENCODING,
-            <c_short>::ENCODING,
-            <*mut libc::WINDOW>::ENCODING,
-            <*mut libc::WINDOW>::ENCODING,
-            <*mut libc::WINDOW>::ENCODING,
-            <*mut libc::WINDOW>::ENCODING,
-            <*mut *mut libc::ITEM>::ENCODING,
-            <c_short>::ENCODING,
-            <*mut libc::ITEM>::ENCODING,
-            <c_short>::ENCODING,
-            <libc::chtype>::ENCODING,
-            <libc::chtype>::ENCODING,
-            <libc::chtype>::ENCODING,
-            <c_uchar>::ENCODING,
-            <libc::Menu_Hook>::ENCODING,
-            <libc::Menu_Hook>::ENCODING,
-            <libc::Menu_Hook>::ENCODING,
-            <libc::Menu_Hook>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <*mut c_char>::ENCODING,
-            <libc::Menu_Options>::ENCODING,
-            <c_ushort>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for tagMENU {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/menu?language=objc)

@@ -2,8 +2,6 @@
 //! DO NOT EDIT
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -15,22 +13,6 @@ pub struct ntsid_t {
     pub sid_authcount: u8,
     pub sid_authority: [u8; 6],
     pub sid_authorities: [u32; 16],
-}
-
-unsafe impl Encode for ntsid_t {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            <u8>::ENCODING,
-            <u8>::ENCODING,
-            <[u8; 6]>::ENCODING,
-            <[u32; 16]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for ntsid_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_identity_extlookup?language=objc)
@@ -58,52 +40,12 @@ pub struct kauth_identity_extlookup {
     pub el_sup_groups: [libc::gid_t; 16],
 }
 
-unsafe impl Encode for kauth_identity_extlookup {
-    const ENCODING: Encoding = Encoding::Struct(
-        "kauth_identity_extlookup",
-        &[
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <__darwin_pid_t>::ENCODING,
-            <u64>::ENCODING,
-            <u32>::ENCODING,
-            <libc::uid_t>::ENCODING,
-            <libc::guid_t>::ENCODING,
-            <u32>::ENCODING,
-            <libc::ntsid_t>::ENCODING,
-            <u32>::ENCODING,
-            <libc::gid_t>::ENCODING,
-            <libc::guid_t>::ENCODING,
-            <u32>::ENCODING,
-            <libc::ntsid_t>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <[libc::gid_t; 16]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for kauth_identity_extlookup {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_cache_sizes?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kauth_cache_sizes {
     pub kcs_group_size: u32,
     pub kcs_id_size: u32,
-}
-
-unsafe impl Encode for kauth_cache_sizes {
-    const ENCODING: Encoding =
-        Encoding::Struct("kauth_cache_sizes", &[<u32>::ENCODING, <u32>::ENCODING]);
-}
-
-unsafe impl RefEncode for kauth_cache_sizes {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_ace_rights_t?language=objc)
@@ -118,21 +60,6 @@ pub struct kauth_ace {
     pub ace_rights: libc::kauth_ace_rights_t,
 }
 
-unsafe impl Encode for kauth_ace {
-    const ENCODING: Encoding = Encoding::Struct(
-        "kauth_ace",
-        &[
-            <libc::guid_t>::ENCODING,
-            <u32>::ENCODING,
-            <libc::kauth_ace_rights_t>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for kauth_ace {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_ace_t?language=objc)
 pub type kauth_ace_t = *mut libc::kauth_ace;
 
@@ -143,21 +70,6 @@ pub struct kauth_acl {
     pub acl_entrycount: u32,
     pub acl_flags: u32,
     pub acl_ace: [libc::kauth_ace; 1],
-}
-
-unsafe impl Encode for kauth_acl {
-    const ENCODING: Encoding = Encoding::Struct(
-        "kauth_acl",
-        &[
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <[libc::kauth_ace; 1]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for kauth_acl {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_acl_t?language=objc)
@@ -171,22 +83,6 @@ pub struct kauth_filesec {
     pub fsec_owner: libc::guid_t,
     pub fsec_group: libc::guid_t,
     pub fsec_acl: libc::kauth_acl,
-}
-
-unsafe impl Encode for kauth_filesec {
-    const ENCODING: Encoding = Encoding::Struct(
-        "kauth_filesec",
-        &[
-            <u32>::ENCODING,
-            <libc::guid_t>::ENCODING,
-            <libc::guid_t>::ENCODING,
-            <libc::kauth_acl>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for kauth_filesec {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_filesec_t?language=objc)

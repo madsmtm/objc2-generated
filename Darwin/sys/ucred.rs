@@ -3,8 +3,6 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -48,20 +46,4 @@ pub struct xucred {
     pub cr_uid: libc::uid_t,
     pub cr_ngroups: c_short,
     pub cr_groups: [libc::gid_t; 16],
-}
-
-unsafe impl Encode for xucred {
-    const ENCODING: Encoding = Encoding::Struct(
-        "xucred",
-        &[
-            <c_uint>::ENCODING,
-            <libc::uid_t>::ENCODING,
-            <c_short>::ENCODING,
-            <[libc::gid_t; 16]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for xucred {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

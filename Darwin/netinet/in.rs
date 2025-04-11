@@ -3,8 +3,6 @@
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -13,14 +11,6 @@ use crate::ffi::*;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_addr {
     pub s_addr: in_addr_t,
-}
-
-unsafe impl Encode for in_addr {
-    const ENCODING: Encoding = Encoding::Struct("in_addr", &[<in_addr_t>::ENCODING]);
-}
-
-unsafe impl RefEncode for in_addr {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockaddr_in?language=objc)
@@ -34,23 +24,6 @@ pub struct sockaddr_in {
     pub sin_zero: [c_char; 8],
 }
 
-unsafe impl Encode for sockaddr_in {
-    const ENCODING: Encoding = Encoding::Struct(
-        "sockaddr_in",
-        &[
-            <u8>::ENCODING,
-            <libc::sa_family_t>::ENCODING,
-            <in_port_t>::ENCODING,
-            <libc::in_addr>::ENCODING,
-            <[c_char; 8]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for sockaddr_in {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_opts?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -59,34 +32,12 @@ pub struct ip_opts {
     pub ip_opts: [c_char; 40],
 }
 
-unsafe impl Encode for ip_opts {
-    const ENCODING: Encoding = Encoding::Struct(
-        "ip_opts",
-        &[<libc::in_addr>::ENCODING, <[c_char; 40]>::ENCODING],
-    );
-}
-
-unsafe impl RefEncode for ip_opts {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_mreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreq {
     pub imr_multiaddr: libc::in_addr,
     pub imr_interface: libc::in_addr,
-}
-
-unsafe impl Encode for ip_mreq {
-    const ENCODING: Encoding = Encoding::Struct(
-        "ip_mreq",
-        &[<libc::in_addr>::ENCODING, <libc::in_addr>::ENCODING],
-    );
-}
-
-unsafe impl RefEncode for ip_mreq {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_mreqn?language=objc)
@@ -98,21 +49,6 @@ pub struct ip_mreqn {
     pub imr_ifindex: c_int,
 }
 
-unsafe impl Encode for ip_mreqn {
-    const ENCODING: Encoding = Encoding::Struct(
-        "ip_mreqn",
-        &[
-            <libc::in_addr>::ENCODING,
-            <libc::in_addr>::ENCODING,
-            <c_int>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for ip_mreqn {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_mreq_source?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -120,21 +56,6 @@ pub struct ip_mreq_source {
     pub imr_multiaddr: libc::in_addr,
     pub imr_sourceaddr: libc::in_addr,
     pub imr_interface: libc::in_addr,
-}
-
-unsafe impl Encode for ip_mreq_source {
-    const ENCODING: Encoding = Encoding::Struct(
-        "ip_mreq_source",
-        &[
-            <libc::in_addr>::ENCODING,
-            <libc::in_addr>::ENCODING,
-            <libc::in_addr>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for ip_mreq_source {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/group_req?language=objc)
@@ -145,17 +66,6 @@ pub struct group_req {
     pub gr_group: libc::sockaddr_storage,
 }
 
-unsafe impl Encode for group_req {
-    const ENCODING: Encoding = Encoding::Struct(
-        "group_req",
-        &[<u32>::ENCODING, <libc::sockaddr_storage>::ENCODING],
-    );
-}
-
-unsafe impl RefEncode for group_req {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/group_source_req?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -163,21 +73,6 @@ pub struct group_source_req {
     pub gsr_interface: u32,
     pub gsr_group: libc::sockaddr_storage,
     pub gsr_source: libc::sockaddr_storage,
-}
-
-unsafe impl Encode for group_source_req {
-    const ENCODING: Encoding = Encoding::Struct(
-        "group_source_req",
-        &[
-            <u32>::ENCODING,
-            <libc::sockaddr_storage>::ENCODING,
-            <libc::sockaddr_storage>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for group_source_req {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__msfilterreq?language=objc)
@@ -190,24 +85,6 @@ pub struct __msfilterreq {
     pub(crate) __msfr_align: u32,
     pub msfr_group: libc::sockaddr_storage,
     pub msfr_srcs: *mut libc::sockaddr_storage,
-}
-
-unsafe impl Encode for __msfilterreq {
-    const ENCODING: Encoding = Encoding::Struct(
-        "__msfilterreq",
-        &[
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <libc::sockaddr_storage>::ENCODING,
-            <*mut libc::sockaddr_storage>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for __msfilterreq {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {
@@ -263,21 +140,6 @@ pub struct in_pktinfo {
     pub ipi_ifindex: c_uint,
     pub ipi_spec_dst: libc::in_addr,
     pub ipi_addr: libc::in_addr,
-}
-
-unsafe impl Encode for in_pktinfo {
-    const ENCODING: Encoding = Encoding::Struct(
-        "in_pktinfo",
-        &[
-            <c_uint>::ENCODING,
-            <libc::in_addr>::ENCODING,
-            <libc::in_addr>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for in_pktinfo {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

@@ -3,8 +3,6 @@
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -29,33 +27,6 @@ pub struct ostat {
     pub st_gen: u32,
 }
 
-unsafe impl Encode for ostat {
-    const ENCODING: Encoding = Encoding::Struct(
-        "ostat",
-        &[
-            <u16>::ENCODING,
-            <libc::ino_t>::ENCODING,
-            <libc::mode_t>::ENCODING,
-            <libc::nlink_t>::ENCODING,
-            <u16>::ENCODING,
-            <u16>::ENCODING,
-            <u16>::ENCODING,
-            <i32>::ENCODING,
-            <libc::timespec>::ENCODING,
-            <libc::timespec>::ENCODING,
-            <libc::timespec>::ENCODING,
-            <i32>::ENCODING,
-            <i32>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for ostat {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/stat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -78,36 +49,6 @@ pub struct stat {
     pub st_gen: u32,
     pub st_lspare: i32,
     pub st_qspare: [i64; 2],
-}
-
-unsafe impl Encode for stat {
-    const ENCODING: Encoding = Encoding::Struct(
-        "stat",
-        &[
-            <libc::dev_t>::ENCODING,
-            <libc::mode_t>::ENCODING,
-            <libc::nlink_t>::ENCODING,
-            <__darwin_ino64_t>::ENCODING,
-            <libc::uid_t>::ENCODING,
-            <libc::gid_t>::ENCODING,
-            <libc::dev_t>::ENCODING,
-            <libc::timespec>::ENCODING,
-            <libc::timespec>::ENCODING,
-            <libc::timespec>::ENCODING,
-            <libc::timespec>::ENCODING,
-            <libc::off_t>::ENCODING,
-            <libc::blkcnt_t>::ENCODING,
-            <libc::blksize_t>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <i32>::ENCODING,
-            <[i64; 2]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for stat {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

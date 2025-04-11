@@ -2,8 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -54,14 +52,6 @@ pub const OS_LOCK_API_VERSION: c_uint = 20160309;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct os_unfair_lock_s {
     pub(crate) _os_unfair_lock_opaque: u32,
-}
-
-unsafe impl Encode for os_unfair_lock_s {
-    const ENCODING: Encoding = Encoding::Struct("os_unfair_lock_s", &[<u32>::ENCODING]);
-}
-
-unsafe impl RefEncode for os_unfair_lock_s {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// Low-level lock that allows waiters to block efficiently on contention.
@@ -228,14 +218,6 @@ bitflags::bitflags! {
         const OS_UNFAIR_LOCK_FLAG_NONE = 0x00000000;
         const OS_UNFAIR_LOCK_FLAG_ADAPTIVE_SPIN = 0x00040000;
     }
-}
-
-unsafe impl Encode for os_unfair_lock_flags_t {
-    const ENCODING: Encoding = u32::ENCODING;
-}
-
-unsafe impl RefEncode for os_unfair_lock_flags_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

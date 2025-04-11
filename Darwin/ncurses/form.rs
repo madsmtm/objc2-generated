@@ -29,22 +29,6 @@ pub struct _PAGE {
     pub smax: c_short,
 }
 
-unsafe impl Encode for _PAGE {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for _PAGE {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// ********
 /// FIELD  *
 /// ********
@@ -78,43 +62,6 @@ pub struct fieldnode {
     pub arg: *mut c_void,
     pub buf: *mut libc::FIELD_CELL,
     pub usrptr: *mut c_void,
-}
-
-unsafe impl Encode for fieldnode {
-    const ENCODING: Encoding = Encoding::Struct(
-        "fieldnode",
-        &[
-            <c_ushort>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_int>::ENCODING,
-            <libc::chtype>::ENCODING,
-            <libc::chtype>::ENCODING,
-            <libc::Field_Options>::ENCODING,
-            <*mut libc::fieldnode>::ENCODING,
-            <*mut Self>::ENCODING,
-            <*mut Self>::ENCODING,
-            <*mut Self>::ENCODING,
-            <*mut Self>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <*mut libc::FIELD_CELL>::ENCODING,
-            <*mut c_void>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for fieldnode {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// ********
@@ -156,40 +103,6 @@ pub struct formnode {
     pub fieldterm: Option<unsafe extern "C-unwind" fn(*mut Self)>,
 }
 
-unsafe impl Encode for formnode {
-    const ENCODING: Encoding = Encoding::Struct(
-        "formnode",
-        &[
-            <c_ushort>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <libc::Form_Options>::ENCODING,
-            <*mut libc::WINDOW>::ENCODING,
-            <*mut libc::WINDOW>::ENCODING,
-            <*mut libc::WINDOW>::ENCODING,
-            <*mut *mut libc::FIELD>::ENCODING,
-            <*mut libc::FIELD>::ENCODING,
-            <*mut libc::_PAGE>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut Self)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut Self)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut Self)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut Self)>>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for formnode {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// *******
 /// FORM  *
 /// *******
@@ -216,29 +129,6 @@ pub struct typenode {
     pub ccheck: Option<unsafe extern "C-unwind" fn(c_int, *const c_void) -> bool>,
     pub next: Option<unsafe extern "C-unwind" fn(*mut libc::FIELD, *const c_void) -> bool>,
     pub prev: Option<unsafe extern "C-unwind" fn(*mut libc::FIELD, *const c_void) -> bool>,
-}
-
-unsafe impl Encode for typenode {
-    const ENCODING: Encoding = Encoding::Struct(
-        "typenode",
-        &[
-            <c_ushort>::ENCODING,
-            Encoding::C_LONG,
-            <*mut Self>::ENCODING,
-            <*mut Self>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut va_list) -> *mut c_void>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut c_void>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void)>>::ENCODING,
-            Encoding::Pointer(&Encoding::Unknown),
-            Encoding::Pointer(&Encoding::Unknown),
-            Encoding::Pointer(&Encoding::Unknown),
-            Encoding::Pointer(&Encoding::Unknown),
-        ],
-    );
-}
-
-unsafe impl RefEncode for typenode {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// ************

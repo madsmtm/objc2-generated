@@ -678,8 +678,6 @@ use __builtin__::*;
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -692,34 +690,11 @@ pub union in6_addr___u6_addr {
     pub(crate) __u6_addr32: [u32; 4],
 }
 
-unsafe impl Encode for in6_addr___u6_addr {
-    const ENCODING: Encoding = Encoding::Union(
-        "?",
-        &[
-            <[u8; 16]>::ENCODING,
-            <[u16; 8]>::ENCODING,
-            <[u32; 4]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for in6_addr___u6_addr {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_addr {
     pub(crate) __u6_addr: in6_addr___u6_addr,
-}
-
-unsafe impl Encode for in6_addr {
-    const ENCODING: Encoding = Encoding::Struct("in6_addr", &[<in6_addr___u6_addr>::ENCODING]);
-}
-
-unsafe impl RefEncode for in6_addr {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6_addr_t?language=objc)
@@ -735,24 +710,6 @@ pub struct sockaddr_in6 {
     pub sin6_flowinfo: u32,
     pub sin6_addr: in6_addr,
     pub sin6_scope_id: u32,
-}
-
-unsafe impl Encode for sockaddr_in6 {
-    const ENCODING: Encoding = Encoding::Struct(
-        "sockaddr_in6",
-        &[
-            <u8>::ENCODING,
-            <libc::sa_family_t>::ENCODING,
-            <in_port_t>::ENCODING,
-            <u32>::ENCODING,
-            <in6_addr>::ENCODING,
-            <u32>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for sockaddr_in6 {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C" {
@@ -793,15 +750,6 @@ pub struct ipv6_mreq {
     pub ipv6mr_interface: c_uint,
 }
 
-unsafe impl Encode for ipv6_mreq {
-    const ENCODING: Encoding =
-        Encoding::Struct("ipv6_mreq", &[<in6_addr>::ENCODING, <c_uint>::ENCODING]);
-}
-
-unsafe impl RefEncode for ipv6_mreq {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6_pktinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -810,30 +758,12 @@ pub struct in6_pktinfo {
     pub ipi6_ifindex: c_uint,
 }
 
-unsafe impl Encode for in6_pktinfo {
-    const ENCODING: Encoding =
-        Encoding::Struct("in6_pktinfo", &[<in6_addr>::ENCODING, <c_uint>::ENCODING]);
-}
-
-unsafe impl RefEncode for in6_pktinfo {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/ip6_mtuinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ip6_mtuinfo {
     pub ip6m_addr: sockaddr_in6,
     pub ip6m_mtu: u32,
-}
-
-unsafe impl Encode for ip6_mtuinfo {
-    const ENCODING: Encoding =
-        Encoding::Struct("ip6_mtuinfo", &[<sockaddr_in6>::ENCODING, <u32>::ENCODING]);
-}
-
-unsafe impl RefEncode for ip6_mtuinfo {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {
@@ -1040,29 +970,12 @@ pub struct wide {
     pub hi: i32,
 }
 
-unsafe impl Encode for wide {
-    const ENCODING: Encoding = Encoding::Struct("wide", &[<u32>::ENCODING, <i32>::ENCODING]);
-}
-
-unsafe impl RefEncode for wide {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unsignedwide?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct UnsignedWide {
     pub lo: u32,
     pub hi: u32,
-}
-
-unsafe impl Encode for UnsignedWide {
-    const ENCODING: Encoding =
-        Encoding::Struct("UnsignedWide", &[<u32>::ENCODING, <u32>::ENCODING]);
-}
-
-unsafe impl RefEncode for UnsignedWide {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/sint64?language=objc)
@@ -1138,15 +1051,6 @@ pub struct Float80 {
     pub man: [u16; 4],
 }
 
-unsafe impl Encode for Float80 {
-    const ENCODING: Encoding =
-        Encoding::Struct("Float80", &[<i16>::ENCODING, <[u16; 4]>::ENCODING]);
-}
-
-unsafe impl RefEncode for Float80 {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/float96?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1155,30 +1059,12 @@ pub struct Float96 {
     pub man: [u16; 4],
 }
 
-unsafe impl Encode for Float96 {
-    const ENCODING: Encoding =
-        Encoding::Struct("Float96", &[<[i16; 2]>::ENCODING, <[u16; 4]>::ENCODING]);
-}
-
-unsafe impl RefEncode for Float96 {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/float32point?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Float32Point {
     pub x: f32,
     pub y: f32,
-}
-
-unsafe impl Encode for Float32Point {
-    const ENCODING: Encoding =
-        Encoding::Struct("Float32Point", &[<f32>::ENCODING, <f32>::ENCODING]);
-}
-
-unsafe impl RefEncode for Float32Point {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// ******************************************************************************
@@ -1510,15 +1396,6 @@ pub struct ProcessSerialNumber {
     pub lowLongOfPSN: u32,
 }
 
-unsafe impl Encode for ProcessSerialNumber {
-    const ENCODING: Encoding =
-        Encoding::Struct("ProcessSerialNumber", &[<u32>::ENCODING, <u32>::ENCODING]);
-}
-
-unsafe impl RefEncode for ProcessSerialNumber {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/processserialnumberptr?language=objc)
 pub type ProcessSerialNumberPtr = *mut ProcessSerialNumber;
 
@@ -1547,15 +1424,6 @@ pub struct Point {
     pub h: c_short,
 }
 
-unsafe impl Encode for Point {
-    const ENCODING: Encoding =
-        Encoding::Struct("Point", &[<c_short>::ENCODING, <c_short>::ENCODING]);
-}
-
-unsafe impl RefEncode for Point {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/pointptr?language=objc)
 pub type PointPtr = *mut Point;
 
@@ -1569,22 +1437,6 @@ pub struct Rect {
     pub right: c_short,
 }
 
-unsafe impl Encode for Rect {
-    const ENCODING: Encoding = Encoding::Struct(
-        "Rect",
-        &[
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-            <c_short>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for Rect {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/rectptr?language=objc)
 pub type RectPtr = *mut Rect;
 
@@ -1596,15 +1448,6 @@ pub struct FixedPoint {
     pub y: Fixed,
 }
 
-unsafe impl Encode for FixedPoint {
-    const ENCODING: Encoding =
-        Encoding::Struct("FixedPoint", &[<Fixed>::ENCODING, <Fixed>::ENCODING]);
-}
-
-unsafe impl RefEncode for FixedPoint {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/fixedrect?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1613,22 +1456,6 @@ pub struct FixedRect {
     pub top: Fixed,
     pub right: Fixed,
     pub bottom: Fixed,
-}
-
-unsafe impl Encode for FixedRect {
-    const ENCODING: Encoding = Encoding::Struct(
-        "FixedRect",
-        &[
-            <Fixed>::ENCODING,
-            <Fixed>::ENCODING,
-            <Fixed>::ENCODING,
-            <Fixed>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for FixedRect {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/charparameter?language=objc)
@@ -1709,21 +1536,6 @@ pub struct TimeRecord {
     pub base: TimeBase,
 }
 
-unsafe impl Encode for TimeRecord {
-    const ENCODING: Encoding = Encoding::Struct(
-        "TimeRecord",
-        &[
-            <CompTimeValue>::ENCODING,
-            <TimeScale>::ENCODING,
-            <TimeBase>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for TimeRecord {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/numversion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1732,22 +1544,6 @@ pub struct NumVersion {
     pub stage: u8,
     pub minorAndBugRev: u8,
     pub majorRev: u8,
-}
-
-unsafe impl Encode for NumVersion {
-    const ENCODING: Encoding = Encoding::Struct(
-        "NumVersion",
-        &[
-            <u8>::ENCODING,
-            <u8>::ENCODING,
-            <u8>::ENCODING,
-            <u8>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for NumVersion {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/developstage?language=objc)
@@ -1767,17 +1563,6 @@ pub union NumVersionVariant {
     pub whole: u32,
 }
 
-unsafe impl Encode for NumVersionVariant {
-    const ENCODING: Encoding = Encoding::Union(
-        "NumVersionVariant",
-        &[<NumVersion>::ENCODING, <u32>::ENCODING],
-    );
-}
-
-unsafe impl RefEncode for NumVersionVariant {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/numversionvariantptr?language=objc)
 pub type NumVersionVariantPtr = *mut NumVersionVariant;
 
@@ -1792,22 +1577,6 @@ pub struct VersRec {
     pub countryCode: c_short,
     pub shortVersion: Str255,
     pub reserved: Str255,
-}
-
-unsafe impl Encode for VersRec {
-    const ENCODING: Encoding = Encoding::Struct(
-        "VersRec",
-        &[
-            <NumVersion>::ENCODING,
-            <c_short>::ENCODING,
-            <Str255>::ENCODING,
-            <Str255>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for VersRec {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/versrecptr?language=objc)
@@ -1880,14 +1649,6 @@ pub struct _OSUnalignedU16 {
     pub(crate) __val: u16,
 }
 
-unsafe impl Encode for _OSUnalignedU16 {
-    const ENCODING: Encoding = Encoding::Struct("_OSUnalignedU16", &[<u16>::ENCODING]);
-}
-
-unsafe impl RefEncode for _OSUnalignedU16 {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/_osunalignedu32?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1895,27 +1656,11 @@ pub struct _OSUnalignedU32 {
     pub(crate) __val: u32,
 }
 
-unsafe impl Encode for _OSUnalignedU32 {
-    const ENCODING: Encoding = Encoding::Struct("_OSUnalignedU32", &[<u32>::ENCODING]);
-}
-
-unsafe impl RefEncode for _OSUnalignedU32 {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/_osunalignedu64?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _OSUnalignedU64 {
     pub(crate) __val: u64,
-}
-
-unsafe impl Encode for _OSUnalignedU64 {
-    const ENCODING: Encoding = Encoding::Struct("_OSUnalignedU64", &[<u64>::ENCODING]);
-}
-
-unsafe impl RefEncode for _OSUnalignedU64 {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 // TODO: pub fn OSReadSwapInt16(base: *const c_void,offset: usize,) -> u16;

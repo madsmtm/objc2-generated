@@ -3,8 +3,6 @@
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -16,37 +14,12 @@ pub struct extern_proc_p_un_p_st1 {
     pub(crate) __p_back: *mut libc::proc,
 }
 
-unsafe impl Encode for extern_proc_p_un_p_st1 {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[<*mut libc::proc>::ENCODING, <*mut libc::proc>::ENCODING],
-    );
-}
-
-unsafe impl RefEncode for extern_proc_p_un_p_st1 {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/extern_proc_p_un?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union extern_proc_p_un {
     pub p_st1: libc::extern_proc_p_un_p_st1,
     pub(crate) __p_starttime: timeval,
-}
-
-unsafe impl Encode for extern_proc_p_un {
-    const ENCODING: Encoding = Encoding::Union(
-        "?",
-        &[
-            <libc::extern_proc_p_un_p_st1>::ENCODING,
-            <timeval>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for extern_proc_p_un {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/extern_proc?language=objc)
@@ -94,57 +67,4 @@ pub struct extern_proc {
     pub p_xstat: c_ushort,
     pub p_acflag: c_ushort,
     pub p_ru: *mut rusage,
-}
-
-unsafe impl Encode for extern_proc {
-    const ENCODING: Encoding = Encoding::Struct(
-        "extern_proc",
-        &[
-            <libc::extern_proc_p_un>::ENCODING,
-            <*mut libc::vmspace>::ENCODING,
-            <*mut libc::sigacts>::ENCODING,
-            <c_int>::ENCODING,
-            <c_char>::ENCODING,
-            <libc::pid_t>::ENCODING,
-            <libc::pid_t>::ENCODING,
-            <c_int>::ENCODING,
-            <libc::caddr_t>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <c_int>::ENCODING,
-            <libc::boolean_t>::ENCODING,
-            <c_uint>::ENCODING,
-            <c_int>::ENCODING,
-            <libc::fixpt_t>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <*mut c_char>::ENCODING,
-            <c_uint>::ENCODING,
-            <c_uint>::ENCODING,
-            <libc::itimerval>::ENCODING,
-            <timeval>::ENCODING,
-            <libc::u_quad_t>::ENCODING,
-            <libc::u_quad_t>::ENCODING,
-            <libc::u_quad_t>::ENCODING,
-            <c_int>::ENCODING,
-            <*mut libc::vnode>::ENCODING,
-            <c_int>::ENCODING,
-            <*mut libc::vnode>::ENCODING,
-            <c_int>::ENCODING,
-            <libc::sigset_t>::ENCODING,
-            <libc::sigset_t>::ENCODING,
-            <libc::sigset_t>::ENCODING,
-            <c_uchar>::ENCODING,
-            <c_uchar>::ENCODING,
-            <c_char>::ENCODING,
-            <[c_char; 17]>::ENCODING,
-            <*mut libc::pgrp>::ENCODING,
-            <*mut libc::user>::ENCODING,
-            <c_ushort>::ENCODING,
-            <c_ushort>::ENCODING,
-            <*mut rusage>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for extern_proc {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

@@ -16,22 +16,6 @@ pub struct panel {
     pub user: *mut c_void,
 }
 
-unsafe impl Encode for panel {
-    const ENCODING: Encoding = Encoding::Struct(
-        "panel",
-        &[
-            <*mut libc::WINDOW>::ENCODING,
-            <*mut libc::panel>::ENCODING,
-            <*mut Self>::ENCODING,
-            <*mut c_void>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for panel {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/panel?language=objc)
 pub type PANEL = Self;
 

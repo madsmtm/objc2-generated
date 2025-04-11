@@ -2,8 +2,6 @@
 //! DO NOT EDIT
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -20,25 +18,6 @@ pub struct uprof {
     pub pr_ticks: u32,
 }
 
-unsafe impl Encode for uprof {
-    const ENCODING: Encoding = Encoding::Struct(
-        "uprof",
-        &[
-            <*mut libc::uprof>::ENCODING,
-            <libc::caddr_t>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for uprof {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/pstats?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -47,20 +26,4 @@ pub struct pstats {
     pub p_cru: rusage,
     pub p_prof: libc::uprof,
     pub ps_start: u64,
-}
-
-unsafe impl Encode for pstats {
-    const ENCODING: Encoding = Encoding::Struct(
-        "pstats",
-        &[
-            <rusage>::ENCODING,
-            <rusage>::ENCODING,
-            <libc::uprof>::ENCODING,
-            <u64>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for pstats {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

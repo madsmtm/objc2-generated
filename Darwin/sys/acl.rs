@@ -3,8 +3,6 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -33,14 +31,6 @@ impl acl_perm_t {
     pub const ACL_SYNCHRONIZE: Self = Self(libc::__DARWIN_ACL_SYNCHRONIZE);
 }
 
-unsafe impl Encode for acl_perm_t {
-    const ENCODING: Encoding = c_uint::ENCODING;
-}
-
-unsafe impl RefEncode for acl_perm_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_tag_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,14 +39,6 @@ impl acl_tag_t {
     pub const ACL_UNDEFINED_TAG: Self = Self(0);
     pub const ACL_EXTENDED_ALLOW: Self = Self(libc::__DARWIN_ACL_EXTENDED_ALLOW);
     pub const ACL_EXTENDED_DENY: Self = Self(libc::__DARWIN_ACL_EXTENDED_DENY);
-}
-
-unsafe impl Encode for acl_tag_t {
-    const ENCODING: Encoding = c_uint::ENCODING;
-}
-
-unsafe impl RefEncode for acl_tag_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_type_t?language=objc)
@@ -73,14 +55,6 @@ impl acl_type_t {
     pub const ACL_TYPE_NWFS: Self = Self(0x00000005);
 }
 
-unsafe impl Encode for acl_type_t {
-    const ENCODING: Encoding = c_uint::ENCODING;
-}
-
-unsafe impl RefEncode for acl_type_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_entry_id_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -89,14 +63,6 @@ impl acl_entry_id_t {
     pub const ACL_FIRST_ENTRY: Self = Self(0);
     pub const ACL_NEXT_ENTRY: Self = Self(-1);
     pub const ACL_LAST_ENTRY: Self = Self(-2);
-}
-
-unsafe impl Encode for acl_entry_id_t {
-    const ENCODING: Encoding = c_int::ENCODING;
-}
-
-unsafe impl RefEncode for acl_entry_id_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_flag_t?language=objc)
@@ -111,14 +77,6 @@ impl acl_flag_t {
     pub const ACL_ENTRY_DIRECTORY_INHERIT: Self = Self(libc::__DARWIN_ACL_ENTRY_DIRECTORY_INHERIT);
     pub const ACL_ENTRY_LIMIT_INHERIT: Self = Self(libc::__DARWIN_ACL_ENTRY_LIMIT_INHERIT);
     pub const ACL_ENTRY_ONLY_INHERIT: Self = Self(libc::__DARWIN_ACL_ENTRY_ONLY_INHERIT);
-}
-
-unsafe impl Encode for acl_flag_t {
-    const ENCODING: Encoding = c_uint::ENCODING;
-}
-
-unsafe impl RefEncode for acl_flag_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_acl?language=objc)

@@ -3,8 +3,6 @@
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -18,24 +16,6 @@ pub struct dirent {
     pub d_namlen: u16,
     pub d_type: u8,
     pub d_name: [c_char; 1024],
-}
-
-unsafe impl Encode for dirent {
-    const ENCODING: Encoding = Encoding::Struct(
-        "dirent",
-        &[
-            <u64>::ENCODING,
-            <u64>::ENCODING,
-            <u16>::ENCODING,
-            <u16>::ENCODING,
-            <u8>::ENCODING,
-            <[c_char; 1024]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for dirent {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/dir?language=objc)
@@ -52,28 +32,6 @@ pub struct DIR {
     pub(crate) __dd_flags: c_int,
     pub(crate) __dd_lock: __darwin_pthread_mutex_t,
     pub(crate) __dd_td: *mut libc::_telldir,
-}
-
-unsafe impl Encode for DIR {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            <c_int>::ENCODING,
-            Encoding::C_LONG,
-            Encoding::C_LONG,
-            <*mut c_char>::ENCODING,
-            <c_int>::ENCODING,
-            Encoding::C_LONG,
-            Encoding::C_LONG,
-            <c_int>::ENCODING,
-            <__darwin_pthread_mutex_t>::ENCODING,
-            <*mut libc::_telldir>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for DIR {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

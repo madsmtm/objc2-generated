@@ -11,8 +11,6 @@ pub use self::__xlocale::regwnexec_l;
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -29,39 +27,12 @@ pub struct regex_t {
     pub re_g: *mut libc::re_guts,
 }
 
-unsafe impl Encode for regex_t {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            <c_int>::ENCODING,
-            <usize>::ENCODING,
-            <*const c_char>::ENCODING,
-            <*mut libc::re_guts>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for regex_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/regmatch_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct regmatch_t {
     pub rm_so: libc::regoff_t,
     pub rm_eo: libc::regoff_t,
-}
-
-unsafe impl Encode for regmatch_t {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[<libc::regoff_t>::ENCODING, <libc::regoff_t>::ENCODING],
-    );
-}
-
-unsafe impl RefEncode for regmatch_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

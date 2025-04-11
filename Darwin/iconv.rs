@@ -3,8 +3,6 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -82,14 +80,6 @@ pub struct iconv_allocation_t {
     pub spaceholder: [*mut c_void; 64],
 }
 
-unsafe impl Encode for iconv_allocation_t {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<[*mut c_void; 64]>::ENCODING]);
-}
-
-unsafe impl RefEncode for iconv_allocation_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 extern "C-unwind" {
     pub fn iconv_open_into(
         param1: *const c_char,
@@ -115,21 +105,6 @@ pub struct iconv_hooks {
     pub uc_hook: libc::iconv_unicode_char_hook,
     pub wc_hook: libc::iconv_wide_char_hook,
     pub data: *mut c_void,
-}
-
-unsafe impl Encode for iconv_hooks {
-    const ENCODING: Encoding = Encoding::Struct(
-        "iconv_hooks",
-        &[
-            <libc::iconv_unicode_char_hook>::ENCODING,
-            <libc::iconv_wide_char_hook>::ENCODING,
-            <*mut c_void>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for iconv_hooks {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_unicode_mb_to_uc_fallback?language=objc)
@@ -183,23 +158,6 @@ pub struct iconv_fallbacks {
     pub mb_to_wc_fallback: libc::iconv_wchar_mb_to_wc_fallback,
     pub wc_to_mb_fallback: libc::iconv_wchar_wc_to_mb_fallback,
     pub data: *mut c_void,
-}
-
-unsafe impl Encode for iconv_fallbacks {
-    const ENCODING: Encoding = Encoding::Struct(
-        "iconv_fallbacks",
-        &[
-            <libc::iconv_unicode_mb_to_uc_fallback>::ENCODING,
-            <libc::iconv_unicode_uc_to_mb_fallback>::ENCODING,
-            <libc::iconv_wchar_mb_to_wc_fallback>::ENCODING,
-            <libc::iconv_wchar_wc_to_mb_fallback>::ENCODING,
-            <*mut c_void>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for iconv_fallbacks {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

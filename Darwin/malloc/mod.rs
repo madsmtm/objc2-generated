@@ -56,40 +56,6 @@ pub struct _malloc_zone_t {
     >,
 }
 
-unsafe impl Encode for _malloc_zone_t {
-    const ENCODING: Encoding = Encoding::Struct("_malloc_zone_t", &[
-        <*mut c_void>::ENCODING,
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::_malloc_zone_t,*const c_void,) -> usize>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,usize,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,*mut c_void,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,*mut c_void,usize,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,)>>::ENCODING,
-        <*const c_char>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,*mut *mut c_void,c_uint,) -> c_uint>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,*mut *mut c_void,c_uint,)>>::ENCODING,
-        <*mut libc::malloc_introspection_t>::ENCODING,
-        <c_uint>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,usize,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,*mut c_void,usize,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,) -> usize>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,*mut c_void,) -> libc::boolean_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,*mut c_void,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,usize,u64,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,malloc_type_id_t,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,usize,malloc_type_id_t,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,*mut c_void,usize,malloc_type_id_t,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,usize,malloc_type_id_t,) -> *mut c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut Self,usize,usize,u64,malloc_type_id_t,) -> *mut c_void>>::ENCODING,
-    ]);
-}
-
-unsafe impl RefEncode for _malloc_zone_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_zone_t?language=objc)
 pub type malloc_zone_t = Self;
 
@@ -114,14 +80,6 @@ impl malloc_type_callsite_flags_v0_t {
     pub const MALLOC_TYPE_CALLSITE_FLAGS_V0_ARRAY: Self = Self(1 << 1);
 }
 
-unsafe impl Encode for malloc_type_callsite_flags_v0_t {
-    const ENCODING: Encoding = c_uint::ENCODING;
-}
-
-unsafe impl RefEncode for malloc_type_callsite_flags_v0_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// Default allocation type, used for most calls to malloc
 ///
 ///
@@ -142,14 +100,6 @@ impl malloc_type_kind_v0_t {
     pub const MALLOC_TYPE_KIND_V0_OBJC: Self = Self(1);
     pub const MALLOC_TYPE_KIND_V0_SWIFT: Self = Self(2);
     pub const MALLOC_TYPE_KIND_V0_CXX: Self = Self(3);
-}
-
-unsafe impl Encode for malloc_type_kind_v0_t {
-    const ENCODING: Encoding = c_uint::ENCODING;
-}
-
-unsafe impl RefEncode for malloc_type_kind_v0_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// Field: contains_data_pointer
@@ -187,26 +137,6 @@ pub struct malloc_type_layout_semantics_v0_t {
     pub reserved_1: u16,
 }
 
-unsafe impl Encode for malloc_type_layout_semantics_v0_t {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            Encoding::Bool,
-            Encoding::Bool,
-            Encoding::Bool,
-            Encoding::Bool,
-            Encoding::Bool,
-            <u16>::ENCODING,
-            Encoding::Bool,
-            <u16>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for malloc_type_layout_semantics_v0_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// Field: version
 /// Versioning field of the type summary. Set to 0 for the current verison. New
 /// fields can be added where the reserved fields currently are without
@@ -237,41 +167,12 @@ pub struct malloc_type_summary_v0_t {
     pub layout_semantics: libc::malloc_type_layout_semantics_v0_t,
 }
 
-unsafe impl Encode for malloc_type_summary_v0_t {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            <u32>::ENCODING,
-            <u32>::ENCODING,
-            <libc::malloc_type_callsite_flags_v0_t>::ENCODING,
-            <libc::malloc_type_kind_v0_t>::ENCODING,
-            <u32>::ENCODING,
-            <libc::malloc_type_layout_semantics_v0_t>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for malloc_type_summary_v0_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_type_descriptor_v0_t_type_id?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct malloc_type_descriptor_v0_t_type_id {
     pub hash: u32,
     pub summary: libc::malloc_type_summary_v0_t,
-}
-
-unsafe impl Encode for malloc_type_descriptor_v0_t_type_id {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[<u32>::ENCODING, <libc::malloc_type_summary_v0_t>::ENCODING],
-    );
-}
-
-unsafe impl RefEncode for malloc_type_descriptor_v0_t_type_id {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// Field: hash
@@ -301,14 +202,6 @@ unsafe impl RefEncode for malloc_type_descriptor_v0_t_type_id {
 #[derive(Clone, Copy)]
 pub union malloc_type_descriptor_v0_t {
     pub type_id: malloc_type_id_t,
-}
-
-unsafe impl Encode for malloc_type_descriptor_v0_t {
-    const ENCODING: Encoding = Encoding::Union("?", &[<malloc_type_id_t>::ENCODING]);
-}
-
-unsafe impl RefEncode for malloc_type_descriptor_v0_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// *******    Creation and destruction    ***********
@@ -459,17 +352,6 @@ pub struct vm_range_t {
     pub size: libc::vm_size_t,
 }
 
-unsafe impl Encode for vm_range_t {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[<libc::vm_address_t>::ENCODING, <libc::vm_size_t>::ENCODING],
-    );
-}
-
-unsafe impl RefEncode for vm_range_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_statistics_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -478,22 +360,6 @@ pub struct malloc_statistics_t {
     pub size_in_use: usize,
     pub max_size_in_use: usize,
     pub size_allocated: usize,
-}
-
-unsafe impl Encode for malloc_statistics_t {
-    const ENCODING: Encoding = Encoding::Struct(
-        "malloc_statistics_t",
-        &[
-            <c_uint>::ENCODING,
-            <usize>::ENCODING,
-            <usize>::ENCODING,
-            <usize>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for malloc_statistics_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/memory_reader_t?language=objc)
@@ -561,32 +427,6 @@ pub struct malloc_introspection_t {
     pub zone_type: c_uint,
 }
 
-unsafe impl Encode for malloc_introspection_t {
-    const ENCODING: Encoding = Encoding::Struct("malloc_introspection_t", &[
-        <Option<unsafe extern "C-unwind" fn(libc::task_t,*mut c_void,c_uint,libc::vm_address_t,libc::memory_reader_t,libc::vm_range_recorder_t,) -> libc::kern_return_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,usize,) -> usize>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,) -> libc::boolean_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,libc::boolean_t,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,*mut c_void,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,*mut libc::malloc_statistics_t,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,) -> libc::boolean_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,) -> libc::boolean_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,*mut c_void,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,*mut block2::Block<dyn Fn(*mut c_void, *mut c_void, )>,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(libc::task_t,c_uint,libc::vm_address_t,libc::memory_reader_t,libc::print_task_printer_t,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(libc::task_t,libc::vm_address_t,libc::memory_reader_t,*mut libc::malloc_statistics_t,)>>::ENCODING,
-        <c_uint>::ENCODING,
-    ]);
-}
-
-unsafe impl RefEncode for malloc_introspection_t {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 extern "C-unwind" {
     pub fn malloc_get_all_zones(
         task: libc::task_t,
@@ -641,23 +481,6 @@ pub struct mstats {
     pub bytes_used: usize,
     pub chunks_free: usize,
     pub bytes_free: usize,
-}
-
-unsafe impl Encode for mstats {
-    const ENCODING: Encoding = Encoding::Struct(
-        "mstats",
-        &[
-            <usize>::ENCODING,
-            <usize>::ENCODING,
-            <usize>::ENCODING,
-            <usize>::ENCODING,
-            <usize>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for mstats {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {

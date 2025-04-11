@@ -3,8 +3,6 @@
 #[cfg(feature = "__builtin__")]
 use __builtin__::*;
 use core::ffi::*;
-#[cfg(feature = "objc2")]
-use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
@@ -39,25 +37,6 @@ pub struct attrlist {
     pub forkattr: libc::attrgroup_t,
 }
 
-unsafe impl Encode for attrlist {
-    const ENCODING: Encoding = Encoding::Struct(
-        "attrlist",
-        &[
-            <c_ushort>::ENCODING,
-            <u16>::ENCODING,
-            <libc::attrgroup_t>::ENCODING,
-            <libc::attrgroup_t>::ENCODING,
-            <libc::attrgroup_t>::ENCODING,
-            <libc::attrgroup_t>::ENCODING,
-            <libc::attrgroup_t>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for attrlist {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/attribute_set?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -67,23 +46,6 @@ pub struct attribute_set {
     pub dirattr: libc::attrgroup_t,
     pub fileattr: libc::attrgroup_t,
     pub forkattr: libc::attrgroup_t,
-}
-
-unsafe impl Encode for attribute_set {
-    const ENCODING: Encoding = Encoding::Struct(
-        "attribute_set",
-        &[
-            <libc::attrgroup_t>::ENCODING,
-            <libc::attrgroup_t>::ENCODING,
-            <libc::attrgroup_t>::ENCODING,
-            <libc::attrgroup_t>::ENCODING,
-            <libc::attrgroup_t>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for attribute_set {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/attribute_set_t?language=objc)
@@ -97,15 +59,6 @@ pub struct attrreference {
     pub attr_length: u32,
 }
 
-unsafe impl Encode for attrreference {
-    const ENCODING: Encoding =
-        Encoding::Struct("attrreference", &[<i32>::ENCODING, <u32>::ENCODING]);
-}
-
-unsafe impl RefEncode for attrreference {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/attrreference_t?language=objc)
 pub type attrreference_t = libc::attrreference;
 
@@ -115,14 +68,6 @@ pub type attrreference_t = libc::attrreference;
 pub struct diskextent {
     pub startblock: u32,
     pub blockcount: u32,
-}
-
-unsafe impl Encode for diskextent {
-    const ENCODING: Encoding = Encoding::Struct("diskextent", &[<u32>::ENCODING, <u32>::ENCODING]);
-}
-
-unsafe impl RefEncode for diskextent {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/extentrecord?language=objc)
@@ -139,20 +84,6 @@ pub struct vol_capabilities_attr {
     pub valid: libc::vol_capabilities_set_t,
 }
 
-unsafe impl Encode for vol_capabilities_attr {
-    const ENCODING: Encoding = Encoding::Struct(
-        "vol_capabilities_attr",
-        &[
-            <libc::vol_capabilities_set_t>::ENCODING,
-            <libc::vol_capabilities_set_t>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for vol_capabilities_attr {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_capabilities_attr_t?language=objc)
 pub type vol_capabilities_attr_t = libc::vol_capabilities_attr;
 
@@ -162,20 +93,6 @@ pub type vol_capabilities_attr_t = libc::vol_capabilities_attr;
 pub struct vol_attributes_attr {
     pub validattr: libc::attribute_set_t,
     pub nativeattr: libc::attribute_set_t,
-}
-
-unsafe impl Encode for vol_attributes_attr {
-    const ENCODING: Encoding = Encoding::Struct(
-        "vol_attributes_attr",
-        &[
-            <libc::attribute_set_t>::ENCODING,
-            <libc::attribute_set_t>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for vol_attributes_attr {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_attributes_attr_t?language=objc)
@@ -197,28 +114,6 @@ pub struct fssearchblock {
     pub searchattrs: libc::attrlist,
 }
 
-unsafe impl Encode for fssearchblock {
-    const ENCODING: Encoding = Encoding::Struct(
-        "fssearchblock",
-        &[
-            <*mut libc::attrlist>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <usize>::ENCODING,
-            <libc::u_long>::ENCODING,
-            <timeval>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <usize>::ENCODING,
-            <*mut c_void>::ENCODING,
-            <usize>::ENCODING,
-            <libc::attrlist>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for fssearchblock {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/searchstate?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -226,15 +121,4 @@ pub struct searchstate {
     pub ss_union_flags: u32,
     pub ss_union_layer: u32,
     pub ss_fsstate: [c_uchar; 548],
-}
-
-unsafe impl Encode for searchstate {
-    const ENCODING: Encoding = Encoding::Struct(
-        "searchstate",
-        &[<u32>::ENCODING, <u32>::ENCODING, <[c_uchar; 548]>::ENCODING],
-    );
-}
-
-unsafe impl RefEncode for searchstate {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

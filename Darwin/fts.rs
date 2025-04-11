@@ -14,20 +14,6 @@ pub union FTS_fts_options {
     pub fts_compar_b: *mut block2::Block<dyn Fn() -> c_int>,
 }
 
-unsafe impl Encode for FTS_fts_options {
-    const ENCODING: Encoding = Encoding::Union(
-        "?",
-        &[
-            <Option<unsafe extern "C-unwind" fn() -> c_int>>::ENCODING,
-            <*mut block2::Block<dyn Fn() -> c_int>>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for FTS_fts_options {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fts?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -41,27 +27,6 @@ pub struct FTS {
     pub fts_pathlen: c_int,
     pub fts_nitems: c_int,
     pub fts_options: c_int,
-}
-
-unsafe impl Encode for FTS {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            <*mut libc::_ftsent>::ENCODING,
-            <*mut Self>::ENCODING,
-            <*mut *mut Self>::ENCODING,
-            <libc::dev_t>::ENCODING,
-            <*mut c_char>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for FTS {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_ftsent?language=objc)
@@ -88,38 +53,6 @@ pub struct _ftsent {
     pub fts_instr: c_ushort,
     pub fts_statp: *mut libc::stat,
     pub fts_name: [c_char; 1],
-}
-
-unsafe impl Encode for _ftsent {
-    const ENCODING: Encoding = Encoding::Struct(
-        "_ftsent",
-        &[
-            <*mut Self>::ENCODING,
-            <*mut Self>::ENCODING,
-            <*mut Self>::ENCODING,
-            Encoding::C_LONG,
-            <*mut c_void>::ENCODING,
-            <*mut c_char>::ENCODING,
-            <*mut c_char>::ENCODING,
-            <c_int>::ENCODING,
-            <c_int>::ENCODING,
-            <c_ushort>::ENCODING,
-            <c_ushort>::ENCODING,
-            <libc::ino_t>::ENCODING,
-            <libc::dev_t>::ENCODING,
-            <libc::nlink_t>::ENCODING,
-            <c_short>::ENCODING,
-            <c_ushort>::ENCODING,
-            <c_ushort>::ENCODING,
-            <c_ushort>::ENCODING,
-            <*mut libc::stat>::ENCODING,
-            <[c_char; 1]>::ENCODING,
-        ],
-    );
-}
-
-unsafe impl RefEncode for _ftsent {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ftsent?language=objc)
