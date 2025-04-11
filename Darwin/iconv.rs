@@ -6,12 +6,9 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_libiconv_version?language=objc)
 pub const _LIBICONV_VERSION: c_uint = 0x010B;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/__iconv_bool?language=objc)
 pub type __iconv_bool = bool;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/__tag_iconv_t?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct __tag_iconv_t {
@@ -23,11 +20,9 @@ unsafe impl RefEncode for __tag_iconv_t {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("__tag_iconv_t", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_t?language=objc)
 pub type iconv_t = *mut __tag_iconv_t;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_libiconv_version?language=objc)
     pub static _libiconv_version: c_int;
 }
 
@@ -73,7 +68,6 @@ extern "C-unwind" {
     ) -> usize;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_allocation_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct iconv_allocation_t {
@@ -92,13 +86,10 @@ extern "C-unwind" {
     pub fn libiconv_set_relocation_prefix(param1: *const c_char, param1: *const c_char);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_unicode_char_hook?language=objc)
 pub type iconv_unicode_char_hook = Option<unsafe extern "C-unwind" fn(c_uint, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_wide_char_hook?language=objc)
 pub type iconv_wide_char_hook = Option<unsafe extern "C-unwind" fn(wchar_t, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_hooks?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct iconv_hooks {
@@ -107,7 +98,6 @@ pub struct iconv_hooks {
     pub data: *mut c_void,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_unicode_mb_to_uc_fallback?language=objc)
 pub type iconv_unicode_mb_to_uc_fallback = Option<
     unsafe extern "C-unwind" fn(
         *const c_char,
@@ -118,7 +108,6 @@ pub type iconv_unicode_mb_to_uc_fallback = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_unicode_uc_to_mb_fallback?language=objc)
 pub type iconv_unicode_uc_to_mb_fallback = Option<
     unsafe extern "C-unwind" fn(
         c_uint,
@@ -128,7 +117,6 @@ pub type iconv_unicode_uc_to_mb_fallback = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_wchar_mb_to_wc_fallback?language=objc)
 pub type iconv_wchar_mb_to_wc_fallback = Option<
     unsafe extern "C-unwind" fn(
         *const c_char,
@@ -139,7 +127,6 @@ pub type iconv_wchar_mb_to_wc_fallback = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_wchar_wc_to_mb_fallback?language=objc)
 pub type iconv_wchar_wc_to_mb_fallback = Option<
     unsafe extern "C-unwind" fn(
         wchar_t,
@@ -149,7 +136,6 @@ pub type iconv_wchar_wc_to_mb_fallback = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_fallbacks?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct iconv_fallbacks {

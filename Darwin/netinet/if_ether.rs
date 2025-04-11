@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ether_arp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ether_arp {
@@ -15,7 +14,6 @@ pub struct ether_arp {
     pub arp_tpa: [c_uchar; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockaddr_inarp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_inarp {

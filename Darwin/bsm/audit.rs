@@ -4,28 +4,20 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_id_t?language=objc)
 pub type au_id_t = uid_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_asid_t?language=objc)
 pub type au_asid_t = pid_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_event_t?language=objc)
 pub type au_event_t = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_emod_t?language=objc)
 pub type au_emod_t = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_class_t?language=objc)
 pub type au_class_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_asflgs_t?language=objc)
 pub type au_asflgs_t = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_ctlmode_t?language=objc)
 pub type au_ctlmode_t = c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_tid {
@@ -33,10 +25,8 @@ pub struct au_tid {
     pub machine: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid_t?language=objc)
 pub type au_tid_t = au_tid;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_tid_addr {
@@ -45,10 +35,8 @@ pub struct au_tid_addr {
     pub at_addr: [u32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid_addr_t?language=objc)
 pub type au_tid_addr_t = au_tid_addr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_mask?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_mask {
@@ -56,10 +44,8 @@ pub struct au_mask {
     pub am_failure: c_uint,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_mask_t?language=objc)
 pub type au_mask_t = au_mask;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditinfo {
@@ -69,10 +55,8 @@ pub struct auditinfo {
     pub ai_asid: au_asid_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditinfo_t?language=objc)
 pub type auditinfo_t = auditinfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditinfo_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditinfo_addr {
@@ -83,10 +67,8 @@ pub struct auditinfo_addr {
     pub ai_flags: au_asflgs_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditinfo_addr_t?language=objc)
 pub type auditinfo_addr_t = auditinfo_addr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditpinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditpinfo {
@@ -97,10 +79,8 @@ pub struct auditpinfo {
     pub ap_asid: au_asid_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditpinfo_t?language=objc)
 pub type auditpinfo_t = auditpinfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditpinfo_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditpinfo_addr {
@@ -112,10 +92,8 @@ pub struct auditpinfo_addr {
     pub ap_flags: au_asflgs_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditpinfo_addr_t?language=objc)
 pub type auditpinfo_addr_t = auditpinfo_addr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_session?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_session {
@@ -123,10 +101,8 @@ pub struct au_session {
     pub as_mask: au_mask_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_session_t?language=objc)
 pub type au_session_t = au_session;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_expire_after?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_expire_after {
@@ -135,13 +111,10 @@ pub struct au_expire_after {
     pub op_type: c_uchar,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_expire_after_t?language=objc)
 pub type au_expire_after_t = au_expire_after;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/token_t?language=objc)
 pub type token_t = au_token;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_qctrl?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_qctrl {
@@ -152,10 +125,8 @@ pub struct au_qctrl {
     pub aq_minfree: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_qctrl_t?language=objc)
 pub type au_qctrl_t = au_qctrl;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_stat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct audit_stat {
@@ -175,10 +146,8 @@ pub struct audit_stat {
     pub as_memused: c_uint,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_stat_t?language=objc)
 pub type au_stat_t = audit_stat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_fstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct audit_fstat {
@@ -186,10 +155,8 @@ pub struct audit_fstat {
     pub af_currsz: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_fstat_t?language=objc)
 pub type au_fstat_t = audit_fstat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_evclass_map?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_evclass_map {
@@ -197,10 +164,8 @@ pub struct au_evclass_map {
     pub ec_class: au_class_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_evclass_map_t?language=objc)
 pub type au_evclass_map_t = au_evclass_map;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_session_flags?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct audit_session_flags(pub c_uint);

@@ -6,13 +6,10 @@ use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/menu_options?language=objc)
 pub type Menu_Options = c_int;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/item_options?language=objc)
 pub type Item_Options = c_int;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/text?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct TEXT {
@@ -20,7 +17,6 @@ pub struct TEXT {
     pub length: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tagitem?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tagITEM {
@@ -39,13 +35,10 @@ pub struct tagITEM {
     pub down: *mut Self,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/item?language=objc)
 pub type ITEM = Self;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/menu_hook?language=objc)
 pub type Menu_Hook = Option<unsafe extern "C-unwind" fn(*mut Self)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tagmenu?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tagMENU {
@@ -87,7 +80,6 @@ pub struct tagMENU {
     pub status: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/menu?language=objc)
 pub type MENU = Self;
 
 extern "C-unwind" {

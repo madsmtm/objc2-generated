@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/pollfd?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pollfd {
@@ -13,7 +12,6 @@ pub struct pollfd {
     pub revents: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nfds_t?language=objc)
 pub type nfds_t = c_uint;
 
 extern "C-unwind" {

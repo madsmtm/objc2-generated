@@ -3,10 +3,8 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bank_action_t?language=objc)
 pub type bank_action_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_persona_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_persona_info {
@@ -20,7 +18,6 @@ pub struct proc_persona_info {
     pub macho_uuid: [u8; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/persona_token?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct persona_token {
@@ -28,7 +25,6 @@ pub struct persona_token {
     pub proximate: proc_persona_info,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/persona_modify_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct persona_modify_info {

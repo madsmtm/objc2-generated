@@ -6,7 +6,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/eventreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct eventreq {
@@ -19,7 +18,6 @@ pub struct eventreq {
     pub er_eventbits: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/er_t?language=objc)
 pub type er_t = *mut eventreq;
 
 extern "C-unwind" {

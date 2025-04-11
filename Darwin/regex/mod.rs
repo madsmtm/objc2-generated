@@ -14,10 +14,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/regoff_t?language=objc)
 pub type regoff_t = __darwin_off_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/regex_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct regex_t {
@@ -27,7 +25,6 @@ pub struct regex_t {
     pub re_g: *mut re_guts,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/regmatch_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct regmatch_t {

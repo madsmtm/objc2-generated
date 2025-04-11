@@ -4,15 +4,12 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rbto_compare_nodes_fn?language=objc)
 pub type rbto_compare_nodes_fn =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *const c_void, *const c_void) -> c_int>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rbto_compare_key_fn?language=objc)
 pub type rbto_compare_key_fn =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *const c_void, *const c_void) -> c_int>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rb_tree_ops_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rb_tree_ops_t {
@@ -22,24 +19,20 @@ pub struct rb_tree_ops_t {
     pub rbto_context: *mut c_void,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rb_node?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rb_node {
     pub opaque: [*mut c_void; 3],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rb_node_t?language=objc)
 pub type rb_node_t = rb_node;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rb_tree?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rb_tree {
     pub opaque: [*mut c_void; 8],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rb_tree_t?language=objc)
 pub type rb_tree_t = rb_tree;
 
 extern "C-unwind" {

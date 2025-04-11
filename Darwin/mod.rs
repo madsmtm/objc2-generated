@@ -681,7 +681,6 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6_addr___u6_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union in6_addr___u6_addr {
@@ -690,17 +689,14 @@ pub union in6_addr___u6_addr {
     pub(crate) __u6_addr32: [u32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_addr {
     pub(crate) __u6_addr: in6_addr___u6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6_addr_t?language=objc)
 pub type in6_addr_t = in6_addr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/sockaddr_in6?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct sockaddr_in6 {
@@ -713,36 +709,29 @@ pub struct sockaddr_in6 {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6addr_any?language=objc)
     pub static in6addr_any: in6_addr;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6addr_loopback?language=objc)
     pub static in6addr_loopback: in6_addr;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6addr_nodelocal_allnodes?language=objc)
     pub static in6addr_nodelocal_allnodes: in6_addr;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6addr_linklocal_allnodes?language=objc)
     pub static in6addr_linklocal_allnodes: in6_addr;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6addr_linklocal_allrouters?language=objc)
     pub static in6addr_linklocal_allrouters: in6_addr;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6addr_linklocal_allv2routers?language=objc)
     pub static in6addr_linklocal_allv2routers: in6_addr;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/ipv6_mreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ipv6_mreq {
@@ -750,7 +739,6 @@ pub struct ipv6_mreq {
     pub ipv6mr_interface: c_uint,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/in6_pktinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_pktinfo {
@@ -758,7 +746,6 @@ pub struct in6_pktinfo {
     pub ipi6_ifindex: c_uint,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/ip6_mtuinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ip6_mtuinfo {
@@ -935,26 +922,18 @@ extern "C-unwind" {
 /// SInt64          64-bit signed integer
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/uint8?language=objc)
 pub type UInt8 = c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/sint8?language=objc)
 pub type SInt8 = c_schar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/uint16?language=objc)
 pub type UInt16 = c_ushort;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/sint16?language=objc)
 pub type SInt16 = c_short;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/uint32?language=objc)
 pub type UInt32 = c_uint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/sint32?language=objc)
 pub type SInt32 = c_int;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/wide?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct wide {
@@ -962,7 +941,6 @@ pub struct wide {
     pub hi: i32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unsignedwide?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct UnsignedWide {
@@ -970,10 +948,8 @@ pub struct UnsignedWide {
     pub hi: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/sint64?language=objc)
 pub type SInt64 = c_longlong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/uint64?language=objc)
 pub type UInt64 = c_ulonglong;
 
 /// ******************************************************************************
@@ -986,29 +962,20 @@ pub type UInt64 = c_ulonglong;
 /// ShortFixed      8-bit signed integer plus 8-bit fraction
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/fixed?language=objc)
 pub type Fixed = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/fixedptr?language=objc)
 pub type FixedPtr = *mut Fixed;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/fract?language=objc)
 pub type Fract = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/fractptr?language=objc)
 pub type FractPtr = *mut Fract;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unsignedfixed?language=objc)
 pub type UnsignedFixed = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unsignedfixedptr?language=objc)
 pub type UnsignedFixedPtr = *mut UnsignedFixed;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/shortfixed?language=objc)
 pub type ShortFixed = c_short;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/shortfixedptr?language=objc)
 pub type ShortFixedPtr = *mut ShortFixed;
 
 /// ******************************************************************************
@@ -1028,14 +995,10 @@ pub type ShortFixedPtr = *mut ShortFixed;
 /// compiler, but might be a different size on different compilers.
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/float32?language=objc)
 pub type Float32 = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/float64?language=objc)
 pub type Float64 = c_double;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/float80?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Float80 {
@@ -1043,7 +1006,6 @@ pub struct Float80 {
     pub man: [u16; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/float96?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Float96 {
@@ -1051,7 +1013,6 @@ pub struct Float96 {
     pub man: [u16; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/float32point?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Float32Point {
@@ -1068,14 +1029,10 @@ pub struct Float32Point {
 /// Size            The number of bytes in a block (signed for historical reasons)
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/ptr?language=objc)
 pub type Ptr = *mut c_char;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/handle?language=objc)
 pub type Handle = *mut Ptr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/size?language=objc)
 pub type Size = c_long;
 
 /// ******************************************************************************
@@ -1104,68 +1061,46 @@ pub type Size = c_long;
 /// ResType                 A FourCharCode used to tag resources (e.g. 'DLOG')
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/oserr?language=objc)
 pub type OSErr = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/osstatus?language=objc)
 pub type OSStatus = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/logicaladdress?language=objc)
 pub type LogicalAddress = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/constlogicaladdress?language=objc)
 pub type ConstLogicalAddress = *const c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/physicaladdress?language=objc)
 pub type PhysicalAddress = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/byteptr?language=objc)
 pub type BytePtr = *mut u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/bytecount?language=objc)
 pub type ByteCount = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/byteoffset?language=objc)
 pub type ByteOffset = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/duration?language=objc)
 pub type Duration = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/absolutetime?language=objc)
 pub type AbsoluteTime = UnsignedWide;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/optionbits?language=objc)
 pub type OptionBits = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/itemcount?language=objc)
 pub type ItemCount = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/pbversion?language=objc)
 pub type PBVersion = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/scriptcode?language=objc)
 pub type ScriptCode = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/langcode?language=objc)
 pub type LangCode = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/regioncode?language=objc)
 pub type RegionCode = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/fourcharcode?language=objc)
 pub type FourCharCode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/ostype?language=objc)
 pub type OSType = FourCharCode;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/restype?language=objc)
 pub type ResType = FourCharCode;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/ostypeptr?language=objc)
 pub type OSTypePtr = *mut OSType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/restypeptr?language=objc)
 pub type ResTypePtr = *mut ResType;
 
 /// ******************************************************************************
@@ -1178,8 +1113,6 @@ pub type ResTypePtr = *mut ResType;
 /// true            Now defined in stdbool.h
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/boolean?language=objc)
 pub type Boolean = c_uchar;
 
 /// ******************************************************************************
@@ -1194,20 +1127,14 @@ pub type Boolean = c_uchar;
 /// UniversalProcHandle     Pointer to a UniversalProcPtr
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/procptr?language=objc)
 pub type ProcPtr = Option<unsafe extern "C-unwind" fn() -> c_long>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/register68kprocptr?language=objc)
 pub type Register68kProcPtr = Option<unsafe extern "C-unwind" fn()>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/universalprocptr?language=objc)
 pub type UniversalProcPtr = ProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/prochandle?language=objc)
 pub type ProcHandle = *mut ProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/universalprochandle?language=objc)
 pub type UniversalProcHandle = *mut UniversalProcPtr;
 
 /// ******************************************************************************
@@ -1224,26 +1151,18 @@ pub type UniversalProcHandle = *mut UniversalProcPtr;
 /// for compatibility with existing APIs.
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/prefcon?language=objc)
 pub type PRefCon = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/urefcon?language=objc)
 pub type URefCon = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/srefcon?language=objc)
 pub type SRefCon = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/noerr?language=objc)
 pub const noErr: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/kniloptions?language=objc)
 pub const kNilOptions: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/kvariablelengtharray?language=objc)
 pub const kVariableLengthArray: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/kunknowntype?language=objc)
 pub const kUnknownType: c_uint = 0x3F3F3F3F;
 
 /// ******************************************************************************
@@ -1295,83 +1214,56 @@ pub const kUnknownType: c_uint = 0x3F3F3F3F;
 /// The first character in a C string is the zeroth byte of the string.
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unicodescalarvalue?language=objc)
 pub type UnicodeScalarValue = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/utf32char?language=objc)
 pub type UTF32Char = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unichar?language=objc)
 pub type UniChar = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/utf16char?language=objc)
 pub type UTF16Char = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/utf8char?language=objc)
 pub type UTF8Char = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unicharptr?language=objc)
 pub type UniCharPtr = *mut UniChar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unicharcount?language=objc)
 pub type UniCharCount = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unicharcountptr?language=objc)
 pub type UniCharCountPtr = *mut UniCharCount;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/str255?language=objc)
 pub type Str255 = ArrayUnknownABI<[c_uchar; 256]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/str63?language=objc)
 pub type Str63 = ArrayUnknownABI<[c_uchar; 64]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/str32?language=objc)
 pub type Str32 = ArrayUnknownABI<[c_uchar; 33]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/str31?language=objc)
 pub type Str31 = ArrayUnknownABI<[c_uchar; 32]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/str27?language=objc)
 pub type Str27 = ArrayUnknownABI<[c_uchar; 28]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/str15?language=objc)
 pub type Str15 = ArrayUnknownABI<[c_uchar; 16]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/str32field?language=objc)
 pub type Str32Field = ArrayUnknownABI<[c_uchar; 34]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/strfilename?language=objc)
 pub type StrFileName = Str63;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/stringptr?language=objc)
 pub type StringPtr = *mut c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/stringhandle?language=objc)
 pub type StringHandle = *mut StringPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/conststringptr?language=objc)
 pub type ConstStringPtr = *const c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/conststr255param?language=objc)
 pub type ConstStr255Param = *const c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/conststr63param?language=objc)
 pub type ConstStr63Param = *const c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/conststr32param?language=objc)
 pub type ConstStr32Param = *const c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/conststr31param?language=objc)
 pub type ConstStr31Param = *const c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/conststr27param?language=objc)
 pub type ConstStr27Param = *const c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/conststr15param?language=objc)
 pub type ConstStr15Param = *const c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/conststrfilenameparam?language=objc)
 pub type ConstStrFileNameParam = ConstStr63Param;
 
 /// ******************************************************************************
@@ -1379,8 +1271,6 @@ pub type ConstStrFileNameParam = ConstStr63Param;
 /// Process Manager type ProcessSerialNumber (previously in Processes.h)
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/processserialnumber?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ProcessSerialNumber {
@@ -1388,7 +1278,6 @@ pub struct ProcessSerialNumber {
     pub lowLongOfPSN: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/processserialnumberptr?language=objc)
 pub type ProcessSerialNumberPtr = *mut ProcessSerialNumber;
 
 /// ******************************************************************************
@@ -1407,8 +1296,6 @@ pub type ProcessSerialNumberPtr = *mut ProcessSerialNumber;
 /// used as fields in non-packed records or as parameters.
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/point?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Point {
@@ -1416,10 +1303,8 @@ pub struct Point {
     pub h: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/pointptr?language=objc)
 pub type PointPtr = *mut Point;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/rect?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Rect {
@@ -1429,10 +1314,8 @@ pub struct Rect {
     pub right: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/rectptr?language=objc)
 pub type RectPtr = *mut Rect;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/fixedpoint?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct FixedPoint {
@@ -1440,7 +1323,6 @@ pub struct FixedPoint {
     pub y: Fixed,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/fixedrect?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct FixedRect {
@@ -1450,33 +1332,21 @@ pub struct FixedRect {
     pub bottom: Fixed,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/charparameter?language=objc)
 pub type CharParameter = c_short;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/normal?language=objc)
 pub const normal: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/bold?language=objc)
 pub const bold: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/italic?language=objc)
 pub const italic: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/underline?language=objc)
 pub const underline: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/outline?language=objc)
 pub const outline: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/shadow?language=objc)
 pub const shadow: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/condense?language=objc)
 pub const condense: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/extend?language=objc)
 pub const extend: c_uint = 0x40;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/style?language=objc)
 pub type Style = c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/styleparameter?language=objc)
 pub type StyleParameter = c_short;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/stylefield?language=objc)
 pub type StyleField = Style;
 
 /// ******************************************************************************
@@ -1491,20 +1361,14 @@ pub type StyleField = Style;
 /// TimeRecord          Package of TimeBase, duration, and scale
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/timevalue?language=objc)
 pub type TimeValue = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/timescale?language=objc)
 pub type TimeScale = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/comptimevalue?language=objc)
 pub type CompTimeValue = wide;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/timevalue64?language=objc)
 pub type TimeValue64 = i64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/timebaserecord?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct TimeBaseRecord {
@@ -1516,10 +1380,8 @@ unsafe impl RefEncode for TimeBaseRecord {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("TimeBaseRecord", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/timebase?language=objc)
 pub type TimeBase = *mut TimeBaseRecord;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/timerecord?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct TimeRecord {
@@ -1528,7 +1390,6 @@ pub struct TimeRecord {
     pub base: TimeBase,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/numversion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NumVersion {
@@ -1538,16 +1399,11 @@ pub struct NumVersion {
     pub majorRev: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/developstage?language=objc)
 pub const developStage: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/alphastage?language=objc)
 pub const alphaStage: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/betastage?language=objc)
 pub const betaStage: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/finalstage?language=objc)
 pub const finalStage: c_uint = 0x80;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/numversionvariant?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union NumVersionVariant {
@@ -1555,13 +1411,10 @@ pub union NumVersionVariant {
     pub whole: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/numversionvariantptr?language=objc)
 pub type NumVersionVariantPtr = *mut NumVersionVariant;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/numversionvarianthandle?language=objc)
 pub type NumVersionVariantHandle = *mut NumVersionVariantPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/versrec?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct VersRec {
@@ -1571,10 +1424,8 @@ pub struct VersRec {
     pub reserved: Str255,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/versrecptr?language=objc)
 pub type VersRecPtr = *mut VersRec;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/versrechndl?language=objc)
 pub type VersRecHndl = *mut VersRecPtr;
 
 /// *******************************************************************************
@@ -1582,26 +1433,18 @@ pub type VersRecHndl = *mut VersRecPtr;
 /// Old names for types
 ///
 /// *******************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/__builtin__/byte?language=objc)
 pub type Byte = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/signedbyte?language=objc)
 pub type SignedByte = i8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/wideptr?language=objc)
 pub type WidePtr = *mut wide;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/unsignedwideptr?language=objc)
 pub type UnsignedWidePtr = *mut UnsignedWide;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/extended80?language=objc)
 pub type extended80 = Float80;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/extended96?language=objc)
 pub type extended96 = Float96;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/vhselect?language=objc)
 pub type VHSelect = i8;
 
 extern "C-unwind" {
@@ -1634,21 +1477,18 @@ extern "C-unwind" {
     pub fn SysBreakFunc(debugger_msg: ConstStr255Param);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/_osunalignedu16?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _OSUnalignedU16 {
     pub(crate) __val: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/_osunalignedu32?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _OSUnalignedU32 {
     pub(crate) __val: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/_osunalignedu64?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _OSUnalignedU64 {
@@ -1667,11 +1507,8 @@ pub struct _OSUnalignedU64 {
 
 // TODO: pub fn OSWriteSwapInt64(base: *mut c_void,offset: usize,data: u64,);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/osunknownbyteorder?language=objc)
 pub const OSUnknownByteOrder: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/oslittleendian?language=objc)
 pub const OSLittleEndian: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/osbigendian?language=objc)
 pub const OSBigEndian: c_uint = 2;
 
 // TODO: pub fn OSHostByteOrder() -> i32;
@@ -1688,44 +1525,31 @@ pub const OSBigEndian: c_uint = 2;
 
 // TODO: pub fn _OSWriteInt64(base: *mut c_void,byte_offset: usize,data: u64,);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_buf_ptr_t?language=objc)
 pub type io_buf_ptr_t = *mut c_char;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_name_t?language=objc)
 pub type io_name_t = ArrayUnknownABI<[c_char; 128]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_string_t?language=objc)
 pub type io_string_t = ArrayUnknownABI<[c_char; 512]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_string_inband_t?language=objc)
 pub type io_string_inband_t = ArrayUnknownABI<[c_char; 4096]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_struct_inband_t?language=objc)
 pub type io_struct_inband_t = ArrayUnknownABI<[c_char; 4096]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_user_scalar_t?language=objc)
 pub type io_user_scalar_t = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_user_reference_t?language=objc)
 pub type io_user_reference_t = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_scalar_inband_t?language=objc)
 pub type io_scalar_inband_t = ArrayUnknownABI<[io_user_scalar_t; 16]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_async_ref_t?language=objc)
 pub type io_async_ref_t = ArrayUnknownABI<[io_user_reference_t; 8]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_scalar_inband64_t?language=objc)
 pub type io_scalar_inband64_t = ArrayUnknownABI<[io_user_scalar_t; 16]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_async_ref64_t?language=objc)
 pub type io_async_ref64_t = ArrayUnknownABI<[io_user_reference_t; 8]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_object_t?language=objc)
 pub type io_object_t = mach_port_t;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/main_device_port?language=objc)
     pub static main_device_port: mach_port_t;
 }
 
@@ -1745,10 +1569,8 @@ extern "C-unwind" {
     pub fn _Block_object_dispose(param1: *const c_void, param1: c_int);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/block/_nsconcreteglobalblock?language=objc)
 pub static _NSConcreteGlobalBlock: ArrayUnknownABI<[*mut c_void; 32]> = 32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/block/_nsconcretestackblock?language=objc)
 pub static _NSConcreteStackBlock: ArrayUnknownABI<[*mut c_void; 32]> = 32;
 
 extern "C-unwind" {

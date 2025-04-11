@@ -4,13 +4,10 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcp_seq?language=objc)
 pub type tcp_seq = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcp_cc?language=objc)
 pub type tcp_cc = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcphdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcphdr {
@@ -26,7 +23,6 @@ pub struct tcphdr {
     pub th_urp: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcp_connection_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcp_connection_info {

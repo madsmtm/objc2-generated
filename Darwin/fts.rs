@@ -6,7 +6,6 @@ use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fts_fts_options?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union FTS_fts_options {
@@ -14,7 +13,6 @@ pub union FTS_fts_options {
     pub fts_compar_b: *mut block2::Block<dyn Fn() -> c_int>,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fts?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct FTS {
@@ -29,7 +27,6 @@ pub struct FTS {
     pub fts_options: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_ftsent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _ftsent {
@@ -55,7 +52,6 @@ pub struct _ftsent {
     pub fts_name: [c_char; 1],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ftsent?language=objc)
 pub type FTSENT = Self;
 
 #[inline]

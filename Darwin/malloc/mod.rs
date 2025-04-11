@@ -12,7 +12,6 @@ use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_malloc_zone_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _malloc_zone_t {
@@ -54,7 +53,6 @@ pub struct _malloc_zone_t {
     >,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_zone_t?language=objc)
 pub type malloc_zone_t = Self;
 
 /// Information about where and how malloc was called
@@ -67,8 +65,6 @@ pub type malloc_zone_t = Self;
 ///
 /// Set in malloc_type_summary_v0_t if the type being allocated is an array, e.g.
 /// allocated via new[] or calloc(count, size)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_type_callsite_flags_v0_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct malloc_type_callsite_flags_v0_t(pub c_uint);
@@ -88,8 +84,6 @@ impl malloc_type_callsite_flags_v0_t {
 ///
 ///
 /// Marks a type allocated by the C++ runtime's operator new
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_type_kind_v0_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct malloc_type_kind_v0_t(pub c_uint);
@@ -120,8 +114,6 @@ impl malloc_type_kind_v0_t {
 ///
 /// Field: contains_generic_data
 /// True if the allocated type or any of its fields are not pointers
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_type_layout_semantics_v0_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct malloc_type_layout_semantics_v0_t {
@@ -152,8 +144,6 @@ pub struct malloc_type_layout_semantics_v0_t {
 ///
 /// The reserved fields should not be read from or written to, and may be
 /// used for additional fields and information in future versions
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_type_summary_v0_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct malloc_type_summary_v0_t {
@@ -165,7 +155,6 @@ pub struct malloc_type_summary_v0_t {
     pub layout_semantics: malloc_type_layout_semantics_v0_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_type_descriptor_v0_t_type_id?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct malloc_type_descriptor_v0_t_type_id {
@@ -194,8 +183,6 @@ pub struct malloc_type_descriptor_v0_t_type_id {
 /// </code>
 ///
 /// See LLVM documentation for more details
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_type_descriptor_v0_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union malloc_type_descriptor_v0_t {
@@ -338,7 +325,6 @@ extern "C-unwind" {
     pub fn malloc_zone_pressure_relief(zone: Option<&malloc_zone_t>, goal: usize) -> usize;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vm_range_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vm_range_t {
@@ -346,7 +332,6 @@ pub struct vm_range_t {
     pub size: vm_size_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_statistics_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct malloc_statistics_t {
@@ -356,16 +341,12 @@ pub struct malloc_statistics_t {
     pub size_allocated: usize,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/memory_reader_t?language=objc)
 pub type memory_reader_t = core::ffi::c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vm_range_recorder_t?language=objc)
 pub type vm_range_recorder_t = core::ffi::c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/print_task_printer_t?language=objc)
 pub type print_task_printer_t = core::ffi::c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_introspection_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct malloc_introspection_t {
@@ -458,7 +439,6 @@ extern "C-unwind" {
     pub fn malloc_zone_log(zone: Option<&malloc_zone_t>, address: *mut c_void);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/mstats?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct mstats {

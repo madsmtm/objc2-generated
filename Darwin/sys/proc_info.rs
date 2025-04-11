@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_bsdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_bsdinfo {
@@ -32,7 +31,6 @@ pub struct proc_bsdinfo {
     pub pbi_start_tvusec: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_bsdshortinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_bsdshortinfo {
@@ -51,7 +49,6 @@ pub struct proc_bsdshortinfo {
     pub pbsi_rfu: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_taskinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_taskinfo {
@@ -75,7 +72,6 @@ pub struct proc_taskinfo {
     pub pti_priority: i32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_taskallinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_taskallinfo {
@@ -83,7 +79,6 @@ pub struct proc_taskallinfo {
     pub ptinfo: proc_taskinfo,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_threadinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_threadinfo {
@@ -100,7 +95,6 @@ pub struct proc_threadinfo {
     pub pth_name: [c_char; 64],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_regioninfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_regioninfo {
@@ -127,7 +121,6 @@ pub struct proc_regioninfo {
     pub pri_size: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_workqueueinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_workqueueinfo {
@@ -137,7 +130,6 @@ pub struct proc_workqueueinfo {
     pub pwq_state: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_fileinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_fileinfo {
@@ -148,7 +140,6 @@ pub struct proc_fileinfo {
     pub fi_guardflags: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_exitreasonbasicinfo?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_exitreasonbasicinfo {
@@ -158,7 +149,6 @@ pub struct proc_exitreasonbasicinfo {
     pub beri_reason_buf_size: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_exitreasoninfo?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_exitreasoninfo {
@@ -169,7 +159,6 @@ pub struct proc_exitreasoninfo {
     pub eri_kcd_buf: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vinfo_stat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vinfo_stat {
@@ -196,7 +185,6 @@ pub struct vinfo_stat {
     pub vst_qspare: [i64; 2],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vnode_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vnode_info {
@@ -206,7 +194,6 @@ pub struct vnode_info {
     pub vi_fsid: fsid_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vnode_info_path?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vnode_info_path {
@@ -214,7 +201,6 @@ pub struct vnode_info_path {
     pub vip_path: [c_char; 1024],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vnode_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vnode_fdinfo {
@@ -222,7 +208,6 @@ pub struct vnode_fdinfo {
     pub pvi: vnode_info,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vnode_fdinfowithpath?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vnode_fdinfowithpath {
@@ -230,7 +215,6 @@ pub struct vnode_fdinfowithpath {
     pub pvip: vnode_info_path,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_regionwithpathinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_regionwithpathinfo {
@@ -238,7 +222,6 @@ pub struct proc_regionwithpathinfo {
     pub prp_vip: vnode_info_path,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_regionpath?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_regionpath {
@@ -247,7 +230,6 @@ pub struct proc_regionpath {
     pub prpo_path: [c_char; 1024],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_vnodepathinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_vnodepathinfo {
@@ -255,7 +237,6 @@ pub struct proc_vnodepathinfo {
     pub pvi_rdir: vnode_info_path,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_threadwithpathinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_threadwithpathinfo {
@@ -263,7 +244,6 @@ pub struct proc_threadwithpathinfo {
     pub pvip: vnode_info_path,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in4in6_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in4in6_addr {
@@ -271,7 +251,6 @@ pub struct in4in6_addr {
     pub i46a_addr4: in_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_sockinfo_insi_faddr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union in_sockinfo_insi_faddr {
@@ -279,7 +258,6 @@ pub union in_sockinfo_insi_faddr {
     pub ina_6: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_sockinfo_insi_laddr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union in_sockinfo_insi_laddr {
@@ -287,14 +265,12 @@ pub union in_sockinfo_insi_laddr {
     pub ina_6: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_sockinfo_insi_v4?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_sockinfo_insi_v4 {
     pub in4_tos: c_uchar,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_sockinfo_insi_v6?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_sockinfo_insi_v6 {
@@ -304,7 +280,6 @@ pub struct in_sockinfo_insi_v6 {
     pub in6_hops: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_sockinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in_sockinfo {
@@ -322,7 +297,6 @@ pub struct in_sockinfo {
     pub insi_v6: in_sockinfo_insi_v6,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcp_sockinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct tcp_sockinfo {
@@ -335,7 +309,6 @@ pub struct tcp_sockinfo {
     pub tcpsi_tp: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/un_sockinfo_unsi_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union un_sockinfo_unsi_addr {
@@ -343,7 +316,6 @@ pub union un_sockinfo_unsi_addr {
     pub ua_dummy: [c_char; 255],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/un_sockinfo_unsi_caddr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union un_sockinfo_unsi_caddr {
@@ -351,7 +323,6 @@ pub union un_sockinfo_unsi_caddr {
     pub ua_dummy: [c_char; 255],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/un_sockinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct un_sockinfo {
@@ -361,7 +332,6 @@ pub struct un_sockinfo {
     pub unsi_caddr: un_sockinfo_unsi_caddr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ndrv_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ndrv_info {
@@ -370,7 +340,6 @@ pub struct ndrv_info {
     pub ndrvsi_if_name: [c_char; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kern_event_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kern_event_info {
@@ -379,7 +348,6 @@ pub struct kern_event_info {
     pub kesi_subclass_filter: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kern_ctl_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kern_ctl_info {
@@ -392,7 +360,6 @@ pub struct kern_ctl_info {
     pub kcsi_name: [c_char; 96],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vsock_sockinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vsock_sockinfo {
@@ -402,7 +369,6 @@ pub struct vsock_sockinfo {
     pub remote_port: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockbuf_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockbuf_info {
@@ -415,24 +381,15 @@ pub struct sockbuf_info {
     pub sbi_timeo: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockinfo_generic?language=objc)
 pub const SOCKINFO_GENERIC: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockinfo_in?language=objc)
 pub const SOCKINFO_IN: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockinfo_tcp?language=objc)
 pub const SOCKINFO_TCP: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockinfo_un?language=objc)
 pub const SOCKINFO_UN: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockinfo_ndrv?language=objc)
 pub const SOCKINFO_NDRV: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockinfo_kern_event?language=objc)
 pub const SOCKINFO_KERN_EVENT: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockinfo_kern_ctl?language=objc)
 pub const SOCKINFO_KERN_CTL: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockinfo_vsock?language=objc)
 pub const SOCKINFO_VSOCK: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/socket_info_soi_proto?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union socket_info_soi_proto {
@@ -445,7 +402,6 @@ pub union socket_info_soi_proto {
     pub pri_vsock: vsock_sockinfo,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/socket_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct socket_info {
@@ -471,7 +427,6 @@ pub struct socket_info {
     pub soi_proto: socket_info_soi_proto,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/socket_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct socket_fdinfo {
@@ -479,7 +434,6 @@ pub struct socket_fdinfo {
     pub psi: socket_info,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/psem_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct psem_info {
@@ -487,7 +441,6 @@ pub struct psem_info {
     pub psem_name: [c_char; 1024],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/psem_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct psem_fdinfo {
@@ -495,7 +448,6 @@ pub struct psem_fdinfo {
     pub pseminfo: psem_info,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/pshm_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pshm_info {
@@ -504,7 +456,6 @@ pub struct pshm_info {
     pub pshm_name: [c_char; 1024],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/pshm_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pshm_fdinfo {
@@ -512,7 +463,6 @@ pub struct pshm_fdinfo {
     pub pshminfo: pshm_info,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/pipe_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pipe_info {
@@ -523,7 +473,6 @@ pub struct pipe_info {
     pub rfu_1: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/pipe_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pipe_fdinfo {
@@ -531,7 +480,6 @@ pub struct pipe_fdinfo {
     pub pipeinfo: pipe_info,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kqueue_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kqueue_info {
@@ -540,7 +488,6 @@ pub struct kqueue_info {
     pub rfu_1: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kqueue_dyninfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kqueue_dyninfo {
@@ -559,7 +506,6 @@ pub struct kqueue_dyninfo {
     pub(crate) _kqdi_reserved1: [u64; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kqueue_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kqueue_fdinfo {
@@ -567,14 +513,12 @@ pub struct kqueue_fdinfo {
     pub kqueueinfo: kqueue_info,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/appletalk_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct appletalk_info {
     pub atalk_stat: vinfo_stat,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/appletalk_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct appletalk_fdinfo {
@@ -582,10 +526,8 @@ pub struct appletalk_fdinfo {
     pub appletalkinfo: appletalk_info,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_info_udata_t?language=objc)
 pub type proc_info_udata_t = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_fdinfo {
@@ -593,7 +535,6 @@ pub struct proc_fdinfo {
     pub proc_fdtype: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_fileportinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_fileportinfo {
@@ -601,7 +542,6 @@ pub struct proc_fileportinfo {
     pub proc_fdtype: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_channel_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_channel_info {
@@ -612,7 +552,6 @@ pub struct proc_channel_info {
     pub rfu_1: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/channel_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct channel_fdinfo {

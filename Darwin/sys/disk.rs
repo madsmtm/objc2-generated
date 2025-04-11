@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_extent_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_extent_t {
@@ -12,14 +11,12 @@ pub struct dk_extent_t {
     pub length: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_firmware_path_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_firmware_path_t {
     pub path: [c_char; 128],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_format_capacity_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_format_capacity_t {
@@ -28,7 +25,6 @@ pub struct dk_format_capacity_t {
     pub reserved0096: [u8; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_format_capacities_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_format_capacities_t {
@@ -37,7 +33,6 @@ pub struct dk_format_capacities_t {
     pub reserved0096: [u8; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_synchronize_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_synchronize_t {
@@ -47,7 +42,6 @@ pub struct dk_synchronize_t {
     pub reserved0160: [u8; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_unmap_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_unmap_t {
@@ -56,7 +50,6 @@ pub struct dk_unmap_t {
     pub options: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_corestorage_info_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_corestorage_info_t {
@@ -67,7 +60,6 @@ pub struct dk_corestorage_info_t {
     pub padding: [u64; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_provision_extent_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_provision_extent_t {
@@ -77,7 +69,6 @@ pub struct dk_provision_extent_t {
     pub reserved: [u8; 7],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_provision_status_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_provision_status_t {
@@ -89,7 +80,6 @@ pub struct dk_provision_status_t {
     pub extents: *mut dk_provision_extent_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_error_description_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_error_description_t {

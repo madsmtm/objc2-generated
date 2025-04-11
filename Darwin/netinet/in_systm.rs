@@ -3,11 +3,8 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/n_short?language=objc)
 pub type n_short = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/n_long?language=objc)
 pub type n_long = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/n_time?language=objc)
 pub type n_time = u32;

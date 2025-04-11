@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifaddrs?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifaddrs {
@@ -17,7 +16,6 @@ pub struct ifaddrs {
     pub ifa_data: *mut c_void,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifmaddrs?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifmaddrs {

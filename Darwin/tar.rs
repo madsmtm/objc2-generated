@@ -5,5 +5,4 @@ use core::ptr::NonNull;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tversion?language=objc)
 pub const TVERSION: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"00\0") };

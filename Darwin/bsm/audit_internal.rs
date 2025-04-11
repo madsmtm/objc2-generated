@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_token_tokens?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_token_tokens {
@@ -12,7 +11,6 @@ pub struct au_token_tokens {
     pub tqe_prev: *mut *mut Self,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_token?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_token {
@@ -21,7 +19,6 @@ pub struct au_token {
     pub tokens: au_token_tokens,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_record_token_q?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_record_token_q {
@@ -29,7 +26,6 @@ pub struct au_record_token_q {
     pub tqh_last: *mut *mut Self,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_record_au_rec_q?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_record_au_rec_q {
@@ -37,7 +33,6 @@ pub struct au_record_au_rec_q {
     pub le_prev: *mut *mut Self,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_record?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_record {
@@ -49,5 +44,4 @@ pub struct au_record {
     pub au_rec_q: au_record_au_rec_q,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_record_t?language=objc)
 pub type au_record_t = Self;

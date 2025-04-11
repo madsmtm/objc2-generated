@@ -4,11 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/igps_version_3?language=objc)
 pub const IGPS_VERSION_3: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/igps_version3_len?language=objc)
 pub const IGPS_VERSION3_LEN: c_uint = 168;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/igmpstat_v3?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmpstat_v3 {
@@ -33,7 +30,6 @@ pub struct igmpstat_v3 {
     pub(crate) __igps_pad: [u64; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/igmpstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmpstat {

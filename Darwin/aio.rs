@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/aiocb?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct aiocb {

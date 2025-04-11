@@ -5,7 +5,6 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/mount?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct mount {
@@ -17,5 +16,4 @@ unsafe impl RefEncode for mount {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("mount", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/mount_t?language=objc)
 pub type mount_t = *mut mount;

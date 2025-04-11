@@ -4,9 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rtm_version?language=objc)
 pub const RTM_VERSION: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rt_metrics?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_metrics {
@@ -23,7 +21,6 @@ pub struct rt_metrics {
     pub rmx_filler: [u32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rtstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rtstat {
@@ -35,7 +32,6 @@ pub struct rtstat {
     pub rts_badrtgwroute: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rt_msghdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_msghdr {
@@ -53,7 +49,6 @@ pub struct rt_msghdr {
     pub rtm_rmx: rt_metrics,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rt_msghdr2?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_msghdr2 {
@@ -71,14 +66,12 @@ pub struct rt_msghdr2 {
     pub rtm_rmx: rt_metrics,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rt_msghdr_prelude?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_msghdr_prelude {
     pub rtm_msglen: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rt_addrinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_addrinfo {

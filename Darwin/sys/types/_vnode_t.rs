@@ -5,7 +5,6 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vnode?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct vnode {
@@ -17,5 +16,4 @@ unsafe impl RefEncode for vnode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("vnode", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vnode_t?language=objc)
 pub type vnode_t = *mut vnode;

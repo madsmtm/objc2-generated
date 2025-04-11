@@ -5,7 +5,6 @@ use __builtin__::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ntsid_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ntsid_t {
@@ -15,7 +14,6 @@ pub struct ntsid_t {
     pub sid_authorities: [u32; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_identity_extlookup?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kauth_identity_extlookup {
@@ -40,7 +38,6 @@ pub struct kauth_identity_extlookup {
     pub el_sup_groups: [gid_t; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_cache_sizes?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kauth_cache_sizes {
@@ -48,10 +45,8 @@ pub struct kauth_cache_sizes {
     pub kcs_id_size: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_ace_rights_t?language=objc)
 pub type kauth_ace_rights_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_ace?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kauth_ace {
@@ -60,10 +55,8 @@ pub struct kauth_ace {
     pub ace_rights: kauth_ace_rights_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_ace_t?language=objc)
 pub type kauth_ace_t = *mut kauth_ace;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_acl?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kauth_acl {
@@ -72,10 +65,8 @@ pub struct kauth_acl {
     pub acl_ace: [kauth_ace; 1],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_acl_t?language=objc)
 pub type kauth_acl_t = *mut kauth_acl;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_filesec?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kauth_filesec {
@@ -85,5 +76,4 @@ pub struct kauth_filesec {
     pub fsec_acl: kauth_acl,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_filesec_t?language=objc)
 pub type kauth_filesec_t = *mut kauth_filesec;

@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vtype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct vtype(pub c_uint);
@@ -22,7 +21,6 @@ impl vtype {
     pub const VCPLX: Self = Self(10);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vtagtype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct vtagtype(pub c_uint);
@@ -57,7 +55,6 @@ impl vtagtype {
     pub const VT_BINDFS: Self = Self(27);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/io_compression_stats?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct io_compression_stats {
@@ -67,10 +64,8 @@ pub struct io_compression_stats {
     pub block_compressed_size_dist: [u32; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/io_compression_stats_t?language=objc)
 pub type io_compression_stats_t = *mut io_compression_stats;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/iocs_store_buffer_entry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct iocs_store_buffer_entry {

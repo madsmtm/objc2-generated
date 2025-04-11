@@ -4,10 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/comp_t?language=objc)
 pub type comp_t = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct acct {

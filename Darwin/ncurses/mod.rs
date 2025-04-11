@@ -203,40 +203,27 @@ use core::ptr::NonNull;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_version_major?language=objc)
 pub const NCURSES_VERSION_MAJOR: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_version_minor?language=objc)
 pub const NCURSES_VERSION_MINOR: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_version_patch?language=objc)
 pub const NCURSES_VERSION_PATCH: c_uint = 20150808;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_version?language=objc)
 pub const NCURSES_VERSION: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"6.0\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_mouse_version?language=objc)
 pub const NCURSES_MOUSE_VERSION: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/chtype?language=objc)
 pub type chtype = c_uint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/mmask_t?language=objc)
 pub type mmask_t = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_bool?language=objc)
 pub type NCURSES_BOOL = c_uchar;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acs_map?language=objc)
     pub static acs_map: *mut chtype;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/screen?language=objc)
 pub type SCREEN = screen;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/window?language=objc)
 pub type WINDOW = _win_st;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/attr_t?language=objc)
 pub type attr_t = chtype;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_outc?language=objc)
 pub type NCURSES_OUTC = Option<unsafe extern "C-unwind" fn(c_int) -> c_int>;
 
 extern "C-unwind" {
@@ -1492,10 +1479,8 @@ extern "C-unwind" {
     pub fn getpary(param1: *const WINDOW) -> c_int;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_window_cb?language=objc)
 pub type NCURSES_WINDOW_CB = Option<unsafe extern "C-unwind" fn(*mut WINDOW, *mut c_void) -> c_int>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_screen_cb?language=objc)
 pub type NCURSES_SCREEN_CB = Option<unsafe extern "C-unwind" fn(*mut SCREEN, *mut c_void) -> c_int>;
 
 extern "C-unwind" {
@@ -2629,56 +2614,45 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/curscr?language=objc)
     pub static curscr: *mut WINDOW;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/newscr?language=objc)
     pub static newscr: *mut WINDOW;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/stdscr?language=objc)
     pub static stdscr: *mut WINDOW;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ttytype?language=objc)
     pub static ttytype: *mut c_char;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/colors?language=objc)
     pub static COLORS: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/color_pairs?language=objc)
     pub static COLOR_PAIRS: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/cols?language=objc)
     pub static COLS: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/escdelay?language=objc)
     pub static ESCDELAY: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/lines?language=objc)
     pub static LINES: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/tabsize?language=objc)
     pub static TABSIZE: c_int;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/mevent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MEVENT {

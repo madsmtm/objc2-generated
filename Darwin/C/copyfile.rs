@@ -6,7 +6,6 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_copyfile_state?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _copyfile_state {
@@ -18,10 +17,8 @@ unsafe impl RefEncode for _copyfile_state {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_copyfile_state", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/copyfile_state_t?language=objc)
 pub type copyfile_state_t = *mut _copyfile_state;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/copyfile_flags_t?language=objc)
 pub type copyfile_flags_t = u32;
 
 extern "C-unwind" {
@@ -58,7 +55,6 @@ extern "C-unwind" {
     pub fn copyfile_state_set(s: copyfile_state_t, flag: u32, src: *const c_void) -> c_int;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/copyfile_callback_t?language=objc)
 pub type copyfile_callback_t = Option<
     unsafe extern "C-unwind" fn(
         c_int,

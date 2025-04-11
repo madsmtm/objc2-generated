@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/flock?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct flock {
@@ -15,7 +14,6 @@ pub struct flock {
     pub l_whence: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/flocktimeout?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct flocktimeout {
@@ -23,7 +21,6 @@ pub struct flocktimeout {
     pub timeout: timespec,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/radvisory?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct radvisory {
@@ -31,7 +28,6 @@ pub struct radvisory {
     pub ra_count: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsignatures?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fsignatures {
@@ -43,10 +39,8 @@ pub struct fsignatures {
     pub fs_hash_type: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsignatures_t?language=objc)
 pub type fsignatures_t = fsignatures;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsupplement?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fsupplement {
@@ -56,10 +50,8 @@ pub struct fsupplement {
     pub fs_orig_fd: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsupplement_t?language=objc)
 pub type fsupplement_t = fsupplement;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fchecklv?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fchecklv {
@@ -68,10 +60,8 @@ pub struct fchecklv {
     pub lv_error_message: *mut c_void,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fchecklv_t?language=objc)
 pub type fchecklv_t = fchecklv;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fgetsigsinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fgetsigsinfo {
@@ -80,10 +70,8 @@ pub struct fgetsigsinfo {
     pub fg_sig_is_platform: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fgetsigsinfo_t?language=objc)
 pub type fgetsigsinfo_t = fgetsigsinfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fstore?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fstore {
@@ -94,10 +82,8 @@ pub struct fstore {
     pub fst_bytesalloc: off_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fstore_t?language=objc)
 pub type fstore_t = fstore;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fpunchhole?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fpunchhole {
@@ -107,10 +93,8 @@ pub struct fpunchhole {
     pub fp_length: off_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fpunchhole_t?language=objc)
 pub type fpunchhole_t = fpunchhole;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ftrimactivefile?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ftrimactivefile {
@@ -118,10 +102,8 @@ pub struct ftrimactivefile {
     pub fta_length: off_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ftrimactivefile_t?language=objc)
 pub type ftrimactivefile_t = ftrimactivefile;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fspecread?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fspecread {
@@ -131,10 +113,8 @@ pub struct fspecread {
     pub fsr_length: off_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fspecread_t?language=objc)
 pub type fspecread_t = fspecread;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fattributiontag?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fattributiontag {
@@ -143,10 +123,8 @@ pub struct fattributiontag {
     pub ft_attribution_name: [c_char; 255],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fattributiontag_t?language=objc)
 pub type fattributiontag_t = fattributiontag;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/log2phys?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct log2phys {
@@ -155,7 +133,6 @@ pub struct log2phys {
     pub l2p_devoffset: off_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/filesec_property_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct filesec_property_t(pub c_uint);

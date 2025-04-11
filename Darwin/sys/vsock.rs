@@ -3,7 +3,6 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockaddr_vm?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_vm {
@@ -14,10 +13,8 @@ pub struct sockaddr_vm {
     pub svm_cid: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vsock_gen_t?language=objc)
 pub type vsock_gen_t = u_quad_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xvsockpcb?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xvsockpcb {
@@ -36,7 +33,6 @@ pub struct xvsockpcb {
     pub xv_socket: xsocket,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xvsockpgen?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xvsockpgen {

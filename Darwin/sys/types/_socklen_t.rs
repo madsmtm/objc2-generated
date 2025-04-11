@@ -3,5 +3,4 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/socklen_t?language=objc)
 pub type socklen_t = __darwin_socklen_t;

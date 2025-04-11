@@ -4,9 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/cryptex_auth_struct_version?language=objc)
 pub const CRYPTEX_AUTH_STRUCT_VERSION: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/statfs?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct statfs {
@@ -29,7 +27,6 @@ pub struct statfs {
     pub f_reserved: [u32; 7],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vfsstatfs?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfsstatfs {
@@ -51,7 +48,6 @@ pub struct vfsstatfs {
     pub f_reserved: [*mut c_void; 2],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vfsconf?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfsconf {
@@ -64,7 +60,6 @@ pub struct vfsconf {
     pub vfc_reserved3: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vfsidctl?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfsidctl {
@@ -75,7 +70,6 @@ pub struct vfsidctl {
     pub vc_spare: [u32; 12],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vfsquery?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfsquery {
@@ -83,7 +77,6 @@ pub struct vfsquery {
     pub vq_spare: [u32; 31],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vfs_server?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfs_server {
@@ -91,7 +84,6 @@ pub struct vfs_server {
     pub vs_server_name: [u8; 768],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/netfs_status?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct netfs_status {
@@ -102,7 +94,6 @@ pub struct netfs_status {
     pub ns_threadids: [u64; 0],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fhandle?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fhandle {
@@ -110,10 +101,8 @@ pub struct fhandle {
     pub fh_data: [c_uchar; 128],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fhandle_t?language=objc)
 pub type fhandle_t = fhandle;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/graftdmg_type_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct graftdmg_type_t(pub u32);
@@ -127,7 +116,6 @@ impl graftdmg_type_t {
     pub const GRAFTDMG_CRYPTEX_MAX: Self = Self(8);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/cryptex_auth_type_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct cryptex_auth_type_t(pub u32);

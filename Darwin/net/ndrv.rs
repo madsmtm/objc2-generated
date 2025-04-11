@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockaddr_ndrv?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_ndrv {
@@ -13,7 +12,6 @@ pub struct sockaddr_ndrv {
     pub snd_name: [c_uchar; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ndrv_demux_desc_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ndrv_demux_desc_data {
@@ -23,7 +21,6 @@ pub union ndrv_demux_desc_data {
     pub other: [u8; 28],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ndrv_demux_desc?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ndrv_demux_desc {
@@ -32,7 +29,6 @@ pub struct ndrv_demux_desc {
     pub data: ndrv_demux_desc_data,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ndrv_protocol_desc?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ndrv_protocol_desc {

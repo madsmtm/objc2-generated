@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/osatomic_int64_aligned64_t?language=objc)
 pub type OSAtomic_int64_aligned64_t = i64;
 
 extern "C-unwind" {
@@ -1069,7 +1068,6 @@ extern "C-unwind" {
     pub fn OSMemoryBarrier();
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/osfifoqueuehead?language=objc)
 pub type OSFifoQueueHead = UnknownStruct;
 
 extern "C-unwind" {
@@ -1173,8 +1171,6 @@ extern "C-unwind" {
 ///  
 ///
 /// ```
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/osspinlock?language=objc)
 pub type OSSpinLock = i32;
 
 extern "C-unwind" {
@@ -1208,7 +1204,6 @@ extern "C-unwind" {
     pub fn OSSpinLockUnlock(lock: *mut OSSpinLock);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/osqueuehead?language=objc)
 pub type OSQueueHead = UnknownStruct;
 
 extern "C-unwind" {

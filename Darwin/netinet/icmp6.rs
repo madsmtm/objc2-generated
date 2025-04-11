@@ -4,9 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmpv6ctl_mld_version?language=objc)
 pub const ICMPV6CTL_MLD_VERSION: c_uint = 23;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6_hdr_icmp6_dataun?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union icmp6_hdr_icmp6_dataun {
@@ -15,7 +13,6 @@ pub union icmp6_hdr_icmp6_dataun {
     pub icmp6_un_data8: [u8; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6_hdr?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_hdr {
@@ -25,7 +22,6 @@ pub struct icmp6_hdr {
     pub icmp6_dataun: icmp6_hdr_icmp6_dataun,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/mld_hdr?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct mld_hdr {
@@ -33,14 +29,12 @@ pub struct mld_hdr {
     pub mld_addr: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_router_solicit?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_router_solicit {
     pub nd_rs_hdr: icmp6_hdr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_router_advert?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_router_advert {
@@ -49,7 +43,6 @@ pub struct nd_router_advert {
     pub nd_ra_retransmit: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_neighbor_solicit?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_neighbor_solicit {
@@ -57,7 +50,6 @@ pub struct nd_neighbor_solicit {
     pub nd_ns_target: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_neighbor_advert?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_neighbor_advert {
@@ -65,7 +57,6 @@ pub struct nd_neighbor_advert {
     pub nd_na_target: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_redirect?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_redirect {
@@ -74,7 +65,6 @@ pub struct nd_redirect {
     pub nd_rd_dst: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_hdr?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_hdr {
@@ -82,7 +72,6 @@ pub struct nd_opt_hdr {
     pub nd_opt_len: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_prefix_info?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_opt_prefix_info {
@@ -96,7 +85,6 @@ pub struct nd_opt_prefix_info {
     pub nd_opt_pi_prefix: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_nonce?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_nonce {
@@ -105,7 +93,6 @@ pub struct nd_opt_nonce {
     pub nd_opt_nonce: [u8; 6],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_rd_hdr?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_rd_hdr {
@@ -115,7 +102,6 @@ pub struct nd_opt_rd_hdr {
     pub nd_opt_rh_reserved2: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_mtu?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_mtu {
@@ -125,7 +111,6 @@ pub struct nd_opt_mtu {
     pub nd_opt_mtu_mtu: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_route_info?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_route_info {
@@ -136,7 +121,6 @@ pub struct nd_opt_route_info {
     pub nd_opt_rti_lifetime: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_rdnss?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_rdnss {
@@ -147,7 +131,6 @@ pub struct nd_opt_rdnss {
     pub nd_opt_rdnss_addr: [in6_addr; 1],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_dnssl?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_dnssl {
@@ -158,7 +141,6 @@ pub struct nd_opt_dnssl {
     pub nd_opt_dnssl_domains: [u8; 8],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_pref64?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_pref64 {
@@ -168,7 +150,6 @@ pub struct nd_opt_pref64 {
     pub nd_opt_pref64_prefix: [u32; 3],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_opt_pvd?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_pvd {
@@ -179,7 +160,6 @@ pub struct nd_opt_pvd {
     pub nd_opt_pvd_id: [u8; 1],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6_namelookup?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_namelookup {
@@ -188,7 +168,6 @@ pub struct icmp6_namelookup {
     pub icmp6_nl_ttl: i32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6_nodeinfo?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_nodeinfo {
@@ -196,7 +175,6 @@ pub struct icmp6_nodeinfo {
     pub icmp6_ni_nonce: [u8; 8],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ni_reply_fqdn?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ni_reply_fqdn {
@@ -205,7 +183,6 @@ pub struct ni_reply_fqdn {
     pub ni_fqdn_name: [u8; 3],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6_router_renum?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_router_renum {
@@ -216,7 +193,6 @@ pub struct icmp6_router_renum {
     pub rr_reserved: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rr_pco_match?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct rr_pco_match {
@@ -230,7 +206,6 @@ pub struct rr_pco_match {
     pub rpm_prefix: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rr_pco_use?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct rr_pco_use {
@@ -244,7 +219,6 @@ pub struct rr_pco_use {
     pub rpu_prefix: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rr_result?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct rr_result {
@@ -255,14 +229,12 @@ pub struct rr_result {
     pub rrr_prefix: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6_filter?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6_filter {
     pub icmp6_filt: [u32; 8],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6errstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6errstat {
@@ -281,7 +253,6 @@ pub struct icmp6errstat {
     pub icp6errs_unknown: u_quad_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6stat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6stat {

@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_clonereq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_clonereq {
@@ -13,7 +12,6 @@ pub struct if_clonereq {
     pub ifcr_buffer: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_msghdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_msghdr {
@@ -26,7 +24,6 @@ pub struct if_msghdr {
     pub ifm_data: if_data,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifa_msghdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifa_msghdr {
@@ -39,7 +36,6 @@ pub struct ifa_msghdr {
     pub ifam_metric: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifma_msghdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifma_msghdr {
@@ -51,7 +47,6 @@ pub struct ifma_msghdr {
     pub ifmam_index: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_msghdr2?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_msghdr2 {
@@ -68,7 +63,6 @@ pub struct if_msghdr2 {
     pub ifm_data: if_data64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifma_msghdr2?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifma_msghdr2 {
@@ -81,7 +75,6 @@ pub struct ifma_msghdr2 {
     pub ifmam_refcount: i32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifdevmtu?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifdevmtu {
@@ -90,7 +83,6 @@ pub struct ifdevmtu {
     pub ifdm_max: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifkpi_ifk_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ifkpi_ifk_data {
@@ -98,7 +90,6 @@ pub union ifkpi_ifk_data {
     pub ifk_value: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifkpi?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifkpi {
@@ -107,7 +98,6 @@ pub struct ifkpi {
     pub ifk_data: ifkpi_ifk_data,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifreq_ifr_ifru?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ifreq_ifr_ifru {
@@ -132,7 +122,6 @@ pub union ifreq_ifr_ifru {
     pub ifru_is_vpn: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifreq {
@@ -140,7 +129,6 @@ pub struct ifreq {
     pub ifr_ifru: ifreq_ifr_ifru,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifaliasreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifaliasreq {
@@ -150,7 +138,6 @@ pub struct ifaliasreq {
     pub ifra_mask: sockaddr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rslvmulti_req?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rslvmulti_req {
@@ -158,7 +145,6 @@ pub struct rslvmulti_req {
     pub llsa: *mut *mut sockaddr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifmediareq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifmediareq {
@@ -171,7 +157,6 @@ pub struct ifmediareq {
     pub ifm_ulist: *mut c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifdrv?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifdrv {
@@ -181,7 +166,6 @@ pub struct ifdrv {
     pub ifd_data: *mut c_void,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifstat {
@@ -189,7 +173,6 @@ pub struct ifstat {
     pub ascii: [c_char; 801],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifconf_ifc_ifcu?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ifconf_ifc_ifcu {
@@ -197,7 +180,6 @@ pub union ifconf_ifc_ifcu {
     pub ifcu_req: *mut ifreq,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifconf?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifconf {
@@ -205,7 +187,6 @@ pub struct ifconf {
     pub ifc_ifcu: ifconf_ifc_ifcu,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_dl_proto_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_dl_proto_data {
@@ -214,7 +195,6 @@ pub struct kev_dl_proto_data {
     pub proto_remaining_count: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_nameindex?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_nameindex {

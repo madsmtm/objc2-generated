@@ -3,7 +3,6 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/llc_llc_un_type_u?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct llc_llc_un_type_u {
@@ -13,7 +12,6 @@ pub struct llc_llc_un_type_u {
     pub window_x2: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/llc_llc_un_type_i?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct llc_llc_un_type_i {
@@ -21,7 +19,6 @@ pub struct llc_llc_un_type_i {
     pub num_rcv_x2: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/llc_llc_un_type_s?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct llc_llc_un_type_s {
@@ -29,7 +26,6 @@ pub struct llc_llc_un_type_s {
     pub num_rcv_x2: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/llc_llc_un_type_frmr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct llc_llc_un_type_frmr {
@@ -41,7 +37,6 @@ pub struct llc_llc_un_type_frmr {
     pub frmr_cause: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/llc_llc_un_type_snap?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct llc_llc_un_type_snap {
@@ -50,7 +45,6 @@ pub struct llc_llc_un_type_snap {
     pub ether_type: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/llc_llc_un_type_raw?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct llc_llc_un_type_raw {
@@ -58,7 +52,6 @@ pub struct llc_llc_un_type_raw {
     pub control_ext: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/llc_llc_un?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union llc_llc_un {
@@ -70,7 +63,6 @@ pub union llc_llc_un {
     pub type_raw: llc_llc_un_type_raw,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/llc?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct llc {
@@ -79,7 +71,6 @@ pub struct llc {
     pub llc_un: llc_llc_un,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/frmrinfo?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct frmrinfo {

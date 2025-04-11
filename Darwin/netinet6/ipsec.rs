@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipsecstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipsecstat {
@@ -34,7 +33,6 @@ pub struct ipsecstat {
     pub out_comphist: [u_quad_t; 256],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipsec_wake_pkt_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipsec_wake_pkt_info {
@@ -45,7 +43,6 @@ pub struct ipsec_wake_pkt_info {
     pub wake_pkt_len: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipsec_wake_pkt_event_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipsec_wake_pkt_event_data {

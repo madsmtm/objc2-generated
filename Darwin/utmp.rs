@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/lastlog?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct lastlog {
@@ -13,7 +12,6 @@ pub struct lastlog {
     pub ll_host: [c_char; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/utmp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct utmp {

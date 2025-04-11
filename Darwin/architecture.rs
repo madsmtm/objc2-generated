@@ -4,10 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nxswappedfloat?language=objc)
 pub type NXSwappedFloat = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nxswappeddouble?language=objc)
 pub type NXSwappedDouble = c_ulonglong;
 
 // TODO: pub fn NXSwapShort(inv: c_ushort,) -> c_ushort;
@@ -30,7 +28,6 @@ pub type NXSwappedDouble = c_ulonglong;
 
 // TODO: pub fn NXSwapDouble(x: NXSwappedDouble,) -> NXSwappedDouble;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nxbyteorder?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NXByteOrder(pub c_uint);

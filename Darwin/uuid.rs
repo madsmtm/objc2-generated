@@ -6,10 +6,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/uuid_string_t?language=objc)
 pub type uuid_string_t = __darwin_uuid_string_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/uuid_null?language=objc)
 pub static UUID_NULL: uuid_t = UUID_DEFINE!(
     UnknownUUID_NULL,
     0,

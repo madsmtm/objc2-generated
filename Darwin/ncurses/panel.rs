@@ -6,7 +6,6 @@ use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/panel?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct panel {
@@ -16,7 +15,6 @@ pub struct panel {
     pub user: *mut c_void,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/panel?language=objc)
 pub type PANEL = Self;
 
 extern "C-unwind" {

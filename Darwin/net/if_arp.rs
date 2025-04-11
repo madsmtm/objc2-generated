@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/arphdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct arphdr {
@@ -15,7 +14,6 @@ pub struct arphdr {
     pub ar_op: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/arpreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct arpreq {
@@ -24,7 +22,6 @@ pub struct arpreq {
     pub arp_flags: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/arpstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct arpstat {

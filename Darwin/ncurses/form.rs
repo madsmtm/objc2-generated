@@ -6,20 +6,15 @@ use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/field_cell?language=objc)
 pub type FIELD_CELL = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/form_options?language=objc)
 pub type Form_Options = c_int;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/field_options?language=objc)
 pub type Field_Options = c_int;
 
 /// ********
 /// _PAGE  *
 /// ********
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/_page?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _PAGE {
@@ -32,8 +27,6 @@ pub struct _PAGE {
 /// ********
 /// FIELD  *
 /// ********
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/fieldnode?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fieldnode {
@@ -67,15 +60,11 @@ pub struct fieldnode {
 /// ********
 /// FIELD  *
 /// ********
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/field?language=objc)
 pub type FIELD = Self;
 
 /// *******
 /// FORM  *
 /// *******
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/formnode?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct formnode {
@@ -106,15 +95,11 @@ pub struct formnode {
 /// *******
 /// FORM  *
 /// *******
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/form?language=objc)
 pub type FORM = Self;
 
 /// ************
 /// FIELDTYPE  *
 /// ************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/typenode?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct typenode {
@@ -134,44 +119,34 @@ pub struct typenode {
 /// ************
 /// FIELDTYPE  *
 /// ************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/fieldtype?language=objc)
 pub type FIELDTYPE = Self;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/form_hook?language=objc)
 pub type Form_Hook = Option<unsafe extern "C-unwind" fn(*mut FORM)>;
 
 extern "C" {
     /// ***********************
     /// standard field types  *
     /// ***********************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/type_alpha?language=objc)
     pub static TYPE_ALPHA: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_alnum?language=objc)
     pub static TYPE_ALNUM: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_enum?language=objc)
     pub static TYPE_ENUM: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_integer?language=objc)
     pub static TYPE_INTEGER: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_numeric?language=objc)
     pub static TYPE_NUMERIC: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_regexp?language=objc)
     pub static TYPE_REGEXP: Option<&'static FIELDTYPE>;
 }
 
@@ -180,8 +155,6 @@ extern "C" {
     /// built-in additional field types  *
     /// They are not defined in SVr4     *
     /// **********************************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/type_ipv4?language=objc)
     pub static TYPE_IPV4: Option<&'static FIELDTYPE>;
 }
 

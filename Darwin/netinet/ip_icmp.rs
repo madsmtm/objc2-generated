@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp_ra_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp_ra_addr {
@@ -12,7 +11,6 @@ pub struct icmp_ra_addr {
     pub ira_preference: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ih_idseq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ih_idseq {
@@ -20,7 +18,6 @@ pub struct ih_idseq {
     pub icd_seq: n_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ih_pmtu?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ih_pmtu {
@@ -28,7 +25,6 @@ pub struct ih_pmtu {
     pub ipm_nextmtu: n_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ih_rtradv?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ih_rtradv {
@@ -37,7 +33,6 @@ pub struct ih_rtradv {
     pub irt_lifetime: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp_icmp_hun?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union icmp_icmp_hun {
@@ -49,7 +44,6 @@ pub union icmp_icmp_hun {
     pub ih_rtradv: ih_rtradv,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/id_ts?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct id_ts {
@@ -58,14 +52,12 @@ pub struct id_ts {
     pub its_ttime: n_time,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/id_ip?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct id_ip {
     pub idi_ip: ip,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp_icmp_dun?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union icmp_icmp_dun {
@@ -76,7 +68,6 @@ pub union icmp_icmp_dun {
     pub id_data: [c_char; 1],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct icmp {

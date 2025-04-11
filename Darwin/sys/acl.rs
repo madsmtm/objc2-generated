@@ -6,7 +6,6 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_perm_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_perm_t(pub c_uint);
@@ -31,7 +30,6 @@ impl acl_perm_t {
     pub const ACL_SYNCHRONIZE: Self = Self(__DARWIN_ACL_SYNCHRONIZE);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_tag_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_tag_t(pub c_uint);
@@ -41,7 +39,6 @@ impl acl_tag_t {
     pub const ACL_EXTENDED_DENY: Self = Self(__DARWIN_ACL_EXTENDED_DENY);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_type_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_type_t(pub c_uint);
@@ -55,7 +52,6 @@ impl acl_type_t {
     pub const ACL_TYPE_NWFS: Self = Self(0x00000005);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_entry_id_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_entry_id_t(pub c_int);
@@ -65,7 +61,6 @@ impl acl_entry_id_t {
     pub const ACL_LAST_ENTRY: Self = Self(-2);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_flag_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_flag_t(pub c_uint);
@@ -79,7 +74,6 @@ impl acl_flag_t {
     pub const ACL_ENTRY_ONLY_INHERIT: Self = Self(__DARWIN_ACL_ENTRY_ONLY_INHERIT);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_acl?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _acl {
@@ -91,10 +85,8 @@ unsafe impl RefEncode for _acl {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_acl", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_t?language=objc)
 pub type acl_t = *mut _acl;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_acl_entry?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _acl_entry {
@@ -106,10 +98,8 @@ unsafe impl RefEncode for _acl_entry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_acl_entry", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_entry_t?language=objc)
 pub type acl_entry_t = *mut _acl_entry;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_acl_permset?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _acl_permset {
@@ -121,10 +111,8 @@ unsafe impl RefEncode for _acl_permset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_acl_permset", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_permset_t?language=objc)
 pub type acl_permset_t = *mut _acl_permset;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_acl_flagset?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _acl_flagset {
@@ -136,10 +124,8 @@ unsafe impl RefEncode for _acl_flagset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_acl_flagset", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_flagset_t?language=objc)
 pub type acl_flagset_t = *mut _acl_flagset;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_permset_mask_t?language=objc)
 pub type acl_permset_mask_t = u64;
 
 extern "C-unwind" {

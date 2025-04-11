@@ -6,7 +6,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/utmpx?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct utmpx {
@@ -20,7 +19,6 @@ pub struct utmpx {
     pub ut_pad: [u32; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/lastlogx?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct lastlogx {

@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bootp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bootp {
@@ -25,7 +24,6 @@ pub struct bootp {
     pub bp_vend: [c_uchar; 64],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vend?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vend {
@@ -34,7 +32,6 @@ pub struct vend {
     pub v_unused: [c_uchar; 56],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nextvend_nv_u_nv1?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nextvend_nv_U_NV1 {
@@ -44,7 +41,6 @@ pub struct nextvend_nv_U_NV1 {
     pub NV1_null: c_uchar,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nextvend_nv_u?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union nextvend_nv_U {
@@ -52,7 +48,6 @@ pub union nextvend_nv_U {
     pub NV1: nextvend_nv_U_NV1,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/nextvend?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct nextvend {
@@ -62,7 +57,6 @@ pub struct nextvend {
     pub nv_U: nextvend_nv_U,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bootp_packet?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bootp_packet {

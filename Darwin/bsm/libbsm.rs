@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_event_ent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_event_ent {
@@ -14,10 +13,8 @@ pub struct au_event_ent {
     pub ae_class: au_class_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_event_ent_t?language=objc)
 pub type au_event_ent_t = au_event_ent;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_class_ent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_class_ent {
@@ -26,10 +23,8 @@ pub struct au_class_ent {
     pub ac_desc: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_class_ent_t?language=objc)
 pub type au_class_ent_t = au_class_ent;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_user_ent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_user_ent {
@@ -38,10 +33,8 @@ pub struct au_user_ent {
     pub au_never: au_mask_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_user_ent_t?language=objc)
 pub type au_user_ent_t = au_user_ent;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid32?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_tid32 {
@@ -49,10 +42,8 @@ pub struct au_tid32 {
     pub addr: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid32_t?language=objc)
 pub type au_tid32_t = au_tid32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_tid64 {
@@ -60,10 +51,8 @@ pub struct au_tid64 {
     pub addr: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid64_t?language=objc)
 pub type au_tid64_t = au_tid64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tidaddr32?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_tidaddr32 {
@@ -72,10 +61,8 @@ pub struct au_tidaddr32 {
     pub addr: [u32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tidaddr32_t?language=objc)
 pub type au_tidaddr32_t = au_tidaddr32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tidaddr64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_tidaddr64 {
@@ -84,10 +71,8 @@ pub struct au_tidaddr64 {
     pub addr: [u32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tidaddr64_t?language=objc)
 pub type au_tidaddr64_t = au_tidaddr64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_arg32_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_arg32_t {
@@ -97,7 +82,6 @@ pub struct au_arg32_t {
     pub text: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_arg64_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_arg64_t {
@@ -107,7 +91,6 @@ pub struct au_arg64_t {
     pub text: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_arb_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_arb_t {
@@ -117,7 +100,6 @@ pub struct au_arb_t {
     pub data: *mut c_uchar,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_attr32_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_attr32_t {
@@ -129,7 +111,6 @@ pub struct au_attr32_t {
     pub dev: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_attr64_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_attr64_t {
@@ -141,7 +122,6 @@ pub struct au_attr64_t {
     pub dev: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_execarg_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_execarg_t {
@@ -149,7 +129,6 @@ pub struct au_execarg_t {
     pub text: [*mut c_char; 128],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_execenv_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_execenv_t {
@@ -157,7 +136,6 @@ pub struct au_execenv_t {
     pub text: [*mut c_char; 128],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_cert_hash_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_cert_hash_t {
@@ -165,7 +143,6 @@ pub struct au_cert_hash_t {
     pub text: [*mut c_char; 32],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_krb5_principal_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_krb5_principal_t {
@@ -173,7 +150,6 @@ pub struct au_krb5_principal_t {
     pub text: [*mut c_char; 32],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_exit_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_exit_t {
@@ -181,7 +157,6 @@ pub struct au_exit_t {
     pub ret: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_file_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_file_t {
@@ -191,7 +166,6 @@ pub struct au_file_t {
     pub name: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_groups_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_groups_t {
@@ -199,7 +173,6 @@ pub struct au_groups_t {
     pub list: [u32; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_header32_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_header32_t {
@@ -211,7 +184,6 @@ pub struct au_header32_t {
     pub ms: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_header32_ex_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_header32_ex_t {
@@ -225,7 +197,6 @@ pub struct au_header32_ex_t {
     pub ms: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_header64_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_header64_t {
@@ -237,7 +208,6 @@ pub struct au_header64_t {
     pub ms: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_header64_ex_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_header64_ex_t {
@@ -251,14 +221,12 @@ pub struct au_header64_ex_t {
     pub ms: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_inaddr_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_inaddr_t {
     pub addr: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_inaddr_ex_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_inaddr_ex_t {
@@ -266,7 +234,6 @@ pub struct au_inaddr_ex_t {
     pub addr: [u32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_ip_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_ip_t {
@@ -282,7 +249,6 @@ pub struct au_ip_t {
     pub dest: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_ipc_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_ipc_t {
@@ -290,7 +256,6 @@ pub struct au_ipc_t {
     pub id: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_ipcperm_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_ipcperm_t {
@@ -303,14 +268,12 @@ pub struct au_ipcperm_t {
     pub key: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_iport_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_iport_t {
     pub port: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_opaque_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_opaque_t {
@@ -318,7 +281,6 @@ pub struct au_opaque_t {
     pub data: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_path_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_path_t {
@@ -326,7 +288,6 @@ pub struct au_path_t {
     pub path: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_proc32_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_proc32_t {
@@ -340,7 +301,6 @@ pub struct au_proc32_t {
     pub tid: au_tid32_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_proc64_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_proc64_t {
@@ -354,7 +314,6 @@ pub struct au_proc64_t {
     pub tid: au_tid64_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_proc32ex_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_proc32ex_t {
@@ -368,7 +327,6 @@ pub struct au_proc32ex_t {
     pub tid: au_tidaddr32_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_proc64ex_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_proc64ex_t {
@@ -382,7 +340,6 @@ pub struct au_proc64ex_t {
     pub tid: au_tidaddr64_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_ret32_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_ret32_t {
@@ -390,7 +347,6 @@ pub struct au_ret32_t {
     pub ret: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_ret64_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_ret64_t {
@@ -398,14 +354,12 @@ pub struct au_ret64_t {
     pub val: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_seq_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_seq_t {
     pub seqno: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_socket_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_socket_t {
@@ -416,7 +370,6 @@ pub struct au_socket_t {
     pub r_addr: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_socket_ex32_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_socket_ex32_t {
@@ -429,7 +382,6 @@ pub struct au_socket_ex32_t {
     pub r_addr: [u32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_socketinet_ex32_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_socketinet_ex32_t {
@@ -438,7 +390,6 @@ pub struct au_socketinet_ex32_t {
     pub addr: [u32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_socketinet32_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_socketinet32_t {
@@ -447,7 +398,6 @@ pub struct au_socketinet32_t {
     pub addr: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_socketunix_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_socketunix_t {
@@ -455,7 +405,6 @@ pub struct au_socketunix_t {
     pub path: [c_char; 104],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_subject32_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_subject32_t {
@@ -469,7 +418,6 @@ pub struct au_subject32_t {
     pub tid: au_tid32_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_subject64_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_subject64_t {
@@ -483,7 +431,6 @@ pub struct au_subject64_t {
     pub tid: au_tid64_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_subject32ex_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_subject32ex_t {
@@ -497,7 +444,6 @@ pub struct au_subject32ex_t {
     pub tid: au_tidaddr32_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_subject64ex_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_subject64ex_t {
@@ -511,7 +457,6 @@ pub struct au_subject64ex_t {
     pub tid: au_tidaddr64_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_text_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_text_t {
@@ -519,7 +464,6 @@ pub struct au_text_t {
     pub text: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_zonename_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_zonename_t {
@@ -527,7 +471,6 @@ pub struct au_zonename_t {
     pub zonename: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_kevent_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_kevent_t {
@@ -538,7 +481,6 @@ pub struct au_kevent_t {
     pub data: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_invalid_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_invalid_t {
@@ -546,7 +488,6 @@ pub struct au_invalid_t {
     pub data: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_identity_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_identity_t {
@@ -561,7 +502,6 @@ pub struct au_identity_t {
     pub cdhash: *mut u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_trailer_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_trailer_t {
@@ -569,7 +509,6 @@ pub struct au_trailer_t {
     pub count: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tokenstr_tt?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union tokenstr_tt {
@@ -620,7 +559,6 @@ pub union tokenstr_tt {
     pub identity: au_identity_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tokenstr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct tokenstr {
@@ -630,7 +568,6 @@ pub struct tokenstr {
     pub tt: tokenstr_tt,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tokenstr_t?language=objc)
 pub type tokenstr_t = tokenstr;
 
 extern "C-unwind" {
@@ -924,31 +861,18 @@ extern "C-unwind" {
     pub fn au_strerror(bsm_error: c_uchar) -> *const c_char;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kaunoerr?language=objc)
 pub const kAUNoErr: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kaubadparamerr?language=objc)
 pub const kAUBadParamErr: c_int = -66049;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kaustaterr?language=objc)
 pub const kAUStatErr: c_int = -66048;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kausysctlerr?language=objc)
 pub const kAUSysctlErr: c_int = -66047;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauopenerr?language=objc)
 pub const kAUOpenErr: c_int = -66046;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kaumakesubjecttokerr?language=objc)
 pub const kAUMakeSubjectTokErr: c_int = -66045;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauwritesubjecttokerr?language=objc)
 pub const kAUWriteSubjectTokErr: c_int = -66044;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauwritecallertokerr?language=objc)
 pub const kAUWriteCallerTokErr: c_int = -66043;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kaumakereturntokerr?language=objc)
 pub const kAUMakeReturnTokErr: c_int = -66042;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauwritereturntokerr?language=objc)
 pub const kAUWriteReturnTokErr: c_int = -66041;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kaucloseerr?language=objc)
 pub const kAUCloseErr: c_int = -66040;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kaumaketexttokerr?language=objc)
 pub const kAUMakeTextTokErr: c_int = -66039;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kaulasterr?language=objc)
 pub const kAULastErr: c_int = -66038;
 
 extern "C-unwind" {

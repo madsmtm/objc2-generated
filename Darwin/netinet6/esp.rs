@@ -3,14 +3,12 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/esp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct esp {
     pub esp_spi: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/newesp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct newesp {
@@ -18,7 +16,6 @@ pub struct newesp {
     pub esp_seq: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/esptail?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct esptail {

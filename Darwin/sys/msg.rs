@@ -4,13 +4,10 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/msgqnum_t?language=objc)
 pub type msgqnum_t = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/msglen_t?language=objc)
 pub type msglen_t = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/__msqid_ds_new?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __msqid_ds_new {
@@ -31,7 +28,6 @@ pub struct __msqid_ds_new {
     pub msg_pad4: [i32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/msg?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct msg {
@@ -42,7 +38,6 @@ pub struct msg {
     pub label: *mut label,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/mymsg?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct mymsg {
@@ -50,7 +45,6 @@ pub struct mymsg {
     pub mtext: [c_char; 1],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/msginfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct msginfo {

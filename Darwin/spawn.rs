@@ -4,10 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/posix_spawnattr_t?language=objc)
 pub type posix_spawnattr_t = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/posix_spawn_file_actions_t?language=objc)
 pub type posix_spawn_file_actions_t = *mut c_void;
 
 extern "C-unwind" {

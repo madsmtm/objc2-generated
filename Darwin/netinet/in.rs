@@ -6,14 +6,12 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_addr {
     pub s_addr: in_addr_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockaddr_in?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_in {
@@ -24,7 +22,6 @@ pub struct sockaddr_in {
     pub sin_zero: [c_char; 8],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_opts?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_opts {
@@ -32,7 +29,6 @@ pub struct ip_opts {
     pub ip_opts: [c_char; 40],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_mreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreq {
@@ -40,7 +36,6 @@ pub struct ip_mreq {
     pub imr_interface: in_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_mreqn?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreqn {
@@ -49,7 +44,6 @@ pub struct ip_mreqn {
     pub imr_ifindex: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_mreq_source?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreq_source {
@@ -58,7 +52,6 @@ pub struct ip_mreq_source {
     pub imr_interface: in_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/group_req?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct group_req {
@@ -66,7 +59,6 @@ pub struct group_req {
     pub gr_group: sockaddr_storage,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/group_source_req?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct group_source_req {
@@ -75,7 +67,6 @@ pub struct group_source_req {
     pub gsr_source: sockaddr_storage,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/__msfilterreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __msfilterreq {
@@ -133,7 +124,6 @@ extern "C-unwind" {
     ) -> c_int;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_pktinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_pktinfo {

@@ -4,13 +4,10 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sae_associd_t?language=objc)
 pub type sae_associd_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sae_connid_t?language=objc)
 pub type sae_connid_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sa_endpoints?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sa_endpoints {
@@ -21,10 +18,8 @@ pub struct sa_endpoints {
     pub sae_dstaddrlen: socklen_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sa_endpoints_t?language=objc)
 pub type sa_endpoints_t = sa_endpoints;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/linger?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct linger {
@@ -32,7 +27,6 @@ pub struct linger {
     pub l_linger: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/so_np_extensions?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct so_np_extensions {
@@ -40,7 +34,6 @@ pub struct so_np_extensions {
     pub npx_mask: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockaddr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr {
@@ -49,7 +42,6 @@ pub struct sockaddr {
     pub sa_data: [c_char; 14],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/__sockaddr_header?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __sockaddr_header {
@@ -57,7 +49,6 @@ pub struct __sockaddr_header {
     pub sa_family: sa_family_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockproto?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockproto {
@@ -65,7 +56,6 @@ pub struct sockproto {
     pub sp_protocol: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockaddr_storage?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_storage {
@@ -76,7 +66,6 @@ pub struct sockaddr_storage {
     pub(crate) __ss_pad2: [c_char; 112],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/msghdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct msghdr {
@@ -89,7 +78,6 @@ pub struct msghdr {
     pub msg_flags: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/cmsghdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cmsghdr {
@@ -98,7 +86,6 @@ pub struct cmsghdr {
     pub cmsg_type: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sf_hdtr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sf_hdtr {

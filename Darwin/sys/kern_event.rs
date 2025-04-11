@@ -24,8 +24,6 @@ use crate::ffi::*;
 /// depend on the vendor_code, kev_class, kev_subclass, and
 /// event_code. The length of the event_data can be determined
 /// using total_size - KEV_MSG_HEADER_SIZE.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/kern_event_msg?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kern_event_msg {
@@ -52,8 +50,6 @@ pub struct kern_event_msg {
 /// Field: kev_subclass All kernel events that don't match this subclass
 /// will be ignored. KEV_ANY_SUBCLASS can be used to receive kernel
 /// events with any subclass.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_request?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_request {
@@ -62,7 +58,6 @@ pub struct kev_request {
     pub kev_subclass: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_vendor_code?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_vendor_code {

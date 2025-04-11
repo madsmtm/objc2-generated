@@ -5,11 +5,9 @@ use core::ffi::*;
 use crate::ffi::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/h_errno?language=objc)
     pub static h_errno: c_int;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/hostent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct hostent {
@@ -20,7 +18,6 @@ pub struct hostent {
     pub h_addr_list: *mut *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/netent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct netent {
@@ -30,7 +27,6 @@ pub struct netent {
     pub n_net: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/servent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct servent {
@@ -40,7 +36,6 @@ pub struct servent {
     pub s_proto: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/protoent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct protoent {
@@ -49,7 +44,6 @@ pub struct protoent {
     pub p_proto: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/addrinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct addrinfo {
@@ -63,7 +57,6 @@ pub struct addrinfo {
     pub ai_next: *mut addrinfo,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rpcent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rpcent {

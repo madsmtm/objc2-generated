@@ -4,21 +4,16 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_filter_attach_t?language=objc)
 pub type audit_filter_attach_t =
     Option<unsafe extern "C-unwind" fn(*mut c_void, c_int, *mut *mut c_char) -> c_int>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_filter_reinit_t?language=objc)
 pub type audit_filter_reinit_t =
     Option<unsafe extern "C-unwind" fn(*mut c_void, c_int, *mut *mut c_char) -> c_int>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_filter_record_t?language=objc)
 pub type audit_filter_record_t =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut timespec, c_int, *mut tokenstr_t)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_filter_rawrecord_t?language=objc)
 pub type audit_filter_rawrecord_t =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut timespec, *mut c_void, c_uint)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_filter_detach_t?language=objc)
 pub type audit_filter_detach_t = Option<unsafe extern "C-unwind" fn(*mut c_void)>;

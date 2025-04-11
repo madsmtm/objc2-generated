@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifmibdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifmibdata {
@@ -18,7 +17,6 @@ pub struct ifmibdata {
     pub ifmd_data: if_data64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifs_iso_8802_3?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifs_iso_8802_3 {
@@ -40,7 +38,6 @@ pub struct ifs_iso_8802_3 {
     pub dot3Compliance: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3vendors?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct dot3Vendors(pub c_uint);
@@ -59,40 +56,24 @@ impl dot3Vendors {
     pub const WesternDigital: Self = Self(7);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetamd7990?language=objc)
 pub const dot3ChipSetAMD7990: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetamd79900?language=objc)
 pub const dot3ChipSetAMD79900: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetamd79c940?language=objc)
 pub const dot3ChipSetAMD79C940: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetintel82586?language=objc)
 pub const dot3ChipSetIntel82586: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetintel82596?language=objc)
 pub const dot3ChipSetIntel82596: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetintel82557?language=objc)
 pub const dot3ChipSetIntel82557: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetnational8390?language=objc)
 pub const dot3ChipSetNational8390: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetnationalsonic?language=objc)
 pub const dot3ChipSetNationalSonic: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetfujitsu86950?language=objc)
 pub const dot3ChipSetFujitsu86950: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetdigitaldc21040?language=objc)
 pub const dot3ChipSetDigitalDC21040: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetdigitaldc21140?language=objc)
 pub const dot3ChipSetDigitalDC21140: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetdigitaldc21041?language=objc)
 pub const dot3ChipSetDigitalDC21041: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetdigitaldc21140a?language=objc)
 pub const dot3ChipSetDigitalDC21140A: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetdigitaldc21142?language=objc)
 pub const dot3ChipSetDigitalDC21142: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetwesterndigital83c690?language=objc)
 pub const dot3ChipSetWesternDigital83C690: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dot3chipsetwesterndigital83c790?language=objc)
 pub const dot3ChipSetWesternDigital83C790: c_uint = 2;

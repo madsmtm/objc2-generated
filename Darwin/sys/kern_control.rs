@@ -8,8 +8,6 @@ use crate::ffi::*;
 /// events.
 /// Field: ctl_id The kernel control id.
 /// Field: ctl_unit The kernel control unit.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/ctl_event_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ctl_event_data {
@@ -21,8 +19,6 @@ pub struct ctl_event_data {
 /// translate from a kernel control name to a control id.
 /// Field: ctl_id The kernel control id, filled out upon return.
 /// Field: ctl_name The kernel control name to find.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/ctl_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ctl_info {
@@ -44,8 +40,6 @@ pub struct ctl_info {
 /// Field: sc_id Controller unique identifier.
 /// Field: sc_unit Kernel controller private unit number.
 /// Field: sc_reserved Reserved, must be set to zero.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/sockaddr_ctl?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_ctl {

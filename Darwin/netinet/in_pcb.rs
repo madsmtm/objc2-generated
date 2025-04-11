@@ -4,10 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/inp_gen_t?language=objc)
 pub type inp_gen_t = u_quad_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_addr_4in6?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_addr_4in6 {
@@ -15,7 +13,6 @@ pub struct in_addr_4in6 {
     pub ia46_addr4: in_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_inpcb_list_entry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _inpcb_list_entry {
@@ -23,7 +20,6 @@ pub struct _inpcb_list_entry {
     pub le_prev: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/inpcb_inp_dependfaddr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union inpcb_inp_dependfaddr {
@@ -31,7 +27,6 @@ pub union inpcb_inp_dependfaddr {
     pub inp6_foreign: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/inpcb_inp_dependladdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union inpcb_inp_dependladdr {
@@ -39,7 +34,6 @@ pub union inpcb_inp_dependladdr {
     pub inp6_local: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/inpcb_inp_dependroute?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union inpcb_inp_dependroute {
@@ -47,7 +41,6 @@ pub union inpcb_inp_dependroute {
     pub inp6_route: [c_uchar; 32],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/inpcb_inp_depend4?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct inpcb_inp_depend4 {
@@ -56,7 +49,6 @@ pub struct inpcb_inp_depend4 {
     pub inp4_moptions: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/inpcb_inp_depend6?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct inpcb_inp_depend6 {
@@ -72,7 +64,6 @@ pub struct inpcb_inp_depend6 {
     pub inp6_hops: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/inpcb?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct inpcb {
@@ -106,7 +97,6 @@ pub struct inpcb {
     pub reserved: [u32; 3],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xinpcb?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct xinpcb {
@@ -116,7 +106,6 @@ pub struct xinpcb {
     pub xi_alignment_hack: u_quad_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/inpcb64_list_entry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct inpcb64_list_entry {
@@ -124,7 +113,6 @@ pub struct inpcb64_list_entry {
     pub le_prev: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xinpcb64_inp_dependfaddr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union xinpcb64_inp_dependfaddr {
@@ -132,7 +120,6 @@ pub union xinpcb64_inp_dependfaddr {
     pub inp6_foreign: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xinpcb64_inp_dependladdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union xinpcb64_inp_dependladdr {
@@ -140,14 +127,12 @@ pub union xinpcb64_inp_dependladdr {
     pub inp6_local: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xinpcb64_inp_depend4?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xinpcb64_inp_depend4 {
     pub inp4_ip_tos: c_uchar,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xinpcb64_inp_depend6?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xinpcb64_inp_depend6 {
@@ -157,7 +142,6 @@ pub struct xinpcb64_inp_depend6 {
     pub inp6_hops: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xinpcb64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct xinpcb64 {
@@ -184,7 +168,6 @@ pub struct xinpcb64 {
     pub xi_alignment_hack: u_quad_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xinpgen?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xinpgen {

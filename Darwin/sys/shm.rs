@@ -4,10 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/shmatt_t?language=objc)
 pub type shmatt_t = c_ushort;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/__shmid_ds_new?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __shmid_ds_new {
@@ -39,7 +37,6 @@ extern "C-unwind" {
     pub fn shmget(param1: key_t, param1: usize, param1: c_int) -> c_int;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/pshminfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pshminfo {

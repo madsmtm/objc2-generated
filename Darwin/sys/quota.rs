@@ -4,9 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/qf_version?language=objc)
 pub const QF_VERSION: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dqfilehdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dqfilehdr {
@@ -22,7 +20,6 @@ pub struct dqfilehdr {
     pub dqh_spare: [u32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dqblk?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dqblk {

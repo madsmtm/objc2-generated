@@ -5,7 +5,6 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_filesec?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _filesec {
@@ -17,5 +16,4 @@ unsafe impl RefEncode for _filesec {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_filesec", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/filesec_t?language=objc)
 pub type filesec_t = *mut _filesec;

@@ -20,7 +20,6 @@ extern "C-unwind" {
     pub fn backtrace_symbols_fd(param1: *const *const c_void, param1: c_int, param1: c_int);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/image_offset?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct image_offset {

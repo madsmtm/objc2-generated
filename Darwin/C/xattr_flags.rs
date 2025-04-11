@@ -4,10 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xattr_operation_intent_t?language=objc)
 pub type xattr_operation_intent_t = c_uint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xattr_flags_t?language=objc)
 pub type xattr_flags_t = u64;
 
 extern "C-unwind" {

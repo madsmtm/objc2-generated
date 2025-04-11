@@ -4,5 +4,4 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bitstr_t?language=objc)
 pub type bitstr_t = c_uchar;

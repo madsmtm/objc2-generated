@@ -4,14 +4,12 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tsegqe_head?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tsegqe_head {
     pub lh_first: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcpcb?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcpcb {
@@ -69,7 +67,6 @@ pub struct tcpcb {
     pub t_badrxtwin: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcpstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcpstat {
@@ -316,7 +313,6 @@ pub struct tcpstat {
     pub tcps_fin_timeout_drops: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcpstat_local?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcpstat_local {
@@ -336,7 +332,6 @@ pub struct tcpstat_local {
     pub synwindow: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xtcpcb?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct xtcpcb {
@@ -347,7 +342,6 @@ pub struct xtcpcb {
     pub xt_alignment_hack: u_quad_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xtcpcb64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct xtcpcb64 {

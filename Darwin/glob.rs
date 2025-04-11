@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/glob_t_gl_closedir?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union glob_t_gl_closedir {
@@ -12,7 +11,6 @@ pub union glob_t_gl_closedir {
     pub gl_errblk: *mut block2::Block<dyn Fn(*const c_char, c_int) -> c_int>,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/glob_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct glob_t {

@@ -6,7 +6,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/itimerval?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct itimerval {
@@ -14,7 +13,6 @@ pub struct itimerval {
     pub it_value: timeval,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/timezone?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct timezone {
@@ -22,7 +20,6 @@ pub struct timezone {
     pub tz_dsttime: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/clockinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct clockinfo {

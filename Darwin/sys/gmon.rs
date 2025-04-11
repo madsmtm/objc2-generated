@@ -4,9 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmonversion?language=objc)
 pub const GMONVERSION: c_uint = 0x00051879;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmonhdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct gmonhdr {
@@ -18,7 +16,6 @@ pub struct gmonhdr {
     pub spare: [i32; 3],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmonhdr_64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct gmonhdr_64 {
@@ -30,10 +27,8 @@ pub struct gmonhdr_64 {
     pub spare: [i32; 3],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmonhdr_t?language=objc)
 pub type gmonhdr_t = gmonhdr_64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tostruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tostruct {
@@ -43,7 +38,6 @@ pub struct tostruct {
     pub order: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tostruct_64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tostruct_64 {
@@ -53,10 +47,8 @@ pub struct tostruct_64 {
     pub order: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tostruct_t?language=objc)
 pub type tostruct_t = tostruct_64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rawarc {
@@ -65,7 +57,6 @@ pub struct rawarc {
     pub raw_count: i32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc_64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rawarc_64 {
@@ -74,10 +65,8 @@ pub struct rawarc_64 {
     pub raw_count: i32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc_t?language=objc)
 pub type rawarc_t = rawarc_64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmonparam?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct gmonparam {
@@ -96,11 +85,9 @@ pub struct gmonparam {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_gmonparam?language=objc)
     pub static _gmonparam: gmonparam;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmon_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct gmon_data {
@@ -108,10 +95,8 @@ pub struct gmon_data {
     pub size: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmon_data_t?language=objc)
 pub type gmon_data_t = gmon_data;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc_order?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rawarc_order {
@@ -121,7 +106,6 @@ pub struct rawarc_order {
     pub raw_order: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc_order_64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rawarc_order_64 {
@@ -131,5 +115,4 @@ pub struct rawarc_order_64 {
     pub raw_order: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc_order_t?language=objc)
 pub type rawarc_order_t = rawarc_order_64;

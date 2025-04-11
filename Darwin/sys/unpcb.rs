@@ -4,10 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/unp_gen_t?language=objc)
 pub type unp_gen_t = u_quad_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_unpcb_list_entry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _unpcb_list_entry {
@@ -15,7 +13,6 @@ pub struct _unpcb_list_entry {
     pub le_prev: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xunpgen?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xunpgen {

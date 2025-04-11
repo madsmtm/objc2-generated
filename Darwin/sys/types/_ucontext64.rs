@@ -6,7 +6,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/__darwin_ucontext64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __darwin_ucontext64 {
@@ -18,5 +17,4 @@ pub struct __darwin_ucontext64 {
     pub uc_mcontext64: *mut __darwin_mcontext64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ucontext64_t?language=objc)
 pub type ucontext64_t = __darwin_ucontext64;

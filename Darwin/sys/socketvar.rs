@@ -4,12 +4,9 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/so_tracker_transparency_version?language=objc)
 pub const SO_TRACKER_TRANSPARENCY_VERSION: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/so_gen_t?language=objc)
 pub type so_gen_t = u_quad_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xsockbuf?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xsockbuf {
@@ -22,7 +19,6 @@ pub struct xsockbuf {
     pub sb_timeo: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xsocket?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xsocket {
@@ -47,7 +43,6 @@ pub struct xsocket {
     pub so_uid: uid_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xsocket64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xsocket64 {
@@ -72,7 +67,6 @@ pub struct xsocket64 {
     pub so_uid: uid_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/so_tracker_action?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct so_tracker_action(pub c_uint);
@@ -84,7 +78,6 @@ impl so_tracker_action {
     pub const SO_TRACKER_ACTION_DUMP_MAX: Self = Self(4);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/so_tracker_attribute?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct so_tracker_attribute(pub c_uint);

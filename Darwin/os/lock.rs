@@ -5,7 +5,6 @@ use core::ptr::NonNull;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/os_lock_api_version?language=objc)
 pub const OS_LOCK_API_VERSION: c_uint = 20160309;
 /// Low-level lock that allows waiters to block efficiently on contention.
 ///
@@ -46,8 +45,6 @@ pub const OS_LOCK_API_VERSION: c_uint = 20160309;
 /// the lock memory, leading to misbehavior. Use an OSAllocatedUnfairLock to safely wrap
 /// access to the lock memory instead. If you use os_unfair_lock APIs directly,
 /// always make sure to store and use the lock in memory with a stable address.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/os_unfair_lock_s?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct os_unfair_lock_s {
@@ -93,8 +90,6 @@ pub struct os_unfair_lock_s {
 /// the lock memory, leading to misbehavior. Use an OSAllocatedUnfairLock to safely wrap
 /// access to the lock memory instead. If you use os_unfair_lock APIs directly,
 /// always make sure to store and use the lock in memory with a stable address.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/os_unfair_lock?language=objc)
 pub type os_unfair_lock = os_unfair_lock_s;
 
 /// Low-level lock that allows waiters to block efficiently on contention.
@@ -136,8 +131,6 @@ pub type os_unfair_lock = os_unfair_lock_s;
 /// the lock memory, leading to misbehavior. Use an OSAllocatedUnfairLock to safely wrap
 /// access to the lock memory instead. If you use os_unfair_lock APIs directly,
 /// always make sure to store and use the lock in memory with a stable address.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/os_unfair_lock_t?language=objc)
 pub type os_unfair_lock_t = *mut os_unfair_lock_s;
 
 extern "C-unwind" {
@@ -208,7 +201,6 @@ extern "C-unwind" {
     pub fn os_unfair_lock_assert_not_owner(lock: NonNull<os_unfair_lock>);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/os_unfair_lock_flags_t?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

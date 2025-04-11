@@ -3,7 +3,6 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/udpiphdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct udpiphdr {
@@ -11,7 +10,6 @@ pub struct udpiphdr {
     pub ui_u: udphdr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/udpstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct udpstat {

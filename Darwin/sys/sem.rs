@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/__semid_ds_new?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __semid_ds_new {
@@ -18,7 +17,6 @@ pub struct __semid_ds_new {
     pub sem_pad3: [i32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sem?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sem {
@@ -28,7 +26,6 @@ pub struct sem {
     pub semzcnt: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sembuf?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sembuf {
@@ -37,7 +34,6 @@ pub struct sembuf {
     pub sem_flg: c_short,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/semun?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union semun {
@@ -46,7 +42,6 @@ pub union semun {
     pub array: *mut c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/semun_t?language=objc)
 pub type semun_t = semun;
 
 extern "C-unwind" {

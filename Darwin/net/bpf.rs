@@ -4,17 +4,12 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_major_version?language=objc)
 pub const BPF_MAJOR_VERSION: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_minor_version?language=objc)
 pub const BPF_MINOR_VERSION: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_int32?language=objc)
 pub type bpf_int32 = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_u_int32?language=objc)
 pub type bpf_u_int32 = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_program?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_program {
@@ -22,7 +17,6 @@ pub struct bpf_program {
     pub bf_insns: *mut bpf_insn,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_stat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_stat {
@@ -30,7 +24,6 @@ pub struct bpf_stat {
     pub bs_drop: c_uint,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_version?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_version {
@@ -38,7 +31,6 @@ pub struct bpf_version {
     pub bv_minor: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_hdr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_hdr {
@@ -48,7 +40,6 @@ pub struct bpf_hdr {
     pub bh_hdrlen: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_insn?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_insn {
@@ -58,7 +49,6 @@ pub struct bpf_insn {
     pub k: bpf_u_int32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_dltlist_bfl_u?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union bpf_dltlist_bfl_u {
@@ -66,7 +56,6 @@ pub union bpf_dltlist_bfl_u {
     pub bflu_pad: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_dltlist?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct bpf_dltlist {

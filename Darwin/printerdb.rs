@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/prdb_property?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct prdb_property {
@@ -12,7 +11,6 @@ pub struct prdb_property {
     pub pp_value: *mut c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/prdb_ent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct prdb_ent {

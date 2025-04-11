@@ -5,7 +5,6 @@ use __builtin__::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/uprof?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct uprof {
@@ -18,7 +17,6 @@ pub struct uprof {
     pub pr_ticks: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/pstats?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pstats {

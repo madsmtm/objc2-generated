@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/igmp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmp {
@@ -14,7 +13,6 @@ pub struct igmp {
     pub igmp_group: in_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/igmpv3?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmpv3 {
@@ -27,7 +25,6 @@ pub struct igmpv3 {
     pub igmp_numsrc: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/igmp_grouprec?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmp_grouprec {
@@ -37,7 +34,6 @@ pub struct igmp_grouprec {
     pub ig_group: in_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/igmp_report?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmp_report {

@@ -4,9 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/graftdmg_secure_boot_cryptex_args_version?language=objc)
 pub const GRAFTDMG_SECURE_BOOT_CRYPTEX_ARGS_VERSION: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/secure_boot_cryptex_args?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct secure_boot_cryptex_args {
@@ -18,10 +16,8 @@ pub struct secure_boot_cryptex_args {
     pub sbc_flags: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/secure_boot_cryptex_args_t?language=objc)
 pub type secure_boot_cryptex_args_t = secure_boot_cryptex_args;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/graft_args?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union graft_args {
@@ -29,5 +25,4 @@ pub union graft_args {
     pub sbc_args: secure_boot_cryptex_args_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/graftdmg_args_un?language=objc)
 pub type graftdmg_args_un = graft_args;

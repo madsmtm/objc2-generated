@@ -3,7 +3,6 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsobj_id?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fsobj_id {
@@ -11,5 +10,4 @@ pub struct fsobj_id {
     pub fid_generation: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsobj_id_t?language=objc)
 pub type fsobj_id_t = fsobj_id;

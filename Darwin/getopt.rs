@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/option?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct option {
@@ -40,26 +39,21 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/optarg?language=objc)
     pub static optarg: *mut c_char;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/optind?language=objc)
     pub static optind: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/opterr?language=objc)
     pub static opterr: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/optopt?language=objc)
     pub static optopt: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/optreset?language=objc)
     pub static optreset: c_int;
 }

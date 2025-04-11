@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dl_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dl_info {
@@ -14,7 +13,6 @@ pub struct dl_info {
     pub dli_saddr: *mut c_void,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dl_info?language=objc)
 pub type Dl_info = dl_info;
 
 extern "C-unwind" {

@@ -6,7 +6,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dirent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dirent {
@@ -18,7 +17,6 @@ pub struct dirent {
     pub d_name: [c_char; 1024],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dir?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct DIR {

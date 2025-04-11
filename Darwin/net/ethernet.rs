@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ether_header?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ether_header {
@@ -13,17 +12,14 @@ pub struct ether_header {
     pub ether_type: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ether_header_t?language=objc)
 pub type ether_header_t = ether_header;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ether_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ether_addr {
     pub octet: [c_uchar; 6],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ether_addr_t?language=objc)
 pub type ether_addr_t = ether_addr;
 
 extern "C-unwind" {

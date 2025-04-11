@@ -4,11 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipv6_version?language=objc)
 pub const IPV6_VERSION: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipv6_version_mask?language=objc)
 pub const IPV6_VERSION_MASK: c_uint = 0xf0;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_hdrctl?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_hdrctl {
@@ -18,7 +15,6 @@ pub struct ip6_hdrctl {
     pub ip6_un1_hlim: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_hdr_ip6_ctlun?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ip6_hdr_ip6_ctlun {
@@ -26,7 +22,6 @@ pub union ip6_hdr_ip6_ctlun {
     pub ip6_un2_vfc: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_hdr?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct ip6_hdr {
@@ -35,7 +30,6 @@ pub struct ip6_hdr {
     pub ip6_dst: in6_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_ext?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_ext {
@@ -43,7 +37,6 @@ pub struct ip6_ext {
     pub ip6e_len: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_hbh?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_hbh {
@@ -51,7 +44,6 @@ pub struct ip6_hbh {
     pub ip6h_len: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_dest?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_dest {
@@ -59,7 +51,6 @@ pub struct ip6_dest {
     pub ip6d_len: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_opt?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt {
@@ -67,7 +58,6 @@ pub struct ip6_opt {
     pub ip6o_len: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_opt_jumbo?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt_jumbo {
@@ -76,7 +66,6 @@ pub struct ip6_opt_jumbo {
     pub ip6oj_jumbo_len: [u8; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_opt_nsap?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt_nsap {
@@ -86,7 +75,6 @@ pub struct ip6_opt_nsap {
     pub ip6on_dst_nsap_len: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_opt_tunnel?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt_tunnel {
@@ -95,7 +83,6 @@ pub struct ip6_opt_tunnel {
     pub ip6ot_encap_limit: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_opt_router?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt_router {
@@ -104,7 +91,6 @@ pub struct ip6_opt_router {
     pub ip6or_value: [u8; 2],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_rthdr?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_rthdr {
@@ -114,7 +100,6 @@ pub struct ip6_rthdr {
     pub ip6r_segleft: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_rthdr0?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_rthdr0 {
@@ -125,7 +110,6 @@ pub struct ip6_rthdr0 {
     pub ip6r0_reserved: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip6_frag?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_frag {

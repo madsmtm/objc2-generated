@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kevent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kevent {
@@ -16,7 +15,6 @@ pub struct kevent {
     pub udata: *mut c_void,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kevent64_s?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kevent64_s {
@@ -29,13 +27,10 @@ pub struct kevent64_s {
     pub ext: [u64; 2],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/enotereapdeprecated?language=objc)
 pub const eNoteReapDeprecated: c_uint = 0x10000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/enoteexitreparenteddeprecated?language=objc)
 pub const eNoteExitReparentedDeprecated: c_uint = 0x00080000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/klist?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct klist {

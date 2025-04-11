@@ -3,12 +3,10 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsid?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fsid {
     pub val: [i32; 2],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsid_t?language=objc)
 pub type fsid_t = fsid;

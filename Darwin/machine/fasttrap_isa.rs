@@ -3,7 +3,6 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fasttrap_instr_t_instr16?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fasttrap_instr_t_instr16 {
@@ -11,7 +10,6 @@ pub struct fasttrap_instr_t_instr16 {
     pub instr2: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fasttrap_instr_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union fasttrap_instr_t {
@@ -19,7 +17,6 @@ pub union fasttrap_instr_t {
     pub instr16: fasttrap_instr_t_instr16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fasttrap_machtp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct fasttrap_machtp {
@@ -31,5 +28,4 @@ pub struct fasttrap_machtp {
     pub ftmt_retired: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fasttrap_machtp_t?language=objc)
 pub type fasttrap_machtp_t = fasttrap_machtp;

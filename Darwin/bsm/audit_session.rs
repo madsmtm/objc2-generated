@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_sdev_open_flags?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct au_sdev_open_flags(pub c_uint);
@@ -13,7 +12,6 @@ impl au_sdev_open_flags {
     pub const AU_SDEVF_ALLSESSIONS: Self = Self(0x00010000);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_sdev_handle?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_sdev_handle {
@@ -23,7 +21,6 @@ pub struct au_sdev_handle {
     pub ash_bytesread: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_sdev_handle_t?language=objc)
 pub type au_sdev_handle_t = au_sdev_handle;
 
 extern "C-unwind" {

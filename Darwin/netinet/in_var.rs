@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_aliasreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_aliasreq {
@@ -14,7 +13,6 @@ pub struct in_aliasreq {
     pub ifra_mask: sockaddr_in,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_data {
@@ -28,7 +26,6 @@ pub struct kev_in_data {
     pub ia_dstaddr: in_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in_collision?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_collision {
@@ -38,21 +35,18 @@ pub struct kev_in_collision {
     pub hw_addr: *mut c_uchar,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in_arpfailure?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_arpfailure {
     pub link_data: net_event_data,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in_arpalive?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_arpalive {
     pub link_data: net_event_data,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in_portinuse?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_portinuse {

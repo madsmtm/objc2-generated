@@ -4,9 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipversion?language=objc)
 pub const IPVERSION: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip {
@@ -23,7 +21,6 @@ pub struct ip {
     pub ip_dst: in_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipt_ta?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipt_ta {
@@ -31,7 +28,6 @@ pub struct ipt_ta {
     pub ipt_time: n_long,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipt_timestamp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ipt_timestamp {
@@ -39,7 +35,6 @@ pub union ipt_timestamp {
     pub ipt_ta: [ipt_ta; 1],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_timestamp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ip_timestamp {

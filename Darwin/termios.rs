@@ -4,16 +4,12 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcflag_t?language=objc)
 pub type tcflag_t = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/cc_t?language=objc)
 pub type cc_t = c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/speed_t?language=objc)
 pub type speed_t = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/termios?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct termios {

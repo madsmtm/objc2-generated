@@ -3,7 +3,6 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_msg?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_msg {
@@ -17,7 +16,6 @@ pub struct sadb_msg {
     pub sadb_msg_pid: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_ext?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_ext {
@@ -25,7 +23,6 @@ pub struct sadb_ext {
     pub sadb_ext_type: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_sa?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_sa {
@@ -39,7 +36,6 @@ pub struct sadb_sa {
     pub sadb_sa_flags: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_lifetime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_lifetime {
@@ -51,7 +47,6 @@ pub struct sadb_lifetime {
     pub sadb_lifetime_usetime: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_address?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_address {
@@ -62,7 +57,6 @@ pub struct sadb_address {
     pub sadb_address_reserved: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_key?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_key {
@@ -72,7 +66,6 @@ pub struct sadb_key {
     pub sadb_key_reserved: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_ident?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_ident {
@@ -83,7 +76,6 @@ pub struct sadb_ident {
     pub sadb_ident_id: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_sens?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_sens {
@@ -97,7 +89,6 @@ pub struct sadb_sens {
     pub sadb_sens_reserved: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_prop?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_prop {
@@ -107,7 +98,6 @@ pub struct sadb_prop {
     pub sadb_prop_reserved: [u8; 3],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_comb?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_comb {
@@ -129,7 +119,6 @@ pub struct sadb_comb {
     pub sadb_comb_hard_usetime: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_supported?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_supported {
@@ -138,7 +127,6 @@ pub struct sadb_supported {
     pub sadb_supported_reserved: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_alg?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_alg {
@@ -149,7 +137,6 @@ pub struct sadb_alg {
     pub sadb_alg_reserved: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_spirange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_spirange {
@@ -160,7 +147,6 @@ pub struct sadb_spirange {
     pub sadb_spirange_reserved: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_x_kmprivate?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_x_kmprivate {
@@ -169,21 +155,18 @@ pub struct sadb_x_kmprivate {
     pub sadb_x_kmprivate_reserved: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_x_sa2_sadb_x_sa2_sequence?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union sadb_x_sa2_sadb_x_sa2_sequence {
     pub sadb_x_sa2_reserved1: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_x_sa2_sadb_x_sa2_sequence?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union sadb_x_sa2_sadb_x_sa2_sequence {
     pub sadb_x_sa2_reserved2: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_x_sa2?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_x_sa2 {
@@ -194,7 +177,6 @@ pub struct sadb_x_sa2 {
     pub sadb_x_sa2_reqid: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_x_policy?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_x_policy {
@@ -207,7 +189,6 @@ pub struct sadb_x_policy {
     pub sadb_x_policy_reserved2: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_x_ipsecrequest?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_x_ipsecrequest {
@@ -218,7 +199,6 @@ pub struct sadb_x_ipsecrequest {
     pub sadb_x_ipsecrequest_reqid: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_session_id?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_session_id {
@@ -227,7 +207,6 @@ pub struct sadb_session_id {
     pub sadb_session_id_v: [u64; 2],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sastat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sastat {
@@ -236,7 +215,6 @@ pub struct sastat {
     pub lft_c: sadb_lifetime,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_sastat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_sastat {

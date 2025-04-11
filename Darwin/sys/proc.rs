@@ -6,7 +6,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/extern_proc_p_un_p_st1?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct extern_proc_p_un_p_st1 {
@@ -14,7 +13,6 @@ pub struct extern_proc_p_un_p_st1 {
     pub(crate) __p_back: *mut proc,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/extern_proc_p_un?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union extern_proc_p_un {
@@ -22,7 +20,6 @@ pub union extern_proc_p_un {
     pub(crate) __p_starttime: timeval,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/extern_proc?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct extern_proc {

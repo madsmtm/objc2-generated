@@ -8,19 +8,12 @@ use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_header_version_olddarwin?language=objc)
 pub const AUDIT_HEADER_VERSION_OLDDARWIN: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_header_version_solaris?language=objc)
 pub const AUDIT_HEADER_VERSION_SOLARIS: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_header_version_tsol25?language=objc)
 pub const AUDIT_HEADER_VERSION_TSOL25: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_header_version_tsol?language=objc)
 pub const AUDIT_HEADER_VERSION_TSOL: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_header_version_openbsm10?language=objc)
 pub const AUDIT_HEADER_VERSION_OPENBSM10: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_header_version_openbsm11?language=objc)
 pub const AUDIT_HEADER_VERSION_OPENBSM11: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_header_version_openbsm?language=objc)
 pub const AUDIT_HEADER_VERSION_OPENBSM: c_uint = AUDIT_HEADER_VERSION_OPENBSM11;
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]

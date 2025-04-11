@@ -3,7 +3,6 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ah?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ah {
@@ -13,7 +12,6 @@ pub struct ah {
     pub ah_spi: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/newah?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct newah {

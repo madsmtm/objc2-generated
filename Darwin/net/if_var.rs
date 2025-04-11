@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/net_event_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct net_event_data {
@@ -13,7 +12,6 @@ pub struct net_event_data {
     pub if_name: [c_char; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_data {
@@ -48,7 +46,6 @@ pub struct if_data {
     pub ifi_reserved2: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_data64?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_data64 {
@@ -79,7 +76,6 @@ pub struct if_data64 {
     pub ifi_lastchange: timeval32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifqueue?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifqueue {

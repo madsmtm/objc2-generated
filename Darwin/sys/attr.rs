@@ -6,25 +6,18 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/text_encoding_t?language=objc)
 pub type text_encoding_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsobj_type_t?language=objc)
 pub type fsobj_type_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsobj_tag_t?language=objc)
 pub type fsobj_tag_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsfile_type_t?language=objc)
 pub type fsfile_type_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsvolid_t?language=objc)
 pub type fsvolid_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/attrgroup_t?language=objc)
 pub type attrgroup_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/attrlist?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct attrlist {
@@ -37,7 +30,6 @@ pub struct attrlist {
     pub forkattr: attrgroup_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/attribute_set?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct attribute_set {
@@ -48,10 +40,8 @@ pub struct attribute_set {
     pub forkattr: attrgroup_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/attribute_set_t?language=objc)
 pub type attribute_set_t = attribute_set;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/attrreference?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct attrreference {
@@ -59,10 +49,8 @@ pub struct attrreference {
     pub attr_length: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/attrreference_t?language=objc)
 pub type attrreference_t = attrreference;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/diskextent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct diskextent {
@@ -70,13 +58,10 @@ pub struct diskextent {
     pub blockcount: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/extentrecord?language=objc)
 pub type extentrecord = ArrayUnknownABI<[diskextent; 8]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_capabilities_set_t?language=objc)
 pub type vol_capabilities_set_t = ArrayUnknownABI<[u32; 4]>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_capabilities_attr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vol_capabilities_attr {
@@ -84,10 +69,8 @@ pub struct vol_capabilities_attr {
     pub valid: vol_capabilities_set_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_capabilities_attr_t?language=objc)
 pub type vol_capabilities_attr_t = vol_capabilities_attr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_attributes_attr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vol_attributes_attr {
@@ -95,10 +78,8 @@ pub struct vol_attributes_attr {
     pub nativeattr: attribute_set_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_attributes_attr_t?language=objc)
 pub type vol_attributes_attr_t = vol_attributes_attr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/fssearchblock?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fssearchblock {
@@ -114,7 +95,6 @@ pub struct fssearchblock {
     pub searchattrs: attrlist,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/searchstate?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct searchstate {

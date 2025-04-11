@@ -4,10 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/netaddr_t?language=objc)
 pub type netaddr_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/np_uid_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct np_uid_t {
@@ -15,7 +13,6 @@ pub struct np_uid_t {
     pub np_uid_low: c_long,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/network_port_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct network_port_t {

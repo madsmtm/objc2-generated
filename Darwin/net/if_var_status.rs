@@ -4,15 +4,10 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_cellular_status_report_version_1?language=objc)
 pub const IF_CELLULAR_STATUS_REPORT_VERSION_1: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_wifi_status_report_version_1?language=objc)
 pub const IF_WIFI_STATUS_REPORT_VERSION_1: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_cellular_status_report_current_version?language=objc)
 pub const IF_CELLULAR_STATUS_REPORT_CURRENT_VERSION: c_uint = IF_CELLULAR_STATUS_REPORT_VERSION_1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_wifi_status_report_current_version?language=objc)
 pub const IF_WIFI_STATUS_REPORT_CURRENT_VERSION: c_uint = IF_WIFI_STATUS_REPORT_VERSION_1;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_cellular_status_v1?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_cellular_status_v1 {
@@ -41,21 +36,18 @@ pub struct if_cellular_status_v1 {
     pub reserved_6: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_cellular_status_if_cell_u?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union if_cellular_status_if_cell_u {
     pub if_status_v1: if_cellular_status_v1,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_cellular_status?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct if_cellular_status {
     pub if_cell_u: if_cellular_status_if_cell_u,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_wifi_status_v1?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_wifi_status_v1 {
@@ -85,21 +77,18 @@ pub struct if_wifi_status_v1 {
     pub reserved_4: u64,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_wifi_status_if_wifi_u?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union if_wifi_status_if_wifi_u {
     pub if_status_v1: if_wifi_status_v1,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_wifi_status?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct if_wifi_status {
     pub if_wifi_u: if_wifi_status_if_wifi_u,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_link_status_ifsr_u?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union if_link_status_ifsr_u {
@@ -107,7 +96,6 @@ pub union if_link_status_ifsr_u {
     pub ifsr_wifi: if_wifi_status,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_link_status?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct if_link_status {
@@ -116,7 +104,6 @@ pub struct if_link_status {
     pub ifsr_u: if_link_status_ifsr_u,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_version?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_version(pub u8);
@@ -127,7 +114,6 @@ impl ifnet_interface_advisory_version {
         Self(ifnet_interface_advisory_version::IF_INTERFACE_ADVISORY_VERSION_2.0);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_direction?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_direction(pub u8);
@@ -136,7 +122,6 @@ impl ifnet_interface_advisory_direction {
     pub const IF_INTERFACE_ADVISORY_DIRECTION_RX: Self = Self(2);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_interface_type?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_interface_type(pub u8);
@@ -145,7 +130,6 @@ impl ifnet_interface_advisory_interface_type {
     pub const IF_INTERFACE_ADVISORY_INTERFACE_TYPE_CELL: Self = Self(2);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_notification_type_cell?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_notification_type_cell(pub u8);
@@ -161,7 +145,6 @@ impl ifnet_interface_advisory_notification_type_cell {
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_CELLULAR_THERMAL_CRA_EVENT: Self = Self(6);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_notification_type_wifi?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_notification_type_wifi(pub u8);
@@ -169,7 +152,6 @@ impl ifnet_interface_advisory_notification_type_wifi {
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_WIFI_UNDEFINED: Self = Self(0);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_notification_type_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ifnet_interface_advisory_notification_type_t {
@@ -177,7 +159,6 @@ pub union ifnet_interface_advisory_notification_type_t {
     pub wifi: ifnet_interface_advisory_notification_type_wifi,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_header?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifnet_interface_advisory_header {
@@ -187,7 +168,6 @@ pub struct ifnet_interface_advisory_header {
     pub notification_type: ifnet_interface_advisory_notification_type_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_rate_trend?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_rate_trend(pub i32);
@@ -197,7 +177,6 @@ impl ifnet_interface_advisory_rate_trend {
     pub const IF_INTERFACE_ADVISORY_RATE_SUGGESTION_RAMP_NEUTRAL: Self = Self(0);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_capacity?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_interface_advisory_capacity {
@@ -211,7 +190,6 @@ pub struct ifnet_interface_advisory_capacity {
     pub average_delay: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_wifi_freq_band?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_wifi_freq_band(pub u8);
@@ -222,7 +200,6 @@ impl ifnet_interface_advisory_wifi_freq_band {
     pub const IF_INTERFACE_ADVISORY_FREQ_BAND_WIFI_6GHZ: Self = Self(3);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_wifi_context?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_interface_advisory_wifi_context {
@@ -239,7 +216,6 @@ pub struct ifnet_interface_advisory_wifi_context {
     pub wifi_observed_tx_bitrate: [u32; 6],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_cell_context?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_interface_advisory_cell_context {
@@ -257,12 +233,10 @@ pub struct ifnet_interface_advisory_cell_context {
     pub(crate) __pad: u8,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_interface_advisory {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_traffic_descriptor_common?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_traffic_descriptor_common {
@@ -272,12 +246,10 @@ pub struct ifnet_traffic_descriptor_common {
     pub itd_flags: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_ip_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_ip_addr {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_traffic_descriptor_inet?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifnet_traffic_descriptor_inet {
@@ -292,7 +264,6 @@ pub struct ifnet_traffic_descriptor_inet {
     pub inet_rport: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_traffic_rule_action?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_traffic_rule_action {
@@ -301,7 +272,6 @@ pub struct ifnet_traffic_rule_action {
     pub ra_len: u16,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_traffic_rule_action_steer?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_traffic_rule_action_steer {

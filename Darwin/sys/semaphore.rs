@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sem_t?language=objc)
 pub type sem_t = c_int;
 
 extern "C-unwind" {

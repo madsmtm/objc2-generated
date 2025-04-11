@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sysdir_search_path_directory_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct sysdir_search_path_directory_t(pub c_uint);
@@ -35,7 +34,6 @@ impl sysdir_search_path_directory_t {
     pub const SYSDIR_DIRECTORY_ALL_LIBRARIES: Self = Self(101);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sysdir_search_path_domain_mask_t?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,7 +48,6 @@ bitflags::bitflags! {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sysdir_search_path_enumeration_state?language=objc)
 pub type sysdir_search_path_enumeration_state = c_uint;
 
 extern "C-unwind" {

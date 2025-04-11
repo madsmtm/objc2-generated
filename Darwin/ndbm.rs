@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/datum?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct datum {
@@ -12,7 +11,6 @@ pub struct datum {
     pub dsize: usize,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/dbm?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct DBM {

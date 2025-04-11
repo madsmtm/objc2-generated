@@ -3,5 +3,4 @@
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sa_family_t?language=objc)
 pub type sa_family_t = u8;

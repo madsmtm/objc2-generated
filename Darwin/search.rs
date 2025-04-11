@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/entry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct entry {
@@ -12,10 +11,8 @@ pub struct entry {
     pub data: *mut c_void,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/entry?language=objc)
 pub type ENTRY = entry;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/action?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ACTION(pub c_uint);
@@ -24,7 +21,6 @@ impl ACTION {
     pub const ENTER: Self = Self(1);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/visit?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VISIT(pub c_uint);

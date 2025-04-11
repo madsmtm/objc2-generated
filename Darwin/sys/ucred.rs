@@ -6,9 +6,7 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xucred_version?language=objc)
 pub const XUCRED_VERSION: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ucred?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct ucred {
@@ -20,10 +18,8 @@ unsafe impl RefEncode for ucred {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("ucred", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_cred_t?language=objc)
 pub type kauth_cred_t = *mut ucred;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/posix_cred?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct posix_cred {
@@ -35,10 +31,8 @@ unsafe impl RefEncode for posix_cred {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("posix_cred", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/posix_cred_t?language=objc)
 pub type posix_cred_t = *mut posix_cred;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xucred?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xucred {

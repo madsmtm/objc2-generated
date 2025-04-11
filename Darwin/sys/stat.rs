@@ -6,7 +6,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ostat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ostat {
@@ -27,7 +26,6 @@ pub struct ostat {
     pub st_gen: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/stat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct stat {

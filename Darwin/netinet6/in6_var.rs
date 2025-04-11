@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_addrlifetime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in6_addrlifetime {
@@ -14,7 +13,6 @@ pub struct in6_addrlifetime {
     pub ia6t_pltime: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_addrpolicy?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_addrpolicy {
@@ -25,7 +23,6 @@ pub struct in6_addrpolicy {
     pub r#use: u_quad_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_ifstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in6_ifstat {
@@ -56,7 +53,6 @@ pub struct in6_ifstat {
     pub ifs6_defrtr_expiry_cnt: u_quad_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6_ifstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6_ifstat {
@@ -96,7 +92,6 @@ pub struct icmp6_ifstat {
     pub ifs6_out_mlddone: u_quad_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_ifreq_ifr_ifru?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union in6_ifreq_ifr_ifru {
@@ -113,7 +108,6 @@ pub union in6_ifreq_ifr_ifru {
     pub ifru_scope_id: [u32; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_ifreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_ifreq {
@@ -121,7 +115,6 @@ pub struct in6_ifreq {
     pub ifr_ifru: in6_ifreq_ifr_ifru,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_aliasreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_aliasreq {
@@ -133,7 +126,6 @@ pub struct in6_aliasreq {
     pub ifra_lifetime: in6_addrlifetime,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/prf_ra?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct prf_ra {
@@ -142,7 +134,6 @@ pub struct prf_ra {
     pub reserved: c_uchar,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/prf_rr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct prf_rr {
@@ -151,7 +142,6 @@ pub struct prf_rr {
     pub reserved: c_uchar,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_prflags?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in6_prflags {
@@ -163,7 +153,6 @@ pub struct in6_prflags {
     pub prf_reserved4: c_ushort,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_prefixreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_prefixreq {
@@ -176,7 +165,6 @@ pub struct in6_prefixreq {
     pub ipr_prefix: sockaddr_in6,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/irr_raflagmask?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct irr_raflagmask {
@@ -185,7 +173,6 @@ pub struct irr_raflagmask {
     pub reserved: c_uchar,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_rrenumreq?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_rrenumreq {
@@ -204,7 +191,6 @@ pub struct in6_rrenumreq {
     pub irr_useprefix: sockaddr_in6,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in6_addrlifetime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in6_addrlifetime {
@@ -214,7 +200,6 @@ pub struct kev_in6_addrlifetime {
     pub ia6t_pltime: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in6_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kev_in6_data {

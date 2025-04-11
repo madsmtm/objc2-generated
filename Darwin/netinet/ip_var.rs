@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipovly?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipovly {
@@ -15,7 +14,6 @@ pub struct ipovly {
     pub ih_dst: in_addr,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipstat {
@@ -70,7 +68,6 @@ pub struct ipstat {
     pub ips_src_addr_not_avail: u32,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_linklocal_stat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_linklocal_stat {

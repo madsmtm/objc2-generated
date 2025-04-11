@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/tchars?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tchars {
@@ -16,7 +15,6 @@ pub struct tchars {
     pub t_brkc: c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ltchars?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ltchars {
@@ -28,7 +26,6 @@ pub struct ltchars {
     pub t_lnextc: c_char,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/sgttyb?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sgttyb {

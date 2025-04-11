@@ -4,13 +4,9 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kern_version?language=objc)
 pub const KERN_VERSION: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kern_osversion?language=objc)
 pub const KERN_OSVERSION: c_uint = 65;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/user_posix2_version?language=objc)
 pub const USER_POSIX2_VERSION: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/ctlname?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ctlname {
@@ -18,7 +14,6 @@ pub struct ctlname {
     pub ctl_type: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_pcred?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _pcred {
@@ -31,7 +26,6 @@ pub struct _pcred {
     pub p_refcnt: c_int,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/_ucred?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _ucred {
@@ -41,7 +35,6 @@ pub struct _ucred {
     pub cr_groups: [gid_t; 16],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/eproc?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct eproc {
@@ -66,7 +59,6 @@ pub struct eproc {
     pub e_spare: [i32; 4],
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/kinfo_proc?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kinfo_proc {
@@ -74,7 +66,6 @@ pub struct kinfo_proc {
     pub kp_eproc: eproc,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/xsw_usage?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xsw_usage {
@@ -85,7 +76,6 @@ pub struct xsw_usage {
     pub xsu_encrypted: boolean_t,
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/loadavg?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct loadavg {
@@ -94,7 +84,6 @@ pub struct loadavg {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/darwin/averunnable?language=objc)
     pub static averunnable: loadavg;
 }
 

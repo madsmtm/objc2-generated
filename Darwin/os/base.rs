@@ -4,7 +4,6 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/darwin/os_function_t?language=objc)
 pub type os_function_t = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
 /// Generic type for a block taking no arguments and returning no value.
@@ -46,6 +45,4 @@ pub type os_function_t = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 ///
 /// Instead, the block literal must be copied to the heap with the Block_copy()
 /// function or by sending it a -[copy] message.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/os_block_t?language=objc)
 pub type os_block_t = *mut block2::Block<dyn Fn()>;
