@@ -3,12 +3,18 @@
 #[cfg(feature = "bpf")]
 #[path = "bpf.rs"]
 mod __bpf;
+#[cfg(feature = "dl")]
+#[path = "dl.rs"]
+mod __dl;
 #[cfg(feature = "dlil")]
 #[path = "dlil.rs"]
 mod __dlil;
 #[cfg(feature = "ethernet")]
 #[path = "ethernet.rs"]
 mod __ethernet;
+#[cfg(feature = "if")]
+#[path = "if.rs"]
+mod __if;
 #[cfg(feature = "if_arp")]
 #[path = "if_arp.rs"]
 mod __if_arp;
@@ -45,6 +51,9 @@ mod __pfkeyv2;
 #[cfg(feature = "route")]
 #[path = "route.rs"]
 mod __route;
+#[cfg(feature = "types")]
+#[path = "types.rs"]
+mod __types;
 
 pub use self::__bpf::bpf_dltlist;
 pub use self::__bpf::bpf_dltlist_bfl_u;
@@ -57,6 +66,9 @@ pub use self::__bpf::bpf_u_int32;
 pub use self::__bpf::bpf_version;
 pub use self::__bpf::BPF_MAJOR_VERSION;
 pub use self::__bpf::BPF_MINOR_VERSION;
+pub use self::__dl::link_addr;
+pub use self::__dl::link_ntoa;
+pub use self::__dl::sockaddr_dl;
 pub use self::__ethernet::ether_addr;
 pub use self::__ethernet::ether_addr_t;
 pub use self::__ethernet::ether_aton;
@@ -66,6 +78,30 @@ pub use self::__ethernet::ether_hostton;
 pub use self::__ethernet::ether_line;
 pub use self::__ethernet::ether_ntoa;
 pub use self::__ethernet::ether_ntohost;
+pub use self::__if::if_clonereq;
+pub use self::__if::if_freenameindex;
+pub use self::__if::if_indextoname;
+pub use self::__if::if_msghdr;
+pub use self::__if::if_msghdr2;
+pub use self::__if::if_nameindex;
+pub use self::__if::if_nameindex;
+pub use self::__if::if_nametoindex;
+pub use self::__if::ifa_msghdr;
+pub use self::__if::ifaliasreq;
+pub use self::__if::ifconf;
+pub use self::__if::ifconf_ifc_ifcu;
+pub use self::__if::ifdevmtu;
+pub use self::__if::ifdrv;
+pub use self::__if::ifkpi;
+pub use self::__if::ifkpi_ifk_data;
+pub use self::__if::ifma_msghdr;
+pub use self::__if::ifma_msghdr2;
+pub use self::__if::ifmediareq;
+pub use self::__if::ifreq;
+pub use self::__if::ifreq_ifr_ifru;
+pub use self::__if::ifstat;
+pub use self::__if::kev_dl_proto_data;
+pub use self::__if::rslvmulti_req;
 pub use self::__if_arp::arphdr;
 pub use self::__if_arp::arpreq;
 pub use self::__if_arp::arpstat;

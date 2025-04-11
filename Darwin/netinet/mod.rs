@@ -18,6 +18,9 @@ mod __igmp;
 #[cfg(feature = "igmp_var")]
 #[path = "igmp_var.rs"]
 mod __igmp_var;
+#[cfg(feature = "in")]
+#[path = "in.rs"]
+mod __in;
 #[cfg(feature = "in_pcb")]
 #[path = "in_pcb.rs"]
 mod __in_pcb;
@@ -39,6 +42,9 @@ mod __ip_icmp;
 #[cfg(feature = "ip_var")]
 #[path = "ip_var.rs"]
 mod __ip_var;
+#[cfg(feature = "tcp")]
+#[path = "tcp.rs"]
+mod __tcp;
 #[cfg(feature = "tcp_fsm")]
 #[path = "tcp_fsm.rs"]
 mod __tcp_fsm;
@@ -107,6 +113,22 @@ pub use self::__igmp_var::igmpstat;
 pub use self::__igmp_var::igmpstat_v3;
 pub use self::__igmp_var::IGPS_VERSION3_LEN;
 pub use self::__igmp_var::IGPS_VERSION_3;
+pub(crate) use self::__in::__msfilterreq;
+pub use self::__in::bindresvport;
+pub use self::__in::bindresvport_sa;
+pub use self::__in::getipv4sourcefilter;
+pub use self::__in::getsourcefilter;
+pub use self::__in::group_req;
+pub use self::__in::group_source_req;
+pub use self::__in::in_addr;
+pub use self::__in::in_pktinfo;
+pub use self::__in::ip_mreq;
+pub use self::__in::ip_mreq_source;
+pub use self::__in::ip_mreqn;
+pub use self::__in::ip_opts;
+pub use self::__in::setipv4sourcefilter;
+pub use self::__in::setsourcefilter;
+pub use self::__in::sockaddr_in;
 pub(crate) use self::__in_pcb::_inpcb_list_entry;
 pub use self::__in_pcb::in_addr_4in6;
 pub use self::__in_pcb::inp_gen_t;
@@ -166,6 +188,10 @@ pub use self::__ip_icmp::ih_rtradv;
 pub use self::__ip_var::ip_linklocal_stat;
 pub use self::__ip_var::ipovly;
 pub use self::__ip_var::ipstat;
+pub use self::__tcp::tcp_cc;
+pub use self::__tcp::tcp_connection_info;
+pub use self::__tcp::tcp_seq;
+pub use self::__tcp::tcphdr;
 pub use self::__tcp_var::tcpcb;
 pub use self::__tcp_var::tcpstat;
 pub use self::__tcp_var::tcpstat_local;

@@ -63,6 +63,9 @@ mod __ioccom;
 #[cfg(feature = "ioctl_compat")]
 #[path = "ioctl_compat.rs"]
 mod __ioctl_compat;
+#[cfg(feature = "ipc")]
+#[path = "ipc.rs"]
+mod __ipc;
 #[cfg(feature = "kauth")]
 #[path = "kauth.rs"]
 mod __kauth;
@@ -87,9 +90,15 @@ mod __lock;
 #[cfg(feature = "mbuf")]
 #[path = "mbuf.rs"]
 mod __mbuf;
+#[cfg(feature = "mman")]
+#[path = "mman.rs"]
+mod __mman;
 #[cfg(feature = "mount")]
 #[path = "mount.rs"]
 mod __mount;
+#[cfg(feature = "msg")]
+#[path = "msg.rs"]
+mod __msg;
 #[cfg(feature = "msgbuf")]
 #[path = "msgbuf.rs"]
 mod __msgbuf;
@@ -126,27 +135,48 @@ mod __rbtree;
 #[cfg(feature = "reboot")]
 #[path = "reboot.rs"]
 mod __reboot;
+#[cfg(feature = "resource")]
+#[path = "resource.rs"]
+mod __resource;
 #[cfg(feature = "resourcevar")]
 #[path = "resourcevar.rs"]
 mod __resourcevar;
 #[cfg(feature = "sbuf")]
 #[path = "sbuf.rs"]
 mod __sbuf;
+#[cfg(feature = "select")]
+#[path = "select.rs"]
+mod __select;
+#[cfg(feature = "sem")]
+#[path = "sem.rs"]
+mod __sem;
 #[cfg(feature = "semaphore")]
 #[path = "semaphore.rs"]
 mod __semaphore;
+#[cfg(feature = "shm")]
+#[path = "shm.rs"]
+mod __shm;
 #[cfg(feature = "signal")]
 #[path = "signal.rs"]
 mod __signal;
 #[cfg(feature = "signalvar")]
 #[path = "signalvar.rs"]
 mod __signalvar;
+#[cfg(feature = "socket")]
+#[path = "socket.rs"]
+mod __socket;
 #[cfg(feature = "socketvar")]
 #[path = "socketvar.rs"]
 mod __socketvar;
 #[cfg(feature = "sockio")]
 #[path = "sockio.rs"]
 mod __sockio;
+#[cfg(feature = "stat")]
+#[path = "stat.rs"]
+mod __stat;
+#[cfg(feature = "statvfs")]
+#[path = "statvfs.rs"]
+mod __statvfs;
 #[cfg(feature = "sys_domain")]
 #[path = "sys_domain.rs"]
 mod __sys_domain;
@@ -156,9 +186,15 @@ mod __syscall;
 #[cfg(feature = "sysctl")]
 #[path = "sysctl.rs"]
 mod __sysctl;
+#[cfg(feature = "time")]
+#[path = "time.rs"]
+mod __time;
 #[cfg(feature = "timeb")]
 #[path = "timeb.rs"]
 mod __timeb;
+#[cfg(feature = "times")]
+#[path = "times.rs"]
+mod __times;
 #[cfg(feature = "trace")]
 #[path = "trace.rs"]
 mod __trace;
@@ -177,12 +213,21 @@ mod __ttydefaults;
 #[cfg(feature = "ttydev")]
 #[path = "ttydev.rs"]
 mod __ttydev;
+#[cfg(feature = "types")]
+#[path = "types/mod.rs"]
+mod __types;
 #[cfg(feature = "ucontext")]
 #[path = "ucontext.rs"]
 mod __ucontext;
 #[cfg(feature = "ucred")]
 #[path = "ucred.rs"]
 mod __ucred;
+#[cfg(feature = "uio")]
+#[path = "uio.rs"]
+mod __uio;
+#[cfg(feature = "un")]
+#[path = "un.rs"]
+mod __un;
 #[cfg(feature = "unpcb")]
 #[path = "unpcb.rs"]
 mod __unpcb;
@@ -192,6 +237,9 @@ mod __user;
 #[cfg(feature = "utfconv")]
 #[path = "utfconv.rs"]
 mod __utfconv;
+#[cfg(feature = "utsname")]
+#[path = "utsname.rs"]
+mod __utsname;
 #[cfg(feature = "vcmd")]
 #[path = "vcmd.rs"]
 mod __vcmd;
@@ -201,6 +249,15 @@ mod __vm;
 #[cfg(feature = "vnode")]
 #[path = "vnode.rs"]
 mod __vnode;
+#[cfg(feature = "vsock")]
+#[path = "vsock.rs"]
+mod __vsock;
+#[cfg(feature = "wait")]
+#[path = "wait.rs"]
+mod __wait;
+#[cfg(feature = "xattr")]
+#[path = "xattr.rs"]
+mod __xattr;
 
 pub use self::__acct::acct;
 pub use self::__acct::comp_t;
@@ -422,6 +479,8 @@ pub use self::__gmon::GMONVERSION;
 pub use self::__ioctl_compat::ltchars;
 pub use self::__ioctl_compat::sgttyb;
 pub use self::__ioctl_compat::tchars;
+pub use self::__ipc::ftok;
+pub use self::__ipc::ipc_perm;
 pub use self::__kauth::kauth_ace;
 pub use self::__kauth::kauth_ace_rights_t;
 pub use self::__kauth::kauth_ace_t;
@@ -449,7 +508,6 @@ pub(crate) use self::__kernel_types::__ifnet;
 pub(crate) use self::__kernel_types::__ifnet_filter;
 pub(crate) use self::__kernel_types::__pkthdr;
 pub(crate) use self::__kernel_types::__rtentry;
-pub(crate) use self::__kernel_types::__socket;
 pub(crate) use self::__kernel_types::__sockopt;
 pub use self::__kernel_types::buf;
 pub use self::__kernel_types::buf_t;
@@ -500,6 +558,19 @@ pub use self::__mbuf::MTF_SOCKET;
 pub use self::__mbuf::MTF_SONAME;
 pub use self::__mbuf::MTF_SOOPTS;
 pub use self::__mbuf::MTF_TAG;
+pub use self::__mman::madvise;
+pub use self::__mman::mincore;
+pub use self::__mman::minherit;
+pub use self::__mman::mlock;
+pub use self::__mman::mlockall;
+pub use self::__mman::mmap;
+pub use self::__mman::mprotect;
+pub use self::__mman::msync;
+pub use self::__mman::munlock;
+pub use self::__mman::munlockall;
+pub use self::__mman::munmap;
+pub use self::__mman::posix_madvise;
+pub use self::__mman::shm_unlink;
 pub use self::__mount::cryptex_auth_type_t;
 pub use self::__mount::fhandle;
 pub use self::__mount::fhandle_t;
@@ -523,6 +594,16 @@ pub use self::__mount::vfsidctl;
 pub use self::__mount::vfsquery;
 pub use self::__mount::vfsstatfs;
 pub use self::__mount::CRYPTEX_AUTH_STRUCT_VERSION;
+pub(crate) use self::__msg::__msqid_ds_new;
+pub use self::__msg::msg;
+pub use self::__msg::msgctl;
+pub use self::__msg::msgget;
+pub use self::__msg::msginfo;
+pub use self::__msg::msglen_t;
+pub use self::__msg::msgqnum_t;
+pub use self::__msg::msgrcv;
+pub use self::__msg::msgsnd;
+pub use self::__msg::mymsg;
 pub use self::__msgbuf::msgbuf;
 pub use self::__netport::netaddr_t;
 pub use self::__netport::network_port_t;
@@ -619,6 +700,13 @@ pub use self::__reboot::usrctl;
 pub use self::__resourcevar::pstats;
 pub use self::__resourcevar::uprof;
 pub use self::__sbuf::sbuf;
+pub(crate) use self::__sem::__semid_ds_new;
+pub use self::__sem::sem;
+pub use self::__sem::sembuf;
+pub use self::__sem::semget;
+pub use self::__sem::semop;
+pub use self::__sem::semun;
+pub use self::__sem::semun_t;
 pub use self::__semaphore::sem_close;
 pub use self::__semaphore::sem_destroy;
 pub use self::__semaphore::sem_getvalue;
@@ -628,6 +716,48 @@ pub use self::__semaphore::sem_t;
 pub use self::__semaphore::sem_trywait;
 pub use self::__semaphore::sem_unlink;
 pub use self::__semaphore::sem_wait;
+pub(crate) use self::__shm::__shmid_ds_new;
+pub use self::__shm::pshminfo;
+pub use self::__shm::shmat;
+pub use self::__shm::shmatt_t;
+pub use self::__shm::shmctl;
+pub use self::__shm::shmdt;
+pub use self::__shm::shmget;
+pub(crate) use self::__socket::__sockaddr_header;
+pub use self::__socket::accept;
+pub use self::__socket::bind;
+pub use self::__socket::cmsghdr;
+pub use self::__socket::connect;
+pub use self::__socket::connectx;
+pub use self::__socket::disconnectx;
+pub use self::__socket::getpeername;
+pub use self::__socket::getsockname;
+pub use self::__socket::getsockopt;
+pub use self::__socket::linger;
+pub use self::__socket::listen;
+pub use self::__socket::msghdr;
+pub use self::__socket::pfctlinput;
+pub use self::__socket::recv;
+pub use self::__socket::recvfrom;
+pub use self::__socket::recvmsg;
+pub use self::__socket::sa_endpoints;
+pub use self::__socket::sa_endpoints_t;
+pub use self::__socket::sae_associd_t;
+pub use self::__socket::sae_connid_t;
+pub use self::__socket::send;
+pub use self::__socket::sendfile;
+pub use self::__socket::sendmsg;
+pub use self::__socket::sendto;
+pub use self::__socket::setsockopt;
+pub use self::__socket::sf_hdtr;
+pub use self::__socket::shutdown;
+pub use self::__socket::so_np_extensions;
+pub use self::__socket::sockaddr;
+pub use self::__socket::sockaddr_storage;
+pub use self::__socket::sockatmark;
+pub use self::__socket::socket;
+pub use self::__socket::socketpair;
+pub use self::__socket::sockproto;
 pub use self::__socketvar::so_gen_t;
 pub use self::__socketvar::so_tracker_action;
 pub use self::__socketvar::so_tracker_attribute;
@@ -636,6 +766,39 @@ pub use self::__socketvar::xsockbuf;
 pub use self::__socketvar::xsocket;
 pub use self::__socketvar::xsocket64;
 pub use self::__socketvar::SO_TRACKER_TRANSPARENCY_VERSION;
+pub use self::__stat::chflags;
+pub use self::__stat::chmod;
+pub use self::__stat::chmodx_np;
+pub use self::__stat::fchflags;
+pub use self::__stat::fchmod;
+pub use self::__stat::fchmodat;
+pub use self::__stat::fchmodx_np;
+pub use self::__stat::fstat;
+pub use self::__stat::fstatat;
+pub use self::__stat::fstatx_np;
+pub use self::__stat::futimens;
+pub use self::__stat::lchflags;
+pub use self::__stat::lchmod;
+pub use self::__stat::lstat;
+pub use self::__stat::lstatx_np;
+pub use self::__stat::mkdir;
+pub use self::__stat::mkdirat;
+pub use self::__stat::mkdirx_np;
+pub use self::__stat::mkfifo;
+pub use self::__stat::mkfifoat;
+pub use self::__stat::mkfifox_np;
+pub use self::__stat::mknod;
+pub use self::__stat::mknodat;
+pub use self::__stat::ostat;
+pub use self::__stat::stat;
+pub use self::__stat::stat;
+pub use self::__stat::statx_np;
+pub use self::__stat::umask;
+pub use self::__stat::umaskx_np;
+pub use self::__stat::utimensat;
+pub use self::__statvfs::fstatvfs;
+pub use self::__statvfs::statvfs;
+pub use self::__statvfs::statvfs;
 pub use self::__sys_domain::sockaddr_sys;
 pub(crate) use self::__sysctl::_pcred;
 pub(crate) use self::__sysctl::_ucred;
@@ -651,24 +814,59 @@ pub use self::__sysctl::xsw_usage;
 pub use self::__sysctl::KERN_OSVERSION;
 pub use self::__sysctl::KERN_VERSION;
 pub use self::__sysctl::USER_POSIX2_VERSION;
+pub use self::__time::adjtime;
+pub use self::__time::clockinfo;
+pub use self::__time::futimes;
+pub use self::__time::getitimer;
+pub use self::__time::gettimeofday;
+pub use self::__time::itimerval;
+pub use self::__time::lutimes;
+pub use self::__time::setitimer;
+pub use self::__time::settimeofday;
+pub use self::__time::timezone;
+pub use self::__time::utimes;
 pub use self::__timeb::ftime;
 pub use self::__timeb::timeb;
+pub use self::__times::times;
+pub use self::__times::tms;
 pub use self::__tty::speedtab;
 pub use self::__ttychars::ttychars;
 pub use self::__ttycom::winsize;
+#[cfg(feature = "types")]
+pub use self::__types::*;
 pub use self::__ucred::kauth_cred_t;
 pub use self::__ucred::posix_cred;
 pub use self::__ucred::posix_cred_t;
 pub use self::__ucred::ucred;
 pub use self::__ucred::xucred;
 pub use self::__ucred::XUCRED_VERSION;
+pub use self::__uio::preadv;
+pub use self::__uio::pwritev;
+pub use self::__uio::readv;
+pub use self::__uio::uio_rw;
+pub use self::__uio::writev;
+pub use self::__un::sockaddr_un;
 pub(crate) use self::__unpcb::_unpcb_list_entry;
 pub use self::__unpcb::unp_gen_t;
 pub use self::__unpcb::xunpgen;
 pub use self::__user::user;
+pub use self::__utsname::uname;
+pub use self::__utsname::utsname;
 pub use self::__vm::vmspace;
 pub use self::__vnode::io_compression_stats;
 pub use self::__vnode::io_compression_stats_t;
 pub use self::__vnode::iocs_store_buffer_entry;
 pub use self::__vnode::vtagtype;
 pub use self::__vnode::vtype;
+pub use self::__vsock::sockaddr_vm;
+pub use self::__vsock::vsock_gen_t;
+pub use self::__vsock::xvsockpcb;
+pub use self::__vsock::xvsockpgen;
+pub use self::__xattr::fgetxattr;
+pub use self::__xattr::flistxattr;
+pub use self::__xattr::fremovexattr;
+pub use self::__xattr::fsetxattr;
+pub use self::__xattr::getxattr;
+pub use self::__xattr::listxattr;
+pub use self::__xattr::removexattr;
+pub use self::__xattr::setxattr;
