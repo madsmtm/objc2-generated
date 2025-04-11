@@ -3,36 +3,61 @@
 
 use crate::ffi::*;
 
+/// UDP kernel structures and variables.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct udpiphdr {
+    /// overlaid ip structure
     pub ui_i: ipovly,
+    /// udp header
     pub ui_u: udphdr,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct udpstat {
+    /// total input packets
     pub udps_ipackets: u32,
+    /// packet shorter than header
     pub udps_hdrops: u32,
+    /// checksum error
     pub udps_badsum: u32,
+    /// data length larger than packet
     pub udps_badlen: u32,
+    /// no socket on port
     pub udps_noport: u32,
+    /// of above, arrived as broadcast
     pub udps_noportbcast: u32,
+    /// not delivered, input socket full
     pub udps_fullsock: u32,
+    /// input packets missing pcb cache
     pub udpps_pcbcachemiss: u32,
+    /// input packets not for hashed pcb
     pub udpps_pcbhashmiss: u32,
+    /// total output packets
     pub udps_opackets: u32,
+    /// output packets on fast path
     pub udps_fastout: u32,
+    /// no checksum
     pub udps_nosum: u32,
+    /// of no socket on port, multicast
     pub udps_noportmcast: u32,
+    /// blocked by multicast filter
     pub udps_filtermcast: u32,
+    /// udp swcksum (inbound), packets
     pub udps_rcv_swcsum: u32,
+    /// udp swcksum (inbound), bytes
     pub udps_rcv_swcsum_bytes: u32,
+    /// udp6 swcksum (inbound), packets
     pub udps_rcv6_swcsum: u32,
+    /// udp6 swcksum (inbound), bytes
     pub udps_rcv6_swcsum_bytes: u32,
+    /// udp swcksum (outbound), packets
     pub udps_snd_swcsum: u32,
+    /// udp swcksum (outbound), bytes
     pub udps_snd_swcsum_bytes: u32,
+    /// udp6 swcksum (outbound), packets
     pub udps_snd6_swcsum: u32,
+    /// udp6 swcksum (outbound), bytes
     pub udps_snd6_swcsum_bytes: u32,
 }

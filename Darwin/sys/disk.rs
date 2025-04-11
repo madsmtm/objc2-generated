@@ -22,6 +22,7 @@ pub struct dk_firmware_path_t {
 pub struct dk_format_capacity_t {
     pub blockCount: u64,
     pub blockSize: u32,
+    /// reserved, clear to zero
     pub reserved0096: [u8; 4],
 }
 
@@ -29,7 +30,9 @@ pub struct dk_format_capacity_t {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_format_capacities_t {
     pub capacities: *mut dk_format_capacity_t,
+    /// use zero to probe count
     pub capacitiesCount: u32,
+    /// reserved, clear to zero
     pub reserved0096: [u8; 4],
 }
 
@@ -39,6 +42,7 @@ pub struct dk_synchronize_t {
     pub offset: u64,
     pub length: u64,
     pub options: u32,
+    /// reserved, clear to zero
     pub reserved0160: [u8; 4],
 }
 
@@ -54,6 +58,7 @@ pub struct dk_unmap_t {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_corestorage_info_t {
     pub flags: u64,
+    /// in bytes
     pub hotfile_size: u64,
     pub hibernate_minsize: u64,
     pub swapfile_pinning: u64,
@@ -72,18 +77,26 @@ pub struct dk_provision_extent_t {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_provision_status_t {
+    /// input:        logical byte offset
     pub offset: u64,
+    /// input:        byte length, 0 for whole length
     pub length: u64,
+    /// reserved, clear to zero
     pub options: u64,
+    /// not used
     pub reserved: u32,
+    /// input/output: count for extents
     pub extentsCount: u32,
+    /// output:       provision extents
     pub extents: *mut dk_provision_extent_t,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_error_description_t {
+    /// reserved, clear to zero
     pub options: u64,
+    /// reserved, clear to zero
     pub reserved: u64,
     pub description_size: u64,
     pub description: *mut c_char,

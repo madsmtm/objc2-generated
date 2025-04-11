@@ -4,21 +4,38 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// 4.3 COMPATIBILITY FILE
+///
+/// User visible structures and constants related to terminal handling.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ttychars {
+    /// erase last character
     pub tc_erase: c_char,
+    /// erase entire line
     pub tc_kill: c_char,
+    /// interrupt
     pub tc_intrc: c_char,
+    /// quit
     pub tc_quitc: c_char,
+    /// start output
     pub tc_startc: c_char,
+    /// stop output
     pub tc_stopc: c_char,
+    /// end-of-file
     pub tc_eofc: c_char,
+    /// input delimiter (like nl)
     pub tc_brkc: c_char,
+    /// stop process signal
     pub tc_suspc: c_char,
+    /// delayed stop process signal
     pub tc_dsuspc: c_char,
+    /// reprint line
     pub tc_rprntc: c_char,
+    /// flush output (toggles)
     pub tc_flushc: c_char,
+    /// word erase
     pub tc_werasc: c_char,
+    /// literal next character
     pub tc_lnextc: c_char,
 }

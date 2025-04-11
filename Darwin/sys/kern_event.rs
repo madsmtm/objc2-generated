@@ -27,12 +27,19 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kern_event_msg {
+    /// Size of entire event msg
     pub total_size: u32,
+    /// For non-Apple extensibility
     pub vendor_code: u32,
+    /// Layer of event source
     pub kev_class: u32,
+    /// Component within layer
     pub kev_subclass: u32,
+    /// Monotonically increasing value
     pub id: u32,
+    /// unique code
     pub event_code: u32,
+    /// One or more data words
     pub event_data: [u32; 1],
 }
 

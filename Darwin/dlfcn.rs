@@ -4,15 +4,21 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Structure filled in by dladdr().
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dl_info {
+    /// Pathname of shared object
     pub dli_fname: *const c_char,
+    /// Base address of shared object
     pub dli_fbase: *mut c_void,
+    /// Name of nearest symbol
     pub dli_sname: *const c_char,
+    /// Address of nearest symbol
     pub dli_saddr: *mut c_void,
 }
 
+/// Structure filled in by dladdr().
 pub type Dl_info = dl_info;
 
 extern "C-unwind" {

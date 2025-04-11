@@ -21,72 +21,128 @@ pub const MTF_CONTROL: c_uint = 1 << MT_CONTROL;
 pub const MTF_OOBDATA: c_uint = 1 << MT_OOBDATA;
 pub const MTF_TAG: c_uint = 1 << MT_TAG;
 
+/// Mbuf statistics (legacy).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct mbstat {
+    /// mbufs obtained from page pool
     pub m_mbufs: u32,
+    /// clusters obtained from page pool
     pub m_clusters: u32,
+    /// spare field
     pub m_spare: u32,
+    /// free clusters
     pub m_clfree: u32,
+    /// times failed to find space
     pub m_drops: u32,
+    /// times waited for space
     pub m_wait: u32,
+    /// times drained protocols for space
     pub m_drain: u32,
+    /// type specific mbuf allocations
     pub m_mtypes: [c_ushort; 256],
+    /// times m_copym failed
     pub m_mcfail: u32,
+    /// times m_pullup failed
     pub m_mpfail: u32,
+    /// length of an mbuf
     pub m_msize: u32,
+    /// length of an mbuf cluster
     pub m_mclbytes: u32,
+    /// min length of data to allocate a cluster
     pub m_minclsize: u32,
+    /// length of data in an mbuf
     pub m_mlen: u32,
+    /// length of data in a header mbuf
     pub m_mhlen: u32,
+    /// clusters obtained from page pool
     pub m_bigclusters: u32,
+    /// free clusters
     pub m_bigclfree: u32,
+    /// length of an mbuf cluster
     pub m_bigmclbytes: u32,
+    /// times we force defunct'ed an app's sockets
     pub m_forcedefunct: u32,
 }
 
+/// Compatibillity with 10.3
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ombstat {
+    /// mbufs obtained from page pool
     pub m_mbufs: u32,
+    /// clusters obtained from page pool
     pub m_clusters: u32,
+    /// spare field
     pub m_spare: u32,
+    /// free clusters
     pub m_clfree: u32,
+    /// times failed to find space
     pub m_drops: u32,
+    /// times waited for space
     pub m_wait: u32,
+    /// times drained protocols for space
     pub m_drain: u32,
+    /// type specific mbuf allocations
     pub m_mtypes: [c_ushort; 256],
+    /// times m_copym failed
     pub m_mcfail: u32,
+    /// times m_pullup failed
     pub m_mpfail: u32,
+    /// length of an mbuf
     pub m_msize: u32,
+    /// length of an mbuf cluster
     pub m_mclbytes: u32,
+    /// min length of data to allocate a cluster
     pub m_minclsize: u32,
+    /// length of data in an mbuf
     pub m_mlen: u32,
+    /// length of data in a header mbuf
     pub m_mhlen: u32,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct mb_class_stat {
+    /// class name
     pub mbcl_cname: [c_char; 16],
+    /// buffer size
     pub mbcl_size: u32,
+    /// # of buffers created
     pub mbcl_total: u32,
+    /// # of active buffers
     pub mbcl_active: u32,
+    /// # of available buffers
     pub mbcl_infree: u32,
+    /// # of available slabs
     pub mbcl_slab_cnt: u32,
+    /// padding
     pub mbcl_pad: u32,
+    /// # of times alloc is called
     pub mbcl_alloc_cnt: u64,
+    /// # of times free is called
     pub mbcl_free_cnt: u64,
+    /// # of notified wakeups
     pub mbcl_notified: u64,
+    /// # of purges so far
     pub mbcl_purge_cnt: u64,
+    /// # of allocation failures
     pub mbcl_fail_cnt: u64,
+    /// total only for this class
     pub mbcl_ctotal: u32,
+    /// amount of memory returned
     pub mbcl_release_cnt: u32,
+    /// cache state (see below)
     pub mbcl_mc_state: u32,
+    /// # of cached buffers
     pub mbcl_mc_cached: u32,
+    /// # waiters on the cache
     pub mbcl_mc_waiter_cnt: u32,
+    /// # of wait retries
     pub mbcl_mc_wretry_cnt: u32,
+    /// # of no-wait retry attempts
     pub mbcl_mc_nwretry_cnt: u32,
+    /// for future use
     pub mbcl_reserved: [u32; 7],
 }
 
@@ -95,8 +151,11 @@ pub type mb_class_stat_t = mb_class_stat;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct mb_stat {
+    /// number of classes
     pub mbs_cnt: u32,
+    /// padding
     pub mbs_pad: u32,
+    /// class array
     pub mbs_class: [mb_class_stat_t; 1],
 }
 

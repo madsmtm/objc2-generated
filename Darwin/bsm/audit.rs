@@ -40,7 +40,9 @@ pub type au_tid_addr_t = au_tid_addr;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_mask {
+    /// Success bits.
     pub am_success: c_uint,
+    /// Failure bits.
     pub am_failure: c_uint,
 }
 
@@ -49,9 +51,13 @@ pub type au_mask_t = au_mask;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditinfo {
+    /// Audit user ID.
     pub ai_auid: au_id_t,
+    /// Audit masks.
     pub ai_mask: au_mask_t,
+    /// Terminal ID.
     pub ai_termid: au_tid_t,
+    /// Audit session ID.
     pub ai_asid: au_asid_t,
 }
 
@@ -60,10 +66,15 @@ pub type auditinfo_t = auditinfo;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditinfo_addr {
+    /// Audit user ID.
     pub ai_auid: au_id_t,
+    /// Audit masks.
     pub ai_mask: au_mask_t,
+    /// Terminal ID.
     pub ai_termid: au_tid_addr_t,
+    /// Audit session ID.
     pub ai_asid: au_asid_t,
+    /// Audit session flags.
     pub ai_flags: au_asflgs_t,
 }
 
@@ -72,10 +83,15 @@ pub type auditinfo_addr_t = auditinfo_addr;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditpinfo {
+    /// ID of target process.
     pub ap_pid: pid_t,
+    /// Audit user ID.
     pub ap_auid: au_id_t,
+    /// Audit masks.
     pub ap_mask: au_mask_t,
+    /// Terminal ID.
     pub ap_termid: au_tid_t,
+    /// Audit session ID.
     pub ap_asid: au_asid_t,
 }
 
@@ -84,11 +100,17 @@ pub type auditpinfo_t = auditpinfo;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditpinfo_addr {
+    /// ID of target process.
     pub ap_pid: pid_t,
+    /// Audit user ID.
     pub ap_auid: au_id_t,
+    /// Audit masks.
     pub ap_mask: au_mask_t,
+    /// Terminal ID.
     pub ap_termid: au_tid_addr_t,
+    /// Audit session ID.
     pub ap_asid: au_asid_t,
+    /// Audit session flags.
     pub ap_flags: au_asflgs_t,
 }
 
@@ -97,7 +119,9 @@ pub type auditpinfo_addr_t = auditpinfo_addr;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_session {
+    /// Ptr to full audit info.
     pub as_aia_p: *mut auditinfo_addr_t,
+    /// Process Audit Masks.
     pub as_mask: au_mask_t,
 }
 
@@ -106,27 +130,49 @@ pub type au_session_t = au_session;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_expire_after {
+    /// Age after which trail files should be expired
     pub age: time_t,
+    /// Aggregate trail size when files should be expired
     pub size: usize,
+    /// Operator used with the above values to determine when files should be expired
     pub op_type: c_uchar,
 }
 
 pub type au_expire_after_t = au_expire_after;
 
+/// Contents of token_t are opaque outside of libbsm.
 pub type token_t = au_token;
 
+/// Kernel audit queue control parameters:
+/// Default:        Maximum:
+/// aq_hiwater:    AQ_HIWATER (100)    AQ_MAXHIGH (10000)
+/// aq_lowater:    AQ_LOWATER (10)
+/// <aq
+/// _hiwater
+/// aq_bufsz:    AQ_BUFSZ (32767)    AQ_MAXBUFSZ (1048576)
+/// aq_delay:    20            20000 (not used)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_qctrl {
+    /// Max # of audit recs in queue when
+    ///
+    /// threads with new ARs get blocked.
     pub aq_hiwater: c_int,
+    /// # of audit recs in queue when
+    ///
+    /// blocked threads get unblocked.
     pub aq_lowater: c_int,
+    /// Max size of audit record for audit(2).
     pub aq_bufsz: c_int,
+    /// Queue delay (not used).
     pub aq_delay: c_int,
+    /// Minimum filesystem percent free space.
     pub aq_minfree: c_int,
 }
 
 pub type au_qctrl_t = au_qctrl;
 
+/// Structure for the audit statistics.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct audit_stat {
@@ -148,6 +194,7 @@ pub struct audit_stat {
 
 pub type au_stat_t = audit_stat;
 
+/// Structure for the audit file statistics.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct audit_fstat {
@@ -157,6 +204,7 @@ pub struct audit_fstat {
 
 pub type au_fstat_t = audit_fstat;
 
+/// Audit to event class mapping.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_evclass_map {
@@ -166,15 +214,22 @@ pub struct au_evclass_map {
 
 pub type au_evclass_map_t = au_evclass_map;
 
+/// Audit session flags for the ai_flags member of auditinfo_addr.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct audit_session_flags(pub c_uint);
 impl audit_session_flags {
+    /// The initial session created by PID 1.
     pub const AU_SESSION_FLAG_IS_INITIAL: Self = Self(0x0001);
+    /// The graphics subsystem (CoreGraphics, etc.) is available.
     pub const AU_SESSION_FLAG_HAS_GRAPHIC_ACCESS: Self = Self(0x0010);
+    /// /dev/tty is available.
     pub const AU_SESSION_FLAG_HAS_TTY: Self = Self(0x0020);
+    /// The session was created for a remote connection.
     pub const AU_SESSION_FLAG_IS_REMOTE: Self = Self(0x1000);
+    /// The console and associated devices are available.
     pub const AU_SESSION_FLAG_HAS_CONSOLE_ACCESS: Self = Self(0x2000);
+    /// An active, authenticated user is associated with the session.
     pub const AU_SESSION_FLAG_HAS_AUTHENTICATED: Self = Self(0x4000);
 }
 
@@ -210,6 +265,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// getaudit()/setaudit() are deprecated and have been replaced with
+    /// wrappers to the getaudit_addr()/setaudit_addr() syscalls above.
     #[deprecated]
     pub fn getaudit(param1: *mut auditinfo) -> c_int;
 }

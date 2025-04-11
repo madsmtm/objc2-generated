@@ -6,10 +6,14 @@ use crate::ffi::*;
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_vm {
+    /// total length
     pub svm_len: u8,
+    /// Address family: AF_VSOCK
     pub svm_family: sa_family_t,
     pub svm_reserved1: u16,
+    /// Port # in host byte order
     pub svm_port: u32,
+    /// Address in host byte order
     pub svm_cid: u32,
 }
 
@@ -18,17 +22,28 @@ pub type vsock_gen_t = u_quad_t;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xvsockpcb {
+    /// length of this structure
     pub xv_len: u32,
     pub xv_vsockpp: u64,
+    /// local address cid
     pub xvp_local_cid: u32,
+    /// local address port
     pub xvp_local_port: u32,
+    /// remote address cid
     pub xvp_remote_cid: u32,
+    /// remote address port
     pub xvp_remote_port: u32,
+    /// bytes received
     pub xvp_rxcnt: u32,
+    /// bytes transmitted
     pub xvp_txcnt: u32,
+    /// peer's receive buffer
     pub xvp_peer_rxhiwat: u32,
+    /// bytes received by peer
     pub xvp_peer_rxcnt: u32,
+    /// last pid
     pub xvp_last_pid: pid_t,
+    /// vsock generation count
     pub xvp_gencnt: vsock_gen_t,
     pub xv_socket: xsocket,
 }
@@ -36,8 +51,12 @@ pub struct xvsockpcb {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xvsockpgen {
+    /// length of this structure
     pub xvg_len: u32,
+    /// number of PCBs at this time
     pub xvg_count: u64,
+    /// generation count at this time
     pub xvg_gen: vsock_gen_t,
+    /// current socket generation count
     pub xvg_sogen: so_gen_t,
 }

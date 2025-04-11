@@ -7,11 +7,18 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ar_hdr {
+    /// name
     pub ar_name: [c_char; 16],
+    /// modification time
     pub ar_date: [c_char; 12],
+    /// user id
     pub ar_uid: [c_char; 6],
+    /// group id
     pub ar_gid: [c_char; 6],
+    /// octal file permissions
     pub ar_mode: [c_char; 8],
+    /// size in bytes
     pub ar_size: [c_char; 10],
+    /// consistency check
     pub ar_fmag: [c_char; 2],
 }

@@ -4,6 +4,19 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// rbto_compare_nodes_fn:
+/// return a positive value if the first node > the second node.
+/// return a negative value if the first node
+/// <
+/// the second node.
+/// return 0 if they are considered same.
+///
+/// rbto_compare_key_fn:
+/// return a positive value if the node > the key.
+/// return a negative value if the node
+/// <
+/// the key.
+/// return 0 if they are considered same.
 pub type rbto_compare_nodes_fn =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *const c_void, *const c_void) -> c_int>;
 

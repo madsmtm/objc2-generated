@@ -4,19 +4,31 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Following structure is used as a statvfs/fstatvfs function parameter
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct statvfs {
+    /// File system block size
     pub f_bsize: c_ulong,
+    /// Fundamental file system block size
     pub f_frsize: c_ulong,
+    /// Blocks on FS in units of f_frsize
     pub f_blocks: fsblkcnt_t,
+    /// Free blocks
     pub f_bfree: fsblkcnt_t,
+    /// Blocks available to non-root
     pub f_bavail: fsblkcnt_t,
+    /// Total inodes
     pub f_files: fsfilcnt_t,
+    /// Free inodes
     pub f_ffree: fsfilcnt_t,
+    /// Free inodes for non-root
     pub f_favail: fsfilcnt_t,
+    /// Filesystem ID
     pub f_fsid: c_ulong,
+    /// Bit mask of values
     pub f_flag: c_ulong,
+    /// Max file name length
     pub f_namemax: c_ulong,
 }
 

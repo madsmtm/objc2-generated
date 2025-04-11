@@ -6,6 +6,7 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::ffi::*;
 
+/// 23.2.2 Individual object access permissions - nonstandard
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_perm_t(pub c_uint);
@@ -30,6 +31,7 @@ impl acl_perm_t {
     pub const ACL_SYNCHRONIZE: Self = Self(__DARWIN_ACL_SYNCHRONIZE);
 }
 
+/// 23.2.5 ACL entry tag type bits - nonstandard
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_tag_t(pub c_uint);
@@ -39,19 +41,27 @@ impl acl_tag_t {
     pub const ACL_EXTENDED_DENY: Self = Self(__DARWIN_ACL_EXTENDED_DENY);
 }
 
+/// 23.2.6 Individual ACL types
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_type_t(pub c_uint);
 impl acl_type_t {
     pub const ACL_TYPE_EXTENDED: Self = Self(0x00000100);
+    /// Posix 1003.1e types - not supported
     pub const ACL_TYPE_ACCESS: Self = Self(0x00000000);
+    /// Posix 1003.1e types - not supported
     pub const ACL_TYPE_DEFAULT: Self = Self(0x00000001);
+    /// The following types are defined on FreeBSD/Linux - not supported
     pub const ACL_TYPE_AFS: Self = Self(0x00000002);
+    /// The following types are defined on FreeBSD/Linux - not supported
     pub const ACL_TYPE_CODA: Self = Self(0x00000003);
+    /// The following types are defined on FreeBSD/Linux - not supported
     pub const ACL_TYPE_NTFS: Self = Self(0x00000004);
+    /// The following types are defined on FreeBSD/Linux - not supported
     pub const ACL_TYPE_NWFS: Self = Self(0x00000005);
 }
 
+/// 23.2.8 ACL Entry Constants
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_entry_id_t(pub c_int);
@@ -61,10 +71,12 @@ impl acl_entry_id_t {
     pub const ACL_LAST_ENTRY: Self = Self(-2);
 }
 
+/// nonstandard ACL / entry flags
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_flag_t(pub c_uint);
 impl acl_flag_t {
+    /// tentative
     pub const ACL_FLAG_DEFER_INHERIT: Self = Self(1 << 0);
     pub const ACL_FLAG_NO_INHERIT: Self = Self(__DARWIN_ACL_FLAG_NO_INHERIT);
     pub const ACL_ENTRY_INHERITED: Self = Self(__DARWIN_ACL_ENTRY_INHERITED);
@@ -74,6 +86,7 @@ impl acl_flag_t {
     pub const ACL_ENTRY_ONLY_INHERIT: Self = Self(__DARWIN_ACL_ENTRY_ONLY_INHERIT);
 }
 
+/// "External" ACL types
 #[repr(C)]
 #[derive(Debug)]
 pub struct _acl {
@@ -129,6 +142,7 @@ pub type acl_flagset_t = *mut _acl_flagset;
 pub type acl_permset_mask_t = u64;
 
 extern "C-unwind" {
+    /// 23.1.6.1 ACL Storage Management
     pub fn acl_dup(acl: acl_t) -> acl_t;
 }
 
@@ -141,6 +155,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// 23.1.6.2 (1) ACL Entry manipulation
     pub fn acl_copy_entry(dest_d: acl_entry_t, src_d: acl_entry_t) -> c_int;
 }
 
@@ -181,6 +196,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// 23.1.6.2 (2) Manipulate permissions within an ACL entry
     pub fn acl_add_perm(permset_d: acl_permset_t, perm: acl_perm_t) -> c_int;
 }
 
@@ -209,6 +225,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// nonstandard - manipulate permissions within an ACL entry using bitmasks
     pub fn acl_maximal_permset_mask_np(mask_p: *mut acl_permset_mask_t) -> c_int;
 }
 
@@ -221,6 +238,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// nonstandard - manipulate flags on ACLs and entries
     pub fn acl_add_flag_np(flagset_d: acl_flagset_t, flag: acl_flag_t) -> c_int;
 }
 
@@ -245,6 +263,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// 23.1.6.2 (3) Manipulate ACL entry tag type and qualifier
     pub fn acl_get_qualifier(entry_d: acl_entry_t) -> *mut c_void;
 }
 
@@ -261,6 +280,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// 23.1.6.3 ACL manipulation on an Object
     pub fn acl_delete_def_file(path_p: *const c_char) -> c_int;
 }
 
@@ -297,6 +317,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// 23.1.6.4 ACL Format translation
     pub fn acl_copy_ext(buf_p: *mut c_void, acl: acl_t, size: isize) -> isize;
 }
 

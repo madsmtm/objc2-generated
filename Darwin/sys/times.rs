@@ -3,12 +3,17 @@
 
 use crate::ffi::*;
 
+/// [XSI] Structure whose address is passed as the first parameter to times()
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tms {
+    /// [XSI] User CPU time
     pub tms_utime: clock_t,
+    /// [XSI] System CPU time
     pub tms_stime: clock_t,
+    /// [XSI] Terminated children user CPU time
     pub tms_cutime: clock_t,
+    /// [XSI] Terminated children System CPU time
     pub tms_cstime: clock_t,
 }
 

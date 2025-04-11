@@ -6,40 +6,75 @@ use crate::ffi::*;
 
 pub const IGPS_VERSION_3: c_uint = 3;
 pub const IGPS_VERSION3_LEN: c_uint = 168;
+/// Internet Group Management Protocol (IGMP),
+/// implementation-specific definitions.
+///
+/// Written by Steve Deering, Stanford, May 1988.
+///
+/// MULTICAST Revision: 3.5.1.3
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmpstat_v3 {
+    /// version of this structure
     pub igps_version: u32,
+    /// length of this structure
     pub igps_len: u32,
+    /// total IGMP messages received
     pub igps_rcv_total: u64,
+    /// received with too few bytes
     pub igps_rcv_tooshort: u64,
+    /// received with ttl other than 1
     pub igps_rcv_badttl: u64,
+    /// received with bad checksum
     pub igps_rcv_badsum: u64,
+    /// received IGMPv1/IGMPv2 queries
     pub igps_rcv_v1v2_queries: u64,
+    /// received IGMPv3 queries
     pub igps_rcv_v3_queries: u64,
+    /// received invalid queries
     pub igps_rcv_badqueries: u64,
+    /// received general queries
     pub igps_rcv_gen_queries: u64,
+    /// received group queries
     pub igps_rcv_group_queries: u64,
+    /// received group-source queries
     pub igps_rcv_gsr_queries: u64,
+    /// dropped group-source queries
     pub igps_drop_gsr_queries: u64,
+    /// received membership reports
     pub igps_rcv_reports: u64,
+    /// received invalid reports
     pub igps_rcv_badreports: u64,
+    /// received reports for our groups
     pub igps_rcv_ourreports: u64,
+    /// received w/o Router Alert option
     pub igps_rcv_nora: u64,
+    /// sent membership reports
     pub igps_snd_reports: u64,
+    /// Padding for future additions.
     pub(crate) __igps_pad: [u64; 4],
 }
 
+/// Old IGMPv2 stat structure for backward compatibility
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmpstat {
+    /// total IGMP messages received
     pub igps_rcv_total: c_uint,
+    /// received with too few bytes
     pub igps_rcv_tooshort: c_uint,
+    /// received with bad checksum
     pub igps_rcv_badsum: c_uint,
+    /// received membership queries
     pub igps_rcv_queries: c_uint,
+    /// received invalid queries
     pub igps_rcv_badqueries: c_uint,
+    /// received membership reports
     pub igps_rcv_reports: c_uint,
+    /// received invalid reports
     pub igps_rcv_badreports: c_uint,
+    /// received reports for our groups
     pub igps_rcv_ourreports: c_uint,
+    /// sent membership reports
     pub igps_snd_reports: c_uint,
 }

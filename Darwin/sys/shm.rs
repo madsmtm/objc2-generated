@@ -4,19 +4,31 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// [XSI] The unsigned integer type used for the number of current attaches
+/// that MUST be able to store values at least as large as a type unsigned
+/// short.
 pub type shmatt_t = c_ushort;
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __shmid_ds_new {
+    /// [XSI] Operation permission value
     pub shm_perm: ipc_perm,
+    /// [XSI] Size of segment in bytes
     pub shm_segsz: usize,
+    /// [XSI] PID of last shared memory op
     pub shm_lpid: pid_t,
+    /// [XSI] PID of creator
     pub shm_cpid: pid_t,
+    /// [XSI] Number of current attaches
     pub shm_nattch: shmatt_t,
+    /// [XSI] Time of last shmat()
     pub shm_atime: time_t,
+    /// [XSI] Time of last shmdt()
     pub shm_dtime: time_t,
+    /// [XSI] Time of last shmctl() change
     pub shm_ctime: time_t,
+    /// reserved for kernel use
     pub shm_internal: *mut c_void,
 }
 

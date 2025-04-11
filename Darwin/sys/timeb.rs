@@ -4,15 +4,21 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// [XSI] Structure whose address is passed as the first parameter to ftime()
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct timeb {
+    /// [XSI] Seconds since the Epoch
     pub time: time_t,
+    /// [XSI] Milliseconds since the Epoch
     pub millitm: c_ushort,
+    /// [XSI] Minutes west of CUT
     pub timezone: c_short,
+    /// [XSI] non-zero if DST in effect
     pub dstflag: c_short,
 }
 
 extern "C-unwind" {
+    /// [XSI] Legacy interface
     pub fn ftime(param1: *mut timeb) -> c_int;
 }

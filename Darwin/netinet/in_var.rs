@@ -7,21 +7,29 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_aliasreq {
+    /// if name, e.g. "en0"
     pub ifra_name: [c_char; 16],
     pub ifra_addr: sockaddr_in,
     pub ifra_broadaddr: sockaddr_in,
     pub ifra_mask: sockaddr_in,
 }
 
+/// Event data, inet style.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_data {
     pub link_data: net_event_data,
+    /// interface address
     pub ia_addr: in_addr,
+    /// network number of interface
     pub ia_net: u32,
+    /// mask of net part
     pub ia_netmask: u32,
+    /// subnet number, including net
     pub ia_subnet: u32,
+    /// mask of subnet part
     pub ia_subnetmask: u32,
+    /// to recognize net broadcasts
     pub ia_netbroadcast: in_addr,
     pub ia_dstaddr: in_addr,
 }
@@ -29,28 +37,36 @@ pub struct kev_in_data {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_collision {
+    /// link where ARP was received on
     pub link_data: net_event_data,
+    /// conflicting IP address
     pub ia_ipaddr: in_addr,
+    /// length of hardware address
     pub hw_len: c_uchar,
+    /// variable length hardware address
     pub hw_addr: *mut c_uchar,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_arpfailure {
+    /// link where ARP is being sent
     pub link_data: net_event_data,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_arpalive {
+    /// link where ARP was received
     pub link_data: net_event_data,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_portinuse {
+    /// conflicting port number in host order
     pub port: u16,
+    /// PID port requestor
     pub req_pid: u32,
     pub reserved: [u32; 2],
 }

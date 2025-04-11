@@ -8,60 +8,92 @@ extern "C" {
     pub static h_errno: c_int;
 }
 
+/// Structures returned by network data base library.  All addresses are
+/// supplied in host order, and returned in network order (suitable for
+/// use in system calls).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct hostent {
+    /// official name of host
     pub h_name: *mut c_char,
+    /// alias list
     pub h_aliases: *mut *mut c_char,
+    /// host address type
     pub h_addrtype: c_int,
+    /// length of address
     pub h_length: c_int,
+    /// list of addresses from name server
     pub h_addr_list: *mut *mut c_char,
 }
 
+/// Assumption here is that a network number
+/// fits in an unsigned long -- probably a poor one.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct netent {
+    /// official name of net
     pub n_name: *mut c_char,
+    /// alias list
     pub n_aliases: *mut *mut c_char,
+    /// net address type
     pub n_addrtype: c_int,
+    /// network #
     pub n_net: u32,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct servent {
+    /// official service name
     pub s_name: *mut c_char,
+    /// alias list
     pub s_aliases: *mut *mut c_char,
+    /// port #
     pub s_port: c_int,
+    /// protocol to use
     pub s_proto: *mut c_char,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct protoent {
+    /// official protocol name
     pub p_name: *mut c_char,
+    /// alias list
     pub p_aliases: *mut *mut c_char,
+    /// protocol #
     pub p_proto: c_int,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct addrinfo {
+    /// AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST
     pub ai_flags: c_int,
+    /// PF_xxx
     pub ai_family: c_int,
+    /// SOCK_xxx
     pub ai_socktype: c_int,
+    /// 0 or IPPROTO_xxx for IPv4 and IPv6
     pub ai_protocol: c_int,
+    /// length of ai_addr
     pub ai_addrlen: socklen_t,
+    /// canonical name for hostname
     pub ai_canonname: *mut c_char,
+    /// binary address
     pub ai_addr: *mut sockaddr,
+    /// next structure in linked list
     pub ai_next: *mut addrinfo,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rpcent {
+    /// name of server for this rpc program
     pub r_name: *mut c_char,
+    /// alias list
     pub r_aliases: *mut *mut c_char,
+    /// rpc program number
     pub r_number: c_int,
 }
 
@@ -163,6 +195,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// void        sethostfile(const char *);
     pub fn setnetent(param1: c_int);
 }
 

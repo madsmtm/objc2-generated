@@ -22,6 +22,14 @@ pub type copyfile_state_t = *mut _copyfile_state;
 pub type copyfile_flags_t = u32;
 
 extern "C-unwind" {
+    /// receives:
+    /// from    path to source file system object
+    /// to        path to destination file system object
+    /// state    opaque blob for future extensibility
+    /// Must be NULL in current implementation
+    /// flags    (described below)
+    /// returns:
+    /// int    negative for error
     pub fn copyfile(
         from: *const c_char,
         to: *const c_char,

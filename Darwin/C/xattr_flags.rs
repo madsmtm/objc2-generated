@@ -9,6 +9,7 @@ pub type xattr_operation_intent_t = c_uint;
 pub type xattr_flags_t = u64;
 
 extern "C-unwind" {
+    /// Given a named extended attribute, and a copy intent, should the EA be preserved?
     pub fn xattr_preserve_for_intent(
         param1: *const c_char,
         param1: xattr_operation_intent_t,
@@ -16,18 +17,39 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Given an extended attribute name, and a set of properties, return an
+    /// allocated C string with the name.  This will return NULL on error;
+    /// errno may be set to ENOMEM if the new name cannot be allocated, or
+    /// ENAMETOOLONG if the new name is longer than the maximum for EAs (127 UTF8
+    /// characters).  The caller must deallocate the return value otherwise.
+    ///
+    /// If no properties are set, it returns a copy of the EA name.
+    ///
+    /// If the EA name is in the internal list, and the properties are the same as
+    /// defined there, then it will also return an unmodified copy of the EA name.
     pub fn xattr_name_with_flags(param1: *const c_char, param1: xattr_flags_t) -> *mut c_char;
 }
 
 extern "C-unwind" {
+    /// Given an extended attribute name, which may or may not have properties encoded
+    /// as a suffix, return just the name of the attribute.  E.g., com.example.mine#P
+    /// would return "com.example.mine".  The return value will be NULL on error;
+    /// errno will be set to ENOMEM if it cannot be allocated.  The caller must deallocate
+    /// the return value.
     pub fn xattr_name_without_flags(param1: *const c_char) -> *mut c_char;
 }
 
 extern "C-unwind" {
+    /// Given an EA name, return the properties.  If the name is in the internal list,
+    /// those properties will be returned.  Unknown property encodings are ignored.
     pub fn xattr_flags_from_name(param1: *const c_char) -> xattr_flags_t;
 }
 
 extern "C-unwind" {
+    /// Given an xattr_operation_intent_t and an xattr_flags_t, return whether it should
+    /// be preserved.  The default (in case either flags or intent is 0, or unknown
+    /// values) is to return 1; it only returns 0 if the flags and intent indicate it
+    /// should not be preserved.
     pub fn xattr_intent_with_flags(
         param1: xattr_operation_intent_t,
         param1: xattr_flags_t,

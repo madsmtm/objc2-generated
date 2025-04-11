@@ -4,10 +4,13 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Structures returned by bootparams calls.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bootparamsent {
+    /// name of host
     pub bp_name: *mut c_char,
+    /// bootparams list
     pub bp_bootparams: *mut *mut c_char,
 }
 

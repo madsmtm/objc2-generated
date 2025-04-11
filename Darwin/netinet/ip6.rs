@@ -9,9 +9,13 @@ pub const IPV6_VERSION_MASK: c_uint = 0xf0;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_hdrctl {
+    /// 20 bits of flow-ID
     pub ip6_un1_flow: u32,
+    /// payload length
     pub ip6_un1_plen: u16,
+    /// next header
     pub ip6_un1_nxt: u8,
+    /// hop limit
     pub ip6_un1_hlim: u8,
 }
 
@@ -19,17 +23,23 @@ pub struct ip6_hdrctl {
 #[derive(Clone, Copy)]
 pub union ip6_hdr_ip6_ctlun {
     pub ip6_un1: ip6_hdrctl,
+    /// 4 bits version, top 4 bits class
     pub ip6_un2_vfc: u8,
 }
 
+/// Definition for internet protocol version 6.
+/// RFC 2460
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct ip6_hdr {
     pub ip6_ctlun: ip6_hdr_ip6_ctlun,
+    /// source address
     pub ip6_src: in6_addr,
+    /// destination address
     pub ip6_dst: in6_addr,
 }
 
+/// Extension Headers
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_ext {
@@ -37,20 +47,31 @@ pub struct ip6_ext {
     pub ip6e_len: u8,
 }
 
+/// Hop-by-Hop options header
+///
+/// XXX should we pad it to force alignment on an 8-byte boundary?
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_hbh {
+    /// next header
     pub ip6h_nxt: u8,
+    /// length in units of 8 octets
     pub ip6h_len: u8,
 }
 
+/// Destination options header
+///
+/// XXX should we pad it to force alignment on an 8-byte boundary?
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_dest {
+    /// next header
     pub ip6d_nxt: u8,
+    /// length in units of 8 octets
     pub ip6d_len: u8,
 }
 
+/// IPv6 options: common part
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt {
@@ -58,6 +79,7 @@ pub struct ip6_opt {
     pub ip6o_len: u8,
 }
 
+/// Jumbo Payload Option
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt_jumbo {
@@ -66,6 +88,7 @@ pub struct ip6_opt_jumbo {
     pub ip6oj_jumbo_len: [u8; 4],
 }
 
+/// NSAP Address Option
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt_nsap {
@@ -75,6 +98,7 @@ pub struct ip6_opt_nsap {
     pub ip6on_dst_nsap_len: u8,
 }
 
+/// Tunnel Limit Option
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt_tunnel {
@@ -83,6 +107,7 @@ pub struct ip6_opt_tunnel {
     pub ip6ot_encap_limit: u8,
 }
 
+/// Router Alert Option
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_opt_router {
@@ -91,30 +116,46 @@ pub struct ip6_opt_router {
     pub ip6or_value: [u8; 2],
 }
 
+/// Routing header
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_rthdr {
+    /// next header
     pub ip6r_nxt: u8,
+    /// length in units of 8 octets
     pub ip6r_len: u8,
+    /// routing type
     pub ip6r_type: u8,
+    /// segments left
     pub ip6r_segleft: u8,
 }
 
+/// Type 0 Routing header, deprecated by RFC 5095.
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_rthdr0 {
+    /// next header
     pub ip6r0_nxt: u8,
+    /// length in units of 8 octets
     pub ip6r0_len: u8,
+    /// always zero
     pub ip6r0_type: u8,
+    /// segments left
     pub ip6r0_segleft: u8,
+    /// reserved field
     pub ip6r0_reserved: u32,
 }
 
+/// Fragment header
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip6_frag {
+    /// next header
     pub ip6f_nxt: u8,
+    /// reserved field
     pub ip6f_reserved: u8,
+    /// offset, reserved, and flag
     pub ip6f_offlg: u16,
+    /// identification
     pub ip6f_ident: u32,
 }

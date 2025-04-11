@@ -4,20 +4,34 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Accounting structures; these use a comp_t type which is a 3 bits base 8
+/// exponent, 13 bit fraction ``floating point'' number.  Units are 1/AHZ
+/// seconds.
 pub type comp_t = u16;
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct acct {
+    /// command name
     pub ac_comm: [c_char; 10],
+    /// user time
     pub ac_utime: comp_t,
+    /// system time
     pub ac_stime: comp_t,
+    /// elapsed time
     pub ac_etime: comp_t,
+    /// starting time
     pub ac_btime: u32,
+    /// user id
     pub ac_uid: uid_t,
+    /// group id
     pub ac_gid: gid_t,
+    /// average memory usage
     pub ac_mem: u16,
+    /// count of IO blocks
     pub ac_io: comp_t,
+    /// controlling tty
     pub ac_tty: dev_t,
+    /// accounting flags
     pub ac_flag: u8,
 }

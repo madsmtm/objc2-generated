@@ -14,301 +14,584 @@ pub struct tsegqe_head {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcpcb {
     pub t_segq: tsegqe_head,
+    /// consecutive dup acks recd
     pub t_dupacks: c_int,
+    /// unused now: was t_template
     pub unused: u32,
+    /// tcp timers
     pub t_timer: [c_int; 4],
+    /// back pointer to internet pcb
     pub t_inpcb: u32,
+    /// state of this connection
     pub t_state: c_int,
     pub t_flags: c_uint,
+    /// 1 if forcing out a byte
     pub t_force: c_int,
+    /// send unacknowledged
     pub snd_una: tcp_seq,
+    /// highest sequence number sent;
+    /// used to recognize retransmits
     pub snd_max: tcp_seq,
+    /// send next
     pub snd_nxt: tcp_seq,
+    /// send urgent pointer
     pub snd_up: tcp_seq,
+    /// window update seg seq number
     pub snd_wl1: tcp_seq,
+    /// window update seg ack number
     pub snd_wl2: tcp_seq,
+    /// initial send sequence number
     pub iss: tcp_seq,
+    /// initial receive sequence number
     pub irs: tcp_seq,
+    /// receive next
     pub rcv_nxt: tcp_seq,
+    /// advertised window
     pub rcv_adv: tcp_seq,
+    /// receive window
     pub rcv_wnd: u32,
+    /// receive urgent pointer
     pub rcv_up: tcp_seq,
+    /// send window
     pub snd_wnd: u32,
+    /// congestion-controlled window
     pub snd_cwnd: u32,
+    /// snd_cwnd size threshold for
+    /// for slow start exponential to
+    /// linear switch
     pub snd_ssthresh: u32,
+    /// mss plus options
     pub t_maxopd: c_uint,
+    /// time at which a packet was received
     pub t_rcvtime: u32,
+    /// time connection was established
     pub t_starttime: u32,
+    /// round trip time
     pub t_rtttime: c_int,
+    /// sequence number being timed
     pub t_rtseq: tcp_seq,
+    /// current retransmit value (ticks)
     pub t_rxtcur: c_int,
+    /// maximum segment size
     pub t_maxseg: c_uint,
+    /// smoothed round-trip time
     pub t_srtt: c_int,
+    /// variance in round-trip time
     pub t_rttvar: c_int,
+    /// log(2) of rexmt exp. backoff
     pub t_rxtshift: c_int,
+    /// minimum rtt allowed
     pub t_rttmin: c_uint,
+    /// number of times rtt sampled
     pub t_rttupdated: u32,
+    /// largest window peer has offered
     pub max_sndwnd: u32,
+    /// possible error not yet reported
     pub t_softerror: c_int,
+    /// have some
     pub t_oobflags: c_char,
+    /// input character
     pub t_iobc: c_char,
+    /// window scaling for send window
     pub snd_scale: c_uchar,
+    /// window scaling for recv window
     pub rcv_scale: c_uchar,
+    /// pending window scaling
     pub request_r_scale: c_uchar,
     pub requested_s_scale: c_uchar,
+    /// timestamp echo data
     pub ts_recent: u32,
+    /// when last updated
     pub ts_recent_age: u32,
     pub last_ack_sent: tcp_seq,
+    /// send connection count
     pub cc_send: tcp_cc,
+    /// receive connection count
     pub cc_recv: tcp_cc,
+    /// for use in fast recovery
     pub snd_recover: tcp_seq,
+    /// cwnd prior to retransmit
     pub snd_cwnd_prev: u32,
+    /// ssthresh prior to retransmit
     pub snd_ssthresh_prev: u32,
+    /// window for retransmit recovery
     pub t_badrxtwin: u32,
 }
 
+/// TCP statistics.
+/// Many of these should be kept per connection,
+/// but that's inconvenient at the moment.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcpstat {
+    /// connections initiated
     pub tcps_connattempt: u32,
+    /// connections accepted
     pub tcps_accepts: u32,
+    /// connections established
     pub tcps_connects: u32,
+    /// connections dropped
     pub tcps_drops: u32,
+    /// embryonic connections dropped
     pub tcps_conndrops: u32,
+    /// conn. closed (includes drops)
     pub tcps_closed: u32,
+    /// segs where we tried to get rtt
     pub tcps_segstimed: u32,
+    /// times we succeeded
     pub tcps_rttupdated: u32,
+    /// delayed acks sent
     pub tcps_delack: u32,
+    /// conn. dropped in rxmt timeout
     pub tcps_timeoutdrop: u32,
+    /// retransmit timeouts
     pub tcps_rexmttimeo: u32,
+    /// persist timeouts
     pub tcps_persisttimeo: u32,
+    /// keepalive timeouts
     pub tcps_keeptimeo: u32,
+    /// keepalive probes sent
     pub tcps_keepprobe: u32,
+    /// connections dropped in keepalive
     pub tcps_keepdrops: u32,
+    /// total packets sent
     pub tcps_sndtotal: u32,
+    /// data packets sent
     pub tcps_sndpack: u32,
+    /// data bytes sent
     pub tcps_sndbyte: u32,
+    /// data packets retransmitted
     pub tcps_sndrexmitpack: u32,
+    /// data bytes retransmitted
     pub tcps_sndrexmitbyte: u32,
+    /// ack-only packets sent
     pub tcps_sndacks: u32,
+    /// window probes sent
     pub tcps_sndprobe: u32,
+    /// packets sent with URG only
     pub tcps_sndurg: u32,
+    /// window update-only packets sent
     pub tcps_sndwinup: u32,
+    /// control (SYN|FIN|RST) packets sent
     pub tcps_sndctrl: u32,
+    /// total packets received
     pub tcps_rcvtotal: u32,
+    /// packets received in sequence
     pub tcps_rcvpack: u32,
+    /// bytes received in sequence
     pub tcps_rcvbyte: u32,
+    /// packets received with ccksum errs
     pub tcps_rcvbadsum: u32,
+    /// packets received with bad offset
     pub tcps_rcvbadoff: u32,
+    /// packets dropped for lack of memory
     pub tcps_rcvmemdrop: u32,
+    /// packets received too short
     pub tcps_rcvshort: u32,
+    /// duplicate-only packets received
     pub tcps_rcvduppack: u32,
+    /// duplicate-only bytes received
     pub tcps_rcvdupbyte: u32,
+    /// packets with some duplicate data
     pub tcps_rcvpartduppack: u32,
+    /// dup. bytes in part-dup. packets
     pub tcps_rcvpartdupbyte: u32,
+    /// out-of-order packets received
     pub tcps_rcvoopack: u32,
+    /// out-of-order bytes received
     pub tcps_rcvoobyte: u32,
+    /// packets with data after window
     pub tcps_rcvpackafterwin: u32,
+    /// bytes rcvd after window
     pub tcps_rcvbyteafterwin: u32,
+    /// packets rcvd after "close"
     pub tcps_rcvafterclose: u32,
+    /// rcvd window probe packets
     pub tcps_rcvwinprobe: u32,
+    /// rcvd duplicate acks
     pub tcps_rcvdupack: u32,
+    /// rcvd acks for unsent data
     pub tcps_rcvacktoomuch: u32,
+    /// rcvd ack packets
     pub tcps_rcvackpack: u32,
+    /// bytes acked by rcvd acks
     pub tcps_rcvackbyte: u32,
+    /// rcvd window update packets
     pub tcps_rcvwinupd: u32,
+    /// segments dropped due to PAWS
     pub tcps_pawsdrop: u32,
+    /// times hdr predict ok for acks
     pub tcps_predack: u32,
+    /// times hdr predict ok for data pkts
     pub tcps_preddat: u32,
     pub tcps_pcbcachemiss: u32,
+    /// times cached RTT in route updated
     pub tcps_cachedrtt: u32,
+    /// times cached rttvar updated
     pub tcps_cachedrttvar: u32,
+    /// times cached ssthresh updated
     pub tcps_cachedssthresh: u32,
+    /// times RTT initialized from route
     pub tcps_usedrtt: u32,
+    /// times RTTVAR initialized from rt
     pub tcps_usedrttvar: u32,
+    /// times ssthresh initialized from rt
     pub tcps_usedssthresh: u32,
+    /// timeout in persist state
     pub tcps_persistdrop: u32,
+    /// bogus SYN, e.g. premature ACK
     pub tcps_badsyn: u32,
+    /// resends due to MTU discovery
     pub tcps_mturesent: u32,
+    /// listen queue overflows
     pub tcps_listendrop: u32,
+    /// challenge ACK due to bad SYN
     pub tcps_synchallenge: u32,
+    /// challenge ACK due to bad RST
     pub tcps_rstchallenge: u32,
+    /// average minmss too low drops
     pub tcps_minmssdrops: u32,
+    /// unnecessary packet retransmissions
     pub tcps_sndrexmitbad: u32,
+    /// ignored RSTs in the window
     pub tcps_badrst: u32,
+    /// entry added to syncache
     pub tcps_sc_added: u32,
+    /// syncache entry was retransmitted
     pub tcps_sc_retransmitted: u32,
+    /// duplicate SYN packet
     pub tcps_sc_dupsyn: u32,
+    /// could not reply to packet
     pub tcps_sc_dropped: u32,
+    /// successful extraction of entry
     pub tcps_sc_completed: u32,
+    /// syncache per-bucket limit hit
     pub tcps_sc_bucketoverflow: u32,
+    /// syncache cache limit hit
     pub tcps_sc_cacheoverflow: u32,
+    /// RST removed entry from syncache
     pub tcps_sc_reset: u32,
+    /// timed out or listen socket gone
     pub tcps_sc_stale: u32,
+    /// syncache entry aborted
     pub tcps_sc_aborted: u32,
+    /// removed due to bad ACK
     pub tcps_sc_badack: u32,
+    /// ICMP unreachable received
     pub tcps_sc_unreach: u32,
+    /// zalloc() failed
     pub tcps_sc_zonefail: u32,
+    /// SYN cookie sent
     pub tcps_sc_sendcookie: u32,
+    /// SYN cookie received
     pub tcps_sc_recvcookie: u32,
+    /// entry added to hostcache
     pub tcps_hc_added: u32,
+    /// hostcache per bucket limit hit
     pub tcps_hc_bucketoverflow: u32,
+    /// SACK recovery episodes
     pub tcps_sack_recovery_episode: u32,
+    /// SACK rexmit segments
     pub tcps_sack_rexmits: u32,
+    /// SACK rexmit bytes
     pub tcps_sack_rexmit_bytes: u32,
+    /// SACK blocks (options) received
     pub tcps_sack_rcv_blocks: u32,
+    /// SACK blocks (options) sent
     pub tcps_sack_send_blocks: u32,
+    /// SACK sendblock overflow
     pub tcps_sack_sboverflow: u32,
+    /// RACK recovery episodes
     pub tcps_rack_recovery_episode: u32,
+    /// RACK recovery episodes due to reordering timeout
     pub tcps_rack_reordering_timeout_recovery_episode: u32,
+    /// RACK rexmit segments
     pub tcps_rack_rexmits: u32,
+    /// total background packets received
     pub tcps_bg_rcvtotal: u32,
+    /// drop conn after retransmitting FIN
     pub tcps_rxtfindrop: u32,
+    /// packets withheld because of flow control
     pub tcps_fcholdpacket: u32,
+    /// Limited transmit used
     pub tcps_limited_txt: u32,
+    /// Early retransmit used
     pub tcps_early_rexmt: u32,
+    /// Cumulative ack advanced along with sack
     pub tcps_sack_ackadv: u32,
+    /// tcp swcksum (inbound), packets
     pub tcps_rcv_swcsum: u32,
+    /// tcp swcksum (inbound), bytes
     pub tcps_rcv_swcsum_bytes: u32,
+    /// tcp6 swcksum (inbound), packets
     pub tcps_rcv6_swcsum: u32,
+    /// tcp6 swcksum (inbound), bytes
     pub tcps_rcv6_swcsum_bytes: u32,
+    /// tcp swcksum (outbound), packets
     pub tcps_snd_swcsum: u32,
+    /// tcp swcksum (outbound), bytes
     pub tcps_snd_swcsum_bytes: u32,
+    /// tcp6 swcksum (outbound), packets
     pub tcps_snd6_swcsum: u32,
+    /// tcp6 swcksum (outbound), bytes
     pub tcps_snd6_swcsum_bytes: u32,
     pub tcps_unused_1: u32,
     pub tcps_unused_2: u32,
     pub tcps_unused_3: u32,
+    /// Invalid MPTCP capable opts
     pub tcps_invalid_mpcap: u32,
+    /// Invalid MPTCP joins
     pub tcps_invalid_joins: u32,
+    /// TCP fallback in primary
     pub tcps_mpcap_fallback: u32,
+    /// No MPTCP in secondary
     pub tcps_join_fallback: u32,
+    /// DSS option dropped
     pub tcps_estab_fallback: u32,
+    /// Catchall error stat
     pub tcps_invalid_opt: u32,
+    /// Packet lies outside the
+    /// shared recv window
     pub tcps_mp_outofwin: u32,
+    /// Reduced subflow window
     pub tcps_mp_reducedwin: u32,
+    /// Bad DSS csum
     pub tcps_mp_badcsum: u32,
+    /// Out of order data
     pub tcps_mp_oodata: u32,
+    /// number of subflow switch
     pub tcps_mp_switches: u32,
+    /// number of rcvd packets
     pub tcps_mp_rcvtotal: u32,
+    /// number of bytes received
     pub tcps_mp_rcvbytes: u32,
+    /// number of data packs sent
     pub tcps_mp_sndpacks: u32,
+    /// number of bytes sent
     pub tcps_mp_sndbytes: u32,
+    /// join ack retransmits
     pub tcps_join_rxmts: u32,
+    /// RTO due to tail loss
     pub tcps_tailloss_rto: u32,
+    /// packets reorderd
     pub tcps_reordered_pkts: u32,
+    /// recovered after loss
     pub tcps_recovered_pkts: u32,
+    /// probe timeout
     pub tcps_pto: u32,
+    /// RTO after a probe
     pub tcps_rto_after_pto: u32,
+    /// TLP induced fast recovery
     pub tcps_tlp_recovery: u32,
+    /// TLP recoverd last pkt
     pub tcps_tlp_recoverlastpkt: u32,
+    /// client-side connection negotiated ECN
     pub tcps_ecn_client_success: u32,
+    /// ECE received, sent CWR
     pub tcps_ecn_recv_ece: u32,
+    /// Sent ECE notification
     pub tcps_ecn_sent_ece: u32,
+    /// Detect pkt reordering
     pub tcps_detect_reordering: u32,
+    /// Delay fast recovery
     pub tcps_delay_recovery: u32,
+    /// Retransmission was avoided
     pub tcps_avoid_rxmt: u32,
+    /// Retransmission was not needed
     pub tcps_unnecessary_rxmt: u32,
+    /// disabled stretch ack algorithm on a connection
     pub tcps_nostretchack: u32,
+    /// SACK rescue retransmit
     pub tcps_rescue_rxmt: u32,
+    /// rescue retransmit in fast recovery
     pub tcps_pto_in_recovery: u32,
+    /// PMTU Blackhole detection, segment size reverted
     pub tcps_pmtudbh_reverted: u32,
+    /// DSACK disabled due to n/w duplication
     pub tcps_dsack_disable: u32,
+    /// ignore DSACK due to ack loss
     pub tcps_dsack_ackloss: u32,
+    /// DSACK based bad rexmt recovery
     pub tcps_dsack_badrexmt: u32,
+    /// Sent DSACK notification
     pub tcps_dsack_sent: u32,
+    /// Received a valid DSACK option
     pub tcps_dsack_recvd: u32,
+    /// Received an out of window DSACK option
     pub tcps_dsack_recvd_old: u32,
+    /// By symptomsd
     pub tcps_mp_sel_symtomsd: u32,
+    /// By RTT comparison
     pub tcps_mp_sel_rtt: u32,
+    /// By RTO comparison
     pub tcps_mp_sel_rto: u32,
+    /// By peer's output pattern
     pub tcps_mp_sel_peer: u32,
+    /// Number of probes sent
     pub tcps_mp_num_probes: u32,
+    /// MPTCP version downgrade
     pub tcps_mp_verdowngrade: u32,
+    /// drop after long AP sleep
     pub tcps_drop_after_sleep: u32,
+    /// probe packets after interface availability
     pub tcps_probe_if: u32,
+    /// Can't send probe packets for interface
     pub tcps_probe_if_conflict: u32,
+    /// Attempted ECN setup from client side
     pub tcps_ecn_client_setup: u32,
+    /// Attempted ECN setup from server side
     pub tcps_ecn_server_setup: u32,
+    /// server-side connection negotiated ECN
     pub tcps_ecn_server_success: u32,
+    /// received AccECN SYN packet with Not-ECT
     pub tcps_ecn_ace_syn_not_ect: u32,
+    /// received AccECN SYN packet with ECT1
     pub tcps_ecn_ace_syn_ect1: u32,
+    /// received AccECN SYN packet with ECT0
     pub tcps_ecn_ace_syn_ect0: u32,
+    /// received AccECN SYN packet with CE
     pub tcps_ecn_ace_syn_ce: u32,
+    /// Lost SYN-ACK with ECN setup
     pub tcps_ecn_lost_synack: u32,
+    /// Lost SYN with ECN setup
     pub tcps_ecn_lost_syn: u32,
+    /// Server did not support ECN setup
     pub tcps_ecn_not_supported: u32,
+    /// Received CE from the network
     pub tcps_ecn_recv_ce: u32,
+    /// CE count received in ACE field
     pub tcps_ecn_ace_recv_ce: u32,
+    /// Number of connections received CE atleast once
     pub tcps_ecn_conn_recv_ce: u32,
+    /// Number of connections received ECE atleast once
     pub tcps_ecn_conn_recv_ece: u32,
+    /// Number of connections that received no CE and sufferred packet loss
     pub tcps_ecn_conn_plnoce: u32,
+    /// Number of connections that received CE and sufferred packet loss
     pub tcps_ecn_conn_pl_ce: u32,
+    /// Number of connections that received CE and sufferred no packet loss
     pub tcps_ecn_conn_nopl_ce: u32,
+    /// Number of times we did fall back due to SYN-Loss
     pub tcps_ecn_fallback_synloss: u32,
+    /// Number of times we fallback because we detected the PAWS-issue
     pub tcps_ecn_fallback_reorder: u32,
+    /// Number of times we fallback because we received too many CEs
     pub tcps_ecn_fallback_ce: u32,
+    /// Received a SYN+data with valid cookie
     pub tcps_tfo_syn_data_rcv: u32,
+    /// Received a TFO cookie-request
     pub tcps_tfo_cookie_req_rcv: u32,
+    /// Offered a TFO-cookie to the client
     pub tcps_tfo_cookie_sent: u32,
+    /// Received an invalid TFO-cookie
     pub tcps_tfo_cookie_invalid: u32,
+    /// Cookie requested with the SYN
     pub tcps_tfo_cookie_req: u32,
+    /// Cookie received in a SYN/ACK
     pub tcps_tfo_cookie_rcv: u32,
+    /// SYN+data+cookie sent
     pub tcps_tfo_syn_data_sent: u32,
+    /// SYN+data has been acknowledged
     pub tcps_tfo_syn_data_acked: u32,
+    /// SYN+TFO has been lost and we fallback
     pub tcps_tfo_syn_loss: u32,
+    /// TFO got blackholed by a middlebox.
     pub tcps_tfo_blackhole: u32,
+    /// TFO-cookie we sent was wrong
     pub tcps_tfo_cookie_wrong: u32,
+    /// We asked for a cookie but didn't get one
     pub tcps_tfo_no_cookie_rcv: u32,
+    /// TFO got disabled due to heuristics
     pub tcps_tfo_heuristics_disable: u32,
+    /// TFO got blackholed in the sending direction
     pub tcps_tfo_sndblackhole: u32,
+    /// Change MSS to default using link status report
     pub tcps_mss_to_default: u32,
+    /// Change MSS to medium using link status report
     pub tcps_mss_to_medium: u32,
+    /// Change MSS to low using link status report
     pub tcps_mss_to_low: u32,
+    /// ECN fallback caused by connection drop due to RST
     pub tcps_ecn_fallback_droprst: u32,
+    /// ECN fallback due to drop after multiple retransmits
     pub tcps_ecn_fallback_droprxmt: u32,
+    /// ECN fallback due to rst after syn
     pub tcps_ecn_fallback_synrst: u32,
+    /// MPTCP packets dropped for lack of memory
     pub tcps_mptcp_rcvmemdrop: u32,
+    /// MPTCP duplicate-only packets received
     pub tcps_mptcp_rcvduppack: u32,
+    /// MPTCP packets with data after window
     pub tcps_mptcp_rcvpackafterwin: u32,
+    /// Timer drift less or equal to 1 ms
     pub tcps_timer_drift_le_1_ms: u32,
+    /// Timer drift less or equal to 10 ms
     pub tcps_timer_drift_le_10_ms: u32,
+    /// Timer drift less or equal to 20 ms
     pub tcps_timer_drift_le_20_ms: u32,
+    /// Timer drift less or equal to 50 ms
     pub tcps_timer_drift_le_50_ms: u32,
+    /// Timer drift less or equal to 100 ms
     pub tcps_timer_drift_le_100_ms: u32,
+    /// Timer drift less or equal to 200 ms
     pub tcps_timer_drift_le_200_ms: u32,
+    /// Timer drift less or equal to 500 ms
     pub tcps_timer_drift_le_500_ms: u32,
+    /// Timer drift less or equal to 1000 ms
     pub tcps_timer_drift_le_1000_ms: u32,
+    /// Timer drift greater than 1000 ms
     pub tcps_timer_drift_gt_1000_ms: u32,
+    /// Total number of MPTCP-attempts using handover mode
     pub tcps_mptcp_handover_attempt: u32,
+    /// Total number of MPTCP-attempts using interactive mode
     pub tcps_mptcp_interactive_attempt: u32,
+    /// Total number of MPTCP-attempts using aggregate mode
     pub tcps_mptcp_aggregate_attempt: u32,
+    /// Same as previous three but only for first-party apps
     pub tcps_mptcp_fp_handover_attempt: u32,
     pub tcps_mptcp_fp_interactive_attempt: u32,
     pub tcps_mptcp_fp_aggregate_attempt: u32,
+    /// Total number of MPTCP-connections that fell back due to heuristics
     pub tcps_mptcp_heuristic_fallback: u32,
+    /// Same as previous but for first-party apps
     pub tcps_mptcp_fp_heuristic_fallback: u32,
+    /// Total number of successfull handover-mode connections that *started* on WiFi
     pub tcps_mptcp_handover_success_wifi: u32,
+    /// Total number of successfull handover-mode connections that *started* on Cell
     pub tcps_mptcp_handover_success_cell: u32,
+    /// Total number of interactive-mode connections that negotiated MPTCP
     pub tcps_mptcp_interactive_success: u32,
+    /// Same as previous but for aggregate
     pub tcps_mptcp_aggregate_success: u32,
+    /// Same as previous four, but for first-party apps
     pub tcps_mptcp_fp_handover_success_wifi: u32,
     pub tcps_mptcp_fp_handover_success_cell: u32,
     pub tcps_mptcp_fp_interactive_success: u32,
     pub tcps_mptcp_fp_aggregate_success: u32,
+    /// Total number of connections that use cell in handover-mode (coming from WiFi)
     pub tcps_mptcp_handover_cell_from_wifi: u32,
+    /// Total number of connections that use WiFi in handover-mode (coming from cell)
     pub tcps_mptcp_handover_wifi_from_cell: u32,
+    /// Total number of connections that use cell in interactive mode (coming from WiFi)
     pub tcps_mptcp_interactive_cell_from_wifi: u32,
+    /// Total number of bytes sent on cell in handover-mode (on new subflows, ignoring initial one)
     pub tcps_mptcp_handover_cell_bytes: u64,
+    /// Same as previous but for interactive
     pub tcps_mptcp_interactive_cell_bytes: u64,
     pub tcps_mptcp_aggregate_cell_bytes: u64,
+    /// Total number of bytes sent in handover
     pub tcps_mptcp_handover_all_bytes: u64,
     pub tcps_mptcp_interactive_all_bytes: u64,
     pub tcps_mptcp_aggregate_all_bytes: u64,
+    /// Total number of connections that succeed to move traffic away from cell (when starting on cell)
     pub tcps_mptcp_back_to_wifi: u32,
+    /// Total number of new subflows that fell back to regular TCP on cell
     pub tcps_mptcp_wifi_proxy: u32,
+    /// Total number of new subflows that fell back to regular TCP on WiFi
     pub tcps_mptcp_cell_proxy: u32,
+    /// Keep alive drops for timeout reported by firmware
     pub tcps_ka_offload_drops: u32,
+    /// Total number of times an MPTCP-connection triggered cell bringup
     pub tcps_mptcp_triggered_cell: u32,
     pub tcps_fin_timeout_drops: u32,
 }
@@ -332,6 +615,9 @@ pub struct tcpstat_local {
     pub synwindow: u64,
 }
 
+/// TCB structure exported to user-land via sysctl(3).
+/// Evil hack: declare only if in_pcb.h and sys/socketvar.h have been
+/// included.  Not all of our clients do.
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct xtcpcb {
@@ -348,54 +634,103 @@ pub struct xtcpcb64 {
     pub xt_len: u32,
     pub xt_inpcb: xinpcb64,
     pub t_segq: u64,
+    /// consecutive dup acks recd
     pub t_dupacks: c_int,
+    /// tcp timers
     pub t_timer: [c_int; 4],
+    /// state of this connection
     pub t_state: c_int,
     pub t_flags: c_uint,
+    /// 1 if forcing out a byte
     pub t_force: c_int,
+    /// send unacknowledged
     pub snd_una: tcp_seq,
+    /// highest sequence number sent;
+    /// used to recognize retransmits
     pub snd_max: tcp_seq,
+    /// send next
     pub snd_nxt: tcp_seq,
+    /// send urgent pointer
     pub snd_up: tcp_seq,
+    /// window update seg seq number
     pub snd_wl1: tcp_seq,
+    /// window update seg ack number
     pub snd_wl2: tcp_seq,
+    /// initial send sequence number
     pub iss: tcp_seq,
+    /// initial receive sequence number
     pub irs: tcp_seq,
+    /// receive next
     pub rcv_nxt: tcp_seq,
+    /// advertised window
     pub rcv_adv: tcp_seq,
+    /// receive window
     pub rcv_wnd: u32,
+    /// receive urgent pointer
     pub rcv_up: tcp_seq,
+    /// send window
     pub snd_wnd: u32,
+    /// congestion-controlled window
     pub snd_cwnd: u32,
+    /// snd_cwnd size threshold for
+    /// for slow start exponential to
+    /// linear switch
     pub snd_ssthresh: u32,
+    /// mss plus options
     pub t_maxopd: c_uint,
+    /// time at which a packet was received
     pub t_rcvtime: u32,
+    /// time connection was established
     pub t_starttime: u32,
+    /// round trip time
     pub t_rtttime: c_int,
+    /// sequence number being timed
     pub t_rtseq: tcp_seq,
+    /// current retransmit value (ticks)
     pub t_rxtcur: c_int,
+    /// maximum segment size
     pub t_maxseg: c_uint,
+    /// smoothed round-trip time
     pub t_srtt: c_int,
+    /// variance in round-trip time
     pub t_rttvar: c_int,
+    /// log(2) of rexmt exp. backoff
     pub t_rxtshift: c_int,
+    /// minimum rtt allowed
     pub t_rttmin: c_uint,
+    /// number of times rtt sampled
     pub t_rttupdated: u32,
+    /// largest window peer has offered
     pub max_sndwnd: u32,
+    /// possible error not yet reported
     pub t_softerror: c_int,
+    /// have some
     pub t_oobflags: c_char,
+    /// input character
     pub t_iobc: c_char,
+    /// window scaling for send window
     pub snd_scale: c_uchar,
+    /// window scaling for recv window
     pub rcv_scale: c_uchar,
+    /// pending window scaling
     pub request_r_scale: c_uchar,
     pub requested_s_scale: c_uchar,
+    /// timestamp echo data
     pub ts_recent: u32,
+    /// when last updated
     pub ts_recent_age: u32,
     pub last_ack_sent: tcp_seq,
+    /// send connection count
     pub cc_send: tcp_cc,
+    /// receive connection count
     pub cc_recv: tcp_cc,
+    /// for use in fast recovery
     pub snd_recover: tcp_seq,
+    /// cwnd prior to retransmit
     pub snd_cwnd_prev: u32,
+    /// ssthresh prior to retransmit
     pub snd_ssthresh_prev: u32,
+    /// window for retransmit recovery
     pub t_badrxtwin: u32,
     pub xt_alignment_hack: u_quad_t,
 }

@@ -9,21 +9,32 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct utmpx {
+    /// login name
     pub ut_user: [c_char; 256],
+    /// id
     pub ut_id: [c_char; 4],
+    /// tty name
     pub ut_line: [c_char; 32],
+    /// process id creating the entry
     pub ut_pid: pid_t,
+    /// type of this entry
     pub ut_type: c_short,
+    /// time entry was created
     pub ut_tv: timeval,
+    /// host name
     pub ut_host: [c_char; 256],
+    /// reserved for future use
     pub ut_pad: [u32; 16],
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct lastlogx {
+    /// time entry was created
     pub ll_tv: timeval,
+    /// tty name
     pub ll_line: [c_char; 32],
+    /// host name
     pub ll_host: [c_char; 256],
 }
 

@@ -7,13 +7,18 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct group {
+    /// [XBD] group name
     pub gr_name: *mut c_char,
+    /// [???] group password
     pub gr_passwd: *mut c_char,
+    /// [XBD] group id
     pub gr_gid: gid_t,
+    /// [XBD] group members
     pub gr_mem: *mut *mut c_char,
 }
 
 extern "C-unwind" {
+    /// [XBD]
     pub fn getgrgid(param1: gid_t) -> *mut group;
 }
 
@@ -22,6 +27,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [TSF]
     pub fn getgrgid_r(
         param1: gid_t,
         param1: *mut group,
@@ -42,6 +48,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [XSI]
     pub fn getgrent() -> *mut group;
 }
 

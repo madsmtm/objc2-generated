@@ -4,67 +4,126 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Overlay for ip header used by other protocols (tcp, udp).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipovly {
+    /// (unused)
     pub ih_x1: [c_uchar; 9],
+    /// protocol
     pub ih_pr: c_uchar,
+    /// protocol length
     pub ih_len: c_ushort,
+    /// source internet address
     pub ih_src: in_addr,
+    /// destination internet address
     pub ih_dst: in_addr,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipstat {
+    /// total packets received
     pub ips_total: u32,
+    /// checksum bad
     pub ips_badsum: u32,
+    /// packet too short
     pub ips_tooshort: u32,
+    /// not enough data
     pub ips_toosmall: u32,
+    /// ip header length
+    /// <
+    /// data size
     pub ips_badhlen: u32,
+    /// ip length
+    /// <
+    /// ip header length
     pub ips_badlen: u32,
+    /// fragments received
     pub ips_fragments: u32,
+    /// frags dropped (dups, out of space)
     pub ips_fragdropped: u32,
+    /// fragments timed out
     pub ips_fragtimeout: u32,
+    /// packets forwarded
     pub ips_forward: u32,
+    /// packets fast forwarded
     pub ips_fastforward: u32,
+    /// packets rcvd for unreachable dest
     pub ips_cantforward: u32,
+    /// packets forwarded on same net
     pub ips_redirectsent: u32,
+    /// unknown or unsupported protocol
     pub ips_noproto: u32,
+    /// datagrams delivered to upper level
     pub ips_delivered: u32,
+    /// total ip packets generated here
     pub ips_localout: u32,
+    /// lost packets due to nobufs, etc.
     pub ips_odropped: u32,
+    /// total packets reassembled ok
     pub ips_reassembled: u32,
+    /// datagrams successfully fragmented
     pub ips_fragmented: u32,
+    /// output fragments created
     pub ips_ofragments: u32,
+    /// don't fragment flag was set, etc.
     pub ips_cantfrag: u32,
+    /// error in option processing
     pub ips_badoptions: u32,
+    /// packets discarded due to no route
     pub ips_noroute: u32,
+    /// ip version != 4
     pub ips_badvers: u32,
+    /// total raw ip packets generated
     pub ips_rawout: u32,
+    /// ip length > max ip packet size
     pub ips_toolong: u32,
+    /// multicasts for unregistered grps
     pub ips_notmember: u32,
+    /// no match gif found
     pub ips_nogif: u32,
+    /// invalid address on header
     pub ips_badaddr: u32,
+    /// pkt dropped, no mbufs for ctl data
     pub ips_pktdropcntrl: u32,
+    /// ip hdr swcksum (inbound), packets
     pub ips_rcv_swcsum: u32,
+    /// ip hdr swcksum (inbound), bytes
     pub ips_rcv_swcsum_bytes: u32,
+    /// ip hdr swcksum (outbound), packets
     pub ips_snd_swcsum: u32,
+    /// ip hdr swcksum (outbound), bytes
     pub ips_snd_swcsum_bytes: u32,
+    /// total packets trimmed/adjusted
     pub ips_adj: u32,
+    /// hwcksum discarded during adj
     pub ips_adj_hwcsum_clr: u32,
+    /// rx chaining collisions
     pub ips_rxc_collisions: u32,
+    /// rx chains
     pub ips_rxc_chained: u32,
+    /// rx bypassed chaining
     pub ips_rxc_notchain: u32,
+    /// rx chain size greater than 2
     pub ips_rxc_chainsz_gt2: u32,
+    /// rx chain size greater than 4
     pub ips_rxc_chainsz_gt4: u32,
+    /// count of pkts through ip_input
     pub ips_rxc_notlist: u32,
+    /// sock append failed
     pub ips_raw_sappend_fail: u32,
+    /// NECP policy related drop
     pub ips_necp_policy_drop: u32,
+    /// packets whose receive interface that passed the Weak ES address check
     pub ips_rcv_if_weak_match: u32,
+    /// packets whose receive interface did not pass the address check
     pub ips_rcv_if_no_match: u32,
+    /// packets dropped by IP filters
     pub ips_input_ipf_drop: u32,
+    /// packets dropped for unsuppported IP protocol
     pub ips_input_no_proto: u32,
+    /// outgoing packets with source address not available
     pub ips_src_addr_not_avail: u32,
 }
 

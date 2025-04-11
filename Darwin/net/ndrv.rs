@@ -9,6 +9,7 @@ use crate::ffi::*;
 pub struct sockaddr_ndrv {
     pub snd_len: c_uchar,
     pub snd_family: c_uchar,
+    /// from if.h
     pub snd_name: [c_uchar; 16],
 }
 
@@ -21,6 +22,36 @@ pub union ndrv_demux_desc_data {
     pub other: [u8; 28],
 }
 
+/// Struct: ndrv_demux_desc
+/// Purpose:
+/// To uniquely identify a packet based on its low-level framing information.
+///
+/// Fields:
+/// type        :    type of protocol in data field, must be understood by
+/// the interface family of the interface the socket is bound to
+/// length        :       length of protocol data in "data" field
+/// data        :    union of framing-specific data, in network byte order
+/// ether_type    :    ethernet type in network byte order, assuming
+/// ethernet type II framing
+/// sap            :    first 3 bytes of sap header, network byte order
+/// snap        :    first 5 bytes of snap header, network byte order
+/// other        :    up to 28 bytes of protocol data for different protocol type
+///
+/// Examples:
+/// 1) 802.1x uses ether_type 0x888e, so the descriptor would be set as:
+/// struct ndrv_demux_desc desc;
+/// desc.type = NDRV_DEMUXTYPE_ETHERTYPE
+/// desc.length = sizeof(unsigned short);
+/// desc.ether_type = htons(0x888e);
+/// 2) AppleTalk uses SNAP 0x080007809B
+/// struct ndrv_demux_desc desc;
+/// desc.type = NDRV_DEMUXTYPE_SNAP;
+/// desc.length = 5;
+/// desc.data.snap[0] = 08;
+/// desc.data.snap[1] = 00;
+/// desc.data.snap[2] = 07;
+/// desc.data.snap[3] = 80;
+/// desc.data.snap[4] = 9B;
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ndrv_demux_desc {
@@ -29,6 +60,15 @@ pub struct ndrv_demux_desc {
     pub data: ndrv_demux_desc_data,
 }
 
+/// Struct: ndrv_protocol_desc
+/// Purpose:
+/// Used to "bind" an NDRV socket so that packets that match
+/// given protocol demux descriptions can be received:
+/// Field:
+/// version        :    must be NDRV_PROTOCOL_DESC_VERS
+/// protocol_family    :    unique identifier for this protocol
+/// demux_count    :    number of demux_list descriptors in demux_list; maximum of 10
+/// demux_list    :    pointer to array of demux descriptors
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ndrv_protocol_desc {

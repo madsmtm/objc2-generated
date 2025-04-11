@@ -7,7 +7,9 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct utimbuf {
+    /// Access time
     pub actime: time_t,
+    /// Modification time
     pub modtime: time_t,
 }
 

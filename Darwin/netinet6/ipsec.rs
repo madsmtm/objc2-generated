@@ -4,29 +4,46 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// statistics for ipsec processing
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipsecstat {
+    /// succeeded inbound process
     pub in_success: u_quad_t,
     pub in_polvio: u_quad_t,
+    /// inbound SA is unavailable
     pub in_nosa: u_quad_t,
+    /// inbound processing failed due to EINVAL
     pub in_inval: u_quad_t,
+    /// inbound processing failed due to ENOBUFS
     pub in_nomem: u_quad_t,
+    /// failed getting a SPI
     pub in_badspi: u_quad_t,
+    /// AH replay check failed
     pub in_ahreplay: u_quad_t,
+    /// ESP replay check failed
     pub in_espreplay: u_quad_t,
+    /// AH authentication success
     pub in_ahauthsucc: u_quad_t,
+    /// AH authentication failure
     pub in_ahauthfail: u_quad_t,
+    /// ESP authentication success
     pub in_espauthsucc: u_quad_t,
+    /// ESP authentication failure
     pub in_espauthfail: u_quad_t,
     pub in_esphist: [u_quad_t; 256],
     pub in_ahhist: [u_quad_t; 256],
     pub in_comphist: [u_quad_t; 256],
+    /// succeeded outbound process
     pub out_success: u_quad_t,
     pub out_polvio: u_quad_t,
+    /// outbound SA is unavailable
     pub out_nosa: u_quad_t,
+    /// outbound process failed due to EINVAL
     pub out_inval: u_quad_t,
+    /// outbound processing failed due to ENOBUFS
     pub out_nomem: u_quad_t,
+    /// there is no route
     pub out_noroute: u_quad_t,
     pub out_esphist: [u_quad_t; 256],
     pub out_ahhist: [u_quad_t; 256],

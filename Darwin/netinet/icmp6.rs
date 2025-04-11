@@ -8,27 +8,36 @@ pub const ICMPV6CTL_MLD_VERSION: c_uint = 23;
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union icmp6_hdr_icmp6_dataun {
+    /// type-specific field
     pub icmp6_un_data32: [u32; 1],
+    /// type-specific field
     pub icmp6_un_data16: [u16; 2],
+    /// type-specific field
     pub icmp6_un_data8: [u8; 4],
 }
 
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_hdr {
+    /// type field
     pub icmp6_type: u8,
+    /// code field
     pub icmp6_code: u8,
+    /// checksum field
     pub icmp6_cksum: u16,
     pub icmp6_dataun: icmp6_hdr_icmp6_dataun,
 }
 
+/// Multicast Listener Discovery
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct mld_hdr {
     pub mld_icmp6_hdr: icmp6_hdr,
+    /// multicast address
     pub mld_addr: in6_addr,
 }
 
+/// Neighbor Discovery
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_router_solicit {
@@ -39,7 +48,9 @@ pub struct nd_router_solicit {
 #[derive(Clone, Copy)]
 pub struct nd_router_advert {
     pub nd_ra_hdr: icmp6_hdr,
+    /// reachable time
     pub nd_ra_reachable: u32,
+    /// retransmit timer
     pub nd_ra_retransmit: u32,
 }
 
@@ -47,6 +58,7 @@ pub struct nd_router_advert {
 #[derive(Clone, Copy)]
 pub struct nd_neighbor_solicit {
     pub nd_ns_hdr: icmp6_hdr,
+    /// target address
     pub nd_ns_target: in6_addr,
 }
 
@@ -54,6 +66,7 @@ pub struct nd_neighbor_solicit {
 #[derive(Clone, Copy)]
 pub struct nd_neighbor_advert {
     pub nd_na_hdr: icmp6_hdr,
+    /// target address
     pub nd_na_target: in6_addr,
 }
 
@@ -61,7 +74,9 @@ pub struct nd_neighbor_advert {
 #[derive(Clone, Copy)]
 pub struct nd_redirect {
     pub nd_rd_hdr: icmp6_hdr,
+    /// target address
     pub nd_rd_target: in6_addr,
+    /// destination address
     pub nd_rd_dst: in6_addr,
 }
 
@@ -141,6 +156,7 @@ pub struct nd_opt_dnssl {
     pub nd_opt_dnssl_domains: [u8; 8],
 }
 
+/// PREF64 (NAT64 prefix) RFC 8781
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_pref64 {
@@ -150,16 +166,27 @@ pub struct nd_opt_pref64 {
     pub nd_opt_pref64_prefix: [u32; 3],
 }
 
+/// PvD (Provisioning Domain) RFC 8801
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nd_opt_pvd {
     pub nd_opt_pvd_type: u8,
     pub nd_opt_pvd_len: u8,
+    /// http:        1 bit
+    ///
+    /// legacy:        1 bit
+    ///
+    /// ra:            1 bit
+    ///
+    /// reserved:    9 bits
+    ///
+    /// delay:        4 bits
     pub nd_opt_flags_delay: [u8; 2],
     pub nd_opt_pvd_seq: u16,
     pub nd_opt_pvd_id: [u8; 1],
 }
 
+/// icmp6 namelookup
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_namelookup {
@@ -168,6 +195,7 @@ pub struct icmp6_namelookup {
     pub icmp6_nl_ttl: i32,
 }
 
+/// icmp6 node information
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_nodeinfo {
@@ -178,11 +206,15 @@ pub struct icmp6_nodeinfo {
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ni_reply_fqdn {
+    /// TTL
     pub ni_fqdn_ttl: u32,
+    /// length in octets of the FQDN
     pub ni_fqdn_namelen: u8,
+    /// XXX: alignment
     pub ni_fqdn_name: [u8; 3],
 }
 
+/// Router Renumbering. as router-renum-08.txt
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_router_renum {
@@ -229,12 +261,15 @@ pub struct rr_result {
     pub rrr_prefix: in6_addr,
 }
 
+/// icmp6 filter structures.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6_filter {
     pub icmp6_filt: [u32; 8],
 }
 
+/// Variables related to this implementation
+/// of the internet control message protocol version 6.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6errstat {
@@ -249,6 +284,7 @@ pub struct icmp6errstat {
     pub icp6errs_paramprob_header: u_quad_t,
     pub icp6errs_paramprob_nextheader: u_quad_t,
     pub icp6errs_paramprob_option: u_quad_t,
+    /// we regard redirect as an error here
     pub icp6errs_redirect: u_quad_t,
     pub icp6errs_unknown: u_quad_t,
 }
@@ -256,25 +292,45 @@ pub struct icmp6errstat {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6stat {
+    /// # of calls to icmp6_error
     pub icp6s_error: u_quad_t,
+    /// no error 'cuz old was icmp
     pub icp6s_canterror: u_quad_t,
+    /// no error 'cuz rate limitation
     pub icp6s_toofreq: u_quad_t,
     pub icp6s_outhist: [u_quad_t; 256],
+    /// icmp6_code out of range
     pub icp6s_badcode: u_quad_t,
+    /// packet
+    /// <
+    /// sizeof(struct icmp6_hdr)
     pub icp6s_tooshort: u_quad_t,
+    /// bad checksum
     pub icp6s_checksum: u_quad_t,
+    /// calculated bound mismatch
     pub icp6s_badlen: u_quad_t,
+    /// number of responses
     pub icp6s_reflect: u_quad_t,
     pub icp6s_inhist: [u_quad_t; 256],
+    /// too many ND options
     pub icp6s_nd_toomanyopt: u_quad_t,
     pub icp6s_outerrhist: icmp6errstat,
+    /// path MTU changes
     pub icp6s_pmtuchg: u_quad_t,
+    /// bad ND options
     pub icp6s_nd_badopt: u_quad_t,
+    /// bad neighbor solicitation
     pub icp6s_badns: u_quad_t,
+    /// bad neighbor advertisement
     pub icp6s_badna: u_quad_t,
+    /// bad router advertisement
     pub icp6s_badrs: u_quad_t,
+    /// bad router advertisement
     pub icp6s_badra: u_quad_t,
+    /// bad redirect message
     pub icp6s_badredirect: u_quad_t,
+    /// NDP packet dropped based on RFC 6980
     pub icp6s_rfc6980_drop: u_quad_t,
+    /// bad packet too big
     pub icp6s_badpkttoobig: u_quad_t,
 }

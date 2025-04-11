@@ -4,54 +4,97 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Vnode types.  VNON means no type.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct vtype(pub c_uint);
 impl vtype {
+    /// 0
     pub const VNON: Self = Self(0);
+    /// 1 - 5
     pub const VREG: Self = Self(1);
+    /// 1 - 5
     pub const VDIR: Self = Self(2);
+    /// 1 - 5
     pub const VBLK: Self = Self(3);
+    /// 1 - 5
     pub const VCHR: Self = Self(4);
+    /// 1 - 5
     pub const VLNK: Self = Self(5);
+    /// 6 - 10
     pub const VSOCK: Self = Self(6);
+    /// 6 - 10
     pub const VFIFO: Self = Self(7);
+    /// 6 - 10
     pub const VBAD: Self = Self(8);
+    /// 6 - 10
     pub const VSTR: Self = Self(9);
+    /// 6 - 10
     pub const VCPLX: Self = Self(10);
 }
 
+/// Vnode tag types.
+/// These are for the benefit of external programs only (e.g., pstat)
+/// and should NEVER be inspected by the kernel.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct vtagtype(pub c_uint);
 impl vtagtype {
+    /// 0
     pub const VT_NON: Self = Self(0);
+    /// 1 reserved, overlaps with (CTL_VFS, VFS_NUMMNTOPS)
     pub const VT_UFS: Self = Self(1);
+    /// 2 - 5
     pub const VT_NFS: Self = Self(2);
+    /// 2 - 5
     pub const VT_MFS: Self = Self(3);
+    /// 2 - 5
     pub const VT_MSDOSFS: Self = Self(4);
+    /// 2 - 5
     pub const VT_LFS: Self = Self(5);
+    /// 6 - 10
     pub const VT_LOFS: Self = Self(6);
+    /// 6 - 10
     pub const VT_FDESC: Self = Self(7);
+    /// 6 - 10
     pub const VT_PORTAL: Self = Self(8);
+    /// 6 - 10
     pub const VT_NULL: Self = Self(9);
+    /// 6 - 10
     pub const VT_UMAP: Self = Self(10);
+    /// 11 - 15
     pub const VT_KERNFS: Self = Self(11);
+    /// 11 - 15
     pub const VT_PROCFS: Self = Self(12);
+    /// 11 - 15
     pub const VT_AFS: Self = Self(13);
+    /// 11 - 15
     pub const VT_ISOFS: Self = Self(14);
+    /// 11 - 15
     pub const VT_MOCKFS: Self = Self(15);
+    /// 16 - 20
     pub const VT_HFS: Self = Self(16);
+    /// 16 - 20
     pub const VT_ZFS: Self = Self(17);
+    /// 16 - 20
     pub const VT_DEVFS: Self = Self(18);
+    /// 16 - 20
     pub const VT_WEBDAV: Self = Self(19);
+    /// 16 - 20
     pub const VT_UDF: Self = Self(20);
+    /// 21 - 25
     pub const VT_AFP: Self = Self(21);
+    /// 21 - 25
     pub const VT_CDDA: Self = Self(22);
+    /// 21 - 25
     pub const VT_CIFS: Self = Self(23);
+    /// 21 - 25
     pub const VT_OTHER: Self = Self(24);
+    /// 21 - 25
     pub const VT_APFS: Self = Self(25);
+    /// 26 - 27
     pub const VT_LOCKERFS: Self = Self(26);
+    /// 26 - 27
     pub const VT_BINDFS: Self = Self(27);
 }
 

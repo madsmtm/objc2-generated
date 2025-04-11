@@ -5,33 +5,67 @@ use core::ffi::*;
 use crate::ffi::*;
 
 pub const QF_VERSION: c_uint = 1;
+/// The following two structures define the format of the disk
+/// quota file (as it appears on disk) - the file contains a
+/// header followed by a hash table of dqblk entries.  To find
+/// a particular entry, the user or group number (id) is first
+/// converted to an index into this table by means of the hash
+/// function dqhash1.  If there is a collision at that index
+/// location then a second hash value is computed which using
+/// dqhash2.  This second hash value is then used as an offset
+/// to the next location to probe.  ID = 0 is used to indicate
+/// an empty (unused) entry.  So there can never be an entry in
+/// the quota file for user 0 or group 0 (which is OK since disk
+/// quotas are never enforced for user 0).
+///
+/// The setquota system call establishes the vnode for each quota
+/// file (a pointer is retained in the filesystem  mount structure).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dqfilehdr {
     pub dqh_magic: u32,
+    /// == QF_VERSION
     pub dqh_version: u32,
+    /// must be a power of 2
     pub dqh_maxentries: u32,
+    /// count of active entries
     pub dqh_entrycnt: u32,
+    /// reserved for now (0)
     pub dqh_flags: u32,
+    /// time of last quota check
     pub dqh_chktime: u32,
+    /// time limit for excessive disk use
     pub dqh_btime: u32,
+    /// time limit for excessive files
     pub dqh_itime: u32,
+    /// tag string
     pub dqh_string: [c_char; 16],
+    /// pad struct to power of 2
     pub dqh_spare: [u32; 4],
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dqblk {
+    /// absolute limit on disk bytes alloc
     pub dqb_bhardlimit: u64,
+    /// preferred limit on disk bytes
     pub dqb_bsoftlimit: u64,
+    /// current byte count
     pub dqb_curbytes: u64,
+    /// maximum # allocated inodes + 1
     pub dqb_ihardlimit: u32,
+    /// preferred inode limit
     pub dqb_isoftlimit: u32,
+    /// current # allocated inodes
     pub dqb_curinodes: u32,
+    /// time limit for excessive disk use
     pub dqb_btime: u32,
+    /// time limit for excessive files
     pub dqb_itime: u32,
+    /// identifier (0 for empty entries)
     pub dqb_id: u32,
+    /// pad struct to power of 2
     pub dqb_spare: [u32; 4],
 }
 

@@ -7,37 +7,59 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bootp {
+    /// packet opcode type
     pub bp_op: c_uchar,
+    /// hardware addr type
     pub bp_htype: c_uchar,
+    /// hardware addr length
     pub bp_hlen: c_uchar,
+    /// gateway hops
     pub bp_hops: c_uchar,
+    /// transaction ID
     pub bp_xid: u32,
+    /// seconds since boot began
     pub bp_secs: c_ushort,
     pub bp_unused: c_ushort,
+    /// client IP address
     pub bp_ciaddr: in_addr,
+    /// 'your' IP address
     pub bp_yiaddr: in_addr,
+    /// server IP address
     pub bp_siaddr: in_addr,
+    /// gateway IP address
     pub bp_giaddr: in_addr,
+    /// client hardware address
     pub bp_chaddr: [c_uchar; 16],
+    /// server host name
     pub bp_sname: [c_uchar; 64],
+    /// boot file name
     pub bp_file: [c_uchar; 128],
+    /// vendor-specific area
     pub bp_vend: [c_uchar; 64],
 }
 
+/// "vendor" data permitted for Stanford boot clients.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vend {
+    /// magic number
     pub v_magic: [c_uchar; 4],
+    /// flags/opcodes, etc.
     pub v_flags: u32,
+    /// currently unused
     pub v_unused: [c_uchar; 56],
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct nextvend_nv_U_NV1 {
+    /// opcode - Version 1
     pub NV1_opcode: c_uchar,
+    /// transcation id
     pub NV1_xid: c_uchar,
+    /// text
     pub NV1_text: [c_uchar; 55],
+    /// null terminator
     pub NV1_null: c_uchar,
 }
 
@@ -51,8 +73,15 @@ pub union nextvend_nv_U {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct nextvend {
+    /// Magic number for vendor specificity
     pub nv_magic: [c_uchar; 4],
+    /// NeXT protocol version
     pub nv_version: c_uchar,
+    /// Round the beginning
+    /// of the union to a 16
+    /// bit boundary due to
+    /// struct/union alignment
+    /// on the m68k.
     pub(crate) __unknown__: c_ushort,
     pub nv_U: nextvend_nv_U,
 }

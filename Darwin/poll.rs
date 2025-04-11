@@ -15,6 +15,10 @@ pub struct pollfd {
 pub type nfds_t = c_uint;
 
 extern "C-unwind" {
+    /// This is defined here (instead of
+    /// <poll
+    /// .h>) because this is where
+    /// traditional SVR4 code will look to find it.
     #[cfg_attr(target_vendor = "apple", link_name = "poll")]
     pub fn poll(param1: *mut pollfd, param1: nfds_t, param1: c_int) -> c_int;
 }

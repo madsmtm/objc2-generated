@@ -7,6 +7,8 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct iovec {
+    /// [XSI] Base address of I/O memory region
     pub iov_base: *mut c_void,
+    /// [XSI] Size of region iov_base points to
     pub iov_len: usize,
 }

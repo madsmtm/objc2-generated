@@ -3,14 +3,22 @@
 
 use crate::ffi::*;
 
+/// ICMPv6 stat is counted separately.  see netinet/icmp6.h
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rip6stat {
+    /// total input packets
     pub rip6s_ipackets: u_quad_t,
+    /// input checksum computations
     pub rip6s_isum: u_quad_t,
+    /// of above, checksum error
     pub rip6s_badsum: u_quad_t,
+    /// no matching socket
     pub rip6s_nosock: u_quad_t,
+    /// of above, arrived as multicast
     pub rip6s_nosockmcast: u_quad_t,
+    /// not delivered, input socket full
     pub rip6s_fullsock: u_quad_t,
+    /// total output packets
     pub rip6s_opackets: u_quad_t,
 }

@@ -4,12 +4,18 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Structure definition
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sbuf {
+    /// storage buffer
     pub s_buf: *mut c_char,
+    /// binary compatibility.
     pub s_unused: *mut c_void,
+    /// size of storage buffer
     pub s_size: c_int,
+    /// current length of string
     pub s_len: c_int,
+    /// flags
     pub s_flags: c_int,
 }

@@ -5,6 +5,7 @@ use core::ffi::*;
 use crate::ffi::*;
 
 extern "C-unwind" {
+    /// [ML]
     pub fn mlockall(param1: c_int) -> c_int;
 }
 
@@ -13,10 +14,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [MR]
     pub fn mlock(param1: *const c_void, param1: usize) -> c_int;
 }
 
 extern "C-unwind" {
+    /// [MC3]
     #[cfg_attr(target_vendor = "apple", link_name = "mmap")]
     pub fn mmap(
         param1: *mut c_void,
@@ -29,20 +32,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [MPR]
     #[cfg_attr(target_vendor = "apple", link_name = "mprotect")]
     pub fn mprotect(param1: *mut c_void, param1: usize, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
+    /// [MF|SIO]
     #[cfg_attr(target_vendor = "apple", link_name = "msync")]
     pub fn msync(param1: *mut c_void, param1: usize, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
+    /// [MR]
     pub fn munlock(param1: *const c_void, param1: usize) -> c_int;
 }
 
 extern "C-unwind" {
+    /// [MC3]
     #[cfg_attr(target_vendor = "apple", link_name = "munmap")]
     pub fn munmap(param1: *mut c_void, param1: usize) -> c_int;
 }
@@ -52,6 +59,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [ADV]
     pub fn posix_madvise(param1: *mut c_void, param1: usize, param1: c_int) -> c_int;
 }
 

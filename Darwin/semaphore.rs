@@ -12,6 +12,7 @@ pub struct pseminfo {
     pub psem_mode: mode_t,
     pub psem_uid: uid_t,
     pub psem_gid: gid_t,
+    /// segment name
     pub psem_name: [c_char; 32],
     pub psem_semobject: *mut c_void,
     pub psem_label: *mut label,

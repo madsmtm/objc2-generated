@@ -6,12 +6,14 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Internet address (a structure for historical reasons)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_addr {
     pub s_addr: in_addr_t,
 }
 
+/// Socket address, internet style.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_in {
@@ -22,63 +24,100 @@ pub struct sockaddr_in {
     pub sin_zero: [c_char; 8],
 }
 
+/// Structure used to describe IP options.
+/// Used to store options internally, to pass them to a process,
+/// or to restore options retrieved earlier.
+/// The ip_dst is used for the first-hop gateway when using a source route
+/// (this gets put into the header proper).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_opts {
+    /// first hop, 0 w/o src rt
     pub ip_dst: in_addr,
+    /// actually variable in size
     pub ip_opts: [c_char; 40],
 }
 
+/// Argument structure for IP_ADD_MEMBERSHIP and IP_DROP_MEMBERSHIP.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreq {
+    /// IP multicast address of group
     pub imr_multiaddr: in_addr,
+    /// local IP address of interface
     pub imr_interface: in_addr,
 }
 
+/// Modified argument structure for IP_MULTICAST_IF, obtained from Linux.
+/// This is used to specify an interface index for multicast sends, as
+/// the IPv4 legacy APIs do not support this (unless IP_SENDIF is available).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreqn {
+    /// IP multicast address of group
     pub imr_multiaddr: in_addr,
+    /// local IP address of interface
     pub imr_address: in_addr,
+    /// Interface index; cast to uint32_t
     pub imr_ifindex: c_int,
 }
 
+/// Argument structure for IPv4 Multicast Source Filter APIs. [RFC3678]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreq_source {
+    /// IP multicast address of group
     pub imr_multiaddr: in_addr,
+    /// IP address of source
     pub imr_sourceaddr: in_addr,
+    /// local IP address of interface
     pub imr_interface: in_addr,
 }
 
+/// Argument structures for Protocol-Independent Multicast Source
+/// Filter APIs. [RFC3678]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct group_req {
+    /// interface index
     pub gr_interface: u32,
+    /// group address
     pub gr_group: sockaddr_storage,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct group_source_req {
+    /// interface index
     pub gsr_interface: u32,
+    /// group address
     pub gsr_group: sockaddr_storage,
+    /// source address
     pub gsr_source: sockaddr_storage,
 }
 
+/// The following structure is private; do not use it from user applications.
+/// It is used to communicate IP_MSFILTER/IPV6_MSFILTER information between
+/// the RFC 3678 libc functions and the kernel.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __msfilterreq {
+    /// interface index
     pub msfr_ifindex: u32,
+    /// filter mode for group
     pub msfr_fmode: u32,
+    /// # of sources in msfr_srcs
     pub msfr_nsrcs: u32,
     pub(crate) __msfr_align: u32,
+    /// group address
     pub msfr_group: sockaddr_storage,
     pub msfr_srcs: *mut sockaddr_storage,
 }
 
 extern "C-unwind" {
+    /// Advanced (Full-state) APIs [RFC3678]
+    /// The RFC specifies uint_t for the 6th argument to [sg]etsourcefilter().
+    /// We use uint32_t here to be consistent.
     pub fn setipv4sourcefilter(
         param1: c_int,
         param1: in_addr,
@@ -124,11 +163,31 @@ extern "C-unwind" {
     ) -> c_int;
 }
 
+/// IP_PKTINFO: Packet information (equivalent to  RFC2292 sec 5 for IPv4)
+/// This structure is used for
+///
+/// 1) Receiving ancilliary data about the datagram if IP_PKTINFO sockopt is
+/// set on the socket. In this case ipi_ifindex will contain the interface
+/// index the datagram was received on, ipi_addr is the IP address the
+/// datagram was received to.
+///
+/// 2) Sending a datagram using a specific interface or IP source address.
+/// if ipi_ifindex is set to non-zero when in_pktinfo is passed as
+/// ancilliary data of type IP_PKTINFO, this will be used as the source
+/// interface to send the datagram from. If ipi_ifindex is null, ip_spec_dst
+/// will be used for the source address.
+///
+/// Note: if IP_BOUND_IF is set on the socket, ipi_ifindex in the ancillary
+/// IP_PKTINFO option silently overrides the bound interface when it is
+/// specified during send time.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_pktinfo {
+    /// send/recv interface index
     pub ipi_ifindex: c_uint,
+    /// Local address
     pub ipi_spec_dst: in_addr,
+    /// IP Header dst address
     pub ipi_addr: in_addr,
 }
 

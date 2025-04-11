@@ -4,18 +4,28 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// [XSI] Information used in determining permission to perform an IPC
+/// operation
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipc_perm {
+    /// [XSI] Owner's user ID
     pub uid: uid_t,
+    /// [XSI] Owner's group ID
     pub gid: gid_t,
+    /// [XSI] Creator's user ID
     pub cuid: uid_t,
+    /// [XSI] Creator's group ID
     pub cgid: gid_t,
+    /// [XSI] Read/write permission
     pub mode: mode_t,
+    /// Reserved for internal use
     pub(crate) _seq: c_ushort,
+    /// Reserved for internal use
     pub(crate) _key: key_t,
 }
 
 extern "C-unwind" {
+    /// [XSI]
     pub fn ftok(param1: *const c_char, param1: c_int) -> key_t;
 }

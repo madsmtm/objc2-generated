@@ -7,74 +7,127 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_clonereq {
+    /// total cloners (out)
     pub ifcr_total: c_int,
+    /// room for this many in user buffer
     pub ifcr_count: c_int,
+    /// buffer for cloner names
     pub ifcr_buffer: *mut c_char,
 }
 
+/// Message format for use in obtaining information about interfaces
+/// from sysctl and the routing socket
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_msghdr {
+    /// to skip non-understood messages
     pub ifm_msglen: c_ushort,
+    /// future binary compatability
     pub ifm_version: c_uchar,
+    /// message type
     pub ifm_type: c_uchar,
+    /// like rtm_addrs
     pub ifm_addrs: c_int,
+    /// value of if_flags
     pub ifm_flags: c_int,
+    /// index for associated ifp
     pub ifm_index: c_ushort,
+    /// statistics and other data about if
     pub ifm_data: if_data,
 }
 
+/// Message format for use in obtaining information about interface addresses
+/// from sysctl and the routing socket
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifa_msghdr {
+    /// to skip non-understood messages
     pub ifam_msglen: c_ushort,
+    /// future binary compatability
     pub ifam_version: c_uchar,
+    /// message type
     pub ifam_type: c_uchar,
+    /// like rtm_addrs
     pub ifam_addrs: c_int,
+    /// value of ifa_flags
     pub ifam_flags: c_int,
+    /// index for associated ifp
     pub ifam_index: c_ushort,
+    /// value of ifa_metric
     pub ifam_metric: c_int,
 }
 
+/// Message format for use in obtaining information about multicast addresses
+/// from the routing socket
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifma_msghdr {
+    /// to skip non-understood messages
     pub ifmam_msglen: c_ushort,
+    /// future binary compatability
     pub ifmam_version: c_uchar,
+    /// message type
     pub ifmam_type: c_uchar,
+    /// like rtm_addrs
     pub ifmam_addrs: c_int,
+    /// value of ifa_flags
     pub ifmam_flags: c_int,
+    /// index for associated ifp
     pub ifmam_index: c_ushort,
 }
 
+/// Message format for use in obtaining information about interfaces
+/// from sysctl
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_msghdr2 {
+    /// to skip over non-understood messages
     pub ifm_msglen: c_ushort,
+    /// future binary compatability
     pub ifm_version: c_uchar,
+    /// message type
     pub ifm_type: c_uchar,
+    /// like rtm_addrs
     pub ifm_addrs: c_int,
+    /// value of if_flags
     pub ifm_flags: c_int,
+    /// index for associated ifp
     pub ifm_index: c_ushort,
+    /// instantaneous length of send queue
     pub ifm_snd_len: c_int,
+    /// maximum length of send queue
     pub ifm_snd_maxlen: c_int,
+    /// number of drops in send queue
     pub ifm_snd_drops: c_int,
+    /// time until if_watchdog called
     pub ifm_timer: c_int,
+    /// statistics and other data
     pub ifm_data: if_data64,
 }
 
+/// Message format for use in obtaining information about multicast addresses
+/// from sysctl
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifma_msghdr2 {
+    /// to skip over non-understood messages
     pub ifmam_msglen: c_ushort,
+    /// future binary compatability
     pub ifmam_version: c_uchar,
+    /// message type
     pub ifmam_type: c_uchar,
+    /// like rtm_addrs
     pub ifmam_addrs: c_int,
+    /// value of ifa_flags
     pub ifmam_flags: c_int,
+    /// index for associated ifp
     pub ifmam_index: c_ushort,
     pub ifmam_refcount: i32,
 }
 
+/// ifdevmtu: interface device mtu
+/// Used with SIOCGIFDEVMTU to get the current mtu in use by the device,
+/// as well as the minimum and maximum mtu allowed by the device.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifdevmtu {
@@ -90,6 +143,28 @@ pub union ifkpi_ifk_data {
     pub ifk_value: c_int,
 }
 
+/// ifkpi: interface kpi ioctl
+/// Used with SIOCSIFKPI and SIOCGIFKPI.
+///
+/// ifk_module_id - From in the kernel, a value from kev_vendor_code_find. From
+/// user space, a value from SIOCGKEVVENDOR ioctl on a kernel event socket.
+/// ifk_type - The type. Types are specific to each module id.
+/// ifk_data - The data. ifk_ptr may be a 64bit pointer for 64 bit processes.
+///
+/// Copying data between user space and kernel space is done using copyin
+/// and copyout. A process may be running in 64bit mode. In such a case,
+/// the pointer will be a 64bit pointer, not a 32bit pointer. The following
+/// sample is a safe way to copy the data in to the kernel from either a
+/// 32bit or 64bit process:
+///
+/// user_addr_t tmp_ptr;
+/// if (IS_64BIT_PROCESS(current_proc())) {
+/// tmp_ptr = CAST_USER_ADDR_T(ifkpi.ifk_data.ifk_ptr64);
+/// }
+/// else {
+/// tmp_ptr = CAST_USER_ADDR_T(ifkpi.ifk_data.ifk_ptr);
+/// }
+/// error = copyin(tmp_ptr, allocated_dst_buffer, size of allocated_dst_buffer);
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifkpi {
@@ -125,6 +200,7 @@ pub union ifreq_ifr_ifru {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifreq {
+    /// if name, e.g. "en0"
     pub ifr_name: [c_char; 16],
     pub ifr_ifru: ifreq_ifr_ifru,
 }
@@ -132,6 +208,7 @@ pub struct ifreq {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifaliasreq {
+    /// if name, e.g. "en0"
     pub ifra_name: [c_char; 16],
     pub ifra_addr: sockaddr,
     pub ifra_broadaddr: sockaddr,
@@ -148,20 +225,29 @@ pub struct rslvmulti_req {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifmediareq {
+    /// if name, e.g. "en0"
     pub ifm_name: [c_char; 16],
+    /// current media options
     pub ifm_current: c_int,
+    /// don't care mask
     pub ifm_mask: c_int,
+    /// media status
     pub ifm_status: c_int,
+    /// active options
     pub ifm_active: c_int,
+    /// # entries in ifm_ulist array
     pub ifm_count: c_int,
+    /// media words
     pub ifm_ulist: *mut c_int,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifdrv {
+    /// if name, e.g. "en0"
     pub ifd_name: [c_char; 16],
     pub ifd_cmd: c_ulong,
+    /// length of ifd_data buffer
     pub ifd_len: usize,
     pub ifd_data: *mut c_void,
 }
@@ -169,6 +255,7 @@ pub struct ifdrv {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifstat {
+    /// if name, e.g. "en0"
     pub ifs_name: [c_char; 16],
     pub ascii: [c_char; 801],
 }
@@ -183,10 +270,12 @@ pub union ifconf_ifc_ifcu {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifconf {
+    /// size of associated buffer
     pub ifc_len: c_int,
     pub ifc_ifcu: ifconf_ifc_ifcu,
 }
 
+/// DLIL KEV_DL_PROTO_ATTACHED/DETACHED structure
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_dl_proto_data {
@@ -198,7 +287,9 @@ pub struct kev_dl_proto_data {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_nameindex {
+    /// 1, 2, ...
     pub if_index: c_uint,
+    /// null terminated name: "le0", ...
     pub if_name: *mut c_char,
 }
 

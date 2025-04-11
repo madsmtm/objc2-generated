@@ -3,6 +3,9 @@
 
 use crate::ffi::*;
 
+/// just to keep kinfo_proc happy
+///
+/// NOTE: Pointer fields are size variant for LP64
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vmspace {

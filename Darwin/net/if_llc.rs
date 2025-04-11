@@ -30,6 +30,8 @@ pub struct llc_llc_un_type_s {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct llc_llc_un_type_frmr {
     pub control: u8,
+    /// We cannot put the following fields in a structure because
+    /// the structure rounding might cause padding.
     pub frmr_rej_pdu0: u8,
     pub frmr_rej_pdu1: u8,
     pub frmr_control: u8,
@@ -63,6 +65,11 @@ pub union llc_llc_un {
     pub type_raw: llc_llc_un_type_raw,
 }
 
+/// IEEE 802.2 Link Level Control headers, for use in conjunction with
+/// 802.{3,4,5} media access control methods.
+///
+/// Headers here do not use bit fields due to shortcomings in many
+/// compilers.
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct llc {

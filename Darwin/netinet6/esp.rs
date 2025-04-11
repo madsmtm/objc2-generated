@@ -6,19 +6,24 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct esp {
+    /// ESP
     pub esp_spi: u32,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct newesp {
+    /// ESP
     pub esp_spi: u32,
+    /// Sequence number
     pub esp_seq: u32,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct esptail {
+    /// pad length
     pub esp_padlen: u8,
+    /// Next header
     pub esp_nxt: u8,
 }

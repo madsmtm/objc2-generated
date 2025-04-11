@@ -9,46 +9,77 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union FTS_fts_options {
+    /// compare function
     pub fts_compar: Option<unsafe extern "C-unwind" fn() -> c_int>,
+    /// compare block
     pub fts_compar_b: *mut block2::Block<dyn Fn() -> c_int>,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct FTS {
+    /// current node
     pub fts_cur: *mut _ftsent,
+    /// linked list of children
     pub fts_child: *mut Self,
+    /// sort array
     pub fts_array: *mut *mut Self,
+    /// starting device #
     pub fts_dev: dev_t,
+    /// path for this descent
     pub fts_path: *mut c_char,
+    /// fd for root
     pub fts_rfd: c_int,
+    /// sizeof(path)
     pub fts_pathlen: c_int,
+    /// elements in the sort array
     pub fts_nitems: c_int,
+    /// fts_open options, global flags
     pub fts_options: c_int,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _ftsent {
+    /// cycle node
     pub fts_cycle: *mut Self,
+    /// parent directory
     pub fts_parent: *mut Self,
+    /// next file in directory
     pub fts_link: *mut Self,
+    /// local numeric value
     pub fts_number: c_long,
+    /// local address value
     pub fts_pointer: *mut c_void,
+    /// access path
     pub fts_accpath: *mut c_char,
+    /// root path
     pub fts_path: *mut c_char,
+    /// errno for this node
     pub fts_errno: c_int,
+    /// fd for symlink or chdir
     pub fts_symfd: c_int,
+    /// strlen(fts_path)
     pub fts_pathlen: c_ushort,
+    /// strlen(fts_name)
     pub fts_namelen: c_ushort,
+    /// inode
     pub fts_ino: ino_t,
+    /// device
     pub fts_dev: dev_t,
+    /// link count
     pub fts_nlink: nlink_t,
+    /// depth (-1 to N)
     pub fts_level: c_short,
+    /// user flags for FTSENT structure
     pub fts_info: c_ushort,
+    /// private flags for FTSENT structure
     pub fts_flags: c_ushort,
+    /// fts_set() instructions
     pub fts_instr: c_ushort,
+    /// stat(2) information
     pub fts_statp: *mut stat,
+    /// file name
     pub fts_name: [c_char; 1],
 }
 

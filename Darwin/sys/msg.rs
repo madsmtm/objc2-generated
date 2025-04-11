@@ -4,55 +4,104 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// [XSI] Used for the number of messages in the message queue
 pub type msgqnum_t = c_ulong;
 
+/// [XSI] Used for the number of bytes allowed in a message queue
 pub type msglen_t = c_ulong;
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __msqid_ds_new {
+    /// [XSI] msg queue permissions
     pub msg_perm: ipc_perm,
+    /// RESERVED: kernel use only
     pub msg_first: i32,
+    /// RESERVED: kernel use only
     pub msg_last: i32,
+    /// # of bytes on the queue
     pub msg_cbytes: msglen_t,
+    /// [XSI] number of msgs on the queue
     pub msg_qnum: msgqnum_t,
+    /// [XSI] max bytes on the queue
     pub msg_qbytes: msglen_t,
+    /// [XSI] pid of last msgsnd()
     pub msg_lspid: pid_t,
+    /// [XSI] pid of last msgrcv()
     pub msg_lrpid: pid_t,
+    /// [XSI] time of last msgsnd()
     pub msg_stime: time_t,
+    /// RESERVED: DO NOT USE
     pub msg_pad1: i32,
+    /// [XSI] time of last msgrcv()
     pub msg_rtime: time_t,
+    /// RESERVED: DO NOT USE
     pub msg_pad2: i32,
+    /// [XSI] time of last msgctl()
     pub msg_ctime: time_t,
+    /// RESERVED: DO NOT USE
     pub msg_pad3: i32,
+    /// RESERVED: DO NOT USE
     pub msg_pad4: [i32; 4],
 }
 
+/// XXX kernel only; protect with macro later
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct msg {
+    /// next msg in the chain
     pub msg_next: *mut msg,
+    /// type of this message
+    ///
+    /// >0 -> type of this message
+    ///
+    /// 0 -> free header
     pub msg_type: c_long,
+    /// size of this message
     pub msg_ts: c_ushort,
+    /// location of msg start in buffer
     pub msg_spot: c_short,
+    /// MAC label
     pub label: *mut label,
 }
 
+/// Example structure describing a message whose address is to be passed as
+/// the second argument to the functions msgrcv() and msgsnd().  The only
+/// actual hard requirement is that the first field be of type long, and
+/// contain the message type.  The user is encouraged to define their own
+/// application specific structure; this definition is included solely for
+/// backward compatability with existing source code.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct mymsg {
+    /// message type (+ve integer)
     pub mtype: c_long,
+    /// message body
     pub mtext: [c_char; 1],
 }
 
+/// Based on the configuration parameters described in an SVR2 (yes, two)
+/// config(1m) man page.
+///
+/// Each message is broken up and stored in segments that are msgssz bytes
+/// long.  For efficiency reasons, this should be a power of two.  Also,
+/// it doesn't make sense if it is less than 8 or greater than about 256.
+/// Consequently, msginit in kern/sysv_msg.c checks that msgssz is a power of
+/// two between 8 and 1024 inclusive (and panic's if it isn't).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct msginfo {
+    /// max chars in a message
     pub msgmax: c_int,
+    /// max message queue identifiers
     pub msgmni: c_int,
+    /// max chars in a queue
     pub msgmnb: c_int,
+    /// max messages in system
     pub msgtql: c_int,
+    /// size of a message segment (see notes above)
     pub msgssz: c_int,
+    /// number of message segments
     pub msgseg: c_int,
 }
 

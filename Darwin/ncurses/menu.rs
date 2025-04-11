@@ -20,15 +20,24 @@ pub struct TEXT {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tagITEM {
+    /// name of menu item
     pub name: TEXT,
+    /// description of item, optional in display
     pub description: TEXT,
+    /// Pointer to parent menu
     pub imenu: *mut tagMENU,
+    /// Pointer to user defined per item data
     pub userptr: *mut c_void,
+    /// Item options
     pub opt: Item_Options,
+    /// Item number if connected to a menu
     pub index: c_short,
+    /// y and x location of item in menu
     pub y: c_short,
     pub x: c_short,
+    /// Selection value
     pub value: bool,
+    /// neighbor items
     pub left: *mut Self,
     pub right: *mut Self,
     pub up: *mut Self,
@@ -42,47 +51,81 @@ pub type Menu_Hook = Option<unsafe extern "C-unwind" fn(*mut Self)>;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tagMENU {
+    /// Nr. of chars high
     pub height: c_short,
+    /// Nr. of chars wide
     pub width: c_short,
+    /// Nr. of items high
     pub rows: c_short,
+    /// Nr. of items wide
     pub cols: c_short,
+    /// Nr. of formatted items high
     pub frows: c_short,
+    /// Nr. of formatted items wide
     pub fcols: c_short,
+    /// Nr. of items high (actual)
     pub arows: c_short,
+    /// Max. name length
     pub namelen: c_short,
+    /// Max. description length
     pub desclen: c_short,
+    /// Length of mark, if any
     pub marklen: c_short,
+    /// Length of one item
     pub itemlen: c_short,
+    /// Spacing for descriptor
     pub spc_desc: c_short,
+    /// Spacing for columns
     pub spc_cols: c_short,
+    /// Spacing for rows
     pub spc_rows: c_short,
+    /// Buffer to store match chars
     pub pattern: *mut c_char,
+    /// Index into pattern buffer
     pub pindex: c_short,
+    /// Window containing menu
     pub win: *mut WINDOW,
+    /// Subwindow for menu display
     pub sub: *mut WINDOW,
+    /// User's window
     pub userwin: *mut WINDOW,
+    /// User's subwindow
     pub usersub: *mut WINDOW,
+    /// array of items
     pub items: *mut *mut ITEM,
+    /// Nr. of items in menu
     pub nitems: c_short,
+    /// Current item
     pub curitem: *mut ITEM,
+    /// Top row of menu
     pub toprow: c_short,
+    /// Selection attribute
     pub fore: chtype,
+    /// Nonselection attribute
     pub back: chtype,
+    /// Inactive attribute
     pub grey: chtype,
+    /// Pad character
     pub pad: c_uchar,
+    /// User hooks
     pub menuinit: Menu_Hook,
     pub menuterm: Menu_Hook,
     pub iteminit: Menu_Hook,
     pub itemterm: Menu_Hook,
+    /// Pointer to menus user data
     pub userptr: *mut c_void,
+    /// Pointer to marker string
     pub mark: *mut c_char,
+    /// Menu options
     pub opt: Menu_Options,
+    /// Internal state of menu
     pub status: c_ushort,
 }
 
 pub type MENU = Self;
 
 extern "C-unwind" {
+    /// --------- prototypes for libmenu functions -----------------------------
     pub fn menu_items(param1: Option<&MENU>) -> *mut *mut ITEM;
 }
 

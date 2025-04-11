@@ -30,43 +30,72 @@ pub struct statfs {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfsstatfs {
+    /// fundamental file system block size
     pub f_bsize: u32,
+    /// optimal transfer block size
     pub f_iosize: usize,
+    /// total data blocks in file system
     pub f_blocks: u64,
+    /// free blocks in fs
     pub f_bfree: u64,
+    /// free blocks avail to non-superuser
     pub f_bavail: u64,
+    /// free blocks avail to non-superuser
     pub f_bused: u64,
+    /// total file nodes in file system
     pub f_files: u64,
+    /// free file nodes in fs
     pub f_ffree: u64,
+    /// file system id
     pub f_fsid: fsid_t,
+    /// user that mounted the filesystem
     pub f_owner: uid_t,
+    /// copy of mount exported flags
     pub f_flags: u64,
+    /// fs type name inclus
     pub f_fstypename: [c_char; 16],
+    /// directory on which mounted
     pub f_mntonname: [c_char; 1024],
+    /// mounted filesystem
     pub f_mntfromname: [c_char; 1024],
+    /// fs sub-type (flavor)
     pub f_fssubtype: u32,
+    /// For future use == 0
     pub f_reserved: [*mut c_void; 2],
 }
 
+/// Reserved fields preserve binary compatibility
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfsconf {
+    /// opaque
     pub vfc_reserved1: u32,
+    /// filesystem type name
     pub vfc_name: [c_char; 15],
+    /// historic filesystem type number
     pub vfc_typenum: c_int,
+    /// number mounted of this type
     pub vfc_refcount: c_int,
+    /// permanent flags
     pub vfc_flags: c_int,
+    /// opaque
     pub vfc_reserved2: u32,
+    /// opaque
     pub vfc_reserved3: u32,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfsidctl {
+    /// should be VFSIDCTL_VERS1 (below)
     pub vc_vers: c_int,
+    /// fsid to operate on.
     pub vc_fsid: fsid_t,
+    /// pointer to data structure.
     pub vc_ptr: *mut c_void,
+    /// sizeof said structure.
     pub vc_len: usize,
+    /// spare (must be zero).
     pub vc_spare: [u32; 12],
 }
 
@@ -80,24 +109,34 @@ pub struct vfsquery {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfs_server {
+    /// minutes until server goes down.
     pub vs_minutes: i32,
+    /// UTF8 server name to display (null terminated)
     pub vs_server_name: [u8; 768],
 }
 
+/// NetFS mount status - returned by VFS_CTL_NSTATUS
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct netfs_status {
+    /// Current status of mount (vfsquery flags)
     pub ns_status: u32,
+    /// Significant mount options
     pub ns_mountopts: [c_char; 512],
+    /// Time waiting for reply (sec)
     pub ns_waittime: u32,
+    /// Number of threads blocked on network calls
     pub ns_threadcount: u32,
+    /// Thread IDs of those blocked threads
     pub ns_threadids: [u64; 0],
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fhandle {
+    /// length of file handle
     pub fh_len: c_uint,
+    /// file handle value
     pub fh_data: [c_uchar; 128],
 }
 

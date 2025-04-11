@@ -13,12 +13,19 @@ pub type speed_t = c_ulong;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct termios {
+    /// input flags
     pub c_iflag: tcflag_t,
+    /// output flags
     pub c_oflag: tcflag_t,
+    /// control flags
     pub c_cflag: tcflag_t,
+    /// local flags
     pub c_lflag: tcflag_t,
+    /// control chars
     pub c_cc: [cc_t; 20],
+    /// input speed
     pub c_ispeed: speed_t,
+    /// output speed
     pub c_ospeed: speed_t,
 }
 

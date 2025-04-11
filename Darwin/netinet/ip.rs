@@ -5,19 +5,31 @@ use core::ffi::*;
 use crate::ffi::*;
 
 pub const IPVERSION: c_uint = 4;
+/// Structure of an internet header, naked of options.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip {
+    /// header length
     pub ip_hl: c_uint,
+    /// version
     pub ip_v: c_uint,
+    /// type of service
     pub ip_tos: c_uchar,
+    /// total length
     pub ip_len: c_ushort,
+    /// identification
     pub ip_id: c_ushort,
+    /// fragment offset field
     pub ip_off: c_ushort,
+    /// time to live
     pub ip_ttl: c_uchar,
+    /// protocol
     pub ip_p: c_uchar,
+    /// checksum
     pub ip_sum: c_ushort,
+    /// source and dest address
     pub ip_src: in_addr,
+    /// source and dest address
     pub ip_dst: in_addr,
 }
 
@@ -35,13 +47,19 @@ pub union ipt_timestamp {
     pub ipt_ta: [ipt_ta; 1],
 }
 
+/// Time stamp option structure.
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ip_timestamp {
+    /// IPOPT_TS
     pub ipt_code: c_uchar,
+    /// size of structure (variable)
     pub ipt_len: c_uchar,
+    /// index of current entry
     pub ipt_ptr: c_uchar,
+    /// flags, see below
     pub ipt_flg: c_uint,
+    /// overflow counter
     pub ipt_oflw: c_uint,
     pub ipt_timestamp: ipt_timestamp,
 }

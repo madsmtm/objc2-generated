@@ -7,38 +7,84 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __semid_ds_new {
+    /// [XSI] operation permission struct
     pub sem_perm: ipc_perm,
+    /// 32 bit base ptr for semaphore set
     pub sem_base: i32,
+    /// [XSI] number of sems in set
     pub sem_nsems: c_ushort,
+    /// [XSI] last operation time
     pub sem_otime: time_t,
+    /// RESERVED: DO NOT USE!
     pub sem_pad1: i32,
+    /// [XSI] last change time
+    ///
+    /// Times measured in secs since
+    ///
+    /// 00:00:00 GMT, Jan. 1, 1970
     pub sem_ctime: time_t,
+    /// RESERVED: DO NOT USE!
     pub sem_pad2: i32,
+    /// RESERVED: DO NOT USE!
     pub sem_pad3: [i32; 4],
 }
 
+/// A semaphore; this is an anonymous structure, not for external use
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sem {
+    /// semaphore value
     pub semval: c_ushort,
+    /// pid of last operation
     pub sempid: pid_t,
+    /// # awaiting semval > cval
     pub semncnt: c_ushort,
+    /// # awaiting semval == 0
     pub semzcnt: c_ushort,
 }
 
+/// Structure of array element for second argument to semop()
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sembuf {
+    /// [XSI] semaphore #
     pub sem_num: c_ushort,
+    /// [XSI] semaphore operation
     pub sem_op: c_short,
+    /// [XSI] operation flags
     pub sem_flg: c_short,
 }
 
+/// Union used as the fourth argment to semctl() in all cases.  Specific
+/// member values are used for different values of the third parameter:
+///
+/// Command                    Member
+/// -------------------------------------------    ------
+/// GETALL, SETALL                array
+/// SETVAL                    val
+/// IPC_STAT, IPC_SET                buf
+///
+/// The union definition is intended to be defined by the user application
+/// in conforming applications; it is provided here for two reasons:
+///
+/// 1)    Historical source compatability for non-conforming applications
+/// expecting this header to declare the union type on their behalf
+///
+/// 2)    Documentation; specifically, 64 bit applications that do not pass
+/// this structure for 'val', or, alternately, a 64 bit type, will
+/// not function correctly
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union semun {
+    /// value for SETVAL
     pub val: c_int,
+    /// buffer for IPC_STAT
+    /// &
+    /// IPC_SET
     pub buf: *mut __semid_ds_new,
+    /// array for GETALL
+    /// &
+    /// SETALL
     pub array: *mut c_ushort,
 }
 

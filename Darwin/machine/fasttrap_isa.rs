@@ -20,8 +20,11 @@ pub union fasttrap_instr_t {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct fasttrap_machtp {
+    /// original instruction
     pub ftmt_instr: fasttrap_instr_t,
+    /// One of the FASTTRAP_FN* constants defined below
     pub ftmt_fntype: u8,
+    /// Once the tracepoint is initialized, fntype will be FN_DONE_INIT and thumb will be 0 for ARM, 1 for Thumb
     pub ftmt_thumb: u8,
     pub ftmt_type: u8,
     pub ftmt_installed: u8,

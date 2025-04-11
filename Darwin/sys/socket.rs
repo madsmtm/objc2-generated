@@ -8,25 +8,36 @@ pub type sae_associd_t = u32;
 
 pub type sae_connid_t = u32;
 
+/// sockaddr endpoints
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sa_endpoints {
+    /// optional source interface
     pub sae_srcif: c_uint,
+    /// optional source address
     pub sae_srcaddr: *const sockaddr,
+    /// size of source address
     pub sae_srcaddrlen: socklen_t,
+    /// destination address
     pub sae_dstaddr: *const sockaddr,
+    /// size of destination address
     pub sae_dstaddrlen: socklen_t,
 }
 
+/// sockaddr endpoints
 pub type sa_endpoints_t = sa_endpoints;
 
+/// Structure used for manipulating linger option.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct linger {
+    /// option on/off
     pub l_onoff: c_int,
+    /// linger time
     pub l_linger: c_int,
 }
 
+/// Structure to control non-portable Sockets extension to POSIX
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct so_np_extensions {
@@ -34,14 +45,21 @@ pub struct so_np_extensions {
     pub npx_mask: u32,
 }
 
+/// [XSI] Structure used by kernel to store most addresses.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr {
+    /// total length
     pub sa_len: u8,
+    /// [XSI] address family
     pub sa_family: sa_family_t,
+    /// [XSI] addr value
     pub sa_data: [c_char; 14],
 }
 
+/// Least amount of information that a sockaddr requires.
+/// Sockaddr_header is a compatible prefix structure of
+/// all sockaddr objects.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __sockaddr_header {
@@ -49,49 +67,78 @@ pub struct __sockaddr_header {
     pub sa_family: sa_family_t,
 }
 
+/// Structure used by kernel to pass protocol
+/// information in raw sockets.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockproto {
+    /// address family
     pub sp_family: u16,
+    /// protocol
     pub sp_protocol: u16,
 }
 
+/// [XSI] sockaddr_storage
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_storage {
+    /// address length
     pub ss_len: u8,
+    /// [XSI] address family
     pub ss_family: sa_family_t,
     pub(crate) __ss_pad1: [c_char; 6],
+    /// force structure storage alignment
     pub(crate) __ss_align: i64,
     pub(crate) __ss_pad2: [c_char; 112],
 }
 
+/// [XSI] Message header for recvmsg and sendmsg calls.
+/// Used value-result for recvmsg, value only for sendmsg.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct msghdr {
+    /// [XSI] optional address
     pub msg_name: *mut c_void,
+    /// [XSI] size of address
     pub msg_namelen: socklen_t,
+    /// [XSI] scatter/gather array
     pub msg_iov: *mut iovec,
+    /// [XSI] # elements in msg_iov
     pub msg_iovlen: c_int,
+    /// [XSI] ancillary data, see below
     pub msg_control: *mut c_void,
+    /// [XSI] ancillary data buffer len
     pub msg_controllen: socklen_t,
+    /// [XSI] flags on received message
     pub msg_flags: c_int,
 }
 
+/// Header for ancillary data objects in msg_control buffer.
+/// Used for additional information with/about a datagram
+/// not expressible by flags.  The format is a sequence
+/// of message elements headed by cmsghdr structures.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cmsghdr {
+    /// [XSI] data byte count, including hdr
     pub cmsg_len: socklen_t,
+    /// [XSI] originating protocol
     pub cmsg_level: c_int,
+    /// [XSI] protocol-specific type
     pub cmsg_type: c_int,
 }
 
+/// sendfile(2) header/trailer struct
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sf_hdtr {
+    /// pointer to an array of header struct iovec's
     pub headers: *mut iovec,
+    /// number of header iovec's
     pub hdr_cnt: c_int,
+    /// pointer to an array of trailer struct iovec's
     pub trailers: *mut iovec,
+    /// number of trailer iovec's
     pub trl_cnt: c_int,
 }
 

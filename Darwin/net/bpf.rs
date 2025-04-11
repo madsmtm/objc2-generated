@@ -10,6 +10,7 @@ pub type bpf_int32 = i32;
 
 pub type bpf_u_int32 = u32;
 
+/// Structure for BIOCSETF.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_program {
@@ -17,13 +18,27 @@ pub struct bpf_program {
     pub bf_insns: *mut bpf_insn,
 }
 
+/// Struct returned by BIOCGSTATS.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_stat {
+    /// number of packets received
     pub bs_recv: c_uint,
+    /// number of packets dropped
     pub bs_drop: c_uint,
 }
 
+/// Struct return by BIOCVERSION.  This represents the version number of
+/// the filter language described by the instruction encodings below.
+/// bpf understands a program iff kernel_major == filter_major
+/// &
+/// &
+/// kernel_minor >= filter_minor, that is, if the value returned by the
+/// running kernel has the same major number and a minor number equal
+/// equal to or less than the filter being downloaded.  Otherwise, the
+/// results are undefined, meaning an error may be returned or packets
+/// may be accepted haphazardly.
+/// It has nothing to do with the source code version.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_version {
@@ -31,15 +46,22 @@ pub struct bpf_version {
     pub bv_minor: c_ushort,
 }
 
+/// Structure prepended to each packet.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_hdr {
+    /// time stamp
     pub bh_tstamp: timeval32,
+    /// length of captured portion
     pub bh_caplen: bpf_u_int32,
+    /// original length of packet
     pub bh_datalen: bpf_u_int32,
+    /// length of bpf header (this struct
+    /// plus alignment padding)
     pub bh_hdrlen: c_ushort,
 }
 
+/// The instruction data structure.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_insn {
@@ -52,13 +74,16 @@ pub struct bpf_insn {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union bpf_dltlist_bfl_u {
+    /// array of DLTs
     pub bflu_list: *mut u32,
     pub bflu_pad: u64,
 }
 
+/// Structure to retrieve available DLTs for the interface.
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct bpf_dltlist {
+    /// number of bfd_list array
     pub bfl_len: u32,
     pub bfl_u: bpf_dltlist_bfl_u,
 }

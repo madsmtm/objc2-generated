@@ -8,6 +8,7 @@ use crate::ffi::*;
 
 pub type daddr64_t = i64;
 
+/// Definitions of device driver entry switches
 #[repr(C)]
 #[derive(Debug)]
 pub struct buf {

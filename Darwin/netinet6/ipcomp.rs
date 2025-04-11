@@ -6,7 +6,10 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipcomp {
+    /// Next Header
     pub comp_nxt: u8,
+    /// reserved, must be zero
     pub comp_flags: u8,
+    /// Compression parameter index
     pub comp_cpi: u16,
 }

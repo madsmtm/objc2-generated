@@ -18,9 +18,13 @@ pub type Field_Options = c_int;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _PAGE {
+    /// index of first field on page
     pub pmin: c_short,
+    /// index of last field on page
     pub pmax: c_short,
+    /// index of top leftmost field on page
     pub smin: c_short,
+    /// index of bottom rightmost field on page
     pub smax: c_short,
 }
 
@@ -30,30 +34,55 @@ pub struct _PAGE {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fieldnode {
+    /// flags
     pub status: c_ushort,
+    /// size in rows
     pub rows: c_short,
+    /// size in cols
     pub cols: c_short,
+    /// first row
     pub frow: c_short,
+    /// first col
     pub fcol: c_short,
+    /// dynamic rows
     pub drows: c_int,
+    /// dynamic cols
     pub dcols: c_int,
+    /// maximum field growth
     pub maxgrow: c_int,
+    /// off-screen rows
     pub nrow: c_int,
+    /// additional buffers
     pub nbuf: c_short,
+    /// justification
     pub just: c_short,
+    /// page on form
     pub page: c_short,
+    /// into form -> field
     pub index: c_short,
+    /// pad character
     pub pad: c_int,
+    /// foreground attribute
     pub fore: chtype,
+    /// background attribute
     pub back: chtype,
+    /// options
     pub opts: Field_Options,
+    /// sorted order pointer
     pub snext: *mut fieldnode,
+    /// sorted order pointer
     pub sprev: *mut Self,
+    /// linked field chain
     pub link: *mut Self,
+    /// containing form
     pub form: *mut Self,
+    /// field type
     pub r#type: *mut Self,
+    /// argument for type
     pub arg: *mut c_void,
+    /// field buffers
     pub buf: *mut FIELD_CELL,
+    /// user pointer
     pub usrptr: *mut c_void,
 }
 
@@ -68,23 +97,41 @@ pub type FIELD = Self;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct formnode {
+    /// flags
     pub status: c_ushort,
+    /// size in rows
     pub rows: c_short,
+    /// size in cols
     pub cols: c_short,
+    /// current row in field window
     pub currow: c_int,
+    /// current col in field window
     pub curcol: c_int,
+    /// in scrollable field window
     pub toprow: c_int,
+    /// in horiz. scrollable field
     pub begincol: c_int,
+    /// number of fields
     pub maxfield: c_short,
+    /// number of pages
     pub maxpage: c_short,
+    /// index into page
     pub curpage: c_short,
+    /// options
     pub opts: Form_Options,
+    /// window
     pub win: *mut WINDOW,
+    /// subwindow
     pub sub: *mut WINDOW,
+    /// window for current field
     pub w: *mut WINDOW,
+    /// field [maxfield]
     pub field: *mut *mut FIELD,
+    /// current field
     pub current: *mut FIELD,
+    /// page [maxpage]
     pub page: *mut _PAGE,
+    /// user pointer
     pub usrptr: *mut c_void,
     pub forminit: Option<unsafe extern "C-unwind" fn(*mut Self)>,
     pub formterm: Option<unsafe extern "C-unwind" fn(*mut Self)>,
@@ -103,16 +150,27 @@ pub type FORM = Self;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct typenode {
+    /// flags
     pub status: c_ushort,
+    /// reference count
     pub r#ref: c_long,
+    /// ptr to operand for |
     pub left: *mut Self,
+    /// ptr to operand for |
     pub right: *mut Self,
+    /// make fieldtype arg
     pub makearg: Option<unsafe extern "C-unwind" fn(*mut va_list) -> *mut c_void>,
+    /// copy fieldtype arg
     pub copyarg: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut c_void>,
+    /// free fieldtype arg
     pub freearg: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
+    /// field validation
     pub fcheck: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
+    /// character validation
     pub ccheck: Option<unsafe extern "C-unwind" fn(c_int, *const c_void) -> bool>,
+    /// enumerate next value
     pub next: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
+    /// enumerate prev value
     pub prev: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
 }
 
@@ -151,10 +209,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// **********************************
-    /// built-in additional field types  *
-    /// They are not defined in SVr4     *
-    /// **********************************
+    /// Internet IP Version 4 address
     pub static TYPE_IPV4: Option<&'static FIELDTYPE>;
 }
 

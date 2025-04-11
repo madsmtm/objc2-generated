@@ -4,6 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Internal of an ICMP Router Advertisement
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp_ra_addr {
@@ -18,6 +19,7 @@ pub struct ih_idseq {
     pub icd_seq: n_short,
 }
 
+/// ICMP_UNREACH_NEEDFRAG -- Path MTU Discovery (RFC1191)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ih_pmtu {
@@ -36,7 +38,9 @@ pub struct ih_rtradv {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union icmp_icmp_hun {
+    /// ICMP_PARAMPROB
     pub ih_pptr: c_uchar,
+    /// ICMP_REDIRECT
     pub ih_gwaddr: in_addr,
     pub ih_idseq: ih_idseq,
     pub ih_void: c_int,
@@ -68,11 +72,15 @@ pub union icmp_icmp_dun {
     pub id_data: [c_char; 1],
 }
 
+/// Structure of an icmp header.
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct icmp {
+    /// type of message, see below
     pub icmp_type: c_uchar,
+    /// type sub code
     pub icmp_code: c_uchar,
+    /// ones complement cksum of struct
     pub icmp_cksum: c_ushort,
     pub icmp_hun: icmp_icmp_hun,
     pub icmp_dun: icmp_icmp_dun,

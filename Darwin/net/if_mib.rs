@@ -7,16 +7,25 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifmibdata {
+    /// name of interface
     pub ifmd_name: [c_char; 16],
+    /// number of promiscuous listeners
     pub ifmd_pcount: c_uint,
+    /// interface flags
     pub ifmd_flags: c_uint,
+    /// instantaneous length of send queue
     pub ifmd_snd_len: c_uint,
+    /// maximum length of send queue
     pub ifmd_snd_maxlen: c_uint,
+    /// number of drops in send queue
     pub ifmd_snd_drops: c_uint,
+    /// for future expansion
     pub ifmd_filler: [c_uint; 4],
+    /// generic information and statistics
     pub ifmd_data: if_data64,
 }
 
+/// For IFT_ETHER, IFT_ISO88023, and IFT_STARLAN, as used by RFC 1650
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifs_iso_8802_3 {
@@ -33,11 +42,14 @@ pub struct ifs_iso_8802_3 {
     pub dot3StatsFrameTooLongs: u32,
     pub dot3StatsInternalMacReceiveErrors: u32,
     pub dot3StatsEtherChipSet: u32,
+    /// Matt Thomas wants this one, not included in RFC 1650:
     pub dot3StatsMissedFrames: u32,
+    /// NB: index origin
     pub dot3StatsCollFrequencies: [u32; 16],
     pub dot3Compliance: u32,
 }
 
+/// Driver writers!  Add your vendors here!
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct dot3Vendors(pub c_uint);

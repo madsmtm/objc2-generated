@@ -6,27 +6,39 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Structure used as a parameter by getitimer(2) and setitimer(2) system
+/// calls.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct itimerval {
+    /// timer interval
     pub it_interval: timeval,
+    /// current value
     pub it_value: timeval,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct timezone {
+    /// minutes west of Greenwich
     pub tz_minuteswest: c_int,
+    /// type of dst correction
     pub tz_dsttime: c_int,
 }
 
+/// Getkerninfo clock information structure
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct clockinfo {
+    /// clock frequency
     pub hz: c_int,
+    /// micro-seconds per hz tick
     pub tick: c_int,
+    /// clock skew rate for adjtime()
     pub tickadj: c_int,
+    /// statistics clock frequency
     pub stathz: c_int,
+    /// profiling clock frequency
     pub profhz: c_int,
 }
 

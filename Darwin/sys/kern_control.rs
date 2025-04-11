@@ -11,6 +11,7 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ctl_event_data {
+    /// Kernel Controller ID
     pub ctl_id: u32,
     pub ctl_unit: u32,
 }
@@ -22,7 +23,9 @@ pub struct ctl_event_data {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ctl_info {
+    /// Kernel Controller ID
     pub ctl_id: u32,
+    /// Kernel Controller Name (a C string)
     pub ctl_name: [c_char; 96],
 }
 
@@ -43,10 +46,15 @@ pub struct ctl_info {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_ctl {
+    /// depends on size of bundle ID string
     pub sc_len: c_uchar,
+    /// AF_SYSTEM
     pub sc_family: c_uchar,
+    /// AF_SYS_KERNCONTROL
     pub ss_sysaddr: u16,
+    /// Controller unique identifier
     pub sc_id: u32,
+    /// Developer private unit number
     pub sc_unit: u32,
     pub sc_reserved: [u32; 5],
 }

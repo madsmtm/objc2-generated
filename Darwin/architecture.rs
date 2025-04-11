@@ -28,6 +28,8 @@ pub type NXSwappedDouble = c_ulonglong;
 
 // TODO: pub fn NXSwapDouble(x: NXSwappedDouble,) -> NXSwappedDouble;
 
+/// Identify the byte order
+/// of the current host.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NXByteOrder(pub c_uint);

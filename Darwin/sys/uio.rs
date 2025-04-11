@@ -4,6 +4,9 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// IO direction for uio_t.
+/// UIO_READ - data moves into iovec(s) associated with uio_t
+/// UIO_WRITE - data moves out of iovec(s) associated with uio_t
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct uio_rw(pub c_uint);

@@ -858,6 +858,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Test and set.
+    /// They return the original value of the bit, and operate on bit (0x80>>(n
+    /// &
+    /// 7))
+    /// in byte ((char*)theAddress + (n>>3)).
+    ///
+    ///
     /// Atomic test and set
     ///
     /// This function tests a bit in the value referenced by

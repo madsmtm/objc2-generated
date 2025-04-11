@@ -4,9 +4,16 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// NetBSD extension not defined in the BSDI API.  This is used in various
+/// places to get the canonical description for a given type/subtype.
+///
+/// NOTE: all but the top-level type descriptions must contain NO whitespace!
+/// Otherwise, parsing these in ifconfig(8) would be a nightmare.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifmedia_description {
+    /// word value; may be masked
     pub ifmt_word: c_int,
+    /// description
     pub ifmt_string: *const c_char,
 }

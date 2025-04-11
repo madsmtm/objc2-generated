@@ -4,6 +4,29 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Protocol control block for an active
+/// instance of a UNIX internal protocol.
+///
+/// A socket may be associated with an vnode in the
+/// file system.  If so, the unp_vnode pointer holds
+/// a reference count to this vnode, which should be irele'd
+/// when the socket goes away.
+///
+/// A socket may be connected to another socket, in which
+/// case the control block of the socket to which it is connected
+/// is given by unp_conn.
+///
+/// A socket may be referenced by a number of sockets (e.g. several
+/// sockets may be connected to a datagram socket.)  These sockets
+/// are in a linked list starting with unp_refs, linked through
+/// unp_nextref and null-terminated.  Note that a socket may be referenced
+/// by a number of other sockets and may also reference a socket (not
+/// necessarily one which is referencing it).  This generates
+/// the need for unp_refs and unp_nextref to be separate fields.
+///
+/// Stream sockets keep copies of receive sockbuf sb_cc and sb_mbcnt
+/// so that changes in the sockbuf may be computed to modify
+/// back pressure on the sender accordingly.
 pub type unp_gen_t = u_quad_t;
 
 #[repr(C)]

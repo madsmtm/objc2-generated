@@ -8,54 +8,95 @@ pub type tcp_seq = u32;
 
 pub type tcp_cc = u32;
 
+/// TCP header.
+/// Per RFC 793, September, 1981.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcphdr {
+    /// source port
     pub th_sport: c_ushort,
+    /// destination port
     pub th_dport: c_ushort,
+    /// sequence number
     pub th_seq: tcp_seq,
+    /// acknowledgement number
     pub th_ack: tcp_seq,
+    /// (unused)
     pub th_x2: c_uint,
+    /// data offset
     pub th_off: c_uint,
     pub th_flags: c_uchar,
+    /// window
     pub th_win: c_ushort,
+    /// checksum
     pub th_sum: c_ushort,
+    /// urgent pointer
     pub th_urp: c_ushort,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcp_connection_info {
+    /// connection state
     pub tcpi_state: u8,
+    /// Window scale for send window
     pub tcpi_snd_wscale: u8,
+    /// Window scale for receive window
     pub tcpi_rcv_wscale: u8,
     pub(crate) __pad1: u8,
+    /// TCP options supported
     pub tcpi_options: u32,
+    /// flags
     pub tcpi_flags: u32,
+    /// retransmit timeout in ms
     pub tcpi_rto: u32,
+    /// maximum segment size supported
     pub tcpi_maxseg: u32,
+    /// slow start threshold in bytes
     pub tcpi_snd_ssthresh: u32,
+    /// send congestion window in bytes
     pub tcpi_snd_cwnd: u32,
+    /// send widnow in bytes
     pub tcpi_snd_wnd: u32,
+    /// bytes in send socket buffer, including in-flight data
     pub tcpi_snd_sbbytes: u32,
+    /// receive window in bytes
     pub tcpi_rcv_wnd: u32,
+    /// most recent RTT in ms
     pub tcpi_rttcur: u32,
+    /// average RTT in ms
     pub tcpi_srtt: u32,
+    /// RTT variance
     pub tcpi_rttvar: u32,
+    /// Cookie requested?
     pub tcpi_tfo_cookie_req: u32,
+    /// Cookie received?
     pub tcpi_tfo_cookie_rcv: u32,
+    /// Fallback to reg. TCP after SYN-loss
     pub tcpi_tfo_syn_loss: u32,
+    /// SYN+data has been sent out
     pub tcpi_tfo_syn_data_sent: u32,
+    /// SYN+data has been fully acknowledged
     pub tcpi_tfo_syn_data_acked: u32,
+    /// Server received SYN+data with a valid cookie
     pub tcpi_tfo_syn_data_rcv: u32,
+    /// Server received cookie-request
     pub tcpi_tfo_cookie_req_rcv: u32,
+    /// Server announced cookie
     pub tcpi_tfo_cookie_sent: u32,
+    /// Server received an invalid cookie
     pub tcpi_tfo_cookie_invalid: u32,
+    /// Our sent cookie was wrong
     pub tcpi_tfo_cookie_wrong: u32,
+    /// We did not receive a cookie upon our request
     pub tcpi_tfo_no_cookie_rcv: u32,
+    /// TFO-heuristics disabled it
     pub tcpi_tfo_heuristics_disable: u32,
+    /// A sending-blackhole got detected
     pub tcpi_tfo_send_blackhole: u32,
+    /// A receiver-blackhole got detected
     pub tcpi_tfo_recv_blackhole: u32,
+    /// A proxy acknowledges all but one byte of the SYN
     pub tcpi_tfo_onebyte_proxy: u32,
     pub(crate) __pad2: u32,
     pub tcpi_txpackets: u64,

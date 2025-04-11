@@ -4,6 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Structure of a 10Mb/s Ethernet header.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ether_header {
@@ -12,17 +13,21 @@ pub struct ether_header {
     pub ether_type: c_ushort,
 }
 
+/// Structure of a 10Mb/s Ethernet header.
 pub type ether_header_t = ether_header;
 
+/// Structure of a 48-bit Ethernet address.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ether_addr {
     pub octet: [c_uchar; 6],
 }
 
+/// Structure of a 48-bit Ethernet address.
 pub type ether_addr_t = ether_addr;
 
 extern "C-unwind" {
+    /// Ethernet address conversion/parsing routines.
     pub fn ether_hostton(param1: *const c_char, param1: *mut ether_addr) -> c_int;
 }
 

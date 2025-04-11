@@ -3,6 +3,10 @@
 
 use crate::ffi::*;
 
+/// Per process structure containing data that isn't needed in core
+/// when the process isn't running (esp. when swapped out).
+/// This structure may or may not be at the same kernel address
+/// in all processes.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct user {}

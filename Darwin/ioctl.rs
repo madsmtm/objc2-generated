@@ -4,6 +4,9 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Pun for SunOS prior to 3.2.  SunOS 3.2 and later support TIOCGWINSZ
+/// and TIOCSWINSZ (yes, even 3.2-3.5, the fact that it wasn't documented
+/// nonwithstanding).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ttysize {

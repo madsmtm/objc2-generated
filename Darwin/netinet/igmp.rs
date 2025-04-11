@@ -4,42 +4,71 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// IGMPv1/v2 query and host report format.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmp {
+    /// version
+    /// &
+    /// type of IGMP message
     pub igmp_type: c_uchar,
+    /// subtype for routing msgs
     pub igmp_code: c_uchar,
+    /// IP-style checksum
     pub igmp_cksum: c_ushort,
+    /// group address being reported
     pub igmp_group: in_addr,
 }
 
+/// IGMP v3 query format.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmpv3 {
+    /// version
+    /// &
+    /// type of IGMP message
     pub igmp_type: c_uchar,
+    /// subtype for routing msgs
     pub igmp_code: c_uchar,
+    /// IP-style checksum
     pub igmp_cksum: c_ushort,
+    /// group address being reported
+    ///
+    /// (zero for queries)
     pub igmp_group: in_addr,
+    /// reserved/suppress/robustness
     pub igmp_misc: c_uchar,
+    /// querier's query interval
     pub igmp_qqi: c_uchar,
+    /// number of sources
     pub igmp_numsrc: c_ushort,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmp_grouprec {
+    /// record type
     pub ig_type: c_uchar,
+    /// length of auxiliary data
     pub ig_datalen: c_uchar,
+    /// number of sources
     pub ig_numsrc: c_ushort,
+    /// group address being reported
     pub ig_group: in_addr,
 }
 
+/// IGMPv3 host membership report header.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct igmp_report {
+    /// IGMP_v3_HOST_MEMBERSHIP_REPORT
     pub ir_type: c_uchar,
+    /// must be zero
     pub ir_rsv1: c_uchar,
+    /// checksum
     pub ir_cksum: c_ushort,
+    /// must be zero
     pub ir_rsv2: c_ushort,
+    /// number of group records
     pub ir_numgrps: c_ushort,
 }

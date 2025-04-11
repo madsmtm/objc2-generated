@@ -19,15 +19,19 @@ pub struct xsockbuf {
     pub sb_timeo: c_short,
 }
 
+/// Externalized form of struct socket used by the sysctl(3) interface.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xsocket {
+    /// length of this structure
     pub xso_len: u32,
+    /// makes a convenient handle
     pub xso_so: u32,
     pub so_type: c_short,
     pub so_options: c_short,
     pub so_linger: c_short,
     pub so_state: c_short,
+    /// another convenient handle
     pub so_pcb: u32,
     pub xso_protocol: c_int,
     pub xso_family: c_int,
@@ -40,18 +44,22 @@ pub struct xsocket {
     pub so_oobmark: u32,
     pub so_rcv: xsockbuf,
     pub so_snd: xsockbuf,
+    /// XXX
     pub so_uid: uid_t,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xsocket64 {
+    /// length of this structure
     pub xso_len: u32,
+    /// makes a convenient handle
     pub xso_so: u64,
     pub so_type: c_short,
     pub so_options: c_short,
     pub so_linger: c_short,
     pub so_state: c_short,
+    /// another convenient handle
     pub so_pcb: u64,
     pub xso_protocol: c_int,
     pub xso_family: c_int,
@@ -64,9 +72,11 @@ pub struct xsocket64 {
     pub so_oobmark: u32,
     pub so_rcv: xsockbuf,
     pub so_snd: xsockbuf,
+    /// XXX
     pub so_uid: uid_t,
 }
 
+/// Tracker actions
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct so_tracker_action(pub c_uint);
@@ -78,6 +88,7 @@ impl so_tracker_action {
     pub const SO_TRACKER_ACTION_DUMP_MAX: Self = Self(4);
 }
 
+/// Tracker TLV attributes
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct so_tracker_attribute(pub c_uint);

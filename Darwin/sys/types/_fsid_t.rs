@@ -6,6 +6,7 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fsid {
+    /// file system id type
     pub val: [i32; 2],
 }
 

@@ -8,24 +8,44 @@ pub const IF_CELLULAR_STATUS_REPORT_VERSION_1: c_uint = 1;
 pub const IF_WIFI_STATUS_REPORT_VERSION_1: c_uint = 1;
 pub const IF_CELLULAR_STATUS_REPORT_CURRENT_VERSION: c_uint = IF_CELLULAR_STATUS_REPORT_VERSION_1;
 pub const IF_WIFI_STATUS_REPORT_CURRENT_VERSION: c_uint = IF_WIFI_STATUS_REPORT_VERSION_1;
+/// For cellular interface --
+/// There is no way to share common headers between the Baseband and
+/// the kernel. Any changes to this structure will need to be communicated
+/// to the Baseband team. It is better to use reserved space instead of
+/// changing the size or existing fields in the structure.
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_cellular_status_v1 {
+    /// indicates which fields are valid
     pub valid_bitmask: u32,
     pub link_quality_metric: u32,
+    /// Measured uplink bandwidth based on current activity (bps)
     pub ul_effective_bandwidth: u32,
+    /// Maximum supported uplink bandwidth (bps)
     pub ul_max_bandwidth: u32,
+    /// min expected uplink latency for first hop (ms)
     pub ul_min_latency: u32,
+    /// current expected uplink latency for first hop (ms)
     pub ul_effective_latency: u32,
+    /// max expected uplink latency first hop (ms)
     pub ul_max_latency: u32,
+    /// Retransmission metric
     pub ul_retxt_level: u32,
+    /// % of total bytes lost on uplink in Q10 format
     pub ul_bytes_lost: u32,
+    /// minimum bytes in queue
     pub ul_min_queue_size: u32,
+    /// average bytes in queue
     pub ul_avg_queue_size: u32,
+    /// maximum bytes in queue
     pub ul_max_queue_size: u32,
+    /// Measured downlink bandwidth based on current activity (bps)
     pub dl_effective_bandwidth: u32,
+    /// Maximum supported downlink bandwidth (bps)
     pub dl_max_bandwidth: u32,
+    /// ms
     pub config_inactivity_time: u32,
+    /// new connections backoff time in ms
     pub config_backoff_time: u32,
     pub mss_recommended: u16,
     pub reserved_1: u16,
@@ -48,28 +68,51 @@ pub struct if_cellular_status {
     pub if_cell_u: if_cellular_status_if_cell_u,
 }
 
+/// These statistics will be provided by the Wifi driver periodically.
+/// After sending each report, the driver should start computing again
+/// for the next report duration so that the values represent the link
+/// status for one report duration.
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_wifi_status_v1 {
     pub valid_bitmask: u32,
+    /// link quality metric
     pub link_quality_metric: u32,
+    /// Measured uplink bandwidth based on current activity (bps)
     pub ul_effective_bandwidth: u32,
+    /// Maximum supported uplink bandwidth (bps)
     pub ul_max_bandwidth: u32,
+    /// min expected uplink latency for first hop (ms)
     pub ul_min_latency: u32,
+    /// current expected uplink latency for first hop (ms)
     pub ul_effective_latency: u32,
+    /// max expected uplink latency for first hop (ms)
     pub ul_max_latency: u32,
+    /// Retransmission metric
     pub ul_retxt_level: u32,
+    /// % of total bytes lost on uplink in Q10 format
     pub ul_bytes_lost: u32,
+    /// % of bytes dropped on uplink after many retransmissions in Q10 format
     pub ul_error_rate: u32,
+    /// Measured downlink bandwidth based on current activity (bps)
     pub dl_effective_bandwidth: u32,
+    /// Maximum supported downlink bandwidth (bps)
     pub dl_max_bandwidth: u32,
+    /// min expected latency for first hop in ms
     pub dl_min_latency: u32,
+    /// current expected latency for first hop in ms
     pub dl_effective_latency: u32,
+    /// max expected latency for first hop in ms
     pub dl_max_latency: u32,
+    /// % of CRC or other errors in Q10 format
     pub dl_error_rate: u32,
+    /// 2.4 or 5 GHz
     pub config_frequency: u32,
+    /// bps
     pub config_multicast_rate: u32,
+    /// scan count during the previous period
     pub scan_count: u32,
+    /// scan duration in ms
     pub scan_duration: u32,
     pub reserved_1: u64,
     pub reserved_2: u64,
@@ -99,7 +142,9 @@ pub union if_link_status_ifsr_u {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct if_link_status {
+    /// version of this report
     pub ifsr_version: u32,
+    /// length of the following struct
     pub ifsr_len: u32,
     pub ifsr_u: if_link_status_ifsr_u,
 }
@@ -108,8 +153,13 @@ pub struct if_link_status {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_version(pub u8);
 impl ifnet_interface_advisory_version {
+    /// Initial version with interface advisory report for WiFi interface.
     pub const IF_INTERFACE_ADVISORY_VERSION_1: Self = Self(1);
+    /// Reorganized the interface advisory structure to separate out
+    /// WiFi and Cellular interface specific reports.
     pub const IF_INTERFACE_ADVISORY_VERSION_2: Self = Self(2);
+    /// Reorganized the interface advisory structure to separate out
+    /// WiFi and Cellular interface specific reports.
     pub const IF_INTERFACE_ADVISORY_VERSION_CURRENT: Self =
         Self(ifnet_interface_advisory_version::IF_INTERFACE_ADVISORY_VERSION_2.0);
 }
@@ -134,14 +184,22 @@ impl ifnet_interface_advisory_interface_type {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_notification_type_cell(pub u8);
 impl ifnet_interface_advisory_notification_type_cell {
+    /// Reserved for MAV platform
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_CELLULAR_DEFAULT: Self = Self(0);
+    /// Used when sending Codec Rate Adaptation related notifications
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_CELLULAR_UPLINK_CRA: Self = Self(1);
+    /// Used when sending periodic measurement of parameters (RSRP,RSSI etc.)
+    /// during VoLTE/VoNR calls
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_CELLULAR_MEASUREMENT_UPDATE: Self = Self(2);
+    /// Used when a TTI bundle enable/disable occurs during VoLTE/VoNR calls
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_CELLULAR_BANDWIDTH_LIMITATION_EVENT: Self =
         Self(3);
+    /// Used when a configuration change occurs in CDRx during VoLTE/VoNR calls
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_CELLULAR_DISCONTINUOUS_RECEPTION_EVENT: Self =
         Self(4);
+    /// Used when a handover start/end occurs during VoLTE/VoNR calls
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_CELLULAR_OUTAGE_EVENT: Self = Self(5);
+    /// Used for Thermal Codec Rate Adaptation Events
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_CELLULAR_THERMAL_CRA_EVENT: Self = Self(6);
 }
 
@@ -149,6 +207,7 @@ impl ifnet_interface_advisory_notification_type_cell {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ifnet_interface_advisory_notification_type_wifi(pub u8);
 impl ifnet_interface_advisory_notification_type_wifi {
+    /// Unused for now
     pub const IF_INTERFACE_ADVISORY_NOTIFICATION_TYPE_WIFI_UNDEFINED: Self = Self(0);
 }
 
@@ -162,9 +221,13 @@ pub union ifnet_interface_advisory_notification_type_t {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifnet_interface_advisory_header {
+    /// The current structure version
     pub version: ifnet_interface_advisory_version,
+    /// Specifies if the advisory is for transmit or receive path
     pub direction: ifnet_interface_advisory_direction,
+    /// Interface type
     pub interface_type: ifnet_interface_advisory_interface_type,
+    /// Notification type
     pub notification_type: ifnet_interface_advisory_notification_type_t,
 }
 
@@ -180,13 +243,38 @@ impl ifnet_interface_advisory_rate_trend {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_interface_advisory_capacity {
+    /// suggestion for data rate change to keep the latency low.
+    /// unit: bits per second (bps)
+    /// NOTE: if the interface cannot provide suggestions in
+    /// terms of bps, it should use the following values:
+    /// INT32_MAX : ramp up
+    /// INT32_MIN : ramp down
+    /// 0         : neutral
     pub rate_trend_suggestion: ifnet_interface_advisory_rate_trend,
+    /// Time of the issue of advisory.
+    /// Timestamp should be in the host domain.
+    /// unit: mach absolute time
     pub timestamp: u64,
+    /// Maximum theoretical bandwidth of the interface.
+    /// unit: bits per second (bps)
     pub max_bandwidth: u64,
+    /// Total bytes sent or received on the interface.
+    /// wrap around possible and the application should account for that.
+    /// unit: byte
     pub total_byte_count: u64,
+    /// average throughput observed at the driver stack.
+    /// unit: bits per second (bps)
     pub average_throughput: u64,
+    /// flushable queue size at the driver.
+    /// should be set to UINT32_MAX if not available.
+    /// unit: byte
     pub flushable_queue_size: u32,
+    /// non flushable queue size at the driver.
+    /// should be set to UINT32_MAX if not available.
+    /// unit: byte
     pub non_flushable_queue_size: u32,
+    /// average delay observed at the interface.
+    /// unit: milliseconds (ms)
     pub average_delay: u32,
 }
 
@@ -200,36 +288,62 @@ impl ifnet_interface_advisory_wifi_freq_band {
     pub const IF_INTERFACE_ADVISORY_FREQ_BAND_WIFI_6GHZ: Self = Self(3);
 }
 
+/// This structure is used to define the parameters for advisory notifications
+/// that are specific for WiFi interface.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_interface_advisory_wifi_context {
+    /// Current frequency band (enumeration).
     pub frequency_band: ifnet_interface_advisory_wifi_freq_band,
+    /// Intermittent WiFi state [true(1)/false(0)]
     pub intermittent_state: u8,
+    /// Estimated period for which intermittent state is expected to last.
+    /// 1 tick -> 1 ms UNDEF => UINT16_MAX
     pub estimated_intermittent_period: u16,
+    /// Expected wifi outage period during intermittent state
+    /// 1 tick -> 1 ms UNDEF => UINT16_MAX
     pub single_outage_period: u16,
+    /// WiFi-BT coexistence, 1-ON, 0-OFF
     pub bt_coex: u8,
+    /// on scale of 1 to 5
     pub quality_score_delay: u8,
+    /// on scale of 1 to 5
     pub quality_score_loss: u8,
+    /// on scale of 1 to 5
     pub quality_score_channel: u8,
     pub radio_coex: u8,
+    /// time available to WiFi since last notification (in ms).
     pub wlan_duty_cycle: u16,
     pub wifi_observed_tx_bitrate: [u32; 6],
 }
 
+/// This structure is used to define the parameters for advisory notifications
+/// that are specific for Cellular interface.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_interface_advisory_cell_context {
+    /// Radio Access Technology
     pub radio_access_technology: u8,
+    /// Received Reference Signal Received level (RSRP dBm)
     pub reference_signal_level: i16,
+    /// Received Signal strength level (RSSI dBm)
     pub signal_level: i16,
+    /// Received signal quality (SNR dB).
     pub signal_quality: i8,
+    /// Uplink Block Error Rate %
     pub uplink_bler: u8,
+    /// Downlink Block Error Rate %
     pub downlink_bler: u8,
+    /// Bandwidth Limitation Type. I.e. TTI-B.
     pub bandwidth_limitation_indication: u8,
+    /// Discontinuous reception state: CDRX on/off.
     pub cdrx_state: u8,
+    /// Discontinuous reception cycle in ms.
     pub cdrx_cycle: u16,
+    /// Approximate outage period when not known
     pub estimated_outage_period: u16,
     pub outage_state: u8,
+    /// padding for alignment.
     pub(crate) __pad: u8,
 }
 
@@ -242,6 +356,7 @@ pub struct ifnet_interface_advisory {}
 pub struct ifnet_traffic_descriptor_common {
     pub itd_type: u8,
     pub(crate) _reserved: u8,
+    /// length of entire struct (common + td-specific)
     pub itd_len: u16,
     pub itd_flags: u32,
 }
@@ -255,7 +370,9 @@ pub struct ifnet_ip_addr {}
 pub struct ifnet_traffic_descriptor_inet {
     pub inet_common: ifnet_traffic_descriptor_common,
     pub inet_mask: u8,
+    /// IPVERSION or IPV6_VERSION
     pub inet_ipver: u8,
+    /// IPPROTO_TCP or IPPROTO_UDP
     pub inet_proto: u8,
     pub(crate) _reserved: u8,
     pub inet_laddr: ifnet_ip_addr,

@@ -17,18 +17,24 @@ bitflags::bitflags! {
 }
 
 extern "C-unwind" {
+    /// userspace reboot control
     pub fn usrctl(flags: u32) -> c_int;
 }
 
 extern "C-unwind" {
+    /// The normal reboot syscall.
     pub fn reboot(howto: c_int) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Used with RB_PANIC to panic the kernel from userspace with a message.
+    /// Requires an entitlement on Release.
     pub fn reboot_np(howto: c_int, message: *const c_char) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Used to panic the kernel from user space and add additional data to
+    /// the paniclog.
     pub fn panic_with_data(
         uuid: uuid_t,
         addr: *mut c_void,

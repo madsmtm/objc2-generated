@@ -4,11 +4,17 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Udp protocol header.
+/// Per RFC 768, September, 1981.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct udphdr {
+    /// source port
     pub uh_sport: c_ushort,
+    /// destination port
     pub uh_dport: c_ushort,
+    /// udp length
     pub uh_ulen: c_ushort,
+    /// udp checksum
     pub uh_sum: c_ushort,
 }

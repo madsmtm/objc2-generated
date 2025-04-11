@@ -4,14 +4,18 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// au_sdev_open() flags
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct au_sdev_open_flags(pub c_uint);
 impl au_sdev_open_flags {
+    /// Set audit session device to not to block on reads.
     pub const AU_SDEVF_NONBLOCK: Self = Self(0x00000001);
+    /// Allow process to monitor all session. (Requires privilege.)
     pub const AU_SDEVF_ALLSESSIONS: Self = Self(0x00010000);
 }
 
+/// Audit session device handle.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_sdev_handle {
@@ -21,21 +25,76 @@ pub struct au_sdev_handle {
     pub ash_bytesread: c_int,
 }
 
+/// Audit session device handle.
 pub type au_sdev_handle_t = au_sdev_handle;
 
 extern "C-unwind" {
+    /// au_sdev_open()
+    ///
+    /// - Open the audit session pseudo device.
+    ///
+    ///
+    /// Parameter `flags`: - Flags that change the behavior of the device.  The flags
+    /// specified are formed by or'ing the following flag: AU_SDEVF_NONBLOCK for
+    /// non-blocking I/O and AU_SDEF_ALLSESSIONS for monitoring all the sessions
+    /// and not just the session of the current process.
+    ///
+    ///
+    /// Returns: Upon success returns the audit session device handle.  Otherwise,
+    /// NULL is returned and the errno is set to indicate the error.
     pub fn au_sdev_open(flags: c_int) -> *mut au_sdev_handle_t;
 }
 
 extern "C-unwind" {
+    /// au_sdev_close()
+    ///
+    /// - Close the audit session pseudo device.
+    ///
+    ///
+    /// Parameter `ash`: - Audit session device handle.
+    ///
+    ///
+    /// Returns: Upon successful completion 0 is returned.  Otherwise, errno is set
+    /// to indicate the error.
     pub fn au_sdev_close(ash: *mut au_sdev_handle_t) -> c_int;
 }
 
 extern "C-unwind" {
+    /// au_sdev_fd()
+    ///
+    /// - Get the file descriptor for the audit session device.
+    ///
+    ///
+    /// Parameter `ash`: - Audit session device handle.
+    ///
+    ///
+    /// Returns: File descriptor of the audit session device.
     pub fn au_sdev_fd(ash: *mut au_sdev_handle_t) -> c_int;
 }
 
 extern "C-unwind" {
+    /// au_sdev_read_aia()
+    ///
+    /// - Read a session event and an auditinfo_addr record from kernel.
+    ///
+    ///
+    /// Parameter `ash`: - Audit session device handle.
+    ///
+    ///
+    /// Parameter `event`: - A pointer to an integer that will contain the event type:
+    /// AUE_SESSION_START (start of a new session), AUE_SESSION_UPDATE (the
+    /// session information has been changed), AUE_SESSION_END (all the processes in
+    /// the session have exited), and AUE_SESSION_CLOSE (the session record has been
+    /// removed from the kernel).
+    ///
+    ///
+    /// Parameter `aia_p`: - A pointer to an auditinfo_addr structure that will contain the
+    /// audit session information on a successful return. The audit masks fields
+    /// (ai_mask), however, does not currently contain correct informaiton.
+    ///
+    ///
+    /// Returns: Upon sucessful completetion 0 is returned and the event and aia_p
+    /// parameters will be populated.  Otherwise, errno is set to indicate the error.
     pub fn au_sdev_read_aia(
         ash: *mut au_sdev_handle_t,
         event: *mut c_int,

@@ -5,6 +5,8 @@ use core::ffi::*;
 use crate::ffi::*;
 
 extern "C-unwind" {
+    /// kdebug_signpost(2) is deprecated.  Use the os_signpost(3) family of tracing
+    /// functions, instead.
     #[deprecated]
     pub fn kdebug_signpost(code: u32, arg1: usize, arg2: usize, arg3: usize, arg4: usize) -> c_int;
 }

@@ -4,13 +4,23 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Ethernet Address Resolution Protocol.
+///
+/// See RFC 826 for protocol description.  Structure below is adapted
+/// to resolving internet addresses.  Field names used correspond to
+/// RFC 826.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ether_arp {
+    /// fixed-size header
     pub ea_hdr: arphdr,
+    /// sender hardware address
     pub arp_sha: [c_uchar; 6],
+    /// sender protocol address
     pub arp_spa: [c_uchar; 4],
+    /// target hardware address
     pub arp_tha: [c_uchar; 6],
+    /// target protocol address
     pub arp_tpa: [c_uchar; 4],
 }
 

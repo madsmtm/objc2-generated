@@ -14,27 +14,50 @@ pub struct ntsid_t {
     pub sid_authorities: [u32; 16],
 }
 
+/// External lookup message payload; this structure is shared between the
+/// kernel group membership resolver, and the user space group membership
+/// resolver daemon, and is use to communicate resolution requests from the
+/// kernel to user space, and the result of that request from user space to
+/// the kernel.
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kauth_identity_extlookup {
+    /// request sequence number
     pub el_seqno: u32,
+    /// lookup result
     pub el_result: u32,
     pub el_flags: u32,
+    /// request on behalf of PID
     pub el_info_pid: __darwin_pid_t,
+    /// extension field
     pub el_extend: u64,
+    /// reserved (APPLE)
     pub el_info_reserved_1: u32,
+    /// user ID
     pub el_uid: uid_t,
+    /// user GUID
     pub el_uguid: guid_t,
+    /// TTL on translation result (seconds)
     pub el_uguid_valid: u32,
+    /// user NT SID
     pub el_usid: ntsid_t,
+    /// TTL on translation result (seconds)
     pub el_usid_valid: u32,
+    /// group ID
     pub el_gid: gid_t,
+    /// group GUID
     pub el_gguid: guid_t,
+    /// TTL on translation result (seconds)
     pub el_gguid_valid: u32,
+    /// group SID
     pub el_gsid: ntsid_t,
+    /// TTL on translation result (seconds)
     pub el_gsid_valid: u32,
+    /// TTL on group lookup result
     pub el_member_valid: u32,
+    /// count of supplemental groups up to NGROUPS
     pub el_sup_grp_cnt: u32,
+    /// supplemental group list
     pub el_sup_groups: [gid_t; 16],
 }
 
@@ -47,16 +70,19 @@ pub struct kauth_cache_sizes {
 
 pub type kauth_ace_rights_t = u32;
 
+/// Access Control List Entry (ACE)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kauth_ace {
     pub ace_applicable: guid_t,
     pub ace_flags: u32,
+    /// scope specific
     pub ace_rights: kauth_ace_rights_t,
 }
 
 pub type kauth_ace_t = *mut kauth_ace;
 
+/// Access Control List
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kauth_acl {
@@ -67,6 +93,7 @@ pub struct kauth_acl {
 
 pub type kauth_acl_t = *mut kauth_acl;
 
+/// File Security information
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kauth_filesec {

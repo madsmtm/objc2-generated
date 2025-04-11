@@ -5,70 +5,120 @@ use core::ffi::*;
 use crate::ffi::*;
 
 pub const RTM_VERSION: c_uint = 5;
+/// These numbers are used by reliable protocols for determining
+/// retransmission behavior and are included in the routing structure.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_metrics {
+    /// Kernel leaves these values alone
     pub rmx_locks: u32,
+    /// MTU for this path
     pub rmx_mtu: u32,
+    /// max hops expected
     pub rmx_hopcount: u32,
+    /// lifetime for route, e.g. redirect
     pub rmx_expire: i32,
+    /// inbound delay-bandwidth product
     pub rmx_recvpipe: u32,
+    /// outbound delay-bandwidth product
     pub rmx_sendpipe: u32,
+    /// outbound gateway buffer limit
     pub rmx_ssthresh: u32,
+    /// estimated round trip time
     pub rmx_rtt: u32,
+    /// estimated rtt variance
     pub rmx_rttvar: u32,
+    /// packets sent using this route
     pub rmx_pksent: u32,
+    /// will be used for TCP's peer-MSS cache
     pub rmx_filler: [u32; 4],
 }
 
+/// Routing statistics.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rtstat {
+    /// bogus redirect calls
     pub rts_badredirect: c_short,
+    /// routes created by redirects
     pub rts_dynamic: c_short,
+    /// routes modified by redirects
     pub rts_newgateway: c_short,
+    /// lookups which failed
     pub rts_unreach: c_short,
+    /// lookups satisfied by a wildcard
     pub rts_wildcard: c_short,
+    /// route to gateway is not direct
     pub rts_badrtgwroute: c_short,
 }
 
+/// Structures for routing messages.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_msghdr {
+    /// to skip over non-understood messages
     pub rtm_msglen: c_ushort,
+    /// future binary compatibility
     pub rtm_version: c_uchar,
+    /// message type
     pub rtm_type: c_uchar,
+    /// index for associated ifp
     pub rtm_index: c_ushort,
+    /// flags, incl. kern
+    /// &
+    /// message, e.g. DONE
     pub rtm_flags: c_int,
+    /// bitmask identifying sockaddrs in msg
     pub rtm_addrs: c_int,
+    /// identify sender
     pub rtm_pid: pid_t,
+    /// for sender to identify action
     pub rtm_seq: c_int,
+    /// why failed
     pub rtm_errno: c_int,
+    /// from rtentry
     pub rtm_use: c_int,
+    /// which metrics we are initializing
     pub rtm_inits: u32,
+    /// metrics themselves
     pub rtm_rmx: rt_metrics,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_msghdr2 {
+    /// to skip over non-understood messages
     pub rtm_msglen: c_ushort,
+    /// future binary compatibility
     pub rtm_version: c_uchar,
+    /// message type
     pub rtm_type: c_uchar,
+    /// index for associated ifp
     pub rtm_index: c_ushort,
+    /// flags, incl. kern
+    /// &
+    /// message, e.g. DONE
     pub rtm_flags: c_int,
+    /// bitmask identifying sockaddrs in msg
     pub rtm_addrs: c_int,
+    /// reference count
     pub rtm_refcnt: i32,
+    /// flags of the parent route
     pub rtm_parentflags: c_int,
+    /// reserved field set to 0
     pub rtm_reserved: c_int,
+    /// from rtentry
     pub rtm_use: c_int,
+    /// which metrics we are initializing
     pub rtm_inits: u32,
+    /// metrics themselves
     pub rtm_rmx: rt_metrics,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_msghdr_prelude {
+    /// to skip over non-understood messages
     pub rtm_msglen: c_ushort,
 }
 

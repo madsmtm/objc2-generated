@@ -17,18 +17,29 @@ pub struct dirent {
     pub d_name: [c_char; 1024],
 }
 
+/// structure describing an open directory.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct DIR {
+    /// file descriptor associated with directory
     pub(crate) __dd_fd: c_int,
+    /// offset in current buffer
     pub(crate) __dd_loc: c_long,
+    /// amount of data returned
     pub(crate) __dd_size: c_long,
+    /// data buffer
     pub(crate) __dd_buf: *mut c_char,
+    /// size of data buffer
     pub(crate) __dd_len: c_int,
+    /// magic cookie returned
     pub(crate) __dd_seek: c_long,
+    /// (__dd_rewind space left for bincompat)
     pub(crate) __padding: c_long,
+    /// flags for readdir
     pub(crate) __dd_flags: c_int,
+    /// for thread locking
     pub(crate) __dd_lock: __darwin_pthread_mutex_t,
+    /// telldir position recording
     pub(crate) __dd_td: *mut _telldir,
 }
 

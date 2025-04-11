@@ -6,6 +6,8 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct timeval32 {
+    /// seconds
     pub tv_sec: i32,
+    /// and microseconds
     pub tv_usec: i32,
 }

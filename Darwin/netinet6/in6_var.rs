@@ -4,91 +4,195 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// pltime/vltime are just for future reference (required to implements 2
+/// hour rule for hosts).  they should never be modified by nd6_timeout or
+/// anywhere else.
+/// userland -> kernel: accept pltime/vltime
+/// kernel -> userland: throw up everything
+/// in kernel: modify preferred/expire only
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in6_addrlifetime {
+    /// valid lifetime expiration time
     pub ia6t_expire: time_t,
+    /// preferred lifetime expiration time
     pub ia6t_preferred: time_t,
+    /// valid lifetime
     pub ia6t_vltime: u32,
+    /// prefix lifetime
     pub ia6t_pltime: u32,
 }
 
+/// control structure to manage address selection policy
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_addrpolicy {
+    /// prefix address
     pub addr: sockaddr_in6,
+    /// prefix mask
     pub addrmask: sockaddr_in6,
+    /// precedence
     pub preced: c_int,
+    /// matching label
     pub label: c_int,
+    /// statistics
     pub r#use: u_quad_t,
 }
 
+/// IPv6 interface statistics, as defined in RFC2465 Ipv6IfStatsEntry (p12).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in6_ifstat {
+    /// # of total input datagram
     pub ifs6_in_receive: u_quad_t,
+    /// # of datagrams with invalid hdr
     pub ifs6_in_hdrerr: u_quad_t,
+    /// # of datagrams exceeded MTU
     pub ifs6_in_toobig: u_quad_t,
+    /// # of datagrams with no route
     pub ifs6_in_noroute: u_quad_t,
+    /// # of datagrams with invalid dst
     pub ifs6_in_addrerr: u_quad_t,
+    /// # of datagrams with unknown proto
+    ///
+    /// NOTE: increment on final dst if
     pub ifs6_in_protounknown: u_quad_t,
+    /// # of truncated datagrams
     pub ifs6_in_truncated: u_quad_t,
+    /// # of discarded datagrams
+    ///
+    /// NOTE: fragment timeout is not here
     pub ifs6_in_discard: u_quad_t,
+    /// # of datagrams delivered to ULP
+    ///
+    /// NOTE: increment on final dst if
     pub ifs6_in_deliver: u_quad_t,
+    /// # of datagrams forwarded
+    ///
+    /// NOTE: increment on outgoing if
     pub ifs6_out_forward: u_quad_t,
+    /// # of outgoing datagrams from ULP
+    ///
+    /// NOTE: does not include forwrads
     pub ifs6_out_request: u_quad_t,
+    /// # of discarded datagrams
     pub ifs6_out_discard: u_quad_t,
+    /// # of datagrams fragmented
     pub ifs6_out_fragok: u_quad_t,
+    /// # of datagrams failed on fragment
     pub ifs6_out_fragfail: u_quad_t,
+    /// # of fragment datagrams
+    ///
+    /// NOTE: this is # after fragment
     pub ifs6_out_fragcreat: u_quad_t,
+    /// # of incoming fragmented packets
+    ///
+    /// NOTE: increment on final dst if
     pub ifs6_reass_reqd: u_quad_t,
+    /// # of reassembled packets
+    ///
+    /// NOTE: this is # after reass
+    ///
+    /// NOTE: increment on final dst if
     pub ifs6_reass_ok: u_quad_t,
+    /// # of atomic fragments received
     pub ifs6_atmfrag_rcvd: u_quad_t,
+    /// # of reass failures
+    ///
+    /// NOTE: may not be packet count
+    ///
+    /// NOTE: increment on final dst if
     pub ifs6_reass_fail: u_quad_t,
+    /// # of inbound multicast datagrams
     pub ifs6_in_mcast: u_quad_t,
+    /// # of outbound multicast datagrams
     pub ifs6_out_mcast: u_quad_t,
+    /// # of ICMPv6 packets received for unreachable dest
     pub ifs6_cantfoward_icmp6: u_quad_t,
+    /// # of address expiry events (excluding privacy addresses)
     pub ifs6_addr_expiry_cnt: u_quad_t,
+    /// # of prefix expiry events
     pub ifs6_pfx_expiry_cnt: u_quad_t,
+    /// # of default router expiry events
     pub ifs6_defrtr_expiry_cnt: u_quad_t,
 }
 
+/// ICMPv6 interface statistics, as defined in RFC2466 Ipv6IfIcmpEntry.
+/// XXX: I'm not sure if this file is the right place for this structure...
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6_ifstat {
+    /// Input statistics
+    ///
+    /// ipv6IfIcmpInMsgs, total # of input messages
     pub ifs6_in_msg: u_quad_t,
+    /// ipv6IfIcmpInErrors, # of input error messages
     pub ifs6_in_error: u_quad_t,
+    /// ipv6IfIcmpInDestUnreachs, # of input dest unreach errors
     pub ifs6_in_dstunreach: u_quad_t,
+    /// ipv6IfIcmpInAdminProhibs, # of input admin. prohibited errs
     pub ifs6_in_adminprohib: u_quad_t,
+    /// ipv6IfIcmpInTimeExcds, # of input time exceeded errors
     pub ifs6_in_timeexceed: u_quad_t,
+    /// ipv6IfIcmpInParmProblems, # of input parameter problem errors
     pub ifs6_in_paramprob: u_quad_t,
+    /// ipv6IfIcmpInPktTooBigs, # of input packet too big errors
     pub ifs6_in_pkttoobig: u_quad_t,
+    /// ipv6IfIcmpInEchos, # of input echo requests
     pub ifs6_in_echo: u_quad_t,
+    /// ipv6IfIcmpInEchoReplies, # of input echo replies
     pub ifs6_in_echoreply: u_quad_t,
+    /// ipv6IfIcmpInRouterSolicits, # of input router solicitations
     pub ifs6_in_routersolicit: u_quad_t,
+    /// ipv6IfIcmpInRouterAdvertisements, # of input router advertisements
     pub ifs6_in_routeradvert: u_quad_t,
+    /// ipv6IfIcmpInNeighborSolicits, # of input neighbor solicitations
     pub ifs6_in_neighborsolicit: u_quad_t,
+    /// ipv6IfIcmpInNeighborAdvertisements, # of input neighbor advs.
     pub ifs6_in_neighboradvert: u_quad_t,
+    /// ipv6IfIcmpInRedirects, # of input redirects
     pub ifs6_in_redirect: u_quad_t,
+    /// ipv6IfIcmpInGroupMembQueries, # of input MLD queries
     pub ifs6_in_mldquery: u_quad_t,
+    /// ipv6IfIcmpInGroupMembResponses, # of input MLD reports
     pub ifs6_in_mldreport: u_quad_t,
+    /// ipv6IfIcmpInGroupMembReductions, # of input MLD done
     pub ifs6_in_mlddone: u_quad_t,
+    /// Output statistics. We should solve unresolved routing problem...
+    ///
+    /// ipv6IfIcmpOutMsgs, total # of output messages
     pub ifs6_out_msg: u_quad_t,
+    /// ipv6IfIcmpOutErrors, # of output error messages
     pub ifs6_out_error: u_quad_t,
+    /// ipv6IfIcmpOutDestUnreachs, # of output dest unreach errors
     pub ifs6_out_dstunreach: u_quad_t,
+    /// ipv6IfIcmpOutAdminProhibs, # of output admin. prohibited errs
     pub ifs6_out_adminprohib: u_quad_t,
+    /// ipv6IfIcmpOutTimeExcds, # of output time exceeded errors
     pub ifs6_out_timeexceed: u_quad_t,
+    /// ipv6IfIcmpOutParmProblems, # of output parameter problem errors
     pub ifs6_out_paramprob: u_quad_t,
+    /// ipv6IfIcmpOutPktTooBigs, # of output packet too big errors
     pub ifs6_out_pkttoobig: u_quad_t,
+    /// ipv6IfIcmpOutEchos, # of output echo requests
     pub ifs6_out_echo: u_quad_t,
+    /// ipv6IfIcmpOutEchoReplies, # of output echo replies
     pub ifs6_out_echoreply: u_quad_t,
+    /// ipv6IfIcmpOutRouterSolicits, # of output router solicitations
     pub ifs6_out_routersolicit: u_quad_t,
+    /// ipv6IfIcmpOutRouterAdvertisements, # of output router advs.
     pub ifs6_out_routeradvert: u_quad_t,
+    /// ipv6IfIcmpOutNeighborSolicits, # of output neighbor solicitations
     pub ifs6_out_neighborsolicit: u_quad_t,
+    /// ipv6IfIcmpOutNeighborAdvertisements, # of output neighbor advs.
     pub ifs6_out_neighboradvert: u_quad_t,
+    /// ipv6IfIcmpOutRedirects, # of output redirects
     pub ifs6_out_redirect: u_quad_t,
+    /// ipv6IfIcmpOutGroupMembQueries, # of output MLD queries
     pub ifs6_out_mldquery: u_quad_t,
+    /// ipv6IfIcmpOutGroupMembResponses, # of output MLD reports
     pub ifs6_out_mldreport: u_quad_t,
+    /// ipv6IfIcmpOutGroupMembReductions, # of output MLD done
     pub ifs6_out_mlddone: u_quad_t,
 }
 
@@ -134,6 +238,7 @@ pub struct prf_ra {
     pub reserved: c_uchar,
 }
 
+/// want to put this on 4byte offset
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct prf_rr {
@@ -142,6 +247,8 @@ pub struct prf_rr {
     pub reserved: c_uchar,
 }
 
+/// prefix related flags passed between kernel(NDP related part) and
+/// user land command(ifconfig) and daemon(rtadvd).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in6_prflags {
@@ -178,10 +285,15 @@ pub struct irr_raflagmask {
 pub struct in6_rrenumreq {
     pub irr_name: [c_char; 16],
     pub irr_origin: c_uchar,
+    /// match len for matchprefix
     pub irr_m_len: c_uchar,
+    /// minlen for matching prefix
     pub irr_m_minlen: c_uchar,
+    /// maxlen for matching prefix
     pub irr_m_maxlen: c_uchar,
+    /// uselen for adding prefix
     pub irr_u_uselen: c_uchar,
+    /// keeplen from matching prefix
     pub irr_u_keeplen: c_uchar,
     pub irr_raflagmask: irr_raflagmask,
     pub irr_vltime: u32,
@@ -191,6 +303,7 @@ pub struct in6_rrenumreq {
     pub irr_useprefix: sockaddr_in6,
 }
 
+/// Event data, inet6 style.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in6_addrlifetime {
@@ -204,12 +317,19 @@ pub struct kev_in6_addrlifetime {
 #[derive(Clone, Copy)]
 pub struct kev_in6_data {
     pub link_data: net_event_data,
+    /// interface address
     pub ia_addr: sockaddr_in6,
+    /// network number of interface
     pub ia_net: sockaddr_in6,
+    /// space for destination addr
     pub ia_dstaddr: sockaddr_in6,
+    /// prefix mask
     pub ia_prefixmask: sockaddr_in6,
+    /// prefix length
     pub ia_plen: u32,
+    /// address flags from in6_ifaddr
     pub ia6_flags: u32,
+    /// address life info
     pub ia_lifetime: kev_in6_addrlifetime,
     pub ia_mac: [u8; 6],
 }

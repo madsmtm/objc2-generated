@@ -7,9 +7,14 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct option {
+    /// name of long option
     pub name: *const c_char,
+    /// one of no_argument, required_argument, and optional_argument:
+    /// whether option takes an argument
     pub has_arg: c_int,
+    /// if not NULL, set *flag to val when option found
     pub flag: *mut c_int,
+    /// if flag not NULL, value to set *flag to; else return value
     pub val: c_int,
 }
 
@@ -39,6 +44,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// getopt(3) external variables
     pub static optarg: *mut c_char;
 }
 
@@ -55,5 +61,6 @@ extern "C" {
 }
 
 extern "C" {
+    /// getopt(3) external variable
     pub static optreset: c_int;
 }

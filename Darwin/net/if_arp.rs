@@ -4,41 +4,76 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Address Resolution Protocol.
+///
+/// See RFC 826 for protocol description.  ARP packets are variable
+/// in size; the arphdr structure defines the fixed-length portion.
+/// Protocol type values are the same as those for 10 Mb/s Ethernet.
+/// It is followed by the variable-sized fields ar_sha, arp_spa,
+/// arp_tha and arp_tpa in that order, according to the lengths
+/// specified.  Field names used correspond to RFC 826.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct arphdr {
+    /// format of hardware address
     pub ar_hrd: c_ushort,
+    /// format of protocol address
     pub ar_pro: c_ushort,
+    /// length of hardware address
     pub ar_hln: c_uchar,
+    /// length of protocol address
     pub ar_pln: c_uchar,
+    /// one of:
     pub ar_op: c_ushort,
 }
 
+/// ARP ioctl request
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct arpreq {
+    /// protocol address
     pub arp_pa: sockaddr,
+    /// hardware address
     pub arp_ha: sockaddr,
+    /// flags
     pub arp_flags: c_int,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct arpstat {
+    /// # of ARP requests sent by this host.
     pub txrequests: u32,
+    /// # of ARP replies sent by this host.
     pub txreplies: u32,
+    /// # of ARP announcements sent by this host.
     pub txannounces: u32,
+    /// # of ARP requests received by this host.
     pub rxrequests: u32,
+    /// # of ARP replies received by this host.
     pub rxreplies: u32,
+    /// # of ARP packets received by this host.
     pub received: u32,
+    /// # of ARP conflict probes sent
     pub txconflicts: u32,
+    /// # of invalid ARP resolve requests
     pub invalidreqs: u32,
+    /// # of failed requests due to no memory
     pub reqnobufs: u32,
+    /// # of packets dropped waiting for a reply.
     pub dropped: u32,
+    /// # of packets purged while removing entries
     pub purged: u32,
+    /// # of times with entries removed
+    ///
+    /// due to timeout.
     pub timeouts: u32,
+    /// # of duplicate IPs detected.
     pub dupips: u32,
+    /// # of ARP entries in routing table
     pub inuse: u32,
+    /// # of ARP requests sent (unicast)
     pub txurequests: u32,
+    /// # of packets held waiting for a reply
     pub held: u32,
 }

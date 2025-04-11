@@ -4,15 +4,23 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Structure of a Link-Level sockaddr:
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_dl {
+    /// Total length of sockaddr
     pub sdl_len: c_uchar,
+    /// AF_LINK
     pub sdl_family: c_uchar,
+    /// if != 0, system given index for interface
     pub sdl_index: c_ushort,
+    /// interface type
     pub sdl_type: c_uchar,
+    /// interface name length, no trailing 0 reqd.
     pub sdl_nlen: c_uchar,
+    /// link level address length
     pub sdl_alen: c_uchar,
+    /// link layer selector length
     pub sdl_slen: c_uchar,
     pub sdl_data: [c_char; 12],
 }

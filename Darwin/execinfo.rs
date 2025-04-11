@@ -23,7 +23,9 @@ extern "C-unwind" {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct image_offset {
+    /// The UUID of the image.
     pub uuid: uuid_t,
+    /// The offset is relative to the __TEXT section of the image.
     pub offset: u32,
 }
 

@@ -12,10 +12,14 @@ use objc2::__framework_prelude::*;
 
 use crate::ffi::*;
 
+/// Only zone implementors should depend on the layout of this structure;
+/// Regular callers should use the access functions below
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _malloc_zone_t {
+    /// RESERVED FOR CFAllocator DO NOT USE
     pub reserved1: *mut c_void,
+    /// RESERVED FOR CFAllocator DO NOT USE
     pub reserved2: *mut c_void,
     pub size: Option<unsafe extern "C-unwind" fn(*mut _malloc_zone_t, *const c_void) -> usize>,
     pub malloc: Option<unsafe extern "C-unwind" fn(*mut Self, usize) -> *mut c_void>,
@@ -53,6 +57,8 @@ pub struct _malloc_zone_t {
     >,
 }
 
+/// Only zone implementors should depend on the layout of this structure;
+/// Regular callers should use the access functions below
 pub type malloc_zone_t = Self;
 
 /// Information about where and how malloc was called
@@ -212,6 +218,7 @@ pub unsafe extern "C-unwind" fn malloc_create_zone(
 }
 
 extern "C-unwind" {
+    /// Creates a new zone with default behavior and registers it
     pub fn malloc_destroy_zone(zone: Option<&malloc_zone_t>);
 }
 
@@ -221,6 +228,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Allocates a new pointer of size size; zone must be non-NULL
     pub fn malloc_zone_calloc(
         zone: Option<&malloc_zone_t>,
         num_items: usize,
@@ -229,14 +237,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Allocates a new pointer of size num_items * size; block is cleared; zone must be non-NULL
     pub fn malloc_zone_valloc(zone: Option<&malloc_zone_t>, size: usize) -> *mut c_void;
 }
 
 extern "C-unwind" {
+    /// Allocates a new pointer of size size; zone must be non-NULL; Pointer is guaranteed to be page-aligned and block is cleared
     pub fn malloc_zone_free(zone: Option<&malloc_zone_t>, ptr: *mut c_void);
 }
 
 extern "C-unwind" {
+    /// Frees pointer in zone; zone must be non-NULL
     pub fn malloc_zone_realloc(
         zone: Option<&malloc_zone_t>,
         ptr: *mut c_void,
@@ -244,6 +255,7 @@ extern "C-unwind" {
     ) -> *mut c_void;
 }
 
+/// Enlarges block if necessary; zone must be non-NULL
 #[inline]
 pub unsafe extern "C-unwind" fn malloc_zone_from_ptr(
     ptr: *const c_void,
@@ -256,14 +268,18 @@ pub unsafe extern "C-unwind" fn malloc_zone_from_ptr(
 }
 
 extern "C-unwind" {
+    /// Returns the zone for a pointer, or NULL if not in any zone.
+    /// The ptr must have been returned from a malloc or realloc call.
     pub fn malloc_size(ptr: *const c_void) -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns size of given ptr, including any padding inserted by the allocator
     pub fn malloc_good_size(size: usize) -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns number of bytes greater than or equal to size that can be allocated without padding
     pub fn malloc_zone_memalign(
         zone: Option<&malloc_zone_t>,
         alignment: usize,
@@ -281,6 +297,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Allocates num blocks of the same size; Returns the number truly allocated (may be 0)
     pub fn malloc_zone_batch_free(
         zone: Option<&malloc_zone_t>,
         to_be_freed: *mut *mut c_void,
@@ -298,10 +315,12 @@ pub unsafe extern "C-unwind" fn malloc_default_purgeable_zone() -> Option<Retain
 }
 
 extern "C-unwind" {
+    /// Returns a pointer to the default purgeable_zone.
     pub fn malloc_make_purgeable(ptr: *mut c_void);
 }
 
 extern "C-unwind" {
+    /// Make an allocation from the purgeable zone purgeable if possible.
     pub fn malloc_make_nonpurgeable(ptr: *mut c_void) -> c_int;
 }
 
@@ -310,6 +329,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Registers a custom malloc zone; Should typically be called after a
+    /// malloc_zone_t has been filled in with custom methods by a client.  See
+    /// malloc_create_zone for creating additional malloc zones with the
+    /// default allocation and free behavior.
     pub fn malloc_zone_unregister(zone: Option<&malloc_zone_t>);
 }
 
@@ -318,6 +341,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the name of a zone
     pub fn malloc_get_zone_name(zone: Option<&malloc_zone_t>) -> *const c_char;
 }
 
@@ -337,7 +361,9 @@ pub struct vm_range_t {
 pub struct malloc_statistics_t {
     pub blocks_in_use: c_uint,
     pub size_in_use: usize,
+    /// high water mark of touched memory
     pub max_size_in_use: usize,
+    /// reserved in memory
     pub size_allocated: usize,
 }
 
@@ -345,6 +371,7 @@ pub type memory_reader_t = core::ffi::c_void;
 
 pub type vm_range_recorder_t = core::ffi::c_void;
 
+/// Print function for the print_task() operation.
 pub type print_task_printer_t = core::ffi::c_void;
 
 #[repr(C)]
@@ -397,6 +424,7 @@ pub struct malloc_introspection_t {
             *mut malloc_statistics_t,
         ),
     >,
+    /// Identifies the zone type.  0 means unknown/undefined zone type.  Present in version >= 14.
     pub zone_type: c_uint,
 }
 
@@ -414,6 +442,7 @@ extern "C-unwind" {
     pub fn malloc_zone_print_ptr_info(ptr: *mut c_void);
 }
 
+/// print to stdout if this pointer is in the malloc heap, free status, and size
 #[inline]
 pub unsafe extern "C-unwind" fn malloc_zone_check(zone: Option<&malloc_zone_t>) -> bool {
     extern "C-unwind" {
@@ -423,6 +452,7 @@ pub unsafe extern "C-unwind" fn malloc_zone_check(zone: Option<&malloc_zone_t>) 
     ret != 0
 }
 
+/// Checks zone is well formed; if !zone, checks all zones
 #[inline]
 pub unsafe extern "C-unwind" fn malloc_zone_print(zone: Option<&malloc_zone_t>, verbose: bool) {
     extern "C-unwind" {
@@ -436,6 +466,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Fills statistics for zone; if !zone, sums up all zones
     pub fn malloc_zone_log(zone: Option<&malloc_zone_t>, address: *mut c_void);
 }
 
@@ -465,10 +496,12 @@ pub unsafe extern "C-unwind" fn malloc_zone_enable_discharge_checking(
 }
 
 extern "C-unwind" {
+    /// Increment the discharge checking enabled counter for a zone. Returns true if the zone supports checking, false if it does not.
     pub fn malloc_zone_disable_discharge_checking(zone: Option<&malloc_zone_t>);
 }
 
 extern "C-unwind" {
+    /// Decrement the discharge checking enabled counter for a zone.
     pub fn malloc_zone_discharge(zone: Option<&malloc_zone_t>, memory: *mut c_void);
 }
 

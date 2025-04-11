@@ -960,6 +960,7 @@ pub unsafe extern "C-unwind" fn au_to_identity(
 }
 
 extern "C-unwind" {
+    /// BSM library routines for converting between local and BSM constant spaces.
     #[deprecated = "audit is deprecated"]
     pub fn au_bsm_to_domain(bsm_domain: c_ushort, local_domainp: *mut c_int) -> c_int;
 }

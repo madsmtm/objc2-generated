@@ -7,15 +7,25 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct passwd {
+    /// user name
     pub pw_name: *mut c_char,
+    /// encrypted password
     pub pw_passwd: *mut c_char,
+    /// user uid
     pub pw_uid: uid_t,
+    /// user gid
     pub pw_gid: gid_t,
+    /// password change time
     pub pw_change: __darwin_time_t,
+    /// user access class
     pub pw_class: *mut c_char,
+    /// Honeywell login info
     pub pw_gecos: *mut c_char,
+    /// home directory
     pub pw_dir: *mut c_char,
+    /// default shell
     pub pw_shell: *mut c_char,
+    /// account expiration
     pub pw_expire: __darwin_time_t,
 }
 

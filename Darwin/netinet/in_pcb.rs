@@ -6,6 +6,9 @@ use crate::ffi::*;
 
 pub type inp_gen_t = u_quad_t;
 
+/// PCB with AF_INET6 null bind'ed laddr can receive AF_INET input packet.
+/// So, AF_INET6 null laddr is also used as AF_INET null laddr, by utilizing
+/// the following structure.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_addr_4in6 {
@@ -20,9 +23,11 @@ pub struct _inpcb_list_entry {
     pub le_prev: u32,
 }
 
+/// protocol dependent part
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union inpcb_inp_dependfaddr {
+    /// foreign host table entry
     pub inp46_foreign: in_addr_4in6,
     pub inp6_foreign: in6_addr,
 }
@@ -30,6 +35,7 @@ pub union inpcb_inp_dependfaddr {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union inpcb_inp_dependladdr {
+    /// local host table entry
     pub inp46_local: in_addr_4in6,
     pub inp6_local: in6_addr,
 }
@@ -37,6 +43,7 @@ pub union inpcb_inp_dependladdr {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union inpcb_inp_dependroute {
+    /// placeholder for routing entry
     pub inp4_route: [c_uchar; 20],
     pub inp6_route: [c_uchar; 32],
 }
@@ -44,21 +51,29 @@ pub union inpcb_inp_dependroute {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct inpcb_inp_depend4 {
+    /// type of service proto
     pub inp4_ip_tos: c_uchar,
+    /// IP options
     pub inp4_options: u32,
+    /// IP multicast options
     pub inp4_moptions: u32,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct inpcb_inp_depend6 {
+    /// IP options
     pub inp6_options: u32,
     pub inp6_hlim: u8,
     pub unused_uint8_1: u8,
     pub unused_uint16_1: ushort,
+    /// IP6 options for outgoing packets
     pub inp6_outputopts: u32,
+    /// IP multicast options
     pub inp6_moptions: u32,
+    /// ICMPv6 code type filter
     pub inp6_icmp6filt: u32,
+    /// IPV6_CHECKSUM setsockopt
     pub inp6_cksum: c_int,
     pub inp6_ifindex: c_ushort,
     pub inp6_hops: c_short,
@@ -67,39 +82,60 @@ pub struct inpcb_inp_depend6 {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct inpcb {
+    /// hash list
     pub inp_hash: _inpcb_list_entry,
+    /// reserved
     pub reserved1: in_addr,
+    /// reserved
     pub reserved2: in_addr,
+    /// foreign port
     pub inp_fport: c_ushort,
+    /// local port
     pub inp_lport: c_ushort,
+    /// list for all peer PCBs
     pub inp_list: _inpcb_list_entry,
+    /// per-protocol pcb
     pub inp_ppcb: u32,
+    /// PCB list info
     pub inp_pcbinfo: u32,
+    /// back pointer to socket
     pub inp_socket: u32,
+    /// Used to NAT TCP/UDP traffic
     pub nat_owner: c_uchar,
+    /// Cookie stored and returned to NAT
     pub nat_cookie: u32,
+    /// this PCB's local port list
     pub inp_portlist: _inpcb_list_entry,
+    /// head of this list
     pub inp_phd: u32,
+    /// generation count of this instance
     pub inp_gencnt: inp_gen_t,
+    /// generic IP/datagram flags
     pub inp_flags: c_int,
     pub inp_flow: u32,
     pub inp_vflag: c_uchar,
+    /// time to live proto
     pub inp_ip_ttl: c_uchar,
+    /// protocol proto
     pub inp_ip_p: c_uchar,
     pub inp_dependfaddr: inpcb_inp_dependfaddr,
     pub inp_dependladdr: inpcb_inp_dependladdr,
     pub inp_dependroute: inpcb_inp_dependroute,
     pub inp_depend4: inpcb_inp_depend4,
     pub inp_depend6: inpcb_inp_depend6,
+    /// Array index of pcb's hash list
     pub hash_element: c_int,
+    /// pointer while cached
     pub inp_saved_ppcb: u32,
     pub inp_sp: u32,
+    /// reserved
     pub reserved: [u32; 3],
 }
 
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct xinpcb {
+    /// length of this structure
     pub xi_len: u32,
     pub xi_inp: inpcb,
     pub xi_socket: xsocket,
@@ -130,6 +166,7 @@ pub union xinpcb64_inp_dependladdr {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xinpcb64_inp_depend4 {
+    /// type of service
     pub inp4_ip_tos: c_uchar,
 }
 
@@ -145,20 +182,32 @@ pub struct xinpcb64_inp_depend6 {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct xinpcb64 {
+    /// length of this structure
     pub xi_len: u64,
     pub xi_inpp: u64,
+    /// foreign port
     pub inp_fport: c_ushort,
+    /// local port
     pub inp_lport: c_ushort,
+    /// list for all PCBs
     pub inp_list: inpcb64_list_entry,
+    /// ptr to per-protocol PCB
     pub inp_ppcb: u64,
+    /// PCB list info
     pub inp_pcbinfo: u64,
+    /// this PCB's local port list
     pub inp_portlist: inpcb64_list_entry,
+    /// head of this list
     pub inp_phd: u64,
+    /// current generation count
     pub inp_gencnt: inp_gen_t,
+    /// generic IP/datagram flags
     pub inp_flags: c_int,
     pub inp_flow: u32,
     pub inp_vflag: c_uchar,
+    /// time to live
     pub inp_ip_ttl: c_uchar,
+    /// protocol
     pub inp_ip_p: c_uchar,
     pub inp_dependfaddr: xinpcb64_inp_dependfaddr,
     pub inp_dependladdr: xinpcb64_inp_dependladdr,
@@ -171,8 +220,12 @@ pub struct xinpcb64 {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xinpgen {
+    /// length of this structure
     pub xig_len: u32,
+    /// number of PCBs at this time
     pub xig_count: c_uint,
+    /// generation count at this time
     pub xig_gen: inp_gen_t,
+    /// current socket generation count
     pub xig_sogen: so_gen_t,
 }

@@ -224,9 +224,15 @@ pub type WINDOW = _win_st;
 
 pub type attr_t = chtype;
 
+/// Curses uses a helper function.  Define our type for this to simplify
+/// extending it for the sp-funcs feature.
 pub type NCURSES_OUTC = Option<unsafe extern "C-unwind" fn(c_int) -> c_int>;
 
 extern "C-unwind" {
+    /// Function prototypes.  This is the complete X/Open Curses list of required
+    /// functions.  Those marked `generated' will have sources generated from the
+    /// macro definitions later in this file, in order to satisfy XPG4.2
+    /// requirements.
     pub fn addch(param1: chtype) -> c_int;
 }
 
@@ -1186,6 +1192,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// For both of these, we still need scanflike annotations to avoid warnings that
+    /// the fmt argument passed on isn't a literal string -- the convention for these
+    /// accepting a va_list is to specify the vararg start as '0' instead.
     pub fn vwscanw(param1: *mut WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
 }
 
@@ -1428,6 +1437,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// These are also declared in
+    /// <term
+    /// .h>:
     pub fn tigetflag(param1: *mut c_char) -> c_int;
 }
 
@@ -1444,6 +1456,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// These functions are not in X/Open, but we use them in macro definitions:
     pub fn getattrs(param1: *const WINDOW) -> c_int;
 }
 
@@ -1562,6 +1575,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// These extensions provide access to information stored in the WINDOW even
+    /// when NCURSES_OPAQUE is set:
     pub fn wgetparent(param1: *const WINDOW) -> *mut WINDOW;
 }
 
@@ -1622,6 +1637,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Function prototypes.  This is the complete X/Open Curses list of required
+    /// functions.  Those marked `generated' will have sources generated from the
+    /// macro definitions later in this file, in order to satisfy XPG4.2
+    /// requirements.
     pub fn addch(param1: chtype) -> c_int;
 }
 
@@ -2318,6 +2337,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// For both of these, we still need scanflike annotations to avoid warnings that
+    /// the fmt argument passed on isn't a literal string -- the convention for these
+    /// accepting a va_list is to specify the vararg start as '0' instead.
     pub fn vwscanw(param1: *mut WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
 }
 
@@ -2554,6 +2576,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// These extensions provide access to information stored in the WINDOW even
+    /// when NCURSES_OPAQUE is set:
     pub fn wgetparent(param1: *const WINDOW) -> *mut WINDOW;
 }
 
@@ -2656,10 +2680,15 @@ extern "C" {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MEVENT {
+    /// ID to distinguish multiple devices
     pub id: c_short,
+    /// event coordinates (character-cell)
     pub x: c_int,
+    /// event coordinates (character-cell)
     pub y: c_int,
+    /// event coordinates (character-cell)
     pub z: c_int,
+    /// button state bits
     pub bstate: mmask_t,
 }
 
@@ -2701,6 +2730,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// other non-XSI functions
     pub fn mcprint(param1: *mut c_char, param1: c_int) -> c_int;
 }
 

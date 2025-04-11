@@ -4,6 +4,18 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Module interface for audit filter modules.
+///
+/// audit_filter_attach_t - filter module is being attached with arguments
+/// audit_filter_reinit_t - arguments to module have changed
+/// audit_filter_record_t - present parsed record to filter module, with
+/// receipt time
+/// audit_filter_rawrecord_t - present BSM format record to filter module,
+/// with receipt time
+/// audit_filter_destach_t - filter module is being detached
+///
+/// There may be many instances of the same filter, identified by the instance
+/// void pointer maintained by the filter instance.
 pub type audit_filter_attach_t =
     Option<unsafe extern "C-unwind" fn(*mut c_void, c_int, *mut *mut c_char) -> c_int>;
 

@@ -73,6 +73,10 @@ pub struct au_tidaddr64 {
 
 pub type au_tidaddr64_t = au_tidaddr64;
 
+/// argument #              1 byte
+/// argument value          4 bytes/8 bytes (32-bit/64-bit value)
+/// text length             2 bytes
+/// text                    N bytes + 1 terminating NULL byte
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_arg32_t {
@@ -91,6 +95,10 @@ pub struct au_arg64_t {
     pub text: *mut c_char,
 }
 
+/// how to print            1 byte
+/// basic unit              1 byte
+/// unit count              1 byte
+/// data items              (depends on basic unit)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_arb_t {
@@ -100,6 +108,12 @@ pub struct au_arb_t {
     pub data: *mut c_uchar,
 }
 
+/// file access mode        4 bytes
+/// owner user ID           4 bytes
+/// owner group ID          4 bytes
+/// file system ID          4 bytes
+/// node ID                 8 bytes
+/// device                  4 bytes/8 bytes (32-bit/64-bit)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_attr32_t {
@@ -122,6 +136,8 @@ pub struct au_attr64_t {
     pub dev: u64,
 }
 
+/// count                   4 bytes
+/// text                    count null-terminated string(s)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_execarg_t {
@@ -129,6 +145,8 @@ pub struct au_execarg_t {
     pub text: [*mut c_char; 128],
 }
 
+/// count                   4 bytes
+/// text                    count null-terminated string(s)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_execenv_t {
@@ -136,6 +154,8 @@ pub struct au_execenv_t {
     pub text: [*mut c_char; 128],
 }
 
+/// count                   4 bytes
+/// text                    count null-terminated string(s)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_cert_hash_t {
@@ -143,6 +163,8 @@ pub struct au_cert_hash_t {
     pub text: [*mut c_char; 32],
 }
 
+/// count                   4 bytes
+/// text                    count null-terminated string(s)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_krb5_principal_t {
@@ -150,6 +172,8 @@ pub struct au_krb5_principal_t {
     pub text: [*mut c_char; 32],
 }
 
+/// status                  4 bytes
+/// return value            4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_exit_t {
@@ -157,6 +181,10 @@ pub struct au_exit_t {
     pub ret: u32,
 }
 
+/// seconds of time         4 bytes
+/// milliseconds of time    4 bytes
+/// file name length        2 bytes
+/// file pathname           N bytes + 1 terminating NULL byte
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_file_t {
@@ -166,6 +194,8 @@ pub struct au_file_t {
     pub name: *mut c_char,
 }
 
+/// number groups           2 bytes
+/// group list              N * 4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_groups_t {
@@ -173,6 +203,12 @@ pub struct au_groups_t {
     pub list: [u32; 16],
 }
 
+/// record byte count       4 bytes
+/// version #               1 byte    [2]
+/// event type              2 bytes
+/// event modifier          2 bytes
+/// seconds of time         4 bytes/8 bytes (32-bit/64-bit value)
+/// milliseconds of time    4 bytes/8 bytes (32-bit/64-bit value)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_header32_t {
@@ -184,6 +220,14 @@ pub struct au_header32_t {
     pub ms: u32,
 }
 
+/// record byte count       4 bytes
+/// version #               1 byte     [2]
+/// event type              2 bytes
+/// event modifier          2 bytes
+/// address type/length     1 byte (XXX: actually, 4 bytes)
+/// machine address         4 bytes/16 bytes (IPv4/IPv6 address)
+/// seconds of time         4 bytes/8 bytes  (32/64-bits)
+/// nanoseconds of time     4 bytes/8 bytes  (32/64-bits)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_header32_ex_t {
@@ -221,12 +265,15 @@ pub struct au_header64_ex_t {
     pub ms: u64,
 }
 
+/// internet address        4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_inaddr_t {
     pub addr: u32,
 }
 
+/// type                 4 bytes
+/// internet address     16 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_inaddr_ex_t {
@@ -234,6 +281,16 @@ pub struct au_inaddr_ex_t {
     pub addr: [u32; 4],
 }
 
+/// version and ihl         1 byte
+/// type of service         1 byte
+/// length                  2 bytes
+/// id                      2 bytes
+/// offset                  2 bytes
+/// ttl                     1 byte
+/// protocol                1 byte
+/// checksum                2 bytes
+/// source address          4 bytes
+/// destination address     4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_ip_t {
@@ -249,6 +306,8 @@ pub struct au_ip_t {
     pub dest: u32,
 }
 
+/// object ID type          1 byte
+/// object ID               4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_ipc_t {
@@ -256,6 +315,13 @@ pub struct au_ipc_t {
     pub id: u32,
 }
 
+/// owner user ID           4 bytes
+/// owner group ID          4 bytes
+/// creator user ID         4 bytes
+/// creator group ID        4 bytes
+/// access mode             4 bytes
+/// slot sequence #         4 bytes
+/// key                     4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_ipcperm_t {
@@ -268,12 +334,15 @@ pub struct au_ipcperm_t {
     pub key: u32,
 }
 
+/// port IP address         2 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_iport_t {
     pub port: u16,
 }
 
+/// length        2 bytes
+/// data            length bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_opaque_t {
@@ -281,6 +350,8 @@ pub struct au_opaque_t {
     pub data: *mut c_char,
 }
 
+/// path length             2 bytes
+/// path                    N bytes + 1 terminating NULL byte
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_path_t {
@@ -288,6 +359,16 @@ pub struct au_path_t {
     pub path: *mut c_char,
 }
 
+/// audit ID                4 bytes
+/// effective user ID       4 bytes
+/// effective group ID      4 bytes
+/// real user ID            4 bytes
+/// real group ID           4 bytes
+/// process ID              4 bytes
+/// session ID              4 bytes
+/// terminal ID
+/// port ID               4 bytes/8 bytes (32-bit/64-bit value)
+/// machine address       4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_proc32_t {
@@ -314,6 +395,17 @@ pub struct au_proc64_t {
     pub tid: au_tid64_t,
 }
 
+/// audit ID                4 bytes
+/// effective user ID       4 bytes
+/// effective group ID      4 bytes
+/// real user ID            4 bytes
+/// real group ID           4 bytes
+/// process ID              4 bytes
+/// session ID              4 bytes
+/// terminal ID
+/// port ID               4 bytes/8 bytes (32-bit/64-bit value)
+/// type                  4 bytes
+/// machine address       16 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_proc32ex_t {
@@ -340,6 +432,8 @@ pub struct au_proc64ex_t {
     pub tid: au_tidaddr64_t,
 }
 
+/// error status            1 byte
+/// return value            4 bytes/8 bytes (32-bit/64-bit value)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_ret32_t {
@@ -354,12 +448,18 @@ pub struct au_ret64_t {
     pub val: u64,
 }
 
+/// sequence number         4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_seq_t {
     pub seqno: u32,
 }
 
+/// socket type             2 bytes
+/// local port              2 bytes
+/// local Internet address  4 bytes
+/// remote port             2 bytes
+/// remote Internet address 4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_socket_t {
@@ -370,6 +470,13 @@ pub struct au_socket_t {
     pub r_addr: u32,
 }
 
+/// socket type             2 bytes
+/// local port              2 bytes
+/// address type/length     4 bytes
+/// local Internet address  4 bytes/16 bytes (IPv4/IPv6 address)
+/// remote port             4 bytes
+/// address type/length     4 bytes
+/// remote Internet address 4 bytes/16 bytes (IPv4/IPv6 address)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_socket_ex32_t {
@@ -382,6 +489,9 @@ pub struct au_socket_ex32_t {
     pub r_addr: [u32; 4],
 }
 
+/// socket family           2 bytes
+/// local port              2 bytes
+/// socket address          4 bytes/16 bytes (IPv4/IPv6 address)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_socketinet_ex32_t {
@@ -398,6 +508,8 @@ pub struct au_socketinet32_t {
     pub addr: u32,
 }
 
+/// socket family           2 bytes
+/// path                    104 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_socketunix_t {
@@ -405,6 +517,16 @@ pub struct au_socketunix_t {
     pub path: [c_char; 104],
 }
 
+/// audit ID                4 bytes
+/// effective user ID       4 bytes
+/// effective group ID      4 bytes
+/// real user ID            4 bytes
+/// real group ID           4 bytes
+/// process ID              4 bytes
+/// session ID              4 bytes
+/// terminal ID
+/// port ID               4 bytes/8 bytes (32-bit/64-bit value)
+/// machine address       4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_subject32_t {
@@ -431,6 +553,17 @@ pub struct au_subject64_t {
     pub tid: au_tid64_t,
 }
 
+/// audit ID                4 bytes
+/// effective user ID       4 bytes
+/// effective group ID      4 bytes
+/// real user ID            4 bytes
+/// real group ID           4 bytes
+/// process ID              4 bytes
+/// session ID              4 bytes
+/// terminal ID
+/// port ID               4 bytes/8 bytes (32-bit/64-bit value)
+/// type                  4 bytes
+/// machine address       16 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_subject32ex_t {
@@ -457,6 +590,8 @@ pub struct au_subject64ex_t {
     pub tid: au_tidaddr64_t,
 }
 
+/// text length             2 bytes
+/// text                    N bytes + 1 terminating NULL byte
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_text_t {
@@ -464,6 +599,8 @@ pub struct au_text_t {
     pub text: *mut c_char,
 }
 
+/// zonename length    2 bytes
+/// zonename text    N bytes + 1 NULL terminator
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_zonename_t {
@@ -488,6 +625,19 @@ pub struct au_invalid_t {
     pub data: *mut c_char,
 }
 
+/// signer type             4 bytes
+/// signing id length       2 bytes
+/// signing id              N bytes + 1 terminating NULL byte
+/// signing id truncated    1 byte (true/false)
+/// team id length          2 bytes
+/// team id                 N bytes + 1 terminating NULL byte
+/// team id truncated       1 byte (true/false)
+/// cdhash length           2 bytes
+/// cdhash                  N bytes
+///
+/// Note: This structure represents a contiguous (in-memory/on-disk) layout.
+/// Due to multiple variable length buffers it cannot be simply assigned and
+/// should only be populated via au_fetch_tok().
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_identity_t {
@@ -502,6 +652,8 @@ pub struct au_identity_t {
     pub cdhash: *mut u8,
 }
 
+/// trailer magic number    2 bytes
+/// record byte count       4 bytes
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_trailer_t {
@@ -565,12 +717,14 @@ pub struct tokenstr {
     pub id: c_uchar,
     pub data: *mut c_uchar,
     pub len: usize,
+    /// The token is one of the above types
     pub tt: tokenstr_tt,
 }
 
 pub type tokenstr_t = tokenstr;
 
 extern "C-unwind" {
+    /// Functions relating to querying audit class information.
     #[deprecated = "audit is deprecated"]
     pub fn setauclass();
 }
@@ -617,6 +771,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Functions relating to querying audit control information.
     #[deprecated = "audit is deprecated"]
     pub fn setac();
 }
@@ -703,6 +858,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Functions relating to audit session flags.
     pub fn au_sflagstostr(flags: u64, maxsize: usize, buf: *mut c_char) -> isize;
 }
 
@@ -711,6 +867,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Functions relating to querying audit event information.
     #[deprecated = "audit is deprecated"]
     pub fn setauevent();
 }
@@ -761,6 +918,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Functions relating to querying audit user information.
     #[deprecated = "audit is deprecated"]
     pub fn setauuser();
 }
@@ -805,6 +963,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Functions for reading and printing records and tokens from audit trails.
     #[deprecated = "audit is deprecated"]
     pub fn au_read_rec(fp: *mut FILE, buf: *mut *mut c_uchar) -> c_int;
 }
@@ -815,6 +974,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// XXX The following interface has different prototype from BSM
     #[deprecated = "audit is deprecated"]
     pub fn au_print_tok(
         outfp: *mut FILE,
@@ -847,6 +1007,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Functions relating to XML output.
     #[deprecated = "audit is deprecated"]
     pub fn au_print_xml_header(outfp: *mut FILE);
 }
@@ -876,31 +1037,92 @@ pub const kAUMakeTextTokErr: c_int = -66039;
 pub const kAULastErr: c_int = -66038;
 
 extern "C-unwind" {
+    /// XXX  This prototype should be in audit_record.h
+    ///
+    /// au_free_token()
+    ///
+    /// - au_free_token() deallocates a token_t created by any of
+    /// the au_to_*() BSM API functions.
+    ///
+    /// The BSM API generally manages deallocation of token_t objects.  However,
+    /// if au_write() is passed a bad audit descriptor, the token_t * parameter
+    /// will be left untouched.  In that case, the caller can deallocate the
+    /// token_t using au_free_token() if desired.  This is, in fact, what
+    /// audit_write() does, in keeping with the existing memory management model
+    /// of the BSM API.
+    ///
+    ///
+    /// Parameter `tok`: - A token_t * generated by one of the au_to_*() BSM API
+    /// calls.  For convenience, tok may be NULL, in which case
+    /// au_free_token() returns immediately.
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     #[deprecated = "audit is deprecated"]
     pub fn au_free_token(tok: Option<&token_t>);
 }
 
 extern "C-unwind" {
+    /// Lightweight check to determine if auditing is enabled.  If a client
+    /// wants to use this to govern whether an entire series of audit calls
+    /// should be made--as in the common case of a caller building a set of
+    /// tokens, then writing them--it should cache the audit status in a local
+    /// variable.  This call always returns the current state of auditing.
+    ///
+    ///
+    /// Returns: - AUC_AUDITING or AUC_NOAUDIT if no error occurred.
+    /// Otherwise the function can return any of the errno values defined for
+    /// setaudit(2), or AU_UNIMPL if audit does not appear to be supported by
+    /// the system.
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     #[deprecated = "audit is deprecated"]
     pub fn au_get_state() -> c_int;
 }
 
 extern "C-unwind" {
+    /// Initialize the audit notification.  If it has not already been initialized
+    /// it will automatically on the first call of au_get_state().
     #[deprecated = "audit is deprecated"]
     pub fn au_notify_initialize() -> u32;
 }
 
 extern "C-unwind" {
+    /// Cancel audit notification and free the resources associated with it.
+    /// Responsible code that no longer needs to use au_get_state() should call
+    /// this.
     #[deprecated = "audit is deprecated"]
     pub fn au_notify_terminate() -> c_int;
 }
 
 extern "C-unwind" {
+    /// OpenSSH compatibility
     #[deprecated = "audit is deprecated"]
     pub fn cannot_audit(param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
+    /// audit_set_terminal_id_ex()
+    /// audit_set_terminal_id()
+    ///
+    /// - audit_set_terminal_id_ex() fills in an au_tid_addr_t struct,
+    /// which is used in audit session initialization by processes like
+    /// /usr/bin/login.  audit_set_terminal_id() does the same but for the
+    /// au_tid_t structure.  Note that audit_set_terminal_id_ex() is preferred
+    /// since it can store longer terminal addresses like those used in IP
+    /// version 6.  Neither audit_set_terminal_id() nor audit_set_terminal_id_ex()
+    /// should be used if the terminal connection is a remote one and the remote IP
+    /// address and port is known, however.  These wrapper functions populate the
+    /// au_tid_t or au_tid_addr_t stuctures with local terminal information only.
+    ///
+    ///
+    /// Parameter `tid`: - A pointer to an au_tid_addr_t or au_tid_t struct.
+    ///
+    ///
+    /// Returns: - kAUNoErr on success; kAUBadParamErr if tid is NULL, kAUStatErr
+    /// or kAUSysctlErr if one of the underlying system calls fails (a message
+    /// is sent to the system log in those cases).
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     pub fn audit_set_terminal_id_ex(tid: *mut au_tid_addr_t) -> c_int;
 }
 
@@ -909,6 +1131,48 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// audit_write()
+    ///
+    /// - audit_write() is the basis for the other audit_write_*()
+    /// calls.  Performs a basic write of an audit record (subject, additional
+    /// info, success/failure).  Note that this call only permits logging one
+    /// caller-specified token; clients needing to log more flexibly must use
+    /// the existing BSM API (au_open(), et al.) directly.
+    ///
+    /// Note on memory management: audit_write() guarantees that the token_t *s
+    /// passed to it will be deallocated whether or not the underlying write to
+    /// the audit log succeeded.  This addresses an inconsistency in the
+    /// underlying BSM API in which token_t *s are usually but not always
+    /// deallocated.
+    ///
+    ///
+    /// Parameter `event_code`: - The code for the event being logged.  This should
+    /// be one of the AUE_ values in /usr/include/bsm/audit_uevents.h.
+    ///
+    ///
+    /// Parameter `subject`: - A token_t * generated by au_to_subject(),
+    /// au_to_subject32(), au_to_subject64(), or au_to_me().  If no subject is
+    /// required, subject should be NULL.
+    ///
+    ///
+    /// Parameter `misctok`: - A token_t * generated by one of the au_to_*() BSM API
+    /// calls.  This should correspond to the additional information required by
+    /// CAPP for the event being audited.  If no additional information is
+    /// required, misctok should be NULL.
+    ///
+    ///
+    /// Parameter `retval`: - The return value to be logged for this event.  This
+    /// should be 0 (zero) for success, otherwise the value is event-specific.
+    ///
+    ///
+    /// Parameter `errcode`: - Any error code associated with the return value (e.g.,
+    /// errno or h_errno).  If there was no error, errcode should be 0 (zero).
+    ///
+    ///
+    /// Returns: - The status of the call: 0 (zero) on success, else one of the
+    /// kAU*Err values defined above.
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     #[deprecated = "audit is deprecated"]
     pub fn audit_write(
         event_code: c_short,
@@ -920,6 +1184,60 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// audit_write_success_ex()
+    /// audit_write_success()
+    ///
+    /// - audit_write_success_ex() and audit_write_success() record
+    /// an auditable event that did not encounter an error.  The interface is
+    /// designed to require as little direct use of the au_to_*() API as possible.
+    /// It builds a subject token from the information passed in and uses that to
+    /// invoke audit_write(). A subject, as defined by CAPP, is a process acting
+    /// on the user's behalf. Preference should be given in using
+    /// audit_write_success_ex() since it supports longer addreses such as those
+    /// used for IP version 6.
+    ///
+    /// If the subject information is the same as the current process, use
+    /// au_write_success_self().
+    ///
+    ///
+    /// Parameter `event_code`: - The code for the event being logged.  This should
+    /// be one of the AUE_ values in /usr/include/bsm/audit_uevents.h.
+    ///
+    ///
+    /// Parameter `misctok`: - A token_t * generated by one of the au_to_*() BSM API
+    /// calls.  This should correspond to the additional information required by
+    /// CAPP for the event being audited.  If no additional information is
+    /// required, misctok should be NULL.
+    ///
+    ///
+    /// Parameter `auid`: - The subject's audit ID.
+    ///
+    ///
+    /// Parameter `euid`: - The subject's effective user ID.
+    ///
+    ///
+    /// Parameter `egid`: - The subject's effective group ID.
+    ///
+    ///
+    /// Parameter `ruid`: - The subject's real user ID.
+    ///
+    ///
+    /// Parameter `rgid`: - The subject's real group ID.
+    ///
+    ///
+    /// Parameter `pid`: - The subject's process ID.
+    ///
+    ///
+    /// Parameter `sid`: - The subject's session ID.
+    ///
+    ///
+    /// Parameter `tid`: - The subject's terminal ID.
+    ///
+    ///
+    /// Returns: - The status of the call: 0 (zero) on success, else one of the
+    /// kAU*Err values defined above.
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     #[deprecated = "audit is deprecated"]
     pub fn audit_write_success_ex(
         event_code: c_short,
@@ -952,11 +1270,88 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// audit_write_success_self()
+    ///
+    /// - Similar to audit_write_success_ex(), but used when the subject
+    /// (process) is owned and operated by the auditable user him/herself.
+    ///
+    ///
+    /// Parameter `event_code`: - The code for the event being logged.  This should
+    /// be one of the AUE_ values in /usr/include/bsm/audit_uevents.h.
+    ///
+    ///
+    /// Parameter `misctok`: - A token_t * generated by one of the au_to_*() BSM API
+    /// calls.  This should correspond to the additional information required by
+    /// CAPP for the event being audited.  If no additional information is
+    /// required, misctok should be NULL.
+    ///
+    ///
+    /// Returns: - The status of the call: 0 (zero) on success, else one of the
+    /// kAU*Err values defined above.
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     #[deprecated = "audit is deprecated"]
     pub fn audit_write_success_self(event_code: c_short, misctok: Option<&token_t>) -> c_int;
 }
 
 extern "C-unwind" {
+    /// audit_write_failure_ex()
+    /// audit_write_failure()
+    ///
+    /// - audit_write_failure_ex() and audit_write_failure() records an
+    /// auditable event that encountered an error.  The interface is designed to
+    /// require as little direct use of the au_to_*() API as possible.  It builds
+    /// a subject token from the information passed in and uses that to invoke audit
+    /// write(). A subject, as defined by CAPP, is a process acting on the user's
+    /// behalf. Preference should be given in using audit_write_success_ex() since
+    /// it supports longer addreses such as those used for IP version 6.
+    ///
+    /// If the subject information is the same as the current process, use
+    /// au_write_failure_self().
+    ///
+    ///
+    /// Parameter `event_code`: - The code for the event being logged.  This should
+    /// be one of the AUE_ values in /usr/include/bsm/audit_uevents.h.
+    ///
+    ///
+    /// Parameter `errmsg`: - A text message providing additional information about
+    /// the event being audited.
+    ///
+    ///
+    /// Parameter `errret`: - A numerical value providing additional information about
+    /// the error.  This is intended to store the value of errno or h_errno if
+    /// it's relevant.  This can be 0 (zero) if no additional information is
+    /// available.
+    ///
+    ///
+    /// Parameter `auid`: - The subject's audit ID.
+    ///
+    ///
+    /// Parameter `euid`: - The subject's effective user ID.
+    ///
+    ///
+    /// Parameter `egid`: - The subject's effective group ID.
+    ///
+    ///
+    /// Parameter `ruid`: - The subject's real user ID.
+    ///
+    ///
+    /// Parameter `rgid`: - The subject's real group ID.
+    ///
+    ///
+    /// Parameter `pid`: - The subject's process ID.
+    ///
+    ///
+    /// Parameter `sid`: - The subject's session ID.
+    ///
+    ///
+    /// Parameter `tid`: - The subject's terminal ID.
+    ///
+    ///
+    /// Returns: - The status of the call: 0 (zero) on success, else one of the
+    /// kAU*Err values defined above.
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     #[deprecated = "audit is deprecated"]
     pub fn audit_write_failure_ex(
         event_code: c_short,
@@ -991,6 +1386,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// audit_write_failure_self()
+    ///
+    /// - Similar to audit_write_failure(), but used when the subject
+    /// (process) is owned and operated by the auditable user him/herself.
+    ///
+    ///
+    /// Parameter `event_code`: - The code for the event being logged.  This should
+    /// be one of the AUE_ values in /usr/include/bsm/audit_uevents.h.
+    ///
+    ///
+    /// Parameter `errmsg`: - A text message providing additional information about
+    /// the event being audited.
+    ///
+    ///
+    /// Parameter `errret`: - A numerical value providing additional information about
+    /// the error.  This is intended to store the value of errno or h_errno if
+    /// it's relevant.  This can be 0 (zero) if no additional information is
+    /// available.
+    ///
+    ///
+    /// Returns: - The status of the call: 0 (zero) on success, else one of the
+    /// kAU*Err values defined above.
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     #[deprecated = "audit is deprecated"]
     pub fn audit_write_failure_self(
         event_code: c_short,
@@ -1000,6 +1419,46 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// audit_write_failure_na_ex()
+    /// audit_write_failure_na()
+    ///
+    /// - audit_write_failure_na_ex()  and audit_write_failure_na() record
+    /// errors during login.  Such errors are implicitly non-attributable (i.e., not
+    /// ascribable to any user).  Preference should be given in using
+    /// audit_write_failure_na_ex() since it supports longer addreses such as those
+    /// used for IP version 6.
+    ///
+    ///
+    /// Parameter `event_code`: - The code for the event being logged.  This should
+    /// be one of the AUE_ values in /usr/include/bsm/audit_uevents.h.
+    ///
+    ///
+    /// Parameter `errmsg`: - A text message providing additional information about
+    /// the event being audited.
+    ///
+    ///
+    /// Parameter `errret`: - A numerical value providing additional information about
+    /// the error.  This is intended to store the value of errno or h_errno if
+    /// it's relevant.  This can be 0 (zero) if no additional information is
+    /// available.
+    ///
+    ///
+    /// Parameter `euid`: - The subject's effective user ID.
+    ///
+    ///
+    /// Parameter `egid`: - The subject's effective group ID.
+    ///
+    ///
+    /// Parameter `pid`: - The subject's process ID.
+    ///
+    ///
+    /// Parameter `tid`: - The subject's terminal ID.
+    ///
+    ///
+    /// Returns: - The status of the call: 0 (zero) on success, else one of the
+    /// kAU*Err values defined above.
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     #[deprecated = "audit is deprecated"]
     pub fn audit_write_failure_na_ex(
         event_code: c_short,
@@ -1026,6 +1485,56 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// audit_token_to_au32()  (NOW DEPRECATED)
+    ///
+    /// - Extract information from an audit_token_t, used to identify
+    /// Mach tasks and senders of Mach messages as subjects to the audit system.
+    /// audit_tokent_to_au32() is the only method that should be used to parse
+    /// an audit_token_t, since its internal representation may change over
+    /// time.  A pointer parameter may be NULL if that information is not
+    /// needed.  audit_token_to_au32() has been deprecated because the terminal
+    /// ID information is no longer saved in this token.  The last parameter
+    /// is actually the process ID version.  The API calls audit_token_to_auid(),
+    /// audit_token_to_euid(), audit_token_to_ruid(), audit_token_to_rgid(),
+    /// audit_token_to_pid(), audit_token_to_asid(),  and/or
+    /// audit_token_to_pidversion() should be used instead.
+    ///
+    ///
+    /// Parameter `atoken`: - the audit token containing the desired information
+    ///
+    ///
+    /// Parameter `auidp`: - Pointer to a uid_t; on return will be set to the task or
+    /// sender's audit user ID
+    ///
+    ///
+    /// Parameter `euidp`: - Pointer to a uid_t; on return will be set to the task or
+    /// sender's effective user ID
+    ///
+    ///
+    /// Parameter `egidp`: - Pointer to a gid_t; on return will be set to the task or
+    /// sender's effective group ID
+    ///
+    ///
+    /// Parameter `ruidp`: - Pointer to a uid_t; on return will be set to the task or
+    /// sender's real user ID
+    ///
+    ///
+    /// Parameter `rgidp`: - Pointer to a gid_t; on return will be set to the task or
+    /// sender's real group ID
+    ///
+    ///
+    /// Parameter `pidp`: - Pointer to a pid_t; on return will be set to the task or
+    /// sender's process ID
+    ///
+    ///
+    /// Parameter `asidp`: - Pointer to an au_asid_t; on return will be set to the
+    /// task or sender's audit session ID
+    ///
+    ///
+    /// Parameter `tidp`: - Pointer to an au_tid_t; on return will be set to the
+    /// process ID version and NOT THE SENDER'S TERMINAL ID.
+    ///
+    /// XXXRW: In Apple's bsm-8, these are marked __APPLE_API_PRIVATE.
     pub fn audit_token_to_au32(
         atoken: audit_token_t,
         auidp: *mut uid_t,
@@ -1040,38 +1549,127 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// audit_token_to_auid()
+    ///
+    /// - Extract the audit user ID from an audit_token_t, used to
+    /// identify Mach tasks and senders of Mach messages as subjects of the audit
+    /// system.
+    ///
+    ///
+    /// Parameter `atoken`: - The Mach audit token.
+    ///
+    ///
+    /// Returns: - The audit user ID extracted from the Mach audit token.
     pub fn audit_token_to_auid(atoken: audit_token_t) -> uid_t;
 }
 
 extern "C-unwind" {
+    /// audit_token_to_euid()
+    ///
+    /// - Extract the effective user ID from an audit_token_t, used to
+    /// identify Mach tasks and senders of Mach messages as subjects of the audit
+    /// system.
+    ///
+    ///
+    /// Parameter `atoken`: - The Mach audit token.
+    ///
+    ///
+    /// Returns: - The effective user ID extracted from the Mach audit token.
     pub fn audit_token_to_euid(atoken: audit_token_t) -> uid_t;
 }
 
 extern "C-unwind" {
+    /// audit_token_to_egid()
+    ///
+    /// - Extract the effective group ID from an audit_token_t, used to
+    /// identify Mach tasks and senders of Mach messages as subjects of the audit
+    /// system.
+    ///
+    ///
+    /// Parameter `atoken`: - The Mach audit token.
+    ///
+    ///
+    /// Returns: - The effective group ID extracted from the Mach audit token.
     pub fn audit_token_to_egid(atoken: audit_token_t) -> gid_t;
 }
 
 extern "C-unwind" {
+    /// audit_token_to_ruid()
+    ///
+    /// - Extract the real user ID from an audit_token_t, used to
+    /// identify Mach tasks and senders of Mach messages as subjects of the audit
+    /// system.
+    ///
+    ///
+    /// Parameter `atoken`: - The Mach audit token.
+    ///
+    ///
+    /// Returns: - The real user ID extracted from the Mach audit token.
     pub fn audit_token_to_ruid(atoken: audit_token_t) -> uid_t;
 }
 
 extern "C-unwind" {
+    /// audit_token_to_rgid()
+    ///
+    /// - Extract the real group ID from an audit_token_t, used to
+    /// identify Mach tasks and senders of Mach messages as subjects of the audit
+    /// system.
+    ///
+    ///
+    /// Parameter `atoken`: - The Mach audit token.
+    ///
+    ///
+    /// Returns: - The real group ID extracted from the Mach audit token.
     pub fn audit_token_to_rgid(atoken: audit_token_t) -> gid_t;
 }
 
 extern "C-unwind" {
+    /// audit_token_to_pid()
+    ///
+    /// - Extract the process ID from an audit_token_t, used to
+    /// identify Mach tasks and senders of Mach messages as subjects of the audit
+    /// system.
+    ///
+    ///
+    /// Parameter `atoken`: - The Mach audit token.
+    ///
+    ///
+    /// Returns: - The process ID extracted from the Mach audit token.
     pub fn audit_token_to_pid(atoken: audit_token_t) -> pid_t;
 }
 
 extern "C-unwind" {
+    /// audit_token_to_asid()
+    ///
+    /// - Extract the audit session ID from an audit_token_t, used to
+    /// identify Mach tasks and senders of Mach messages as subjects of the audit
+    /// system.
+    ///
+    ///
+    /// Parameter `atoken`: - The Mach audit token.
+    ///
+    ///
+    /// Returns: - The audit session ID extracted from the Mach audit token.
     pub fn audit_token_to_asid(atoken: audit_token_t) -> au_asid_t;
 }
 
 extern "C-unwind" {
+    /// audit_token_to_pidversion()
+    ///
+    /// - Extract the process ID version from an audit_token_t, used to
+    /// identify Mach tasks and senders of Mach messages as subjects of the audit
+    /// system.
+    ///
+    ///
+    /// Parameter `atoken`: - The Mach audit token.
+    ///
+    ///
+    /// Returns: - The process ID version extracted from the Mach audit token.
     pub fn audit_token_to_pidversion(atoken: audit_token_t) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Wrapper functions to auditon(2).
     #[deprecated = "audit is deprecated"]
     pub fn audit_get_car(path: *mut c_char, sz: usize) -> c_int;
 }

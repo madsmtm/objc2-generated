@@ -3,19 +3,33 @@
 
 use crate::ffi::*;
 
+/// Variables related to this implementation
+/// of the internet control message protocol.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmpstat {
+    /// # of calls to icmp_error
     pub icps_error: u32,
+    /// no error 'cuz old ip too short
     pub icps_oldshort: u32,
+    /// no error 'cuz old was icmp
     pub icps_oldicmp: u32,
     pub icps_outhist: [u32; 41],
+    /// icmp_code out of range
     pub icps_badcode: u32,
+    /// packet
+    /// <
+    /// ICMP_MINLEN
     pub icps_tooshort: u32,
+    /// bad checksum
     pub icps_checksum: u32,
+    /// calculated bound mismatch
     pub icps_badlen: u32,
+    /// number of responses
     pub icps_reflect: u32,
     pub icps_inhist: [u32; 41],
+    /// b/mcast echo requests dropped
     pub icps_bmcastecho: u32,
+    /// b/mcast tstamp requests dropped
     pub icps_bmcasttstamp: u32,
 }

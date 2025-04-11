@@ -6,6 +6,7 @@ use crate::ffi::*;
 
 pub type netaddr_t = u32;
 
+/// Network Port structure.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct np_uid_t {

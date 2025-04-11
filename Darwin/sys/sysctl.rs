@@ -7,54 +7,116 @@ use crate::ffi::*;
 pub const KERN_VERSION: c_uint = 4;
 pub const KERN_OSVERSION: c_uint = 65;
 pub const USER_POSIX2_VERSION: c_uint = 10;
+/// Each subsystem defined by sysctl defines a list of variables
+/// for that subsystem. Each name is either a node with further
+/// levels defined below it, or it is a leaf of some particular
+/// type given below. Each sysctl level defines a set of name/type
+/// pairs to be used by sysctl(1) in manipulating the subsystem.
+///
+/// When declaring new sysctl names, use the CTLFLAG_LOCKED flag in the
+/// type to indicate that all necessary locking will be handled
+/// within the sysctl.
+///
+/// Any sysctl defined without CTLFLAG_LOCKED is considered legacy
+/// and will be protected by a global mutex.
+///
+/// Note:    This is not optimal, so it is best to handle locking
+/// yourself, if you are able to do so.  A simple design
+/// pattern for use to avoid in a single function known
+/// to potentially be in the paging path ot doing a DMA
+/// to physical memory in a user space process is:
+///
+/// lock
+/// perform operation vs. local buffer
+/// unlock
+/// SYSCTL_OUT(rey, local buffer, length)
+///
+/// ...this assumes you are not using a deep call graph
+/// or are unable to pass a local buffer address as a
+/// parameter into your deep call graph.
+///
+/// Note that very large user buffers can fail the wire
+/// if to do so would require more physical pages than
+/// are available (the caller will get an ENOMEM error,
+/// see sysctl_mem_hold() for details).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ctlname {
+    /// subsystem name
     pub ctl_name: *mut c_char,
+    /// type of name
     pub ctl_type: c_int,
 }
 
+/// KERN_PROC subtype ops return arrays of augmented proc structures:
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _pcred {
+    /// opaque content
     pub pc_lock: [c_char; 72],
+    /// Current credentials.
     pub pc_ucred: *mut ucred,
+    /// Real user id.
     pub p_ruid: uid_t,
+    /// Saved effective user id.
     pub p_svuid: uid_t,
+    /// Real group id.
     pub p_rgid: gid_t,
+    /// Saved effective group id.
     pub p_svgid: gid_t,
+    /// Number of references.
     pub p_refcnt: c_int,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _ucred {
+    /// reference count
     pub cr_ref: i32,
+    /// effective user id
     pub cr_uid: uid_t,
+    /// number of groups
     pub cr_ngroups: c_short,
+    /// groups
     pub cr_groups: [gid_t; 16],
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct eproc {
+    /// address of proc
     pub e_paddr: *mut proc,
+    /// session pointer
     pub e_sess: *mut session,
+    /// process credentials
     pub e_pcred: _pcred,
+    /// current credentials
     pub e_ucred: _ucred,
+    /// address space
     pub e_vm: vmspace,
+    /// parent process id
     pub e_ppid: pid_t,
+    /// process group id
     pub e_pgid: pid_t,
+    /// job control counter
     pub e_jobc: c_short,
+    /// controlling tty dev
     pub e_tdev: dev_t,
+    /// tty process group id
     pub e_tpgid: pid_t,
+    /// tty session pointer
     pub e_tsess: *mut session,
+    /// wchan message
     pub e_wmesg: [c_char; 8],
+    /// text size
     pub e_xsize: segsz_t,
+    /// text rss
     pub e_xrssize: c_short,
+    /// text references
     pub e_xccount: c_short,
     pub e_xswrss: c_short,
     pub e_flag: i32,
+    /// short setlogin() name
     pub e_login: [c_char; 12],
     pub e_spare: [i32; 4],
 }
@@ -62,6 +124,7 @@ pub struct eproc {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kinfo_proc {
+    /// proc structure
     pub kp_proc: extern_proc,
     pub kp_eproc: eproc,
 }
@@ -76,6 +139,11 @@ pub struct xsw_usage {
     pub xsu_encrypted: boolean_t,
 }
 
+/// Load average structure.  Use of fixpt_t assume
+/// <sys
+/// /types.h> in scope.
+///
+/// XXX perhaps we should protect fixpt_t, and define it here (or discard it)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct loadavg {

@@ -45,6 +45,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// non-portable interfaces for iconv
     pub fn __iconv_get_list(
         param1: *mut *mut *mut c_char,
         param1: *mut usize,
@@ -68,6 +69,7 @@ extern "C-unwind" {
     ) -> usize;
 }
 
+/// GNU interfaces for iconv
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct iconv_allocation_t {

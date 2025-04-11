@@ -9,6 +9,8 @@ use crate::ffi::*;
 pub struct so_nke {
     pub nke_handle: c_uint,
     pub nke_where: c_uint,
+    /// NFF_BEFORE, NFF_AFTER: net/kext_net.h
     pub nke_flags: c_int,
+    /// for future use
     pub reserved: [u32; 4],
 }

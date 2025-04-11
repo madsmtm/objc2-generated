@@ -4,6 +4,7 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Apple-style globally unique identifier
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union guid_t {

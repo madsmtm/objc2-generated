@@ -4,23 +4,36 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Advisory file segment locking data type -
+/// information passed to system by user
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct flock {
+    /// starting offset
     pub l_start: off_t,
+    /// len = 0 means until end of file
     pub l_len: off_t,
+    /// lock owner
     pub l_pid: pid_t,
+    /// lock type: read/write, etc.
     pub l_type: c_short,
+    /// type of l_start
     pub l_whence: c_short,
 }
 
+/// Advisory file segment locking with time out -
+/// Information passed to system by user for F_SETLKWTIMEOUT
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct flocktimeout {
+    /// flock passed for file locking
     pub fl: flock,
+    /// timespec struct for timeout
     pub timeout: timespec,
 }
 
+/// advisory file read data type -
+/// information passed by user to system
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct radvisory {
@@ -34,8 +47,11 @@ pub struct fsignatures {
     pub fs_file_start: off_t,
     pub fs_blob_start: *mut c_void,
     pub fs_blob_size: usize,
+    /// input: size of this struct (for compatibility)
     pub fs_fsignatures_size: usize,
+    /// output: cdhash
     pub fs_cdhash: [c_char; 20],
+    /// output: hash algorithm type for cdhash
     pub fs_hash_type: c_int,
 }
 
@@ -44,14 +60,26 @@ pub type fsignatures_t = fsignatures;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fsupplement {
+    /// offset of Mach-O image in FAT file
     pub fs_file_start: off_t,
+    /// offset of signature in Mach-O image
     pub fs_blob_start: off_t,
+    /// signature blob size
     pub fs_blob_size: usize,
+    /// address of original image
     pub fs_orig_fd: c_int,
 }
 
 pub type fsupplement_t = fsupplement;
 
+/// DYLD needs to check if the object is allowed to be combined
+/// into the main binary. This is done between the code signature
+/// is loaded and dyld is doing all the work to process the LOAD commands.
+///
+/// While this could be done in F_ADDFILESIGS.* family the hook into
+/// the MAC module doesn't say no when LV isn't enabled and then that
+/// is cached on the vnode, and the MAC module never gets change once
+/// a process that library validation enabled.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fchecklv {
@@ -60,66 +88,105 @@ pub struct fchecklv {
     pub lv_error_message: *mut c_void,
 }
 
+/// DYLD needs to check if the object is allowed to be combined
+/// into the main binary. This is done between the code signature
+/// is loaded and dyld is doing all the work to process the LOAD commands.
+///
+/// While this could be done in F_ADDFILESIGS.* family the hook into
+/// the MAC module doesn't say no when LV isn't enabled and then that
+/// is cached on the vnode, and the MAC module never gets change once
+/// a process that library validation enabled.
 pub type fchecklv_t = fchecklv;
 
+/// fgetsigsinfo_t used by F_GETSIGSINFO command
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fgetsigsinfo {
+    /// IN: Offset in the file to look for a signature, -1 for any signature
     pub fg_file_start: off_t,
+    /// IN: Key indicating the info requested
     pub fg_info_request: c_int,
+    /// OUT: 1 if the signature is a plat form binary, 0 if not
     pub fg_sig_is_platform: c_int,
 }
 
+/// fgetsigsinfo_t used by F_GETSIGSINFO command
 pub type fgetsigsinfo_t = fgetsigsinfo;
 
+/// fstore_t type used by F_PREALLOCATE command
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fstore {
+    /// IN: flags word
     pub fst_flags: c_uint,
+    /// IN: indicates use of offset field
     pub fst_posmode: c_int,
+    /// IN: start of the region
     pub fst_offset: off_t,
+    /// IN: size of the region
     pub fst_length: off_t,
+    /// OUT: number of bytes allocated
     pub fst_bytesalloc: off_t,
 }
 
+/// fstore_t type used by F_PREALLOCATE command
 pub type fstore_t = fstore;
 
+/// fpunchhole_t used by F_PUNCHHOLE
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fpunchhole {
+    /// unused
     pub fp_flags: c_uint,
+    /// (to maintain 8-byte alignment)
     pub reserved: c_uint,
+    /// IN: start of the region
     pub fp_offset: off_t,
+    /// IN: size of the region
     pub fp_length: off_t,
 }
 
+/// fpunchhole_t used by F_PUNCHHOLE
 pub type fpunchhole_t = fpunchhole;
 
+/// factive_file_trim_t used by F_TRIM_ACTIVE_FILE
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ftrimactivefile {
+    /// IN: start of the region
     pub fta_offset: off_t,
+    /// IN: size of the region
     pub fta_length: off_t,
 }
 
+/// factive_file_trim_t used by F_TRIM_ACTIVE_FILE
 pub type ftrimactivefile_t = ftrimactivefile;
 
+/// fspecread_t used by F_SPECULATIVE_READ
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fspecread {
+    /// IN: flags word
     pub fsr_flags: c_uint,
+    /// to maintain 8-byte alignment
     pub reserved: c_uint,
+    /// IN: start of the region
     pub fsr_offset: off_t,
+    /// IN: size of the region
     pub fsr_length: off_t,
 }
 
+/// fspecread_t used by F_SPECULATIVE_READ
 pub type fspecread_t = fspecread;
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fattributiontag {
+    /// IN: flags word
     pub ft_flags: c_uint,
+    /// OUT: hash of attribution tag name
     pub ft_hash: c_ulonglong,
+    /// IN/OUT: attribution tag name associated with the file
     pub ft_attribution_name: [c_char; 255],
 }
 
@@ -128,8 +195,19 @@ pub type fattributiontag_t = fattributiontag;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct log2phys {
+    /// unused so far
     pub l2p_flags: c_uint,
+    /// F_LOG2PHYS:     unused so far
+    ///
+    /// F_LOG2PHYS_EXT: IN:  number of bytes to be queried
+    ///
+    /// OUT: number of contiguous bytes at this position
     pub l2p_contigbytes: off_t,
+    /// F_LOG2PHYS:     OUT: bytes into device
+    ///
+    /// F_LOG2PHYS_EXT: IN:  bytes into file
+    ///
+    /// OUT: bytes into device
     pub l2p_devoffset: off_t,
 }
 
@@ -143,7 +221,9 @@ impl filesec_property_t {
     pub const FILESEC_MODE: Self = Self(4);
     pub const FILESEC_ACL: Self = Self(5);
     pub const FILESEC_GRPUUID: Self = Self(6);
+    /// XXX these are private to the implementation
     pub const FILESEC_ACL_RAW: Self = Self(100);
+    /// XXX these are private to the implementation
     pub const FILESEC_ACL_ALLOCSIZE: Self = Self(101);
 }
 

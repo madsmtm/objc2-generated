@@ -7,12 +7,19 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fstab {
+    /// block special device name
     pub fs_spec: *mut c_char,
+    /// file system path prefix
     pub fs_file: *mut c_char,
+    /// File system type, ufs, nfs
     pub fs_vfstype: *mut c_char,
+    /// Mount options ala -o
     pub fs_mntops: *mut c_char,
+    /// FSTAB_* from fs_mntops
     pub fs_type: *mut c_char,
+    /// dump frequency, in days
     pub fs_freq: c_int,
+    /// pass number on parallel dump
     pub fs_passno: c_int,
 }
 

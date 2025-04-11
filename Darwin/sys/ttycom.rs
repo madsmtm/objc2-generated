@@ -4,11 +4,17 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Window/terminal size structure.  This information is stored by the kernel
+/// in order to provide a consistent interface, but is not used by the kernel.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct winsize {
+    /// rows, in characters
     pub ws_row: c_ushort,
+    /// columns, in characters
     pub ws_col: c_ushort,
+    /// horizontal size, pixels
     pub ws_xpixel: c_ushort,
+    /// vertical size, pixels
     pub ws_ypixel: c_ushort,
 }

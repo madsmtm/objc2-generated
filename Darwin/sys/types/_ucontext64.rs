@@ -10,10 +10,15 @@ use crate::ffi::*;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __darwin_ucontext64 {
     pub uc_onstack: c_int,
+    /// signal mask used by this context
     pub uc_sigmask: __darwin_sigset_t,
+    /// stack used by this context
     pub uc_stack: __darwin_sigaltstack,
+    /// pointer to resuming context
     pub uc_link: *mut __darwin_ucontext64,
+    /// size of the machine context passed in
     pub uc_mcsize: __darwin_size_t,
+    /// pointer to machine specific context
     pub uc_mcontext64: *mut __darwin_mcontext64,
 }
 

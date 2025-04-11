@@ -11,6 +11,11 @@ pub struct au_token_tokens {
     pub tqe_prev: *mut *mut Self,
 }
 
+/// audit_internal.h contains private interfaces that are shared by user space
+/// and the kernel for the purposes of assembling audit records.  Applications
+/// should not include this file or use the APIs found within, or it may be
+/// broken with future releases of OpenBSM, which may delete, modify, or
+/// otherwise break these interfaces or the assumptions they rely on.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_token {
@@ -36,8 +41,11 @@ pub struct au_record_au_rec_q {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_record {
+    /// Record currently in use?
     pub used: c_char,
+    /// Descriptor for record.
     pub desc: c_int,
+    /// Queue of BSM tokens.
     pub token_q: au_record_token_q,
     pub data: *mut c_uchar,
     pub len: usize,

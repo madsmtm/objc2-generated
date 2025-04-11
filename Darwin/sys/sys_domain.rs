@@ -4,11 +4,16 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// System family socket address
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_sys {
+    /// sizeof(struct sockaddr_sys)
     pub ss_len: c_uchar,
+    /// AF_SYSTEM
     pub ss_family: c_uchar,
+    /// protocol address in AF_SYSTEM
     pub ss_sysaddr: u16,
+    /// reserved to the protocol use
     pub ss_reserved: [u32; 7],
 }

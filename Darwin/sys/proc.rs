@@ -9,6 +9,7 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct extern_proc_p_un_p_st1 {
+    /// Doubly-linked run/sleep queue.
     pub(crate) __p_forw: *mut proc,
     pub(crate) __p_back: *mut proc,
 }
@@ -17,51 +18,92 @@ pub struct extern_proc_p_un_p_st1 {
 #[derive(Clone, Copy)]
 pub union extern_proc_p_un {
     pub p_st1: extern_proc_p_un_p_st1,
+    /// process start time
     pub(crate) __p_starttime: timeval,
 }
 
+/// Exported fields for kern sysctls
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct extern_proc {
     pub p_un: extern_proc_p_un,
+    /// Address space.
     pub p_vmspace: *mut vmspace,
+    /// Signal actions, state (PROC ONLY).
     pub p_sigacts: *mut sigacts,
+    /// P_* flags.
     pub p_flag: c_int,
+    /// S* process status.
     pub p_stat: c_char,
+    /// Process identifier.
     pub p_pid: pid_t,
+    /// Save parent pid during ptrace. XXX
     pub p_oppid: pid_t,
+    /// Sideways return value from fdopen. XXX
     pub p_dupfd: c_int,
+    /// where user stack was allocated
     pub user_stack: caddr_t,
+    /// XXX Which thread is exiting?
     pub exit_thread: *mut c_void,
+    /// allow to debug
     pub p_debugger: c_int,
+    /// indication to suspend
     pub sigwait: boolean_t,
+    /// Time averaged value of p_cpticks.
     pub p_estcpu: c_uint,
+    /// Ticks of cpu time.
     pub p_cpticks: c_int,
+    /// %cpu for this process during p_swtime
     pub p_pctcpu: fixpt_t,
+    /// Sleep address.
     pub p_wchan: *mut c_void,
+    /// Reason for sleep.
     pub p_wmesg: *mut c_char,
+    /// Time swapped in or out.
     pub p_swtime: c_uint,
+    /// Time since last blocked.
     pub p_slptime: c_uint,
+    /// Alarm timer.
     pub p_realtimer: itimerval,
+    /// Real time.
     pub p_rtime: timeval,
+    /// Statclock hits in user mode.
     pub p_uticks: u_quad_t,
+    /// Statclock hits in system mode.
     pub p_sticks: u_quad_t,
+    /// Statclock hits processing intr.
     pub p_iticks: u_quad_t,
+    /// Kernel trace points.
     pub p_traceflag: c_int,
+    /// Trace to vnode.
     pub p_tracep: *mut vnode,
+    /// DEPRECATED.
     pub p_siglist: c_int,
+    /// Vnode of executable.
     pub p_textvp: *mut vnode,
+    /// If non-zero, don't swap.
     pub p_holdcnt: c_int,
+    /// DEPRECATED.
     pub p_sigmask: sigset_t,
+    /// Signals being ignored.
     pub p_sigignore: sigset_t,
+    /// Signals being caught by user.
     pub p_sigcatch: sigset_t,
+    /// Process priority.
     pub p_priority: c_uchar,
+    /// User-priority based on p_cpu and p_nice.
     pub p_usrpri: c_uchar,
+    /// Process "nice" value.
     pub p_nice: c_char,
     pub p_comm: [c_char; 17],
+    /// Pointer to process group.
     pub p_pgrp: *mut pgrp,
+    /// Kernel virtual addr of u-area (PROC ONLY).
     pub p_addr: *mut user,
+    /// Exit status for wait; also stop signal.
     pub p_xstat: c_ushort,
+    /// Accounting flags.
     pub p_acflag: c_ushort,
+    /// Exit information. XXX
     pub p_ru: *mut rusage,
 }

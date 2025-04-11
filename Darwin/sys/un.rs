@@ -4,10 +4,14 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// [XSI] Definitions for UNIX IPC domain.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_un {
+    /// sockaddr len including null
     pub sun_len: c_uchar,
+    /// [XSI] AF_UNIX
     pub sun_family: sa_family_t,
+    /// [XSI] path name (gag)
     pub sun_path: [c_char; 104],
 }

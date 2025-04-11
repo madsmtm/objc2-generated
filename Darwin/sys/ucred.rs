@@ -33,11 +33,16 @@ unsafe impl RefEncode for posix_cred {
 
 pub type posix_cred_t = *mut posix_cred;
 
+/// This is the external representation of struct ucred.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xucred {
+    /// structure layout version
     pub cr_version: c_uint,
+    /// effective user id
     pub cr_uid: uid_t,
+    /// number of advisory groups
     pub cr_ngroups: c_short,
+    /// advisory group list
     pub cr_groups: [gid_t; 16],
 }

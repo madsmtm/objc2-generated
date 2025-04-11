@@ -4,12 +4,20 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Pipe buffer information.
+/// Separate in, out, cnt are used to simplify calculations.
+/// Buffered write is active when the buffer.cnt field is set.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pipebuf {
+    /// number of chars currently in buffer
     pub cnt: c_uint,
+    /// in pointer
     pub r#in: c_uint,
+    /// out pointer
     pub out: c_uint,
+    /// size of buffer
     pub size: c_uint,
+    /// kva of buffer
     pub buffer: caddr_t,
 }

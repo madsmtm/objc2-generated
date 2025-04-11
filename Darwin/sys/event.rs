@@ -7,23 +7,36 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kevent {
+    /// identifier for this event
     pub ident: usize,
+    /// filter for event
     pub filter: i16,
+    /// general flags
     pub flags: u16,
+    /// filter-specific flags
     pub fflags: u32,
+    /// filter-specific data
     pub data: isize,
+    /// opaque user data identifier
     pub udata: *mut c_void,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kevent64_s {
+    /// identifier for this event
     pub ident: u64,
+    /// filter for event
     pub filter: i16,
+    /// general flags
     pub flags: u16,
+    /// filter-specific flags
     pub fflags: u32,
+    /// filter-specific data
     pub data: i64,
+    /// opaque user data identifier
     pub udata: u64,
+    /// filter-specific extensions
     pub ext: [u64; 2],
 }
 

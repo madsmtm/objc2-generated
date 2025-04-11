@@ -4,11 +4,16 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// Opaque types for use with posix_spawn() family functions.  Internals are
+/// not defined, and should not be accessed directly.  Types are defined as
+/// mandated by POSIX.
 pub type posix_spawnattr_t = *mut c_void;
 
 pub type posix_spawn_file_actions_t = *mut c_void;
 
 extern "C-unwind" {
+    /// gcc under c99 mode won't compile "[ __restrict]" by itself.  As a workaround,
+    /// a dummy argument name is added.
     pub fn posix_spawn(
         param1: *mut pid_t,
         param1: *const c_char,
@@ -187,6 +192,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set CPU Security Mitigation on the spawned process
+    /// This attribute affects all threads and is inherited on fork and exec
     pub fn posix_spawnattr_set_csm_np(attr: *const posix_spawnattr_t, flags: u32) -> c_int;
 }
 

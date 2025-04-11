@@ -20,15 +20,20 @@ pub type regoff_t = __darwin_off_t;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct regex_t {
     pub re_magic: c_int,
+    /// number of parenthesized subexpressions
     pub re_nsub: usize,
+    /// end pointer for REG_PEND
     pub re_endp: *const c_char,
+    /// none of your business :-)
     pub re_g: *mut re_guts,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct regmatch_t {
+    /// start of match
     pub rm_so: regoff_t,
+    /// end of match
     pub rm_eo: regoff_t,
 }
 
@@ -47,6 +52,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// gcc under c99 mode won't compile "[ __restrict]" by itself.  As a workaround,
+    /// a dummy argument name is added.
     pub fn regexec(
         param1: *const regex_t,
         param1: *const c_char,
@@ -61,6 +68,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Darwin extensions
     pub fn regncomp(
         param1: *mut regex_t,
         param1: *const c_char,

@@ -7,36 +7,100 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct aiocb {
+    /// File descriptor
     pub aio_fildes: c_int,
+    /// File offset
     pub aio_offset: off_t,
+    /// Location of buffer
     pub aio_buf: *mut c_void,
+    /// Length of transfer
     pub aio_nbytes: usize,
+    /// Request priority offset
     pub aio_reqprio: c_int,
+    /// Signal number and value
     pub aio_sigevent: sigevent,
+    /// Operation to be performed
     pub aio_lio_opcode: c_int,
 }
 
 extern "C-unwind" {
+    /// Attempt to cancel one or more asynchronous I/O requests currently outstanding
+    /// against file descriptor fd. The aiocbp argument points to the asynchronous I/O
+    /// control block for a particular request to be canceled.  If aiocbp is NULL, then
+    /// all outstanding cancelable asynchronous I/O requests against fd shall be canceled.
     pub fn aio_cancel(fd: c_int, aiocbp: *mut aiocb) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Return the error status associated with the aiocb structure referenced by the
+    /// aiocbp argument. The error status for an asynchronous I/O operation is the errno
+    /// value that would be set by the corresponding read(), write(),  or fsync()
+    /// operation.  If the operation has not yet completed, then the error status shall
+    /// be equal to [EINPROGRESS].
     pub fn aio_error(aiocbp: *const aiocb) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Asynchronously force all I/O operations associated with the file indicated by
+    /// the file descriptor aio_fildes member of the aiocb structure referenced by the
+    /// aiocbp argument and queued at the time of the call to aio_fsync() to the
+    /// synchronized I/O completion state.  The function call shall return when the
+    /// synchronization request has been initiated or queued.  op O_SYNC is the only
+    /// supported opertation at this time.
+    /// The aiocbp argument refers to an asynchronous I/O control block. The aiocbp
+    /// value may be used as an argument to aio_error() and aio_return() in order to
+    /// determine the error status and return status, respectively, of the asynchronous
+    /// operation while it is proceeding.  When the request is queued, the error status
+    /// for the operation is [EINPROGRESS]. When all data has been successfully
+    /// transferred, the error status shall be reset to reflect the success or failure
+    /// of the operation.
     pub fn aio_fsync(op: c_int, aiocbp: *mut aiocb) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Read aiocbp->aio_nbytes from the file associated with aiocbp->aio_fildes into
+    /// the buffer pointed to by aiocbp->aio_buf.  The function call shall return when
+    /// the read request has been initiated or queued.
+    /// The aiocbp value may be used as an argument to aio_error() and aio_return() in
+    /// order to determine the error status and return status, respectively, of the
+    /// asynchronous operation while it is proceeding. If an error condition is
+    /// encountered during queuing, the function call shall return without having
+    /// initiated or queued the request. The requested operation takes place at the
+    /// absolute position in the file as given by aio_offset, as if lseek() were called
+    /// immediately prior to the operation with an offset equal to aio_offset and a
+    /// whence equal to SEEK_SET.  After a successful call to enqueue an asynchronous
+    /// I/O operation, the value of the file offset for the file is unspecified.
     pub fn aio_read(aiocbp: *mut aiocb) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Return the return status associated with the aiocb structure referenced by
+    /// the aiocbp argument.  The return status for an asynchronous I/O operation is
+    /// the value that would be returned by the corresponding read(), write(), or
+    /// fsync() function call.  If the error status for the operation is equal to
+    /// [EINPROGRESS], then the return status for the operation is undefined.  The
+    /// aio_return() function may be called exactly once to retrieve the return status
+    /// of a given asynchronous operation; thereafter, if the same aiocb structure
+    /// is used in a call to aio_return() or aio_error(), an error may be returned.
+    /// When the aiocb structure referred to by aiocbp is used to submit another
+    /// asynchronous operation, then aio_return() may be successfully used to
+    /// retrieve the return status of that operation.
     pub fn aio_return(aiocbp: *mut aiocb) -> isize;
 }
 
 extern "C-unwind" {
+    /// Suspend the calling thread until at least one of the asynchronous I/O
+    /// operations referenced by the aiocblist argument has completed, until a signal
+    /// interrupts the function, or, if timeout is not NULL, until the time
+    /// interval specified by timeout has passed.  If any of the aiocb structures
+    /// in the aiocblist correspond to completed asynchronous I/O operations (that is,
+    /// the error status for the operation is not equal to [EINPROGRESS]) at the
+    /// time of the call, the function shall return without suspending the calling
+    /// thread.  The aiocblist argument is an array of pointers to asynchronous I/O
+    /// control blocks.  The nent argument indicates the number of elements in the
+    /// array.  Each aiocb structure pointed to has been used in initiating an
+    /// asynchronous I/O request via aio_read(), aio_write(), or lio_listio(). This
+    /// array may contain NULL pointers, which are ignored.
     #[cfg_attr(target_vendor = "apple", link_name = "aio_suspend")]
     pub fn aio_suspend(
         aiocblist: *mut *const aiocb,
@@ -46,10 +110,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Write aiocbp->aio_nbytes to the file associated with aiocbp->aio_fildes from
+    /// the buffer pointed to by aiocbp->aio_buf.  The function shall return when the
+    /// write request has been initiated or, at a minimum, queued.
+    /// The aiocbp argument may be used as an argument to aio_error() and aio_return()
+    /// in order to determine the error status and return status, respectively, of the
+    /// asynchronous operation while it is proceeding.
     pub fn aio_write(aiocbp: *mut aiocb) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Initiate a list of I/O requests with a single function call.  The mode
+    /// argument takes one of the values LIO_WAIT or LIO_NOWAIT and determines whether
+    /// the function returns when the I/O operations have been completed, or as soon
+    /// as the operations have been queued.  If the mode argument is LIO_WAIT, the
+    /// function shall wait until all I/O is complete and the sig argument shall be
+    /// ignored.
+    /// If the mode argument is LIO_NOWAIT, the function shall return immediately, and
+    /// asynchronous notification shall occur, according to the sig argument, when all
+    /// the I/O operations complete.  If sig is NULL, then no asynchronous notification
+    /// shall occur.
     pub fn lio_listio(
         mode: c_int,
         aiocblist: *mut *const aiocb,

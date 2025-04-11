@@ -125,6 +125,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Return resource usage information for the given pid, which can be a live process or a zombie.
+    ///
+    /// Returns 0 on success; or -1 on failure, with errno set to indicate the specific error.
     pub fn proc_pid_rusage(pid: c_int, flavor: c_int, buffer: *mut rusage_info_t) -> c_int;
 }
 
@@ -186,18 +189,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// NO_SMT means that on an SMT CPU, this thread must be scheduled alone,
+    /// with the paired CPU idle.
+    ///
+    /// Set NO_SMT on the current proc (all existing and future threads)
+    /// This attribute is inherited on fork and exec
     pub fn proc_set_no_smt() -> c_int;
 }
 
 extern "C-unwind" {
+    /// Set NO_SMT on the current thread
     pub fn proc_setthread_no_smt() -> c_int;
 }
 
 extern "C-unwind" {
+    /// CPU Security Mitigation APIs
+    ///
+    /// Set CPU security mitigation on the current proc (all existing and future threads)
+    /// This attribute is inherited on fork and exec
     pub fn proc_set_csm(flags: u32) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Set CPU security mitigation on the current thread
     pub fn proc_setthread_csm(flags: u32) -> c_int;
 }
 

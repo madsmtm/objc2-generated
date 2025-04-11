@@ -689,22 +689,31 @@ pub union in6_addr___u6_addr {
     pub(crate) __u6_addr32: [u32; 4],
 }
 
+/// IPv6 address
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_addr {
+    /// 128-bit IP6 address
     pub(crate) __u6_addr: in6_addr___u6_addr,
 }
 
+/// IPv6 address
 pub type in6_addr_t = in6_addr;
 
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct sockaddr_in6 {
+    /// length of this struct(sa_family_t)
     pub sin6_len: u8,
+    /// AF_INET6 (sa_family_t)
     pub sin6_family: sa_family_t,
+    /// Transport layer port # (in_port_t)
     pub sin6_port: in_port_t,
+    /// IP6 flow information
     pub sin6_flowinfo: u32,
+    /// IP6 address
     pub sin6_addr: in6_addr,
+    /// scope zone index
     pub sin6_scope_id: u32,
 }
 
@@ -732,6 +741,7 @@ extern "C" {
     pub static in6addr_linklocal_allv2routers: in6_addr;
 }
 
+/// Argument structure for IPV6_JOIN_GROUP and IPV6_LEAVE_GROUP.
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ipv6_mreq {
@@ -739,16 +749,21 @@ pub struct ipv6_mreq {
     pub ipv6mr_interface: c_uint,
 }
 
+/// IPV6_2292PKTINFO: Packet information(RFC2292 sec 5)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in6_pktinfo {
+    /// src/dst IPv6 address
     pub ipi6_addr: in6_addr,
+    /// send/recv interface index
     pub ipi6_ifindex: c_uint,
 }
 
+/// Control structure for IPV6_RECVPATHMTU socket option.
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ip6_mtuinfo {
+    /// or sockaddr_storage?
     pub ip6m_addr: sockaddr_in6,
     pub ip6m_mtu: u32,
 }
@@ -1009,6 +1024,7 @@ pub struct Float80 {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Float96 {
+    /// the second 16-bits are undefined
     pub exp: [i16; 2],
     pub man: [u16; 4],
 }
@@ -1163,6 +1179,7 @@ pub const kNilOptions: c_uint = 0;
 
 pub const kVariableLengthArray: c_uint = 1;
 
+/// "????" QuickTime 3.0: default unknown ResType or OSType
 pub const kUnknownType: c_uint = 0x3F3F3F3F;
 
 /// ******************************************************************************
@@ -1242,8 +1259,21 @@ pub type Str27 = ArrayUnknownABI<[c_uchar; 28]>;
 
 pub type Str15 = ArrayUnknownABI<[c_uchar; 16]>;
 
+/// The type Str32 is used in many AppleTalk based data structures.
+/// It holds up to 32 one byte chars.  The problem is that with the
+/// length byte it is 33 bytes long.  This can cause weird alignment
+/// problems in structures.  To fix this the type "Str32Field" has
+/// been created.  It should only be used to hold 32 chars, but
+/// it is 34 bytes long so that there are no alignment problems.
 pub type Str32Field = ArrayUnknownABI<[c_uchar; 34]>;
 
+/// QuickTime 3.0:
+/// The type StrFileName is used to make MacOS structs work
+/// cross-platform.  For example FSSpec or SFReply previously
+/// contained a Str63 field.  They now contain a StrFileName
+/// field which is the same when targeting the MacOS but is
+/// a 256 char buffer for Win32 and unix, allowing them to
+/// contain long file names.
 pub type StrFileName = Str63;
 
 pub type StringPtr = *mut c_uchar;
@@ -1271,6 +1301,8 @@ pub type ConstStrFileNameParam = ConstStr63Param;
 /// Process Manager type ProcessSerialNumber (previously in Processes.h)
 ///
 /// *******************************************************************************
+///
+/// type for unique process identifier
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ProcessSerialNumber {
@@ -1385,28 +1417,42 @@ pub type TimeBase = *mut TimeBaseRecord;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct TimeRecord {
+    /// units (duration or absolute)
     pub value: CompTimeValue,
+    /// units per second
     pub scale: TimeScale,
+    /// refernce to the time base
     pub base: TimeBase,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NumVersion {
+    /// revision level of non-released version
     pub nonRelRev: u8,
+    /// stage code: dev, alpha, beta, final
     pub stage: u8,
+    /// 2nd
+    /// &
+    /// 3rd part of version number share a byte
     pub minorAndBugRev: u8,
+    /// 1st part of version number in BCD
     pub majorRev: u8,
 }
 
+/// Version Release Stage Codes
 pub const developStage: c_uint = 0x20;
+/// Version Release Stage Codes
 pub const alphaStage: c_uint = 0x40;
+/// Version Release Stage Codes
 pub const betaStage: c_uint = 0x60;
+/// Version Release Stage Codes
 pub const finalStage: c_uint = 0x80;
 
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union NumVersionVariant {
+    /// NumVersionVariant is a wrapper so NumVersion can be accessed as a 32-bit value
     pub parts: NumVersion,
     pub whole: u32,
 }
@@ -1418,9 +1464,13 @@ pub type NumVersionVariantHandle = *mut NumVersionVariantPtr;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct VersRec {
+    /// encoded version number
     pub numericVersion: NumVersion,
+    /// country code from intl utilities
     pub countryCode: c_short,
+    /// version number string - worst case
     pub shortVersion: Str255,
+    /// longMessage string packed after shortVersion
     pub reserved: Str255,
 }
 
@@ -1453,30 +1503,64 @@ extern "C-unwind" {
     /// Debugger functions
     ///
     /// *******************************************************************************
+    ///
+    /// Debugger()
+    ///
+    /// Availability:
+    /// Mac OS X:         in version 10.0 and later in CoreServices.framework
+    /// CarbonLib:        in CarbonLib 1.0 and later
+    /// Non-Carbon CFM:   in InterfaceLib 7.1 and later
     #[deprecated]
     pub fn Debugger();
 }
 
 extern "C-unwind" {
+    /// DebugStr()
+    ///
+    /// Availability:
+    /// Mac OS X:         in version 10.0 and later in CoreServices.framework
+    /// CarbonLib:        in CarbonLib 1.0 and later
+    /// Non-Carbon CFM:   in InterfaceLib 7.1 and later
     #[deprecated]
     pub fn DebugStr(debugger_msg: ConstStr255Param);
 }
 
 extern "C-unwind" {
+    /// SADE break points
+    ///
+    /// SysBreak()
+    ///
+    /// Availability:
+    /// Mac OS X:         in version 10.0 and later in CoreServices.framework
+    /// CarbonLib:        in CarbonLib 1.0 and later
+    /// Non-Carbon CFM:   in InterfaceLib 7.1 and later
     #[deprecated]
     pub fn SysBreak();
 }
 
 extern "C-unwind" {
+    /// SysBreakStr()
+    ///
+    /// Availability:
+    /// Mac OS X:         in version 10.0 and later in CoreServices.framework
+    /// CarbonLib:        in CarbonLib 1.0 and later
+    /// Non-Carbon CFM:   in InterfaceLib 7.1 and later
     #[deprecated]
     pub fn SysBreakStr(debugger_msg: ConstStr255Param);
 }
 
 extern "C-unwind" {
+    /// SysBreakFunc()
+    ///
+    /// Availability:
+    /// Mac OS X:         in version 10.0 and later in CoreServices.framework
+    /// CarbonLib:        in CarbonLib 1.0 and later
+    /// Non-Carbon CFM:   in InterfaceLib 7.1 and later
     #[deprecated]
     pub fn SysBreakFunc(debugger_msg: ConstStr255Param);
 }
 
+/// Functions for byte reversed loads.
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _OSUnalignedU16 {
@@ -1525,8 +1609,10 @@ pub const OSBigEndian: c_uint = 2;
 
 // TODO: pub fn _OSWriteInt64(base: *mut c_void,byte_offset: usize,data: u64,);
 
+/// IO buffer - out-of-line array of characters.
 pub type io_buf_ptr_t = *mut c_char;
 
+/// must match device_types.defs
 pub type io_name_t = ArrayUnknownABI<[c_char; 128]>;
 
 pub type io_string_t = ArrayUnknownABI<[c_char; 512]>;
@@ -1550,25 +1636,33 @@ pub type io_async_ref64_t = ArrayUnknownABI<[io_user_reference_t; 8]>;
 pub type io_object_t = mach_port_t;
 
 extern "C" {
+    /// Master privileged I/O object for this host
     pub static main_device_port: mach_port_t;
 }
 
 extern "C-unwind" {
+    /// Create a heap based copy of a Block or simply add a reference to an existing one.
+    /// This must be paired with Block_release to recover memory, even when running
+    /// under Objective-C Garbage Collection.
     pub fn _Block_copy(a_block: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
+    /// Lose the reference, and if heap based and last reference, recover the memory
     pub fn _Block_release(a_block: *const c_void);
 }
 
 extern "C-unwind" {
+    /// Used by the compiler. Do not call this function yourself.
     pub fn _Block_object_assign(param1: *mut c_void, param1: *const c_void, param1: c_int);
 }
 
 extern "C-unwind" {
+    /// Used by the compiler. Do not call this function yourself.
     pub fn _Block_object_dispose(param1: *const c_void, param1: c_int);
 }
 
+/// Used by the compiler. Do not use these variables yourself.
 pub static _NSConcreteGlobalBlock: ArrayUnknownABI<[*mut c_void; 32]> = 32;
 
 pub static _NSConcreteStackBlock: ArrayUnknownABI<[*mut c_void; 32]> = 32;

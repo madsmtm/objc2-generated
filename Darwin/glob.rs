@@ -14,11 +14,19 @@ pub union glob_t_gl_closedir {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct glob_t {
+    /// Count of total paths so far.
     pub gl_pathc: usize,
+    /// Count of paths matching pattern.
     pub gl_matchc: c_int,
+    /// Reserved at beginning of gl_pathv.
     pub gl_offs: usize,
+    /// Copy of flags parameter to glob.
     pub gl_flags: c_int,
+    /// List of paths matching pattern.
     pub gl_pathv: *mut *mut c_char,
+    /// Alternate filesystem access methods for glob; replacement
+    /// versions of closedir(3), readdir(3), opendir(3), stat(2)
+    /// and lstat(2).
     pub gl_closedir: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
     pub gl_readdir: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut dirent>,
     pub gl_opendir: Option<unsafe extern "C-unwind" fn(*const c_char) -> *mut c_void>,

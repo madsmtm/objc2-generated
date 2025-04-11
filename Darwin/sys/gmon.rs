@@ -5,25 +5,38 @@ use core::ffi::*;
 use crate::ffi::*;
 
 pub const GMONVERSION: c_uint = 0x00051879;
+/// Structure prepended to gmon.out profiling data file.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct gmonhdr {
+    /// base pc address of sample buffer
     pub lpc: u32,
+    /// max pc address of sampled buffer
     pub hpc: u32,
+    /// size of sample buffer (plus this header)
     pub ncnt: u32,
+    /// version number
     pub version: i32,
+    /// profiling clock rate
     pub profrate: i32,
+    /// reserved
     pub spare: [i32; 3],
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct gmonhdr_64 {
+    /// base pc address of sample buffer
     pub lpc: u64,
+    /// max pc address of sampled buffer
     pub hpc: u64,
+    /// size of sample buffer (plus this header)
     pub ncnt: u32,
+    /// version number
     pub version: i32,
+    /// profiling clock rate
     pub profrate: i32,
+    /// reserved
     pub spare: [i32; 3],
 }
 
@@ -49,6 +62,8 @@ pub struct tostruct_64 {
 
 pub type tostruct_t = tostruct_64;
 
+/// a raw arc, with pointers to the calling site and
+/// the called site and a count.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rawarc {
@@ -67,6 +82,7 @@ pub struct rawarc_64 {
 
 pub type rawarc_t = rawarc_64;
 
+/// The profiling data structures are housed in this structure.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct gmonparam {
@@ -91,7 +107,9 @@ extern "C" {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct gmon_data {
+    /// constant for type of data following this struct
     pub r#type: u32,
+    /// size in bytes of the data following this struct
     pub size: u32,
 }
 

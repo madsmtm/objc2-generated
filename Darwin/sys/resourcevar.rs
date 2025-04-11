@@ -8,20 +8,32 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct uprof {
+    /// multiple prof buffers allowed
     pub pr_next: *mut uprof,
+    /// buffer base
     pub pr_base: caddr_t,
+    /// buffer size
     pub pr_size: u32,
+    /// pc offset
     pub pr_off: u32,
+    /// pc scaling
     pub pr_scale: u32,
+    /// temp storage for addr until AST
     pub pr_addr: u32,
+    /// temp storage for ticks until AST
     pub pr_ticks: u32,
 }
 
+/// Kernel per-process accounting / statistics
+/// (not necessarily resident except when running).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pstats {
+    /// stats for this proc
     pub p_ru: rusage,
+    /// (PL) sum of stats for reaped children
     pub p_cru: rusage,
     pub p_prof: uprof,
+    /// starting time ; compat only
     pub ps_start: u64,
 }

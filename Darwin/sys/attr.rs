@@ -21,22 +21,34 @@ pub type attrgroup_t = u32;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct attrlist {
+    /// number of attr. bit sets in list (should be 5)
     pub bitmapcount: c_ushort,
+    /// (to maintain 4-byte alignment)
     pub reserved: u16,
+    /// common attribute group
     pub commonattr: attrgroup_t,
+    /// Volume attribute group
     pub volattr: attrgroup_t,
+    /// directory attribute group
     pub dirattr: attrgroup_t,
+    /// file attribute group
     pub fileattr: attrgroup_t,
+    /// fork attribute group
     pub forkattr: attrgroup_t,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct attribute_set {
+    /// common attribute group
     pub commonattr: attrgroup_t,
+    /// Volume attribute group
     pub volattr: attrgroup_t,
+    /// directory attribute group
     pub dirattr: attrgroup_t,
+    /// file attribute group
     pub fileattr: attrgroup_t,
+    /// fork attribute group
     pub forkattr: attrgroup_t,
 }
 
@@ -51,10 +63,13 @@ pub struct attrreference {
 
 pub type attrreference_t = attrreference;
 
+/// XXX PPD This is derived from HFSVolumePriv.h and should perhaps be referenced from there?
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct diskextent {
+    /// first block allocated
     pub startblock: u32,
+    /// number of blocks allocated
     pub blockcount: u32,
 }
 
@@ -98,7 +113,10 @@ pub struct fssearchblock {
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct searchstate {
+    /// for SRCHFS_START
     pub ss_union_flags: u32,
+    /// 0 = top
     pub ss_union_layer: u32,
+    /// fs private
     pub ss_fsstate: [c_uchar; 548],
 }

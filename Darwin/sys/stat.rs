@@ -6,23 +6,44 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// XXX So deprecated, it would make your head spin
+///
+/// The old stat structure.  In fact, this is not used by the kernel at all,
+/// and should not be used by user space, and should be removed from this
+/// header file entirely (along with the unused cvtstat() prototype in
+/// vnode_internal.h).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ostat {
+    /// inode's device
     pub st_dev: u16,
+    /// inode's number
     pub st_ino: ino_t,
+    /// inode protection mode
     pub st_mode: mode_t,
+    /// number of hard links
     pub st_nlink: nlink_t,
+    /// user ID of the file's owner
     pub st_uid: u16,
+    /// group ID of the file's group
     pub st_gid: u16,
+    /// device type
     pub st_rdev: u16,
+    /// file size, in bytes
     pub st_size: i32,
+    /// time of last access
     pub st_atimespec: timespec,
+    /// time of last data modification
     pub st_mtimespec: timespec,
+    /// time of last file status change
     pub st_ctimespec: timespec,
+    /// optimal blocksize for I/O
     pub st_blksize: i32,
+    /// blocks allocated for file
     pub st_blocks: i32,
+    /// user defined flags for file
     pub st_flags: u32,
+    /// file generation number
     pub st_gen: u32,
 }
 
@@ -50,6 +71,7 @@ pub struct stat {
 }
 
 extern "C-unwind" {
+    /// [XSI]
     #[cfg_attr(target_vendor = "apple", link_name = "chmod")]
     pub fn chmod(param1: *const c_char, param1: mode_t) -> c_int;
 }

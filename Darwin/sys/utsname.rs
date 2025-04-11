@@ -7,10 +7,15 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct utsname {
+    /// [XSI] Name of OS
     pub sysname: [c_char; 256],
+    /// [XSI] Name of this network node
     pub nodename: [c_char; 256],
+    /// [XSI] Release level
     pub release: [c_char; 256],
+    /// [XSI] Version level
     pub version: [c_char; 256],
+    /// [XSI] Hardware type
     pub machine: [c_char; 256],
 }
 

@@ -3,9 +3,12 @@
 
 use crate::ffi::*;
 
+/// Tcp+ip header, after ip options removed.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcpiphdr {
+    /// overlaid ip structure
     pub ti_i: ipovly,
+    /// tcp header
     pub ti_t: tcphdr,
 }

@@ -3,6 +3,7 @@
 
 use crate::ffi::*;
 
+/// utun stats parameter structure
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct utun_stats_param {

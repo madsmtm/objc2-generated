@@ -4,6 +4,8 @@ use core::ffi::*;
 
 use crate::ffi::*;
 
+/// This belongs up in socket.h or socketvar.h, depending on how far the
+/// event bubbles up.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct net_event_data {
@@ -12,70 +14,129 @@ pub struct net_event_data {
     pub if_name: [c_char; 16],
 }
 
+/// Structure describing information about an interface
+/// which may be of interest to management entities.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_data {
+    /// ethernet, tokenring, etc
     pub ifi_type: c_uchar,
+    /// Length of frame type id
     pub ifi_typelen: c_uchar,
+    /// e.g., AUI, Thinnet, 10base-T, etc
     pub ifi_physical: c_uchar,
+    /// media address length
     pub ifi_addrlen: c_uchar,
+    /// media header length
     pub ifi_hdrlen: c_uchar,
+    /// polling quota for receive intrs
     pub ifi_recvquota: c_uchar,
+    /// polling quota for xmit intrs
     pub ifi_xmitquota: c_uchar,
+    /// for future use
     pub ifi_unused1: c_uchar,
+    /// maximum transmission unit
     pub ifi_mtu: u32,
+    /// routing metric (external only)
     pub ifi_metric: u32,
+    /// linespeed
     pub ifi_baudrate: u32,
+    /// packets received on interface
     pub ifi_ipackets: u32,
+    /// input errors on interface
     pub ifi_ierrors: u32,
+    /// packets sent on interface
     pub ifi_opackets: u32,
+    /// output errors on interface
     pub ifi_oerrors: u32,
+    /// collisions on csma interfaces
     pub ifi_collisions: u32,
+    /// total number of octets received
     pub ifi_ibytes: u32,
+    /// total number of octets sent
     pub ifi_obytes: u32,
+    /// packets received via multicast
     pub ifi_imcasts: u32,
+    /// packets sent via multicast
     pub ifi_omcasts: u32,
+    /// dropped on input, this interface
     pub ifi_iqdrops: u32,
+    /// destined for unsupported protocol
     pub ifi_noproto: u32,
+    /// usec spent receiving when timing
     pub ifi_recvtiming: u32,
+    /// usec spent xmitting when timing
     pub ifi_xmittiming: u32,
+    /// time of last administrative change
     pub ifi_lastchange: timeval32,
+    /// used to be the default_proto
     pub ifi_unused2: u32,
+    /// HW offload capabilities
     pub ifi_hwassist: u32,
+    /// for future use
     pub ifi_reserved1: u32,
+    /// for future use
     pub ifi_reserved2: u32,
 }
 
+/// Structure describing information about an interface
+/// which may be of interest to management entities.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct if_data64 {
+    /// ethernet, tokenring, etc
     pub ifi_type: c_uchar,
+    /// Length of frame type id
     pub ifi_typelen: c_uchar,
+    /// e.g., AUI, Thinnet, 10base-T, etc
     pub ifi_physical: c_uchar,
+    /// media address length
     pub ifi_addrlen: c_uchar,
+    /// media header length
     pub ifi_hdrlen: c_uchar,
+    /// polling quota for receive intrs
     pub ifi_recvquota: c_uchar,
+    /// polling quota for xmit intrs
     pub ifi_xmitquota: c_uchar,
+    /// for future use
     pub ifi_unused1: c_uchar,
+    /// maximum transmission unit
     pub ifi_mtu: u32,
+    /// routing metric (external only)
     pub ifi_metric: u32,
+    /// linespeed
     pub ifi_baudrate: u64,
+    /// packets received on interface
     pub ifi_ipackets: u64,
+    /// input errors on interface
     pub ifi_ierrors: u64,
+    /// packets sent on interface
     pub ifi_opackets: u64,
+    /// output errors on interface
     pub ifi_oerrors: u64,
+    /// collisions on csma interfaces
     pub ifi_collisions: u64,
+    /// total number of octets received
     pub ifi_ibytes: u64,
+    /// total number of octets sent
     pub ifi_obytes: u64,
+    /// packets received via multicast
     pub ifi_imcasts: u64,
+    /// packets sent via multicast
     pub ifi_omcasts: u64,
+    /// dropped on input, this interface
     pub ifi_iqdrops: u64,
+    /// destined for unsupported protocol
     pub ifi_noproto: u64,
+    /// usec spent receiving when timing
     pub ifi_recvtiming: u32,
+    /// usec spent xmitting when timing
     pub ifi_xmittiming: u32,
+    /// time of last administrative change
     pub ifi_lastchange: timeval32,
 }
 
+/// Structure defining a queue for a network interface.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifqueue {

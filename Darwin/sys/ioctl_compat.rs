@@ -7,31 +7,48 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tchars {
+    /// interrupt
     pub t_intrc: c_char,
+    /// quit
     pub t_quitc: c_char,
+    /// start output
     pub t_startc: c_char,
+    /// stop output
     pub t_stopc: c_char,
+    /// end-of-file
     pub t_eofc: c_char,
+    /// input delimiter (like nl)
     pub t_brkc: c_char,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ltchars {
+    /// stop process signal
     pub t_suspc: c_char,
+    /// delayed stop process signal
     pub t_dsuspc: c_char,
+    /// reprint line
     pub t_rprntc: c_char,
+    /// flush output (toggles)
     pub t_flushc: c_char,
+    /// word erase
     pub t_werasc: c_char,
+    /// literal next character
     pub t_lnextc: c_char,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sgttyb {
+    /// input speed
     pub sg_ispeed: c_char,
+    /// output speed
     pub sg_ospeed: c_char,
+    /// erase character
     pub sg_erase: c_char,
+    /// kill character
     pub sg_kill: c_char,
+    /// mode flags
     pub sg_flags: c_short,
 }

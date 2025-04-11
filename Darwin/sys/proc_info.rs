@@ -7,6 +7,7 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_bsdinfo {
+    /// 64bit; emulated etc
     pub pbi_flags: u32,
     pub pbi_status: u32,
     pub pbi_xstatus: u32,
@@ -18,13 +19,17 @@ pub struct proc_bsdinfo {
     pub pbi_rgid: gid_t,
     pub pbi_svuid: uid_t,
     pub pbi_svgid: gid_t,
+    /// reserved
     pub rfu_1: u32,
     pub pbi_comm: [c_char; 16],
+    /// empty if no name is registered
     pub pbi_name: [c_char; 32],
     pub pbi_nfiles: u32,
     pub pbi_pgid: u32,
     pub pbi_pjobc: u32,
+    /// controlling tty dev
     pub e_tdev: u32,
+    /// tty process group id
     pub e_tpgid: u32,
     pub pbi_nice: i32,
     pub pbi_start_tvsec: u64,
@@ -34,41 +39,70 @@ pub struct proc_bsdinfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_bsdshortinfo {
+    /// process id
     pub pbsi_pid: u32,
+    /// process parent id
     pub pbsi_ppid: u32,
+    /// process perp id
     pub pbsi_pgid: u32,
+    /// p_stat value, SZOMB, SRUN, etc
     pub pbsi_status: u32,
+    /// upto 16 characters of process name
     pub pbsi_comm: [c_char; 16],
+    /// 64bit; emulated etc
     pub pbsi_flags: u32,
+    /// current uid on process
     pub pbsi_uid: uid_t,
+    /// current gid on process
     pub pbsi_gid: gid_t,
+    /// current ruid on process
     pub pbsi_ruid: uid_t,
+    /// current tgid on process
     pub pbsi_rgid: gid_t,
+    /// current svuid on process
     pub pbsi_svuid: uid_t,
+    /// current svgid on process
     pub pbsi_svgid: gid_t,
+    /// reserved for future use
     pub pbsi_rfu: u32,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_taskinfo {
+    /// virtual memory size (bytes)
     pub pti_virtual_size: u64,
+    /// resident memory size (bytes)
     pub pti_resident_size: u64,
+    /// total time
     pub pti_total_user: u64,
     pub pti_total_system: u64,
+    /// existing threads only
     pub pti_threads_user: u64,
     pub pti_threads_system: u64,
+    /// default policy for new threads
     pub pti_policy: i32,
+    /// number of page faults
     pub pti_faults: i32,
+    /// number of actual pageins
     pub pti_pageins: i32,
+    /// number of copy-on-write faults
     pub pti_cow_faults: i32,
+    /// number of messages sent
     pub pti_messages_sent: i32,
+    /// number of messages received
     pub pti_messages_received: i32,
+    /// number of mach system calls
     pub pti_syscalls_mach: i32,
+    /// number of unix system calls
     pub pti_syscalls_unix: i32,
+    /// number of context switches
     pub pti_csw: i32,
+    /// number of threads in the task
     pub pti_threadnum: i32,
+    /// number of running threads
     pub pti_numrunning: i32,
+    /// task priority
     pub pti_priority: i32,
 }
 
@@ -82,16 +116,27 @@ pub struct proc_taskallinfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_threadinfo {
+    /// user run time
     pub pth_user_time: u64,
+    /// system run time
     pub pth_system_time: u64,
+    /// scaled cpu usage percentage
     pub pth_cpu_usage: i32,
+    /// scheduling policy in effect
     pub pth_policy: i32,
+    /// run state (see below)
     pub pth_run_state: i32,
+    /// various flags (see below)
     pub pth_flags: i32,
+    /// number of seconds that thread
     pub pth_sleep_time: i32,
+    /// cur priority
     pub pth_curpri: i32,
+    /// priority
     pub pth_priority: i32,
+    /// max priority
     pub pth_maxpriority: i32,
+    /// thread name, if any
     pub pth_name: [c_char; 64],
 }
 
@@ -101,6 +146,7 @@ pub struct proc_regioninfo {
     pub pri_protection: u32,
     pub pri_max_protection: u32,
     pub pri_inheritance: u32,
+    /// shared, external pager, is submap
     pub pri_flags: u32,
     pub pri_offset: u64,
     pub pri_behavior: u32,
@@ -124,8 +170,11 @@ pub struct proc_regioninfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_workqueueinfo {
+    /// total number of workqueue threads
     pub pwq_nthreads: u32,
+    /// total number of running workqueue threads
     pub pwq_runthreads: u32,
+    /// total number of blocked workqueue threads
     pub pwq_blockedthreads: u32,
     pub pwq_state: u32,
 }
@@ -159,29 +208,51 @@ pub struct proc_exitreasoninfo {
     pub eri_kcd_buf: u64,
 }
 
+/// A copy of stat64 with static sized fields.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vinfo_stat {
+    /// [XSI] ID of device containing file
     pub vst_dev: u32,
+    /// [XSI] Mode of file (see below)
     pub vst_mode: u16,
+    /// [XSI] Number of hard links
     pub vst_nlink: u16,
+    /// [XSI] File serial number
     pub vst_ino: u64,
+    /// [XSI] User ID of the file
     pub vst_uid: uid_t,
+    /// [XSI] Group ID of the file
     pub vst_gid: gid_t,
+    /// [XSI] Time of last access
     pub vst_atime: i64,
+    /// nsec of last access
     pub vst_atimensec: i64,
+    /// [XSI] Last data modification time
     pub vst_mtime: i64,
+    /// last data modification nsec
     pub vst_mtimensec: i64,
+    /// [XSI] Time of last status change
     pub vst_ctime: i64,
+    /// nsec of last status change
     pub vst_ctimensec: i64,
+    /// File creation time(birth)
     pub vst_birthtime: i64,
+    /// nsec of File creation time
     pub vst_birthtimensec: i64,
+    /// [XSI] file size, in bytes
     pub vst_size: off_t,
+    /// [XSI] blocks allocated for file
     pub vst_blocks: i64,
+    /// [XSI] optimal blocksize for I/O
     pub vst_blksize: i32,
+    /// user defined flags for file
     pub vst_flags: u32,
+    /// file generation number
     pub vst_gen: u32,
+    /// [XSI] Device ID
     pub vst_rdev: u32,
+    /// RESERVED: DO NOT USE!
     pub vst_qspare: [i64; 2],
 }
 
@@ -198,6 +269,7 @@ pub struct vnode_info {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vnode_info_path {
     pub vip_vi: vnode_info,
+    /// tail end of it
     pub vip_path: [c_char; 1024],
 }
 
@@ -251,6 +323,7 @@ pub struct in4in6_addr {
     pub i46a_addr4: in_addr,
 }
 
+/// protocol dependent part
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union in_sockinfo_insi_faddr {
@@ -268,6 +341,7 @@ pub union in_sockinfo_insi_laddr {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_sockinfo_insi_v4 {
+    /// type of service
     pub in4_tos: c_uchar,
 }
 
@@ -283,15 +357,24 @@ pub struct in_sockinfo_insi_v6 {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct in_sockinfo {
+    /// foreign port
     pub insi_fport: c_int,
+    /// local port
     pub insi_lport: c_int,
+    /// generation count of this instance
     pub insi_gencnt: u64,
+    /// generic IP/datagram flags
     pub insi_flags: u32,
     pub insi_flow: u32,
+    /// ini_IPV4 or ini_IPV6
     pub insi_vflag: u8,
+    /// time to live proto
     pub insi_ip_ttl: u8,
+    /// reserved
     pub rfu_1: u32,
+    /// foreign host table entry
     pub insi_faddr: in_sockinfo_insi_faddr,
+    /// local host table entry
     pub insi_laddr: in_sockinfo_insi_laddr,
     pub insi_v4: in_sockinfo_insi_v4,
     pub insi_v6: in_sockinfo_insi_v6,
@@ -305,7 +388,9 @@ pub struct tcp_sockinfo {
     pub tcpsi_timer: [c_int; 4],
     pub tcpsi_mss: c_int,
     pub tcpsi_flags: u32,
+    /// reserved
     pub rfu_1: u32,
+    /// opaque handle of TCP protocol control block
     pub tcpsi_tp: u64,
 }
 
@@ -323,15 +408,21 @@ pub union un_sockinfo_unsi_caddr {
     pub ua_dummy: [c_char; 255],
 }
 
+/// Unix Domain Sockets
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct un_sockinfo {
+    /// opaque handle of connected socket
     pub unsi_conn_so: u64,
+    /// opaque handle of connected protocol control block
     pub unsi_conn_pcb: u64,
+    /// bound address
     pub unsi_addr: un_sockinfo_unsi_addr,
+    /// address of socket connected to
     pub unsi_caddr: un_sockinfo_unsi_caddr,
 }
 
+/// PF_NDRV Sockets
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ndrv_info {
@@ -340,6 +431,7 @@ pub struct ndrv_info {
     pub ndrvsi_if_name: [c_char; 16],
 }
 
+/// Kernel Event Sockets
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kern_event_info {
@@ -348,18 +440,24 @@ pub struct kern_event_info {
     pub kesi_subclass_filter: u32,
 }
 
+/// Kernel Control Sockets
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kern_ctl_info {
     pub kcsi_id: u32,
     pub kcsi_reg_unit: u32,
+    /// support flags
     pub kcsi_flags: u32,
+    /// request more than the default buffer size
     pub kcsi_recvbufsize: u32,
+    /// request more than the default buffer size
     pub kcsi_sendbufsize: u32,
     pub kcsi_unit: u32,
+    /// unique nke identifier, provided by DTS
     pub kcsi_name: [c_char; 96],
 }
 
+/// VSock Sockets
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vsock_sockinfo {
@@ -373,6 +471,7 @@ pub struct vsock_sockinfo {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockbuf_info {
     pub sbi_cc: u32,
+    /// SO_RCVBUF, SO_SNDBUF
     pub sbi_hiwat: u32,
     pub sbi_mbcnt: u32,
     pub sbi_mbmax: u32,
@@ -393,12 +492,19 @@ pub const SOCKINFO_VSOCK: c_uint = 7;
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union socket_info_soi_proto {
+    /// SOCKINFO_IN
     pub pri_in: in_sockinfo,
+    /// SOCKINFO_TCP
     pub pri_tcp: tcp_sockinfo,
+    /// SOCKINFO_UN
     pub pri_un: un_sockinfo,
+    /// SOCKINFO_NDRV
     pub pri_ndrv: ndrv_info,
+    /// SOCKINFO_KERN_EVENT
     pub pri_kern_event: kern_event_info,
+    /// SOCKINFO_KERN_CTL
     pub pri_kern_ctl: kern_ctl_info,
+    /// SOCKINFO_VSOCK
     pub pri_vsock: vsock_sockinfo,
 }
 
@@ -406,7 +512,9 @@ pub union socket_info_soi_proto {
 #[derive(Clone, Copy)]
 pub struct socket_info {
     pub soi_stat: vinfo_stat,
+    /// opaque handle of socket
     pub soi_so: u64,
+    /// opaque handle of protocol control block
     pub soi_pcb: u64,
     pub soi_type: c_int,
     pub soi_protocol: c_int,
@@ -423,6 +531,7 @@ pub struct socket_info {
     pub soi_rcv: sockbuf_info,
     pub soi_snd: sockbuf_info,
     pub soi_kind: c_int,
+    /// reserved
     pub rfu_1: u32,
     pub soi_proto: socket_info_soi_proto,
 }
@@ -470,6 +579,7 @@ pub struct pipe_info {
     pub pipe_handle: u64,
     pub pipe_peerhandle: u64,
     pub pipe_status: c_int,
+    /// reserved
     pub rfu_1: c_int,
 }
 
@@ -485,6 +595,7 @@ pub struct pipe_fdinfo {
 pub struct kqueue_info {
     pub kq_stat: vinfo_stat,
     pub kq_state: u32,
+    /// reserved
     pub rfu_1: u32,
 }
 
@@ -549,6 +660,7 @@ pub struct proc_channel_info {
     pub chi_port: u32,
     pub chi_type: u32,
     pub chi_flags: u32,
+    /// reserved
     pub rfu_1: u32,
 }
 

@@ -5,6 +5,7 @@ use core::ffi::*;
 use crate::ffi::*;
 
 extern "C-unwind" {
+    /// Obtain the full pathname of a file system object by id.
     pub fn fsgetpath(param1: *mut c_char, param1: usize, param1: *mut fsid_t, param1: u64)
         -> isize;
 }

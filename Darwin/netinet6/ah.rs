@@ -6,18 +6,27 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ah {
+    /// Next Header
     pub ah_nxt: u8,
+    /// Length of data, in 32bit
     pub ah_len: u8,
+    /// Reserved for future use
     pub ah_reserve: u16,
+    /// Security parameter index
     pub ah_spi: u32,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct newah {
+    /// Next Header
     pub ah_nxt: u8,
+    /// Length of data + 1, in 32bit
     pub ah_len: u8,
+    /// Reserved for future use
     pub ah_reserve: u16,
+    /// Security parameter index
     pub ah_spi: u32,
+    /// Sequence number field
     pub ah_seq: u32,
 }

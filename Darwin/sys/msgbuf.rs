@@ -9,7 +9,10 @@ use crate::ffi::*;
 pub struct msgbuf {
     pub msg_magic: c_int,
     pub msg_size: c_int,
+    /// write pointer
     pub msg_bufx: c_int,
+    /// read pointer
     pub msg_bufr: c_int,
+    /// buffer
     pub msg_bufc: *mut c_char,
 }

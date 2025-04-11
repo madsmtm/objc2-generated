@@ -167,6 +167,10 @@ pub union sadb_x_sa2_sadb_x_sa2_sequence {
     pub sadb_x_sa2_reserved2: u16,
 }
 
+/// XXX Additional SA Extension.
+/// mode: tunnel or transport
+/// reqid: to make SA unique nevertheless the address pair of SA are same.
+/// Mainly it's for VPN.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_x_sa2 {
@@ -177,25 +181,45 @@ pub struct sadb_x_sa2 {
     pub sadb_x_sa2_reqid: u32,
 }
 
+/// XXX Policy Extension
+///
+/// sizeof(struct sadb_x_policy) == 16
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_x_policy {
     pub sadb_x_policy_len: u16,
     pub sadb_x_policy_exttype: u16,
+    /// See policy type of ipsec.h
     pub sadb_x_policy_type: u16,
+    /// direction, see ipsec.h
     pub sadb_x_policy_dir: u8,
     pub sadb_x_policy_reserved: u8,
     pub sadb_x_policy_id: u32,
     pub sadb_x_policy_reserved2: u32,
 }
 
+/// When policy_type == IPSEC, it is followed by some of
+/// the ipsec policy request.
+/// [total length of ipsec policy requests]
+/// = (sadb_x_policy_len * sizeof(uint64_t) - sizeof(struct sadb_x_policy))
+///
+/// XXX IPsec Policy Request Extension
+///
+/// This structure is aligned 8 bytes.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sadb_x_ipsecrequest {
+    /// structure length aligned to 8 bytes.
+    /// This value is true length of bytes.
+    /// Not in units of 64 bits.
     pub sadb_x_ipsecrequest_len: u16,
+    /// See ipsec.h
     pub sadb_x_ipsecrequest_proto: u16,
+    /// See IPSEC_MODE_XX in ipsec.h.
     pub sadb_x_ipsecrequest_mode: u8,
+    /// See IPSEC_LEVEL_XX in ipsec.h
     pub sadb_x_ipsecrequest_level: u8,
+    /// See ipsec.h
     pub sadb_x_ipsecrequest_reqid: u16,
 }
 
@@ -204,14 +228,19 @@ pub struct sadb_x_ipsecrequest {
 pub struct sadb_session_id {
     pub sadb_session_id_len: u16,
     pub sadb_session_id_exttype: u16,
+    /// [0] is an arbitrary handle that means something only for requester
+    /// [1] is a global session id for lookups in the kernel and racoon.
     pub sadb_session_id_v: [u64; 2],
 }
 
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sastat {
+    /// SPI Value, network byte order
     pub spi: u32,
+    /// for lifetime
     pub created: u32,
+    /// CURRENT lifetime.
     pub lft_c: sadb_lifetime,
 }
 
