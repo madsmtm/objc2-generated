@@ -11,8 +11,8 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn pthread_create_from_mach_thread(
-        param1: NonNull<libc::pthread_t>,
-        param1: *const libc::pthread_attr_t,
+        param1: NonNull<pthread_t>,
+        param1: *const pthread_attr_t,
         param1: unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void,
         param1: *mut c_void,
     ) -> c_int;

@@ -9,31 +9,31 @@ use crate::ffi::*;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_aliasreq {
     pub ifra_name: [c_char; 16],
-    pub ifra_addr: libc::sockaddr_in,
-    pub ifra_broadaddr: libc::sockaddr_in,
-    pub ifra_mask: libc::sockaddr_in,
+    pub ifra_addr: sockaddr_in,
+    pub ifra_broadaddr: sockaddr_in,
+    pub ifra_mask: sockaddr_in,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_data {
-    pub link_data: libc::net_event_data,
-    pub ia_addr: libc::in_addr,
+    pub link_data: net_event_data,
+    pub ia_addr: in_addr,
     pub ia_net: u32,
     pub ia_netmask: u32,
     pub ia_subnet: u32,
     pub ia_subnetmask: u32,
-    pub ia_netbroadcast: libc::in_addr,
-    pub ia_dstaddr: libc::in_addr,
+    pub ia_netbroadcast: in_addr,
+    pub ia_dstaddr: in_addr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in_collision?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_collision {
-    pub link_data: libc::net_event_data,
-    pub ia_ipaddr: libc::in_addr,
+    pub link_data: net_event_data,
+    pub ia_ipaddr: in_addr,
     pub hw_len: c_uchar,
     pub hw_addr: *mut c_uchar,
 }
@@ -42,14 +42,14 @@ pub struct kev_in_collision {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_arpfailure {
-    pub link_data: libc::net_event_data,
+    pub link_data: net_event_data,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in_arpalive?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_in_arpalive {
-    pub link_data: libc::net_event_data,
+    pub link_data: net_event_data,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_in_portinuse?language=objc)

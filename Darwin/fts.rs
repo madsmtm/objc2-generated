@@ -18,10 +18,10 @@ pub union FTS_fts_options {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct FTS {
-    pub fts_cur: *mut libc::_ftsent,
+    pub fts_cur: *mut _ftsent,
     pub fts_child: *mut Self,
     pub fts_array: *mut *mut Self,
-    pub fts_dev: libc::dev_t,
+    pub fts_dev: dev_t,
     pub fts_path: *mut c_char,
     pub fts_rfd: c_int,
     pub fts_pathlen: c_int,
@@ -44,14 +44,14 @@ pub struct _ftsent {
     pub fts_symfd: c_int,
     pub fts_pathlen: c_ushort,
     pub fts_namelen: c_ushort,
-    pub fts_ino: libc::ino_t,
-    pub fts_dev: libc::dev_t,
-    pub fts_nlink: libc::nlink_t,
+    pub fts_ino: ino_t,
+    pub fts_dev: dev_t,
+    pub fts_nlink: nlink_t,
     pub fts_level: c_short,
     pub fts_info: c_ushort,
     pub fts_flags: c_ushort,
     pub fts_instr: c_ushort,
-    pub fts_statp: *mut libc::stat,
+    pub fts_statp: *mut stat,
     pub fts_name: [c_char; 1],
 }
 
@@ -60,12 +60,12 @@ pub type FTSENT = Self;
 
 #[inline]
 pub unsafe extern "C-unwind" fn fts_children(
-    param1: *mut libc::FTS,
+    param1: *mut FTS,
     param1: c_int,
-) -> Option<Retained<libc::FTSENT>> {
+) -> Option<Retained<FTSENT>> {
     extern "C-unwind" {
         #[cfg_attr(target_vendor = "apple", link_name = "fts_children")]
-        fn fts_children(param1: *mut libc::FTS, param1: c_int) -> *mut libc::FTSENT;
+        fn fts_children(param1: *mut FTS, param1: c_int) -> *mut FTSENT;
     }
     let ret = unsafe { fts_children(param1, param1) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -73,7 +73,7 @@ pub unsafe extern "C-unwind" fn fts_children(
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "fts_close")]
-    pub fn fts_close(param1: *mut libc::FTS) -> c_int;
+    pub fn fts_close(param1: *mut FTS) -> c_int;
 }
 
 extern "C-unwind" {
@@ -82,12 +82,9 @@ extern "C-unwind" {
         param1: *const *const c_char,
         param1: c_int,
         param1: Option<
-            unsafe extern "C-unwind" fn(
-                *mut *const libc::FTSENT,
-                *mut *const libc::FTSENT,
-            ) -> c_int,
+            unsafe extern "C-unwind" fn(*mut *const FTSENT, *mut *const FTSENT) -> c_int,
         >,
-    ) -> *mut libc::FTS;
+    ) -> *mut FTS;
 }
 
 extern "C-unwind" {
@@ -95,17 +92,15 @@ extern "C-unwind" {
     pub fn fts_open_b(
         param1: *const *const c_char,
         param1: c_int,
-        param1: Option<
-            &block2::Block<dyn Fn(*mut *const libc::FTSENT, *mut *const libc::FTSENT) -> c_int>,
-        >,
-    ) -> *mut libc::FTS;
+        param1: Option<&block2::Block<dyn Fn(*mut *const FTSENT, *mut *const FTSENT) -> c_int>>,
+    ) -> *mut FTS;
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn fts_read(param1: *mut libc::FTS) -> Option<Retained<libc::FTSENT>> {
+pub unsafe extern "C-unwind" fn fts_read(param1: *mut FTS) -> Option<Retained<FTSENT>> {
     extern "C-unwind" {
         #[cfg_attr(target_vendor = "apple", link_name = "fts_read")]
-        fn fts_read(param1: *mut libc::FTS) -> *mut libc::FTSENT;
+        fn fts_read(param1: *mut FTS) -> *mut FTSENT;
     }
     let ret = unsafe { fts_read(param1) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -113,5 +108,5 @@ pub unsafe extern "C-unwind" fn fts_read(param1: *mut libc::FTS) -> Option<Retai
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "fts_set")]
-    pub fn fts_set(param1: *mut libc::FTS, param1: Option<&libc::FTSENT>, param1: c_int) -> c_int;
+    pub fn fts_set(param1: *mut FTS, param1: Option<&FTSENT>, param1: c_int) -> c_int;
 }

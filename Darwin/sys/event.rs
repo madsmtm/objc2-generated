@@ -39,7 +39,7 @@ pub const eNoteExitReparentedDeprecated: c_uint = 0x00080000;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct klist {
-    pub slh_first: *mut libc::knote,
+    pub slh_first: *mut knote,
 }
 
 extern "C-unwind" {
@@ -49,22 +49,22 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn kevent(
         kq: c_int,
-        changelist: *const libc::kevent,
+        changelist: *const kevent,
         nchanges: c_int,
-        eventlist: *mut libc::kevent,
+        eventlist: *mut kevent,
         nevents: c_int,
-        timeout: *const libc::timespec,
+        timeout: *const timespec,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn kevent64(
         kq: c_int,
-        changelist: *const libc::kevent64_s,
+        changelist: *const kevent64_s,
         nchanges: c_int,
-        eventlist: *mut libc::kevent64_s,
+        eventlist: *mut kevent64_s,
         nevents: c_int,
         flags: c_uint,
-        timeout: *const libc::timespec,
+        timeout: *const timespec,
     ) -> c_int;
 }

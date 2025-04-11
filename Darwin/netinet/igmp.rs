@@ -11,7 +11,7 @@ pub struct igmp {
     pub igmp_type: c_uchar,
     pub igmp_code: c_uchar,
     pub igmp_cksum: c_ushort,
-    pub igmp_group: libc::in_addr,
+    pub igmp_group: in_addr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/igmpv3?language=objc)
@@ -21,7 +21,7 @@ pub struct igmpv3 {
     pub igmp_type: c_uchar,
     pub igmp_code: c_uchar,
     pub igmp_cksum: c_ushort,
-    pub igmp_group: libc::in_addr,
+    pub igmp_group: in_addr,
     pub igmp_misc: c_uchar,
     pub igmp_qqi: c_uchar,
     pub igmp_numsrc: c_ushort,
@@ -34,7 +34,7 @@ pub struct igmp_grouprec {
     pub ig_type: c_uchar,
     pub ig_datalen: c_uchar,
     pub ig_numsrc: c_ushort,
-    pub ig_group: libc::in_addr,
+    pub ig_group: in_addr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/igmp_report?language=objc)

@@ -7,12 +7,12 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tms {
-    pub tms_utime: libc::clock_t,
-    pub tms_stime: libc::clock_t,
-    pub tms_cutime: libc::clock_t,
-    pub tms_cstime: libc::clock_t,
+    pub tms_utime: clock_t,
+    pub tms_stime: clock_t,
+    pub tms_cutime: clock_t,
+    pub tms_cstime: clock_t,
 }
 
 extern "C-unwind" {
-    pub fn times(param1: *mut libc::tms) -> libc::clock_t;
+    pub fn times(param1: *mut tms) -> clock_t;
 }

@@ -120,7 +120,7 @@ extern "C-unwind" {
     ///
     /// Returns: Returns the new value.
     #[deprecated = "Use atomic_fetch_add_explicit(memory_order_relaxed) from <stdatomic.h> instead"]
-    pub fn OSAtomicAdd64(the_amount: i64, the_value: *mut libc::OSAtomic_int64_aligned64_t) -> i64;
+    pub fn OSAtomicAdd64(the_amount: i64, the_value: *mut OSAtomic_int64_aligned64_t) -> i64;
 }
 
 extern "C-unwind" {
@@ -148,10 +148,8 @@ extern "C-unwind" {
     ///
     /// ```
     #[deprecated = "Use atomic_fetch_add() from <stdatomic.h> instead"]
-    pub fn OSAtomicAdd64Barrier(
-        the_amount: i64,
-        the_value: *mut libc::OSAtomic_int64_aligned64_t,
-    ) -> i64;
+    pub fn OSAtomicAdd64Barrier(the_amount: i64, the_value: *mut OSAtomic_int64_aligned64_t)
+        -> i64;
 }
 
 extern "C-unwind" {
@@ -159,7 +157,7 @@ extern "C-unwind" {
     ///
     /// Returns: Returns the new value.
     #[deprecated = "Use atomic_fetch_add_explicit(memory_order_relaxed) from <stdatomic.h> instead"]
-    pub fn OSAtomicIncrement64(the_value: *mut libc::OSAtomic_int64_aligned64_t) -> i64;
+    pub fn OSAtomicIncrement64(the_value: *mut OSAtomic_int64_aligned64_t) -> i64;
 }
 
 extern "C-unwind" {
@@ -175,7 +173,7 @@ extern "C-unwind" {
     ///
     /// ```
     #[deprecated = "Use atomic_fetch_add() from <stdatomic.h> instead"]
-    pub fn OSAtomicIncrement64Barrier(the_value: *mut libc::OSAtomic_int64_aligned64_t) -> i64;
+    pub fn OSAtomicIncrement64Barrier(the_value: *mut OSAtomic_int64_aligned64_t) -> i64;
 }
 
 extern "C-unwind" {
@@ -183,7 +181,7 @@ extern "C-unwind" {
     ///
     /// Returns: Returns the new value.
     #[deprecated = "Use atomic_fetch_sub_explicit(memory_order_relaxed) from <stdatomic.h> instead"]
-    pub fn OSAtomicDecrement64(the_value: *mut libc::OSAtomic_int64_aligned64_t) -> i64;
+    pub fn OSAtomicDecrement64(the_value: *mut OSAtomic_int64_aligned64_t) -> i64;
 }
 
 extern "C-unwind" {
@@ -199,7 +197,7 @@ extern "C-unwind" {
     ///
     /// ```
     #[deprecated = "Use atomic_fetch_sub() from <stdatomic.h> instead"]
-    pub fn OSAtomicDecrement64Barrier(the_value: *mut libc::OSAtomic_int64_aligned64_t) -> i64;
+    pub fn OSAtomicDecrement64Barrier(the_value: *mut OSAtomic_int64_aligned64_t) -> i64;
 }
 
 extern "C-unwind" {
@@ -815,7 +813,7 @@ extern "C-unwind" {
     pub fn OSAtomicCompareAndSwap64(
         old_value: i64,
         new_value: i64,
-        the_value: *mut libc::OSAtomic_int64_aligned64_t,
+        the_value: *mut OSAtomic_int64_aligned64_t,
     ) -> bool;
 }
 
@@ -856,7 +854,7 @@ extern "C-unwind" {
     pub fn OSAtomicCompareAndSwap64Barrier(
         old_value: i64,
         new_value: i64,
-        the_value: *mut libc::OSAtomic_int64_aligned64_t,
+        the_value: *mut OSAtomic_int64_aligned64_t,
     ) -> bool;
 }
 
@@ -1072,7 +1070,7 @@ extern "C-unwind" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/osfifoqueuehead?language=objc)
-pub type OSFifoQueueHead = libc::UnknownStruct;
+pub type OSFifoQueueHead = UnknownStruct;
 
 extern "C-unwind" {
     /// Enqueue an element onto a list.
@@ -1114,7 +1112,7 @@ extern "C-unwind" {
     ///
     /// Note: This API is deprecated and no longer recommended
     #[deprecated = "No longer supported"]
-    pub fn OSAtomicFifoEnqueue(list: *mut libc::OSFifoQueueHead, new: *mut c_void, offset: usize);
+    pub fn OSAtomicFifoEnqueue(list: *mut OSFifoQueueHead, new: *mut c_void, offset: usize);
 }
 
 extern "C-unwind" {
@@ -1162,7 +1160,7 @@ extern "C-unwind" {
     ///
     /// Note: This API is deprecated and no longer recommended
     #[deprecated = "No longer supported"]
-    pub fn OSAtomicFifoDequeue(list: *mut libc::OSFifoQueueHead, offset: usize) -> *mut c_void;
+    pub fn OSAtomicFifoDequeue(list: *mut OSFifoQueueHead, offset: usize) -> *mut c_void;
 }
 
 /// Data type for a spinlock.
@@ -1192,7 +1190,7 @@ extern "C-unwind" {
     /// </code>
     /// if it took the lock successfully.
     #[deprecated = "Use os_unfair_lock_trylock() from <os/lock.h> instead"]
-    pub fn OSSpinLockTry(lock: *mut libc::OSSpinLock) -> bool;
+    pub fn OSSpinLockTry(lock: *mut OSSpinLock) -> bool;
 }
 
 extern "C-unwind" {
@@ -1201,17 +1199,17 @@ extern "C-unwind" {
     /// Although the lock operation spins, it employs various strategies to back
     /// off if the lock is held.
     #[deprecated = "Use os_unfair_lock_lock() from <os/lock.h> instead"]
-    pub fn OSSpinLockLock(lock: *mut libc::OSSpinLock);
+    pub fn OSSpinLockLock(lock: *mut OSSpinLock);
 }
 
 extern "C-unwind" {
     /// Unlocks a spinlock
     #[deprecated = "Use os_unfair_lock_unlock() from <os/lock.h> instead"]
-    pub fn OSSpinLockUnlock(lock: *mut libc::OSSpinLock);
+    pub fn OSSpinLockUnlock(lock: *mut OSSpinLock);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/osqueuehead?language=objc)
-pub type OSQueueHead = libc::UnknownStruct;
+pub type OSQueueHead = UnknownStruct;
 
 extern "C-unwind" {
     /// Enqueue an element onto a list.
@@ -1249,7 +1247,7 @@ extern "C-unwind" {
     /// __offset
     /// </code>
     /// value.
-    pub fn OSAtomicEnqueue(list: *mut libc::OSQueueHead, new: *mut c_void, offset: usize);
+    pub fn OSAtomicEnqueue(list: *mut OSQueueHead, new: *mut c_void, offset: usize);
 }
 
 extern "C-unwind" {
@@ -1297,5 +1295,5 @@ extern "C-unwind" {
     /// </code>
     /// if the
     /// list is empty.
-    pub fn OSAtomicDequeue(list: *mut libc::OSQueueHead, offset: usize) -> *mut c_void;
+    pub fn OSAtomicDequeue(list: *mut OSQueueHead, offset: usize) -> *mut c_void;
 }

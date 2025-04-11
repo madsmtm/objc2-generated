@@ -31,73 +31,66 @@ pub struct DIR {
     pub(crate) __padding: c_long,
     pub(crate) __dd_flags: c_int,
     pub(crate) __dd_lock: __darwin_pthread_mutex_t,
-    pub(crate) __dd_td: *mut libc::_telldir,
+    pub(crate) __dd_td: *mut _telldir,
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "closedir")]
-    pub fn closedir(param1: *mut libc::DIR) -> c_int;
+    pub fn closedir(param1: *mut DIR) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "opendir")]
-    pub fn opendir(param1: *const c_char) -> *mut libc::DIR;
+    pub fn opendir(param1: *const c_char) -> *mut DIR;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "readdir")]
-    pub fn readdir(param1: *mut libc::DIR) -> *mut libc::dirent;
+    pub fn readdir(param1: *mut DIR) -> *mut dirent;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "readdir_r")]
-    pub fn readdir_r(
-        param1: *mut libc::DIR,
-        param1: *mut libc::dirent,
-        param1: *mut *mut libc::dirent,
-    ) -> c_int;
+    pub fn readdir_r(param1: *mut DIR, param1: *mut dirent, param1: *mut *mut dirent) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "rewinddir")]
-    pub fn rewinddir(param1: *mut libc::DIR);
+    pub fn rewinddir(param1: *mut DIR);
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "seekdir")]
-    pub fn seekdir(param1: *mut libc::DIR, param1: c_long);
+    pub fn seekdir(param1: *mut DIR, param1: c_long);
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "telldir")]
-    pub fn telldir(param1: *mut libc::DIR) -> c_long;
+    pub fn telldir(param1: *mut DIR) -> c_long;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "fdopendir")]
-    pub fn fdopendir(param1: c_int) -> *mut libc::DIR;
+    pub fn fdopendir(param1: c_int) -> *mut DIR;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "alphasort")]
-    pub fn alphasort(param1: *mut *const libc::dirent, param1: *mut *const libc::dirent) -> c_int;
+    pub fn alphasort(param1: *mut *const dirent, param1: *mut *const dirent) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn dirfd(dirp: *mut libc::DIR) -> c_int;
+    pub fn dirfd(dirp: *mut DIR) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "scandir")]
     pub fn scandir(
         param1: *const c_char,
-        param1: *mut *mut *mut libc::dirent,
-        param1: Option<unsafe extern "C-unwind" fn(*const libc::dirent) -> c_int>,
+        param1: *mut *mut *mut dirent,
+        param1: Option<unsafe extern "C-unwind" fn(*const dirent) -> c_int>,
         param1: Option<
-            unsafe extern "C-unwind" fn(
-                *mut *const libc::dirent,
-                *mut *const libc::dirent,
-            ) -> c_int,
+            unsafe extern "C-unwind" fn(*mut *const dirent, *mut *const dirent) -> c_int,
         >,
     ) -> c_int;
 }
@@ -106,11 +99,9 @@ extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "scandir_b")]
     pub fn scandir_b(
         param1: *const c_char,
-        param1: *mut *mut *mut libc::dirent,
-        param1: Option<&block2::Block<dyn Fn(*const libc::dirent) -> c_int>>,
-        param1: Option<
-            &block2::Block<dyn Fn(*mut *const libc::dirent, *mut *const libc::dirent) -> c_int>,
-        >,
+        param1: *mut *mut *mut dirent,
+        param1: Option<&block2::Block<dyn Fn(*const dirent) -> c_int>>,
+        param1: Option<&block2::Block<dyn Fn(*mut *const dirent, *mut *const dirent) -> c_int>>,
     ) -> c_int;
 }
 
@@ -129,5 +120,5 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "__opendir2")]
-    pub fn __opendir2(param1: *const c_char, param1: c_int) -> *mut libc::DIR;
+    pub fn __opendir2(param1: *const c_char, param1: c_int) -> *mut DIR;
 }

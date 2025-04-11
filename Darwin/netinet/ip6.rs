@@ -22,7 +22,7 @@ pub struct ip6_hdrctl {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ip6_hdr_ip6_ctlun {
-    pub ip6_un1: libc::ip6_hdrctl,
+    pub ip6_un1: ip6_hdrctl,
     pub ip6_un2_vfc: u8,
 }
 
@@ -30,7 +30,7 @@ pub union ip6_hdr_ip6_ctlun {
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct ip6_hdr {
-    pub ip6_ctlun: libc::ip6_hdr_ip6_ctlun,
+    pub ip6_ctlun: ip6_hdr_ip6_ctlun,
     pub ip6_src: in6_addr,
     pub ip6_dst: in6_addr,
 }

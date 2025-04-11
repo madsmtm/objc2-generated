@@ -11,16 +11,16 @@ use crate::ffi::*;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ostat {
     pub st_dev: u16,
-    pub st_ino: libc::ino_t,
-    pub st_mode: libc::mode_t,
-    pub st_nlink: libc::nlink_t,
+    pub st_ino: ino_t,
+    pub st_mode: mode_t,
+    pub st_nlink: nlink_t,
     pub st_uid: u16,
     pub st_gid: u16,
     pub st_rdev: u16,
     pub st_size: i32,
-    pub st_atimespec: libc::timespec,
-    pub st_mtimespec: libc::timespec,
-    pub st_ctimespec: libc::timespec,
+    pub st_atimespec: timespec,
+    pub st_mtimespec: timespec,
+    pub st_ctimespec: timespec,
     pub st_blksize: i32,
     pub st_blocks: i32,
     pub st_flags: u32,
@@ -31,20 +31,20 @@ pub struct ostat {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct stat {
-    pub st_dev: libc::dev_t,
-    pub st_mode: libc::mode_t,
-    pub st_nlink: libc::nlink_t,
+    pub st_dev: dev_t,
+    pub st_mode: mode_t,
+    pub st_nlink: nlink_t,
     pub st_ino: __darwin_ino64_t,
-    pub st_uid: libc::uid_t,
-    pub st_gid: libc::gid_t,
-    pub st_rdev: libc::dev_t,
-    pub st_atimespec: libc::timespec,
-    pub st_mtimespec: libc::timespec,
-    pub st_ctimespec: libc::timespec,
-    pub st_birthtimespec: libc::timespec,
-    pub st_size: libc::off_t,
-    pub st_blocks: libc::blkcnt_t,
-    pub st_blksize: libc::blksize_t,
+    pub st_uid: uid_t,
+    pub st_gid: gid_t,
+    pub st_rdev: dev_t,
+    pub st_atimespec: timespec,
+    pub st_mtimespec: timespec,
+    pub st_ctimespec: timespec,
+    pub st_birthtimespec: timespec,
+    pub st_size: off_t,
+    pub st_blocks: blkcnt_t,
+    pub st_blksize: blksize_t,
     pub st_flags: u32,
     pub st_gen: u32,
     pub st_lspare: i32,
@@ -53,90 +53,76 @@ pub struct stat {
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "chmod")]
-    pub fn chmod(param1: *const c_char, param1: libc::mode_t) -> c_int;
+    pub fn chmod(param1: *const c_char, param1: mode_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "fchmod")]
-    pub fn fchmod(param1: c_int, param1: libc::mode_t) -> c_int;
+    pub fn fchmod(param1: c_int, param1: mode_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "fstat")]
-    pub fn fstat(param1: c_int, param1: *mut libc::stat) -> c_int;
+    pub fn fstat(param1: c_int, param1: *mut stat) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "lstat")]
-    pub fn lstat(param1: *const c_char, param1: *mut libc::stat) -> c_int;
+    pub fn lstat(param1: *const c_char, param1: *mut stat) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mkdir(param1: *const c_char, param1: libc::mode_t) -> c_int;
+    pub fn mkdir(param1: *const c_char, param1: mode_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mkfifo(param1: *const c_char, param1: libc::mode_t) -> c_int;
+    pub fn mkfifo(param1: *const c_char, param1: mode_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "stat")]
-    pub fn stat(param1: *const c_char, param1: *mut libc::stat) -> c_int;
+    pub fn stat(param1: *const c_char, param1: *mut stat) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mknod(param1: *const c_char, param1: libc::mode_t, param1: libc::dev_t) -> c_int;
+    pub fn mknod(param1: *const c_char, param1: mode_t, param1: dev_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn umask(param1: libc::mode_t) -> libc::mode_t;
+    pub fn umask(param1: mode_t) -> mode_t;
 }
 
 extern "C-unwind" {
-    pub fn fchmodat(
-        param1: c_int,
-        param1: *const c_char,
-        param1: libc::mode_t,
-        param1: c_int,
-    ) -> c_int;
+    pub fn fchmodat(param1: c_int, param1: *const c_char, param1: mode_t, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "fstatat")]
-    pub fn fstatat(
-        param1: c_int,
-        param1: *const c_char,
-        param1: *mut libc::stat,
-        param1: c_int,
-    ) -> c_int;
+    pub fn fstatat(param1: c_int, param1: *const c_char, param1: *mut stat, param1: c_int)
+        -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mkdirat(param1: c_int, param1: *const c_char, param1: libc::mode_t) -> c_int;
+    pub fn mkdirat(param1: c_int, param1: *const c_char, param1: mode_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mkfifoat(param1: c_int, param1: *const c_char, param1: libc::mode_t) -> c_int;
+    pub fn mkfifoat(param1: c_int, param1: *const c_char, param1: mode_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mknodat(
-        param1: c_int,
-        param1: *const c_char,
-        param1: libc::mode_t,
-        param1: libc::dev_t,
-    ) -> c_int;
+    pub fn mknodat(param1: c_int, param1: *const c_char, param1: mode_t, param1: dev_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn futimens(fd: c_int, times: ArrayUnknownABI<[libc::timespec; 2]>) -> c_int;
+    pub fn futimens(fd: c_int, times: ArrayUnknownABI<[timespec; 2]>) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn utimensat(
         fd: c_int,
         path: *const c_char,
-        times: ArrayUnknownABI<[libc::timespec; 2]>,
+        times: ArrayUnknownABI<[timespec; 2]>,
         flag: c_int,
     ) -> c_int;
 }
@@ -146,7 +132,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn chmodx_np(param1: *const c_char, param1: libc::filesec_t) -> c_int;
+    pub fn chmodx_np(param1: *const c_char, param1: filesec_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -154,12 +140,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn fchmodx_np(param1: c_int, param1: libc::filesec_t) -> c_int;
+    pub fn fchmodx_np(param1: c_int, param1: filesec_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "fstatx_np")]
-    pub fn fstatx_np(param1: c_int, param1: *mut libc::stat, param1: libc::filesec_t) -> c_int;
+    pub fn fstatx_np(param1: c_int, param1: *mut stat, param1: filesec_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -167,36 +153,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn lchmod(param1: *const c_char, param1: libc::mode_t) -> c_int;
+    pub fn lchmod(param1: *const c_char, param1: mode_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "lstatx_np")]
-    pub fn lstatx_np(
-        param1: *const c_char,
-        param1: *mut libc::stat,
-        param1: libc::filesec_t,
-    ) -> c_int;
+    pub fn lstatx_np(param1: *const c_char, param1: *mut stat, param1: filesec_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mkdirx_np(param1: *const c_char, param1: libc::filesec_t) -> c_int;
+    pub fn mkdirx_np(param1: *const c_char, param1: filesec_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mkfifox_np(param1: *const c_char, param1: libc::filesec_t) -> c_int;
+    pub fn mkfifox_np(param1: *const c_char, param1: filesec_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "statx_np")]
-    pub fn statx_np(
-        param1: *const c_char,
-        param1: *mut libc::stat,
-        param1: libc::filesec_t,
-    ) -> c_int;
+    pub fn statx_np(param1: *const c_char, param1: *mut stat, param1: filesec_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated]
-    pub fn umaskx_np(param1: libc::filesec_t) -> c_int;
+    pub fn umaskx_np(param1: filesec_t) -> c_int;
 }

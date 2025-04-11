@@ -19,15 +19,15 @@ pub struct secure_boot_cryptex_args {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/secure_boot_cryptex_args_t?language=objc)
-pub type secure_boot_cryptex_args_t = libc::secure_boot_cryptex_args;
+pub type secure_boot_cryptex_args_t = secure_boot_cryptex_args;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/graft_args?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union graft_args {
     pub max_size: [u8; 512],
-    pub sbc_args: libc::secure_boot_cryptex_args_t,
+    pub sbc_args: secure_boot_cryptex_args_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/graftdmg_args_un?language=objc)
-pub type graftdmg_args_un = libc::graft_args;
+pub type graftdmg_args_un = graft_args;

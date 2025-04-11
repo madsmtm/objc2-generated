@@ -12,5 +12,5 @@ pub struct pipebuf {
     pub r#in: c_uint,
     pub out: c_uint,
     pub size: c_uint,
-    pub buffer: libc::caddr_t,
+    pub buffer: caddr_t,
 }

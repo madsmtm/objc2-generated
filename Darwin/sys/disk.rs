@@ -32,7 +32,7 @@ pub struct dk_format_capacity_t {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_format_capacities_t {
-    pub capacities: *mut libc::dk_format_capacity_t,
+    pub capacities: *mut dk_format_capacity_t,
     pub capacitiesCount: u32,
     pub reserved0096: [u8; 4],
 }
@@ -51,7 +51,7 @@ pub struct dk_synchronize_t {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct dk_unmap_t {
-    pub extents: *mut libc::dk_extent_t,
+    pub extents: *mut dk_extent_t,
     pub extentsCount: u32,
     pub options: u32,
 }
@@ -86,7 +86,7 @@ pub struct dk_provision_status_t {
     pub options: u64,
     pub reserved: u32,
     pub extentsCount: u32,
-    pub extents: *mut libc::dk_provision_extent_t,
+    pub extents: *mut dk_provision_extent_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/dk_error_description_t?language=objc)

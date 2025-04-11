@@ -31,7 +31,7 @@ pub struct image_offset {
 extern "C-unwind" {
     pub fn backtrace_image_offsets(
         array: *const *const c_void,
-        image_offsets: *mut libc::image_offset,
+        image_offsets: *mut image_offset,
         size: c_int,
     );
 }

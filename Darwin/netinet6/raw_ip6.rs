@@ -7,11 +7,11 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rip6stat {
-    pub rip6s_ipackets: libc::u_quad_t,
-    pub rip6s_isum: libc::u_quad_t,
-    pub rip6s_badsum: libc::u_quad_t,
-    pub rip6s_nosock: libc::u_quad_t,
-    pub rip6s_nosockmcast: libc::u_quad_t,
-    pub rip6s_fullsock: libc::u_quad_t,
-    pub rip6s_opackets: libc::u_quad_t,
+    pub rip6s_ipackets: u_quad_t,
+    pub rip6s_isum: u_quad_t,
+    pub rip6s_badsum: u_quad_t,
+    pub rip6s_nosock: u_quad_t,
+    pub rip6s_nosockmcast: u_quad_t,
+    pub rip6s_fullsock: u_quad_t,
+    pub rip6s_opackets: u_quad_t,
 }

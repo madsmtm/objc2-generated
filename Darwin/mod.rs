@@ -705,7 +705,7 @@ pub type in6_addr_t = in6_addr;
 #[derive(Clone, Copy)]
 pub struct sockaddr_in6 {
     pub sin6_len: u8,
-    pub sin6_family: libc::sa_family_t,
+    pub sin6_family: sa_family_t,
     pub sin6_port: in_port_t,
     pub sin6_flowinfo: u32,
     pub sin6_addr: in6_addr,
@@ -773,14 +773,14 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn inet6_option_init(
         param1: *mut c_void,
-        param1: *mut *mut libc::cmsghdr,
+        param1: *mut *mut cmsghdr,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn inet6_option_append(
-        param1: *mut libc::cmsghdr,
+        param1: *mut cmsghdr,
         param1: *const u8,
         param1: c_int,
         param1: c_int,
@@ -789,7 +789,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn inet6_option_alloc(
-        param1: *mut libc::cmsghdr,
+        param1: *mut cmsghdr,
         param1: c_int,
         param1: c_int,
         param1: c_int,
@@ -797,15 +797,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn inet6_option_next(param1: *const libc::cmsghdr, param1: *mut *mut u8) -> c_int;
+    pub fn inet6_option_next(param1: *const cmsghdr, param1: *mut *mut u8) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inet6_option_find(
-        param1: *const libc::cmsghdr,
-        param1: *mut *mut u8,
-        param1: c_int,
-    ) -> c_int;
+    pub fn inet6_option_find(param1: *const cmsghdr, param1: *mut *mut u8, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -813,51 +809,47 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn inet6_rthdr_init(param1: *mut c_void, param1: c_int) -> *mut libc::cmsghdr;
+    pub fn inet6_rthdr_init(param1: *mut c_void, param1: c_int) -> *mut cmsghdr;
 }
 
 extern "C-unwind" {
-    pub fn inet6_rthdr_add(
-        param1: *mut libc::cmsghdr,
-        param1: *const in6_addr,
-        param1: c_uint,
-    ) -> c_int;
+    pub fn inet6_rthdr_add(param1: *mut cmsghdr, param1: *const in6_addr, param1: c_uint) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inet6_rthdr_lasthop(param1: *mut libc::cmsghdr, param1: c_uint) -> c_int;
+    pub fn inet6_rthdr_lasthop(param1: *mut cmsghdr, param1: c_uint) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inet6_rthdr_segments(param1: *const libc::cmsghdr) -> c_int;
+    pub fn inet6_rthdr_segments(param1: *const cmsghdr) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inet6_rthdr_getaddr(param1: *mut libc::cmsghdr, param1: c_int) -> *mut in6_addr;
+    pub fn inet6_rthdr_getaddr(param1: *mut cmsghdr, param1: c_int) -> *mut in6_addr;
 }
 
 extern "C-unwind" {
-    pub fn inet6_rthdr_getflags(param1: *const libc::cmsghdr, param1: c_int) -> c_int;
+    pub fn inet6_rthdr_getflags(param1: *const cmsghdr, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inet6_opt_init(param1: *mut c_void, param1: libc::socklen_t) -> c_int;
+    pub fn inet6_opt_init(param1: *mut c_void, param1: socklen_t) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn inet6_opt_append(
         param1: *mut c_void,
-        param1: libc::socklen_t,
+        param1: socklen_t,
         param1: c_int,
         param1: u8,
-        param1: libc::socklen_t,
+        param1: socklen_t,
         param1: u8,
         param1: *mut *mut c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inet6_opt_finish(param1: *mut c_void, param1: libc::socklen_t, param1: c_int) -> c_int;
+    pub fn inet6_opt_finish(param1: *mut c_void, param1: socklen_t, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -865,17 +857,17 @@ extern "C-unwind" {
         param1: *mut c_void,
         param1: c_int,
         param1: *mut c_void,
-        param1: libc::socklen_t,
+        param1: socklen_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn inet6_opt_next(
         param1: *mut c_void,
-        param1: libc::socklen_t,
+        param1: socklen_t,
         param1: c_int,
         param1: *mut u8,
-        param1: *mut libc::socklen_t,
+        param1: *mut socklen_t,
         param1: *mut *mut c_void,
     ) -> c_int;
 }
@@ -883,10 +875,10 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn inet6_opt_find(
         param1: *mut c_void,
-        param1: libc::socklen_t,
+        param1: socklen_t,
         param1: c_int,
         param1: u8,
-        param1: *mut libc::socklen_t,
+        param1: *mut socklen_t,
         param1: *mut *mut c_void,
     ) -> c_int;
 }
@@ -896,18 +888,18 @@ extern "C-unwind" {
         param1: *mut c_void,
         param1: c_int,
         param1: *mut c_void,
-        param1: libc::socklen_t,
+        param1: socklen_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inet6_rth_space(param1: c_int, param1: c_int) -> libc::socklen_t;
+    pub fn inet6_rth_space(param1: c_int, param1: c_int) -> socklen_t;
 }
 
 extern "C-unwind" {
     pub fn inet6_rth_init(
         param1: *mut c_void,
-        param1: libc::socklen_t,
+        param1: socklen_t,
         param1: c_int,
         param1: c_int,
     ) -> *mut c_void;
@@ -1730,11 +1722,11 @@ pub type io_scalar_inband64_t = ArrayUnknownABI<[io_user_scalar_t; 16]>;
 pub type io_async_ref64_t = ArrayUnknownABI<[io_user_reference_t; 8]>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/io_object_t?language=objc)
-pub type io_object_t = libc::mach_port_t;
+pub type io_object_t = mach_port_t;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/__builtin__/main_device_port?language=objc)
-    pub static main_device_port: libc::mach_port_t;
+    pub static main_device_port: mach_port_t;
 }
 
 extern "C-unwind" {
@@ -1760,5 +1752,5 @@ pub static _NSConcreteGlobalBlock: ArrayUnknownABI<[*mut c_void; 32]> = 32;
 pub static _NSConcreteStackBlock: ArrayUnknownABI<[*mut c_void; 32]> = 32;
 
 extern "C-unwind" {
-    pub fn unctrl(param1: libc::chtype) -> *mut c_char;
+    pub fn unctrl(param1: chtype) -> *mut c_char;
 }

@@ -62,12 +62,12 @@ pub struct llc_llc_un_type_raw {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union llc_llc_un {
-    pub type_u: libc::llc_llc_un_type_u,
-    pub type_i: libc::llc_llc_un_type_i,
-    pub type_s: libc::llc_llc_un_type_s,
-    pub type_frmr: libc::llc_llc_un_type_frmr,
-    pub type_snap: libc::llc_llc_un_type_snap,
-    pub type_raw: libc::llc_llc_un_type_raw,
+    pub type_u: llc_llc_un_type_u,
+    pub type_i: llc_llc_un_type_i,
+    pub type_s: llc_llc_un_type_s,
+    pub type_frmr: llc_llc_un_type_frmr,
+    pub type_snap: llc_llc_un_type_snap,
+    pub type_raw: llc_llc_un_type_raw,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/llc?language=objc)
@@ -76,7 +76,7 @@ pub union llc_llc_un {
 pub struct llc {
     pub llc_dsap: u8,
     pub llc_ssap: u8,
-    pub llc_un: libc::llc_llc_un,
+    pub llc_un: llc_llc_un,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/frmrinfo?language=objc)

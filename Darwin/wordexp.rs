@@ -14,9 +14,9 @@ pub struct wordexp_t {
 }
 
 extern "C-unwind" {
-    pub fn wordexp(param1: *const c_char, param1: *mut libc::wordexp_t, param1: c_int) -> c_int;
+    pub fn wordexp(param1: *const c_char, param1: *mut wordexp_t, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wordfree(param1: *mut libc::wordexp_t);
+    pub fn wordfree(param1: *mut wordexp_t);
 }

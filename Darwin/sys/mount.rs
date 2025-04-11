@@ -17,8 +17,8 @@ pub struct statfs {
     pub f_bavail: u64,
     pub f_files: u64,
     pub f_ffree: u64,
-    pub f_fsid: libc::fsid_t,
-    pub f_owner: libc::uid_t,
+    pub f_fsid: fsid_t,
+    pub f_owner: uid_t,
     pub f_type: u32,
     pub f_flags: u32,
     pub f_fssubtype: u32,
@@ -41,8 +41,8 @@ pub struct vfsstatfs {
     pub f_bused: u64,
     pub f_files: u64,
     pub f_ffree: u64,
-    pub f_fsid: libc::fsid_t,
-    pub f_owner: libc::uid_t,
+    pub f_fsid: fsid_t,
+    pub f_owner: uid_t,
     pub f_flags: u64,
     pub f_fstypename: [c_char; 16],
     pub f_mntonname: [c_char; 1024],
@@ -69,7 +69,7 @@ pub struct vfsconf {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vfsidctl {
     pub vc_vers: c_int,
-    pub vc_fsid: libc::fsid_t,
+    pub vc_fsid: fsid_t,
     pub vc_ptr: *mut c_void,
     pub vc_len: usize,
     pub vc_spare: [u32; 12],
@@ -111,7 +111,7 @@ pub struct fhandle {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fhandle_t?language=objc)
-pub type fhandle_t = libc::fhandle;
+pub type fhandle_t = fhandle;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/graftdmg_type_t?language=objc)
 #[repr(transparent)]
@@ -140,31 +140,31 @@ impl cryptex_auth_type_t {
 }
 
 extern "C-unwind" {
-    pub fn fhopen(param1: *const libc::fhandle, param1: c_int) -> c_int;
+    pub fn fhopen(param1: *const fhandle, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "fstatfs")]
-    pub fn fstatfs(param1: c_int, param1: *mut libc::statfs) -> c_int;
+    pub fn fstatfs(param1: c_int, param1: *mut statfs) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getfh(param1: *const c_char, param1: *mut libc::fhandle_t) -> c_int;
+    pub fn getfh(param1: *const c_char, param1: *mut fhandle_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "getfsstat")]
-    pub fn getfsstat(param1: *mut libc::statfs, param1: c_int, param1: c_int) -> c_int;
+    pub fn getfsstat(param1: *mut statfs, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "getmntinfo")]
-    pub fn getmntinfo(param1: *mut *mut libc::statfs, param1: c_int) -> c_int;
+    pub fn getmntinfo(param1: *mut *mut statfs, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "getmntinfo_r_np")]
-    pub fn getmntinfo_r_np(param1: *mut *mut libc::statfs, param1: c_int) -> c_int;
+    pub fn getmntinfo_r_np(param1: *mut *mut statfs, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -187,7 +187,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "statfs")]
-    pub fn statfs(param1: *const c_char, param1: *mut libc::statfs) -> c_int;
+    pub fn statfs(param1: *const c_char, param1: *mut statfs) -> c_int;
 }
 
 extern "C-unwind" {
@@ -195,5 +195,5 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn getvfsbyname(param1: *const c_char, param1: *mut libc::vfsconf) -> c_int;
+    pub fn getvfsbyname(param1: *const c_char, param1: *mut vfsconf) -> c_int;
 }

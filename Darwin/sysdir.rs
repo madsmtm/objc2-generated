@@ -55,14 +55,14 @@ pub type sysdir_search_path_enumeration_state = c_uint;
 
 extern "C-unwind" {
     pub fn sysdir_start_search_path_enumeration(
-        dir: libc::sysdir_search_path_directory_t,
-        domain_mask: libc::sysdir_search_path_domain_mask_t,
-    ) -> libc::sysdir_search_path_enumeration_state;
+        dir: sysdir_search_path_directory_t,
+        domain_mask: sysdir_search_path_domain_mask_t,
+    ) -> sysdir_search_path_enumeration_state;
 }
 
 extern "C-unwind" {
     pub fn sysdir_get_next_search_path_enumeration(
-        state: libc::sysdir_search_path_enumeration_state,
+        state: sysdir_search_path_enumeration_state,
         path: *mut c_char,
-    ) -> libc::sysdir_search_path_enumeration_state;
+    ) -> sysdir_search_path_enumeration_state;
 }

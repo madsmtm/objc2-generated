@@ -8,9 +8,9 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct flock {
-    pub l_start: libc::off_t,
-    pub l_len: libc::off_t,
-    pub l_pid: libc::pid_t,
+    pub l_start: off_t,
+    pub l_len: off_t,
+    pub l_pid: pid_t,
     pub l_type: c_short,
     pub l_whence: c_short,
 }
@@ -19,15 +19,15 @@ pub struct flock {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct flocktimeout {
-    pub fl: libc::flock,
-    pub timeout: libc::timespec,
+    pub fl: flock,
+    pub timeout: timespec,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/radvisory?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct radvisory {
-    pub ra_offset: libc::off_t,
+    pub ra_offset: off_t,
     pub ra_count: c_int,
 }
 
@@ -35,7 +35,7 @@ pub struct radvisory {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fsignatures {
-    pub fs_file_start: libc::off_t,
+    pub fs_file_start: off_t,
     pub fs_blob_start: *mut c_void,
     pub fs_blob_size: usize,
     pub fs_fsignatures_size: usize,
@@ -44,44 +44,44 @@ pub struct fsignatures {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsignatures_t?language=objc)
-pub type fsignatures_t = libc::fsignatures;
+pub type fsignatures_t = fsignatures;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsupplement?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fsupplement {
-    pub fs_file_start: libc::off_t,
-    pub fs_blob_start: libc::off_t,
+    pub fs_file_start: off_t,
+    pub fs_blob_start: off_t,
     pub fs_blob_size: usize,
     pub fs_orig_fd: c_int,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsupplement_t?language=objc)
-pub type fsupplement_t = libc::fsupplement;
+pub type fsupplement_t = fsupplement;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fchecklv?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fchecklv {
-    pub lv_file_start: libc::off_t,
+    pub lv_file_start: off_t,
     pub lv_error_message_size: usize,
     pub lv_error_message: *mut c_void,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fchecklv_t?language=objc)
-pub type fchecklv_t = libc::fchecklv;
+pub type fchecklv_t = fchecklv;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fgetsigsinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fgetsigsinfo {
-    pub fg_file_start: libc::off_t,
+    pub fg_file_start: off_t,
     pub fg_info_request: c_int,
     pub fg_sig_is_platform: c_int,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fgetsigsinfo_t?language=objc)
-pub type fgetsigsinfo_t = libc::fgetsigsinfo;
+pub type fgetsigsinfo_t = fgetsigsinfo;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fstore?language=objc)
 #[repr(C)]
@@ -89,13 +89,13 @@ pub type fgetsigsinfo_t = libc::fgetsigsinfo;
 pub struct fstore {
     pub fst_flags: c_uint,
     pub fst_posmode: c_int,
-    pub fst_offset: libc::off_t,
-    pub fst_length: libc::off_t,
-    pub fst_bytesalloc: libc::off_t,
+    pub fst_offset: off_t,
+    pub fst_length: off_t,
+    pub fst_bytesalloc: off_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fstore_t?language=objc)
-pub type fstore_t = libc::fstore;
+pub type fstore_t = fstore;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fpunchhole?language=objc)
 #[repr(C)]
@@ -103,23 +103,23 @@ pub type fstore_t = libc::fstore;
 pub struct fpunchhole {
     pub fp_flags: c_uint,
     pub reserved: c_uint,
-    pub fp_offset: libc::off_t,
-    pub fp_length: libc::off_t,
+    pub fp_offset: off_t,
+    pub fp_length: off_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fpunchhole_t?language=objc)
-pub type fpunchhole_t = libc::fpunchhole;
+pub type fpunchhole_t = fpunchhole;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ftrimactivefile?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ftrimactivefile {
-    pub fta_offset: libc::off_t,
-    pub fta_length: libc::off_t,
+    pub fta_offset: off_t,
+    pub fta_length: off_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ftrimactivefile_t?language=objc)
-pub type ftrimactivefile_t = libc::ftrimactivefile;
+pub type ftrimactivefile_t = ftrimactivefile;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fspecread?language=objc)
 #[repr(C)]
@@ -127,12 +127,12 @@ pub type ftrimactivefile_t = libc::ftrimactivefile;
 pub struct fspecread {
     pub fsr_flags: c_uint,
     pub reserved: c_uint,
-    pub fsr_offset: libc::off_t,
-    pub fsr_length: libc::off_t,
+    pub fsr_offset: off_t,
+    pub fsr_length: off_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fspecread_t?language=objc)
-pub type fspecread_t = libc::fspecread;
+pub type fspecread_t = fspecread;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fattributiontag?language=objc)
 #[repr(C)]
@@ -144,15 +144,15 @@ pub struct fattributiontag {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fattributiontag_t?language=objc)
-pub type fattributiontag_t = libc::fattributiontag;
+pub type fattributiontag_t = fattributiontag;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/log2phys?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct log2phys {
     pub l2p_flags: c_uint,
-    pub l2p_contigbytes: libc::off_t,
-    pub l2p_devoffset: libc::off_t,
+    pub l2p_contigbytes: off_t,
+    pub l2p_devoffset: off_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/filesec_property_t?language=objc)
@@ -172,11 +172,11 @@ impl filesec_property_t {
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "creat")]
-    pub fn creat(param1: *const c_char, param1: libc::mode_t) -> c_int;
+    pub fn creat(param1: *const c_char, param1: mode_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn openx_np(param1: *const c_char, param1: c_int, param1: libc::filesec_t) -> c_int;
+    pub fn openx_np(param1: *const c_char, param1: c_int, param1: filesec_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -193,44 +193,41 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn filesec_init() -> libc::filesec_t;
+    pub fn filesec_init() -> filesec_t;
 }
 
 extern "C-unwind" {
-    pub fn filesec_dup(param1: libc::filesec_t) -> libc::filesec_t;
+    pub fn filesec_dup(param1: filesec_t) -> filesec_t;
 }
 
 extern "C-unwind" {
-    pub fn filesec_free(param1: libc::filesec_t);
+    pub fn filesec_free(param1: filesec_t);
 }
 
 extern "C-unwind" {
     pub fn filesec_get_property(
-        param1: libc::filesec_t,
-        param1: libc::filesec_property_t,
+        param1: filesec_t,
+        param1: filesec_property_t,
         param1: *mut c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn filesec_query_property(
-        param1: libc::filesec_t,
-        param1: libc::filesec_property_t,
+        param1: filesec_t,
+        param1: filesec_property_t,
         param1: *mut c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn filesec_set_property(
-        param1: libc::filesec_t,
-        param1: libc::filesec_property_t,
+        param1: filesec_t,
+        param1: filesec_property_t,
         param1: *const c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn filesec_unset_property(
-        param1: libc::filesec_t,
-        param1: libc::filesec_property_t,
-    ) -> c_int;
+    pub fn filesec_unset_property(param1: filesec_t, param1: filesec_property_t) -> c_int;
 }

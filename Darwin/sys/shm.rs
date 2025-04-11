@@ -11,14 +11,14 @@ pub type shmatt_t = c_ushort;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __shmid_ds_new {
-    pub shm_perm: libc::ipc_perm,
+    pub shm_perm: ipc_perm,
     pub shm_segsz: usize,
-    pub shm_lpid: libc::pid_t,
-    pub shm_cpid: libc::pid_t,
-    pub shm_nattch: libc::shmatt_t,
-    pub shm_atime: libc::time_t,
-    pub shm_dtime: libc::time_t,
-    pub shm_ctime: libc::time_t,
+    pub shm_lpid: pid_t,
+    pub shm_cpid: pid_t,
+    pub shm_nattch: shmatt_t,
+    pub shm_atime: time_t,
+    pub shm_dtime: time_t,
+    pub shm_ctime: time_t,
     pub shm_internal: *mut c_void,
 }
 
@@ -28,7 +28,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "shmctl")]
-    pub fn shmctl(param1: c_int, param1: c_int, param1: *mut libc::__shmid_ds_new) -> c_int;
+    pub fn shmctl(param1: c_int, param1: c_int, param1: *mut __shmid_ds_new) -> c_int;
 }
 
 extern "C-unwind" {
@@ -36,7 +36,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn shmget(param1: libc::key_t, param1: usize, param1: c_int) -> c_int;
+    pub fn shmget(param1: key_t, param1: usize, param1: c_int) -> c_int;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/pshminfo?language=objc)
@@ -45,11 +45,11 @@ extern "C-unwind" {
 pub struct pshminfo {
     pub pshm_flags: c_uint,
     pub pshm_usecount: c_uint,
-    pub pshm_length: libc::off_t,
-    pub pshm_mode: libc::mode_t,
-    pub pshm_uid: libc::uid_t,
-    pub pshm_gid: libc::gid_t,
+    pub pshm_length: off_t,
+    pub pshm_mode: mode_t,
+    pub pshm_uid: uid_t,
+    pub pshm_gid: gid_t,
     pub pshm_name: [c_char; 32],
     pub pshm_memobject: *mut c_void,
-    pub pshm_label: *mut libc::label,
+    pub pshm_label: *mut label,
 }

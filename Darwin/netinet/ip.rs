@@ -19,24 +19,24 @@ pub struct ip {
     pub ip_ttl: c_uchar,
     pub ip_p: c_uchar,
     pub ip_sum: c_ushort,
-    pub ip_src: libc::in_addr,
-    pub ip_dst: libc::in_addr,
+    pub ip_src: in_addr,
+    pub ip_dst: in_addr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipt_ta?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipt_ta {
-    pub ipt_addr: libc::in_addr,
-    pub ipt_time: libc::n_long,
+    pub ipt_addr: in_addr,
+    pub ipt_time: n_long,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipt_timestamp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ipt_timestamp {
-    pub ipt_time: [libc::n_long; 1],
-    pub ipt_ta: [libc::ipt_ta; 1],
+    pub ipt_time: [n_long; 1],
+    pub ipt_ta: [ipt_ta; 1],
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_timestamp?language=objc)
@@ -48,5 +48,5 @@ pub struct ip_timestamp {
     pub ipt_ptr: c_uchar,
     pub ipt_flg: c_uint,
     pub ipt_oflw: c_uint,
-    pub ipt_timestamp: libc::ipt_timestamp,
+    pub ipt_timestamp: ipt_timestamp,
 }

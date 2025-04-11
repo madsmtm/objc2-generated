@@ -10,40 +10,40 @@ use crate::ffi::*;
 pub struct group {
     pub gr_name: *mut c_char,
     pub gr_passwd: *mut c_char,
-    pub gr_gid: libc::gid_t,
+    pub gr_gid: gid_t,
     pub gr_mem: *mut *mut c_char,
 }
 
 extern "C-unwind" {
-    pub fn getgrgid(param1: libc::gid_t) -> *mut libc::group;
+    pub fn getgrgid(param1: gid_t) -> *mut group;
 }
 
 extern "C-unwind" {
-    pub fn getgrnam(param1: *const c_char) -> *mut libc::group;
+    pub fn getgrnam(param1: *const c_char) -> *mut group;
 }
 
 extern "C-unwind" {
     pub fn getgrgid_r(
-        param1: libc::gid_t,
-        param1: *mut libc::group,
+        param1: gid_t,
+        param1: *mut group,
         param1: *mut c_char,
         param1: usize,
-        param1: *mut *mut libc::group,
+        param1: *mut *mut group,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn getgrnam_r(
         param1: *const c_char,
-        param1: *mut libc::group,
+        param1: *mut group,
         param1: *mut c_char,
         param1: usize,
-        param1: *mut *mut libc::group,
+        param1: *mut *mut group,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getgrent() -> *mut libc::group;
+    pub fn getgrent() -> *mut group;
 }
 
 extern "C-unwind" {
@@ -55,20 +55,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn group_from_gid(param1: libc::gid_t, param1: c_int) -> *mut c_char;
+    pub fn group_from_gid(param1: gid_t, param1: c_int) -> *mut c_char;
 }
 
 extern "C-unwind" {
-    pub fn getgruuid(param1: uuid_t) -> *mut libc::group;
+    pub fn getgruuid(param1: uuid_t) -> *mut group;
 }
 
 extern "C-unwind" {
     pub fn getgruuid_r(
         param1: uuid_t,
-        param1: *mut libc::group,
+        param1: *mut group,
         param1: *mut c_char,
         param1: usize,
-        param1: *mut *mut libc::group,
+        param1: *mut *mut group,
     ) -> c_int;
 }
 

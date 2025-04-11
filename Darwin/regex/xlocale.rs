@@ -8,7 +8,7 @@ use crate::ffi::*;
 
 extern "C-unwind" {
     pub fn regcomp_l(
-        param1: *mut libc::regex_t,
+        param1: *mut regex_t,
         param1: *const c_char,
         param1: c_int,
         param1: locale_t,
@@ -17,7 +17,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn regncomp_l(
-        param1: *mut libc::regex_t,
+        param1: *mut regex_t,
         param1: *const c_char,
         param1: usize,
         param1: c_int,
@@ -27,7 +27,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn regwcomp_l(
-        param1: *mut libc::regex_t,
+        param1: *mut regex_t,
         param1: *const wchar_t,
         param1: c_int,
         param1: locale_t,
@@ -36,11 +36,11 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn regwnexec_l(
-        param1: *const libc::regex_t,
+        param1: *const regex_t,
         param1: *const wchar_t,
         param1: usize,
         param1: usize,
-        pmatch: *mut libc::regmatch_t,
+        pmatch: *mut regmatch_t,
         param1: c_int,
         param1: locale_t,
     ) -> c_int;

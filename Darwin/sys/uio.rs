@@ -15,30 +15,20 @@ impl uio_rw {
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "readv")]
-    pub fn readv(param1: c_int, param1: *const libc::iovec, param1: c_int) -> isize;
+    pub fn readv(param1: c_int, param1: *const iovec, param1: c_int) -> isize;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "writev")]
-    pub fn writev(param1: c_int, param1: *const libc::iovec, param1: c_int) -> isize;
+    pub fn writev(param1: c_int, param1: *const iovec, param1: c_int) -> isize;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "preadv")]
-    pub fn preadv(
-        param1: c_int,
-        param1: *const libc::iovec,
-        param1: c_int,
-        param1: libc::off_t,
-    ) -> isize;
+    pub fn preadv(param1: c_int, param1: *const iovec, param1: c_int, param1: off_t) -> isize;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "pwritev")]
-    pub fn pwritev(
-        param1: c_int,
-        param1: *const libc::iovec,
-        param1: c_int,
-        param1: libc::off_t,
-    ) -> isize;
+    pub fn pwritev(param1: c_int, param1: *const iovec, param1: c_int, param1: off_t) -> isize;
 }

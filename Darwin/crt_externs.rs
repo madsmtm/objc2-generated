@@ -21,5 +21,5 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn _NSGetMachExecuteHeader() -> *mut libc::mach_header_64;
+    pub fn _NSGetMachExecuteHeader() -> *mut mach_header_64;
 }

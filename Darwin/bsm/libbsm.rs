@@ -8,38 +8,38 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_event_ent {
-    pub ae_number: libc::au_event_t,
+    pub ae_number: au_event_t,
     pub ae_name: *mut c_char,
     pub ae_desc: *mut c_char,
-    pub ae_class: libc::au_class_t,
+    pub ae_class: au_class_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_event_ent_t?language=objc)
-pub type au_event_ent_t = libc::au_event_ent;
+pub type au_event_ent_t = au_event_ent;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_class_ent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_class_ent {
     pub ac_name: *mut c_char,
-    pub ac_class: libc::au_class_t,
+    pub ac_class: au_class_t,
     pub ac_desc: *mut c_char,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_class_ent_t?language=objc)
-pub type au_class_ent_t = libc::au_class_ent;
+pub type au_class_ent_t = au_class_ent;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_user_ent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_user_ent {
     pub au_name: *mut c_char,
-    pub au_always: libc::au_mask_t,
-    pub au_never: libc::au_mask_t,
+    pub au_always: au_mask_t,
+    pub au_never: au_mask_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_user_ent_t?language=objc)
-pub type au_user_ent_t = libc::au_user_ent;
+pub type au_user_ent_t = au_user_ent;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid32?language=objc)
 #[repr(C)]
@@ -50,7 +50,7 @@ pub struct au_tid32 {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid32_t?language=objc)
-pub type au_tid32_t = libc::au_tid32;
+pub type au_tid32_t = au_tid32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid64?language=objc)
 #[repr(C)]
@@ -61,7 +61,7 @@ pub struct au_tid64 {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid64_t?language=objc)
-pub type au_tid64_t = libc::au_tid64;
+pub type au_tid64_t = au_tid64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tidaddr32?language=objc)
 #[repr(C)]
@@ -73,7 +73,7 @@ pub struct au_tidaddr32 {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tidaddr32_t?language=objc)
-pub type au_tidaddr32_t = libc::au_tidaddr32;
+pub type au_tidaddr32_t = au_tidaddr32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tidaddr64?language=objc)
 #[repr(C)]
@@ -85,7 +85,7 @@ pub struct au_tidaddr64 {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tidaddr64_t?language=objc)
-pub type au_tidaddr64_t = libc::au_tidaddr64;
+pub type au_tidaddr64_t = au_tidaddr64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_arg32_t?language=objc)
 #[repr(C)]
@@ -337,7 +337,7 @@ pub struct au_proc32_t {
     pub rgid: u32,
     pub pid: u32,
     pub sid: u32,
-    pub tid: libc::au_tid32_t,
+    pub tid: au_tid32_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_proc64_t?language=objc)
@@ -351,7 +351,7 @@ pub struct au_proc64_t {
     pub rgid: u32,
     pub pid: u32,
     pub sid: u32,
-    pub tid: libc::au_tid64_t,
+    pub tid: au_tid64_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_proc32ex_t?language=objc)
@@ -365,7 +365,7 @@ pub struct au_proc32ex_t {
     pub rgid: u32,
     pub pid: u32,
     pub sid: u32,
-    pub tid: libc::au_tidaddr32_t,
+    pub tid: au_tidaddr32_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_proc64ex_t?language=objc)
@@ -379,7 +379,7 @@ pub struct au_proc64ex_t {
     pub rgid: u32,
     pub pid: u32,
     pub sid: u32,
-    pub tid: libc::au_tidaddr64_t,
+    pub tid: au_tidaddr64_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_ret32_t?language=objc)
@@ -466,7 +466,7 @@ pub struct au_subject32_t {
     pub rgid: u32,
     pub pid: u32,
     pub sid: u32,
-    pub tid: libc::au_tid32_t,
+    pub tid: au_tid32_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_subject64_t?language=objc)
@@ -480,7 +480,7 @@ pub struct au_subject64_t {
     pub rgid: u32,
     pub pid: u32,
     pub sid: u32,
-    pub tid: libc::au_tid64_t,
+    pub tid: au_tid64_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_subject32ex_t?language=objc)
@@ -494,7 +494,7 @@ pub struct au_subject32ex_t {
     pub rgid: u32,
     pub pid: u32,
     pub sid: u32,
-    pub tid: libc::au_tidaddr32_t,
+    pub tid: au_tidaddr32_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_subject64ex_t?language=objc)
@@ -508,7 +508,7 @@ pub struct au_subject64ex_t {
     pub rgid: u32,
     pub pid: u32,
     pub sid: u32,
-    pub tid: libc::au_tidaddr64_t,
+    pub tid: au_tidaddr64_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_text_t?language=objc)
@@ -573,51 +573,51 @@ pub struct au_trailer_t {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union tokenstr_tt {
-    pub arg32: libc::au_arg32_t,
-    pub arg64: libc::au_arg64_t,
-    pub arb: libc::au_arb_t,
-    pub attr32: libc::au_attr32_t,
-    pub attr64: libc::au_attr64_t,
-    pub execarg: libc::au_execarg_t,
-    pub execenv: libc::au_execenv_t,
-    pub exit: libc::au_exit_t,
-    pub file: libc::au_file_t,
-    pub grps: libc::au_groups_t,
-    pub hdr32: libc::au_header32_t,
-    pub hdr32_ex: libc::au_header32_ex_t,
-    pub hdr64: libc::au_header64_t,
-    pub hdr64_ex: libc::au_header64_ex_t,
-    pub inaddr: libc::au_inaddr_t,
-    pub inaddr_ex: libc::au_inaddr_ex_t,
-    pub ip: libc::au_ip_t,
-    pub ipc: libc::au_ipc_t,
-    pub ipcperm: libc::au_ipcperm_t,
-    pub iport: libc::au_iport_t,
-    pub opaque: libc::au_opaque_t,
-    pub path: libc::au_path_t,
-    pub proc32: libc::au_proc32_t,
-    pub proc32_ex: libc::au_proc32ex_t,
-    pub proc64: libc::au_proc64_t,
-    pub proc64_ex: libc::au_proc64ex_t,
-    pub ret32: libc::au_ret32_t,
-    pub ret64: libc::au_ret64_t,
-    pub seq: libc::au_seq_t,
-    pub socket: libc::au_socket_t,
-    pub socket_ex32: libc::au_socket_ex32_t,
-    pub sockinet_ex32: libc::au_socketinet_ex32_t,
-    pub sockunix: libc::au_socketunix_t,
-    pub subj32: libc::au_subject32_t,
-    pub subj32_ex: libc::au_subject32ex_t,
-    pub subj64: libc::au_subject64_t,
-    pub subj64_ex: libc::au_subject64ex_t,
-    pub text: libc::au_text_t,
-    pub kevent: libc::au_kevent_t,
-    pub invalid: libc::au_invalid_t,
-    pub trail: libc::au_trailer_t,
-    pub zonename: libc::au_zonename_t,
-    pub cert_hash: libc::au_cert_hash_t,
-    pub krb5_principal: libc::au_krb5_principal_t,
-    pub identity: libc::au_identity_t,
+    pub arg32: au_arg32_t,
+    pub arg64: au_arg64_t,
+    pub arb: au_arb_t,
+    pub attr32: au_attr32_t,
+    pub attr64: au_attr64_t,
+    pub execarg: au_execarg_t,
+    pub execenv: au_execenv_t,
+    pub exit: au_exit_t,
+    pub file: au_file_t,
+    pub grps: au_groups_t,
+    pub hdr32: au_header32_t,
+    pub hdr32_ex: au_header32_ex_t,
+    pub hdr64: au_header64_t,
+    pub hdr64_ex: au_header64_ex_t,
+    pub inaddr: au_inaddr_t,
+    pub inaddr_ex: au_inaddr_ex_t,
+    pub ip: au_ip_t,
+    pub ipc: au_ipc_t,
+    pub ipcperm: au_ipcperm_t,
+    pub iport: au_iport_t,
+    pub opaque: au_opaque_t,
+    pub path: au_path_t,
+    pub proc32: au_proc32_t,
+    pub proc32_ex: au_proc32ex_t,
+    pub proc64: au_proc64_t,
+    pub proc64_ex: au_proc64ex_t,
+    pub ret32: au_ret32_t,
+    pub ret64: au_ret64_t,
+    pub seq: au_seq_t,
+    pub socket: au_socket_t,
+    pub socket_ex32: au_socket_ex32_t,
+    pub sockinet_ex32: au_socketinet_ex32_t,
+    pub sockunix: au_socketunix_t,
+    pub subj32: au_subject32_t,
+    pub subj32_ex: au_subject32ex_t,
+    pub subj64: au_subject64_t,
+    pub subj64_ex: au_subject64ex_t,
+    pub text: au_text_t,
+    pub kevent: au_kevent_t,
+    pub invalid: au_invalid_t,
+    pub trail: au_trailer_t,
+    pub zonename: au_zonename_t,
+    pub cert_hash: au_cert_hash_t,
+    pub krb5_principal: au_krb5_principal_t,
+    pub identity: au_identity_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/tokenstr?language=objc)
@@ -627,11 +627,11 @@ pub struct tokenstr {
     pub id: c_uchar,
     pub data: *mut c_uchar,
     pub len: usize,
-    pub tt: libc::tokenstr_tt,
+    pub tt: tokenstr_tt,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/tokenstr_t?language=objc)
-pub type tokenstr_t = libc::tokenstr;
+pub type tokenstr_t = tokenstr;
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
@@ -645,38 +645,38 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauclassent() -> *mut libc::au_class_ent;
+    pub fn getauclassent() -> *mut au_class_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauclassent_r(class_int: *mut libc::au_class_ent_t) -> *mut libc::au_class_ent;
+    pub fn getauclassent_r(class_int: *mut au_class_ent_t) -> *mut au_class_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauclassnam(name: *const c_char) -> *mut libc::au_class_ent;
+    pub fn getauclassnam(name: *const c_char) -> *mut au_class_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn getauclassnam_r(
-        class_int: *mut libc::au_class_ent_t,
+        class_int: *mut au_class_ent_t,
         name: *const c_char,
-    ) -> *mut libc::au_class_ent;
+    ) -> *mut au_class_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauclassnum(class_number: libc::au_class_t) -> *mut libc::au_class_ent;
+    pub fn getauclassnum(class_number: au_class_t) -> *mut au_class_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn getauclassnum_r(
-        class_int: *mut libc::au_class_ent_t,
-        class_number: libc::au_class_t,
-    ) -> *mut libc::au_class_ent;
+        class_int: *mut au_class_ent_t,
+        class_number: au_class_t,
+    ) -> *mut au_class_ent;
 }
 
 extern "C-unwind" {
@@ -731,28 +731,25 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getacexpire(andflg: *mut c_int, age: *mut libc::time_t, size: *mut usize) -> c_int;
+    pub fn getacexpire(andflg: *mut c_int, age: *mut time_t, size: *mut usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauditflagsbin(auditstr: *mut c_char, masks: *mut libc::au_mask_t) -> c_int;
+    pub fn getauditflagsbin(auditstr: *mut c_char, masks: *mut au_mask_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauditflagschar(
-        auditstr: *mut c_char,
-        masks: *mut libc::au_mask_t,
-        verbose: c_int,
-    ) -> c_int;
+    pub fn getauditflagschar(auditstr: *mut c_char, masks: *mut au_mask_t, verbose: c_int)
+        -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn au_preselect(
-        event: libc::au_event_t,
-        mask_p: *mut libc::au_mask_t,
+        event: au_event_t,
+        mask_p: *mut au_mask_t,
         sorf: c_int,
         flag: c_int,
     ) -> c_int;
@@ -788,49 +785,42 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauevent() -> *mut libc::au_event_ent;
+    pub fn getauevent() -> *mut au_event_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauevent_r(e: *mut libc::au_event_ent) -> *mut libc::au_event_ent;
+    pub fn getauevent_r(e: *mut au_event_ent) -> *mut au_event_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauevnam(name: *const c_char) -> *mut libc::au_event_ent;
+    pub fn getauevnam(name: *const c_char) -> *mut au_event_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauevnam_r(e: *mut libc::au_event_ent, name: *const c_char)
-        -> *mut libc::au_event_ent;
+    pub fn getauevnam_r(e: *mut au_event_ent, name: *const c_char) -> *mut au_event_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauevnum(event_number: libc::au_event_t) -> *mut libc::au_event_ent;
+    pub fn getauevnum(event_number: au_event_t) -> *mut au_event_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauevnum_r(
-        e: *mut libc::au_event_ent,
-        event_number: libc::au_event_t,
-    ) -> *mut libc::au_event_ent;
+    pub fn getauevnum_r(e: *mut au_event_ent, event_number: au_event_t) -> *mut au_event_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauevnonam(event_name: *const c_char) -> *mut libc::au_event_t;
+    pub fn getauevnonam(event_name: *const c_char) -> *mut au_event_t;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauevnonam_r(
-        ev: *mut libc::au_event_t,
-        event_name: *const c_char,
-    ) -> *mut libc::au_event_t;
+    pub fn getauevnonam_r(ev: *mut au_event_t, event_name: *const c_char) -> *mut au_event_t;
 }
 
 extern "C-unwind" {
@@ -845,54 +835,53 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauuserent() -> *mut libc::au_user_ent;
+    pub fn getauuserent() -> *mut au_user_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauuserent_r(u: *mut libc::au_user_ent) -> *mut libc::au_user_ent;
+    pub fn getauuserent_r(u: *mut au_user_ent) -> *mut au_user_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauusernam(name: *const c_char) -> *mut libc::au_user_ent;
+    pub fn getauusernam(name: *const c_char) -> *mut au_user_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn getauusernam_r(u: *mut libc::au_user_ent, name: *const c_char)
-        -> *mut libc::au_user_ent;
+    pub fn getauusernam_r(u: *mut au_user_ent, name: *const c_char) -> *mut au_user_ent;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn au_user_mask(username: *mut c_char, mask_p: *mut libc::au_mask_t) -> c_int;
+    pub fn au_user_mask(username: *mut c_char, mask_p: *mut au_mask_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn getfauditflags(
-        usremask: *mut libc::au_mask_t,
-        usrdmask: *mut libc::au_mask_t,
-        lastmask: *mut libc::au_mask_t,
+        usremask: *mut au_mask_t,
+        usrdmask: *mut au_mask_t,
+        lastmask: *mut au_mask_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn au_read_rec(fp: *mut libc::FILE, buf: *mut *mut c_uchar) -> c_int;
+    pub fn au_read_rec(fp: *mut FILE, buf: *mut *mut c_uchar) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn au_fetch_tok(tok: *mut libc::tokenstr_t, buf: *mut c_uchar, len: c_int) -> c_int;
+    pub fn au_fetch_tok(tok: *mut tokenstr_t, buf: *mut c_uchar, len: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn au_print_tok(
-        outfp: *mut libc::FILE,
-        tok: *mut libc::tokenstr_t,
+        outfp: *mut FILE,
+        tok: *mut tokenstr_t,
         del: *mut c_char,
         raw: c_char,
         sfrm: c_char,
@@ -902,8 +891,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn au_print_flags_tok(
-        outfp: *mut libc::FILE,
-        tok: *mut libc::tokenstr_t,
+        outfp: *mut FILE,
+        tok: *mut tokenstr_t,
         del: *mut c_char,
         oflags: c_int,
     );
@@ -912,8 +901,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn au_print_tok_xml(
-        outfp: *mut libc::FILE,
-        tok: *mut libc::tokenstr_t,
+        outfp: *mut FILE,
+        tok: *mut tokenstr_t,
         del: *mut c_char,
         raw: c_char,
         sfrm: c_char,
@@ -922,12 +911,12 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn au_print_xml_header(outfp: *mut libc::FILE);
+    pub fn au_print_xml_header(outfp: *mut FILE);
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn au_print_xml_footer(outfp: *mut libc::FILE);
+    pub fn au_print_xml_footer(outfp: *mut FILE);
 }
 
 extern "C-unwind" {
@@ -964,7 +953,7 @@ pub const kAULastErr: c_int = -66038;
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn au_free_token(tok: Option<&libc::token_t>);
+    pub fn au_free_token(tok: Option<&token_t>);
 }
 
 extern "C-unwind" {
@@ -988,19 +977,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn audit_set_terminal_id_ex(tid: *mut libc::au_tid_addr_t) -> c_int;
+    pub fn audit_set_terminal_id_ex(tid: *mut au_tid_addr_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn audit_set_terminal_id(tid: *mut libc::au_tid_t) -> c_int;
+    pub fn audit_set_terminal_id(tid: *mut au_tid_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn audit_write(
         event_code: c_short,
-        subject: Option<&libc::token_t>,
-        misctok: Option<&libc::token_t>,
+        subject: Option<&token_t>,
+        misctok: Option<&token_t>,
         retval: c_char,
         errcode: c_int,
     ) -> c_int;
@@ -1010,15 +999,15 @@ extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn audit_write_success_ex(
         event_code: c_short,
-        misctok: Option<&libc::token_t>,
-        auid: libc::au_id_t,
-        euid: libc::uid_t,
-        egid: libc::gid_t,
-        ruid: libc::uid_t,
-        rgid: libc::gid_t,
-        pid: libc::pid_t,
-        sid: libc::au_asid_t,
-        tid: *mut libc::au_tid_addr_t,
+        misctok: Option<&token_t>,
+        auid: au_id_t,
+        euid: uid_t,
+        egid: gid_t,
+        ruid: uid_t,
+        rgid: gid_t,
+        pid: pid_t,
+        sid: au_asid_t,
+        tid: *mut au_tid_addr_t,
     ) -> c_int;
 }
 
@@ -1026,21 +1015,21 @@ extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
     pub fn audit_write_success(
         event_code: c_short,
-        misctok: Option<&libc::token_t>,
-        auid: libc::au_id_t,
-        euid: libc::uid_t,
-        egid: libc::gid_t,
-        ruid: libc::uid_t,
-        rgid: libc::gid_t,
-        pid: libc::pid_t,
-        sid: libc::au_asid_t,
-        tid: *mut libc::au_tid_t,
+        misctok: Option<&token_t>,
+        auid: au_id_t,
+        euid: uid_t,
+        egid: gid_t,
+        ruid: uid_t,
+        rgid: gid_t,
+        pid: pid_t,
+        sid: au_asid_t,
+        tid: *mut au_tid_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_write_success_self(event_code: c_short, misctok: Option<&libc::token_t>) -> c_int;
+    pub fn audit_write_success_self(event_code: c_short, misctok: Option<&token_t>) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1049,14 +1038,14 @@ extern "C-unwind" {
         event_code: c_short,
         errmsg: *mut c_char,
         errret: c_int,
-        auid: libc::au_id_t,
-        euid: libc::uid_t,
-        egid: libc::gid_t,
-        ruid: libc::uid_t,
-        rgid: libc::gid_t,
-        pid: libc::pid_t,
-        sid: libc::au_asid_t,
-        tid: *mut libc::au_tid_addr_t,
+        auid: au_id_t,
+        euid: uid_t,
+        egid: gid_t,
+        ruid: uid_t,
+        rgid: gid_t,
+        pid: pid_t,
+        sid: au_asid_t,
+        tid: *mut au_tid_addr_t,
     ) -> c_int;
 }
 
@@ -1066,14 +1055,14 @@ extern "C-unwind" {
         event_code: c_short,
         errmsg: *mut c_char,
         errret: c_int,
-        auid: libc::au_id_t,
-        euid: libc::uid_t,
-        egid: libc::gid_t,
-        ruid: libc::uid_t,
-        rgid: libc::gid_t,
-        pid: libc::pid_t,
-        sid: libc::au_asid_t,
-        tid: *mut libc::au_tid_t,
+        auid: au_id_t,
+        euid: uid_t,
+        egid: gid_t,
+        ruid: uid_t,
+        rgid: gid_t,
+        pid: pid_t,
+        sid: au_asid_t,
+        tid: *mut au_tid_t,
     ) -> c_int;
 }
 
@@ -1092,10 +1081,10 @@ extern "C-unwind" {
         event_code: c_short,
         errmsg: *mut c_char,
         errret: c_int,
-        euid: libc::uid_t,
-        egid: libc::gid_t,
-        pid: libc::pid_t,
-        tid: *mut libc::au_tid_addr_t,
+        euid: uid_t,
+        egid: gid_t,
+        pid: pid_t,
+        tid: *mut au_tid_addr_t,
     ) -> c_int;
 }
 
@@ -1105,57 +1094,57 @@ extern "C-unwind" {
         event_code: c_short,
         errmsg: *mut c_char,
         errret: c_int,
-        euid: libc::uid_t,
-        egid: libc::gid_t,
-        pid: libc::pid_t,
-        tid: *mut libc::au_tid_t,
+        euid: uid_t,
+        egid: gid_t,
+        pid: pid_t,
+        tid: *mut au_tid_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn audit_token_to_au32(
-        atoken: libc::audit_token_t,
-        auidp: *mut libc::uid_t,
-        euidp: *mut libc::uid_t,
-        egidp: *mut libc::gid_t,
-        ruidp: *mut libc::uid_t,
-        rgidp: *mut libc::gid_t,
-        pidp: *mut libc::pid_t,
-        asidp: *mut libc::au_asid_t,
-        tidp: *mut libc::au_tid_t,
+        atoken: audit_token_t,
+        auidp: *mut uid_t,
+        euidp: *mut uid_t,
+        egidp: *mut gid_t,
+        ruidp: *mut uid_t,
+        rgidp: *mut gid_t,
+        pidp: *mut pid_t,
+        asidp: *mut au_asid_t,
+        tidp: *mut au_tid_t,
     );
 }
 
 extern "C-unwind" {
-    pub fn audit_token_to_auid(atoken: libc::audit_token_t) -> libc::uid_t;
+    pub fn audit_token_to_auid(atoken: audit_token_t) -> uid_t;
 }
 
 extern "C-unwind" {
-    pub fn audit_token_to_euid(atoken: libc::audit_token_t) -> libc::uid_t;
+    pub fn audit_token_to_euid(atoken: audit_token_t) -> uid_t;
 }
 
 extern "C-unwind" {
-    pub fn audit_token_to_egid(atoken: libc::audit_token_t) -> libc::gid_t;
+    pub fn audit_token_to_egid(atoken: audit_token_t) -> gid_t;
 }
 
 extern "C-unwind" {
-    pub fn audit_token_to_ruid(atoken: libc::audit_token_t) -> libc::uid_t;
+    pub fn audit_token_to_ruid(atoken: audit_token_t) -> uid_t;
 }
 
 extern "C-unwind" {
-    pub fn audit_token_to_rgid(atoken: libc::audit_token_t) -> libc::gid_t;
+    pub fn audit_token_to_rgid(atoken: audit_token_t) -> gid_t;
 }
 
 extern "C-unwind" {
-    pub fn audit_token_to_pid(atoken: libc::audit_token_t) -> libc::pid_t;
+    pub fn audit_token_to_pid(atoken: audit_token_t) -> pid_t;
 }
 
 extern "C-unwind" {
-    pub fn audit_token_to_asid(atoken: libc::audit_token_t) -> libc::au_asid_t;
+    pub fn audit_token_to_asid(atoken: audit_token_t) -> au_asid_t;
 }
 
 extern "C-unwind" {
-    pub fn audit_token_to_pidversion(atoken: libc::audit_token_t) -> c_int;
+    pub fn audit_token_to_pidversion(atoken: audit_token_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1165,12 +1154,12 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_get_class(evc_map: *mut libc::au_evclass_map_t, sz: usize) -> c_int;
+    pub fn audit_get_class(evc_map: *mut au_evclass_map_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_set_class(evc_map: *mut libc::au_evclass_map_t, sz: usize) -> c_int;
+    pub fn audit_set_class(evc_map: *mut au_evclass_map_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1190,46 +1179,46 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_get_fsize(fstat: *mut libc::au_fstat_t, sz: usize) -> c_int;
+    pub fn audit_get_fsize(fstat: *mut au_fstat_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_set_fsize(fstat: *mut libc::au_fstat_t, sz: usize) -> c_int;
+    pub fn audit_set_fsize(fstat: *mut au_fstat_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_get_kmask(kmask: *mut libc::au_mask_t, sz: usize) -> c_int;
+    pub fn audit_get_kmask(kmask: *mut au_mask_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_set_kmask(kmask: *mut libc::au_mask_t, sz: usize) -> c_int;
+    pub fn audit_set_kmask(kmask: *mut au_mask_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_get_kaudit(aia: *mut libc::auditinfo_addr_t, sz: usize) -> c_int;
+    pub fn audit_get_kaudit(aia: *mut auditinfo_addr_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_set_kaudit(aia: *mut libc::auditinfo_addr_t, sz: usize) -> c_int;
+    pub fn audit_set_kaudit(aia: *mut auditinfo_addr_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_set_pmask(api: *mut libc::auditpinfo_t, sz: usize) -> c_int;
+    pub fn audit_set_pmask(api: *mut auditpinfo_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "use audit_get_pinfo_addr"]
-    pub fn audit_get_pinfo(api: *mut libc::auditpinfo_t, sz: usize) -> c_int;
+    pub fn audit_get_pinfo(api: *mut auditpinfo_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn audit_get_pinfo_addr(apia: *mut libc::auditpinfo_addr_t, sz: usize) -> c_int;
+    pub fn audit_get_pinfo_addr(apia: *mut auditpinfo_addr_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1244,12 +1233,12 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_get_qctrl(qctrl: *mut libc::au_qctrl_t, sz: usize) -> c_int;
+    pub fn audit_get_qctrl(qctrl: *mut au_qctrl_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_set_qctrl(qctrl: *mut libc::au_qctrl_t, sz: usize) -> c_int;
+    pub fn audit_set_qctrl(qctrl: *mut au_qctrl_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1271,17 +1260,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn audit_get_sinfo_addr(aia: *mut libc::auditinfo_addr_t, sz: usize) -> c_int;
+    pub fn audit_get_sinfo_addr(aia: *mut auditinfo_addr_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_get_stat(stats: *mut libc::au_stat_t, sz: usize) -> c_int;
+    pub fn audit_get_stat(stats: *mut au_stat_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_set_stat(stats: *mut libc::au_stat_t, sz: usize) -> c_int;
+    pub fn audit_set_stat(stats: *mut au_stat_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1291,10 +1280,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_get_ctlmode(mode: *mut libc::au_ctlmode_t, sz: usize) -> c_int;
+    pub fn audit_get_ctlmode(mode: *mut au_ctlmode_t, sz: usize) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn audit_get_expire_after(expire: *mut libc::au_expire_after_t, sz: usize) -> c_int;
+    pub fn audit_get_expire_after(expire: *mut au_expire_after_t, sz: usize) -> c_int;
 }

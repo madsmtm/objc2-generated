@@ -5,37 +5,37 @@ use core::ffi::*;
 use crate::ffi::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_free?language=objc)
-pub const MTF_FREE: c_uint = 1 << libc::MT_FREE;
+pub const MTF_FREE: c_uint = 1 << MT_FREE;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_data?language=objc)
-pub const MTF_DATA: c_uint = 1 << libc::MT_DATA;
+pub const MTF_DATA: c_uint = 1 << MT_DATA;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_header?language=objc)
-pub const MTF_HEADER: c_uint = 1 << libc::MT_HEADER;
+pub const MTF_HEADER: c_uint = 1 << MT_HEADER;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_socket?language=objc)
-pub const MTF_SOCKET: c_uint = 1 << libc::MT_SOCKET;
+pub const MTF_SOCKET: c_uint = 1 << MT_SOCKET;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_pcb?language=objc)
-pub const MTF_PCB: c_uint = 1 << libc::MT_PCB;
+pub const MTF_PCB: c_uint = 1 << MT_PCB;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_rtable?language=objc)
-pub const MTF_RTABLE: c_uint = 1 << libc::MT_RTABLE;
+pub const MTF_RTABLE: c_uint = 1 << MT_RTABLE;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_htable?language=objc)
-pub const MTF_HTABLE: c_uint = 1 << libc::MT_HTABLE;
+pub const MTF_HTABLE: c_uint = 1 << MT_HTABLE;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_atable?language=objc)
-pub const MTF_ATABLE: c_uint = 1 << libc::MT_ATABLE;
+pub const MTF_ATABLE: c_uint = 1 << MT_ATABLE;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_soname?language=objc)
-pub const MTF_SONAME: c_uint = 1 << libc::MT_SONAME;
+pub const MTF_SONAME: c_uint = 1 << MT_SONAME;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_soopts?language=objc)
-pub const MTF_SOOPTS: c_uint = 1 << libc::MT_SOOPTS;
+pub const MTF_SOOPTS: c_uint = 1 << MT_SOOPTS;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_ftable?language=objc)
-pub const MTF_FTABLE: c_uint = 1 << libc::MT_FTABLE;
+pub const MTF_FTABLE: c_uint = 1 << MT_FTABLE;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_rights?language=objc)
-pub const MTF_RIGHTS: c_uint = 1 << libc::MT_RIGHTS;
+pub const MTF_RIGHTS: c_uint = 1 << MT_RIGHTS;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_ifaddr?language=objc)
-pub const MTF_IFADDR: c_uint = 1 << libc::MT_IFADDR;
+pub const MTF_IFADDR: c_uint = 1 << MT_IFADDR;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_control?language=objc)
-pub const MTF_CONTROL: c_uint = 1 << libc::MT_CONTROL;
+pub const MTF_CONTROL: c_uint = 1 << MT_CONTROL;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_oobdata?language=objc)
-pub const MTF_OOBDATA: c_uint = 1 << libc::MT_OOBDATA;
+pub const MTF_OOBDATA: c_uint = 1 << MT_OOBDATA;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mtf_tag?language=objc)
-pub const MTF_TAG: c_uint = 1 << libc::MT_TAG;
+pub const MTF_TAG: c_uint = 1 << MT_TAG;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mbstat?language=objc)
 #[repr(C)]
@@ -110,7 +110,7 @@ pub struct mb_class_stat {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mb_class_stat_t?language=objc)
-pub type mb_class_stat_t = libc::mb_class_stat;
+pub type mb_class_stat_t = mb_class_stat;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mb_stat?language=objc)
 #[repr(C)]
@@ -118,8 +118,8 @@ pub type mb_class_stat_t = libc::mb_class_stat;
 pub struct mb_stat {
     pub mbs_cnt: u32,
     pub mbs_pad: u32,
-    pub mbs_class: [libc::mb_class_stat_t; 1],
+    pub mbs_class: [mb_class_stat_t; 1],
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mb_stat_t?language=objc)
-pub type mb_stat_t = libc::mb_stat;
+pub type mb_stat_t = mb_stat;

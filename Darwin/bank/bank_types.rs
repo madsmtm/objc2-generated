@@ -24,8 +24,8 @@ pub struct proc_persona_info {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct persona_token {
-    pub originator: libc::proc_persona_info,
-    pub proximate: libc::proc_persona_info,
+    pub originator: proc_persona_info,
+    pub proximate: proc_persona_info,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/persona_modify_info?language=objc)

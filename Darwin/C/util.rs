@@ -6,7 +6,7 @@ use crate::ffi::*;
 
 extern "C-unwind" {
     #[deprecated]
-    pub fn login(param1: *mut libc::utmp);
+    pub fn login(param1: *mut utmp);
 }
 
 extern "C-unwind" {
@@ -37,14 +37,14 @@ extern "C-unwind" {
         param1: *mut c_int,
         param1: *mut c_int,
         param1: *mut c_char,
-        param1: *mut libc::termios,
-        param1: *mut libc::winsize,
+        param1: *mut termios,
+        param1: *mut winsize,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn fparseln(
-        param1: *mut libc::FILE,
+        param1: *mut FILE,
         param1: *mut usize,
         param1: *mut usize,
         param1: ArrayUnknownABI<[c_char; 3]>,
@@ -56,22 +56,22 @@ extern "C-unwind" {
     pub fn forkpty(
         param1: *mut c_int,
         param1: *mut c_char,
-        param1: *mut libc::termios,
-        param1: *mut libc::winsize,
-    ) -> libc::pid_t;
+        param1: *mut termios,
+        param1: *mut winsize,
+    ) -> pid_t;
 }
 
 extern "C-unwind" {
     pub fn pidlock(
         param1: *const c_char,
         param1: c_int,
-        param1: *mut libc::pid_t,
+        param1: *mut pid_t,
         param1: *const c_char,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn ttylock(param1: *const c_char, param1: c_int, param1: *mut libc::pid_t) -> c_int;
+    pub fn ttylock(param1: *const c_char, param1: c_int, param1: *mut pid_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -84,7 +84,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn ttymsg(
-        param1: *mut libc::iovec,
+        param1: *mut iovec,
         param1: c_int,
         param1: *const c_char,
         param1: c_int,

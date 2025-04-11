@@ -8,10 +8,10 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct utimbuf {
-    pub actime: libc::time_t,
-    pub modtime: libc::time_t,
+    pub actime: time_t,
+    pub modtime: time_t,
 }
 
 extern "C-unwind" {
-    pub fn utime(param1: *const c_char, param1: *const libc::utimbuf) -> c_int;
+    pub fn utime(param1: *const c_char, param1: *const utimbuf) -> c_int;
 }

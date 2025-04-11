@@ -24,26 +24,26 @@ pub struct regex_t {
     pub re_magic: c_int,
     pub re_nsub: usize,
     pub re_endp: *const c_char,
-    pub re_g: *mut libc::re_guts,
+    pub re_g: *mut re_guts,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/regmatch_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct regmatch_t {
-    pub rm_so: libc::regoff_t,
-    pub rm_eo: libc::regoff_t,
+    pub rm_so: regoff_t,
+    pub rm_eo: regoff_t,
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "regcomp")]
-    pub fn regcomp(param1: *mut libc::regex_t, param1: *const c_char, param1: c_int) -> c_int;
+    pub fn regcomp(param1: *mut regex_t, param1: *const c_char, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn regerror(
         param1: c_int,
-        param1: *const libc::regex_t,
+        param1: *const regex_t,
         param1: *mut c_char,
         param1: usize,
     ) -> usize;
@@ -51,21 +51,21 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn regexec(
-        param1: *const libc::regex_t,
+        param1: *const regex_t,
         param1: *const c_char,
         param1: usize,
-        pmatch: *mut libc::regmatch_t,
+        pmatch: *mut regmatch_t,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn regfree(param1: *mut libc::regex_t);
+    pub fn regfree(param1: *mut regex_t);
 }
 
 extern "C-unwind" {
     pub fn regncomp(
-        param1: *mut libc::regex_t,
+        param1: *mut regex_t,
         param1: *const c_char,
         param1: usize,
         param1: c_int,
@@ -74,32 +74,32 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn regnexec(
-        param1: *const libc::regex_t,
+        param1: *const regex_t,
         param1: *const c_char,
         param1: usize,
         param1: usize,
-        pmatch: *mut libc::regmatch_t,
+        pmatch: *mut regmatch_t,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn regwcomp(param1: *mut libc::regex_t, param1: *const wchar_t, param1: c_int) -> c_int;
+    pub fn regwcomp(param1: *mut regex_t, param1: *const wchar_t, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn regwexec(
-        param1: *const libc::regex_t,
+        param1: *const regex_t,
         param1: *const wchar_t,
         param1: usize,
-        pmatch: *mut libc::regmatch_t,
+        pmatch: *mut regmatch_t,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn regwncomp(
-        param1: *mut libc::regex_t,
+        param1: *mut regex_t,
         param1: *const wchar_t,
         param1: usize,
         param1: c_int,
@@ -108,11 +108,11 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn regwnexec(
-        param1: *const libc::regex_t,
+        param1: *const regex_t,
         param1: *const wchar_t,
         param1: usize,
         param1: usize,
-        pmatch: *mut libc::regmatch_t,
+        pmatch: *mut regmatch_t,
         param1: c_int,
     ) -> c_int;
 }

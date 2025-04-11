@@ -16,8 +16,8 @@ pub type tcp_cc = u32;
 pub struct tcphdr {
     pub th_sport: c_ushort,
     pub th_dport: c_ushort,
-    pub th_seq: libc::tcp_seq,
-    pub th_ack: libc::tcp_seq,
+    pub th_seq: tcp_seq,
+    pub th_ack: tcp_seq,
     pub th_x2: c_uint,
     pub th_off: c_uint,
     pub th_flags: c_uchar,

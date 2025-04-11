@@ -25,19 +25,19 @@ pub struct kauth_identity_extlookup {
     pub el_info_pid: __darwin_pid_t,
     pub el_extend: u64,
     pub el_info_reserved_1: u32,
-    pub el_uid: libc::uid_t,
-    pub el_uguid: libc::guid_t,
+    pub el_uid: uid_t,
+    pub el_uguid: guid_t,
     pub el_uguid_valid: u32,
-    pub el_usid: libc::ntsid_t,
+    pub el_usid: ntsid_t,
     pub el_usid_valid: u32,
-    pub el_gid: libc::gid_t,
-    pub el_gguid: libc::guid_t,
+    pub el_gid: gid_t,
+    pub el_gguid: guid_t,
     pub el_gguid_valid: u32,
-    pub el_gsid: libc::ntsid_t,
+    pub el_gsid: ntsid_t,
     pub el_gsid_valid: u32,
     pub el_member_valid: u32,
     pub el_sup_grp_cnt: u32,
-    pub el_sup_groups: [libc::gid_t; 16],
+    pub el_sup_groups: [gid_t; 16],
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_cache_sizes?language=objc)
@@ -55,13 +55,13 @@ pub type kauth_ace_rights_t = u32;
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kauth_ace {
-    pub ace_applicable: libc::guid_t,
+    pub ace_applicable: guid_t,
     pub ace_flags: u32,
-    pub ace_rights: libc::kauth_ace_rights_t,
+    pub ace_rights: kauth_ace_rights_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_ace_t?language=objc)
-pub type kauth_ace_t = *mut libc::kauth_ace;
+pub type kauth_ace_t = *mut kauth_ace;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_acl?language=objc)
 #[repr(C)]
@@ -69,21 +69,21 @@ pub type kauth_ace_t = *mut libc::kauth_ace;
 pub struct kauth_acl {
     pub acl_entrycount: u32,
     pub acl_flags: u32,
-    pub acl_ace: [libc::kauth_ace; 1],
+    pub acl_ace: [kauth_ace; 1],
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_acl_t?language=objc)
-pub type kauth_acl_t = *mut libc::kauth_acl;
+pub type kauth_acl_t = *mut kauth_acl;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_filesec?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kauth_filesec {
     pub fsec_magic: u32,
-    pub fsec_owner: libc::guid_t,
-    pub fsec_group: libc::guid_t,
-    pub fsec_acl: libc::kauth_acl,
+    pub fsec_owner: guid_t,
+    pub fsec_group: guid_t,
+    pub fsec_acl: kauth_acl,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_filesec_t?language=objc)
-pub type kauth_filesec_t = *mut libc::kauth_filesec;
+pub type kauth_filesec_t = *mut kauth_filesec;

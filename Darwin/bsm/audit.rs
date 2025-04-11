@@ -5,10 +5,10 @@ use core::ffi::*;
 use crate::ffi::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_id_t?language=objc)
-pub type au_id_t = libc::uid_t;
+pub type au_id_t = uid_t;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_asid_t?language=objc)
-pub type au_asid_t = libc::pid_t;
+pub type au_asid_t = pid_t;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_event_t?language=objc)
 pub type au_event_t = u16;
@@ -29,24 +29,24 @@ pub type au_ctlmode_t = c_uchar;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_tid {
-    pub port: libc::dev_t,
+    pub port: dev_t,
     pub machine: u32,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid_t?language=objc)
-pub type au_tid_t = libc::au_tid;
+pub type au_tid_t = au_tid;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_tid_addr {
-    pub at_port: libc::dev_t,
+    pub at_port: dev_t,
     pub at_type: u32,
     pub at_addr: [u32; 4],
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_tid_addr_t?language=objc)
-pub type au_tid_addr_t = libc::au_tid_addr;
+pub type au_tid_addr_t = au_tid_addr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_mask?language=objc)
 #[repr(C)]
@@ -57,89 +57,89 @@ pub struct au_mask {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_mask_t?language=objc)
-pub type au_mask_t = libc::au_mask;
+pub type au_mask_t = au_mask;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditinfo {
-    pub ai_auid: libc::au_id_t,
-    pub ai_mask: libc::au_mask_t,
-    pub ai_termid: libc::au_tid_t,
-    pub ai_asid: libc::au_asid_t,
+    pub ai_auid: au_id_t,
+    pub ai_mask: au_mask_t,
+    pub ai_termid: au_tid_t,
+    pub ai_asid: au_asid_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditinfo_t?language=objc)
-pub type auditinfo_t = libc::auditinfo;
+pub type auditinfo_t = auditinfo;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditinfo_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditinfo_addr {
-    pub ai_auid: libc::au_id_t,
-    pub ai_mask: libc::au_mask_t,
-    pub ai_termid: libc::au_tid_addr_t,
-    pub ai_asid: libc::au_asid_t,
-    pub ai_flags: libc::au_asflgs_t,
+    pub ai_auid: au_id_t,
+    pub ai_mask: au_mask_t,
+    pub ai_termid: au_tid_addr_t,
+    pub ai_asid: au_asid_t,
+    pub ai_flags: au_asflgs_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditinfo_addr_t?language=objc)
-pub type auditinfo_addr_t = libc::auditinfo_addr;
+pub type auditinfo_addr_t = auditinfo_addr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditpinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditpinfo {
-    pub ap_pid: libc::pid_t,
-    pub ap_auid: libc::au_id_t,
-    pub ap_mask: libc::au_mask_t,
-    pub ap_termid: libc::au_tid_t,
-    pub ap_asid: libc::au_asid_t,
+    pub ap_pid: pid_t,
+    pub ap_auid: au_id_t,
+    pub ap_mask: au_mask_t,
+    pub ap_termid: au_tid_t,
+    pub ap_asid: au_asid_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditpinfo_t?language=objc)
-pub type auditpinfo_t = libc::auditpinfo;
+pub type auditpinfo_t = auditpinfo;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditpinfo_addr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct auditpinfo_addr {
-    pub ap_pid: libc::pid_t,
-    pub ap_auid: libc::au_id_t,
-    pub ap_mask: libc::au_mask_t,
-    pub ap_termid: libc::au_tid_addr_t,
-    pub ap_asid: libc::au_asid_t,
-    pub ap_flags: libc::au_asflgs_t,
+    pub ap_pid: pid_t,
+    pub ap_auid: au_id_t,
+    pub ap_mask: au_mask_t,
+    pub ap_termid: au_tid_addr_t,
+    pub ap_asid: au_asid_t,
+    pub ap_flags: au_asflgs_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/auditpinfo_addr_t?language=objc)
-pub type auditpinfo_addr_t = libc::auditpinfo_addr;
+pub type auditpinfo_addr_t = auditpinfo_addr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_session?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_session {
-    pub as_aia_p: *mut libc::auditinfo_addr_t,
-    pub as_mask: libc::au_mask_t,
+    pub as_aia_p: *mut auditinfo_addr_t,
+    pub as_mask: au_mask_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_session_t?language=objc)
-pub type au_session_t = libc::au_session;
+pub type au_session_t = au_session;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_expire_after?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_expire_after {
-    pub age: libc::time_t,
+    pub age: time_t,
     pub size: usize,
     pub op_type: c_uchar,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_expire_after_t?language=objc)
-pub type au_expire_after_t = libc::au_expire_after;
+pub type au_expire_after_t = au_expire_after;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/token_t?language=objc)
-pub type token_t = libc::au_token;
+pub type token_t = au_token;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_qctrl?language=objc)
 #[repr(C)]
@@ -153,7 +153,7 @@ pub struct au_qctrl {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_qctrl_t?language=objc)
-pub type au_qctrl_t = libc::au_qctrl;
+pub type au_qctrl_t = au_qctrl;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_stat?language=objc)
 #[repr(C)]
@@ -176,7 +176,7 @@ pub struct audit_stat {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_stat_t?language=objc)
-pub type au_stat_t = libc::audit_stat;
+pub type au_stat_t = audit_stat;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_fstat?language=objc)
 #[repr(C)]
@@ -187,18 +187,18 @@ pub struct audit_fstat {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_fstat_t?language=objc)
-pub type au_fstat_t = libc::audit_fstat;
+pub type au_fstat_t = audit_fstat;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_evclass_map?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_evclass_map {
-    pub ec_number: libc::au_event_t,
-    pub ec_class: libc::au_class_t,
+    pub ec_number: au_event_t,
+    pub ec_class: au_class_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_evclass_map_t?language=objc)
-pub type au_evclass_map_t = libc::au_evclass_map;
+pub type au_evclass_map_t = au_evclass_map;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/audit_session_flags?language=objc)
 #[repr(transparent)]
@@ -229,42 +229,39 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn getauid(param1: *mut libc::au_id_t) -> c_int;
+    pub fn getauid(param1: *mut au_id_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn setauid(param1: *const libc::au_id_t) -> c_int;
+    pub fn setauid(param1: *const au_id_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getaudit_addr(param1: *mut libc::auditinfo_addr, param1: c_int) -> c_int;
+    pub fn getaudit_addr(param1: *mut auditinfo_addr, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn setaudit_addr(param1: *const libc::auditinfo_addr, param1: c_int) -> c_int;
-}
-
-extern "C-unwind" {
-    #[deprecated]
-    pub fn getaudit(param1: *mut libc::auditinfo) -> c_int;
+    pub fn setaudit_addr(param1: *const auditinfo_addr, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     #[deprecated]
-    pub fn setaudit(param1: *const libc::auditinfo) -> c_int;
+    pub fn getaudit(param1: *mut auditinfo) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn audit_session_self() -> libc::mach_port_name_t;
+    #[deprecated]
+    pub fn setaudit(param1: *const auditinfo) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn audit_session_join(port: libc::mach_port_name_t) -> libc::au_asid_t;
+    pub fn audit_session_self() -> mach_port_name_t;
 }
 
 extern "C-unwind" {
-    pub fn audit_session_port(
-        asid: libc::au_asid_t,
-        portname: *mut libc::mach_port_name_t,
-    ) -> c_int;
+    pub fn audit_session_join(port: mach_port_name_t) -> au_asid_t;
+}
+
+extern "C-unwind" {
+    pub fn audit_session_port(asid: au_asid_t, portname: *mut mach_port_name_t) -> c_int;
 }

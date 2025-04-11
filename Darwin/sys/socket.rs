@@ -15,14 +15,14 @@ pub type sae_connid_t = u32;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sa_endpoints {
     pub sae_srcif: c_uint,
-    pub sae_srcaddr: *const libc::sockaddr,
-    pub sae_srcaddrlen: libc::socklen_t,
-    pub sae_dstaddr: *const libc::sockaddr,
-    pub sae_dstaddrlen: libc::socklen_t,
+    pub sae_srcaddr: *const sockaddr,
+    pub sae_srcaddrlen: socklen_t,
+    pub sae_dstaddr: *const sockaddr,
+    pub sae_dstaddrlen: socklen_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/sa_endpoints_t?language=objc)
-pub type sa_endpoints_t = libc::sa_endpoints;
+pub type sa_endpoints_t = sa_endpoints;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/linger?language=objc)
 #[repr(C)]
@@ -45,7 +45,7 @@ pub struct so_np_extensions {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr {
     pub sa_len: u8,
-    pub sa_family: libc::sa_family_t,
+    pub sa_family: sa_family_t,
     pub sa_data: [c_char; 14],
 }
 
@@ -54,7 +54,7 @@ pub struct sockaddr {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __sockaddr_header {
     pub sa_len: u8,
-    pub sa_family: libc::sa_family_t,
+    pub sa_family: sa_family_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockproto?language=objc)
@@ -70,7 +70,7 @@ pub struct sockproto {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_storage {
     pub ss_len: u8,
-    pub ss_family: libc::sa_family_t,
+    pub ss_family: sa_family_t,
     pub(crate) __ss_pad1: [c_char; 6],
     pub(crate) __ss_align: i64,
     pub(crate) __ss_pad2: [c_char; 112],
@@ -81,11 +81,11 @@ pub struct sockaddr_storage {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct msghdr {
     pub msg_name: *mut c_void,
-    pub msg_namelen: libc::socklen_t,
-    pub msg_iov: *mut libc::iovec,
+    pub msg_namelen: socklen_t,
+    pub msg_iov: *mut iovec,
     pub msg_iovlen: c_int,
     pub msg_control: *mut c_void,
-    pub msg_controllen: libc::socklen_t,
+    pub msg_controllen: socklen_t,
     pub msg_flags: c_int,
 }
 
@@ -93,7 +93,7 @@ pub struct msghdr {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cmsghdr {
-    pub cmsg_len: libc::socklen_t,
+    pub cmsg_len: socklen_t,
     pub cmsg_level: c_int,
     pub cmsg_type: c_int,
 }
@@ -102,47 +102,35 @@ pub struct cmsghdr {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sf_hdtr {
-    pub headers: *mut libc::iovec,
+    pub headers: *mut iovec,
     pub hdr_cnt: c_int,
-    pub trailers: *mut libc::iovec,
+    pub trailers: *mut iovec,
     pub trl_cnt: c_int,
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "accept")]
-    pub fn accept(
-        param1: c_int,
-        param1: *mut libc::sockaddr,
-        param1: *mut libc::socklen_t,
-    ) -> c_int;
+    pub fn accept(param1: c_int, param1: *mut sockaddr, param1: *mut socklen_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "bind")]
-    pub fn bind(param1: c_int, param1: *const libc::sockaddr, param1: libc::socklen_t) -> c_int;
+    pub fn bind(param1: c_int, param1: *const sockaddr, param1: socklen_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "connect")]
-    pub fn connect(param1: c_int, param1: *const libc::sockaddr, param1: libc::socklen_t) -> c_int;
+    pub fn connect(param1: c_int, param1: *const sockaddr, param1: socklen_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "getpeername")]
-    pub fn getpeername(
-        param1: c_int,
-        param1: *mut libc::sockaddr,
-        param1: *mut libc::socklen_t,
-    ) -> c_int;
+    pub fn getpeername(param1: c_int, param1: *mut sockaddr, param1: *mut socklen_t) -> c_int;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "getsockname")]
-    pub fn getsockname(
-        param1: c_int,
-        param1: *mut libc::sockaddr,
-        param1: *mut libc::socklen_t,
-    ) -> c_int;
+    pub fn getsockname(param1: c_int, param1: *mut sockaddr, param1: *mut socklen_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -151,7 +139,7 @@ extern "C-unwind" {
         param1: c_int,
         param1: c_int,
         param1: *mut c_void,
-        param1: *mut libc::socklen_t,
+        param1: *mut socklen_t,
     ) -> c_int;
 }
 
@@ -172,14 +160,14 @@ extern "C-unwind" {
         param1: *mut c_void,
         param1: usize,
         param1: c_int,
-        param1: *mut libc::sockaddr,
-        param1: *mut libc::socklen_t,
+        param1: *mut sockaddr,
+        param1: *mut socklen_t,
     ) -> isize;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "recvmsg")]
-    pub fn recvmsg(param1: c_int, param1: *mut libc::msghdr, param1: c_int) -> isize;
+    pub fn recvmsg(param1: c_int, param1: *mut msghdr, param1: c_int) -> isize;
 }
 
 extern "C-unwind" {
@@ -189,7 +177,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "sendmsg")]
-    pub fn sendmsg(param1: c_int, param1: *const libc::msghdr, param1: c_int) -> isize;
+    pub fn sendmsg(param1: c_int, param1: *const msghdr, param1: c_int) -> isize;
 }
 
 extern "C-unwind" {
@@ -199,8 +187,8 @@ extern "C-unwind" {
         param1: *const c_void,
         param1: usize,
         param1: c_int,
-        param1: *const libc::sockaddr,
-        param1: libc::socklen_t,
+        param1: *const sockaddr,
+        param1: socklen_t,
     ) -> isize;
 }
 
@@ -210,7 +198,7 @@ extern "C-unwind" {
         param1: c_int,
         param1: c_int,
         param1: *const c_void,
-        param1: libc::socklen_t,
+        param1: socklen_t,
     ) -> c_int;
 }
 
@@ -235,34 +223,30 @@ extern "C-unwind" {
     pub fn sendfile(
         param1: c_int,
         param1: c_int,
-        param1: libc::off_t,
-        param1: *mut libc::off_t,
-        param1: *mut libc::sf_hdtr,
+        param1: off_t,
+        param1: *mut off_t,
+        param1: *mut sf_hdtr,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn pfctlinput(param1: c_int, param1: *mut libc::sockaddr);
+    pub fn pfctlinput(param1: c_int, param1: *mut sockaddr);
 }
 
 extern "C-unwind" {
     pub fn connectx(
         param1: c_int,
-        param1: *const libc::sa_endpoints_t,
-        param1: libc::sae_associd_t,
+        param1: *const sa_endpoints_t,
+        param1: sae_associd_t,
         param1: c_uint,
-        param1: *const libc::iovec,
+        param1: *const iovec,
         param1: c_uint,
         param1: *mut usize,
-        param1: *mut libc::sae_connid_t,
+        param1: *mut sae_connid_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn disconnectx(
-        param1: c_int,
-        param1: libc::sae_associd_t,
-        param1: libc::sae_connid_t,
-    ) -> c_int;
+    pub fn disconnectx(param1: c_int, param1: sae_associd_t, param1: sae_connid_t) -> c_int;
 }

@@ -13,13 +13,12 @@ pub type xattr_flags_t = u64;
 extern "C-unwind" {
     pub fn xattr_preserve_for_intent(
         param1: *const c_char,
-        param1: libc::xattr_operation_intent_t,
+        param1: xattr_operation_intent_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn xattr_name_with_flags(param1: *const c_char, param1: libc::xattr_flags_t)
-        -> *mut c_char;
+    pub fn xattr_name_with_flags(param1: *const c_char, param1: xattr_flags_t) -> *mut c_char;
 }
 
 extern "C-unwind" {
@@ -27,12 +26,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn xattr_flags_from_name(param1: *const c_char) -> libc::xattr_flags_t;
+    pub fn xattr_flags_from_name(param1: *const c_char) -> xattr_flags_t;
 }
 
 extern "C-unwind" {
     pub fn xattr_intent_with_flags(
-        param1: libc::xattr_operation_intent_t,
-        param1: libc::xattr_flags_t,
+        param1: xattr_operation_intent_t,
+        param1: xattr_flags_t,
     ) -> c_int;
 }

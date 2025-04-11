@@ -19,7 +19,7 @@ unsafe impl RefEncode for _copyfile_state {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/copyfile_state_t?language=objc)
-pub type copyfile_state_t = *mut libc::_copyfile_state;
+pub type copyfile_state_t = *mut _copyfile_state;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/copyfile_flags_t?language=objc)
 pub type copyfile_flags_t = u32;
@@ -28,8 +28,8 @@ extern "C-unwind" {
     pub fn copyfile(
         from: *const c_char,
         to: *const c_char,
-        state: libc::copyfile_state_t,
-        flags: libc::copyfile_flags_t,
+        state: copyfile_state_t,
+        flags: copyfile_flags_t,
     ) -> c_int;
 }
 
@@ -37,25 +37,25 @@ extern "C-unwind" {
     pub fn fcopyfile(
         from_fd: c_int,
         to_fd: c_int,
-        param1: libc::copyfile_state_t,
-        flags: libc::copyfile_flags_t,
+        param1: copyfile_state_t,
+        flags: copyfile_flags_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn copyfile_state_free(param1: libc::copyfile_state_t) -> c_int;
+    pub fn copyfile_state_free(param1: copyfile_state_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn copyfile_state_alloc() -> libc::copyfile_state_t;
+    pub fn copyfile_state_alloc() -> copyfile_state_t;
 }
 
 extern "C-unwind" {
-    pub fn copyfile_state_get(s: libc::copyfile_state_t, flag: u32, dst: *mut c_void) -> c_int;
+    pub fn copyfile_state_get(s: copyfile_state_t, flag: u32, dst: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn copyfile_state_set(s: libc::copyfile_state_t, flag: u32, src: *const c_void) -> c_int;
+    pub fn copyfile_state_set(s: copyfile_state_t, flag: u32, src: *const c_void) -> c_int;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/copyfile_callback_t?language=objc)
@@ -63,7 +63,7 @@ pub type copyfile_callback_t = Option<
     unsafe extern "C-unwind" fn(
         c_int,
         c_int,
-        libc::copyfile_state_t,
+        copyfile_state_t,
         *const c_char,
         *const c_char,
         *mut c_void,

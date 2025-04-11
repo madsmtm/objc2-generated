@@ -45,12 +45,12 @@ pub struct rt_msghdr {
     pub rtm_index: c_ushort,
     pub rtm_flags: c_int,
     pub rtm_addrs: c_int,
-    pub rtm_pid: libc::pid_t,
+    pub rtm_pid: pid_t,
     pub rtm_seq: c_int,
     pub rtm_errno: c_int,
     pub rtm_use: c_int,
     pub rtm_inits: u32,
-    pub rtm_rmx: libc::rt_metrics,
+    pub rtm_rmx: rt_metrics,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rt_msghdr2?language=objc)
@@ -68,7 +68,7 @@ pub struct rt_msghdr2 {
     pub rtm_reserved: c_int,
     pub rtm_use: c_int,
     pub rtm_inits: u32,
-    pub rtm_rmx: libc::rt_metrics,
+    pub rtm_rmx: rt_metrics,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rt_msghdr_prelude?language=objc)
@@ -83,5 +83,5 @@ pub struct rt_msghdr_prelude {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rt_addrinfo {
     pub rti_addrs: c_int,
-    pub rti_info: [*mut libc::sockaddr; 8],
+    pub rti_info: [*mut sockaddr; 8],
 }

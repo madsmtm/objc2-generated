@@ -19,9 +19,9 @@ pub struct sockaddr_dl {
 }
 
 extern "C-unwind" {
-    pub fn link_addr(param1: *const c_char, param1: *mut libc::sockaddr_dl);
+    pub fn link_addr(param1: *const c_char, param1: *mut sockaddr_dl);
 }
 
 extern "C-unwind" {
-    pub fn link_ntoa(param1: *const libc::sockaddr_dl) -> *mut c_char;
+    pub fn link_ntoa(param1: *const sockaddr_dl) -> *mut c_char;
 }

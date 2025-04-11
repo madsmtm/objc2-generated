@@ -14,7 +14,7 @@ pub struct ether_header {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ether_header_t?language=objc)
-pub type ether_header_t = libc::ether_header;
+pub type ether_header_t = ether_header;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ether_addr?language=objc)
 #[repr(C)]
@@ -24,28 +24,25 @@ pub struct ether_addr {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ether_addr_t?language=objc)
-pub type ether_addr_t = libc::ether_addr;
+pub type ether_addr_t = ether_addr;
 
 extern "C-unwind" {
-    pub fn ether_hostton(param1: *const c_char, param1: *mut libc::ether_addr) -> c_int;
+    pub fn ether_hostton(param1: *const c_char, param1: *mut ether_addr) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn ether_line(
-        param1: *const c_char,
-        param1: *mut libc::ether_addr,
-        param1: *mut c_char,
-    ) -> c_int;
+    pub fn ether_line(param1: *const c_char, param1: *mut ether_addr, param1: *mut c_char)
+        -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn ether_ntoa(param1: *const libc::ether_addr) -> *mut c_char;
+    pub fn ether_ntoa(param1: *const ether_addr) -> *mut c_char;
 }
 
 extern "C-unwind" {
-    pub fn ether_aton(param1: *const c_char) -> *mut libc::ether_addr;
+    pub fn ether_aton(param1: *const c_char) -> *mut ether_addr;
 }
 
 extern "C-unwind" {
-    pub fn ether_ntohost(param1: *mut c_char, param1: *const libc::ether_addr) -> c_int;
+    pub fn ether_ntohost(param1: *mut c_char, param1: *const ether_addr) -> c_int;
 }

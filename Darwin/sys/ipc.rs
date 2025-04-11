@@ -8,15 +8,15 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipc_perm {
-    pub uid: libc::uid_t,
-    pub gid: libc::gid_t,
-    pub cuid: libc::uid_t,
-    pub cgid: libc::gid_t,
-    pub mode: libc::mode_t,
+    pub uid: uid_t,
+    pub gid: gid_t,
+    pub cuid: uid_t,
+    pub cgid: gid_t,
+    pub mode: mode_t,
     pub(crate) _seq: c_ushort,
-    pub(crate) _key: libc::key_t,
+    pub(crate) _key: key_t,
 }
 
 extern "C-unwind" {
-    pub fn ftok(param1: *const c_char, param1: c_int) -> libc::key_t;
+    pub fn ftok(param1: *const c_char, param1: c_int) -> key_t;
 }

@@ -12,11 +12,11 @@ use crate::ffi::*;
 pub struct __darwin_ucontext64 {
     pub uc_onstack: c_int,
     pub uc_sigmask: __darwin_sigset_t,
-    pub uc_stack: libc::__darwin_sigaltstack,
-    pub uc_link: *mut libc::__darwin_ucontext64,
+    pub uc_stack: __darwin_sigaltstack,
+    pub uc_link: *mut __darwin_ucontext64,
     pub uc_mcsize: __darwin_size_t,
-    pub uc_mcontext64: *mut libc::__darwin_mcontext64,
+    pub uc_mcontext64: *mut __darwin_mcontext64,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ucontext64_t?language=objc)
-pub type ucontext64_t = libc::__darwin_ucontext64;
+pub type ucontext64_t = __darwin_ucontext64;

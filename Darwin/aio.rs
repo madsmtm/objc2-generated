@@ -9,52 +9,52 @@ use crate::ffi::*;
 #[derive(Clone, Copy)]
 pub struct aiocb {
     pub aio_fildes: c_int,
-    pub aio_offset: libc::off_t,
+    pub aio_offset: off_t,
     pub aio_buf: *mut c_void,
     pub aio_nbytes: usize,
     pub aio_reqprio: c_int,
-    pub aio_sigevent: libc::sigevent,
+    pub aio_sigevent: sigevent,
     pub aio_lio_opcode: c_int,
 }
 
 extern "C-unwind" {
-    pub fn aio_cancel(fd: c_int, aiocbp: *mut libc::aiocb) -> c_int;
+    pub fn aio_cancel(fd: c_int, aiocbp: *mut aiocb) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn aio_error(aiocbp: *const libc::aiocb) -> c_int;
+    pub fn aio_error(aiocbp: *const aiocb) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn aio_fsync(op: c_int, aiocbp: *mut libc::aiocb) -> c_int;
+    pub fn aio_fsync(op: c_int, aiocbp: *mut aiocb) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn aio_read(aiocbp: *mut libc::aiocb) -> c_int;
+    pub fn aio_read(aiocbp: *mut aiocb) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn aio_return(aiocbp: *mut libc::aiocb) -> isize;
+    pub fn aio_return(aiocbp: *mut aiocb) -> isize;
 }
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "aio_suspend")]
     pub fn aio_suspend(
-        aiocblist: *mut *const libc::aiocb,
+        aiocblist: *mut *const aiocb,
         nent: c_int,
-        timeoutp: *const libc::timespec,
+        timeoutp: *const timespec,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn aio_write(aiocbp: *mut libc::aiocb) -> c_int;
+    pub fn aio_write(aiocbp: *mut aiocb) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn lio_listio(
         mode: c_int,
-        aiocblist: *mut *const libc::aiocb,
+        aiocblist: *mut *const aiocb,
         nent: c_int,
-        sigp: *mut libc::sigevent,
+        sigp: *mut sigevent,
     ) -> c_int;
 }

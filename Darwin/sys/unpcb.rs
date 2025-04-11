@@ -5,7 +5,7 @@ use core::ffi::*;
 use crate::ffi::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/unp_gen_t?language=objc)
-pub type unp_gen_t = libc::u_quad_t;
+pub type unp_gen_t = u_quad_t;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_unpcb_list_entry?language=objc)
 #[repr(C)]
@@ -21,6 +21,6 @@ pub struct _unpcb_list_entry {
 pub struct xunpgen {
     pub xug_len: u32,
     pub xug_count: c_uint,
-    pub xug_gen: libc::unp_gen_t,
-    pub xug_sogen: libc::so_gen_t,
+    pub xug_gen: unp_gen_t,
+    pub xug_sogen: so_gen_t,
 }

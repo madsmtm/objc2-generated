@@ -22,10 +22,10 @@ pub struct glob_t {
     pub gl_flags: c_int,
     pub gl_pathv: *mut *mut c_char,
     pub gl_closedir: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
-    pub gl_readdir: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut libc::dirent>,
+    pub gl_readdir: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut dirent>,
     pub gl_opendir: Option<unsafe extern "C-unwind" fn(*const c_char) -> *mut c_void>,
-    pub gl_lstat: Option<unsafe extern "C-unwind" fn(*const c_char, *mut libc::stat) -> c_int>,
-    pub gl_stat: Option<unsafe extern "C-unwind" fn(*const c_char, *mut libc::stat) -> c_int>,
+    pub gl_lstat: Option<unsafe extern "C-unwind" fn(*const c_char, *mut stat) -> c_int>,
+    pub gl_stat: Option<unsafe extern "C-unwind" fn(*const c_char, *mut stat) -> c_int>,
 }
 
 extern "C-unwind" {
@@ -34,7 +34,7 @@ extern "C-unwind" {
         param1: *const c_char,
         param1: c_int,
         param1: Option<unsafe extern "C-unwind" fn(*const c_char, c_int) -> c_int>,
-        param1: *mut libc::glob_t,
+        param1: *mut glob_t,
     ) -> c_int;
 }
 
@@ -44,10 +44,10 @@ extern "C-unwind" {
         param1: *const c_char,
         param1: c_int,
         param1: Option<&block2::Block<dyn Fn(*const c_char, c_int) -> c_int>>,
-        param1: *mut libc::glob_t,
+        param1: *mut glob_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn globfree(param1: *mut libc::glob_t);
+    pub fn globfree(param1: *mut glob_t);
 }

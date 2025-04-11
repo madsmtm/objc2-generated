@@ -11,7 +11,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn inet_ntoa(param1: libc::in_addr) -> *mut c_char;
+    pub fn inet_ntoa(param1: in_addr) -> *mut c_char;
 }
 
 extern "C-unwind" {
@@ -19,7 +19,7 @@ extern "C-unwind" {
         param1: c_int,
         param1: *const c_void,
         param1: *mut c_char,
-        param1: libc::socklen_t,
+        param1: socklen_t,
     ) -> *const c_char;
 }
 
@@ -41,19 +41,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn inet_aton(param1: *const c_char, param1: *mut libc::in_addr) -> c_int;
+    pub fn inet_aton(param1: *const c_char, param1: *mut in_addr) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inet_lnaof(param1: libc::in_addr) -> in_addr_t;
+    pub fn inet_lnaof(param1: in_addr) -> in_addr_t;
 }
 
 extern "C-unwind" {
-    pub fn inet_makeaddr(param1: in_addr_t, param1: in_addr_t) -> libc::in_addr;
+    pub fn inet_makeaddr(param1: in_addr_t, param1: in_addr_t) -> in_addr;
 }
 
 extern "C-unwind" {
-    pub fn inet_netof(param1: libc::in_addr) -> in_addr_t;
+    pub fn inet_netof(param1: in_addr) -> in_addr_t;
 }
 
 extern "C-unwind" {

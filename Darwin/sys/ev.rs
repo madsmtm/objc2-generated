@@ -20,16 +20,16 @@ pub struct eventreq {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/er_t?language=objc)
-pub type er_t = *mut libc::eventreq;
+pub type er_t = *mut eventreq;
 
 extern "C-unwind" {
-    pub fn modwatch(param1: libc::er_t, param1: c_int) -> c_int;
+    pub fn modwatch(param1: er_t, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn watchevent(param1: libc::er_t, param1: c_int) -> c_int;
+    pub fn watchevent(param1: er_t, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waitevent(param1: libc::er_t, param1: *mut timeval) -> c_int;
+    pub fn waitevent(param1: er_t, param1: *mut timeval) -> c_int;
 }

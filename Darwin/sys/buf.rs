@@ -10,14 +10,14 @@ extern "C-unwind" {
     /// Mark a buffer as "aged," i.e. as a good candidate to be discarded and reused after buf_brelse().
     ///
     /// Parameter `bp`: Buffer to mark.
-    pub fn buf_markaged(bp: libc::buf_t);
+    pub fn buf_markaged(bp: buf_t);
 }
 
 extern "C-unwind" {
     /// Mark a buffer as not having valid data and being ready for immediate reuse after buf_brelse().
     ///
     /// Parameter `bp`: Buffer to mark.
-    pub fn buf_markinvalid(bp: libc::buf_t);
+    pub fn buf_markinvalid(bp: buf_t);
 }
 
 extern "C-unwind" {
@@ -27,11 +27,11 @@ extern "C-unwind" {
     /// or pressure necessitating reuse of the buffer will cause it to be written back to disk.
     ///
     /// Parameter `bp`: Buffer to mark.
-    pub fn buf_markdelayed(bp: libc::buf_t);
+    pub fn buf_markdelayed(bp: buf_t);
 }
 
 extern "C-unwind" {
-    pub fn buf_markclean(param1: libc::buf_t);
+    pub fn buf_markclean(param1: buf_t);
 }
 
 extern "C-unwind" {
@@ -41,14 +41,14 @@ extern "C-unwind" {
     /// buf_markeintr does not itself do a wakeup.
     ///
     /// Parameter `bp`: Buffer to mark.
-    pub fn buf_markeintr(bp: libc::buf_t);
+    pub fn buf_markeintr(bp: buf_t);
 }
 
 extern "C-unwind" {
     /// Mark a buffer for write through disk cache, if disk supports it.
     ///
     /// Parameter `bp`: Buffer to mark.
-    pub fn buf_markfua(bp: libc::buf_t);
+    pub fn buf_markfua(bp: buf_t);
 }
 
 extern "C-unwind" {
@@ -57,7 +57,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer to test.
     ///
     /// Returns: Nonzero if buffer is marked for write-through, 0 if not.
-    pub fn buf_fua(bp: libc::buf_t) -> c_int;
+    pub fn buf_fua(bp: buf_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -66,7 +66,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer to test.
     ///
     /// Returns: Nonzero if buffer has valid data, 0 if not.
-    pub fn buf_valid(bp: libc::buf_t) -> c_int;
+    pub fn buf_valid(bp: buf_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -78,7 +78,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer to test.
     ///
     /// Returns: Nonzero if we got this buffer's data without doing I/O, 0 if not.
-    pub fn buf_fromcache(bp: libc::buf_t) -> c_int;
+    pub fn buf_fromcache(bp: buf_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -90,7 +90,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose upl to grab.
     ///
     /// Returns: Buffer's upl if it has one, else NULL.
-    pub fn buf_upl(bp: libc::buf_t) -> *mut c_void;
+    pub fn buf_upl(bp: buf_t) -> *mut c_void;
 }
 
 extern "C-unwind" {
@@ -101,7 +101,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose uploffset to grab.
     ///
     /// Returns: Buffer's uploffset--does not check whether that value makes sense for this buffer.
-    pub fn buf_uploffset(bp: libc::buf_t) -> u32;
+    pub fn buf_uploffset(bp: buf_t) -> u32;
 }
 
 extern "C-unwind" {
@@ -113,7 +113,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose credential to grab.
     ///
     /// Returns: Credential if it exists, else NULL.
-    pub fn buf_rcred(bp: libc::buf_t) -> libc::kauth_cred_t;
+    pub fn buf_rcred(bp: buf_t) -> kauth_cred_t;
 }
 
 extern "C-unwind" {
@@ -125,7 +125,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose credential to grab.
     ///
     /// Returns: Credential if it exists, else NULL.
-    pub fn buf_wcred(bp: libc::buf_t) -> libc::kauth_cred_t;
+    pub fn buf_wcred(bp: buf_t) -> kauth_cred_t;
 }
 
 extern "C-unwind" {
@@ -137,7 +137,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose associated process to find.
     ///
     /// Returns: Associated process, possibly NULL.
-    pub fn buf_proc(bp: libc::buf_t) -> libc::proc_t;
+    pub fn buf_proc(bp: buf_t) -> proc_t;
 }
 
 extern "C-unwind" {
@@ -148,7 +148,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose dirty offset to get.
     ///
     /// Returns: Dirty offset (0 if not explicitly changed).
-    pub fn buf_dirtyoff(bp: libc::buf_t) -> u32;
+    pub fn buf_dirtyoff(bp: buf_t) -> u32;
 }
 
 extern "C-unwind" {
@@ -160,7 +160,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose dirty end to get.
     ///
     /// Returns: 0 if buffer is found clean; size of buffer if found dirty.  Can be set to any value by callers of buf_setdirtyend().
-    pub fn buf_dirtyend(bp: libc::buf_t) -> u32;
+    pub fn buf_dirtyend(bp: buf_t) -> u32;
 }
 
 extern "C-unwind" {
@@ -169,7 +169,7 @@ extern "C-unwind" {
     /// This value is zero unless someone set it explicitly.
     ///
     /// Parameter `bp`: Buffer whose dirty end to set.
-    pub fn buf_setdirtyoff(bp: libc::buf_t, param1: u32);
+    pub fn buf_setdirtyoff(bp: buf_t, param1: u32);
 }
 
 extern "C-unwind" {
@@ -179,7 +179,7 @@ extern "C-unwind" {
     /// someone outside of xnu explicitly changes it by calling buf_setdirtyend(), it will be zero.
     ///
     /// Parameter `bp`: Buffer whose dirty end to set.
-    pub fn buf_setdirtyend(bp: libc::buf_t, param1: u32);
+    pub fn buf_setdirtyend(bp: buf_t, param1: u32);
 }
 
 extern "C-unwind" {
@@ -190,14 +190,14 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose error value to retrieve.
     ///
     /// Returns: Error value, directly.
-    pub fn buf_error(bp: libc::buf_t) -> errno_t;
+    pub fn buf_error(bp: buf_t) -> errno_t;
 }
 
 extern "C-unwind" {
     /// Set an error value on a buffer.
     ///
     /// Parameter `bp`: Buffer whose error value to set.
-    pub fn buf_seterror(bp: libc::buf_t, param1: errno_t);
+    pub fn buf_seterror(bp: buf_t, param1: errno_t);
 }
 
 extern "C-unwind" {
@@ -208,7 +208,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose flags to set.
     ///
     /// Parameter `flags`: Flags to add to buffer's mask. B_LOCKED/B_NOCACHE/B_ASYNC/B_READ/B_WRITE/B_PAGEIO/B_FUA
-    pub fn buf_setflags(bp: libc::buf_t, flags: i32);
+    pub fn buf_setflags(bp: buf_t, flags: i32);
 }
 
 extern "C-unwind" {
@@ -221,7 +221,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose flags to clear.
     ///
     /// Parameter `flags`: Flags to remove from buffer's mask. B_LOCKED/B_NOCACHE/B_ASYNC/B_READ/B_WRITE/B_PAGEIO/B_FUA
-    pub fn buf_clearflags(bp: libc::buf_t, flags: i32);
+    pub fn buf_clearflags(bp: buf_t, flags: i32);
 }
 
 extern "C-unwind" {
@@ -232,7 +232,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose flags to grab.
     ///
     /// Returns: flags.
-    pub fn buf_flags(bp: libc::buf_t) -> i32;
+    pub fn buf_flags(bp: buf_t) -> i32;
 }
 
 extern "C-unwind" {
@@ -244,7 +244,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose flags to grab.
     ///
     /// Parameter `flags`: Flags to set on buffer: B_READ, B_WRITE, B_ASYNC, B_NOCACHE.
-    pub fn buf_reset(bp: libc::buf_t, flags: i32);
+    pub fn buf_reset(bp: buf_t, flags: i32);
 }
 
 extern "C-unwind" {
@@ -264,7 +264,7 @@ extern "C-unwind" {
     /// Parameter `io_addr`: Destination for mapping address.
     ///
     /// Returns: 0 for success, ENOMEM if unable to map the buffer.
-    pub fn buf_map(bp: libc::buf_t, io_addr: *mut libc::caddr_t) -> errno_t;
+    pub fn buf_map(bp: buf_t, io_addr: *mut caddr_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -280,7 +280,7 @@ extern "C-unwind" {
     /// Parameter `io_addr`: Destination for mapping address.
     ///
     /// Returns: 0 for success, ENOMEM if unable to map the buffer.
-    pub fn buf_map_range(bp: libc::buf_t, io_addr: *mut libc::caddr_t) -> errno_t;
+    pub fn buf_map_range(bp: buf_t, io_addr: *mut caddr_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -296,11 +296,7 @@ extern "C-unwind" {
     /// Parameter `io_addr`: Destination for mapping address.
     ///
     /// Returns: 0 for success, ENOMEM if unable to map the buffer.
-    pub fn buf_map_range_with_prot(
-        bp: libc::buf_t,
-        io_addr: *mut libc::caddr_t,
-        prot: libc::vm_prot_t,
-    ) -> errno_t;
+    pub fn buf_map_range_with_prot(bp: buf_t, io_addr: *mut caddr_t, prot: vm_prot_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -317,7 +313,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose mapping to find or create.
     ///
     /// Returns: 0 for success, EINVAL if unable to unmap buffer.
-    pub fn buf_unmap(bp: libc::buf_t) -> errno_t;
+    pub fn buf_unmap(bp: buf_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -331,7 +327,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose mapping to find or create.
     ///
     /// Returns: 0 for success, EINVAL if unable to unmap buffer.
-    pub fn buf_unmap_range(bp: libc::buf_t) -> errno_t;
+    pub fn buf_unmap_range(bp: buf_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -340,7 +336,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose driver-data to set.
     ///
     /// Parameter `drvdata`: Opaque driver data.
-    pub fn buf_setdrvdata(bp: libc::buf_t, drvdata: *mut c_void);
+    pub fn buf_setdrvdata(bp: buf_t, drvdata: *mut c_void);
 }
 
 extern "C-unwind" {
@@ -349,7 +345,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose driver data to get.
     ///
     /// Returns: Opaque driver data.
-    pub fn buf_drvdata(bp: libc::buf_t) -> *mut c_void;
+    pub fn buf_drvdata(bp: buf_t) -> *mut c_void;
 }
 
 extern "C-unwind" {
@@ -358,7 +354,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose filesystem data to set.
     ///
     /// Parameter `fsprivate`: Opaque filesystem data.
-    pub fn buf_setfsprivate(bp: libc::buf_t, fsprivate: *mut c_void);
+    pub fn buf_setfsprivate(bp: buf_t, fsprivate: *mut c_void);
 }
 
 extern "C-unwind" {
@@ -367,7 +363,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose filesystem data to get.
     ///
     /// Returns: Opaque filesystem data.
-    pub fn buf_fsprivate(bp: libc::buf_t) -> *mut c_void;
+    pub fn buf_fsprivate(bp: buf_t) -> *mut c_void;
 }
 
 extern "C-unwind" {
@@ -381,7 +377,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose physical block number to get.
     ///
     /// Returns: Block number.
-    pub fn buf_blkno(bp: libc::buf_t) -> libc::daddr64_t;
+    pub fn buf_blkno(bp: buf_t) -> daddr64_t;
 }
 
 extern "C-unwind" {
@@ -393,7 +389,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose logical block number to get.
     ///
     /// Returns: Block number.
-    pub fn buf_lblkno(bp: libc::buf_t) -> libc::daddr64_t;
+    pub fn buf_lblkno(bp: buf_t) -> daddr64_t;
 }
 
 extern "C-unwind" {
@@ -405,7 +401,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose logical block size to get.
     ///
     /// Returns: Block size.
-    pub fn buf_lblksize(bp: libc::buf_t) -> u32;
+    pub fn buf_lblksize(bp: buf_t) -> u32;
 }
 
 extern "C-unwind" {
@@ -416,7 +412,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose physical block number to set.
     ///
     /// Parameter `blkno`: Block number to set.
-    pub fn buf_setblkno(bp: libc::buf_t, blkno: libc::daddr64_t);
+    pub fn buf_setblkno(bp: buf_t, blkno: daddr64_t);
 }
 
 extern "C-unwind" {
@@ -428,7 +424,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose logical block number to set.
     ///
     /// Parameter `lblkno`: Block number to set.
-    pub fn buf_setlblkno(bp: libc::buf_t, lblkno: libc::daddr64_t);
+    pub fn buf_setlblkno(bp: buf_t, lblkno: daddr64_t);
 }
 
 extern "C-unwind" {
@@ -440,7 +436,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose logical block size to set.
     ///
     /// Parameter `lblksize`: Block size to set.
-    pub fn buf_setlblksize(bp: libc::buf_t, lblksize: u32);
+    pub fn buf_setlblksize(bp: buf_t, lblksize: u32);
 }
 
 extern "C-unwind" {
@@ -449,7 +445,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose byte count to get.
     ///
     /// Returns: Byte count.
-    pub fn buf_count(bp: libc::buf_t) -> u32;
+    pub fn buf_count(bp: buf_t) -> u32;
 }
 
 extern "C-unwind" {
@@ -460,7 +456,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose size to get.
     ///
     /// Returns: Size.
-    pub fn buf_size(bp: libc::buf_t) -> u32;
+    pub fn buf_size(bp: buf_t) -> u32;
 }
 
 extern "C-unwind" {
@@ -471,7 +467,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose outstanding count to get.
     ///
     /// Returns: Count of unwritten/unread bytes.
-    pub fn buf_resid(bp: libc::buf_t) -> u32;
+    pub fn buf_resid(bp: buf_t) -> u32;
 }
 
 extern "C-unwind" {
@@ -480,7 +476,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose byte count to set.
     ///
     /// Parameter `bcount`: Count to set.
-    pub fn buf_setcount(bp: libc::buf_t, bcount: u32);
+    pub fn buf_setcount(bp: buf_t, bcount: u32);
 }
 
 extern "C-unwind" {
@@ -490,7 +486,7 @@ extern "C-unwind" {
     /// code which is manually providing storage for an iobuf, one allocated with buf_alloc().
     ///
     /// Parameter `bp`: Buffer whose size to set.
-    pub fn buf_setsize(bp: libc::buf_t, param1: u32);
+    pub fn buf_setsize(bp: buf_t, param1: u32);
 }
 
 extern "C-unwind" {
@@ -501,7 +497,7 @@ extern "C-unwind" {
     /// on behalf of the first.
     ///
     /// Parameter `bp`: Buffer whose outstanding count to set.
-    pub fn buf_setresid(bp: libc::buf_t, resid: u32);
+    pub fn buf_setresid(bp: buf_t, resid: u32);
 }
 
 extern "C-unwind" {
@@ -513,7 +509,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose data pointer to set.
     ///
     /// Parameter `data`: Pointer to data region.
-    pub fn buf_setdataptr(bp: libc::buf_t, data: usize);
+    pub fn buf_setdataptr(bp: buf_t, data: usize);
 }
 
 extern "C-unwind" {
@@ -523,7 +519,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose data pointer to retrieve.
     ///
     /// Returns: Data pointer; NULL if unset.
-    pub fn buf_dataptr(bp: libc::buf_t) -> usize;
+    pub fn buf_dataptr(bp: buf_t) -> usize;
 }
 
 extern "C-unwind" {
@@ -536,7 +532,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose vnode to retrieve.
     ///
     /// Returns: Buffer's vnode.
-    pub fn buf_vnode(bp: libc::buf_t) -> libc::vnode_t;
+    pub fn buf_vnode(bp: buf_t) -> vnode_t;
 }
 
 extern "C-unwind" {
@@ -547,7 +543,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose vnode to set.
     ///
     /// Parameter `vp`: The vnode to attach to the buffer.
-    pub fn buf_setvnode(bp: libc::buf_t, vp: libc::vnode_t);
+    pub fn buf_setvnode(bp: buf_t, vp: vnode_t);
 }
 
 extern "C-unwind" {
@@ -560,7 +556,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose device ID to retrieve.
     ///
     /// Returns: Device id.
-    pub fn buf_device(bp: libc::buf_t) -> libc::dev_t;
+    pub fn buf_device(bp: buf_t) -> dev_t;
 }
 
 extern "C-unwind" {
@@ -574,7 +570,7 @@ extern "C-unwind" {
     /// Parameter `vp`: Device to set on the buffer.
     ///
     /// Returns: 0 for success, EINVAL if vp is not a device file.
-    pub fn buf_setdevice(bp: libc::buf_t, vp: libc::vnode_t) -> errno_t;
+    pub fn buf_setdevice(bp: buf_t, vp: vnode_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -592,7 +588,7 @@ extern "C-unwind" {
     /// Parameter `ap`: vnop_strategy_args structure (most importantly, a buffer).
     ///
     /// Returns: 0 for success, or errors from filesystem or device layers.
-    pub fn buf_strategy(devvp: libc::vnode_t, ap: *mut c_void) -> errno_t;
+    pub fn buf_strategy(devvp: vnode_t, ap: *mut c_void) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -617,7 +613,7 @@ extern "C-unwind" {
     /// just return EBUSY for busy blocks.
     ///
     /// Returns: 0 for success, EINVAL if vp is not a device file.
-    pub fn buf_invalblkno(vp: libc::vnode_t, lblkno: libc::daddr64_t, flags: c_int) -> errno_t;
+    pub fn buf_invalblkno(vp: vnode_t, lblkno: daddr64_t, flags: c_int) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -628,7 +624,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose callback to get.
     ///
     /// Returns: 0 for success, or errors from filesystem or device layers.
-    pub fn buf_callback(bp: libc::buf_t) -> *mut c_void;
+    pub fn buf_callback(bp: buf_t) -> *mut c_void;
 }
 
 extern "C-unwind" {
@@ -646,8 +642,8 @@ extern "C-unwind" {
     ///
     /// Returns: 0; always succeeds.
     pub fn buf_setcallback(
-        bp: libc::buf_t,
-        callback: Option<unsafe extern "C-unwind" fn(libc::buf_t, *mut c_void)>,
+        bp: buf_t,
+        callback: Option<unsafe extern "C-unwind" fn(buf_t, *mut c_void)>,
         transaction: *mut c_void,
     ) -> errno_t;
 }
@@ -669,7 +665,7 @@ extern "C-unwind" {
     /// Parameter `offset`: Offset within upl at which relevant data begin.
     ///
     /// Returns: 0 for success, EINVAL if the buffer was not allocated with buf_alloc().
-    pub fn buf_setupl(bp: libc::buf_t, upl: libc::upl_t, offset: u32) -> errno_t;
+    pub fn buf_setupl(bp: buf_t, upl: upl_t, offset: u32) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -695,12 +691,12 @@ extern "C-unwind" {
     ///
     /// Returns: NULL if io_offset/io_size combination is invalid for the buffer to be cloned; otherwise, the new buffer.
     pub fn buf_clone(
-        bp: libc::buf_t,
+        bp: buf_t,
         io_offset: c_int,
         io_size: c_int,
-        iodone: Option<unsafe extern "C-unwind" fn(libc::buf_t, *mut c_void)>,
+        iodone: Option<unsafe extern "C-unwind" fn(buf_t, *mut c_void)>,
         arg: *mut c_void,
-    ) -> libc::buf_t;
+    ) -> buf_t;
 }
 
 /// Create a shadow buffer with optional private storage and an optional callback.
@@ -720,20 +716,20 @@ extern "C-unwind" {
 /// Returns: NULL if the buffer to be shadowed is not B_META or a primary buffer (i.e. not a shadow buffer); otherwise, the new buffer.
 #[inline]
 pub unsafe extern "C-unwind" fn buf_create_shadow(
-    bp: libc::buf_t,
+    bp: buf_t,
     force_copy: bool,
     external_storage: usize,
-    iodone: Option<unsafe extern "C-unwind" fn(libc::buf_t, *mut c_void)>,
+    iodone: Option<unsafe extern "C-unwind" fn(buf_t, *mut c_void)>,
     arg: *mut c_void,
-) -> libc::buf_t {
+) -> buf_t {
     extern "C-unwind" {
         fn buf_create_shadow(
-            bp: libc::buf_t,
-            force_copy: libc::boolean_t,
+            bp: buf_t,
+            force_copy: boolean_t,
             external_storage: usize,
-            iodone: Option<unsafe extern "C-unwind" fn(libc::buf_t, *mut c_void)>,
+            iodone: Option<unsafe extern "C-unwind" fn(buf_t, *mut c_void)>,
             arg: *mut c_void,
-        ) -> libc::buf_t;
+        ) -> buf_t;
     }
     unsafe { buf_create_shadow(bp, force_copy as _, external_storage, iodone, arg) }
 }
@@ -744,7 +740,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer to query.
     ///
     /// Returns: 1 if 'bp' is a shadow, 0 otherwise.
-    pub fn buf_shadow(bp: libc::buf_t) -> c_int;
+    pub fn buf_shadow(bp: buf_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -757,7 +753,7 @@ extern "C-unwind" {
     /// the buffer's associated device will be set. If vp is NULL, it can be set later with buf_setvnode().
     ///
     /// Returns: New buffer.
-    pub fn buf_alloc(vp: libc::vnode_t) -> libc::buf_t;
+    pub fn buf_alloc(vp: vnode_t) -> buf_t;
 }
 
 extern "C-unwind" {
@@ -766,7 +762,7 @@ extern "C-unwind" {
     /// The storage (UPL, data pointer) associated with an iobuf must be freed manually.
     ///
     /// Parameter `bp`: The buffer to free.
-    pub fn buf_free(bp: libc::buf_t);
+    pub fn buf_free(bp: buf_t);
 }
 
 extern "C-unwind" {
@@ -788,12 +784,7 @@ extern "C-unwind" {
     /// and re-starting the scan.
     ///
     /// Returns: 0 for success, error values from msleep().
-    pub fn buf_invalidateblks(
-        vp: libc::vnode_t,
-        flags: c_int,
-        slpflag: c_int,
-        slptimeo: c_int,
-    ) -> c_int;
+    pub fn buf_invalidateblks(vp: vnode_t, flags: c_int, slpflag: c_int, slptimeo: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -808,7 +799,7 @@ extern "C-unwind" {
     /// BUF_SKIP_LOCKED: Skip buffers which are busy when we encounter them.
     ///
     /// Parameter `msg`: String to pass to msleep().
-    pub fn buf_flushdirtyblks(vp: libc::vnode_t, wait: c_int, flags: c_int, msg: *const c_char);
+    pub fn buf_flushdirtyblks(vp: vnode_t, wait: c_int, flags: c_int, msg: *const c_char);
 }
 
 extern "C-unwind" {
@@ -830,8 +821,8 @@ extern "C-unwind" {
     ///
     /// Parameter `arg`: Argument to pass to callout in addition to buffer.
     pub fn buf_iterate(
-        vp: libc::vnode_t,
-        callout: Option<unsafe extern "C-unwind" fn(libc::buf_t, *mut c_void) -> c_int>,
+        vp: vnode_t,
+        callout: Option<unsafe extern "C-unwind" fn(buf_t, *mut c_void) -> c_int>,
         flags: c_int,
         arg: *mut c_void,
     );
@@ -846,7 +837,7 @@ extern "C-unwind" {
     /// with buf_alloc()).
     ///
     /// Parameter `bp`: The buffer to zero out.
-    pub fn buf_clear(bp: libc::buf_t);
+    pub fn buf_clear(bp: buf_t);
 }
 
 extern "C-unwind" {
@@ -859,7 +850,7 @@ extern "C-unwind" {
     /// Parameter `bp`: The buffer on which to initiate I/O.
     ///
     /// Returns: EWOULDBLOCK if write count is high and "throttle" is zero; otherwise, errors from VNOP_BWRITE.
-    pub fn buf_bawrite(bp: libc::buf_t) -> errno_t;
+    pub fn buf_bawrite(bp: buf_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -875,7 +866,7 @@ extern "C-unwind" {
     /// Parameter `bp`: The buffer to mark for delayed write.
     ///
     /// Returns: EAGAIN for return_error != 0 case, 0 for succeess, errors from buf_bawrite.
-    pub fn buf_bdwrite(bp: libc::buf_t) -> errno_t;
+    pub fn buf_bdwrite(bp: buf_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -888,7 +879,7 @@ extern "C-unwind" {
     /// Parameter `bp`: The buffer to write to disk.
     ///
     /// Returns: 0 for success; errors from buf_biowait().
-    pub fn buf_bwrite(bp: libc::buf_t) -> errno_t;
+    pub fn buf_bwrite(bp: buf_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -903,7 +894,7 @@ extern "C-unwind" {
     /// waiters on the bp (e.g. in buf_biowait()) are woken up.
     ///
     /// Parameter `bp`: The buffer to mark as done with I/O.
-    pub fn buf_biodone(bp: libc::buf_t);
+    pub fn buf_biodone(bp: buf_t);
 }
 
 extern "C-unwind" {
@@ -914,7 +905,7 @@ extern "C-unwind" {
     /// Parameter `bp`: The buffer to wait on.
     ///
     /// Returns: 0 for a successful wait; nonzero the buffer has been marked as EINTR or had an error set on it.
-    pub fn buf_biowait(bp: libc::buf_t) -> errno_t;
+    pub fn buf_biowait(bp: buf_t) -> errno_t;
 }
 
 extern "C-unwind" {
@@ -930,7 +921,7 @@ extern "C-unwind" {
     /// Note that buf_brelse() is intended for use with traditionally allocated buffers.
     ///
     /// Parameter `bp`: The buffer to release.
-    pub fn buf_brelse(bp: libc::buf_t);
+    pub fn buf_brelse(bp: buf_t);
 }
 
 extern "C-unwind" {
@@ -954,11 +945,11 @@ extern "C-unwind" {
     ///
     /// Returns: 0 for success, or an error from buf_biowait().
     pub fn buf_bread(
-        vp: libc::vnode_t,
-        blkno: libc::daddr64_t,
+        vp: vnode_t,
+        blkno: daddr64_t,
         size: c_int,
-        cred: libc::kauth_cred_t,
-        bpp: *mut libc::buf_t,
+        cred: kauth_cred_t,
+        bpp: *mut buf_t,
     ) -> errno_t;
 }
 
@@ -989,14 +980,14 @@ extern "C-unwind" {
     ///
     /// Returns: 0 for success, or an error from buf_biowait().
     pub fn buf_breadn(
-        vp: libc::vnode_t,
-        blkno: libc::daddr64_t,
+        vp: vnode_t,
+        blkno: daddr64_t,
         size: c_int,
-        rablks: *mut libc::daddr64_t,
+        rablks: *mut daddr64_t,
         rasizes: *mut c_int,
         nrablks: c_int,
-        cred: libc::kauth_cred_t,
-        bpp: *mut libc::buf_t,
+        cred: kauth_cred_t,
+        bpp: *mut buf_t,
     ) -> errno_t;
 }
 
@@ -1021,11 +1012,11 @@ extern "C-unwind" {
     ///
     /// Returns: 0 for success, or an error from buf_biowait().
     pub fn buf_meta_bread(
-        vp: libc::vnode_t,
-        blkno: libc::daddr64_t,
+        vp: vnode_t,
+        blkno: daddr64_t,
         size: c_int,
-        cred: libc::kauth_cred_t,
-        bpp: *mut libc::buf_t,
+        cred: kauth_cred_t,
+        bpp: *mut buf_t,
     ) -> errno_t;
 }
 
@@ -1055,14 +1046,14 @@ extern "C-unwind" {
     ///
     /// Returns: 0 for success, or an error from buf_biowait().
     pub fn buf_meta_breadn(
-        vp: libc::vnode_t,
-        blkno: libc::daddr64_t,
+        vp: vnode_t,
+        blkno: daddr64_t,
         size: c_int,
-        rablks: *mut libc::daddr64_t,
+        rablks: *mut daddr64_t,
         rasizes: *mut c_int,
         nrablks: c_int,
-        cred: libc::kauth_cred_t,
-        bpp: *mut libc::buf_t,
+        cred: kauth_cred_t,
+        bpp: *mut buf_t,
     ) -> errno_t;
 }
 
@@ -1076,7 +1067,7 @@ extern "C-unwind" {
     /// Parameter `bp`: The buffer whose byte count to modify.
     ///
     /// Returns: New byte count.
-    pub fn minphys(bp: libc::buf_t) -> c_uint;
+    pub fn minphys(bp: buf_t) -> c_uint;
 }
 
 extern "C-unwind" {
@@ -1102,12 +1093,12 @@ extern "C-unwind" {
     ///
     /// Returns: 0 for success; EFAULT for an invalid uio; errors from buf_biowait().
     pub fn physio(
-        f_strategy: Option<unsafe extern "C-unwind" fn(libc::buf_t)>,
-        bp: libc::buf_t,
-        dev: libc::dev_t,
+        f_strategy: Option<unsafe extern "C-unwind" fn(buf_t)>,
+        bp: buf_t,
+        dev: dev_t,
         flags: c_int,
-        f_minphys: Option<unsafe extern "C-unwind" fn(libc::buf_t) -> c_uint>,
-        uio: *mut libc::uio,
+        f_minphys: Option<unsafe extern "C-unwind" fn(buf_t) -> c_uint>,
+        uio: *mut uio,
         blocksize: c_int,
     ) -> c_int;
 }
@@ -1142,13 +1133,13 @@ extern "C-unwind" {
     ///
     /// Returns: Buffer found in core or newly allocated, either containing valid data or ready for I/O.
     pub fn buf_getblk(
-        vp: libc::vnode_t,
-        blkno: libc::daddr64_t,
+        vp: vnode_t,
+        blkno: daddr64_t,
         size: c_int,
         slpflag: c_int,
         slptimeo: c_int,
         operation: c_int,
-    ) -> libc::buf_t;
+    ) -> buf_t;
 }
 
 extern "C-unwind" {
@@ -1160,7 +1151,7 @@ extern "C-unwind" {
     /// Parameter `size`: Size of buffer.
     ///
     /// Returns: Always returns a new buffer.
-    pub fn buf_geteblk(size: c_int) -> libc::buf_t;
+    pub fn buf_geteblk(size: c_int) -> buf_t;
 }
 
 extern "C-unwind" {
@@ -1173,7 +1164,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose flags to clear.
     ///
     /// Parameter `flags`: Flags to remove from buffer's mask
-    pub fn buf_clear_redundancy_flags(bp: libc::buf_t, flags: u32);
+    pub fn buf_clear_redundancy_flags(bp: buf_t, flags: u32);
 }
 
 extern "C-unwind" {
@@ -1182,7 +1173,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose redundancy flags to grab.
     ///
     /// Returns: flags.
-    pub fn buf_redundancy_flags(bp: libc::buf_t) -> u32;
+    pub fn buf_redundancy_flags(bp: buf_t) -> u32;
 }
 
 extern "C-unwind" {
@@ -1193,7 +1184,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose flags to set.
     ///
     /// Parameter `flags`: Flags to add to buffer's redundancy flags
-    pub fn buf_set_redundancy_flags(bp: libc::buf_t, flags: u32);
+    pub fn buf_set_redundancy_flags(bp: buf_t, flags: u32);
 }
 
 extern "C-unwind" {
@@ -1202,14 +1193,14 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer whose attributes to get.
     ///
     /// Returns: bufattr_t.
-    pub fn buf_attr(bp: libc::buf_t) -> libc::bufattr_t;
+    pub fn buf_attr(bp: buf_t) -> bufattr_t;
 }
 
 extern "C-unwind" {
     /// Mark a buffer as being likely to contain static data.
     ///
     /// Parameter `bp`: Buffer to mark.
-    pub fn buf_markstatic(bp: libc::buf_t);
+    pub fn buf_markstatic(bp: buf_t);
 }
 
 extern "C-unwind" {
@@ -1218,7 +1209,7 @@ extern "C-unwind" {
     /// Parameter `bp`: Buffer to test.
     ///
     /// Returns: Nonzero if buffer has static data, 0 otherwise.
-    pub fn buf_static(bp: libc::buf_t) -> c_int;
+    pub fn buf_static(bp: buf_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1227,7 +1218,7 @@ extern "C-unwind" {
     /// Parameter `bap`: Buffer attributes to mark.
     ///
     /// Marks the buffer so that spec_strategy() will know that it belongs to an io scheduled mount point
-    pub fn bufattr_markioscheduled(bap: libc::bufattr_t);
+    pub fn bufattr_markioscheduled(bap: bufattr_t);
 }
 
 extern "C-unwind" {
@@ -1236,7 +1227,7 @@ extern "C-unwind" {
     /// Parameter `bap`: Buffer attributes to test.
     ///
     /// Returns: Nonzero if the buffer is marked io scheduled, 0 otherwise.
-    pub fn bufattr_ioscheduled(bap: libc::bufattr_t) -> c_int;
+    pub fn bufattr_ioscheduled(bap: bufattr_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1245,7 +1236,7 @@ extern "C-unwind" {
     /// Parameter `bap`: Buffer attributes to mark.
     ///
     /// Marks the buffer so that spec_strategy() will know that it should be expedited
-    pub fn bufattr_markexpeditedmeta(bap: libc::bufattr_t);
+    pub fn bufattr_markexpeditedmeta(bap: bufattr_t);
 }
 
 extern "C-unwind" {
@@ -1254,5 +1245,5 @@ extern "C-unwind" {
     /// Parameter `bap`: Buffer attributes to test.
     ///
     /// Returns: Nonzero if the buffer is marked expedited metadata I/O, 0 otherwise.
-    pub fn bufattr_expeditedmeta(bap: libc::bufattr_t) -> c_int;
+    pub fn bufattr_expeditedmeta(bap: bufattr_t) -> c_int;
 }

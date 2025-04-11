@@ -12,14 +12,14 @@ pub type comp_t = u16;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct acct {
     pub ac_comm: [c_char; 10],
-    pub ac_utime: libc::comp_t,
-    pub ac_stime: libc::comp_t,
-    pub ac_etime: libc::comp_t,
+    pub ac_utime: comp_t,
+    pub ac_stime: comp_t,
+    pub ac_etime: comp_t,
     pub ac_btime: u32,
-    pub ac_uid: libc::uid_t,
-    pub ac_gid: libc::gid_t,
+    pub ac_uid: uid_t,
+    pub ac_gid: gid_t,
     pub ac_mem: u16,
-    pub ac_io: libc::comp_t,
-    pub ac_tty: libc::dev_t,
+    pub ac_io: comp_t,
+    pub ac_tty: dev_t,
     pub ac_flag: u8,
 }

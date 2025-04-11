@@ -224,31 +224,31 @@ pub type NCURSES_BOOL = c_uchar;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acs_map?language=objc)
-    pub static acs_map: *mut libc::chtype;
+    pub static acs_map: *mut chtype;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/screen?language=objc)
-pub type SCREEN = libc::screen;
+pub type SCREEN = screen;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/window?language=objc)
-pub type WINDOW = libc::_win_st;
+pub type WINDOW = _win_st;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/attr_t?language=objc)
-pub type attr_t = libc::chtype;
+pub type attr_t = chtype;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_outc?language=objc)
 pub type NCURSES_OUTC = Option<unsafe extern "C-unwind" fn(c_int) -> c_int>;
 
 extern "C-unwind" {
-    pub fn addch(param1: libc::chtype) -> c_int;
+    pub fn addch(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn addchnstr(param1: *const libc::chtype, param1: c_int) -> c_int;
+    pub fn addchnstr(param1: *const chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn addchstr(param1: *const libc::chtype) -> c_int;
+    pub fn addchstr(param1: *const chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -272,19 +272,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn attr_get(param1: *mut libc::attr_t, param1: *mut c_short, param1: *mut c_void) -> c_int;
+    pub fn attr_get(param1: *mut attr_t, param1: *mut c_short, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn attr_off(param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn attr_off(param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn attr_on(param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn attr_on(param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn attr_set(param1: libc::attr_t, param1: c_short, param1: *mut c_void) -> c_int;
+    pub fn attr_set(param1: attr_t, param1: c_short, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
@@ -296,23 +296,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn bkgd(param1: libc::chtype) -> c_int;
+    pub fn bkgd(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn bkgdset(param1: libc::chtype);
+    pub fn bkgdset(param1: chtype);
 }
 
 extern "C-unwind" {
     pub fn border(
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
     ) -> c_int;
 }
 
@@ -325,12 +325,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn chgat(
-        param1: c_int,
-        param1: libc::attr_t,
-        param1: c_short,
-        param1: *const c_void,
-    ) -> c_int;
+    pub fn chgat(param1: c_int, param1: attr_t, param1: c_short, param1: *const c_void) -> c_int;
 }
 
 extern "C-unwind" {
@@ -338,7 +333,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn clearok(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn clearok(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
@@ -368,8 +363,8 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn copywin(
-        param1: *const libc::WINDOW,
-        param1: *mut libc::WINDOW,
+        param1: *const WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
@@ -401,11 +396,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn delscreen(param1: *mut libc::SCREEN);
+    pub fn delscreen(param1: *mut SCREEN);
 }
 
 extern "C-unwind" {
-    pub fn delwin(param1: *mut libc::WINDOW) -> c_int;
+    pub fn delwin(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
@@ -414,12 +409,12 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn derwin(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
         param1: c_int,
-    ) -> *mut libc::WINDOW;
+    ) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
@@ -427,7 +422,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn dupwin(param1: *mut libc::WINDOW) -> *mut libc::WINDOW;
+    pub fn dupwin(param1: *mut WINDOW) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
@@ -435,7 +430,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn echochar(param1: libc::chtype) -> c_int;
+    pub fn echochar(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -463,7 +458,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn getbkgd(param1: *mut libc::WINDOW) -> libc::chtype;
+    pub fn getbkgd(param1: *mut WINDOW) -> chtype;
 }
 
 extern "C-unwind" {
@@ -479,7 +474,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn getwin(param1: *mut libc::FILE) -> *mut libc::WINDOW;
+    pub fn getwin(param1: *mut FILE) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
@@ -499,35 +494,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn hline(param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn hline(param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn idcok(param1: *mut libc::WINDOW, param1: bool);
+    pub fn idcok(param1: *mut WINDOW, param1: bool);
 }
 
 extern "C-unwind" {
-    pub fn idlok(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn idlok(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn immedok(param1: *mut libc::WINDOW, param1: bool);
+    pub fn immedok(param1: *mut WINDOW, param1: bool);
 }
 
 extern "C-unwind" {
-    pub fn inch() -> libc::chtype;
+    pub fn inch() -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn inchnstr(param1: *mut libc::chtype, param1: c_int) -> c_int;
+    pub fn inchnstr(param1: *mut chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inchstr(param1: *mut libc::chtype) -> c_int;
+    pub fn inchstr(param1: *mut chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn initscr() -> *mut libc::WINDOW;
+    pub fn initscr() -> *mut WINDOW;
 }
 
 extern "C-unwind" {
@@ -543,7 +538,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn insch(param1: libc::chtype) -> c_int;
+    pub fn insch(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -567,7 +562,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn intrflush(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn intrflush(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
@@ -575,11 +570,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn is_linetouched(param1: *mut libc::WINDOW, param1: c_int) -> bool;
+    pub fn is_linetouched(param1: *mut WINDOW, param1: c_int) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_wintouched(param1: *mut libc::WINDOW) -> bool;
+    pub fn is_wintouched(param1: *mut WINDOW) -> bool;
 }
 
 extern "C-unwind" {
@@ -587,7 +582,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn keypad(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn keypad(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
@@ -595,7 +590,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn leaveok(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn leaveok(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
@@ -603,24 +598,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn meta(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn meta(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvaddch(param1: c_int, param1: c_int, param1: libc::chtype) -> c_int;
+    pub fn mvaddch(param1: c_int, param1: c_int, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvaddchnstr(
-        param1: c_int,
-        param1: c_int,
-        param1: *const libc::chtype,
-        param1: c_int,
-    ) -> c_int;
+    pub fn mvaddchnstr(param1: c_int, param1: c_int, param1: *const chtype, param1: c_int)
+        -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvaddchstr(param1: c_int, param1: c_int, param1: *const libc::chtype) -> c_int;
+    pub fn mvaddchstr(param1: c_int, param1: c_int, param1: *const chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -636,7 +627,7 @@ extern "C-unwind" {
         param1: c_int,
         param1: c_int,
         param1: c_int,
-        param1: libc::attr_t,
+        param1: attr_t,
         param1: c_short,
         param1: *const c_void,
     ) -> c_int;
@@ -651,7 +642,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvderwin(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn mvderwin(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -667,24 +658,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvhline(param1: c_int, param1: c_int, param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn mvhline(param1: c_int, param1: c_int, param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvinch(param1: c_int, param1: c_int) -> libc::chtype;
+    pub fn mvinch(param1: c_int, param1: c_int) -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn mvinchnstr(
-        param1: c_int,
-        param1: c_int,
-        param1: *mut libc::chtype,
-        param1: c_int,
-    ) -> c_int;
+    pub fn mvinchnstr(param1: c_int, param1: c_int, param1: *mut chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvinchstr(param1: c_int, param1: c_int, param1: *mut libc::chtype) -> c_int;
+    pub fn mvinchstr(param1: c_int, param1: c_int, param1: *mut chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -692,7 +678,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvinsch(param1: c_int, param1: c_int, param1: libc::chtype) -> c_int;
+    pub fn mvinsch(param1: c_int, param1: c_int, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -708,40 +694,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvvline(param1: c_int, param1: c_int, param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn mvvline(param1: c_int, param1: c_int, param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvwaddch(
-        param1: *mut libc::WINDOW,
-        param1: c_int,
-        param1: c_int,
-        param1: libc::chtype,
-    ) -> c_int;
+    pub fn mvwaddch(param1: *mut WINDOW, param1: c_int, param1: c_int, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwaddchnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: *const libc::chtype,
+        param1: *const chtype,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwaddchstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: *const libc::chtype,
+        param1: *const chtype,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwaddnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *const c_char,
@@ -751,7 +732,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwaddstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *const c_char,
@@ -760,27 +741,27 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwchgat(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
-        param1: libc::attr_t,
+        param1: attr_t,
         param1: c_short,
         param1: *const c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvwdelch(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn mvwdelch(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvwgetch(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn mvwgetch(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwgetnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *mut c_char,
@@ -790,7 +771,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwgetstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *mut c_char,
@@ -799,44 +780,44 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwhline(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: libc::chtype,
+        param1: chtype,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvwin(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn mvwin(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvwinch(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> libc::chtype;
+    pub fn mvwinch(param1: *mut WINDOW, param1: c_int, param1: c_int) -> chtype;
 }
 
 extern "C-unwind" {
     pub fn mvwinchnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: *mut libc::chtype,
+        param1: *mut chtype,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwinchstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: *mut libc::chtype,
+        param1: *mut chtype,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwinnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *mut c_char,
@@ -845,17 +826,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvwinsch(
-        param1: *mut libc::WINDOW,
-        param1: c_int,
-        param1: c_int,
-        param1: libc::chtype,
-    ) -> c_int;
+    pub fn mvwinsch(param1: *mut WINDOW, param1: c_int, param1: c_int, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwinsnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *const c_char,
@@ -865,7 +841,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwinsstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *const c_char,
@@ -874,7 +850,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwinstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *mut c_char,
@@ -883,10 +859,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwvline(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: libc::chtype,
+        param1: chtype,
         param1: c_int,
     ) -> c_int;
 }
@@ -896,19 +872,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn newpad(param1: c_int, param1: c_int) -> *mut libc::WINDOW;
+    pub fn newpad(param1: c_int, param1: c_int) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn newterm(
-        param1: *mut c_char,
-        param1: *mut libc::FILE,
-        param1: *mut libc::FILE,
-    ) -> *mut libc::SCREEN;
+    pub fn newterm(param1: *mut c_char, param1: *mut FILE, param1: *mut FILE) -> *mut SCREEN;
 }
 
 extern "C-unwind" {
-    pub fn newwin(param1: c_int, param1: c_int, param1: c_int, param1: c_int) -> *mut libc::WINDOW;
+    pub fn newwin(param1: c_int, param1: c_int, param1: c_int, param1: c_int) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
@@ -920,7 +892,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn nodelay(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn nodelay(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
@@ -940,15 +912,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn notimeout(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn notimeout(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn overlay(param1: *const libc::WINDOW, param1: *mut libc::WINDOW) -> c_int;
+    pub fn overlay(param1: *const WINDOW, param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn overwrite(param1: *const libc::WINDOW, param1: *mut libc::WINDOW) -> c_int;
+    pub fn overwrite(param1: *const WINDOW, param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
@@ -960,12 +932,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn pechochar(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn pechochar(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn pnoutrefresh(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
@@ -977,7 +949,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn prefresh(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
@@ -988,7 +960,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn putwin(param1: *mut libc::WINDOW, param1: *mut libc::FILE) -> c_int;
+    pub fn putwin(param1: *mut WINDOW, param1: *mut FILE) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1000,7 +972,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn redrawwin(param1: *mut libc::WINDOW) -> c_int;
+    pub fn redrawwin(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1022,7 +994,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn ripoffline(
         param1: c_int,
-        param1: Option<unsafe extern "C-unwind" fn(*mut libc::WINDOW, c_int) -> c_int>,
+        param1: Option<unsafe extern "C-unwind" fn(*mut WINDOW, c_int) -> c_int>,
     ) -> c_int;
 }
 
@@ -1043,11 +1015,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn scroll(param1: *mut libc::WINDOW) -> c_int;
+    pub fn scroll(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn scrollok(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn scrollok(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1063,35 +1035,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn set_term(param1: *mut libc::SCREEN) -> *mut libc::SCREEN;
+    pub fn set_term(param1: *mut SCREEN) -> *mut SCREEN;
 }
 
 extern "C-unwind" {
-    pub fn slk_attroff(param1: libc::chtype) -> c_int;
+    pub fn slk_attroff(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attr_off(param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn slk_attr_off(param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attron(param1: libc::chtype) -> c_int;
+    pub fn slk_attron(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attr_on(param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn slk_attr_on(param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attrset(param1: libc::chtype) -> c_int;
+    pub fn slk_attrset(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attr() -> libc::attr_t;
+    pub fn slk_attr() -> attr_t;
 }
 
 extern "C-unwind" {
-    pub fn slk_attr_set(param1: libc::attr_t, param1: c_short, param1: *mut c_void) -> c_int;
+    pub fn slk_attr_set(param1: attr_t, param1: c_short, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1144,30 +1116,30 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn subpad(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
         param1: c_int,
-    ) -> *mut libc::WINDOW;
+    ) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
     pub fn subwin(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
         param1: c_int,
-    ) -> *mut libc::WINDOW;
+    ) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn syncok(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn syncok(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn termattrs() -> libc::chtype;
+    pub fn termattrs() -> chtype;
 }
 
 extern "C-unwind" {
@@ -1179,11 +1151,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn touchline(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn touchline(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn touchwin(param1: *mut libc::WINDOW) -> c_int;
+    pub fn touchwin(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1195,7 +1167,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn untouchwin(param1: *mut libc::WINDOW) -> c_int;
+    pub fn untouchwin(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1207,275 +1179,265 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn vidattr(param1: libc::chtype) -> c_int;
+    pub fn vidattr(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vidputs(param1: libc::chtype, param1: libc::NCURSES_OUTC) -> c_int;
+    pub fn vidputs(param1: chtype, param1: NCURSES_OUTC) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vline(param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn vline(param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vwprintw(param1: *mut libc::WINDOW, param1: *const c_char, param1: va_list) -> c_int;
+    pub fn vwprintw(param1: *mut WINDOW, param1: *const c_char, param1: va_list) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vw_printw(param1: *mut libc::WINDOW, param1: *const c_char, param1: va_list) -> c_int;
+    pub fn vw_printw(param1: *mut WINDOW, param1: *const c_char, param1: va_list) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vwscanw(param1: *mut libc::WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
+    pub fn vwscanw(param1: *mut WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vw_scanw(param1: *mut libc::WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
+    pub fn vw_scanw(param1: *mut WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddch(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn waddch(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddchnstr(
-        param1: *mut libc::WINDOW,
-        param1: *const libc::chtype,
-        param1: c_int,
-    ) -> c_int;
+    pub fn waddchnstr(param1: *mut WINDOW, param1: *const chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddchstr(param1: *mut libc::WINDOW, param1: *const libc::chtype) -> c_int;
+    pub fn waddchstr(param1: *mut WINDOW, param1: *const chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddnstr(param1: *mut libc::WINDOW, param1: *const c_char, param1: c_int) -> c_int;
+    pub fn waddnstr(param1: *mut WINDOW, param1: *const c_char, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddstr(param1: *mut libc::WINDOW, param1: *const c_char) -> c_int;
+    pub fn waddstr(param1: *mut WINDOW, param1: *const c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattron(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn wattron(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattroff(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn wattroff(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattrset(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn wattrset(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn wattr_get(
-        param1: *mut libc::WINDOW,
-        param1: *mut libc::attr_t,
+        param1: *mut WINDOW,
+        param1: *mut attr_t,
         param1: *mut c_short,
         param1: *mut c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattr_on(param1: *mut libc::WINDOW, param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn wattr_on(param1: *mut WINDOW, param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattr_off(param1: *mut libc::WINDOW, param1: libc::attr_t, param1: *mut c_void)
-        -> c_int;
+    pub fn wattr_off(param1: *mut WINDOW, param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn wattr_set(
-        param1: *mut libc::WINDOW,
-        param1: libc::attr_t,
+        param1: *mut WINDOW,
+        param1: attr_t,
         param1: c_short,
         param1: *mut c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wbkgd(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn wbkgd(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wbkgdset(param1: *mut libc::WINDOW, param1: libc::chtype);
+    pub fn wbkgdset(param1: *mut WINDOW, param1: chtype);
 }
 
 extern "C-unwind" {
     pub fn wborder(
-        param1: *mut libc::WINDOW,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
+        param1: *mut WINDOW,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn wchgat(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
-        param1: libc::attr_t,
+        param1: attr_t,
         param1: c_short,
         param1: *const c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wclear(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wclear(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wclrtobot(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wclrtobot(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wclrtoeol(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wclrtoeol(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wcolor_set(param1: *mut libc::WINDOW, param1: c_short, param1: *mut c_void) -> c_int;
+    pub fn wcolor_set(param1: *mut WINDOW, param1: c_short, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wcursyncup(param1: *mut libc::WINDOW);
+    pub fn wcursyncup(param1: *mut WINDOW);
 }
 
 extern "C-unwind" {
-    pub fn wdelch(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wdelch(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wdeleteln(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wdeleteln(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wechochar(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn wechochar(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn werase(param1: *mut libc::WINDOW) -> c_int;
+    pub fn werase(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wgetch(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wgetch(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wgetnstr(param1: *mut libc::WINDOW, param1: *mut c_char, param1: c_int) -> c_int;
+    pub fn wgetnstr(param1: *mut WINDOW, param1: *mut c_char, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wgetstr(param1: *mut libc::WINDOW, param1: *mut c_char) -> c_int;
+    pub fn wgetstr(param1: *mut WINDOW, param1: *mut c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn whline(param1: *mut libc::WINDOW, param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn whline(param1: *mut WINDOW, param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winch(param1: *mut libc::WINDOW) -> libc::chtype;
+    pub fn winch(param1: *mut WINDOW) -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn winchnstr(param1: *mut libc::WINDOW, param1: *mut libc::chtype, param1: c_int) -> c_int;
+    pub fn winchnstr(param1: *mut WINDOW, param1: *mut chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winchstr(param1: *mut libc::WINDOW, param1: *mut libc::chtype) -> c_int;
+    pub fn winchstr(param1: *mut WINDOW, param1: *mut chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winnstr(param1: *mut libc::WINDOW, param1: *mut c_char, param1: c_int) -> c_int;
+    pub fn winnstr(param1: *mut WINDOW, param1: *mut c_char, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsch(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn winsch(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsdelln(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn winsdelln(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsertln(param1: *mut libc::WINDOW) -> c_int;
+    pub fn winsertln(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsnstr(param1: *mut libc::WINDOW, param1: *const c_char, param1: c_int) -> c_int;
+    pub fn winsnstr(param1: *mut WINDOW, param1: *const c_char, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsstr(param1: *mut libc::WINDOW, param1: *const c_char) -> c_int;
+    pub fn winsstr(param1: *mut WINDOW, param1: *const c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winstr(param1: *mut libc::WINDOW, param1: *mut c_char) -> c_int;
+    pub fn winstr(param1: *mut WINDOW, param1: *mut c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wmove(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn wmove(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wnoutrefresh(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wnoutrefresh(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wredrawln(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn wredrawln(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wrefresh(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wrefresh(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wscrl(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn wscrl(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wsetscrreg(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn wsetscrreg(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wstandout(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wstandout(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wstandend(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wstandend(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wsyncdown(param1: *mut libc::WINDOW);
+    pub fn wsyncdown(param1: *mut WINDOW);
 }
 
 extern "C-unwind" {
-    pub fn wsyncup(param1: *mut libc::WINDOW);
+    pub fn wsyncup(param1: *mut WINDOW);
 }
 
 extern "C-unwind" {
-    pub fn wtimeout(param1: *mut libc::WINDOW, param1: c_int);
+    pub fn wtimeout(param1: *mut WINDOW, param1: c_int);
 }
 
 extern "C-unwind" {
-    pub fn wtouchln(
-        param1: *mut libc::WINDOW,
-        param1: c_int,
-        param1: c_int,
-        param1: c_int,
-    ) -> c_int;
+    pub fn wtouchln(param1: *mut WINDOW, param1: c_int, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wvline(param1: *mut libc::WINDOW, param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn wvline(param1: *mut WINDOW, param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1495,48 +1457,46 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn getattrs(param1: *const libc::WINDOW) -> c_int;
+    pub fn getattrs(param1: *const WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getcurx(param1: *const libc::WINDOW) -> c_int;
+    pub fn getcurx(param1: *const WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getcury(param1: *const libc::WINDOW) -> c_int;
+    pub fn getcury(param1: *const WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getbegx(param1: *const libc::WINDOW) -> c_int;
+    pub fn getbegx(param1: *const WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getbegy(param1: *const libc::WINDOW) -> c_int;
+    pub fn getbegy(param1: *const WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getmaxx(param1: *const libc::WINDOW) -> c_int;
+    pub fn getmaxx(param1: *const WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getmaxy(param1: *const libc::WINDOW) -> c_int;
+    pub fn getmaxy(param1: *const WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getparx(param1: *const libc::WINDOW) -> c_int;
+    pub fn getparx(param1: *const WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getpary(param1: *const libc::WINDOW) -> c_int;
+    pub fn getpary(param1: *const WINDOW) -> c_int;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_window_cb?language=objc)
-pub type NCURSES_WINDOW_CB =
-    Option<unsafe extern "C-unwind" fn(*mut libc::WINDOW, *mut c_void) -> c_int>;
+pub type NCURSES_WINDOW_CB = Option<unsafe extern "C-unwind" fn(*mut WINDOW, *mut c_void) -> c_int>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ncurses_screen_cb?language=objc)
-pub type NCURSES_SCREEN_CB =
-    Option<unsafe extern "C-unwind" fn(*mut libc::SCREEN, *mut c_void) -> c_int>;
+pub type NCURSES_SCREEN_CB = Option<unsafe extern "C-unwind" fn(*mut SCREEN, *mut c_void) -> c_int>;
 
 extern "C-unwind" {
     pub fn is_term_resized(param1: c_int, param1: c_int) -> bool;
@@ -1599,23 +1559,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn use_screen(
-        param1: *mut libc::SCREEN,
-        param1: libc::NCURSES_SCREEN_CB,
-        param1: *mut c_void,
-    ) -> c_int;
+    pub fn use_screen(param1: *mut SCREEN, param1: NCURSES_SCREEN_CB, param1: *mut c_void)
+        -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn use_window(
-        param1: *mut libc::WINDOW,
-        param1: libc::NCURSES_WINDOW_CB,
-        param1: *mut c_void,
-    ) -> c_int;
+    pub fn use_window(param1: *mut WINDOW, param1: NCURSES_WINDOW_CB, param1: *mut c_void)
+        -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wresize(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn wresize(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1623,76 +1577,75 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn wgetparent(param1: *const libc::WINDOW) -> *mut libc::WINDOW;
+    pub fn wgetparent(param1: *const WINDOW) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn is_cleared(param1: *const libc::WINDOW) -> bool;
+    pub fn is_cleared(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_idcok(param1: *const libc::WINDOW) -> bool;
+    pub fn is_idcok(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_idlok(param1: *const libc::WINDOW) -> bool;
+    pub fn is_idlok(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_immedok(param1: *const libc::WINDOW) -> bool;
+    pub fn is_immedok(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_keypad(param1: *const libc::WINDOW) -> bool;
+    pub fn is_keypad(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_leaveok(param1: *const libc::WINDOW) -> bool;
+    pub fn is_leaveok(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_nodelay(param1: *const libc::WINDOW) -> bool;
+    pub fn is_nodelay(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_notimeout(param1: *const libc::WINDOW) -> bool;
+    pub fn is_notimeout(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_pad(param1: *const libc::WINDOW) -> bool;
+    pub fn is_pad(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_scrollok(param1: *const libc::WINDOW) -> bool;
+    pub fn is_scrollok(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_subwin(param1: *const libc::WINDOW) -> bool;
+    pub fn is_subwin(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn is_syncok(param1: *const libc::WINDOW) -> bool;
+    pub fn is_syncok(param1: *const WINDOW) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn wgetdelay(param1: *const libc::WINDOW) -> c_int;
+    pub fn wgetdelay(param1: *const WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wgetscrreg(param1: *const libc::WINDOW, param1: *mut c_int, param1: *mut c_int)
-        -> c_int;
+    pub fn wgetscrreg(param1: *const WINDOW, param1: *mut c_int, param1: *mut c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn addch(param1: libc::chtype) -> c_int;
+    pub fn addch(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn addchnstr(param1: *const libc::chtype, param1: c_int) -> c_int;
+    pub fn addchnstr(param1: *const chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn addchstr(param1: *const libc::chtype) -> c_int;
+    pub fn addchstr(param1: *const chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1716,49 +1669,44 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn attr_get(param1: *mut libc::attr_t, param1: *mut c_short, param1: *mut c_void) -> c_int;
+    pub fn attr_get(param1: *mut attr_t, param1: *mut c_short, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn attr_off(param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn attr_off(param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn attr_on(param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn attr_on(param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn attr_set(param1: libc::attr_t, param1: c_short, param1: *mut c_void) -> c_int;
+    pub fn attr_set(param1: attr_t, param1: c_short, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn bkgd(param1: libc::chtype) -> c_int;
+    pub fn bkgd(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn bkgdset(param1: libc::chtype);
+    pub fn bkgdset(param1: chtype);
 }
 
 extern "C-unwind" {
     pub fn border(
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn chgat(
-        param1: c_int,
-        param1: libc::attr_t,
-        param1: c_short,
-        param1: *const c_void,
-    ) -> c_int;
+    pub fn chgat(param1: c_int, param1: attr_t, param1: c_short, param1: *const c_void) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1776,8 +1724,8 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn copywin(
-        param1: *const libc::WINDOW,
-        param1: *mut libc::WINDOW,
+        param1: *const WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
@@ -1798,12 +1746,12 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn derwin(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
         param1: c_int,
-    ) -> *mut libc::WINDOW;
+    ) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
@@ -1811,11 +1759,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn dupwin(param1: *mut libc::WINDOW) -> *mut libc::WINDOW;
+    pub fn dupwin(param1: *mut WINDOW) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn echochar(param1: libc::chtype) -> c_int;
+    pub fn echochar(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1827,7 +1775,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn getbkgd(param1: *mut libc::WINDOW) -> libc::chtype;
+    pub fn getbkgd(param1: *mut WINDOW) -> chtype;
 }
 
 extern "C-unwind" {
@@ -1843,27 +1791,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn getwin(param1: *mut libc::FILE) -> *mut libc::WINDOW;
+    pub fn getwin(param1: *mut FILE) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn hline(param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn hline(param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inch() -> libc::chtype;
+    pub fn inch() -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn inchnstr(param1: *mut libc::chtype, param1: c_int) -> c_int;
+    pub fn inchnstr(param1: *mut chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn inchstr(param1: *mut libc::chtype) -> c_int;
+    pub fn inchstr(param1: *mut chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn initscr() -> *mut libc::WINDOW;
+    pub fn initscr() -> *mut WINDOW;
 }
 
 extern "C-unwind" {
@@ -1879,7 +1827,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn insch(param1: libc::chtype) -> c_int;
+    pub fn insch(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1903,28 +1851,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn intrflush(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn intrflush(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn keypad(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn keypad(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvaddch(param1: c_int, param1: c_int, param1: libc::chtype) -> c_int;
+    pub fn mvaddch(param1: c_int, param1: c_int, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvaddchnstr(
-        param1: c_int,
-        param1: c_int,
-        param1: *const libc::chtype,
-        param1: c_int,
-    ) -> c_int;
+    pub fn mvaddchnstr(param1: c_int, param1: c_int, param1: *const chtype, param1: c_int)
+        -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvaddchstr(param1: c_int, param1: c_int, param1: *const libc::chtype) -> c_int;
+    pub fn mvaddchstr(param1: c_int, param1: c_int, param1: *const chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1940,7 +1884,7 @@ extern "C-unwind" {
         param1: c_int,
         param1: c_int,
         param1: c_int,
-        param1: libc::attr_t,
+        param1: attr_t,
         param1: c_short,
         param1: *const c_void,
     ) -> c_int;
@@ -1951,7 +1895,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvderwin(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn mvderwin(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1967,24 +1911,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvhline(param1: c_int, param1: c_int, param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn mvhline(param1: c_int, param1: c_int, param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvinch(param1: c_int, param1: c_int) -> libc::chtype;
+    pub fn mvinch(param1: c_int, param1: c_int) -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn mvinchnstr(
-        param1: c_int,
-        param1: c_int,
-        param1: *mut libc::chtype,
-        param1: c_int,
-    ) -> c_int;
+    pub fn mvinchnstr(param1: c_int, param1: c_int, param1: *mut chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvinchstr(param1: c_int, param1: c_int, param1: *mut libc::chtype) -> c_int;
+    pub fn mvinchstr(param1: c_int, param1: c_int, param1: *mut chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -1992,7 +1931,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvinsch(param1: c_int, param1: c_int, param1: libc::chtype) -> c_int;
+    pub fn mvinsch(param1: c_int, param1: c_int, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
@@ -2008,40 +1947,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvvline(param1: c_int, param1: c_int, param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn mvvline(param1: c_int, param1: c_int, param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvwaddch(
-        param1: *mut libc::WINDOW,
-        param1: c_int,
-        param1: c_int,
-        param1: libc::chtype,
-    ) -> c_int;
+    pub fn mvwaddch(param1: *mut WINDOW, param1: c_int, param1: c_int, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwaddchnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: *const libc::chtype,
+        param1: *const chtype,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwaddchstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: *const libc::chtype,
+        param1: *const chtype,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwaddnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *const c_char,
@@ -2051,7 +1985,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwaddstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *const c_char,
@@ -2060,23 +1994,23 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwchgat(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
-        param1: libc::attr_t,
+        param1: attr_t,
         param1: c_short,
         param1: *const c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvwgetch(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn mvwgetch(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwgetnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *mut c_char,
@@ -2086,7 +2020,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwgetstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *mut c_char,
@@ -2095,44 +2029,44 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwhline(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: libc::chtype,
+        param1: chtype,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvwin(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn mvwin(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mvwinch(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> libc::chtype;
+    pub fn mvwinch(param1: *mut WINDOW, param1: c_int, param1: c_int) -> chtype;
 }
 
 extern "C-unwind" {
     pub fn mvwinchnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: *mut libc::chtype,
+        param1: *mut chtype,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwinchstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: *mut libc::chtype,
+        param1: *mut chtype,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwinnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *mut c_char,
@@ -2141,17 +2075,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn mvwinsch(
-        param1: *mut libc::WINDOW,
-        param1: c_int,
-        param1: c_int,
-        param1: libc::chtype,
-    ) -> c_int;
+    pub fn mvwinsch(param1: *mut WINDOW, param1: c_int, param1: c_int, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn mvwinsnstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *const c_char,
@@ -2161,7 +2090,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwinsstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *const c_char,
@@ -2170,7 +2099,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwinstr(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: *mut c_char,
@@ -2179,36 +2108,32 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn mvwvline(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
-        param1: libc::chtype,
+        param1: chtype,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn newpad(param1: c_int, param1: c_int) -> *mut libc::WINDOW;
+    pub fn newpad(param1: c_int, param1: c_int) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn newterm(
-        param1: *mut c_char,
-        param1: *mut libc::FILE,
-        param1: *mut libc::FILE,
-    ) -> *mut libc::SCREEN;
+    pub fn newterm(param1: *mut c_char, param1: *mut FILE, param1: *mut FILE) -> *mut SCREEN;
 }
 
 extern "C-unwind" {
-    pub fn newwin(param1: c_int, param1: c_int, param1: c_int, param1: c_int) -> *mut libc::WINDOW;
+    pub fn newwin(param1: c_int, param1: c_int, param1: c_int, param1: c_int) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn overlay(param1: *const libc::WINDOW, param1: *mut libc::WINDOW) -> c_int;
+    pub fn overlay(param1: *const WINDOW, param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn overwrite(param1: *const libc::WINDOW, param1: *mut libc::WINDOW) -> c_int;
+    pub fn overwrite(param1: *const WINDOW, param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
@@ -2216,12 +2141,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn pechochar(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn pechochar(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn pnoutrefresh(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
@@ -2233,7 +2158,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn prefresh(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
@@ -2244,11 +2169,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn putwin(param1: *mut libc::WINDOW, param1: *mut libc::FILE) -> c_int;
+    pub fn putwin(param1: *mut WINDOW, param1: *mut FILE) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn redrawwin(param1: *mut libc::WINDOW) -> c_int;
+    pub fn redrawwin(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
@@ -2268,11 +2193,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn scroll(param1: *mut libc::WINDOW) -> c_int;
+    pub fn scroll(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn scrollok(param1: *mut libc::WINDOW, param1: bool) -> c_int;
+    pub fn scrollok(param1: *mut WINDOW, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
@@ -2284,35 +2209,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn set_term(param1: *mut libc::SCREEN) -> *mut libc::SCREEN;
+    pub fn set_term(param1: *mut SCREEN) -> *mut SCREEN;
 }
 
 extern "C-unwind" {
-    pub fn slk_attroff(param1: libc::chtype) -> c_int;
+    pub fn slk_attroff(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attr_off(param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn slk_attr_off(param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attron(param1: libc::chtype) -> c_int;
+    pub fn slk_attron(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attr_on(param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn slk_attr_on(param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attrset(param1: libc::chtype) -> c_int;
+    pub fn slk_attrset(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn slk_attr() -> libc::attr_t;
+    pub fn slk_attr() -> attr_t;
 }
 
 extern "C-unwind" {
-    pub fn slk_attr_set(param1: libc::attr_t, param1: c_short, param1: *mut c_void) -> c_int;
+    pub fn slk_attr_set(param1: attr_t, param1: c_short, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
@@ -2365,22 +2290,22 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn subpad(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
         param1: c_int,
-    ) -> *mut libc::WINDOW;
+    ) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
     pub fn subwin(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
         param1: c_int,
         param1: c_int,
         param1: c_int,
-    ) -> *mut libc::WINDOW;
+    ) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
@@ -2388,226 +2313,221 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn vidattr(param1: libc::chtype) -> c_int;
+    pub fn vidattr(param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vidputs(param1: libc::chtype, param1: libc::NCURSES_OUTC) -> c_int;
+    pub fn vidputs(param1: chtype, param1: NCURSES_OUTC) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vline(param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn vline(param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vwprintw(param1: *mut libc::WINDOW, param1: *const c_char, param1: va_list) -> c_int;
+    pub fn vwprintw(param1: *mut WINDOW, param1: *const c_char, param1: va_list) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vw_printw(param1: *mut libc::WINDOW, param1: *const c_char, param1: va_list) -> c_int;
+    pub fn vw_printw(param1: *mut WINDOW, param1: *const c_char, param1: va_list) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vwscanw(param1: *mut libc::WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
+    pub fn vwscanw(param1: *mut WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn vw_scanw(param1: *mut libc::WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
+    pub fn vw_scanw(param1: *mut WINDOW, param1: *mut c_char, param1: va_list) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddch(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn waddch(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddchnstr(
-        param1: *mut libc::WINDOW,
-        param1: *const libc::chtype,
-        param1: c_int,
-    ) -> c_int;
+    pub fn waddchnstr(param1: *mut WINDOW, param1: *const chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddchstr(param1: *mut libc::WINDOW, param1: *const libc::chtype) -> c_int;
+    pub fn waddchstr(param1: *mut WINDOW, param1: *const chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddnstr(param1: *mut libc::WINDOW, param1: *const c_char, param1: c_int) -> c_int;
+    pub fn waddnstr(param1: *mut WINDOW, param1: *const c_char, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn waddstr(param1: *mut libc::WINDOW, param1: *const c_char) -> c_int;
+    pub fn waddstr(param1: *mut WINDOW, param1: *const c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattron(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn wattron(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattroff(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn wattroff(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattrset(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn wattrset(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn wattr_get(
-        param1: *mut libc::WINDOW,
-        param1: *mut libc::attr_t,
+        param1: *mut WINDOW,
+        param1: *mut attr_t,
         param1: *mut c_short,
         param1: *mut c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattr_on(param1: *mut libc::WINDOW, param1: libc::attr_t, param1: *mut c_void) -> c_int;
+    pub fn wattr_on(param1: *mut WINDOW, param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wattr_off(param1: *mut libc::WINDOW, param1: libc::attr_t, param1: *mut c_void)
-        -> c_int;
+    pub fn wattr_off(param1: *mut WINDOW, param1: attr_t, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn wattr_set(
-        param1: *mut libc::WINDOW,
-        param1: libc::attr_t,
+        param1: *mut WINDOW,
+        param1: attr_t,
         param1: c_short,
         param1: *mut c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wbkgd(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn wbkgd(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wbkgdset(param1: *mut libc::WINDOW, param1: libc::chtype);
+    pub fn wbkgdset(param1: *mut WINDOW, param1: chtype);
 }
 
 extern "C-unwind" {
     pub fn wborder(
-        param1: *mut libc::WINDOW,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
-        param1: libc::chtype,
+        param1: *mut WINDOW,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
+        param1: chtype,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn wchgat(
-        param1: *mut libc::WINDOW,
+        param1: *mut WINDOW,
         param1: c_int,
-        param1: libc::attr_t,
+        param1: attr_t,
         param1: c_short,
         param1: *const c_void,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wclear(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wclear(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wcolor_set(param1: *mut libc::WINDOW, param1: c_short, param1: *mut c_void) -> c_int;
+    pub fn wcolor_set(param1: *mut WINDOW, param1: c_short, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wdeleteln(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wdeleteln(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wechochar(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn wechochar(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wgetch(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wgetch(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wgetnstr(param1: *mut libc::WINDOW, param1: *mut c_char, param1: c_int) -> c_int;
+    pub fn wgetnstr(param1: *mut WINDOW, param1: *mut c_char, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wgetstr(param1: *mut libc::WINDOW, param1: *mut c_char) -> c_int;
+    pub fn wgetstr(param1: *mut WINDOW, param1: *mut c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn whline(param1: *mut libc::WINDOW, param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn whline(param1: *mut WINDOW, param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winch(param1: *mut libc::WINDOW) -> libc::chtype;
+    pub fn winch(param1: *mut WINDOW) -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn winchnstr(param1: *mut libc::WINDOW, param1: *mut libc::chtype, param1: c_int) -> c_int;
+    pub fn winchnstr(param1: *mut WINDOW, param1: *mut chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winchstr(param1: *mut libc::WINDOW, param1: *mut libc::chtype) -> c_int;
+    pub fn winchstr(param1: *mut WINDOW, param1: *mut chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winnstr(param1: *mut libc::WINDOW, param1: *mut c_char, param1: c_int) -> c_int;
+    pub fn winnstr(param1: *mut WINDOW, param1: *mut c_char, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsch(param1: *mut libc::WINDOW, param1: libc::chtype) -> c_int;
+    pub fn winsch(param1: *mut WINDOW, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsdelln(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn winsdelln(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsertln(param1: *mut libc::WINDOW) -> c_int;
+    pub fn winsertln(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsnstr(param1: *mut libc::WINDOW, param1: *const c_char, param1: c_int) -> c_int;
+    pub fn winsnstr(param1: *mut WINDOW, param1: *const c_char, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winsstr(param1: *mut libc::WINDOW, param1: *const c_char) -> c_int;
+    pub fn winsstr(param1: *mut WINDOW, param1: *const c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn winstr(param1: *mut libc::WINDOW, param1: *mut c_char) -> c_int;
+    pub fn winstr(param1: *mut WINDOW, param1: *mut c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wnoutrefresh(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wnoutrefresh(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wredrawln(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
+    pub fn wredrawln(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wrefresh(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wrefresh(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wscrl(param1: *mut libc::WINDOW, param1: c_int) -> c_int;
+    pub fn wscrl(param1: *mut WINDOW, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wstandout(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wstandout(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wstandend(param1: *mut libc::WINDOW) -> c_int;
+    pub fn wstandend(param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn wvline(param1: *mut libc::WINDOW, param1: libc::chtype, param1: c_int) -> c_int;
+    pub fn wvline(param1: *mut WINDOW, param1: chtype, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -2635,99 +2555,92 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn use_screen(
-        param1: *mut libc::SCREEN,
-        param1: libc::NCURSES_SCREEN_CB,
-        param1: *mut c_void,
-    ) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn use_window(
-        param1: *mut libc::WINDOW,
-        param1: libc::NCURSES_WINDOW_CB,
-        param1: *mut c_void,
-    ) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn wresize(param1: *mut libc::WINDOW, param1: c_int, param1: c_int) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn wgetparent(param1: *const libc::WINDOW) -> *mut libc::WINDOW;
-}
-
-extern "C-unwind" {
-    pub fn is_cleared(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_idcok(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_idlok(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_immedok(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_keypad(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_leaveok(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_nodelay(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_notimeout(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_pad(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_scrollok(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_subwin(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn is_syncok(param1: *const libc::WINDOW) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn wgetdelay(param1: *const libc::WINDOW) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn wgetscrreg(param1: *const libc::WINDOW, param1: *mut c_int, param1: *mut c_int)
+    pub fn use_screen(param1: *mut SCREEN, param1: NCURSES_SCREEN_CB, param1: *mut c_void)
         -> c_int;
+}
+
+extern "C-unwind" {
+    pub fn use_window(param1: *mut WINDOW, param1: NCURSES_WINDOW_CB, param1: *mut c_void)
+        -> c_int;
+}
+
+extern "C-unwind" {
+    pub fn wresize(param1: *mut WINDOW, param1: c_int, param1: c_int) -> c_int;
+}
+
+extern "C-unwind" {
+    pub fn wgetparent(param1: *const WINDOW) -> *mut WINDOW;
+}
+
+extern "C-unwind" {
+    pub fn is_cleared(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_idcok(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_idlok(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_immedok(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_keypad(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_leaveok(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_nodelay(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_notimeout(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_pad(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_scrollok(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_subwin(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn is_syncok(param1: *const WINDOW) -> bool;
+}
+
+extern "C-unwind" {
+    pub fn wgetdelay(param1: *const WINDOW) -> c_int;
+}
+
+extern "C-unwind" {
+    pub fn wgetscrreg(param1: *const WINDOW, param1: *mut c_int, param1: *mut c_int) -> c_int;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/curscr?language=objc)
-    pub static curscr: *mut libc::WINDOW;
+    pub static curscr: *mut WINDOW;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/newscr?language=objc)
-    pub static newscr: *mut libc::WINDOW;
+    pub static newscr: *mut WINDOW;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/stdscr?language=objc)
-    pub static stdscr: *mut libc::WINDOW;
+    pub static stdscr: *mut WINDOW;
 }
 
 extern "C" {
@@ -2773,7 +2686,7 @@ pub struct MEVENT {
     pub x: c_int,
     pub y: c_int,
     pub z: c_int,
-    pub bstate: libc::mmask_t,
+    pub bstate: mmask_t,
 }
 
 extern "C-unwind" {
@@ -2781,19 +2694,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn getmouse(param1: *mut libc::MEVENT) -> c_int;
+    pub fn getmouse(param1: *mut MEVENT) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn ungetmouse(param1: *mut libc::MEVENT) -> c_int;
+    pub fn ungetmouse(param1: *mut MEVENT) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn mousemask(param1: libc::mmask_t, param1: *mut libc::mmask_t) -> libc::mmask_t;
+    pub fn mousemask(param1: mmask_t, param1: *mut mmask_t) -> mmask_t;
 }
 
 extern "C-unwind" {
-    pub fn wenclose(param1: *const libc::WINDOW, param1: c_int, param1: c_int) -> bool;
+    pub fn wenclose(param1: *const WINDOW, param1: c_int, param1: c_int) -> bool;
 }
 
 extern "C-unwind" {
@@ -2802,7 +2715,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn wmouse_trafo(
-        param1: *const libc::WINDOW,
+        param1: *const WINDOW,
         param1: *mut c_int,
         param1: *mut c_int,
         param1: bool,

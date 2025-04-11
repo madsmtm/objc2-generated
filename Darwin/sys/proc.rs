@@ -10,15 +10,15 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct extern_proc_p_un_p_st1 {
-    pub(crate) __p_forw: *mut libc::proc,
-    pub(crate) __p_back: *mut libc::proc,
+    pub(crate) __p_forw: *mut proc,
+    pub(crate) __p_back: *mut proc,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/extern_proc_p_un?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union extern_proc_p_un {
-    pub p_st1: libc::extern_proc_p_un_p_st1,
+    pub p_st1: extern_proc_p_un_p_st1,
     pub(crate) __p_starttime: timeval,
 }
 
@@ -26,44 +26,44 @@ pub union extern_proc_p_un {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct extern_proc {
-    pub p_un: libc::extern_proc_p_un,
-    pub p_vmspace: *mut libc::vmspace,
-    pub p_sigacts: *mut libc::sigacts,
+    pub p_un: extern_proc_p_un,
+    pub p_vmspace: *mut vmspace,
+    pub p_sigacts: *mut sigacts,
     pub p_flag: c_int,
     pub p_stat: c_char,
-    pub p_pid: libc::pid_t,
-    pub p_oppid: libc::pid_t,
+    pub p_pid: pid_t,
+    pub p_oppid: pid_t,
     pub p_dupfd: c_int,
-    pub user_stack: libc::caddr_t,
+    pub user_stack: caddr_t,
     pub exit_thread: *mut c_void,
     pub p_debugger: c_int,
-    pub sigwait: libc::boolean_t,
+    pub sigwait: boolean_t,
     pub p_estcpu: c_uint,
     pub p_cpticks: c_int,
-    pub p_pctcpu: libc::fixpt_t,
+    pub p_pctcpu: fixpt_t,
     pub p_wchan: *mut c_void,
     pub p_wmesg: *mut c_char,
     pub p_swtime: c_uint,
     pub p_slptime: c_uint,
-    pub p_realtimer: libc::itimerval,
+    pub p_realtimer: itimerval,
     pub p_rtime: timeval,
-    pub p_uticks: libc::u_quad_t,
-    pub p_sticks: libc::u_quad_t,
-    pub p_iticks: libc::u_quad_t,
+    pub p_uticks: u_quad_t,
+    pub p_sticks: u_quad_t,
+    pub p_iticks: u_quad_t,
     pub p_traceflag: c_int,
-    pub p_tracep: *mut libc::vnode,
+    pub p_tracep: *mut vnode,
     pub p_siglist: c_int,
-    pub p_textvp: *mut libc::vnode,
+    pub p_textvp: *mut vnode,
     pub p_holdcnt: c_int,
-    pub p_sigmask: libc::sigset_t,
-    pub p_sigignore: libc::sigset_t,
-    pub p_sigcatch: libc::sigset_t,
+    pub p_sigmask: sigset_t,
+    pub p_sigignore: sigset_t,
+    pub p_sigcatch: sigset_t,
     pub p_priority: c_uchar,
     pub p_usrpri: c_uchar,
     pub p_nice: c_char,
     pub p_comm: [c_char; 17],
-    pub p_pgrp: *mut libc::pgrp,
-    pub p_addr: *mut libc::user,
+    pub p_pgrp: *mut pgrp,
+    pub p_addr: *mut user,
     pub p_xstat: c_ushort,
     pub p_acflag: c_ushort,
     pub p_ru: *mut rusage,

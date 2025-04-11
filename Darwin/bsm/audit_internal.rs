@@ -18,7 +18,7 @@ pub struct au_token_tokens {
 pub struct au_token {
     pub t_data: *mut c_uchar,
     pub len: usize,
-    pub tokens: libc::au_token_tokens,
+    pub tokens: au_token_tokens,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_record_token_q?language=objc)
@@ -33,7 +33,7 @@ pub struct au_record_token_q {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_record_au_rec_q {
-    pub le_next: *mut libc::au_record,
+    pub le_next: *mut au_record,
     pub le_prev: *mut *mut Self,
 }
 
@@ -43,10 +43,10 @@ pub struct au_record_au_rec_q {
 pub struct au_record {
     pub used: c_char,
     pub desc: c_int,
-    pub token_q: libc::au_record_token_q,
+    pub token_q: au_record_token_q,
     pub data: *mut c_uchar,
     pub len: usize,
-    pub au_rec_q: libc::au_record_au_rec_q,
+    pub au_rec_q: au_record_au_rec_q,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_record_t?language=objc)

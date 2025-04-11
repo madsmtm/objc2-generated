@@ -22,14 +22,14 @@ pub struct icmp6_hdr {
     pub icmp6_type: u8,
     pub icmp6_code: u8,
     pub icmp6_cksum: u16,
-    pub icmp6_dataun: libc::icmp6_hdr_icmp6_dataun,
+    pub icmp6_dataun: icmp6_hdr_icmp6_dataun,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mld_hdr?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct mld_hdr {
-    pub mld_icmp6_hdr: libc::icmp6_hdr,
+    pub mld_icmp6_hdr: icmp6_hdr,
     pub mld_addr: in6_addr,
 }
 
@@ -37,14 +37,14 @@ pub struct mld_hdr {
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_router_solicit {
-    pub nd_rs_hdr: libc::icmp6_hdr,
+    pub nd_rs_hdr: icmp6_hdr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/nd_router_advert?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_router_advert {
-    pub nd_ra_hdr: libc::icmp6_hdr,
+    pub nd_ra_hdr: icmp6_hdr,
     pub nd_ra_reachable: u32,
     pub nd_ra_retransmit: u32,
 }
@@ -53,7 +53,7 @@ pub struct nd_router_advert {
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_neighbor_solicit {
-    pub nd_ns_hdr: libc::icmp6_hdr,
+    pub nd_ns_hdr: icmp6_hdr,
     pub nd_ns_target: in6_addr,
 }
 
@@ -61,7 +61,7 @@ pub struct nd_neighbor_solicit {
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_neighbor_advert {
-    pub nd_na_hdr: libc::icmp6_hdr,
+    pub nd_na_hdr: icmp6_hdr,
     pub nd_na_target: in6_addr,
 }
 
@@ -69,7 +69,7 @@ pub struct nd_neighbor_advert {
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct nd_redirect {
-    pub nd_rd_hdr: libc::icmp6_hdr,
+    pub nd_rd_hdr: icmp6_hdr,
     pub nd_rd_target: in6_addr,
     pub nd_rd_dst: in6_addr,
 }
@@ -183,7 +183,7 @@ pub struct nd_opt_pvd {
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_namelookup {
-    pub icmp6_nl_hdr: libc::icmp6_hdr,
+    pub icmp6_nl_hdr: icmp6_hdr,
     pub icmp6_nl_nonce: [u8; 8],
     pub icmp6_nl_ttl: i32,
 }
@@ -192,7 +192,7 @@ pub struct icmp6_namelookup {
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_nodeinfo {
-    pub icmp6_ni_hdr: libc::icmp6_hdr,
+    pub icmp6_ni_hdr: icmp6_hdr,
     pub icmp6_ni_nonce: [u8; 8],
 }
 
@@ -209,7 +209,7 @@ pub struct ni_reply_fqdn {
 #[repr(C, packed)]
 #[derive(Clone, Copy)]
 pub struct icmp6_router_renum {
-    pub rr_hdr: libc::icmp6_hdr,
+    pub rr_hdr: icmp6_hdr,
     pub rr_segnum: u8,
     pub rr_flags: u8,
     pub rr_maxdelay: u16,
@@ -266,44 +266,44 @@ pub struct icmp6_filter {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6errstat {
-    pub icp6errs_dst_unreach_noroute: libc::u_quad_t,
-    pub icp6errs_dst_unreach_admin: libc::u_quad_t,
-    pub icp6errs_dst_unreach_beyondscope: libc::u_quad_t,
-    pub icp6errs_dst_unreach_addr: libc::u_quad_t,
-    pub icp6errs_dst_unreach_noport: libc::u_quad_t,
-    pub icp6errs_packet_too_big: libc::u_quad_t,
-    pub icp6errs_time_exceed_transit: libc::u_quad_t,
-    pub icp6errs_time_exceed_reassembly: libc::u_quad_t,
-    pub icp6errs_paramprob_header: libc::u_quad_t,
-    pub icp6errs_paramprob_nextheader: libc::u_quad_t,
-    pub icp6errs_paramprob_option: libc::u_quad_t,
-    pub icp6errs_redirect: libc::u_quad_t,
-    pub icp6errs_unknown: libc::u_quad_t,
+    pub icp6errs_dst_unreach_noroute: u_quad_t,
+    pub icp6errs_dst_unreach_admin: u_quad_t,
+    pub icp6errs_dst_unreach_beyondscope: u_quad_t,
+    pub icp6errs_dst_unreach_addr: u_quad_t,
+    pub icp6errs_dst_unreach_noport: u_quad_t,
+    pub icp6errs_packet_too_big: u_quad_t,
+    pub icp6errs_time_exceed_transit: u_quad_t,
+    pub icp6errs_time_exceed_reassembly: u_quad_t,
+    pub icp6errs_paramprob_header: u_quad_t,
+    pub icp6errs_paramprob_nextheader: u_quad_t,
+    pub icp6errs_paramprob_option: u_quad_t,
+    pub icp6errs_redirect: u_quad_t,
+    pub icp6errs_unknown: u_quad_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6stat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6stat {
-    pub icp6s_error: libc::u_quad_t,
-    pub icp6s_canterror: libc::u_quad_t,
-    pub icp6s_toofreq: libc::u_quad_t,
-    pub icp6s_outhist: [libc::u_quad_t; 256],
-    pub icp6s_badcode: libc::u_quad_t,
-    pub icp6s_tooshort: libc::u_quad_t,
-    pub icp6s_checksum: libc::u_quad_t,
-    pub icp6s_badlen: libc::u_quad_t,
-    pub icp6s_reflect: libc::u_quad_t,
-    pub icp6s_inhist: [libc::u_quad_t; 256],
-    pub icp6s_nd_toomanyopt: libc::u_quad_t,
-    pub icp6s_outerrhist: libc::icmp6errstat,
-    pub icp6s_pmtuchg: libc::u_quad_t,
-    pub icp6s_nd_badopt: libc::u_quad_t,
-    pub icp6s_badns: libc::u_quad_t,
-    pub icp6s_badna: libc::u_quad_t,
-    pub icp6s_badrs: libc::u_quad_t,
-    pub icp6s_badra: libc::u_quad_t,
-    pub icp6s_badredirect: libc::u_quad_t,
-    pub icp6s_rfc6980_drop: libc::u_quad_t,
-    pub icp6s_badpkttoobig: libc::u_quad_t,
+    pub icp6s_error: u_quad_t,
+    pub icp6s_canterror: u_quad_t,
+    pub icp6s_toofreq: u_quad_t,
+    pub icp6s_outhist: [u_quad_t; 256],
+    pub icp6s_badcode: u_quad_t,
+    pub icp6s_tooshort: u_quad_t,
+    pub icp6s_checksum: u_quad_t,
+    pub icp6s_badlen: u_quad_t,
+    pub icp6s_reflect: u_quad_t,
+    pub icp6s_inhist: [u_quad_t; 256],
+    pub icp6s_nd_toomanyopt: u_quad_t,
+    pub icp6s_outerrhist: icmp6errstat,
+    pub icp6s_pmtuchg: u_quad_t,
+    pub icp6s_nd_badopt: u_quad_t,
+    pub icp6s_badns: u_quad_t,
+    pub icp6s_badna: u_quad_t,
+    pub icp6s_badrs: u_quad_t,
+    pub icp6s_badra: u_quad_t,
+    pub icp6s_badredirect: u_quad_t,
+    pub icp6s_rfc6980_drop: u_quad_t,
+    pub icp6s_badpkttoobig: u_quad_t,
 }

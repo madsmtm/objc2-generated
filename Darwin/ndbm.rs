@@ -20,50 +20,45 @@ pub struct DBM {
 }
 
 extern "C-unwind" {
-    pub fn dbm_clearerr(param1: *mut libc::DBM) -> c_int;
+    pub fn dbm_clearerr(param1: *mut DBM) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn dbm_close(param1: *mut libc::DBM);
+    pub fn dbm_close(param1: *mut DBM);
 }
 
 extern "C-unwind" {
-    pub fn dbm_delete(param1: *mut libc::DBM, param1: libc::datum) -> c_int;
+    pub fn dbm_delete(param1: *mut DBM, param1: datum) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn dbm_dirfno(param1: *mut libc::DBM) -> c_int;
+    pub fn dbm_dirfno(param1: *mut DBM) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn dbm_error(param1: *mut libc::DBM) -> c_int;
+    pub fn dbm_error(param1: *mut DBM) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn dbm_fetch(param1: *mut libc::DBM, param1: libc::datum) -> libc::datum;
+    pub fn dbm_fetch(param1: *mut DBM, param1: datum) -> datum;
 }
 
 extern "C-unwind" {
-    pub fn dbm_firstkey(param1: *mut libc::DBM) -> libc::datum;
+    pub fn dbm_firstkey(param1: *mut DBM) -> datum;
 }
 
 extern "C-unwind" {
-    pub fn dbm_forder(param1: *mut libc::DBM, param1: libc::datum) -> c_long;
+    pub fn dbm_forder(param1: *mut DBM, param1: datum) -> c_long;
 }
 
 extern "C-unwind" {
-    pub fn dbm_nextkey(param1: *mut libc::DBM) -> libc::datum;
+    pub fn dbm_nextkey(param1: *mut DBM) -> datum;
 }
 
 extern "C-unwind" {
-    pub fn dbm_open(param1: *const c_char, param1: c_int, param1: libc::mode_t) -> *mut libc::DBM;
+    pub fn dbm_open(param1: *const c_char, param1: c_int, param1: mode_t) -> *mut DBM;
 }
 
 extern "C-unwind" {
-    pub fn dbm_store(
-        param1: *mut libc::DBM,
-        param1: libc::datum,
-        param1: libc::datum,
-        param1: c_int,
-    ) -> c_int;
+    pub fn dbm_store(param1: *mut DBM, param1: datum, param1: datum, param1: c_int) -> c_int;
 }

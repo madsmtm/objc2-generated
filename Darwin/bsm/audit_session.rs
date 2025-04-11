@@ -17,31 +17,31 @@ impl au_sdev_open_flags {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct au_sdev_handle {
-    pub ash_fp: *mut libc::FILE,
+    pub ash_fp: *mut FILE,
     pub ash_buf: *mut c_uchar,
     pub ash_reclen: c_int,
     pub ash_bytesread: c_int,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/au_sdev_handle_t?language=objc)
-pub type au_sdev_handle_t = libc::au_sdev_handle;
+pub type au_sdev_handle_t = au_sdev_handle;
 
 extern "C-unwind" {
-    pub fn au_sdev_open(flags: c_int) -> *mut libc::au_sdev_handle_t;
+    pub fn au_sdev_open(flags: c_int) -> *mut au_sdev_handle_t;
 }
 
 extern "C-unwind" {
-    pub fn au_sdev_close(ash: *mut libc::au_sdev_handle_t) -> c_int;
+    pub fn au_sdev_close(ash: *mut au_sdev_handle_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn au_sdev_fd(ash: *mut libc::au_sdev_handle_t) -> c_int;
+    pub fn au_sdev_fd(ash: *mut au_sdev_handle_t) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn au_sdev_read_aia(
-        ash: *mut libc::au_sdev_handle_t,
+        ash: *mut au_sdev_handle_t,
         event: *mut c_int,
-        aia_p: *mut libc::auditinfo_addr_t,
+        aia_p: *mut auditinfo_addr_t,
     ) -> c_int;
 }

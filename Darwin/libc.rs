@@ -8,7 +8,7 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct qelem {
-    pub q_forw: *mut libc::qelem,
+    pub q_forw: *mut qelem,
     pub q_back: *mut Self,
     pub q_data: *mut c_char,
 }
@@ -16,19 +16,19 @@ pub struct qelem {
 #[inline]
 pub unsafe extern "C-unwind" fn map_fd(
     fd: c_int,
-    offset: libc::vm_offset_t,
-    addr: *mut libc::vm_offset_t,
+    offset: vm_offset_t,
+    addr: *mut vm_offset_t,
     find_space: bool,
-    numbytes: libc::vm_size_t,
-) -> libc::kern_return_t {
+    numbytes: vm_size_t,
+) -> kern_return_t {
     extern "C-unwind" {
         fn map_fd(
             fd: c_int,
-            offset: libc::vm_offset_t,
-            addr: *mut libc::vm_offset_t,
-            find_space: libc::boolean_t,
-            numbytes: libc::vm_size_t,
-        ) -> libc::kern_return_t;
+            offset: vm_offset_t,
+            addr: *mut vm_offset_t,
+            find_space: boolean_t,
+            numbytes: vm_size_t,
+        ) -> kern_return_t;
     }
     unsafe { map_fd(fd, offset, addr, find_space as _, numbytes) }
 }

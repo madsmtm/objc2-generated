@@ -13,7 +13,7 @@ pub struct entry {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/entry?language=objc)
-pub type ENTRY = libc::entry;
+pub type ENTRY = entry;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/action?language=objc)
 #[repr(transparent)]
@@ -44,7 +44,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn hsearch(param1: libc::ENTRY, param1: libc::ACTION) -> *mut libc::ENTRY;
+    pub fn hsearch(param1: ENTRY, param1: ACTION) -> *mut ENTRY;
 }
 
 extern "C-unwind" {
@@ -102,6 +102,6 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn twalk(
         param1: *const c_void,
-        param1: Option<unsafe extern "C-unwind" fn(*const c_void, libc::VISIT, c_int)>,
+        param1: Option<unsafe extern "C-unwind" fn(*const c_void, VISIT, c_int)>,
     );
 }

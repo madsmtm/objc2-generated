@@ -12,10 +12,10 @@ pub type posix_spawn_file_actions_t = *mut c_void;
 
 extern "C-unwind" {
     pub fn posix_spawn(
-        param1: *mut libc::pid_t,
+        param1: *mut pid_t,
         param1: *const c_char,
-        param1: *const libc::posix_spawn_file_actions_t,
-        param1: *const libc::posix_spawnattr_t,
+        param1: *const posix_spawn_file_actions_t,
+        param1: *const posix_spawnattr_t,
         argv: *mut *const c_char,
         envp: *mut *const c_char,
     ) -> c_int;
@@ -23,10 +23,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn posix_spawnp(
-        param1: *mut libc::pid_t,
+        param1: *mut pid_t,
         param1: *const c_char,
-        param1: *const libc::posix_spawn_file_actions_t,
-        param1: *const libc::posix_spawnattr_t,
+        param1: *const posix_spawn_file_actions_t,
+        param1: *const posix_spawnattr_t,
         argv: *mut *const c_char,
         envp: *mut *const c_char,
     ) -> c_int;
@@ -34,14 +34,14 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn posix_spawn_file_actions_addclose(
-        param1: *mut libc::posix_spawn_file_actions_t,
+        param1: *mut posix_spawn_file_actions_t,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawn_file_actions_adddup2(
-        param1: *mut libc::posix_spawn_file_actions_t,
+        param1: *mut posix_spawn_file_actions_t,
         param1: c_int,
         param1: c_int,
     ) -> c_int;
@@ -49,173 +49,166 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn posix_spawn_file_actions_addopen(
-        param1: *mut libc::posix_spawn_file_actions_t,
+        param1: *mut posix_spawn_file_actions_t,
         param1: c_int,
         param1: *const c_char,
         param1: c_int,
-        param1: libc::mode_t,
+        param1: mode_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn posix_spawn_file_actions_destroy(param1: *mut libc::posix_spawn_file_actions_t)
-        -> c_int;
+    pub fn posix_spawn_file_actions_destroy(param1: *mut posix_spawn_file_actions_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn posix_spawn_file_actions_init(param1: *mut libc::posix_spawn_file_actions_t) -> c_int;
+    pub fn posix_spawn_file_actions_init(param1: *mut posix_spawn_file_actions_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn posix_spawnattr_destroy(param1: *mut libc::posix_spawnattr_t) -> c_int;
+    pub fn posix_spawnattr_destroy(param1: *mut posix_spawnattr_t) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawnattr_getsigdefault(
-        param1: *const libc::posix_spawnattr_t,
-        param1: *mut libc::sigset_t,
+        param1: *const posix_spawnattr_t,
+        param1: *mut sigset_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawnattr_getflags(
-        param1: *const libc::posix_spawnattr_t,
+        param1: *const posix_spawnattr_t,
         param1: *mut c_short,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn posix_spawnattr_getpgroup(
-        param1: *const libc::posix_spawnattr_t,
-        param1: *mut libc::pid_t,
-    ) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn posix_spawnattr_getsigmask(
-        param1: *const libc::posix_spawnattr_t,
-        param1: *mut libc::sigset_t,
-    ) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn posix_spawnattr_init(param1: *mut libc::posix_spawnattr_t) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn posix_spawnattr_setsigdefault(
-        param1: *mut libc::posix_spawnattr_t,
-        param1: *const libc::sigset_t,
-    ) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn posix_spawnattr_setflags(param1: *mut libc::posix_spawnattr_t, param1: c_short)
+    pub fn posix_spawnattr_getpgroup(param1: *const posix_spawnattr_t, param1: *mut pid_t)
         -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn posix_spawnattr_setpgroup(
-        param1: *mut libc::posix_spawnattr_t,
-        param1: libc::pid_t,
+    pub fn posix_spawnattr_getsigmask(
+        param1: *const posix_spawnattr_t,
+        param1: *mut sigset_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
+    pub fn posix_spawnattr_init(param1: *mut posix_spawnattr_t) -> c_int;
+}
+
+extern "C-unwind" {
+    pub fn posix_spawnattr_setsigdefault(
+        param1: *mut posix_spawnattr_t,
+        param1: *const sigset_t,
+    ) -> c_int;
+}
+
+extern "C-unwind" {
+    pub fn posix_spawnattr_setflags(param1: *mut posix_spawnattr_t, param1: c_short) -> c_int;
+}
+
+extern "C-unwind" {
+    pub fn posix_spawnattr_setpgroup(param1: *mut posix_spawnattr_t, param1: pid_t) -> c_int;
+}
+
+extern "C-unwind" {
     pub fn posix_spawnattr_setsigmask(
-        param1: *mut libc::posix_spawnattr_t,
-        param1: *const libc::sigset_t,
+        param1: *mut posix_spawnattr_t,
+        param1: *const sigset_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawnattr_getbinpref_np(
-        param1: *const libc::posix_spawnattr_t,
+        param1: *const posix_spawnattr_t,
         param1: usize,
-        param1: *mut libc::cpu_type_t,
+        param1: *mut cpu_type_t,
         param1: *mut usize,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawnattr_getarchpref_np(
-        param1: *const libc::posix_spawnattr_t,
+        param1: *const posix_spawnattr_t,
         param1: usize,
-        param1: *mut libc::cpu_type_t,
-        param1: *mut libc::cpu_subtype_t,
+        param1: *mut cpu_type_t,
+        param1: *mut cpu_subtype_t,
         param1: *mut usize,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawnattr_setauditsessionport_np(
-        param1: *mut libc::posix_spawnattr_t,
-        param1: libc::mach_port_t,
+        param1: *mut posix_spawnattr_t,
+        param1: mach_port_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawnattr_setbinpref_np(
-        param1: *mut libc::posix_spawnattr_t,
+        param1: *mut posix_spawnattr_t,
         param1: usize,
-        param1: *mut libc::cpu_type_t,
+        param1: *mut cpu_type_t,
         param1: *mut usize,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawnattr_setarchpref_np(
-        param1: *mut libc::posix_spawnattr_t,
+        param1: *mut posix_spawnattr_t,
         param1: usize,
-        param1: *mut libc::cpu_type_t,
-        param1: *mut libc::cpu_subtype_t,
+        param1: *mut cpu_type_t,
+        param1: *mut cpu_subtype_t,
         param1: *mut usize,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawnattr_setexceptionports_np(
-        param1: *mut libc::posix_spawnattr_t,
-        param1: libc::exception_mask_t,
-        param1: libc::mach_port_t,
-        param1: libc::exception_behavior_t,
-        param1: libc::thread_state_flavor_t,
+        param1: *mut posix_spawnattr_t,
+        param1: exception_mask_t,
+        param1: mach_port_t,
+        param1: exception_behavior_t,
+        param1: thread_state_flavor_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawnattr_setspecialport_np(
-        param1: *mut libc::posix_spawnattr_t,
-        param1: libc::mach_port_t,
+        param1: *mut posix_spawnattr_t,
+        param1: mach_port_t,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn posix_spawnattr_setnosmt_np(attr: *const libc::posix_spawnattr_t) -> c_int;
+    pub fn posix_spawnattr_setnosmt_np(attr: *const posix_spawnattr_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn posix_spawnattr_set_csm_np(attr: *const libc::posix_spawnattr_t, flags: u32) -> c_int;
+    pub fn posix_spawnattr_set_csm_np(attr: *const posix_spawnattr_t, flags: u32) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawn_file_actions_addinherit_np(
-        param1: *mut libc::posix_spawn_file_actions_t,
+        param1: *mut posix_spawn_file_actions_t,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawn_file_actions_addchdir_np(
-        param1: *mut libc::posix_spawn_file_actions_t,
+        param1: *mut posix_spawn_file_actions_t,
         param1: *const c_char,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn posix_spawn_file_actions_addfchdir_np(
-        param1: *mut libc::posix_spawn_file_actions_t,
+        param1: *mut posix_spawn_file_actions_t,
         param1: c_int,
     ) -> c_int;
 }

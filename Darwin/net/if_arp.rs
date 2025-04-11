@@ -19,8 +19,8 @@ pub struct arphdr {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct arpreq {
-    pub arp_pa: libc::sockaddr,
-    pub arp_ha: libc::sockaddr,
+    pub arp_pa: sockaddr,
+    pub arp_ha: sockaddr,
     pub arp_flags: c_int,
 }
 

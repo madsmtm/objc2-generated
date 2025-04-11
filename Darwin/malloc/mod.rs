@@ -18,8 +18,7 @@ use crate::ffi::*;
 pub struct _malloc_zone_t {
     pub reserved1: *mut c_void,
     pub reserved2: *mut c_void,
-    pub size:
-        Option<unsafe extern "C-unwind" fn(*mut libc::_malloc_zone_t, *const c_void) -> usize>,
+    pub size: Option<unsafe extern "C-unwind" fn(*mut _malloc_zone_t, *const c_void) -> usize>,
     pub malloc: Option<unsafe extern "C-unwind" fn(*mut Self, usize) -> *mut c_void>,
     pub calloc: Option<unsafe extern "C-unwind" fn(*mut Self, usize, usize) -> *mut c_void>,
     pub valloc: Option<unsafe extern "C-unwind" fn(*mut Self, usize) -> *mut c_void>,
@@ -30,13 +29,12 @@ pub struct _malloc_zone_t {
     pub batch_malloc:
         Option<unsafe extern "C-unwind" fn(*mut Self, usize, *mut *mut c_void, c_uint) -> c_uint>,
     pub batch_free: Option<unsafe extern "C-unwind" fn(*mut Self, *mut *mut c_void, c_uint)>,
-    pub introspect: *mut libc::malloc_introspection_t,
+    pub introspect: *mut malloc_introspection_t,
     pub version: c_uint,
     pub memalign: Option<unsafe extern "C-unwind" fn(*mut Self, usize, usize) -> *mut c_void>,
     pub free_definite_size: Option<unsafe extern "C-unwind" fn(*mut Self, *mut c_void, usize)>,
     pub pressure_relief: Option<unsafe extern "C-unwind" fn(*mut Self, usize) -> usize>,
-    pub claimed_address:
-        Option<unsafe extern "C-unwind" fn(*mut Self, *mut c_void) -> libc::boolean_t>,
+    pub claimed_address: Option<unsafe extern "C-unwind" fn(*mut Self, *mut c_void) -> boolean_t>,
     pub try_free_default: Option<unsafe extern "C-unwind" fn(*mut Self, *mut c_void)>,
     pub malloc_with_options:
         Option<unsafe extern "C-unwind" fn(*mut Self, usize, usize, u64) -> *mut c_void>,
@@ -161,10 +159,10 @@ pub struct malloc_type_layout_semantics_v0_t {
 pub struct malloc_type_summary_v0_t {
     pub version: u32,
     pub reserved_0: u32,
-    pub callsite_flags: libc::malloc_type_callsite_flags_v0_t,
-    pub type_kind: libc::malloc_type_kind_v0_t,
+    pub callsite_flags: malloc_type_callsite_flags_v0_t,
+    pub type_kind: malloc_type_kind_v0_t,
     pub reserved_1: u32,
-    pub layout_semantics: libc::malloc_type_layout_semantics_v0_t,
+    pub layout_semantics: malloc_type_layout_semantics_v0_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_type_descriptor_v0_t_type_id?language=objc)
@@ -172,7 +170,7 @@ pub struct malloc_type_summary_v0_t {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct malloc_type_descriptor_v0_t_type_id {
     pub hash: u32,
-    pub summary: libc::malloc_type_summary_v0_t,
+    pub summary: malloc_type_summary_v0_t,
 }
 
 /// Field: hash
@@ -206,9 +204,9 @@ pub union malloc_type_descriptor_v0_t {
 
 /// *******    Creation and destruction    ***********
 #[inline]
-pub unsafe extern "C-unwind" fn malloc_default_zone() -> Option<Retained<libc::malloc_zone_t>> {
+pub unsafe extern "C-unwind" fn malloc_default_zone() -> Option<Retained<malloc_zone_t>> {
     extern "C-unwind" {
-        fn malloc_default_zone() -> *mut libc::malloc_zone_t;
+        fn malloc_default_zone() -> *mut malloc_zone_t;
     }
     let ret = unsafe { malloc_default_zone() };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -216,47 +214,44 @@ pub unsafe extern "C-unwind" fn malloc_default_zone() -> Option<Retained<libc::m
 
 #[inline]
 pub unsafe extern "C-unwind" fn malloc_create_zone(
-    start_size: libc::vm_size_t,
+    start_size: vm_size_t,
     flags: c_uint,
-) -> Option<Retained<libc::malloc_zone_t>> {
+) -> Option<Retained<malloc_zone_t>> {
     extern "C-unwind" {
-        fn malloc_create_zone(
-            start_size: libc::vm_size_t,
-            flags: c_uint,
-        ) -> *mut libc::malloc_zone_t;
+        fn malloc_create_zone(start_size: vm_size_t, flags: c_uint) -> *mut malloc_zone_t;
     }
     let ret = unsafe { malloc_create_zone(start_size, flags) };
     unsafe { Retained::from_raw(ret) }
 }
 
 extern "C-unwind" {
-    pub fn malloc_destroy_zone(zone: Option<&libc::malloc_zone_t>);
+    pub fn malloc_destroy_zone(zone: Option<&malloc_zone_t>);
 }
 
 extern "C-unwind" {
     /// *******    Block creation and manipulation    ***********
-    pub fn malloc_zone_malloc(zone: Option<&libc::malloc_zone_t>, size: usize) -> *mut c_void;
+    pub fn malloc_zone_malloc(zone: Option<&malloc_zone_t>, size: usize) -> *mut c_void;
 }
 
 extern "C-unwind" {
     pub fn malloc_zone_calloc(
-        zone: Option<&libc::malloc_zone_t>,
+        zone: Option<&malloc_zone_t>,
         num_items: usize,
         size: usize,
     ) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn malloc_zone_valloc(zone: Option<&libc::malloc_zone_t>, size: usize) -> *mut c_void;
+    pub fn malloc_zone_valloc(zone: Option<&malloc_zone_t>, size: usize) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn malloc_zone_free(zone: Option<&libc::malloc_zone_t>, ptr: *mut c_void);
+    pub fn malloc_zone_free(zone: Option<&malloc_zone_t>, ptr: *mut c_void);
 }
 
 extern "C-unwind" {
     pub fn malloc_zone_realloc(
-        zone: Option<&libc::malloc_zone_t>,
+        zone: Option<&malloc_zone_t>,
         ptr: *mut c_void,
         size: usize,
     ) -> *mut c_void;
@@ -265,9 +260,9 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn malloc_zone_from_ptr(
     ptr: *const c_void,
-) -> Option<Retained<libc::malloc_zone_t>> {
+) -> Option<Retained<malloc_zone_t>> {
     extern "C-unwind" {
-        fn malloc_zone_from_ptr(ptr: *const c_void) -> *mut libc::malloc_zone_t;
+        fn malloc_zone_from_ptr(ptr: *const c_void) -> *mut malloc_zone_t;
     }
     let ret = unsafe { malloc_zone_from_ptr(ptr) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -283,7 +278,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn malloc_zone_memalign(
-        zone: Option<&libc::malloc_zone_t>,
+        zone: Option<&malloc_zone_t>,
         alignment: usize,
         size: usize,
     ) -> *mut c_void;
@@ -291,7 +286,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn malloc_zone_batch_malloc(
-        zone: Option<&libc::malloc_zone_t>,
+        zone: Option<&malloc_zone_t>,
         size: usize,
         results: *mut *mut c_void,
         num_requested: c_uint,
@@ -300,17 +295,16 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn malloc_zone_batch_free(
-        zone: Option<&libc::malloc_zone_t>,
+        zone: Option<&malloc_zone_t>,
         to_be_freed: *mut *mut c_void,
         num: c_uint,
     );
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn malloc_default_purgeable_zone(
-) -> Option<Retained<libc::malloc_zone_t>> {
+pub unsafe extern "C-unwind" fn malloc_default_purgeable_zone() -> Option<Retained<malloc_zone_t>> {
     extern "C-unwind" {
-        fn malloc_default_purgeable_zone() -> *mut libc::malloc_zone_t;
+        fn malloc_default_purgeable_zone() -> *mut malloc_zone_t;
     }
     let ret = unsafe { malloc_default_purgeable_zone() };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -325,31 +319,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn malloc_zone_register(zone: Option<&libc::malloc_zone_t>);
+    pub fn malloc_zone_register(zone: Option<&malloc_zone_t>);
 }
 
 extern "C-unwind" {
-    pub fn malloc_zone_unregister(zone: Option<&libc::malloc_zone_t>);
+    pub fn malloc_zone_unregister(zone: Option<&malloc_zone_t>);
 }
 
 extern "C-unwind" {
-    pub fn malloc_set_zone_name(zone: Option<&libc::malloc_zone_t>, name: *const c_char);
+    pub fn malloc_set_zone_name(zone: Option<&malloc_zone_t>, name: *const c_char);
 }
 
 extern "C-unwind" {
-    pub fn malloc_get_zone_name(zone: Option<&libc::malloc_zone_t>) -> *const c_char;
+    pub fn malloc_get_zone_name(zone: Option<&malloc_zone_t>) -> *const c_char;
 }
 
 extern "C-unwind" {
-    pub fn malloc_zone_pressure_relief(zone: Option<&libc::malloc_zone_t>, goal: usize) -> usize;
+    pub fn malloc_zone_pressure_relief(zone: Option<&malloc_zone_t>, goal: usize) -> usize;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vm_range_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vm_range_t {
-    pub address: libc::vm_address_t,
-    pub size: libc::vm_size_t,
+    pub address: vm_address_t,
+    pub size: vm_size_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/malloc_statistics_t?language=objc)
@@ -377,51 +371,49 @@ pub type print_task_printer_t = core::ffi::c_void;
 pub struct malloc_introspection_t {
     pub enumerator: Option<
         unsafe extern "C-unwind" fn(
-            libc::task_t,
+            task_t,
             *mut c_void,
             c_uint,
-            libc::vm_address_t,
-            libc::memory_reader_t,
-            libc::vm_range_recorder_t,
-        ) -> libc::kern_return_t,
+            vm_address_t,
+            memory_reader_t,
+            vm_range_recorder_t,
+        ) -> kern_return_t,
     >,
-    pub good_size: Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t, usize) -> usize>,
-    pub check: Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t) -> libc::boolean_t>,
-    pub print: Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t, libc::boolean_t)>,
-    pub log: Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t, *mut c_void)>,
-    pub force_lock: Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t)>,
-    pub force_unlock: Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t)>,
-    pub statistics: Option<
-        unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t, *mut libc::malloc_statistics_t),
-    >,
-    pub zone_locked:
-        Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t) -> libc::boolean_t>,
+    pub good_size: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t, usize) -> usize>,
+    pub check: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t) -> boolean_t>,
+    pub print: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t, boolean_t)>,
+    pub log: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t, *mut c_void)>,
+    pub force_lock: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t)>,
+    pub force_unlock: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t)>,
+    pub statistics:
+        Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t, *mut malloc_statistics_t)>,
+    pub zone_locked: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t) -> boolean_t>,
     pub enable_discharge_checking:
-        Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t) -> libc::boolean_t>,
-    pub disable_discharge_checking: Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t)>,
-    pub discharge: Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t, *mut c_void)>,
+        Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t) -> boolean_t>,
+    pub disable_discharge_checking: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t)>,
+    pub discharge: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t, *mut c_void)>,
     pub enumerate_discharged_pointers: Option<
         unsafe extern "C-unwind" fn(
-            *mut libc::malloc_zone_t,
+            *mut malloc_zone_t,
             *mut block2::Block<dyn Fn(*mut c_void, *mut c_void)>,
         ),
     >,
-    pub reinit_lock: Option<unsafe extern "C-unwind" fn(*mut libc::malloc_zone_t)>,
+    pub reinit_lock: Option<unsafe extern "C-unwind" fn(*mut malloc_zone_t)>,
     pub print_task: Option<
         unsafe extern "C-unwind" fn(
-            libc::task_t,
+            task_t,
             c_uint,
-            libc::vm_address_t,
-            libc::memory_reader_t,
-            libc::print_task_printer_t,
+            vm_address_t,
+            memory_reader_t,
+            print_task_printer_t,
         ),
     >,
     pub task_statistics: Option<
         unsafe extern "C-unwind" fn(
-            libc::task_t,
-            libc::vm_address_t,
-            libc::memory_reader_t,
-            *mut libc::malloc_statistics_t,
+            task_t,
+            vm_address_t,
+            memory_reader_t,
+            *mut malloc_statistics_t,
         ),
     >,
     pub zone_type: c_uint,
@@ -429,11 +421,11 @@ pub struct malloc_introspection_t {
 
 extern "C-unwind" {
     pub fn malloc_get_all_zones(
-        task: libc::task_t,
-        reader: libc::memory_reader_t,
-        addresses: *mut *mut libc::vm_address_t,
+        task: task_t,
+        reader: memory_reader_t,
+        addresses: *mut *mut vm_address_t,
         count: *mut c_uint,
-    ) -> libc::kern_return_t;
+    ) -> kern_return_t;
 }
 
 extern "C-unwind" {
@@ -442,34 +434,28 @@ extern "C-unwind" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn malloc_zone_check(zone: Option<&libc::malloc_zone_t>) -> bool {
+pub unsafe extern "C-unwind" fn malloc_zone_check(zone: Option<&malloc_zone_t>) -> bool {
     extern "C-unwind" {
-        fn malloc_zone_check(zone: Option<&libc::malloc_zone_t>) -> libc::boolean_t;
+        fn malloc_zone_check(zone: Option<&malloc_zone_t>) -> boolean_t;
     }
     let ret = unsafe { malloc_zone_check(zone) };
     ret != 0
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn malloc_zone_print(
-    zone: Option<&libc::malloc_zone_t>,
-    verbose: bool,
-) {
+pub unsafe extern "C-unwind" fn malloc_zone_print(zone: Option<&malloc_zone_t>, verbose: bool) {
     extern "C-unwind" {
-        fn malloc_zone_print(zone: Option<&libc::malloc_zone_t>, verbose: libc::boolean_t);
+        fn malloc_zone_print(zone: Option<&malloc_zone_t>, verbose: boolean_t);
     }
     unsafe { malloc_zone_print(zone, verbose as _) }
 }
 
 extern "C-unwind" {
-    pub fn malloc_zone_statistics(
-        zone: Option<&libc::malloc_zone_t>,
-        stats: *mut libc::malloc_statistics_t,
-    );
+    pub fn malloc_zone_statistics(zone: Option<&malloc_zone_t>, stats: *mut malloc_statistics_t);
 }
 
 extern "C-unwind" {
-    pub fn malloc_zone_log(zone: Option<&libc::malloc_zone_t>, address: *mut c_void);
+    pub fn malloc_zone_log(zone: Option<&malloc_zone_t>, address: *mut c_void);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mstats?language=objc)
@@ -484,33 +470,31 @@ pub struct mstats {
 }
 
 extern "C-unwind" {
-    pub fn mstats() -> libc::mstats;
+    pub fn mstats() -> mstats;
 }
 
 #[inline]
 pub unsafe extern "C-unwind" fn malloc_zone_enable_discharge_checking(
-    zone: Option<&libc::malloc_zone_t>,
+    zone: Option<&malloc_zone_t>,
 ) -> bool {
     extern "C-unwind" {
-        fn malloc_zone_enable_discharge_checking(
-            zone: Option<&libc::malloc_zone_t>,
-        ) -> libc::boolean_t;
+        fn malloc_zone_enable_discharge_checking(zone: Option<&malloc_zone_t>) -> boolean_t;
     }
     let ret = unsafe { malloc_zone_enable_discharge_checking(zone) };
     ret != 0
 }
 
 extern "C-unwind" {
-    pub fn malloc_zone_disable_discharge_checking(zone: Option<&libc::malloc_zone_t>);
+    pub fn malloc_zone_disable_discharge_checking(zone: Option<&malloc_zone_t>);
 }
 
 extern "C-unwind" {
-    pub fn malloc_zone_discharge(zone: Option<&libc::malloc_zone_t>, memory: *mut c_void);
+    pub fn malloc_zone_discharge(zone: Option<&malloc_zone_t>, memory: *mut c_void);
 }
 
 extern "C-unwind" {
     pub fn malloc_zone_enumerate_discharged_pointers(
-        zone: Option<&libc::malloc_zone_t>,
+        zone: Option<&malloc_zone_t>,
         report_discharged: Option<&block2::Block<dyn Fn(*mut c_void, *mut c_void)>>,
     );
 }

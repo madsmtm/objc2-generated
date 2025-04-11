@@ -18,5 +18,5 @@ pub type nfds_t = c_uint;
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "poll")]
-    pub fn poll(param1: *mut libc::pollfd, param1: libc::nfds_t, param1: c_int) -> c_int;
+    pub fn poll(param1: *mut pollfd, param1: nfds_t, param1: c_int) -> c_int;
 }

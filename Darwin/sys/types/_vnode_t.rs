@@ -18,4 +18,4 @@ unsafe impl RefEncode for vnode {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vnode_t?language=objc)
-pub type vnode_t = *mut libc::vnode;
+pub type vnode_t = *mut vnode;

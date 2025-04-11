@@ -16,16 +16,16 @@ pub struct icmp_ra_addr {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ih_idseq {
-    pub icd_id: libc::n_short,
-    pub icd_seq: libc::n_short,
+    pub icd_id: n_short,
+    pub icd_seq: n_short,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ih_pmtu?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ih_pmtu {
-    pub ipm_void: libc::n_short,
-    pub ipm_nextmtu: libc::n_short,
+    pub ipm_void: n_short,
+    pub ipm_nextmtu: n_short,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ih_rtradv?language=objc)
@@ -42,36 +42,36 @@ pub struct ih_rtradv {
 #[derive(Clone, Copy)]
 pub union icmp_icmp_hun {
     pub ih_pptr: c_uchar,
-    pub ih_gwaddr: libc::in_addr,
-    pub ih_idseq: libc::ih_idseq,
+    pub ih_gwaddr: in_addr,
+    pub ih_idseq: ih_idseq,
     pub ih_void: c_int,
-    pub ih_pmtu: libc::ih_pmtu,
-    pub ih_rtradv: libc::ih_rtradv,
+    pub ih_pmtu: ih_pmtu,
+    pub ih_rtradv: ih_rtradv,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/id_ts?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct id_ts {
-    pub its_otime: libc::n_time,
-    pub its_rtime: libc::n_time,
-    pub its_ttime: libc::n_time,
+    pub its_otime: n_time,
+    pub its_rtime: n_time,
+    pub its_ttime: n_time,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/id_ip?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct id_ip {
-    pub idi_ip: libc::ip,
+    pub idi_ip: ip,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp_icmp_dun?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union icmp_icmp_dun {
-    pub id_ts: libc::id_ts,
-    pub id_ip: libc::id_ip,
-    pub id_radv: libc::icmp_ra_addr,
+    pub id_ts: id_ts,
+    pub id_ip: id_ip,
+    pub id_radv: icmp_ra_addr,
     pub id_mask: u32,
     pub id_data: [c_char; 1],
 }
@@ -83,6 +83,6 @@ pub struct icmp {
     pub icmp_type: c_uchar,
     pub icmp_code: c_uchar,
     pub icmp_cksum: c_ushort,
-    pub icmp_hun: libc::icmp_icmp_hun,
-    pub icmp_dun: libc::icmp_icmp_dun,
+    pub icmp_hun: icmp_icmp_hun,
+    pub icmp_dun: icmp_icmp_dun,
 }

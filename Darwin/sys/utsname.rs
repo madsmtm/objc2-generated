@@ -16,5 +16,5 @@ pub struct utsname {
 }
 
 extern "C-unwind" {
-    pub fn uname(param1: *mut libc::utsname) -> c_int;
+    pub fn uname(param1: *mut utsname) -> c_int;
 }

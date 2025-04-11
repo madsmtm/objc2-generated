@@ -233,7 +233,7 @@ pub struct sadb_session_id {
 pub struct sastat {
     pub spi: u32,
     pub created: u32,
-    pub lft_c: libc::sadb_lifetime,
+    pub lft_c: sadb_lifetime,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/sadb_sastat?language=objc)

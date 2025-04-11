@@ -11,4 +11,4 @@ pub struct fsid {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsid_t?language=objc)
-pub type fsid_t = libc::fsid;
+pub type fsid_t = fsid;

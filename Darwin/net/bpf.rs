@@ -19,7 +19,7 @@ pub type bpf_u_int32 = u32;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_program {
     pub bf_len: c_uint,
-    pub bf_insns: *mut libc::bpf_insn,
+    pub bf_insns: *mut bpf_insn,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_stat?language=objc)
@@ -42,9 +42,9 @@ pub struct bpf_version {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bpf_hdr {
-    pub bh_tstamp: libc::timeval32,
-    pub bh_caplen: libc::bpf_u_int32,
-    pub bh_datalen: libc::bpf_u_int32,
+    pub bh_tstamp: timeval32,
+    pub bh_caplen: bpf_u_int32,
+    pub bh_datalen: bpf_u_int32,
     pub bh_hdrlen: c_ushort,
 }
 
@@ -55,7 +55,7 @@ pub struct bpf_insn {
     pub code: c_ushort,
     pub jt: c_uchar,
     pub jf: c_uchar,
-    pub k: libc::bpf_u_int32,
+    pub k: bpf_u_int32,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/bpf_dltlist_bfl_u?language=objc)
@@ -71,5 +71,5 @@ pub union bpf_dltlist_bfl_u {
 #[derive(Clone, Copy)]
 pub struct bpf_dltlist {
     pub bfl_len: u32,
-    pub bfl_u: libc::bpf_dltlist_bfl_u,
+    pub bfl_u: bpf_dltlist_bfl_u,
 }

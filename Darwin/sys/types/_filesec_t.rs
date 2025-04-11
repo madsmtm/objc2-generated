@@ -18,4 +18,4 @@ unsafe impl RefEncode for _filesec {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/filesec_t?language=objc)
-pub type filesec_t = *mut libc::_filesec;
+pub type filesec_t = *mut _filesec;

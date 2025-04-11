@@ -24,7 +24,7 @@ extern "C-unwind" {
         param1: c_int,
         param1: c_int,
         param1: c_int,
-        param1: libc::off_t,
+        param1: off_t,
     ) -> *mut c_void;
 }
 

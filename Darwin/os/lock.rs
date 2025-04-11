@@ -95,7 +95,7 @@ pub struct os_unfair_lock_s {
 /// always make sure to store and use the lock in memory with a stable address.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/os_unfair_lock?language=objc)
-pub type os_unfair_lock = libc::os_unfair_lock_s;
+pub type os_unfair_lock = os_unfair_lock_s;
 
 /// Low-level lock that allows waiters to block efficiently on contention.
 ///
@@ -138,14 +138,14 @@ pub type os_unfair_lock = libc::os_unfair_lock_s;
 /// always make sure to store and use the lock in memory with a stable address.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/os_unfair_lock_t?language=objc)
-pub type os_unfair_lock_t = *mut libc::os_unfair_lock_s;
+pub type os_unfair_lock_t = *mut os_unfair_lock_s;
 
 extern "C-unwind" {
     /// Locks an os_unfair_lock.
     ///
     ///
     /// Parameter `lock`: Pointer to an os_unfair_lock.
-    pub fn os_unfair_lock_lock(lock: libc::os_unfair_lock_t);
+    pub fn os_unfair_lock_lock(lock: os_unfair_lock_t);
 }
 
 extern "C-unwind" {
@@ -166,7 +166,7 @@ extern "C-unwind" {
     /// Returns: Returns true if the lock was succesfully locked and false if the lock was
     /// already locked.
     #[must_use]
-    pub fn os_unfair_lock_trylock(lock: libc::os_unfair_lock_t) -> bool;
+    pub fn os_unfair_lock_trylock(lock: os_unfair_lock_t) -> bool;
 }
 
 extern "C-unwind" {
@@ -174,7 +174,7 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `lock`: Pointer to an os_unfair_lock.
-    pub fn os_unfair_lock_unlock(lock: libc::os_unfair_lock_t);
+    pub fn os_unfair_lock_unlock(lock: os_unfair_lock_t);
 }
 
 extern "C-unwind" {
@@ -189,7 +189,7 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `lock`: Pointer to an os_unfair_lock.
-    pub fn os_unfair_lock_assert_owner(lock: NonNull<libc::os_unfair_lock>);
+    pub fn os_unfair_lock_assert_owner(lock: NonNull<os_unfair_lock>);
 }
 
 extern "C-unwind" {
@@ -205,7 +205,7 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `lock`: Pointer to an os_unfair_lock.
-    pub fn os_unfair_lock_assert_not_owner(lock: NonNull<libc::os_unfair_lock>);
+    pub fn os_unfair_lock_assert_not_owner(lock: NonNull<os_unfair_lock>);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/os_unfair_lock_flags_t?language=objc)
@@ -228,8 +228,5 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `flags`: Flags to alter the behavior of the lock. See os_unfair_lock_flags_t.
-    pub fn os_unfair_lock_lock_with_flags(
-        lock: libc::os_unfair_lock_t,
-        flags: libc::os_unfair_lock_flags_t,
-    );
+    pub fn os_unfair_lock_lock_with_flags(lock: os_unfair_lock_t, flags: os_unfair_lock_flags_t);
 }

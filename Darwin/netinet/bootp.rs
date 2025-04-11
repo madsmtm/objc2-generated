@@ -15,10 +15,10 @@ pub struct bootp {
     pub bp_xid: u32,
     pub bp_secs: c_ushort,
     pub bp_unused: c_ushort,
-    pub bp_ciaddr: libc::in_addr,
-    pub bp_yiaddr: libc::in_addr,
-    pub bp_siaddr: libc::in_addr,
-    pub bp_giaddr: libc::in_addr,
+    pub bp_ciaddr: in_addr,
+    pub bp_yiaddr: in_addr,
+    pub bp_siaddr: in_addr,
+    pub bp_giaddr: in_addr,
     pub bp_chaddr: [c_uchar; 16],
     pub bp_sname: [c_uchar; 64],
     pub bp_file: [c_uchar; 128],
@@ -49,7 +49,7 @@ pub struct nextvend_nv_U_NV1 {
 #[derive(Clone, Copy)]
 pub union nextvend_nv_U {
     pub NV0: [c_uchar; 58],
-    pub NV1: libc::nextvend_nv_U_NV1,
+    pub NV1: nextvend_nv_U_NV1,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/nextvend?language=objc)
@@ -59,14 +59,14 @@ pub struct nextvend {
     pub nv_magic: [c_uchar; 4],
     pub nv_version: c_uchar,
     pub(crate) __unknown__: c_ushort,
-    pub nv_U: libc::nextvend_nv_U,
+    pub nv_U: nextvend_nv_U,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/bootp_packet?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct bootp_packet {
-    pub bp_ip: libc::ip,
-    pub bp_udp: libc::udphdr,
-    pub bp_bootp: libc::bootp,
+    pub bp_ip: ip,
+    pub bp_udp: udphdr,
+    pub bp_bootp: bootp,
 }

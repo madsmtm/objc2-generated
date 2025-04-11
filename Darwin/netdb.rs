@@ -57,10 +57,10 @@ pub struct addrinfo {
     pub ai_family: c_int,
     pub ai_socktype: c_int,
     pub ai_protocol: c_int,
-    pub ai_addrlen: libc::socklen_t,
+    pub ai_addrlen: socklen_t,
     pub ai_canonname: *mut c_char,
-    pub ai_addr: *mut libc::sockaddr,
-    pub ai_next: *mut libc::addrinfo,
+    pub ai_addr: *mut sockaddr,
+    pub ai_next: *mut addrinfo,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rpcent?language=objc)
@@ -89,7 +89,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn freeaddrinfo(param1: *mut libc::addrinfo);
+    pub fn freeaddrinfo(param1: *mut addrinfo);
 }
 
 extern "C-unwind" {
@@ -100,73 +100,69 @@ extern "C-unwind" {
     pub fn getaddrinfo(
         param1: *const c_char,
         param1: *const c_char,
-        param1: *const libc::addrinfo,
-        param1: *mut *mut libc::addrinfo,
+        param1: *const addrinfo,
+        param1: *mut *mut addrinfo,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn gethostbyaddr(
-        param1: *const c_void,
-        param1: libc::socklen_t,
-        param1: c_int,
-    ) -> *mut libc::hostent;
+    pub fn gethostbyaddr(param1: *const c_void, param1: socklen_t, param1: c_int) -> *mut hostent;
 }
 
 extern "C-unwind" {
-    pub fn gethostbyname(param1: *const c_char) -> *mut libc::hostent;
+    pub fn gethostbyname(param1: *const c_char) -> *mut hostent;
 }
 
 extern "C-unwind" {
-    pub fn gethostent() -> *mut libc::hostent;
+    pub fn gethostent() -> *mut hostent;
 }
 
 extern "C-unwind" {
     pub fn getnameinfo(
-        param1: *const libc::sockaddr,
-        param1: libc::socklen_t,
+        param1: *const sockaddr,
+        param1: socklen_t,
         param1: *mut c_char,
-        param1: libc::socklen_t,
+        param1: socklen_t,
         param1: *mut c_char,
-        param1: libc::socklen_t,
+        param1: socklen_t,
         param1: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getnetbyaddr(param1: u32, param1: c_int) -> *mut libc::netent;
+    pub fn getnetbyaddr(param1: u32, param1: c_int) -> *mut netent;
 }
 
 extern "C-unwind" {
-    pub fn getnetbyname(param1: *const c_char) -> *mut libc::netent;
+    pub fn getnetbyname(param1: *const c_char) -> *mut netent;
 }
 
 extern "C-unwind" {
-    pub fn getnetent() -> *mut libc::netent;
+    pub fn getnetent() -> *mut netent;
 }
 
 extern "C-unwind" {
-    pub fn getprotobyname(param1: *const c_char) -> *mut libc::protoent;
+    pub fn getprotobyname(param1: *const c_char) -> *mut protoent;
 }
 
 extern "C-unwind" {
-    pub fn getprotobynumber(param1: c_int) -> *mut libc::protoent;
+    pub fn getprotobynumber(param1: c_int) -> *mut protoent;
 }
 
 extern "C-unwind" {
-    pub fn getprotoent() -> *mut libc::protoent;
+    pub fn getprotoent() -> *mut protoent;
 }
 
 extern "C-unwind" {
-    pub fn getservbyname(param1: *const c_char, param1: *const c_char) -> *mut libc::servent;
+    pub fn getservbyname(param1: *const c_char, param1: *const c_char) -> *mut servent;
 }
 
 extern "C-unwind" {
-    pub fn getservbyport(param1: c_int, param1: *const c_char) -> *mut libc::servent;
+    pub fn getservbyport(param1: c_int, param1: *const c_char) -> *mut servent;
 }
 
 extern "C-unwind" {
-    pub fn getservent() -> *mut libc::servent;
+    pub fn getservent() -> *mut servent;
 }
 
 extern "C-unwind" {
@@ -186,11 +182,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn freehostent(param1: *mut libc::hostent);
+    pub fn freehostent(param1: *mut hostent);
 }
 
 extern "C-unwind" {
-    pub fn gethostbyname2(param1: *const c_char, param1: c_int) -> *mut libc::hostent;
+    pub fn gethostbyname2(param1: *const c_char, param1: c_int) -> *mut hostent;
 }
 
 extern "C-unwind" {
@@ -199,7 +195,7 @@ extern "C-unwind" {
         param1: usize,
         param1: c_int,
         param1: *mut c_int,
-    ) -> *mut libc::hostent;
+    ) -> *mut hostent;
 }
 
 extern "C-unwind" {
@@ -208,19 +204,19 @@ extern "C-unwind" {
         param1: c_int,
         param1: c_int,
         param1: *mut c_int,
-    ) -> *mut libc::hostent;
+    ) -> *mut hostent;
 }
 
 extern "C-unwind" {
-    pub fn getrpcbyname(name: *const c_char) -> *mut libc::rpcent;
+    pub fn getrpcbyname(name: *const c_char) -> *mut rpcent;
 }
 
 extern "C-unwind" {
-    pub fn getrpcbynumber(number: c_int) -> *mut libc::rpcent;
+    pub fn getrpcbynumber(number: c_int) -> *mut rpcent;
 }
 
 extern "C-unwind" {
-    pub fn getrpcent() -> *mut libc::rpcent;
+    pub fn getrpcent() -> *mut rpcent;
 }
 
 extern "C-unwind" {

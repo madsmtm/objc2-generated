@@ -7,7 +7,7 @@ use crate::ffi::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/so_tracker_transparency_version?language=objc)
 pub const SO_TRACKER_TRANSPARENCY_VERSION: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/so_gen_t?language=objc)
-pub type so_gen_t = libc::u_quad_t;
+pub type so_gen_t = u_quad_t;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/xsockbuf?language=objc)
 #[repr(C)]
@@ -40,11 +40,11 @@ pub struct xsocket {
     pub so_qlimit: c_short,
     pub so_timeo: c_short,
     pub so_error: c_ushort,
-    pub so_pgid: libc::pid_t,
+    pub so_pgid: pid_t,
     pub so_oobmark: u32,
-    pub so_rcv: libc::xsockbuf,
-    pub so_snd: libc::xsockbuf,
-    pub so_uid: libc::uid_t,
+    pub so_rcv: xsockbuf,
+    pub so_snd: xsockbuf,
+    pub so_uid: uid_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/xsocket64?language=objc)
@@ -65,11 +65,11 @@ pub struct xsocket64 {
     pub so_qlimit: c_short,
     pub so_timeo: c_short,
     pub so_error: c_ushort,
-    pub so_pgid: libc::pid_t,
+    pub so_pgid: pid_t,
     pub so_oobmark: u32,
-    pub so_rcv: libc::xsockbuf,
-    pub so_snd: libc::xsockbuf,
-    pub so_uid: libc::uid_t,
+    pub so_rcv: xsockbuf,
+    pub so_snd: xsockbuf,
+    pub so_uid: uid_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/so_tracker_action?language=objc)

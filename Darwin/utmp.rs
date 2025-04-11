@@ -8,7 +8,7 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct lastlog {
-    pub ll_time: libc::time_t,
+    pub ll_time: time_t,
     pub ll_line: [c_char; 8],
     pub ll_host: [c_char; 16],
 }

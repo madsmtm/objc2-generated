@@ -43,10 +43,5 @@ pub struct dqblk {
 // TODO: pub fn dqhashshift(size: u32,) -> c_int;
 
 extern "C-unwind" {
-    pub fn quotactl(
-        param1: *const c_char,
-        param1: c_int,
-        param1: c_int,
-        param1: libc::caddr_t,
-    ) -> c_int;
+    pub fn quotactl(param1: *const c_char, param1: c_int, param1: c_int, param1: caddr_t) -> c_int;
 }

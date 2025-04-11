@@ -17,11 +17,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn bootparams_getbyname(param1: *const c_char) -> *mut libc::bootparamsent;
+    pub fn bootparams_getbyname(param1: *const c_char) -> *mut bootparamsent;
 }
 
 extern "C-unwind" {
-    pub fn bootparams_getent() -> *mut libc::bootparamsent;
+    pub fn bootparams_getent() -> *mut bootparamsent;
 }
 
 extern "C-unwind" {

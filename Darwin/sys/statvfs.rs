@@ -10,21 +10,21 @@ use crate::ffi::*;
 pub struct statvfs {
     pub f_bsize: c_ulong,
     pub f_frsize: c_ulong,
-    pub f_blocks: libc::fsblkcnt_t,
-    pub f_bfree: libc::fsblkcnt_t,
-    pub f_bavail: libc::fsblkcnt_t,
-    pub f_files: libc::fsfilcnt_t,
-    pub f_ffree: libc::fsfilcnt_t,
-    pub f_favail: libc::fsfilcnt_t,
+    pub f_blocks: fsblkcnt_t,
+    pub f_bfree: fsblkcnt_t,
+    pub f_bavail: fsblkcnt_t,
+    pub f_files: fsfilcnt_t,
+    pub f_ffree: fsfilcnt_t,
+    pub f_favail: fsfilcnt_t,
     pub f_fsid: c_ulong,
     pub f_flag: c_ulong,
     pub f_namemax: c_ulong,
 }
 
 extern "C-unwind" {
-    pub fn fstatvfs(param1: c_int, param1: *mut libc::statvfs) -> c_int;
+    pub fn fstatvfs(param1: c_int, param1: *mut statvfs) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn statvfs(param1: *const c_char, param1: *mut libc::statvfs) -> c_int;
+    pub fn statvfs(param1: *const c_char, param1: *mut statvfs) -> c_int;
 }

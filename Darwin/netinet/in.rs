@@ -18,9 +18,9 @@ pub struct in_addr {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_in {
     pub sin_len: u8,
-    pub sin_family: libc::sa_family_t,
+    pub sin_family: sa_family_t,
     pub sin_port: in_port_t,
-    pub sin_addr: libc::in_addr,
+    pub sin_addr: in_addr,
     pub sin_zero: [c_char; 8],
 }
 
@@ -28,7 +28,7 @@ pub struct sockaddr_in {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_opts {
-    pub ip_dst: libc::in_addr,
+    pub ip_dst: in_addr,
     pub ip_opts: [c_char; 40],
 }
 
@@ -36,16 +36,16 @@ pub struct ip_opts {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreq {
-    pub imr_multiaddr: libc::in_addr,
-    pub imr_interface: libc::in_addr,
+    pub imr_multiaddr: in_addr,
+    pub imr_interface: in_addr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ip_mreqn?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreqn {
-    pub imr_multiaddr: libc::in_addr,
-    pub imr_address: libc::in_addr,
+    pub imr_multiaddr: in_addr,
+    pub imr_address: in_addr,
     pub imr_ifindex: c_int,
 }
 
@@ -53,9 +53,9 @@ pub struct ip_mreqn {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ip_mreq_source {
-    pub imr_multiaddr: libc::in_addr,
-    pub imr_sourceaddr: libc::in_addr,
-    pub imr_interface: libc::in_addr,
+    pub imr_multiaddr: in_addr,
+    pub imr_sourceaddr: in_addr,
+    pub imr_interface: in_addr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/group_req?language=objc)
@@ -63,7 +63,7 @@ pub struct ip_mreq_source {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct group_req {
     pub gr_interface: u32,
-    pub gr_group: libc::sockaddr_storage,
+    pub gr_group: sockaddr_storage,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/group_source_req?language=objc)
@@ -71,8 +71,8 @@ pub struct group_req {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct group_source_req {
     pub gsr_interface: u32,
-    pub gsr_group: libc::sockaddr_storage,
-    pub gsr_source: libc::sockaddr_storage,
+    pub gsr_group: sockaddr_storage,
+    pub gsr_source: sockaddr_storage,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__msfilterreq?language=objc)
@@ -83,29 +83,29 @@ pub struct __msfilterreq {
     pub msfr_fmode: u32,
     pub msfr_nsrcs: u32,
     pub(crate) __msfr_align: u32,
-    pub msfr_group: libc::sockaddr_storage,
-    pub msfr_srcs: *mut libc::sockaddr_storage,
+    pub msfr_group: sockaddr_storage,
+    pub msfr_srcs: *mut sockaddr_storage,
 }
 
 extern "C-unwind" {
     pub fn setipv4sourcefilter(
         param1: c_int,
-        param1: libc::in_addr,
-        param1: libc::in_addr,
+        param1: in_addr,
+        param1: in_addr,
         param1: u32,
         param1: u32,
-        param1: *mut libc::in_addr,
+        param1: *mut in_addr,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn getipv4sourcefilter(
         param1: c_int,
-        param1: libc::in_addr,
-        param1: libc::in_addr,
+        param1: in_addr,
+        param1: in_addr,
         param1: *mut u32,
         param1: *mut u32,
-        param1: *mut libc::in_addr,
+        param1: *mut in_addr,
     ) -> c_int;
 }
 
@@ -113,11 +113,11 @@ extern "C-unwind" {
     pub fn setsourcefilter(
         param1: c_int,
         param1: u32,
-        param1: *mut libc::sockaddr,
-        param1: libc::socklen_t,
+        param1: *mut sockaddr,
+        param1: socklen_t,
         param1: u32,
         param1: u32,
-        param1: *mut libc::sockaddr_storage,
+        param1: *mut sockaddr_storage,
     ) -> c_int;
 }
 
@@ -125,11 +125,11 @@ extern "C-unwind" {
     pub fn getsourcefilter(
         param1: c_int,
         param1: u32,
-        param1: *mut libc::sockaddr,
-        param1: libc::socklen_t,
+        param1: *mut sockaddr,
+        param1: socklen_t,
         param1: *mut u32,
         param1: *mut u32,
-        param1: *mut libc::sockaddr_storage,
+        param1: *mut sockaddr_storage,
     ) -> c_int;
 }
 
@@ -138,14 +138,14 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_pktinfo {
     pub ipi_ifindex: c_uint,
-    pub ipi_spec_dst: libc::in_addr,
-    pub ipi_addr: libc::in_addr,
+    pub ipi_spec_dst: in_addr,
+    pub ipi_addr: in_addr,
 }
 
 extern "C-unwind" {
-    pub fn bindresvport(param1: c_int, param1: *mut libc::sockaddr_in) -> c_int;
+    pub fn bindresvport(param1: c_int, param1: *mut sockaddr_in) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn bindresvport_sa(param1: c_int, param1: *mut libc::sockaddr) -> c_int;
+    pub fn bindresvport_sa(param1: c_int, param1: *mut sockaddr) -> c_int;
 }

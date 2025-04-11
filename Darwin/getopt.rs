@@ -19,7 +19,7 @@ extern "C-unwind" {
         param1: c_int,
         param1: *const *const c_char,
         param1: *const c_char,
-        param1: *const libc::option,
+        param1: *const option,
         param1: *mut c_int,
     ) -> c_int;
 }
@@ -29,7 +29,7 @@ extern "C-unwind" {
         param1: c_int,
         param1: *const *const c_char,
         param1: *const c_char,
-        param1: *const libc::option,
+        param1: *const option,
         param1: *mut c_int,
     ) -> c_int;
 }

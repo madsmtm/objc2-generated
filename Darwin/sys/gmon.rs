@@ -31,7 +31,7 @@ pub struct gmonhdr_64 {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmonhdr_t?language=objc)
-pub type gmonhdr_t = libc::gmonhdr_64;
+pub type gmonhdr_t = gmonhdr_64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/tostruct?language=objc)
 #[repr(C)]
@@ -54,7 +54,7 @@ pub struct tostruct_64 {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/tostruct_t?language=objc)
-pub type tostruct_t = libc::tostruct_64;
+pub type tostruct_t = tostruct_64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc?language=objc)
 #[repr(C)]
@@ -75,7 +75,7 @@ pub struct rawarc_64 {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc_t?language=objc)
-pub type rawarc_t = libc::rawarc_64;
+pub type rawarc_t = rawarc_64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmonparam?language=objc)
 #[repr(C)]
@@ -83,21 +83,21 @@ pub type rawarc_t = libc::rawarc_64;
 pub struct gmonparam {
     pub state: c_int,
     pub kcount: *mut c_ushort,
-    pub kcountsize: libc::u_long,
+    pub kcountsize: u_long,
     pub froms: *mut c_ushort,
-    pub fromssize: libc::u_long,
-    pub tos: *mut libc::tostruct_t,
-    pub tossize: libc::u_long,
+    pub fromssize: u_long,
+    pub tos: *mut tostruct_t,
+    pub tossize: u_long,
     pub tolimit: c_long,
-    pub lowpc: libc::u_long,
-    pub highpc: libc::u_long,
-    pub textsize: libc::u_long,
-    pub hashfraction: libc::u_long,
+    pub lowpc: u_long,
+    pub highpc: u_long,
+    pub textsize: u_long,
+    pub hashfraction: u_long,
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_gmonparam?language=objc)
-    pub static _gmonparam: libc::gmonparam;
+    pub static _gmonparam: gmonparam;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmon_data?language=objc)
@@ -109,7 +109,7 @@ pub struct gmon_data {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/gmon_data_t?language=objc)
-pub type gmon_data_t = libc::gmon_data;
+pub type gmon_data_t = gmon_data;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc_order?language=objc)
 #[repr(C)]
@@ -132,4 +132,4 @@ pub struct rawarc_order_64 {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rawarc_order_t?language=objc)
-pub type rawarc_order_t = libc::rawarc_order_64;
+pub type rawarc_order_t = rawarc_order_64;

@@ -29,7 +29,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn au_write(d: c_int, m: Option<&libc::token_t>) -> c_int;
+    pub fn au_write(d: c_int, m: Option<&token_t>) -> c_int;
 }
 
 extern "C-unwind" {
@@ -49,11 +49,8 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "audit is deprecated"]
-    pub fn au_close_token(
-        tok: Option<&libc::token_t>,
-        buffer: *mut c_uchar,
-        buflen: *mut usize,
-    ) -> c_int;
+    pub fn au_close_token(tok: Option<&token_t>, buffer: *mut c_uchar, buflen: *mut usize)
+        -> c_int;
 }
 
 #[deprecated = "audit is deprecated"]
@@ -61,9 +58,9 @@ extern "C-unwind" {
 pub unsafe extern "C-unwind" fn au_to_file(
     file: *const c_char,
     tm: timeval,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_file(file: *const c_char, tm: timeval) -> *mut libc::token_t;
+        fn au_to_file(file: *const c_char, tm: timeval) -> *mut token_t;
     }
     let ret = unsafe { au_to_file(file, tm) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -73,17 +70,17 @@ pub unsafe extern "C-unwind" fn au_to_file(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_header32_tm(
     rec_size: c_int,
-    e_type: libc::au_event_t,
-    e_mod: libc::au_emod_t,
+    e_type: au_event_t,
+    e_mod: au_emod_t,
     tm: timeval,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_header32_tm(
             rec_size: c_int,
-            e_type: libc::au_event_t,
-            e_mod: libc::au_emod_t,
+            e_type: au_event_t,
+            e_mod: au_emod_t,
             tm: timeval,
-        ) -> *mut libc::token_t;
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_header32_tm(rec_size, e_type, e_mod, tm) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -93,19 +90,19 @@ pub unsafe extern "C-unwind" fn au_to_header32_tm(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_header32_ex_tm(
     rec_size: c_int,
-    e_type: libc::au_event_t,
-    e_mod: libc::au_emod_t,
+    e_type: au_event_t,
+    e_mod: au_emod_t,
     tm: timeval,
-    aia: *mut libc::auditinfo_addr,
-) -> Option<Retained<libc::token_t>> {
+    aia: *mut auditinfo_addr,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_header32_ex_tm(
             rec_size: c_int,
-            e_type: libc::au_event_t,
-            e_mod: libc::au_emod_t,
+            e_type: au_event_t,
+            e_mod: au_emod_t,
             tm: timeval,
-            aia: *mut libc::auditinfo_addr,
-        ) -> *mut libc::token_t;
+            aia: *mut auditinfo_addr,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_header32_ex_tm(rec_size, e_type, e_mod, tm, aia) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -115,17 +112,17 @@ pub unsafe extern "C-unwind" fn au_to_header32_ex_tm(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_header64_tm(
     rec_size: c_int,
-    e_type: libc::au_event_t,
-    e_mod: libc::au_emod_t,
+    e_type: au_event_t,
+    e_mod: au_emod_t,
     tm: timeval,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_header64_tm(
             rec_size: c_int,
-            e_type: libc::au_event_t,
-            e_mod: libc::au_emod_t,
+            e_type: au_event_t,
+            e_mod: au_emod_t,
             tm: timeval,
-        ) -> *mut libc::token_t;
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_header64_tm(rec_size, e_type, e_mod, tm) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -135,15 +132,11 @@ pub unsafe extern "C-unwind" fn au_to_header64_tm(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_header(
     rec_size: c_int,
-    e_type: libc::au_event_t,
-    e_mod: libc::au_emod_t,
-) -> Option<Retained<libc::token_t>> {
+    e_type: au_event_t,
+    e_mod: au_emod_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_header(
-            rec_size: c_int,
-            e_type: libc::au_event_t,
-            e_mod: libc::au_emod_t,
-        ) -> *mut libc::token_t;
+        fn au_to_header(rec_size: c_int, e_type: au_event_t, e_mod: au_emod_t) -> *mut token_t;
     }
     let ret = unsafe { au_to_header(rec_size, e_type, e_mod) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -153,15 +146,11 @@ pub unsafe extern "C-unwind" fn au_to_header(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_header_ex(
     rec_size: c_int,
-    e_type: libc::au_event_t,
-    e_mod: libc::au_emod_t,
-) -> Option<Retained<libc::token_t>> {
+    e_type: au_event_t,
+    e_mod: au_emod_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_header_ex(
-            rec_size: c_int,
-            e_type: libc::au_event_t,
-            e_mod: libc::au_emod_t,
-        ) -> *mut libc::token_t;
+        fn au_to_header_ex(rec_size: c_int, e_type: au_event_t, e_mod: au_emod_t) -> *mut token_t;
     }
     let ret = unsafe { au_to_header_ex(rec_size, e_type, e_mod) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -171,15 +160,11 @@ pub unsafe extern "C-unwind" fn au_to_header_ex(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_header32(
     rec_size: c_int,
-    e_type: libc::au_event_t,
-    e_mod: libc::au_emod_t,
-) -> Option<Retained<libc::token_t>> {
+    e_type: au_event_t,
+    e_mod: au_emod_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_header32(
-            rec_size: c_int,
-            e_type: libc::au_event_t,
-            e_mod: libc::au_emod_t,
-        ) -> *mut libc::token_t;
+        fn au_to_header32(rec_size: c_int, e_type: au_event_t, e_mod: au_emod_t) -> *mut token_t;
     }
     let ret = unsafe { au_to_header32(rec_size, e_type, e_mod) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -189,15 +174,11 @@ pub unsafe extern "C-unwind" fn au_to_header32(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_header64(
     rec_size: c_int,
-    e_type: libc::au_event_t,
-    e_mod: libc::au_emod_t,
-) -> Option<Retained<libc::token_t>> {
+    e_type: au_event_t,
+    e_mod: au_emod_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_header64(
-            rec_size: c_int,
-            e_type: libc::au_event_t,
-            e_mod: libc::au_emod_t,
-        ) -> *mut libc::token_t;
+        fn au_to_header64(rec_size: c_int, e_type: au_event_t, e_mod: au_emod_t) -> *mut token_t;
     }
     let ret = unsafe { au_to_header64(rec_size, e_type, e_mod) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -207,15 +188,12 @@ pub unsafe extern "C-unwind" fn au_to_header64(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_header32_ex(
     rec_size: c_int,
-    e_type: libc::au_event_t,
-    e_mod: libc::au_emod_t,
-) -> Option<Retained<libc::token_t>> {
+    e_type: au_event_t,
+    e_mod: au_emod_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_header32_ex(
-            rec_size: c_int,
-            e_type: libc::au_event_t,
-            e_mod: libc::au_emod_t,
-        ) -> *mut libc::token_t;
+        fn au_to_header32_ex(rec_size: c_int, e_type: au_event_t, e_mod: au_emod_t)
+            -> *mut token_t;
     }
     let ret = unsafe { au_to_header32_ex(rec_size, e_type, e_mod) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -223,9 +201,9 @@ pub unsafe extern "C-unwind" fn au_to_header32_ex(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_me() -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_me() -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_me() -> *mut libc::token_t;
+        fn au_to_me() -> *mut token_t;
     }
     let ret = unsafe { au_to_me() };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -237,9 +215,9 @@ pub unsafe extern "C-unwind" fn au_to_arg(
     n: c_char,
     text: *const c_char,
     v: u32,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_arg(n: c_char, text: *const c_char, v: u32) -> *mut libc::token_t;
+        fn au_to_arg(n: c_char, text: *const c_char, v: u32) -> *mut token_t;
     }
     let ret = unsafe { au_to_arg(n, text, v) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -251,9 +229,9 @@ pub unsafe extern "C-unwind" fn au_to_arg32(
     n: c_char,
     text: *const c_char,
     v: u32,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_arg32(n: c_char, text: *const c_char, v: u32) -> *mut libc::token_t;
+        fn au_to_arg32(n: c_char, text: *const c_char, v: u32) -> *mut token_t;
     }
     let ret = unsafe { au_to_arg32(n, text, v) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -265,9 +243,9 @@ pub unsafe extern "C-unwind" fn au_to_arg64(
     n: c_char,
     text: *const c_char,
     v: u64,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_arg64(n: c_char, text: *const c_char, v: u64) -> *mut libc::token_t;
+        fn au_to_arg64(n: c_char, text: *const c_char, v: u64) -> *mut token_t;
     }
     let ret = unsafe { au_to_arg64(n, text, v) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -280,14 +258,14 @@ pub unsafe extern "C-unwind" fn au_to_data(
     unit_type: c_char,
     unit_count: c_char,
     p: *const c_char,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_data(
             unit_print: c_char,
             unit_type: c_char,
             unit_count: c_char,
             p: *const c_char,
-        ) -> *mut libc::token_t;
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_data(unit_print, unit_type, unit_count, p) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -295,12 +273,9 @@ pub unsafe extern "C-unwind" fn au_to_data(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_exit(
-    retval: c_int,
-    err: c_int,
-) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_exit(retval: c_int, err: c_int) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_exit(retval: c_int, err: c_int) -> *mut libc::token_t;
+        fn au_to_exit(retval: c_int, err: c_int) -> *mut token_t;
     }
     let ret = unsafe { au_to_exit(retval, err) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -308,11 +283,9 @@ pub unsafe extern "C-unwind" fn au_to_exit(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_groups(
-    groups: *mut c_int,
-) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_groups(groups: *mut c_int) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_groups(groups: *mut c_int) -> *mut libc::token_t;
+        fn au_to_groups(groups: *mut c_int) -> *mut token_t;
     }
     let ret = unsafe { au_to_groups(groups) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -322,10 +295,10 @@ pub unsafe extern "C-unwind" fn au_to_groups(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_newgroups(
     n: u16,
-    groups: *mut libc::gid_t,
-) -> Option<Retained<libc::token_t>> {
+    groups: *mut gid_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_newgroups(n: u16, groups: *mut libc::gid_t) -> *mut libc::token_t;
+        fn au_to_newgroups(n: u16, groups: *mut gid_t) -> *mut token_t;
     }
     let ret = unsafe { au_to_newgroups(n, groups) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -334,10 +307,10 @@ pub unsafe extern "C-unwind" fn au_to_newgroups(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_in_addr(
-    internet_addr: *mut libc::in_addr,
-) -> Option<Retained<libc::token_t>> {
+    internet_addr: *mut in_addr,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_in_addr(internet_addr: *mut libc::in_addr) -> *mut libc::token_t;
+        fn au_to_in_addr(internet_addr: *mut in_addr) -> *mut token_t;
     }
     let ret = unsafe { au_to_in_addr(internet_addr) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -347,9 +320,9 @@ pub unsafe extern "C-unwind" fn au_to_in_addr(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_in_addr_ex(
     internet_addr: *mut in6_addr,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_in_addr_ex(internet_addr: *mut in6_addr) -> *mut libc::token_t;
+        fn au_to_in_addr_ex(internet_addr: *mut in6_addr) -> *mut token_t;
     }
     let ret = unsafe { au_to_in_addr_ex(internet_addr) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -357,9 +330,9 @@ pub unsafe extern "C-unwind" fn au_to_in_addr_ex(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_ip(ip: *mut libc::ip) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_ip(ip: *mut ip) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_ip(ip: *mut libc::ip) -> *mut libc::token_t;
+        fn au_to_ip(ip: *mut ip) -> *mut token_t;
     }
     let ret = unsafe { au_to_ip(ip) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -367,12 +340,9 @@ pub unsafe extern "C-unwind" fn au_to_ip(ip: *mut libc::ip) -> Option<Retained<l
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_ipc(
-    r#type: c_char,
-    id: c_int,
-) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_ipc(r#type: c_char, id: c_int) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_ipc(r#type: c_char, id: c_int) -> *mut libc::token_t;
+        fn au_to_ipc(r#type: c_char, id: c_int) -> *mut token_t;
     }
     let ret = unsafe { au_to_ipc(r#type, id) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -380,11 +350,9 @@ pub unsafe extern "C-unwind" fn au_to_ipc(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_ipc_perm(
-    perm: *mut libc::ipc_perm,
-) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_ipc_perm(perm: *mut ipc_perm) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_ipc_perm(perm: *mut libc::ipc_perm) -> *mut libc::token_t;
+        fn au_to_ipc_perm(perm: *mut ipc_perm) -> *mut token_t;
     }
     let ret = unsafe { au_to_ipc_perm(perm) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -392,9 +360,9 @@ pub unsafe extern "C-unwind" fn au_to_ipc_perm(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_iport(iport: u16) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_iport(iport: u16) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_iport(iport: u16) -> *mut libc::token_t;
+        fn au_to_iport(iport: u16) -> *mut token_t;
     }
     let ret = unsafe { au_to_iport(iport) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -405,9 +373,9 @@ pub unsafe extern "C-unwind" fn au_to_iport(iport: u16) -> Option<Retained<libc:
 pub unsafe extern "C-unwind" fn au_to_opaque(
     data: *const c_char,
     bytes: u16,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_opaque(data: *const c_char, bytes: u16) -> *mut libc::token_t;
+        fn au_to_opaque(data: *const c_char, bytes: u16) -> *mut token_t;
     }
     let ret = unsafe { au_to_opaque(data, bytes) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -415,9 +383,9 @@ pub unsafe extern "C-unwind" fn au_to_opaque(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_path(path: *const c_char) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_path(path: *const c_char) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_path(path: *const c_char) -> *mut libc::token_t;
+        fn au_to_path(path: *const c_char) -> *mut token_t;
     }
     let ret = unsafe { au_to_path(path) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -426,26 +394,26 @@ pub unsafe extern "C-unwind" fn au_to_path(path: *const c_char) -> Option<Retain
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_process(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_process(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_process(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -454,26 +422,26 @@ pub unsafe extern "C-unwind" fn au_to_process(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_process32(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_process32(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_process32(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -482,26 +450,26 @@ pub unsafe extern "C-unwind" fn au_to_process32(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_process64(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_process64(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_process64(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -510,26 +478,26 @@ pub unsafe extern "C-unwind" fn au_to_process64(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_process_ex(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_addr_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_addr_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_process_ex(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_addr_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_addr_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_process_ex(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -538,26 +506,26 @@ pub unsafe extern "C-unwind" fn au_to_process_ex(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_process32_ex(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_addr_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_addr_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_process32_ex(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_addr_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_addr_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_process32_ex(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -566,26 +534,26 @@ pub unsafe extern "C-unwind" fn au_to_process32_ex(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_process64_ex(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_addr_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_addr_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_process64_ex(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_addr_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_addr_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_process64_ex(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -596,9 +564,9 @@ pub unsafe extern "C-unwind" fn au_to_process64_ex(
 pub unsafe extern "C-unwind" fn au_to_return(
     status: c_char,
     ret: u32,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_return(status: c_char, ret: u32) -> *mut libc::token_t;
+        fn au_to_return(status: c_char, ret: u32) -> *mut token_t;
     }
     let ret = unsafe { au_to_return(status, ret) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -609,9 +577,9 @@ pub unsafe extern "C-unwind" fn au_to_return(
 pub unsafe extern "C-unwind" fn au_to_return32(
     status: c_char,
     ret: u32,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_return32(status: c_char, ret: u32) -> *mut libc::token_t;
+        fn au_to_return32(status: c_char, ret: u32) -> *mut token_t;
     }
     let ret = unsafe { au_to_return32(status, ret) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -622,9 +590,9 @@ pub unsafe extern "C-unwind" fn au_to_return32(
 pub unsafe extern "C-unwind" fn au_to_return64(
     status: c_char,
     ret: u64,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_return64(status: c_char, ret: u64) -> *mut libc::token_t;
+        fn au_to_return64(status: c_char, ret: u64) -> *mut token_t;
     }
     let ret = unsafe { au_to_return64(status, ret) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -632,9 +600,9 @@ pub unsafe extern "C-unwind" fn au_to_return64(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_seq(audit_count: c_long) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_seq(audit_count: c_long) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_seq(audit_count: c_long) -> *mut libc::token_t;
+        fn au_to_seq(audit_count: c_long) -> *mut token_t;
     }
     let ret = unsafe { au_to_seq(audit_count) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -645,16 +613,16 @@ pub unsafe extern "C-unwind" fn au_to_seq(audit_count: c_long) -> Option<Retaine
 pub unsafe extern "C-unwind" fn au_to_socket_ex(
     so_domain: c_ushort,
     so_type: c_ushort,
-    sa_local: *mut libc::sockaddr,
-    sa_remote: *mut libc::sockaddr,
-) -> Option<Retained<libc::token_t>> {
+    sa_local: *mut sockaddr,
+    sa_remote: *mut sockaddr,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_socket_ex(
             so_domain: c_ushort,
             so_type: c_ushort,
-            sa_local: *mut libc::sockaddr,
-            sa_remote: *mut libc::sockaddr,
-        ) -> *mut libc::token_t;
+            sa_local: *mut sockaddr,
+            sa_remote: *mut sockaddr,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_socket_ex(so_domain, so_type, sa_local, sa_remote) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -662,11 +630,9 @@ pub unsafe extern "C-unwind" fn au_to_socket_ex(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_sock_inet(
-    so: *mut libc::sockaddr_in,
-) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_sock_inet(so: *mut sockaddr_in) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_sock_inet(so: *mut libc::sockaddr_in) -> *mut libc::token_t;
+        fn au_to_sock_inet(so: *mut sockaddr_in) -> *mut token_t;
     }
     let ret = unsafe { au_to_sock_inet(so) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -675,10 +641,10 @@ pub unsafe extern "C-unwind" fn au_to_sock_inet(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_sock_inet32(
-    so: *mut libc::sockaddr_in,
-) -> Option<Retained<libc::token_t>> {
+    so: *mut sockaddr_in,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_sock_inet32(so: *mut libc::sockaddr_in) -> *mut libc::token_t;
+        fn au_to_sock_inet32(so: *mut sockaddr_in) -> *mut token_t;
     }
     let ret = unsafe { au_to_sock_inet32(so) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -688,9 +654,9 @@ pub unsafe extern "C-unwind" fn au_to_sock_inet32(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_sock_inet128(
     so: *mut sockaddr_in6,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_sock_inet128(so: *mut sockaddr_in6) -> *mut libc::token_t;
+        fn au_to_sock_inet128(so: *mut sockaddr_in6) -> *mut token_t;
     }
     let ret = unsafe { au_to_sock_inet128(so) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -698,11 +664,9 @@ pub unsafe extern "C-unwind" fn au_to_sock_inet128(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_sock_unix(
-    so: *mut libc::sockaddr_un,
-) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_sock_unix(so: *mut sockaddr_un) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_sock_unix(so: *mut libc::sockaddr_un) -> *mut libc::token_t;
+        fn au_to_sock_unix(so: *mut sockaddr_un) -> *mut token_t;
     }
     let ret = unsafe { au_to_sock_unix(so) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -711,26 +675,26 @@ pub unsafe extern "C-unwind" fn au_to_sock_unix(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_subject(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_subject(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_subject(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -739,26 +703,26 @@ pub unsafe extern "C-unwind" fn au_to_subject(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_subject32(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_subject32(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_subject32(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -767,26 +731,26 @@ pub unsafe extern "C-unwind" fn au_to_subject32(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_subject64(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_subject64(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_subject64(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -795,26 +759,26 @@ pub unsafe extern "C-unwind" fn au_to_subject64(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_subject_ex(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_addr_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_addr_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_subject_ex(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_addr_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_addr_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_subject_ex(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -823,26 +787,26 @@ pub unsafe extern "C-unwind" fn au_to_subject_ex(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_subject32_ex(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_addr_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_addr_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_subject32_ex(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_addr_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_addr_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_subject32_ex(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -851,26 +815,26 @@ pub unsafe extern "C-unwind" fn au_to_subject32_ex(
 #[deprecated = "audit is deprecated"]
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_subject64_ex(
-    auid: libc::au_id_t,
-    euid: libc::uid_t,
-    egid: libc::gid_t,
-    ruid: libc::uid_t,
-    rgid: libc::gid_t,
-    pid: libc::pid_t,
-    sid: libc::au_asid_t,
-    tid: *mut libc::au_tid_addr_t,
-) -> Option<Retained<libc::token_t>> {
+    auid: au_id_t,
+    euid: uid_t,
+    egid: gid_t,
+    ruid: uid_t,
+    rgid: gid_t,
+    pid: pid_t,
+    sid: au_asid_t,
+    tid: *mut au_tid_addr_t,
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_subject64_ex(
-            auid: libc::au_id_t,
-            euid: libc::uid_t,
-            egid: libc::gid_t,
-            ruid: libc::uid_t,
-            rgid: libc::gid_t,
-            pid: libc::pid_t,
-            sid: libc::au_asid_t,
-            tid: *mut libc::au_tid_addr_t,
-        ) -> *mut libc::token_t;
+            auid: au_id_t,
+            euid: uid_t,
+            egid: gid_t,
+            ruid: uid_t,
+            rgid: gid_t,
+            pid: pid_t,
+            sid: au_asid_t,
+            tid: *mut au_tid_addr_t,
+        ) -> *mut token_t;
     }
     let ret = unsafe { au_to_subject64_ex(auid, euid, egid, ruid, rgid, pid, sid, tid) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -880,9 +844,9 @@ pub unsafe extern "C-unwind" fn au_to_subject64_ex(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_exec_args(
     argv: *mut *mut c_char,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_exec_args(argv: *mut *mut c_char) -> *mut libc::token_t;
+        fn au_to_exec_args(argv: *mut *mut c_char) -> *mut token_t;
     }
     let ret = unsafe { au_to_exec_args(argv) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -892,9 +856,9 @@ pub unsafe extern "C-unwind" fn au_to_exec_args(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_exec_env(
     envp: *mut *mut c_char,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_exec_env(envp: *mut *mut c_char) -> *mut libc::token_t;
+        fn au_to_exec_env(envp: *mut *mut c_char) -> *mut token_t;
     }
     let ret = unsafe { au_to_exec_env(envp) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -904,9 +868,9 @@ pub unsafe extern "C-unwind" fn au_to_exec_env(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_certificate_hash(
     hash: *mut *mut c_char,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_certificate_hash(hash: *mut *mut c_char) -> *mut libc::token_t;
+        fn au_to_certificate_hash(hash: *mut *mut c_char) -> *mut token_t;
     }
     let ret = unsafe { au_to_certificate_hash(hash) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -916,9 +880,9 @@ pub unsafe extern "C-unwind" fn au_to_certificate_hash(
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_krb5_principal(
     principal: *mut *mut c_char,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_krb5_principal(principal: *mut *mut c_char) -> *mut libc::token_t;
+        fn au_to_krb5_principal(principal: *mut *mut c_char) -> *mut token_t;
     }
     let ret = unsafe { au_to_krb5_principal(principal) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -926,9 +890,9 @@ pub unsafe extern "C-unwind" fn au_to_krb5_principal(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_text(text: *const c_char) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_text(text: *const c_char) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_text(text: *const c_char) -> *mut libc::token_t;
+        fn au_to_text(text: *const c_char) -> *mut token_t;
     }
     let ret = unsafe { au_to_text(text) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -936,11 +900,9 @@ pub unsafe extern "C-unwind" fn au_to_text(text: *const c_char) -> Option<Retain
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_kevent(
-    kev: *mut libc::kevent,
-) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_kevent(kev: *mut kevent) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_kevent(kev: *mut libc::kevent) -> *mut libc::token_t;
+        fn au_to_kevent(kev: *mut kevent) -> *mut token_t;
     }
     let ret = unsafe { au_to_kevent(kev) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -948,9 +910,9 @@ pub unsafe extern "C-unwind" fn au_to_kevent(
 
 #[deprecated = "audit is deprecated"]
 #[inline]
-pub unsafe extern "C-unwind" fn au_to_trailer(rec_size: c_int) -> Option<Retained<libc::token_t>> {
+pub unsafe extern "C-unwind" fn au_to_trailer(rec_size: c_int) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_trailer(rec_size: c_int) -> *mut libc::token_t;
+        fn au_to_trailer(rec_size: c_int) -> *mut token_t;
     }
     let ret = unsafe { au_to_trailer(rec_size) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -960,9 +922,9 @@ pub unsafe extern "C-unwind" fn au_to_trailer(rec_size: c_int) -> Option<Retaine
 #[inline]
 pub unsafe extern "C-unwind" fn au_to_zonename(
     zonename: *const c_char,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
-        fn au_to_zonename(zonename: *const c_char) -> *mut libc::token_t;
+        fn au_to_zonename(zonename: *const c_char) -> *mut token_t;
     }
     let ret = unsafe { au_to_zonename(zonename) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -978,7 +940,7 @@ pub unsafe extern "C-unwind" fn au_to_identity(
     team_id_trunc: c_uchar,
     cdhash: *mut u8,
     cdhash_len: u16,
-) -> Option<Retained<libc::token_t>> {
+) -> Option<Retained<token_t>> {
     extern "C-unwind" {
         fn au_to_identity(
             signer_type: u32,
@@ -988,7 +950,7 @@ pub unsafe extern "C-unwind" fn au_to_identity(
             team_id_trunc: c_uchar,
             cdhash: *mut u8,
             cdhash_len: u16,
-        ) -> *mut libc::token_t;
+        ) -> *mut token_t;
     }
     let ret = unsafe {
         au_to_identity(

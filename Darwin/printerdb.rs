@@ -18,7 +18,7 @@ pub struct prdb_property {
 pub struct prdb_ent {
     pub pe_name: *mut *mut c_char,
     pub pe_nprops: c_uint,
-    pub pe_prop: *mut libc::prdb_property,
+    pub pe_prop: *mut prdb_property,
 }
 
 extern "C-unwind" {
@@ -26,11 +26,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn prdb_get() -> *const libc::prdb_ent;
+    pub fn prdb_get() -> *const prdb_ent;
 }
 
 extern "C-unwind" {
-    pub fn prdb_getbyname(param1: *const c_char) -> *const libc::prdb_ent;
+    pub fn prdb_getbyname(param1: *const c_char) -> *const prdb_ent;
 }
 
 extern "C-unwind" {

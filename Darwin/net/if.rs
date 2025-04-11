@@ -23,7 +23,7 @@ pub struct if_msghdr {
     pub ifm_addrs: c_int,
     pub ifm_flags: c_int,
     pub ifm_index: c_ushort,
-    pub ifm_data: libc::if_data,
+    pub ifm_data: if_data,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifa_msghdr?language=objc)
@@ -65,7 +65,7 @@ pub struct if_msghdr2 {
     pub ifm_snd_maxlen: c_int,
     pub ifm_snd_drops: c_int,
     pub ifm_timer: c_int,
-    pub ifm_data: libc::if_data64,
+    pub ifm_data: if_data64,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifma_msghdr2?language=objc)
@@ -104,25 +104,25 @@ pub union ifkpi_ifk_data {
 pub struct ifkpi {
     pub ifk_module_id: c_uint,
     pub ifk_type: c_uint,
-    pub ifk_data: libc::ifkpi_ifk_data,
+    pub ifk_data: ifkpi_ifk_data,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifreq_ifr_ifru?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ifreq_ifr_ifru {
-    pub ifru_addr: libc::sockaddr,
-    pub ifru_dstaddr: libc::sockaddr,
-    pub ifru_broadaddr: libc::sockaddr,
+    pub ifru_addr: sockaddr,
+    pub ifru_dstaddr: sockaddr,
+    pub ifru_broadaddr: sockaddr,
     pub ifru_flags: c_short,
     pub ifru_metric: c_int,
     pub ifru_mtu: c_int,
     pub ifru_phys: c_int,
     pub ifru_media: c_int,
     pub ifru_intval: c_int,
-    pub ifru_data: libc::caddr_t,
-    pub ifru_devmtu: libc::ifdevmtu,
-    pub ifru_kpi: libc::ifkpi,
+    pub ifru_data: caddr_t,
+    pub ifru_devmtu: ifdevmtu,
+    pub ifru_kpi: ifkpi,
     pub ifru_wake_flags: u32,
     pub ifru_route_refcnt: u32,
     pub ifru_cap: [c_int; 2],
@@ -137,7 +137,7 @@ pub union ifreq_ifr_ifru {
 #[derive(Clone, Copy)]
 pub struct ifreq {
     pub ifr_name: [c_char; 16],
-    pub ifr_ifru: libc::ifreq_ifr_ifru,
+    pub ifr_ifru: ifreq_ifr_ifru,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifaliasreq?language=objc)
@@ -145,17 +145,17 @@ pub struct ifreq {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifaliasreq {
     pub ifra_name: [c_char; 16],
-    pub ifra_addr: libc::sockaddr,
-    pub ifra_broadaddr: libc::sockaddr,
-    pub ifra_mask: libc::sockaddr,
+    pub ifra_addr: sockaddr,
+    pub ifra_broadaddr: sockaddr,
+    pub ifra_mask: sockaddr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rslvmulti_req?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rslvmulti_req {
-    pub sa: *mut libc::sockaddr,
-    pub llsa: *mut *mut libc::sockaddr,
+    pub sa: *mut sockaddr,
+    pub llsa: *mut *mut sockaddr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifmediareq?language=objc)
@@ -193,8 +193,8 @@ pub struct ifstat {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ifconf_ifc_ifcu {
-    pub ifcu_buf: libc::caddr_t,
-    pub ifcu_req: *mut libc::ifreq,
+    pub ifcu_buf: caddr_t,
+    pub ifcu_req: *mut ifreq,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifconf?language=objc)
@@ -202,14 +202,14 @@ pub union ifconf_ifc_ifcu {
 #[derive(Clone, Copy)]
 pub struct ifconf {
     pub ifc_len: c_int,
-    pub ifc_ifcu: libc::ifconf_ifc_ifcu,
+    pub ifc_ifcu: ifconf_ifc_ifcu,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kev_dl_proto_data?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kev_dl_proto_data {
-    pub link_data: libc::net_event_data,
+    pub link_data: net_event_data,
     pub proto_family: u32,
     pub proto_remaining_count: u32,
 }
@@ -231,9 +231,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn if_nameindex() -> *mut libc::if_nameindex;
+    pub fn if_nameindex() -> *mut if_nameindex;
 }
 
 extern "C-unwind" {
-    pub fn if_freenameindex(param1: *mut libc::if_nameindex);
+    pub fn if_freenameindex(param1: *mut if_nameindex);
 }

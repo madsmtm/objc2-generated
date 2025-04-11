@@ -9,6 +9,6 @@ use crate::ffi::*;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_un {
     pub sun_len: c_uchar,
-    pub sun_family: libc::sa_family_t,
+    pub sun_family: sa_family_t,
     pub sun_path: [c_char; 104],
 }

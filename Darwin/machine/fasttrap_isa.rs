@@ -16,14 +16,14 @@ pub struct fasttrap_instr_t_instr16 {
 #[derive(Clone, Copy)]
 pub union fasttrap_instr_t {
     pub instr32: u32,
-    pub instr16: libc::fasttrap_instr_t_instr16,
+    pub instr16: fasttrap_instr_t_instr16,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fasttrap_machtp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct fasttrap_machtp {
-    pub ftmt_instr: libc::fasttrap_instr_t,
+    pub ftmt_instr: fasttrap_instr_t,
     pub ftmt_fntype: u8,
     pub ftmt_thumb: u8,
     pub ftmt_type: u8,
@@ -32,4 +32,4 @@ pub struct fasttrap_machtp {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fasttrap_machtp_t?language=objc)
-pub type fasttrap_machtp_t = libc::fasttrap_machtp;
+pub type fasttrap_machtp_t = fasttrap_machtp;

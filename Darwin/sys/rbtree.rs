@@ -16,8 +16,8 @@ pub type rbto_compare_key_fn =
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct rb_tree_ops_t {
-    pub rbto_compare_nodes: libc::rbto_compare_nodes_fn,
-    pub rbto_compare_key: libc::rbto_compare_key_fn,
+    pub rbto_compare_nodes: rbto_compare_nodes_fn,
+    pub rbto_compare_key: rbto_compare_key_fn,
     pub rbto_node_offset: usize,
     pub rbto_context: *mut c_void,
 }
@@ -30,7 +30,7 @@ pub struct rb_node {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rb_node_t?language=objc)
-pub type rb_node_t = libc::rb_node;
+pub type rb_node_t = rb_node;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rb_tree?language=objc)
 #[repr(C)]
@@ -40,46 +40,40 @@ pub struct rb_tree {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/rb_tree_t?language=objc)
-pub type rb_tree_t = libc::rb_tree;
+pub type rb_tree_t = rb_tree;
 
 extern "C-unwind" {
-    pub fn rb_tree_init(param1: *mut libc::rb_tree_t, param1: *const libc::rb_tree_ops_t);
+    pub fn rb_tree_init(param1: *mut rb_tree_t, param1: *const rb_tree_ops_t);
 }
 
 extern "C-unwind" {
-    pub fn rb_tree_insert_node(param1: *mut libc::rb_tree_t, param1: *mut c_void) -> *mut c_void;
+    pub fn rb_tree_insert_node(param1: *mut rb_tree_t, param1: *mut c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn rb_tree_find_node(param1: *mut libc::rb_tree_t, param1: *const c_void) -> *mut c_void;
+    pub fn rb_tree_find_node(param1: *mut rb_tree_t, param1: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn rb_tree_find_node_geq(
-        param1: *mut libc::rb_tree_t,
-        param1: *const c_void,
-    ) -> *mut c_void;
+    pub fn rb_tree_find_node_geq(param1: *mut rb_tree_t, param1: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn rb_tree_find_node_leq(
-        param1: *mut libc::rb_tree_t,
-        param1: *const c_void,
-    ) -> *mut c_void;
+    pub fn rb_tree_find_node_leq(param1: *mut rb_tree_t, param1: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn rb_tree_remove_node(param1: *mut libc::rb_tree_t, param1: *mut c_void);
+    pub fn rb_tree_remove_node(param1: *mut rb_tree_t, param1: *mut c_void);
 }
 
 extern "C-unwind" {
     pub fn rb_tree_iterate(
-        param1: *mut libc::rb_tree_t,
+        param1: *mut rb_tree_t,
         param1: *mut c_void,
         param1: c_uint,
     ) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn rb_tree_count(param1: *mut libc::rb_tree_t) -> usize;
+    pub fn rb_tree_count(param1: *mut rb_tree_t) -> usize;
 }

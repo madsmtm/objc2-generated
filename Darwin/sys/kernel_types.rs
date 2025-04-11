@@ -22,7 +22,7 @@ unsafe impl RefEncode for buf {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/buf_t?language=objc)
-pub type buf_t = *mut libc::buf;
+pub type buf_t = *mut buf;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/file?language=objc)
 #[repr(C)]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for file {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/file_t?language=objc)
-pub type file_t = *mut libc::file;
+pub type file_t = *mut file;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc?language=objc)
 #[repr(C)]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for proc {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_t?language=objc)
-pub type proc_t = *mut libc::proc;
+pub type proc_t = *mut proc;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_ident?language=objc)
 #[repr(C)]
@@ -67,7 +67,7 @@ unsafe impl RefEncode for proc_ident {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_ident_t?language=objc)
-pub type proc_ident_t = *mut libc::proc_ident;
+pub type proc_ident_t = *mut proc_ident;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/uio?language=objc)
 #[repr(C)]
@@ -82,7 +82,7 @@ unsafe impl RefEncode for uio {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/uio_t?language=objc)
-pub type uio_t = *mut libc::uio;
+pub type uio_t = *mut uio;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vfs_context?language=objc)
 #[repr(C)]
@@ -97,7 +97,7 @@ unsafe impl RefEncode for vfs_context {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vfs_context_t?language=objc)
-pub type vfs_context_t = *mut libc::vfs_context;
+pub type vfs_context_t = *mut vfs_context;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vfstable?language=objc)
 #[repr(C)]
@@ -112,7 +112,7 @@ unsafe impl RefEncode for vfstable {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vfstable_t?language=objc)
-pub type vfstable_t = *mut libc::vfstable;
+pub type vfstable_t = *mut vfstable;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__ifnet?language=objc)
 #[repr(C)]
@@ -127,7 +127,7 @@ unsafe impl RefEncode for __ifnet {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_t?language=objc)
-pub type ifnet_t = *mut libc::__ifnet;
+pub type ifnet_t = *mut __ifnet;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__mbuf?language=objc)
 #[repr(C)]
@@ -142,7 +142,7 @@ unsafe impl RefEncode for __mbuf {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mbuf_t?language=objc)
-pub type mbuf_t = *mut libc::__mbuf;
+pub type mbuf_t = *mut __mbuf;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__pkthdr?language=objc)
 #[repr(C)]
@@ -157,7 +157,7 @@ unsafe impl RefEncode for __pkthdr {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/pkthdr_t?language=objc)
-pub type pkthdr_t = *mut libc::__pkthdr;
+pub type pkthdr_t = *mut __pkthdr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__socket?language=objc)
 #[repr(C)]
@@ -172,7 +172,7 @@ unsafe impl RefEncode for __socket {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/socket_t?language=objc)
-pub type socket_t = *mut libc::__socket;
+pub type socket_t = *mut __socket;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__sockopt?language=objc)
 #[repr(C)]
@@ -187,7 +187,7 @@ unsafe impl RefEncode for __sockopt {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/sockopt_t?language=objc)
-pub type sockopt_t = *mut libc::__sockopt;
+pub type sockopt_t = *mut __sockopt;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__ifaddr?language=objc)
 #[repr(C)]
@@ -202,7 +202,7 @@ unsafe impl RefEncode for __ifaddr {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifaddr_t?language=objc)
-pub type ifaddr_t = *mut libc::__ifaddr;
+pub type ifaddr_t = *mut __ifaddr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__ifmultiaddr?language=objc)
 #[repr(C)]
@@ -217,7 +217,7 @@ unsafe impl RefEncode for __ifmultiaddr {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifmultiaddr_t?language=objc)
-pub type ifmultiaddr_t = *mut libc::__ifmultiaddr;
+pub type ifmultiaddr_t = *mut __ifmultiaddr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__ifnet_filter?language=objc)
 #[repr(C)]
@@ -232,7 +232,7 @@ unsafe impl RefEncode for __ifnet_filter {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/interface_filter_t?language=objc)
-pub type interface_filter_t = *mut libc::__ifnet_filter;
+pub type interface_filter_t = *mut __ifnet_filter;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__rtentry?language=objc)
 #[repr(C)]
@@ -247,7 +247,7 @@ unsafe impl RefEncode for __rtentry {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/route_t?language=objc)
-pub type route_t = *mut libc::__rtentry;
+pub type route_t = *mut __rtentry;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__if_clone?language=objc)
 #[repr(C)]
@@ -262,7 +262,7 @@ unsafe impl RefEncode for __if_clone {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_clone_t?language=objc)
-pub type if_clone_t = *mut libc::__if_clone;
+pub type if_clone_t = *mut __if_clone;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/__bufattr?language=objc)
 #[repr(C)]
@@ -277,7 +277,7 @@ unsafe impl RefEncode for __bufattr {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/bufattr_t?language=objc)
-pub type bufattr_t = *mut libc::__bufattr;
+pub type bufattr_t = *mut __bufattr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_action_t?language=objc)
 pub type kauth_action_t = c_int;

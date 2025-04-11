@@ -8,27 +8,27 @@ use crate::ffi::*;
 pub type sem_t = c_int;
 
 extern "C-unwind" {
-    pub fn sem_close(param1: *mut libc::sem_t) -> c_int;
+    pub fn sem_close(param1: *mut sem_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn sem_destroy(param1: *mut libc::sem_t) -> c_int;
+    pub fn sem_destroy(param1: *mut sem_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn sem_getvalue(param1: *mut libc::sem_t, param1: *mut c_int) -> c_int;
+    pub fn sem_getvalue(param1: *mut sem_t, param1: *mut c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn sem_init(param1: *mut libc::sem_t, param1: c_int, param1: c_uint) -> c_int;
+    pub fn sem_init(param1: *mut sem_t, param1: c_int, param1: c_uint) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn sem_post(param1: *mut libc::sem_t) -> c_int;
+    pub fn sem_post(param1: *mut sem_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn sem_trywait(param1: *mut libc::sem_t) -> c_int;
+    pub fn sem_trywait(param1: *mut sem_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -37,5 +37,5 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "sem_wait")]
-    pub fn sem_wait(param1: *mut libc::sem_t) -> c_int;
+    pub fn sem_wait(param1: *mut sem_t) -> c_int;
 }

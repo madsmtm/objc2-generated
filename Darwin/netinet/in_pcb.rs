@@ -5,14 +5,14 @@ use core::ffi::*;
 use crate::ffi::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/inp_gen_t?language=objc)
-pub type inp_gen_t = libc::u_quad_t;
+pub type inp_gen_t = u_quad_t;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_addr_4in6?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in_addr_4in6 {
     pub ia46_pad32: [u32; 3],
-    pub ia46_addr4: libc::in_addr,
+    pub ia46_addr4: in_addr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_inpcb_list_entry?language=objc)
@@ -27,7 +27,7 @@ pub struct _inpcb_list_entry {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union inpcb_inp_dependfaddr {
-    pub inp46_foreign: libc::in_addr_4in6,
+    pub inp46_foreign: in_addr_4in6,
     pub inp6_foreign: in6_addr,
 }
 
@@ -35,7 +35,7 @@ pub union inpcb_inp_dependfaddr {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union inpcb_inp_dependladdr {
-    pub inp46_local: libc::in_addr_4in6,
+    pub inp46_local: in_addr_4in6,
     pub inp6_local: in6_addr,
 }
 
@@ -63,7 +63,7 @@ pub struct inpcb_inp_depend6 {
     pub inp6_options: u32,
     pub inp6_hlim: u8,
     pub unused_uint8_1: u8,
-    pub unused_uint16_1: libc::ushort,
+    pub unused_uint16_1: ushort,
     pub inp6_outputopts: u32,
     pub inp6_moptions: u32,
     pub inp6_icmp6filt: u32,
@@ -76,30 +76,30 @@ pub struct inpcb_inp_depend6 {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct inpcb {
-    pub inp_hash: libc::_inpcb_list_entry,
-    pub reserved1: libc::in_addr,
-    pub reserved2: libc::in_addr,
+    pub inp_hash: _inpcb_list_entry,
+    pub reserved1: in_addr,
+    pub reserved2: in_addr,
     pub inp_fport: c_ushort,
     pub inp_lport: c_ushort,
-    pub inp_list: libc::_inpcb_list_entry,
+    pub inp_list: _inpcb_list_entry,
     pub inp_ppcb: u32,
     pub inp_pcbinfo: u32,
     pub inp_socket: u32,
     pub nat_owner: c_uchar,
     pub nat_cookie: u32,
-    pub inp_portlist: libc::_inpcb_list_entry,
+    pub inp_portlist: _inpcb_list_entry,
     pub inp_phd: u32,
-    pub inp_gencnt: libc::inp_gen_t,
+    pub inp_gencnt: inp_gen_t,
     pub inp_flags: c_int,
     pub inp_flow: u32,
     pub inp_vflag: c_uchar,
     pub inp_ip_ttl: c_uchar,
     pub inp_ip_p: c_uchar,
-    pub inp_dependfaddr: libc::inpcb_inp_dependfaddr,
-    pub inp_dependladdr: libc::inpcb_inp_dependladdr,
-    pub inp_dependroute: libc::inpcb_inp_dependroute,
-    pub inp_depend4: libc::inpcb_inp_depend4,
-    pub inp_depend6: libc::inpcb_inp_depend6,
+    pub inp_dependfaddr: inpcb_inp_dependfaddr,
+    pub inp_dependladdr: inpcb_inp_dependladdr,
+    pub inp_dependroute: inpcb_inp_dependroute,
+    pub inp_depend4: inpcb_inp_depend4,
+    pub inp_depend6: inpcb_inp_depend6,
     pub hash_element: c_int,
     pub inp_saved_ppcb: u32,
     pub inp_sp: u32,
@@ -111,9 +111,9 @@ pub struct inpcb {
 #[derive(Clone, Copy)]
 pub struct xinpcb {
     pub xi_len: u32,
-    pub xi_inp: libc::inpcb,
-    pub xi_socket: libc::xsocket,
-    pub xi_alignment_hack: libc::u_quad_t,
+    pub xi_inp: inpcb,
+    pub xi_socket: xsocket,
+    pub xi_alignment_hack: u_quad_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/inpcb64_list_entry?language=objc)
@@ -128,7 +128,7 @@ pub struct inpcb64_list_entry {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union xinpcb64_inp_dependfaddr {
-    pub inp46_foreign: libc::in_addr_4in6,
+    pub inp46_foreign: in_addr_4in6,
     pub inp6_foreign: in6_addr,
 }
 
@@ -136,7 +136,7 @@ pub union xinpcb64_inp_dependfaddr {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union xinpcb64_inp_dependladdr {
-    pub inp46_local: libc::in_addr_4in6,
+    pub inp46_local: in_addr_4in6,
     pub inp6_local: in6_addr,
 }
 
@@ -165,23 +165,23 @@ pub struct xinpcb64 {
     pub xi_inpp: u64,
     pub inp_fport: c_ushort,
     pub inp_lport: c_ushort,
-    pub inp_list: libc::inpcb64_list_entry,
+    pub inp_list: inpcb64_list_entry,
     pub inp_ppcb: u64,
     pub inp_pcbinfo: u64,
-    pub inp_portlist: libc::inpcb64_list_entry,
+    pub inp_portlist: inpcb64_list_entry,
     pub inp_phd: u64,
-    pub inp_gencnt: libc::inp_gen_t,
+    pub inp_gencnt: inp_gen_t,
     pub inp_flags: c_int,
     pub inp_flow: u32,
     pub inp_vflag: c_uchar,
     pub inp_ip_ttl: c_uchar,
     pub inp_ip_p: c_uchar,
-    pub inp_dependfaddr: libc::xinpcb64_inp_dependfaddr,
-    pub inp_dependladdr: libc::xinpcb64_inp_dependladdr,
-    pub inp_depend4: libc::xinpcb64_inp_depend4,
-    pub inp_depend6: libc::xinpcb64_inp_depend6,
-    pub xi_socket: libc::xsocket64,
-    pub xi_alignment_hack: libc::u_quad_t,
+    pub inp_dependfaddr: xinpcb64_inp_dependfaddr,
+    pub inp_dependladdr: xinpcb64_inp_dependladdr,
+    pub inp_depend4: xinpcb64_inp_depend4,
+    pub inp_depend6: xinpcb64_inp_depend6,
+    pub xi_socket: xsocket64,
+    pub xi_alignment_hack: u_quad_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/xinpgen?language=objc)
@@ -190,6 +190,6 @@ pub struct xinpcb64 {
 pub struct xinpgen {
     pub xig_len: u32,
     pub xig_count: c_uint,
-    pub xig_gen: libc::inp_gen_t,
-    pub xig_sogen: libc::so_gen_t,
+    pub xig_gen: inp_gen_t,
+    pub xig_sogen: so_gen_t,
 }

@@ -28,7 +28,7 @@ extern "C-unwind" {
     ///
     /// Returns: Zero if successful, otherwise an errno value.
     pub fn posix_spawnattr_set_qos_class_np(
-        attr: *mut libc::posix_spawnattr_t,
+        attr: *mut posix_spawnattr_t,
         qos_class: qos_class_t,
     ) -> c_int;
 }
@@ -48,7 +48,7 @@ extern "C-unwind" {
     ///
     /// Returns: Zero if successful, otherwise an errno value.
     pub fn posix_spawnattr_get_qos_class_np(
-        attr: *const libc::posix_spawnattr_t,
+        attr: *const posix_spawnattr_t,
         qos_class: *mut qos_class_t,
     ) -> c_int;
 }

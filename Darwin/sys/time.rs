@@ -46,11 +46,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn settimeofday(param1: *const timeval, param1: *const libc::timezone) -> c_int;
+    pub fn settimeofday(param1: *const timeval, param1: *const timezone) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getitimer(param1: c_int, param1: *mut libc::itimerval) -> c_int;
+    pub fn getitimer(param1: c_int, param1: *mut itimerval) -> c_int;
 }
 
 extern "C-unwind" {
@@ -58,11 +58,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn setitimer(
-        param1: c_int,
-        param1: *const libc::itimerval,
-        param1: *mut libc::itimerval,
-    ) -> c_int;
+    pub fn setitimer(param1: c_int, param1: *const itimerval, param1: *mut itimerval) -> c_int;
 }
 
 extern "C-unwind" {

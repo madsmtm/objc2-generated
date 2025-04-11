@@ -11,24 +11,24 @@ use crate::ffi::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct acl_perm_t(pub c_uint);
 impl acl_perm_t {
-    pub const ACL_READ_DATA: Self = Self(libc::__DARWIN_ACL_READ_DATA);
-    pub const ACL_LIST_DIRECTORY: Self = Self(libc::__DARWIN_ACL_LIST_DIRECTORY);
-    pub const ACL_WRITE_DATA: Self = Self(libc::__DARWIN_ACL_WRITE_DATA);
-    pub const ACL_ADD_FILE: Self = Self(libc::__DARWIN_ACL_ADD_FILE);
-    pub const ACL_EXECUTE: Self = Self(libc::__DARWIN_ACL_EXECUTE);
-    pub const ACL_SEARCH: Self = Self(libc::__DARWIN_ACL_SEARCH);
-    pub const ACL_DELETE: Self = Self(libc::__DARWIN_ACL_DELETE);
-    pub const ACL_APPEND_DATA: Self = Self(libc::__DARWIN_ACL_APPEND_DATA);
-    pub const ACL_ADD_SUBDIRECTORY: Self = Self(libc::__DARWIN_ACL_ADD_SUBDIRECTORY);
-    pub const ACL_DELETE_CHILD: Self = Self(libc::__DARWIN_ACL_DELETE_CHILD);
-    pub const ACL_READ_ATTRIBUTES: Self = Self(libc::__DARWIN_ACL_READ_ATTRIBUTES);
-    pub const ACL_WRITE_ATTRIBUTES: Self = Self(libc::__DARWIN_ACL_WRITE_ATTRIBUTES);
-    pub const ACL_READ_EXTATTRIBUTES: Self = Self(libc::__DARWIN_ACL_READ_EXTATTRIBUTES);
-    pub const ACL_WRITE_EXTATTRIBUTES: Self = Self(libc::__DARWIN_ACL_WRITE_EXTATTRIBUTES);
-    pub const ACL_READ_SECURITY: Self = Self(libc::__DARWIN_ACL_READ_SECURITY);
-    pub const ACL_WRITE_SECURITY: Self = Self(libc::__DARWIN_ACL_WRITE_SECURITY);
-    pub const ACL_CHANGE_OWNER: Self = Self(libc::__DARWIN_ACL_CHANGE_OWNER);
-    pub const ACL_SYNCHRONIZE: Self = Self(libc::__DARWIN_ACL_SYNCHRONIZE);
+    pub const ACL_READ_DATA: Self = Self(__DARWIN_ACL_READ_DATA);
+    pub const ACL_LIST_DIRECTORY: Self = Self(__DARWIN_ACL_LIST_DIRECTORY);
+    pub const ACL_WRITE_DATA: Self = Self(__DARWIN_ACL_WRITE_DATA);
+    pub const ACL_ADD_FILE: Self = Self(__DARWIN_ACL_ADD_FILE);
+    pub const ACL_EXECUTE: Self = Self(__DARWIN_ACL_EXECUTE);
+    pub const ACL_SEARCH: Self = Self(__DARWIN_ACL_SEARCH);
+    pub const ACL_DELETE: Self = Self(__DARWIN_ACL_DELETE);
+    pub const ACL_APPEND_DATA: Self = Self(__DARWIN_ACL_APPEND_DATA);
+    pub const ACL_ADD_SUBDIRECTORY: Self = Self(__DARWIN_ACL_ADD_SUBDIRECTORY);
+    pub const ACL_DELETE_CHILD: Self = Self(__DARWIN_ACL_DELETE_CHILD);
+    pub const ACL_READ_ATTRIBUTES: Self = Self(__DARWIN_ACL_READ_ATTRIBUTES);
+    pub const ACL_WRITE_ATTRIBUTES: Self = Self(__DARWIN_ACL_WRITE_ATTRIBUTES);
+    pub const ACL_READ_EXTATTRIBUTES: Self = Self(__DARWIN_ACL_READ_EXTATTRIBUTES);
+    pub const ACL_WRITE_EXTATTRIBUTES: Self = Self(__DARWIN_ACL_WRITE_EXTATTRIBUTES);
+    pub const ACL_READ_SECURITY: Self = Self(__DARWIN_ACL_READ_SECURITY);
+    pub const ACL_WRITE_SECURITY: Self = Self(__DARWIN_ACL_WRITE_SECURITY);
+    pub const ACL_CHANGE_OWNER: Self = Self(__DARWIN_ACL_CHANGE_OWNER);
+    pub const ACL_SYNCHRONIZE: Self = Self(__DARWIN_ACL_SYNCHRONIZE);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_tag_t?language=objc)
@@ -37,8 +37,8 @@ impl acl_perm_t {
 pub struct acl_tag_t(pub c_uint);
 impl acl_tag_t {
     pub const ACL_UNDEFINED_TAG: Self = Self(0);
-    pub const ACL_EXTENDED_ALLOW: Self = Self(libc::__DARWIN_ACL_EXTENDED_ALLOW);
-    pub const ACL_EXTENDED_DENY: Self = Self(libc::__DARWIN_ACL_EXTENDED_DENY);
+    pub const ACL_EXTENDED_ALLOW: Self = Self(__DARWIN_ACL_EXTENDED_ALLOW);
+    pub const ACL_EXTENDED_DENY: Self = Self(__DARWIN_ACL_EXTENDED_DENY);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_type_t?language=objc)
@@ -71,12 +71,12 @@ impl acl_entry_id_t {
 pub struct acl_flag_t(pub c_uint);
 impl acl_flag_t {
     pub const ACL_FLAG_DEFER_INHERIT: Self = Self(1 << 0);
-    pub const ACL_FLAG_NO_INHERIT: Self = Self(libc::__DARWIN_ACL_FLAG_NO_INHERIT);
-    pub const ACL_ENTRY_INHERITED: Self = Self(libc::__DARWIN_ACL_ENTRY_INHERITED);
-    pub const ACL_ENTRY_FILE_INHERIT: Self = Self(libc::__DARWIN_ACL_ENTRY_FILE_INHERIT);
-    pub const ACL_ENTRY_DIRECTORY_INHERIT: Self = Self(libc::__DARWIN_ACL_ENTRY_DIRECTORY_INHERIT);
-    pub const ACL_ENTRY_LIMIT_INHERIT: Self = Self(libc::__DARWIN_ACL_ENTRY_LIMIT_INHERIT);
-    pub const ACL_ENTRY_ONLY_INHERIT: Self = Self(libc::__DARWIN_ACL_ENTRY_ONLY_INHERIT);
+    pub const ACL_FLAG_NO_INHERIT: Self = Self(__DARWIN_ACL_FLAG_NO_INHERIT);
+    pub const ACL_ENTRY_INHERITED: Self = Self(__DARWIN_ACL_ENTRY_INHERITED);
+    pub const ACL_ENTRY_FILE_INHERIT: Self = Self(__DARWIN_ACL_ENTRY_FILE_INHERIT);
+    pub const ACL_ENTRY_DIRECTORY_INHERIT: Self = Self(__DARWIN_ACL_ENTRY_DIRECTORY_INHERIT);
+    pub const ACL_ENTRY_LIMIT_INHERIT: Self = Self(__DARWIN_ACL_ENTRY_LIMIT_INHERIT);
+    pub const ACL_ENTRY_ONLY_INHERIT: Self = Self(__DARWIN_ACL_ENTRY_ONLY_INHERIT);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_acl?language=objc)
@@ -92,7 +92,7 @@ unsafe impl RefEncode for _acl {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_t?language=objc)
-pub type acl_t = *mut libc::_acl;
+pub type acl_t = *mut _acl;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_acl_entry?language=objc)
 #[repr(C)]
@@ -107,7 +107,7 @@ unsafe impl RefEncode for _acl_entry {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_entry_t?language=objc)
-pub type acl_entry_t = *mut libc::_acl_entry;
+pub type acl_entry_t = *mut _acl_entry;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_acl_permset?language=objc)
 #[repr(C)]
@@ -122,7 +122,7 @@ unsafe impl RefEncode for _acl_permset {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_permset_t?language=objc)
-pub type acl_permset_t = *mut libc::_acl_permset;
+pub type acl_permset_t = *mut _acl_permset;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_acl_flagset?language=objc)
 #[repr(C)]
@@ -137,13 +137,13 @@ unsafe impl RefEncode for _acl_flagset {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_flagset_t?language=objc)
-pub type acl_flagset_t = *mut libc::_acl_flagset;
+pub type acl_flagset_t = *mut _acl_flagset;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/acl_permset_mask_t?language=objc)
 pub type acl_permset_mask_t = u64;
 
 extern "C-unwind" {
-    pub fn acl_dup(acl: libc::acl_t) -> libc::acl_t;
+    pub fn acl_dup(acl: acl_t) -> acl_t;
 }
 
 extern "C-unwind" {
@@ -151,148 +151,127 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn acl_init(count: c_int) -> libc::acl_t;
+    pub fn acl_init(count: c_int) -> acl_t;
 }
 
 extern "C-unwind" {
-    pub fn acl_copy_entry(dest_d: libc::acl_entry_t, src_d: libc::acl_entry_t) -> c_int;
+    pub fn acl_copy_entry(dest_d: acl_entry_t, src_d: acl_entry_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_create_entry(acl_p: *mut libc::acl_t, entry_p: *mut libc::acl_entry_t) -> c_int;
+    pub fn acl_create_entry(acl_p: *mut acl_t, entry_p: *mut acl_entry_t) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn acl_create_entry_np(
-        acl_p: *mut libc::acl_t,
-        entry_p: *mut libc::acl_entry_t,
+        acl_p: *mut acl_t,
+        entry_p: *mut acl_entry_t,
         entry_index: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_delete_entry(acl: libc::acl_t, entry_d: libc::acl_entry_t) -> c_int;
+    pub fn acl_delete_entry(acl: acl_t, entry_d: acl_entry_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_entry(
-        acl: libc::acl_t,
-        entry_id: c_int,
-        entry_p: *mut libc::acl_entry_t,
-    ) -> c_int;
+    pub fn acl_get_entry(acl: acl_t, entry_id: c_int, entry_p: *mut acl_entry_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_valid(acl: libc::acl_t) -> c_int;
+    pub fn acl_valid(acl: acl_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_valid_fd_np(fd: c_int, r#type: libc::acl_type_t, acl: libc::acl_t) -> c_int;
+    pub fn acl_valid_fd_np(fd: c_int, r#type: acl_type_t, acl: acl_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_valid_file_np(
-        path: *const c_char,
-        r#type: libc::acl_type_t,
-        acl: libc::acl_t,
-    ) -> c_int;
+    pub fn acl_valid_file_np(path: *const c_char, r#type: acl_type_t, acl: acl_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_valid_link_np(
-        path: *const c_char,
-        r#type: libc::acl_type_t,
-        acl: libc::acl_t,
-    ) -> c_int;
+    pub fn acl_valid_link_np(path: *const c_char, r#type: acl_type_t, acl: acl_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_add_perm(permset_d: libc::acl_permset_t, perm: libc::acl_perm_t) -> c_int;
+    pub fn acl_add_perm(permset_d: acl_permset_t, perm: acl_perm_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_calc_mask(acl_p: *mut libc::acl_t) -> c_int;
+    pub fn acl_calc_mask(acl_p: *mut acl_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_clear_perms(permset_d: libc::acl_permset_t) -> c_int;
+    pub fn acl_clear_perms(permset_d: acl_permset_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_delete_perm(permset_d: libc::acl_permset_t, perm: libc::acl_perm_t) -> c_int;
+    pub fn acl_delete_perm(permset_d: acl_permset_t, perm: acl_perm_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_perm_np(permset_d: libc::acl_permset_t, perm: libc::acl_perm_t) -> c_int;
+    pub fn acl_get_perm_np(permset_d: acl_permset_t, perm: acl_perm_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_permset(
-        entry_d: libc::acl_entry_t,
-        permset_p: *mut libc::acl_permset_t,
-    ) -> c_int;
+    pub fn acl_get_permset(entry_d: acl_entry_t, permset_p: *mut acl_permset_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_set_permset(entry_d: libc::acl_entry_t, permset_d: libc::acl_permset_t) -> c_int;
+    pub fn acl_set_permset(entry_d: acl_entry_t, permset_d: acl_permset_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_maximal_permset_mask_np(mask_p: *mut libc::acl_permset_mask_t) -> c_int;
+    pub fn acl_maximal_permset_mask_np(mask_p: *mut acl_permset_mask_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_permset_mask_np(
-        entry_d: libc::acl_entry_t,
-        mask_p: *mut libc::acl_permset_mask_t,
-    ) -> c_int;
+    pub fn acl_get_permset_mask_np(entry_d: acl_entry_t, mask_p: *mut acl_permset_mask_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_set_permset_mask_np(
-        entry_d: libc::acl_entry_t,
-        mask: libc::acl_permset_mask_t,
-    ) -> c_int;
+    pub fn acl_set_permset_mask_np(entry_d: acl_entry_t, mask: acl_permset_mask_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_add_flag_np(flagset_d: libc::acl_flagset_t, flag: libc::acl_flag_t) -> c_int;
+    pub fn acl_add_flag_np(flagset_d: acl_flagset_t, flag: acl_flag_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_clear_flags_np(flagset_d: libc::acl_flagset_t) -> c_int;
+    pub fn acl_clear_flags_np(flagset_d: acl_flagset_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_delete_flag_np(flagset_d: libc::acl_flagset_t, flag: libc::acl_flag_t) -> c_int;
+    pub fn acl_delete_flag_np(flagset_d: acl_flagset_t, flag: acl_flag_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_flag_np(flagset_d: libc::acl_flagset_t, flag: libc::acl_flag_t) -> c_int;
+    pub fn acl_get_flag_np(flagset_d: acl_flagset_t, flag: acl_flag_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_flagset_np(obj_p: *mut c_void, flagset_p: *mut libc::acl_flagset_t) -> c_int;
+    pub fn acl_get_flagset_np(obj_p: *mut c_void, flagset_p: *mut acl_flagset_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_set_flagset_np(obj_p: *mut c_void, flagset_d: libc::acl_flagset_t) -> c_int;
+    pub fn acl_set_flagset_np(obj_p: *mut c_void, flagset_d: acl_flagset_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_qualifier(entry_d: libc::acl_entry_t) -> *mut c_void;
+    pub fn acl_get_qualifier(entry_d: acl_entry_t) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_tag_type(entry_d: libc::acl_entry_t, tag_type_p: *mut libc::acl_tag_t) -> c_int;
+    pub fn acl_get_tag_type(entry_d: acl_entry_t, tag_type_p: *mut acl_tag_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_set_qualifier(entry_d: libc::acl_entry_t, tag_qualifier_p: *const c_void) -> c_int;
+    pub fn acl_set_qualifier(entry_d: acl_entry_t, tag_qualifier_p: *const c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_set_tag_type(entry_d: libc::acl_entry_t, tag_type: libc::acl_tag_t) -> c_int;
+    pub fn acl_set_tag_type(entry_d: acl_entry_t, tag_type: acl_tag_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -300,66 +279,61 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn acl_get_fd(fd: c_int) -> libc::acl_t;
+    pub fn acl_get_fd(fd: c_int) -> acl_t;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_fd_np(fd: c_int, r#type: libc::acl_type_t) -> libc::acl_t;
+    pub fn acl_get_fd_np(fd: c_int, r#type: acl_type_t) -> acl_t;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_file(path_p: *const c_char, r#type: libc::acl_type_t) -> libc::acl_t;
+    pub fn acl_get_file(path_p: *const c_char, r#type: acl_type_t) -> acl_t;
 }
 
 extern "C-unwind" {
-    pub fn acl_get_link_np(path_p: *const c_char, r#type: libc::acl_type_t) -> libc::acl_t;
+    pub fn acl_get_link_np(path_p: *const c_char, r#type: acl_type_t) -> acl_t;
 }
 
 extern "C-unwind" {
-    pub fn acl_set_fd(fd: c_int, acl: libc::acl_t) -> c_int;
+    pub fn acl_set_fd(fd: c_int, acl: acl_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_set_fd_np(fd: c_int, acl: libc::acl_t, acl_type: libc::acl_type_t) -> c_int;
+    pub fn acl_set_fd_np(fd: c_int, acl: acl_t, acl_type: acl_type_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_set_file(path_p: *const c_char, r#type: libc::acl_type_t, acl: libc::acl_t)
-        -> c_int;
+    pub fn acl_set_file(path_p: *const c_char, r#type: acl_type_t, acl: acl_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_set_link_np(
-        path_p: *const c_char,
-        r#type: libc::acl_type_t,
-        acl: libc::acl_t,
-    ) -> c_int;
+    pub fn acl_set_link_np(path_p: *const c_char, r#type: acl_type_t, acl: acl_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn acl_copy_ext(buf_p: *mut c_void, acl: libc::acl_t, size: isize) -> isize;
+    pub fn acl_copy_ext(buf_p: *mut c_void, acl: acl_t, size: isize) -> isize;
 }
 
 extern "C-unwind" {
-    pub fn acl_copy_ext_native(buf_p: *mut c_void, acl: libc::acl_t, size: isize) -> isize;
+    pub fn acl_copy_ext_native(buf_p: *mut c_void, acl: acl_t, size: isize) -> isize;
 }
 
 extern "C-unwind" {
-    pub fn acl_copy_int(buf_p: *const c_void) -> libc::acl_t;
+    pub fn acl_copy_int(buf_p: *const c_void) -> acl_t;
 }
 
 extern "C-unwind" {
-    pub fn acl_copy_int_native(buf_p: *const c_void) -> libc::acl_t;
+    pub fn acl_copy_int_native(buf_p: *const c_void) -> acl_t;
 }
 
 extern "C-unwind" {
-    pub fn acl_from_text(buf_p: *const c_char) -> libc::acl_t;
+    pub fn acl_from_text(buf_p: *const c_char) -> acl_t;
 }
 
 extern "C-unwind" {
-    pub fn acl_size(acl: libc::acl_t) -> isize;
+    pub fn acl_size(acl: acl_t) -> isize;
 }
 
 extern "C-unwind" {
-    pub fn acl_to_text(acl: libc::acl_t, len_p: *mut isize) -> *mut c_char;
+    pub fn acl_to_text(acl: acl_t, len_p: *mut isize) -> *mut c_char;
 }

@@ -8,14 +8,14 @@ use crate::ffi::*;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sockaddr_vm {
     pub svm_len: u8,
-    pub svm_family: libc::sa_family_t,
+    pub svm_family: sa_family_t,
     pub svm_reserved1: u16,
     pub svm_port: u32,
     pub svm_cid: u32,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vsock_gen_t?language=objc)
-pub type vsock_gen_t = libc::u_quad_t;
+pub type vsock_gen_t = u_quad_t;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/xvsockpcb?language=objc)
 #[repr(C)]
@@ -31,9 +31,9 @@ pub struct xvsockpcb {
     pub xvp_txcnt: u32,
     pub xvp_peer_rxhiwat: u32,
     pub xvp_peer_rxcnt: u32,
-    pub xvp_last_pid: libc::pid_t,
-    pub xvp_gencnt: libc::vsock_gen_t,
-    pub xv_socket: libc::xsocket,
+    pub xvp_last_pid: pid_t,
+    pub xvp_gencnt: vsock_gen_t,
+    pub xv_socket: xsocket,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/xvsockpgen?language=objc)
@@ -42,6 +42,6 @@ pub struct xvsockpcb {
 pub struct xvsockpgen {
     pub xvg_len: u32,
     pub xvg_count: u64,
-    pub xvg_gen: libc::vsock_gen_t,
-    pub xvg_sogen: libc::so_gen_t,
+    pub xvg_gen: vsock_gen_t,
+    pub xvg_sogen: so_gen_t,
 }

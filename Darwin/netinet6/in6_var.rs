@@ -8,8 +8,8 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in6_addrlifetime {
-    pub ia6t_expire: libc::time_t,
-    pub ia6t_preferred: libc::time_t,
+    pub ia6t_expire: time_t,
+    pub ia6t_preferred: time_t,
     pub ia6t_vltime: u32,
     pub ia6t_pltime: u32,
 }
@@ -22,78 +22,78 @@ pub struct in6_addrpolicy {
     pub addrmask: sockaddr_in6,
     pub preced: c_int,
     pub label: c_int,
-    pub r#use: libc::u_quad_t,
+    pub r#use: u_quad_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_ifstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in6_ifstat {
-    pub ifs6_in_receive: libc::u_quad_t,
-    pub ifs6_in_hdrerr: libc::u_quad_t,
-    pub ifs6_in_toobig: libc::u_quad_t,
-    pub ifs6_in_noroute: libc::u_quad_t,
-    pub ifs6_in_addrerr: libc::u_quad_t,
-    pub ifs6_in_protounknown: libc::u_quad_t,
-    pub ifs6_in_truncated: libc::u_quad_t,
-    pub ifs6_in_discard: libc::u_quad_t,
-    pub ifs6_in_deliver: libc::u_quad_t,
-    pub ifs6_out_forward: libc::u_quad_t,
-    pub ifs6_out_request: libc::u_quad_t,
-    pub ifs6_out_discard: libc::u_quad_t,
-    pub ifs6_out_fragok: libc::u_quad_t,
-    pub ifs6_out_fragfail: libc::u_quad_t,
-    pub ifs6_out_fragcreat: libc::u_quad_t,
-    pub ifs6_reass_reqd: libc::u_quad_t,
-    pub ifs6_reass_ok: libc::u_quad_t,
-    pub ifs6_atmfrag_rcvd: libc::u_quad_t,
-    pub ifs6_reass_fail: libc::u_quad_t,
-    pub ifs6_in_mcast: libc::u_quad_t,
-    pub ifs6_out_mcast: libc::u_quad_t,
-    pub ifs6_cantfoward_icmp6: libc::u_quad_t,
-    pub ifs6_addr_expiry_cnt: libc::u_quad_t,
-    pub ifs6_pfx_expiry_cnt: libc::u_quad_t,
-    pub ifs6_defrtr_expiry_cnt: libc::u_quad_t,
+    pub ifs6_in_receive: u_quad_t,
+    pub ifs6_in_hdrerr: u_quad_t,
+    pub ifs6_in_toobig: u_quad_t,
+    pub ifs6_in_noroute: u_quad_t,
+    pub ifs6_in_addrerr: u_quad_t,
+    pub ifs6_in_protounknown: u_quad_t,
+    pub ifs6_in_truncated: u_quad_t,
+    pub ifs6_in_discard: u_quad_t,
+    pub ifs6_in_deliver: u_quad_t,
+    pub ifs6_out_forward: u_quad_t,
+    pub ifs6_out_request: u_quad_t,
+    pub ifs6_out_discard: u_quad_t,
+    pub ifs6_out_fragok: u_quad_t,
+    pub ifs6_out_fragfail: u_quad_t,
+    pub ifs6_out_fragcreat: u_quad_t,
+    pub ifs6_reass_reqd: u_quad_t,
+    pub ifs6_reass_ok: u_quad_t,
+    pub ifs6_atmfrag_rcvd: u_quad_t,
+    pub ifs6_reass_fail: u_quad_t,
+    pub ifs6_in_mcast: u_quad_t,
+    pub ifs6_out_mcast: u_quad_t,
+    pub ifs6_cantfoward_icmp6: u_quad_t,
+    pub ifs6_addr_expiry_cnt: u_quad_t,
+    pub ifs6_pfx_expiry_cnt: u_quad_t,
+    pub ifs6_defrtr_expiry_cnt: u_quad_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/icmp6_ifstat?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct icmp6_ifstat {
-    pub ifs6_in_msg: libc::u_quad_t,
-    pub ifs6_in_error: libc::u_quad_t,
-    pub ifs6_in_dstunreach: libc::u_quad_t,
-    pub ifs6_in_adminprohib: libc::u_quad_t,
-    pub ifs6_in_timeexceed: libc::u_quad_t,
-    pub ifs6_in_paramprob: libc::u_quad_t,
-    pub ifs6_in_pkttoobig: libc::u_quad_t,
-    pub ifs6_in_echo: libc::u_quad_t,
-    pub ifs6_in_echoreply: libc::u_quad_t,
-    pub ifs6_in_routersolicit: libc::u_quad_t,
-    pub ifs6_in_routeradvert: libc::u_quad_t,
-    pub ifs6_in_neighborsolicit: libc::u_quad_t,
-    pub ifs6_in_neighboradvert: libc::u_quad_t,
-    pub ifs6_in_redirect: libc::u_quad_t,
-    pub ifs6_in_mldquery: libc::u_quad_t,
-    pub ifs6_in_mldreport: libc::u_quad_t,
-    pub ifs6_in_mlddone: libc::u_quad_t,
-    pub ifs6_out_msg: libc::u_quad_t,
-    pub ifs6_out_error: libc::u_quad_t,
-    pub ifs6_out_dstunreach: libc::u_quad_t,
-    pub ifs6_out_adminprohib: libc::u_quad_t,
-    pub ifs6_out_timeexceed: libc::u_quad_t,
-    pub ifs6_out_paramprob: libc::u_quad_t,
-    pub ifs6_out_pkttoobig: libc::u_quad_t,
-    pub ifs6_out_echo: libc::u_quad_t,
-    pub ifs6_out_echoreply: libc::u_quad_t,
-    pub ifs6_out_routersolicit: libc::u_quad_t,
-    pub ifs6_out_routeradvert: libc::u_quad_t,
-    pub ifs6_out_neighborsolicit: libc::u_quad_t,
-    pub ifs6_out_neighboradvert: libc::u_quad_t,
-    pub ifs6_out_redirect: libc::u_quad_t,
-    pub ifs6_out_mldquery: libc::u_quad_t,
-    pub ifs6_out_mldreport: libc::u_quad_t,
-    pub ifs6_out_mlddone: libc::u_quad_t,
+    pub ifs6_in_msg: u_quad_t,
+    pub ifs6_in_error: u_quad_t,
+    pub ifs6_in_dstunreach: u_quad_t,
+    pub ifs6_in_adminprohib: u_quad_t,
+    pub ifs6_in_timeexceed: u_quad_t,
+    pub ifs6_in_paramprob: u_quad_t,
+    pub ifs6_in_pkttoobig: u_quad_t,
+    pub ifs6_in_echo: u_quad_t,
+    pub ifs6_in_echoreply: u_quad_t,
+    pub ifs6_in_routersolicit: u_quad_t,
+    pub ifs6_in_routeradvert: u_quad_t,
+    pub ifs6_in_neighborsolicit: u_quad_t,
+    pub ifs6_in_neighboradvert: u_quad_t,
+    pub ifs6_in_redirect: u_quad_t,
+    pub ifs6_in_mldquery: u_quad_t,
+    pub ifs6_in_mldreport: u_quad_t,
+    pub ifs6_in_mlddone: u_quad_t,
+    pub ifs6_out_msg: u_quad_t,
+    pub ifs6_out_error: u_quad_t,
+    pub ifs6_out_dstunreach: u_quad_t,
+    pub ifs6_out_adminprohib: u_quad_t,
+    pub ifs6_out_timeexceed: u_quad_t,
+    pub ifs6_out_paramprob: u_quad_t,
+    pub ifs6_out_pkttoobig: u_quad_t,
+    pub ifs6_out_echo: u_quad_t,
+    pub ifs6_out_echoreply: u_quad_t,
+    pub ifs6_out_routersolicit: u_quad_t,
+    pub ifs6_out_routeradvert: u_quad_t,
+    pub ifs6_out_neighborsolicit: u_quad_t,
+    pub ifs6_out_neighboradvert: u_quad_t,
+    pub ifs6_out_redirect: u_quad_t,
+    pub ifs6_out_mldquery: u_quad_t,
+    pub ifs6_out_mldreport: u_quad_t,
+    pub ifs6_out_mlddone: u_quad_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_ifreq_ifr_ifru?language=objc)
@@ -106,10 +106,10 @@ pub union in6_ifreq_ifr_ifru {
     pub ifru_flags6: c_int,
     pub ifru_metric: c_int,
     pub ifru_intval: c_int,
-    pub ifru_data: libc::caddr_t,
-    pub ifru_lifetime: libc::in6_addrlifetime,
-    pub ifru_stat: libc::in6_ifstat,
-    pub ifru_icmp6stat: libc::icmp6_ifstat,
+    pub ifru_data: caddr_t,
+    pub ifru_lifetime: in6_addrlifetime,
+    pub ifru_stat: in6_ifstat,
+    pub ifru_icmp6stat: icmp6_ifstat,
     pub ifru_scope_id: [u32; 16],
 }
 
@@ -118,7 +118,7 @@ pub union in6_ifreq_ifr_ifru {
 #[derive(Clone, Copy)]
 pub struct in6_ifreq {
     pub ifr_name: [c_char; 16],
-    pub ifr_ifru: libc::in6_ifreq_ifr_ifru,
+    pub ifr_ifru: in6_ifreq_ifr_ifru,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/in6_aliasreq?language=objc)
@@ -130,7 +130,7 @@ pub struct in6_aliasreq {
     pub ifra_broadaddr: sockaddr_in6,
     pub ifra_prefixmask: sockaddr_in6,
     pub ifra_flags: c_int,
-    pub ifra_lifetime: libc::in6_addrlifetime,
+    pub ifra_lifetime: in6_addrlifetime,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/prf_ra?language=objc)
@@ -155,10 +155,10 @@ pub struct prf_rr {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in6_prflags {
-    pub prf_ra: libc::prf_ra,
+    pub prf_ra: prf_ra,
     pub prf_reserved1: c_uchar,
     pub prf_reserved2: c_ushort,
-    pub prf_rr: libc::prf_rr,
+    pub prf_rr: prf_rr,
     pub prf_reserved3: c_uchar,
     pub prf_reserved4: c_ushort,
 }
@@ -172,7 +172,7 @@ pub struct in6_prefixreq {
     pub ipr_plen: c_uchar,
     pub ipr_vltime: u32,
     pub ipr_pltime: u32,
-    pub ipr_flags: libc::in6_prflags,
+    pub ipr_flags: in6_prflags,
     pub ipr_prefix: sockaddr_in6,
 }
 
@@ -196,10 +196,10 @@ pub struct in6_rrenumreq {
     pub irr_m_maxlen: c_uchar,
     pub irr_u_uselen: c_uchar,
     pub irr_u_keeplen: c_uchar,
-    pub irr_raflagmask: libc::irr_raflagmask,
+    pub irr_raflagmask: irr_raflagmask,
     pub irr_vltime: u32,
     pub irr_pltime: u32,
-    pub irr_flags: libc::in6_prflags,
+    pub irr_flags: in6_prflags,
     pub irr_matchprefix: sockaddr_in6,
     pub irr_useprefix: sockaddr_in6,
 }
@@ -218,13 +218,13 @@ pub struct kev_in6_addrlifetime {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kev_in6_data {
-    pub link_data: libc::net_event_data,
+    pub link_data: net_event_data,
     pub ia_addr: sockaddr_in6,
     pub ia_net: sockaddr_in6,
     pub ia_dstaddr: sockaddr_in6,
     pub ia_prefixmask: sockaddr_in6,
     pub ia_plen: u32,
     pub ia6_flags: u32,
-    pub ia_lifetime: libc::kev_in6_addrlifetime,
+    pub ia_lifetime: kev_in6_addrlifetime,
     pub ia_mac: [u8; 6],
 }

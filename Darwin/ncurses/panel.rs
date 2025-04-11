@@ -10,8 +10,8 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct panel {
-    pub win: *mut libc::WINDOW,
-    pub below: *mut libc::panel,
+    pub win: *mut WINDOW,
+    pub below: *mut panel,
     pub above: *mut Self,
     pub user: *mut c_void,
 }
@@ -20,7 +20,7 @@ pub struct panel {
 pub type PANEL = Self;
 
 extern "C-unwind" {
-    pub fn panel_window(param1: Option<&libc::PANEL>) -> *mut libc::WINDOW;
+    pub fn panel_window(param1: Option<&PANEL>) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
@@ -28,74 +28,68 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn hide_panel(param1: Option<&libc::PANEL>) -> c_int;
+    pub fn hide_panel(param1: Option<&PANEL>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn show_panel(param1: Option<&libc::PANEL>) -> c_int;
+    pub fn show_panel(param1: Option<&PANEL>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn del_panel(param1: Option<&libc::PANEL>) -> c_int;
+    pub fn del_panel(param1: Option<&PANEL>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn top_panel(param1: Option<&libc::PANEL>) -> c_int;
+    pub fn top_panel(param1: Option<&PANEL>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn bottom_panel(param1: Option<&libc::PANEL>) -> c_int;
+    pub fn bottom_panel(param1: Option<&PANEL>) -> c_int;
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn new_panel(
-    param1: *mut libc::WINDOW,
-) -> Option<Retained<libc::PANEL>> {
+pub unsafe extern "C-unwind" fn new_panel(param1: *mut WINDOW) -> Option<Retained<PANEL>> {
     extern "C-unwind" {
-        fn new_panel(param1: *mut libc::WINDOW) -> *mut libc::PANEL;
+        fn new_panel(param1: *mut WINDOW) -> *mut PANEL;
     }
     let ret = unsafe { new_panel(param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn panel_above(
-    param1: Option<&libc::PANEL>,
-) -> Option<Retained<libc::PANEL>> {
+pub unsafe extern "C-unwind" fn panel_above(param1: Option<&PANEL>) -> Option<Retained<PANEL>> {
     extern "C-unwind" {
-        fn panel_above(param1: Option<&libc::PANEL>) -> *mut libc::PANEL;
+        fn panel_above(param1: Option<&PANEL>) -> *mut PANEL;
     }
     let ret = unsafe { panel_above(param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn panel_below(
-    param1: Option<&libc::PANEL>,
-) -> Option<Retained<libc::PANEL>> {
+pub unsafe extern "C-unwind" fn panel_below(param1: Option<&PANEL>) -> Option<Retained<PANEL>> {
     extern "C-unwind" {
-        fn panel_below(param1: Option<&libc::PANEL>) -> *mut libc::PANEL;
+        fn panel_below(param1: Option<&PANEL>) -> *mut PANEL;
     }
     let ret = unsafe { panel_below(param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
-    pub fn set_panel_userptr(param1: Option<&libc::PANEL>, param1: *mut c_void) -> c_int;
+    pub fn set_panel_userptr(param1: Option<&PANEL>, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn panel_userptr(param1: Option<&libc::PANEL>) -> *mut c_void;
+    pub fn panel_userptr(param1: Option<&PANEL>) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn move_panel(param1: Option<&libc::PANEL>, param1: c_int, param1: c_int) -> c_int;
+    pub fn move_panel(param1: Option<&PANEL>, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn replace_panel(param1: Option<&libc::PANEL>, param1: *mut libc::WINDOW) -> c_int;
+    pub fn replace_panel(param1: Option<&PANEL>, param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn panel_hidden(param1: Option<&libc::PANEL>) -> c_int;
+    pub fn panel_hidden(param1: Option<&PANEL>) -> c_int;
 }

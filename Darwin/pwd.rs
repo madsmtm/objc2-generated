@@ -10,8 +10,8 @@ use crate::ffi::*;
 pub struct passwd {
     pub pw_name: *mut c_char,
     pub pw_passwd: *mut c_char,
-    pub pw_uid: libc::uid_t,
-    pub pw_gid: libc::gid_t,
+    pub pw_uid: uid_t,
+    pub pw_gid: gid_t,
     pub pw_change: __darwin_time_t,
     pub pw_class: *mut c_char,
     pub pw_gecos: *mut c_char,
@@ -21,35 +21,35 @@ pub struct passwd {
 }
 
 extern "C-unwind" {
-    pub fn getpwuid(param1: libc::uid_t) -> *mut libc::passwd;
+    pub fn getpwuid(param1: uid_t) -> *mut passwd;
 }
 
 extern "C-unwind" {
-    pub fn getpwnam(param1: *const c_char) -> *mut libc::passwd;
+    pub fn getpwnam(param1: *const c_char) -> *mut passwd;
 }
 
 extern "C-unwind" {
     pub fn getpwuid_r(
-        param1: libc::uid_t,
-        param1: *mut libc::passwd,
+        param1: uid_t,
+        param1: *mut passwd,
         param1: *mut c_char,
         param1: usize,
-        param1: *mut *mut libc::passwd,
+        param1: *mut *mut passwd,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn getpwnam_r(
         param1: *const c_char,
-        param1: *mut libc::passwd,
+        param1: *mut passwd,
         param1: *mut c_char,
         param1: usize,
-        param1: *mut *mut libc::passwd,
+        param1: *mut *mut passwd,
     ) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn getpwent() -> *mut libc::passwd;
+    pub fn getpwent() -> *mut passwd;
 }
 
 extern "C-unwind" {
@@ -65,19 +65,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn user_from_uid(param1: libc::uid_t, param1: c_int) -> *mut c_char;
+    pub fn user_from_uid(param1: uid_t, param1: c_int) -> *mut c_char;
 }
 
 extern "C-unwind" {
-    pub fn getpwuuid(param1: uuid_t) -> *mut libc::passwd;
+    pub fn getpwuuid(param1: uuid_t) -> *mut passwd;
 }
 
 extern "C-unwind" {
     pub fn getpwuuid_r(
         param1: uuid_t,
-        param1: *mut libc::passwd,
+        param1: *mut passwd,
         param1: *mut c_char,
         param1: usize,
-        param1: *mut *mut libc::passwd,
+        param1: *mut *mut passwd,
     ) -> c_int;
 }

@@ -21,7 +21,7 @@ unsafe impl RefEncode for ucred {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kauth_cred_t?language=objc)
-pub type kauth_cred_t = *mut libc::ucred;
+pub type kauth_cred_t = *mut ucred;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/posix_cred?language=objc)
 #[repr(C)]
@@ -36,14 +36,14 @@ unsafe impl RefEncode for posix_cred {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/posix_cred_t?language=objc)
-pub type posix_cred_t = *mut libc::posix_cred;
+pub type posix_cred_t = *mut posix_cred;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/xucred?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct xucred {
     pub cr_version: c_uint,
-    pub cr_uid: libc::uid_t,
+    pub cr_uid: uid_t,
     pub cr_ngroups: c_short,
-    pub cr_groups: [libc::gid_t; 16],
+    pub cr_groups: [gid_t; 16],
 }

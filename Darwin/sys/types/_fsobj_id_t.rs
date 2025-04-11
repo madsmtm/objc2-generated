@@ -12,4 +12,4 @@ pub struct fsobj_id {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fsobj_id_t?language=objc)
-pub type fsobj_id_t = libc::fsobj_id;
+pub type fsobj_id_t = fsobj_id;

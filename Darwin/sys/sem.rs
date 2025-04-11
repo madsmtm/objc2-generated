@@ -8,12 +8,12 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __semid_ds_new {
-    pub sem_perm: libc::ipc_perm,
+    pub sem_perm: ipc_perm,
     pub sem_base: i32,
     pub sem_nsems: c_ushort,
-    pub sem_otime: libc::time_t,
+    pub sem_otime: time_t,
     pub sem_pad1: i32,
-    pub sem_ctime: libc::time_t,
+    pub sem_ctime: time_t,
     pub sem_pad2: i32,
     pub sem_pad3: [i32; 4],
 }
@@ -23,7 +23,7 @@ pub struct __semid_ds_new {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sem {
     pub semval: c_ushort,
-    pub sempid: libc::pid_t,
+    pub sempid: pid_t,
     pub semncnt: c_ushort,
     pub semzcnt: c_ushort,
 }
@@ -42,17 +42,17 @@ pub struct sembuf {
 #[derive(Clone, Copy)]
 pub union semun {
     pub val: c_int,
-    pub buf: *mut libc::__semid_ds_new,
+    pub buf: *mut __semid_ds_new,
     pub array: *mut c_ushort,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/semun_t?language=objc)
-pub type semun_t = libc::semun;
+pub type semun_t = semun;
 
 extern "C-unwind" {
-    pub fn semget(param1: libc::key_t, param1: c_int, param1: c_int) -> c_int;
+    pub fn semget(param1: key_t, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn semop(param1: c_int, param1: *mut libc::sembuf, param1: usize) -> c_int;
+    pub fn semop(param1: c_int, param1: *mut sembuf, param1: usize) -> c_int;
 }

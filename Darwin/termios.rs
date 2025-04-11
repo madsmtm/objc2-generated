@@ -17,37 +17,37 @@ pub type speed_t = c_ulong;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct termios {
-    pub c_iflag: libc::tcflag_t,
-    pub c_oflag: libc::tcflag_t,
-    pub c_cflag: libc::tcflag_t,
-    pub c_lflag: libc::tcflag_t,
-    pub c_cc: [libc::cc_t; 20],
-    pub c_ispeed: libc::speed_t,
-    pub c_ospeed: libc::speed_t,
+    pub c_iflag: tcflag_t,
+    pub c_oflag: tcflag_t,
+    pub c_cflag: tcflag_t,
+    pub c_lflag: tcflag_t,
+    pub c_cc: [cc_t; 20],
+    pub c_ispeed: speed_t,
+    pub c_ospeed: speed_t,
 }
 
 extern "C-unwind" {
-    pub fn cfgetispeed(param1: *const libc::termios) -> libc::speed_t;
+    pub fn cfgetispeed(param1: *const termios) -> speed_t;
 }
 
 extern "C-unwind" {
-    pub fn cfgetospeed(param1: *const libc::termios) -> libc::speed_t;
+    pub fn cfgetospeed(param1: *const termios) -> speed_t;
 }
 
 extern "C-unwind" {
-    pub fn cfsetispeed(param1: *mut libc::termios, param1: libc::speed_t) -> c_int;
+    pub fn cfsetispeed(param1: *mut termios, param1: speed_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn cfsetospeed(param1: *mut libc::termios, param1: libc::speed_t) -> c_int;
+    pub fn cfsetospeed(param1: *mut termios, param1: speed_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn tcgetattr(param1: c_int, param1: *mut libc::termios) -> c_int;
+    pub fn tcgetattr(param1: c_int, param1: *mut termios) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn tcsetattr(param1: c_int, param1: c_int, param1: *const libc::termios) -> c_int;
+    pub fn tcsetattr(param1: c_int, param1: c_int, param1: *const termios) -> c_int;
 }
 
 extern "C-unwind" {
@@ -68,13 +68,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn cfmakeraw(param1: *mut libc::termios);
+    pub fn cfmakeraw(param1: *mut termios);
 }
 
 extern "C-unwind" {
-    pub fn cfsetspeed(param1: *mut libc::termios, param1: libc::speed_t) -> c_int;
+    pub fn cfsetspeed(param1: *mut termios, param1: speed_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn tcgetsid(param1: c_int) -> libc::pid_t;
+    pub fn tcgetsid(param1: c_int) -> pid_t;
 }

@@ -8,7 +8,7 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ether_arp {
-    pub ea_hdr: libc::arphdr,
+    pub ea_hdr: arphdr,
     pub arp_sha: [c_uchar; 6],
     pub arp_spa: [c_uchar; 4],
     pub arp_tha: [c_uchar; 6],
@@ -22,8 +22,8 @@ pub struct sockaddr_inarp {
     pub sin_len: c_uchar,
     pub sin_family: c_uchar,
     pub sin_port: c_ushort,
-    pub sin_addr: libc::in_addr,
-    pub sin_srcaddr: libc::in_addr,
+    pub sin_addr: in_addr,
+    pub sin_srcaddr: in_addr,
     pub sin_tos: c_ushort,
     pub sin_other: c_ushort,
 }

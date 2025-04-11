@@ -19,7 +19,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn alias_getent() -> *mut libc::aliasent;
+    pub fn alias_getent() -> *mut aliasent;
 }
 
 extern "C-unwind" {
@@ -27,5 +27,5 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn alias_getbyname(param1: *const c_char) -> *mut libc::aliasent;
+    pub fn alias_getbyname(param1: *const c_char) -> *mut aliasent;
 }

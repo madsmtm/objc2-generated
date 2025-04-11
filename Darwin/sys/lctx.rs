@@ -3,6 +3,6 @@
 
 use crate::ffi::*;
 
-// TODO: pub fn getlcid(pid: libc::pid_t,) -> libc::pid_t;
+// TODO: pub fn getlcid(pid: pid_t,) -> pid_t;
 
-// TODO: pub fn setlcid(pid: libc::pid_t,lcid: libc::pid_t,) -> c_int;
+// TODO: pub fn setlcid(pid: pid_t,lcid: pid_t,) -> c_int;

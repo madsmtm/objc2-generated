@@ -19,8 +19,8 @@ pub struct np_uid_t {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct network_port_t {
-    pub np_receiver: libc::netaddr_t,
-    pub np_owner: libc::netaddr_t,
-    pub np_puid: libc::np_uid_t,
-    pub np_sid: libc::np_uid_t,
+    pub np_receiver: netaddr_t,
+    pub np_owner: netaddr_t,
+    pub np_puid: np_uid_t,
+    pub np_sid: np_uid_t,
 }

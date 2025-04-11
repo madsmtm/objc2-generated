@@ -45,14 +45,14 @@ pub struct if_cellular_status_v1 {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union if_cellular_status_if_cell_u {
-    pub if_status_v1: libc::if_cellular_status_v1,
+    pub if_status_v1: if_cellular_status_v1,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_cellular_status?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct if_cellular_status {
-    pub if_cell_u: libc::if_cellular_status_if_cell_u,
+    pub if_cell_u: if_cellular_status_if_cell_u,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_wifi_status_v1?language=objc)
@@ -89,22 +89,22 @@ pub struct if_wifi_status_v1 {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union if_wifi_status_if_wifi_u {
-    pub if_status_v1: libc::if_wifi_status_v1,
+    pub if_status_v1: if_wifi_status_v1,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_wifi_status?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct if_wifi_status {
-    pub if_wifi_u: libc::if_wifi_status_if_wifi_u,
+    pub if_wifi_u: if_wifi_status_if_wifi_u,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_link_status_ifsr_u?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union if_link_status_ifsr_u {
-    pub ifsr_cell: libc::if_cellular_status,
-    pub ifsr_wifi: libc::if_wifi_status,
+    pub ifsr_cell: if_cellular_status,
+    pub ifsr_wifi: if_wifi_status,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/if_link_status?language=objc)
@@ -113,7 +113,7 @@ pub union if_link_status_ifsr_u {
 pub struct if_link_status {
     pub ifsr_version: u32,
     pub ifsr_len: u32,
-    pub ifsr_u: libc::if_link_status_ifsr_u,
+    pub ifsr_u: if_link_status_ifsr_u,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_version?language=objc)
@@ -173,18 +173,18 @@ impl ifnet_interface_advisory_notification_type_wifi {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ifnet_interface_advisory_notification_type_t {
-    pub cell: libc::ifnet_interface_advisory_notification_type_cell,
-    pub wifi: libc::ifnet_interface_advisory_notification_type_wifi,
+    pub cell: ifnet_interface_advisory_notification_type_cell,
+    pub wifi: ifnet_interface_advisory_notification_type_wifi,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_header?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifnet_interface_advisory_header {
-    pub version: libc::ifnet_interface_advisory_version,
-    pub direction: libc::ifnet_interface_advisory_direction,
-    pub interface_type: libc::ifnet_interface_advisory_interface_type,
-    pub notification_type: libc::ifnet_interface_advisory_notification_type_t,
+    pub version: ifnet_interface_advisory_version,
+    pub direction: ifnet_interface_advisory_direction,
+    pub interface_type: ifnet_interface_advisory_interface_type,
+    pub notification_type: ifnet_interface_advisory_notification_type_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifnet_interface_advisory_rate_trend?language=objc)
@@ -201,7 +201,7 @@ impl ifnet_interface_advisory_rate_trend {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_interface_advisory_capacity {
-    pub rate_trend_suggestion: libc::ifnet_interface_advisory_rate_trend,
+    pub rate_trend_suggestion: ifnet_interface_advisory_rate_trend,
     pub timestamp: u64,
     pub max_bandwidth: u64,
     pub total_byte_count: u64,
@@ -226,7 +226,7 @@ impl ifnet_interface_advisory_wifi_freq_band {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_interface_advisory_wifi_context {
-    pub frequency_band: libc::ifnet_interface_advisory_wifi_freq_band,
+    pub frequency_band: ifnet_interface_advisory_wifi_freq_band,
     pub intermittent_state: u8,
     pub estimated_intermittent_period: u16,
     pub single_outage_period: u16,
@@ -281,13 +281,13 @@ pub struct ifnet_ip_addr {}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ifnet_traffic_descriptor_inet {
-    pub inet_common: libc::ifnet_traffic_descriptor_common,
+    pub inet_common: ifnet_traffic_descriptor_common,
     pub inet_mask: u8,
     pub inet_ipver: u8,
     pub inet_proto: u8,
     pub(crate) _reserved: u8,
-    pub inet_laddr: libc::ifnet_ip_addr,
-    pub inet_raddr: libc::ifnet_ip_addr,
+    pub inet_laddr: ifnet_ip_addr,
+    pub inet_raddr: ifnet_ip_addr,
     pub inet_lport: u16,
     pub inet_rport: u16,
 }
@@ -305,6 +305,6 @@ pub struct ifnet_traffic_rule_action {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifnet_traffic_rule_action_steer {
-    pub ras_common: libc::ifnet_traffic_rule_action,
+    pub ras_common: ifnet_traffic_rule_action,
     pub ras_qset_id: u64,
 }

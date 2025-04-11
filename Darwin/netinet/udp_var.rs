@@ -7,8 +7,8 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct udpiphdr {
-    pub ui_i: libc::ipovly,
-    pub ui_u: libc::udphdr,
+    pub ui_i: ipovly,
+    pub ui_u: udphdr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/udpstat?language=objc)

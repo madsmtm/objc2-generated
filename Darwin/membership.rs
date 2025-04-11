@@ -20,7 +20,7 @@ extern "C-unwind" {
     /// Parameter `uu`: is the UUID found for the provided UID
     ///
     /// Returns: returns 0 on success or appropriate errno code.
-    pub fn mbr_uid_to_uuid(uid: libc::uid_t, uu: uuid_t) -> c_int;
+    pub fn mbr_uid_to_uuid(uid: uid_t, uu: uuid_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -39,7 +39,7 @@ extern "C-unwind" {
     /// Parameter `uu`: is the UUID found for the provided GID
     ///
     /// Returns: returns 0 on success or appropriate errno code.
-    pub fn mbr_gid_to_uuid(gid: libc::gid_t, uu: uuid_t) -> c_int;
+    pub fn mbr_gid_to_uuid(gid: gid_t, uu: uuid_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -53,7 +53,7 @@ extern "C-unwind" {
     /// Parameter `uu`: is the UUID found for the provided GID
     ///
     /// Returns: returns 0 on success or appropriate errno code.
-    pub fn mbr_sid_to_uuid(sid: *const libc::nt_sid_t, uu: uuid_t) -> c_int;
+    pub fn mbr_sid_to_uuid(sid: *const nt_sid_t, uu: uuid_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -97,7 +97,7 @@ extern "C-unwind" {
     /// Parameter `id_type`: is the type of ID
     ///
     /// Returns: returns 0 on success or appropriate errno code.
-    pub fn mbr_uuid_to_id(uu: uuid_t, uid_or_gid: *mut libc::id_t, id_type: *mut c_int) -> c_int;
+    pub fn mbr_uuid_to_id(uu: uuid_t, uid_or_gid: *mut id_t, id_type: *mut c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -110,7 +110,7 @@ extern "C-unwind" {
     /// Parameter `sid`: is the SID found for the UUID
     ///
     /// Returns: returns 0 on success or appropriate errno code.
-    pub fn mbr_uuid_to_sid(uu: uuid_t, sid: *mut libc::nt_sid_t) -> c_int;
+    pub fn mbr_uuid_to_sid(uu: uuid_t, sid: *mut nt_sid_t) -> c_int;
 }
 
 extern "C-unwind" {
@@ -124,7 +124,7 @@ extern "C-unwind" {
     /// representation of the SID.  The buffer must be at least 194 characters in length.
     ///
     /// Returns: returns 0 on success or appropriate errno code.
-    pub fn mbr_sid_to_string(sid: *const libc::nt_sid_t, string: *mut c_char) -> c_int;
+    pub fn mbr_sid_to_string(sid: *const nt_sid_t, string: *mut c_char) -> c_int;
 }
 
 extern "C-unwind" {
@@ -137,7 +137,7 @@ extern "C-unwind" {
     /// Parameter `sid`: is the target of the conversion
     ///
     /// Returns: returns 0 on success or appropriate errno code.
-    pub fn mbr_string_to_sid(string: *const c_char, sid: *mut libc::nt_sid_t) -> c_int;
+    pub fn mbr_string_to_sid(string: *const c_char, sid: *mut nt_sid_t) -> c_int;
 }
 
 extern "C-unwind" {

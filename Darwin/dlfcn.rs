@@ -15,10 +15,10 @@ pub struct dl_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/dl_info?language=objc)
-pub type Dl_info = libc::dl_info;
+pub type Dl_info = dl_info;
 
 extern "C-unwind" {
-    pub fn dladdr(param1: *const c_void, param1: *mut libc::Dl_info) -> c_int;
+    pub fn dladdr(param1: *const c_void, param1: *mut Dl_info) -> c_int;
 }
 
 extern "C-unwind" {

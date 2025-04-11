@@ -13,7 +13,7 @@ pub struct utmpx {
     pub ut_user: [c_char; 256],
     pub ut_id: [c_char; 4],
     pub ut_line: [c_char; 32],
-    pub ut_pid: libc::pid_t,
+    pub ut_pid: pid_t,
     pub ut_type: c_short,
     pub ut_tv: timeval,
     pub ut_host: [c_char; 256],
@@ -38,44 +38,41 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn getlastlogx(param1: libc::uid_t, param1: *mut libc::lastlogx) -> *mut libc::lastlogx;
+    pub fn getlastlogx(param1: uid_t, param1: *mut lastlogx) -> *mut lastlogx;
 }
 
 extern "C-unwind" {
-    pub fn getlastlogxbyname(
-        param1: *const c_char,
-        param1: *mut libc::lastlogx,
-    ) -> *mut libc::lastlogx;
-}
-
-extern "C-unwind" {
-    #[deprecated]
-    pub fn getutmp(param1: *const libc::utmpx, param1: *mut libc::utmp);
+    pub fn getlastlogxbyname(param1: *const c_char, param1: *mut lastlogx) -> *mut lastlogx;
 }
 
 extern "C-unwind" {
     #[deprecated]
-    pub fn getutmpx(param1: *const libc::utmp, param1: *mut libc::utmpx);
+    pub fn getutmp(param1: *const utmpx, param1: *mut utmp);
 }
 
 extern "C-unwind" {
-    pub fn getutxent() -> *mut libc::utmpx;
+    #[deprecated]
+    pub fn getutmpx(param1: *const utmp, param1: *mut utmpx);
 }
 
 extern "C-unwind" {
-    pub fn getutxent_wtmp() -> *mut libc::utmpx;
+    pub fn getutxent() -> *mut utmpx;
 }
 
 extern "C-unwind" {
-    pub fn getutxid(param1: *const libc::utmpx) -> *mut libc::utmpx;
+    pub fn getutxent_wtmp() -> *mut utmpx;
 }
 
 extern "C-unwind" {
-    pub fn getutxline(param1: *const libc::utmpx) -> *mut libc::utmpx;
+    pub fn getutxid(param1: *const utmpx) -> *mut utmpx;
 }
 
 extern "C-unwind" {
-    pub fn pututxline(param1: *const libc::utmpx) -> *mut libc::utmpx;
+    pub fn getutxline(param1: *const utmpx) -> *mut utmpx;
+}
+
+extern "C-unwind" {
+    pub fn pututxline(param1: *const utmpx) -> *mut utmpx;
 }
 
 extern "C-unwind" {

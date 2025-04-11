@@ -51,16 +51,16 @@ pub struct fieldnode {
     pub page: c_short,
     pub index: c_short,
     pub pad: c_int,
-    pub fore: libc::chtype,
-    pub back: libc::chtype,
-    pub opts: libc::Field_Options,
-    pub snext: *mut libc::fieldnode,
+    pub fore: chtype,
+    pub back: chtype,
+    pub opts: Field_Options,
+    pub snext: *mut fieldnode,
     pub sprev: *mut Self,
     pub link: *mut Self,
     pub form: *mut Self,
     pub r#type: *mut Self,
     pub arg: *mut c_void,
-    pub buf: *mut libc::FIELD_CELL,
+    pub buf: *mut FIELD_CELL,
     pub usrptr: *mut c_void,
 }
 
@@ -89,13 +89,13 @@ pub struct formnode {
     pub maxfield: c_short,
     pub maxpage: c_short,
     pub curpage: c_short,
-    pub opts: libc::Form_Options,
-    pub win: *mut libc::WINDOW,
-    pub sub: *mut libc::WINDOW,
-    pub w: *mut libc::WINDOW,
-    pub field: *mut *mut libc::FIELD,
-    pub current: *mut libc::FIELD,
-    pub page: *mut libc::_PAGE,
+    pub opts: Form_Options,
+    pub win: *mut WINDOW,
+    pub sub: *mut WINDOW,
+    pub w: *mut WINDOW,
+    pub field: *mut *mut FIELD,
+    pub current: *mut FIELD,
+    pub page: *mut _PAGE,
     pub usrptr: *mut c_void,
     pub forminit: Option<unsafe extern "C-unwind" fn(*mut Self)>,
     pub formterm: Option<unsafe extern "C-unwind" fn(*mut Self)>,
@@ -125,10 +125,10 @@ pub struct typenode {
     pub makearg: Option<unsafe extern "C-unwind" fn(*mut va_list) -> *mut c_void>,
     pub copyarg: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut c_void>,
     pub freearg: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
-    pub fcheck: Option<unsafe extern "C-unwind" fn(*mut libc::FIELD, *const c_void) -> bool>,
+    pub fcheck: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
     pub ccheck: Option<unsafe extern "C-unwind" fn(c_int, *const c_void) -> bool>,
-    pub next: Option<unsafe extern "C-unwind" fn(*mut libc::FIELD, *const c_void) -> bool>,
-    pub prev: Option<unsafe extern "C-unwind" fn(*mut libc::FIELD, *const c_void) -> bool>,
+    pub next: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
+    pub prev: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
 }
 
 /// ************
@@ -139,7 +139,7 @@ pub struct typenode {
 pub type FIELDTYPE = Self;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/form_hook?language=objc)
-pub type Form_Hook = Option<unsafe extern "C-unwind" fn(*mut libc::FORM)>;
+pub type Form_Hook = Option<unsafe extern "C-unwind" fn(*mut FORM)>;
 
 extern "C" {
     /// ***********************
@@ -147,32 +147,32 @@ extern "C" {
     /// ***********************
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/type_alpha?language=objc)
-    pub static TYPE_ALPHA: Option<&'static libc::FIELDTYPE>;
+    pub static TYPE_ALPHA: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_alnum?language=objc)
-    pub static TYPE_ALNUM: Option<&'static libc::FIELDTYPE>;
+    pub static TYPE_ALNUM: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_enum?language=objc)
-    pub static TYPE_ENUM: Option<&'static libc::FIELDTYPE>;
+    pub static TYPE_ENUM: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_integer?language=objc)
-    pub static TYPE_INTEGER: Option<&'static libc::FIELDTYPE>;
+    pub static TYPE_INTEGER: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_numeric?language=objc)
-    pub static TYPE_NUMERIC: Option<&'static libc::FIELDTYPE>;
+    pub static TYPE_NUMERIC: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/type_regexp?language=objc)
-    pub static TYPE_REGEXP: Option<&'static libc::FIELDTYPE>;
+    pub static TYPE_REGEXP: Option<&'static FIELDTYPE>;
 }
 
 extern "C" {
@@ -182,7 +182,7 @@ extern "C" {
     /// **********************************
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/darwin/type_ipv4?language=objc)
-    pub static TYPE_IPV4: Option<&'static libc::FIELDTYPE>;
+    pub static TYPE_IPV4: Option<&'static FIELDTYPE>;
 }
 
 /// *********************
@@ -190,16 +190,14 @@ extern "C" {
 /// *********************
 #[inline]
 pub unsafe extern "C-unwind" fn new_fieldtype(
-    field_check: Option<unsafe extern "C-unwind" fn(*mut libc::FIELD, *const c_void) -> bool>,
+    field_check: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
     char_check: Option<unsafe extern "C-unwind" fn(c_int, *const c_void) -> bool>,
-) -> Option<Retained<libc::FIELDTYPE>> {
+) -> Option<Retained<FIELDTYPE>> {
     extern "C-unwind" {
         fn new_fieldtype(
-            field_check: Option<
-                unsafe extern "C-unwind" fn(*mut libc::FIELD, *const c_void) -> bool,
-            >,
+            field_check: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
             char_check: Option<unsafe extern "C-unwind" fn(c_int, *const c_void) -> bool>,
-        ) -> *mut libc::FIELDTYPE;
+        ) -> *mut FIELDTYPE;
     }
     let ret = unsafe { new_fieldtype(field_check, char_check) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -207,26 +205,24 @@ pub unsafe extern "C-unwind" fn new_fieldtype(
 
 #[inline]
 pub unsafe extern "C-unwind" fn link_fieldtype(
-    param1: Option<&libc::FIELDTYPE>,
-    param1: Option<&libc::FIELDTYPE>,
-) -> Option<Retained<libc::FIELDTYPE>> {
+    param1: Option<&FIELDTYPE>,
+    param1: Option<&FIELDTYPE>,
+) -> Option<Retained<FIELDTYPE>> {
     extern "C-unwind" {
-        fn link_fieldtype(
-            param1: Option<&libc::FIELDTYPE>,
-            param1: Option<&libc::FIELDTYPE>,
-        ) -> *mut libc::FIELDTYPE;
+        fn link_fieldtype(param1: Option<&FIELDTYPE>, param1: Option<&FIELDTYPE>)
+            -> *mut FIELDTYPE;
     }
     let ret = unsafe { link_fieldtype(param1, param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
-    pub fn free_fieldtype(param1: Option<&libc::FIELDTYPE>) -> c_int;
+    pub fn free_fieldtype(param1: Option<&FIELDTYPE>) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn set_fieldtype_arg(
-        param1: Option<&libc::FIELDTYPE>,
+        param1: Option<&FIELDTYPE>,
         make_arg: Option<unsafe extern "C-unwind" fn(*mut va_list) -> *mut c_void>,
         copy_arg: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut c_void>,
         free_arg: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
@@ -235,9 +231,9 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn set_fieldtype_choice(
-        param1: Option<&libc::FIELDTYPE>,
-        next_choice: Option<unsafe extern "C-unwind" fn(*mut libc::FIELD, *const c_void) -> bool>,
-        prev_choice: Option<unsafe extern "C-unwind" fn(*mut libc::FIELD, *const c_void) -> bool>,
+        param1: Option<&FIELDTYPE>,
+        next_choice: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
+        prev_choice: Option<unsafe extern "C-unwind" fn(*mut FIELD, *const c_void) -> bool>,
     ) -> c_int;
 }
 
@@ -252,7 +248,7 @@ pub unsafe extern "C-unwind" fn new_field(
     param1: c_int,
     param1: c_int,
     param1: c_int,
-) -> Option<Retained<libc::FIELD>> {
+) -> Option<Retained<FIELD>> {
     extern "C-unwind" {
         fn new_field(
             param1: c_int,
@@ -261,7 +257,7 @@ pub unsafe extern "C-unwind" fn new_field(
             param1: c_int,
             param1: c_int,
             param1: c_int,
-        ) -> *mut libc::FIELD;
+        ) -> *mut FIELD;
     }
     let ret = unsafe { new_field(param1, param1, param1, param1, param1, param1) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -269,16 +265,12 @@ pub unsafe extern "C-unwind" fn new_field(
 
 #[inline]
 pub unsafe extern "C-unwind" fn dup_field(
-    param1: Option<&libc::FIELD>,
+    param1: Option<&FIELD>,
     param1: c_int,
     param1: c_int,
-) -> Option<Retained<libc::FIELD>> {
+) -> Option<Retained<FIELD>> {
     extern "C-unwind" {
-        fn dup_field(
-            param1: Option<&libc::FIELD>,
-            param1: c_int,
-            param1: c_int,
-        ) -> *mut libc::FIELD;
+        fn dup_field(param1: Option<&FIELD>, param1: c_int, param1: c_int) -> *mut FIELD;
     }
     let ret = unsafe { dup_field(param1, param1, param1) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -286,28 +278,24 @@ pub unsafe extern "C-unwind" fn dup_field(
 
 #[inline]
 pub unsafe extern "C-unwind" fn link_field(
-    param1: Option<&libc::FIELD>,
+    param1: Option<&FIELD>,
     param1: c_int,
     param1: c_int,
-) -> Option<Retained<libc::FIELD>> {
+) -> Option<Retained<FIELD>> {
     extern "C-unwind" {
-        fn link_field(
-            param1: Option<&libc::FIELD>,
-            param1: c_int,
-            param1: c_int,
-        ) -> *mut libc::FIELD;
+        fn link_field(param1: Option<&FIELD>, param1: c_int, param1: c_int) -> *mut FIELD;
     }
     let ret = unsafe { link_field(param1, param1, param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
-    pub fn free_field(param1: Option<&libc::FIELD>) -> c_int;
+    pub fn free_field(param1: Option<&FIELD>) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn field_info(
-        param1: Option<&libc::FIELD>,
+        param1: Option<&FIELD>,
         param1: *mut c_int,
         param1: *mut c_int,
         param1: *mut c_int,
@@ -319,7 +307,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn dynamic_field_info(
-        param1: Option<&libc::FIELD>,
+        param1: Option<&FIELD>,
         param1: *mut c_int,
         param1: *mut c_int,
         param1: *mut c_int,
@@ -327,252 +315,241 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn set_max_field(param1: Option<&libc::FIELD>, param1: c_int) -> c_int;
+    pub fn set_max_field(param1: Option<&FIELD>, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn move_field(param1: Option<&libc::FIELD>, param1: c_int, param1: c_int) -> c_int;
+    pub fn move_field(param1: Option<&FIELD>, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_new_page(param1: Option<&libc::FIELD>, param1: bool) -> c_int;
+    pub fn set_new_page(param1: Option<&FIELD>, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_just(param1: Option<&libc::FIELD>, param1: c_int) -> c_int;
+    pub fn set_field_just(param1: Option<&FIELD>, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn field_just(param1: Option<&libc::FIELD>) -> c_int;
+    pub fn field_just(param1: Option<&FIELD>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_fore(param1: Option<&libc::FIELD>, param1: libc::chtype) -> c_int;
+    pub fn set_field_fore(param1: Option<&FIELD>, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_back(param1: Option<&libc::FIELD>, param1: libc::chtype) -> c_int;
+    pub fn set_field_back(param1: Option<&FIELD>, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_pad(param1: Option<&libc::FIELD>, param1: c_int) -> c_int;
+    pub fn set_field_pad(param1: Option<&FIELD>, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn field_pad(param1: Option<&libc::FIELD>) -> c_int;
+    pub fn field_pad(param1: Option<&FIELD>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_buffer(
-        param1: Option<&libc::FIELD>,
-        param1: c_int,
-        param1: *const c_char,
-    ) -> c_int;
+    pub fn set_field_buffer(param1: Option<&FIELD>, param1: c_int, param1: *const c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_status(param1: Option<&libc::FIELD>, param1: bool) -> c_int;
+    pub fn set_field_status(param1: Option<&FIELD>, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_userptr(param1: Option<&libc::FIELD>, param1: *mut c_void) -> c_int;
+    pub fn set_field_userptr(param1: Option<&FIELD>, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_opts(param1: Option<&libc::FIELD>, param1: libc::Field_Options) -> c_int;
+    pub fn set_field_opts(param1: Option<&FIELD>, param1: Field_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn field_opts_on(param1: Option<&libc::FIELD>, param1: libc::Field_Options) -> c_int;
+    pub fn field_opts_on(param1: Option<&FIELD>, param1: Field_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn field_opts_off(param1: Option<&libc::FIELD>, param1: libc::Field_Options) -> c_int;
+    pub fn field_opts_off(param1: Option<&FIELD>, param1: Field_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn field_fore(param1: Option<&libc::FIELD>) -> libc::chtype;
+    pub fn field_fore(param1: Option<&FIELD>) -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn field_back(param1: Option<&libc::FIELD>) -> libc::chtype;
+    pub fn field_back(param1: Option<&FIELD>) -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn new_page(param1: Option<&libc::FIELD>) -> bool;
+    pub fn new_page(param1: Option<&FIELD>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn field_status(param1: Option<&libc::FIELD>) -> bool;
+    pub fn field_status(param1: Option<&FIELD>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn field_arg(param1: Option<&libc::FIELD>) -> *mut c_void;
+    pub fn field_arg(param1: Option<&FIELD>) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn field_userptr(param1: Option<&libc::FIELD>) -> *mut c_void;
+    pub fn field_userptr(param1: Option<&FIELD>) -> *mut c_void;
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn field_type(
-    param1: Option<&libc::FIELD>,
-) -> Option<Retained<libc::FIELDTYPE>> {
+pub unsafe extern "C-unwind" fn field_type(param1: Option<&FIELD>) -> Option<Retained<FIELDTYPE>> {
     extern "C-unwind" {
-        fn field_type(param1: Option<&libc::FIELD>) -> *mut libc::FIELDTYPE;
+        fn field_type(param1: Option<&FIELD>) -> *mut FIELDTYPE;
     }
     let ret = unsafe { field_type(param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
-    pub fn field_buffer(param1: Option<&libc::FIELD>, param1: c_int) -> *mut c_char;
+    pub fn field_buffer(param1: Option<&FIELD>, param1: c_int) -> *mut c_char;
 }
 
 extern "C-unwind" {
-    pub fn field_opts(param1: Option<&libc::FIELD>) -> libc::Field_Options;
+    pub fn field_opts(param1: Option<&FIELD>) -> Field_Options;
 }
 
 /// ****************
 /// FORM routines  *
 /// ****************
 #[inline]
-pub unsafe extern "C-unwind" fn new_form(
-    param1: *mut *mut libc::FIELD,
-) -> Option<Retained<libc::FORM>> {
+pub unsafe extern "C-unwind" fn new_form(param1: *mut *mut FIELD) -> Option<Retained<FORM>> {
     extern "C-unwind" {
-        fn new_form(param1: *mut *mut libc::FIELD) -> *mut libc::FORM;
+        fn new_form(param1: *mut *mut FIELD) -> *mut FORM;
     }
     let ret = unsafe { new_form(param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
-    pub fn form_fields(param1: Option<&libc::FORM>) -> *mut *mut libc::FIELD;
+    pub fn form_fields(param1: Option<&FORM>) -> *mut *mut FIELD;
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn current_field(
-    param1: Option<&libc::FORM>,
-) -> Option<Retained<libc::FIELD>> {
+pub unsafe extern "C-unwind" fn current_field(param1: Option<&FORM>) -> Option<Retained<FIELD>> {
     extern "C-unwind" {
-        fn current_field(param1: Option<&libc::FORM>) -> *mut libc::FIELD;
+        fn current_field(param1: Option<&FORM>) -> *mut FIELD;
     }
     let ret = unsafe { current_field(param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
-    pub fn form_win(param1: Option<&libc::FORM>) -> *mut libc::WINDOW;
+    pub fn form_win(param1: Option<&FORM>) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn form_sub(param1: Option<&libc::FORM>) -> *mut libc::WINDOW;
+    pub fn form_sub(param1: Option<&FORM>) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn form_init(param1: Option<&libc::FORM>) -> libc::Form_Hook;
+    pub fn form_init(param1: Option<&FORM>) -> Form_Hook;
 }
 
 extern "C-unwind" {
-    pub fn form_term(param1: Option<&libc::FORM>) -> libc::Form_Hook;
+    pub fn form_term(param1: Option<&FORM>) -> Form_Hook;
 }
 
 extern "C-unwind" {
-    pub fn field_init(param1: Option<&libc::FORM>) -> libc::Form_Hook;
+    pub fn field_init(param1: Option<&FORM>) -> Form_Hook;
 }
 
 extern "C-unwind" {
-    pub fn field_term(param1: Option<&libc::FORM>) -> libc::Form_Hook;
+    pub fn field_term(param1: Option<&FORM>) -> Form_Hook;
 }
 
 extern "C-unwind" {
-    pub fn free_form(param1: Option<&libc::FORM>) -> c_int;
+    pub fn free_form(param1: Option<&FORM>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_form_fields(param1: Option<&libc::FORM>, param1: *mut *mut libc::FIELD) -> c_int;
+    pub fn set_form_fields(param1: Option<&FORM>, param1: *mut *mut FIELD) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn field_count(param1: Option<&libc::FORM>) -> c_int;
+    pub fn field_count(param1: Option<&FORM>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_form_win(param1: Option<&libc::FORM>, param1: *mut libc::WINDOW) -> c_int;
+    pub fn set_form_win(param1: Option<&FORM>, param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_form_sub(param1: Option<&libc::FORM>, param1: *mut libc::WINDOW) -> c_int;
+    pub fn set_form_sub(param1: Option<&FORM>, param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_current_field(param1: Option<&libc::FORM>, param1: Option<&libc::FIELD>) -> c_int;
+    pub fn set_current_field(param1: Option<&FORM>, param1: Option<&FIELD>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn field_index(param1: Option<&libc::FIELD>) -> c_int;
+    pub fn field_index(param1: Option<&FIELD>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_form_page(param1: Option<&libc::FORM>, param1: c_int) -> c_int;
+    pub fn set_form_page(param1: Option<&FORM>, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn form_page(param1: Option<&libc::FORM>) -> c_int;
+    pub fn form_page(param1: Option<&FORM>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn scale_form(param1: Option<&libc::FORM>, param1: *mut c_int, param1: *mut c_int)
-        -> c_int;
+    pub fn scale_form(param1: Option<&FORM>, param1: *mut c_int, param1: *mut c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_form_init(param1: Option<&libc::FORM>, param1: libc::Form_Hook) -> c_int;
+    pub fn set_form_init(param1: Option<&FORM>, param1: Form_Hook) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_form_term(param1: Option<&libc::FORM>, param1: libc::Form_Hook) -> c_int;
+    pub fn set_form_term(param1: Option<&FORM>, param1: Form_Hook) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_init(param1: Option<&libc::FORM>, param1: libc::Form_Hook) -> c_int;
+    pub fn set_field_init(param1: Option<&FORM>, param1: Form_Hook) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_field_term(param1: Option<&libc::FORM>, param1: libc::Form_Hook) -> c_int;
+    pub fn set_field_term(param1: Option<&FORM>, param1: Form_Hook) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn post_form(param1: Option<&libc::FORM>) -> c_int;
+    pub fn post_form(param1: Option<&FORM>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn unpost_form(param1: Option<&libc::FORM>) -> c_int;
+    pub fn unpost_form(param1: Option<&FORM>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn pos_form_cursor(param1: Option<&libc::FORM>) -> c_int;
+    pub fn pos_form_cursor(param1: Option<&FORM>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn form_driver(param1: Option<&libc::FORM>, param1: c_int) -> c_int;
+    pub fn form_driver(param1: Option<&FORM>, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_form_userptr(param1: Option<&libc::FORM>, param1: *mut c_void) -> c_int;
+    pub fn set_form_userptr(param1: Option<&FORM>, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_form_opts(param1: Option<&libc::FORM>, param1: libc::Form_Options) -> c_int;
+    pub fn set_form_opts(param1: Option<&FORM>, param1: Form_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn form_opts_on(param1: Option<&libc::FORM>, param1: libc::Form_Options) -> c_int;
+    pub fn form_opts_on(param1: Option<&FORM>, param1: Form_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn form_opts_off(param1: Option<&libc::FORM>, param1: libc::Form_Options) -> c_int;
+    pub fn form_opts_off(param1: Option<&FORM>, param1: Form_Options) -> c_int;
 }
 
 extern "C-unwind" {
@@ -584,17 +561,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn form_userptr(param1: Option<&libc::FORM>) -> *mut c_void;
+    pub fn form_userptr(param1: Option<&FORM>) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn form_opts(param1: Option<&libc::FORM>) -> libc::Form_Options;
+    pub fn form_opts(param1: Option<&FORM>) -> Form_Options;
 }
 
 extern "C-unwind" {
-    pub fn data_ahead(param1: Option<&libc::FORM>) -> bool;
+    pub fn data_ahead(param1: Option<&FORM>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn data_behind(param1: Option<&libc::FORM>) -> bool;
+    pub fn data_behind(param1: Option<&FORM>) -> bool;
 }

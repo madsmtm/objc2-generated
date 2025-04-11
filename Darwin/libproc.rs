@@ -54,11 +54,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn proc_listpgrppids(pgrpid: libc::pid_t, buffer: *mut c_void, buffersize: c_int) -> c_int;
+    pub fn proc_listpgrppids(pgrpid: pid_t, buffer: *mut c_void, buffersize: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn proc_listchildpids(ppid: libc::pid_t, buffer: *mut c_void, buffersize: c_int) -> c_int;
+    pub fn proc_listchildpids(ppid: pid_t, buffer: *mut c_void, buffersize: c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -114,7 +114,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn proc_pidpath_audittoken(
-        audittoken: *mut libc::audit_token_t,
+        audittoken: *mut audit_token_t,
         buffer: *mut c_void,
         buffersize: u32,
     ) -> c_int;
@@ -137,23 +137,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn proc_track_dirty(pid: libc::pid_t, flags: u32) -> c_int;
+    pub fn proc_track_dirty(pid: pid_t, flags: u32) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn proc_set_dirty(pid: libc::pid_t, dirty: bool) -> c_int;
+    pub fn proc_set_dirty(pid: pid_t, dirty: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn proc_get_dirty(pid: libc::pid_t, flags: *mut u32) -> c_int;
+    pub fn proc_get_dirty(pid: pid_t, flags: *mut u32) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn proc_clear_dirty(pid: libc::pid_t, flags: u32) -> c_int;
+    pub fn proc_clear_dirty(pid: pid_t, flags: u32) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn proc_terminate(pid: libc::pid_t, sig: *mut c_int) -> c_int;
+    pub fn proc_terminate(pid: pid_t, sig: *mut c_int) -> c_int;
 }
 
 extern "C-unwind" {
@@ -161,28 +161,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn proc_signal_with_audittoken(audittoken: *mut libc::audit_token_t, sig: c_int) -> c_int;
+    pub fn proc_signal_with_audittoken(audittoken: *mut audit_token_t, sig: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn proc_terminate_with_audittoken(
-        audittoken: *mut libc::audit_token_t,
-        sig: *mut c_int,
-    ) -> c_int;
+    pub fn proc_terminate_with_audittoken(audittoken: *mut audit_token_t, sig: *mut c_int)
+        -> c_int;
 }
 
 extern "C-unwind" {
     pub fn proc_signal_delegate(
-        instigator: libc::audit_token_t,
-        target: libc::audit_token_t,
+        instigator: audit_token_t,
+        target: audit_token_t,
         sig: c_int,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn proc_terminate_delegate(
-        instigator: libc::audit_token_t,
-        target: libc::audit_token_t,
+        instigator: audit_token_t,
+        target: audit_token_t,
         sig: *mut c_int,
     ) -> c_int;
 }

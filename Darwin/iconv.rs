@@ -24,7 +24,7 @@ unsafe impl RefEncode for __tag_iconv_t {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/iconv_t?language=objc)
-pub type iconv_t = *mut libc::__tag_iconv_t;
+pub type iconv_t = *mut __tag_iconv_t;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/_libiconv_version?language=objc)
@@ -32,12 +32,12 @@ extern "C" {
 }
 
 extern "C-unwind" {
-    pub fn iconv_open(param1: *const c_char, param1: *const c_char) -> libc::iconv_t;
+    pub fn iconv_open(param1: *const c_char, param1: *const c_char) -> iconv_t;
 }
 
 extern "C-unwind" {
     pub fn iconv(
-        param1: libc::iconv_t,
+        param1: iconv_t,
         param1: *mut *mut c_char,
         param1: *mut usize,
         param1: *mut *mut c_char,
@@ -46,14 +46,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn iconv_close(param1: libc::iconv_t) -> c_int;
+    pub fn iconv_close(param1: iconv_t) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn __iconv_get_list(
         param1: *mut *mut *mut c_char,
         param1: *mut usize,
-        param1: libc::__iconv_bool,
+        param1: __iconv_bool,
     ) -> c_int;
 }
 
@@ -63,7 +63,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn __iconv(
-        param1: libc::iconv_t,
+        param1: iconv_t,
         param1: *mut *mut c_char,
         param1: *mut usize,
         param1: *mut *mut c_char,
@@ -84,7 +84,7 @@ extern "C-unwind" {
     pub fn iconv_open_into(
         param1: *const c_char,
         param1: *const c_char,
-        param1: *mut libc::iconv_allocation_t,
+        param1: *mut iconv_allocation_t,
     ) -> c_int;
 }
 
@@ -102,8 +102,8 @@ pub type iconv_wide_char_hook = Option<unsafe extern "C-unwind" fn(wchar_t, *mut
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct iconv_hooks {
-    pub uc_hook: libc::iconv_unicode_char_hook,
-    pub wc_hook: libc::iconv_wide_char_hook,
+    pub uc_hook: iconv_unicode_char_hook,
+    pub wc_hook: iconv_wide_char_hook,
     pub data: *mut c_void,
 }
 
@@ -153,10 +153,10 @@ pub type iconv_wchar_wc_to_mb_fallback = Option<
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct iconv_fallbacks {
-    pub mb_to_uc_fallback: libc::iconv_unicode_mb_to_uc_fallback,
-    pub uc_to_mb_fallback: libc::iconv_unicode_uc_to_mb_fallback,
-    pub mb_to_wc_fallback: libc::iconv_wchar_mb_to_wc_fallback,
-    pub wc_to_mb_fallback: libc::iconv_wchar_wc_to_mb_fallback,
+    pub mb_to_uc_fallback: iconv_unicode_mb_to_uc_fallback,
+    pub uc_to_mb_fallback: iconv_unicode_uc_to_mb_fallback,
+    pub mb_to_wc_fallback: iconv_wchar_mb_to_wc_fallback,
+    pub wc_to_mb_fallback: iconv_wchar_wc_to_mb_fallback,
     pub data: *mut c_void,
 }
 
@@ -174,5 +174,5 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn iconvctl(param1: libc::iconv_t, param1: c_int, param1: *mut c_void) -> c_int;
+    pub fn iconvctl(param1: iconv_t, param1: c_int, param1: *mut c_void) -> c_int;
 }

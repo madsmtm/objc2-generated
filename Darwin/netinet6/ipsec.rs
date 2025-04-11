@@ -8,30 +8,30 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipsecstat {
-    pub in_success: libc::u_quad_t,
-    pub in_polvio: libc::u_quad_t,
-    pub in_nosa: libc::u_quad_t,
-    pub in_inval: libc::u_quad_t,
-    pub in_nomem: libc::u_quad_t,
-    pub in_badspi: libc::u_quad_t,
-    pub in_ahreplay: libc::u_quad_t,
-    pub in_espreplay: libc::u_quad_t,
-    pub in_ahauthsucc: libc::u_quad_t,
-    pub in_ahauthfail: libc::u_quad_t,
-    pub in_espauthsucc: libc::u_quad_t,
-    pub in_espauthfail: libc::u_quad_t,
-    pub in_esphist: [libc::u_quad_t; 256],
-    pub in_ahhist: [libc::u_quad_t; 256],
-    pub in_comphist: [libc::u_quad_t; 256],
-    pub out_success: libc::u_quad_t,
-    pub out_polvio: libc::u_quad_t,
-    pub out_nosa: libc::u_quad_t,
-    pub out_inval: libc::u_quad_t,
-    pub out_nomem: libc::u_quad_t,
-    pub out_noroute: libc::u_quad_t,
-    pub out_esphist: [libc::u_quad_t; 256],
-    pub out_ahhist: [libc::u_quad_t; 256],
-    pub out_comphist: [libc::u_quad_t; 256],
+    pub in_success: u_quad_t,
+    pub in_polvio: u_quad_t,
+    pub in_nosa: u_quad_t,
+    pub in_inval: u_quad_t,
+    pub in_nomem: u_quad_t,
+    pub in_badspi: u_quad_t,
+    pub in_ahreplay: u_quad_t,
+    pub in_espreplay: u_quad_t,
+    pub in_ahauthsucc: u_quad_t,
+    pub in_ahauthfail: u_quad_t,
+    pub in_espauthsucc: u_quad_t,
+    pub in_espauthfail: u_quad_t,
+    pub in_esphist: [u_quad_t; 256],
+    pub in_ahhist: [u_quad_t; 256],
+    pub in_comphist: [u_quad_t; 256],
+    pub out_success: u_quad_t,
+    pub out_polvio: u_quad_t,
+    pub out_nosa: u_quad_t,
+    pub out_inval: u_quad_t,
+    pub out_nomem: u_quad_t,
+    pub out_noroute: u_quad_t,
+    pub out_esphist: [u_quad_t; 256],
+    pub out_ahhist: [u_quad_t; 256],
+    pub out_comphist: [u_quad_t; 256],
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipsec_wake_pkt_info?language=objc)
@@ -39,7 +39,7 @@ pub struct ipsecstat {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipsec_wake_pkt_info {
     pub wake_pkt: [u8; 100],
-    pub wake_uuid: libc::uuid_string_t,
+    pub wake_uuid: uuid_string_t,
     pub wake_pkt_spi: u32,
     pub wake_pkt_seq: u32,
     pub wake_pkt_len: u16,
@@ -49,19 +49,19 @@ pub struct ipsec_wake_pkt_info {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ipsec_wake_pkt_event_data {
-    pub wake_uuid: libc::uuid_string_t,
+    pub wake_uuid: uuid_string_t,
 }
 
 extern "C-unwind" {
-    pub fn ipsec_set_policy(param1: *mut c_char, param1: c_int) -> libc::caddr_t;
+    pub fn ipsec_set_policy(param1: *mut c_char, param1: c_int) -> caddr_t;
 }
 
 extern "C-unwind" {
-    pub fn ipsec_get_policylen(param1: libc::caddr_t) -> c_int;
+    pub fn ipsec_get_policylen(param1: caddr_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn ipsec_dump_policy(param1: libc::caddr_t, param1: *mut c_char) -> *mut c_char;
+    pub fn ipsec_dump_policy(param1: caddr_t, param1: *mut c_char) -> *mut c_char;
 }
 
 extern "C-unwind" {

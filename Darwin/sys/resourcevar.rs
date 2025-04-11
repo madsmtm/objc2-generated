@@ -9,8 +9,8 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct uprof {
-    pub pr_next: *mut libc::uprof,
-    pub pr_base: libc::caddr_t,
+    pub pr_next: *mut uprof,
+    pub pr_base: caddr_t,
     pub pr_size: u32,
     pub pr_off: u32,
     pub pr_scale: u32,
@@ -24,6 +24,6 @@ pub struct uprof {
 pub struct pstats {
     pub p_ru: rusage,
     pub p_cru: rusage,
-    pub p_prof: libc::uprof,
+    pub p_prof: uprof,
     pub ps_start: u64,
 }

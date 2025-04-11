@@ -8,12 +8,12 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifaddrs {
-    pub ifa_next: *mut libc::ifaddrs,
+    pub ifa_next: *mut ifaddrs,
     pub ifa_name: *mut c_char,
     pub ifa_flags: c_uint,
-    pub ifa_addr: *mut libc::sockaddr,
-    pub ifa_netmask: *mut libc::sockaddr,
-    pub ifa_dstaddr: *mut libc::sockaddr,
+    pub ifa_addr: *mut sockaddr,
+    pub ifa_netmask: *mut sockaddr,
+    pub ifa_dstaddr: *mut sockaddr,
     pub ifa_data: *mut c_void,
 }
 
@@ -21,24 +21,24 @@ pub struct ifaddrs {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ifmaddrs {
-    pub ifma_next: *mut libc::ifmaddrs,
-    pub ifma_name: *mut libc::sockaddr,
-    pub ifma_addr: *mut libc::sockaddr,
-    pub ifma_lladdr: *mut libc::sockaddr,
+    pub ifma_next: *mut ifmaddrs,
+    pub ifma_name: *mut sockaddr,
+    pub ifma_addr: *mut sockaddr,
+    pub ifma_lladdr: *mut sockaddr,
 }
 
 extern "C-unwind" {
-    pub fn getifaddrs(param1: *mut *mut libc::ifaddrs) -> c_int;
+    pub fn getifaddrs(param1: *mut *mut ifaddrs) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn freeifaddrs(param1: *mut libc::ifaddrs);
+    pub fn freeifaddrs(param1: *mut ifaddrs);
 }
 
 extern "C-unwind" {
-    pub fn getifmaddrs(param1: *mut *mut libc::ifmaddrs) -> c_int;
+    pub fn getifmaddrs(param1: *mut *mut ifmaddrs) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn freeifmaddrs(param1: *mut libc::ifmaddrs);
+    pub fn freeifmaddrs(param1: *mut ifmaddrs);
 }

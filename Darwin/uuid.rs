@@ -10,7 +10,7 @@ use crate::ffi::*;
 pub type uuid_string_t = __darwin_uuid_string_t;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/uuid_null?language=objc)
-pub static UUID_NULL: uuid_t = libc::UUID_DEFINE!(
+pub static UUID_NULL: uuid_t = UUID_DEFINE!(
     UnknownUUID_NULL,
     0,
     0,
@@ -59,17 +59,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn uuid_parse(r#in: libc::uuid_string_t, uu: uuid_t) -> c_int;
+    pub fn uuid_parse(r#in: uuid_string_t, uu: uuid_t) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn uuid_unparse(uu: uuid_t, out: libc::uuid_string_t);
+    pub fn uuid_unparse(uu: uuid_t, out: uuid_string_t);
 }
 
 extern "C-unwind" {
-    pub fn uuid_unparse_lower(uu: uuid_t, out: libc::uuid_string_t);
+    pub fn uuid_unparse_lower(uu: uuid_t, out: uuid_string_t);
 }
 
 extern "C-unwind" {
-    pub fn uuid_unparse_upper(uu: uuid_t, out: libc::uuid_string_t);
+    pub fn uuid_unparse_upper(uu: uuid_t, out: uuid_string_t);
 }

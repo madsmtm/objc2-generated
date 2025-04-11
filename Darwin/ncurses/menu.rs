@@ -24,11 +24,11 @@ pub struct TEXT {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tagITEM {
-    pub name: libc::TEXT,
-    pub description: libc::TEXT,
-    pub imenu: *mut libc::tagMENU,
+    pub name: TEXT,
+    pub description: TEXT,
+    pub imenu: *mut tagMENU,
     pub userptr: *mut c_void,
-    pub opt: libc::Item_Options,
+    pub opt: Item_Options,
     pub index: c_short,
     pub y: c_short,
     pub x: c_short,
@@ -65,25 +65,25 @@ pub struct tagMENU {
     pub spc_rows: c_short,
     pub pattern: *mut c_char,
     pub pindex: c_short,
-    pub win: *mut libc::WINDOW,
-    pub sub: *mut libc::WINDOW,
-    pub userwin: *mut libc::WINDOW,
-    pub usersub: *mut libc::WINDOW,
-    pub items: *mut *mut libc::ITEM,
+    pub win: *mut WINDOW,
+    pub sub: *mut WINDOW,
+    pub userwin: *mut WINDOW,
+    pub usersub: *mut WINDOW,
+    pub items: *mut *mut ITEM,
     pub nitems: c_short,
-    pub curitem: *mut libc::ITEM,
+    pub curitem: *mut ITEM,
     pub toprow: c_short,
-    pub fore: libc::chtype,
-    pub back: libc::chtype,
-    pub grey: libc::chtype,
+    pub fore: chtype,
+    pub back: chtype,
+    pub grey: chtype,
     pub pad: c_uchar,
-    pub menuinit: libc::Menu_Hook,
-    pub menuterm: libc::Menu_Hook,
-    pub iteminit: libc::Menu_Hook,
-    pub itemterm: libc::Menu_Hook,
+    pub menuinit: Menu_Hook,
+    pub menuterm: Menu_Hook,
+    pub iteminit: Menu_Hook,
+    pub itemterm: Menu_Hook,
     pub userptr: *mut c_void,
     pub mark: *mut c_char,
-    pub opt: libc::Menu_Options,
+    pub opt: Menu_Options,
     pub status: c_ushort,
 }
 
@@ -91,15 +91,13 @@ pub struct tagMENU {
 pub type MENU = Self;
 
 extern "C-unwind" {
-    pub fn menu_items(param1: Option<&libc::MENU>) -> *mut *mut libc::ITEM;
+    pub fn menu_items(param1: Option<&MENU>) -> *mut *mut ITEM;
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn current_item(
-    param1: Option<&libc::MENU>,
-) -> Option<Retained<libc::ITEM>> {
+pub unsafe extern "C-unwind" fn current_item(param1: Option<&MENU>) -> Option<Retained<ITEM>> {
     extern "C-unwind" {
-        fn current_item(param1: Option<&libc::MENU>) -> *mut libc::ITEM;
+        fn current_item(param1: Option<&MENU>) -> *mut ITEM;
     }
     let ret = unsafe { current_item(param1) };
     unsafe { Retained::retain_autoreleased(ret) }
@@ -109,67 +107,65 @@ pub unsafe extern "C-unwind" fn current_item(
 pub unsafe extern "C-unwind" fn new_item(
     param1: *const c_char,
     param1: *const c_char,
-) -> Option<Retained<libc::ITEM>> {
+) -> Option<Retained<ITEM>> {
     extern "C-unwind" {
-        fn new_item(param1: *const c_char, param1: *const c_char) -> *mut libc::ITEM;
+        fn new_item(param1: *const c_char, param1: *const c_char) -> *mut ITEM;
     }
     let ret = unsafe { new_item(param1, param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn new_menu(
-    param1: *mut *mut libc::ITEM,
-) -> Option<Retained<libc::MENU>> {
+pub unsafe extern "C-unwind" fn new_menu(param1: *mut *mut ITEM) -> Option<Retained<MENU>> {
     extern "C-unwind" {
-        fn new_menu(param1: *mut *mut libc::ITEM) -> *mut libc::MENU;
+        fn new_menu(param1: *mut *mut ITEM) -> *mut MENU;
     }
     let ret = unsafe { new_menu(param1) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
-    pub fn item_opts(param1: Option<&libc::ITEM>) -> libc::Item_Options;
+    pub fn item_opts(param1: Option<&ITEM>) -> Item_Options;
 }
 
 extern "C-unwind" {
-    pub fn menu_opts(param1: Option<&libc::MENU>) -> libc::Menu_Options;
+    pub fn menu_opts(param1: Option<&MENU>) -> Menu_Options;
 }
 
 extern "C-unwind" {
-    pub fn item_init(param1: Option<&libc::MENU>) -> libc::Menu_Hook;
+    pub fn item_init(param1: Option<&MENU>) -> Menu_Hook;
 }
 
 extern "C-unwind" {
-    pub fn item_term(param1: Option<&libc::MENU>) -> libc::Menu_Hook;
+    pub fn item_term(param1: Option<&MENU>) -> Menu_Hook;
 }
 
 extern "C-unwind" {
-    pub fn menu_init(param1: Option<&libc::MENU>) -> libc::Menu_Hook;
+    pub fn menu_init(param1: Option<&MENU>) -> Menu_Hook;
 }
 
 extern "C-unwind" {
-    pub fn menu_term(param1: Option<&libc::MENU>) -> libc::Menu_Hook;
+    pub fn menu_term(param1: Option<&MENU>) -> Menu_Hook;
 }
 
 extern "C-unwind" {
-    pub fn menu_sub(param1: Option<&libc::MENU>) -> *mut libc::WINDOW;
+    pub fn menu_sub(param1: Option<&MENU>) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn menu_win(param1: Option<&libc::MENU>) -> *mut libc::WINDOW;
+    pub fn menu_win(param1: Option<&MENU>) -> *mut WINDOW;
 }
 
 extern "C-unwind" {
-    pub fn item_description(param1: Option<&libc::ITEM>) -> *const c_char;
+    pub fn item_description(param1: Option<&ITEM>) -> *const c_char;
 }
 
 extern "C-unwind" {
-    pub fn item_name(param1: Option<&libc::ITEM>) -> *const c_char;
+    pub fn item_name(param1: Option<&ITEM>) -> *const c_char;
 }
 
 extern "C-unwind" {
-    pub fn menu_mark(param1: Option<&libc::MENU>) -> *const c_char;
+    pub fn menu_mark(param1: Option<&MENU>) -> *const c_char;
 }
 
 extern "C-unwind" {
@@ -177,172 +173,171 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn menu_pattern(param1: Option<&libc::MENU>) -> *mut c_char;
+    pub fn menu_pattern(param1: Option<&MENU>) -> *mut c_char;
 }
 
 extern "C-unwind" {
-    pub fn menu_userptr(param1: Option<&libc::MENU>) -> *mut c_void;
+    pub fn menu_userptr(param1: Option<&MENU>) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn item_userptr(param1: Option<&libc::ITEM>) -> *mut c_void;
+    pub fn item_userptr(param1: Option<&ITEM>) -> *mut c_void;
 }
 
 extern "C-unwind" {
-    pub fn menu_back(param1: Option<&libc::MENU>) -> libc::chtype;
+    pub fn menu_back(param1: Option<&MENU>) -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn menu_fore(param1: Option<&libc::MENU>) -> libc::chtype;
+    pub fn menu_fore(param1: Option<&MENU>) -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn menu_grey(param1: Option<&libc::MENU>) -> libc::chtype;
+    pub fn menu_grey(param1: Option<&MENU>) -> chtype;
 }
 
 extern "C-unwind" {
-    pub fn free_item(param1: Option<&libc::ITEM>) -> c_int;
+    pub fn free_item(param1: Option<&ITEM>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn free_menu(param1: Option<&libc::MENU>) -> c_int;
+    pub fn free_menu(param1: Option<&MENU>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn item_count(param1: Option<&libc::MENU>) -> c_int;
+    pub fn item_count(param1: Option<&MENU>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn item_index(param1: Option<&libc::ITEM>) -> c_int;
+    pub fn item_index(param1: Option<&ITEM>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn item_opts_off(param1: Option<&libc::ITEM>, param1: libc::Item_Options) -> c_int;
+    pub fn item_opts_off(param1: Option<&ITEM>, param1: Item_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn item_opts_on(param1: Option<&libc::ITEM>, param1: libc::Item_Options) -> c_int;
+    pub fn item_opts_on(param1: Option<&ITEM>, param1: Item_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn menu_driver(param1: Option<&libc::MENU>, param1: c_int) -> c_int;
+    pub fn menu_driver(param1: Option<&MENU>, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn menu_opts_off(param1: Option<&libc::MENU>, param1: libc::Menu_Options) -> c_int;
+    pub fn menu_opts_off(param1: Option<&MENU>, param1: Menu_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn menu_opts_on(param1: Option<&libc::MENU>, param1: libc::Menu_Options) -> c_int;
+    pub fn menu_opts_on(param1: Option<&MENU>, param1: Menu_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn menu_pad(param1: Option<&libc::MENU>) -> c_int;
+    pub fn menu_pad(param1: Option<&MENU>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn pos_menu_cursor(param1: Option<&libc::MENU>) -> c_int;
+    pub fn pos_menu_cursor(param1: Option<&MENU>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn post_menu(param1: Option<&libc::MENU>) -> c_int;
+    pub fn post_menu(param1: Option<&MENU>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn scale_menu(param1: Option<&libc::MENU>, param1: *mut c_int, param1: *mut c_int)
-        -> c_int;
+    pub fn scale_menu(param1: Option<&MENU>, param1: *mut c_int, param1: *mut c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_current_item(menu: Option<&libc::MENU>, item: Option<&libc::ITEM>) -> c_int;
+    pub fn set_current_item(menu: Option<&MENU>, item: Option<&ITEM>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_item_init(param1: Option<&libc::MENU>, param1: libc::Menu_Hook) -> c_int;
+    pub fn set_item_init(param1: Option<&MENU>, param1: Menu_Hook) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_item_opts(param1: Option<&libc::ITEM>, param1: libc::Item_Options) -> c_int;
+    pub fn set_item_opts(param1: Option<&ITEM>, param1: Item_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_item_term(param1: Option<&libc::MENU>, param1: libc::Menu_Hook) -> c_int;
+    pub fn set_item_term(param1: Option<&MENU>, param1: Menu_Hook) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_item_userptr(param1: Option<&libc::ITEM>, param1: *mut c_void) -> c_int;
+    pub fn set_item_userptr(param1: Option<&ITEM>, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_item_value(param1: Option<&libc::ITEM>, param1: bool) -> c_int;
+    pub fn set_item_value(param1: Option<&ITEM>, param1: bool) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_back(param1: Option<&libc::MENU>, param1: libc::chtype) -> c_int;
+    pub fn set_menu_back(param1: Option<&MENU>, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_fore(param1: Option<&libc::MENU>, param1: libc::chtype) -> c_int;
+    pub fn set_menu_fore(param1: Option<&MENU>, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_format(param1: Option<&libc::MENU>, param1: c_int, param1: c_int) -> c_int;
+    pub fn set_menu_format(param1: Option<&MENU>, param1: c_int, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_grey(param1: Option<&libc::MENU>, param1: libc::chtype) -> c_int;
+    pub fn set_menu_grey(param1: Option<&MENU>, param1: chtype) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_init(param1: Option<&libc::MENU>, param1: libc::Menu_Hook) -> c_int;
+    pub fn set_menu_init(param1: Option<&MENU>, param1: Menu_Hook) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_items(param1: Option<&libc::MENU>, param1: *mut *mut libc::ITEM) -> c_int;
+    pub fn set_menu_items(param1: Option<&MENU>, param1: *mut *mut ITEM) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_mark(param1: Option<&libc::MENU>, param1: *const c_char) -> c_int;
+    pub fn set_menu_mark(param1: Option<&MENU>, param1: *const c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_opts(param1: Option<&libc::MENU>, param1: libc::Menu_Options) -> c_int;
+    pub fn set_menu_opts(param1: Option<&MENU>, param1: Menu_Options) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_pad(param1: Option<&libc::MENU>, param1: c_int) -> c_int;
+    pub fn set_menu_pad(param1: Option<&MENU>, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_pattern(param1: Option<&libc::MENU>, param1: *const c_char) -> c_int;
+    pub fn set_menu_pattern(param1: Option<&MENU>, param1: *const c_char) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_sub(param1: Option<&libc::MENU>, param1: *mut libc::WINDOW) -> c_int;
+    pub fn set_menu_sub(param1: Option<&MENU>, param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_term(param1: Option<&libc::MENU>, param1: libc::Menu_Hook) -> c_int;
+    pub fn set_menu_term(param1: Option<&MENU>, param1: Menu_Hook) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_userptr(param1: Option<&libc::MENU>, param1: *mut c_void) -> c_int;
+    pub fn set_menu_userptr(param1: Option<&MENU>, param1: *mut c_void) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_menu_win(param1: Option<&libc::MENU>, param1: *mut libc::WINDOW) -> c_int;
+    pub fn set_menu_win(param1: Option<&MENU>, param1: *mut WINDOW) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn set_top_row(param1: Option<&libc::MENU>, param1: c_int) -> c_int;
+    pub fn set_top_row(param1: Option<&MENU>, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn top_row(param1: Option<&libc::MENU>) -> c_int;
+    pub fn top_row(param1: Option<&MENU>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn unpost_menu(param1: Option<&libc::MENU>) -> c_int;
+    pub fn unpost_menu(param1: Option<&MENU>) -> c_int;
 }
 
 extern "C-unwind" {
@@ -351,7 +346,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn set_menu_spacing(
-        param1: Option<&libc::MENU>,
+        param1: Option<&MENU>,
         param1: c_int,
         param1: c_int,
         param1: c_int,
@@ -360,7 +355,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn menu_spacing(
-        param1: Option<&libc::MENU>,
+        param1: Option<&MENU>,
         param1: *mut c_int,
         param1: *mut c_int,
         param1: *mut c_int,
@@ -368,13 +363,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn item_value(param1: Option<&libc::ITEM>) -> bool;
+    pub fn item_value(param1: Option<&ITEM>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn item_visible(param1: Option<&libc::ITEM>) -> bool;
+    pub fn item_visible(param1: Option<&ITEM>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn menu_format(param1: Option<&libc::MENU>, param1: *mut c_int, param1: *mut c_int);
+    pub fn menu_format(param1: Option<&MENU>, param1: *mut c_int, param1: *mut c_int);
 }

@@ -7,6 +7,6 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct tcpiphdr {
-    pub ti_i: libc::ipovly,
-    pub ti_t: libc::tcphdr,
+    pub ti_i: ipovly,
+    pub ti_t: tcphdr,
 }

@@ -41,7 +41,7 @@ pub struct if_data {
     pub ifi_noproto: u32,
     pub ifi_recvtiming: u32,
     pub ifi_xmittiming: u32,
-    pub ifi_lastchange: libc::timeval32,
+    pub ifi_lastchange: timeval32,
     pub ifi_unused2: u32,
     pub ifi_hwassist: u32,
     pub ifi_reserved1: u32,
@@ -76,7 +76,7 @@ pub struct if_data64 {
     pub ifi_noproto: u64,
     pub ifi_recvtiming: u32,
     pub ifi_xmittiming: u32,
-    pub ifi_lastchange: libc::timeval32,
+    pub ifi_lastchange: timeval32,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifqueue?language=objc)

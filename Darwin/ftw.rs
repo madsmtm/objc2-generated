@@ -16,9 +16,7 @@ extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "ftw")]
     pub fn ftw(
         param1: *const c_char,
-        param1: Option<
-            unsafe extern "C-unwind" fn(*const c_char, *const libc::stat, c_int) -> c_int,
-        >,
+        param1: Option<unsafe extern "C-unwind" fn(*const c_char, *const stat, c_int) -> c_int>,
         param1: c_int,
     ) -> c_int;
 }
@@ -28,12 +26,7 @@ extern "C-unwind" {
     pub fn nftw(
         param1: *const c_char,
         param1: Option<
-            unsafe extern "C-unwind" fn(
-                *const c_char,
-                *const libc::stat,
-                c_int,
-                *mut libc::FTW,
-            ) -> c_int,
+            unsafe extern "C-unwind" fn(*const c_char, *const stat, c_int, *mut FTW) -> c_int,
         >,
         param1: c_int,
         param1: c_int,

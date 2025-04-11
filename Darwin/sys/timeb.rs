@@ -8,12 +8,12 @@ use crate::ffi::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct timeb {
-    pub time: libc::time_t,
+    pub time: time_t,
     pub millitm: c_ushort,
     pub timezone: c_short,
     pub dstflag: c_short,
 }
 
 extern "C-unwind" {
-    pub fn ftime(param1: *mut libc::timeb) -> c_int;
+    pub fn ftime(param1: *mut timeb) -> c_int;
 }

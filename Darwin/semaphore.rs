@@ -10,12 +10,12 @@ use crate::ffi::*;
 pub struct pseminfo {
     pub psem_flags: c_uint,
     pub psem_usecount: c_uint,
-    pub psem_mode: libc::mode_t,
-    pub psem_uid: libc::uid_t,
-    pub psem_gid: libc::gid_t,
+    pub psem_mode: mode_t,
+    pub psem_uid: uid_t,
+    pub psem_gid: gid_t,
     pub psem_name: [c_char; 32],
     pub psem_semobject: *mut c_void,
-    pub psem_label: *mut libc::label,
-    pub psem_creator_pid: libc::pid_t,
+    pub psem_label: *mut label,
+    pub psem_creator_pid: pid_t,
     pub psem_creator_uniqueid: u64,
 }

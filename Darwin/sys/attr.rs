@@ -30,26 +30,26 @@ pub type attrgroup_t = u32;
 pub struct attrlist {
     pub bitmapcount: c_ushort,
     pub reserved: u16,
-    pub commonattr: libc::attrgroup_t,
-    pub volattr: libc::attrgroup_t,
-    pub dirattr: libc::attrgroup_t,
-    pub fileattr: libc::attrgroup_t,
-    pub forkattr: libc::attrgroup_t,
+    pub commonattr: attrgroup_t,
+    pub volattr: attrgroup_t,
+    pub dirattr: attrgroup_t,
+    pub fileattr: attrgroup_t,
+    pub forkattr: attrgroup_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/attribute_set?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct attribute_set {
-    pub commonattr: libc::attrgroup_t,
-    pub volattr: libc::attrgroup_t,
-    pub dirattr: libc::attrgroup_t,
-    pub fileattr: libc::attrgroup_t,
-    pub forkattr: libc::attrgroup_t,
+    pub commonattr: attrgroup_t,
+    pub volattr: attrgroup_t,
+    pub dirattr: attrgroup_t,
+    pub fileattr: attrgroup_t,
+    pub forkattr: attrgroup_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/attribute_set_t?language=objc)
-pub type attribute_set_t = libc::attribute_set;
+pub type attribute_set_t = attribute_set;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/attrreference?language=objc)
 #[repr(C)]
@@ -60,7 +60,7 @@ pub struct attrreference {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/attrreference_t?language=objc)
-pub type attrreference_t = libc::attrreference;
+pub type attrreference_t = attrreference;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/diskextent?language=objc)
 #[repr(C)]
@@ -71,7 +71,7 @@ pub struct diskextent {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/extentrecord?language=objc)
-pub type extentrecord = ArrayUnknownABI<[libc::diskextent; 8]>;
+pub type extentrecord = ArrayUnknownABI<[diskextent; 8]>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_capabilities_set_t?language=objc)
 pub type vol_capabilities_set_t = ArrayUnknownABI<[u32; 4]>;
@@ -80,38 +80,38 @@ pub type vol_capabilities_set_t = ArrayUnknownABI<[u32; 4]>;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vol_capabilities_attr {
-    pub capabilities: libc::vol_capabilities_set_t,
-    pub valid: libc::vol_capabilities_set_t,
+    pub capabilities: vol_capabilities_set_t,
+    pub valid: vol_capabilities_set_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_capabilities_attr_t?language=objc)
-pub type vol_capabilities_attr_t = libc::vol_capabilities_attr;
+pub type vol_capabilities_attr_t = vol_capabilities_attr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_attributes_attr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vol_attributes_attr {
-    pub validattr: libc::attribute_set_t,
-    pub nativeattr: libc::attribute_set_t,
+    pub validattr: attribute_set_t,
+    pub nativeattr: attribute_set_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vol_attributes_attr_t?language=objc)
-pub type vol_attributes_attr_t = libc::vol_attributes_attr;
+pub type vol_attributes_attr_t = vol_attributes_attr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/fssearchblock?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct fssearchblock {
-    pub returnattrs: *mut libc::attrlist,
+    pub returnattrs: *mut attrlist,
     pub returnbuffer: *mut c_void,
     pub returnbuffersize: usize,
-    pub maxmatches: libc::u_long,
+    pub maxmatches: u_long,
     pub timelimit: timeval,
     pub searchparams1: *mut c_void,
     pub sizeofsearchparams1: usize,
     pub searchparams2: *mut c_void,
     pub sizeofsearchparams2: usize,
-    pub searchattrs: libc::attrlist,
+    pub searchattrs: attrlist,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/searchstate?language=objc)

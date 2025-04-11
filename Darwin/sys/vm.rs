@@ -8,7 +8,7 @@ use crate::ffi::*;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vmspace {
     pub dummy: i32,
-    pub dummy2: libc::caddr_t,
+    pub dummy2: caddr_t,
     pub dummy3: [i32; 5],
-    pub dummy4: [libc::caddr_t; 3],
+    pub dummy4: [caddr_t; 3],
 }

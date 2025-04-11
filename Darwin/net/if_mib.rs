@@ -15,7 +15,7 @@ pub struct ifmibdata {
     pub ifmd_snd_maxlen: c_uint,
     pub ifmd_snd_drops: c_uint,
     pub ifmd_filler: [c_uint; 4],
-    pub ifmd_data: libc::if_data64,
+    pub ifmd_data: if_data64,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ifs_iso_8802_3?language=objc)

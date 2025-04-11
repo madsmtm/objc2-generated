@@ -14,19 +14,19 @@ pub type msglen_t = c_ulong;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct __msqid_ds_new {
-    pub msg_perm: libc::ipc_perm,
+    pub msg_perm: ipc_perm,
     pub msg_first: i32,
     pub msg_last: i32,
-    pub msg_cbytes: libc::msglen_t,
-    pub msg_qnum: libc::msgqnum_t,
-    pub msg_qbytes: libc::msglen_t,
-    pub msg_lspid: libc::pid_t,
-    pub msg_lrpid: libc::pid_t,
-    pub msg_stime: libc::time_t,
+    pub msg_cbytes: msglen_t,
+    pub msg_qnum: msgqnum_t,
+    pub msg_qbytes: msglen_t,
+    pub msg_lspid: pid_t,
+    pub msg_lrpid: pid_t,
+    pub msg_stime: time_t,
     pub msg_pad1: i32,
-    pub msg_rtime: libc::time_t,
+    pub msg_rtime: time_t,
     pub msg_pad2: i32,
-    pub msg_ctime: libc::time_t,
+    pub msg_ctime: time_t,
     pub msg_pad3: i32,
     pub msg_pad4: [i32; 4],
 }
@@ -35,11 +35,11 @@ pub struct __msqid_ds_new {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct msg {
-    pub msg_next: *mut libc::msg,
+    pub msg_next: *mut msg,
     pub msg_type: c_long,
     pub msg_ts: c_ushort,
     pub msg_spot: c_short,
-    pub label: *mut libc::label,
+    pub label: *mut label,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mymsg?language=objc)
@@ -64,11 +64,11 @@ pub struct msginfo {
 
 extern "C-unwind" {
     #[cfg_attr(target_vendor = "apple", link_name = "msgctl")]
-    pub fn msgctl(param1: c_int, param1: c_int, param1: *mut libc::__msqid_ds_new) -> c_int;
+    pub fn msgctl(param1: c_int, param1: c_int, param1: *mut __msqid_ds_new) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn msgget(param1: libc::key_t, param1: c_int) -> c_int;
+    pub fn msgget(param1: key_t, param1: c_int) -> c_int;
 }
 
 extern "C-unwind" {

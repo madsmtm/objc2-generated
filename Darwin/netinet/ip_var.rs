@@ -11,8 +11,8 @@ pub struct ipovly {
     pub ih_x1: [c_uchar; 9],
     pub ih_pr: c_uchar,
     pub ih_len: c_ushort,
-    pub ih_src: libc::in_addr,
-    pub ih_dst: libc::in_addr,
+    pub ih_src: in_addr,
+    pub ih_dst: in_addr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ipstat?language=objc)

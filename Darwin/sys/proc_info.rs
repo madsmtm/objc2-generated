@@ -13,12 +13,12 @@ pub struct proc_bsdinfo {
     pub pbi_xstatus: u32,
     pub pbi_pid: u32,
     pub pbi_ppid: u32,
-    pub pbi_uid: libc::uid_t,
-    pub pbi_gid: libc::gid_t,
-    pub pbi_ruid: libc::uid_t,
-    pub pbi_rgid: libc::gid_t,
-    pub pbi_svuid: libc::uid_t,
-    pub pbi_svgid: libc::gid_t,
+    pub pbi_uid: uid_t,
+    pub pbi_gid: gid_t,
+    pub pbi_ruid: uid_t,
+    pub pbi_rgid: gid_t,
+    pub pbi_svuid: uid_t,
+    pub pbi_svgid: gid_t,
     pub rfu_1: u32,
     pub pbi_comm: [c_char; 16],
     pub pbi_name: [c_char; 32],
@@ -42,12 +42,12 @@ pub struct proc_bsdshortinfo {
     pub pbsi_status: u32,
     pub pbsi_comm: [c_char; 16],
     pub pbsi_flags: u32,
-    pub pbsi_uid: libc::uid_t,
-    pub pbsi_gid: libc::gid_t,
-    pub pbsi_ruid: libc::uid_t,
-    pub pbsi_rgid: libc::gid_t,
-    pub pbsi_svuid: libc::uid_t,
-    pub pbsi_svgid: libc::gid_t,
+    pub pbsi_uid: uid_t,
+    pub pbsi_gid: gid_t,
+    pub pbsi_ruid: uid_t,
+    pub pbsi_rgid: gid_t,
+    pub pbsi_svuid: uid_t,
+    pub pbsi_svgid: gid_t,
     pub pbsi_rfu: u32,
 }
 
@@ -79,8 +79,8 @@ pub struct proc_taskinfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_taskallinfo {
-    pub pbsd: libc::proc_bsdinfo,
-    pub ptinfo: libc::proc_taskinfo,
+    pub pbsd: proc_bsdinfo,
+    pub ptinfo: proc_taskinfo,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_threadinfo?language=objc)
@@ -143,7 +143,7 @@ pub struct proc_workqueueinfo {
 pub struct proc_fileinfo {
     pub fi_openflags: u32,
     pub fi_status: u32,
-    pub fi_offset: libc::off_t,
+    pub fi_offset: off_t,
     pub fi_type: i32,
     pub fi_guardflags: u32,
 }
@@ -177,8 +177,8 @@ pub struct vinfo_stat {
     pub vst_mode: u16,
     pub vst_nlink: u16,
     pub vst_ino: u64,
-    pub vst_uid: libc::uid_t,
-    pub vst_gid: libc::gid_t,
+    pub vst_uid: uid_t,
+    pub vst_gid: gid_t,
     pub vst_atime: i64,
     pub vst_atimensec: i64,
     pub vst_mtime: i64,
@@ -187,7 +187,7 @@ pub struct vinfo_stat {
     pub vst_ctimensec: i64,
     pub vst_birthtime: i64,
     pub vst_birthtimensec: i64,
-    pub vst_size: libc::off_t,
+    pub vst_size: off_t,
     pub vst_blocks: i64,
     pub vst_blksize: i32,
     pub vst_flags: u32,
@@ -200,17 +200,17 @@ pub struct vinfo_stat {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vnode_info {
-    pub vi_stat: libc::vinfo_stat,
+    pub vi_stat: vinfo_stat,
     pub vi_type: c_int,
     pub vi_pad: c_int,
-    pub vi_fsid: libc::fsid_t,
+    pub vi_fsid: fsid_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vnode_info_path?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vnode_info_path {
-    pub vip_vi: libc::vnode_info,
+    pub vip_vi: vnode_info,
     pub vip_path: [c_char; 1024],
 }
 
@@ -218,24 +218,24 @@ pub struct vnode_info_path {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vnode_fdinfo {
-    pub pfi: libc::proc_fileinfo,
-    pub pvi: libc::vnode_info,
+    pub pfi: proc_fileinfo,
+    pub pvi: vnode_info,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/vnode_fdinfowithpath?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct vnode_fdinfowithpath {
-    pub pfi: libc::proc_fileinfo,
-    pub pvip: libc::vnode_info_path,
+    pub pfi: proc_fileinfo,
+    pub pvip: vnode_info_path,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_regionwithpathinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_regionwithpathinfo {
-    pub prp_prinfo: libc::proc_regioninfo,
-    pub prp_vip: libc::vnode_info_path,
+    pub prp_prinfo: proc_regioninfo,
+    pub prp_vip: vnode_info_path,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_regionpath?language=objc)
@@ -251,16 +251,16 @@ pub struct proc_regionpath {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_vnodepathinfo {
-    pub pvi_cdir: libc::vnode_info_path,
-    pub pvi_rdir: libc::vnode_info_path,
+    pub pvi_cdir: vnode_info_path,
+    pub pvi_rdir: vnode_info_path,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_threadwithpathinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct proc_threadwithpathinfo {
-    pub pt: libc::proc_threadinfo,
-    pub pvip: libc::vnode_info_path,
+    pub pt: proc_threadinfo,
+    pub pvip: vnode_info_path,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/in4in6_addr?language=objc)
@@ -268,14 +268,14 @@ pub struct proc_threadwithpathinfo {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct in4in6_addr {
     pub i46a_pad32: [u32; 3],
-    pub i46a_addr4: libc::in_addr,
+    pub i46a_addr4: in_addr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/in_sockinfo_insi_faddr?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union in_sockinfo_insi_faddr {
-    pub ina_46: libc::in4in6_addr,
+    pub ina_46: in4in6_addr,
     pub ina_6: in6_addr,
 }
 
@@ -283,7 +283,7 @@ pub union in_sockinfo_insi_faddr {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union in_sockinfo_insi_laddr {
-    pub ina_46: libc::in4in6_addr,
+    pub ina_46: in4in6_addr,
     pub ina_6: in6_addr,
 }
 
@@ -316,17 +316,17 @@ pub struct in_sockinfo {
     pub insi_vflag: u8,
     pub insi_ip_ttl: u8,
     pub rfu_1: u32,
-    pub insi_faddr: libc::in_sockinfo_insi_faddr,
-    pub insi_laddr: libc::in_sockinfo_insi_laddr,
-    pub insi_v4: libc::in_sockinfo_insi_v4,
-    pub insi_v6: libc::in_sockinfo_insi_v6,
+    pub insi_faddr: in_sockinfo_insi_faddr,
+    pub insi_laddr: in_sockinfo_insi_laddr,
+    pub insi_v4: in_sockinfo_insi_v4,
+    pub insi_v6: in_sockinfo_insi_v6,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/tcp_sockinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct tcp_sockinfo {
-    pub tcpsi_ini: libc::in_sockinfo,
+    pub tcpsi_ini: in_sockinfo,
     pub tcpsi_state: c_int,
     pub tcpsi_timer: [c_int; 4],
     pub tcpsi_mss: c_int,
@@ -339,7 +339,7 @@ pub struct tcp_sockinfo {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union un_sockinfo_unsi_addr {
-    pub ua_sun: libc::sockaddr_un,
+    pub ua_sun: sockaddr_un,
     pub ua_dummy: [c_char; 255],
 }
 
@@ -347,7 +347,7 @@ pub union un_sockinfo_unsi_addr {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union un_sockinfo_unsi_caddr {
-    pub ua_sun: libc::sockaddr_un,
+    pub ua_sun: sockaddr_un,
     pub ua_dummy: [c_char; 255],
 }
 
@@ -357,8 +357,8 @@ pub union un_sockinfo_unsi_caddr {
 pub struct un_sockinfo {
     pub unsi_conn_so: u64,
     pub unsi_conn_pcb: u64,
-    pub unsi_addr: libc::un_sockinfo_unsi_addr,
-    pub unsi_caddr: libc::un_sockinfo_unsi_caddr,
+    pub unsi_addr: un_sockinfo_unsi_addr,
+    pub unsi_caddr: un_sockinfo_unsi_caddr,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ndrv_info?language=objc)
@@ -436,20 +436,20 @@ pub const SOCKINFO_VSOCK: c_uint = 7;
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union socket_info_soi_proto {
-    pub pri_in: libc::in_sockinfo,
-    pub pri_tcp: libc::tcp_sockinfo,
-    pub pri_un: libc::un_sockinfo,
-    pub pri_ndrv: libc::ndrv_info,
-    pub pri_kern_event: libc::kern_event_info,
-    pub pri_kern_ctl: libc::kern_ctl_info,
-    pub pri_vsock: libc::vsock_sockinfo,
+    pub pri_in: in_sockinfo,
+    pub pri_tcp: tcp_sockinfo,
+    pub pri_un: un_sockinfo,
+    pub pri_ndrv: ndrv_info,
+    pub pri_kern_event: kern_event_info,
+    pub pri_kern_ctl: kern_ctl_info,
+    pub pri_vsock: vsock_sockinfo,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/socket_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct socket_info {
-    pub soi_stat: libc::vinfo_stat,
+    pub soi_stat: vinfo_stat,
     pub soi_so: u64,
     pub soi_pcb: u64,
     pub soi_type: c_int,
@@ -464,26 +464,26 @@ pub struct socket_info {
     pub soi_timeo: c_short,
     pub soi_error: c_ushort,
     pub soi_oobmark: u32,
-    pub soi_rcv: libc::sockbuf_info,
-    pub soi_snd: libc::sockbuf_info,
+    pub soi_rcv: sockbuf_info,
+    pub soi_snd: sockbuf_info,
     pub soi_kind: c_int,
     pub rfu_1: u32,
-    pub soi_proto: libc::socket_info_soi_proto,
+    pub soi_proto: socket_info_soi_proto,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/socket_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct socket_fdinfo {
-    pub pfi: libc::proc_fileinfo,
-    pub psi: libc::socket_info,
+    pub pfi: proc_fileinfo,
+    pub psi: socket_info,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/psem_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct psem_info {
-    pub psem_stat: libc::vinfo_stat,
+    pub psem_stat: vinfo_stat,
     pub psem_name: [c_char; 1024],
 }
 
@@ -491,15 +491,15 @@ pub struct psem_info {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct psem_fdinfo {
-    pub pfi: libc::proc_fileinfo,
-    pub pseminfo: libc::psem_info,
+    pub pfi: proc_fileinfo,
+    pub pseminfo: psem_info,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/pshm_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pshm_info {
-    pub pshm_stat: libc::vinfo_stat,
+    pub pshm_stat: vinfo_stat,
     pub pshm_mappaddr: u64,
     pub pshm_name: [c_char; 1024],
 }
@@ -508,15 +508,15 @@ pub struct pshm_info {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pshm_fdinfo {
-    pub pfi: libc::proc_fileinfo,
-    pub pshminfo: libc::pshm_info,
+    pub pfi: proc_fileinfo,
+    pub pshminfo: pshm_info,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/pipe_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pipe_info {
-    pub pipe_stat: libc::vinfo_stat,
+    pub pipe_stat: vinfo_stat,
     pub pipe_handle: u64,
     pub pipe_peerhandle: u64,
     pub pipe_status: c_int,
@@ -527,15 +527,15 @@ pub struct pipe_info {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct pipe_fdinfo {
-    pub pfi: libc::proc_fileinfo,
-    pub pipeinfo: libc::pipe_info,
+    pub pfi: proc_fileinfo,
+    pub pipeinfo: pipe_info,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/kqueue_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kqueue_info {
-    pub kq_stat: libc::vinfo_stat,
+    pub kq_stat: vinfo_stat,
     pub kq_state: u32,
     pub rfu_1: u32,
 }
@@ -544,7 +544,7 @@ pub struct kqueue_info {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kqueue_dyninfo {
-    pub kqdi_info: libc::kqueue_info,
+    pub kqdi_info: kqueue_info,
     pub kqdi_servicer: u64,
     pub kqdi_owner: u64,
     pub kqdi_sync_waiters: u32,
@@ -563,23 +563,23 @@ pub struct kqueue_dyninfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct kqueue_fdinfo {
-    pub pfi: libc::proc_fileinfo,
-    pub kqueueinfo: libc::kqueue_info,
+    pub pfi: proc_fileinfo,
+    pub kqueueinfo: kqueue_info,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/appletalk_info?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct appletalk_info {
-    pub atalk_stat: libc::vinfo_stat,
+    pub atalk_stat: vinfo_stat,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/appletalk_fdinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct appletalk_fdinfo {
-    pub pfi: libc::proc_fileinfo,
-    pub appletalkinfo: libc::appletalk_info,
+    pub pfi: proc_fileinfo,
+    pub appletalkinfo: appletalk_info,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/proc_info_udata_t?language=objc)
@@ -616,6 +616,6 @@ pub struct proc_channel_info {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct channel_fdinfo {
-    pub pfi: libc::proc_fileinfo,
-    pub channelinfo: libc::proc_channel_info,
+    pub pfi: proc_fileinfo,
+    pub channelinfo: proc_channel_info,
 }

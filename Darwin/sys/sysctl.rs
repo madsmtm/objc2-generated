@@ -23,11 +23,11 @@ pub struct ctlname {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _pcred {
     pub pc_lock: [c_char; 72],
-    pub pc_ucred: *mut libc::ucred,
-    pub p_ruid: libc::uid_t,
-    pub p_svuid: libc::uid_t,
-    pub p_rgid: libc::gid_t,
-    pub p_svgid: libc::gid_t,
+    pub pc_ucred: *mut ucred,
+    pub p_ruid: uid_t,
+    pub p_svuid: uid_t,
+    pub p_rgid: gid_t,
+    pub p_svgid: gid_t,
     pub p_refcnt: c_int,
 }
 
@@ -36,28 +36,28 @@ pub struct _pcred {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _ucred {
     pub cr_ref: i32,
-    pub cr_uid: libc::uid_t,
+    pub cr_uid: uid_t,
     pub cr_ngroups: c_short,
-    pub cr_groups: [libc::gid_t; 16],
+    pub cr_groups: [gid_t; 16],
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/eproc?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct eproc {
-    pub e_paddr: *mut libc::proc,
-    pub e_sess: *mut libc::session,
-    pub e_pcred: libc::_pcred,
-    pub e_ucred: libc::_ucred,
-    pub e_vm: libc::vmspace,
-    pub e_ppid: libc::pid_t,
-    pub e_pgid: libc::pid_t,
+    pub e_paddr: *mut proc,
+    pub e_sess: *mut session,
+    pub e_pcred: _pcred,
+    pub e_ucred: _ucred,
+    pub e_vm: vmspace,
+    pub e_ppid: pid_t,
+    pub e_pgid: pid_t,
     pub e_jobc: c_short,
-    pub e_tdev: libc::dev_t,
-    pub e_tpgid: libc::pid_t,
-    pub e_tsess: *mut libc::session,
+    pub e_tdev: dev_t,
+    pub e_tpgid: pid_t,
+    pub e_tsess: *mut session,
     pub e_wmesg: [c_char; 8],
-    pub e_xsize: libc::segsz_t,
+    pub e_xsize: segsz_t,
     pub e_xrssize: c_short,
     pub e_xccount: c_short,
     pub e_xswrss: c_short,
@@ -70,8 +70,8 @@ pub struct eproc {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct kinfo_proc {
-    pub kp_proc: libc::extern_proc,
-    pub kp_eproc: libc::eproc,
+    pub kp_proc: extern_proc,
+    pub kp_eproc: eproc,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/xsw_usage?language=objc)
@@ -82,20 +82,20 @@ pub struct xsw_usage {
     pub xsu_avail: u64,
     pub xsu_used: u64,
     pub xsu_pagesize: u32,
-    pub xsu_encrypted: libc::boolean_t,
+    pub xsu_encrypted: boolean_t,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/loadavg?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct loadavg {
-    pub ldavg: [libc::fixpt_t; 3],
+    pub ldavg: [fixpt_t; 3],
     pub fscale: c_long,
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/darwin/averunnable?language=objc)
-    pub static averunnable: libc::loadavg;
+    pub static averunnable: loadavg;
 }
 
 extern "C-unwind" {

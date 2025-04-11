@@ -29,7 +29,7 @@ pub union ndrv_demux_desc_data {
 pub struct ndrv_demux_desc {
     pub r#type: u16,
     pub length: u16,
-    pub data: libc::ndrv_demux_desc_data,
+    pub data: ndrv_demux_desc_data,
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/ndrv_protocol_desc?language=objc)
@@ -39,5 +39,5 @@ pub struct ndrv_protocol_desc {
     pub version: u32,
     pub protocol_family: u32,
     pub demux_count: u32,
-    pub demux_list: *mut libc::ndrv_demux_desc,
+    pub demux_list: *mut ndrv_demux_desc,
 }

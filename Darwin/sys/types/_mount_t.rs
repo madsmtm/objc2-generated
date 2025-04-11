@@ -18,4 +18,4 @@ unsafe impl RefEncode for mount {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/mount_t?language=objc)
-pub type mount_t = *mut libc::mount;
+pub type mount_t = *mut mount;

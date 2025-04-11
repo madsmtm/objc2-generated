@@ -5,10 +5,6 @@ use core::ffi::*;
 use crate::ffi::*;
 
 extern "C-unwind" {
-    pub fn fsgetpath(
-        param1: *mut c_char,
-        param1: usize,
-        param1: *mut libc::fsid_t,
-        param1: u64,
-    ) -> isize;
+    pub fn fsgetpath(param1: *mut c_char, param1: usize, param1: *mut fsid_t, param1: u64)
+        -> isize;
 }

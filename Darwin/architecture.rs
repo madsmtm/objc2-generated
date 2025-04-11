@@ -18,17 +18,17 @@ pub type NXSwappedDouble = c_ulonglong;
 
 // TODO: pub fn NXSwapLongLong(inv: c_ulonglong,) -> c_ulonglong;
 
-// TODO: pub fn NXConvertHostFloatToSwapped(x: c_float,) -> libc::NXSwappedFloat;
+// TODO: pub fn NXConvertHostFloatToSwapped(x: c_float,) -> NXSwappedFloat;
 
-// TODO: pub fn NXConvertSwappedFloatToHost(x: libc::NXSwappedFloat,) -> c_float;
+// TODO: pub fn NXConvertSwappedFloatToHost(x: NXSwappedFloat,) -> c_float;
 
-// TODO: pub fn NXConvertHostDoubleToSwapped(x: c_double,) -> libc::NXSwappedDouble;
+// TODO: pub fn NXConvertHostDoubleToSwapped(x: c_double,) -> NXSwappedDouble;
 
-// TODO: pub fn NXConvertSwappedDoubleToHost(x: libc::NXSwappedDouble,) -> c_double;
+// TODO: pub fn NXConvertSwappedDoubleToHost(x: NXSwappedDouble,) -> c_double;
 
-// TODO: pub fn NXSwapFloat(x: libc::NXSwappedFloat,) -> libc::NXSwappedFloat;
+// TODO: pub fn NXSwapFloat(x: NXSwappedFloat,) -> NXSwappedFloat;
 
-// TODO: pub fn NXSwapDouble(x: libc::NXSwappedDouble,) -> libc::NXSwappedDouble;
+// TODO: pub fn NXSwapDouble(x: NXSwappedDouble,) -> NXSwappedDouble;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/nxbyteorder?language=objc)
 #[repr(transparent)]
@@ -43,7 +43,7 @@ impl NXByteOrder {
     pub const BigEndian: Self = Self(2);
 }
 
-// TODO: pub fn NXHostByteOrder() -> libc::NXByteOrder;
+// TODO: pub fn NXHostByteOrder() -> NXByteOrder;
 
 // TODO: pub fn NXSwapBigShortToHost(x: c_ushort,) -> c_ushort;
 
@@ -53,9 +53,9 @@ impl NXByteOrder {
 
 // TODO: pub fn NXSwapBigLongLongToHost(x: c_ulonglong,) -> c_ulonglong;
 
-// TODO: pub fn NXSwapBigDoubleToHost(x: libc::NXSwappedDouble,) -> c_double;
+// TODO: pub fn NXSwapBigDoubleToHost(x: NXSwappedDouble,) -> c_double;
 
-// TODO: pub fn NXSwapBigFloatToHost(x: libc::NXSwappedFloat,) -> c_float;
+// TODO: pub fn NXSwapBigFloatToHost(x: NXSwappedFloat,) -> c_float;
 
 // TODO: pub fn NXSwapHostShortToBig(x: c_ushort,) -> c_ushort;
 
@@ -65,9 +65,9 @@ impl NXByteOrder {
 
 // TODO: pub fn NXSwapHostLongLongToBig(x: c_ulonglong,) -> c_ulonglong;
 
-// TODO: pub fn NXSwapHostDoubleToBig(x: c_double,) -> libc::NXSwappedDouble;
+// TODO: pub fn NXSwapHostDoubleToBig(x: c_double,) -> NXSwappedDouble;
 
-// TODO: pub fn NXSwapHostFloatToBig(x: c_float,) -> libc::NXSwappedFloat;
+// TODO: pub fn NXSwapHostFloatToBig(x: c_float,) -> NXSwappedFloat;
 
 // TODO: pub fn NXSwapLittleShortToHost(x: c_ushort,) -> c_ushort;
 
@@ -77,9 +77,9 @@ impl NXByteOrder {
 
 // TODO: pub fn NXSwapLittleLongLongToHost(x: c_ulonglong,) -> c_ulonglong;
 
-// TODO: pub fn NXSwapLittleDoubleToHost(x: libc::NXSwappedDouble,) -> c_double;
+// TODO: pub fn NXSwapLittleDoubleToHost(x: NXSwappedDouble,) -> c_double;
 
-// TODO: pub fn NXSwapLittleFloatToHost(x: libc::NXSwappedFloat,) -> c_float;
+// TODO: pub fn NXSwapLittleFloatToHost(x: NXSwappedFloat,) -> c_float;
 
 // TODO: pub fn NXSwapHostShortToLittle(x: c_ushort,) -> c_ushort;
 
@@ -89,6 +89,6 @@ impl NXByteOrder {
 
 // TODO: pub fn NXSwapHostLongLongToLittle(x: c_ulonglong,) -> c_ulonglong;
 
-// TODO: pub fn NXSwapHostDoubleToLittle(x: c_double,) -> libc::NXSwappedDouble;
+// TODO: pub fn NXSwapHostDoubleToLittle(x: c_double,) -> NXSwappedDouble;
 
-// TODO: pub fn NXSwapHostFloatToLittle(x: c_float,) -> libc::NXSwappedFloat;
+// TODO: pub fn NXSwapHostFloatToLittle(x: c_float,) -> NXSwappedFloat;

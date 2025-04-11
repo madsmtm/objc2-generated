@@ -68,12 +68,12 @@ pub struct io_compression_stats {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/io_compression_stats_t?language=objc)
-pub type io_compression_stats_t = *mut libc::io_compression_stats;
+pub type io_compression_stats_t = *mut io_compression_stats;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/darwin/iocs_store_buffer_entry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct iocs_store_buffer_entry {
     pub path_name: [c_char; 128],
-    pub iocs: libc::io_compression_stats,
+    pub iocs: io_compression_stats,
 }

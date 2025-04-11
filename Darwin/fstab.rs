@@ -18,15 +18,15 @@ pub struct fstab {
 }
 
 extern "C-unwind" {
-    pub fn getfsent() -> *mut libc::fstab;
+    pub fn getfsent() -> *mut fstab;
 }
 
 extern "C-unwind" {
-    pub fn getfsspec(param1: *const c_char) -> *mut libc::fstab;
+    pub fn getfsspec(param1: *const c_char) -> *mut fstab;
 }
 
 extern "C-unwind" {
-    pub fn getfsfile(param1: *const c_char) -> *mut libc::fstab;
+    pub fn getfsfile(param1: *const c_char) -> *mut fstab;
 }
 
 extern "C-unwind" {
