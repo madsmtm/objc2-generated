@@ -11,7 +11,6 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopmode?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "CFBase")]
 pub type CFRunLoopMode = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloop?language=objc)
@@ -102,11 +101,9 @@ unsafe impl RefEncode for CFRunLoopRunResult {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFRunLoopActivity(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFRunLoopActivity: CFOptionFlags {
         #[doc(alias = "kCFRunLoopEntry")]
@@ -126,29 +123,26 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFRunLoopActivity {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFRunLoopActivity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfrunloopdefaultmode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFRunLoopDefaultMode: Option<&'static CFRunLoopMode>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfrunloopcommonmodes?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFRunLoopCommonModes: Option<&'static CFRunLoopMode>;
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFRunLoop {
     #[doc(alias = "CFRunLoopGetTypeID")]
     #[inline]
@@ -178,7 +172,6 @@ pub extern "C-unwind" fn CFRunLoopGetMain() -> Option<CFRetained<CFRunLoop>> {
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopCopyCurrentMode(
     rl: &CFRunLoop,
@@ -200,7 +193,6 @@ pub extern "C-unwind" fn CFRunLoopCopyAllModes(rl: &CFRunLoop) -> Option<CFRetai
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopAddCommonMode(rl: &CFRunLoop, mode: Option<&CFRunLoopMode>) {
     extern "C-unwind" {
@@ -209,7 +201,7 @@ pub extern "C-unwind" fn CFRunLoopAddCommonMode(rl: &CFRunLoop, mode: Option<&CF
     unsafe { CFRunLoopAddCommonMode(rl, mode) }
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopGetNextTimerFireDate(
     rl: &CFRunLoop,
@@ -232,7 +224,7 @@ pub extern "C-unwind" fn CFRunLoopRun() {
     unsafe { CFRunLoopRun() }
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopRunInMode(
     mode: Option<&CFRunLoopMode>,
@@ -275,7 +267,7 @@ pub extern "C-unwind" fn CFRunLoopStop(rl: &CFRunLoop) {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "block2"))]
+    #[cfg(feature = "block2")]
     pub fn CFRunLoopPerformBlock(
         rl: &CFRunLoop,
         mode: Option<&CFType>,
@@ -283,7 +275,6 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopContainsSource(
     rl: &CFRunLoop,
@@ -301,7 +292,6 @@ pub extern "C-unwind" fn CFRunLoopContainsSource(
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopAddSource(
     rl: &CFRunLoop,
@@ -318,7 +308,6 @@ pub extern "C-unwind" fn CFRunLoopAddSource(
     unsafe { CFRunLoopAddSource(rl, source, mode) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopRemoveSource(
     rl: &CFRunLoop,
@@ -335,7 +324,6 @@ pub extern "C-unwind" fn CFRunLoopRemoveSource(
     unsafe { CFRunLoopRemoveSource(rl, source, mode) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopContainsObserver(
     rl: &CFRunLoop,
@@ -353,7 +341,6 @@ pub extern "C-unwind" fn CFRunLoopContainsObserver(
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopAddObserver(
     rl: &CFRunLoop,
@@ -370,7 +357,6 @@ pub extern "C-unwind" fn CFRunLoopAddObserver(
     unsafe { CFRunLoopAddObserver(rl, observer, mode) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopRemoveObserver(
     rl: &CFRunLoop,
@@ -387,7 +373,6 @@ pub extern "C-unwind" fn CFRunLoopRemoveObserver(
     unsafe { CFRunLoopRemoveObserver(rl, observer, mode) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopContainsTimer(
     rl: &CFRunLoop,
@@ -405,7 +390,6 @@ pub extern "C-unwind" fn CFRunLoopContainsTimer(
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopAddTimer(
     rl: &CFRunLoop,
@@ -422,7 +406,6 @@ pub extern "C-unwind" fn CFRunLoopAddTimer(
     unsafe { CFRunLoopAddTimer(rl, timer, mode) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopRemoveTimer(
     rl: &CFRunLoop,
@@ -440,7 +423,6 @@ pub extern "C-unwind" fn CFRunLoopRemoveTimer(
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecontext?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFRunLoopSourceContext {
@@ -458,7 +440,7 @@ pub struct CFRunLoopSourceContext {
     pub perform: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFRunLoopSourceContext {
     const ENCODING: Encoding = Encoding::Struct("?", &[
         <CFIndex>::ENCODING,
@@ -474,13 +456,13 @@ unsafe impl Encode for CFRunLoopSourceContext {
     ]);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFRunLoopSourceContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecontext1?language=objc)
-#[cfg(all(feature = "CFBase", feature = "libc"))]
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFRunLoopSourceContext1 {
@@ -502,7 +484,7 @@ pub struct CFRunLoopSourceContext1 {
     >,
 }
 
-#[cfg(all(feature = "CFBase", feature = "libc", feature = "objc2"))]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for CFRunLoopSourceContext1 {
     const ENCODING: Encoding = Encoding::Struct("?", &[
         <CFIndex>::ENCODING,
@@ -517,12 +499,11 @@ unsafe impl Encode for CFRunLoopSourceContext1 {
     ]);
 }
 
-#[cfg(all(feature = "CFBase", feature = "libc", feature = "objc2"))]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for CFRunLoopSourceContext1 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFRunLoopSource {
     #[doc(alias = "CFRunLoopSourceGetTypeID")]
     #[inline]
@@ -534,7 +515,6 @@ unsafe impl ConcreteType for CFRunLoopSource {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFRunLoopSourceCreate(
     allocator: Option<&CFAllocator>,
@@ -552,7 +532,6 @@ pub unsafe extern "C-unwind" fn CFRunLoopSourceCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopSourceGetOrder(source: &CFRunLoopSource) -> CFIndex {
     extern "C-unwind" {
@@ -579,7 +558,6 @@ pub extern "C-unwind" fn CFRunLoopSourceIsValid(source: &CFRunLoopSource) -> boo
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFRunLoopSourceGetContext(
         source: &CFRunLoopSource,
         context: *mut CFRunLoopSourceContext,
@@ -595,7 +573,6 @@ pub extern "C-unwind" fn CFRunLoopSourceSignal(source: &CFRunLoopSource) {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercontext?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFRunLoopObserverContext {
@@ -606,7 +583,7 @@ pub struct CFRunLoopObserverContext {
     pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFRunLoopObserverContext {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -620,17 +597,15 @@ unsafe impl Encode for CFRunLoopObserverContext {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFRunLoopObserverContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFRunLoopObserverCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFRunLoopObserver, CFRunLoopActivity, *mut c_void)>;
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFRunLoopObserver {
     #[doc(alias = "CFRunLoopObserverGetTypeID")]
     #[inline]
@@ -642,7 +617,6 @@ unsafe impl ConcreteType for CFRunLoopObserver {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFRunLoopObserverCreate(
     allocator: Option<&CFAllocator>,
@@ -668,7 +642,7 @@ pub unsafe extern "C-unwind" fn CFRunLoopObserverCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "block2"))]
+#[cfg(feature = "block2")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFRunLoopObserverCreateWithHandler(
     allocator: Option<&CFAllocator>,
@@ -692,7 +666,6 @@ pub unsafe extern "C-unwind" fn CFRunLoopObserverCreateWithHandler(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopObserverGetActivities(
     observer: &CFRunLoopObserver,
@@ -712,7 +685,6 @@ pub extern "C-unwind" fn CFRunLoopObserverDoesRepeat(observer: &CFRunLoopObserve
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopObserverGetOrder(observer: &CFRunLoopObserver) -> CFIndex {
     extern "C-unwind" {
@@ -739,7 +711,6 @@ pub extern "C-unwind" fn CFRunLoopObserverIsValid(observer: &CFRunLoopObserver) 
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFRunLoopObserverGetContext(
         observer: &CFRunLoopObserver,
         context: *mut CFRunLoopObserverContext,
@@ -747,7 +718,6 @@ extern "C-unwind" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercontext?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFRunLoopTimerContext {
@@ -758,7 +728,7 @@ pub struct CFRunLoopTimerContext {
     pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFRunLoopTimerContext {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -772,7 +742,7 @@ unsafe impl Encode for CFRunLoopTimerContext {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFRunLoopTimerContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -781,7 +751,6 @@ unsafe impl RefEncode for CFRunLoopTimerContext {
 pub type CFRunLoopTimerCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFRunLoopTimer, *mut c_void)>;
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFRunLoopTimer {
     #[doc(alias = "CFRunLoopTimerGetTypeID")]
     #[inline]
@@ -793,7 +762,7 @@ unsafe impl ConcreteType for CFRunLoopTimer {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFRunLoopTimerCreate(
     allocator: Option<&CFAllocator>,
@@ -823,7 +792,7 @@ pub unsafe extern "C-unwind" fn CFRunLoopTimerCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate", feature = "block2"))]
+#[cfg(all(feature = "CFDate", feature = "block2"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFRunLoopTimerCreateWithHandler(
     allocator: Option<&CFAllocator>,
@@ -888,7 +857,6 @@ pub extern "C-unwind" fn CFRunLoopTimerDoesRepeat(timer: &CFRunLoopTimer) -> boo
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFRunLoopTimerGetOrder(timer: &CFRunLoopTimer) -> CFIndex {
     extern "C-unwind" {
@@ -915,7 +883,6 @@ pub extern "C-unwind" fn CFRunLoopTimerIsValid(timer: &CFRunLoopTimer) -> bool {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFRunLoopTimerGetContext(timer: &CFRunLoopTimer, context: *mut CFRunLoopTimerContext);
 }
 

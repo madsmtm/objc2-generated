@@ -11,7 +11,6 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "CFBase")]
 pub type CFNotificationName = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenter?language=objc)
@@ -30,7 +29,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcallback?language=objc)
-#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[cfg(feature = "CFDictionary")]
 pub type CFNotificationCallback = Option<
     unsafe extern "C-unwind" fn(
         *mut CFNotificationCenter,
@@ -43,11 +42,9 @@ pub type CFNotificationCallback = Option<
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNotificationSuspensionBehavior(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFNotificationSuspensionBehavior {
     #[doc(alias = "CFNotificationSuspensionBehaviorDrop")]
     pub const Drop: Self = Self(1);
@@ -59,17 +56,16 @@ impl CFNotificationSuspensionBehavior {
     pub const DeliverImmediately: Self = Self(4);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFNotificationSuspensionBehavior {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFNotificationSuspensionBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFNotificationCenter {
     #[doc(alias = "CFNotificationCenterGetTypeID")]
     #[inline]
@@ -112,7 +108,7 @@ pub extern "C-unwind" fn CFNotificationCenterGetDarwinNotifyCenter(
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+    #[cfg(feature = "CFDictionary")]
     pub fn CFNotificationCenterAddObserver(
         center: &CFNotificationCenter,
         observer: *const c_void,
@@ -124,7 +120,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFNotificationCenterRemoveObserver(
         center: &CFNotificationCenter,
         observer: *const c_void,
@@ -140,7 +135,7 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNotificationCenterPostNotification(
     center: &CFNotificationCenter,
@@ -170,14 +165,12 @@ pub unsafe extern "C-unwind" fn CFNotificationCenterPostNotification(
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotificationdeliverimmediately?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFNotificationDeliverImmediately: CFOptionFlags = 1 << 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotificationposttoallsessions?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+    #[cfg(feature = "CFDictionary")]
     pub fn CFNotificationCenterPostNotificationWithOptions(
         center: &CFNotificationCenter,
         name: Option<&CFNotificationName>,

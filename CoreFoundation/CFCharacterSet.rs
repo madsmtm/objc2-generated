@@ -47,11 +47,9 @@ cf_objc2_type!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFCharacterSetPredefinedSet(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFCharacterSetPredefinedSet {
     #[doc(alias = "kCFCharacterSetControl")]
     pub const Control: Self = Self(1);
@@ -85,17 +83,16 @@ impl CFCharacterSetPredefinedSet {
     pub const Illegal: Self = Self(12);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFCharacterSetPredefinedSet {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFCharacterSetPredefinedSet {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFCharacterSet {
     /// Returns the type identifier of all CFCharacterSet instances.
     #[doc(alias = "CFCharacterSetGetTypeID")]
@@ -117,7 +114,6 @@ unsafe impl ConcreteType for CFCharacterSet {
 ///
 /// Returns: A reference to the predefined immutable CFCharacterSet.
 /// This instance is owned by CF.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetGetPredefined(
     the_set_identifier: CFCharacterSetPredefinedSet,
@@ -147,7 +143,6 @@ pub unsafe extern "C-unwind" fn CFCharacterSetGetPredefined(
 /// point, the behavior is undefined.
 ///
 /// Returns: A reference to the new immutable CFCharacterSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetCreateWithCharactersInRange(
     alloc: Option<&CFAllocator>,
@@ -177,7 +172,6 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateWithCharactersInRange(
 /// is undefined.
 ///
 /// Returns: A reference to the new immutable CFCharacterSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetCreateWithCharactersInString(
     alloc: Option<&CFAllocator>,
@@ -218,7 +212,7 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateWithCharactersInString(
 /// (1 to 16), the behavior is undefined.
 ///
 /// Returns: A reference to the new immutable CFCharacterSet.
-#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[cfg(feature = "CFData")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetCreateWithBitmapRepresentation(
     alloc: Option<&CFAllocator>,
@@ -247,7 +241,6 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateWithBitmapRepresentation(
 /// undefined.
 ///
 /// Returns: A reference to the new immutable CFCharacterSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetCreateInvertedSet(
     alloc: Option<&CFAllocator>,
@@ -293,7 +286,6 @@ pub unsafe extern "C-unwind" fn CFCharacterSetIsSupersetOfSet(
 /// Parameter `thePlane`: The plane number to be checked for the membership.
 /// The valid value range is from 0 to 16.  If the value is outside of the valid
 /// plane number range, the behavior is undefined.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetHasMemberInPlane(
     the_set: &CFCharacterSet,
@@ -315,7 +307,6 @@ pub unsafe extern "C-unwind" fn CFCharacterSetHasMemberInPlane(
 /// CFAllocator, the behavior is undefined.
 ///
 /// Returns: A reference to the new mutable CFCharacterSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetCreateMutable(
     alloc: Option<&CFAllocator>,
@@ -342,7 +333,6 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateMutable(
 /// undefined.
 ///
 /// Returns: A reference to the new CFCharacterSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetCreateCopy(
     alloc: Option<&CFAllocator>,
@@ -371,7 +361,6 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateCopy(
 /// undefined.
 ///
 /// Returns: A reference to the new mutable CFCharacterSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetCreateMutableCopy(
     alloc: Option<&CFAllocator>,
@@ -450,7 +439,7 @@ pub unsafe extern "C-unwind" fn CFCharacterSetIsLongCharacterMember(
 /// behavior is undefined.
 ///
 /// Returns: A reference to the new immutable CFData.
-#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[cfg(feature = "CFData")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCharacterSetCreateBitmapRepresentation(
     alloc: Option<&CFAllocator>,
@@ -478,7 +467,6 @@ extern "C-unwind" {
     /// character point range is from 0x00000 to 0x10FFFF.  If the
     /// range is outside of the valid Unicode character point,
     /// the behavior is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetAddCharactersInRange(
         the_set: Option<&CFMutableCharacterSet>,
         the_range: CFRange,
@@ -497,7 +485,6 @@ extern "C-unwind" {
     /// The valid character point range is from 0x00000 to 0x10FFFF.
     /// If the range is outside of the valid Unicode character point,
     /// the behavior is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetRemoveCharactersInRange(
         the_set: Option<&CFMutableCharacterSet>,
         the_range: CFRange,
@@ -514,7 +501,6 @@ extern "C-unwind" {
     /// Parameter `theString`: The string to add to the character set.
     /// If this parameter is not a valid CFString, the behavior
     /// is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetAddCharactersInString(
         the_set: Option<&CFMutableCharacterSet>,
         the_string: Option<&CFString>,
@@ -531,7 +517,6 @@ extern "C-unwind" {
     /// Parameter `theString`: The string to remove from the character set.
     /// If this parameter is not a valid CFString, the behavior
     /// is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetRemoveCharactersInString(
         the_set: Option<&CFMutableCharacterSet>,
         the_string: Option<&CFString>,

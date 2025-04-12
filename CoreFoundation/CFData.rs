@@ -39,7 +39,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFData"> for CFMutableData {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFData {
     #[doc(alias = "CFDataGetTypeID")]
     #[inline]
@@ -51,7 +50,6 @@ unsafe impl ConcreteType for CFData {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDataCreate(
     allocator: Option<&CFAllocator>,
@@ -69,7 +67,6 @@ pub unsafe extern "C-unwind" fn CFDataCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDataCreateWithBytesNoCopy(
     allocator: Option<&CFAllocator>,
@@ -89,7 +86,6 @@ pub unsafe extern "C-unwind" fn CFDataCreateWithBytesNoCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFDataCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -105,7 +101,6 @@ pub extern "C-unwind" fn CFDataCreateCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFDataCreateMutable(
     allocator: Option<&CFAllocator>,
@@ -121,7 +116,6 @@ pub extern "C-unwind" fn CFDataCreateMutable(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDataCreateMutableCopy(
     allocator: Option<&CFAllocator>,
@@ -139,7 +133,6 @@ pub unsafe extern "C-unwind" fn CFDataCreateMutableCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFDataGetLength(the_data: &CFData) -> CFIndex {
     extern "C-unwind" {
@@ -165,11 +158,9 @@ pub extern "C-unwind" fn CFDataGetMutableBytePtr(the_data: Option<&CFMutableData
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFDataGetBytes(the_data: &CFData, range: CFRange, buffer: *mut u8);
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFDataSetLength(the_data: Option<&CFMutableData>, length: CFIndex) {
     extern "C-unwind" {
@@ -178,7 +169,6 @@ pub extern "C-unwind" fn CFDataSetLength(the_data: Option<&CFMutableData>, lengt
     unsafe { CFDataSetLength(the_data, length) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFDataIncreaseLength(
     the_data: Option<&CFMutableData>,
@@ -191,12 +181,10 @@ pub extern "C-unwind" fn CFDataIncreaseLength(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFDataAppendBytes(the_data: Option<&CFMutableData>, bytes: *const u8, length: CFIndex);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFDataReplaceBytes(
         the_data: Option<&CFMutableData>,
         range: CFRange,
@@ -205,7 +193,6 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFDataDeleteBytes(the_data: Option<&CFMutableData>, range: CFRange) {
     extern "C-unwind" {
@@ -216,11 +203,9 @@ pub extern "C-unwind" fn CFDataDeleteBytes(the_data: Option<&CFMutableData>, ran
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasearchflags?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFDataSearchFlags(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFDataSearchFlags: CFOptionFlags {
         #[doc(alias = "kCFDataSearchBackwards")]
@@ -230,18 +215,17 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFDataSearchFlags {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFDataSearchFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFDataFind(
         the_data: &CFData,
         data_to_find: Option<&CFData>,

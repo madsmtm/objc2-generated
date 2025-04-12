@@ -28,19 +28,15 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcffiledescriptorreadcallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFFileDescriptorReadCallBack: CFOptionFlags = 1 << 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcffiledescriptorwritecallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFFileDescriptorWriteCallBack: CFOptionFlags = 1 << 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFFileDescriptorCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFFileDescriptor, CFOptionFlags, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcontext?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFFileDescriptorContext {
@@ -51,7 +47,7 @@ pub struct CFFileDescriptorContext {
     pub copyDescription: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *const CFString>,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFFileDescriptorContext {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -65,12 +61,11 @@ unsafe impl Encode for CFFileDescriptorContext {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFFileDescriptorContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFFileDescriptor {
     #[doc(alias = "CFFileDescriptorGetTypeID")]
     #[inline]
@@ -82,7 +77,6 @@ unsafe impl ConcreteType for CFFileDescriptor {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFFileDescriptorCreate(
     allocator: Option<&CFAllocator>,
@@ -119,11 +113,9 @@ pub extern "C-unwind" fn CFFileDescriptorGetNativeDescriptor(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFFileDescriptorGetContext(f: &CFFileDescriptor, context: *mut CFFileDescriptorContext);
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFFileDescriptorEnableCallBacks(
     f: &CFFileDescriptor,
@@ -135,7 +127,6 @@ pub extern "C-unwind" fn CFFileDescriptorEnableCallBacks(
     unsafe { CFFileDescriptorEnableCallBacks(f, call_back_types) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFFileDescriptorDisableCallBacks(
     f: &CFFileDescriptor,
@@ -164,7 +155,7 @@ pub extern "C-unwind" fn CFFileDescriptorIsValid(f: &CFFileDescriptor) -> bool {
     ret != 0
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[cfg(feature = "CFRunLoop")]
 #[inline]
 pub extern "C-unwind" fn CFFileDescriptorCreateRunLoopSource(
     allocator: Option<&CFAllocator>,

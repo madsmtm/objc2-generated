@@ -41,43 +41,36 @@ cf_objc2_type!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleinfodictionaryversionkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFBundleInfoDictionaryVersionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFBundleExecutableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleidentifierkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFBundleIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleversionkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFBundleVersionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundledevelopmentregionkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFBundleDevelopmentRegionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundlenamekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFBundleNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundlelocalizationskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFBundleLocalizationsKey: Option<&'static CFString>;
 }
 
@@ -90,7 +83,6 @@ pub extern "C-unwind" fn CFBundleGetMainBundle() -> Option<CFRetained<CFBundle>>
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFBundleGetBundleWithIdentifier(
     bundle_id: Option<&CFString>,
@@ -114,7 +106,6 @@ pub unsafe extern "C-unwind" fn CFBundleGetAllBundles() -> Option<CFRetained<CFA
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFBundle {
     #[doc(alias = "CFBundleGetTypeID")]
     #[inline]
@@ -126,7 +117,7 @@ unsafe impl ConcreteType for CFBundle {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[inline]
 pub extern "C-unwind" fn CFBundleCreate(
     allocator: Option<&CFAllocator>,
@@ -142,7 +133,7 @@ pub extern "C-unwind" fn CFBundleCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
+#[cfg(all(feature = "CFArray", feature = "CFURL"))]
 #[inline]
 pub extern "C-unwind" fn CFBundleCreateBundlesFromDirectory(
     allocator: Option<&CFAllocator>,
@@ -170,7 +161,6 @@ pub extern "C-unwind" fn CFBundleCopyBundleURL(bundle: &CFBundle) -> Option<CFRe
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFBundleGetValueForInfoDictionaryKey(
     bundle: &CFBundle,
@@ -218,7 +208,6 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFBundleGetIdentifier(bundle: &CFBundle) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -236,7 +225,6 @@ pub extern "C-unwind" fn CFBundleGetVersionNumber(bundle: &CFBundle) -> u32 {
     unsafe { CFBundleGetVersionNumber(bundle) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFBundleGetDevelopmentRegion(
     bundle: &CFBundle,
@@ -352,7 +340,7 @@ pub unsafe extern "C-unwind" fn CFBundleGetPackageInfoInDirectory(
     ret != 0
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[inline]
 pub extern "C-unwind" fn CFBundleCopyResourceURL(
     bundle: &CFBundle,
@@ -373,7 +361,7 @@ pub extern "C-unwind" fn CFBundleCopyResourceURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFBase"))]
+#[cfg(feature = "CFArray")]
 #[inline]
 pub extern "C-unwind" fn CFBundleCopyResourceURLsOfType(
     bundle: &CFBundle,
@@ -391,7 +379,6 @@ pub extern "C-unwind" fn CFBundleCopyResourceURLsOfType(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFBundleCopyLocalizedString(
     bundle: &CFBundle,
@@ -411,7 +398,7 @@ pub extern "C-unwind" fn CFBundleCopyLocalizedString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[inline]
 pub extern "C-unwind" fn CFBundleCopyResourceURLInDirectory(
     bundle_url: Option<&CFURL>,
@@ -433,7 +420,7 @@ pub extern "C-unwind" fn CFBundleCopyResourceURLInDirectory(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
+#[cfg(all(feature = "CFArray", feature = "CFURL"))]
 #[inline]
 pub extern "C-unwind" fn CFBundleCopyResourceURLsOfTypeInDirectory(
     bundle_url: Option<&CFURL>,
@@ -495,7 +482,7 @@ pub unsafe extern "C-unwind" fn CFBundleCopyLocalizationsForPreferences(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[inline]
 pub extern "C-unwind" fn CFBundleCopyResourceURLForLocalization(
     bundle: &CFBundle,
@@ -525,7 +512,7 @@ pub extern "C-unwind" fn CFBundleCopyResourceURLForLocalization(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFBase"))]
+#[cfg(feature = "CFArray")]
 #[inline]
 pub extern "C-unwind" fn CFBundleCopyResourceURLsOfTypeForLocalization(
     bundle: &CFBundle,
@@ -674,7 +661,6 @@ extern "C-unwind" {
     pub fn CFBundleUnloadExecutable(bundle: &CFBundle);
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFBundleGetFunctionPointerForName(
     bundle: &CFBundle,
@@ -698,7 +684,6 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFBundleGetDataPointerForName(
     bundle: &CFBundle,
@@ -722,7 +707,7 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[inline]
 pub extern "C-unwind" fn CFBundleCopyAuxiliaryExecutableURL(
     bundle: &CFBundle,

@@ -8,11 +8,9 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFPropertyListMutabilityOptions(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFPropertyListMutabilityOptions: CFOptionFlags {
         #[doc(alias = "kCFPropertyListImmutable")]
@@ -24,17 +22,17 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFPropertyListMutabilityOptions {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFPropertyListMutabilityOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[cfg(feature = "CFData")]
 #[deprecated = "Use CFPropertyListCreateWithData instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
@@ -57,7 +55,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[cfg(feature = "CFData")]
 #[deprecated = "Use CFPropertyListCreateData instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateXMLData(
@@ -74,7 +72,6 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateDeepCopy(
     allocator: Option<&CFAllocator>,
@@ -94,11 +91,9 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateDeepCopy(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFPropertyListFormat(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFPropertyListFormat {
     #[doc(alias = "kCFPropertyListOpenStepFormat")]
     pub const OpenStepFormat: Self = Self(1);
@@ -108,17 +103,16 @@ impl CFPropertyListFormat {
     pub const BinaryFormat_v1_0: Self = Self(200);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFPropertyListFormat {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFPropertyListFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
     plist: &CFPropertyList,
@@ -132,7 +126,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFStream"))]
+    #[cfg(feature = "CFStream")]
     #[deprecated = "Use CFPropertyListWrite instead."]
     pub fn CFPropertyListWriteToStream(
         property_list: &CFPropertyList,
@@ -142,7 +136,7 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFStream"))]
+#[cfg(feature = "CFStream")]
 #[deprecated = "Use CFPropertyListCreateWithStream instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
@@ -177,19 +171,15 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistreadcorrupterror?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFPropertyListReadCorruptError: CFIndex = 3840;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistreadunknownversionerror?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFPropertyListReadUnknownVersionError: CFIndex = 3841;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistreadstreamerror?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFPropertyListReadStreamError: CFIndex = 3842;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistwritestreamerror?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFPropertyListWriteStreamError: CFIndex = 3851;
 
-#[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFError"))]
+#[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
     allocator: Option<&CFAllocator>,
@@ -211,7 +201,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFStream"))]
+#[cfg(all(feature = "CFError", feature = "CFStream"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
     allocator: Option<&CFAllocator>,
@@ -238,7 +228,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFStream"))]
+    #[cfg(all(feature = "CFError", feature = "CFStream"))]
     pub fn CFPropertyListWrite(
         property_list: &CFPropertyList,
         stream: Option<&CFWriteStream>,
@@ -248,7 +238,7 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFError"))]
+#[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateData(
     allocator: Option<&CFAllocator>,

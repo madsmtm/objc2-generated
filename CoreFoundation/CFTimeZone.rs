@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 unsafe impl ConcreteType for CFTimeZone {
     #[doc(alias = "CFTimeZoneGetTypeID")]
     #[inline]
@@ -78,7 +78,7 @@ extern "C-unwind" {
     pub fn CFTimeZoneSetAbbreviationDictionary(dict: Option<&CFDictionary>);
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
+#[cfg(all(feature = "CFData", feature = "CFDate"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFTimeZoneCreate(
     allocator: Option<&CFAllocator>,
@@ -96,7 +96,7 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub extern "C-unwind" fn CFTimeZoneCreateWithTimeIntervalFromGMT(
     allocator: Option<&CFAllocator>,
@@ -112,7 +112,7 @@ pub extern "C-unwind" fn CFTimeZoneCreateWithTimeIntervalFromGMT(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub extern "C-unwind" fn CFTimeZoneCreateWithName(
     allocator: Option<&CFAllocator>,
@@ -130,7 +130,7 @@ pub extern "C-unwind" fn CFTimeZoneCreateWithName(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub extern "C-unwind" fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -162,7 +162,7 @@ pub extern "C-unwind" fn CFTimeZoneGetSecondsFromGMT(
     unsafe { CFTimeZoneGetSecondsFromGMT(tz, at) }
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub extern "C-unwind" fn CFTimeZoneCopyAbbreviation(
     tz: &CFTimeZone,
@@ -223,11 +223,9 @@ pub extern "C-unwind" fn CFTimeZoneGetNextDaylightSavingTimeTransition(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFTimeZoneNameStyle(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFTimeZoneNameStyle {
     #[doc(alias = "kCFTimeZoneNameStyleStandard")]
     pub const Standard: Self = Self(0);
@@ -243,17 +241,17 @@ impl CFTimeZoneNameStyle {
     pub const ShortGeneric: Self = Self(5);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFTimeZoneNameStyle {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFTimeZoneNameStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFLocale"))]
+#[cfg(all(feature = "CFDate", feature = "CFLocale"))]
 #[inline]
 pub extern "C-unwind" fn CFTimeZoneCopyLocalizedName(
     tz: &CFTimeZone,
@@ -273,6 +271,6 @@ pub extern "C-unwind" fn CFTimeZoneCopyLocalizedName(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftimezonesystemtimezonedidchangenotification?language=objc)
-    #[cfg(all(feature = "CFBase", feature = "CFNotificationCenter"))]
+    #[cfg(feature = "CFNotificationCenter")]
     pub static kCFTimeZoneSystemTimeZoneDidChangeNotification: Option<&'static CFNotificationName>;
 }

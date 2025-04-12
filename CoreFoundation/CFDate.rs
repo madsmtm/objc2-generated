@@ -48,7 +48,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFDate"> for CFDate {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFDate {
     #[doc(alias = "CFDateGetTypeID")]
     #[inline]
@@ -60,7 +59,6 @@ unsafe impl ConcreteType for CFDate {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFDateCreate(
     allocator: Option<&CFAllocator>,
@@ -99,7 +97,6 @@ pub extern "C-unwind" fn CFDateGetTimeIntervalSinceDate(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFDateCompare(
         the_date: &CFDate,
         other_date: Option<&CFDate>,
@@ -188,11 +185,9 @@ unsafe impl RefEncode for CFGregorianUnits {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFGregorianUnitFlags(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFGregorianUnitFlags: CFOptionFlags {
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
@@ -219,17 +214,16 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFGregorianUnitFlags {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFGregorianUnitFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFGregorianDateIsValid(
@@ -269,7 +263,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     pub fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(
         at1: CFAbsoluteTime,

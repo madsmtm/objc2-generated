@@ -10,7 +10,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmlnodecurrentversion?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFXMLNodeCurrentVersion: CFIndex = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnode?language=objc)
@@ -34,11 +33,9 @@ pub type CFXMLTree = CFTree;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFXMLNodeTypeCode(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFXMLNodeTypeCode {
     #[doc(alias = "kCFXMLNodeTypeDocument")]
     pub const Document: Self = Self(1);
@@ -72,12 +69,12 @@ impl CFXMLNodeTypeCode {
     pub const AttributeListDeclaration: Self = Self(15);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLNodeTypeCode {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLNodeTypeCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -112,19 +109,18 @@ unsafe impl RefEncode for CFXMLElementInfo {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlprocessinginstructioninfo?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLProcessingInstructionInfo {
     pub dataString: *const CFString,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLProcessingInstructionInfo {
     const ENCODING: Encoding = Encoding::Struct("?", &[<*const CFString>::ENCODING]);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLProcessingInstructionInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -152,7 +148,7 @@ unsafe impl RefEncode for CFXMLDocumentInfo {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlexternalid?language=objc)
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLExternalID {
@@ -160,7 +156,7 @@ pub struct CFXMLExternalID {
     pub publicID: *const CFString,
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
+#[cfg(all(feature = "CFURL", feature = "objc2"))]
 unsafe impl Encode for CFXMLExternalID {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -168,67 +164,65 @@ unsafe impl Encode for CFXMLExternalID {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
+#[cfg(all(feature = "CFURL", feature = "objc2"))]
 unsafe impl RefEncode for CFXMLExternalID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmldocumenttypeinfo?language=objc)
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLDocumentTypeInfo {
     pub externalID: CFXMLExternalID,
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
+#[cfg(all(feature = "CFURL", feature = "objc2"))]
 unsafe impl Encode for CFXMLDocumentTypeInfo {
     const ENCODING: Encoding = Encoding::Struct("?", &[<CFXMLExternalID>::ENCODING]);
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
+#[cfg(all(feature = "CFURL", feature = "objc2"))]
 unsafe impl RefEncode for CFXMLDocumentTypeInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnotationinfo?language=objc)
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLNotationInfo {
     pub externalID: CFXMLExternalID,
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
+#[cfg(all(feature = "CFURL", feature = "objc2"))]
 unsafe impl Encode for CFXMLNotationInfo {
     const ENCODING: Encoding = Encoding::Struct("?", &[<CFXMLExternalID>::ENCODING]);
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
+#[cfg(all(feature = "CFURL", feature = "objc2"))]
 unsafe impl RefEncode for CFXMLNotationInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlelementtypedeclarationinfo?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLElementTypeDeclarationInfo {
     pub contentDescription: *const CFString,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLElementTypeDeclarationInfo {
     const ENCODING: Encoding = Encoding::Struct("?", &[<*const CFString>::ENCODING]);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLElementTypeDeclarationInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlattributedeclarationinfo?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLAttributeDeclarationInfo {
@@ -237,7 +231,7 @@ pub struct CFXMLAttributeDeclarationInfo {
     pub defaultString: *const CFString,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLAttributeDeclarationInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -249,13 +243,12 @@ unsafe impl Encode for CFXMLAttributeDeclarationInfo {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLAttributeDeclarationInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlattributelistdeclarationinfo?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLAttributeListDeclarationInfo {
@@ -263,7 +256,7 @@ pub struct CFXMLAttributeListDeclarationInfo {
     pub attributes: *mut CFXMLAttributeDeclarationInfo,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLAttributeListDeclarationInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -274,18 +267,16 @@ unsafe impl Encode for CFXMLAttributeListDeclarationInfo {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLAttributeListDeclarationInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFXMLEntityTypeCode(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFXMLEntityTypeCode {
     #[doc(alias = "kCFXMLEntityTypeParameter")]
     pub const Parameter: Self = Self(0);
@@ -299,18 +290,18 @@ impl CFXMLEntityTypeCode {
     pub const Character: Self = Self(4);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLEntityTypeCode {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLEntityTypeCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentityinfo?language=objc)
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLEntityInfo {
@@ -320,7 +311,7 @@ pub struct CFXMLEntityInfo {
     pub notationName: *const CFString,
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
+#[cfg(all(feature = "CFURL", feature = "objc2"))]
 unsafe impl Encode for CFXMLEntityInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -333,30 +324,28 @@ unsafe impl Encode for CFXMLEntityInfo {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
+#[cfg(all(feature = "CFURL", feature = "objc2"))]
 unsafe impl RefEncode for CFXMLEntityInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentityreferenceinfo?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLEntityReferenceInfo {
     pub entityType: CFXMLEntityTypeCode,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLEntityReferenceInfo {
     const ENCODING: Encoding = Encoding::Struct("?", &[<CFXMLEntityTypeCode>::ENCODING]);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLEntityReferenceInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFXMLNode {
     #[doc(alias = "CFXMLNodeGetTypeID")]
     #[inline]
@@ -368,7 +357,6 @@ unsafe impl ConcreteType for CFXMLNode {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLNodeCreate(
@@ -392,7 +380,6 @@ pub unsafe extern "C-unwind" fn CFXMLNodeCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLNodeCreateCopy(
@@ -410,12 +397,10 @@ pub unsafe extern "C-unwind" fn CFXMLNodeCreateCopy(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLNodeGetTypeCode(node: &CFXMLNode) -> CFXMLNodeTypeCode;
 }
 
-#[cfg(feature = "CFBase")]
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLNodeGetString(
@@ -434,12 +419,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLNodeGetVersion(node: &CFXMLNode) -> CFIndex;
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFTree"))]
+#[cfg(feature = "CFTree")]
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithNode(

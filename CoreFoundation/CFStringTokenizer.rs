@@ -23,7 +23,6 @@ use crate::*;
 ///
 /// The result is not guaranteed to be accurate. Typically 200-400
 /// characters are required to reliably guess the language of a string.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFStringTokenizerCopyBestStringLanguage(
     string: &CFString,
@@ -59,35 +58,30 @@ cf_objc2_type!(
 /// specify how the string should be tokenized.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtokenizerunitword?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFStringTokenizerUnitWord: CFOptionFlags = 0;
 /// Tokenization Unit
 /// Use one of tokenization unit options with CFStringTokenizerCreate to
 /// specify how the string should be tokenized.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtokenizerunitsentence?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFStringTokenizerUnitSentence: CFOptionFlags = 1;
 /// Tokenization Unit
 /// Use one of tokenization unit options with CFStringTokenizerCreate to
 /// specify how the string should be tokenized.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtokenizerunitparagraph?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFStringTokenizerUnitParagraph: CFOptionFlags = 2;
 /// Tokenization Unit
 /// Use one of tokenization unit options with CFStringTokenizerCreate to
 /// specify how the string should be tokenized.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtokenizerunitlinebreak?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFStringTokenizerUnitLineBreak: CFOptionFlags = 3;
 /// Tokenization Unit
 /// Use one of tokenization unit options with CFStringTokenizerCreate to
 /// specify how the string should be tokenized.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtokenizerunitwordboundary?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFStringTokenizerUnitWordBoundary: CFOptionFlags = 4;
 /// Attribute Specifier
 /// Use attribute specifier to tell tokenizer to prepare the specified attribute
@@ -96,7 +90,6 @@ pub const kCFStringTokenizerUnitWordBoundary: CFOptionFlags = 4;
 /// option.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtokenizerattributelatintranscription?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFStringTokenizerAttributeLatinTranscription: CFOptionFlags = 1 << 16;
 /// Attribute Specifier
 /// Use attribute specifier to tell tokenizer to prepare the specified attribute
@@ -105,7 +98,6 @@ pub const kCFStringTokenizerAttributeLatinTranscription: CFOptionFlags = 1 << 16
 /// option.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtokenizerattributelanguage?language=objc)
-#[cfg(feature = "CFBase")]
 pub const kCFStringTokenizerAttributeLanguage: CFOptionFlags = 1 << 17;
 
 /// Token type
@@ -114,11 +106,9 @@ pub const kCFStringTokenizerAttributeLanguage: CFOptionFlags = 1 << 17;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizertokentype?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFStringTokenizerTokenType(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFStringTokenizerTokenType: CFOptionFlags {
         #[doc(alias = "kCFStringTokenizerTokenNone")]
@@ -152,17 +142,16 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFStringTokenizerTokenType {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFStringTokenizerTokenType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFStringTokenizer {
     /// Get the type identifier.
     ///
@@ -197,7 +186,7 @@ unsafe impl ConcreteType for CFStringTokenizer {
 /// NULL if you want tokenizer to identify the locale automatically.
 ///
 /// Returns: A reference to the new CFStringTokenizer.
-#[cfg(all(feature = "CFBase", feature = "CFLocale"))]
+#[cfg(feature = "CFLocale")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFStringTokenizerCreate(
     alloc: Option<&CFAllocator>,
@@ -229,7 +218,6 @@ extern "C-unwind" {
     ///
     /// Parameter `range`: The range of characters within the string to be tokenized. The
     /// specified range must not exceed the length of the string.
-    #[cfg(feature = "CFBase")]
     pub fn CFStringTokenizerSetString(
         tokenizer: &CFStringTokenizer,
         string: Option<&CFString>,
@@ -254,7 +242,6 @@ extern "C-unwind" {
     /// If the token is a compound (with type kCFStringTokenizerTokenHasSubTokensMask or
     /// kCFStringTokenizerTokenHasDerivedSubTokensMask), its subtokens and
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
-    #[cfg(feature = "CFBase")]
     pub fn CFStringTokenizerGoToTokenAtIndex(
         tokenizer: &CFStringTokenizer,
         index: CFIndex,
@@ -283,7 +270,6 @@ extern "C-unwind" {
     /// (with type kCFStringTokenizerTokenHasSubTokensMask or
     /// kCFStringTokenizerTokenHasDerivedSubTokensMask), its subtokens and
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
-    #[cfg(feature = "CFBase")]
     pub fn CFStringTokenizerAdvanceToNextToken(
         tokenizer: &CFStringTokenizer,
     ) -> CFStringTokenizerTokenType;
@@ -296,7 +282,6 @@ extern "C-unwind" {
     /// CFStringTokenizerCreate.
     ///
     /// Returns: Range of current token, or {kCFNotFound,0} if there is no current token.
-    #[cfg(feature = "CFBase")]
     pub fn CFStringTokenizerGetCurrentTokenRange(tokenizer: &CFStringTokenizer) -> CFRange;
 }
 
@@ -311,7 +296,6 @@ extern "C-unwind" {
 ///
 /// Returns: Token attribute, or NULL if current token does not have the specified
 /// attribute or if there is no current token.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFStringTokenizerCopyCurrentTokenAttribute(
     tokenizer: &CFStringTokenizer,
@@ -355,7 +339,7 @@ extern "C-unwind" {
     /// The derivedSubTokens array will have sub tokens added even when the sub token is a
     /// substring of the token. If token type is kCFStringTokenizerTokenHasSubTokensMask,
     /// the ordinary non-derived subtokens are added to the derivedSubTokens array.
-    #[cfg(all(feature = "CFArray", feature = "CFBase"))]
+    #[cfg(feature = "CFArray")]
     pub fn CFStringTokenizerGetCurrentSubTokens(
         tokenizer: &CFStringTokenizer,
         ranges: *mut CFRange,

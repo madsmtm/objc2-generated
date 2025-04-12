@@ -33,17 +33,14 @@ use crate::*;
 /// are used to access, add, or remove values in the dictionary.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryretaincallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFDictionaryRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryreleasecallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFDictionaryReleaseCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycopydescriptioncallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFDictionaryCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
@@ -52,12 +49,10 @@ pub type CFDictionaryEqualCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryhashcallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFDictionaryHashCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFDictionaryKeyCallBacks {
@@ -69,7 +64,7 @@ pub struct CFDictionaryKeyCallBacks {
     pub hash: CFDictionaryHashCallBack,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFDictionaryKeyCallBacks {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -84,7 +79,7 @@ unsafe impl Encode for CFDictionaryKeyCallBacks {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFDictionaryKeyCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -95,7 +90,6 @@ extern "C" {
     /// CFDictionary are all CFTypes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypedictionarykeycallbacks?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFTypeDictionaryKeyCallBacks: CFDictionaryKeyCallBacks;
 }
 
@@ -107,7 +101,6 @@ extern "C" {
     /// the values in the dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcopystringdictionarykeycallbacks?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFCopyStringDictionaryKeyCallBacks: CFDictionaryKeyCallBacks;
 }
 
@@ -133,7 +126,6 @@ extern "C" {
 /// equality in some operations.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFDictionaryValueCallBacks {
@@ -144,7 +136,7 @@ pub struct CFDictionaryValueCallBacks {
     pub equal: CFDictionaryEqualCallBack,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFDictionaryValueCallBacks {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -158,7 +150,7 @@ unsafe impl Encode for CFDictionaryValueCallBacks {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFDictionaryValueCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -169,7 +161,6 @@ extern "C" {
     /// are all CFTypes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypedictionaryvaluecallbacks?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFTypeDictionaryValueCallBacks: CFDictionaryValueCallBacks;
 }
 
@@ -223,7 +214,6 @@ cf_objc2_type!(
     unsafe impl<K: ?Sized, V: ?Sized> RefEncode<"__CFDictionary"> for CFMutableDictionary<K, V> {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFDictionary {
     /// Returns the type identifier of all CFDictionary instances.
     #[doc(alias = "CFDictionaryGetTypeID")]
@@ -322,7 +312,6 @@ unsafe impl ConcreteType for CFDictionary {
 /// the behavior when that callback function is used is undefined.
 ///
 /// Returns: A reference to the new immutable CFDictionary.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDictionaryCreate(
     allocator: Option<&CFAllocator>,
@@ -376,7 +365,6 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreate(
 /// not a valid CFDictionary, the behavior is undefined.
 ///
 /// Returns: A reference to the new immutable CFDictionary.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFDictionaryCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -463,7 +451,6 @@ pub extern "C-unwind" fn CFDictionaryCreateCopy(
 /// the behavior when that callback function is used is undefined.
 ///
 /// Returns: A reference to the new mutable CFDictionary.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDictionaryCreateMutable(
     allocator: Option<&CFAllocator>,
@@ -515,7 +502,6 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreateMutable(
 /// not a valid CFDictionary, the behavior is undefined.
 ///
 /// Returns: A reference to the new mutable CFDictionary.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDictionaryCreateMutableCopy(
     allocator: Option<&CFAllocator>,
@@ -539,7 +525,6 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreateMutableCopy(
 /// not a valid CFDictionary, the behavior is undefined.
 ///
 /// Returns: The number of values in the dictionary.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFDictionaryGetCount(the_dict: &CFDictionary) -> CFIndex {
     extern "C-unwind" {
@@ -565,7 +550,6 @@ extern "C-unwind" {
     ///
     /// Returns: Returns 1 if a matching key is used by the dictionary,
     /// 0 otherwise.
-    #[cfg(feature = "CFBase")]
     pub fn CFDictionaryGetCountOfKey(the_dict: &CFDictionary, key: *const c_void) -> CFIndex;
 }
 
@@ -583,7 +567,6 @@ extern "C-unwind" {
     /// the behavior is undefined.
     ///
     /// Returns: The number of times the given value occurs in the dictionary.
-    #[cfg(feature = "CFBase")]
     pub fn CFDictionaryGetCountOfValue(the_dict: &CFDictionary, value: *const c_void) -> CFIndex;
 }
 

@@ -24,7 +24,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFURLEnumerator"> for CFURLEnumerator {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFURLEnumerator {
     #[doc(alias = "CFURLEnumeratorGetTypeID")]
     #[inline]
@@ -38,11 +37,9 @@ unsafe impl ConcreteType for CFURLEnumerator {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLEnumeratorOptions(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFURLEnumeratorOptions: CFOptionFlags {
         #[doc(alias = "kCFURLEnumeratorDefaultBehavior")]
@@ -64,17 +61,17 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFURLEnumeratorOptions {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFURLEnumeratorOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
+#[cfg(all(feature = "CFArray", feature = "CFURL"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForDirectoryURL(
     alloc: Option<&CFAllocator>,
@@ -96,7 +93,7 @@ pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForDirectoryURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFBase"))]
+#[cfg(feature = "CFArray")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForMountedVolumes(
     alloc: Option<&CFAllocator>,
@@ -116,11 +113,9 @@ pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForMountedVolumes(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLEnumeratorResult(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFURLEnumeratorResult {
     #[doc(alias = "kCFURLEnumeratorSuccess")]
     pub const Success: Self = Self(1);
@@ -132,18 +127,18 @@ impl CFURLEnumeratorResult {
     pub const DirectoryPostOrderSuccess: Self = Self(4);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFURLEnumeratorResult {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFURLEnumeratorResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFURL"))]
+    #[cfg(all(feature = "CFError", feature = "CFURL"))]
     pub fn CFURLEnumeratorGetNextURL(
         enumerator: &CFURLEnumerator,
         url: *mut *const CFURL,
@@ -156,7 +151,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
 }
 

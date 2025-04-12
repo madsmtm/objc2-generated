@@ -75,7 +75,6 @@ unsafe impl RefEncode for CFUUIDBytes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFUUID {
     #[doc(alias = "CFUUIDGetTypeID")]
     #[inline]
@@ -87,7 +86,6 @@ unsafe impl ConcreteType for CFUUID {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFUUIDCreate(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFUUID>> {
     extern "C-unwind" {
@@ -97,7 +95,6 @@ pub extern "C-unwind" fn CFUUIDCreate(alloc: Option<&CFAllocator>) -> Option<CFR
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFUUIDCreateWithBytes(
     alloc: Option<&CFAllocator>,
@@ -148,7 +145,6 @@ pub extern "C-unwind" fn CFUUIDCreateWithBytes(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFUUIDCreateFromString(
     alloc: Option<&CFAllocator>,
@@ -164,7 +160,6 @@ pub extern "C-unwind" fn CFUUIDCreateFromString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFUUIDCreateString(
     alloc: Option<&CFAllocator>,
@@ -180,7 +175,6 @@ pub extern "C-unwind" fn CFUUIDCreateString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFUUIDGetConstantUUIDWithBytes(
     alloc: Option<&CFAllocator>,
@@ -239,7 +233,6 @@ pub extern "C-unwind" fn CFUUIDGetUUIDBytes(uuid: &CFUUID) -> CFUUIDBytes {
     unsafe { CFUUIDGetUUIDBytes(uuid) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFUUIDCreateFromUUIDBytes(
     alloc: Option<&CFAllocator>,

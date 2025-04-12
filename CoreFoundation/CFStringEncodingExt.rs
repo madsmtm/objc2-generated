@@ -7,11 +7,9 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringencodings?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFStringEncodings(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFStringEncodings {
     #[doc(alias = "kCFStringEncodingMacJapanese")]
     pub const MacJapanese: Self = Self(1);
@@ -273,12 +271,12 @@ impl CFStringEncodings {
     pub const ShiftJIS_X0213_00: Self = Self(0x0628);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFStringEncodings {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFStringEncodings {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

@@ -38,7 +38,6 @@ pub type CFTreeReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_voi
 /// Returns: A description of the info parameter.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecopydescriptioncallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFTreeCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
@@ -58,7 +57,6 @@ pub type CFTreeCopyDescriptionCallBack =
 /// the info field.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecontext?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFTreeContext {
@@ -69,7 +67,7 @@ pub struct CFTreeContext {
     pub copyDescription: CFTreeCopyDescriptionCallBack,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFTreeContext {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -83,7 +81,7 @@ unsafe impl Encode for CFTreeContext {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFTreeContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -116,7 +114,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFTree"> for CFTree {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFTree {
     /// Returns the type identifier of all CFTree instances.
     #[doc(alias = "CFTreeGetTypeID")]
@@ -146,7 +143,6 @@ unsafe impl ConcreteType for CFTree {
 /// version number, the result is undefined.
 ///
 /// Returns: A reference to the new CFTree.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFTreeCreate(
     allocator: Option<&CFAllocator>,
@@ -218,7 +214,6 @@ extern "C-unwind" {
     /// pointer to a CFTreeContext structure-sized block of storage, the
     /// result is undefined.  If the version number of the storage is not
     /// a valid CFTreeContext version number, the result is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFTreeGetContext(tree: &CFTree, context: *mut CFTreeContext);
 }
 
@@ -229,7 +224,6 @@ extern "C-unwind" {
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: The number of children.
-    #[cfg(feature = "CFBase")]
     pub fn CFTreeGetChildCount(tree: &CFTree) -> CFIndex;
 }
 
@@ -243,7 +237,6 @@ extern "C-unwind" {
 /// tree, the result is undefined.
 ///
 /// Returns: A reference to the specified child tree.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFTreeGetChildAtIndex(
     tree: &CFTree,
@@ -323,7 +316,6 @@ extern "C-unwind" {
     /// structure-sized block of storage, the result is undefined.
     /// If the version number of the storage is not a valid CFTreeContext
     /// version number, the result is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFTreeSetContext(tree: &CFTree, context: *const CFTreeContext);
 }
 
@@ -402,7 +394,6 @@ extern "C-unwind" {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the comparator function, the behavior is
     /// undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFTreeSortChildren(
         tree: &CFTree,
         comparator: CFComparatorFunction,

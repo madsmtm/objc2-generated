@@ -10,17 +10,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagretaincallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFBagRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagreleasecallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFBagReleaseCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcopydescriptioncallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFBagCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
@@ -29,11 +26,9 @@ pub type CFBagEqualCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaghashcallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFBagHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFBagCallBacks {
@@ -45,7 +40,7 @@ pub struct CFBagCallBacks {
     pub hash: CFBagHashCallBack,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFBagCallBacks {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -60,20 +55,18 @@ unsafe impl Encode for CFBagCallBacks {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFBagCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypebagcallbacks?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFTypeBagCallBacks: CFBagCallBacks;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcopystringbagcallbacks?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFCopyStringBagCallBacks: CFBagCallBacks;
 }
 
@@ -112,7 +105,6 @@ cf_objc2_type!(
     unsafe impl<T: ?Sized> RefEncode<"__CFBag"> for CFMutableBag<T> {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFBag {
     #[doc(alias = "CFBagGetTypeID")]
     #[inline]
@@ -124,7 +116,6 @@ unsafe impl ConcreteType for CFBag {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagCreate(
     allocator: Option<&CFAllocator>,
@@ -144,7 +135,6 @@ pub unsafe extern "C-unwind" fn CFBagCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -160,7 +150,6 @@ pub unsafe extern "C-unwind" fn CFBagCreateCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagCreateMutable(
     allocator: Option<&CFAllocator>,
@@ -178,7 +167,6 @@ pub unsafe extern "C-unwind" fn CFBagCreateMutable(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagCreateMutableCopy(
     allocator: Option<&CFAllocator>,
@@ -197,12 +185,10 @@ pub unsafe extern "C-unwind" fn CFBagCreateMutableCopy(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFBagGetCount(the_bag: &CFBag) -> CFIndex;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFBagGetCountOfValue(the_bag: &CFBag, value: *const c_void) -> CFIndex;
 }
 

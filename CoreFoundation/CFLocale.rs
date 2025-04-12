@@ -10,12 +10,10 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocaleidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "CFBase")]
 pub type CFLocaleIdentifier = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey?language=objc)
 // NS_TYPED_ENUM
-#[cfg(feature = "CFBase")]
 pub type CFLocaleKey = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocale?language=objc)
@@ -33,7 +31,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFLocale"> for CFLocale {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFLocale {
     #[doc(alias = "CFLocaleGetTypeID")]
     #[inline]
@@ -123,7 +120,6 @@ pub extern "C-unwind" fn CFLocaleCopyPreferredLanguages() -> Option<CFRetained<C
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleCreateCanonicalLanguageIdentifierFromString(
     allocator: Option<&CFAllocator>,
@@ -141,7 +137,6 @@ pub extern "C-unwind" fn CFLocaleCreateCanonicalLanguageIdentifierFromString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleCreateCanonicalLocaleIdentifierFromString(
     allocator: Option<&CFAllocator>,
@@ -158,7 +153,6 @@ pub extern "C-unwind" fn CFLocaleCreateCanonicalLocaleIdentifierFromString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(
     allocator: Option<&CFAllocator>,
@@ -178,7 +172,6 @@ pub extern "C-unwind" fn CFLocaleCreateCanonicalLocaleIdentifierFromScriptManage
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(
     allocator: Option<&CFAllocator>,
@@ -194,7 +187,6 @@ pub extern "C-unwind" fn CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(
     locale_identifier: Option<&CFLocaleIdentifier>,
@@ -209,11 +201,9 @@ pub extern "C-unwind" fn CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFLocaleLanguageDirection(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFLocaleLanguageDirection {
     #[doc(alias = "kCFLocaleLanguageDirectionUnknown")]
     pub const Unknown: Self = Self(0);
@@ -227,17 +217,16 @@ impl CFLocaleLanguageDirection {
     pub const BottomToTop: Self = Self(4);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFLocaleLanguageDirection {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFLocaleLanguageDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleGetLanguageCharacterDirection(
     iso_lang_code: Option<&CFString>,
@@ -250,7 +239,6 @@ pub extern "C-unwind" fn CFLocaleGetLanguageCharacterDirection(
     unsafe { CFLocaleGetLanguageCharacterDirection(iso_lang_code) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleGetLanguageLineDirection(
     iso_lang_code: Option<&CFString>,
@@ -263,7 +251,7 @@ pub extern "C-unwind" fn CFLocaleGetLanguageLineDirection(
     unsafe { CFLocaleGetLanguageLineDirection(iso_lang_code) }
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[cfg(feature = "CFDictionary")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleCreateComponentsFromLocaleIdentifier(
     allocator: Option<&CFAllocator>,
@@ -279,7 +267,7 @@ pub extern "C-unwind" fn CFLocaleCreateComponentsFromLocaleIdentifier(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleCreateLocaleIdentifierFromComponents(
     allocator: Option<&CFAllocator>,
@@ -295,7 +283,6 @@ pub unsafe extern "C-unwind" fn CFLocaleCreateLocaleIdentifierFromComponents(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleCreate(
     allocator: Option<&CFAllocator>,
@@ -311,7 +298,6 @@ pub extern "C-unwind" fn CFLocaleCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -327,7 +313,6 @@ pub extern "C-unwind" fn CFLocaleCreateCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleGetIdentifier(
     locale: &CFLocale,
@@ -339,7 +324,6 @@ pub extern "C-unwind" fn CFLocaleGetIdentifier(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleGetValue(
     locale: &CFLocale,
@@ -355,7 +339,6 @@ pub extern "C-unwind" fn CFLocaleGetValue(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFLocaleCopyDisplayNameForPropertyValue(
     display_locale: &CFLocale,
@@ -375,209 +358,175 @@ pub extern "C-unwind" fn CFLocaleCopyDisplayNameForPropertyValue(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecurrentlocaledidchangenotification?language=objc)
-    #[cfg(all(feature = "CFBase", feature = "CFNotificationCenter"))]
+    #[cfg(feature = "CFNotificationCenter")]
     pub static kCFLocaleCurrentLocaleDidChangeNotification: Option<&'static CFNotificationName>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocaleidentifier?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleIdentifier: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalelanguagecode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleLanguageCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecountrycode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleCountryCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalescriptcode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleScriptCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalevariantcode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleVariantCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocaleexemplarcharacterset?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleExemplarCharacterSet: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecalendaridentifier?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleCalendarIdentifier: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleCalendar: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecollationidentifier?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleCollationIdentifier: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocaleusesmetricsystem?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleUsesMetricSystem: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalemeasurementsystem?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleMeasurementSystem: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocaledecimalseparator?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleDecimalSeparator: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalegroupingseparator?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleGroupingSeparator: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecurrencysymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleCurrencySymbol: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecurrencycode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleCurrencyCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalecollatoridentifier?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleCollatorIdentifier: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalequotationbegindelimiterkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleQuotationBeginDelimiterKey: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalequotationenddelimiterkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleQuotationEndDelimiterKey: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalealternatequotationbegindelimiterkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleAlternateQuotationBeginDelimiterKey: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcflocalealternatequotationenddelimiterkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFLocaleAlternateQuotationEndDelimiterKey: Option<&'static CFLocaleKey>;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier?language=objc)
 // NS_TYPED_ENUM
-#[cfg(feature = "CFBase")]
 pub type CFCalendarIdentifier = CFString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfgregoriancalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFGregorianCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbuddhistcalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFBuddhistCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfchinesecalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFChineseCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfhebrewcalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFHebrewCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfislamiccalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFIslamicCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfislamiccivilcalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFIslamicCivilCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfjapanesecalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFJapaneseCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfrepublicofchinacalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFRepublicOfChinaCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpersiancalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFPersianCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfindiancalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFIndianCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfiso8601calendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFISO8601Calendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfislamictabularcalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFIslamicTabularCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfislamicummalquracalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFIslamicUmmAlQuraCalendar: Option<&'static CFCalendarIdentifier>;
 }

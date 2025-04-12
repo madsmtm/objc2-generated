@@ -7,41 +7,34 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFPreferencesAnyApplication: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFPreferencesCurrentApplication: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyhost?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFPreferencesAnyHost: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrenthost?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFPreferencesCurrentHost: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyuser?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFPreferencesAnyUser: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentuser?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFPreferencesCurrentUser: &'static CFString;
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyAppValue(
     key: &CFString,
@@ -57,7 +50,6 @@ pub extern "C-unwind" fn CFPreferencesCopyAppValue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPreferencesGetAppBooleanValue(
     key: &CFString,
@@ -78,7 +70,6 @@ pub unsafe extern "C-unwind" fn CFPreferencesGetAppBooleanValue(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFPreferencesGetAppIntegerValue(
         key: &CFString,
         application_id: &CFString,
@@ -87,7 +78,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFPreferencesSetAppValue(
         key: &CFString,
         value: Option<&CFPropertyList>,
@@ -95,7 +85,6 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesAddSuitePreferencesToApp(
     application_id: &CFString,
@@ -107,7 +96,6 @@ pub extern "C-unwind" fn CFPreferencesAddSuitePreferencesToApp(
     unsafe { CFPreferencesAddSuitePreferencesToApp(application_id, suite_id) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesRemoveSuitePreferencesFromApp(
     application_id: &CFString,
@@ -122,7 +110,6 @@ pub extern "C-unwind" fn CFPreferencesRemoveSuitePreferencesFromApp(
     unsafe { CFPreferencesRemoveSuitePreferencesFromApp(application_id, suite_id) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesAppSynchronize(application_id: &CFString) -> bool {
     extern "C-unwind" {
@@ -132,7 +119,6 @@ pub extern "C-unwind" fn CFPreferencesAppSynchronize(application_id: &CFString) 
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyValue(
     key: &CFString,
@@ -152,7 +138,7 @@ pub extern "C-unwind" fn CFPreferencesCopyValue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFDictionary"))]
+#[cfg(all(feature = "CFArray", feature = "CFDictionary"))]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyMultiple(
     keys_to_fetch: Option<&CFArray>,
@@ -175,7 +161,6 @@ pub extern "C-unwind" fn CFPreferencesCopyMultiple(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFPreferencesSetValue(
         key: &CFString,
         value: Option<&CFPropertyList>,
@@ -186,7 +171,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFDictionary"))]
+    #[cfg(all(feature = "CFArray", feature = "CFDictionary"))]
     pub fn CFPreferencesSetMultiple(
         keys_to_set: Option<&CFDictionary>,
         keys_to_remove: Option<&CFArray>,
@@ -196,7 +181,6 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPreferencesSynchronize(
     application_id: &CFString,
@@ -214,7 +198,7 @@ pub unsafe extern "C-unwind" fn CFPreferencesSynchronize(
     ret != 0
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFBase"))]
+#[cfg(feature = "CFArray")]
 #[deprecated = "Unsupported API"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPreferencesCopyApplicationList(
@@ -231,7 +215,7 @@ pub unsafe extern "C-unwind" fn CFPreferencesCopyApplicationList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFBase"))]
+#[cfg(feature = "CFArray")]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyKeyList(
     application_id: &CFString,
@@ -249,7 +233,6 @@ pub extern "C-unwind" fn CFPreferencesCopyKeyList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesAppValueIsForced(
     key: &CFString,

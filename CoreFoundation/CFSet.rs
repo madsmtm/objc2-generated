@@ -20,7 +20,6 @@ use crate::*;
 /// value if a different value should be stored in the set.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetretaincallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFSetRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
@@ -31,7 +30,6 @@ pub type CFSetRetainCallBack =
 /// Parameter `value`: The value to release.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreleasecallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFSetReleaseCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
@@ -42,7 +40,6 @@ pub type CFSetReleaseCallBack =
 /// Returns: A description of the specified value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcopydescriptioncallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFSetCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
@@ -65,7 +62,6 @@ pub type CFSetEqualCallBack =
 /// Returns: The hash of the value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsethashcallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
 /// Structure containing the callbacks of a CFSet.
@@ -91,7 +87,6 @@ pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -
 /// uniqueness for some operations.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFSetCallBacks {
@@ -103,7 +98,7 @@ pub struct CFSetCallBacks {
     pub hash: CFSetHashCallBack,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFSetCallBacks {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -118,7 +113,7 @@ unsafe impl Encode for CFSetCallBacks {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFSetCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -128,7 +123,6 @@ extern "C" {
     /// appropriate for use when the values in a CFSet are all CFTypes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypesetcallbacks?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFTypeSetCallBacks: CFSetCallBacks;
 }
 
@@ -138,7 +132,6 @@ extern "C" {
     /// of a CFString.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcopystringsetcallbacks?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFCopyStringSetCallBacks: CFSetCallBacks;
 }
 
@@ -189,7 +182,6 @@ cf_objc2_type!(
     unsafe impl<T: ?Sized> RefEncode<"__CFSet"> for CFMutableSet<T> {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFSet {
     /// Returns the type identifier of all CFSet instances.
     #[doc(alias = "CFSetGetTypeID")]
@@ -250,7 +242,6 @@ unsafe impl ConcreteType for CFSet {
 /// undefined.
 ///
 /// Returns: A reference to the new immutable CFSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFSetCreate(
     allocator: Option<&CFAllocator>,
@@ -288,7 +279,6 @@ pub unsafe extern "C-unwind" fn CFSetCreate(
 /// not a valid CFSet, the behavior is undefined.
 ///
 /// Returns: A reference to the new immutable CFSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFSetCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -348,7 +338,6 @@ pub extern "C-unwind" fn CFSetCreateCopy(
 /// undefined.
 ///
 /// Returns: A reference to the new mutable CFSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFSetCreateMutable(
     allocator: Option<&CFAllocator>,
@@ -394,7 +383,6 @@ pub unsafe extern "C-unwind" fn CFSetCreateMutable(
 /// not a valid CFSet, the behavior is undefined.
 ///
 /// Returns: A reference to the new mutable CFSet.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFSetCreateMutableCopy(
     allocator: Option<&CFAllocator>,
@@ -418,7 +406,6 @@ pub unsafe extern "C-unwind" fn CFSetCreateMutableCopy(
 /// CFSet, the behavior is undefined.
 ///
 /// Returns: The number of values in the set.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFSetGetCount(the_set: &CFSet) -> CFIndex {
     extern "C-unwind" {
@@ -443,7 +430,6 @@ extern "C-unwind" {
     /// the behavior is undefined.
     ///
     /// Returns: The number of times the given value occurs in the set.
-    #[cfg(feature = "CFBase")]
     pub fn CFSetGetCountOfValue(the_set: &CFSet, value: *const c_void) -> CFIndex;
 }
 

@@ -40,7 +40,6 @@ pub const kCFMessagePortTransportError: i32 = -4;
 pub const kCFMessagePortBecameInvalidError: i32 = -5;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcontext?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFMessagePortContext {
@@ -51,7 +50,7 @@ pub struct CFMessagePortContext {
     pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFMessagePortContext {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -65,7 +64,7 @@ unsafe impl Encode for CFMessagePortContext {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFMessagePortContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -85,7 +84,6 @@ pub type CFMessagePortCallBack = Option<
 pub type CFMessagePortInvalidationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFMessagePort, *mut c_void)>;
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFMessagePort {
     #[doc(alias = "CFMessagePortGetTypeID")]
     #[inline]
@@ -97,7 +95,7 @@ unsafe impl ConcreteType for CFMessagePort {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[cfg(feature = "CFData")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFMessagePortCreateLocal(
     allocator: Option<&CFAllocator>,
@@ -120,7 +118,6 @@ pub unsafe extern "C-unwind" fn CFMessagePortCreateLocal(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFMessagePortCreateRemote(
     allocator: Option<&CFAllocator>,
@@ -145,7 +142,6 @@ pub extern "C-unwind" fn CFMessagePortIsRemote(ms: &CFMessagePort) -> bool {
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFMessagePortGetName(ms: &CFMessagePort) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -155,7 +151,6 @@ pub extern "C-unwind" fn CFMessagePortGetName(ms: &CFMessagePort) -> Option<CFRe
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFMessagePortSetName(
     ms: &CFMessagePort,
@@ -169,7 +164,6 @@ pub extern "C-unwind" fn CFMessagePortSetName(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFMessagePortGetContext(ms: &CFMessagePort, context: *mut CFMessagePortContext);
 }
 
@@ -210,7 +204,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
+    #[cfg(all(feature = "CFData", feature = "CFDate"))]
     pub fn CFMessagePortSendRequest(
         remote: &CFMessagePort,
         msgid: i32,
@@ -222,7 +216,7 @@ extern "C-unwind" {
     ) -> i32;
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[cfg(feature = "CFRunLoop")]
 #[inline]
 pub extern "C-unwind" fn CFMessagePortCreateRunLoopSource(
     allocator: Option<&CFAllocator>,

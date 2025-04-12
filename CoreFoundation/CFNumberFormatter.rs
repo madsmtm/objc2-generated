@@ -11,7 +11,6 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey?language=objc)
 // NS_TYPED_ENUM
-#[cfg(feature = "CFBase")]
 pub type CFNumberFormatterKey = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatter?language=objc)
@@ -29,7 +28,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFNumberFormatter"> for CFNumberFormatter {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFNumberFormatter {
     #[doc(alias = "CFNumberFormatterGetTypeID")]
     #[inline]
@@ -43,11 +41,9 @@ unsafe impl ConcreteType for CFNumberFormatter {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNumberFormatterStyle(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFNumberFormatterStyle {
     #[doc(alias = "kCFNumberFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
@@ -71,17 +67,17 @@ impl CFNumberFormatterStyle {
     pub const CurrencyAccountingStyle: Self = Self(10);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFNumberFormatterStyle {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFNumberFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFLocale"))]
+#[cfg(feature = "CFLocale")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterCreate(
     allocator: Option<&CFAllocator>,
@@ -112,11 +108,9 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterGetLocale(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterGetStyle(formatter: &CFNumberFormatter) -> CFNumberFormatterStyle;
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterGetFormat(
     formatter: &CFNumberFormatter,
@@ -129,14 +123,13 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterGetFormat(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterSetFormat(
         formatter: &CFNumberFormatter,
         format_string: Option<&CFString>,
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFNumber"))]
+#[cfg(feature = "CFNumber")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterCreateStringWithNumber(
     allocator: Option<&CFAllocator>,
@@ -154,7 +147,7 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreateStringWithNumber(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFNumber"))]
+#[cfg(feature = "CFNumber")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterCreateStringWithValue(
     allocator: Option<&CFAllocator>,
@@ -178,11 +171,9 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreateStringWithValue(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatteroptionflags?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNumberFormatterOptionFlags(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFNumberFormatterOptionFlags: CFOptionFlags {
         #[doc(alias = "kCFNumberFormatterParseIntegersOnly")]
@@ -190,17 +181,17 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFNumberFormatterOptionFlags {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFNumberFormatterOptionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFNumber"))]
+#[cfg(feature = "CFNumber")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterCreateNumberFromString(
     allocator: Option<&CFAllocator>,
@@ -224,7 +215,7 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreateNumberFromString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFNumber"))]
+#[cfg(feature = "CFNumber")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterGetValueFromString(
     formatter: &CFNumberFormatter,
@@ -249,7 +240,6 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterGetValueFromString(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterSetProperty(
         formatter: &CFNumberFormatter,
         key: Option<&CFNumberFormatterKey>,
@@ -257,7 +247,6 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterCopyProperty(
     formatter: &CFNumberFormatter,
@@ -275,245 +264,204 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCopyProperty(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattercurrencycode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterCurrencyCode: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterdecimalseparator?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterDecimalSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattercurrencydecimalseparator?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterCurrencyDecimalSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatteralwaysshowdecimalseparator?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterAlwaysShowDecimalSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattergroupingseparator?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterGroupingSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterusegroupingseparator?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterUseGroupingSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpercentsymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterPercentSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterzerosymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterZeroSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatternansymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterNaNSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterinfinitysymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterInfinitySymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterminussign?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterMinusSign: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterplussign?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterPlusSign: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattercurrencysymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterCurrencySymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterexponentsymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterExponentSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterminintegerdigits?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterMinIntegerDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermaxintegerdigits?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterMaxIntegerDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterminfractiondigits?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterMinFractionDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermaxfractiondigits?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterMaxFractionDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattergroupingsize?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterGroupingSize: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattersecondarygroupingsize?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterSecondaryGroupingSize: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterroundingmode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterRoundingMode: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterroundingincrement?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterRoundingIncrement: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterformatwidth?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterFormatWidth: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpaddingposition?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterPaddingPosition: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpaddingcharacter?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterPaddingCharacter: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterdefaultformat?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterDefaultFormat: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermultiplier?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterMultiplier: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpositiveprefix?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterPositivePrefix: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpositivesuffix?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterPositiveSuffix: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatternegativeprefix?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterNegativePrefix: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatternegativesuffix?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterNegativeSuffix: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterpermillsymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterPerMillSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterinternationalcurrencysymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterInternationalCurrencySymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattercurrencygroupingseparator?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterCurrencyGroupingSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterislenient?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterIsLenient: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterusesignificantdigits?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterUseSignificantDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformatterminsignificantdigits?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterMinSignificantDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermaxsignificantdigits?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterMaxSignificantDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberformattermingroupingdigits?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFNumberFormatterMinGroupingDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNumberFormatterRoundingMode(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFNumberFormatterRoundingMode {
     #[doc(alias = "kCFNumberFormatterRoundCeiling")]
     pub const RoundCeiling: Self = Self(0);
@@ -531,23 +479,21 @@ impl CFNumberFormatterRoundingMode {
     pub const RoundHalfUp: Self = Self(6);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFNumberFormatterRoundingMode {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFNumberFormatterRoundingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNumberFormatterPadPosition(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFNumberFormatterPadPosition {
     #[doc(alias = "kCFNumberFormatterPadBeforePrefix")]
     pub const BeforePrefix: Self = Self(0);
@@ -559,17 +505,16 @@ impl CFNumberFormatterPadPosition {
     pub const AfterSuffix: Self = Self(3);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFNumberFormatterPadPosition {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFNumberFormatterPadPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterGetDecimalInfoForCurrencyCode(
     currency_code: Option<&CFString>,

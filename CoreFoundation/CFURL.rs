@@ -11,11 +11,9 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLPathStyle(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFURLPathStyle {
     #[doc(alias = "kCFURLPOSIXPathStyle")]
     pub const CFURLPOSIXPathStyle: Self = Self(0);
@@ -26,12 +24,12 @@ impl CFURLPathStyle {
     pub const CFURLWindowsPathStyle: Self = Self(2);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFURLPathStyle {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFURLPathStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -51,7 +49,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFURL"> for CFURL {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFURL {
     #[doc(alias = "CFURLGetTypeID")]
     #[inline]
@@ -63,7 +60,7 @@ unsafe impl ConcreteType for CFURL {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFString"))]
+#[cfg(feature = "CFString")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateWithBytes(
     allocator: Option<&CFAllocator>,
@@ -85,7 +82,7 @@ pub unsafe extern "C-unwind" fn CFURLCreateWithBytes(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFString"))]
+#[cfg(all(feature = "CFData", feature = "CFString"))]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateData(
     allocator: Option<&CFAllocator>,
@@ -105,7 +102,6 @@ pub extern "C-unwind" fn CFURLCreateData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateWithString(
     allocator: Option<&CFAllocator>,
@@ -123,7 +119,7 @@ pub extern "C-unwind" fn CFURLCreateWithString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFString"))]
+#[cfg(feature = "CFString")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateAbsoluteURLWithBytes(
     alloc: Option<&CFAllocator>,
@@ -156,7 +152,6 @@ pub unsafe extern "C-unwind" fn CFURLCreateAbsoluteURLWithBytes(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateWithFileSystemPath(
     allocator: Option<&CFAllocator>,
@@ -178,7 +173,6 @@ pub extern "C-unwind" fn CFURLCreateWithFileSystemPath(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateFromFileSystemRepresentation(
     allocator: Option<&CFAllocator>,
@@ -200,7 +194,6 @@ pub unsafe extern "C-unwind" fn CFURLCreateFromFileSystemRepresentation(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateWithFileSystemPathRelativeToBase(
     allocator: Option<&CFAllocator>,
@@ -230,7 +223,6 @@ pub extern "C-unwind" fn CFURLCreateWithFileSystemPathRelativeToBase(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateFromFileSystemRepresentationRelativeToBase(
     allocator: Option<&CFAllocator>,
@@ -260,7 +252,6 @@ pub unsafe extern "C-unwind" fn CFURLCreateFromFileSystemRepresentationRelativeT
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLGetFileSystemRepresentation(
     url: &CFURL,
@@ -291,7 +282,6 @@ pub extern "C-unwind" fn CFURLCopyAbsoluteURL(relative_url: &CFURL) -> Option<CF
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLGetString(an_url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -319,7 +309,6 @@ pub extern "C-unwind" fn CFURLCanBeDecomposed(an_url: &CFURL) -> bool {
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyScheme(an_url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -329,7 +318,6 @@ pub extern "C-unwind" fn CFURLCopyScheme(an_url: &CFURL) -> Option<CFRetained<CF
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyNetLocation(an_url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -339,7 +327,6 @@ pub extern "C-unwind" fn CFURLCopyNetLocation(an_url: &CFURL) -> Option<CFRetain
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyPath(an_url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -349,7 +336,6 @@ pub extern "C-unwind" fn CFURLCopyPath(an_url: &CFURL) -> Option<CFRetained<CFSt
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCopyStrictPath(
     an_url: &CFURL,
@@ -365,7 +351,6 @@ pub unsafe extern "C-unwind" fn CFURLCopyStrictPath(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyFileSystemPath(
     an_url: &CFURL,
@@ -390,7 +375,6 @@ pub extern "C-unwind" fn CFURLHasDirectoryPath(an_url: &CFURL) -> bool {
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyResourceSpecifier(
     an_url: &CFURL,
@@ -402,7 +386,6 @@ pub extern "C-unwind" fn CFURLCopyResourceSpecifier(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyHostName(an_url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -416,7 +399,6 @@ extern "C-unwind" {
     pub fn CFURLGetPortNumber(an_url: &CFURL) -> i32;
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyUserName(an_url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -426,7 +408,6 @@ pub extern "C-unwind" fn CFURLCopyUserName(an_url: &CFURL) -> Option<CFRetained<
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyPassword(an_url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -436,7 +417,6 @@ pub extern "C-unwind" fn CFURLCopyPassword(an_url: &CFURL) -> Option<CFRetained<
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[deprecated = "The CFURLCopyParameterString function is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, CFURLCopyParameterString will always return NULL, and the CFURLCopyPath(), CFURLCopyStrictPath(), and CFURLCopyFileSystemPath() functions will return the complete path including the semicolon separator and params component if the URL string contains them."]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyParameterString(
@@ -453,7 +433,6 @@ pub extern "C-unwind" fn CFURLCopyParameterString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyQueryString(
     an_url: &CFURL,
@@ -469,7 +448,6 @@ pub extern "C-unwind" fn CFURLCopyQueryString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyFragment(
     an_url: &CFURL,
@@ -485,7 +463,6 @@ pub extern "C-unwind" fn CFURLCopyFragment(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyLastPathComponent(url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -495,7 +472,6 @@ pub extern "C-unwind" fn CFURLCopyLastPathComponent(url: &CFURL) -> Option<CFRet
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCopyPathExtension(url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -505,7 +481,6 @@ pub extern "C-unwind" fn CFURLCopyPathExtension(url: &CFURL) -> Option<CFRetaine
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateCopyAppendingPathComponent(
     allocator: Option<&CFAllocator>,
@@ -527,7 +502,6 @@ pub extern "C-unwind" fn CFURLCreateCopyAppendingPathComponent(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateCopyDeletingLastPathComponent(
     allocator: Option<&CFAllocator>,
@@ -543,7 +517,6 @@ pub extern "C-unwind" fn CFURLCreateCopyDeletingLastPathComponent(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateCopyAppendingPathExtension(
     allocator: Option<&CFAllocator>,
@@ -561,7 +534,6 @@ pub extern "C-unwind" fn CFURLCreateCopyAppendingPathExtension(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateCopyDeletingPathExtension(
     allocator: Option<&CFAllocator>,
@@ -578,17 +550,14 @@ pub extern "C-unwind" fn CFURLCreateCopyDeletingPathExtension(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFURLGetBytes(url: &CFURL, buffer: *mut u8, buffer_length: CFIndex) -> CFIndex;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLComponentType(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFURLComponentType {
     #[doc(alias = "kCFURLComponentScheme")]
     pub const Scheme: Self = Self(1);
@@ -616,18 +585,17 @@ impl CFURLComponentType {
     pub const Fragment: Self = Self(12);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFURLComponentType {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFURLComponentType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFURLGetByteRangeForComponent(
         url: &CFURL,
         component: CFURLComponentType,
@@ -635,7 +603,6 @@ extern "C-unwind" {
     ) -> CFRange;
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateStringByReplacingPercentEscapes(
     allocator: Option<&CFAllocator>,
@@ -659,7 +626,7 @@ pub extern "C-unwind" fn CFURLCreateStringByReplacingPercentEscapes(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFString"))]
+#[cfg(feature = "CFString")]
 #[deprecated = "Use [NSString stringByRemovingPercentEncoding] or CFURLCreateStringByReplacingPercentEscapes() instead, which always uses the recommended UTF-8 encoding."]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
@@ -687,7 +654,7 @@ pub unsafe extern "C-unwind" fn CFURLCreateStringByReplacingPercentEscapesUsingE
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFString"))]
+#[cfg(feature = "CFString")]
 #[deprecated = "Use [NSString stringByAddingPercentEncodingWithAllowedCharacters:] instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent (since each URL component or subcomponent has different rules for what characters are valid)."]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateStringByAddingPercentEscapes(
@@ -727,7 +694,7 @@ pub extern "C-unwind" fn CFURLIsFileReferenceURL(url: &CFURL) -> bool {
     ret != 0
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFError"))]
+#[cfg(feature = "CFError")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateFileReferenceURL(
     allocator: Option<&CFAllocator>,
@@ -745,7 +712,7 @@ pub unsafe extern "C-unwind" fn CFURLCreateFileReferenceURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFError"))]
+#[cfg(feature = "CFError")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateFilePathURL(
     allocator: Option<&CFAllocator>,
@@ -763,7 +730,7 @@ pub unsafe extern "C-unwind" fn CFURLCreateFilePathURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFError"))]
+#[cfg(feature = "CFError")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCopyResourcePropertyForKey(
     url: &CFURL,
@@ -802,7 +769,7 @@ pub unsafe extern "C-unwind" fn CFURLCopyResourcePropertiesForKeys(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFError"))]
+#[cfg(feature = "CFError")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLSetResourcePropertyForKey(
     url: &CFURL,
@@ -842,11 +809,9 @@ pub unsafe extern "C-unwind" fn CFURLSetResourcePropertiesForKeys(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlkeysofunsetvalueskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLKeysOfUnsetValuesKey: Option<&'static CFString>;
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLClearResourcePropertyCacheForKey(
     url: &CFURL,
@@ -866,7 +831,6 @@ pub extern "C-unwind" fn CFURLClearResourcePropertyCache(url: &CFURL) {
     unsafe { CFURLClearResourcePropertyCache(url) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFURLSetTemporaryResourcePropertyForKey(
     url: &CFURL,
@@ -898,791 +862,659 @@ pub unsafe extern "C-unwind" fn CFURLResourceIsReachable(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlnamekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllocalizednamekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLLocalizedNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisregularfilekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsRegularFileKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisdirectorykey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsDirectoryKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlissymboliclinkkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsSymbolicLinkKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisvolumekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsVolumeKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlispackagekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsPackageKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisapplicationkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsApplicationKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlapplicationisscriptablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLApplicationIsScriptableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlissystemimmutablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsSystemImmutableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisuserimmutablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsUserImmutableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlishiddenkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsHiddenKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhashiddenextensionkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLHasHiddenExtensionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcreationdatekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLCreationDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcontentaccessdatekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLContentAccessDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcontentmodificationdatekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLContentModificationDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlattributemodificationdatekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLAttributeModificationDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileidentifierkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilecontentidentifierkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileContentIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlmaysharefilecontentkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLMayShareFileContentKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlmayhaveextendedattributeskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLMayHaveExtendedAttributesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlispurgeablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsPurgeableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlissparsekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsSparseKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllinkcountkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLLinkCountKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlparentdirectoryurlkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLParentDirectoryURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeurlkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltypeidentifierkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLTypeIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllocalizedtypedescriptionkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLLocalizedTypeDescriptionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllabelnumberkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLLabelNumberKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllabelcolorkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLLabelColorKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllocalizedlabelkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLLocalizedLabelKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurleffectiveiconkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLEffectiveIconKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcustomiconkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLCustomIconKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourceidentifierkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeidentifierkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlpreferredioblocksizekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLPreferredIOBlockSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisreadablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsReadableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurliswritablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsWritableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisexecutablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsExecutableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilesecuritykey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileSecurityKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisexcludedfrombackupkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsExcludedFromBackupKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltagnameskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLTagNamesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlpathkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLPathKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcanonicalpathkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLCanonicalPathKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlismounttriggerkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsMountTriggerKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlgenerationidentifierkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLGenerationIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurldocumentidentifierkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLDocumentIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurladdedtodirectorydatekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLAddedToDirectoryDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlquarantinepropertieskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLQuarantinePropertiesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceTypeKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypenamedpipe?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceTypeNamedPipe: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypecharacterspecial?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceTypeCharacterSpecial: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypedirectory?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceTypeDirectory: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypeblockspecial?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceTypeBlockSpecial: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetyperegular?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceTypeRegular: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypesymboliclink?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceTypeSymbolicLink: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypesocket?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceTypeSocket: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypeunknown?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileResourceTypeUnknown: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilesizekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileallocatedsizekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileAllocatedSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltotalfilesizekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLTotalFileSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltotalfileallocatedsizekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLTotalFileAllocatedSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisaliasfilekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsAliasFileKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectionkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileProtectionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectionnone?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileProtectionNone: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncomplete?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileProtectionComplete: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncompleteunlessopen?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileProtectionCompleteUnlessOpen: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncompleteuntilfirstuserauthentication?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileProtectionCompleteUntilFirstUserAuthentication: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncompletewhenuserinactive?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileProtectionCompleteWhenUserInactive: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurldirectoryentrycountkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLDirectoryEntryCountKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumelocalizedformatdescriptionkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeLocalizedFormatDescriptionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumetotalcapacitykey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeTotalCapacityKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacitykey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeAvailableCapacityKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacityforimportantusagekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeAvailableCapacityForImportantUsageKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacityforopportunisticusagekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeAvailableCapacityForOpportunisticUsageKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeresourcecountkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeResourceCountKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportspersistentidskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsPersistentIDsKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportssymboliclinkskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsSymbolicLinksKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportshardlinkskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsHardLinksKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsjournalingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsJournalingKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisjournalingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsJournalingKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportssparsefileskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsSparseFilesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportszerorunskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsZeroRunsKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportscasesensitivenameskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsCaseSensitiveNamesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportscasepreservednameskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsCasePreservedNamesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsrootdirectorydateskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsRootDirectoryDatesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsvolumesizeskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsVolumeSizesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsrenamingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsRenamingKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsadvisoryfilelockingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsAdvisoryFileLockingKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsextendedsecuritykey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsExtendedSecurityKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisbrowsablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsBrowsableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumemaximumfilesizekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeMaximumFileSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisejectablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsEjectableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisremovablekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsRemovableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisinternalkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsInternalKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisautomountedkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsAutomountedKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeislocalkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsLocalKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisreadonlykey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsReadOnlyKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumecreationdatekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeCreationDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeurlforremountingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeURLForRemountingKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeuuidstringkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeUUIDStringKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumenamekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumelocalizednamekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeLocalizedNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisencryptedkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsEncryptedKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisrootfilesystemkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeIsRootFileSystemKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportscompressionkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsCompressionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsfilecloningkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsFileCloningKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsswaprenamingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsSwapRenamingKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsexclusiverenamingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsExclusiveRenamingKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsimmutablefileskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsImmutableFilesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsaccesspermissionskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsAccessPermissionsKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsfileprotectionkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSupportsFileProtectionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumetypenamekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeTypeNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesubtypekey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeSubtypeKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumemountfromlocationkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLVolumeMountFromLocationKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisubiquitousitemkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLIsUbiquitousItemKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemhasunresolvedconflictskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemHasUnresolvedConflictsKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisdownloadedkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemIsDownloadedKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisdownloadingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemIsDownloadingKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisuploadedkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemIsUploadedKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisuploadingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemIsUploadingKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitempercentdownloadedkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemPercentDownloadedKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitempercentuploadedkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemPercentUploadedKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatuskey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemDownloadingStatusKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingerrorkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemDownloadingErrorKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemuploadingerrorkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemUploadingErrorKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisexcludedfromsynckey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemIsExcludedFromSyncKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatusnotdownloaded?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemDownloadingStatusNotDownloaded: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatusdownloaded?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemDownloadingStatusDownloaded: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatuscurrent?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLUbiquitousItemDownloadingStatusCurrent: Option<&'static CFString>;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLBookmarkCreationOptions(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFURLBookmarkCreationOptions: CFOptionFlags {
         #[doc(alias = "kCFURLBookmarkCreationMinimalBookmarkMask")]
@@ -1701,23 +1533,21 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFURLBookmarkCreationOptions {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFURLBookmarkCreationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLBookmarkResolutionOptions(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFURLBookmarkResolutionOptions: CFOptionFlags {
         #[doc(alias = "kCFURLBookmarkResolutionWithoutUIMask")]
@@ -1735,26 +1565,20 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFURLBookmarkResolutionOptions {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFURLBookmarkResolutionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkfilecreationoptions?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFURLBookmarkFileCreationOptions = CFOptionFlags;
 
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFBase",
-    feature = "CFData",
-    feature = "CFError"
-))]
+#[cfg(all(feature = "CFArray", feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateBookmarkData(
     allocator: Option<&CFAllocator>,
@@ -1787,12 +1611,7 @@ pub unsafe extern "C-unwind" fn CFURLCreateBookmarkData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFBase",
-    feature = "CFData",
-    feature = "CFError"
-))]
+#[cfg(all(feature = "CFArray", feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateByResolvingBookmarkData(
     allocator: Option<&CFAllocator>,
@@ -1828,12 +1647,7 @@ pub unsafe extern "C-unwind" fn CFURLCreateByResolvingBookmarkData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFBase",
-    feature = "CFData",
-    feature = "CFDictionary"
-))]
+#[cfg(all(feature = "CFArray", feature = "CFData", feature = "CFDictionary"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateResourcePropertiesForKeysFromBookmarkData(
     allocator: Option<&CFAllocator>,
@@ -1857,7 +1671,7 @@ pub unsafe extern "C-unwind" fn CFURLCreateResourcePropertiesForKeysFromBookmark
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[cfg(feature = "CFData")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateResourcePropertyForKeyFromBookmarkData(
     allocator: Option<&CFAllocator>,
@@ -1881,7 +1695,7 @@ pub unsafe extern "C-unwind" fn CFURLCreateResourcePropertyForKeyFromBookmarkDat
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFError"))]
+#[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateBookmarkDataFromFile(
     allocator: Option<&CFAllocator>,
@@ -1899,7 +1713,7 @@ pub unsafe extern "C-unwind" fn CFURLCreateBookmarkDataFromFile(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFError"))]
+#[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLWriteBookmarkDataToFile(
     bookmark_ref: Option<&CFData>,
@@ -1919,7 +1733,7 @@ pub unsafe extern "C-unwind" fn CFURLWriteBookmarkDataToFile(
     ret != 0
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[cfg(feature = "CFData")]
 #[deprecated = "The Carbon Alias Manager is deprecated. This function should only be used to convert Carbon AliasRecords to bookmark data."]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreateBookmarkDataFromAliasRecord(

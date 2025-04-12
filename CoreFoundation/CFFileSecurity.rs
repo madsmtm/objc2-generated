@@ -23,7 +23,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFFileSecurity"> for CFFileSecurity {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFFileSecurity {
     #[doc(alias = "CFFileSecurityGetTypeID")]
     #[inline]
@@ -35,7 +34,6 @@ unsafe impl ConcreteType for CFFileSecurity {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFFileSecurityCreate(
     allocator: Option<&CFAllocator>,
@@ -48,7 +46,6 @@ pub extern "C-unwind" fn CFFileSecurityCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFFileSecurityCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -208,11 +205,9 @@ pub extern "C-unwind" fn CFFileSecuritySetMode(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFFileSecurityClearOptions(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFFileSecurityClearOptions: CFOptionFlags {
         #[doc(alias = "kCFFileSecurityClearOwner")]
@@ -230,17 +225,16 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFFileSecurityClearOptions {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFFileSecurityClearOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFFileSecurityClearProperties(
     file_sec: &CFFileSecurity,

@@ -11,7 +11,6 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey?language=objc)
 // NS_TYPED_ENUM
-#[cfg(feature = "CFBase")]
 pub type CFDateFormatterKey = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatter?language=objc)
@@ -29,7 +28,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFDateFormatter"> for CFDateFormatter {}
 );
 
-#[cfg(all(feature = "CFBase", feature = "CFLocale"))]
+#[cfg(feature = "CFLocale")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterCreateDateFormatFromTemplate(
     allocator: Option<&CFAllocator>,
@@ -50,7 +49,6 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreateDateFormatFromTemplate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFDateFormatter {
     #[doc(alias = "CFDateFormatterGetTypeID")]
     #[inline]
@@ -64,11 +62,9 @@ unsafe impl ConcreteType for CFDateFormatter {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFDateFormatterStyle(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFDateFormatterStyle {
     #[doc(alias = "kCFDateFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
@@ -82,23 +78,21 @@ impl CFDateFormatterStyle {
     pub const FullStyle: Self = Self(4);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFDateFormatterStyle {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFDateFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFISO8601DateFormatOptions(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFISO8601DateFormatOptions: CFOptionFlags {
         #[doc(alias = "kCFISO8601DateFormatWithYear")]
@@ -132,17 +126,16 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFISO8601DateFormatOptions {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFISO8601DateFormatOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterCreateISO8601Formatter(
     allocator: Option<&CFAllocator>,
@@ -158,7 +151,7 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreateISO8601Formatter(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFLocale"))]
+#[cfg(feature = "CFLocale")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterCreate(
     allocator: Option<&CFAllocator>,
@@ -191,16 +184,13 @@ pub unsafe extern "C-unwind" fn CFDateFormatterGetLocale(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFDateFormatterGetDateStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFDateFormatterGetTimeStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterGetFormat(
     formatter: &CFDateFormatter,
@@ -213,11 +203,10 @@ pub unsafe extern "C-unwind" fn CFDateFormatterGetFormat(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFDateFormatterSetFormat(formatter: &CFDateFormatter, format_string: Option<&CFString>);
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterCreateStringWithDate(
     allocator: Option<&CFAllocator>,
@@ -235,7 +224,7 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreateStringWithDate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterCreateStringWithAbsoluteTime(
     allocator: Option<&CFAllocator>,
@@ -253,7 +242,7 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreateStringWithAbsoluteTime(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterCreateDateFromString(
     allocator: Option<&CFAllocator>,
@@ -273,7 +262,7 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreateDateFromString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[cfg(feature = "CFDate")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterGetAbsoluteTimeFromString(
     formatter: &CFDateFormatter,
@@ -294,7 +283,6 @@ pub unsafe extern "C-unwind" fn CFDateFormatterGetAbsoluteTimeFromString(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFDateFormatterSetProperty(
         formatter: &CFDateFormatter,
         key: Option<&CFString>,
@@ -302,7 +290,6 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterCopyProperty(
     formatter: &CFDateFormatter,
@@ -320,175 +307,146 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCopyProperty(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterislenient?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterIsLenient: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattertimezone?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterTimeZone: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattercalendarname?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterCalendarName: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterdefaultformat?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterDefaultFormat: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattertwodigitstartdate?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterTwoDigitStartDate: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterdefaultdate?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterDefaultDate: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattercalendar?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterCalendar: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattererasymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterEraSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattermonthsymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortmonthsymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterShortMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterweekdaysymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortweekdaysymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterShortWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatteramsymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterAMSymbol: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterpmsymbol?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterPMSymbol: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterlongerasymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterLongEraSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterveryshortmonthsymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterVeryShortMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterstandalonemonthsymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterStandaloneMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortstandalonemonthsymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterShortStandaloneMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterveryshortstandalonemonthsymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterVeryShortStandaloneMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterveryshortweekdaysymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterVeryShortWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterstandaloneweekdaysymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterStandaloneWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortstandaloneweekdaysymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterShortStandaloneWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterveryshortstandaloneweekdaysymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterVeryShortStandaloneWeekdaySymbols:
         Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterquartersymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterQuarterSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortquartersymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterShortQuarterSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterstandalonequartersymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterStandaloneQuarterSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattershortstandalonequartersymbols?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterShortStandaloneQuarterSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformattergregorianstartdate?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterGregorianStartDate: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfdateformatterdoesrelativedateformattingkey?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFDateFormatterDoesRelativeDateFormattingKey: Option<&'static CFDateFormatterKey>;
 }

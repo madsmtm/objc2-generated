@@ -34,7 +34,6 @@ extern "C" {
     pub static kCFBooleanFalse: Option<&'static CFBoolean>;
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFBoolean {
     #[doc(alias = "CFBooleanGetTypeID")]
     #[inline]
@@ -57,11 +56,9 @@ pub extern "C-unwind" fn CFBooleanGetValue(boolean: &CFBoolean) -> bool {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNumberType(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFNumberType {
     #[doc(alias = "kCFNumberSInt8Type")]
     pub const SInt8Type: Self = Self(1);
@@ -99,12 +96,12 @@ impl CFNumberType {
     pub const MaxType: Self = Self(16);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFNumberType {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFNumberType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -139,7 +136,6 @@ extern "C" {
     pub static kCFNumberNaN: Option<&'static CFNumber>;
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFNumber {
     #[doc(alias = "CFNumberGetTypeID")]
     #[inline]
@@ -151,7 +147,6 @@ unsafe impl ConcreteType for CFNumber {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberCreate(
     allocator: Option<&CFAllocator>,
@@ -169,7 +164,6 @@ pub unsafe extern "C-unwind" fn CFNumberCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFNumberGetType(number: &CFNumber) -> CFNumberType {
     extern "C-unwind" {
@@ -178,7 +172,6 @@ pub extern "C-unwind" fn CFNumberGetType(number: &CFNumber) -> CFNumberType {
     unsafe { CFNumberGetType(number) }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex {
     extern "C-unwind" {
@@ -196,7 +189,6 @@ pub extern "C-unwind" fn CFNumberIsFloatType(number: &CFNumber) -> bool {
     ret != 0
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberGetValue(
     number: &CFNumber,
@@ -215,7 +207,6 @@ pub unsafe extern "C-unwind" fn CFNumberGetValue(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFNumberCompare(
         number: &CFNumber,
         other_number: Option<&CFNumber>,

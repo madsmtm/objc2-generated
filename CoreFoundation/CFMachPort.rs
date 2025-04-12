@@ -25,7 +25,6 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcontext?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFMachPortContext {
@@ -36,7 +35,7 @@ pub struct CFMachPortContext {
     pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFMachPortContext {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -50,13 +49,12 @@ unsafe impl Encode for CFMachPortContext {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFMachPortContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFMachPortCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void, CFIndex, *mut c_void)>;
 
@@ -64,7 +62,6 @@ pub type CFMachPortCallBack =
 pub type CFMachPortInvalidationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void)>;
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFMachPort {
     #[doc(alias = "CFMachPortGetTypeID")]
     #[inline]
@@ -76,7 +73,6 @@ unsafe impl ConcreteType for CFMachPort {
     }
 }
 
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFMachPortCreate(
     allocator: Option<&CFAllocator>,
@@ -96,7 +92,7 @@ pub unsafe extern "C-unwind" fn CFMachPortCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "libc"))]
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFMachPortCreateWithPort(
     allocator: Option<&CFAllocator>,
@@ -130,7 +126,6 @@ pub extern "C-unwind" fn CFMachPortGetPort(port: &CFMachPort) -> libc::mach_port
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     pub fn CFMachPortGetContext(port: &CFMachPort, context: *mut CFMachPortContext);
 }
 
@@ -168,7 +163,7 @@ extern "C-unwind" {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[cfg(feature = "CFRunLoop")]
 #[inline]
 pub extern "C-unwind" fn CFMachPortCreateRunLoopSource(
     allocator: Option<&CFAllocator>,

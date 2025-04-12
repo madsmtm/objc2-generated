@@ -8,7 +8,6 @@ use crate::*;
 
 #[cfg(all(
     feature = "CFArray",
-    feature = "CFBase",
     feature = "CFData",
     feature = "CFDictionary",
     feature = "CFURL"
@@ -80,7 +79,7 @@ pub unsafe extern "C-unwind" fn CFURLDestroyResource(url: &CFURL, error_code: *m
     ret != 0
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[cfg(feature = "CFURL")]
 #[deprecated = "For file resource properties, use CFURLCopyResourcePropertyForKey."]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLCreatePropertyFromResource(
@@ -103,12 +102,10 @@ pub unsafe extern "C-unwind" fn CFURLCreatePropertyFromResource(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror?language=objc)
 // NS_ENUM
-#[cfg(feature = "CFBase")]
 #[deprecated = "Use CFError codes instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLError(pub CFIndex);
-#[cfg(feature = "CFBase")]
 impl CFURLError {
     #[deprecated = "Use CFError codes instead"]
     #[doc(alias = "kCFURLUnknownError")]
@@ -139,60 +136,52 @@ impl CFURLError {
     pub const TimeoutError: Self = Self(-18);
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFURLError {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFURLError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileexists?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileExists: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfiledirectorycontents?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileDirectoryContents: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilelength?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileLength: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilelastmodificationtime?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileLastModificationTime: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileposixmode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFilePOSIXMode: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileownerid?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLFileOwnerID: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhttpstatuscode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLHTTPStatusCode: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhttpstatusline?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFURLHTTPStatusLine: Option<&'static CFString>;
 }

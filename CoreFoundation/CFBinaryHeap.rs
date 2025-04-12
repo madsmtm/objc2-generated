@@ -10,7 +10,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcomparecontext?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFBinaryHeapCompareContext {
@@ -21,7 +20,7 @@ pub struct CFBinaryHeapCompareContext {
     pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFBinaryHeapCompareContext {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -35,7 +34,7 @@ unsafe impl Encode for CFBinaryHeapCompareContext {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFBinaryHeapCompareContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -62,7 +61,6 @@ unsafe impl RefEncode for CFBinaryHeapCompareContext {
 /// equality in some operations.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcallbacks?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFBinaryHeapCallBacks {
@@ -80,7 +78,7 @@ pub struct CFBinaryHeapCallBacks {
     >,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFBinaryHeapCallBacks {
     const ENCODING: Encoding =
         Encoding::Struct(
@@ -103,7 +101,7 @@ unsafe impl Encode for CFBinaryHeapCallBacks {
         );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFBinaryHeapCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -114,7 +112,6 @@ extern "C" {
     /// are all CFString types.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringbinaryheapcallbacks?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFStringBinaryHeapCallBacks: CFBinaryHeapCallBacks;
 }
 
@@ -148,7 +145,6 @@ cf_objc2_type!(
     unsafe impl<T: ?Sized> RefEncode<"__CFBinaryHeap"> for CFBinaryHeap<T> {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFBinaryHeap {
     /// Returns the type identifier of all CFBinaryHeap instances.
     #[doc(alias = "CFBinaryHeapGetTypeID")]
@@ -205,7 +201,6 @@ unsafe impl ConcreteType for CFBinaryHeap {
 /// Parameter `compareContext`: A pointer to a CFBinaryHeapCompareContext structure.
 ///
 /// Returns: A reference to the new CFBinaryHeap.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBinaryHeapCreate(
     allocator: Option<&CFAllocator>,
@@ -253,7 +248,6 @@ pub unsafe extern "C-unwind" fn CFBinaryHeapCreate(
 /// not a valid CFBinaryHeap, the behavior is undefined.
 ///
 /// Returns: A reference to the new mutable binary heap.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBinaryHeapCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -278,7 +272,6 @@ extern "C-unwind" {
     /// CFBinaryHeap, the behavior is undefined.
     ///
     /// Returns: The number of values in the binary heap.
-    #[cfg(feature = "CFBase")]
     pub fn CFBinaryHeapGetCount(heap: &CFBinaryHeap) -> CFIndex;
 }
 
@@ -296,7 +289,6 @@ extern "C-unwind" {
     /// the behavior is undefined.
     ///
     /// Returns: The number of times the given value occurs in the binary heap.
-    #[cfg(feature = "CFBase")]
     pub fn CFBinaryHeapGetCountOfValue(heap: &CFBinaryHeap, value: *const c_void) -> CFIndex;
 }
 

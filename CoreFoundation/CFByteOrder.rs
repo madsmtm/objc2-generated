@@ -6,7 +6,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbyteorder?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFByteOrder = CFIndex;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfswappedfloat32?language=objc)

@@ -26,11 +26,9 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFXMLParserOptions(pub CFOptionFlags);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFXMLParserOptions: CFOptionFlags {
         #[doc(alias = "kCFXMLParserValidateDocument")]
@@ -52,23 +50,21 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLParserOptions {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLParserOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "CFBase")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFXMLParserStatusCode(pub CFIndex);
-#[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFXMLParserStatusCode: CFIndex {
         #[doc(alias = "kCFXMLStatusParseNotBegun")]
@@ -110,12 +106,12 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLParserStatusCode {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLParserStatusCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -135,12 +131,7 @@ pub type CFXMLParserEndXMLStructureCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFXMLParser, *mut c_void, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserresolveexternalentitycallback?language=objc)
-#[cfg(all(
-    feature = "CFBase",
-    feature = "CFData",
-    feature = "CFURL",
-    feature = "CFXMLNode"
-))]
+#[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
 pub type CFXMLParserResolveExternalEntityCallBack = Option<
     unsafe extern "C-unwind" fn(
         *mut CFXMLParser,
@@ -150,18 +141,12 @@ pub type CFXMLParserResolveExternalEntityCallBack = Option<
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserhandleerrorcallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFXMLParserHandleErrorCallBack = Option<
     unsafe extern "C-unwind" fn(*mut CFXMLParser, CFXMLParserStatusCode, *mut c_void) -> Boolean,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercallbacks?language=objc)
-#[cfg(all(
-    feature = "CFBase",
-    feature = "CFData",
-    feature = "CFURL",
-    feature = "CFXMLNode"
-))]
+#[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLParserCallBacks {
@@ -174,7 +159,6 @@ pub struct CFXMLParserCallBacks {
 }
 
 #[cfg(all(
-    feature = "CFBase",
     feature = "CFData",
     feature = "CFURL",
     feature = "CFXMLNode",
@@ -195,7 +179,6 @@ unsafe impl Encode for CFXMLParserCallBacks {
 }
 
 #[cfg(all(
-    feature = "CFBase",
     feature = "CFData",
     feature = "CFURL",
     feature = "CFXMLNode",
@@ -213,12 +196,10 @@ pub type CFXMLParserRetainCallBack =
 pub type CFXMLParserReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercopydescriptioncallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFXMLParserCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLParserContext {
@@ -229,7 +210,7 @@ pub struct CFXMLParserContext {
     pub copyDescription: CFXMLParserCopyDescriptionCallBack,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFXMLParserContext {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -243,12 +224,11 @@ unsafe impl Encode for CFXMLParserContext {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFXMLParserContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFXMLParser {
     #[doc(alias = "CFXMLParserGetTypeID")]
     #[inline]
@@ -260,12 +240,7 @@ unsafe impl ConcreteType for CFXMLParser {
     }
 }
 
-#[cfg(all(
-    feature = "CFBase",
-    feature = "CFData",
-    feature = "CFURL",
-    feature = "CFXMLNode"
-))]
+#[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLParserCreate(
@@ -302,12 +277,7 @@ pub unsafe extern "C-unwind" fn CFXMLParserCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(
-    feature = "CFBase",
-    feature = "CFData",
-    feature = "CFURL",
-    feature = "CFXMLNode"
-))]
+#[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLParserCreateWithDataFromURL(
@@ -342,18 +312,12 @@ pub unsafe extern "C-unwind" fn CFXMLParserCreateWithDataFromURL(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLParserGetContext(parser: &CFXMLParser, context: *mut CFXMLParserContext);
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CFBase",
-        feature = "CFData",
-        feature = "CFURL",
-        feature = "CFXMLNode"
-    ))]
+    #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLParserGetCallBacks(parser: &CFXMLParser, call_backs: *mut CFXMLParserCallBacks);
 }
@@ -372,13 +336,11 @@ pub unsafe extern "C-unwind" fn CFXMLParserGetSourceURL(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLParserGetLocation(parser: &CFXMLParser) -> CFIndex;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLParserGetLineNumber(parser: &CFXMLParser) -> CFIndex;
 }
@@ -389,12 +351,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLParserGetStatusCode(parser: &CFXMLParser) -> CFXMLParserStatusCode;
 }
 
-#[cfg(feature = "CFBase")]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLParserCopyErrorDescription(
@@ -408,7 +368,6 @@ pub unsafe extern "C-unwind" fn CFXMLParserCopyErrorDescription(
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLParserAbort(
         parser: &CFXMLParser,
@@ -428,7 +387,6 @@ pub unsafe extern "C-unwind" fn CFXMLParserParse(parser: &CFXMLParser) -> bool {
 }
 
 #[cfg(all(
-    feature = "CFBase",
     feature = "CFData",
     feature = "CFTree",
     feature = "CFURL",
@@ -465,7 +423,6 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
 }
 
 #[cfg(all(
-    feature = "CFBase",
     feature = "CFData",
     feature = "CFDictionary",
     feature = "CFTree",
@@ -505,12 +462,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(
-    feature = "CFBase",
-    feature = "CFTree",
-    feature = "CFURL",
-    feature = "CFXMLNode"
-))]
+#[cfg(all(feature = "CFTree", feature = "CFURL", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
@@ -533,12 +485,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(
-    feature = "CFBase",
-    feature = "CFData",
-    feature = "CFTree",
-    feature = "CFXMLNode"
-))]
+#[cfg(all(feature = "CFData", feature = "CFTree", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
@@ -555,7 +502,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
     allocator: Option<&CFAllocator>,
@@ -574,7 +521,7 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLCreateStringByUnescapingEntities(
     allocator: Option<&CFAllocator>,
@@ -595,24 +542,20 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByUnescapingEntities(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrordescription?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFXMLTreeErrorDescription: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrorlinenumber?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFXMLTreeErrorLineNumber: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrorlocation?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFXMLTreeErrorLocation: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrorstatuscode?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFXMLTreeErrorStatusCode: Option<&'static CFString>;
 }

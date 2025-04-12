@@ -30,17 +30,14 @@ use crate::*;
 /// equality for some operations.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayretaincallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFArrayRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayreleasecallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFArrayReleaseCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycopydescriptioncallback?language=objc)
-#[cfg(feature = "CFBase")]
 pub type CFArrayCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
@@ -49,7 +46,6 @@ pub type CFArrayEqualCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks?language=objc)
-#[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFArrayCallBacks {
@@ -60,7 +56,7 @@ pub struct CFArrayCallBacks {
     pub equal: CFArrayEqualCallBack,
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CFArrayCallBacks {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -74,7 +70,7 @@ unsafe impl Encode for CFArrayCallBacks {
     );
 }
 
-#[cfg(all(feature = "CFBase", feature = "objc2"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CFArrayCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -84,7 +80,6 @@ extern "C" {
     /// appropriate for use when the values in a CFArray are all CFTypes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypearraycallbacks?language=objc)
-    #[cfg(feature = "CFBase")]
     pub static kCFTypeArrayCallBacks: CFArrayCallBacks;
 }
 
@@ -135,7 +130,6 @@ cf_objc2_type!(
     unsafe impl<T: ?Sized> RefEncode<"__CFArray"> for CFMutableArray<T> {}
 );
 
-#[cfg(feature = "CFBase")]
 unsafe impl ConcreteType for CFArray {
     /// Returns the type identifier of all CFArray instances.
     #[doc(alias = "CFArrayGetTypeID")]
@@ -200,7 +194,6 @@ unsafe impl ConcreteType for CFArray {
 /// undefined.
 ///
 /// Returns: A reference to the new immutable CFArray.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFArrayCreate(
     allocator: Option<&CFAllocator>,
@@ -238,7 +231,6 @@ pub unsafe extern "C-unwind" fn CFArrayCreate(
 /// not a valid CFArray, the behavior is undefined.
 ///
 /// Returns: A reference to the new immutable CFArray.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFArrayCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -296,7 +288,6 @@ pub unsafe extern "C-unwind" fn CFArrayCreateCopy(
 /// undefined.
 ///
 /// Returns: A reference to the new mutable CFArray.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFArrayCreateMutable(
     allocator: Option<&CFAllocator>,
@@ -342,7 +333,6 @@ pub unsafe extern "C-unwind" fn CFArrayCreateMutable(
 /// not a valid CFArray, the behavior is undefined.
 ///
 /// Returns: A reference to the new mutable CFArray.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFArrayCreateMutableCopy(
     allocator: Option<&CFAllocator>,
@@ -366,7 +356,6 @@ pub unsafe extern "C-unwind" fn CFArrayCreateMutableCopy(
 /// CFArray, the behavior is undefined.
 ///
 /// Returns: The number of values in the array.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub extern "C-unwind" fn CFArrayGetCount(the_array: &CFArray) -> CFIndex {
     extern "C-unwind" {
@@ -397,7 +386,6 @@ extern "C-unwind" {
     ///
     /// Returns: The number of times the given value occurs in the array,
     /// within the specified range.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayGetCountOfValue(
         the_array: &CFArray,
         range: CFRange,
@@ -426,7 +414,6 @@ extern "C-unwind" {
 ///
 /// Returns: true, if the value is in the specified range of the array,
 /// otherwise false.
-#[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFArrayContainsValue(
     the_array: &CFArray,
@@ -456,7 +443,6 @@ extern "C-unwind" {
     /// undefined.
     ///
     /// Returns: The value with the given index in the array.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
 }
 
@@ -479,7 +465,6 @@ extern "C-unwind" {
     /// in the same order in which they appear in the array. If this
     /// parameter is not a valid pointer to a C array of at least
     /// range.length pointers, the behavior is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
 }
 
@@ -509,7 +494,6 @@ extern "C-unwind" {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayApplyFunction(
         the_array: &CFArray,
         range: CFRange,
@@ -542,7 +526,6 @@ extern "C-unwind" {
     ///
     /// Returns: The lowest index of the matching values in the range, or
     /// kCFNotFound if no value in the range matched.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayGetFirstIndexOfValue(
         the_array: &CFArray,
         range: CFRange,
@@ -574,7 +557,6 @@ extern "C-unwind" {
     ///
     /// Returns: The highest index of the matching values in the range, or
     /// kCFNotFound if no value in the range matched.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayGetLastIndexOfValue(
         the_array: &CFArray,
         range: CFRange,
@@ -622,7 +604,6 @@ extern "C-unwind" {
     /// range, or 3) the index of the value greater than the target
     /// value, if the value lies between two of (or less than all
     /// of) the values in the range.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayBSearchValues(
         the_array: &CFArray,
         range: CFRange,
@@ -667,7 +648,6 @@ extern "C-unwind" {
     /// retain callback, the behavior is undefined. The value is
     /// assigned to the given index, and all values with equal and
     /// larger indices have their indexes increased by one.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayInsertValueAtIndex(
         the_array: Option<&CFMutableArray>,
         idx: CFIndex,
@@ -694,7 +674,6 @@ extern "C-unwind" {
     /// released. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The indices of
     /// other values is not affected.
-    #[cfg(feature = "CFBase")]
     pub fn CFArraySetValueAtIndex(
         the_array: Option<&CFMutableArray>,
         idx: CFIndex,
@@ -713,7 +692,6 @@ extern "C-unwind" {
     /// outside the index space of the array (0 to N-1 inclusive,
     /// where N is the count of the array before the operation), the
     /// behavior is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayRemoveValueAtIndex(the_array: Option<&CFMutableArray>, idx: CFIndex);
 }
 
@@ -763,7 +741,6 @@ extern "C-unwind" {
     /// range are simply removed. If this parameter is negative, or
     /// greater than the number of values actually in the newValues
     /// C array, the behavior is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayReplaceValues(
         the_array: Option<&CFMutableArray>,
         range: CFRange,
@@ -788,7 +765,6 @@ extern "C-unwind" {
     /// index is outside the index space of the array (0 to N-1
     /// inclusive, where N is the count of the array before the
     /// operation), the behavior is undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayExchangeValuesAtIndices(
         the_array: Option<&CFMutableArray>,
         idx1: CFIndex,
@@ -825,7 +801,6 @@ extern "C-unwind" {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the comparator function, the behavior is
     /// undefined.
-    #[cfg(feature = "CFBase")]
     pub fn CFArraySortValues(
         the_array: Option<&CFMutableArray>,
         range: CFRange,
@@ -859,7 +834,6 @@ extern "C-unwind" {
     /// increased by range.length. The values are assigned new
     /// indices in the array from smallest to largest index in the
     /// order in which they appear in the otherArray.
-    #[cfg(feature = "CFBase")]
     pub fn CFArrayAppendArray(
         the_array: Option<&CFMutableArray>,
         other_array: Option<&CFArray>,
