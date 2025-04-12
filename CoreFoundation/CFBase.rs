@@ -272,8 +272,6 @@ unsafe impl RefEncode for CFRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn CFRangeMake(loc: CFIndex,len: CFIndex,) -> CFRange;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnull?language=objc)
 #[repr(C)]
 pub struct CFNull {

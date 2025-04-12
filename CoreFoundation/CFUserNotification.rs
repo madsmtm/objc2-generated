@@ -232,12 +232,6 @@ pub const kCFUserNotificationNoDefaultButtonFlag: CFOptionFlags = 1 << 5;
 #[cfg(feature = "CFBase")]
 pub const kCFUserNotificationUseRadioButtonsFlag: CFOptionFlags = 1 << 6;
 
-// TODO: pub fn CFUserNotificationCheckBoxChecked(i: CFIndex,) -> CFOptionFlags;
-
-// TODO: pub fn CFUserNotificationSecureTextField(i: CFIndex,) -> CFOptionFlags;
-
-// TODO: pub fn CFUserNotificationPopUpSelection(n: CFIndex,) -> CFOptionFlags;
-
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationiconurlkey?language=objc)
     #[cfg(feature = "CFBase")]

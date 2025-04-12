@@ -9,12 +9,6 @@ use crate::*;
 #[cfg(feature = "CFBase")]
 pub type CFByteOrder = CFIndex;
 
-// TODO: pub fn CFSwapInt16(arg: u16,) -> u16;
-
-// TODO: pub fn CFSwapInt32(arg: u32,) -> u32;
-
-// TODO: pub fn CFSwapInt64(arg: u64,) -> u64;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfswappedfloat32?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
