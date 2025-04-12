@@ -2,12 +2,10 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// Represents a registered notification.
     ///
@@ -19,14 +17,11 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotification?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct IOBluetoothUserNotification;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for IOBluetoothUserNotification {}
 
-#[cfg(feature = "objc2")]
 impl IOBluetoothUserNotification {
     extern_methods!(
         /// Called to unregister the target notification.
@@ -40,7 +35,6 @@ impl IOBluetoothUserNotification {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
 impl IOBluetoothUserNotification {
     extern_methods!(
         #[unsafe(method(init))]

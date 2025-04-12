@@ -2,14 +2,12 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// Object representing a device inquiry that finds Bluetooth devices in-range of the computer,
     /// and (optionally) retrieves name information for them.
@@ -25,14 +23,11 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceinquiry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct IOBluetoothDeviceInquiry;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for IOBluetoothDeviceInquiry {}
 
-#[cfg(feature = "objc2")]
 impl IOBluetoothDeviceInquiry {
     extern_methods!(
         #[unsafe(method(delegate))]
@@ -180,7 +175,6 @@ impl IOBluetoothDeviceInquiry {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
 impl IOBluetoothDeviceInquiry {
     extern_methods!(
         #[unsafe(method(init))]
@@ -193,7 +187,6 @@ impl IOBluetoothDeviceInquiry {
     );
 }
 
-#[cfg(feature = "objc2")]
 extern_protocol!(
     /// This category on NSObject describes the delegate methods for the IOBluetoothDeviceInquiry object. All
     /// methods are optional, but it is highly recommended you implement them all. Do NOT invoke remote name
@@ -201,7 +194,6 @@ extern_protocol!(
     /// deadlock your process.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceinquirydelegate?language=objc)
-    #[cfg(feature = "objc2")]
     pub unsafe trait IOBluetoothDeviceInquiryDelegate: NSObjectProtocol {
         /// This message will be delivered when the inquiry actually starts. Since the inquiry could be throttled, this
         /// message may not be received immediately after called -start.

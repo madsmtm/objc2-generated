@@ -2,14 +2,12 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// An NSData subclass that represents a UUID as defined in the Bluetooth SDP spec.
     ///
@@ -20,20 +18,20 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpuuid?language=objc)
     #[unsafe(super(NSData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub struct IOBluetoothSDPUUID;
 );
 
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 unsafe impl NSCoding for IOBluetoothSDPUUID {}
 
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 unsafe impl NSObjectProtocol for IOBluetoothSDPUUID {}
 
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 unsafe impl NSSecureCoding for IOBluetoothSDPUUID {}
 
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 impl IOBluetoothSDPUUID {
     extern_methods!(
         /// Creates a new IOBluetoothSDPUUID object with the given bytes of the given length.
@@ -173,7 +171,7 @@ impl IOBluetoothSDPUUID {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 impl IOBluetoothSDPUUID {
     extern_methods!(
         #[unsafe(method(init))]

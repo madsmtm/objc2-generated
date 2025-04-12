@@ -4,7 +4,6 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
 use crate::*;
@@ -17,7 +16,6 @@ pub struct OpaquePrivOBEXSessionData {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OpaquePrivOBEXSessionData {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaquePrivOBEXSessionData", &[]));
@@ -47,12 +45,10 @@ impl OBEXTransportEventTypes {
     pub const Status: Self = Self(0x53746154);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for OBEXTransportEventTypes {
     const ENCODING: Encoding = c_uint::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for OBEXTransportEventTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -68,7 +64,7 @@ pub struct OBEXTransportEvent {
     pub dataLength: usize,
 }
 
-#[cfg(all(feature = "OBEX", feature = "objc2"))]
+#[cfg(feature = "OBEX")]
 unsafe impl Encode for OBEXTransportEvent {
     const ENCODING: Encoding = Encoding::Struct(
         "OBEXTransportEvent",
@@ -81,24 +77,20 @@ unsafe impl Encode for OBEXTransportEvent {
     );
 }
 
-#[cfg(all(feature = "OBEX", feature = "objc2"))]
+#[cfg(feature = "OBEX")]
 unsafe impl RefEncode for OBEXTransportEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct OBEXSession;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for OBEXSession {}
 
-#[cfg(feature = "objc2")]
 impl OBEXSession {
     extern_methods!(
         #[cfg(feature = "OBEX")]
@@ -784,7 +776,6 @@ impl OBEXSession {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
 impl OBEXSession {
     extern_methods!(
         #[unsafe(method(init))]

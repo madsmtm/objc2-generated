@@ -2,31 +2,25 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobexsession?language=objc)
     #[unsafe(super(OBEXSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "OBEXSession", feature = "objc2"))]
+    #[cfg(feature = "OBEXSession")]
     pub struct IOBluetoothOBEXSession;
 );
 
-#[cfg(all(
-    feature = "IOBluetoothRFCOMMChannel",
-    feature = "OBEXSession",
-    feature = "objc2"
-))]
+#[cfg(all(feature = "IOBluetoothRFCOMMChannel", feature = "OBEXSession"))]
 unsafe impl IOBluetoothRFCOMMChannelDelegate for IOBluetoothOBEXSession {}
 
-#[cfg(all(feature = "OBEXSession", feature = "objc2"))]
+#[cfg(feature = "OBEXSession")]
 unsafe impl NSObjectProtocol for IOBluetoothOBEXSession {}
 
-#[cfg(all(feature = "OBEXSession", feature = "objc2"))]
+#[cfg(feature = "OBEXSession")]
 impl IOBluetoothOBEXSession {
     extern_methods!(
         #[cfg(feature = "IOBluetoothSDPServiceRecord")]
@@ -301,7 +295,7 @@ impl IOBluetoothOBEXSession {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(all(feature = "OBEXSession", feature = "objc2"))]
+#[cfg(feature = "OBEXSession")]
 impl IOBluetoothOBEXSession {
     extern_methods!(
         #[unsafe(method(init))]

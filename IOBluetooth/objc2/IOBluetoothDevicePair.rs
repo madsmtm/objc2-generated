@@ -2,15 +2,12 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicepairdelegate?language=objc)
-    #[cfg(feature = "objc2")]
     pub unsafe trait IOBluetoothDevicePairDelegate: NSObjectProtocol {
         /// Indicates that the pairing has started.
         ///
@@ -118,7 +115,6 @@ extern_protocol!(
     }
 );
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// An instance of IOBluetoothDevicePair represents a pairing attempt to a remote Bluetooth device.
     ///
@@ -138,14 +134,11 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicepair?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct IOBluetoothDevicePair;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for IOBluetoothDevicePair {}
 
-#[cfg(feature = "objc2")]
 impl IOBluetoothDevicePair {
     extern_methods!(
         #[unsafe(method(delegate))]
@@ -222,7 +215,6 @@ impl IOBluetoothDevicePair {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
 impl IOBluetoothDevicePair {
     extern_methods!(
         #[unsafe(method(init))]

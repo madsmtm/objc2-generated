@@ -2,14 +2,12 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// APIs for managing a hands free audio gateway
     ///
@@ -18,14 +16,14 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogateway?language=objc)
     #[unsafe(super(IOBluetoothHandsFree, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+    #[cfg(feature = "IOBluetoothHandsFree")]
     pub struct IOBluetoothHandsFreeAudioGateway;
 );
 
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 unsafe impl NSObjectProtocol for IOBluetoothHandsFreeAudioGateway {}
 
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 impl IOBluetoothHandsFreeAudioGateway {
     extern_methods!(
         #[cfg(all(feature = "IOBluetoothDevice", feature = "IOBluetoothObject"))]
@@ -110,7 +108,7 @@ impl IOBluetoothHandsFreeAudioGateway {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 impl IOBluetoothHandsFreeAudioGateway {
     extern_methods!(
         #[unsafe(method(init))]
@@ -123,10 +121,8 @@ impl IOBluetoothHandsFreeAudioGateway {
     );
 }
 
-#[cfg(feature = "objc2")]
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewaydelegate?language=objc)
-    #[cfg(feature = "objc2")]
     pub unsafe trait IOBluetoothHandsFreeAudioGatewayDelegate {
         #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2-foundation"))]
         /// Tells the delegate that the device is sending a hangup.

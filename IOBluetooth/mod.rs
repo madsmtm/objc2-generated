@@ -42,9 +42,9 @@ mod __OBEX;
 #[cfg(feature = "OBEXBluetooth")]
 #[path = "OBEXBluetooth.rs"]
 mod __OBEXBluetooth;
-#[cfg(feature = "objc")]
-#[path = "objc/mod.rs"]
-mod __objc;
+#[cfg(feature = "objc2")]
+#[path = "objc2/mod.rs"]
+mod __objc2;
 
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothACLLogicalChannelL2CAPContinue;
@@ -2571,8 +2571,8 @@ pub use self::__OBEXBluetooth::IOBluetoothOBEXSessionCreateWithIncomingIOBluetoo
 pub use self::__OBEXBluetooth::IOBluetoothOBEXSessionOpenConnectionCallback;
 #[cfg(all(feature = "OBEX", feature = "OBEXBluetooth"))]
 pub use self::__OBEXBluetooth::IOBluetoothOBEXSessionOpenTransportConnection;
-#[cfg(feature = "objc")]
-pub use self::__objc::*;
+#[cfg(feature = "objc2")]
+pub use self::__objc2::*;
 #[cfg(feature = "OBEX")]
 pub use self::__OBEX::kCharsetStringISO88591;
 #[cfg(feature = "OBEX")]

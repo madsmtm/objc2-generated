@@ -2,14 +2,12 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// An instance of this class represents an rfcomm channel as defined by the Bluetooth SDP spec..
     ///
@@ -19,44 +17,28 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothrfcommchannel?language=objc)
     #[unsafe(super(IOBluetoothObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+    #[cfg(feature = "IOBluetoothObject")]
     pub struct IOBluetoothRFCOMMChannel;
 );
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl NSCopying for IOBluetoothRFCOMMChannel {}
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for IOBluetoothRFCOMMChannel {
     type Result = Self;
 }
 
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 unsafe impl NSObjectProtocol for IOBluetoothRFCOMMChannel {}
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl NSPortDelegate for IOBluetoothRFCOMMChannel {}
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl NSStreamDelegate for IOBluetoothRFCOMMChannel {}
 
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 impl IOBluetoothRFCOMMChannel {
     extern_methods!(
         #[cfg(feature = "IOBluetoothUserNotification")]
@@ -411,7 +393,7 @@ impl IOBluetoothRFCOMMChannel {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 impl IOBluetoothRFCOMMChannel {
     extern_methods!(
         #[unsafe(method(init))]
@@ -424,10 +406,8 @@ impl IOBluetoothRFCOMMChannel {
     );
 }
 
-#[cfg(feature = "objc2")]
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothrfcommchanneldelegate?language=objc)
-    #[cfg(feature = "objc2")]
     pub unsafe trait IOBluetoothRFCOMMChannelDelegate {
         #[cfg(feature = "IOBluetoothObject")]
         #[optional]

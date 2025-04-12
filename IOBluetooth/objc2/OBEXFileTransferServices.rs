@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -11,19 +10,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexfiletransferservices?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct OBEXFileTransferServices;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for OBEXFileTransferServices {}
 
-#[cfg(feature = "objc2")]
 impl OBEXFileTransferServices {
     extern_methods!(
         #[unsafe(method(delegate))]
@@ -311,7 +306,6 @@ impl OBEXFileTransferServices {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
 impl OBEXFileTransferServices {
     extern_methods!(
         #[unsafe(method(init))]
@@ -424,12 +418,10 @@ impl FTSFileType {
     pub const File: Self = Self(2);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for FTSFileType {
     const ENCODING: Encoding = c_uint::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for FTSFileType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -440,7 +432,6 @@ mod private_NSObjectOBEXFileTransferServicesDelegate {
 
 /// Category "OBEXFileTransferServicesDelegate" on [`NSObject`].
 #[doc(alias = "OBEXFileTransferServicesDelegate")]
-#[cfg(feature = "objc2")]
 pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
     ClassType + Sized + private_NSObjectOBEXFileTransferServicesDelegate::Sealed
 {
@@ -609,7 +600,5 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
     );
 }
 
-#[cfg(feature = "objc2")]
 impl private_NSObjectOBEXFileTransferServicesDelegate::Sealed for NSObject {}
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectOBEXFileTransferServicesDelegate for NSObject {}

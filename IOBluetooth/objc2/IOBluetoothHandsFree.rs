@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
@@ -40,12 +39,10 @@ impl IOBluetoothHandsFreeDeviceFeatures {
     pub const CodecNegotiation: Self = Self(1 << 7);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothHandsFreeDeviceFeatures {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothHandsFreeDeviceFeatures {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -80,23 +77,19 @@ impl IOBluetoothHandsFreeAudioGatewayFeatures {
     pub const CodecNegotiation: Self = Self(1 << 9);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothHandsFreeAudioGatewayFeatures {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothHandsFreeAudioGatewayFeatures {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes?language=objc)
 // NS_ENUM
-#[cfg(feature = "objc2")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothHandsFreeCallHoldModes(pub NSUInteger);
-#[cfg(feature = "objc2")]
 impl IOBluetoothHandsFreeCallHoldModes {
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode0")]
     pub const Mode0: Self = Self(1 << 0);
@@ -114,12 +107,10 @@ impl IOBluetoothHandsFreeCallHoldModes {
     pub const Mode4: Self = Self(1 << 6);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothHandsFreeCallHoldModes {
     const ENCODING: Encoding = NSUInteger::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothHandsFreeCallHoldModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -138,12 +129,10 @@ impl IOBluetoothHandsFreeCodecID {
     pub const IDAACELD: Self = Self(0x80);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothHandsFreeCodecID {
     const ENCODING: Encoding = u8::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothHandsFreeCodecID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -240,11 +229,9 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsmsmode?language=objc)
 // NS_ENUM
-#[cfg(feature = "objc2")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothSMSMode(pub NSUInteger);
-#[cfg(feature = "objc2")]
 impl IOBluetoothSMSMode {
     #[doc(alias = "IOBluetoothSMSModePDU")]
     pub const PDU: Self = Self(0);
@@ -252,23 +239,19 @@ impl IOBluetoothSMSMode {
     pub const Text: Self = Self(1);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothSMSMode {
     const ENCODING: Encoding = NSUInteger::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothSMSMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreesmssupport?language=objc)
 // NS_ENUM
-#[cfg(feature = "objc2")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothHandsFreeSMSSupport(pub NSUInteger);
-#[cfg(feature = "objc2")]
 impl IOBluetoothHandsFreeSMSSupport {
     #[doc(alias = "IOBluetoothHandsFreePhase2SMSSupport")]
     pub const Phase2SMSSupport: Self = Self(1 << 0);
@@ -278,23 +261,19 @@ impl IOBluetoothHandsFreeSMSSupport {
     pub const ManufactureSpecificSMSSupport: Self = Self(1 << 2);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothHandsFreeSMSSupport {
     const ENCODING: Encoding = NSUInteger::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothHandsFreeSMSSupport {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus?language=objc)
 // NS_ENUM
-#[cfg(feature = "objc2")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothHandsFreePDUMessageStatus(pub NSUInteger);
-#[cfg(feature = "objc2")]
 impl IOBluetoothHandsFreePDUMessageStatus {
     #[doc(alias = "IOBluetoothHandsFreePDUStatusRecUnread")]
     pub const StatusRecUnread: Self = Self(0);
@@ -308,12 +287,10 @@ impl IOBluetoothHandsFreePDUMessageStatus {
     pub const StatusAll: Self = Self(4);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothHandsFreePDUMessageStatus {
     const ENCODING: Encoding = NSUInteger::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothHandsFreePDUMessageStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -372,7 +349,6 @@ extern "C" {
     pub static IOBluetoothPDUUserData: Option<&'static NSString>;
 }
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// Hands free profile class.
     ///
@@ -386,14 +362,11 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct IOBluetoothHandsFree;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for IOBluetoothHandsFree {}
 
-#[cfg(feature = "objc2")]
 impl IOBluetoothHandsFree {
     extern_methods!(
         /// Return supported features
@@ -685,7 +658,6 @@ impl IOBluetoothHandsFree {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
 impl IOBluetoothHandsFree {
     extern_methods!(
         #[unsafe(method(init))]
@@ -698,10 +670,8 @@ impl IOBluetoothHandsFree {
     );
 }
 
-#[cfg(feature = "objc2")]
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedelegate?language=objc)
-    #[cfg(feature = "objc2")]
     pub unsafe trait IOBluetoothHandsFreeDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-foundation")]
         /// Tells the delegate that the hands free service level connection is complete.
@@ -766,11 +736,7 @@ extern_protocol!(
 );
 
 /// HandsFreeDeviceAdditions.
-#[cfg(all(
-    feature = "IOBluetoothDevice",
-    feature = "IOBluetoothObject",
-    feature = "objc2"
-))]
+#[cfg(all(feature = "IOBluetoothDevice", feature = "IOBluetoothObject"))]
 impl IOBluetoothDevice {
     extern_methods!(
         #[cfg(feature = "objc2-foundation")]
@@ -840,7 +806,7 @@ impl IOBluetoothDevice {
 }
 
 /// HandsFreeSDPServiceRecordAdditions.
-#[cfg(all(feature = "IOBluetoothSDPServiceRecord", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothSDPServiceRecord")]
 impl IOBluetoothSDPServiceRecord {
     extern_methods!(
         /// Return the hands free supported features

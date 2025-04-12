@@ -24,9 +24,9 @@ extern "C" {}
 #[cfg(feature = "IOBluetoothUIUserLib")]
 #[path = "IOBluetoothUIUserLib.rs"]
 mod __IOBluetoothUIUserLib;
-#[cfg(feature = "objc")]
-#[path = "objc/mod.rs"]
-mod __objc;
+#[cfg(feature = "objc2")]
+#[path = "objc2/mod.rs"]
+mod __objc2;
 
 #[cfg(feature = "IOBluetoothUIUserLib")]
 pub use self::__IOBluetoothUIUserLib::kIOBluetoothServiceBrowserControllerOptionsAutoStartInquiry;
@@ -52,5 +52,5 @@ pub use self::__IOBluetoothUIUserLib::IOBluetoothServiceBrowserControllerOptions
 pub use self::__IOBluetoothUIUserLib::IOBluetoothServiceBrowserControllerRef;
 #[cfg(all(feature = "IOBluetoothUIUserLib", feature = "objc2-core-foundation"))]
 pub use self::__IOBluetoothUIUserLib::IOBluetoothValidateHardwareWithDescription;
-#[cfg(feature = "objc")]
-pub use self::__objc::*;
+#[cfg(feature = "objc2")]
+pub use self::__objc2::*;

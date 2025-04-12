@@ -2,14 +2,12 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// This class is a representation of a Bluetooth Host Controller Interface that is present on the
     /// local computer (either plugged in externally or available internally).
@@ -20,14 +18,11 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhostcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct IOBluetoothHostController;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for IOBluetoothHostController {}
 
-#[cfg(feature = "objc2")]
 impl IOBluetoothHostController {
     extern_methods!(
         #[unsafe(method(delegate))]
@@ -96,7 +91,6 @@ impl IOBluetoothHostController {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
 impl IOBluetoothHostController {
     extern_methods!(
         #[unsafe(method(init))]
@@ -119,7 +113,6 @@ mod private_NSObjectIOBluetoothHostControllerDelegate {
 /// methods are optional, but it is highly recommended you implement them all. Do NOT invoke remote name
 /// requests on found IOBluetoothDevice objects unless the controller object has been stopped. Doing so may
 /// deadlock your process.
-#[cfg(feature = "objc2")]
 pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
     ClassType + Sized + private_NSObjectIOBluetoothHostControllerDelegate::Sealed
 {
@@ -166,9 +159,7 @@ pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
     );
 }
 
-#[cfg(feature = "objc2")]
 impl private_NSObjectIOBluetoothHostControllerDelegate::Sealed for NSObject {}
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectIOBluetoothHostControllerDelegate for NSObject {}
 
 extern "C" {

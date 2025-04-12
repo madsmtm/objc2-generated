@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
@@ -28,12 +27,10 @@ impl IOBluetoothL2CAPChannelEventType {
     pub const QueueSpaceAvailable: Self = Self(0x0006);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothL2CAPChannelEventType {
     const ENCODING: Encoding = c_uint::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothL2CAPChannelEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -46,7 +43,6 @@ pub struct IOBluetoothL2CAPChannelDataBlock {
     pub dataSize: usize,
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothL2CAPChannelDataBlock {
     const ENCODING: Encoding = Encoding::Struct(
         "IOBluetoothL2CAPChannelDataBlock",
@@ -54,7 +50,6 @@ unsafe impl Encode for IOBluetoothL2CAPChannelDataBlock {
     );
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothL2CAPChannelDataBlock {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -68,7 +63,6 @@ pub union IOBluetoothL2CAPChannelEvent_u {
     pub padding: [u8; 32],
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothL2CAPChannelEvent_u {
     const ENCODING: Encoding = Encoding::Union(
         "?",
@@ -80,7 +74,6 @@ unsafe impl Encode for IOBluetoothL2CAPChannelEvent_u {
     );
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothL2CAPChannelEvent_u {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -94,7 +87,6 @@ pub struct IOBluetoothL2CAPChannelEvent {
     pub status: IOReturn,
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for IOBluetoothL2CAPChannelEvent {
     const ENCODING: Encoding = Encoding::Struct(
         "IOBluetoothL2CAPChannelEvent",
@@ -106,7 +98,6 @@ unsafe impl Encode for IOBluetoothL2CAPChannelEvent {
     );
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOBluetoothL2CAPChannelEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -127,7 +118,6 @@ pub type IOBluetoothL2CAPChannelIncomingEventListener = Option<
     ),
 >;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// An instance of IOBluetoothL2CAPChannel represents a single open L2CAP channel.
     ///
@@ -147,37 +137,25 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannel?language=objc)
     #[unsafe(super(IOBluetoothObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+    #[cfg(feature = "IOBluetoothObject")]
     pub struct IOBluetoothL2CAPChannel;
 );
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl NSCopying for IOBluetoothL2CAPChannel {}
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for IOBluetoothL2CAPChannel {
     type Result = Self;
 }
 
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 unsafe impl NSObjectProtocol for IOBluetoothL2CAPChannel {}
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl NSPortDelegate for IOBluetoothL2CAPChannel {}
 
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 impl IOBluetoothL2CAPChannel {
     extern_methods!(
         #[cfg(feature = "IOBluetoothUserNotification")]
@@ -539,7 +517,7 @@ impl IOBluetoothL2CAPChannel {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 impl IOBluetoothL2CAPChannel {
     extern_methods!(
         #[unsafe(method(init))]
@@ -552,10 +530,8 @@ impl IOBluetoothL2CAPChannel {
     );
 }
 
-#[cfg(feature = "objc2")]
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchanneldelegate?language=objc)
-    #[cfg(feature = "objc2")]
     pub unsafe trait IOBluetoothL2CAPChannelDelegate {
         #[cfg(feature = "IOBluetoothObject")]
         #[optional]

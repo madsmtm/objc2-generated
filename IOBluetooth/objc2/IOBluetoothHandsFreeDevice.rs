@@ -2,14 +2,12 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// APIs for managing a hands free device
     ///
@@ -18,14 +16,14 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevice?language=objc)
     #[unsafe(super(IOBluetoothHandsFree, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+    #[cfg(feature = "IOBluetoothHandsFree")]
     pub struct IOBluetoothHandsFreeDevice;
 );
 
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 unsafe impl NSObjectProtocol for IOBluetoothHandsFreeDevice {}
 
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 impl IOBluetoothHandsFreeDevice {
     extern_methods!(
         #[cfg(all(feature = "IOBluetoothDevice", feature = "IOBluetoothObject"))]
@@ -228,7 +226,7 @@ impl IOBluetoothHandsFreeDevice {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 impl IOBluetoothHandsFreeDevice {
     extern_methods!(
         #[unsafe(method(init))]
@@ -241,10 +239,9 @@ impl IOBluetoothHandsFreeDevice {
     );
 }
 
-#[cfg(feature = "objc2")]
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicedelegate?language=objc)
-    #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+    #[cfg(feature = "IOBluetoothHandsFree")]
     pub unsafe trait IOBluetoothHandsFreeDeviceDelegate:
         IOBluetoothHandsFreeDelegate
     {

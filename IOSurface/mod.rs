@@ -36,9 +36,9 @@ mod __IOSurfaceRef;
 #[cfg(feature = "IOSurfaceTypes")]
 #[path = "IOSurfaceTypes.rs"]
 mod __IOSurfaceTypes;
-#[cfg(feature = "ObjC")]
-#[path = "ObjC.rs"]
-mod __ObjC;
+#[cfg(feature = "objc2")]
+#[path = "objc2.rs"]
+mod __objc2;
 
 #[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
 pub use self::__IOSurfaceRef::kIOSurfaceAllocSize;
@@ -252,53 +252,53 @@ pub use self::__IOSurfaceTypes::IOSurfaceID;
 pub use self::__IOSurfaceTypes::IOSurfaceLockOptions;
 #[cfg(feature = "IOSurfaceTypes")]
 pub use self::__IOSurfaceTypes::IOSurfacePurgeabilityState;
-#[cfg(all(feature = "ObjC", feature = "objc2"))]
-pub use self::__ObjC::IOSurface;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyAllocSizeKey;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKey;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyAllocSize;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyBytesPerElement;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyBytesPerRow;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyCacheMode;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyElementHeight;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyElementWidth;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyHeight;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyName;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyOffset;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPixelFormat;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPixelSizeCastingAllowed;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneBase;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneBytesPerElement;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneBytesPerRow;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneElementHeight;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneElementWidth;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneHeight;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneInfo;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneOffset;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneSize;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyPlaneWidth;
-#[cfg(all(feature = "ObjC", feature = "objc2-foundation"))]
-pub use self::__ObjC::IOSurfacePropertyKeyWidth;
+#[cfg(feature = "objc2")]
+pub use self::__objc2::IOSurface;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyAllocSizeKey;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKey;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyAllocSize;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyBytesPerElement;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyBytesPerRow;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyCacheMode;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyElementHeight;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyElementWidth;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyHeight;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyName;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyOffset;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPixelFormat;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPixelSizeCastingAllowed;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneBase;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneBytesPerElement;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneBytesPerRow;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneElementHeight;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneElementWidth;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneHeight;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneInfo;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneOffset;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneSize;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyPlaneWidth;
+#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+pub use self::__objc2::IOSurfacePropertyKeyWidth;

@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
@@ -146,25 +145,21 @@ extern "C" {
     pub static IOSurfacePropertyKeyName: &'static IOSurfacePropertyKey;
 }
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurface?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct IOSurface;
 );
 
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 unsafe impl NSCoding for IOSurface {}
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for IOSurface {}
 
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 unsafe impl NSSecureCoding for IOSurface {}
 
-#[cfg(feature = "objc2")]
 impl IOSurface {
     extern_methods!(
         #[cfg(feature = "objc2-foundation")]
@@ -330,7 +325,6 @@ impl IOSurface {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
 impl IOSurface {
     extern_methods!(
         #[unsafe(method(init))]
@@ -343,7 +337,6 @@ impl IOSurface {
     );
 }
 
-#[cfg(feature = "objc2")]
 impl DefaultRetained for IOSurface {
     #[inline]
     fn default_retained() -> Retained<Self> {

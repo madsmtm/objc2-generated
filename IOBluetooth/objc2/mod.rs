@@ -58,29 +58,25 @@ mod __OBEXFileTransferServices;
 #[path = "OBEXSession.rs"]
 mod __OBEXSession;
 
-#[cfg(all(
-    feature = "IOBluetoothDevice",
-    feature = "IOBluetoothObject",
-    feature = "objc2"
-))]
+#[cfg(all(feature = "IOBluetoothDevice", feature = "IOBluetoothObject"))]
 pub use self::__IOBluetoothDevice::IOBluetoothDevice;
-#[cfg(all(feature = "IOBluetoothDevice", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothDevice")]
 pub use self::__IOBluetoothDevice::IOBluetoothDeviceAsyncCallbacks;
-#[cfg(all(feature = "IOBluetoothDeviceInquiry", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothDeviceInquiry")]
 pub use self::__IOBluetoothDeviceInquiry::IOBluetoothDeviceInquiry;
-#[cfg(all(feature = "IOBluetoothDeviceInquiry", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothDeviceInquiry")]
 pub use self::__IOBluetoothDeviceInquiry::IOBluetoothDeviceInquiryDelegate;
-#[cfg(all(feature = "IOBluetoothDevicePair", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothDevicePair")]
 pub use self::__IOBluetoothDevicePair::IOBluetoothDevicePair;
-#[cfg(all(feature = "IOBluetoothDevicePair", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothDevicePair")]
 pub use self::__IOBluetoothDevicePair::IOBluetoothDevicePairDelegate;
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFree;
 #[cfg(feature = "IOBluetoothHandsFree")]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeAudioGatewayFeatures;
 #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeCallDirection;
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeCallHoldModes;
 #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeCallIndex;
@@ -98,7 +94,7 @@ pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeCallStatus;
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeCallType;
 #[cfg(feature = "IOBluetoothHandsFree")]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeCodecID;
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeDelegate;
 #[cfg(feature = "IOBluetoothHandsFree")]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeDeviceFeatures;
@@ -116,9 +112,9 @@ pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeIndicatorRoam;
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeIndicatorService;
 #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeIndicatorSignal;
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreePDUMessageStatus;
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 pub use self::__IOBluetoothHandsFree::IOBluetoothHandsFreeSMSSupport;
 #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothHandsFree::IOBluetoothPDUEncoding;
@@ -138,45 +134,38 @@ pub use self::__IOBluetoothHandsFree::IOBluetoothPDUTimestamp;
 pub use self::__IOBluetoothHandsFree::IOBluetoothPDUType;
 #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothHandsFree::IOBluetoothPDUUserData;
-#[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFree")]
 pub use self::__IOBluetoothHandsFree::IOBluetoothSMSMode;
 #[cfg(all(
     feature = "IOBluetoothHandsFree",
-    feature = "IOBluetoothHandsFreeAudioGateway",
-    feature = "objc2"
+    feature = "IOBluetoothHandsFreeAudioGateway"
 ))]
 pub use self::__IOBluetoothHandsFreeAudioGateway::IOBluetoothHandsFreeAudioGateway;
-#[cfg(all(feature = "IOBluetoothHandsFreeAudioGateway", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHandsFreeAudioGateway")]
 pub use self::__IOBluetoothHandsFreeAudioGateway::IOBluetoothHandsFreeAudioGatewayDelegate;
 #[cfg(all(
     feature = "IOBluetoothHandsFree",
-    feature = "IOBluetoothHandsFreeDevice",
-    feature = "objc2"
+    feature = "IOBluetoothHandsFreeDevice"
 ))]
 pub use self::__IOBluetoothHandsFreeDevice::IOBluetoothHandsFreeDevice;
 #[cfg(all(
     feature = "IOBluetoothHandsFree",
-    feature = "IOBluetoothHandsFreeDevice",
-    feature = "objc2"
+    feature = "IOBluetoothHandsFreeDevice"
 ))]
 pub use self::__IOBluetoothHandsFreeDevice::IOBluetoothHandsFreeDeviceDelegate;
-#[cfg(all(feature = "IOBluetoothHostController", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHostController")]
 pub use self::__IOBluetoothHostController::IOBluetoothHostController;
 #[cfg(all(feature = "IOBluetoothHostController", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothHostController::IOBluetoothHostControllerPoweredOffNotification;
 #[cfg(all(feature = "IOBluetoothHostController", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothHostController::IOBluetoothHostControllerPoweredOnNotification;
-#[cfg(all(feature = "IOBluetoothHostController", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothHostController")]
 pub use self::__IOBluetoothHostController::NSObjectIOBluetoothHostControllerDelegate;
-#[cfg(all(
-    feature = "IOBluetoothL2CAPChannel",
-    feature = "IOBluetoothObject",
-    feature = "objc2"
-))]
+#[cfg(all(feature = "IOBluetoothL2CAPChannel", feature = "IOBluetoothObject"))]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannel;
 #[cfg(feature = "IOBluetoothL2CAPChannel")]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelDataBlock;
-#[cfg(all(feature = "IOBluetoothL2CAPChannel", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothL2CAPChannel")]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelDelegate;
 #[cfg(feature = "IOBluetoothL2CAPChannel")]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelEvent;
@@ -192,37 +181,25 @@ pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelIncomingEventLis
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelPublishedNotification;
 #[cfg(all(feature = "IOBluetoothL2CAPChannel", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelTerminatedNotification;
-#[cfg(all(
-    feature = "IOBluetoothOBEXSession",
-    feature = "OBEXSession",
-    feature = "objc2"
-))]
+#[cfg(all(feature = "IOBluetoothOBEXSession", feature = "OBEXSession"))]
 pub use self::__IOBluetoothOBEXSession::IOBluetoothOBEXSession;
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 pub use self::__IOBluetoothObject::IOBluetoothObject;
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "IOBluetoothRFCOMMChannel",
-    feature = "objc2"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "IOBluetoothRFCOMMChannel"))]
 pub use self::__IOBluetoothRFCOMMChannel::IOBluetoothRFCOMMChannel;
-#[cfg(all(feature = "IOBluetoothRFCOMMChannel", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothRFCOMMChannel")]
 pub use self::__IOBluetoothRFCOMMChannel::IOBluetoothRFCOMMChannelDelegate;
-#[cfg(all(feature = "IOBluetoothSDPDataElement", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothSDPDataElement")]
 pub use self::__IOBluetoothSDPDataElement::IOBluetoothSDPDataElement;
-#[cfg(all(feature = "IOBluetoothSDPServiceAttribute", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothSDPServiceAttribute")]
 pub use self::__IOBluetoothSDPServiceAttribute::IOBluetoothSDPServiceAttribute;
-#[cfg(all(feature = "IOBluetoothSDPServiceRecord", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothSDPServiceRecord")]
 pub use self::__IOBluetoothSDPServiceRecord::IOBluetoothSDPServiceRecord;
-#[cfg(all(
-    feature = "IOBluetoothSDPUUID",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothSDPUUID", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothSDPUUID::IOBluetoothSDPUUID;
-#[cfg(all(feature = "IOBluetoothUserNotification", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothUserNotification")]
 pub use self::__IOBluetoothUserNotification::IOBluetoothUserNotification;
-#[cfg(all(feature = "NSDictionaryOBEXExtensions", feature = "objc2"))]
+#[cfg(feature = "NSDictionaryOBEXExtensions")]
 pub use self::__NSDictionaryOBEXExtensions::NSDictionaryOBEXExtensions;
 #[cfg(all(
     feature = "OBEXFileTransferServices",
@@ -276,11 +253,11 @@ pub use self::__OBEXFileTransferServices::kFTSProgressTimeElapsedKey;
 pub use self::__OBEXFileTransferServices::kFTSProgressTransferRateKey;
 #[cfg(feature = "OBEXFileTransferServices")]
 pub use self::__OBEXFileTransferServices::FTSFileType;
-#[cfg(all(feature = "OBEXFileTransferServices", feature = "objc2"))]
+#[cfg(feature = "OBEXFileTransferServices")]
 pub use self::__OBEXFileTransferServices::NSObjectOBEXFileTransferServicesDelegate;
-#[cfg(all(feature = "OBEXFileTransferServices", feature = "objc2"))]
+#[cfg(feature = "OBEXFileTransferServices")]
 pub use self::__OBEXFileTransferServices::OBEXFileTransferServices;
-#[cfg(all(feature = "OBEXSession", feature = "objc2"))]
+#[cfg(feature = "OBEXSession")]
 pub use self::__OBEXSession::OBEXSession;
 #[cfg(all(feature = "OBEX", feature = "OBEXSession"))]
 pub use self::__OBEXSession::OBEXTransportEvent;

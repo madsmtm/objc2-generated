@@ -2,17 +2,14 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceasynccallbacks?language=objc)
-    #[cfg(feature = "objc2")]
     pub unsafe trait IOBluetoothDeviceAsyncCallbacks {
         #[cfg(feature = "IOBluetoothObject")]
         #[unsafe(method(remoteNameRequestComplete:status:))]
@@ -43,7 +40,6 @@ extern_protocol!(
     }
 );
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// An instance of IOBluetoothDevice represents a single remote Bluetooth device.
     ///
@@ -55,44 +51,28 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevice?language=objc)
     #[unsafe(super(IOBluetoothObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+    #[cfg(feature = "IOBluetoothObject")]
     pub struct IOBluetoothDevice;
 );
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl NSCoding for IOBluetoothDevice {}
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl NSCopying for IOBluetoothDevice {}
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for IOBluetoothDevice {
     type Result = Self;
 }
 
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 unsafe impl NSObjectProtocol for IOBluetoothDevice {}
 
-#[cfg(all(
-    feature = "IOBluetoothObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl NSSecureCoding for IOBluetoothDevice {}
 
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 impl IOBluetoothDevice {
     extern_methods!(
         #[cfg(feature = "IOBluetoothUserNotification")]
@@ -1166,7 +1146,7 @@ impl IOBluetoothDevice {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(all(feature = "IOBluetoothObject", feature = "objc2"))]
+#[cfg(feature = "IOBluetoothObject")]
 impl IOBluetoothDevice {
     extern_methods!(
         #[unsafe(method(init))]
