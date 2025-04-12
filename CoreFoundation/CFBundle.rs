@@ -106,7 +106,7 @@ pub extern "C-unwind" fn CFBundleGetBundleWithIdentifier(
 
 #[cfg(feature = "CFArray")]
 #[inline]
-pub extern "C-unwind" fn CFBundleGetAllBundles() -> Option<CFRetained<CFArray>> {
+pub unsafe extern "C-unwind" fn CFBundleGetAllBundles() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn CFBundleGetAllBundles() -> Option<NonNull<CFArray>>;
     }
