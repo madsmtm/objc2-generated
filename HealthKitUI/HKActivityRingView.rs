@@ -7,7 +7,6 @@ use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-health-kit")]
-#[cfg(not(target_os = "tvos"))]
 use objc2_health_kit::*;
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
@@ -52,7 +51,6 @@ unsafe impl UITraitEnvironment for HKActivityRingView {}
 impl HKActivityRingView {
     extern_methods!(
         #[cfg(feature = "objc2-health-kit")]
-        #[cfg(not(target_os = "tvos"))]
         /// The activity summary that is currently being displayed in the activity ring view
         ///
         /// Setting this property directly will not animate ring changes
@@ -61,14 +59,12 @@ impl HKActivityRingView {
         pub unsafe fn activitySummary(&self) -> Option<Retained<HKActivitySummary>>;
 
         #[cfg(feature = "objc2-health-kit")]
-        #[cfg(not(target_os = "tvos"))]
         /// Setter for [`activitySummary`][Self::activitySummary].
         #[unsafe(method(setActivitySummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivitySummary(&self, activity_summary: Option<&HKActivitySummary>);
 
         #[cfg(feature = "objc2-health-kit")]
-        #[cfg(not(target_os = "tvos"))]
         #[unsafe(method(setActivitySummary:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivitySummary_animated(

@@ -3,7 +3,6 @@
 use core::ffi::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-health-kit")]
-#[cfg(not(target_os = "tvos"))]
 use objc2_health_kit::*;
 use objc2_ui_kit::*;
 
@@ -41,8 +40,6 @@ pub unsafe trait HKHealthStoreUIKit:
 }
 
 #[cfg(feature = "objc2-health-kit")]
-#[cfg(not(target_os = "tvos"))]
 impl private_HKHealthStoreUIKit::Sealed for HKHealthStore {}
 #[cfg(feature = "objc2-health-kit")]
-#[cfg(not(target_os = "tvos"))]
 unsafe impl HKHealthStoreUIKit for HKHealthStore {}
