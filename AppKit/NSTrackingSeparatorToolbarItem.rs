@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSToolbarItem")]
-unsafe impl NSCopying for NSTrackingSeparatorToolbarItem {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTrackingSeparatorToolbarItem {}
+);
 
 #[cfg(feature = "NSToolbarItem")]
 unsafe impl CopyingHelper for NSTrackingSeparatorToolbarItem {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for NSTrackingSeparatorToolbarItem {
 }
 
 #[cfg(feature = "NSToolbarItem")]
-unsafe impl NSObjectProtocol for NSTrackingSeparatorToolbarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTrackingSeparatorToolbarItem {}
+);
 
 #[cfg(feature = "NSToolbarItem")]
 impl NSTrackingSeparatorToolbarItem {

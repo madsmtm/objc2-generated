@@ -47,48 +47,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIInputView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIInputView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIInputView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIInputView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIInputView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIInputView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIInputView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIInputView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIInputView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIInputView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIInputView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIInputView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIInputView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIInputView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIInputView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIInputView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIInputView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIInputView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIInputView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIInputView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIInputView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIInputView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIInputView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIInputView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIInputView {

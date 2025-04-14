@@ -15,11 +15,17 @@ extern_class!(
     pub struct MEMessageSigner;
 );
 
-unsafe impl NSCoding for MEMessageSigner {}
+extern_conformance!(
+    unsafe impl NSCoding for MEMessageSigner {}
+);
 
-unsafe impl NSObjectProtocol for MEMessageSigner {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEMessageSigner {}
+);
 
-unsafe impl NSSecureCoding for MEMessageSigner {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MEMessageSigner {}
+);
 
 impl MEMessageSigner {
     extern_methods!(

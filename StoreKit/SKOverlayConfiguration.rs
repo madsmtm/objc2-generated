@@ -34,7 +34,9 @@ extern_class!(
     pub struct SKOverlayConfiguration;
 );
 
-unsafe impl NSObjectProtocol for SKOverlayConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKOverlayConfiguration {}
+);
 
 impl SKOverlayConfiguration {
     extern_methods!(
@@ -57,7 +59,9 @@ extern_class!(
     pub struct SKOverlayAppConfiguration;
 );
 
-unsafe impl NSObjectProtocol for SKOverlayAppConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKOverlayAppConfiguration {}
+);
 
 impl SKOverlayAppConfiguration {
     extern_methods!(
@@ -180,7 +184,9 @@ extern_class!(
     pub struct SKOverlayAppClipConfiguration;
 );
 
-unsafe impl NSObjectProtocol for SKOverlayAppClipConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKOverlayAppClipConfiguration {}
+);
 
 impl SKOverlayAppClipConfiguration {
     extern_methods!(

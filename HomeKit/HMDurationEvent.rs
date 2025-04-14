@@ -29,7 +29,9 @@ unsafe impl Send for HMDurationEvent {}
 unsafe impl Sync for HMDurationEvent {}
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSCopying for HMDurationEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMDurationEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl CopyingHelper for HMDurationEvent {
@@ -37,7 +39,9 @@ unsafe impl CopyingHelper for HMDurationEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSMutableCopying for HMDurationEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMDurationEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl MutableCopyingHelper for HMDurationEvent {
@@ -45,7 +49,9 @@ unsafe impl MutableCopyingHelper for HMDurationEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSObjectProtocol for HMDurationEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMDurationEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMDurationEvent {
@@ -103,7 +109,9 @@ unsafe impl Send for HMMutableDurationEvent {}
 unsafe impl Sync for HMMutableDurationEvent {}
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSCopying for HMMutableDurationEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMMutableDurationEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl CopyingHelper for HMMutableDurationEvent {
@@ -111,7 +119,9 @@ unsafe impl CopyingHelper for HMMutableDurationEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSMutableCopying for HMMutableDurationEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMMutableDurationEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl MutableCopyingHelper for HMMutableDurationEvent {
@@ -119,7 +129,9 @@ unsafe impl MutableCopyingHelper for HMMutableDurationEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSObjectProtocol for HMMutableDurationEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMMutableDurationEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMMutableDurationEvent {

@@ -16,11 +16,17 @@ extern_class!(
     pub struct WCSessionUserInfoTransfer;
 );
 
-unsafe impl NSCoding for WCSessionUserInfoTransfer {}
+extern_conformance!(
+    unsafe impl NSCoding for WCSessionUserInfoTransfer {}
+);
 
-unsafe impl NSObjectProtocol for WCSessionUserInfoTransfer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WCSessionUserInfoTransfer {}
+);
 
-unsafe impl NSSecureCoding for WCSessionUserInfoTransfer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WCSessionUserInfoTransfer {}
+);
 
 impl WCSessionUserInfoTransfer {
     extern_methods!(

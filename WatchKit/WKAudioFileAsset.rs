@@ -19,7 +19,9 @@ extern_class!(
     pub struct WKAudioFileAsset;
 );
 
-unsafe impl NSObjectProtocol for WKAudioFileAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKAudioFileAsset {}
+);
 
 impl WKAudioFileAsset {
     extern_methods!(

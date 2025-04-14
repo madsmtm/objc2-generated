@@ -114,13 +114,17 @@ extern_class!(
     pub struct MTLRenderPassAttachmentDescriptor;
 );
 
-unsafe impl NSCopying for MTLRenderPassAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLRenderPassAttachmentDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLRenderPassAttachmentDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLRenderPassAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRenderPassAttachmentDescriptor {}
+);
 
 impl MTLRenderPassAttachmentDescriptor {
     extern_methods!(
@@ -280,13 +284,17 @@ extern_class!(
     pub struct MTLRenderPassColorAttachmentDescriptor;
 );
 
-unsafe impl NSCopying for MTLRenderPassColorAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLRenderPassColorAttachmentDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLRenderPassColorAttachmentDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptor {}
+);
 
 impl MTLRenderPassColorAttachmentDescriptor {
     extern_methods!(
@@ -353,13 +361,17 @@ extern_class!(
     pub struct MTLRenderPassDepthAttachmentDescriptor;
 );
 
-unsafe impl NSCopying for MTLRenderPassDepthAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLRenderPassDepthAttachmentDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLRenderPassDepthAttachmentDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLRenderPassDepthAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRenderPassDepthAttachmentDescriptor {}
+);
 
 impl MTLRenderPassDepthAttachmentDescriptor {
     extern_methods!(
@@ -429,13 +441,17 @@ extern_class!(
     pub struct MTLRenderPassStencilAttachmentDescriptor;
 );
 
-unsafe impl NSCopying for MTLRenderPassStencilAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLRenderPassStencilAttachmentDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLRenderPassStencilAttachmentDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLRenderPassStencilAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRenderPassStencilAttachmentDescriptor {}
+);
 
 impl MTLRenderPassStencilAttachmentDescriptor {
     extern_methods!(
@@ -484,7 +500,9 @@ extern_class!(
     pub struct MTLRenderPassColorAttachmentDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptorArray {}
+);
 
 impl MTLRenderPassColorAttachmentDescriptorArray {
     extern_methods!(
@@ -525,13 +543,17 @@ extern_class!(
     pub struct MTLRenderPassSampleBufferAttachmentDescriptor;
 );
 
-unsafe impl NSCopying for MTLRenderPassSampleBufferAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLRenderPassSampleBufferAttachmentDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLRenderPassSampleBufferAttachmentDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptor {}
+);
 
 impl MTLRenderPassSampleBufferAttachmentDescriptor {
     extern_methods!(
@@ -639,7 +661,9 @@ extern_class!(
     pub struct MTLRenderPassSampleBufferAttachmentDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptorArray {}
+);
 
 impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
     extern_methods!(
@@ -682,13 +706,17 @@ extern_class!(
     pub struct MTLRenderPassDescriptor;
 );
 
-unsafe impl NSCopying for MTLRenderPassDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLRenderPassDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLRenderPassDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLRenderPassDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRenderPassDescriptor {}
+);
 
 impl MTLRenderPassDescriptor {
     extern_methods!(

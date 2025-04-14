@@ -14,17 +14,25 @@ extern_class!(
     pub struct SFSpeechRecognitionMetadata;
 );
 
-unsafe impl NSCoding for SFSpeechRecognitionMetadata {}
+extern_conformance!(
+    unsafe impl NSCoding for SFSpeechRecognitionMetadata {}
+);
 
-unsafe impl NSCopying for SFSpeechRecognitionMetadata {}
+extern_conformance!(
+    unsafe impl NSCopying for SFSpeechRecognitionMetadata {}
+);
 
 unsafe impl CopyingHelper for SFSpeechRecognitionMetadata {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SFSpeechRecognitionMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSpeechRecognitionMetadata {}
+);
 
-unsafe impl NSSecureCoding for SFSpeechRecognitionMetadata {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SFSpeechRecognitionMetadata {}
+);
 
 impl SFSpeechRecognitionMetadata {
     extern_methods!(

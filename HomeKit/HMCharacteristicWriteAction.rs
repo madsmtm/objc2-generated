@@ -19,10 +19,12 @@ extern_class!(
 );
 
 #[cfg(feature = "HMAction")]
-unsafe impl<TargetValueType: ?Sized> NSObjectProtocol
-    for HMCharacteristicWriteAction<TargetValueType>
-{
-}
+extern_conformance!(
+    unsafe impl<TargetValueType: ?Sized> NSObjectProtocol
+        for HMCharacteristicWriteAction<TargetValueType>
+    {
+    }
+);
 
 #[cfg(feature = "HMAction")]
 impl<TargetValueType: Message> HMCharacteristicWriteAction<TargetValueType> {

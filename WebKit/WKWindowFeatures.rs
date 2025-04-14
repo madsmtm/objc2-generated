@@ -16,7 +16,9 @@ extern_class!(
     pub struct WKWindowFeatures;
 );
 
-unsafe impl NSObjectProtocol for WKWindowFeatures {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWindowFeatures {}
+);
 
 impl WKWindowFeatures {
     extern_methods!(

@@ -17,12 +17,18 @@ extern_class!(
 );
 
 #[cfg(feature = "MKAnnotation")]
-unsafe impl MKAnnotation for MKTileOverlay {}
+extern_conformance!(
+    unsafe impl MKAnnotation for MKTileOverlay {}
+);
 
 #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-unsafe impl MKOverlay for MKTileOverlay {}
+extern_conformance!(
+    unsafe impl MKOverlay for MKTileOverlay {}
+);
 
-unsafe impl NSObjectProtocol for MKTileOverlay {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKTileOverlay {}
+);
 
 impl MKTileOverlay {
     extern_methods!(

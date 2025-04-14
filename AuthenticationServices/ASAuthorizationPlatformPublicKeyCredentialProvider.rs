@@ -14,9 +14,13 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationProvider")]
-unsafe impl ASAuthorizationProvider for ASAuthorizationPlatformPublicKeyCredentialProvider {}
+extern_conformance!(
+    unsafe impl ASAuthorizationProvider for ASAuthorizationPlatformPublicKeyCredentialProvider {}
+);
 
-unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialProvider {}
+);
 
 impl ASAuthorizationPlatformPublicKeyCredentialProvider {
     extern_methods!(
@@ -104,7 +108,9 @@ impl ASAuthorizationPlatformPublicKeyCredentialProvider {
 }
 
 #[cfg(feature = "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider")]
-unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider
-    for ASAuthorizationPlatformPublicKeyCredentialProvider
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider
+        for ASAuthorizationPlatformPublicKeyCredentialProvider
+    {
+    }
+);

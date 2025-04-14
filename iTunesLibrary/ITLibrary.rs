@@ -75,7 +75,9 @@ extern_class!(
     pub struct ITLibrary;
 );
 
-unsafe impl NSObjectProtocol for ITLibrary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ITLibrary {}
+);
 
 impl ITLibrary {
     extern_methods!(

@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHChangeRequest")]
-unsafe impl NSObjectProtocol for PHProjectChangeRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectChangeRequest {}
+);
 
 #[cfg(feature = "PHChangeRequest")]
 impl PHProjectChangeRequest {

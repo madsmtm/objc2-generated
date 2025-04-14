@@ -25,13 +25,17 @@ extern_class!(
     pub struct NSBindingSelectionMarker;
 );
 
-unsafe impl NSCopying for NSBindingSelectionMarker {}
+extern_conformance!(
+    unsafe impl NSCopying for NSBindingSelectionMarker {}
+);
 
 unsafe impl CopyingHelper for NSBindingSelectionMarker {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}
+);
 
 impl NSBindingSelectionMarker {
     extern_methods!(

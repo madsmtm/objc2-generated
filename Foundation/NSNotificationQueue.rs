@@ -59,7 +59,9 @@ extern_class!(
     pub struct NSNotificationQueue;
 );
 
-unsafe impl NSObjectProtocol for NSNotificationQueue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNotificationQueue {}
+);
 
 impl NSNotificationQueue {
     extern_methods!(

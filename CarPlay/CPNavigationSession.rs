@@ -47,7 +47,9 @@ extern_class!(
     pub struct CPNavigationSession;
 );
 
-unsafe impl NSObjectProtocol for CPNavigationSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNavigationSession {}
+);
 
 impl CPNavigationSession {
     extern_methods!(

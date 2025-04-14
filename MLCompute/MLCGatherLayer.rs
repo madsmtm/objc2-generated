@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCGatherLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCGatherLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCGatherLayer {

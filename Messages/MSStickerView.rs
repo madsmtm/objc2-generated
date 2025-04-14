@@ -28,40 +28,64 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2-quartz-core", feature = "objc2-ui-kit"))]
-unsafe impl CALayerDelegate for MSStickerView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for MSStickerView {}
+extern_conformance!(
+    unsafe impl NSCoding for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for MSStickerView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearance for MSStickerView {}
+extern_conformance!(
+    unsafe impl UIAppearance for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for MSStickerView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UICoordinateSpace for MSStickerView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIDynamicItem for MSStickerView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for MSStickerView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItem for MSStickerView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItemContainer for MSStickerView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for MSStickerView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for MSStickerView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for MSStickerView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl MSStickerView {

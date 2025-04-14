@@ -37,7 +37,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMHTMLTableCaptionElement {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMHTMLTableCaptionElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -46,7 +48,9 @@ unsafe impl DOMEventTarget for DOMHTMLTableCaptionElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMHTMLTableCaptionElement {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMHTMLTableCaptionElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -66,7 +70,9 @@ unsafe impl CopyingHelper for DOMHTMLTableCaptionElement {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMHTMLTableCaptionElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMHTMLTableCaptionElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",

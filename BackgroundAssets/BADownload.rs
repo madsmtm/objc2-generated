@@ -73,17 +73,25 @@ unsafe impl Send for BADownload {}
 
 unsafe impl Sync for BADownload {}
 
-unsafe impl NSCoding for BADownload {}
+extern_conformance!(
+    unsafe impl NSCoding for BADownload {}
+);
 
-unsafe impl NSCopying for BADownload {}
+extern_conformance!(
+    unsafe impl NSCopying for BADownload {}
+);
 
 unsafe impl CopyingHelper for BADownload {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for BADownload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BADownload {}
+);
 
-unsafe impl NSSecureCoding for BADownload {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for BADownload {}
+);
 
 impl BADownload {
     extern_methods!(

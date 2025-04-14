@@ -63,17 +63,25 @@ extern_class!(
     pub struct CSSearchableItem;
 );
 
-unsafe impl NSCoding for CSSearchableItem {}
+extern_conformance!(
+    unsafe impl NSCoding for CSSearchableItem {}
+);
 
-unsafe impl NSCopying for CSSearchableItem {}
+extern_conformance!(
+    unsafe impl NSCopying for CSSearchableItem {}
+);
 
 unsafe impl CopyingHelper for CSSearchableItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CSSearchableItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSSearchableItem {}
+);
 
-unsafe impl NSSecureCoding for CSSearchableItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CSSearchableItem {}
+);
 
 impl CSSearchableItem {
     extern_methods!(

@@ -40,10 +40,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCoding for CMGyroData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMGyroData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCopying for CMGyroData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMGyroData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl CopyingHelper for CMGyroData {
@@ -51,10 +55,14 @@ unsafe impl CopyingHelper for CMGyroData {
 }
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSObjectProtocol for CMGyroData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMGyroData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSSecureCoding for CMGyroData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMGyroData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 impl CMGyroData {

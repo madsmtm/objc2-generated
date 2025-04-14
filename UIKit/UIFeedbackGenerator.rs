@@ -14,7 +14,9 @@ extern_class!(
     pub struct UIFeedbackGenerator;
 );
 
-unsafe impl NSObjectProtocol for UIFeedbackGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFeedbackGenerator {}
+);
 
 impl UIFeedbackGenerator {
     extern_methods!(
@@ -51,4 +53,6 @@ impl UIFeedbackGenerator {
 }
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIFeedbackGenerator {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIFeedbackGenerator {}
+);

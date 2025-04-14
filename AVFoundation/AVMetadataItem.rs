@@ -17,21 +17,29 @@ extern_class!(
 );
 
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
-unsafe impl AVAsynchronousKeyValueLoading for AVMetadataItem {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVMetadataItem {}
+);
 
-unsafe impl NSCopying for AVMetadataItem {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataItem {}
+);
 
 unsafe impl CopyingHelper for AVMetadataItem {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVMetadataItem {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMetadataItem {}
+);
 
 unsafe impl MutableCopyingHelper for AVMetadataItem {
     type Result = AVMutableMetadataItem;
 }
 
-unsafe impl NSObjectProtocol for AVMetadataItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataItem {}
+);
 
 impl AVMetadataItem {
     extern_methods!(
@@ -241,21 +249,29 @@ extern_class!(
 );
 
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
-unsafe impl AVAsynchronousKeyValueLoading for AVMutableMetadataItem {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVMutableMetadataItem {}
+);
 
-unsafe impl NSCopying for AVMutableMetadataItem {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableMetadataItem {}
+);
 
 unsafe impl CopyingHelper for AVMutableMetadataItem {
     type Result = AVMetadataItem;
 }
 
-unsafe impl NSMutableCopying for AVMutableMetadataItem {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableMetadataItem {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableMetadataItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableMetadataItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableMetadataItem {}
+);
 
 impl AVMutableMetadataItem {
     extern_methods!(
@@ -436,7 +452,9 @@ extern_class!(
     pub struct AVMetadataItemValueRequest;
 );
 
-unsafe impl NSObjectProtocol for AVMetadataItemValueRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataItemValueRequest {}
+);
 
 impl AVMetadataItemValueRequest {
     extern_methods!(
@@ -491,7 +509,9 @@ unsafe impl Send for AVMetadataItemFilter {}
 
 unsafe impl Sync for AVMetadataItemFilter {}
 
-unsafe impl NSObjectProtocol for AVMetadataItemFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataItemFilter {}
+);
 
 impl AVMetadataItemFilter {
     extern_methods!(

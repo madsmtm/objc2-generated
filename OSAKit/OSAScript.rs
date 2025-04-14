@@ -139,13 +139,17 @@ extern_class!(
     pub struct OSAScript;
 );
 
-unsafe impl NSCopying for OSAScript {}
+extern_conformance!(
+    unsafe impl NSCopying for OSAScript {}
+);
 
 unsafe impl CopyingHelper for OSAScript {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for OSAScript {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OSAScript {}
+);
 
 impl OSAScript {
     extern_methods!(

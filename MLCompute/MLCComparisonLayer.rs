@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCComparisonLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCComparisonLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCComparisonLayer {

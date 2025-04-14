@@ -180,7 +180,9 @@ extern_class!(
     pub struct SCContentFilter;
 );
 
-unsafe impl NSObjectProtocol for SCContentFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCContentFilter {}
+);
 
 impl SCContentFilter {
     extern_methods!(
@@ -370,7 +372,9 @@ extern_class!(
     pub struct SCStreamConfiguration;
 );
 
-unsafe impl NSObjectProtocol for SCStreamConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCStreamConfiguration {}
+);
 
 impl SCStreamConfiguration {
     extern_methods!(
@@ -832,7 +836,9 @@ extern_class!(
     pub struct SCStream;
 );
 
-unsafe impl NSObjectProtocol for SCStream {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCStream {}
+);
 
 impl SCStream {
     extern_methods!(

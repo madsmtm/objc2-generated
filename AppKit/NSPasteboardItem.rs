@@ -14,13 +14,19 @@ extern_class!(
     pub struct NSPasteboardItem;
 );
 
-unsafe impl NSObjectProtocol for NSPasteboardItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPasteboardItem {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardReading for NSPasteboardItem {}
+extern_conformance!(
+    unsafe impl NSPasteboardReading for NSPasteboardItem {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardWriting for NSPasteboardItem {}
+extern_conformance!(
+    unsafe impl NSPasteboardWriting for NSPasteboardItem {}
+);
 
 impl NSPasteboardItem {
     extern_methods!(

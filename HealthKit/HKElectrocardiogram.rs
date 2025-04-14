@@ -110,13 +110,19 @@ unsafe impl Send for HKElectrocardiogram {}
 unsafe impl Sync for HKElectrocardiogram {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCoding for HKElectrocardiogram {}
+extern_conformance!(
+    unsafe impl NSCoding for HKElectrocardiogram {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSObjectProtocol for HKElectrocardiogram {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKElectrocardiogram {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSSecureCoding for HKElectrocardiogram {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKElectrocardiogram {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKElectrocardiogram {

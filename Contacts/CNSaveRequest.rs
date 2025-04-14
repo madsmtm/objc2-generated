@@ -23,7 +23,9 @@ extern_class!(
     pub struct CNSaveRequest;
 );
 
-unsafe impl NSObjectProtocol for CNSaveRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNSaveRequest {}
+);
 
 impl CNSaveRequest {
     extern_methods!(

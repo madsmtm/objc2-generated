@@ -76,7 +76,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSBrowser {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSBrowser {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -84,7 +86,9 @@ unsafe impl NSAccessibility for NSBrowser {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSBrowser {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSBrowser {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -92,7 +96,9 @@ unsafe impl NSAccessibilityElementProtocol for NSBrowser {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSBrowser {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSBrowser {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -100,10 +106,14 @@ unsafe impl NSAnimatablePropertyContainer for NSBrowser {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSBrowser {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSBrowser {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSBrowser {}
+extern_conformance!(
+    unsafe impl NSCoding for NSBrowser {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -111,10 +121,14 @@ unsafe impl NSCoding for NSBrowser {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSBrowser {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSBrowser {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSBrowser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBrowser {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -122,7 +136,9 @@ unsafe impl NSObjectProtocol for NSBrowser {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSBrowser {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSBrowser {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSBrowser {

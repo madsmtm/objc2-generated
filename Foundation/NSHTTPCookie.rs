@@ -169,7 +169,9 @@ unsafe impl Send for NSHTTPCookie {}
 
 unsafe impl Sync for NSHTTPCookie {}
 
-unsafe impl NSObjectProtocol for NSHTTPCookie {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSHTTPCookie {}
+);
 
 impl NSHTTPCookie {
     extern_methods!(

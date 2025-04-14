@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INPlayMediaIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INPlayMediaIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INPlayMediaIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INPlayMediaIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INPlayMediaIntent {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INPlayMediaIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INPlayMediaIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPlayMediaIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INPlayMediaIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INPlayMediaIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INPlayMediaIntent {

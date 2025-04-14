@@ -88,7 +88,9 @@ extern_class!(
     pub struct MCSession;
 );
 
-unsafe impl NSObjectProtocol for MCSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MCSession {}
+);
 
 impl MCSession {
     extern_methods!(

@@ -172,7 +172,9 @@ extern_class!(
     pub struct CWWiFiClient;
 );
 
-unsafe impl NSObjectProtocol for CWWiFiClient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CWWiFiClient {}
+);
 
 impl CWWiFiClient {
     extern_methods!(

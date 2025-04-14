@@ -14,17 +14,25 @@ extern_class!(
     pub struct CAEDRMetadata;
 );
 
-unsafe impl NSCoding for CAEDRMetadata {}
+extern_conformance!(
+    unsafe impl NSCoding for CAEDRMetadata {}
+);
 
-unsafe impl NSCopying for CAEDRMetadata {}
+extern_conformance!(
+    unsafe impl NSCopying for CAEDRMetadata {}
+);
 
 unsafe impl CopyingHelper for CAEDRMetadata {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CAEDRMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAEDRMetadata {}
+);
 
-unsafe impl NSSecureCoding for CAEDRMetadata {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAEDRMetadata {}
+);
 
 impl CAEDRMetadata {
     extern_methods!(

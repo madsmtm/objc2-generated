@@ -25,7 +25,9 @@ unsafe impl Send for HMServiceGroup {}
 
 unsafe impl Sync for HMServiceGroup {}
 
-unsafe impl NSObjectProtocol for HMServiceGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMServiceGroup {}
+);
 
 impl HMServiceGroup {
     extern_methods!(

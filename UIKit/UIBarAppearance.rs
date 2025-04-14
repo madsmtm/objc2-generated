@@ -15,17 +15,25 @@ extern_class!(
     pub struct UIBarAppearance;
 );
 
-unsafe impl NSCoding for UIBarAppearance {}
+extern_conformance!(
+    unsafe impl NSCoding for UIBarAppearance {}
+);
 
-unsafe impl NSCopying for UIBarAppearance {}
+extern_conformance!(
+    unsafe impl NSCopying for UIBarAppearance {}
+);
 
 unsafe impl CopyingHelper for UIBarAppearance {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIBarAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBarAppearance {}
+);
 
-unsafe impl NSSecureCoding for UIBarAppearance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIBarAppearance {}
+);
 
 impl UIBarAppearance {
     extern_methods!(

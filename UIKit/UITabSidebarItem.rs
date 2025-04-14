@@ -15,13 +15,17 @@ extern_class!(
     pub struct UITabSidebarItem;
 );
 
-unsafe impl NSCopying for UITabSidebarItem {}
+extern_conformance!(
+    unsafe impl NSCopying for UITabSidebarItem {}
+);
 
 unsafe impl CopyingHelper for UITabSidebarItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITabSidebarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabSidebarItem {}
+);
 
 impl UITabSidebarItem {
     extern_methods!(
@@ -125,7 +129,9 @@ extern_class!(
     pub struct UITabSidebarItemRequest;
 );
 
-unsafe impl NSObjectProtocol for UITabSidebarItemRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabSidebarItemRequest {}
+);
 
 impl UITabSidebarItemRequest {
     extern_methods!(

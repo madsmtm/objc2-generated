@@ -15,7 +15,9 @@ extern_class!(
     pub struct MLUpdateProgressHandlers;
 );
 
-unsafe impl NSObjectProtocol for MLUpdateProgressHandlers {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLUpdateProgressHandlers {}
+);
 
 impl MLUpdateProgressHandlers {
     extern_methods!(

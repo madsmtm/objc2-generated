@@ -52,7 +52,9 @@ extern_class!(
     pub struct AAAttribution;
 );
 
-unsafe impl NSObjectProtocol for AAAttribution {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AAAttribution {}
+);
 
 impl AAAttribution {
     extern_methods!(

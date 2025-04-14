@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INPerson")]
-unsafe impl NSCoding for INRideDriver {}
+extern_conformance!(
+    unsafe impl NSCoding for INRideDriver {}
+);
 
 #[cfg(feature = "INPerson")]
-unsafe impl NSCopying for INRideDriver {}
+extern_conformance!(
+    unsafe impl NSCopying for INRideDriver {}
+);
 
 #[cfg(feature = "INPerson")]
 unsafe impl CopyingHelper for INRideDriver {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for INRideDriver {
 }
 
 #[cfg(feature = "INPerson")]
-unsafe impl NSObjectProtocol for INRideDriver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRideDriver {}
+);
 
 #[cfg(feature = "INPerson")]
-unsafe impl NSSecureCoding for INRideDriver {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRideDriver {}
+);
 
 #[cfg(feature = "INPerson")]
 impl INRideDriver {

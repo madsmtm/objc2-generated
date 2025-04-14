@@ -60,25 +60,39 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for EKCalendarChooser {}
+extern_conformance!(
+    unsafe impl NSCoding for EKCalendarChooser {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for EKCalendarChooser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKCalendarChooser {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for EKCalendarChooser {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for EKCalendarChooser {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for EKCalendarChooser {}
+extern_conformance!(
+    unsafe impl UIContentContainer for EKCalendarChooser {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for EKCalendarChooser {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for EKCalendarChooser {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for EKCalendarChooser {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for EKCalendarChooser {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for EKCalendarChooser {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for EKCalendarChooser {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl EKCalendarChooser {

@@ -20,7 +20,9 @@ unsafe impl Send for AVAudioRecorder {}
 
 unsafe impl Sync for AVAudioRecorder {}
 
-unsafe impl NSObjectProtocol for AVAudioRecorder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioRecorder {}
+);
 
 impl AVAudioRecorder {
     extern_methods!(

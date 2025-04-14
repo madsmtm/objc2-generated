@@ -148,17 +148,25 @@ extern_class!(
     pub struct UITextFormattingViewControllerChangeValue;
 );
 
-unsafe impl NSCoding for UITextFormattingViewControllerChangeValue {}
+extern_conformance!(
+    unsafe impl NSCoding for UITextFormattingViewControllerChangeValue {}
+);
 
-unsafe impl NSCopying for UITextFormattingViewControllerChangeValue {}
+extern_conformance!(
+    unsafe impl NSCopying for UITextFormattingViewControllerChangeValue {}
+);
 
 unsafe impl CopyingHelper for UITextFormattingViewControllerChangeValue {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITextFormattingViewControllerChangeValue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextFormattingViewControllerChangeValue {}
+);
 
-unsafe impl NSSecureCoding for UITextFormattingViewControllerChangeValue {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UITextFormattingViewControllerChangeValue {}
+);
 
 impl UITextFormattingViewControllerChangeValue {
     extern_methods!(

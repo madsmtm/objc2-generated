@@ -69,10 +69,14 @@ unsafe impl Send for NSDateFormatter {}
 unsafe impl Sync for NSDateFormatter {}
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSDateFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDateFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSDateFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSDateFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSDateFormatter {
@@ -80,7 +84,9 @@ unsafe impl CopyingHelper for NSDateFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSDateFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDateFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSDateFormatter {

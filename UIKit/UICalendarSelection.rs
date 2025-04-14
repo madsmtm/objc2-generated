@@ -14,7 +14,9 @@ extern_class!(
     pub struct UICalendarSelection;
 );
 
-unsafe impl NSObjectProtocol for UICalendarSelection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICalendarSelection {}
+);
 
 impl UICalendarSelection {
     extern_methods!(

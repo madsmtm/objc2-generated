@@ -15,15 +15,23 @@ extern_class!(
     pub struct NSDocumentController;
 );
 
-unsafe impl NSCoding for NSDocumentController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDocumentController {}
+);
 
 #[cfg(feature = "NSMenu")]
-unsafe impl NSMenuItemValidation for NSDocumentController {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSDocumentController {}
+);
 
-unsafe impl NSObjectProtocol for NSDocumentController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDocumentController {}
+);
 
 #[cfg(feature = "NSUserInterfaceValidation")]
-unsafe impl NSUserInterfaceValidations for NSDocumentController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSDocumentController {}
+);
 
 impl NSDocumentController {
     extern_methods!(

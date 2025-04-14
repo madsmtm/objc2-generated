@@ -259,7 +259,9 @@ extern_class!(
     pub struct CHHapticEventParameter;
 );
 
-unsafe impl NSObjectProtocol for CHHapticEventParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CHHapticEventParameter {}
+);
 
 impl CHHapticEventParameter {
     extern_methods!(
@@ -313,7 +315,9 @@ extern_class!(
     pub struct CHHapticDynamicParameter;
 );
 
-unsafe impl NSObjectProtocol for CHHapticDynamicParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CHHapticDynamicParameter {}
+);
 
 impl CHHapticDynamicParameter {
     extern_methods!(
@@ -385,7 +389,9 @@ extern_class!(
     pub struct CHHapticParameterCurveControlPoint;
 );
 
-unsafe impl NSObjectProtocol for CHHapticParameterCurveControlPoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CHHapticParameterCurveControlPoint {}
+);
 
 impl CHHapticParameterCurveControlPoint {
     extern_methods!(
@@ -449,7 +455,9 @@ extern_class!(
     pub struct CHHapticParameterCurve;
 );
 
-unsafe impl NSObjectProtocol for CHHapticParameterCurve {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CHHapticParameterCurve {}
+);
 
 impl CHHapticParameterCurve {
     extern_methods!(

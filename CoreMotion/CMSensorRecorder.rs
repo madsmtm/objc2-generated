@@ -14,9 +14,13 @@ extern_class!(
     pub struct CMSensorDataList;
 );
 
-unsafe impl NSFastEnumeration for CMSensorDataList {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for CMSensorDataList {}
+);
 
-unsafe impl NSObjectProtocol for CMSensorDataList {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMSensorDataList {}
+);
 
 impl CMSensorDataList {
     extern_methods!();
@@ -42,7 +46,9 @@ extern_class!(
     pub struct CMSensorRecorder;
 );
 
-unsafe impl NSObjectProtocol for CMSensorRecorder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMSensorRecorder {}
+);
 
 impl CMSensorRecorder {
     extern_methods!(

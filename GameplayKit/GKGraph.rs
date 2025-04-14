@@ -16,17 +16,25 @@ extern_class!(
     pub struct GKGraph;
 );
 
-unsafe impl NSCoding for GKGraph {}
+extern_conformance!(
+    unsafe impl NSCoding for GKGraph {}
+);
 
-unsafe impl NSCopying for GKGraph {}
+extern_conformance!(
+    unsafe impl NSCopying for GKGraph {}
+);
 
 unsafe impl CopyingHelper for GKGraph {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKGraph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKGraph {}
+);
 
-unsafe impl NSSecureCoding for GKGraph {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKGraph {}
+);
 
 impl GKGraph {
     extern_methods!(

@@ -61,7 +61,9 @@ extern_class!(
     pub struct GCControllerElement;
 );
 
-unsafe impl NSObjectProtocol for GCControllerElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCControllerElement {}
+);
 
 impl GCControllerElement {
     extern_methods!(

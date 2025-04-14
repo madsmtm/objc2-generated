@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARRaycastResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARRaycastResult {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARRaycastResult {

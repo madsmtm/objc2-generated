@@ -14,7 +14,9 @@ extern_class!(
     pub struct UILocalizedIndexedCollation;
 );
 
-unsafe impl NSObjectProtocol for UILocalizedIndexedCollation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UILocalizedIndexedCollation {}
+);
 
 impl UILocalizedIndexedCollation {
     extern_methods!(

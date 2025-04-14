@@ -22,7 +22,9 @@ extern_class!(
     pub struct PHASEShapeElement;
 );
 
-unsafe impl NSObjectProtocol for PHASEShapeElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEShapeElement {}
+);
 
 impl PHASEShapeElement {
     extern_methods!(
@@ -61,13 +63,17 @@ extern_class!(
     pub struct PHASEShape;
 );
 
-unsafe impl NSCopying for PHASEShape {}
+extern_conformance!(
+    unsafe impl NSCopying for PHASEShape {}
+);
 
 unsafe impl CopyingHelper for PHASEShape {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHASEShape {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEShape {}
+);
 
 impl PHASEShape {
     extern_methods!(

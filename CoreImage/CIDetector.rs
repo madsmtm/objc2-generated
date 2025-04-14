@@ -17,7 +17,9 @@ extern_class!(
     pub struct CIDetector;
 );
 
-unsafe impl NSObjectProtocol for CIDetector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIDetector {}
+);
 
 impl CIDetector {
     extern_methods!(

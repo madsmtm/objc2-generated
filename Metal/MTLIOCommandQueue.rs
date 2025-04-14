@@ -176,13 +176,17 @@ extern_class!(
     pub struct MTLIOCommandQueueDescriptor;
 );
 
-unsafe impl NSCopying for MTLIOCommandQueueDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLIOCommandQueueDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLIOCommandQueueDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLIOCommandQueueDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLIOCommandQueueDescriptor {}
+);
 
 impl MTLIOCommandQueueDescriptor {
     extern_methods!(

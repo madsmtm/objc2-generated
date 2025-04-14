@@ -53,7 +53,9 @@ extern_class!(
     pub struct NSTextViewportLayoutController;
 );
 
-unsafe impl NSObjectProtocol for NSTextViewportLayoutController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextViewportLayoutController {}
+);
 
 impl NSTextViewportLayoutController {
     extern_methods!(

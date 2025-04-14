@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for JSContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for JSContext {}
+);
 
 #[cfg(feature = "objc2")]
 impl JSContext {

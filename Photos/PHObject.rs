@@ -17,13 +17,17 @@ unsafe impl Send for PHObject {}
 
 unsafe impl Sync for PHObject {}
 
-unsafe impl NSCopying for PHObject {}
+extern_conformance!(
+    unsafe impl NSCopying for PHObject {}
+);
 
 unsafe impl CopyingHelper for PHObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHObject {}
+);
 
 impl PHObject {
     extern_methods!(
@@ -57,13 +61,17 @@ unsafe impl Send for PHObjectPlaceholder {}
 
 unsafe impl Sync for PHObjectPlaceholder {}
 
-unsafe impl NSCopying for PHObjectPlaceholder {}
+extern_conformance!(
+    unsafe impl NSCopying for PHObjectPlaceholder {}
+);
 
 unsafe impl CopyingHelper for PHObjectPlaceholder {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHObjectPlaceholder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHObjectPlaceholder {}
+);
 
 impl PHObjectPlaceholder {
     extern_methods!();

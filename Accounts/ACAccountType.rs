@@ -84,7 +84,9 @@ extern_class!(
     pub struct ACAccountType;
 );
 
-unsafe impl NSObjectProtocol for ACAccountType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ACAccountType {}
+);
 
 impl ACAccountType {
     extern_methods!(

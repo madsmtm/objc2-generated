@@ -107,7 +107,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIFocus")]
-unsafe impl NSObjectProtocol for UICollectionViewFocusUpdateContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewFocusUpdateContext {}
+);
 
 #[cfg(feature = "UIFocus")]
 impl UICollectionViewFocusUpdateContext {
@@ -930,13 +932,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UICollectionView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UICollectionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl NSCoding for UICollectionView {}
+extern_conformance!(
+    unsafe impl NSCoding for UICollectionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UICollectionView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionView {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -944,7 +952,9 @@ unsafe impl NSObjectProtocol for UICollectionView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UICollectionView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UICollectionView {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -952,10 +962,14 @@ unsafe impl UIAppearance for UICollectionView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UICollectionView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UICollectionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UICollectionView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UICollectionView {}
+);
 
 #[cfg(all(
     feature = "UIDataSourceTranslating",
@@ -963,7 +977,9 @@ unsafe impl UICoordinateSpace for UICollectionView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIDataSourceTranslating for UICollectionView {}
+extern_conformance!(
+    unsafe impl UIDataSourceTranslating for UICollectionView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
@@ -971,7 +987,9 @@ unsafe impl UIDataSourceTranslating for UICollectionView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UICollectionView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UICollectionView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -979,7 +997,9 @@ unsafe impl UIDynamicItem for UICollectionView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UICollectionView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UICollectionView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -987,7 +1007,9 @@ unsafe impl UIFocusEnvironment for UICollectionView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UICollectionView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UICollectionView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -995,7 +1017,9 @@ unsafe impl UIFocusItem for UICollectionView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UICollectionView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UICollectionView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -1003,10 +1027,14 @@ unsafe impl UIFocusItemContainer for UICollectionView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemScrollableContainer for UICollectionView {}
+extern_conformance!(
+    unsafe impl UIFocusItemScrollableContainer for UICollectionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UICollectionView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UICollectionView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
@@ -1014,7 +1042,9 @@ unsafe impl UIResponderStandardEditActions for UICollectionView {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UICollectionView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UICollectionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
 impl UICollectionView {
@@ -1648,7 +1678,9 @@ impl UICollectionView {
     feature = "UISpringLoadedInteractionSupporting",
     feature = "UIView"
 ))]
-unsafe impl UISpringLoadedInteractionSupporting for UICollectionView {}
+extern_conformance!(
+    unsafe impl UISpringLoadedInteractionSupporting for UICollectionView {}
+);
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdragdelegate?language=objc)
@@ -1909,7 +1941,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDropInteraction")]
-unsafe impl NSCopying for UICollectionViewDropProposal {}
+extern_conformance!(
+    unsafe impl NSCopying for UICollectionViewDropProposal {}
+);
 
 #[cfg(feature = "UIDropInteraction")]
 unsafe impl CopyingHelper for UICollectionViewDropProposal {
@@ -1917,7 +1951,9 @@ unsafe impl CopyingHelper for UICollectionViewDropProposal {
 }
 
 #[cfg(feature = "UIDropInteraction")]
-unsafe impl NSObjectProtocol for UICollectionViewDropProposal {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewDropProposal {}
+);
 
 #[cfg(feature = "UIDropInteraction")]
 impl UICollectionViewDropProposal {
@@ -2036,7 +2072,9 @@ extern_class!(
     pub struct UICollectionViewPlaceholder;
 );
 
-unsafe impl NSObjectProtocol for UICollectionViewPlaceholder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewPlaceholder {}
+);
 
 impl UICollectionViewPlaceholder {
     extern_methods!(
@@ -2092,7 +2130,9 @@ extern_class!(
     pub struct UICollectionViewDropPlaceholder;
 );
 
-unsafe impl NSObjectProtocol for UICollectionViewDropPlaceholder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewDropPlaceholder {}
+);
 
 impl UICollectionViewDropPlaceholder {
     extern_methods!(

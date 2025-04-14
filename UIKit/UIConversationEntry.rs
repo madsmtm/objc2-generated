@@ -16,7 +16,9 @@ extern_class!(
     pub struct UIConversationEntry;
 );
 
-unsafe impl NSObjectProtocol for UIConversationEntry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIConversationEntry {}
+);
 
 impl UIConversationEntry {
     extern_methods!(

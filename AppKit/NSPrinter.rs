@@ -44,15 +44,21 @@ extern_class!(
     pub struct NSPrinter;
 );
 
-unsafe impl NSCoding for NSPrinter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPrinter {}
+);
 
-unsafe impl NSCopying for NSPrinter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPrinter {}
+);
 
 unsafe impl CopyingHelper for NSPrinter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPrinter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPrinter {}
+);
 
 impl NSPrinter {
     extern_methods!(

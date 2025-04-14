@@ -31,7 +31,9 @@ unsafe impl Send for HKWorkoutRouteBuilder {}
 unsafe impl Sync for HKWorkoutRouteBuilder {}
 
 #[cfg(feature = "HKSeriesBuilder")]
-unsafe impl NSObjectProtocol for HKWorkoutRouteBuilder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutRouteBuilder {}
+);
 
 #[cfg(feature = "HKSeriesBuilder")]
 impl HKWorkoutRouteBuilder {

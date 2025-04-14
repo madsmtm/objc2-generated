@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "LARight")]
-unsafe impl NSObjectProtocol for LAPersistedRight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAPersistedRight {}
+);
 
 #[cfg(feature = "LARight")]
 impl LAPersistedRight {

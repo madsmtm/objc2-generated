@@ -64,7 +64,9 @@ extern_class!(
     pub struct NSPrintOperation;
 );
 
-unsafe impl NSObjectProtocol for NSPrintOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPrintOperation {}
+);
 
 impl NSPrintOperation {
     extern_methods!(

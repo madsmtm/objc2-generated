@@ -17,7 +17,9 @@ extern_class!(
     pub struct UIFocusSystem;
 );
 
-unsafe impl NSObjectProtocol for UIFocusSystem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFocusSystem {}
+);
 
 impl UIFocusSystem {
     extern_methods!(

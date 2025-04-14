@@ -19,7 +19,9 @@ unsafe impl Send for PTParticipant {}
 
 unsafe impl Sync for PTParticipant {}
 
-unsafe impl NSObjectProtocol for PTParticipant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PTParticipant {}
+);
 
 impl PTParticipant {
     extern_methods!(

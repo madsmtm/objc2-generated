@@ -52,19 +52,29 @@ extern_class!(
 );
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSCoding for NSViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSViewController {}
+);
 
 #[cfg(all(feature = "NSKeyValueBinding", feature = "NSResponder"))]
-unsafe impl NSEditor for NSViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for NSViewController {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSObjectProtocol for NSViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSViewController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSStoryboardSegue"))]
-unsafe impl NSSeguePerforming for NSViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for NSViewController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceItemIdentification"))]
-unsafe impl NSUserInterfaceItemIdentification for NSViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSViewController {}
+);
 
 #[cfg(feature = "NSResponder")]
 impl NSViewController {
@@ -430,4 +440,6 @@ impl NSViewController {
 }
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSExtensionRequestHandling for NSViewController {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for NSViewController {}
+);

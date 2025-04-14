@@ -19,7 +19,9 @@ extern_class!(
     pub struct UISceneConnectionOptions;
 );
 
-unsafe impl NSObjectProtocol for UISceneConnectionOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneConnectionOptions {}
+);
 
 impl UISceneConnectionOptions {
     extern_methods!(
@@ -73,7 +75,9 @@ extern_class!(
     pub struct UISceneOpenURLOptions;
 );
 
-unsafe impl NSObjectProtocol for UISceneOpenURLOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneOpenURLOptions {}
+);
 
 impl UISceneOpenURLOptions {
     extern_methods!(
@@ -112,7 +116,9 @@ extern_class!(
     pub struct UISceneOpenExternalURLOptions;
 );
 
-unsafe impl NSObjectProtocol for UISceneOpenExternalURLOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneOpenExternalURLOptions {}
+);
 
 impl UISceneOpenExternalURLOptions {
     extern_methods!(
@@ -183,7 +189,9 @@ extern_class!(
     pub struct UISceneActivationRequestOptions;
 );
 
-unsafe impl NSObjectProtocol for UISceneActivationRequestOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneActivationRequestOptions {}
+);
 
 impl UISceneActivationRequestOptions {
     extern_methods!(
@@ -233,7 +241,9 @@ extern_class!(
     pub struct UISceneDestructionRequestOptions;
 );
 
-unsafe impl NSObjectProtocol for UISceneDestructionRequestOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneDestructionRequestOptions {}
+);
 
 impl UISceneDestructionRequestOptions {
     extern_methods!();

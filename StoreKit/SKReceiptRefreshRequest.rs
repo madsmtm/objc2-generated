@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "SKRequest")]
-unsafe impl NSObjectProtocol for SKReceiptRefreshRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKReceiptRefreshRequest {}
+);
 
 #[cfg(feature = "SKRequest")]
 impl SKReceiptRefreshRequest {

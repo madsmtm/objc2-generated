@@ -22,7 +22,9 @@ extern_class!(
     pub struct PHASEGroupPresetSetting;
 );
 
-unsafe impl NSObjectProtocol for PHASEGroupPresetSetting {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEGroupPresetSetting {}
+);
 
 impl PHASEGroupPresetSetting {
     extern_methods!(
@@ -96,7 +98,9 @@ extern_class!(
     pub struct PHASEGroupPreset;
 );
 
-unsafe impl NSObjectProtocol for PHASEGroupPreset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEGroupPreset {}
+);
 
 impl PHASEGroupPreset {
     extern_methods!(

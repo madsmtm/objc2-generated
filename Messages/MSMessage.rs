@@ -16,17 +16,25 @@ extern_class!(
     pub struct MSMessage;
 );
 
-unsafe impl NSCoding for MSMessage {}
+extern_conformance!(
+    unsafe impl NSCoding for MSMessage {}
+);
 
-unsafe impl NSCopying for MSMessage {}
+extern_conformance!(
+    unsafe impl NSCopying for MSMessage {}
+);
 
 unsafe impl CopyingHelper for MSMessage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MSMessage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSMessage {}
+);
 
-unsafe impl NSSecureCoding for MSMessage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MSMessage {}
+);
 
 impl MSMessage {
     extern_methods!(

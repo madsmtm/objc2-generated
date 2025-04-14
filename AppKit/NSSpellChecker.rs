@@ -123,7 +123,9 @@ extern_class!(
     pub struct NSSpellChecker;
 );
 
-unsafe impl NSObjectProtocol for NSSpellChecker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSpellChecker {}
+);
 
 impl NSSpellChecker {
     extern_methods!(

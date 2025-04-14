@@ -110,7 +110,9 @@ extern_class!(
     pub struct CMIOExtensionStreamProperties;
 );
 
-unsafe impl NSObjectProtocol for CMIOExtensionStreamProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMIOExtensionStreamProperties {}
+);
 
 impl CMIOExtensionStreamProperties {
     extern_methods!(
@@ -366,7 +368,9 @@ extern_class!(
     pub struct CMIOExtensionStream;
 );
 
-unsafe impl NSObjectProtocol for CMIOExtensionStream {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMIOExtensionStream {}
+);
 
 impl CMIOExtensionStream {
     extern_methods!(

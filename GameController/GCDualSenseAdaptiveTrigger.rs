@@ -140,7 +140,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-unsafe impl NSObjectProtocol for GCDualSenseAdaptiveTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCDualSenseAdaptiveTrigger {}
+);
 
 #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
 impl GCDualSenseAdaptiveTrigger {

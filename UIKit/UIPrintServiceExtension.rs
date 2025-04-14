@@ -15,11 +15,17 @@ extern_class!(
     pub struct UIPrinterDestination;
 );
 
-unsafe impl NSCoding for UIPrinterDestination {}
+extern_conformance!(
+    unsafe impl NSCoding for UIPrinterDestination {}
+);
 
-unsafe impl NSObjectProtocol for UIPrinterDestination {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPrinterDestination {}
+);
 
-unsafe impl NSSecureCoding for UIPrinterDestination {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIPrinterDestination {}
+);
 
 impl UIPrinterDestination {
     extern_methods!(
@@ -77,7 +83,9 @@ extern_class!(
     pub struct UIPrintServiceExtension;
 );
 
-unsafe impl NSObjectProtocol for UIPrintServiceExtension {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPrintServiceExtension {}
+);
 
 impl UIPrintServiceExtension {
     extern_methods!(

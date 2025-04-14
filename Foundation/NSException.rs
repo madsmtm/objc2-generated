@@ -106,20 +106,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSException {}
+extern_conformance!(
+    unsafe impl NSCoding for NSException {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSException {}
+extern_conformance!(
+    unsafe impl NSCopying for NSException {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSException {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSException {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSException {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSException {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSException {}
+);
 
 impl NSException {
     extern_methods!(
@@ -215,7 +223,9 @@ extern_class!(
     pub struct NSAssertionHandler;
 );
 
-unsafe impl NSObjectProtocol for NSAssertionHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAssertionHandler {}
+);
 
 impl NSAssertionHandler {
     extern_methods!(

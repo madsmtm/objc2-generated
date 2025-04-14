@@ -57,7 +57,9 @@ extern_class!(
     pub struct LARight;
 );
 
-unsafe impl NSObjectProtocol for LARight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LARight {}
+);
 
 impl LARight {
     extern_methods!(

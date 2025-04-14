@@ -36,7 +36,9 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitMIDIInstrument"
 ))]
-unsafe impl AVAudio3DMixing for AVAudioUnitSampler {}
+extern_conformance!(
+    unsafe impl AVAudio3DMixing for AVAudioUnitSampler {}
+);
 
 #[cfg(all(
     feature = "AVAudioMixing",
@@ -44,7 +46,9 @@ unsafe impl AVAudio3DMixing for AVAudioUnitSampler {}
     feature = "AVAudioUnit",
     feature = "AVAudioUnitMIDIInstrument"
 ))]
-unsafe impl AVAudioMixing for AVAudioUnitSampler {}
+extern_conformance!(
+    unsafe impl AVAudioMixing for AVAudioUnitSampler {}
+);
 
 #[cfg(all(
     feature = "AVAudioMixing",
@@ -52,14 +56,18 @@ unsafe impl AVAudioMixing for AVAudioUnitSampler {}
     feature = "AVAudioUnit",
     feature = "AVAudioUnitMIDIInstrument"
 ))]
-unsafe impl AVAudioStereoMixing for AVAudioUnitSampler {}
+extern_conformance!(
+    unsafe impl AVAudioStereoMixing for AVAudioUnitSampler {}
+);
 
 #[cfg(all(
     feature = "AVAudioNode",
     feature = "AVAudioUnit",
     feature = "AVAudioUnitMIDIInstrument"
 ))]
-unsafe impl NSObjectProtocol for AVAudioUnitSampler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioUnitSampler {}
+);
 
 #[cfg(all(
     feature = "AVAudioNode",

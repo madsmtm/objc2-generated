@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEObject")]
-unsafe impl NSCopying for PHASEListener {}
+extern_conformance!(
+    unsafe impl NSCopying for PHASEListener {}
+);
 
 #[cfg(feature = "PHASEObject")]
 unsafe impl CopyingHelper for PHASEListener {
@@ -30,7 +32,9 @@ unsafe impl CopyingHelper for PHASEListener {
 }
 
 #[cfg(feature = "PHASEObject")]
-unsafe impl NSObjectProtocol for PHASEListener {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEListener {}
+);
 
 #[cfg(feature = "PHASEObject")]
 impl PHASEListener {

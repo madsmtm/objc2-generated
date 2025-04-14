@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZAudioOutputStreamSink")]
-unsafe impl NSObjectProtocol for VZHostAudioOutputStreamSink {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZHostAudioOutputStreamSink {}
+);
 
 #[cfg(feature = "VZAudioOutputStreamSink")]
 impl VZHostAudioOutputStreamSink {

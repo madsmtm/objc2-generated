@@ -82,7 +82,9 @@ extern_class!(
     pub struct NSExceptionHandler;
 );
 
-unsafe impl NSObjectProtocol for NSExceptionHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSExceptionHandler {}
+);
 
 impl NSExceptionHandler {
     extern_methods!(

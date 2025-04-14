@@ -91,13 +91,17 @@ extern_class!(
     pub struct PDFPage;
 );
 
-unsafe impl NSCopying for PDFPage {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFPage {}
+);
 
 unsafe impl CopyingHelper for PDFPage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PDFPage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFPage {}
+);
 
 impl PDFPage {
     extern_methods!(

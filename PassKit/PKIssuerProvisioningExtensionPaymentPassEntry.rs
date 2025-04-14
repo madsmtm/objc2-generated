@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PKIssuerProvisioningExtensionPassEntry")]
-unsafe impl NSObjectProtocol for PKIssuerProvisioningExtensionPaymentPassEntry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIssuerProvisioningExtensionPaymentPassEntry {}
+);
 
 #[cfg(feature = "PKIssuerProvisioningExtensionPassEntry")]
 impl PKIssuerProvisioningExtensionPaymentPassEntry {

@@ -12,7 +12,9 @@ extern_class!(
     pub struct PHChangeRequest;
 );
 
-unsafe impl NSObjectProtocol for PHChangeRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHChangeRequest {}
+);
 
 impl PHChangeRequest {
     extern_methods!();

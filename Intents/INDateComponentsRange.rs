@@ -13,17 +13,25 @@ extern_class!(
     pub struct INDateComponentsRange;
 );
 
-unsafe impl NSCoding for INDateComponentsRange {}
+extern_conformance!(
+    unsafe impl NSCoding for INDateComponentsRange {}
+);
 
-unsafe impl NSCopying for INDateComponentsRange {}
+extern_conformance!(
+    unsafe impl NSCopying for INDateComponentsRange {}
+);
 
 unsafe impl CopyingHelper for INDateComponentsRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INDateComponentsRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INDateComponentsRange {}
+);
 
-unsafe impl NSSecureCoding for INDateComponentsRange {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INDateComponentsRange {}
+);
 
 impl INDateComponentsRange {
     extern_methods!(

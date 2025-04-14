@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PKPaymentSummaryItem")]
-unsafe impl NSObjectProtocol for PKInstantFundsOutFeeSummaryItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKInstantFundsOutFeeSummaryItem {}
+);
 
 #[cfg(feature = "PKPaymentSummaryItem")]
 impl PKInstantFundsOutFeeSummaryItem {

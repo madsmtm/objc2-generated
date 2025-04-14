@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureControl")]
-unsafe impl NSObjectProtocol for AVCaptureSlider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSlider {}
+);
 
 #[cfg(feature = "AVCaptureControl")]
 impl AVCaptureSlider {

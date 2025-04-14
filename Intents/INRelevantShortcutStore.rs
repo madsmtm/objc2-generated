@@ -18,7 +18,9 @@ extern_class!(
     pub struct INRelevantShortcutStore;
 );
 
-unsafe impl NSObjectProtocol for INRelevantShortcutStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRelevantShortcutStore {}
+);
 
 impl INRelevantShortcutStore {
     extern_methods!(

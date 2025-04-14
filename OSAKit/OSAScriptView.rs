@@ -15,47 +15,89 @@ extern_class!(
     pub struct OSAScriptView;
 );
 
-unsafe impl NSAccessibility for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for OSAScriptView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for OSAScriptView {}
+);
 
-unsafe impl NSAccessibilityNavigableStaticText for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityNavigableStaticText for OSAScriptView {}
+);
 
-unsafe impl NSAccessibilityStaticText for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityStaticText for OSAScriptView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for OSAScriptView {}
+);
 
-unsafe impl NSAppearanceCustomization for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for OSAScriptView {}
+);
 
-unsafe impl NSChangeSpelling for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSChangeSpelling for OSAScriptView {}
+);
 
-unsafe impl NSCoding for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSCoding for OSAScriptView {}
+);
 
-unsafe impl NSColorChanging for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSColorChanging for OSAScriptView {}
+);
 
-unsafe impl NSDraggingDestination for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for OSAScriptView {}
+);
 
-unsafe impl NSDraggingSource for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSDraggingSource for OSAScriptView {}
+);
 
-unsafe impl NSIgnoreMisspelledWords for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSIgnoreMisspelledWords for OSAScriptView {}
+);
 
-unsafe impl NSMenuItemValidation for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for OSAScriptView {}
+);
 
-unsafe impl NSObjectProtocol for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OSAScriptView {}
+);
 
-unsafe impl NSStandardKeyBindingResponding for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSStandardKeyBindingResponding for OSAScriptView {}
+);
 
-unsafe impl NSTextContent for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSTextContent for OSAScriptView {}
+);
 
-unsafe impl NSTextInput for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSTextInput for OSAScriptView {}
+);
 
-unsafe impl NSTextInputClient for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSTextInputClient for OSAScriptView {}
+);
 
-unsafe impl NSTextLayoutOrientationProvider for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSTextLayoutOrientationProvider for OSAScriptView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for OSAScriptView {}
+);
 
-unsafe impl NSUserInterfaceValidations for OSAScriptView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for OSAScriptView {}
+);
 
 impl OSAScriptView {
     extern_methods!(

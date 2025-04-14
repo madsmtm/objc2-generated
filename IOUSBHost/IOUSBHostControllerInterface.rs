@@ -55,7 +55,9 @@ extern_class!(
     pub struct IOUSBHostControllerInterface;
 );
 
-unsafe impl NSObjectProtocol for IOUSBHostControllerInterface {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOUSBHostControllerInterface {}
+);
 
 impl IOUSBHostControllerInterface {
     extern_methods!(

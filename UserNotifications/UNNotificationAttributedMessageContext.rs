@@ -12,10 +12,14 @@ extern_class!(
     pub struct UNNotificationAttributedMessageContext;
 );
 
-unsafe impl NSObjectProtocol for UNNotificationAttributedMessageContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNNotificationAttributedMessageContext {}
+);
 
 #[cfg(feature = "UNNotificationContent")]
-unsafe impl UNNotificationContentProviding for UNNotificationAttributedMessageContext {}
+extern_conformance!(
+    unsafe impl UNNotificationContentProviding for UNNotificationAttributedMessageContext {}
+);
 
 impl UNNotificationAttributedMessageContext {
     extern_methods!(

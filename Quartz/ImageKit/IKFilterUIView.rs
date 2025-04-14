@@ -16,21 +16,37 @@ extern_class!(
     pub struct IKFilterUIView;
 );
 
-unsafe impl NSAccessibility for IKFilterUIView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IKFilterUIView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IKFilterUIView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IKFilterUIView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IKFilterUIView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IKFilterUIView {}
+);
 
-unsafe impl NSAppearanceCustomization for IKFilterUIView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IKFilterUIView {}
+);
 
-unsafe impl NSCoding for IKFilterUIView {}
+extern_conformance!(
+    unsafe impl NSCoding for IKFilterUIView {}
+);
 
-unsafe impl NSDraggingDestination for IKFilterUIView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for IKFilterUIView {}
+);
 
-unsafe impl NSObjectProtocol for IKFilterUIView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKFilterUIView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IKFilterUIView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IKFilterUIView {}
+);
 
 impl IKFilterUIView {
     extern_methods!(

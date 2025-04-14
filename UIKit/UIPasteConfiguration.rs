@@ -15,17 +15,25 @@ extern_class!(
     pub struct UIPasteConfiguration;
 );
 
-unsafe impl NSCoding for UIPasteConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UIPasteConfiguration {}
+);
 
-unsafe impl NSCopying for UIPasteConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UIPasteConfiguration {}
+);
 
 unsafe impl CopyingHelper for UIPasteConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIPasteConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPasteConfiguration {}
+);
 
-unsafe impl NSSecureCoding for UIPasteConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIPasteConfiguration {}
+);
 
 impl UIPasteConfiguration {
     extern_methods!(

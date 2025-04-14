@@ -19,17 +19,25 @@ unsafe impl Send for HKWorkoutActivity {}
 
 unsafe impl Sync for HKWorkoutActivity {}
 
-unsafe impl NSCoding for HKWorkoutActivity {}
+extern_conformance!(
+    unsafe impl NSCoding for HKWorkoutActivity {}
+);
 
-unsafe impl NSCopying for HKWorkoutActivity {}
+extern_conformance!(
+    unsafe impl NSCopying for HKWorkoutActivity {}
+);
 
 unsafe impl CopyingHelper for HKWorkoutActivity {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKWorkoutActivity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutActivity {}
+);
 
-unsafe impl NSSecureCoding for HKWorkoutActivity {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKWorkoutActivity {}
+);
 
 impl HKWorkoutActivity {
     extern_methods!(

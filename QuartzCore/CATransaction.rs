@@ -16,7 +16,9 @@ extern_class!(
     pub struct CATransaction;
 );
 
-unsafe impl NSObjectProtocol for CATransaction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CATransaction {}
+);
 
 impl CATransaction {
     extern_methods!(

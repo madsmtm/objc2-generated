@@ -17,44 +17,60 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UITableViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UITableViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UITableViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITableViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UITableViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UITableViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UITableViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UITableViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UITableViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UITableViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UITableViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UITableViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIScrollView",
     feature = "UIViewController"
 ))]
-unsafe impl UIScrollViewDelegate for UITableViewController {}
+extern_conformance!(
+    unsafe impl UIScrollViewDelegate for UITableViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITableView",
     feature = "UIViewController"
 ))]
-unsafe impl UITableViewDataSource for UITableViewController {}
+extern_conformance!(
+    unsafe impl UITableViewDataSource for UITableViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
@@ -62,14 +78,18 @@ unsafe impl UITableViewDataSource for UITableViewController {}
     feature = "UITableView",
     feature = "UIViewController"
 ))]
-unsafe impl UITableViewDelegate for UITableViewController {}
+extern_conformance!(
+    unsafe impl UITableViewDelegate for UITableViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UITableViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UITableViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UITableViewController {

@@ -24,13 +24,17 @@ extern_class!(
     pub struct VZVirtioSoundDeviceStreamConfiguration;
 );
 
-unsafe impl NSCopying for VZVirtioSoundDeviceStreamConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZVirtioSoundDeviceStreamConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZVirtioSoundDeviceStreamConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZVirtioSoundDeviceStreamConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioSoundDeviceStreamConfiguration {}
+);
 
 impl VZVirtioSoundDeviceStreamConfiguration {
     extern_methods!(

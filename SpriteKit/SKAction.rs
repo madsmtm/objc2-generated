@@ -72,17 +72,25 @@ extern_class!(
     pub struct SKAction;
 );
 
-unsafe impl NSCoding for SKAction {}
+extern_conformance!(
+    unsafe impl NSCoding for SKAction {}
+);
 
-unsafe impl NSCopying for SKAction {}
+extern_conformance!(
+    unsafe impl NSCopying for SKAction {}
+);
 
 unsafe impl CopyingHelper for SKAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKAction {}
+);
 
-unsafe impl NSSecureCoding for SKAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKAction {}
+);
 
 impl SKAction {
     extern_methods!(

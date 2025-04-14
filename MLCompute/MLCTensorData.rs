@@ -16,7 +16,9 @@ extern_class!(
     pub struct MLCTensorData;
 );
 
-unsafe impl NSObjectProtocol for MLCTensorData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCTensorData {}
+);
 
 impl MLCTensorData {
     extern_methods!(

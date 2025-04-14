@@ -24,7 +24,9 @@ extern_class!(
     pub struct VZUSBController;
 );
 
-unsafe impl NSObjectProtocol for VZUSBController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZUSBController {}
+);
 
 impl VZUSBController {
     extern_methods!(

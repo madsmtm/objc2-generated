@@ -49,39 +49,57 @@ extern_class!(
 
 #[cfg(all(feature = "AUCustomViewPersistentData", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl AUCustomViewPersistentData for AUGenericView {}
+extern_conformance!(
+    unsafe impl AUCustomViewPersistentData for AUGenericView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for AUGenericView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for AUGenericView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for AUGenericView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for AUGenericView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for AUGenericView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for AUGenericView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for AUGenericView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for AUGenericView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for AUGenericView {}
+extern_conformance!(
+    unsafe impl NSCoding for AUGenericView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for AUGenericView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for AUGenericView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for AUGenericView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUGenericView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for AUGenericView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for AUGenericView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

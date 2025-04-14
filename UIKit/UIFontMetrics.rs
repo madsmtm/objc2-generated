@@ -18,7 +18,9 @@ unsafe impl Send for UIFontMetrics {}
 
 unsafe impl Sync for UIFontMetrics {}
 
-unsafe impl NSObjectProtocol for UIFontMetrics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFontMetrics {}
+);
 
 impl UIFontMetrics {
     extern_methods!(

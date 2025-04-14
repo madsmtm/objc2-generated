@@ -38,15 +38,21 @@ extern_class!(
     pub struct MDLAsset;
 );
 
-unsafe impl NSCopying for MDLAsset {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAsset {}
+);
 
 unsafe impl CopyingHelper for MDLAsset {
     type Result = Self;
 }
 
-unsafe impl NSFastEnumeration for MDLAsset {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for MDLAsset {}
+);
 
-unsafe impl NSObjectProtocol for MDLAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAsset {}
+);
 
 impl MDLAsset {
     extern_methods!(

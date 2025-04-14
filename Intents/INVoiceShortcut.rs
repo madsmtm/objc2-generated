@@ -15,17 +15,25 @@ extern_class!(
     pub struct INVoiceShortcut;
 );
 
-unsafe impl NSCoding for INVoiceShortcut {}
+extern_conformance!(
+    unsafe impl NSCoding for INVoiceShortcut {}
+);
 
-unsafe impl NSCopying for INVoiceShortcut {}
+extern_conformance!(
+    unsafe impl NSCopying for INVoiceShortcut {}
+);
 
 unsafe impl CopyingHelper for INVoiceShortcut {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INVoiceShortcut {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INVoiceShortcut {}
+);
 
-unsafe impl NSSecureCoding for INVoiceShortcut {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INVoiceShortcut {}
+);
 
 impl INVoiceShortcut {
     extern_methods!(

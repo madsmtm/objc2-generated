@@ -37,17 +37,25 @@ unsafe impl Send for CKReference {}
 
 unsafe impl Sync for CKReference {}
 
-unsafe impl NSCoding for CKReference {}
+extern_conformance!(
+    unsafe impl NSCoding for CKReference {}
+);
 
-unsafe impl NSCopying for CKReference {}
+extern_conformance!(
+    unsafe impl NSCopying for CKReference {}
+);
 
 unsafe impl CopyingHelper for CKReference {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKReference {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKReference {}
+);
 
-unsafe impl NSSecureCoding for CKReference {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKReference {}
+);
 
 impl CKReference {
     extern_methods!(

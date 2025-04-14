@@ -37,7 +37,9 @@ extern_class!(
     pub struct NSXMLParser;
 );
 
-unsafe impl NSObjectProtocol for NSXMLParser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSXMLParser {}
+);
 
 impl NSXMLParser {
     extern_methods!(

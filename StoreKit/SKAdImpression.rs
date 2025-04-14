@@ -14,7 +14,9 @@ extern_class!(
     pub struct SKAdImpression;
 );
 
-unsafe impl NSObjectProtocol for SKAdImpression {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKAdImpression {}
+);
 
 impl SKAdImpression {
     extern_methods!(

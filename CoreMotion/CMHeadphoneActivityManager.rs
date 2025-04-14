@@ -48,7 +48,9 @@ extern_class!(
     pub struct CMHeadphoneActivityManager;
 );
 
-unsafe impl NSObjectProtocol for CMHeadphoneActivityManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMHeadphoneActivityManager {}
+);
 
 impl CMHeadphoneActivityManager {
     extern_methods!(

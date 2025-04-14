@@ -20,7 +20,9 @@ unsafe impl Send for HMCameraAudioControl {}
 unsafe impl Sync for HMCameraAudioControl {}
 
 #[cfg(feature = "HMCameraControl")]
-unsafe impl NSObjectProtocol for HMCameraAudioControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCameraAudioControl {}
+);
 
 #[cfg(feature = "HMCameraControl")]
 impl HMCameraAudioControl {

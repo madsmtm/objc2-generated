@@ -48,7 +48,9 @@ unsafe impl Sync for HKCumulativeQuantitySeriesSample {}
     feature = "HKQuantitySample",
     feature = "HKSample"
 ))]
-unsafe impl NSCoding for HKCumulativeQuantitySeriesSample {}
+extern_conformance!(
+    unsafe impl NSCoding for HKCumulativeQuantitySeriesSample {}
+);
 
 #[cfg(all(
     feature = "HKCumulativeQuantitySample",
@@ -56,7 +58,9 @@ unsafe impl NSCoding for HKCumulativeQuantitySeriesSample {}
     feature = "HKQuantitySample",
     feature = "HKSample"
 ))]
-unsafe impl NSObjectProtocol for HKCumulativeQuantitySeriesSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKCumulativeQuantitySeriesSample {}
+);
 
 #[cfg(all(
     feature = "HKCumulativeQuantitySample",
@@ -64,7 +68,9 @@ unsafe impl NSObjectProtocol for HKCumulativeQuantitySeriesSample {}
     feature = "HKQuantitySample",
     feature = "HKSample"
 ))]
-unsafe impl NSSecureCoding for HKCumulativeQuantitySeriesSample {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKCumulativeQuantitySeriesSample {}
+);
 
 #[cfg(all(
     feature = "HKCumulativeQuantitySample",

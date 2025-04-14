@@ -47,35 +47,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for LPLinkView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for LPLinkView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for LPLinkView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for LPLinkView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for LPLinkView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for LPLinkView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for LPLinkView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for LPLinkView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for LPLinkView {}
+extern_conformance!(
+    unsafe impl NSCoding for LPLinkView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for LPLinkView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for LPLinkView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for LPLinkView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LPLinkView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for LPLinkView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for LPLinkView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

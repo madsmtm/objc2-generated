@@ -17,13 +17,17 @@ extern_class!(
     pub struct CLKComplicationTemplate;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplate {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplate {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplate {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplate {}
+);
 
 impl CLKComplicationTemplate {
     extern_methods!(
@@ -60,13 +64,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularSmallSimpleText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularSmallSimpleText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularSmallSimpleText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularSmallSimpleText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallSimpleText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallSimpleText {}
+);
 
 impl CLKComplicationTemplateModularSmallSimpleText {
     extern_methods!(
@@ -121,13 +129,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularSmallSimpleImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularSmallSimpleImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularSmallSimpleImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularSmallSimpleImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallSimpleImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallSimpleImage {}
+);
 
 impl CLKComplicationTemplateModularSmallSimpleImage {
     extern_methods!(
@@ -184,13 +196,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularSmallRingText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularSmallRingText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularSmallRingText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularSmallRingText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallRingText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallRingText {}
+);
 
 impl CLKComplicationTemplateModularSmallRingText {
     extern_methods!(
@@ -275,13 +291,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularSmallRingImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularSmallRingImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularSmallRingImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularSmallRingImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallRingImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallRingImage {}
+);
 
 impl CLKComplicationTemplateModularSmallRingImage {
     extern_methods!(
@@ -366,13 +386,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularSmallStackText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularSmallStackText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularSmallStackText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularSmallStackText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallStackText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallStackText {}
+);
 
 impl CLKComplicationTemplateModularSmallStackText {
     extern_methods!(
@@ -455,13 +479,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularSmallStackImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularSmallStackImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularSmallStackImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularSmallStackImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallStackImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallStackImage {}
+);
 
 impl CLKComplicationTemplateModularSmallStackImage {
     extern_methods!(
@@ -544,13 +572,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularSmallColumnsText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularSmallColumnsText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularSmallColumnsText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularSmallColumnsText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallColumnsText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularSmallColumnsText {}
+);
 
 impl CLKComplicationTemplateModularSmallColumnsText {
     extern_methods!(
@@ -688,13 +720,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularLargeStandardBody;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularLargeStandardBody {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularLargeStandardBody {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularLargeStandardBody {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularLargeStandardBody {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularLargeStandardBody {}
+);
 
 impl CLKComplicationTemplateModularLargeStandardBody {
     extern_methods!(
@@ -854,13 +890,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularLargeTallBody;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularLargeTallBody {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularLargeTallBody {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularLargeTallBody {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularLargeTallBody {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularLargeTallBody {}
+);
 
 impl CLKComplicationTemplateModularLargeTallBody {
     extern_methods!(
@@ -932,13 +972,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularLargeTable;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularLargeTable {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularLargeTable {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularLargeTable {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularLargeTable {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularLargeTable {}
+);
 
 impl CLKComplicationTemplateModularLargeTable {
     extern_methods!(
@@ -1121,13 +1165,17 @@ extern_class!(
     pub struct CLKComplicationTemplateModularLargeColumns;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateModularLargeColumns {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateModularLargeColumns {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateModularLargeColumns {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateModularLargeColumns {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateModularLargeColumns {}
+);
 
 impl CLKComplicationTemplateModularLargeColumns {
     extern_methods!(
@@ -1360,13 +1408,17 @@ extern_class!(
     pub struct CLKComplicationTemplateUtilitarianSmallSquare;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateUtilitarianSmallSquare {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateUtilitarianSmallSquare {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateUtilitarianSmallSquare {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianSmallSquare {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianSmallSquare {}
+);
 
 impl CLKComplicationTemplateUtilitarianSmallSquare {
     extern_methods!(
@@ -1423,13 +1475,17 @@ extern_class!(
     pub struct CLKComplicationTemplateUtilitarianSmallRingText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateUtilitarianSmallRingText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateUtilitarianSmallRingText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateUtilitarianSmallRingText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianSmallRingText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianSmallRingText {}
+);
 
 impl CLKComplicationTemplateUtilitarianSmallRingText {
     extern_methods!(
@@ -1514,13 +1570,17 @@ extern_class!(
     pub struct CLKComplicationTemplateUtilitarianSmallRingImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateUtilitarianSmallRingImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateUtilitarianSmallRingImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateUtilitarianSmallRingImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianSmallRingImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianSmallRingImage {}
+);
 
 impl CLKComplicationTemplateUtilitarianSmallRingImage {
     extern_methods!(
@@ -1605,13 +1665,17 @@ extern_class!(
     pub struct CLKComplicationTemplateUtilitarianSmallFlat;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateUtilitarianSmallFlat {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateUtilitarianSmallFlat {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateUtilitarianSmallFlat {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianSmallFlat {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianSmallFlat {}
+);
 
 impl CLKComplicationTemplateUtilitarianSmallFlat {
     extern_methods!(
@@ -1696,13 +1760,17 @@ extern_class!(
     pub struct CLKComplicationTemplateUtilitarianLargeFlat;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateUtilitarianLargeFlat {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateUtilitarianLargeFlat {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateUtilitarianLargeFlat {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianLargeFlat {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateUtilitarianLargeFlat {}
+);
 
 impl CLKComplicationTemplateUtilitarianLargeFlat {
     extern_methods!(
@@ -1787,13 +1855,17 @@ extern_class!(
     pub struct CLKComplicationTemplateCircularSmallSimpleText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateCircularSmallSimpleText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateCircularSmallSimpleText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateCircularSmallSimpleText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallSimpleText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallSimpleText {}
+);
 
 impl CLKComplicationTemplateCircularSmallSimpleText {
     extern_methods!(
@@ -1848,13 +1920,17 @@ extern_class!(
     pub struct CLKComplicationTemplateCircularSmallSimpleImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateCircularSmallSimpleImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateCircularSmallSimpleImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateCircularSmallSimpleImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallSimpleImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallSimpleImage {}
+);
 
 impl CLKComplicationTemplateCircularSmallSimpleImage {
     extern_methods!(
@@ -1911,13 +1987,17 @@ extern_class!(
     pub struct CLKComplicationTemplateCircularSmallRingText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateCircularSmallRingText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateCircularSmallRingText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateCircularSmallRingText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallRingText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallRingText {}
+);
 
 impl CLKComplicationTemplateCircularSmallRingText {
     extern_methods!(
@@ -2002,13 +2082,17 @@ extern_class!(
     pub struct CLKComplicationTemplateCircularSmallRingImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateCircularSmallRingImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateCircularSmallRingImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateCircularSmallRingImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallRingImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallRingImage {}
+);
 
 impl CLKComplicationTemplateCircularSmallRingImage {
     extern_methods!(
@@ -2093,13 +2177,17 @@ extern_class!(
     pub struct CLKComplicationTemplateCircularSmallStackText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateCircularSmallStackText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateCircularSmallStackText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateCircularSmallStackText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallStackText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallStackText {}
+);
 
 impl CLKComplicationTemplateCircularSmallStackText {
     extern_methods!(
@@ -2171,13 +2259,17 @@ extern_class!(
     pub struct CLKComplicationTemplateCircularSmallStackImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateCircularSmallStackImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateCircularSmallStackImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateCircularSmallStackImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallStackImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateCircularSmallStackImage {}
+);
 
 impl CLKComplicationTemplateCircularSmallStackImage {
     extern_methods!(
@@ -2249,13 +2341,17 @@ extern_class!(
     pub struct CLKComplicationTemplateExtraLargeSimpleText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateExtraLargeSimpleText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateExtraLargeSimpleText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateExtraLargeSimpleText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeSimpleText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeSimpleText {}
+);
 
 impl CLKComplicationTemplateExtraLargeSimpleText {
     extern_methods!(
@@ -2310,13 +2406,17 @@ extern_class!(
     pub struct CLKComplicationTemplateExtraLargeSimpleImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateExtraLargeSimpleImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateExtraLargeSimpleImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateExtraLargeSimpleImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeSimpleImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeSimpleImage {}
+);
 
 impl CLKComplicationTemplateExtraLargeSimpleImage {
     extern_methods!(
@@ -2373,13 +2473,17 @@ extern_class!(
     pub struct CLKComplicationTemplateExtraLargeRingText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateExtraLargeRingText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateExtraLargeRingText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateExtraLargeRingText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeRingText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeRingText {}
+);
 
 impl CLKComplicationTemplateExtraLargeRingText {
     extern_methods!(
@@ -2464,13 +2568,17 @@ extern_class!(
     pub struct CLKComplicationTemplateExtraLargeRingImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateExtraLargeRingImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateExtraLargeRingImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateExtraLargeRingImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeRingImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeRingImage {}
+);
 
 impl CLKComplicationTemplateExtraLargeRingImage {
     extern_methods!(
@@ -2555,13 +2663,17 @@ extern_class!(
     pub struct CLKComplicationTemplateExtraLargeStackText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateExtraLargeStackText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateExtraLargeStackText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateExtraLargeStackText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeStackText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeStackText {}
+);
 
 impl CLKComplicationTemplateExtraLargeStackText {
     extern_methods!(
@@ -2644,13 +2756,17 @@ extern_class!(
     pub struct CLKComplicationTemplateExtraLargeStackImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateExtraLargeStackImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateExtraLargeStackImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateExtraLargeStackImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeStackImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeStackImage {}
+);
 
 impl CLKComplicationTemplateExtraLargeStackImage {
     extern_methods!(
@@ -2733,13 +2849,17 @@ extern_class!(
     pub struct CLKComplicationTemplateExtraLargeColumnsText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateExtraLargeColumnsText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateExtraLargeColumnsText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateExtraLargeColumnsText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeColumnsText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateExtraLargeColumnsText {}
+);
 
 impl CLKComplicationTemplateExtraLargeColumnsText {
     extern_methods!(
@@ -2877,13 +2997,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCornerGaugeText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerGaugeText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerGaugeText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCornerGaugeText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerGaugeText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerGaugeText {}
+);
 
 impl CLKComplicationTemplateGraphicCornerGaugeText {
     extern_methods!(
@@ -3008,13 +3132,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCornerGaugeImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerGaugeImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerGaugeImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCornerGaugeImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerGaugeImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerGaugeImage {}
+);
 
 impl CLKComplicationTemplateGraphicCornerGaugeImage {
     extern_methods!(
@@ -3147,13 +3275,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCornerTextImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerTextImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerTextImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCornerTextImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerTextImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerTextImage {}
+);
 
 impl CLKComplicationTemplateGraphicCornerTextImage {
     extern_methods!(
@@ -3225,13 +3357,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCornerStackText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerStackText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerStackText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCornerStackText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerStackText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerStackText {}
+);
 
 impl CLKComplicationTemplateGraphicCornerStackText {
     extern_methods!(
@@ -3303,13 +3439,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCornerCircularImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerCircularImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCornerCircularImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCornerCircularImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerCircularImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCornerCircularImage {}
+);
 
 impl CLKComplicationTemplateGraphicCornerCircularImage {
     extern_methods!(
@@ -3366,13 +3506,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCircular;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCircular {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCircular {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCircular {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircular {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircular {}
+);
 
 impl CLKComplicationTemplateGraphicCircular {
     extern_methods!();
@@ -3405,13 +3549,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCircularImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCircularImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularImage {}
+);
 
 impl CLKComplicationTemplateGraphicCircularImage {
     extern_methods!(
@@ -3472,13 +3620,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCircularOpenGaugeRangeText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {}
+);
 
 impl CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {
     extern_methods!(
@@ -3584,13 +3736,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {}
+);
 
 impl CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {
     extern_methods!(
@@ -3681,13 +3837,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCircularOpenGaugeImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularOpenGaugeImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularOpenGaugeImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCircularOpenGaugeImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularOpenGaugeImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularOpenGaugeImage {}
+);
 
 impl CLKComplicationTemplateGraphicCircularOpenGaugeImage {
     extern_methods!(
@@ -3789,13 +3949,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCircularClosedGaugeText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularClosedGaugeText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularClosedGaugeText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCircularClosedGaugeText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularClosedGaugeText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularClosedGaugeText {}
+);
 
 impl CLKComplicationTemplateGraphicCircularClosedGaugeText {
     extern_methods!(
@@ -3871,13 +4035,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCircularClosedGaugeImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularClosedGaugeImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularClosedGaugeImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCircularClosedGaugeImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularClosedGaugeImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularClosedGaugeImage {}
+);
 
 impl CLKComplicationTemplateGraphicCircularClosedGaugeImage {
     extern_methods!(
@@ -3953,13 +4121,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCircularStackText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularStackText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularStackText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCircularStackText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularStackText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularStackText {}
+);
 
 impl CLKComplicationTemplateGraphicCircularStackText {
     extern_methods!(
@@ -4035,13 +4207,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicCircularStackImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularStackImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicCircularStackImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicCircularStackImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularStackImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicCircularStackImage {}
+);
 
 impl CLKComplicationTemplateGraphicCircularStackImage {
     extern_methods!(
@@ -4116,13 +4292,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicBezelCircularText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicBezelCircularText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicBezelCircularText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicBezelCircularText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicBezelCircularText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicBezelCircularText {}
+);
 
 impl CLKComplicationTemplateGraphicBezelCircularText {
     extern_methods!(
@@ -4208,13 +4388,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicRectangularFullImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicRectangularFullImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicRectangularFullImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicRectangularFullImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicRectangularFullImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicRectangularFullImage {}
+);
 
 impl CLKComplicationTemplateGraphicRectangularFullImage {
     extern_methods!(
@@ -4271,13 +4455,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicRectangularLargeImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicRectangularLargeImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicRectangularLargeImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicRectangularLargeImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicRectangularLargeImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicRectangularLargeImage {}
+);
 
 impl CLKComplicationTemplateGraphicRectangularLargeImage {
     extern_methods!(
@@ -4349,13 +4537,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicRectangularStandardBody;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicRectangularStandardBody {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicRectangularStandardBody {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicRectangularStandardBody {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicRectangularStandardBody {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicRectangularStandardBody {}
+);
 
 impl CLKComplicationTemplateGraphicRectangularStandardBody {
     extern_methods!(
@@ -4515,13 +4707,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicRectangularTextGauge;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicRectangularTextGauge {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicRectangularTextGauge {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicRectangularTextGauge {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicRectangularTextGauge {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicRectangularTextGauge {}
+);
 
 impl CLKComplicationTemplateGraphicRectangularTextGauge {
     extern_methods!(
@@ -4653,13 +4849,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicExtraLargeCircular;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircular {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircular {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicExtraLargeCircular {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircular {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircular {}
+);
 
 impl CLKComplicationTemplateGraphicExtraLargeCircular {
     extern_methods!();
@@ -4692,13 +4892,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicExtraLargeCircularImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicExtraLargeCircularImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularImage {}
+);
 
 impl CLKComplicationTemplateGraphicExtraLargeCircularImage {
     extern_methods!(
@@ -4760,16 +4964,20 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol
-    for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText
-{
-}
+extern_conformance!(
+    unsafe impl NSObjectProtocol
+        for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText
+    {
+    }
+);
 
 impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText {
     extern_methods!(
@@ -4876,16 +5084,20 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol
-    for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText
-{
-}
+extern_conformance!(
+    unsafe impl NSObjectProtocol
+        for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText
+    {
+    }
+);
 
 impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText {
     extern_methods!(
@@ -4977,13 +5189,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {}
+);
 
 impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {
     extern_methods!(
@@ -5086,13 +5302,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText {}
+);
 
 impl CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText {
     extern_methods!(
@@ -5169,13 +5389,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage {}
+);
 
 impl CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage {
     extern_methods!(
@@ -5252,13 +5476,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicExtraLargeCircularStackText;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularStackText {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularStackText {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicExtraLargeCircularStackText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularStackText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularStackText {}
+);
 
 impl CLKComplicationTemplateGraphicExtraLargeCircularStackText {
     extern_methods!(
@@ -5335,13 +5563,17 @@ extern_class!(
     pub struct CLKComplicationTemplateGraphicExtraLargeCircularStackImage;
 );
 
-unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularStackImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationTemplateGraphicExtraLargeCircularStackImage {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationTemplateGraphicExtraLargeCircularStackImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularStackImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTemplateGraphicExtraLargeCircularStackImage {}
+);
 
 impl CLKComplicationTemplateGraphicExtraLargeCircularStackImage {
     extern_methods!(

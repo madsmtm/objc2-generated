@@ -23,10 +23,14 @@ unsafe impl Send for HKContactsLensSpecification {}
 unsafe impl Sync for HKContactsLensSpecification {}
 
 #[cfg(feature = "HKLensSpecification")]
-unsafe impl NSCoding for HKContactsLensSpecification {}
+extern_conformance!(
+    unsafe impl NSCoding for HKContactsLensSpecification {}
+);
 
 #[cfg(feature = "HKLensSpecification")]
-unsafe impl NSCopying for HKContactsLensSpecification {}
+extern_conformance!(
+    unsafe impl NSCopying for HKContactsLensSpecification {}
+);
 
 #[cfg(feature = "HKLensSpecification")]
 unsafe impl CopyingHelper for HKContactsLensSpecification {
@@ -34,10 +38,14 @@ unsafe impl CopyingHelper for HKContactsLensSpecification {
 }
 
 #[cfg(feature = "HKLensSpecification")]
-unsafe impl NSObjectProtocol for HKContactsLensSpecification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKContactsLensSpecification {}
+);
 
 #[cfg(feature = "HKLensSpecification")]
-unsafe impl NSSecureCoding for HKContactsLensSpecification {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKContactsLensSpecification {}
+);
 
 #[cfg(feature = "HKLensSpecification")]
 impl HKContactsLensSpecification {

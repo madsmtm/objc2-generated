@@ -51,7 +51,9 @@ unsafe impl Send for ASPickerDisplayItem {}
 
 unsafe impl Sync for ASPickerDisplayItem {}
 
-unsafe impl NSObjectProtocol for ASPickerDisplayItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASPickerDisplayItem {}
+);
 
 impl ASPickerDisplayItem {
     extern_methods!(
@@ -141,7 +143,9 @@ unsafe impl Send for ASMigrationDisplayItem {}
 
 unsafe impl Sync for ASMigrationDisplayItem {}
 
-unsafe impl NSObjectProtocol for ASMigrationDisplayItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASMigrationDisplayItem {}
+);
 
 impl ASMigrationDisplayItem {
     extern_methods!(

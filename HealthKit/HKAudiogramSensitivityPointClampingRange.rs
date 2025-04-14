@@ -22,17 +22,25 @@ unsafe impl Send for HKAudiogramSensitivityPointClampingRange {}
 
 unsafe impl Sync for HKAudiogramSensitivityPointClampingRange {}
 
-unsafe impl NSCoding for HKAudiogramSensitivityPointClampingRange {}
+extern_conformance!(
+    unsafe impl NSCoding for HKAudiogramSensitivityPointClampingRange {}
+);
 
-unsafe impl NSCopying for HKAudiogramSensitivityPointClampingRange {}
+extern_conformance!(
+    unsafe impl NSCopying for HKAudiogramSensitivityPointClampingRange {}
+);
 
 unsafe impl CopyingHelper for HKAudiogramSensitivityPointClampingRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKAudiogramSensitivityPointClampingRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKAudiogramSensitivityPointClampingRange {}
+);
 
-unsafe impl NSSecureCoding for HKAudiogramSensitivityPointClampingRange {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKAudiogramSensitivityPointClampingRange {}
+);
 
 impl HKAudiogramSensitivityPointClampingRange {
     extern_methods!(

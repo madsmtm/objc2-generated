@@ -15,12 +15,18 @@ extern_class!(
     pub struct UIBarItem;
 );
 
-unsafe impl NSCoding for UIBarItem {}
+extern_conformance!(
+    unsafe impl NSCoding for UIBarItem {}
+);
 
-unsafe impl NSObjectProtocol for UIBarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBarItem {}
+);
 
 #[cfg(feature = "UIAppearance")]
-unsafe impl UIAppearance for UIBarItem {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIBarItem {}
+);
 
 impl UIBarItem {
     extern_methods!(

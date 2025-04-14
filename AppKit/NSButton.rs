@@ -21,7 +21,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSButton {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSButton {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -29,7 +31,9 @@ unsafe impl NSAccessibility for NSButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityButton for NSButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityButton for NSButton {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -37,7 +41,9 @@ unsafe impl NSAccessibilityButton for NSButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSButton {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -45,7 +51,9 @@ unsafe impl NSAccessibilityElementProtocol for NSButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSButton {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSButton {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -53,10 +61,14 @@ unsafe impl NSAnimatablePropertyContainer for NSButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSButton {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSButton {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSButton {}
+extern_conformance!(
+    unsafe impl NSCoding for NSButton {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -64,10 +76,14 @@ unsafe impl NSCoding for NSButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSButton {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSButton {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSButton {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -75,7 +91,9 @@ unsafe impl NSObjectProtocol for NSButton {}
     feature = "NSUserInterfaceCompression",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceCompression for NSButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceCompression for NSButton {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -83,7 +101,9 @@ unsafe impl NSUserInterfaceCompression for NSButton {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSButton {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -91,7 +111,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSButton {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSButton {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSButton {

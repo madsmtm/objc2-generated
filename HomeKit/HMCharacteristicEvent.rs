@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized> NSCopying for HMCharacteristicEvent<TriggerValueType> {}
+extern_conformance!(
+    unsafe impl<TriggerValueType: ?Sized> NSCopying for HMCharacteristicEvent<TriggerValueType> {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl<TriggerValueType: ?Sized + Message> CopyingHelper
@@ -29,7 +31,9 @@ unsafe impl<TriggerValueType: ?Sized + Message> CopyingHelper
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized> NSMutableCopying for HMCharacteristicEvent<TriggerValueType> {}
+extern_conformance!(
+    unsafe impl<TriggerValueType: ?Sized> NSMutableCopying for HMCharacteristicEvent<TriggerValueType> {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl<TriggerValueType: ?Sized + Message> MutableCopyingHelper
@@ -39,7 +43,9 @@ unsafe impl<TriggerValueType: ?Sized + Message> MutableCopyingHelper
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol for HMCharacteristicEvent<TriggerValueType> {}
+extern_conformance!(
+    unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol for HMCharacteristicEvent<TriggerValueType> {}
+);
 
 #[cfg(feature = "HMEvent")]
 impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
@@ -128,7 +134,9 @@ extern_class!(
 );
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized> NSCopying for HMMutableCharacteristicEvent<TriggerValueType> {}
+extern_conformance!(
+    unsafe impl<TriggerValueType: ?Sized> NSCopying for HMMutableCharacteristicEvent<TriggerValueType> {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl<TriggerValueType: ?Sized + Message> CopyingHelper
@@ -138,10 +146,12 @@ unsafe impl<TriggerValueType: ?Sized + Message> CopyingHelper
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized> NSMutableCopying
-    for HMMutableCharacteristicEvent<TriggerValueType>
-{
-}
+extern_conformance!(
+    unsafe impl<TriggerValueType: ?Sized> NSMutableCopying
+        for HMMutableCharacteristicEvent<TriggerValueType>
+    {
+    }
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl<TriggerValueType: ?Sized + Message> MutableCopyingHelper
@@ -151,10 +161,12 @@ unsafe impl<TriggerValueType: ?Sized + Message> MutableCopyingHelper
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol
-    for HMMutableCharacteristicEvent<TriggerValueType>
-{
-}
+extern_conformance!(
+    unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol
+        for HMMutableCharacteristicEvent<TriggerValueType>
+    {
+    }
+);
 
 #[cfg(feature = "HMEvent")]
 impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {

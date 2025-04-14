@@ -33,7 +33,9 @@ extern_class!(
 );
 
 #[cfg(feature = "SKRequest")]
-unsafe impl NSObjectProtocol for SKProductsRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKProductsRequest {}
+);
 
 #[cfg(feature = "SKRequest")]
 impl SKProductsRequest {
@@ -91,7 +93,9 @@ unsafe impl Send for SKProductsResponse {}
 
 unsafe impl Sync for SKProductsResponse {}
 
-unsafe impl NSObjectProtocol for SKProductsResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKProductsResponse {}
+);
 
 impl SKProductsResponse {
     extern_methods!(

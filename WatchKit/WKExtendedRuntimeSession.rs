@@ -146,7 +146,9 @@ extern_class!(
     pub struct WKExtendedRuntimeSession;
 );
 
-unsafe impl NSObjectProtocol for WKExtendedRuntimeSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKExtendedRuntimeSession {}
+);
 
 impl WKExtendedRuntimeSession {
     extern_methods!(

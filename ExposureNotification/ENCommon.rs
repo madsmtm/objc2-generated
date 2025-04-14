@@ -341,7 +341,9 @@ extern_class!(
     pub struct ENExposureConfiguration;
 );
 
-unsafe impl NSObjectProtocol for ENExposureConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ENExposureConfiguration {}
+);
 
 impl ENExposureConfiguration {
     extern_methods!(
@@ -646,7 +648,9 @@ extern_class!(
     pub struct ENExposureDaySummary;
 );
 
-unsafe impl NSObjectProtocol for ENExposureDaySummary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ENExposureDaySummary {}
+);
 
 impl ENExposureDaySummary {
     extern_methods!(
@@ -703,7 +707,9 @@ extern_class!(
     pub struct ENExposureDetectionSummary;
 );
 
-unsafe impl NSObjectProtocol for ENExposureDetectionSummary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ENExposureDetectionSummary {}
+);
 
 impl ENExposureDetectionSummary {
     extern_methods!(
@@ -782,7 +788,9 @@ extern_class!(
     pub struct ENExposureInfo;
 );
 
-unsafe impl NSObjectProtocol for ENExposureInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ENExposureInfo {}
+);
 
 impl ENExposureInfo {
     extern_methods!(
@@ -871,7 +879,9 @@ extern_class!(
     pub struct ENExposureSummaryItem;
 );
 
-unsafe impl NSObjectProtocol for ENExposureSummaryItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ENExposureSummaryItem {}
+);
 
 impl ENExposureSummaryItem {
     extern_methods!(
@@ -919,7 +929,9 @@ extern_class!(
     pub struct ENExposureWindow;
 );
 
-unsafe impl NSObjectProtocol for ENExposureWindow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ENExposureWindow {}
+);
 
 impl ENExposureWindow {
     extern_methods!(
@@ -977,7 +989,9 @@ extern_class!(
     pub struct ENScanInstance;
 );
 
-unsafe impl NSObjectProtocol for ENScanInstance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ENScanInstance {}
+);
 
 impl ENScanInstance {
     extern_methods!(
@@ -1020,7 +1034,9 @@ extern_class!(
     pub struct ENTemporaryExposureKey;
 );
 
-unsafe impl NSObjectProtocol for ENTemporaryExposureKey {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ENTemporaryExposureKey {}
+);
 
 impl ENTemporaryExposureKey {
     extern_methods!(

@@ -16,7 +16,9 @@ extern_class!(
     pub struct UISearchDisplayController;
 );
 
-unsafe impl NSObjectProtocol for UISearchDisplayController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISearchDisplayController {}
+);
 
 impl UISearchDisplayController {
     extern_methods!(

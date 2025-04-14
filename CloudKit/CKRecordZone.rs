@@ -48,17 +48,25 @@ extern_class!(
     pub struct CKRecordZone;
 );
 
-unsafe impl NSCoding for CKRecordZone {}
+extern_conformance!(
+    unsafe impl NSCoding for CKRecordZone {}
+);
 
-unsafe impl NSCopying for CKRecordZone {}
+extern_conformance!(
+    unsafe impl NSCopying for CKRecordZone {}
+);
 
 unsafe impl CopyingHelper for CKRecordZone {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKRecordZone {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKRecordZone {}
+);
 
-unsafe impl NSSecureCoding for CKRecordZone {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKRecordZone {}
+);
 
 impl CKRecordZone {
     extern_methods!(

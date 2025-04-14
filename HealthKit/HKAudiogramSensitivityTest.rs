@@ -59,17 +59,25 @@ unsafe impl Send for HKAudiogramSensitivityTest {}
 
 unsafe impl Sync for HKAudiogramSensitivityTest {}
 
-unsafe impl NSCoding for HKAudiogramSensitivityTest {}
+extern_conformance!(
+    unsafe impl NSCoding for HKAudiogramSensitivityTest {}
+);
 
-unsafe impl NSCopying for HKAudiogramSensitivityTest {}
+extern_conformance!(
+    unsafe impl NSCopying for HKAudiogramSensitivityTest {}
+);
 
 unsafe impl CopyingHelper for HKAudiogramSensitivityTest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKAudiogramSensitivityTest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKAudiogramSensitivityTest {}
+);
 
-unsafe impl NSSecureCoding for HKAudiogramSensitivityTest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKAudiogramSensitivityTest {}
+);
 
 impl HKAudiogramSensitivityTest {
     extern_methods!(

@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PDFAction")]
-unsafe impl NSCopying for PDFActionResetForm {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFActionResetForm {}
+);
 
 #[cfg(feature = "PDFAction")]
 unsafe impl CopyingHelper for PDFActionResetForm {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for PDFActionResetForm {
 }
 
 #[cfg(feature = "PDFAction")]
-unsafe impl NSObjectProtocol for PDFActionResetForm {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFActionResetForm {}
+);
 
 #[cfg(feature = "PDFAction")]
 impl PDFActionResetForm {

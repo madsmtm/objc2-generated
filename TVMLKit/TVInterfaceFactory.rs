@@ -98,9 +98,13 @@ extern_class!(
     pub struct TVInterfaceFactory;
 );
 
-unsafe impl NSObjectProtocol for TVInterfaceFactory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVInterfaceFactory {}
+);
 
-unsafe impl TVInterfaceCreating for TVInterfaceFactory {}
+extern_conformance!(
+    unsafe impl TVInterfaceCreating for TVInterfaceFactory {}
+);
 
 impl TVInterfaceFactory {
     extern_methods!(

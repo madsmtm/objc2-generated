@@ -63,7 +63,9 @@ extern_class!(
     pub struct MEVideoDecoderPixelBufferManager;
 );
 
-unsafe impl NSObjectProtocol for MEVideoDecoderPixelBufferManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEVideoDecoderPixelBufferManager {}
+);
 
 impl MEVideoDecoderPixelBufferManager {
     extern_methods!(
@@ -135,7 +137,9 @@ extern_class!(
     pub struct MEDecodeFrameOptions;
 );
 
-unsafe impl NSObjectProtocol for MEDecodeFrameOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEDecodeFrameOptions {}
+);
 
 impl MEDecodeFrameOptions {
     extern_methods!(

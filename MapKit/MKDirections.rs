@@ -23,7 +23,9 @@ extern_class!(
     pub struct MKDirections;
 );
 
-unsafe impl NSObjectProtocol for MKDirections {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKDirections {}
+);
 
 impl MKDirections {
     extern_methods!(

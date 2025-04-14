@@ -22,35 +22,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for WebFrameView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for WebFrameView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for WebFrameView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for WebFrameView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for WebFrameView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for WebFrameView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for WebFrameView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for WebFrameView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for WebFrameView {}
+extern_conformance!(
+    unsafe impl NSCoding for WebFrameView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for WebFrameView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for WebFrameView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for WebFrameView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebFrameView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for WebFrameView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for WebFrameView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

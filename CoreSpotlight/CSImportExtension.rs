@@ -13,9 +13,13 @@ extern_class!(
     pub struct CSImportExtension;
 );
 
-unsafe impl NSExtensionRequestHandling for CSImportExtension {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for CSImportExtension {}
+);
 
-unsafe impl NSObjectProtocol for CSImportExtension {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSImportExtension {}
+);
 
 impl CSImportExtension {
     extern_methods!(

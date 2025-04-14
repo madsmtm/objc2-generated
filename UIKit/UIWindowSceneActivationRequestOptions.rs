@@ -37,7 +37,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UISceneOptions")]
-unsafe impl NSObjectProtocol for UIWindowSceneActivationRequestOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneActivationRequestOptions {}
+);
 
 #[cfg(feature = "UISceneOptions")]
 impl UIWindowSceneActivationRequestOptions {

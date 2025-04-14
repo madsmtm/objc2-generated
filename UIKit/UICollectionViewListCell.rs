@@ -38,21 +38,27 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl NSCoding for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl NSCoding for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl NSObjectProtocol for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -60,7 +66,9 @@ unsafe impl NSObjectProtocol for UICollectionViewListCell {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl UIAppearance for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -68,14 +76,18 @@ unsafe impl UIAppearance for UICollectionViewListCell {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UICoordinateSpace for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",
@@ -83,7 +95,9 @@ unsafe impl UICoordinateSpace for UICollectionViewListCell {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",
@@ -91,7 +105,9 @@ unsafe impl UIDynamicItem for UICollectionViewListCell {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",
@@ -99,7 +115,9 @@ unsafe impl UIFocusEnvironment for UICollectionViewListCell {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",
@@ -107,14 +125,18 @@ unsafe impl UIFocusItem for UICollectionViewListCell {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIResponderStandardEditActions for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",
@@ -122,7 +144,9 @@ unsafe impl UIResponderStandardEditActions for UICollectionViewListCell {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UICollectionViewListCell {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UICollectionViewListCell {}
+);
 
 #[cfg(all(
     feature = "UICollectionViewCell",

@@ -20,36 +20,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSTableCellView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTableCellView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSTableCellView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTableCellView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSTableCellView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSTableCellView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSTableCellView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSTableCellView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSTableCellView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTableCellView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSTableCellView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSTableCellView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSTableCellView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTableCellView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTableCellView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTableCellView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSTableCellView {

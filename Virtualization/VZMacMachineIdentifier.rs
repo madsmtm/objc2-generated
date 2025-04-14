@@ -26,13 +26,17 @@ extern_class!(
     pub struct VZMacMachineIdentifier;
 );
 
-unsafe impl NSCopying for VZMacMachineIdentifier {}
+extern_conformance!(
+    unsafe impl NSCopying for VZMacMachineIdentifier {}
+);
 
 unsafe impl CopyingHelper for VZMacMachineIdentifier {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZMacMachineIdentifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacMachineIdentifier {}
+);
 
 impl VZMacMachineIdentifier {
     extern_methods!(

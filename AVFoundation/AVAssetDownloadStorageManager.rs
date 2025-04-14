@@ -41,7 +41,9 @@ extern_class!(
     pub struct AVAssetDownloadStorageManager;
 );
 
-unsafe impl NSObjectProtocol for AVAssetDownloadStorageManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetDownloadStorageManager {}
+);
 
 impl AVAssetDownloadStorageManager {
     extern_methods!(
@@ -94,19 +96,25 @@ extern_class!(
     pub struct AVAssetDownloadStorageManagementPolicy;
 );
 
-unsafe impl NSCopying for AVAssetDownloadStorageManagementPolicy {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAssetDownloadStorageManagementPolicy {}
+);
 
 unsafe impl CopyingHelper for AVAssetDownloadStorageManagementPolicy {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVAssetDownloadStorageManagementPolicy {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVAssetDownloadStorageManagementPolicy {}
+);
 
 unsafe impl MutableCopyingHelper for AVAssetDownloadStorageManagementPolicy {
     type Result = AVMutableAssetDownloadStorageManagementPolicy;
 }
 
-unsafe impl NSObjectProtocol for AVAssetDownloadStorageManagementPolicy {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetDownloadStorageManagementPolicy {}
+);
 
 impl AVAssetDownloadStorageManagementPolicy {
     extern_methods!(
@@ -145,19 +153,25 @@ extern_class!(
     pub struct AVMutableAssetDownloadStorageManagementPolicy;
 );
 
-unsafe impl NSCopying for AVMutableAssetDownloadStorageManagementPolicy {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableAssetDownloadStorageManagementPolicy {}
+);
 
 unsafe impl CopyingHelper for AVMutableAssetDownloadStorageManagementPolicy {
     type Result = AVAssetDownloadStorageManagementPolicy;
 }
 
-unsafe impl NSMutableCopying for AVMutableAssetDownloadStorageManagementPolicy {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableAssetDownloadStorageManagementPolicy {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableAssetDownloadStorageManagementPolicy {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableAssetDownloadStorageManagementPolicy {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableAssetDownloadStorageManagementPolicy {}
+);
 
 impl AVMutableAssetDownloadStorageManagementPolicy {
     extern_methods!(

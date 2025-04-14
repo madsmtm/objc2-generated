@@ -19,23 +19,41 @@ extern_class!(
     pub struct IKFilterBrowserPanel;
 );
 
-unsafe impl NSAccessibility for IKFilterBrowserPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IKFilterBrowserPanel {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IKFilterBrowserPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IKFilterBrowserPanel {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IKFilterBrowserPanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IKFilterBrowserPanel {}
+);
 
-unsafe impl NSAppearanceCustomization for IKFilterBrowserPanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IKFilterBrowserPanel {}
+);
 
-unsafe impl NSCoding for IKFilterBrowserPanel {}
+extern_conformance!(
+    unsafe impl NSCoding for IKFilterBrowserPanel {}
+);
 
-unsafe impl NSMenuItemValidation for IKFilterBrowserPanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for IKFilterBrowserPanel {}
+);
 
-unsafe impl NSObjectProtocol for IKFilterBrowserPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKFilterBrowserPanel {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IKFilterBrowserPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IKFilterBrowserPanel {}
+);
 
-unsafe impl NSUserInterfaceValidations for IKFilterBrowserPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for IKFilterBrowserPanel {}
+);
 
 impl IKFilterBrowserPanel {
     extern_methods!(

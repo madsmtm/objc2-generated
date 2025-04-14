@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INPlacemarkResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPlacemarkResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INPlacemarkResolutionResult {

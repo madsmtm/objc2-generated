@@ -38,7 +38,9 @@ extern_class!(
     pub struct ASPublicKeyCredentialClientData;
 );
 
-unsafe impl NSObjectProtocol for ASPublicKeyCredentialClientData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASPublicKeyCredentialClientData {}
+);
 
 impl ASPublicKeyCredentialClientData {
     extern_methods!(

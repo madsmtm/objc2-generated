@@ -22,7 +22,9 @@ extern_class!(
     pub struct SCRecordingOutputConfiguration;
 );
 
-unsafe impl NSObjectProtocol for SCRecordingOutputConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCRecordingOutputConfiguration {}
+);
 
 impl SCRecordingOutputConfiguration {
     extern_methods!(
@@ -136,7 +138,9 @@ extern_class!(
     pub struct SCRecordingOutput;
 );
 
-unsafe impl NSObjectProtocol for SCRecordingOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCRecordingOutput {}
+);
 
 impl SCRecordingOutput {
     extern_methods!(

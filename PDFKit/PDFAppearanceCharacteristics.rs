@@ -53,13 +53,17 @@ extern_class!(
     pub struct PDFAppearanceCharacteristics;
 );
 
-unsafe impl NSCopying for PDFAppearanceCharacteristics {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFAppearanceCharacteristics {}
+);
 
 unsafe impl CopyingHelper for PDFAppearanceCharacteristics {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PDFAppearanceCharacteristics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFAppearanceCharacteristics {}
+);
 
 impl PDFAppearanceCharacteristics {
     extern_methods!(

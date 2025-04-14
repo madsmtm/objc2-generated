@@ -13,17 +13,25 @@ extern_class!(
     pub struct INCallGroup;
 );
 
-unsafe impl NSCoding for INCallGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for INCallGroup {}
+);
 
-unsafe impl NSCopying for INCallGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for INCallGroup {}
+);
 
 unsafe impl CopyingHelper for INCallGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INCallGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCallGroup {}
+);
 
-unsafe impl NSSecureCoding for INCallGroup {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCallGroup {}
+);
 
 impl INCallGroup {
     extern_methods!(

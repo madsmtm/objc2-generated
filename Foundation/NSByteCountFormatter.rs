@@ -79,10 +79,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSByteCountFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSByteCountFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSByteCountFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSByteCountFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSByteCountFormatter {
@@ -90,7 +94,9 @@ unsafe impl CopyingHelper for NSByteCountFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSByteCountFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSByteCountFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSByteCountFormatter {

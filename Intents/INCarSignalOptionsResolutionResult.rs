@@ -14,7 +14,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INCarSignalOptionsResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCarSignalOptionsResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INCarSignalOptionsResolutionResult {

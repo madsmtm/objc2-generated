@@ -77,7 +77,9 @@ unsafe impl Send for AVVideoCompositionRenderContext {}
 
 unsafe impl Sync for AVVideoCompositionRenderContext {}
 
-unsafe impl NSObjectProtocol for AVVideoCompositionRenderContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVVideoCompositionRenderContext {}
+);
 
 impl AVVideoCompositionRenderContext {
     extern_methods!(
@@ -147,7 +149,9 @@ unsafe impl Send for AVVideoCompositionRenderHint {}
 
 unsafe impl Sync for AVVideoCompositionRenderHint {}
 
-unsafe impl NSObjectProtocol for AVVideoCompositionRenderHint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVVideoCompositionRenderHint {}
+);
 
 impl AVVideoCompositionRenderHint {
     extern_methods!(
@@ -311,13 +315,17 @@ extern_class!(
     pub struct AVAsynchronousVideoCompositionRequest;
 );
 
-unsafe impl NSCopying for AVAsynchronousVideoCompositionRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAsynchronousVideoCompositionRequest {}
+);
 
 unsafe impl CopyingHelper for AVAsynchronousVideoCompositionRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAsynchronousVideoCompositionRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAsynchronousVideoCompositionRequest {}
+);
 
 impl AVAsynchronousVideoCompositionRequest {
     extern_methods!(
@@ -415,13 +423,17 @@ extern_class!(
     pub struct AVAsynchronousCIImageFilteringRequest;
 );
 
-unsafe impl NSCopying for AVAsynchronousCIImageFilteringRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAsynchronousCIImageFilteringRequest {}
+);
 
 unsafe impl CopyingHelper for AVAsynchronousCIImageFilteringRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAsynchronousCIImageFilteringRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAsynchronousCIImageFilteringRequest {}
+);
 
 impl AVAsynchronousCIImageFilteringRequest {
     extern_methods!(

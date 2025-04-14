@@ -25,7 +25,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MAMusicHapticsManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MAMusicHapticsManager {}
+);
 
 #[cfg(feature = "objc2")]
 impl MAMusicHapticsManager {

@@ -19,10 +19,14 @@ extern_class!(
     pub struct TVBrowserTransitionAnimator;
 );
 
-unsafe impl NSObjectProtocol for TVBrowserTransitionAnimator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVBrowserTransitionAnimator {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIViewControllerAnimatedTransitioning for TVBrowserTransitionAnimator {}
+extern_conformance!(
+    unsafe impl UIViewControllerAnimatedTransitioning for TVBrowserTransitionAnimator {}
+);
 
 impl TVBrowserTransitionAnimator {
     extern_methods!();
@@ -93,25 +97,39 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for TVBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for TVBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for TVBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for TVBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for TVBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for TVBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for TVBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for TVBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for TVBrowserViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl TVBrowserViewController {

@@ -56,7 +56,9 @@ unsafe impl Send for AVAssetPlaybackAssistant {}
 
 unsafe impl Sync for AVAssetPlaybackAssistant {}
 
-unsafe impl NSObjectProtocol for AVAssetPlaybackAssistant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetPlaybackAssistant {}
+);
 
 impl AVAssetPlaybackAssistant {
     extern_methods!(

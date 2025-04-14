@@ -128,7 +128,9 @@ unsafe impl Send for UIPasteboard {}
 
 unsafe impl Sync for UIPasteboard {}
 
-unsafe impl NSObjectProtocol for UIPasteboard {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPasteboard {}
+);
 
 impl UIPasteboard {
     extern_methods!(

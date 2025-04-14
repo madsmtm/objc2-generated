@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIInputSuggestion")]
-unsafe impl NSObjectProtocol for UISmartReplySuggestion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISmartReplySuggestion {}
+);
 
 #[cfg(feature = "UIInputSuggestion")]
 impl UISmartReplySuggestion {

@@ -19,16 +19,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]
-unsafe impl CAMediaTiming for CAOpenGLLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CAOpenGLLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSCoding for CAOpenGLLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for CAOpenGLLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSObjectProtocol for CAOpenGLLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAOpenGLLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSSecureCoding for CAOpenGLLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAOpenGLLayer {}
+);
 
 #[cfg(feature = "CALayer")]
 impl CAOpenGLLayer {

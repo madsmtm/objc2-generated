@@ -15,13 +15,17 @@ extern_class!(
     pub struct CISampler;
 );
 
-unsafe impl NSCopying for CISampler {}
+extern_conformance!(
+    unsafe impl NSCopying for CISampler {}
+);
 
 unsafe impl CopyingHelper for CISampler {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CISampler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CISampler {}
+);
 
 impl CISampler {
     extern_methods!(

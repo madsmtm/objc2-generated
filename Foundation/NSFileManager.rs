@@ -163,7 +163,9 @@ extern_class!(
     pub struct NSFileManager;
 );
 
-unsafe impl NSObjectProtocol for NSFileManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileManager {}
+);
 
 impl NSFileManager {
     extern_methods!(
@@ -986,10 +988,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSDirectoryEnumerator<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSDirectoryEnumerator<ObjectType> {}
+);
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSDirectoryEnumerator<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSDirectoryEnumerator<ObjectType> {}
+);
 
 #[cfg(feature = "NSEnumerator")]
 impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
@@ -1047,7 +1053,9 @@ extern_class!(
     pub struct NSFileProviderService;
 );
 
-unsafe impl NSObjectProtocol for NSFileProviderService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileProviderService {}
+);
 
 impl NSFileProviderService {
     extern_methods!(

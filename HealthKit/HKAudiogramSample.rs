@@ -23,13 +23,19 @@ unsafe impl Send for HKAudiogramSample {}
 unsafe impl Sync for HKAudiogramSample {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCoding for HKAudiogramSample {}
+extern_conformance!(
+    unsafe impl NSCoding for HKAudiogramSample {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSObjectProtocol for HKAudiogramSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKAudiogramSample {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSSecureCoding for HKAudiogramSample {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKAudiogramSample {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKAudiogramSample {

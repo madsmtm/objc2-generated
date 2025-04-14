@@ -15,9 +15,13 @@ extern_class!(
     pub struct NSResponder;
 );
 
-unsafe impl NSCoding for NSResponder {}
+extern_conformance!(
+    unsafe impl NSCoding for NSResponder {}
+);
 
-unsafe impl NSObjectProtocol for NSResponder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSResponder {}
+);
 
 impl NSResponder {
     extern_methods!(
@@ -836,7 +840,9 @@ impl NSResponder {
     extern_methods!();
 }
 
-unsafe impl NSStandardKeyBindingResponding for NSResponder {}
+extern_conformance!(
+    unsafe impl NSStandardKeyBindingResponding for NSResponder {}
+);
 
 /// NSUndoSupport.
 impl NSResponder {

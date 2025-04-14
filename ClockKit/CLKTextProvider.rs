@@ -17,13 +17,17 @@ extern_class!(
     pub struct CLKTextProvider;
 );
 
-unsafe impl NSCopying for CLKTextProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKTextProvider {}
+);
 
 unsafe impl CopyingHelper for CLKTextProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKTextProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKTextProvider {}
+);
 
 impl CLKTextProvider {
     extern_methods!(
@@ -71,13 +75,17 @@ extern_class!(
     pub struct CLKSimpleTextProvider;
 );
 
-unsafe impl NSCopying for CLKSimpleTextProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKSimpleTextProvider {}
+);
 
 unsafe impl CopyingHelper for CLKSimpleTextProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKSimpleTextProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKSimpleTextProvider {}
+);
 
 impl CLKSimpleTextProvider {
     extern_methods!(
@@ -171,13 +179,17 @@ extern_class!(
     pub struct CLKDateTextProvider;
 );
 
-unsafe impl NSCopying for CLKDateTextProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKDateTextProvider {}
+);
 
 unsafe impl CopyingHelper for CLKDateTextProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKDateTextProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKDateTextProvider {}
+);
 
 impl CLKDateTextProvider {
     extern_methods!(
@@ -284,13 +296,17 @@ extern_class!(
     pub struct CLKTimeTextProvider;
 );
 
-unsafe impl NSCopying for CLKTimeTextProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKTimeTextProvider {}
+);
 
 unsafe impl CopyingHelper for CLKTimeTextProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKTimeTextProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKTimeTextProvider {}
+);
 
 impl CLKTimeTextProvider {
     extern_methods!(
@@ -366,13 +382,17 @@ extern_class!(
     pub struct CLKTimeIntervalTextProvider;
 );
 
-unsafe impl NSCopying for CLKTimeIntervalTextProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKTimeIntervalTextProvider {}
+);
 
 unsafe impl CopyingHelper for CLKTimeIntervalTextProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKTimeIntervalTextProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKTimeIntervalTextProvider {}
+);
 
 impl CLKTimeIntervalTextProvider {
     extern_methods!(
@@ -500,13 +520,17 @@ extern_class!(
     pub struct CLKRelativeDateTextProvider;
 );
 
-unsafe impl NSCopying for CLKRelativeDateTextProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKRelativeDateTextProvider {}
+);
 
 unsafe impl CopyingHelper for CLKRelativeDateTextProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKRelativeDateTextProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKRelativeDateTextProvider {}
+);
 
 impl CLKRelativeDateTextProvider {
     extern_methods!(

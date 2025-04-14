@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSNibConnector")]
-unsafe impl NSCoding for NSNibControlConnector {}
+extern_conformance!(
+    unsafe impl NSCoding for NSNibControlConnector {}
+);
 
 #[cfg(feature = "NSNibConnector")]
-unsafe impl NSObjectProtocol for NSNibControlConnector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNibControlConnector {}
+);
 
 #[cfg(feature = "NSNibConnector")]
 impl NSNibControlConnector {

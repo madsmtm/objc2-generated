@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
-unsafe impl NSCopying for VNTrackObjectRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNTrackObjectRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
 unsafe impl CopyingHelper for VNTrackObjectRequest {
@@ -27,7 +29,9 @@ unsafe impl CopyingHelper for VNTrackObjectRequest {
 }
 
 #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
-unsafe impl NSObjectProtocol for VNTrackObjectRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNTrackObjectRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
 impl VNTrackObjectRequest {

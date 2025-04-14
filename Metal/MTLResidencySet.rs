@@ -16,13 +16,17 @@ extern_class!(
     pub struct MTLResidencySetDescriptor;
 );
 
-unsafe impl NSCopying for MTLResidencySetDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLResidencySetDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLResidencySetDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLResidencySetDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLResidencySetDescriptor {}
+);
 
 impl MTLResidencySetDescriptor {
     extern_methods!(

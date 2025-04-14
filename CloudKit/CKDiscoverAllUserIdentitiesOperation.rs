@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CKOperation")]
-unsafe impl NSObjectProtocol for CKDiscoverAllUserIdentitiesOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKDiscoverAllUserIdentitiesOperation {}
+);
 
 #[cfg(feature = "CKOperation")]
 impl CKDiscoverAllUserIdentitiesOperation {

@@ -21,23 +21,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for SKStoreProductViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for SKStoreProductViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for SKStoreProductViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for SKStoreProductViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for SKStoreProductViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKStoreProductViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for SKStoreProductViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for SKStoreProductViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for SKStoreProductViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SKStoreProductViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

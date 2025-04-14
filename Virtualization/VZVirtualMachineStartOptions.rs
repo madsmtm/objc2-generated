@@ -17,7 +17,9 @@ extern_class!(
     pub struct VZVirtualMachineStartOptions;
 );
 
-unsafe impl NSObjectProtocol for VZVirtualMachineStartOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtualMachineStartOptions {}
+);
 
 impl VZVirtualMachineStartOptions {
     extern_methods!();

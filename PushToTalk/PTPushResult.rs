@@ -16,7 +16,9 @@ unsafe impl Send for PTPushResult {}
 
 unsafe impl Sync for PTPushResult {}
 
-unsafe impl NSObjectProtocol for PTPushResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PTPushResult {}
+);
 
 impl PTPushResult {
     extern_methods!(

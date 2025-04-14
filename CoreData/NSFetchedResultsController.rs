@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSFetchedResultsController<ResultType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchedResultsController<ResultType> {}
+extern_conformance!(
+    unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchedResultsController<ResultType> {}
+);
 
 impl<ResultType: Message> NSFetchedResultsController<ResultType> {
     extern_methods!(

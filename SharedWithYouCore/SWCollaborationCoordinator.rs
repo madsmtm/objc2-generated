@@ -13,7 +13,9 @@ extern_class!(
     pub struct SWCollaborationCoordinator;
 );
 
-unsafe impl NSObjectProtocol for SWCollaborationCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWCollaborationCoordinator {}
+);
 
 impl SWCollaborationCoordinator {
     extern_methods!(

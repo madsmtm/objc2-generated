@@ -22,7 +22,9 @@ extern_class!(
     pub struct CIImageProcessorKernel;
 );
 
-unsafe impl NSObjectProtocol for CIImageProcessorKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIImageProcessorKernel {}
+);
 
 impl CIImageProcessorKernel {
     extern_methods!(

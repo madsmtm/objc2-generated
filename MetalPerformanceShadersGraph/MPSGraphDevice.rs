@@ -38,7 +38,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphDevice {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphDevice {

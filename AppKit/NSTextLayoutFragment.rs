@@ -71,11 +71,17 @@ extern_class!(
     pub struct NSTextLayoutFragment;
 );
 
-unsafe impl NSCoding for NSTextLayoutFragment {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextLayoutFragment {}
+);
 
-unsafe impl NSObjectProtocol for NSTextLayoutFragment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextLayoutFragment {}
+);
 
-unsafe impl NSSecureCoding for NSTextLayoutFragment {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextLayoutFragment {}
+);
 
 impl NSTextLayoutFragment {
     extern_methods!(

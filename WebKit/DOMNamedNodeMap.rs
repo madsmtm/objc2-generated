@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSCopying for DOMNamedNodeMap {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMNamedNodeMap {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl CopyingHelper for DOMNamedNodeMap {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for DOMNamedNodeMap {
 }
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSObjectProtocol for DOMNamedNodeMap {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMNamedNodeMap {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMNamedNodeMap {

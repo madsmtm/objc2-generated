@@ -31,7 +31,9 @@ extern_class!(
     pub struct GKRuleSystem;
 );
 
-unsafe impl NSObjectProtocol for GKRuleSystem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKRuleSystem {}
+);
 
 impl GKRuleSystem {
     extern_methods!(
@@ -253,7 +255,9 @@ extern_class!(
     pub struct GKRule;
 );
 
-unsafe impl NSObjectProtocol for GKRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKRule {}
+);
 
 impl GKRule {
     extern_methods!(
@@ -350,7 +354,9 @@ extern_class!(
     pub struct GKNSPredicateRule;
 );
 
-unsafe impl NSObjectProtocol for GKNSPredicateRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKNSPredicateRule {}
+);
 
 impl GKNSPredicateRule {
     extern_methods!(

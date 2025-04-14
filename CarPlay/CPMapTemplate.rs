@@ -120,16 +120,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CPBarButtonProviding", feature = "CPTemplate"))]
-unsafe impl CPBarButtonProviding for CPMapTemplate {}
+extern_conformance!(
+    unsafe impl CPBarButtonProviding for CPMapTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSCoding for CPMapTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for CPMapTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSObjectProtocol for CPMapTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPMapTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSSecureCoding for CPMapTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPMapTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
 impl CPMapTemplate {

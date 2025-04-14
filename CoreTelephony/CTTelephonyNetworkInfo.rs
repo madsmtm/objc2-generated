@@ -99,7 +99,9 @@ extern_class!(
     pub struct CTTelephonyNetworkInfo;
 );
 
-unsafe impl NSObjectProtocol for CTTelephonyNetworkInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CTTelephonyNetworkInfo {}
+);
 
 impl CTTelephonyNetworkInfo {
     extern_methods!(

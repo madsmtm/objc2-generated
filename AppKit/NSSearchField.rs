@@ -48,7 +48,9 @@ extern_class!(
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -57,7 +59,9 @@ unsafe impl NSAccessibility for NSSearchField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -66,7 +70,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSearchField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityNavigableStaticText for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityNavigableStaticText for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -75,7 +81,9 @@ unsafe impl NSAccessibilityNavigableStaticText for NSSearchField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityStaticText for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityStaticText for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -84,7 +92,9 @@ unsafe impl NSAccessibilityStaticText for NSSearchField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -93,7 +103,9 @@ unsafe impl NSAnimatablePropertyContainer for NSSearchField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -101,7 +113,9 @@ unsafe impl NSAppearanceCustomization for NSSearchField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSCoding for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -110,7 +124,9 @@ unsafe impl NSCoding for NSSearchField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -118,7 +134,9 @@ unsafe impl NSDraggingDestination for NSSearchField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSObjectProtocol for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -127,7 +145,9 @@ unsafe impl NSObjectProtocol for NSSearchField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSTextContent for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSTextContent for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -136,7 +156,9 @@ unsafe impl NSTextContent for NSSearchField {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -145,7 +167,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSSearchField {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSSearchField {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSSearchField {}
+);
 
 #[cfg(all(
     feature = "NSControl",

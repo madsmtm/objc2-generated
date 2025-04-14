@@ -19,16 +19,22 @@ extern_class!(
     feature = "ASAuthorizationPublicKeyCredentialRegistrationRequest",
     feature = "ASAuthorizationRequest"
 ))]
-unsafe impl ASAuthorizationPublicKeyCredentialRegistrationRequest
-    for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationPublicKeyCredentialRegistrationRequest
+        for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
+    {
+    }
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl CopyingHelper for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
@@ -36,10 +42,14 @@ unsafe impl CopyingHelper for ASAuthorizationSecurityKeyPublicKeyCredentialRegis
 }
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
 impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
@@ -114,7 +124,9 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
     feature = "ASAuthorizationRequest",
     feature = "ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest"
 ))]
-unsafe impl ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest
-    for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest
+        for ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
+    {
+    }
+);

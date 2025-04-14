@@ -68,37 +68,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIDocumentMenuViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIDocumentMenuViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIDocumentMenuViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentMenuViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIDocumentMenuViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIDocumentMenuViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIDocumentMenuViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIDocumentMenuViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIDocumentMenuViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIDocumentMenuViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIDocumentMenuViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIDocumentMenuViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIDocumentMenuViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIDocumentMenuViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIDocumentMenuViewController {

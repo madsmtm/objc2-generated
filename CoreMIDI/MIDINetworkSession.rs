@@ -63,7 +63,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDINetworkHost {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDINetworkHost {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDINetworkHost {
@@ -148,7 +150,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDINetworkConnection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDINetworkConnection {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDINetworkConnection {
@@ -187,7 +191,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDINetworkSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDINetworkSession {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDINetworkSession {

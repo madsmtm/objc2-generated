@@ -14,7 +14,9 @@ extern_class!(
     pub struct MCNearbyServiceBrowser;
 );
 
-unsafe impl NSObjectProtocol for MCNearbyServiceBrowser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MCNearbyServiceBrowser {}
+);
 
 impl MCNearbyServiceBrowser {
     extern_methods!(

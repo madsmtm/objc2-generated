@@ -25,7 +25,9 @@ extern_class!(
     pub struct GKNoise;
 );
 
-unsafe impl NSObjectProtocol for GKNoise {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKNoise {}
+);
 
 impl GKNoise {
     extern_methods!(

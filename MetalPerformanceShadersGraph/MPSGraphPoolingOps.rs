@@ -74,7 +74,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphPooling2DOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphPooling2DOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphPooling2DOpDescriptor {
@@ -82,7 +84,9 @@ unsafe impl CopyingHelper for MPSGraphPooling2DOpDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphPooling2DOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphPooling2DOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphPooling2DOpDescriptor {
@@ -393,7 +397,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphPooling4DOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphPooling4DOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphPooling4DOpDescriptor {
@@ -401,7 +407,9 @@ unsafe impl CopyingHelper for MPSGraphPooling4DOpDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphPooling4DOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphPooling4DOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphPooling4DOpDescriptor {

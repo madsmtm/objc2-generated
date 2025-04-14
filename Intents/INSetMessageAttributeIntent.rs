@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INSetMessageAttributeIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INSetMessageAttributeIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INSetMessageAttributeIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INSetMessageAttributeIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INSetMessageAttributeIntent {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INSetMessageAttributeIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INSetMessageAttributeIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSetMessageAttributeIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INSetMessageAttributeIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSetMessageAttributeIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INSetMessageAttributeIntent {

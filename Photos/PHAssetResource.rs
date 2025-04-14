@@ -13,7 +13,9 @@ extern_class!(
     pub struct PHAssetResource;
 );
 
-unsafe impl NSObjectProtocol for PHAssetResource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHAssetResource {}
+);
 
 impl PHAssetResource {
     extern_methods!(

@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSAccessibilityCustomAction;
 );
 
-unsafe impl NSObjectProtocol for NSAccessibilityCustomAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAccessibilityCustomAction {}
+);
 
 impl NSAccessibilityCustomAction {
     extern_methods!(

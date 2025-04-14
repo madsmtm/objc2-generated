@@ -20,7 +20,9 @@ unsafe impl Send for HKHealthStore {}
 
 unsafe impl Sync for HKHealthStore {}
 
-unsafe impl NSObjectProtocol for HKHealthStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKHealthStore {}
+);
 
 impl HKHealthStore {
     extern_methods!(

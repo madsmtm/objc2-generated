@@ -24,10 +24,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CNPostalAddress")]
-unsafe impl NSCoding for CNMutablePostalAddress {}
+extern_conformance!(
+    unsafe impl NSCoding for CNMutablePostalAddress {}
+);
 
 #[cfg(feature = "CNPostalAddress")]
-unsafe impl NSCopying for CNMutablePostalAddress {}
+extern_conformance!(
+    unsafe impl NSCopying for CNMutablePostalAddress {}
+);
 
 #[cfg(feature = "CNPostalAddress")]
 unsafe impl CopyingHelper for CNMutablePostalAddress {
@@ -35,7 +39,9 @@ unsafe impl CopyingHelper for CNMutablePostalAddress {
 }
 
 #[cfg(feature = "CNPostalAddress")]
-unsafe impl NSMutableCopying for CNMutablePostalAddress {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CNMutablePostalAddress {}
+);
 
 #[cfg(feature = "CNPostalAddress")]
 unsafe impl MutableCopyingHelper for CNMutablePostalAddress {
@@ -43,10 +49,14 @@ unsafe impl MutableCopyingHelper for CNMutablePostalAddress {
 }
 
 #[cfg(feature = "CNPostalAddress")]
-unsafe impl NSObjectProtocol for CNMutablePostalAddress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNMutablePostalAddress {}
+);
 
 #[cfg(feature = "CNPostalAddress")]
-unsafe impl NSSecureCoding for CNMutablePostalAddress {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNMutablePostalAddress {}
+);
 
 #[cfg(feature = "CNPostalAddress")]
 impl CNMutablePostalAddress {

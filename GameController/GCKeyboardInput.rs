@@ -42,7 +42,9 @@ extern_class!(
 );
 
 #[cfg(feature = "GCPhysicalInputProfile")]
-unsafe impl NSObjectProtocol for GCKeyboardInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCKeyboardInput {}
+);
 
 #[cfg(feature = "GCPhysicalInputProfile")]
 impl GCKeyboardInput {

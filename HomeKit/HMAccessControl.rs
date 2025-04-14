@@ -18,7 +18,9 @@ unsafe impl Send for HMAccessControl {}
 
 unsafe impl Sync for HMAccessControl {}
 
-unsafe impl NSObjectProtocol for HMAccessControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMAccessControl {}
+);
 
 impl HMAccessControl {
     extern_methods!(

@@ -12,7 +12,9 @@ extern_class!(
     pub struct PKObject;
 );
 
-unsafe impl NSObjectProtocol for PKObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKObject {}
+);
 
 impl PKObject {
     extern_methods!();

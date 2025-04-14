@@ -15,19 +15,33 @@ extern_class!(
     pub struct TVDigitEntryViewController;
 );
 
-unsafe impl NSCoding for TVDigitEntryViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for TVDigitEntryViewController {}
+);
 
-unsafe impl NSObjectProtocol for TVDigitEntryViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVDigitEntryViewController {}
+);
 
-unsafe impl UIAppearanceContainer for TVDigitEntryViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVDigitEntryViewController {}
+);
 
-unsafe impl UIContentContainer for TVDigitEntryViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for TVDigitEntryViewController {}
+);
 
-unsafe impl UIFocusEnvironment for TVDigitEntryViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVDigitEntryViewController {}
+);
 
-unsafe impl UIResponderStandardEditActions for TVDigitEntryViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVDigitEntryViewController {}
+);
 
-unsafe impl UITraitEnvironment for TVDigitEntryViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVDigitEntryViewController {}
+);
 
 impl TVDigitEntryViewController {
     extern_methods!(

@@ -14,7 +14,9 @@ extern_class!(
     pub struct NLLanguageRecognizer;
 );
 
-unsafe impl NSObjectProtocol for NLLanguageRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NLLanguageRecognizer {}
+);
 
 impl NLLanguageRecognizer {
     extern_methods!(

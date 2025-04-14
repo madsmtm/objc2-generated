@@ -20,7 +20,9 @@ extern_class!(
     pub struct UITextCursorDropPositionAnimator;
 );
 
-unsafe impl NSObjectProtocol for UITextCursorDropPositionAnimator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextCursorDropPositionAnimator {}
+);
 
 impl UITextCursorDropPositionAnimator {
     extern_methods!(

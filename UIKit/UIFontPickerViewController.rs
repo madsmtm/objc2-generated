@@ -42,37 +42,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIFontPickerViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIFontPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIFontPickerViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFontPickerViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIFontPickerViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIFontPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIFontPickerViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIFontPickerViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIFontPickerViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIFontPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIFontPickerViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIFontPickerViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIFontPickerViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIFontPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIFontPickerViewController {

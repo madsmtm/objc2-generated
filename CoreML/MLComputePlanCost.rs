@@ -19,7 +19,9 @@ unsafe impl Send for MLComputePlanCost {}
 
 unsafe impl Sync for MLComputePlanCost {}
 
-unsafe impl NSObjectProtocol for MLComputePlanCost {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLComputePlanCost {}
+);
 
 impl MLComputePlanCost {
     extern_methods!(

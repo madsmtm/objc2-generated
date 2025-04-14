@@ -240,11 +240,17 @@ extern_class!(
     pub struct IMKInputController;
 );
 
-unsafe impl IMKMouseHandling for IMKInputController {}
+extern_conformance!(
+    unsafe impl IMKMouseHandling for IMKInputController {}
+);
 
-unsafe impl IMKStateSetting for IMKInputController {}
+extern_conformance!(
+    unsafe impl IMKStateSetting for IMKInputController {}
+);
 
-unsafe impl NSObjectProtocol for IMKInputController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IMKInputController {}
+);
 
 impl IMKInputController {
     extern_methods!(

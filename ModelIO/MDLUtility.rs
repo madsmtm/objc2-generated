@@ -14,7 +14,9 @@ extern_class!(
     pub struct MDLUtility;
 );
 
-unsafe impl NSObjectProtocol for MDLUtility {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLUtility {}
+);
 
 impl MDLUtility {
     extern_methods!(

@@ -16,19 +16,25 @@ extern_class!(
     pub struct AVAudioMix;
 );
 
-unsafe impl NSCopying for AVAudioMix {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAudioMix {}
+);
 
 unsafe impl CopyingHelper for AVAudioMix {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVAudioMix {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVAudioMix {}
+);
 
 unsafe impl MutableCopyingHelper for AVAudioMix {
     type Result = AVMutableAudioMix;
 }
 
-unsafe impl NSObjectProtocol for AVAudioMix {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioMix {}
+);
 
 impl AVAudioMix {
     extern_methods!(
@@ -58,19 +64,25 @@ extern_class!(
     pub struct AVMutableAudioMix;
 );
 
-unsafe impl NSCopying for AVMutableAudioMix {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableAudioMix {}
+);
 
 unsafe impl CopyingHelper for AVMutableAudioMix {
     type Result = AVAudioMix;
 }
 
-unsafe impl NSMutableCopying for AVMutableAudioMix {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableAudioMix {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableAudioMix {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableAudioMix {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableAudioMix {}
+);
 
 impl AVMutableAudioMix {
     extern_methods!(
@@ -115,19 +127,25 @@ extern_class!(
     pub struct AVAudioMixInputParameters;
 );
 
-unsafe impl NSCopying for AVAudioMixInputParameters {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAudioMixInputParameters {}
+);
 
 unsafe impl CopyingHelper for AVAudioMixInputParameters {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVAudioMixInputParameters {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVAudioMixInputParameters {}
+);
 
 unsafe impl MutableCopyingHelper for AVAudioMixInputParameters {
     type Result = AVMutableAudioMixInputParameters;
 }
 
-unsafe impl NSObjectProtocol for AVAudioMixInputParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioMixInputParameters {}
+);
 
 impl AVAudioMixInputParameters {
     extern_methods!(
@@ -180,19 +198,25 @@ extern_class!(
     pub struct AVMutableAudioMixInputParameters;
 );
 
-unsafe impl NSCopying for AVMutableAudioMixInputParameters {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableAudioMixInputParameters {}
+);
 
 unsafe impl CopyingHelper for AVMutableAudioMixInputParameters {
     type Result = AVAudioMixInputParameters;
 }
 
-unsafe impl NSMutableCopying for AVMutableAudioMixInputParameters {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableAudioMixInputParameters {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableAudioMixInputParameters {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableAudioMixInputParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableAudioMixInputParameters {}
+);
 
 impl AVMutableAudioMixInputParameters {
     extern_methods!(

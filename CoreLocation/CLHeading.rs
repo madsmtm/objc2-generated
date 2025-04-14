@@ -23,17 +23,25 @@ extern_class!(
     pub struct CLHeading;
 );
 
-unsafe impl NSCoding for CLHeading {}
+extern_conformance!(
+    unsafe impl NSCoding for CLHeading {}
+);
 
-unsafe impl NSCopying for CLHeading {}
+extern_conformance!(
+    unsafe impl NSCopying for CLHeading {}
+);
 
 unsafe impl CopyingHelper for CLHeading {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLHeading {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLHeading {}
+);
 
-unsafe impl NSSecureCoding for CLHeading {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLHeading {}
+);
 
 impl CLHeading {
     extern_methods!(

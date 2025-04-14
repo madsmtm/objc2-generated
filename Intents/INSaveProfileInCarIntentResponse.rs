@@ -51,10 +51,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSaveProfileInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSaveProfileInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSaveProfileInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSaveProfileInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSaveProfileInCarIntentResponse {
@@ -62,10 +66,14 @@ unsafe impl CopyingHelper for INSaveProfileInCarIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSaveProfileInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSaveProfileInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSaveProfileInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSaveProfileInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSaveProfileInCarIntentResponse {

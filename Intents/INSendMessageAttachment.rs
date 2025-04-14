@@ -12,7 +12,9 @@ extern_class!(
     pub struct INSendMessageAttachment;
 );
 
-unsafe impl NSObjectProtocol for INSendMessageAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSendMessageAttachment {}
+);
 
 impl INSendMessageAttachment {
     extern_methods!(

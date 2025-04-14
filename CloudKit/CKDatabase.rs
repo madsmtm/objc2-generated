@@ -40,7 +40,9 @@ unsafe impl Send for CKDatabase {}
 
 unsafe impl Sync for CKDatabase {}
 
-unsafe impl NSObjectProtocol for CKDatabase {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKDatabase {}
+);
 
 impl CKDatabase {
     extern_methods!(

@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceSeparator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceSeparator {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceSeparator {

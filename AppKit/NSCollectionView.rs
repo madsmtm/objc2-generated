@@ -186,17 +186,23 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSCoding for NSCollectionViewItem {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCollectionViewItem {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSViewController"
 ))]
-unsafe impl NSCollectionViewElement for NSCollectionViewItem {}
+extern_conformance!(
+    unsafe impl NSCollectionViewElement for NSCollectionViewItem {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSCopying for NSCollectionViewItem {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCollectionViewItem {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
 unsafe impl CopyingHelper for NSCollectionViewItem {
@@ -208,24 +214,32 @@ unsafe impl CopyingHelper for NSCollectionViewItem {
     feature = "NSResponder",
     feature = "NSViewController"
 ))]
-unsafe impl NSEditor for NSCollectionViewItem {}
+extern_conformance!(
+    unsafe impl NSEditor for NSCollectionViewItem {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSObjectProtocol for NSCollectionViewItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCollectionViewItem {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSStoryboardSegue",
     feature = "NSViewController"
 ))]
-unsafe impl NSSeguePerforming for NSCollectionViewItem {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for NSCollectionViewItem {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSViewController"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSCollectionViewItem {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSCollectionViewItem {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
 impl NSCollectionViewItem {
@@ -340,39 +354,57 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSCollectionView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSCollectionView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSCollectionView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSCollectionView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSCollectionView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSCollectionView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSCollectionView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSCollectionView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSCollectionView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCollectionView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSCollectionView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSCollectionView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingSource for NSCollectionView {}
+extern_conformance!(
+    unsafe impl NSDraggingSource for NSCollectionView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSCollectionView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCollectionView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSCollectionView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSCollectionView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSCollectionView {

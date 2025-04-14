@@ -13,7 +13,9 @@ extern_class!(
     pub struct GKBasePlayer;
 );
 
-unsafe impl NSObjectProtocol for GKBasePlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKBasePlayer {}
+);
 
 impl GKBasePlayer {
     extern_methods!(

@@ -119,10 +119,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSSVGF {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSSVGF {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSSVGF {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSSVGF {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSSVGF {
@@ -130,10 +134,14 @@ unsafe impl CopyingHelper for MPSSVGF {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSSVGF {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSSVGF {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSSVGF {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSSVGF {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSSVGF {
@@ -879,9 +887,13 @@ extern_class!(
     pub struct MPSSVGFDefaultTextureAllocator;
 );
 
-unsafe impl MPSSVGFTextureAllocator for MPSSVGFDefaultTextureAllocator {}
+extern_conformance!(
+    unsafe impl MPSSVGFTextureAllocator for MPSSVGFDefaultTextureAllocator {}
+);
 
-unsafe impl NSObjectProtocol for MPSSVGFDefaultTextureAllocator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSSVGFDefaultTextureAllocator {}
+);
 
 impl MPSSVGFDefaultTextureAllocator {
     extern_methods!(
@@ -984,7 +996,9 @@ extern_class!(
     pub struct MPSSVGFDenoiser;
 );
 
-unsafe impl NSObjectProtocol for MPSSVGFDenoiser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSSVGFDenoiser {}
+);
 
 impl MPSSVGFDenoiser {
     extern_methods!(

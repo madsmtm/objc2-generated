@@ -16,11 +16,17 @@ extern_class!(
     pub struct NSTextContainer;
 );
 
-unsafe impl NSCoding for NSTextContainer {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextContainer {}
+);
 
-unsafe impl NSObjectProtocol for NSTextContainer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextContainer {}
+);
 
-unsafe impl NSSecureCoding for NSTextContainer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextContainer {}
+);
 
 impl NSTextContainer {
     extern_methods!(
@@ -165,4 +171,6 @@ impl NSTextContainer {
 }
 
 #[cfg(feature = "NSLayoutManager")]
-unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
+extern_conformance!(
+    unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
+);

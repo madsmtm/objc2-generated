@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSObjectProtocol for EKCalendar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKCalendar {}
+);
 
 #[cfg(feature = "EKObject")]
 impl EKCalendar {

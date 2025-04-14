@@ -18,7 +18,9 @@ unsafe impl Send for HKQuery {}
 
 unsafe impl Sync for HKQuery {}
 
-unsafe impl NSObjectProtocol for HKQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKQuery {}
+);
 
 impl HKQuery {
     extern_methods!(

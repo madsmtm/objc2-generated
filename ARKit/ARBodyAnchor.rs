@@ -28,16 +28,24 @@ unsafe impl Send for ARBodyAnchor {}
 unsafe impl Sync for ARBodyAnchor {}
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl ARAnchorCopying for ARBodyAnchor {}
+extern_conformance!(
+    unsafe impl ARAnchorCopying for ARBodyAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-unsafe impl ARTrackable for ARBodyAnchor {}
+extern_conformance!(
+    unsafe impl ARTrackable for ARBodyAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARBodyAnchor {}
+extern_conformance!(
+    unsafe impl NSCoding for ARBodyAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARBodyAnchor {}
+extern_conformance!(
+    unsafe impl NSCopying for ARBodyAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARBodyAnchor {
@@ -45,10 +53,14 @@ unsafe impl CopyingHelper for ARBodyAnchor {
 }
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-unsafe impl NSObjectProtocol for ARBodyAnchor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARBodyAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARBodyAnchor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARBodyAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
 impl ARBodyAnchor {

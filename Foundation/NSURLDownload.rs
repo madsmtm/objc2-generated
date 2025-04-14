@@ -17,7 +17,9 @@ extern_class!(
     pub struct NSURLDownload;
 );
 
-unsafe impl NSObjectProtocol for NSURLDownload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLDownload {}
+);
 
 impl NSURLDownload {
     extern_methods!(

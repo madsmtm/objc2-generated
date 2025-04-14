@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CLRegion")]
-unsafe impl NSCoding for CLCircularRegion {}
+extern_conformance!(
+    unsafe impl NSCoding for CLCircularRegion {}
+);
 
 #[cfg(feature = "CLRegion")]
-unsafe impl NSCopying for CLCircularRegion {}
+extern_conformance!(
+    unsafe impl NSCopying for CLCircularRegion {}
+);
 
 #[cfg(feature = "CLRegion")]
 unsafe impl CopyingHelper for CLCircularRegion {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for CLCircularRegion {
 }
 
 #[cfg(feature = "CLRegion")]
-unsafe impl NSObjectProtocol for CLCircularRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLCircularRegion {}
+);
 
 #[cfg(feature = "CLRegion")]
-unsafe impl NSSecureCoding for CLCircularRegion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLCircularRegion {}
+);
 
 #[cfg(feature = "CLRegion")]
 impl CLCircularRegion {

@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PDFAction")]
-unsafe impl NSCopying for PDFActionURL {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFActionURL {}
+);
 
 #[cfg(feature = "PDFAction")]
 unsafe impl CopyingHelper for PDFActionURL {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for PDFActionURL {
 }
 
 #[cfg(feature = "PDFAction")]
-unsafe impl NSObjectProtocol for PDFActionURL {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFActionURL {}
+);
 
 #[cfg(feature = "PDFAction")]
 impl PDFActionURL {

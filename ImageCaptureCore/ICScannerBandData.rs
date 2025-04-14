@@ -13,7 +13,9 @@ extern_class!(
     pub struct ICScannerBandData;
 );
 
-unsafe impl NSObjectProtocol for ICScannerBandData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerBandData {}
+);
 
 impl ICScannerBandData {
     extern_methods!(

@@ -43,7 +43,9 @@ unsafe impl Send for NSOperation {}
 
 unsafe impl Sync for NSOperation {}
 
-unsafe impl NSObjectProtocol for NSOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSOperation {}
+);
 
 impl NSOperation {
     extern_methods!(
@@ -182,7 +184,9 @@ unsafe impl Send for NSBlockOperation {}
 
 unsafe impl Sync for NSBlockOperation {}
 
-unsafe impl NSObjectProtocol for NSBlockOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBlockOperation {}
+);
 
 impl NSBlockOperation {
     extern_methods!(
@@ -219,7 +223,9 @@ extern_class!(
     pub struct NSInvocationOperation;
 );
 
-unsafe impl NSObjectProtocol for NSInvocationOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSInvocationOperation {}
+);
 
 impl NSInvocationOperation {
     extern_methods!(
@@ -290,10 +296,14 @@ unsafe impl Send for NSOperationQueue {}
 
 unsafe impl Sync for NSOperationQueue {}
 
-unsafe impl NSObjectProtocol for NSOperationQueue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSOperationQueue {}
+);
 
 #[cfg(feature = "NSProgress")]
-unsafe impl NSProgressReporting for NSOperationQueue {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for NSOperationQueue {}
+);
 
 impl NSOperationQueue {
     extern_methods!(

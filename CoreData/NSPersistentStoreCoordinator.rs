@@ -258,9 +258,13 @@ unsafe impl Send for NSPersistentStoreCoordinator {}
 
 unsafe impl Sync for NSPersistentStoreCoordinator {}
 
-unsafe impl NSLocking for NSPersistentStoreCoordinator {}
+extern_conformance!(
+    unsafe impl NSLocking for NSPersistentStoreCoordinator {}
+);
 
-unsafe impl NSObjectProtocol for NSPersistentStoreCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentStoreCoordinator {}
+);
 
 impl NSPersistentStoreCoordinator {
     extern_methods!(

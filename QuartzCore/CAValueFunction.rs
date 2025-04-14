@@ -17,11 +17,17 @@ extern_class!(
     pub struct CAValueFunction;
 );
 
-unsafe impl NSCoding for CAValueFunction {}
+extern_conformance!(
+    unsafe impl NSCoding for CAValueFunction {}
+);
 
-unsafe impl NSObjectProtocol for CAValueFunction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAValueFunction {}
+);
 
-unsafe impl NSSecureCoding for CAValueFunction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAValueFunction {}
+);
 
 impl CAValueFunction {
     extern_methods!(

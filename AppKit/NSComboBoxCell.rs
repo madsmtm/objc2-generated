@@ -27,7 +27,9 @@ extern_class!(
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSAccessibility for NSComboBoxCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSComboBoxCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -35,21 +37,27 @@ unsafe impl NSAccessibility for NSComboBoxCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSComboBoxCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSComboBoxCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSCoding for NSComboBoxCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSComboBoxCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSCopying for NSComboBoxCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSComboBoxCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -65,7 +73,9 @@ unsafe impl CopyingHelper for NSComboBoxCell {
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSObjectProtocol for NSComboBoxCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSComboBoxCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -73,7 +83,9 @@ unsafe impl NSObjectProtocol for NSComboBoxCell {}
     feature = "NSTextFieldCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSComboBoxCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSComboBoxCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",

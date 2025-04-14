@@ -75,7 +75,9 @@ extern_class!(
     pub struct NSGraphicsContext;
 );
 
-unsafe impl NSObjectProtocol for NSGraphicsContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGraphicsContext {}
+);
 
 impl NSGraphicsContext {
     extern_methods!(

@@ -18,7 +18,9 @@ extern_class!(
     pub struct CNContactVCardSerialization;
 );
 
-unsafe impl NSObjectProtocol for CNContactVCardSerialization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContactVCardSerialization {}
+);
 
 impl CNContactVCardSerialization {
     extern_methods!(

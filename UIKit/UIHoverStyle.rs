@@ -18,13 +18,17 @@ extern_class!(
     pub struct UIHoverStyle;
 );
 
-unsafe impl NSCopying for UIHoverStyle {}
+extern_conformance!(
+    unsafe impl NSCopying for UIHoverStyle {}
+);
 
 unsafe impl CopyingHelper for UIHoverStyle {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIHoverStyle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIHoverStyle {}
+);
 
 impl UIHoverStyle {
     extern_methods!(

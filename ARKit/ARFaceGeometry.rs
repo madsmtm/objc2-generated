@@ -29,10 +29,14 @@ unsafe impl Send for ARFaceGeometry {}
 unsafe impl Sync for ARFaceGeometry {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARFaceGeometry {}
+extern_conformance!(
+    unsafe impl NSCoding for ARFaceGeometry {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARFaceGeometry {}
+extern_conformance!(
+    unsafe impl NSCopying for ARFaceGeometry {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARFaceGeometry {
@@ -40,10 +44,14 @@ unsafe impl CopyingHelper for ARFaceGeometry {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARFaceGeometry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARFaceGeometry {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARFaceGeometry {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARFaceGeometry {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARFaceGeometry {

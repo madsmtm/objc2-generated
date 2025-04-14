@@ -23,7 +23,9 @@ unsafe impl Send for HMCameraSnapshot {}
 unsafe impl Sync for HMCameraSnapshot {}
 
 #[cfg(feature = "HMCameraSource")]
-unsafe impl NSObjectProtocol for HMCameraSnapshot {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCameraSnapshot {}
+);
 
 #[cfg(feature = "HMCameraSource")]
 impl HMCameraSnapshot {

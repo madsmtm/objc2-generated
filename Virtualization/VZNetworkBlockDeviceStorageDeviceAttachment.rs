@@ -59,7 +59,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZStorageDeviceAttachment")]
-unsafe impl NSObjectProtocol for VZNetworkBlockDeviceStorageDeviceAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZNetworkBlockDeviceStorageDeviceAttachment {}
+);
 
 #[cfg(feature = "VZStorageDeviceAttachment")]
 impl VZNetworkBlockDeviceStorageDeviceAttachment {

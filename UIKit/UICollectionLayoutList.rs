@@ -142,13 +142,17 @@ extern_class!(
     pub struct UICollectionLayoutListConfiguration;
 );
 
-unsafe impl NSCopying for UICollectionLayoutListConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UICollectionLayoutListConfiguration {}
+);
 
 unsafe impl CopyingHelper for UICollectionLayoutListConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICollectionLayoutListConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionLayoutListConfiguration {}
+);
 
 impl UICollectionLayoutListConfiguration {
     extern_methods!(

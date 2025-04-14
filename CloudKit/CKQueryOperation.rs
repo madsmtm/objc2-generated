@@ -14,17 +14,25 @@ extern_class!(
     pub struct CKQueryCursor;
 );
 
-unsafe impl NSCoding for CKQueryCursor {}
+extern_conformance!(
+    unsafe impl NSCoding for CKQueryCursor {}
+);
 
-unsafe impl NSCopying for CKQueryCursor {}
+extern_conformance!(
+    unsafe impl NSCopying for CKQueryCursor {}
+);
 
 unsafe impl CopyingHelper for CKQueryCursor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKQueryCursor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKQueryCursor {}
+);
 
-unsafe impl NSSecureCoding for CKQueryCursor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKQueryCursor {}
+);
 
 impl CKQueryCursor {
     extern_methods!(
@@ -55,7 +63,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-unsafe impl NSObjectProtocol for CKQueryOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKQueryOperation {}
+);
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 impl CKQueryOperation {

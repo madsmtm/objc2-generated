@@ -41,17 +41,25 @@ unsafe impl Send for CMOdometerData {}
 
 unsafe impl Sync for CMOdometerData {}
 
-unsafe impl NSCoding for CMOdometerData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMOdometerData {}
+);
 
-unsafe impl NSCopying for CMOdometerData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMOdometerData {}
+);
 
 unsafe impl CopyingHelper for CMOdometerData {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMOdometerData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMOdometerData {}
+);
 
-unsafe impl NSSecureCoding for CMOdometerData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMOdometerData {}
+);
 
 impl CMOdometerData {
     extern_methods!(

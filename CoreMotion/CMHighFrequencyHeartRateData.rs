@@ -40,10 +40,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCoding for CMHighFrequencyHeartRateData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMHighFrequencyHeartRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCopying for CMHighFrequencyHeartRateData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMHighFrequencyHeartRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl CopyingHelper for CMHighFrequencyHeartRateData {
@@ -51,10 +55,14 @@ unsafe impl CopyingHelper for CMHighFrequencyHeartRateData {
 }
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSObjectProtocol for CMHighFrequencyHeartRateData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMHighFrequencyHeartRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSSecureCoding for CMHighFrequencyHeartRateData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMHighFrequencyHeartRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 impl CMHighFrequencyHeartRateData {

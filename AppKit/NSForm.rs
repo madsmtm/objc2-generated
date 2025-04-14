@@ -30,7 +30,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSForm {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -39,7 +41,9 @@ unsafe impl NSAccessibility for NSForm {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSForm {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -48,7 +52,9 @@ unsafe impl NSAccessibilityElementProtocol for NSForm {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSForm {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -57,7 +63,9 @@ unsafe impl NSAnimatablePropertyContainer for NSForm {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSForm {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -65,7 +73,9 @@ unsafe impl NSAppearanceCustomization for NSForm {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSCoding for NSForm {}
+extern_conformance!(
+    unsafe impl NSCoding for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -74,7 +84,9 @@ unsafe impl NSCoding for NSForm {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSForm {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -82,7 +94,9 @@ unsafe impl NSDraggingDestination for NSForm {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSObjectProtocol for NSForm {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -91,7 +105,9 @@ unsafe impl NSObjectProtocol for NSForm {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSForm {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -100,7 +116,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSForm {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSForm {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -108,7 +126,9 @@ unsafe impl NSUserInterfaceValidations for NSForm {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSViewToolTipOwner for NSForm {}
+extern_conformance!(
+    unsafe impl NSViewToolTipOwner for NSForm {}
+);
 
 #[cfg(all(
     feature = "NSControl",

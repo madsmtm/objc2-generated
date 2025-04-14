@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSListFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSListFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSListFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSListFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSListFormatter {
@@ -26,7 +30,9 @@ unsafe impl CopyingHelper for NSListFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSListFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSListFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSListFormatter {

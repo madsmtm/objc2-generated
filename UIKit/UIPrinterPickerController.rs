@@ -95,7 +95,9 @@ extern_class!(
     pub struct UIPrinterPickerController;
 );
 
-unsafe impl NSObjectProtocol for UIPrinterPickerController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPrinterPickerController {}
+);
 
 impl UIPrinterPickerController {
     extern_methods!(

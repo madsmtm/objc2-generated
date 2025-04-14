@@ -17,13 +17,17 @@ extern_class!(
     pub struct WKSnapshotConfiguration;
 );
 
-unsafe impl NSCopying for WKSnapshotConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for WKSnapshotConfiguration {}
+);
 
 unsafe impl CopyingHelper for WKSnapshotConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WKSnapshotConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKSnapshotConfiguration {}
+);
 
 impl WKSnapshotConfiguration {
     extern_methods!(

@@ -103,7 +103,9 @@ extern_class!(
     pub struct NSAccessibilityCustomRotor;
 );
 
-unsafe impl NSObjectProtocol for NSAccessibilityCustomRotor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAccessibilityCustomRotor {}
+);
 
 impl NSAccessibilityCustomRotor {
     extern_methods!(
@@ -223,7 +225,9 @@ extern_class!(
     pub struct NSAccessibilityCustomRotorSearchParameters;
 );
 
-unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorSearchParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorSearchParameters {}
+);
 
 impl NSAccessibilityCustomRotorSearchParameters {
     extern_methods!(
@@ -294,7 +298,9 @@ extern_class!(
     pub struct NSAccessibilityCustomRotorItemResult;
 );
 
-unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorItemResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorItemResult {}
+);
 
 impl NSAccessibilityCustomRotorItemResult {
     extern_methods!(

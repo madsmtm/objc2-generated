@@ -17,11 +17,17 @@ extern_class!(
     pub struct MXCallStackTree;
 );
 
-unsafe impl NSCoding for MXCallStackTree {}
+extern_conformance!(
+    unsafe impl NSCoding for MXCallStackTree {}
+);
 
-unsafe impl NSObjectProtocol for MXCallStackTree {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXCallStackTree {}
+);
 
-unsafe impl NSSecureCoding for MXCallStackTree {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXCallStackTree {}
+);
 
 impl MXCallStackTree {
     extern_methods!(

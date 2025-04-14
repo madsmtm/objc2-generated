@@ -24,21 +24,37 @@ extern_class!(
     pub struct IKFilterBrowserView;
 );
 
-unsafe impl NSAccessibility for IKFilterBrowserView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IKFilterBrowserView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IKFilterBrowserView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IKFilterBrowserView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IKFilterBrowserView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IKFilterBrowserView {}
+);
 
-unsafe impl NSAppearanceCustomization for IKFilterBrowserView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IKFilterBrowserView {}
+);
 
-unsafe impl NSCoding for IKFilterBrowserView {}
+extern_conformance!(
+    unsafe impl NSCoding for IKFilterBrowserView {}
+);
 
-unsafe impl NSDraggingDestination for IKFilterBrowserView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for IKFilterBrowserView {}
+);
 
-unsafe impl NSObjectProtocol for IKFilterBrowserView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKFilterBrowserView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IKFilterBrowserView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IKFilterBrowserView {}
+);
 
 impl IKFilterBrowserView {
     extern_methods!(

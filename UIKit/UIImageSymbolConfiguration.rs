@@ -95,10 +95,14 @@ unsafe impl Send for UIImageSymbolConfiguration {}
 unsafe impl Sync for UIImageSymbolConfiguration {}
 
 #[cfg(feature = "UIImageConfiguration")]
-unsafe impl NSCoding for UIImageSymbolConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UIImageSymbolConfiguration {}
+);
 
 #[cfg(feature = "UIImageConfiguration")]
-unsafe impl NSCopying for UIImageSymbolConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UIImageSymbolConfiguration {}
+);
 
 #[cfg(feature = "UIImageConfiguration")]
 unsafe impl CopyingHelper for UIImageSymbolConfiguration {
@@ -106,10 +110,14 @@ unsafe impl CopyingHelper for UIImageSymbolConfiguration {
 }
 
 #[cfg(feature = "UIImageConfiguration")]
-unsafe impl NSObjectProtocol for UIImageSymbolConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIImageSymbolConfiguration {}
+);
 
 #[cfg(feature = "UIImageConfiguration")]
-unsafe impl NSSecureCoding for UIImageSymbolConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIImageSymbolConfiguration {}
+);
 
 #[cfg(feature = "UIImageConfiguration")]
 impl UIImageSymbolConfiguration {

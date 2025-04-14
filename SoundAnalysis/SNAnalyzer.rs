@@ -20,7 +20,9 @@ extern_class!(
     pub struct SNAudioStreamAnalyzer;
 );
 
-unsafe impl NSObjectProtocol for SNAudioStreamAnalyzer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SNAudioStreamAnalyzer {}
+);
 
 impl SNAudioStreamAnalyzer {
     extern_methods!(
@@ -119,7 +121,9 @@ extern_class!(
     pub struct SNAudioFileAnalyzer;
 );
 
-unsafe impl NSObjectProtocol for SNAudioFileAnalyzer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SNAudioFileAnalyzer {}
+);
 
 impl SNAudioFileAnalyzer {
     extern_methods!(

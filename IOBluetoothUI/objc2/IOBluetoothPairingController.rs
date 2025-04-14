@@ -24,11 +24,17 @@ extern_class!(
     pub struct IOBluetoothPairingController;
 );
 
-unsafe impl NSCoding for IOBluetoothPairingController {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothPairingController {}
+);
 
-unsafe impl NSObjectProtocol for IOBluetoothPairingController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothPairingController {}
+);
 
-unsafe impl NSSeguePerforming for IOBluetoothPairingController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for IOBluetoothPairingController {}
+);
 
 impl IOBluetoothPairingController {
     extern_methods!(

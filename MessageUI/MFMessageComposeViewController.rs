@@ -128,25 +128,39 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for MFMessageComposeViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for MFMessageComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for MFMessageComposeViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MFMessageComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for MFMessageComposeViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for MFMessageComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for MFMessageComposeViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for MFMessageComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for MFMessageComposeViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for MFMessageComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for MFMessageComposeViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for MFMessageComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for MFMessageComposeViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for MFMessageComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl MFMessageComposeViewController {

@@ -51,7 +51,9 @@ unsafe impl Send for NSHTTPCookieStorage {}
 
 unsafe impl Sync for NSHTTPCookieStorage {}
 
-unsafe impl NSObjectProtocol for NSHTTPCookieStorage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSHTTPCookieStorage {}
+);
 
 impl NSHTTPCookieStorage {
     extern_methods!(

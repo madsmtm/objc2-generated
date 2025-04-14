@@ -49,17 +49,25 @@ extern_class!(
     pub struct UICommandAlternate;
 );
 
-unsafe impl NSCoding for UICommandAlternate {}
+extern_conformance!(
+    unsafe impl NSCoding for UICommandAlternate {}
+);
 
-unsafe impl NSCopying for UICommandAlternate {}
+extern_conformance!(
+    unsafe impl NSCopying for UICommandAlternate {}
+);
 
 unsafe impl CopyingHelper for UICommandAlternate {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICommandAlternate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICommandAlternate {}
+);
 
-unsafe impl NSSecureCoding for UICommandAlternate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICommandAlternate {}
+);
 
 impl UICommandAlternate {
     extern_methods!(
@@ -126,10 +134,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSCoding for UICommand {}
+extern_conformance!(
+    unsafe impl NSCoding for UICommand {}
+);
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSCopying for UICommand {}
+extern_conformance!(
+    unsafe impl NSCopying for UICommand {}
+);
 
 #[cfg(feature = "UIMenuElement")]
 unsafe impl CopyingHelper for UICommand {
@@ -137,13 +149,19 @@ unsafe impl CopyingHelper for UICommand {
 }
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSObjectProtocol for UICommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICommand {}
+);
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSSecureCoding for UICommand {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICommand {}
+);
 
 #[cfg(all(feature = "UIMenuElement", feature = "UIMenuLeaf"))]
-unsafe impl UIMenuLeaf for UICommand {}
+extern_conformance!(
+    unsafe impl UIMenuLeaf for UICommand {}
+);
 
 #[cfg(feature = "UIMenuElement")]
 impl UICommand {

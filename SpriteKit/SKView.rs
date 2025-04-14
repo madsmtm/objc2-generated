@@ -23,39 +23,57 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for SKView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for SKView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for SKView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for SKView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for SKView {}
+extern_conformance!(
+    unsafe impl NSCoding for SKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for SKView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for SKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for SKView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSecureCoding for SKView {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for SKView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

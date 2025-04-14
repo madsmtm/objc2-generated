@@ -22,10 +22,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageStatisticsMinAndMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageStatisticsMinAndMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageStatisticsMinAndMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageStatisticsMinAndMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageStatisticsMinAndMax {
@@ -33,10 +37,14 @@ unsafe impl CopyingHelper for MPSImageStatisticsMinAndMax {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageStatisticsMinAndMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageStatisticsMinAndMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageStatisticsMinAndMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageStatisticsMinAndMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageStatisticsMinAndMax {
@@ -143,10 +151,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageStatisticsMeanAndVariance {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageStatisticsMeanAndVariance {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageStatisticsMeanAndVariance {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageStatisticsMeanAndVariance {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageStatisticsMeanAndVariance {
@@ -154,10 +166,14 @@ unsafe impl CopyingHelper for MPSImageStatisticsMeanAndVariance {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageStatisticsMeanAndVariance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageStatisticsMeanAndVariance {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageStatisticsMeanAndVariance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageStatisticsMeanAndVariance {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageStatisticsMeanAndVariance {
@@ -261,10 +277,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageStatisticsMean {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageStatisticsMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageStatisticsMean {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageStatisticsMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageStatisticsMean {
@@ -272,10 +292,14 @@ unsafe impl CopyingHelper for MPSImageStatisticsMean {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageStatisticsMean {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageStatisticsMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageStatisticsMean {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageStatisticsMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageStatisticsMean {

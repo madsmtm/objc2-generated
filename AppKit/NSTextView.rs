@@ -70,7 +70,9 @@ extern_class!(
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSTextView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -78,7 +80,9 @@ unsafe impl NSAccessibility for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSTextView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -86,7 +90,9 @@ unsafe impl NSAccessibilityElementProtocol for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityNavigableStaticText for NSTextView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityNavigableStaticText for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -94,7 +100,9 @@ unsafe impl NSAccessibilityNavigableStaticText for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityStaticText for NSTextView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityStaticText for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -102,7 +110,9 @@ unsafe impl NSAccessibilityStaticText for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSTextView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -110,7 +120,9 @@ unsafe impl NSAnimatablePropertyContainer for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSTextView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
@@ -118,10 +130,14 @@ unsafe impl NSAppearanceCustomization for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSChangeSpelling for NSTextView {}
+extern_conformance!(
+    unsafe impl NSChangeSpelling for NSTextView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-unsafe impl NSCoding for NSTextView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSColorPanel",
@@ -129,7 +145,9 @@ unsafe impl NSCoding for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSColorChanging for NSTextView {}
+extern_conformance!(
+    unsafe impl NSColorChanging for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSDragging",
@@ -137,7 +155,9 @@ unsafe impl NSColorChanging for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSTextView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSDragging",
@@ -145,7 +165,9 @@ unsafe impl NSDraggingDestination for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingSource for NSTextView {}
+extern_conformance!(
+    unsafe impl NSDraggingSource for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
@@ -153,7 +175,9 @@ unsafe impl NSDraggingSource for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSIgnoreMisspelledWords for NSTextView {}
+extern_conformance!(
+    unsafe impl NSIgnoreMisspelledWords for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSMenu",
@@ -161,13 +185,19 @@ unsafe impl NSIgnoreMisspelledWords for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSMenuItemValidation for NSTextView {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSTextView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSTextView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-unsafe impl NSStandardKeyBindingResponding for NSTextView {}
+extern_conformance!(
+    unsafe impl NSStandardKeyBindingResponding for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
@@ -175,7 +205,9 @@ unsafe impl NSStandardKeyBindingResponding for NSTextView {}
     feature = "NSTextContent",
     feature = "NSView"
 ))]
-unsafe impl NSTextContent for NSTextView {}
+extern_conformance!(
+    unsafe impl NSTextContent for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSInputManager",
@@ -183,7 +215,9 @@ unsafe impl NSTextContent for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSTextInput for NSTextView {}
+extern_conformance!(
+    unsafe impl NSTextInput for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
@@ -191,7 +225,9 @@ unsafe impl NSTextInput for NSTextView {}
     feature = "NSTextInputClient",
     feature = "NSView"
 ))]
-unsafe impl NSTextInputClient for NSTextView {}
+extern_conformance!(
+    unsafe impl NSTextInputClient for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSLayoutManager",
@@ -199,7 +235,9 @@ unsafe impl NSTextInputClient for NSTextView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSTextLayoutOrientationProvider for NSTextView {}
+extern_conformance!(
+    unsafe impl NSTextLayoutOrientationProvider for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
@@ -207,7 +245,9 @@ unsafe impl NSTextLayoutOrientationProvider for NSTextView {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTextView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
@@ -215,7 +255,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSTextView {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSTextView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSTextView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
 impl NSTextView {
@@ -1551,7 +1593,9 @@ impl NSTextView {
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSCandidateListTouchBarItemDelegate for NSTextView {}
+extern_conformance!(
+    unsafe impl NSCandidateListTouchBarItemDelegate for NSTextView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
@@ -1559,7 +1603,9 @@ unsafe impl NSCandidateListTouchBarItemDelegate for NSTextView {}
     feature = "NSTouchBar",
     feature = "NSView"
 ))]
-unsafe impl NSTouchBarDelegate for NSTextView {}
+extern_conformance!(
+    unsafe impl NSTouchBarDelegate for NSTextView {}
+);
 
 /// NSTextView_Factory.
 #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]

@@ -28,17 +28,25 @@ extern_class!(
     pub struct PKDrawing;
 );
 
-unsafe impl NSCoding for PKDrawing {}
+extern_conformance!(
+    unsafe impl NSCoding for PKDrawing {}
+);
 
-unsafe impl NSCopying for PKDrawing {}
+extern_conformance!(
+    unsafe impl NSCopying for PKDrawing {}
+);
 
 unsafe impl CopyingHelper for PKDrawing {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PKDrawing {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKDrawing {}
+);
 
-unsafe impl NSSecureCoding for PKDrawing {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PKDrawing {}
+);
 
 impl PKDrawing {
     extern_methods!(

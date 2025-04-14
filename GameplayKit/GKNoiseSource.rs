@@ -28,7 +28,9 @@ extern_class!(
     pub struct GKNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKNoiseSource {}
+);
 
 impl GKNoiseSource {
     extern_methods!();
@@ -58,7 +60,9 @@ extern_class!(
     pub struct GKCoherentNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKCoherentNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKCoherentNoiseSource {}
+);
 
 impl GKCoherentNoiseSource {
     extern_methods!(
@@ -122,7 +126,9 @@ extern_class!(
     pub struct GKPerlinNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKPerlinNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKPerlinNoiseSource {}
+);
 
 impl GKPerlinNoiseSource {
     extern_methods!(
@@ -180,7 +186,9 @@ extern_class!(
     pub struct GKBillowNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKBillowNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKBillowNoiseSource {}
+);
 
 impl GKBillowNoiseSource {
     extern_methods!(
@@ -238,7 +246,9 @@ extern_class!(
     pub struct GKRidgedNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKRidgedNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKRidgedNoiseSource {}
+);
 
 impl GKRidgedNoiseSource {
     extern_methods!(
@@ -286,7 +296,9 @@ extern_class!(
     pub struct GKVoronoiNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKVoronoiNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKVoronoiNoiseSource {}
+);
 
 impl GKVoronoiNoiseSource {
     extern_methods!(
@@ -369,7 +381,9 @@ extern_class!(
     pub struct GKConstantNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKConstantNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKConstantNoiseSource {}
+);
 
 impl GKConstantNoiseSource {
     extern_methods!(
@@ -414,7 +428,9 @@ extern_class!(
     pub struct GKCylindersNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKCylindersNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKCylindersNoiseSource {}
+);
 
 impl GKCylindersNoiseSource {
     extern_methods!(
@@ -462,7 +478,9 @@ extern_class!(
     pub struct GKSpheresNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKSpheresNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKSpheresNoiseSource {}
+);
 
 impl GKSpheresNoiseSource {
     extern_methods!(
@@ -510,7 +528,9 @@ extern_class!(
     pub struct GKCheckerboardNoiseSource;
 );
 
-unsafe impl NSObjectProtocol for GKCheckerboardNoiseSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKCheckerboardNoiseSource {}
+);
 
 impl GKCheckerboardNoiseSource {
     extern_methods!(

@@ -29,13 +29,19 @@ unsafe impl Send for ARPlaneGeometry {}
 unsafe impl Sync for ARPlaneGeometry {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARPlaneGeometry {}
+extern_conformance!(
+    unsafe impl NSCoding for ARPlaneGeometry {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARPlaneGeometry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARPlaneGeometry {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARPlaneGeometry {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARPlaneGeometry {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARPlaneGeometry {

@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
-unsafe impl NSCoding for CLBeaconIdentityConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for CLBeaconIdentityConstraint {}
+);
 
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
-unsafe impl NSCopying for CLBeaconIdentityConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for CLBeaconIdentityConstraint {}
+);
 
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
 unsafe impl CopyingHelper for CLBeaconIdentityConstraint {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for CLBeaconIdentityConstraint {
 }
 
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
-unsafe impl NSObjectProtocol for CLBeaconIdentityConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLBeaconIdentityConstraint {}
+);
 
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
-unsafe impl NSSecureCoding for CLBeaconIdentityConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLBeaconIdentityConstraint {}
+);
 
 #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
 impl CLBeaconIdentityConstraint {

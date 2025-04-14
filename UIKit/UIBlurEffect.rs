@@ -74,10 +74,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIVisualEffect")]
-unsafe impl NSCoding for UIBlurEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for UIBlurEffect {}
+);
 
 #[cfg(feature = "UIVisualEffect")]
-unsafe impl NSCopying for UIBlurEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIBlurEffect {}
+);
 
 #[cfg(feature = "UIVisualEffect")]
 unsafe impl CopyingHelper for UIBlurEffect {
@@ -85,10 +89,14 @@ unsafe impl CopyingHelper for UIBlurEffect {
 }
 
 #[cfg(feature = "UIVisualEffect")]
-unsafe impl NSObjectProtocol for UIBlurEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBlurEffect {}
+);
 
 #[cfg(feature = "UIVisualEffect")]
-unsafe impl NSSecureCoding for UIBlurEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIBlurEffect {}
+);
 
 #[cfg(feature = "UIVisualEffect")]
 impl UIBlurEffect {

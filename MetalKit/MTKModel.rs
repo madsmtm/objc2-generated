@@ -35,7 +35,9 @@ extern_class!(
     pub struct MTKMeshBufferAllocator;
 );
 
-unsafe impl NSObjectProtocol for MTKMeshBufferAllocator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTKMeshBufferAllocator {}
+);
 
 impl MTKMeshBufferAllocator {
     extern_methods!(
@@ -81,13 +83,17 @@ extern_class!(
     pub struct MTKMeshBuffer;
 );
 
-unsafe impl NSCopying for MTKMeshBuffer {}
+extern_conformance!(
+    unsafe impl NSCopying for MTKMeshBuffer {}
+);
 
 unsafe impl CopyingHelper for MTKMeshBuffer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTKMeshBuffer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTKMeshBuffer {}
+);
 
 impl MTKMeshBuffer {
     extern_methods!(
@@ -156,7 +162,9 @@ extern_class!(
     pub struct MTKSubmesh;
 );
 
-unsafe impl NSObjectProtocol for MTKSubmesh {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTKSubmesh {}
+);
 
 impl MTKSubmesh {
     extern_methods!(
@@ -232,7 +240,9 @@ extern_class!(
     pub struct MTKMesh;
 );
 
-unsafe impl NSObjectProtocol for MTKMesh {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTKMesh {}
+);
 
 impl MTKMesh {
     extern_methods!(

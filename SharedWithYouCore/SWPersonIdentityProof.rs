@@ -15,17 +15,25 @@ extern_class!(
     pub struct SWPersonIdentityProof;
 );
 
-unsafe impl NSCoding for SWPersonIdentityProof {}
+extern_conformance!(
+    unsafe impl NSCoding for SWPersonIdentityProof {}
+);
 
-unsafe impl NSCopying for SWPersonIdentityProof {}
+extern_conformance!(
+    unsafe impl NSCopying for SWPersonIdentityProof {}
+);
 
 unsafe impl CopyingHelper for SWPersonIdentityProof {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SWPersonIdentityProof {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWPersonIdentityProof {}
+);
 
-unsafe impl NSSecureCoding for SWPersonIdentityProof {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWPersonIdentityProof {}
+);
 
 impl SWPersonIdentityProof {
     extern_methods!(
@@ -65,17 +73,25 @@ extern_class!(
     pub struct SWSignedPersonIdentityProof;
 );
 
-unsafe impl NSCoding for SWSignedPersonIdentityProof {}
+extern_conformance!(
+    unsafe impl NSCoding for SWSignedPersonIdentityProof {}
+);
 
-unsafe impl NSCopying for SWSignedPersonIdentityProof {}
+extern_conformance!(
+    unsafe impl NSCopying for SWSignedPersonIdentityProof {}
+);
 
 unsafe impl CopyingHelper for SWSignedPersonIdentityProof {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SWSignedPersonIdentityProof {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWSignedPersonIdentityProof {}
+);
 
-unsafe impl NSSecureCoding for SWSignedPersonIdentityProof {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWSignedPersonIdentityProof {}
+);
 
 impl SWSignedPersonIdentityProof {
     extern_methods!(

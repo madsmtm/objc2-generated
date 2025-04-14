@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "ICCameraItem")]
-unsafe impl NSObjectProtocol for ICCameraFile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICCameraFile {}
+);
 
 #[cfg(feature = "ICCameraItem")]
 impl ICCameraFile {

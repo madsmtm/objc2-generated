@@ -20,35 +20,51 @@ extern_class!(
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for MKUserLocationView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for MKUserLocationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for MKUserLocationView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for MKUserLocationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for MKUserLocationView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for MKUserLocationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for MKUserLocationView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for MKUserLocationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MKUserLocationView {}
+extern_conformance!(
+    unsafe impl NSCoding for MKUserLocationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for MKUserLocationView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for MKUserLocationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MKUserLocationView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKUserLocationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MKUserLocationView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MKUserLocationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]

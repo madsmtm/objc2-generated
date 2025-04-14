@@ -17,7 +17,9 @@ extern_class!(
     pub struct GKVoiceChatService;
 );
 
-unsafe impl NSObjectProtocol for GKVoiceChatService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKVoiceChatService {}
+);
 
 impl GKVoiceChatService {
     extern_methods!(

@@ -17,7 +17,9 @@ unsafe impl Send for CKSyncEngineConfiguration {}
 
 unsafe impl Sync for CKSyncEngineConfiguration {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineConfiguration {}
+);
 
 impl CKSyncEngineConfiguration {
     extern_methods!(

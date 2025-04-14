@@ -18,11 +18,17 @@ extern_class!(
     pub struct NSAppearance;
 );
 
-unsafe impl NSCoding for NSAppearance {}
+extern_conformance!(
+    unsafe impl NSCoding for NSAppearance {}
+);
 
-unsafe impl NSObjectProtocol for NSAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAppearance {}
+);
 
-unsafe impl NSSecureCoding for NSAppearance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSAppearance {}
+);
 
 impl NSAppearance {
     extern_methods!(

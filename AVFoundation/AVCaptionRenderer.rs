@@ -24,7 +24,9 @@ extern_class!(
     pub struct AVCaptionRenderer;
 );
 
-unsafe impl NSObjectProtocol for AVCaptionRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionRenderer {}
+);
 
 impl AVCaptionRenderer {
     extern_methods!(
@@ -117,13 +119,17 @@ unsafe impl Send for AVCaptionRendererScene {}
 
 unsafe impl Sync for AVCaptionRendererScene {}
 
-unsafe impl NSCopying for AVCaptionRendererScene {}
+extern_conformance!(
+    unsafe impl NSCopying for AVCaptionRendererScene {}
+);
 
 unsafe impl CopyingHelper for AVCaptionRendererScene {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVCaptionRendererScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionRendererScene {}
+);
 
 impl AVCaptionRendererScene {
     extern_methods!(

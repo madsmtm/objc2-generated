@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSSpeechRecognizer;
 );
 
-unsafe impl NSObjectProtocol for NSSpeechRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSpeechRecognizer {}
+);
 
 impl NSSpeechRecognizer {
     extern_methods!(

@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSTimer;
 );
 
-unsafe impl NSObjectProtocol for NSTimer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTimer {}
+);
 
 impl NSTimer {
     extern_methods!(

@@ -20,7 +20,9 @@ extern_class!(
     pub struct PHASECardioidDirectivityModelSubbandParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASECardioidDirectivityModelSubbandParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASECardioidDirectivityModelSubbandParameters {}
+);
 
 impl PHASECardioidDirectivityModelSubbandParameters {
     extern_methods!(
@@ -88,7 +90,9 @@ extern_class!(
     pub struct PHASEConeDirectivityModelSubbandParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASEConeDirectivityModelSubbandParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEConeDirectivityModelSubbandParameters {}
+);
 
 impl PHASEConeDirectivityModelSubbandParameters {
     extern_methods!(
@@ -169,7 +173,9 @@ extern_class!(
     pub struct PHASEDirectivityModelParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASEDirectivityModelParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEDirectivityModelParameters {}
+);
 
 impl PHASEDirectivityModelParameters {
     extern_methods!(
@@ -196,7 +202,9 @@ extern_class!(
     pub struct PHASECardioidDirectivityModelParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASECardioidDirectivityModelParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASECardioidDirectivityModelParameters {}
+);
 
 impl PHASECardioidDirectivityModelParameters {
     extern_methods!(
@@ -242,7 +250,9 @@ extern_class!(
     pub struct PHASEConeDirectivityModelParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASEConeDirectivityModelParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEConeDirectivityModelParameters {}
+);
 
 impl PHASEConeDirectivityModelParameters {
     extern_methods!(

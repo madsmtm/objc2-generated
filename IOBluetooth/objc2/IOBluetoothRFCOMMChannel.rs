@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
-unsafe impl NSCopying for IOBluetoothRFCOMMChannel {}
+extern_conformance!(
+    unsafe impl NSCopying for IOBluetoothRFCOMMChannel {}
+);
 
 #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for IOBluetoothRFCOMMChannel {
@@ -30,13 +32,19 @@ unsafe impl CopyingHelper for IOBluetoothRFCOMMChannel {
 }
 
 #[cfg(feature = "IOBluetoothObject")]
-unsafe impl NSObjectProtocol for IOBluetoothRFCOMMChannel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothRFCOMMChannel {}
+);
 
 #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
-unsafe impl NSPortDelegate for IOBluetoothRFCOMMChannel {}
+extern_conformance!(
+    unsafe impl NSPortDelegate for IOBluetoothRFCOMMChannel {}
+);
 
 #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
-unsafe impl NSStreamDelegate for IOBluetoothRFCOMMChannel {}
+extern_conformance!(
+    unsafe impl NSStreamDelegate for IOBluetoothRFCOMMChannel {}
+);
 
 #[cfg(feature = "IOBluetoothObject")]
 impl IOBluetoothRFCOMMChannel {

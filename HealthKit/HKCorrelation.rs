@@ -29,13 +29,19 @@ unsafe impl Send for HKCorrelation {}
 unsafe impl Sync for HKCorrelation {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCoding for HKCorrelation {}
+extern_conformance!(
+    unsafe impl NSCoding for HKCorrelation {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSObjectProtocol for HKCorrelation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKCorrelation {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSSecureCoding for HKCorrelation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKCorrelation {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKCorrelation {

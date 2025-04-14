@@ -75,7 +75,9 @@ extern_class!(
     pub struct SKCloudServiceController;
 );
 
-unsafe impl NSObjectProtocol for SKCloudServiceController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKCloudServiceController {}
+);
 
 impl SKCloudServiceController {
     extern_methods!(

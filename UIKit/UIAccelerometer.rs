@@ -19,7 +19,9 @@ extern_class!(
     pub struct UIAcceleration;
 );
 
-unsafe impl NSObjectProtocol for UIAcceleration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIAcceleration {}
+);
 
 impl UIAcceleration {
     extern_methods!(
@@ -67,7 +69,9 @@ extern_class!(
     pub struct UIAccelerometer;
 );
 
-unsafe impl NSObjectProtocol for UIAccelerometer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIAccelerometer {}
+);
 
 impl UIAccelerometer {
     extern_methods!(

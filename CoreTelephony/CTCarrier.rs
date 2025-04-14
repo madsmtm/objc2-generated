@@ -13,7 +13,9 @@ extern_class!(
     pub struct CTCarrier;
 );
 
-unsafe impl NSObjectProtocol for CTCarrier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CTCarrier {}
+);
 
 impl CTCarrier {
     extern_methods!(

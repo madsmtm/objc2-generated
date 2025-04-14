@@ -19,7 +19,9 @@ extern_class!(
     pub struct CMHeadphoneMotionManager;
 );
 
-unsafe impl NSObjectProtocol for CMHeadphoneMotionManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMHeadphoneMotionManager {}
+);
 
 impl CMHeadphoneMotionManager {
     extern_methods!(

@@ -15,13 +15,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CPInformationItem")]
-unsafe impl NSCoding for CPInformationRatingItem {}
+extern_conformance!(
+    unsafe impl NSCoding for CPInformationRatingItem {}
+);
 
 #[cfg(feature = "CPInformationItem")]
-unsafe impl NSObjectProtocol for CPInformationRatingItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPInformationRatingItem {}
+);
 
 #[cfg(feature = "CPInformationItem")]
-unsafe impl NSSecureCoding for CPInformationRatingItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPInformationRatingItem {}
+);
 
 #[cfg(feature = "CPInformationItem")]
 impl CPInformationRatingItem {

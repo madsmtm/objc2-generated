@@ -19,7 +19,9 @@ unsafe impl Send for HMUser {}
 
 unsafe impl Sync for HMUser {}
 
-unsafe impl NSObjectProtocol for HMUser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMUser {}
+);
 
 impl HMUser {
     extern_methods!(

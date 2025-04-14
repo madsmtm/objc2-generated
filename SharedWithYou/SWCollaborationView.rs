@@ -56,35 +56,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for SWCollaborationView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SWCollaborationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for SWCollaborationView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SWCollaborationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for SWCollaborationView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SWCollaborationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for SWCollaborationView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SWCollaborationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for SWCollaborationView {}
+extern_conformance!(
+    unsafe impl NSCoding for SWCollaborationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for SWCollaborationView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for SWCollaborationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for SWCollaborationView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWCollaborationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for SWCollaborationView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SWCollaborationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

@@ -93,7 +93,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibility for NSColorPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSColorPanel {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -101,7 +103,9 @@ unsafe impl NSAccessibility for NSColorPanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSColorPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSColorPanel {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -109,7 +113,9 @@ unsafe impl NSAccessibilityElementProtocol for NSColorPanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSColorPanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSColorPanel {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -117,10 +123,14 @@ unsafe impl NSAnimatablePropertyContainer for NSColorPanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAppearanceCustomization for NSColorPanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSColorPanel {}
+);
 
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSCoding for NSColorPanel {}
+extern_conformance!(
+    unsafe impl NSCoding for NSColorPanel {}
+);
 
 #[cfg(all(
     feature = "NSMenu",
@@ -128,10 +138,14 @@ unsafe impl NSCoding for NSColorPanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSMenuItemValidation for NSColorPanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSColorPanel {}
+);
 
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSObjectProtocol for NSColorPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSColorPanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -139,7 +153,9 @@ unsafe impl NSObjectProtocol for NSColorPanel {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSColorPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSColorPanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -147,7 +163,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSColorPanel {}
     feature = "NSUserInterfaceValidation",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceValidations for NSColorPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSColorPanel {}
+);
 
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
 impl NSColorPanel {

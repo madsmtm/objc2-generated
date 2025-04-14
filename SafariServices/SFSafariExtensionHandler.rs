@@ -13,12 +13,18 @@ extern_class!(
     pub struct SFSafariExtensionHandler;
 );
 
-unsafe impl NSExtensionRequestHandling for SFSafariExtensionHandler {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for SFSafariExtensionHandler {}
+);
 
-unsafe impl NSObjectProtocol for SFSafariExtensionHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSafariExtensionHandler {}
+);
 
 #[cfg(feature = "SFSafariExtensionHandling")]
-unsafe impl SFSafariExtensionHandling for SFSafariExtensionHandler {}
+extern_conformance!(
+    unsafe impl SFSafariExtensionHandling for SFSafariExtensionHandler {}
+);
 
 impl SFSafariExtensionHandler {
     extern_methods!();

@@ -15,11 +15,17 @@ extern_class!(
     pub struct MEDecodedMessage;
 );
 
-unsafe impl NSCoding for MEDecodedMessage {}
+extern_conformance!(
+    unsafe impl NSCoding for MEDecodedMessage {}
+);
 
-unsafe impl NSObjectProtocol for MEDecodedMessage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEDecodedMessage {}
+);
 
-unsafe impl NSSecureCoding for MEDecodedMessage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MEDecodedMessage {}
+);
 
 impl MEDecodedMessage {
     extern_methods!(

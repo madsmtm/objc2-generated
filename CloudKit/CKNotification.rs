@@ -13,17 +13,25 @@ extern_class!(
     pub struct CKNotificationID;
 );
 
-unsafe impl NSCoding for CKNotificationID {}
+extern_conformance!(
+    unsafe impl NSCoding for CKNotificationID {}
+);
 
-unsafe impl NSCopying for CKNotificationID {}
+extern_conformance!(
+    unsafe impl NSCopying for CKNotificationID {}
+);
 
 unsafe impl CopyingHelper for CKNotificationID {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKNotificationID {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKNotificationID {}
+);
 
-unsafe impl NSSecureCoding for CKNotificationID {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKNotificationID {}
+);
 
 impl CKNotificationID {
     extern_methods!();
@@ -107,7 +115,9 @@ unsafe impl Send for CKNotification {}
 
 unsafe impl Sync for CKNotification {}
 
-unsafe impl NSObjectProtocol for CKNotification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKNotification {}
+);
 
 impl CKNotification {
     extern_methods!(
@@ -289,7 +299,9 @@ unsafe impl Send for CKQueryNotification {}
 
 unsafe impl Sync for CKQueryNotification {}
 
-unsafe impl NSObjectProtocol for CKQueryNotification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKQueryNotification {}
+);
 
 impl CKQueryNotification {
     extern_methods!(
@@ -370,7 +382,9 @@ unsafe impl Send for CKRecordZoneNotification {}
 
 unsafe impl Sync for CKRecordZoneNotification {}
 
-unsafe impl NSObjectProtocol for CKRecordZoneNotification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKRecordZoneNotification {}
+);
 
 impl CKRecordZoneNotification {
     extern_methods!(
@@ -439,7 +453,9 @@ unsafe impl Send for CKDatabaseNotification {}
 
 unsafe impl Sync for CKDatabaseNotification {}
 
-unsafe impl NSObjectProtocol for CKDatabaseNotification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKDatabaseNotification {}
+);
 
 impl CKDatabaseNotification {
     extern_methods!(

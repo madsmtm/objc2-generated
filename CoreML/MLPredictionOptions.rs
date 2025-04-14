@@ -19,7 +19,9 @@ extern_class!(
     pub struct MLPredictionOptions;
 );
 
-unsafe impl NSObjectProtocol for MLPredictionOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLPredictionOptions {}
+);
 
 impl MLPredictionOptions {
     extern_methods!(

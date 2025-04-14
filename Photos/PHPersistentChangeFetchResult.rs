@@ -13,7 +13,9 @@ extern_class!(
     pub struct PHPersistentChangeFetchResult;
 );
 
-unsafe impl NSObjectProtocol for PHPersistentChangeFetchResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHPersistentChangeFetchResult {}
+);
 
 impl PHPersistentChangeFetchResult {
     extern_methods!(

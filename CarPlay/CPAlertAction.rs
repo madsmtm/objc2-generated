@@ -52,11 +52,17 @@ extern_class!(
     pub struct CPAlertAction;
 );
 
-unsafe impl NSCoding for CPAlertAction {}
+extern_conformance!(
+    unsafe impl NSCoding for CPAlertAction {}
+);
 
-unsafe impl NSObjectProtocol for CPAlertAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPAlertAction {}
+);
 
-unsafe impl NSSecureCoding for CPAlertAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPAlertAction {}
+);
 
 impl CPAlertAction {
     extern_methods!(

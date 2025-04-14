@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSClassDescription;
 );
 
-unsafe impl NSObjectProtocol for NSClassDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSClassDescription {}
+);
 
 impl NSClassDescription {
     extern_methods!(

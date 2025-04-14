@@ -57,7 +57,9 @@ extern_class!(
     pub struct CPSessionConfiguration;
 );
 
-unsafe impl NSObjectProtocol for CPSessionConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPSessionConfiguration {}
+);
 
 impl CPSessionConfiguration {
     extern_methods!(

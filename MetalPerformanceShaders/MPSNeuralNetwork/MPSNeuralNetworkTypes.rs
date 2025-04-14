@@ -362,13 +362,21 @@ extern_class!(
     pub struct MPSNNDefaultPadding;
 );
 
-unsafe impl MPSNNPadding for MPSNNDefaultPadding {}
+extern_conformance!(
+    unsafe impl MPSNNPadding for MPSNNDefaultPadding {}
+);
 
-unsafe impl NSCoding for MPSNNDefaultPadding {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNDefaultPadding {}
+);
 
-unsafe impl NSObjectProtocol for MPSNNDefaultPadding {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNDefaultPadding {}
+);
 
-unsafe impl NSSecureCoding for MPSNNDefaultPadding {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNDefaultPadding {}
+);
 
 impl MPSNNDefaultPadding {
     extern_methods!(

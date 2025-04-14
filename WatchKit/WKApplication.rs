@@ -23,7 +23,9 @@ extern_class!(
     pub struct WKApplication;
 );
 
-unsafe impl NSObjectProtocol for WKApplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKApplication {}
+);
 
 impl WKApplication {
     extern_methods!(

@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSThread;
 );
 
-unsafe impl NSObjectProtocol for NSThread {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSThread {}
+);
 
 impl NSThread {
     extern_methods!(

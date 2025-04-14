@@ -67,7 +67,9 @@ unsafe impl Send for NSProcessInfo {}
 
 unsafe impl Sync for NSProcessInfo {}
 
-unsafe impl NSObjectProtocol for NSProcessInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSProcessInfo {}
+);
 
 impl NSProcessInfo {
     extern_methods!(

@@ -15,13 +15,19 @@ extern_class!(
 );
 
 #[cfg(feature = "ILCommunication")]
-unsafe impl NSCoding for ILCallCommunication {}
+extern_conformance!(
+    unsafe impl NSCoding for ILCallCommunication {}
+);
 
 #[cfg(feature = "ILCommunication")]
-unsafe impl NSObjectProtocol for ILCallCommunication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ILCallCommunication {}
+);
 
 #[cfg(feature = "ILCommunication")]
-unsafe impl NSSecureCoding for ILCallCommunication {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ILCallCommunication {}
+);
 
 #[cfg(feature = "ILCommunication")]
 impl ILCallCommunication {

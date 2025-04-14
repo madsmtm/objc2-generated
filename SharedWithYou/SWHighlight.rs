@@ -17,17 +17,25 @@ extern_class!(
     pub struct SWHighlight;
 );
 
-unsafe impl NSCoding for SWHighlight {}
+extern_conformance!(
+    unsafe impl NSCoding for SWHighlight {}
+);
 
-unsafe impl NSCopying for SWHighlight {}
+extern_conformance!(
+    unsafe impl NSCopying for SWHighlight {}
+);
 
 unsafe impl CopyingHelper for SWHighlight {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SWHighlight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWHighlight {}
+);
 
-unsafe impl NSSecureCoding for SWHighlight {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWHighlight {}
+);
 
 impl SWHighlight {
     extern_methods!(

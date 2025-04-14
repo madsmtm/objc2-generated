@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSDraggingSession;
 );
 
-unsafe impl NSObjectProtocol for NSDraggingSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDraggingSession {}
+);
 
 impl NSDraggingSession {
     extern_methods!(

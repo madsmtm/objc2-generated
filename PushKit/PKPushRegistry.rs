@@ -133,7 +133,9 @@ extern_class!(
     pub struct PKPushRegistry;
 );
 
-unsafe impl NSObjectProtocol for PKPushRegistry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPushRegistry {}
+);
 
 impl PKPushRegistry {
     extern_methods!(

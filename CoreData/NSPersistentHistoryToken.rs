@@ -13,17 +13,25 @@ extern_class!(
     pub struct NSPersistentHistoryToken;
 );
 
-unsafe impl NSCoding for NSPersistentHistoryToken {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPersistentHistoryToken {}
+);
 
-unsafe impl NSCopying for NSPersistentHistoryToken {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPersistentHistoryToken {}
+);
 
 unsafe impl CopyingHelper for NSPersistentHistoryToken {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPersistentHistoryToken {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentHistoryToken {}
+);
 
-unsafe impl NSSecureCoding for NSPersistentHistoryToken {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSPersistentHistoryToken {}
+);
 
 impl NSPersistentHistoryToken {
     extern_methods!();

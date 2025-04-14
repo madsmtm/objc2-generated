@@ -29,11 +29,17 @@ unsafe impl Send for SHMatch {}
 
 unsafe impl Sync for SHMatch {}
 
-unsafe impl NSCoding for SHMatch {}
+extern_conformance!(
+    unsafe impl NSCoding for SHMatch {}
+);
 
-unsafe impl NSObjectProtocol for SHMatch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHMatch {}
+);
 
-unsafe impl NSSecureCoding for SHMatch {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SHMatch {}
+);
 
 impl SHMatch {
     extern_methods!(

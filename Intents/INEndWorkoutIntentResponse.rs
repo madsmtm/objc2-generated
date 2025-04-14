@@ -47,10 +47,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INEndWorkoutIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INEndWorkoutIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INEndWorkoutIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INEndWorkoutIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INEndWorkoutIntentResponse {
@@ -58,10 +62,14 @@ unsafe impl CopyingHelper for INEndWorkoutIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INEndWorkoutIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INEndWorkoutIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INEndWorkoutIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INEndWorkoutIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INEndWorkoutIntentResponse {

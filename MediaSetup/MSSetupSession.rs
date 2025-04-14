@@ -60,7 +60,9 @@ extern_class!(
     pub struct MSSetupSession;
 );
 
-unsafe impl NSObjectProtocol for MSSetupSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSSetupSession {}
+);
 
 impl MSSetupSession {
     extern_methods!(

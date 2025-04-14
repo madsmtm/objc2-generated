@@ -47,9 +47,13 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationProvider")]
-unsafe impl ASAuthorizationProvider for ASAuthorizationAppleIDProvider {}
+extern_conformance!(
+    unsafe impl ASAuthorizationProvider for ASAuthorizationAppleIDProvider {}
+);
 
-unsafe impl NSObjectProtocol for ASAuthorizationAppleIDProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationAppleIDProvider {}
+);
 
 impl ASAuthorizationAppleIDProvider {
     extern_methods!(

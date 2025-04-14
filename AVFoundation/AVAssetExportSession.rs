@@ -243,7 +243,9 @@ extern_class!(
     pub struct AVAssetExportSession;
 );
 
-unsafe impl NSObjectProtocol for AVAssetExportSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetExportSession {}
+);
 
 impl AVAssetExportSession {
     extern_methods!(

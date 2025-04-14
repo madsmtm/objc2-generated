@@ -23,10 +23,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNPlane {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPlane {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNPlane {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNPlane {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNPlane {
@@ -34,19 +38,29 @@ unsafe impl CopyingHelper for SCNPlane {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNPlane {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPlane {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNPlane {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPlane {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNPlane {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNPlane {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNPlane {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNPlane {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNPlane {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNPlane {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNPlane {
@@ -268,10 +282,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNBox {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNBox {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNBox {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNBox {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNBox {
@@ -279,19 +297,29 @@ unsafe impl CopyingHelper for SCNBox {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNBox {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNBox {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNBox {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNBox {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNBox {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNBox {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNBox {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNBox {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNBox {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNBox {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNBox {
@@ -548,10 +576,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNPyramid {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPyramid {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNPyramid {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNPyramid {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNPyramid {
@@ -559,19 +591,29 @@ unsafe impl CopyingHelper for SCNPyramid {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNPyramid {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPyramid {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNPyramid {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPyramid {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNPyramid {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNPyramid {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNPyramid {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNPyramid {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNPyramid {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNPyramid {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNPyramid {
@@ -799,10 +841,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNSphere {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNSphere {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNSphere {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNSphere {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNSphere {
@@ -810,19 +856,29 @@ unsafe impl CopyingHelper for SCNSphere {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNSphere {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNSphere {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNSphere {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNSphere {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNSphere {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNSphere {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNSphere {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNSphere {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNSphere {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNSphere {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNSphere {
@@ -1002,10 +1058,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNCylinder {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNCylinder {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNCylinder {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNCylinder {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNCylinder {
@@ -1013,19 +1073,29 @@ unsafe impl CopyingHelper for SCNCylinder {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNCylinder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNCylinder {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNCylinder {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNCylinder {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNCylinder {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNCylinder {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNCylinder {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNCylinder {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNCylinder {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNCylinder {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNCylinder {
@@ -1222,10 +1292,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNCone {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNCone {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNCone {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNCone {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNCone {
@@ -1233,19 +1307,29 @@ unsafe impl CopyingHelper for SCNCone {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNCone {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNCone {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNCone {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNCone {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNCone {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNCone {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNCone {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNCone {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNCone {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNCone {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNCone {
@@ -1461,10 +1545,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNTube {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNTube {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNTube {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNTube {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNTube {
@@ -1472,19 +1560,29 @@ unsafe impl CopyingHelper for SCNTube {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNTube {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNTube {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNTube {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNTube {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNTube {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNTube {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNTube {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNTube {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNTube {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNTube {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNTube {
@@ -1700,10 +1798,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNCapsule {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNCapsule {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNCapsule {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNCapsule {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNCapsule {
@@ -1711,19 +1813,29 @@ unsafe impl CopyingHelper for SCNCapsule {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNCapsule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNCapsule {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNCapsule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNCapsule {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNCapsule {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNCapsule {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNCapsule {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNCapsule {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNCapsule {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNCapsule {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNCapsule {
@@ -1934,10 +2046,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNTorus {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNTorus {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNTorus {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNTorus {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNTorus {
@@ -1945,19 +2061,29 @@ unsafe impl CopyingHelper for SCNTorus {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNTorus {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNTorus {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNTorus {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNTorus {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNTorus {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNTorus {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNTorus {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNTorus {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNTorus {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNTorus {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNTorus {
@@ -2156,10 +2282,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNFloor {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNFloor {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNFloor {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNFloor {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNFloor {
@@ -2167,19 +2297,29 @@ unsafe impl CopyingHelper for SCNFloor {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNFloor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNFloor {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNFloor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNFloor {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNFloor {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNFloor {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNFloor {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNFloor {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNFloor {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNFloor {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNFloor {
@@ -2417,10 +2557,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNText {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNText {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNText {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNText {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNText {
@@ -2428,19 +2572,29 @@ unsafe impl CopyingHelper for SCNText {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNText {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNText {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNText {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNText {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNText {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNText {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNText {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNText {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNText {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNText {
@@ -2765,10 +2919,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCoding for SCNShape {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNShape {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSCopying for SCNShape {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNShape {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 unsafe impl CopyingHelper for SCNShape {
@@ -2776,19 +2934,29 @@ unsafe impl CopyingHelper for SCNShape {
 }
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSObjectProtocol for SCNShape {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNShape {}
+);
 
 #[cfg(feature = "SCNGeometry")]
-unsafe impl NSSecureCoding for SCNShape {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNShape {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNGeometry"))]
-unsafe impl SCNAnimatable for SCNShape {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNShape {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNGeometry"))]
-unsafe impl SCNBoundingVolume for SCNShape {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNShape {}
+);
 
 #[cfg(all(feature = "SCNGeometry", feature = "SCNShadable"))]
-unsafe impl SCNShadable for SCNShape {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNShape {}
+);
 
 #[cfg(feature = "SCNGeometry")]
 impl SCNShape {

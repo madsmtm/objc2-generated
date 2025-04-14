@@ -14,17 +14,25 @@ extern_class!(
     pub struct SKShader;
 );
 
-unsafe impl NSCoding for SKShader {}
+extern_conformance!(
+    unsafe impl NSCoding for SKShader {}
+);
 
-unsafe impl NSCopying for SKShader {}
+extern_conformance!(
+    unsafe impl NSCopying for SKShader {}
+);
 
 unsafe impl CopyingHelper for SKShader {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKShader {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKShader {}
+);
 
-unsafe impl NSSecureCoding for SKShader {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKShader {}
+);
 
 impl SKShader {
     extern_methods!(

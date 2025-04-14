@@ -40,13 +40,17 @@ extern_class!(
     pub struct ODQuery;
 );
 
-unsafe impl NSCopying for ODQuery {}
+extern_conformance!(
+    unsafe impl NSCopying for ODQuery {}
+);
 
 unsafe impl CopyingHelper for ODQuery {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ODQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ODQuery {}
+);
 
 impl ODQuery {
     extern_methods!(

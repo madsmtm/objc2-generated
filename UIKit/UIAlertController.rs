@@ -77,13 +77,17 @@ extern_class!(
     pub struct UIAlertAction;
 );
 
-unsafe impl NSCopying for UIAlertAction {}
+extern_conformance!(
+    unsafe impl NSCopying for UIAlertAction {}
+);
 
 unsafe impl CopyingHelper for UIAlertAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIAlertAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIAlertAction {}
+);
 
 impl UIAlertAction {
     extern_methods!(
@@ -139,37 +143,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIAlertController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIAlertController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIAlertController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIAlertController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIAlertController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIAlertController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIAlertController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIAlertController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIAlertController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIAlertController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIAlertController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIAlertController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIAlertController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIAlertController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIAlertController {
@@ -297,4 +315,6 @@ impl UIAlertController {
     feature = "UISpringLoadedInteractionSupporting",
     feature = "UIViewController"
 ))]
-unsafe impl UISpringLoadedInteractionSupporting for UIAlertController {}
+extern_conformance!(
+    unsafe impl UISpringLoadedInteractionSupporting for UIAlertController {}
+);

@@ -19,15 +19,21 @@ extern_class!(
 );
 
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
-unsafe impl AVAsynchronousKeyValueLoading for AVAsset {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVAsset {}
+);
 
-unsafe impl NSCopying for AVAsset {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAsset {}
+);
 
 unsafe impl CopyingHelper for AVAsset {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAsset {}
+);
 
 impl AVAsset {
     extern_methods!(
@@ -751,15 +757,21 @@ unsafe impl Send for AVURLAsset {}
 unsafe impl Sync for AVURLAsset {}
 
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
-unsafe impl AVAsynchronousKeyValueLoading for AVURLAsset {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVURLAsset {}
+);
 
-unsafe impl NSCopying for AVURLAsset {}
+extern_conformance!(
+    unsafe impl NSCopying for AVURLAsset {}
+);
 
 unsafe impl CopyingHelper for AVURLAsset {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVURLAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVURLAsset {}
+);
 
 impl AVURLAsset {
     extern_methods!(
@@ -947,9 +959,13 @@ impl AVURLAsset {
     extern_methods!();
 }
 
-unsafe impl NSItemProviderReading for AVURLAsset {}
+extern_conformance!(
+    unsafe impl NSItemProviderReading for AVURLAsset {}
+);
 
-unsafe impl NSItemProviderWriting for AVURLAsset {}
+extern_conformance!(
+    unsafe impl NSItemProviderWriting for AVURLAsset {}
+);
 
 extern_class!(
     /// A class incorporating properties for a MediaExtension
@@ -967,13 +983,17 @@ unsafe impl Send for AVMediaExtensionProperties {}
 
 unsafe impl Sync for AVMediaExtensionProperties {}
 
-unsafe impl NSCopying for AVMediaExtensionProperties {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMediaExtensionProperties {}
+);
 
 unsafe impl CopyingHelper for AVMediaExtensionProperties {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMediaExtensionProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMediaExtensionProperties {}
+);
 
 impl AVMediaExtensionProperties {
     extern_methods!(
@@ -1110,17 +1130,25 @@ unsafe impl Send for AVFragmentedAsset {}
 unsafe impl Sync for AVFragmentedAsset {}
 
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
-unsafe impl AVAsynchronousKeyValueLoading for AVFragmentedAsset {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVFragmentedAsset {}
+);
 
-unsafe impl AVFragmentMinding for AVFragmentedAsset {}
+extern_conformance!(
+    unsafe impl AVFragmentMinding for AVFragmentedAsset {}
+);
 
-unsafe impl NSCopying for AVFragmentedAsset {}
+extern_conformance!(
+    unsafe impl NSCopying for AVFragmentedAsset {}
+);
 
 unsafe impl CopyingHelper for AVFragmentedAsset {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVFragmentedAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVFragmentedAsset {}
+);
 
 impl AVFragmentedAsset {
     extern_methods!(
@@ -1332,7 +1360,9 @@ extern_class!(
     pub struct AVFragmentedAssetMinder;
 );
 
-unsafe impl NSObjectProtocol for AVFragmentedAssetMinder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVFragmentedAssetMinder {}
+);
 
 impl AVFragmentedAssetMinder {
     extern_methods!(
@@ -1426,4 +1456,6 @@ impl AVURLAsset {
 }
 
 #[cfg(feature = "AVContentKeySession")]
-unsafe impl AVContentKeyRecipient for AVURLAsset {}
+extern_conformance!(
+    unsafe impl AVContentKeyRecipient for AVURLAsset {}
+);

@@ -34,7 +34,9 @@ extern_class!(
     pub struct UIUpdateActionPhase;
 );
 
-unsafe impl NSObjectProtocol for UIUpdateActionPhase {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIUpdateActionPhase {}
+);
 
 impl UIUpdateActionPhase {
     extern_methods!(

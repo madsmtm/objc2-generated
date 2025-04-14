@@ -35,13 +35,19 @@ unsafe impl Send for ARReferenceObject {}
 unsafe impl Sync for ARReferenceObject {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARReferenceObject {}
+extern_conformance!(
+    unsafe impl NSCoding for ARReferenceObject {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARReferenceObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARReferenceObject {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARReferenceObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARReferenceObject {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARReferenceObject {

@@ -60,22 +60,32 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
-unsafe impl ASAuthorizationPublicKeyCredentialDescriptor
-    for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationPublicKeyCredentialDescriptor
+        for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor
+    {
+    }
+);
 
-unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+);
 
-unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+);
 
 unsafe impl CopyingHelper for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+);
 
-unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {}
+);
 
 impl ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
     extern_methods!(

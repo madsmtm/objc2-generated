@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZSocketDeviceConfiguration")]
-unsafe impl NSCopying for VZVirtioSocketDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZVirtioSocketDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZSocketDeviceConfiguration")]
 unsafe impl CopyingHelper for VZVirtioSocketDeviceConfiguration {
@@ -31,7 +33,9 @@ unsafe impl CopyingHelper for VZVirtioSocketDeviceConfiguration {
 }
 
 #[cfg(feature = "VZSocketDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZVirtioSocketDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioSocketDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZSocketDeviceConfiguration")]
 impl VZVirtioSocketDeviceConfiguration {

@@ -15,7 +15,9 @@ extern_class!(
     pub struct DDDiscoverySession;
 );
 
-unsafe impl NSObjectProtocol for DDDiscoverySession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDDiscoverySession {}
+);
 
 impl DDDiscoverySession {
     extern_methods!(

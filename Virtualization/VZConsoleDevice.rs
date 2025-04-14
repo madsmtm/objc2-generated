@@ -24,7 +24,9 @@ extern_class!(
     pub struct VZConsoleDevice;
 );
 
-unsafe impl NSObjectProtocol for VZConsoleDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZConsoleDevice {}
+);
 
 impl VZConsoleDevice {
     extern_methods!(

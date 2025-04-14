@@ -19,13 +19,19 @@ extern_class!(
 );
 
 #[cfg(all(feature = "GKAgent", feature = "GKComponent"))]
-unsafe impl GKAgentDelegate for GKSCNNodeComponent {}
+extern_conformance!(
+    unsafe impl GKAgentDelegate for GKSCNNodeComponent {}
+);
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSCoding for GKSCNNodeComponent {}
+extern_conformance!(
+    unsafe impl NSCoding for GKSCNNodeComponent {}
+);
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSCopying for GKSCNNodeComponent {}
+extern_conformance!(
+    unsafe impl NSCopying for GKSCNNodeComponent {}
+);
 
 #[cfg(feature = "GKComponent")]
 unsafe impl CopyingHelper for GKSCNNodeComponent {
@@ -33,10 +39,14 @@ unsafe impl CopyingHelper for GKSCNNodeComponent {
 }
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSObjectProtocol for GKSCNNodeComponent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKSCNNodeComponent {}
+);
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSSecureCoding for GKSCNNodeComponent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKSCNNodeComponent {}
+);
 
 #[cfg(feature = "GKComponent")]
 impl GKSCNNodeComponent {

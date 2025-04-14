@@ -76,7 +76,9 @@ extern_class!(
     pub struct AVCoordinatedPlaybackSuspension;
 );
 
-unsafe impl NSObjectProtocol for AVCoordinatedPlaybackSuspension {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCoordinatedPlaybackSuspension {}
+);
 
 impl AVCoordinatedPlaybackSuspension {
     extern_methods!(
@@ -147,7 +149,9 @@ extern_class!(
     pub struct AVPlaybackCoordinator;
 );
 
-unsafe impl NSObjectProtocol for AVPlaybackCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlaybackCoordinator {}
+);
 
 impl AVPlaybackCoordinator {
     extern_methods!(
@@ -220,7 +224,9 @@ unsafe impl Send for AVCoordinatedPlaybackParticipant {}
 
 unsafe impl Sync for AVCoordinatedPlaybackParticipant {}
 
-unsafe impl NSObjectProtocol for AVCoordinatedPlaybackParticipant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCoordinatedPlaybackParticipant {}
+);
 
 impl AVCoordinatedPlaybackParticipant {
     extern_methods!(
@@ -331,7 +337,9 @@ extern_class!(
     pub struct AVPlayerPlaybackCoordinator;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerPlaybackCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerPlaybackCoordinator {}
+);
 
 impl AVPlayerPlaybackCoordinator {
     extern_methods!(
@@ -468,7 +476,9 @@ extern_class!(
     pub struct AVDelegatingPlaybackCoordinator;
 );
 
-unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinator {}
+);
 
 impl AVDelegatingPlaybackCoordinator {
     extern_methods!(
@@ -696,7 +706,9 @@ unsafe impl Send for AVDelegatingPlaybackCoordinatorPlaybackControlCommand {}
 
 unsafe impl Sync for AVDelegatingPlaybackCoordinatorPlaybackControlCommand {}
 
-unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPlaybackControlCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPlaybackControlCommand {}
+);
 
 impl AVDelegatingPlaybackCoordinatorPlaybackControlCommand {
     extern_methods!(
@@ -743,7 +755,9 @@ unsafe impl Send for AVDelegatingPlaybackCoordinatorPlayCommand {}
 
 unsafe impl Sync for AVDelegatingPlaybackCoordinatorPlayCommand {}
 
-unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPlayCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPlayCommand {}
+);
 
 impl AVDelegatingPlaybackCoordinatorPlayCommand {
     extern_methods!(
@@ -797,7 +811,9 @@ unsafe impl Send for AVDelegatingPlaybackCoordinatorBufferingCommand {}
 
 unsafe impl Sync for AVDelegatingPlaybackCoordinatorBufferingCommand {}
 
-unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorBufferingCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorBufferingCommand {}
+);
 
 impl AVDelegatingPlaybackCoordinatorBufferingCommand {
     extern_methods!(
@@ -843,7 +859,9 @@ unsafe impl Send for AVDelegatingPlaybackCoordinatorPauseCommand {}
 
 unsafe impl Sync for AVDelegatingPlaybackCoordinatorPauseCommand {}
 
-unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPauseCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPauseCommand {}
+);
 
 impl AVDelegatingPlaybackCoordinatorPauseCommand {
     extern_methods!(
@@ -888,7 +906,9 @@ unsafe impl Send for AVDelegatingPlaybackCoordinatorSeekCommand {}
 
 unsafe impl Sync for AVDelegatingPlaybackCoordinatorSeekCommand {}
 
-unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorSeekCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorSeekCommand {}
+);
 
 impl AVDelegatingPlaybackCoordinatorSeekCommand {
     extern_methods!(

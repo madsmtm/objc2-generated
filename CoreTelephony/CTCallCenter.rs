@@ -14,7 +14,9 @@ extern_class!(
     pub struct CTCallCenter;
 );
 
-unsafe impl NSObjectProtocol for CTCallCenter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CTCallCenter {}
+);
 
 impl CTCallCenter {
     extern_methods!(

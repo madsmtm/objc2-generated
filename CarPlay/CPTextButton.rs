@@ -39,7 +39,9 @@ extern_class!(
     pub struct CPTextButton;
 );
 
-unsafe impl NSObjectProtocol for CPTextButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPTextButton {}
+);
 
 impl CPTextButton {
     extern_methods!(

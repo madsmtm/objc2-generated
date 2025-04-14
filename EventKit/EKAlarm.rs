@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSCopying for EKAlarm {}
+extern_conformance!(
+    unsafe impl NSCopying for EKAlarm {}
+);
 
 #[cfg(feature = "EKObject")]
 unsafe impl CopyingHelper for EKAlarm {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for EKAlarm {
 }
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSObjectProtocol for EKAlarm {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKAlarm {}
+);
 
 #[cfg(feature = "EKObject")]
 impl EKAlarm {

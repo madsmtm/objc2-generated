@@ -62,13 +62,19 @@ unsafe impl Send for ARAnchor {}
 unsafe impl Sync for ARAnchor {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl ARAnchorCopying for ARAnchor {}
+extern_conformance!(
+    unsafe impl ARAnchorCopying for ARAnchor {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARAnchor {}
+extern_conformance!(
+    unsafe impl NSCoding for ARAnchor {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARAnchor {}
+extern_conformance!(
+    unsafe impl NSCopying for ARAnchor {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARAnchor {
@@ -76,10 +82,14 @@ unsafe impl CopyingHelper for ARAnchor {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARAnchor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARAnchor {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARAnchor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARAnchor {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARAnchor {

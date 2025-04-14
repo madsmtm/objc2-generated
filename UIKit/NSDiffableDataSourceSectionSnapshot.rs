@@ -14,10 +14,12 @@ extern_class!(
     pub struct NSDiffableDataSourceSectionSnapshot<ItemIdentifierType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ItemIdentifierType: ?Sized> NSCopying
-    for NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<ItemIdentifierType: ?Sized> NSCopying
+        for NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>
+    {
+    }
+);
 
 unsafe impl<ItemIdentifierType: ?Sized + Message> CopyingHelper
     for NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>
@@ -25,10 +27,12 @@ unsafe impl<ItemIdentifierType: ?Sized + Message> CopyingHelper
     type Result = Self;
 }
 
-unsafe impl<ItemIdentifierType: ?Sized> NSObjectProtocol
-    for NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<ItemIdentifierType: ?Sized> NSObjectProtocol
+        for NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>
+    {
+    }
+);
 
 impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdentifierType> {
     extern_methods!(

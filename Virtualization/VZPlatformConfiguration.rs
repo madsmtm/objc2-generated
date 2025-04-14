@@ -23,13 +23,17 @@ extern_class!(
     pub struct VZPlatformConfiguration;
 );
 
-unsafe impl NSCopying for VZPlatformConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZPlatformConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZPlatformConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZPlatformConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZPlatformConfiguration {}
+);
 
 impl VZPlatformConfiguration {
     extern_methods!(

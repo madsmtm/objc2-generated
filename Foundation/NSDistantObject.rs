@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSProxy"))]
-unsafe impl NSCoding for NSDistantObject {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDistantObject {}
+);
 
 #[cfg(feature = "NSProxy")]
-unsafe impl NSObjectProtocol for NSDistantObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDistantObject {}
+);
 
 #[cfg(feature = "NSProxy")]
 impl NSDistantObject {

@@ -94,7 +94,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDynamicBehavior")]
-unsafe impl NSObjectProtocol for UICollisionBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollisionBehavior {}
+);
 
 #[cfg(feature = "UIDynamicBehavior")]
 impl UICollisionBehavior {

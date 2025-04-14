@@ -16,13 +16,17 @@ extern_class!(
     pub struct UIImageReaderConfiguration;
 );
 
-unsafe impl NSCopying for UIImageReaderConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UIImageReaderConfiguration {}
+);
 
 unsafe impl CopyingHelper for UIImageReaderConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIImageReaderConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIImageReaderConfiguration {}
+);
 
 impl UIImageReaderConfiguration {
     extern_methods!(
@@ -92,7 +96,9 @@ extern_class!(
     pub struct UIImageReader;
 );
 
-unsafe impl NSObjectProtocol for UIImageReader {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIImageReader {}
+);
 
 impl UIImageReader {
     extern_methods!(

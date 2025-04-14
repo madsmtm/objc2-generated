@@ -20,9 +20,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GKStrategist")]
-unsafe impl GKStrategist for GKMonteCarloStrategist {}
+extern_conformance!(
+    unsafe impl GKStrategist for GKMonteCarloStrategist {}
+);
 
-unsafe impl NSObjectProtocol for GKMonteCarloStrategist {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKMonteCarloStrategist {}
+);
 
 impl GKMonteCarloStrategist {
     extern_methods!(

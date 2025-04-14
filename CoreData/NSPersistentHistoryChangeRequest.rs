@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl NSCopying for NSPersistentHistoryChangeRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPersistentHistoryChangeRequest {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl CopyingHelper for NSPersistentHistoryChangeRequest {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for NSPersistentHistoryChangeRequest {
 }
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl NSObjectProtocol for NSPersistentHistoryChangeRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentHistoryChangeRequest {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 impl NSPersistentHistoryChangeRequest {

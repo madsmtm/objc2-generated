@@ -14,7 +14,9 @@ use crate::*;
 
 #[cfg(all(feature = "SCNAnimation", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl SCNAnimationProtocol for CAAnimation {}
+extern_conformance!(
+    unsafe impl SCNAnimationProtocol for CAAnimation {}
+);
 
 mod private_CAAnimationSceneKitAdditions {
     pub trait Sealed {}

@@ -25,14 +25,18 @@ extern_class!(
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl NSCoding for UIVideoEditorController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIVideoEditorController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl NSObjectProtocol for UIVideoEditorController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIVideoEditorController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -40,14 +44,18 @@ unsafe impl NSObjectProtocol for UIVideoEditorController {}
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIVideoEditorController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIVideoEditorController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIContentContainer for UIVideoEditorController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIVideoEditorController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -55,14 +63,18 @@ unsafe impl UIContentContainer for UIVideoEditorController {}
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIVideoEditorController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIVideoEditorController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIResponderStandardEditActions for UIVideoEditorController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIVideoEditorController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",
@@ -70,7 +82,9 @@ unsafe impl UIResponderStandardEditActions for UIVideoEditorController {}
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIVideoEditorController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIVideoEditorController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",

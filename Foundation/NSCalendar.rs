@@ -237,20 +237,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSCalendar {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCalendar {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSCalendar {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCalendar {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSCalendar {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSCalendar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCalendar {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSCalendar {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSCalendar {}
+);
 
 impl NSCalendar {
     extern_methods!(
@@ -784,20 +792,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSDateComponents {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDateComponents {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSDateComponents {}
+extern_conformance!(
+    unsafe impl NSCopying for NSDateComponents {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSDateComponents {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSDateComponents {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDateComponents {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSDateComponents {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSDateComponents {}
+);
 
 impl NSDateComponents {
     extern_methods!(

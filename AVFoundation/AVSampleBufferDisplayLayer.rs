@@ -53,19 +53,27 @@ extern_class!(
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CAMediaTiming for AVSampleBufferDisplayLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for AVSampleBufferDisplayLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSCoding for AVSampleBufferDisplayLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for AVSampleBufferDisplayLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSObjectProtocol for AVSampleBufferDisplayLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSampleBufferDisplayLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSSecureCoding for AVSampleBufferDisplayLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVSampleBufferDisplayLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
@@ -331,7 +339,9 @@ impl AVSampleBufferDisplayLayer {
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl AVQueuedSampleBufferRendering for AVSampleBufferDisplayLayer {}
+extern_conformance!(
+    unsafe impl AVQueuedSampleBufferRendering for AVSampleBufferDisplayLayer {}
+);
 
 /// AVSampleBufferDisplayLayerImageProtection.
 #[cfg(feature = "objc2-quartz-core")]

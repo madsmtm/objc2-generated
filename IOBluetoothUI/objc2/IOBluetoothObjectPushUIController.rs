@@ -19,11 +19,17 @@ extern_class!(
     pub struct IOBluetoothObjectPushUIController;
 );
 
-unsafe impl NSCoding for IOBluetoothObjectPushUIController {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothObjectPushUIController {}
+);
 
-unsafe impl NSObjectProtocol for IOBluetoothObjectPushUIController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothObjectPushUIController {}
+);
 
-unsafe impl NSSeguePerforming for IOBluetoothObjectPushUIController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for IOBluetoothObjectPushUIController {}
+);
 
 impl IOBluetoothObjectPushUIController {
     extern_methods!(

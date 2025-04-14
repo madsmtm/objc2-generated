@@ -17,13 +17,19 @@ extern_class!(
 );
 
 #[cfg(feature = "MXMetric")]
-unsafe impl NSCoding for MXDisplayMetric {}
+extern_conformance!(
+    unsafe impl NSCoding for MXDisplayMetric {}
+);
 
 #[cfg(feature = "MXMetric")]
-unsafe impl NSObjectProtocol for MXDisplayMetric {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXDisplayMetric {}
+);
 
 #[cfg(feature = "MXMetric")]
-unsafe impl NSSecureCoding for MXDisplayMetric {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXDisplayMetric {}
+);
 
 #[cfg(feature = "MXMetric")]
 impl MXDisplayMetric {

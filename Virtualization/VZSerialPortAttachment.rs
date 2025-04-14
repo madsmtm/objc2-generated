@@ -23,7 +23,9 @@ extern_class!(
     pub struct VZSerialPortAttachment;
 );
 
-unsafe impl NSObjectProtocol for VZSerialPortAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZSerialPortAttachment {}
+);
 
 impl VZSerialPortAttachment {
     extern_methods!(

@@ -17,19 +17,27 @@ extern_class!(
     pub struct UIViewPropertyAnimator;
 );
 
-unsafe impl NSCopying for UIViewPropertyAnimator {}
+extern_conformance!(
+    unsafe impl NSCopying for UIViewPropertyAnimator {}
+);
 
 unsafe impl CopyingHelper for UIViewPropertyAnimator {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIViewPropertyAnimator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIViewPropertyAnimator {}
+);
 
 #[cfg(feature = "UIViewAnimating")]
-unsafe impl UIViewAnimating for UIViewPropertyAnimator {}
+extern_conformance!(
+    unsafe impl UIViewAnimating for UIViewPropertyAnimator {}
+);
 
 #[cfg(feature = "UIViewAnimating")]
-unsafe impl UIViewImplicitlyAnimating for UIViewPropertyAnimator {}
+extern_conformance!(
+    unsafe impl UIViewImplicitlyAnimating for UIViewPropertyAnimator {}
+);
 
 impl UIViewPropertyAnimator {
     extern_methods!(

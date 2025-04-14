@@ -62,11 +62,17 @@ extern_class!(
     pub struct NSTextSelection;
 );
 
-unsafe impl NSCoding for NSTextSelection {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextSelection {}
+);
 
-unsafe impl NSObjectProtocol for NSTextSelection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextSelection {}
+);
 
-unsafe impl NSSecureCoding for NSTextSelection {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextSelection {}
+);
 
 impl NSTextSelection {
     extern_methods!(

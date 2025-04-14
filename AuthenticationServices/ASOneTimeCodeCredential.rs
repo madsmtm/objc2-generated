@@ -14,19 +14,29 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationCredential")]
-unsafe impl ASAuthorizationCredential for ASOneTimeCodeCredential {}
+extern_conformance!(
+    unsafe impl ASAuthorizationCredential for ASOneTimeCodeCredential {}
+);
 
-unsafe impl NSCoding for ASOneTimeCodeCredential {}
+extern_conformance!(
+    unsafe impl NSCoding for ASOneTimeCodeCredential {}
+);
 
-unsafe impl NSCopying for ASOneTimeCodeCredential {}
+extern_conformance!(
+    unsafe impl NSCopying for ASOneTimeCodeCredential {}
+);
 
 unsafe impl CopyingHelper for ASOneTimeCodeCredential {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASOneTimeCodeCredential {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASOneTimeCodeCredential {}
+);
 
-unsafe impl NSSecureCoding for ASOneTimeCodeCredential {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASOneTimeCodeCredential {}
+);
 
 impl ASOneTimeCodeCredential {
     extern_methods!(

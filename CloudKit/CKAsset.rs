@@ -13,7 +13,9 @@ extern_class!(
     pub struct CKAsset;
 );
 
-unsafe impl NSObjectProtocol for CKAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKAsset {}
+);
 
 impl CKAsset {
     extern_methods!(

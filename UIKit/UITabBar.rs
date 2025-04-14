@@ -49,48 +49,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UITabBar {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UITabBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UITabBar {}
+extern_conformance!(
+    unsafe impl NSCoding for UITabBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UITabBar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabBar {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UITabBar {}
+extern_conformance!(
+    unsafe impl UIAppearance for UITabBar {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UITabBar {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UITabBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UITabBar {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UITabBar {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UITabBar {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UITabBar {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UITabBar {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UITabBar {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UITabBar {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UITabBar {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UITabBar {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UITabBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UITabBar {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UITabBar {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UITabBar {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UITabBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UITabBar {
@@ -445,4 +469,6 @@ impl UITabBar {
     feature = "UISpringLoadedInteractionSupporting",
     feature = "UIView"
 ))]
-unsafe impl UISpringLoadedInteractionSupporting for UITabBar {}
+extern_conformance!(
+    unsafe impl UISpringLoadedInteractionSupporting for UITabBar {}
+);

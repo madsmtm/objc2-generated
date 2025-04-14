@@ -13,7 +13,9 @@ extern_class!(
     pub struct WKCrownSequencer;
 );
 
-unsafe impl NSObjectProtocol for WKCrownSequencer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKCrownSequencer {}
+);
 
 impl WKCrownSequencer {
     extern_methods!(

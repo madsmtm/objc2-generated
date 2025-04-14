@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNGenerateObjectnessBasedSaliencyImageRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNGenerateObjectnessBasedSaliencyImageRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNGenerateObjectnessBasedSaliencyImageRequest {
@@ -26,7 +28,9 @@ unsafe impl CopyingHelper for VNGenerateObjectnessBasedSaliencyImageRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNGenerateObjectnessBasedSaliencyImageRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNGenerateObjectnessBasedSaliencyImageRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNGenerateObjectnessBasedSaliencyImageRequest {

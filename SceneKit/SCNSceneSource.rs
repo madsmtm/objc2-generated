@@ -335,7 +335,9 @@ extern_class!(
     pub struct SCNSceneSource;
 );
 
-unsafe impl NSObjectProtocol for SCNSceneSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNSceneSource {}
+);
 
 impl SCNSceneSource {
     extern_methods!(

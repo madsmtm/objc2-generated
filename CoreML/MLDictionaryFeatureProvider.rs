@@ -16,15 +16,25 @@ extern_class!(
 );
 
 #[cfg(feature = "MLFeatureProvider")]
-unsafe impl MLFeatureProvider for MLDictionaryFeatureProvider {}
+extern_conformance!(
+    unsafe impl MLFeatureProvider for MLDictionaryFeatureProvider {}
+);
 
-unsafe impl NSCoding for MLDictionaryFeatureProvider {}
+extern_conformance!(
+    unsafe impl NSCoding for MLDictionaryFeatureProvider {}
+);
 
-unsafe impl NSFastEnumeration for MLDictionaryFeatureProvider {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for MLDictionaryFeatureProvider {}
+);
 
-unsafe impl NSObjectProtocol for MLDictionaryFeatureProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLDictionaryFeatureProvider {}
+);
 
-unsafe impl NSSecureCoding for MLDictionaryFeatureProvider {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLDictionaryFeatureProvider {}
+);
 
 impl MLDictionaryFeatureProvider {
     extern_methods!(

@@ -19,17 +19,25 @@ unsafe impl Send for UIFont {}
 
 unsafe impl Sync for UIFont {}
 
-unsafe impl NSCoding for UIFont {}
+extern_conformance!(
+    unsafe impl NSCoding for UIFont {}
+);
 
-unsafe impl NSCopying for UIFont {}
+extern_conformance!(
+    unsafe impl NSCopying for UIFont {}
+);
 
 unsafe impl CopyingHelper for UIFont {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIFont {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFont {}
+);
 
-unsafe impl NSSecureCoding for UIFont {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIFont {}
+);
 
 impl UIFont {
     extern_methods!(

@@ -365,7 +365,9 @@ extern_class!(
     pub struct IOBluetoothHandsFree;
 );
 
-unsafe impl NSObjectProtocol for IOBluetoothHandsFree {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothHandsFree {}
+);
 
 impl IOBluetoothHandsFree {
     extern_methods!(

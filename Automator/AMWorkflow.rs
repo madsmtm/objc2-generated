@@ -14,13 +14,17 @@ extern_class!(
     pub struct AMWorkflow;
 );
 
-unsafe impl NSCopying for AMWorkflow {}
+extern_conformance!(
+    unsafe impl NSCopying for AMWorkflow {}
+);
 
 unsafe impl CopyingHelper for AMWorkflow {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AMWorkflow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AMWorkflow {}
+);
 
 impl AMWorkflow {
     extern_methods!(

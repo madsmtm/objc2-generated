@@ -171,9 +171,13 @@ extern_class!(
     pub struct UINavigationItem;
 );
 
-unsafe impl NSCoding for UINavigationItem {}
+extern_conformance!(
+    unsafe impl NSCoding for UINavigationItem {}
+);
 
-unsafe impl NSObjectProtocol for UINavigationItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UINavigationItem {}
+);
 
 impl UINavigationItem {
     extern_methods!(

@@ -21,7 +21,9 @@ extern_class!(
     pub struct GCPhysicalInputProfile;
 );
 
-unsafe impl NSObjectProtocol for GCPhysicalInputProfile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCPhysicalInputProfile {}
+);
 
 impl GCPhysicalInputProfile {
     extern_methods!(

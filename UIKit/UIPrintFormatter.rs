@@ -17,13 +17,17 @@ extern_class!(
     pub struct UIPrintFormatter;
 );
 
-unsafe impl NSCopying for UIPrintFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for UIPrintFormatter {}
+);
 
 unsafe impl CopyingHelper for UIPrintFormatter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIPrintFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPrintFormatter {}
+);
 
 impl UIPrintFormatter {
     extern_methods!(
@@ -132,13 +136,17 @@ extern_class!(
     pub struct UISimpleTextPrintFormatter;
 );
 
-unsafe impl NSCopying for UISimpleTextPrintFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for UISimpleTextPrintFormatter {}
+);
 
 unsafe impl CopyingHelper for UISimpleTextPrintFormatter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UISimpleTextPrintFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISimpleTextPrintFormatter {}
+);
 
 impl UISimpleTextPrintFormatter {
     extern_methods!(
@@ -227,13 +235,17 @@ extern_class!(
     pub struct UIMarkupTextPrintFormatter;
 );
 
-unsafe impl NSCopying for UIMarkupTextPrintFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for UIMarkupTextPrintFormatter {}
+);
 
 unsafe impl CopyingHelper for UIMarkupTextPrintFormatter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIMarkupTextPrintFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMarkupTextPrintFormatter {}
+);
 
 impl UIMarkupTextPrintFormatter {
     extern_methods!(
@@ -276,13 +288,17 @@ extern_class!(
     pub struct UIViewPrintFormatter;
 );
 
-unsafe impl NSCopying for UIViewPrintFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for UIViewPrintFormatter {}
+);
 
 unsafe impl CopyingHelper for UIViewPrintFormatter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIViewPrintFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIViewPrintFormatter {}
+);
 
 impl UIViewPrintFormatter {
     extern_methods!(

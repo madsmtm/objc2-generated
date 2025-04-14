@@ -214,7 +214,9 @@ extern_class!(
 );
 
 #[cfg(feature = "ICDevice")]
-unsafe impl NSObjectProtocol for ICScannerDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerDevice {}
+);
 
 #[cfg(feature = "ICDevice")]
 impl ICScannerDevice {

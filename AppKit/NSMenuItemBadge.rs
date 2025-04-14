@@ -48,13 +48,17 @@ extern_class!(
     pub struct NSMenuItemBadge;
 );
 
-unsafe impl NSCopying for NSMenuItemBadge {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMenuItemBadge {}
+);
 
 unsafe impl CopyingHelper for NSMenuItemBadge {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMenuItemBadge {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMenuItemBadge {}
+);
 
 impl NSMenuItemBadge {
     extern_methods!(

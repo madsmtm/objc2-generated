@@ -32,7 +32,9 @@ extern_class!(
     pub struct CMIOExtensionProviderProperties;
 );
 
-unsafe impl NSObjectProtocol for CMIOExtensionProviderProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMIOExtensionProviderProperties {}
+);
 
 impl CMIOExtensionProviderProperties {
     extern_methods!(
@@ -207,7 +209,9 @@ extern_class!(
     pub struct CMIOExtensionProvider;
 );
 
-unsafe impl NSObjectProtocol for CMIOExtensionProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMIOExtensionProvider {}
+);
 
 impl CMIOExtensionProvider {
     extern_methods!(

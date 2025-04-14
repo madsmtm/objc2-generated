@@ -75,7 +75,9 @@ impl SCNLight {
 }
 
 #[cfg(all(feature = "SCNLight", feature = "SCNTechnique"))]
-unsafe impl SCNTechniqueSupport for SCNLight {}
+extern_conformance!(
+    unsafe impl SCNTechniqueSupport for SCNLight {}
+);
 
 /// SCNDeprecated.
 #[cfg(feature = "SCNCamera")]

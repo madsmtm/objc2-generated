@@ -43,7 +43,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSLevelIndicator {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSLevelIndicator {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -51,7 +53,9 @@ unsafe impl NSAccessibility for NSLevelIndicator {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSLevelIndicator {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSLevelIndicator {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -59,7 +63,9 @@ unsafe impl NSAccessibilityElementProtocol for NSLevelIndicator {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSLevelIndicator {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSLevelIndicator {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -67,10 +73,14 @@ unsafe impl NSAnimatablePropertyContainer for NSLevelIndicator {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSLevelIndicator {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSLevelIndicator {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSLevelIndicator {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLevelIndicator {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -78,10 +88,14 @@ unsafe impl NSCoding for NSLevelIndicator {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSLevelIndicator {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSLevelIndicator {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSLevelIndicator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLevelIndicator {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -89,7 +103,9 @@ unsafe impl NSObjectProtocol for NSLevelIndicator {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSLevelIndicator {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSLevelIndicator {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSLevelIndicator {

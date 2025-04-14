@@ -95,11 +95,17 @@ extern_class!(
     pub struct SCNPhysicsWorld;
 );
 
-unsafe impl NSCoding for SCNPhysicsWorld {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPhysicsWorld {}
+);
 
-unsafe impl NSObjectProtocol for SCNPhysicsWorld {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsWorld {}
+);
 
-unsafe impl NSSecureCoding for SCNPhysicsWorld {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPhysicsWorld {}
+);
 
 impl SCNPhysicsWorld {
     extern_methods!(

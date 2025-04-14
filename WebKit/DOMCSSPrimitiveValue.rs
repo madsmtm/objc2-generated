@@ -116,7 +116,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMCSSPrimitiveValue {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMCSSPrimitiveValue {}
+);
 
 #[cfg(all(
     feature = "DOMCSSValue",
@@ -132,7 +134,9 @@ unsafe impl CopyingHelper for DOMCSSPrimitiveValue {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMCSSPrimitiveValue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMCSSPrimitiveValue {}
+);
 
 #[cfg(all(
     feature = "DOMCSSValue",

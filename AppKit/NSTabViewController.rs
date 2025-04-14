@@ -53,45 +53,59 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSCoding for NSTabViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTabViewController {}
+);
 
 #[cfg(all(
     feature = "NSKeyValueBinding",
     feature = "NSResponder",
     feature = "NSViewController"
 ))]
-unsafe impl NSEditor for NSTabViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for NSTabViewController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSObjectProtocol for NSTabViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTabViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSStoryboardSegue",
     feature = "NSViewController"
 ))]
-unsafe impl NSSeguePerforming for NSTabViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for NSTabViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSTabView",
     feature = "NSViewController"
 ))]
-unsafe impl NSTabViewDelegate for NSTabViewController {}
+extern_conformance!(
+    unsafe impl NSTabViewDelegate for NSTabViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSToolbar",
     feature = "NSViewController"
 ))]
-unsafe impl NSToolbarDelegate for NSTabViewController {}
+extern_conformance!(
+    unsafe impl NSToolbarDelegate for NSTabViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSViewController"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTabViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTabViewController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
 impl NSTabViewController {

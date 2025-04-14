@@ -13,17 +13,25 @@ extern_class!(
     pub struct INTemporalEventTrigger;
 );
 
-unsafe impl NSCoding for INTemporalEventTrigger {}
+extern_conformance!(
+    unsafe impl NSCoding for INTemporalEventTrigger {}
+);
 
-unsafe impl NSCopying for INTemporalEventTrigger {}
+extern_conformance!(
+    unsafe impl NSCopying for INTemporalEventTrigger {}
+);
 
 unsafe impl CopyingHelper for INTemporalEventTrigger {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INTemporalEventTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INTemporalEventTrigger {}
+);
 
-unsafe impl NSSecureCoding for INTemporalEventTrigger {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INTemporalEventTrigger {}
+);
 
 impl INTemporalEventTrigger {
     extern_methods!(

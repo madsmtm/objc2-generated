@@ -15,17 +15,25 @@ extern_class!(
     pub struct UNNotificationTrigger;
 );
 
-unsafe impl NSCoding for UNNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCoding for UNNotificationTrigger {}
+);
 
-unsafe impl NSCopying for UNNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCopying for UNNotificationTrigger {}
+);
 
 unsafe impl CopyingHelper for UNNotificationTrigger {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNNotificationTrigger {}
+);
 
-unsafe impl NSSecureCoding for UNNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNNotificationTrigger {}
+);
 
 impl UNNotificationTrigger {
     extern_methods!(
@@ -55,17 +63,25 @@ extern_class!(
     pub struct UNPushNotificationTrigger;
 );
 
-unsafe impl NSCoding for UNPushNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCoding for UNPushNotificationTrigger {}
+);
 
-unsafe impl NSCopying for UNPushNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCopying for UNPushNotificationTrigger {}
+);
 
 unsafe impl CopyingHelper for UNPushNotificationTrigger {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNPushNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNPushNotificationTrigger {}
+);
 
-unsafe impl NSSecureCoding for UNPushNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNPushNotificationTrigger {}
+);
 
 impl UNPushNotificationTrigger {
     extern_methods!();
@@ -96,17 +112,25 @@ extern_class!(
     pub struct UNTimeIntervalNotificationTrigger;
 );
 
-unsafe impl NSCoding for UNTimeIntervalNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCoding for UNTimeIntervalNotificationTrigger {}
+);
 
-unsafe impl NSCopying for UNTimeIntervalNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCopying for UNTimeIntervalNotificationTrigger {}
+);
 
 unsafe impl CopyingHelper for UNTimeIntervalNotificationTrigger {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNTimeIntervalNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNTimeIntervalNotificationTrigger {}
+);
 
-unsafe impl NSSecureCoding for UNTimeIntervalNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNTimeIntervalNotificationTrigger {}
+);
 
 impl UNTimeIntervalNotificationTrigger {
     extern_methods!(
@@ -152,17 +176,25 @@ extern_class!(
     pub struct UNCalendarNotificationTrigger;
 );
 
-unsafe impl NSCoding for UNCalendarNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCoding for UNCalendarNotificationTrigger {}
+);
 
-unsafe impl NSCopying for UNCalendarNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCopying for UNCalendarNotificationTrigger {}
+);
 
 unsafe impl CopyingHelper for UNCalendarNotificationTrigger {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNCalendarNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNCalendarNotificationTrigger {}
+);
 
-unsafe impl NSSecureCoding for UNCalendarNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNCalendarNotificationTrigger {}
+);
 
 impl UNCalendarNotificationTrigger {
     extern_methods!(
@@ -208,17 +240,25 @@ extern_class!(
     pub struct UNLocationNotificationTrigger;
 );
 
-unsafe impl NSCoding for UNLocationNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCoding for UNLocationNotificationTrigger {}
+);
 
-unsafe impl NSCopying for UNLocationNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSCopying for UNLocationNotificationTrigger {}
+);
 
 unsafe impl CopyingHelper for UNLocationNotificationTrigger {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNLocationNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNLocationNotificationTrigger {}
+);
 
-unsafe impl NSSecureCoding for UNLocationNotificationTrigger {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNLocationNotificationTrigger {}
+);
 
 impl UNLocationNotificationTrigger {
     extern_methods!(

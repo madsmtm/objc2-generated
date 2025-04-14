@@ -16,7 +16,9 @@ extern_class!(
     pub struct NSStringDrawingContext;
 );
 
-unsafe impl NSObjectProtocol for NSStringDrawingContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStringDrawingContext {}
+);
 
 impl NSStringDrawingContext {
     extern_methods!(

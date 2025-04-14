@@ -23,7 +23,9 @@ extern_class!(
     pub struct SACrashDetectionManager;
 );
 
-unsafe impl NSObjectProtocol for SACrashDetectionManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SACrashDetectionManager {}
+);
 
 impl SACrashDetectionManager {
     extern_methods!(

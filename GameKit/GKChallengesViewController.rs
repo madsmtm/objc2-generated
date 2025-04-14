@@ -22,27 +22,39 @@ extern_class!(
 
 #[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl GKViewController for GKChallengesViewController {}
+extern_conformance!(
+    unsafe impl GKViewController for GKChallengesViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for GKChallengesViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for GKChallengesViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for GKChallengesViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for GKChallengesViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for GKChallengesViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKChallengesViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for GKChallengesViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for GKChallengesViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for GKChallengesViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for GKChallengesViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

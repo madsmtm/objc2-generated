@@ -12,7 +12,9 @@ extern_class!(
     pub struct CBAttribute;
 );
 
-unsafe impl NSObjectProtocol for CBAttribute {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBAttribute {}
+);
 
 impl CBAttribute {
     extern_methods!(

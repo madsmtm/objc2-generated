@@ -36,7 +36,9 @@ extern_class!(
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
-unsafe impl NSObjectProtocol for MPSCNNDropoutGradientState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNDropoutGradientState {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -210,10 +212,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNDropout {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNDropout {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNDropout {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNDropout {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNDropout {
@@ -221,10 +227,14 @@ unsafe impl CopyingHelper for MPSCNNDropout {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNDropout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNDropout {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNDropout {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNDropout {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNDropout {
@@ -408,10 +418,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNDropoutGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNDropoutGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNDropoutGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNDropoutGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNDropoutGradient {
@@ -419,10 +433,14 @@ unsafe impl CopyingHelper for MPSCNNDropoutGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNDropoutGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNDropoutGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNDropoutGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNDropoutGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNDropoutGradient {

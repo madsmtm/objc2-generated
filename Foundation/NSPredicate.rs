@@ -14,20 +14,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSPredicate {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPredicate {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSPredicate {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPredicate {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSPredicate {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPredicate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPredicate {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSPredicate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSPredicate {}
+);
 
 impl NSPredicate {
     extern_methods!(

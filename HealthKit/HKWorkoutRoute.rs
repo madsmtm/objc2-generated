@@ -21,13 +21,19 @@ unsafe impl Send for HKWorkoutRoute {}
 unsafe impl Sync for HKWorkoutRoute {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]
-unsafe impl NSCoding for HKWorkoutRoute {}
+extern_conformance!(
+    unsafe impl NSCoding for HKWorkoutRoute {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]
-unsafe impl NSObjectProtocol for HKWorkoutRoute {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutRoute {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]
-unsafe impl NSSecureCoding for HKWorkoutRoute {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKWorkoutRoute {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]
 impl HKWorkoutRoute {

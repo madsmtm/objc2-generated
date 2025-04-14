@@ -20,7 +20,9 @@ unsafe impl Send for LAEnvironmentMechanismUserPassword {}
 unsafe impl Sync for LAEnvironmentMechanismUserPassword {}
 
 #[cfg(feature = "LAEnvironmentMechanism")]
-unsafe impl NSObjectProtocol for LAEnvironmentMechanismUserPassword {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAEnvironmentMechanismUserPassword {}
+);
 
 #[cfg(feature = "LAEnvironmentMechanism")]
 impl LAEnvironmentMechanismUserPassword {

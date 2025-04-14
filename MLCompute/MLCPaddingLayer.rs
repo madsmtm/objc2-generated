@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSCopying for MLCPaddingLayer {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCPaddingLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 unsafe impl CopyingHelper for MLCPaddingLayer {
@@ -27,7 +29,9 @@ unsafe impl CopyingHelper for MLCPaddingLayer {
 }
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCPaddingLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCPaddingLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCPaddingLayer {

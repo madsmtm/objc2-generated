@@ -41,7 +41,9 @@ extern_class!(
     pub struct NSStatusItem;
 );
 
-unsafe impl NSObjectProtocol for NSStatusItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStatusItem {}
+);
 
 impl NSStatusItem {
     extern_methods!(

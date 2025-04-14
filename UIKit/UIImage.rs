@@ -99,11 +99,17 @@ unsafe impl Send for UIImage {}
 
 unsafe impl Sync for UIImage {}
 
-unsafe impl NSCoding for UIImage {}
+extern_conformance!(
+    unsafe impl NSCoding for UIImage {}
+);
 
-unsafe impl NSObjectProtocol for UIImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIImage {}
+);
 
-unsafe impl NSSecureCoding for UIImage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIImage {}
+);
 
 impl UIImage {
     extern_methods!(
@@ -630,9 +636,13 @@ impl UIImage {
     extern_methods!();
 }
 
-unsafe impl NSItemProviderReading for UIImage {}
+extern_conformance!(
+    unsafe impl NSItemProviderReading for UIImage {}
+);
 
-unsafe impl NSItemProviderWriting for UIImage {}
+extern_conformance!(
+    unsafe impl NSItemProviderWriting for UIImage {}
+);
 
 /// UIImage.
 #[cfg(feature = "NSTextAttachment")]

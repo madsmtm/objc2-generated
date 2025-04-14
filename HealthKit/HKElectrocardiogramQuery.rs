@@ -22,13 +22,17 @@ unsafe impl Send for HKElectrocardiogramVoltageMeasurement {}
 
 unsafe impl Sync for HKElectrocardiogramVoltageMeasurement {}
 
-unsafe impl NSCopying for HKElectrocardiogramVoltageMeasurement {}
+extern_conformance!(
+    unsafe impl NSCopying for HKElectrocardiogramVoltageMeasurement {}
+);
 
 unsafe impl CopyingHelper for HKElectrocardiogramVoltageMeasurement {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKElectrocardiogramVoltageMeasurement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKElectrocardiogramVoltageMeasurement {}
+);
 
 impl HKElectrocardiogramVoltageMeasurement {
     extern_methods!(
@@ -78,7 +82,9 @@ unsafe impl Send for HKElectrocardiogramQuery {}
 unsafe impl Sync for HKElectrocardiogramQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKElectrocardiogramQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKElectrocardiogramQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKElectrocardiogramQuery {

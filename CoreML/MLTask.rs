@@ -44,7 +44,9 @@ extern_class!(
     pub struct MLTask;
 );
 
-unsafe impl NSObjectProtocol for MLTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLTask {}
+);
 
 impl MLTask {
     extern_methods!(

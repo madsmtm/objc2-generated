@@ -40,17 +40,25 @@ extern_class!(
     pub struct CSSuggestion;
 );
 
-unsafe impl NSCoding for CSSuggestion {}
+extern_conformance!(
+    unsafe impl NSCoding for CSSuggestion {}
+);
 
-unsafe impl NSCopying for CSSuggestion {}
+extern_conformance!(
+    unsafe impl NSCopying for CSSuggestion {}
+);
 
 unsafe impl CopyingHelper for CSSuggestion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CSSuggestion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSSuggestion {}
+);
 
-unsafe impl NSSecureCoding for CSSuggestion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CSSuggestion {}
+);
 
 impl CSSuggestion {
     extern_methods!(

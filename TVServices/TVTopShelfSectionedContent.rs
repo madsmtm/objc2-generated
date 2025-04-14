@@ -17,10 +17,14 @@ extern_class!(
     pub struct TVTopShelfSectionedContent;
 );
 
-unsafe impl NSObjectProtocol for TVTopShelfSectionedContent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVTopShelfSectionedContent {}
+);
 
 #[cfg(feature = "TVTopShelfContent")]
-unsafe impl TVTopShelfContent for TVTopShelfSectionedContent {}
+extern_conformance!(
+    unsafe impl TVTopShelfContent for TVTopShelfSectionedContent {}
+);
 
 impl TVTopShelfSectionedContent {
     extern_methods!(

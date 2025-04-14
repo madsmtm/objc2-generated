@@ -241,10 +241,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLCamera {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLCamera {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLCamera {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLCamera {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLCamera {
@@ -453,10 +457,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLStereoscopicCamera {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLStereoscopicCamera {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLStereoscopicCamera {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLStereoscopicCamera {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLStereoscopicCamera {

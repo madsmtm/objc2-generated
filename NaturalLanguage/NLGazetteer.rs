@@ -13,7 +13,9 @@ extern_class!(
     pub struct NLGazetteer;
 );
 
-unsafe impl NSObjectProtocol for NLGazetteer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NLGazetteer {}
+);
 
 impl NLGazetteer {
     extern_methods!(

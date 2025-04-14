@@ -17,10 +17,14 @@ extern_class!(
     pub struct UIActivityItemsConfiguration;
 );
 
-unsafe impl NSObjectProtocol for UIActivityItemsConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIActivityItemsConfiguration {}
+);
 
 #[cfg(feature = "UIActivityItemsConfigurationReading")]
-unsafe impl UIActivityItemsConfigurationReading for UIActivityItemsConfiguration {}
+extern_conformance!(
+    unsafe impl UIActivityItemsConfigurationReading for UIActivityItemsConfiguration {}
+);
 
 impl UIActivityItemsConfiguration {
     extern_methods!(

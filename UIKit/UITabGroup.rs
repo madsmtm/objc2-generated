@@ -43,7 +43,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UITab")]
-unsafe impl NSObjectProtocol for UITabGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabGroup {}
+);
 
 #[cfg(feature = "UITab")]
 impl UITabGroup {

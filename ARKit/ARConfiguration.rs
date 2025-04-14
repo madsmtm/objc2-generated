@@ -191,7 +191,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for ARConfiguration {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARConfiguration {
@@ -199,7 +201,9 @@ unsafe impl CopyingHelper for ARConfiguration {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARConfiguration {
@@ -364,7 +368,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARWorldTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for ARWorldTrackingConfiguration {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARWorldTrackingConfiguration {
@@ -372,7 +378,9 @@ unsafe impl CopyingHelper for ARWorldTrackingConfiguration {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARWorldTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARWorldTrackingConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARWorldTrackingConfiguration {
@@ -607,7 +615,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for AROrientationTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for AROrientationTrackingConfiguration {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for AROrientationTrackingConfiguration {
@@ -615,7 +625,9 @@ unsafe impl CopyingHelper for AROrientationTrackingConfiguration {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for AROrientationTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AROrientationTrackingConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl AROrientationTrackingConfiguration {
@@ -659,7 +671,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARFaceTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for ARFaceTrackingConfiguration {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARFaceTrackingConfiguration {
@@ -667,7 +681,9 @@ unsafe impl CopyingHelper for ARFaceTrackingConfiguration {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARFaceTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARFaceTrackingConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARFaceTrackingConfiguration {
@@ -737,7 +753,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARImageTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for ARImageTrackingConfiguration {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARImageTrackingConfiguration {
@@ -745,7 +763,9 @@ unsafe impl CopyingHelper for ARImageTrackingConfiguration {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARImageTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARImageTrackingConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARImageTrackingConfiguration {
@@ -818,7 +838,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARObjectScanningConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for ARObjectScanningConfiguration {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARObjectScanningConfiguration {
@@ -826,7 +848,9 @@ unsafe impl CopyingHelper for ARObjectScanningConfiguration {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARObjectScanningConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARObjectScanningConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARObjectScanningConfiguration {
@@ -888,7 +912,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARBodyTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for ARBodyTrackingConfiguration {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARBodyTrackingConfiguration {
@@ -896,7 +922,9 @@ unsafe impl CopyingHelper for ARBodyTrackingConfiguration {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARBodyTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARBodyTrackingConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARBodyTrackingConfiguration {
@@ -1076,7 +1104,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARPositionalTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for ARPositionalTrackingConfiguration {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARPositionalTrackingConfiguration {
@@ -1084,7 +1114,9 @@ unsafe impl CopyingHelper for ARPositionalTrackingConfiguration {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARPositionalTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARPositionalTrackingConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARPositionalTrackingConfiguration {
@@ -1146,7 +1178,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARGeoTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for ARGeoTrackingConfiguration {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARGeoTrackingConfiguration {
@@ -1154,7 +1188,9 @@ unsafe impl CopyingHelper for ARGeoTrackingConfiguration {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARGeoTrackingConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARGeoTrackingConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingConfiguration {

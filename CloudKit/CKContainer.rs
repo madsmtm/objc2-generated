@@ -37,7 +37,9 @@ unsafe impl Send for CKContainer {}
 
 unsafe impl Sync for CKContainer {}
 
-unsafe impl NSObjectProtocol for CKContainer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKContainer {}
+);
 
 impl CKContainer {
     extern_methods!(

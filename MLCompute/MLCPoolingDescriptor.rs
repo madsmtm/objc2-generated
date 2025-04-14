@@ -16,13 +16,17 @@ extern_class!(
     pub struct MLCPoolingDescriptor;
 );
 
-unsafe impl NSCopying for MLCPoolingDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCPoolingDescriptor {}
+);
 
 unsafe impl CopyingHelper for MLCPoolingDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCPoolingDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCPoolingDescriptor {}
+);
 
 impl MLCPoolingDescriptor {
     extern_methods!(

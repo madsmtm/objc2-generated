@@ -213,7 +213,9 @@ extern_class!(
     pub struct AVAudioSequencer;
 );
 
-unsafe impl NSObjectProtocol for AVAudioSequencer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSequencer {}
+);
 
 impl AVAudioSequencer {
     extern_methods!(
@@ -482,7 +484,9 @@ extern_class!(
     pub struct AVMusicTrack;
 );
 
-unsafe impl NSObjectProtocol for AVMusicTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMusicTrack {}
+);
 
 impl AVMusicTrack {
     extern_methods!(

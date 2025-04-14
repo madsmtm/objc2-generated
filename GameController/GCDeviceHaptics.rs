@@ -73,7 +73,9 @@ extern_class!(
     pub struct GCDeviceHaptics;
 );
 
-unsafe impl NSObjectProtocol for GCDeviceHaptics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCDeviceHaptics {}
+);
 
 impl GCDeviceHaptics {
     extern_methods!(

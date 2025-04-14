@@ -40,23 +40,35 @@ extern_class!(
     pub struct SCNCamera;
 );
 
-unsafe impl NSCoding for SCNCamera {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNCamera {}
+);
 
-unsafe impl NSCopying for SCNCamera {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNCamera {}
+);
 
 unsafe impl CopyingHelper for SCNCamera {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNCamera {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNCamera {}
+);
 
-unsafe impl NSSecureCoding for SCNCamera {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNCamera {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNCamera {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNCamera {}
+);
 
 #[cfg(feature = "SCNTechnique")]
-unsafe impl SCNTechniqueSupport for SCNCamera {}
+extern_conformance!(
+    unsafe impl SCNTechniqueSupport for SCNCamera {}
+);
 
 impl SCNCamera {
     extern_methods!(

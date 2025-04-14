@@ -112,13 +112,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIPageControl {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIPageControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIPageControl {}
+extern_conformance!(
+    unsafe impl NSCoding for UIPageControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIPageControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPageControl {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -126,7 +132,9 @@ unsafe impl NSObjectProtocol for UIPageControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UIPageControl {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIPageControl {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -134,10 +142,14 @@ unsafe impl UIAppearance for UIPageControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UIPageControl {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIPageControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIPageControl {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIPageControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -145,7 +157,9 @@ unsafe impl UICoordinateSpace for UIPageControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIPageControl {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIPageControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -153,7 +167,9 @@ unsafe impl UIDynamicItem for UIPageControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UIPageControl {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIPageControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -161,7 +177,9 @@ unsafe impl UIFocusEnvironment for UIPageControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UIPageControl {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIPageControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -169,10 +187,14 @@ unsafe impl UIFocusItem for UIPageControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UIPageControl {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIPageControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIPageControl {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIPageControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -180,7 +202,9 @@ unsafe impl UIResponderStandardEditActions for UIPageControl {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIPageControl {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIPageControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UIPageControl {

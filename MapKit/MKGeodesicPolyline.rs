@@ -21,7 +21,9 @@ extern_class!(
     feature = "MKPolyline",
     feature = "MKShape"
 ))]
-unsafe impl MKAnnotation for MKGeodesicPolyline {}
+extern_conformance!(
+    unsafe impl MKAnnotation for MKGeodesicPolyline {}
+);
 
 #[cfg(all(
     feature = "MKAnnotation",
@@ -30,10 +32,14 @@ unsafe impl MKAnnotation for MKGeodesicPolyline {}
     feature = "MKPolyline",
     feature = "MKShape"
 ))]
-unsafe impl MKOverlay for MKGeodesicPolyline {}
+extern_conformance!(
+    unsafe impl MKOverlay for MKGeodesicPolyline {}
+);
 
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
-unsafe impl NSObjectProtocol for MKGeodesicPolyline {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKGeodesicPolyline {}
+);
 
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
 impl MKGeodesicPolyline {

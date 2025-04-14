@@ -27,7 +27,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMComment {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMComment {}
+);
 
 #[cfg(all(
     feature = "DOMCharacterData",
@@ -35,7 +37,9 @@ unsafe impl DOMEventTarget for DOMComment {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMComment {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMComment {}
+);
 
 #[cfg(all(
     feature = "DOMCharacterData",
@@ -53,7 +57,9 @@ unsafe impl CopyingHelper for DOMComment {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMComment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMComment {}
+);
 
 #[cfg(all(
     feature = "DOMCharacterData",

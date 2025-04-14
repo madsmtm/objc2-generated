@@ -62,7 +62,9 @@ extern_class!(
     pub struct NSAlert;
 );
 
-unsafe impl NSObjectProtocol for NSAlert {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAlert {}
+);
 
 impl NSAlert {
     extern_methods!(

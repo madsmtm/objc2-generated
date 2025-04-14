@@ -24,13 +24,17 @@ extern_class!(
     pub struct VZVirtioConsolePortConfigurationArray;
 );
 
-unsafe impl NSCopying for VZVirtioConsolePortConfigurationArray {}
+extern_conformance!(
+    unsafe impl NSCopying for VZVirtioConsolePortConfigurationArray {}
+);
 
 unsafe impl CopyingHelper for VZVirtioConsolePortConfigurationArray {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZVirtioConsolePortConfigurationArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioConsolePortConfigurationArray {}
+);
 
 impl VZVirtioConsolePortConfigurationArray {
     extern_methods!(

@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSCharacterSet {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCharacterSet {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSCharacterSet {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCharacterSet {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSCharacterSet {
@@ -28,17 +32,23 @@ unsafe impl CopyingHelper for NSCharacterSet {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSCharacterSet {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSCharacterSet {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSCharacterSet {
     type Result = NSMutableCharacterSet;
 }
 
-unsafe impl NSObjectProtocol for NSCharacterSet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCharacterSet {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSCharacterSet {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSCharacterSet {}
+);
 
 impl NSCharacterSet {
     extern_methods!(
@@ -182,10 +192,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMutableCharacterSet {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMutableCharacterSet {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMutableCharacterSet {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMutableCharacterSet {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMutableCharacterSet {
@@ -193,17 +207,23 @@ unsafe impl CopyingHelper for NSMutableCharacterSet {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSMutableCharacterSet {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSMutableCharacterSet {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSMutableCharacterSet {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMutableCharacterSet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMutableCharacterSet {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSMutableCharacterSet {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMutableCharacterSet {}
+);
 
 impl NSMutableCharacterSet {
     extern_methods!(

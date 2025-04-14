@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSNDArrayGradientState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayGradientState {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSNDArrayGradientState {

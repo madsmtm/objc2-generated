@@ -18,7 +18,9 @@ extern_class!(
     pub struct SWRemoveParticipantAlert;
 );
 
-unsafe impl NSObjectProtocol for SWRemoveParticipantAlert {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWRemoveParticipantAlert {}
+);
 
 impl SWRemoveParticipantAlert {
     extern_methods!(

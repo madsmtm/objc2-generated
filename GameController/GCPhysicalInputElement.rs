@@ -52,15 +52,19 @@ extern_class!(
     >;
 );
 
-unsafe impl<Key: ?Sized, Element: ?Sized> NSFastEnumeration
-    for GCPhysicalInputElementCollection<Key, Element>
-{
-}
+extern_conformance!(
+    unsafe impl<Key: ?Sized, Element: ?Sized> NSFastEnumeration
+        for GCPhysicalInputElementCollection<Key, Element>
+    {
+    }
+);
 
-unsafe impl<Key: ?Sized, Element: ?Sized> NSObjectProtocol
-    for GCPhysicalInputElementCollection<Key, Element>
-{
-}
+extern_conformance!(
+    unsafe impl<Key: ?Sized, Element: ?Sized> NSObjectProtocol
+        for GCPhysicalInputElementCollection<Key, Element>
+    {
+    }
+);
 
 impl<Key: Message, Element: Message> GCPhysicalInputElementCollection<Key, Element> {
     extern_methods!(

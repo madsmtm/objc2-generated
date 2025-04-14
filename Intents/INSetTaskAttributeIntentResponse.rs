@@ -44,10 +44,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSetTaskAttributeIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSetTaskAttributeIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSetTaskAttributeIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSetTaskAttributeIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSetTaskAttributeIntentResponse {
@@ -55,10 +59,14 @@ unsafe impl CopyingHelper for INSetTaskAttributeIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSetTaskAttributeIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSetTaskAttributeIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSetTaskAttributeIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSetTaskAttributeIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSetTaskAttributeIntentResponse {

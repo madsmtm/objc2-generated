@@ -39,7 +39,9 @@ extern_class!(
     feature = "INIntentResolutionResult",
     feature = "INTaskResolutionResult"
 ))]
-unsafe impl NSObjectProtocol for INSnoozeTasksTaskResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSnoozeTasksTaskResolutionResult {}
+);
 
 #[cfg(all(
     feature = "INIntentResolutionResult",

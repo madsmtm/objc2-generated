@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSPressureConfiguration;
 );
 
-unsafe impl NSObjectProtocol for NSPressureConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPressureConfiguration {}
+);
 
 impl NSPressureConfiguration {
     extern_methods!(

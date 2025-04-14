@@ -28,27 +28,39 @@ extern_class!(
     feature = "objc2-app-kit"
 ))]
 #[cfg(target_os = "macos")]
-unsafe impl GKViewController for GKAchievementViewController {}
+extern_conformance!(
+    unsafe impl GKViewController for GKAchievementViewController {}
+);
 
 #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for GKAchievementViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for GKAchievementViewController {}
+);
 
 #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for GKAchievementViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for GKAchievementViewController {}
+);
 
 #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for GKAchievementViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKAchievementViewController {}
+);
 
 #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for GKAchievementViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for GKAchievementViewController {}
+);
 
 #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for GKAchievementViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for GKAchievementViewController {}
+);
 
 #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]

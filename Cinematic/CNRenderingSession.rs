@@ -50,7 +50,9 @@ extern_class!(
     pub struct CNRenderingSessionAttributes;
 );
 
-unsafe impl NSObjectProtocol for CNRenderingSessionAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNRenderingSessionAttributes {}
+);
 
 impl CNRenderingSessionAttributes {
     extern_methods!(
@@ -89,13 +91,17 @@ extern_class!(
     pub struct CNRenderingSessionFrameAttributes;
 );
 
-unsafe impl NSCopying for CNRenderingSessionFrameAttributes {}
+extern_conformance!(
+    unsafe impl NSCopying for CNRenderingSessionFrameAttributes {}
+);
 
 unsafe impl CopyingHelper for CNRenderingSessionFrameAttributes {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNRenderingSessionFrameAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNRenderingSessionFrameAttributes {}
+);
 
 impl CNRenderingSessionFrameAttributes {
     extern_methods!(
@@ -167,7 +173,9 @@ extern_class!(
     pub struct CNRenderingSession;
 );
 
-unsafe impl NSObjectProtocol for CNRenderingSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNRenderingSession {}
+);
 
 impl CNRenderingSession {
     extern_methods!(

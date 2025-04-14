@@ -148,7 +148,9 @@ extern_class!(
     pub struct WebScriptObject;
 );
 
-unsafe impl NSObjectProtocol for WebScriptObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebScriptObject {}
+);
 
 impl WebScriptObject {
     extern_methods!(
@@ -286,15 +288,21 @@ extern_class!(
     pub struct WebUndefined;
 );
 
-unsafe impl NSCoding for WebUndefined {}
+extern_conformance!(
+    unsafe impl NSCoding for WebUndefined {}
+);
 
-unsafe impl NSCopying for WebUndefined {}
+extern_conformance!(
+    unsafe impl NSCopying for WebUndefined {}
+);
 
 unsafe impl CopyingHelper for WebUndefined {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WebUndefined {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebUndefined {}
+);
 
 impl WebUndefined {
     extern_methods!(

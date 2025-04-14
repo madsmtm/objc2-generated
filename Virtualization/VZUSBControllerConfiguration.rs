@@ -21,13 +21,17 @@ extern_class!(
     pub struct VZUSBControllerConfiguration;
 );
 
-unsafe impl NSCopying for VZUSBControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZUSBControllerConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZUSBControllerConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZUSBControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZUSBControllerConfiguration {}
+);
 
 impl VZUSBControllerConfiguration {
     extern_methods!(

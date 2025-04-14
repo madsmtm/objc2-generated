@@ -37,7 +37,9 @@ extern_class!(
     pub struct UIPrintPageRenderer;
 );
 
-unsafe impl NSObjectProtocol for UIPrintPageRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPrintPageRenderer {}
+);
 
 impl UIPrintPageRenderer {
     extern_methods!(

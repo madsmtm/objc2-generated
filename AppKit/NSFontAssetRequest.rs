@@ -34,9 +34,13 @@ extern_class!(
     pub struct NSFontAssetRequest;
 );
 
-unsafe impl NSObjectProtocol for NSFontAssetRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFontAssetRequest {}
+);
 
-unsafe impl NSProgressReporting for NSFontAssetRequest {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for NSFontAssetRequest {}
+);
 
 impl NSFontAssetRequest {
     extern_methods!(

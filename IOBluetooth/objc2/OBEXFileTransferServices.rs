@@ -17,7 +17,9 @@ extern_class!(
     pub struct OBEXFileTransferServices;
 );
 
-unsafe impl NSObjectProtocol for OBEXFileTransferServices {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OBEXFileTransferServices {}
+);
 
 impl OBEXFileTransferServices {
     extern_methods!(

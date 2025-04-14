@@ -80,15 +80,21 @@ extern_class!(
     pub struct AVAssetDownloadTask;
 );
 
-unsafe impl NSCopying for AVAssetDownloadTask {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAssetDownloadTask {}
+);
 
 unsafe impl CopyingHelper for AVAssetDownloadTask {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAssetDownloadTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetDownloadTask {}
+);
 
-unsafe impl NSProgressReporting for AVAssetDownloadTask {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for AVAssetDownloadTask {}
+);
 
 impl AVAssetDownloadTask {
     extern_methods!(
@@ -156,7 +162,9 @@ extern_class!(
     pub struct AVAssetDownloadConfiguration;
 );
 
-unsafe impl NSObjectProtocol for AVAssetDownloadConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetDownloadConfiguration {}
+);
 
 impl AVAssetDownloadConfiguration {
     extern_methods!(
@@ -273,13 +281,17 @@ extern_class!(
     pub struct AVAssetDownloadContentConfiguration;
 );
 
-unsafe impl NSCopying for AVAssetDownloadContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAssetDownloadContentConfiguration {}
+);
 
 unsafe impl CopyingHelper for AVAssetDownloadContentConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAssetDownloadContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetDownloadContentConfiguration {}
+);
 
 impl AVAssetDownloadContentConfiguration {
     extern_methods!(
@@ -345,15 +357,21 @@ extern_class!(
     pub struct AVAggregateAssetDownloadTask;
 );
 
-unsafe impl NSCopying for AVAggregateAssetDownloadTask {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAggregateAssetDownloadTask {}
+);
 
 unsafe impl CopyingHelper for AVAggregateAssetDownloadTask {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAggregateAssetDownloadTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAggregateAssetDownloadTask {}
+);
 
-unsafe impl NSProgressReporting for AVAggregateAssetDownloadTask {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for AVAggregateAssetDownloadTask {}
+);
 
 impl AVAggregateAssetDownloadTask {
     extern_methods!(
@@ -530,7 +548,9 @@ extern_class!(
     pub struct AVAssetDownloadURLSession;
 );
 
-unsafe impl NSObjectProtocol for AVAssetDownloadURLSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetDownloadURLSession {}
+);
 
 impl AVAssetDownloadURLSession {
     extern_methods!(

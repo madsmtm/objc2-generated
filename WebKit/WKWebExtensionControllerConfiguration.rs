@@ -19,17 +19,25 @@ extern_class!(
     pub struct WKWebExtensionControllerConfiguration;
 );
 
-unsafe impl NSCoding for WKWebExtensionControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for WKWebExtensionControllerConfiguration {}
+);
 
-unsafe impl NSCopying for WKWebExtensionControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for WKWebExtensionControllerConfiguration {}
+);
 
 unsafe impl CopyingHelper for WKWebExtensionControllerConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WKWebExtensionControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebExtensionControllerConfiguration {}
+);
 
-unsafe impl NSSecureCoding for WKWebExtensionControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WKWebExtensionControllerConfiguration {}
+);
 
 impl WKWebExtensionControllerConfiguration {
     extern_methods!(

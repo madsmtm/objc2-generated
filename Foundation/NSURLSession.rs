@@ -22,7 +22,9 @@ unsafe impl Send for NSURLSession {}
 
 unsafe impl Sync for NSURLSession {}
 
-unsafe impl NSObjectProtocol for NSURLSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSession {}
+);
 
 impl NSURLSession {
     extern_methods!(
@@ -432,17 +434,23 @@ unsafe impl Send for NSURLSessionTask {}
 unsafe impl Sync for NSURLSessionTask {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLSessionTask {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLSessionTask {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLSessionTask {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLSessionTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionTask {}
+);
 
 #[cfg(feature = "NSProgress")]
-unsafe impl NSProgressReporting for NSURLSessionTask {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for NSURLSessionTask {}
+);
 
 impl NSURLSessionTask {
     extern_methods!(
@@ -624,17 +632,23 @@ unsafe impl Send for NSURLSessionDataTask {}
 unsafe impl Sync for NSURLSessionDataTask {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLSessionDataTask {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLSessionDataTask {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLSessionDataTask {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLSessionDataTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionDataTask {}
+);
 
 #[cfg(feature = "NSProgress")]
-unsafe impl NSProgressReporting for NSURLSessionDataTask {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for NSURLSessionDataTask {}
+);
 
 impl NSURLSessionDataTask {
     extern_methods!(
@@ -662,17 +676,23 @@ unsafe impl Send for NSURLSessionUploadTask {}
 unsafe impl Sync for NSURLSessionUploadTask {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLSessionUploadTask {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLSessionUploadTask {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLSessionUploadTask {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLSessionUploadTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionUploadTask {}
+);
 
 #[cfg(feature = "NSProgress")]
-unsafe impl NSProgressReporting for NSURLSessionUploadTask {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for NSURLSessionUploadTask {}
+);
 
 impl NSURLSessionUploadTask {
     extern_methods!(
@@ -714,17 +734,23 @@ unsafe impl Send for NSURLSessionDownloadTask {}
 unsafe impl Sync for NSURLSessionDownloadTask {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLSessionDownloadTask {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLSessionDownloadTask {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLSessionDownloadTask {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLSessionDownloadTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionDownloadTask {}
+);
 
 #[cfg(feature = "NSProgress")]
-unsafe impl NSProgressReporting for NSURLSessionDownloadTask {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for NSURLSessionDownloadTask {}
+);
 
 impl NSURLSessionDownloadTask {
     extern_methods!(
@@ -760,17 +786,23 @@ unsafe impl Send for NSURLSessionStreamTask {}
 unsafe impl Sync for NSURLSessionStreamTask {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLSessionStreamTask {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLSessionStreamTask {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLSessionStreamTask {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLSessionStreamTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionStreamTask {}
+);
 
 #[cfg(feature = "NSProgress")]
-unsafe impl NSProgressReporting for NSURLSessionStreamTask {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for NSURLSessionStreamTask {}
+);
 
 impl NSURLSessionStreamTask {
     extern_methods!(
@@ -869,7 +901,9 @@ unsafe impl Send for NSURLSessionWebSocketMessage {}
 
 unsafe impl Sync for NSURLSessionWebSocketMessage {}
 
-unsafe impl NSObjectProtocol for NSURLSessionWebSocketMessage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionWebSocketMessage {}
+);
 
 impl NSURLSessionWebSocketMessage {
     extern_methods!(
@@ -961,17 +995,23 @@ unsafe impl Send for NSURLSessionWebSocketTask {}
 unsafe impl Sync for NSURLSessionWebSocketTask {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLSessionWebSocketTask {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLSessionWebSocketTask {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLSessionWebSocketTask {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLSessionWebSocketTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionWebSocketTask {}
+);
 
 #[cfg(feature = "NSProgress")]
-unsafe impl NSProgressReporting for NSURLSessionWebSocketTask {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for NSURLSessionWebSocketTask {}
+);
 
 impl NSURLSessionWebSocketTask {
     extern_methods!(
@@ -1095,14 +1135,18 @@ unsafe impl Send for NSURLSessionConfiguration {}
 unsafe impl Sync for NSURLSessionConfiguration {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLSessionConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLSessionConfiguration {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLSessionConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLSessionConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionConfiguration {}
+);
 
 impl NSURLSessionConfiguration {
     extern_methods!(
@@ -1938,7 +1982,9 @@ unsafe impl Send for NSURLSessionTaskTransactionMetrics {}
 
 unsafe impl Sync for NSURLSessionTaskTransactionMetrics {}
 
-unsafe impl NSObjectProtocol for NSURLSessionTaskTransactionMetrics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionTaskTransactionMetrics {}
+);
 
 impl NSURLSessionTaskTransactionMetrics {
     extern_methods!(
@@ -2123,7 +2169,9 @@ unsafe impl Send for NSURLSessionTaskMetrics {}
 
 unsafe impl Sync for NSURLSessionTaskMetrics {}
 
-unsafe impl NSObjectProtocol for NSURLSessionTaskMetrics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLSessionTaskMetrics {}
+);
 
 impl NSURLSessionTaskMetrics {
     extern_methods!(

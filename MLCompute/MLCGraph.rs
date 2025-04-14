@@ -16,7 +16,9 @@ extern_class!(
     pub struct MLCGraph;
 );
 
-unsafe impl NSObjectProtocol for MLCGraph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCGraph {}
+);
 
 impl MLCGraph {
     extern_methods!(

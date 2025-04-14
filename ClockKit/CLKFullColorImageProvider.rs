@@ -17,13 +17,17 @@ extern_class!(
     pub struct CLKFullColorImageProvider;
 );
 
-unsafe impl NSCopying for CLKFullColorImageProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKFullColorImageProvider {}
+);
 
 unsafe impl CopyingHelper for CLKFullColorImageProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKFullColorImageProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKFullColorImageProvider {}
+);
 
 impl CLKFullColorImageProvider {
     extern_methods!(

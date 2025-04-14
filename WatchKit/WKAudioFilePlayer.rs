@@ -41,7 +41,9 @@ extern_class!(
     pub struct WKAudioFilePlayer;
 );
 
-unsafe impl NSObjectProtocol for WKAudioFilePlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKAudioFilePlayer {}
+);
 
 impl WKAudioFilePlayer {
     extern_methods!(
@@ -128,7 +130,9 @@ extern_class!(
     pub struct WKAudioFileQueuePlayer;
 );
 
-unsafe impl NSObjectProtocol for WKAudioFileQueuePlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKAudioFileQueuePlayer {}
+);
 
 impl WKAudioFileQueuePlayer {
     extern_methods!(

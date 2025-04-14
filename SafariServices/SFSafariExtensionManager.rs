@@ -14,7 +14,9 @@ extern_class!(
     pub struct SFSafariExtensionManager;
 );
 
-unsafe impl NSObjectProtocol for SFSafariExtensionManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSafariExtensionManager {}
+);
 
 impl SFSafariExtensionManager {
     extern_methods!(

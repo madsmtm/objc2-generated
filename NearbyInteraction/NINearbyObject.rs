@@ -60,17 +60,25 @@ extern_class!(
     pub struct NINearbyObject;
 );
 
-unsafe impl NSCoding for NINearbyObject {}
+extern_conformance!(
+    unsafe impl NSCoding for NINearbyObject {}
+);
 
-unsafe impl NSCopying for NINearbyObject {}
+extern_conformance!(
+    unsafe impl NSCopying for NINearbyObject {}
+);
 
 unsafe impl CopyingHelper for NINearbyObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NINearbyObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NINearbyObject {}
+);
 
-unsafe impl NSSecureCoding for NINearbyObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NINearbyObject {}
+);
 
 impl NINearbyObject {
     extern_methods!(

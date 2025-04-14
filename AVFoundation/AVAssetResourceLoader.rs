@@ -16,7 +16,9 @@ extern_class!(
     pub struct AVAssetResourceLoader;
 );
 
-unsafe impl NSObjectProtocol for AVAssetResourceLoader {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetResourceLoader {}
+);
 
 impl AVAssetResourceLoader {
     extern_methods!(
@@ -173,7 +175,9 @@ extern_class!(
     pub struct AVAssetResourceLoadingRequestor;
 );
 
-unsafe impl NSObjectProtocol for AVAssetResourceLoadingRequestor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetResourceLoadingRequestor {}
+);
 
 impl AVAssetResourceLoadingRequestor {
     extern_methods!(
@@ -199,7 +203,9 @@ extern_class!(
     pub struct AVAssetResourceLoadingRequest;
 );
 
-unsafe impl NSObjectProtocol for AVAssetResourceLoadingRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetResourceLoadingRequest {}
+);
 
 impl AVAssetResourceLoadingRequest {
     extern_methods!(
@@ -297,7 +303,9 @@ extern_class!(
     pub struct AVAssetResourceRenewalRequest;
 );
 
-unsafe impl NSObjectProtocol for AVAssetResourceRenewalRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetResourceRenewalRequest {}
+);
 
 impl AVAssetResourceRenewalRequest {
     extern_methods!();
@@ -323,7 +331,9 @@ extern_class!(
     pub struct AVAssetResourceLoadingContentInformationRequest;
 );
 
-unsafe impl NSObjectProtocol for AVAssetResourceLoadingContentInformationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetResourceLoadingContentInformationRequest {}
+);
 
 impl AVAssetResourceLoadingContentInformationRequest {
     extern_methods!(
@@ -414,7 +424,9 @@ extern_class!(
     pub struct AVAssetResourceLoadingDataRequest;
 );
 
-unsafe impl NSObjectProtocol for AVAssetResourceLoadingDataRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetResourceLoadingDataRequest {}
+);
 
 impl AVAssetResourceLoadingDataRequest {
     extern_methods!(

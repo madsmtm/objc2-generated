@@ -17,20 +17,28 @@ unsafe impl Send for NSUUID {}
 unsafe impl Sync for NSUUID {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSUUID {}
+extern_conformance!(
+    unsafe impl NSCoding for NSUUID {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSUUID {}
+extern_conformance!(
+    unsafe impl NSCopying for NSUUID {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSUUID {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSUUID {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUUID {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSUUID {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSUUID {}
+);
 
 impl NSUUID {
     extern_methods!(

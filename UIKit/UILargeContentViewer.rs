@@ -101,7 +101,9 @@ impl UIView {
 }
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UILargeContentViewerItem for UIView {}
+extern_conformance!(
+    unsafe impl UILargeContentViewerItem for UIView {}
+);
 
 extern_class!(
     /// UILargeContentViewerInteraction enables a gesture to present and dismiss the large content viewer on a device with relevant settings.
@@ -116,10 +118,14 @@ extern_class!(
     pub struct UILargeContentViewerInteraction;
 );
 
-unsafe impl NSObjectProtocol for UILargeContentViewerInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UILargeContentViewerInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UILargeContentViewerInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UILargeContentViewerInteraction {}
+);
 
 impl UILargeContentViewerInteraction {
     extern_methods!(

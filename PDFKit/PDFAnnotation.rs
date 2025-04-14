@@ -237,15 +237,21 @@ extern_class!(
     pub struct PDFAnnotation;
 );
 
-unsafe impl NSCoding for PDFAnnotation {}
+extern_conformance!(
+    unsafe impl NSCoding for PDFAnnotation {}
+);
 
-unsafe impl NSCopying for PDFAnnotation {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFAnnotation {}
+);
 
 unsafe impl CopyingHelper for PDFAnnotation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PDFAnnotation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFAnnotation {}
+);
 
 impl PDFAnnotation {
     extern_methods!(

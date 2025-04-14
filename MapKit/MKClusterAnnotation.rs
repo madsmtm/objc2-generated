@@ -15,9 +15,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MKAnnotation")]
-unsafe impl MKAnnotation for MKClusterAnnotation {}
+extern_conformance!(
+    unsafe impl MKAnnotation for MKClusterAnnotation {}
+);
 
-unsafe impl NSObjectProtocol for MKClusterAnnotation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKClusterAnnotation {}
+);
 
 impl MKClusterAnnotation {
     extern_methods!(

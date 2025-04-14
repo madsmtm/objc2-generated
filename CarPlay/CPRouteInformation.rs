@@ -19,7 +19,9 @@ unsafe impl Send for CPRouteInformation {}
 
 unsafe impl Sync for CPRouteInformation {}
 
-unsafe impl NSObjectProtocol for CPRouteInformation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPRouteInformation {}
+);
 
 impl CPRouteInformation {
     extern_methods!(

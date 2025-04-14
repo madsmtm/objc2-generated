@@ -18,9 +18,13 @@ extern_class!(
     pub struct EKVirtualConferenceProvider;
 );
 
-unsafe impl NSExtensionRequestHandling for EKVirtualConferenceProvider {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for EKVirtualConferenceProvider {}
+);
 
-unsafe impl NSObjectProtocol for EKVirtualConferenceProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKVirtualConferenceProvider {}
+);
 
 impl EKVirtualConferenceProvider {
     extern_methods!(

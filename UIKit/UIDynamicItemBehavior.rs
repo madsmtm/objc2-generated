@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDynamicBehavior")]
-unsafe impl NSObjectProtocol for UIDynamicItemBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDynamicItemBehavior {}
+);
 
 #[cfg(feature = "UIDynamicBehavior")]
 impl UIDynamicItemBehavior {

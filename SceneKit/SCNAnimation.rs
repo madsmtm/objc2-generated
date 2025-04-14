@@ -37,11 +37,17 @@ extern_class!(
     pub struct SCNTimingFunction;
 );
 
-unsafe impl NSCoding for SCNTimingFunction {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNTimingFunction {}
+);
 
-unsafe impl NSObjectProtocol for SCNTimingFunction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNTimingFunction {}
+);
 
-unsafe impl NSSecureCoding for SCNTimingFunction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNTimingFunction {}
+);
 
 impl SCNTimingFunction {
     extern_methods!(
@@ -235,19 +241,29 @@ extern_class!(
     pub struct SCNAnimation;
 );
 
-unsafe impl NSCoding for SCNAnimation {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNAnimation {}
+);
 
-unsafe impl NSCopying for SCNAnimation {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNAnimation {}
+);
 
 unsafe impl CopyingHelper for SCNAnimation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNAnimation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNAnimation {}
+);
 
-unsafe impl NSSecureCoding for SCNAnimation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNAnimation {}
+);
 
-unsafe impl SCNAnimationProtocol for SCNAnimation {}
+extern_conformance!(
+    unsafe impl SCNAnimationProtocol for SCNAnimation {}
+);
 
 impl SCNAnimation {
     extern_methods!(
@@ -535,19 +551,29 @@ extern_class!(
     pub struct SCNAnimationPlayer;
 );
 
-unsafe impl NSCoding for SCNAnimationPlayer {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNAnimationPlayer {}
+);
 
-unsafe impl NSCopying for SCNAnimationPlayer {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNAnimationPlayer {}
+);
 
 unsafe impl CopyingHelper for SCNAnimationPlayer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNAnimationPlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNAnimationPlayer {}
+);
 
-unsafe impl NSSecureCoding for SCNAnimationPlayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNAnimationPlayer {}
+);
 
-unsafe impl SCNAnimatable for SCNAnimationPlayer {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNAnimationPlayer {}
+);
 
 impl SCNAnimationPlayer {
     extern_methods!(
@@ -646,7 +672,9 @@ extern_class!(
     pub struct SCNAnimationEvent;
 );
 
-unsafe impl NSObjectProtocol for SCNAnimationEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNAnimationEvent {}
+);
 
 impl SCNAnimationEvent {
     extern_methods!(

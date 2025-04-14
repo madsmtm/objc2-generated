@@ -19,7 +19,9 @@ extern_class!(
     pub struct NSScreen;
 );
 
-unsafe impl NSObjectProtocol for NSScreen {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScreen {}
+);
 
 impl NSScreen {
     extern_methods!(

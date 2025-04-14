@@ -16,7 +16,9 @@ extern_class!(
     pub struct WKNavigationResponse;
 );
 
-unsafe impl NSObjectProtocol for WKNavigationResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKNavigationResponse {}
+);
 
 impl WKNavigationResponse {
     extern_methods!(

@@ -14,17 +14,25 @@ extern_class!(
     pub struct INRestaurantGuestDisplayPreferences;
 );
 
-unsafe impl NSCoding for INRestaurantGuestDisplayPreferences {}
+extern_conformance!(
+    unsafe impl NSCoding for INRestaurantGuestDisplayPreferences {}
+);
 
-unsafe impl NSCopying for INRestaurantGuestDisplayPreferences {}
+extern_conformance!(
+    unsafe impl NSCopying for INRestaurantGuestDisplayPreferences {}
+);
 
 unsafe impl CopyingHelper for INRestaurantGuestDisplayPreferences {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INRestaurantGuestDisplayPreferences {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRestaurantGuestDisplayPreferences {}
+);
 
-unsafe impl NSSecureCoding for INRestaurantGuestDisplayPreferences {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRestaurantGuestDisplayPreferences {}
+);
 
 impl INRestaurantGuestDisplayPreferences {
     extern_methods!(

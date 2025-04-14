@@ -20,9 +20,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GKStrategist")]
-unsafe impl GKStrategist for GKMinmaxStrategist {}
+extern_conformance!(
+    unsafe impl GKStrategist for GKMinmaxStrategist {}
+);
 
-unsafe impl NSObjectProtocol for GKMinmaxStrategist {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKMinmaxStrategist {}
+);
 
 impl GKMinmaxStrategist {
     extern_methods!(

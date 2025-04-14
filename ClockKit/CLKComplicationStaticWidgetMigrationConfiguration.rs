@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CLKComplicationWidgetMigrationConfiguration")]
-unsafe impl NSCopying for CLKComplicationStaticWidgetMigrationConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationStaticWidgetMigrationConfiguration {}
+);
 
 #[cfg(feature = "CLKComplicationWidgetMigrationConfiguration")]
 unsafe impl CopyingHelper for CLKComplicationStaticWidgetMigrationConfiguration {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for CLKComplicationStaticWidgetMigrationConfiguration 
 }
 
 #[cfg(feature = "CLKComplicationWidgetMigrationConfiguration")]
-unsafe impl NSObjectProtocol for CLKComplicationStaticWidgetMigrationConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationStaticWidgetMigrationConfiguration {}
+);
 
 #[cfg(feature = "CLKComplicationWidgetMigrationConfiguration")]
 impl CLKComplicationStaticWidgetMigrationConfiguration {

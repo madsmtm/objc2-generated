@@ -13,17 +13,25 @@ extern_class!(
     pub struct INTermsAndConditions;
 );
 
-unsafe impl NSCoding for INTermsAndConditions {}
+extern_conformance!(
+    unsafe impl NSCoding for INTermsAndConditions {}
+);
 
-unsafe impl NSCopying for INTermsAndConditions {}
+extern_conformance!(
+    unsafe impl NSCopying for INTermsAndConditions {}
+);
 
 unsafe impl CopyingHelper for INTermsAndConditions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INTermsAndConditions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INTermsAndConditions {}
+);
 
-unsafe impl NSSecureCoding for INTermsAndConditions {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INTermsAndConditions {}
+);
 
 impl INTermsAndConditions {
     extern_methods!(

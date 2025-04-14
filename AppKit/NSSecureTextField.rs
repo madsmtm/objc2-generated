@@ -27,7 +27,9 @@ extern_class!(
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -36,7 +38,9 @@ unsafe impl NSAccessibility for NSSecureTextField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -45,7 +49,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSecureTextField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityNavigableStaticText for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityNavigableStaticText for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -54,7 +60,9 @@ unsafe impl NSAccessibilityNavigableStaticText for NSSecureTextField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityStaticText for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityStaticText for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -63,7 +71,9 @@ unsafe impl NSAccessibilityStaticText for NSSecureTextField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -72,7 +82,9 @@ unsafe impl NSAnimatablePropertyContainer for NSSecureTextField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -80,7 +92,9 @@ unsafe impl NSAppearanceCustomization for NSSecureTextField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSCoding for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -89,7 +103,9 @@ unsafe impl NSCoding for NSSecureTextField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -97,7 +113,9 @@ unsafe impl NSDraggingDestination for NSSecureTextField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSObjectProtocol for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -106,7 +124,9 @@ unsafe impl NSObjectProtocol for NSSecureTextField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSTextContent for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSTextContent for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -115,7 +135,9 @@ unsafe impl NSTextContent for NSSecureTextField {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -124,7 +146,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSSecureTextField {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSSecureTextField {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSSecureTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -206,7 +230,9 @@ extern_class!(
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSAccessibility for NSSecureTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSecureTextFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -214,21 +240,27 @@ unsafe impl NSAccessibility for NSSecureTextFieldCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSecureTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSecureTextFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSCoding for NSSecureTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSecureTextFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSCopying for NSSecureTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSecureTextFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -244,7 +276,9 @@ unsafe impl CopyingHelper for NSSecureTextFieldCell {
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSObjectProtocol for NSSecureTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSecureTextFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -252,7 +286,9 @@ unsafe impl NSObjectProtocol for NSSecureTextFieldCell {}
     feature = "NSTextFieldCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSecureTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSecureTextFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",

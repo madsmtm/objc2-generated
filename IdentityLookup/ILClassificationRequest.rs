@@ -15,11 +15,17 @@ extern_class!(
     pub struct ILClassificationRequest;
 );
 
-unsafe impl NSCoding for ILClassificationRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for ILClassificationRequest {}
+);
 
-unsafe impl NSObjectProtocol for ILClassificationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ILClassificationRequest {}
+);
 
-unsafe impl NSSecureCoding for ILClassificationRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ILClassificationRequest {}
+);
 
 impl ILClassificationRequest {
     extern_methods!();

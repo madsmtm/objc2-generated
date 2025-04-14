@@ -63,35 +63,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for AVPlayerView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for AVPlayerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for AVPlayerView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for AVPlayerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for AVPlayerView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for AVPlayerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for AVPlayerView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for AVPlayerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for AVPlayerView {}
+extern_conformance!(
+    unsafe impl NSCoding for AVPlayerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for AVPlayerView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for AVPlayerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for AVPlayerView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for AVPlayerView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for AVPlayerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

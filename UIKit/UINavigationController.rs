@@ -57,37 +57,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UINavigationController {}
+extern_conformance!(
+    unsafe impl NSCoding for UINavigationController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UINavigationController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UINavigationController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UINavigationController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UINavigationController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UINavigationController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UINavigationController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UINavigationController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UINavigationController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UINavigationController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UINavigationController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UINavigationController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UINavigationController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UINavigationController {

@@ -40,10 +40,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCoding for CMAccelerometerData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMAccelerometerData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCopying for CMAccelerometerData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMAccelerometerData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl CopyingHelper for CMAccelerometerData {
@@ -51,10 +55,14 @@ unsafe impl CopyingHelper for CMAccelerometerData {
 }
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSObjectProtocol for CMAccelerometerData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMAccelerometerData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSSecureCoding for CMAccelerometerData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMAccelerometerData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 impl CMAccelerometerData {

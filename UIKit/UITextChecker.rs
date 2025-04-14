@@ -15,7 +15,9 @@ extern_class!(
     pub struct UITextChecker;
 );
 
-unsafe impl NSObjectProtocol for UITextChecker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextChecker {}
+);
 
 impl UITextChecker {
     extern_methods!(

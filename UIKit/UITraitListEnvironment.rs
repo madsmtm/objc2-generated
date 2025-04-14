@@ -57,13 +57,19 @@ extern_class!(
     pub struct UITraitListEnvironment;
 );
 
-unsafe impl NSObjectProtocol for UITraitListEnvironment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitListEnvironment {}
+);
 
 #[cfg(feature = "UITrait")]
-unsafe impl UINSIntegerTraitDefinition for UITraitListEnvironment {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitListEnvironment {}
+);
 
 #[cfg(feature = "UITrait")]
-unsafe impl UITraitDefinition for UITraitListEnvironment {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitListEnvironment {}
+);
 
 impl UITraitListEnvironment {
     extern_methods!();

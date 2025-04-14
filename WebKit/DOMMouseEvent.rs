@@ -27,7 +27,9 @@ extern_class!(
     feature = "DOMUIEvent",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMMouseEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMMouseEvent {}
+);
 
 #[cfg(all(
     feature = "DOMEvent",
@@ -45,7 +47,9 @@ unsafe impl CopyingHelper for DOMMouseEvent {
     feature = "DOMUIEvent",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMMouseEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMMouseEvent {}
+);
 
 #[cfg(all(
     feature = "DOMEvent",

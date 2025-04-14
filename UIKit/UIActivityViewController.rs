@@ -48,37 +48,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIActivityViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIActivityViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIActivityViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIActivityViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIActivityViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIActivityViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIActivityViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIActivityViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIActivityViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIActivityViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIActivityViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIActivityViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIActivityViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIActivityViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIActivityViewController {

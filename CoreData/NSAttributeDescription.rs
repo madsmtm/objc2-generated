@@ -64,10 +64,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPropertyDescription")]
-unsafe impl NSCoding for NSAttributeDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for NSAttributeDescription {}
+);
 
 #[cfg(feature = "NSPropertyDescription")]
-unsafe impl NSCopying for NSAttributeDescription {}
+extern_conformance!(
+    unsafe impl NSCopying for NSAttributeDescription {}
+);
 
 #[cfg(feature = "NSPropertyDescription")]
 unsafe impl CopyingHelper for NSAttributeDescription {
@@ -75,7 +79,9 @@ unsafe impl CopyingHelper for NSAttributeDescription {
 }
 
 #[cfg(feature = "NSPropertyDescription")]
-unsafe impl NSObjectProtocol for NSAttributeDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAttributeDescription {}
+);
 
 #[cfg(feature = "NSPropertyDescription")]
 impl NSAttributeDescription {

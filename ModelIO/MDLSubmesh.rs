@@ -14,7 +14,9 @@ extern_class!(
     pub struct MDLSubmeshTopology;
 );
 
-unsafe impl NSObjectProtocol for MDLSubmeshTopology {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLSubmeshTopology {}
+);
 
 impl MDLSubmeshTopology {
     extern_methods!(
@@ -216,9 +218,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLSubmesh {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLSubmesh {}
+);
 
-unsafe impl NSObjectProtocol for MDLSubmesh {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLSubmesh {}
+);
 
 impl MDLSubmesh {
     extern_methods!(

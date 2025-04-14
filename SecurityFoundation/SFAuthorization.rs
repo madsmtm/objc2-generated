@@ -18,11 +18,17 @@ extern_class!(
     pub struct SFAuthorization;
 );
 
-unsafe impl NSCoding for SFAuthorization {}
+extern_conformance!(
+    unsafe impl NSCoding for SFAuthorization {}
+);
 
-unsafe impl NSObjectProtocol for SFAuthorization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFAuthorization {}
+);
 
-unsafe impl NSSecureCoding for SFAuthorization {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SFAuthorization {}
+);
 
 impl SFAuthorization {
     extern_methods!(

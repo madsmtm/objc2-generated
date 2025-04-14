@@ -62,7 +62,9 @@ extern_class!(
     pub struct WKInterfaceObject;
 );
 
-unsafe impl NSObjectProtocol for WKInterfaceObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceObject {}
+);
 
 impl WKInterfaceObject {
     extern_methods!(
@@ -191,7 +193,9 @@ extern_class!(
     pub struct WKAccessibilityImageRegion;
 );
 
-unsafe impl NSObjectProtocol for WKAccessibilityImageRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKAccessibilityImageRegion {}
+);
 
 impl WKAccessibilityImageRegion {
     extern_methods!(

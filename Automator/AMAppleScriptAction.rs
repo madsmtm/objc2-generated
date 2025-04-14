@@ -18,10 +18,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
-unsafe impl NSCoding for AMAppleScriptAction {}
+extern_conformance!(
+    unsafe impl NSCoding for AMAppleScriptAction {}
+);
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
-unsafe impl NSCopying for AMAppleScriptAction {}
+extern_conformance!(
+    unsafe impl NSCopying for AMAppleScriptAction {}
+);
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 unsafe impl CopyingHelper for AMAppleScriptAction {
@@ -29,10 +33,14 @@ unsafe impl CopyingHelper for AMAppleScriptAction {
 }
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
-unsafe impl NSObjectProtocol for AMAppleScriptAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AMAppleScriptAction {}
+);
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
-unsafe impl NSSecureCoding for AMAppleScriptAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AMAppleScriptAction {}
+);
 
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 impl AMAppleScriptAction {

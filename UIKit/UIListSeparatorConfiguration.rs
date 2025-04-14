@@ -53,17 +53,25 @@ extern_class!(
     pub struct UIListSeparatorConfiguration;
 );
 
-unsafe impl NSCoding for UIListSeparatorConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UIListSeparatorConfiguration {}
+);
 
-unsafe impl NSCopying for UIListSeparatorConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UIListSeparatorConfiguration {}
+);
 
 unsafe impl CopyingHelper for UIListSeparatorConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIListSeparatorConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIListSeparatorConfiguration {}
+);
 
-unsafe impl NSSecureCoding for UIListSeparatorConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIListSeparatorConfiguration {}
+);
 
 impl UIListSeparatorConfiguration {
     extern_methods!(

@@ -14,20 +14,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSSortDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSortDescriptor {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSSortDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSortDescriptor {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSSortDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSortDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSortDescriptor {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSSortDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSortDescriptor {}
+);
 
 impl NSSortDescriptor {
     extern_methods!(

@@ -16,17 +16,25 @@ extern_class!(
     pub struct NSGlyphInfo;
 );
 
-unsafe impl NSCoding for NSGlyphInfo {}
+extern_conformance!(
+    unsafe impl NSCoding for NSGlyphInfo {}
+);
 
-unsafe impl NSCopying for NSGlyphInfo {}
+extern_conformance!(
+    unsafe impl NSCopying for NSGlyphInfo {}
+);
 
 unsafe impl CopyingHelper for NSGlyphInfo {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSGlyphInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGlyphInfo {}
+);
 
-unsafe impl NSSecureCoding for NSGlyphInfo {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSGlyphInfo {}
+);
 
 impl NSGlyphInfo {
     extern_methods!(

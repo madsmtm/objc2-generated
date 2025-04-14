@@ -13,11 +13,17 @@ extern_class!(
     pub struct CPInformationItem;
 );
 
-unsafe impl NSCoding for CPInformationItem {}
+extern_conformance!(
+    unsafe impl NSCoding for CPInformationItem {}
+);
 
-unsafe impl NSObjectProtocol for CPInformationItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPInformationItem {}
+);
 
-unsafe impl NSSecureCoding for CPInformationItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPInformationItem {}
+);
 
 impl CPInformationItem {
     extern_methods!(

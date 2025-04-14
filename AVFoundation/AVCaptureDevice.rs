@@ -58,7 +58,9 @@ extern_class!(
     pub struct AVCaptureDevice;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDevice {}
+);
 
 impl AVCaptureDevice {
     extern_methods!(
@@ -2851,7 +2853,9 @@ extern_class!(
     pub struct AVCaptureDeviceDiscoverySession;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDeviceDiscoverySession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDeviceDiscoverySession {}
+);
 
 impl AVCaptureDeviceDiscoverySession {
     extern_methods!(
@@ -2917,7 +2921,9 @@ extern_class!(
     pub struct AVCaptureDeviceRotationCoordinator;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDeviceRotationCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDeviceRotationCoordinator {}
+);
 
 impl AVCaptureDeviceRotationCoordinator {
     extern_methods!(
@@ -3000,7 +3006,9 @@ extern_class!(
     pub struct AVExposureBiasRange;
 );
 
-unsafe impl NSObjectProtocol for AVExposureBiasRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVExposureBiasRange {}
+);
 
 impl AVExposureBiasRange {
     extern_methods!(
@@ -3049,7 +3057,9 @@ extern_class!(
     pub struct AVFrameRateRange;
 );
 
-unsafe impl NSObjectProtocol for AVFrameRateRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVFrameRateRange {}
+);
 
 impl AVFrameRateRange {
     extern_methods!(
@@ -3109,7 +3119,9 @@ extern_class!(
     pub struct AVZoomRange;
 );
 
-unsafe impl NSObjectProtocol for AVZoomRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVZoomRange {}
+);
 
 impl AVZoomRange {
     extern_methods!(
@@ -3237,7 +3249,9 @@ extern_class!(
     pub struct AVCaptureDeviceFormat;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDeviceFormat {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDeviceFormat {}
+);
 
 impl AVCaptureDeviceFormat {
     extern_methods!(
@@ -3757,7 +3771,9 @@ extern_class!(
     pub struct AVCaptureDeviceInputSource;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDeviceInputSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDeviceInputSource {}
+);
 
 impl AVCaptureDeviceInputSource {
     extern_methods!(

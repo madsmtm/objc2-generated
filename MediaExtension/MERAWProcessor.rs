@@ -55,7 +55,9 @@ extern_class!(
     pub struct MERAWProcessorPixelBufferManager;
 );
 
-unsafe impl NSObjectProtocol for MERAWProcessorPixelBufferManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MERAWProcessorPixelBufferManager {}
+);
 
 impl MERAWProcessorPixelBufferManager {
     extern_methods!(
@@ -115,7 +117,9 @@ extern_class!(
     pub struct MERAWProcessingParameter;
 );
 
-unsafe impl NSObjectProtocol for MERAWProcessingParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MERAWProcessingParameter {}
+);
 
 impl MERAWProcessingParameter {
     extern_methods!(
@@ -172,7 +176,9 @@ extern_class!(
     pub struct MERAWProcessingListElementParameter;
 );
 
-unsafe impl NSObjectProtocol for MERAWProcessingListElementParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MERAWProcessingListElementParameter {}
+);
 
 impl MERAWProcessingListElementParameter {
     extern_methods!(
@@ -214,7 +220,9 @@ extern_class!(
     pub struct MERAWProcessingBooleanParameter;
 );
 
-unsafe impl NSObjectProtocol for MERAWProcessingBooleanParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MERAWProcessingBooleanParameter {}
+);
 
 impl MERAWProcessingBooleanParameter {
     extern_methods!(
@@ -317,7 +325,9 @@ extern_class!(
     pub struct MERAWProcessingIntegerParameter;
 );
 
-unsafe impl NSObjectProtocol for MERAWProcessingIntegerParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MERAWProcessingIntegerParameter {}
+);
 
 impl MERAWProcessingIntegerParameter {
     extern_methods!(
@@ -437,7 +447,9 @@ extern_class!(
     pub struct MERAWProcessingFloatParameter;
 );
 
-unsafe impl NSObjectProtocol for MERAWProcessingFloatParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MERAWProcessingFloatParameter {}
+);
 
 impl MERAWProcessingFloatParameter {
     extern_methods!(
@@ -558,7 +570,9 @@ extern_class!(
     pub struct MERAWProcessingListParameter;
 );
 
-unsafe impl NSObjectProtocol for MERAWProcessingListParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MERAWProcessingListParameter {}
+);
 
 impl MERAWProcessingListParameter {
     extern_methods!(
@@ -671,7 +685,9 @@ extern_class!(
     pub struct MERAWProcessingSubGroupParameter;
 );
 
-unsafe impl NSObjectProtocol for MERAWProcessingSubGroupParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MERAWProcessingSubGroupParameter {}
+);
 
 impl MERAWProcessingSubGroupParameter {
     extern_methods!(

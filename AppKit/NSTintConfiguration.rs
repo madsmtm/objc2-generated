@@ -13,17 +13,25 @@ extern_class!(
     pub struct NSTintConfiguration;
 );
 
-unsafe impl NSCoding for NSTintConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTintConfiguration {}
+);
 
-unsafe impl NSCopying for NSTintConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTintConfiguration {}
+);
 
 unsafe impl CopyingHelper for NSTintConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTintConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTintConfiguration {}
+);
 
-unsafe impl NSSecureCoding for NSTintConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTintConfiguration {}
+);
 
 impl NSTintConfiguration {
     extern_methods!(

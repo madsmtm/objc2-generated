@@ -42,7 +42,9 @@ extern_class!(
     pub struct NSEntityMapping;
 );
 
-unsafe impl NSObjectProtocol for NSEntityMapping {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSEntityMapping {}
+);
 
 impl NSEntityMapping {
     extern_methods!(

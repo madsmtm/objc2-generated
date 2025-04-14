@@ -70,7 +70,9 @@ extern_class!(
     pub struct CHHapticEvent;
 );
 
-unsafe impl NSObjectProtocol for CHHapticEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CHHapticEvent {}
+);
 
 impl CHHapticEvent {
     extern_methods!(

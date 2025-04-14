@@ -22,7 +22,9 @@ extern_class!(
     pub struct WebBackForwardList;
 );
 
-unsafe impl NSObjectProtocol for WebBackForwardList {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebBackForwardList {}
+);
 
 impl WebBackForwardList {
     extern_methods!(

@@ -14,7 +14,9 @@ extern_class!(
     pub struct UIInputSuggestion;
 );
 
-unsafe impl NSObjectProtocol for UIInputSuggestion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIInputSuggestion {}
+);
 
 impl UIInputSuggestion {
     extern_methods!();

@@ -14,15 +14,21 @@ extern_class!(
     pub struct NSFetchIndexDescription;
 );
 
-unsafe impl NSCoding for NSFetchIndexDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFetchIndexDescription {}
+);
 
-unsafe impl NSCopying for NSFetchIndexDescription {}
+extern_conformance!(
+    unsafe impl NSCopying for NSFetchIndexDescription {}
+);
 
 unsafe impl CopyingHelper for NSFetchIndexDescription {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
+);
 
 impl NSFetchIndexDescription {
     extern_methods!(

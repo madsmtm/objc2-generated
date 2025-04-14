@@ -150,13 +150,17 @@ extern_class!(
     pub struct AVPlayerInterstitialEvent;
 );
 
-unsafe impl NSCopying for AVPlayerInterstitialEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for AVPlayerInterstitialEvent {}
+);
 
 unsafe impl CopyingHelper for AVPlayerInterstitialEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVPlayerInterstitialEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerInterstitialEvent {}
+);
 
 impl AVPlayerInterstitialEvent {
     extern_methods!(
@@ -405,7 +409,9 @@ unsafe impl Send for AVPlayerInterstitialEventMonitor {}
 
 unsafe impl Sync for AVPlayerInterstitialEventMonitor {}
 
-unsafe impl NSObjectProtocol for AVPlayerInterstitialEventMonitor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerInterstitialEventMonitor {}
+);
 
 impl AVPlayerInterstitialEventMonitor {
     extern_methods!(
@@ -544,7 +550,9 @@ extern_class!(
     pub struct AVPlayerInterstitialEventController;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerInterstitialEventController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerInterstitialEventController {}
+);
 
 impl AVPlayerInterstitialEventController {
     extern_methods!(

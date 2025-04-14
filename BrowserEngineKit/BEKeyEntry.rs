@@ -34,7 +34,9 @@ extern_class!(
     pub struct BEKeyEntry;
 );
 
-unsafe impl NSObjectProtocol for BEKeyEntry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEKeyEntry {}
+);
 
 impl BEKeyEntry {
     extern_methods!(

@@ -14,35 +14,49 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationCredential")]
-unsafe impl ASAuthorizationCredential for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl ASAuthorizationCredential for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+);
 
 #[cfg(all(
     feature = "ASAuthorizationCredential",
     feature = "ASAuthorizationPublicKeyCredentialAssertion",
     feature = "ASPublicKeyCredential"
 ))]
-unsafe impl ASAuthorizationPublicKeyCredentialAssertion
-    for ASAuthorizationPlatformPublicKeyCredentialAssertion
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationPublicKeyCredentialAssertion
+        for ASAuthorizationPlatformPublicKeyCredentialAssertion
+    {
+    }
+);
 
 #[cfg(all(
     feature = "ASAuthorizationCredential",
     feature = "ASPublicKeyCredential"
 ))]
-unsafe impl ASPublicKeyCredential for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl ASPublicKeyCredential for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+);
 
-unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+);
 
-unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+);
 
 unsafe impl CopyingHelper for ASAuthorizationPlatformPublicKeyCredentialAssertion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+);
 
-unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialAssertion {}
+);
 
 impl ASAuthorizationPlatformPublicKeyCredentialAssertion {
     extern_methods!(

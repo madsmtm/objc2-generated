@@ -50,7 +50,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-unsafe impl NSCopying for VNGeneratePersonSegmentationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNGeneratePersonSegmentationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl CopyingHelper for VNGeneratePersonSegmentationRequest {
@@ -58,7 +60,9 @@ unsafe impl CopyingHelper for VNGeneratePersonSegmentationRequest {
 }
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-unsafe impl NSObjectProtocol for VNGeneratePersonSegmentationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNGeneratePersonSegmentationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 impl VNGeneratePersonSegmentationRequest {

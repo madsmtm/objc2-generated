@@ -18,7 +18,9 @@ unsafe impl Send for HKLensSpecification {}
 
 unsafe impl Sync for HKLensSpecification {}
 
-unsafe impl NSObjectProtocol for HKLensSpecification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKLensSpecification {}
+);
 
 impl HKLensSpecification {
     extern_methods!(

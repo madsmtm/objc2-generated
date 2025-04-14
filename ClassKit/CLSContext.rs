@@ -121,13 +121,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CLSObject")]
-unsafe impl NSCoding for CLSContext {}
+extern_conformance!(
+    unsafe impl NSCoding for CLSContext {}
+);
 
 #[cfg(feature = "CLSObject")]
-unsafe impl NSObjectProtocol for CLSContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLSContext {}
+);
 
 #[cfg(feature = "CLSObject")]
-unsafe impl NSSecureCoding for CLSContext {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLSContext {}
+);
 
 #[cfg(feature = "CLSObject")]
 impl CLSContext {

@@ -54,7 +54,9 @@ extern_class!(
     pub struct SKDownload;
 );
 
-unsafe impl NSObjectProtocol for SKDownload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKDownload {}
+);
 
 impl SKDownload {
     extern_methods!(

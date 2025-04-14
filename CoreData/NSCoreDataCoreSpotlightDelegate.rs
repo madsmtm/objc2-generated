@@ -20,7 +20,9 @@ extern_class!(
     pub struct NSCoreDataCoreSpotlightDelegate;
 );
 
-unsafe impl NSObjectProtocol for NSCoreDataCoreSpotlightDelegate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCoreDataCoreSpotlightDelegate {}
+);
 
 impl NSCoreDataCoreSpotlightDelegate {
     extern_methods!(

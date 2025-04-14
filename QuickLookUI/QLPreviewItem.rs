@@ -59,4 +59,6 @@ extern_protocol!(
     }
 );
 
-unsafe impl QLPreviewItem for NSURL {}
+extern_conformance!(
+    unsafe impl QLPreviewItem for NSURL {}
+);

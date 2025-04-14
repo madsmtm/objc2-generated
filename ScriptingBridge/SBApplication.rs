@@ -48,10 +48,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SBObject")]
-unsafe impl NSCoding for SBApplication {}
+extern_conformance!(
+    unsafe impl NSCoding for SBApplication {}
+);
 
 #[cfg(feature = "SBObject")]
-unsafe impl NSObjectProtocol for SBApplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SBApplication {}
+);
 
 #[cfg(feature = "SBObject")]
 impl SBApplication {

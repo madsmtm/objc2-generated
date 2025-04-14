@@ -15,9 +15,13 @@ extern_class!(
     pub struct QLPreviewProvider;
 );
 
-unsafe impl NSExtensionRequestHandling for QLPreviewProvider {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for QLPreviewProvider {}
+);
 
-unsafe impl NSObjectProtocol for QLPreviewProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QLPreviewProvider {}
+);
 
 impl QLPreviewProvider {
     extern_methods!();

@@ -50,7 +50,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARMatteGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARMatteGenerator {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARMatteGenerator {

@@ -304,7 +304,9 @@ extern_class!(
     pub struct NSLinguisticTagger;
 );
 
-unsafe impl NSObjectProtocol for NSLinguisticTagger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLinguisticTagger {}
+);
 
 impl NSLinguisticTagger {
     extern_methods!(

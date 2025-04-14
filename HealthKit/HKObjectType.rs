@@ -19,17 +19,25 @@ unsafe impl Send for HKObjectType {}
 
 unsafe impl Sync for HKObjectType {}
 
-unsafe impl NSCoding for HKObjectType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKObjectType {}
+);
 
-unsafe impl NSCopying for HKObjectType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKObjectType {}
+);
 
 unsafe impl CopyingHelper for HKObjectType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKObjectType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKObjectType {}
+);
 
-unsafe impl NSSecureCoding for HKObjectType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKObjectType {}
+);
 
 impl HKObjectType {
     extern_methods!(
@@ -145,17 +153,25 @@ unsafe impl Send for HKCharacteristicType {}
 
 unsafe impl Sync for HKCharacteristicType {}
 
-unsafe impl NSCoding for HKCharacteristicType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKCharacteristicType {}
+);
 
-unsafe impl NSCopying for HKCharacteristicType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKCharacteristicType {}
+);
 
 unsafe impl CopyingHelper for HKCharacteristicType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKCharacteristicType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKCharacteristicType {}
+);
 
-unsafe impl NSSecureCoding for HKCharacteristicType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKCharacteristicType {}
+);
 
 impl HKCharacteristicType {
     extern_methods!();
@@ -192,17 +208,25 @@ unsafe impl Send for HKSampleType {}
 
 unsafe impl Sync for HKSampleType {}
 
-unsafe impl NSCoding for HKSampleType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKSampleType {}
+);
 
-unsafe impl NSCopying for HKSampleType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKSampleType {}
+);
 
 unsafe impl CopyingHelper for HKSampleType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKSampleType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKSampleType {}
+);
 
-unsafe impl NSSecureCoding for HKSampleType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKSampleType {}
+);
 
 impl HKSampleType {
     extern_methods!(
@@ -271,17 +295,25 @@ unsafe impl Send for HKCategoryType {}
 
 unsafe impl Sync for HKCategoryType {}
 
-unsafe impl NSCoding for HKCategoryType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKCategoryType {}
+);
 
-unsafe impl NSCopying for HKCategoryType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKCategoryType {}
+);
 
 unsafe impl CopyingHelper for HKCategoryType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKCategoryType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKCategoryType {}
+);
 
-unsafe impl NSSecureCoding for HKCategoryType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKCategoryType {}
+);
 
 impl HKCategoryType {
     extern_methods!();
@@ -318,17 +350,25 @@ unsafe impl Send for HKCorrelationType {}
 
 unsafe impl Sync for HKCorrelationType {}
 
-unsafe impl NSCoding for HKCorrelationType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKCorrelationType {}
+);
 
-unsafe impl NSCopying for HKCorrelationType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKCorrelationType {}
+);
 
 unsafe impl CopyingHelper for HKCorrelationType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKCorrelationType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKCorrelationType {}
+);
 
-unsafe impl NSSecureCoding for HKCorrelationType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKCorrelationType {}
+);
 
 impl HKCorrelationType {
     extern_methods!();
@@ -365,17 +405,25 @@ unsafe impl Send for HKDocumentType {}
 
 unsafe impl Sync for HKDocumentType {}
 
-unsafe impl NSCoding for HKDocumentType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKDocumentType {}
+);
 
-unsafe impl NSCopying for HKDocumentType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKDocumentType {}
+);
 
 unsafe impl CopyingHelper for HKDocumentType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKDocumentType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKDocumentType {}
+);
 
-unsafe impl NSSecureCoding for HKDocumentType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKDocumentType {}
+);
 
 impl HKDocumentType {
     extern_methods!();
@@ -412,17 +460,25 @@ unsafe impl Send for HKQuantityType {}
 
 unsafe impl Sync for HKQuantityType {}
 
-unsafe impl NSCoding for HKQuantityType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKQuantityType {}
+);
 
-unsafe impl NSCopying for HKQuantityType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKQuantityType {}
+);
 
 unsafe impl CopyingHelper for HKQuantityType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKQuantityType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKQuantityType {}
+);
 
-unsafe impl NSSecureCoding for HKQuantityType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKQuantityType {}
+);
 
 impl HKQuantityType {
     extern_methods!(
@@ -471,17 +527,25 @@ unsafe impl Send for HKWorkoutType {}
 
 unsafe impl Sync for HKWorkoutType {}
 
-unsafe impl NSCoding for HKWorkoutType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKWorkoutType {}
+);
 
-unsafe impl NSCopying for HKWorkoutType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKWorkoutType {}
+);
 
 unsafe impl CopyingHelper for HKWorkoutType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKWorkoutType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutType {}
+);
 
-unsafe impl NSSecureCoding for HKWorkoutType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKWorkoutType {}
+);
 
 impl HKWorkoutType {
     extern_methods!();
@@ -518,17 +582,25 @@ unsafe impl Send for HKSeriesType {}
 
 unsafe impl Sync for HKSeriesType {}
 
-unsafe impl NSCoding for HKSeriesType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKSeriesType {}
+);
 
-unsafe impl NSCopying for HKSeriesType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKSeriesType {}
+);
 
 unsafe impl CopyingHelper for HKSeriesType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKSeriesType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKSeriesType {}
+);
 
-unsafe impl NSSecureCoding for HKSeriesType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKSeriesType {}
+);
 
 impl HKSeriesType {
     extern_methods!(
@@ -573,17 +645,25 @@ unsafe impl Send for HKActivitySummaryType {}
 
 unsafe impl Sync for HKActivitySummaryType {}
 
-unsafe impl NSCoding for HKActivitySummaryType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKActivitySummaryType {}
+);
 
-unsafe impl NSCopying for HKActivitySummaryType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKActivitySummaryType {}
+);
 
 unsafe impl CopyingHelper for HKActivitySummaryType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKActivitySummaryType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKActivitySummaryType {}
+);
 
-unsafe impl NSSecureCoding for HKActivitySummaryType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKActivitySummaryType {}
+);
 
 impl HKActivitySummaryType {
     extern_methods!();
@@ -620,17 +700,25 @@ unsafe impl Send for HKAudiogramSampleType {}
 
 unsafe impl Sync for HKAudiogramSampleType {}
 
-unsafe impl NSCoding for HKAudiogramSampleType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKAudiogramSampleType {}
+);
 
-unsafe impl NSCopying for HKAudiogramSampleType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKAudiogramSampleType {}
+);
 
 unsafe impl CopyingHelper for HKAudiogramSampleType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKAudiogramSampleType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKAudiogramSampleType {}
+);
 
-unsafe impl NSSecureCoding for HKAudiogramSampleType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKAudiogramSampleType {}
+);
 
 impl HKAudiogramSampleType {
     extern_methods!();
@@ -667,17 +755,25 @@ unsafe impl Send for HKElectrocardiogramType {}
 
 unsafe impl Sync for HKElectrocardiogramType {}
 
-unsafe impl NSCoding for HKElectrocardiogramType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKElectrocardiogramType {}
+);
 
-unsafe impl NSCopying for HKElectrocardiogramType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKElectrocardiogramType {}
+);
 
 unsafe impl CopyingHelper for HKElectrocardiogramType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKElectrocardiogramType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKElectrocardiogramType {}
+);
 
-unsafe impl NSSecureCoding for HKElectrocardiogramType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKElectrocardiogramType {}
+);
 
 impl HKElectrocardiogramType {
     extern_methods!();
@@ -714,17 +810,25 @@ unsafe impl Send for HKPrescriptionType {}
 
 unsafe impl Sync for HKPrescriptionType {}
 
-unsafe impl NSCoding for HKPrescriptionType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKPrescriptionType {}
+);
 
-unsafe impl NSCopying for HKPrescriptionType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKPrescriptionType {}
+);
 
 unsafe impl CopyingHelper for HKPrescriptionType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKPrescriptionType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKPrescriptionType {}
+);
 
-unsafe impl NSSecureCoding for HKPrescriptionType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKPrescriptionType {}
+);
 
 impl HKPrescriptionType {
     extern_methods!();
@@ -761,17 +865,25 @@ unsafe impl Send for HKScoredAssessmentType {}
 
 unsafe impl Sync for HKScoredAssessmentType {}
 
-unsafe impl NSCoding for HKScoredAssessmentType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKScoredAssessmentType {}
+);
 
-unsafe impl NSCopying for HKScoredAssessmentType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKScoredAssessmentType {}
+);
 
 unsafe impl CopyingHelper for HKScoredAssessmentType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKScoredAssessmentType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKScoredAssessmentType {}
+);
 
-unsafe impl NSSecureCoding for HKScoredAssessmentType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKScoredAssessmentType {}
+);
 
 impl HKScoredAssessmentType {
     extern_methods!();
@@ -808,17 +920,25 @@ unsafe impl Send for HKStateOfMindType {}
 
 unsafe impl Sync for HKStateOfMindType {}
 
-unsafe impl NSCoding for HKStateOfMindType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKStateOfMindType {}
+);
 
-unsafe impl NSCopying for HKStateOfMindType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKStateOfMindType {}
+);
 
 unsafe impl CopyingHelper for HKStateOfMindType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKStateOfMindType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKStateOfMindType {}
+);
 
-unsafe impl NSSecureCoding for HKStateOfMindType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKStateOfMindType {}
+);
 
 impl HKStateOfMindType {
     extern_methods!();

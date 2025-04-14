@@ -27,7 +27,9 @@ extern_class!(
     feature = "NSRuleEditor",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSPredicateEditor {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSPredicateEditor {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -36,7 +38,9 @@ unsafe impl NSAccessibility for NSPredicateEditor {}
     feature = "NSRuleEditor",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSPredicateEditor {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSPredicateEditor {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -45,7 +49,9 @@ unsafe impl NSAccessibilityElementProtocol for NSPredicateEditor {}
     feature = "NSRuleEditor",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSPredicateEditor {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSPredicateEditor {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -54,7 +60,9 @@ unsafe impl NSAnimatablePropertyContainer for NSPredicateEditor {}
     feature = "NSRuleEditor",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSPredicateEditor {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSPredicateEditor {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -62,7 +70,9 @@ unsafe impl NSAppearanceCustomization for NSPredicateEditor {}
     feature = "NSRuleEditor",
     feature = "NSView"
 ))]
-unsafe impl NSCoding for NSPredicateEditor {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPredicateEditor {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -71,7 +81,9 @@ unsafe impl NSCoding for NSPredicateEditor {}
     feature = "NSRuleEditor",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSPredicateEditor {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSPredicateEditor {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -79,7 +91,9 @@ unsafe impl NSDraggingDestination for NSPredicateEditor {}
     feature = "NSRuleEditor",
     feature = "NSView"
 ))]
-unsafe impl NSObjectProtocol for NSPredicateEditor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPredicateEditor {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -88,7 +102,9 @@ unsafe impl NSObjectProtocol for NSPredicateEditor {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSPredicateEditor {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSPredicateEditor {}
+);
 
 #[cfg(all(
     feature = "NSControl",

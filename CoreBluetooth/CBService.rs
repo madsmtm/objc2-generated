@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CBAttribute")]
-unsafe impl NSObjectProtocol for CBService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBService {}
+);
 
 #[cfg(feature = "CBAttribute")]
 impl CBService {
@@ -89,7 +91,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CBAttribute")]
-unsafe impl NSObjectProtocol for CBMutableService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBMutableService {}
+);
 
 #[cfg(feature = "CBAttribute")]
 impl CBMutableService {

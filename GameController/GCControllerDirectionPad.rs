@@ -32,7 +32,9 @@ extern_class!(
 );
 
 #[cfg(feature = "GCControllerElement")]
-unsafe impl NSObjectProtocol for GCControllerDirectionPad {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCControllerDirectionPad {}
+);
 
 #[cfg(feature = "GCControllerElement")]
 impl GCControllerDirectionPad {

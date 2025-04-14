@@ -19,16 +19,22 @@ extern_class!(
     feature = "ASAuthorizationPublicKeyCredentialAssertionRequest",
     feature = "ASAuthorizationRequest"
 ))]
-unsafe impl ASAuthorizationPublicKeyCredentialAssertionRequest
-    for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationPublicKeyCredentialAssertionRequest
+        for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
+    {
+    }
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl CopyingHelper for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
@@ -36,10 +42,14 @@ unsafe impl CopyingHelper for ASAuthorizationPlatformPublicKeyCredentialAssertio
 }
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
 impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
@@ -112,10 +122,12 @@ impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
     feature = "ASAuthorizationRequest",
     feature = "ASAuthorizationWebBrowserExternallyAuthenticatableRequest"
 ))]
-unsafe impl ASAuthorizationWebBrowserExternallyAuthenticatableRequest
-    for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationWebBrowserExternallyAuthenticatableRequest
+        for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
+    {
+    }
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
 impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
@@ -126,7 +138,9 @@ impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
     feature = "ASAuthorizationRequest",
     feature = "ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest"
 ))]
-unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest
-    for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest
+        for ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
+    {
+    }
+);

@@ -52,7 +52,9 @@ extern_class!(
     pub struct AVPlayer;
 );
 
-unsafe impl NSObjectProtocol for AVPlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayer {}
+);
 
 impl AVPlayer {
     extern_methods!(
@@ -1181,7 +1183,9 @@ extern_class!(
     pub struct AVQueuePlayer;
 );
 
-unsafe impl NSObjectProtocol for AVQueuePlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVQueuePlayer {}
+);
 
 impl AVQueuePlayer {
     extern_methods!(

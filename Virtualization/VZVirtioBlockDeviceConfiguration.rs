@@ -24,7 +24,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
-unsafe impl NSCopying for VZVirtioBlockDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZVirtioBlockDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 unsafe impl CopyingHelper for VZVirtioBlockDeviceConfiguration {
@@ -32,7 +34,9 @@ unsafe impl CopyingHelper for VZVirtioBlockDeviceConfiguration {
 }
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZVirtioBlockDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioBlockDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 impl VZVirtioBlockDeviceConfiguration {

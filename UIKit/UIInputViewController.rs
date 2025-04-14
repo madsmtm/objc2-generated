@@ -59,44 +59,60 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIInputViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIInputViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIInputViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIInputViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIInputViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIInputViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIInputViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIInputViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIInputViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIInputViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIInputViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIInputViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITextInput",
     feature = "UIViewController"
 ))]
-unsafe impl UITextInputDelegate for UIInputViewController {}
+extern_conformance!(
+    unsafe impl UITextInputDelegate for UIInputViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIInputViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIInputViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIInputViewController {

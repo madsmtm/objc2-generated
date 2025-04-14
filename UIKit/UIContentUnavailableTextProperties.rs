@@ -17,17 +17,25 @@ extern_class!(
     pub struct UIContentUnavailableTextProperties;
 );
 
-unsafe impl NSCoding for UIContentUnavailableTextProperties {}
+extern_conformance!(
+    unsafe impl NSCoding for UIContentUnavailableTextProperties {}
+);
 
-unsafe impl NSCopying for UIContentUnavailableTextProperties {}
+extern_conformance!(
+    unsafe impl NSCopying for UIContentUnavailableTextProperties {}
+);
 
 unsafe impl CopyingHelper for UIContentUnavailableTextProperties {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIContentUnavailableTextProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIContentUnavailableTextProperties {}
+);
 
-unsafe impl NSSecureCoding for UIContentUnavailableTextProperties {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIContentUnavailableTextProperties {}
+);
 
 impl UIContentUnavailableTextProperties {
     extern_methods!(

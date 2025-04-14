@@ -69,7 +69,9 @@ extern_class!(
     pub struct NSJSONSerialization;
 );
 
-unsafe impl NSObjectProtocol for NSJSONSerialization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSJSONSerialization {}
+);
 
 impl NSJSONSerialization {
     extern_methods!(

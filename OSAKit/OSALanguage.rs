@@ -48,7 +48,9 @@ extern_class!(
     pub struct OSALanguage;
 );
 
-unsafe impl NSObjectProtocol for OSALanguage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OSALanguage {}
+);
 
 impl OSALanguage {
     extern_methods!(

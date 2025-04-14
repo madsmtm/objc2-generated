@@ -17,17 +17,25 @@ unsafe impl Send for CKRecordID {}
 
 unsafe impl Sync for CKRecordID {}
 
-unsafe impl NSCoding for CKRecordID {}
+extern_conformance!(
+    unsafe impl NSCoding for CKRecordID {}
+);
 
-unsafe impl NSCopying for CKRecordID {}
+extern_conformance!(
+    unsafe impl NSCopying for CKRecordID {}
+);
 
 unsafe impl CopyingHelper for CKRecordID {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKRecordID {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKRecordID {}
+);
 
-unsafe impl NSSecureCoding for CKRecordID {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKRecordID {}
+);
 
 impl CKRecordID {
     extern_methods!(

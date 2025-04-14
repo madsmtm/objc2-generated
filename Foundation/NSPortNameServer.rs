@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSPortNameServer;
 );
 
-unsafe impl NSObjectProtocol for NSPortNameServer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPortNameServer {}
+);
 
 impl NSPortNameServer {
     extern_methods!(
@@ -74,7 +76,9 @@ extern_class!(
     pub struct NSMachBootstrapServer;
 );
 
-unsafe impl NSObjectProtocol for NSMachBootstrapServer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMachBootstrapServer {}
+);
 
 impl NSMachBootstrapServer {
     extern_methods!(
@@ -133,7 +137,9 @@ extern_class!(
     pub struct NSMessagePortNameServer;
 );
 
-unsafe impl NSObjectProtocol for NSMessagePortNameServer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMessagePortNameServer {}
+);
 
 impl NSMessagePortNameServer {
     extern_methods!(
@@ -181,7 +187,9 @@ extern_class!(
     pub struct NSSocketPortNameServer;
 );
 
-unsafe impl NSObjectProtocol for NSSocketPortNameServer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSocketPortNameServer {}
+);
 
 impl NSSocketPortNameServer {
     extern_methods!(

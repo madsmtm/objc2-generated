@@ -24,13 +24,17 @@ extern_class!(
     pub struct MLCDevice;
 );
 
-unsafe impl NSCopying for MLCDevice {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCDevice {}
+);
 
 unsafe impl CopyingHelper for MLCDevice {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCDevice {}
+);
 
 impl MLCDevice {
     extern_methods!(

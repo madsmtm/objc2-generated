@@ -19,7 +19,9 @@ extern_class!(
     pub struct AVAudioConnectionPoint;
 );
 
-unsafe impl NSObjectProtocol for AVAudioConnectionPoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioConnectionPoint {}
+);
 
 impl AVAudioConnectionPoint {
     extern_methods!(

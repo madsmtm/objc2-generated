@@ -23,7 +23,9 @@ extern_class!(
     pub struct CMStepCounter;
 );
 
-unsafe impl NSObjectProtocol for CMStepCounter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMStepCounter {}
+);
 
 impl CMStepCounter {
     extern_methods!(

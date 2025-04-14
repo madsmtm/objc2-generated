@@ -149,7 +149,9 @@ extern_class!(
     pub struct NSURLProtocol;
 );
 
-unsafe impl NSObjectProtocol for NSURLProtocol {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLProtocol {}
+);
 
 impl NSURLProtocol {
     extern_methods!(

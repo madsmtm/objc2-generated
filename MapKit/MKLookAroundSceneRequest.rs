@@ -16,7 +16,9 @@ extern_class!(
     pub struct MKLookAroundSceneRequest;
 );
 
-unsafe impl NSObjectProtocol for MKLookAroundSceneRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKLookAroundSceneRequest {}
+);
 
 impl MKLookAroundSceneRequest {
     extern_methods!(

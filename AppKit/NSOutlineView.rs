@@ -32,7 +32,9 @@ extern_class!(
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -41,7 +43,9 @@ unsafe impl NSAccessibility for NSOutlineView {}
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -50,7 +54,9 @@ unsafe impl NSAccessibilityElementProtocol for NSOutlineView {}
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityGroup for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityGroup for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -59,7 +65,9 @@ unsafe impl NSAccessibilityGroup for NSOutlineView {}
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityOutline for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityOutline for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -68,7 +76,9 @@ unsafe impl NSAccessibilityOutline for NSOutlineView {}
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityTable for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityTable for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -77,7 +87,9 @@ unsafe impl NSAccessibilityTable for NSOutlineView {}
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -86,7 +98,9 @@ unsafe impl NSAnimatablePropertyContainer for NSOutlineView {}
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -94,16 +108,9 @@ unsafe impl NSAppearanceCustomization for NSOutlineView {}
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSCoding for NSOutlineView {}
-
-#[cfg(all(
-    feature = "NSControl",
-    feature = "NSDragging",
-    feature = "NSResponder",
-    feature = "NSTableView",
-    feature = "NSView"
-))]
-unsafe impl NSDraggingDestination for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -112,7 +119,20 @@ unsafe impl NSDraggingDestination for NSOutlineView {}
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingSource for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSOutlineView {}
+);
+
+#[cfg(all(
+    feature = "NSControl",
+    feature = "NSDragging",
+    feature = "NSResponder",
+    feature = "NSTableView",
+    feature = "NSView"
+))]
+extern_conformance!(
+    unsafe impl NSDraggingSource for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -120,7 +140,9 @@ unsafe impl NSDraggingSource for NSOutlineView {}
     feature = "NSTableView",
     feature = "NSView"
 ))]
-unsafe impl NSObjectProtocol for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -129,7 +151,9 @@ unsafe impl NSObjectProtocol for NSOutlineView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSTextDelegate for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSTextDelegate for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -139,7 +163,9 @@ unsafe impl NSTextDelegate for NSOutlineView {}
     feature = "NSTextView",
     feature = "NSView"
 ))]
-unsafe impl NSTextViewDelegate for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSTextViewDelegate for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -148,7 +174,9 @@ unsafe impl NSTextViewDelegate for NSOutlineView {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -157,7 +185,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSOutlineView {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSOutlineView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSOutlineView {}
+);
 
 #[cfg(all(
     feature = "NSControl",

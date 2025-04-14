@@ -13,7 +13,9 @@ extern_class!(
     pub struct CNFetchResult<ValueType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNFetchResult<ValueType> {}
+extern_conformance!(
+    unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNFetchResult<ValueType> {}
+);
 
 impl<ValueType: Message> CNFetchResult<ValueType> {
     extern_methods!(

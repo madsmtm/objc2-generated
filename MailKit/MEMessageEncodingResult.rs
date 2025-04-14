@@ -15,11 +15,17 @@ extern_class!(
     pub struct MEMessageEncodingResult;
 );
 
-unsafe impl NSCoding for MEMessageEncodingResult {}
+extern_conformance!(
+    unsafe impl NSCoding for MEMessageEncodingResult {}
+);
 
-unsafe impl NSObjectProtocol for MEMessageEncodingResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEMessageEncodingResult {}
+);
 
-unsafe impl NSSecureCoding for MEMessageEncodingResult {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MEMessageEncodingResult {}
+);
 
 impl MEMessageEncodingResult {
     extern_methods!(

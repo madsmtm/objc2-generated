@@ -15,7 +15,9 @@ extern_class!(
     pub struct MKLookAroundSnapshot;
 );
 
-unsafe impl NSObjectProtocol for MKLookAroundSnapshot {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKLookAroundSnapshot {}
+);
 
 impl MKLookAroundSnapshot {
     extern_methods!(

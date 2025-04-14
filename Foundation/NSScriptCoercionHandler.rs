@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSScriptCoercionHandler;
 );
 
-unsafe impl NSObjectProtocol for NSScriptCoercionHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScriptCoercionHandler {}
+);
 
 impl NSScriptCoercionHandler {
     extern_methods!(

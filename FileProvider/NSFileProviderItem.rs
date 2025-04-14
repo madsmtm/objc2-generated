@@ -72,7 +72,9 @@ extern_class!(
     pub struct NSFileProviderItemVersion;
 );
 
-unsafe impl NSObjectProtocol for NSFileProviderItemVersion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileProviderItemVersion {}
+);
 
 impl NSFileProviderItemVersion {
     extern_methods!(

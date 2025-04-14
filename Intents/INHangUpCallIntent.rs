@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INHangUpCallIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INHangUpCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INHangUpCallIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INHangUpCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INHangUpCallIntent {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INHangUpCallIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INHangUpCallIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INHangUpCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INHangUpCallIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INHangUpCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INHangUpCallIntent {

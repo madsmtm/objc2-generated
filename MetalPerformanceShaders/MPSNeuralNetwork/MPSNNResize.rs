@@ -24,10 +24,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNResizeBilinear {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNResizeBilinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNResizeBilinear {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNResizeBilinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNResizeBilinear {
@@ -35,10 +39,14 @@ unsafe impl CopyingHelper for MPSNNResizeBilinear {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNResizeBilinear {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNResizeBilinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNResizeBilinear {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNResizeBilinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNResizeBilinear {
@@ -160,10 +168,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNCropAndResizeBilinear {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNCropAndResizeBilinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNCropAndResizeBilinear {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNCropAndResizeBilinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNCropAndResizeBilinear {
@@ -171,10 +183,14 @@ unsafe impl CopyingHelper for MPSNNCropAndResizeBilinear {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNCropAndResizeBilinear {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNCropAndResizeBilinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNCropAndResizeBilinear {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNCropAndResizeBilinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNCropAndResizeBilinear {

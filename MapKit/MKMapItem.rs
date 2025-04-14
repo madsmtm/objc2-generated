@@ -14,7 +14,9 @@ extern_class!(
     pub struct MKMapItem;
 );
 
-unsafe impl NSObjectProtocol for MKMapItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapItem {}
+);
 
 impl MKMapItem {
     extern_methods!(
@@ -202,7 +204,9 @@ impl MKMapItem {
     extern_methods!();
 }
 
-unsafe impl NSSecureCoding for MKMapItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MKMapItem {}
+);
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemtypeidentifier?language=objc)

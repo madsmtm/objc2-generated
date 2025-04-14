@@ -149,11 +149,17 @@ extern_class!(
     pub struct NSInputServer;
 );
 
-unsafe impl NSInputServerMouseTracker for NSInputServer {}
+extern_conformance!(
+    unsafe impl NSInputServerMouseTracker for NSInputServer {}
+);
 
-unsafe impl NSInputServiceProvider for NSInputServer {}
+extern_conformance!(
+    unsafe impl NSInputServiceProvider for NSInputServer {}
+);
 
-unsafe impl NSObjectProtocol for NSInputServer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSInputServer {}
+);
 
 impl NSInputServer {
     extern_methods!(

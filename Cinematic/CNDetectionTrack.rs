@@ -18,13 +18,17 @@ extern_class!(
     pub struct CNDetectionTrack;
 );
 
-unsafe impl NSCopying for CNDetectionTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for CNDetectionTrack {}
+);
 
 unsafe impl CopyingHelper for CNDetectionTrack {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNDetectionTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNDetectionTrack {}
+);
 
 impl CNDetectionTrack {
     extern_methods!(
@@ -100,13 +104,17 @@ extern_class!(
     pub struct CNFixedDetectionTrack;
 );
 
-unsafe impl NSCopying for CNFixedDetectionTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for CNFixedDetectionTrack {}
+);
 
 unsafe impl CopyingHelper for CNFixedDetectionTrack {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNFixedDetectionTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNFixedDetectionTrack {}
+);
 
 impl CNFixedDetectionTrack {
     extern_methods!(
@@ -166,13 +174,17 @@ extern_class!(
     pub struct CNCustomDetectionTrack;
 );
 
-unsafe impl NSCopying for CNCustomDetectionTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for CNCustomDetectionTrack {}
+);
 
 unsafe impl CopyingHelper for CNCustomDetectionTrack {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNCustomDetectionTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNCustomDetectionTrack {}
+);
 
 impl CNCustomDetectionTrack {
     extern_methods!(

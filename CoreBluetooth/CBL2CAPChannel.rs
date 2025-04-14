@@ -18,7 +18,9 @@ extern_class!(
     pub struct CBL2CAPChannel;
 );
 
-unsafe impl NSObjectProtocol for CBL2CAPChannel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBL2CAPChannel {}
+);
 
 impl CBL2CAPChannel {
     extern_methods!(

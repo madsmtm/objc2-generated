@@ -55,9 +55,13 @@ extern_class!(
     pub struct UISearchSuggestionItem;
 );
 
-unsafe impl NSObjectProtocol for UISearchSuggestionItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISearchSuggestionItem {}
+);
 
-unsafe impl UISearchSuggestion for UISearchSuggestionItem {}
+extern_conformance!(
+    unsafe impl UISearchSuggestion for UISearchSuggestionItem {}
+);
 
 impl UISearchSuggestionItem {
     extern_methods!(

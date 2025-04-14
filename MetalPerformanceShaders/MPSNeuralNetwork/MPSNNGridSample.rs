@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNGridSample {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNGridSample {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNGridSample {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNGridSample {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNGridSample {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for MPSNNGridSample {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNGridSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNGridSample {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNGridSample {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNGridSample {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNGridSample {

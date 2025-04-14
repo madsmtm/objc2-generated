@@ -105,35 +105,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for MKAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for MKAnnotationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for MKAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for MKAnnotationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for MKAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for MKAnnotationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for MKAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for MKAnnotationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MKAnnotationView {}
+extern_conformance!(
+    unsafe impl NSCoding for MKAnnotationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for MKAnnotationView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for MKAnnotationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MKAnnotationView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKAnnotationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MKAnnotationView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MKAnnotationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

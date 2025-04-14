@@ -20,7 +20,9 @@ extern_class!(
 );
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSCopying for EKStructuredLocation {}
+extern_conformance!(
+    unsafe impl NSCopying for EKStructuredLocation {}
+);
 
 #[cfg(feature = "EKObject")]
 unsafe impl CopyingHelper for EKStructuredLocation {
@@ -28,7 +30,9 @@ unsafe impl CopyingHelper for EKStructuredLocation {
 }
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSObjectProtocol for EKStructuredLocation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKStructuredLocation {}
+);
 
 #[cfg(feature = "EKObject")]
 impl EKStructuredLocation {

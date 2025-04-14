@@ -16,7 +16,9 @@ extern_class!(
     pub struct ILClassificationUIExtensionContext;
 );
 
-unsafe impl NSObjectProtocol for ILClassificationUIExtensionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ILClassificationUIExtensionContext {}
+);
 
 impl ILClassificationUIExtensionContext {
     extern_methods!(

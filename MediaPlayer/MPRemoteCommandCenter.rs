@@ -12,7 +12,9 @@ extern_class!(
     pub struct MPRemoteCommandCenter;
 );
 
-unsafe impl NSObjectProtocol for MPRemoteCommandCenter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPRemoteCommandCenter {}
+);
 
 impl MPRemoteCommandCenter {
     extern_methods!(

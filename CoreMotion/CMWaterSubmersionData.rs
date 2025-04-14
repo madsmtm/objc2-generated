@@ -65,17 +65,25 @@ extern_class!(
     pub struct CMWaterSubmersionEvent;
 );
 
-unsafe impl NSCoding for CMWaterSubmersionEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CMWaterSubmersionEvent {}
+);
 
-unsafe impl NSCopying for CMWaterSubmersionEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CMWaterSubmersionEvent {}
+);
 
 unsafe impl CopyingHelper for CMWaterSubmersionEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMWaterSubmersionEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMWaterSubmersionEvent {}
+);
 
-unsafe impl NSSecureCoding for CMWaterSubmersionEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMWaterSubmersionEvent {}
+);
 
 impl CMWaterSubmersionEvent {
     extern_methods!(
@@ -109,17 +117,25 @@ extern_class!(
     pub struct CMWaterSubmersionMeasurement;
 );
 
-unsafe impl NSCoding for CMWaterSubmersionMeasurement {}
+extern_conformance!(
+    unsafe impl NSCoding for CMWaterSubmersionMeasurement {}
+);
 
-unsafe impl NSCopying for CMWaterSubmersionMeasurement {}
+extern_conformance!(
+    unsafe impl NSCopying for CMWaterSubmersionMeasurement {}
+);
 
 unsafe impl CopyingHelper for CMWaterSubmersionMeasurement {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMWaterSubmersionMeasurement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMWaterSubmersionMeasurement {}
+);
 
-unsafe impl NSSecureCoding for CMWaterSubmersionMeasurement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMWaterSubmersionMeasurement {}
+);
 
 impl CMWaterSubmersionMeasurement {
     extern_methods!(
@@ -165,17 +181,25 @@ extern_class!(
     pub struct CMWaterTemperature;
 );
 
-unsafe impl NSCoding for CMWaterTemperature {}
+extern_conformance!(
+    unsafe impl NSCoding for CMWaterTemperature {}
+);
 
-unsafe impl NSCopying for CMWaterTemperature {}
+extern_conformance!(
+    unsafe impl NSCopying for CMWaterTemperature {}
+);
 
 unsafe impl CopyingHelper for CMWaterTemperature {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMWaterTemperature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMWaterTemperature {}
+);
 
-unsafe impl NSSecureCoding for CMWaterTemperature {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMWaterTemperature {}
+);
 
 impl CMWaterTemperature {
     extern_methods!(

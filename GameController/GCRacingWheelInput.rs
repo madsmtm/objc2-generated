@@ -13,9 +13,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GCDevicePhysicalInputState")]
-unsafe impl GCDevicePhysicalInputState for GCRacingWheelInputState {}
+extern_conformance!(
+    unsafe impl GCDevicePhysicalInputState for GCRacingWheelInputState {}
+);
 
-unsafe impl NSObjectProtocol for GCRacingWheelInputState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCRacingWheelInputState {}
+);
 
 impl GCRacingWheelInputState {
     extern_methods!(
@@ -80,12 +84,18 @@ extern_class!(
     feature = "GCDevicePhysicalInput",
     feature = "GCDevicePhysicalInputState"
 ))]
-unsafe impl GCDevicePhysicalInput for GCRacingWheelInput {}
+extern_conformance!(
+    unsafe impl GCDevicePhysicalInput for GCRacingWheelInput {}
+);
 
 #[cfg(feature = "GCDevicePhysicalInputState")]
-unsafe impl GCDevicePhysicalInputState for GCRacingWheelInput {}
+extern_conformance!(
+    unsafe impl GCDevicePhysicalInputState for GCRacingWheelInput {}
+);
 
-unsafe impl NSObjectProtocol for GCRacingWheelInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCRacingWheelInput {}
+);
 
 impl GCRacingWheelInput {
     extern_methods!(

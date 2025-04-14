@@ -32,7 +32,9 @@ extern_class!(
     pub struct NSOrderedCollectionChange<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionChange<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionChange<ObjectType> {}
+);
 
 impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
     extern_methods!(

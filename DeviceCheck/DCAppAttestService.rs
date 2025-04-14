@@ -43,7 +43,9 @@ extern_class!(
     pub struct DCAppAttestService;
 );
 
-unsafe impl NSObjectProtocol for DCAppAttestService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DCAppAttestService {}
+);
 
 impl DCAppAttestService {
     extern_methods!(

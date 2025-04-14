@@ -40,7 +40,9 @@ extern_class!(
     pub struct UICollectionViewUpdateItem;
 );
 
-unsafe impl NSObjectProtocol for UICollectionViewUpdateItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewUpdateItem {}
+);
 
 impl UICollectionViewUpdateItem {
     extern_methods!(

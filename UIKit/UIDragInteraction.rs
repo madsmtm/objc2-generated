@@ -35,10 +35,14 @@ extern_class!(
     pub struct UIDragInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIDragInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDragInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIDragInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIDragInteraction {}
+);
 
 impl UIDragInteraction {
     extern_methods!(

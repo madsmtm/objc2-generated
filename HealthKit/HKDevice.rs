@@ -89,17 +89,25 @@ unsafe impl Send for HKDevice {}
 
 unsafe impl Sync for HKDevice {}
 
-unsafe impl NSCoding for HKDevice {}
+extern_conformance!(
+    unsafe impl NSCoding for HKDevice {}
+);
 
-unsafe impl NSCopying for HKDevice {}
+extern_conformance!(
+    unsafe impl NSCopying for HKDevice {}
+);
 
 unsafe impl CopyingHelper for HKDevice {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKDevice {}
+);
 
-unsafe impl NSSecureCoding for HKDevice {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKDevice {}
+);
 
 impl HKDevice {
     extern_methods!(

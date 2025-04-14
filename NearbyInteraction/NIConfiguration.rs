@@ -16,17 +16,25 @@ extern_class!(
     pub struct NIDiscoveryToken;
 );
 
-unsafe impl NSCoding for NIDiscoveryToken {}
+extern_conformance!(
+    unsafe impl NSCoding for NIDiscoveryToken {}
+);
 
-unsafe impl NSCopying for NIDiscoveryToken {}
+extern_conformance!(
+    unsafe impl NSCopying for NIDiscoveryToken {}
+);
 
 unsafe impl CopyingHelper for NIDiscoveryToken {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NIDiscoveryToken {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NIDiscoveryToken {}
+);
 
-unsafe impl NSSecureCoding for NIDiscoveryToken {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NIDiscoveryToken {}
+);
 
 impl NIDiscoveryToken {
     extern_methods!(
@@ -59,17 +67,25 @@ extern_class!(
     pub struct NIConfiguration;
 );
 
-unsafe impl NSCoding for NIConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for NIConfiguration {}
+);
 
-unsafe impl NSCopying for NIConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NIConfiguration {}
+);
 
 unsafe impl CopyingHelper for NIConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NIConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NIConfiguration {}
+);
 
-unsafe impl NSSecureCoding for NIConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NIConfiguration {}
+);
 
 impl NIConfiguration {
     extern_methods!(
@@ -95,17 +111,25 @@ extern_class!(
     pub struct NINearbyPeerConfiguration;
 );
 
-unsafe impl NSCoding for NINearbyPeerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for NINearbyPeerConfiguration {}
+);
 
-unsafe impl NSCopying for NINearbyPeerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NINearbyPeerConfiguration {}
+);
 
 unsafe impl CopyingHelper for NINearbyPeerConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NINearbyPeerConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NINearbyPeerConfiguration {}
+);
 
-unsafe impl NSSecureCoding for NINearbyPeerConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NINearbyPeerConfiguration {}
+);
 
 impl NINearbyPeerConfiguration {
     extern_methods!(
@@ -180,17 +204,25 @@ extern_class!(
     pub struct NINearbyAccessoryConfiguration;
 );
 
-unsafe impl NSCoding for NINearbyAccessoryConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for NINearbyAccessoryConfiguration {}
+);
 
-unsafe impl NSCopying for NINearbyAccessoryConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NINearbyAccessoryConfiguration {}
+);
 
 unsafe impl CopyingHelper for NINearbyAccessoryConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NINearbyAccessoryConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NINearbyAccessoryConfiguration {}
+);
 
-unsafe impl NSSecureCoding for NINearbyAccessoryConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NINearbyAccessoryConfiguration {}
+);
 
 impl NINearbyAccessoryConfiguration {
     extern_methods!(

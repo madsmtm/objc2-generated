@@ -37,17 +37,25 @@ extern_class!(
     pub struct SKWarpGeometry;
 );
 
-unsafe impl NSCoding for SKWarpGeometry {}
+extern_conformance!(
+    unsafe impl NSCoding for SKWarpGeometry {}
+);
 
-unsafe impl NSCopying for SKWarpGeometry {}
+extern_conformance!(
+    unsafe impl NSCopying for SKWarpGeometry {}
+);
 
 unsafe impl CopyingHelper for SKWarpGeometry {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKWarpGeometry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKWarpGeometry {}
+);
 
-unsafe impl NSSecureCoding for SKWarpGeometry {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKWarpGeometry {}
+);
 
 impl SKWarpGeometry {
     extern_methods!();
@@ -73,17 +81,25 @@ extern_class!(
     pub struct SKWarpGeometryGrid;
 );
 
-unsafe impl NSCoding for SKWarpGeometryGrid {}
+extern_conformance!(
+    unsafe impl NSCoding for SKWarpGeometryGrid {}
+);
 
-unsafe impl NSCopying for SKWarpGeometryGrid {}
+extern_conformance!(
+    unsafe impl NSCopying for SKWarpGeometryGrid {}
+);
 
 unsafe impl CopyingHelper for SKWarpGeometryGrid {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKWarpGeometryGrid {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKWarpGeometryGrid {}
+);
 
-unsafe impl NSSecureCoding for SKWarpGeometryGrid {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKWarpGeometryGrid {}
+);
 
 impl SKWarpGeometryGrid {
     extern_methods!(

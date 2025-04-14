@@ -14,13 +14,17 @@ extern_class!(
     pub struct MTLFunctionConstantValues;
 );
 
-unsafe impl NSCopying for MTLFunctionConstantValues {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLFunctionConstantValues {}
+);
 
 unsafe impl CopyingHelper for MTLFunctionConstantValues {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLFunctionConstantValues {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFunctionConstantValues {}
+);
 
 impl MTLFunctionConstantValues {
     extern_methods!(

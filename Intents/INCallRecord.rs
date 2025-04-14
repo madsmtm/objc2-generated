@@ -13,17 +13,25 @@ extern_class!(
     pub struct INCallRecord;
 );
 
-unsafe impl NSCoding for INCallRecord {}
+extern_conformance!(
+    unsafe impl NSCoding for INCallRecord {}
+);
 
-unsafe impl NSCopying for INCallRecord {}
+extern_conformance!(
+    unsafe impl NSCopying for INCallRecord {}
+);
 
 unsafe impl CopyingHelper for INCallRecord {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INCallRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCallRecord {}
+);
 
-unsafe impl NSSecureCoding for INCallRecord {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCallRecord {}
+);
 
 impl INCallRecord {
     extern_methods!(

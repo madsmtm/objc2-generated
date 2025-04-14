@@ -24,10 +24,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CNContact")]
-unsafe impl NSCoding for CNMutableContact {}
+extern_conformance!(
+    unsafe impl NSCoding for CNMutableContact {}
+);
 
 #[cfg(feature = "CNContact")]
-unsafe impl NSCopying for CNMutableContact {}
+extern_conformance!(
+    unsafe impl NSCopying for CNMutableContact {}
+);
 
 #[cfg(feature = "CNContact")]
 unsafe impl CopyingHelper for CNMutableContact {
@@ -35,7 +39,9 @@ unsafe impl CopyingHelper for CNMutableContact {
 }
 
 #[cfg(feature = "CNContact")]
-unsafe impl NSMutableCopying for CNMutableContact {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CNMutableContact {}
+);
 
 #[cfg(feature = "CNContact")]
 unsafe impl MutableCopyingHelper for CNMutableContact {
@@ -43,10 +49,14 @@ unsafe impl MutableCopyingHelper for CNMutableContact {
 }
 
 #[cfg(feature = "CNContact")]
-unsafe impl NSObjectProtocol for CNMutableContact {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNMutableContact {}
+);
 
 #[cfg(feature = "CNContact")]
-unsafe impl NSSecureCoding for CNMutableContact {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNMutableContact {}
+);
 
 #[cfg(feature = "CNContact")]
 impl CNMutableContact {

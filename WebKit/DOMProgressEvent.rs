@@ -25,7 +25,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMProgressEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMProgressEvent {}
+);
 
 #[cfg(all(
     feature = "DOMEvent",
@@ -41,7 +43,9 @@ unsafe impl CopyingHelper for DOMProgressEvent {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMProgressEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMProgressEvent {}
+);
 
 #[cfg(all(
     feature = "DOMEvent",

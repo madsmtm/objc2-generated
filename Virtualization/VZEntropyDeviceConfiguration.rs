@@ -21,13 +21,17 @@ extern_class!(
     pub struct VZEntropyDeviceConfiguration;
 );
 
-unsafe impl NSCopying for VZEntropyDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZEntropyDeviceConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZEntropyDeviceConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZEntropyDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZEntropyDeviceConfiguration {}
+);
 
 impl VZEntropyDeviceConfiguration {
     extern_methods!(

@@ -32,7 +32,9 @@ extern_class!(
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
-unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationState {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -212,7 +214,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSCNNNormalizationMeanAndVarianceState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNormalizationMeanAndVarianceState {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSCNNNormalizationMeanAndVarianceState {
@@ -619,10 +623,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNBatchNormalization {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNBatchNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNBatchNormalization {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNBatchNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNBatchNormalization {
@@ -630,10 +638,14 @@ unsafe impl CopyingHelper for MPSCNNBatchNormalization {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNBatchNormalization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNBatchNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNBatchNormalization {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNBatchNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNBatchNormalization {
@@ -983,10 +995,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNBatchNormalizationStatistics {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNBatchNormalizationStatistics {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNBatchNormalizationStatistics {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNBatchNormalizationStatistics {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNBatchNormalizationStatistics {
@@ -994,10 +1010,14 @@ unsafe impl CopyingHelper for MPSCNNBatchNormalizationStatistics {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationStatistics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationStatistics {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNBatchNormalizationStatistics {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNBatchNormalizationStatistics {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNBatchNormalizationStatistics {
@@ -1153,10 +1173,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNBatchNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNBatchNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNBatchNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNBatchNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNBatchNormalizationGradient {
@@ -1164,10 +1188,14 @@ unsafe impl CopyingHelper for MPSCNNBatchNormalizationGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNBatchNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNBatchNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNBatchNormalizationGradient {
@@ -1435,10 +1463,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNBatchNormalizationStatisticsGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNBatchNormalizationStatisticsGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNBatchNormalizationStatisticsGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNBatchNormalizationStatisticsGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNBatchNormalizationStatisticsGradient {
@@ -1446,10 +1478,14 @@ unsafe impl CopyingHelper for MPSCNNBatchNormalizationStatisticsGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationStatisticsGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationStatisticsGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNBatchNormalizationStatisticsGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNBatchNormalizationStatisticsGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNBatchNormalizationStatisticsGradient {

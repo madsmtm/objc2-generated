@@ -29,7 +29,9 @@ extern_class!(
     pub struct VZNetworkDeviceAttachment;
 );
 
-unsafe impl NSObjectProtocol for VZNetworkDeviceAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZNetworkDeviceAttachment {}
+);
 
 impl VZNetworkDeviceAttachment {
     extern_methods!(

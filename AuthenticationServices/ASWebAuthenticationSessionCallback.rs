@@ -20,7 +20,9 @@ unsafe impl Send for ASWebAuthenticationSessionCallback {}
 
 unsafe impl Sync for ASWebAuthenticationSessionCallback {}
 
-unsafe impl NSObjectProtocol for ASWebAuthenticationSessionCallback {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASWebAuthenticationSessionCallback {}
+);
 
 impl ASWebAuthenticationSessionCallback {
     extern_methods!(

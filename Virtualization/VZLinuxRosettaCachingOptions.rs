@@ -24,7 +24,9 @@ extern_class!(
     pub struct VZLinuxRosettaCachingOptions;
 );
 
-unsafe impl NSObjectProtocol for VZLinuxRosettaCachingOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZLinuxRosettaCachingOptions {}
+);
 
 impl VZLinuxRosettaCachingOptions {
     extern_methods!(

@@ -22,13 +22,17 @@ extern_class!(
     pub struct MKLocalPointsOfInterestRequest;
 );
 
-unsafe impl NSCopying for MKLocalPointsOfInterestRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for MKLocalPointsOfInterestRequest {}
+);
 
 unsafe impl CopyingHelper for MKLocalPointsOfInterestRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKLocalPointsOfInterestRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKLocalPointsOfInterestRequest {}
+);
 
 impl MKLocalPointsOfInterestRequest {
     extern_methods!(

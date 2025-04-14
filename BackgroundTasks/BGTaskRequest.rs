@@ -16,13 +16,17 @@ extern_class!(
     pub struct BGTaskRequest;
 );
 
-unsafe impl NSCopying for BGTaskRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for BGTaskRequest {}
+);
 
 unsafe impl CopyingHelper for BGTaskRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for BGTaskRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGTaskRequest {}
+);
 
 impl BGTaskRequest {
     extern_methods!(
@@ -66,13 +70,17 @@ extern_class!(
     pub struct BGAppRefreshTaskRequest;
 );
 
-unsafe impl NSCopying for BGAppRefreshTaskRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for BGAppRefreshTaskRequest {}
+);
 
 unsafe impl CopyingHelper for BGAppRefreshTaskRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for BGAppRefreshTaskRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGAppRefreshTaskRequest {}
+);
 
 impl BGAppRefreshTaskRequest {
     extern_methods!(
@@ -112,13 +120,17 @@ extern_class!(
     pub struct BGProcessingTaskRequest;
 );
 
-unsafe impl NSCopying for BGProcessingTaskRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for BGProcessingTaskRequest {}
+);
 
 unsafe impl CopyingHelper for BGProcessingTaskRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for BGProcessingTaskRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGProcessingTaskRequest {}
+);
 
 impl BGProcessingTaskRequest {
     extern_methods!(
@@ -178,13 +190,17 @@ extern_class!(
     pub struct BGHealthResearchTaskRequest;
 );
 
-unsafe impl NSCopying for BGHealthResearchTaskRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for BGHealthResearchTaskRequest {}
+);
 
 unsafe impl CopyingHelper for BGHealthResearchTaskRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
+);
 
 impl BGHealthResearchTaskRequest {
     extern_methods!(

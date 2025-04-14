@@ -17,24 +17,32 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UICollectionViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UICollectionViewController {}
+);
 
 #[cfg(all(
     feature = "UICollectionView",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UICollectionViewDataSource for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl UICollectionViewDataSource for UICollectionViewController {}
+);
 
 #[cfg(all(
     feature = "UICollectionView",
@@ -42,34 +50,46 @@ unsafe impl UICollectionViewDataSource for UICollectionViewController {}
     feature = "UIScrollView",
     feature = "UIViewController"
 ))]
-unsafe impl UICollectionViewDelegate for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl UICollectionViewDelegate for UICollectionViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UICollectionViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UICollectionViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UICollectionViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIScrollView",
     feature = "UIViewController"
 ))]
-unsafe impl UIScrollViewDelegate for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl UIScrollViewDelegate for UICollectionViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UICollectionViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UICollectionViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UICollectionViewController {

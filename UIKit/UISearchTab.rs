@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UITab")]
-unsafe impl NSObjectProtocol for UISearchTab {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISearchTab {}
+);
 
 #[cfg(feature = "UITab")]
 impl UISearchTab {

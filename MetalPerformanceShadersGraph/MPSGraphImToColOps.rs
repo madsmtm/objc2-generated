@@ -24,7 +24,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphImToColOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphImToColOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphImToColOpDescriptor {
@@ -32,7 +34,9 @@ unsafe impl CopyingHelper for MPSGraphImToColOpDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphImToColOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphImToColOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphImToColOpDescriptor {

@@ -18,7 +18,9 @@ extern_class!(
     pub struct INVoiceShortcutCenter;
 );
 
-unsafe impl NSObjectProtocol for INVoiceShortcutCenter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INVoiceShortcutCenter {}
+);
 
 impl INVoiceShortcutCenter {
     extern_methods!(

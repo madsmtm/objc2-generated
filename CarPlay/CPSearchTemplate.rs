@@ -16,13 +16,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSCoding for CPSearchTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for CPSearchTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSObjectProtocol for CPSearchTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPSearchTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSSecureCoding for CPSearchTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPSearchTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
 impl CPSearchTemplate {

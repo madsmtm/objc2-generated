@@ -37,7 +37,9 @@ unsafe impl Send for NSTask {}
 
 unsafe impl Sync for NSTask {}
 
-unsafe impl NSObjectProtocol for NSTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTask {}
+);
 
 impl NSTask {
     extern_methods!(

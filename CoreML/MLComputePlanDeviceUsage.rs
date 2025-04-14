@@ -19,7 +19,9 @@ unsafe impl Send for MLComputePlanDeviceUsage {}
 
 unsafe impl Sync for MLComputePlanDeviceUsage {}
 
-unsafe impl NSObjectProtocol for MLComputePlanDeviceUsage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLComputePlanDeviceUsage {}
+);
 
 impl MLComputePlanDeviceUsage {
     extern_methods!(

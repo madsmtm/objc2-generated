@@ -46,13 +46,17 @@ extern_class!(
     pub struct SKTransition;
 );
 
-unsafe impl NSCopying for SKTransition {}
+extern_conformance!(
+    unsafe impl NSCopying for SKTransition {}
+);
 
 unsafe impl CopyingHelper for SKTransition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKTransition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKTransition {}
+);
 
 impl SKTransition {
     extern_methods!(

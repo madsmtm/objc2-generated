@@ -21,7 +21,9 @@ extern_class!(
     pub struct AVCameraCalibrationData;
 );
 
-unsafe impl NSObjectProtocol for AVCameraCalibrationData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCameraCalibrationData {}
+);
 
 impl AVCameraCalibrationData {
     extern_methods!(

@@ -14,11 +14,17 @@ extern_class!(
     pub struct GKAchievement;
 );
 
-unsafe impl NSCoding for GKAchievement {}
+extern_conformance!(
+    unsafe impl NSCoding for GKAchievement {}
+);
 
-unsafe impl NSObjectProtocol for GKAchievement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKAchievement {}
+);
 
-unsafe impl NSSecureCoding for GKAchievement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKAchievement {}
+);
 
 impl GKAchievement {
     extern_methods!(

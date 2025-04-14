@@ -28,10 +28,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixFindTopK {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixFindTopK {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixFindTopK {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixFindTopK {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixFindTopK {
@@ -39,10 +43,14 @@ unsafe impl CopyingHelper for MPSMatrixFindTopK {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixFindTopK {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixFindTopK {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixFindTopK {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixFindTopK {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixFindTopK {

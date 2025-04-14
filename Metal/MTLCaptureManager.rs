@@ -68,13 +68,17 @@ extern_class!(
     pub struct MTLCaptureDescriptor;
 );
 
-unsafe impl NSCopying for MTLCaptureDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLCaptureDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLCaptureDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLCaptureDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLCaptureDescriptor {}
+);
 
 impl MTLCaptureDescriptor {
     extern_methods!(
@@ -146,7 +150,9 @@ extern_class!(
     pub struct MTLCaptureManager;
 );
 
-unsafe impl NSObjectProtocol for MTLCaptureManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLCaptureManager {}
+);
 
 impl MTLCaptureManager {
     extern_methods!(

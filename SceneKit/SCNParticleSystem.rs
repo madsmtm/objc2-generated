@@ -385,17 +385,25 @@ extern_class!(
     pub struct SCNParticlePropertyController;
 );
 
-unsafe impl NSCoding for SCNParticlePropertyController {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNParticlePropertyController {}
+);
 
-unsafe impl NSCopying for SCNParticlePropertyController {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNParticlePropertyController {}
+);
 
 unsafe impl CopyingHelper for SCNParticlePropertyController {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNParticlePropertyController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNParticlePropertyController {}
+);
 
-unsafe impl NSSecureCoding for SCNParticlePropertyController {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNParticlePropertyController {}
+);
 
 impl SCNParticlePropertyController {
     extern_methods!(
@@ -494,20 +502,30 @@ extern_class!(
     pub struct SCNParticleSystem;
 );
 
-unsafe impl NSCoding for SCNParticleSystem {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNParticleSystem {}
+);
 
-unsafe impl NSCopying for SCNParticleSystem {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNParticleSystem {}
+);
 
 unsafe impl CopyingHelper for SCNParticleSystem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNParticleSystem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNParticleSystem {}
+);
 
-unsafe impl NSSecureCoding for SCNParticleSystem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNParticleSystem {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNParticleSystem {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNParticleSystem {}
+);
 
 impl SCNParticleSystem {
     extern_methods!(

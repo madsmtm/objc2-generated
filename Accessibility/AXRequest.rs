@@ -13,17 +13,25 @@ extern_class!(
     pub struct AXRequest;
 );
 
-unsafe impl NSCoding for AXRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for AXRequest {}
+);
 
-unsafe impl NSCopying for AXRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for AXRequest {}
+);
 
 unsafe impl CopyingHelper for AXRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AXRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXRequest {}
+);
 
-unsafe impl NSSecureCoding for AXRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AXRequest {}
+);
 
 impl AXRequest {
     extern_methods!(

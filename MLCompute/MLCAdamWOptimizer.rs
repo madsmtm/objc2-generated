@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCOptimizer")]
-unsafe impl NSCopying for MLCAdamWOptimizer {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCAdamWOptimizer {}
+);
 
 #[cfg(feature = "MLCOptimizer")]
 unsafe impl CopyingHelper for MLCAdamWOptimizer {
@@ -27,7 +29,9 @@ unsafe impl CopyingHelper for MLCAdamWOptimizer {
 }
 
 #[cfg(feature = "MLCOptimizer")]
-unsafe impl NSObjectProtocol for MLCAdamWOptimizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCAdamWOptimizer {}
+);
 
 #[cfg(feature = "MLCOptimizer")]
 impl MLCAdamWOptimizer {

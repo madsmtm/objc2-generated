@@ -42,10 +42,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageFindKeypoints {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageFindKeypoints {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageFindKeypoints {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageFindKeypoints {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageFindKeypoints {
@@ -53,10 +57,14 @@ unsafe impl CopyingHelper for MPSImageFindKeypoints {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageFindKeypoints {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageFindKeypoints {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageFindKeypoints {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageFindKeypoints {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSImageFindKeypoints {

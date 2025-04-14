@@ -18,10 +18,14 @@ extern_class!(
 );
 
 #[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized + NSCoding> NSCoding for GKObstacleGraph<NodeType> {}
+extern_conformance!(
+    unsafe impl<NodeType: ?Sized + NSCoding> NSCoding for GKObstacleGraph<NodeType> {}
+);
 
 #[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized> NSCopying for GKObstacleGraph<NodeType> {}
+extern_conformance!(
+    unsafe impl<NodeType: ?Sized> NSCopying for GKObstacleGraph<NodeType> {}
+);
 
 #[cfg(feature = "GKGraph")]
 unsafe impl<NodeType: ?Sized + Message> CopyingHelper for GKObstacleGraph<NodeType> {
@@ -29,10 +33,14 @@ unsafe impl<NodeType: ?Sized + Message> CopyingHelper for GKObstacleGraph<NodeTy
 }
 
 #[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized> NSObjectProtocol for GKObstacleGraph<NodeType> {}
+extern_conformance!(
+    unsafe impl<NodeType: ?Sized> NSObjectProtocol for GKObstacleGraph<NodeType> {}
+);
 
 #[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized + NSSecureCoding> NSSecureCoding for GKObstacleGraph<NodeType> {}
+extern_conformance!(
+    unsafe impl<NodeType: ?Sized + NSSecureCoding> NSSecureCoding for GKObstacleGraph<NodeType> {}
+);
 
 #[cfg(feature = "GKGraph")]
 impl<NodeType: Message> GKObstacleGraph<NodeType> {

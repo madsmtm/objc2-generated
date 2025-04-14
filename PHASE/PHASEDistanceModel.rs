@@ -19,7 +19,9 @@ extern_class!(
     pub struct PHASEDistanceModelFadeOutParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASEDistanceModelFadeOutParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEDistanceModelFadeOutParameters {}
+);
 
 impl PHASEDistanceModelFadeOutParameters {
     extern_methods!(
@@ -69,7 +71,9 @@ extern_class!(
     pub struct PHASEDistanceModelParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASEDistanceModelParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEDistanceModelParameters {}
+);
 
 impl PHASEDistanceModelParameters {
     extern_methods!(
@@ -113,7 +117,9 @@ extern_class!(
     pub struct PHASEGeometricSpreadingDistanceModelParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASEGeometricSpreadingDistanceModelParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEGeometricSpreadingDistanceModelParameters {}
+);
 
 impl PHASEGeometricSpreadingDistanceModelParameters {
     extern_methods!(
@@ -161,7 +167,9 @@ extern_class!(
     pub struct PHASEEnvelopeDistanceModelParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASEEnvelopeDistanceModelParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEEnvelopeDistanceModelParameters {}
+);
 
 impl PHASEEnvelopeDistanceModelParameters {
     extern_methods!(

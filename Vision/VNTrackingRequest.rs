@@ -42,7 +42,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNTrackingRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNTrackingRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNTrackingRequest {
@@ -50,7 +52,9 @@ unsafe impl CopyingHelper for VNTrackingRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNTrackingRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNTrackingRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNTrackingRequest {

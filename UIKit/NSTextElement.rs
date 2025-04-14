@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSTextElement;
 );
 
-unsafe impl NSObjectProtocol for NSTextElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextElement {}
+);
 
 impl NSTextElement {
     extern_methods!(
@@ -86,7 +88,9 @@ extern_class!(
     pub struct NSTextParagraph;
 );
 
-unsafe impl NSObjectProtocol for NSTextParagraph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextParagraph {}
+);
 
 impl NSTextParagraph {
     extern_methods!(

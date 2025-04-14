@@ -251,7 +251,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSTableView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -259,7 +261,9 @@ unsafe impl NSAccessibility for NSTableView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSTableView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -267,7 +271,9 @@ unsafe impl NSAccessibilityElementProtocol for NSTableView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityGroup for NSTableView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityGroup for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -275,7 +281,9 @@ unsafe impl NSAccessibilityGroup for NSTableView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityTable for NSTableView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityTable for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -283,7 +291,9 @@ unsafe impl NSAccessibilityTable for NSTableView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSTableView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -291,10 +301,14 @@ unsafe impl NSAnimatablePropertyContainer for NSTableView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSTableView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSTableView {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSTableView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -302,7 +316,9 @@ unsafe impl NSCoding for NSTableView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSTableView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -310,10 +326,14 @@ unsafe impl NSDraggingDestination for NSTableView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingSource for NSTableView {}
+extern_conformance!(
+    unsafe impl NSDraggingSource for NSTableView {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSTableView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -321,7 +341,9 @@ unsafe impl NSObjectProtocol for NSTableView {}
     feature = "NSText",
     feature = "NSView"
 ))]
-unsafe impl NSTextDelegate for NSTableView {}
+extern_conformance!(
+    unsafe impl NSTextDelegate for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -330,7 +352,9 @@ unsafe impl NSTextDelegate for NSTableView {}
     feature = "NSTextView",
     feature = "NSView"
 ))]
-unsafe impl NSTextViewDelegate for NSTableView {}
+extern_conformance!(
+    unsafe impl NSTextViewDelegate for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -338,7 +362,9 @@ unsafe impl NSTextViewDelegate for NSTableView {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTableView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTableView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -346,7 +372,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableView {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSTableView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSTableView {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSTableView {

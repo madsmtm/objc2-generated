@@ -243,23 +243,35 @@ extern_class!(
 );
 
 #[cfg(feature = "NSAccessibilityProtocols")]
-unsafe impl NSAccessibility for NSCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSCell {}
+);
 
 #[cfg(feature = "NSAccessibilityProtocols")]
-unsafe impl NSAccessibilityElementProtocol for NSCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSCell {}
+);
 
-unsafe impl NSCoding for NSCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCell {}
+);
 
-unsafe impl NSCopying for NSCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCell {}
+);
 
 unsafe impl CopyingHelper for NSCell {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCell {}
+);
 
 #[cfg(feature = "NSUserInterfaceItemIdentification")]
-unsafe impl NSUserInterfaceItemIdentification for NSCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSCell {}
+);
 
 impl NSCell {
     extern_methods!(

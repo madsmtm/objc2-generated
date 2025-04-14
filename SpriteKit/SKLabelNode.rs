@@ -71,11 +71,15 @@ extern_class!(
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for SKLabelNode {}
+extern_conformance!(
+    unsafe impl NSCoding for SKLabelNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCopying for SKLabelNode {}
+extern_conformance!(
+    unsafe impl NSCopying for SKLabelNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
@@ -85,11 +89,15 @@ unsafe impl CopyingHelper for SKLabelNode {
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for SKLabelNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKLabelNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSSecureCoding for SKLabelNode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKLabelNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]

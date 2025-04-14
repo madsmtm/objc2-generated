@@ -20,7 +20,9 @@ unsafe impl Send for HMRoom {}
 
 unsafe impl Sync for HMRoom {}
 
-unsafe impl NSObjectProtocol for HMRoom {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMRoom {}
+);
 
 impl HMRoom {
     extern_methods!(

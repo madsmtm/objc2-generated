@@ -18,7 +18,9 @@ extern_class!(
     pub struct CNContactsUserDefaults;
 );
 
-unsafe impl NSObjectProtocol for CNContactsUserDefaults {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContactsUserDefaults {}
+);
 
 impl CNContactsUserDefaults {
     extern_methods!(

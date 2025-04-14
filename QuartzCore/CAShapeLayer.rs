@@ -32,16 +32,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]
-unsafe impl CAMediaTiming for CAShapeLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CAShapeLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSCoding for CAShapeLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for CAShapeLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSObjectProtocol for CAShapeLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAShapeLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSSecureCoding for CAShapeLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAShapeLayer {}
+);
 
 #[cfg(feature = "CALayer")]
 impl CAShapeLayer {

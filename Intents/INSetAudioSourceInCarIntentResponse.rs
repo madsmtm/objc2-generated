@@ -51,10 +51,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSetAudioSourceInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSetAudioSourceInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSetAudioSourceInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSetAudioSourceInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSetAudioSourceInCarIntentResponse {
@@ -62,10 +66,14 @@ unsafe impl CopyingHelper for INSetAudioSourceInCarIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSetAudioSourceInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSetAudioSourceInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSetAudioSourceInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSetAudioSourceInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSetAudioSourceInCarIntentResponse {

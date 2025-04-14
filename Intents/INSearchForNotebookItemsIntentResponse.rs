@@ -44,10 +44,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSearchForNotebookItemsIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSearchForNotebookItemsIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSearchForNotebookItemsIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSearchForNotebookItemsIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSearchForNotebookItemsIntentResponse {
@@ -55,10 +59,14 @@ unsafe impl CopyingHelper for INSearchForNotebookItemsIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSearchForNotebookItemsIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSearchForNotebookItemsIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSearchForNotebookItemsIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSearchForNotebookItemsIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSearchForNotebookItemsIntentResponse {

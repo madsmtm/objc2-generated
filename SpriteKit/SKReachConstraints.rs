@@ -16,11 +16,17 @@ extern_class!(
     pub struct SKReachConstraints;
 );
 
-unsafe impl NSCoding for SKReachConstraints {}
+extern_conformance!(
+    unsafe impl NSCoding for SKReachConstraints {}
+);
 
-unsafe impl NSObjectProtocol for SKReachConstraints {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKReachConstraints {}
+);
 
-unsafe impl NSSecureCoding for SKReachConstraints {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKReachConstraints {}
+);
 
 impl SKReachConstraints {
     extern_methods!(

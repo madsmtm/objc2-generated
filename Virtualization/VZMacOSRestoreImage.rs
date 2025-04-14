@@ -28,7 +28,9 @@ extern_class!(
     pub struct VZMacOSRestoreImage;
 );
 
-unsafe impl NSObjectProtocol for VZMacOSRestoreImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacOSRestoreImage {}
+);
 
 impl VZMacOSRestoreImage {
     extern_methods!(

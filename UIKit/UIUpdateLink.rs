@@ -19,7 +19,9 @@ extern_class!(
     pub struct UIUpdateLink;
 );
 
-unsafe impl NSObjectProtocol for UIUpdateLink {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIUpdateLink {}
+);
 
 impl UIUpdateLink {
     extern_methods!(

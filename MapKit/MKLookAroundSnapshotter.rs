@@ -14,7 +14,9 @@ extern_class!(
     pub struct MKLookAroundSnapshotter;
 );
 
-unsafe impl NSObjectProtocol for MKLookAroundSnapshotter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKLookAroundSnapshotter {}
+);
 
 impl MKLookAroundSnapshotter {
     extern_methods!(

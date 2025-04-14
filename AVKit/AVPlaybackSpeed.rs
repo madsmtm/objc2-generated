@@ -16,7 +16,9 @@ extern_class!(
     pub struct AVPlaybackSpeed;
 );
 
-unsafe impl NSObjectProtocol for AVPlaybackSpeed {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlaybackSpeed {}
+);
 
 impl AVPlaybackSpeed {
     extern_methods!(

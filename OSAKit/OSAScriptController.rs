@@ -37,13 +37,21 @@ extern_class!(
     pub struct OSAScriptController;
 );
 
-unsafe impl NSCoding for OSAScriptController {}
+extern_conformance!(
+    unsafe impl NSCoding for OSAScriptController {}
+);
 
-unsafe impl NSEditor for OSAScriptController {}
+extern_conformance!(
+    unsafe impl NSEditor for OSAScriptController {}
+);
 
-unsafe impl NSEditorRegistration for OSAScriptController {}
+extern_conformance!(
+    unsafe impl NSEditorRegistration for OSAScriptController {}
+);
 
-unsafe impl NSObjectProtocol for OSAScriptController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OSAScriptController {}
+);
 
 impl OSAScriptController {
     extern_methods!(

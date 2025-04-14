@@ -15,7 +15,9 @@ extern_class!(
     pub struct UIDragItem;
 );
 
-unsafe impl NSObjectProtocol for UIDragItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDragItem {}
+);
 
 impl UIDragItem {
     extern_methods!(

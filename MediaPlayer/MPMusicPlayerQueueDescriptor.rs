@@ -14,7 +14,9 @@ extern_class!(
     pub struct MPMusicPlayerQueueDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPMusicPlayerQueueDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMusicPlayerQueueDescriptor {}
+);
 
 impl MPMusicPlayerQueueDescriptor {
     extern_methods!(
@@ -35,7 +37,9 @@ extern_class!(
     pub struct MPMusicPlayerMediaItemQueueDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPMusicPlayerMediaItemQueueDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMusicPlayerMediaItemQueueDescriptor {}
+);
 
 impl MPMusicPlayerMediaItemQueueDescriptor {
     extern_methods!(
@@ -109,7 +113,9 @@ extern_class!(
     pub struct MPMusicPlayerStoreQueueDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPMusicPlayerStoreQueueDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMusicPlayerStoreQueueDescriptor {}
+);
 
 impl MPMusicPlayerStoreQueueDescriptor {
     extern_methods!(
@@ -176,7 +182,9 @@ extern_class!(
     pub struct MPMusicPlayerPlayParameters;
 );
 
-unsafe impl NSObjectProtocol for MPMusicPlayerPlayParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMusicPlayerPlayParameters {}
+);
 
 impl MPMusicPlayerPlayParameters {
     extern_methods!(
@@ -213,7 +221,9 @@ extern_class!(
     pub struct MPMusicPlayerPlayParametersQueueDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPMusicPlayerPlayParametersQueueDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMusicPlayerPlayParametersQueueDescriptor {}
+);
 
 impl MPMusicPlayerPlayParametersQueueDescriptor {
     extern_methods!(

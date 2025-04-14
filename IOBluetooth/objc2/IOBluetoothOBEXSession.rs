@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "IOBluetoothRFCOMMChannel", feature = "OBEXSession"))]
-unsafe impl IOBluetoothRFCOMMChannelDelegate for IOBluetoothOBEXSession {}
+extern_conformance!(
+    unsafe impl IOBluetoothRFCOMMChannelDelegate for IOBluetoothOBEXSession {}
+);
 
 #[cfg(feature = "OBEXSession")]
-unsafe impl NSObjectProtocol for IOBluetoothOBEXSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothOBEXSession {}
+);
 
 #[cfg(feature = "OBEXSession")]
 impl IOBluetoothOBEXSession {

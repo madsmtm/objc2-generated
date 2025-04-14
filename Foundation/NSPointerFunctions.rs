@@ -59,14 +59,18 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSPointerFunctions {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPointerFunctions {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSPointerFunctions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPointerFunctions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPointerFunctions {}
+);
 
 impl NSPointerFunctions {
     extern_methods!(

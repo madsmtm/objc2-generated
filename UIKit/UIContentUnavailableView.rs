@@ -27,55 +27,81 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIContentUnavailableView {}
+);
 
 #[cfg(all(
     feature = "UIContentConfiguration",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIContentView for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UIContentView for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIContentUnavailableView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIContentUnavailableView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIContentUnavailableView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIContentUnavailableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIContentUnavailableView {

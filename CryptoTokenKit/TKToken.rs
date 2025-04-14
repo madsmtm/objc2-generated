@@ -87,7 +87,9 @@ extern_class!(
     pub struct TKTokenKeyAlgorithm;
 );
 
-unsafe impl NSObjectProtocol for TKTokenKeyAlgorithm {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenKeyAlgorithm {}
+);
 
 impl TKTokenKeyAlgorithm {
     extern_methods!(
@@ -127,7 +129,9 @@ extern_class!(
     pub struct TKTokenKeyExchangeParameters;
 );
 
-unsafe impl NSObjectProtocol for TKTokenKeyExchangeParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenKeyExchangeParameters {}
+);
 
 impl TKTokenKeyExchangeParameters {
     extern_methods!(
@@ -171,7 +175,9 @@ extern_class!(
     pub struct TKTokenSession;
 );
 
-unsafe impl NSObjectProtocol for TKTokenSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenSession {}
+);
 
 impl TKTokenSession {
     extern_methods!(
@@ -351,7 +357,9 @@ extern_class!(
     pub struct TKToken;
 );
 
-unsafe impl NSObjectProtocol for TKToken {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKToken {}
+);
 
 impl TKToken {
     extern_methods!(
@@ -447,7 +455,9 @@ extern_class!(
     pub struct TKTokenDriver;
 );
 
-unsafe impl NSObjectProtocol for TKTokenDriver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenDriver {}
+);
 
 impl TKTokenDriver {
     extern_methods!(
@@ -514,11 +524,17 @@ extern_class!(
     pub struct TKTokenAuthOperation;
 );
 
-unsafe impl NSCoding for TKTokenAuthOperation {}
+extern_conformance!(
+    unsafe impl NSCoding for TKTokenAuthOperation {}
+);
 
-unsafe impl NSObjectProtocol for TKTokenAuthOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenAuthOperation {}
+);
 
-unsafe impl NSSecureCoding for TKTokenAuthOperation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TKTokenAuthOperation {}
+);
 
 impl TKTokenAuthOperation {
     extern_methods!(
@@ -555,11 +571,17 @@ extern_class!(
     pub struct TKTokenPasswordAuthOperation;
 );
 
-unsafe impl NSCoding for TKTokenPasswordAuthOperation {}
+extern_conformance!(
+    unsafe impl NSCoding for TKTokenPasswordAuthOperation {}
+);
 
-unsafe impl NSObjectProtocol for TKTokenPasswordAuthOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenPasswordAuthOperation {}
+);
 
-unsafe impl NSSecureCoding for TKTokenPasswordAuthOperation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TKTokenPasswordAuthOperation {}
+);
 
 impl TKTokenPasswordAuthOperation {
     extern_methods!(

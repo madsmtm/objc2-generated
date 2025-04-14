@@ -23,10 +23,14 @@ unsafe impl Send for HKScoredAssessment {}
 unsafe impl Sync for HKScoredAssessment {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCoding for HKScoredAssessment {}
+extern_conformance!(
+    unsafe impl NSCoding for HKScoredAssessment {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCopying for HKScoredAssessment {}
+extern_conformance!(
+    unsafe impl NSCopying for HKScoredAssessment {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl CopyingHelper for HKScoredAssessment {
@@ -34,10 +38,14 @@ unsafe impl CopyingHelper for HKScoredAssessment {
 }
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSObjectProtocol for HKScoredAssessment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKScoredAssessment {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSSecureCoding for HKScoredAssessment {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKScoredAssessment {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKScoredAssessment {

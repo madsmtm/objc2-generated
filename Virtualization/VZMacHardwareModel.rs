@@ -37,13 +37,17 @@ extern_class!(
     pub struct VZMacHardwareModel;
 );
 
-unsafe impl NSCopying for VZMacHardwareModel {}
+extern_conformance!(
+    unsafe impl NSCopying for VZMacHardwareModel {}
+);
 
 unsafe impl CopyingHelper for VZMacHardwareModel {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZMacHardwareModel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacHardwareModel {}
+);
 
 impl VZMacHardwareModel {
     extern_methods!(

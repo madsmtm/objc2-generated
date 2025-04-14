@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNDetectTextRectanglesRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNDetectTextRectanglesRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNDetectTextRectanglesRequest {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for VNDetectTextRectanglesRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNDetectTextRectanglesRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNDetectTextRectanglesRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNDetectTextRectanglesRequest {

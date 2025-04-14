@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CKOperation")]
-unsafe impl NSObjectProtocol for CKMarkNotificationsReadOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKMarkNotificationsReadOperation {}
+);
 
 #[cfg(feature = "CKOperation")]
 impl CKMarkNotificationsReadOperation {

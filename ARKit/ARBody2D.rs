@@ -24,7 +24,9 @@ unsafe impl Send for ARBody2D {}
 unsafe impl Sync for ARBody2D {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARBody2D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARBody2D {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARBody2D {

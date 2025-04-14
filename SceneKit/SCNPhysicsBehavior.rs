@@ -18,11 +18,17 @@ extern_class!(
     pub struct SCNPhysicsBehavior;
 );
 
-unsafe impl NSCoding for SCNPhysicsBehavior {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPhysicsBehavior {}
+);
 
-unsafe impl NSObjectProtocol for SCNPhysicsBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsBehavior {}
+);
 
-unsafe impl NSSecureCoding for SCNPhysicsBehavior {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPhysicsBehavior {}
+);
 
 impl SCNPhysicsBehavior {
     extern_methods!();
@@ -50,11 +56,17 @@ extern_class!(
     pub struct SCNPhysicsHingeJoint;
 );
 
-unsafe impl NSCoding for SCNPhysicsHingeJoint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPhysicsHingeJoint {}
+);
 
-unsafe impl NSObjectProtocol for SCNPhysicsHingeJoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsHingeJoint {}
+);
 
-unsafe impl NSSecureCoding for SCNPhysicsHingeJoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPhysicsHingeJoint {}
+);
 
 impl SCNPhysicsHingeJoint {
     extern_methods!(
@@ -165,11 +177,17 @@ extern_class!(
     pub struct SCNPhysicsBallSocketJoint;
 );
 
-unsafe impl NSCoding for SCNPhysicsBallSocketJoint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPhysicsBallSocketJoint {}
+);
 
-unsafe impl NSObjectProtocol for SCNPhysicsBallSocketJoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsBallSocketJoint {}
+);
 
-unsafe impl NSSecureCoding for SCNPhysicsBallSocketJoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPhysicsBallSocketJoint {}
+);
 
 impl SCNPhysicsBallSocketJoint {
     extern_methods!(
@@ -255,11 +273,17 @@ extern_class!(
     pub struct SCNPhysicsSliderJoint;
 );
 
-unsafe impl NSCoding for SCNPhysicsSliderJoint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPhysicsSliderJoint {}
+);
 
-unsafe impl NSObjectProtocol for SCNPhysicsSliderJoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsSliderJoint {}
+);
 
-unsafe impl NSSecureCoding for SCNPhysicsSliderJoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPhysicsSliderJoint {}
+);
 
 impl SCNPhysicsSliderJoint {
     extern_methods!(
@@ -456,11 +480,17 @@ extern_class!(
     pub struct SCNPhysicsConeTwistJoint;
 );
 
-unsafe impl NSCoding for SCNPhysicsConeTwistJoint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPhysicsConeTwistJoint {}
+);
 
-unsafe impl NSObjectProtocol for SCNPhysicsConeTwistJoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsConeTwistJoint {}
+);
 
-unsafe impl NSSecureCoding for SCNPhysicsConeTwistJoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPhysicsConeTwistJoint {}
+);
 
 impl SCNPhysicsConeTwistJoint {
     extern_methods!(
@@ -585,17 +615,25 @@ extern_class!(
     pub struct SCNPhysicsVehicleWheel;
 );
 
-unsafe impl NSCoding for SCNPhysicsVehicleWheel {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPhysicsVehicleWheel {}
+);
 
-unsafe impl NSCopying for SCNPhysicsVehicleWheel {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNPhysicsVehicleWheel {}
+);
 
 unsafe impl CopyingHelper for SCNPhysicsVehicleWheel {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNPhysicsVehicleWheel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsVehicleWheel {}
+);
 
-unsafe impl NSSecureCoding for SCNPhysicsVehicleWheel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPhysicsVehicleWheel {}
+);
 
 impl SCNPhysicsVehicleWheel {
     extern_methods!(
@@ -754,11 +792,17 @@ extern_class!(
     pub struct SCNPhysicsVehicle;
 );
 
-unsafe impl NSCoding for SCNPhysicsVehicle {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPhysicsVehicle {}
+);
 
-unsafe impl NSObjectProtocol for SCNPhysicsVehicle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsVehicle {}
+);
 
-unsafe impl NSSecureCoding for SCNPhysicsVehicle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPhysicsVehicle {}
+);
 
 impl SCNPhysicsVehicle {
     extern_methods!(

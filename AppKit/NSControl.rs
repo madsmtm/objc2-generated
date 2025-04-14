@@ -20,36 +20,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSControl {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSControl {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSControl {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSControl {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSControl {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSControl {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSControl {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSControl {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSControl {}
+extern_conformance!(
+    unsafe impl NSCoding for NSControl {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSControl {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSControl {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSControl {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSControl {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSControl {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSControl {

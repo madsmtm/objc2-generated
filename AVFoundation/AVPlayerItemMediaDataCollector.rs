@@ -31,7 +31,9 @@ unsafe impl Send for AVPlayerItemMediaDataCollector {}
 
 unsafe impl Sync for AVPlayerItemMediaDataCollector {}
 
-unsafe impl NSObjectProtocol for AVPlayerItemMediaDataCollector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemMediaDataCollector {}
+);
 
 impl AVPlayerItemMediaDataCollector {
     extern_methods!();
@@ -67,7 +69,9 @@ unsafe impl Send for AVPlayerItemMetadataCollector {}
 
 unsafe impl Sync for AVPlayerItemMetadataCollector {}
 
-unsafe impl NSObjectProtocol for AVPlayerItemMetadataCollector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemMetadataCollector {}
+);
 
 impl AVPlayerItemMetadataCollector {
     extern_methods!(

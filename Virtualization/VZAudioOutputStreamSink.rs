@@ -21,7 +21,9 @@ extern_class!(
     pub struct VZAudioOutputStreamSink;
 );
 
-unsafe impl NSObjectProtocol for VZAudioOutputStreamSink {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZAudioOutputStreamSink {}
+);
 
 impl VZAudioOutputStreamSink {
     extern_methods!(

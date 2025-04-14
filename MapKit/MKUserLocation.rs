@@ -17,9 +17,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MKAnnotation")]
-unsafe impl MKAnnotation for MKUserLocation {}
+extern_conformance!(
+    unsafe impl MKAnnotation for MKUserLocation {}
+);
 
-unsafe impl NSObjectProtocol for MKUserLocation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKUserLocation {}
+);
 
 impl MKUserLocation {
     extern_methods!(

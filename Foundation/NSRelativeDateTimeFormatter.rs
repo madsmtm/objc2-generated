@@ -59,10 +59,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSRelativeDateTimeFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSRelativeDateTimeFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSRelativeDateTimeFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSRelativeDateTimeFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSRelativeDateTimeFormatter {
@@ -70,7 +74,9 @@ unsafe impl CopyingHelper for NSRelativeDateTimeFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSRelativeDateTimeFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRelativeDateTimeFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSRelativeDateTimeFormatter {

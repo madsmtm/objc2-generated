@@ -14,13 +14,17 @@ extern_class!(
     pub struct UILexiconEntry;
 );
 
-unsafe impl NSCopying for UILexiconEntry {}
+extern_conformance!(
+    unsafe impl NSCopying for UILexiconEntry {}
+);
 
 unsafe impl CopyingHelper for UILexiconEntry {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UILexiconEntry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UILexiconEntry {}
+);
 
 impl UILexiconEntry {
     extern_methods!(
@@ -55,13 +59,17 @@ extern_class!(
     pub struct UILexicon;
 );
 
-unsafe impl NSCopying for UILexicon {}
+extern_conformance!(
+    unsafe impl NSCopying for UILexicon {}
+);
 
 unsafe impl CopyingHelper for UILexicon {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UILexicon {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UILexicon {}
+);
 
 impl UILexicon {
     extern_methods!(

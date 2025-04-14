@@ -40,10 +40,14 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSCoding for ASAuthorizationOpenIDRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationOpenIDRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSCopying for ASAuthorizationOpenIDRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationOpenIDRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl CopyingHelper for ASAuthorizationOpenIDRequest {
@@ -51,10 +55,14 @@ unsafe impl CopyingHelper for ASAuthorizationOpenIDRequest {
 }
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSObjectProtocol for ASAuthorizationOpenIDRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationOpenIDRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSSecureCoding for ASAuthorizationOpenIDRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationOpenIDRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
 impl ASAuthorizationOpenIDRequest {

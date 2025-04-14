@@ -37,17 +37,25 @@ extern_class!(
     pub struct ASWebAuthenticationSessionRequest;
 );
 
-unsafe impl NSCoding for ASWebAuthenticationSessionRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for ASWebAuthenticationSessionRequest {}
+);
 
-unsafe impl NSCopying for ASWebAuthenticationSessionRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for ASWebAuthenticationSessionRequest {}
+);
 
 unsafe impl CopyingHelper for ASWebAuthenticationSessionRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASWebAuthenticationSessionRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASWebAuthenticationSessionRequest {}
+);
 
-unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}
+);
 
 impl ASWebAuthenticationSessionRequest {
     extern_methods!(

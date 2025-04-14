@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZSerialPortAttachment")]
-unsafe impl NSObjectProtocol for VZSpiceAgentPortAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZSpiceAgentPortAttachment {}
+);
 
 #[cfg(feature = "VZSerialPortAttachment")]
 impl VZSpiceAgentPortAttachment {

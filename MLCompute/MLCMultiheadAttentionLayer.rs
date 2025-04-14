@@ -26,7 +26,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCMultiheadAttentionLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCMultiheadAttentionLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCMultiheadAttentionLayer {

@@ -76,7 +76,9 @@ extern_class!(
     pub struct PKVehicleConnectionSession;
 );
 
-unsafe impl NSObjectProtocol for PKVehicleConnectionSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKVehicleConnectionSession {}
+);
 
 impl PKVehicleConnectionSession {
     extern_methods!(

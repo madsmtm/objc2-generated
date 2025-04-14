@@ -30,7 +30,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -39,7 +41,9 @@ unsafe impl NSAccessibility for NSStatusBarButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityButton for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityButton for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -48,7 +52,9 @@ unsafe impl NSAccessibilityButton for NSStatusBarButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -57,7 +63,9 @@ unsafe impl NSAccessibilityElementProtocol for NSStatusBarButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -66,7 +74,9 @@ unsafe impl NSAnimatablePropertyContainer for NSStatusBarButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -74,7 +84,9 @@ unsafe impl NSAppearanceCustomization for NSStatusBarButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSCoding for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSCoding for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -83,7 +95,9 @@ unsafe impl NSCoding for NSStatusBarButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -91,7 +105,9 @@ unsafe impl NSDraggingDestination for NSStatusBarButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSObjectProtocol for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -100,7 +116,9 @@ unsafe impl NSObjectProtocol for NSStatusBarButton {}
     feature = "NSUserInterfaceCompression",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceCompression for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceCompression for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -109,7 +127,9 @@ unsafe impl NSUserInterfaceCompression for NSStatusBarButton {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -118,7 +138,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSStatusBarButton {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSStatusBarButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSStatusBarButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",

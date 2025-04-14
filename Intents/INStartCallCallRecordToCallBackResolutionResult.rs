@@ -39,7 +39,9 @@ extern_class!(
     feature = "INCallRecordResolutionResult",
     feature = "INIntentResolutionResult"
 ))]
-unsafe impl NSObjectProtocol for INStartCallCallRecordToCallBackResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INStartCallCallRecordToCallBackResolutionResult {}
+);
 
 #[cfg(all(
     feature = "INCallRecordResolutionResult",

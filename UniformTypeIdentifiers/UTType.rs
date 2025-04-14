@@ -34,17 +34,25 @@ unsafe impl Send for UTType {}
 
 unsafe impl Sync for UTType {}
 
-unsafe impl NSCoding for UTType {}
+extern_conformance!(
+    unsafe impl NSCoding for UTType {}
+);
 
-unsafe impl NSCopying for UTType {}
+extern_conformance!(
+    unsafe impl NSCopying for UTType {}
+);
 
 unsafe impl CopyingHelper for UTType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UTType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UTType {}
+);
 
-unsafe impl NSSecureCoding for UTType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UTType {}
+);
 
 impl UTType {
     extern_methods!(

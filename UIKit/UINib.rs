@@ -15,7 +15,9 @@ extern_class!(
     pub struct UINib;
 );
 
-unsafe impl NSObjectProtocol for UINib {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UINib {}
+);
 
 impl UINib {
     extern_methods!(

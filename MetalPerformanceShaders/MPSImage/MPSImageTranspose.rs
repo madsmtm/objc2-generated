@@ -20,10 +20,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageTranspose {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageTranspose {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageTranspose {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageTranspose {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageTranspose {
@@ -31,10 +35,14 @@ unsafe impl CopyingHelper for MPSImageTranspose {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageTranspose {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageTranspose {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageTranspose {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageTranspose {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageTranspose {

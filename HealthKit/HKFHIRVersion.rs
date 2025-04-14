@@ -24,17 +24,25 @@ unsafe impl Send for HKFHIRVersion {}
 
 unsafe impl Sync for HKFHIRVersion {}
 
-unsafe impl NSCoding for HKFHIRVersion {}
+extern_conformance!(
+    unsafe impl NSCoding for HKFHIRVersion {}
+);
 
-unsafe impl NSCopying for HKFHIRVersion {}
+extern_conformance!(
+    unsafe impl NSCopying for HKFHIRVersion {}
+);
 
 unsafe impl CopyingHelper for HKFHIRVersion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKFHIRVersion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKFHIRVersion {}
+);
 
-unsafe impl NSSecureCoding for HKFHIRVersion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKFHIRVersion {}
+);
 
 impl HKFHIRVersion {
     extern_methods!(

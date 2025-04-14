@@ -19,23 +19,41 @@ extern_class!(
     pub struct SFCertificatePanel;
 );
 
-unsafe impl NSAccessibility for SFCertificatePanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SFCertificatePanel {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for SFCertificatePanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SFCertificatePanel {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for SFCertificatePanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SFCertificatePanel {}
+);
 
-unsafe impl NSAppearanceCustomization for SFCertificatePanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SFCertificatePanel {}
+);
 
-unsafe impl NSCoding for SFCertificatePanel {}
+extern_conformance!(
+    unsafe impl NSCoding for SFCertificatePanel {}
+);
 
-unsafe impl NSMenuItemValidation for SFCertificatePanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for SFCertificatePanel {}
+);
 
-unsafe impl NSObjectProtocol for SFCertificatePanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFCertificatePanel {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for SFCertificatePanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SFCertificatePanel {}
+);
 
-unsafe impl NSUserInterfaceValidations for SFCertificatePanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for SFCertificatePanel {}
+);
 
 impl SFCertificatePanel {
     extern_methods!(

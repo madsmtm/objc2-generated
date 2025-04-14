@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSScriptSuiteRegistry;
 );
 
-unsafe impl NSObjectProtocol for NSScriptSuiteRegistry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScriptSuiteRegistry {}
+);
 
 impl NSScriptSuiteRegistry {
     extern_methods!(

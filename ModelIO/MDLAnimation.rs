@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLSkeleton {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLSkeleton {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSCopying for MDLSkeleton {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLSkeleton {}
+);
 
 #[cfg(feature = "MDLObject")]
 unsafe impl CopyingHelper for MDLSkeleton {
@@ -27,7 +31,9 @@ unsafe impl CopyingHelper for MDLSkeleton {
 }
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLSkeleton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLSkeleton {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLSkeleton {
@@ -84,13 +90,19 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLObject")]
-unsafe impl MDLJointAnimation for MDLPackedJointAnimation {}
+extern_conformance!(
+    unsafe impl MDLJointAnimation for MDLPackedJointAnimation {}
+);
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLPackedJointAnimation {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLPackedJointAnimation {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSCopying for MDLPackedJointAnimation {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLPackedJointAnimation {}
+);
 
 #[cfg(feature = "MDLObject")]
 unsafe impl CopyingHelper for MDLPackedJointAnimation {
@@ -98,7 +110,9 @@ unsafe impl CopyingHelper for MDLPackedJointAnimation {
 }
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLPackedJointAnimation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLPackedJointAnimation {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLPackedJointAnimation {
@@ -154,15 +168,21 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLComponent for MDLAnimationBindComponent {}
+extern_conformance!(
+    unsafe impl MDLComponent for MDLAnimationBindComponent {}
+);
 
-unsafe impl NSCopying for MDLAnimationBindComponent {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimationBindComponent {}
+);
 
 unsafe impl CopyingHelper for MDLAnimationBindComponent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimationBindComponent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimationBindComponent {}
+);
 
 impl MDLAnimationBindComponent {
     extern_methods!(

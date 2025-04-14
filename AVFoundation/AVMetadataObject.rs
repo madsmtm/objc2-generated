@@ -36,7 +36,9 @@ extern_class!(
     pub struct AVMetadataObject;
 );
 
-unsafe impl NSObjectProtocol for AVMetadataObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataObject {}
+);
 
 impl AVMetadataObject {
     extern_methods!(
@@ -97,13 +99,17 @@ extern_class!(
     pub struct AVMetadataBodyObject;
 );
 
-unsafe impl NSCopying for AVMetadataBodyObject {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataBodyObject {}
+);
 
 unsafe impl CopyingHelper for AVMetadataBodyObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMetadataBodyObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataBodyObject {}
+);
 
 impl AVMetadataBodyObject {
     extern_methods!(
@@ -154,13 +160,17 @@ extern_class!(
     pub struct AVMetadataHumanBodyObject;
 );
 
-unsafe impl NSCopying for AVMetadataHumanBodyObject {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataHumanBodyObject {}
+);
 
 unsafe impl CopyingHelper for AVMetadataHumanBodyObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMetadataHumanBodyObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataHumanBodyObject {}
+);
 
 impl AVMetadataHumanBodyObject {
     extern_methods!();
@@ -203,13 +213,17 @@ extern_class!(
     pub struct AVMetadataHumanFullBodyObject;
 );
 
-unsafe impl NSCopying for AVMetadataHumanFullBodyObject {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataHumanFullBodyObject {}
+);
 
 unsafe impl CopyingHelper for AVMetadataHumanFullBodyObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMetadataHumanFullBodyObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataHumanFullBodyObject {}
+);
 
 impl AVMetadataHumanFullBodyObject {
     extern_methods!();
@@ -252,13 +266,17 @@ extern_class!(
     pub struct AVMetadataCatBodyObject;
 );
 
-unsafe impl NSCopying for AVMetadataCatBodyObject {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataCatBodyObject {}
+);
 
 unsafe impl CopyingHelper for AVMetadataCatBodyObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMetadataCatBodyObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataCatBodyObject {}
+);
 
 impl AVMetadataCatBodyObject {
     extern_methods!();
@@ -301,13 +319,17 @@ extern_class!(
     pub struct AVMetadataDogBodyObject;
 );
 
-unsafe impl NSCopying for AVMetadataDogBodyObject {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataDogBodyObject {}
+);
 
 unsafe impl CopyingHelper for AVMetadataDogBodyObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMetadataDogBodyObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataDogBodyObject {}
+);
 
 impl AVMetadataDogBodyObject {
     extern_methods!();
@@ -350,13 +372,17 @@ extern_class!(
     pub struct AVMetadataSalientObject;
 );
 
-unsafe impl NSCopying for AVMetadataSalientObject {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataSalientObject {}
+);
 
 unsafe impl CopyingHelper for AVMetadataSalientObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMetadataSalientObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataSalientObject {}
+);
 
 impl AVMetadataSalientObject {
     extern_methods!(
@@ -407,13 +433,17 @@ extern_class!(
     pub struct AVMetadataFaceObject;
 );
 
-unsafe impl NSCopying for AVMetadataFaceObject {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataFaceObject {}
+);
 
 unsafe impl CopyingHelper for AVMetadataFaceObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMetadataFaceObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataFaceObject {}
+);
 
 impl AVMetadataFaceObject {
     extern_methods!(
@@ -672,7 +702,9 @@ extern_class!(
     pub struct AVMetadataMachineReadableCodeObject;
 );
 
-unsafe impl NSObjectProtocol for AVMetadataMachineReadableCodeObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataMachineReadableCodeObject {}
+);
 
 impl AVMetadataMachineReadableCodeObject {
     extern_methods!(

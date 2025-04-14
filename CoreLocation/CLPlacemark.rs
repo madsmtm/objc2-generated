@@ -20,17 +20,25 @@ unsafe impl Send for CLPlacemark {}
 
 unsafe impl Sync for CLPlacemark {}
 
-unsafe impl NSCoding for CLPlacemark {}
+extern_conformance!(
+    unsafe impl NSCoding for CLPlacemark {}
+);
 
-unsafe impl NSCopying for CLPlacemark {}
+extern_conformance!(
+    unsafe impl NSCopying for CLPlacemark {}
+);
 
 unsafe impl CopyingHelper for CLPlacemark {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLPlacemark {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLPlacemark {}
+);
 
-unsafe impl NSSecureCoding for CLPlacemark {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLPlacemark {}
+);
 
 impl CLPlacemark {
     extern_methods!(

@@ -26,10 +26,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNSoftMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNSoftMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNSoftMax {
@@ -37,10 +41,14 @@ unsafe impl CopyingHelper for MPSCNNSoftMax {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNSoftMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNSoftMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNSoftMax {
@@ -147,10 +155,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNSoftMaxGradient {
@@ -158,10 +170,14 @@ unsafe impl CopyingHelper for MPSCNNSoftMaxGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNSoftMaxGradient {
@@ -256,10 +272,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNLogSoftMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNLogSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNLogSoftMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNLogSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNLogSoftMax {
@@ -267,10 +287,14 @@ unsafe impl CopyingHelper for MPSCNNLogSoftMax {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNLogSoftMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLogSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNLogSoftMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNLogSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNLogSoftMax {
@@ -376,10 +400,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNLogSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNLogSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNLogSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNLogSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNLogSoftMaxGradient {
@@ -387,10 +415,14 @@ unsafe impl CopyingHelper for MPSCNNLogSoftMaxGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNLogSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLogSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNLogSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNLogSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNLogSoftMaxGradient {

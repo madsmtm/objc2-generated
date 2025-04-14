@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceActivityRing {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceActivityRing {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceActivityRing {

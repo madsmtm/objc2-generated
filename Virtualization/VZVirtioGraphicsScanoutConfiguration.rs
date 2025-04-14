@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZGraphicsDisplayConfiguration")]
-unsafe impl NSCopying for VZVirtioGraphicsScanoutConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZVirtioGraphicsScanoutConfiguration {}
+);
 
 #[cfg(feature = "VZGraphicsDisplayConfiguration")]
 unsafe impl CopyingHelper for VZVirtioGraphicsScanoutConfiguration {
@@ -30,7 +32,9 @@ unsafe impl CopyingHelper for VZVirtioGraphicsScanoutConfiguration {
 }
 
 #[cfg(feature = "VZGraphicsDisplayConfiguration")]
-unsafe impl NSObjectProtocol for VZVirtioGraphicsScanoutConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioGraphicsScanoutConfiguration {}
+);
 
 #[cfg(feature = "VZGraphicsDisplayConfiguration")]
 impl VZVirtioGraphicsScanoutConfiguration {

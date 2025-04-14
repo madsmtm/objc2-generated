@@ -13,7 +13,9 @@ extern_class!(
     pub struct TVTopShelfContentProvider;
 );
 
-unsafe impl NSObjectProtocol for TVTopShelfContentProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVTopShelfContentProvider {}
+);
 
 impl TVTopShelfContentProvider {
     extern_methods!(

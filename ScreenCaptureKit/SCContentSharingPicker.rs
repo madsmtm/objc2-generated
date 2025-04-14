@@ -48,7 +48,9 @@ extern_class!(
     pub struct SCContentSharingPickerConfiguration<NSCopying: ?Sized = AnyObject>;
 );
 
-unsafe impl<NSCopying: ?Sized> NSObjectProtocol for SCContentSharingPickerConfiguration<NSCopying> {}
+extern_conformance!(
+    unsafe impl<NSCopying: ?Sized> NSObjectProtocol for SCContentSharingPickerConfiguration<NSCopying> {}
+);
 
 impl<NSCopying: Message> SCContentSharingPickerConfiguration<NSCopying> {
     extern_methods!(
@@ -124,7 +126,9 @@ extern_class!(
     pub struct SCContentSharingPicker;
 );
 
-unsafe impl NSObjectProtocol for SCContentSharingPicker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCContentSharingPicker {}
+);
 
 impl SCContentSharingPicker {
     extern_methods!(

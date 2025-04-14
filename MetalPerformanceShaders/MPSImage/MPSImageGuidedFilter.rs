@@ -34,10 +34,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageGuidedFilter {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageGuidedFilter {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageGuidedFilter {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageGuidedFilter {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageGuidedFilter {
@@ -45,10 +49,14 @@ unsafe impl CopyingHelper for MPSImageGuidedFilter {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageGuidedFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageGuidedFilter {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageGuidedFilter {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageGuidedFilter {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSImageGuidedFilter {

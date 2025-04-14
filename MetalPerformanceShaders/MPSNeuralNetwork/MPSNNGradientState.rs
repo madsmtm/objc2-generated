@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSNNGradientState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNGradientState {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSNNGradientState {
@@ -162,7 +164,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSNNBinaryGradientState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNBinaryGradientState {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSNNBinaryGradientState {
@@ -298,7 +302,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSNNMultiaryGradientState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNMultiaryGradientState {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSNNMultiaryGradientState {

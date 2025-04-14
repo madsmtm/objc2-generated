@@ -20,7 +20,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
-unsafe impl NSObjectProtocol for UIScreenEdgePanGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIScreenEdgePanGestureRecognizer {}
+);
 
 #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
 impl UIScreenEdgePanGestureRecognizer {

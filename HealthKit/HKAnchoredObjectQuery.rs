@@ -22,7 +22,9 @@ unsafe impl Send for HKAnchoredObjectQuery {}
 unsafe impl Sync for HKAnchoredObjectQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKAnchoredObjectQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKAnchoredObjectQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKAnchoredObjectQuery {

@@ -18,10 +18,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INRequestRideIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INRequestRideIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INRequestRideIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INRequestRideIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INRequestRideIntent {
@@ -29,10 +33,14 @@ unsafe impl CopyingHelper for INRequestRideIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INRequestRideIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRequestRideIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INRequestRideIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRequestRideIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INRequestRideIntent {

@@ -66,7 +66,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CBPeer")]
-unsafe impl NSCopying for CBPeripheral {}
+extern_conformance!(
+    unsafe impl NSCopying for CBPeripheral {}
+);
 
 #[cfg(feature = "CBPeer")]
 unsafe impl CopyingHelper for CBPeripheral {
@@ -74,7 +76,9 @@ unsafe impl CopyingHelper for CBPeripheral {
 }
 
 #[cfg(feature = "CBPeer")]
-unsafe impl NSObjectProtocol for CBPeripheral {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBPeripheral {}
+);
 
 #[cfg(feature = "CBPeer")]
 impl CBPeripheral {

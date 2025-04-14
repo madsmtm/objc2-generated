@@ -34,10 +34,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixSolveTriangular {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixSolveTriangular {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixSolveTriangular {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixSolveTriangular {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixSolveTriangular {
@@ -45,10 +49,14 @@ unsafe impl CopyingHelper for MPSMatrixSolveTriangular {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixSolveTriangular {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixSolveTriangular {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixSolveTriangular {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixSolveTriangular {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixSolveTriangular {
@@ -248,10 +256,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixSolveLU {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixSolveLU {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixSolveLU {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixSolveLU {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixSolveLU {
@@ -259,10 +271,14 @@ unsafe impl CopyingHelper for MPSMatrixSolveLU {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixSolveLU {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixSolveLU {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixSolveLU {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixSolveLU {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixSolveLU {
@@ -438,10 +454,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixSolveCholesky {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixSolveCholesky {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixSolveCholesky {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixSolveCholesky {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixSolveCholesky {
@@ -449,10 +469,14 @@ unsafe impl CopyingHelper for MPSMatrixSolveCholesky {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixSolveCholesky {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixSolveCholesky {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixSolveCholesky {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixSolveCholesky {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixSolveCholesky {

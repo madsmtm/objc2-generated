@@ -15,11 +15,17 @@ extern_class!(
     pub struct MLStateConstraint;
 );
 
-unsafe impl NSCoding for MLStateConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for MLStateConstraint {}
+);
 
-unsafe impl NSObjectProtocol for MLStateConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLStateConstraint {}
+);
 
-unsafe impl NSSecureCoding for MLStateConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLStateConstraint {}
+);
 
 impl MLStateConstraint {
     extern_methods!(

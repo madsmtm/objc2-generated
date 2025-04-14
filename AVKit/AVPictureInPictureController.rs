@@ -21,7 +21,9 @@ extern_class!(
     pub struct AVPictureInPictureController;
 );
 
-unsafe impl NSObjectProtocol for AVPictureInPictureController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPictureInPictureController {}
+);
 
 impl AVPictureInPictureController {
     extern_methods!(
@@ -195,7 +197,9 @@ extern_class!(
     pub struct AVPictureInPictureControllerContentSource;
 );
 
-unsafe impl NSObjectProtocol for AVPictureInPictureControllerContentSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPictureInPictureControllerContentSource {}
+);
 
 impl AVPictureInPictureControllerContentSource {
     extern_methods!(

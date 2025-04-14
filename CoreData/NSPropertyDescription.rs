@@ -14,15 +14,21 @@ extern_class!(
     pub struct NSPropertyDescription;
 );
 
-unsafe impl NSCoding for NSPropertyDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPropertyDescription {}
+);
 
-unsafe impl NSCopying for NSPropertyDescription {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPropertyDescription {}
+);
 
 unsafe impl CopyingHelper for NSPropertyDescription {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPropertyDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPropertyDescription {}
+);
 
 impl NSPropertyDescription {
     extern_methods!(

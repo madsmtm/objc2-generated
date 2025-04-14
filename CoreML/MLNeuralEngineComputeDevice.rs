@@ -19,9 +19,13 @@ unsafe impl Send for MLNeuralEngineComputeDevice {}
 unsafe impl Sync for MLNeuralEngineComputeDevice {}
 
 #[cfg(feature = "MLComputeDeviceProtocol")]
-unsafe impl MLComputeDeviceProtocol for MLNeuralEngineComputeDevice {}
+extern_conformance!(
+    unsafe impl MLComputeDeviceProtocol for MLNeuralEngineComputeDevice {}
+);
 
-unsafe impl NSObjectProtocol for MLNeuralEngineComputeDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLNeuralEngineComputeDevice {}
+);
 
 impl MLNeuralEngineComputeDevice {
     extern_methods!(

@@ -17,7 +17,9 @@ extern_class!(
     pub struct CIImageAccumulator;
 );
 
-unsafe impl NSObjectProtocol for CIImageAccumulator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIImageAccumulator {}
+);
 
 impl CIImageAccumulator {
     extern_methods!(

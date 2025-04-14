@@ -18,7 +18,9 @@ extern_class!(
     pub struct MKGeoJSONDecoder;
 );
 
-unsafe impl NSObjectProtocol for MKGeoJSONDecoder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKGeoJSONDecoder {}
+);
 
 impl MKGeoJSONDecoder {
     extern_methods!(
@@ -51,9 +53,13 @@ extern_class!(
     pub struct MKGeoJSONFeature;
 );
 
-unsafe impl MKGeoJSONObject for MKGeoJSONFeature {}
+extern_conformance!(
+    unsafe impl MKGeoJSONObject for MKGeoJSONFeature {}
+);
 
-unsafe impl NSObjectProtocol for MKGeoJSONFeature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKGeoJSONFeature {}
+);
 
 impl MKGeoJSONFeature {
     extern_methods!(
@@ -92,7 +98,9 @@ impl MKPointAnnotation {
 }
 
 #[cfg(all(feature = "MKPointAnnotation", feature = "MKShape"))]
-unsafe impl MKGeoJSONObject for MKPointAnnotation {}
+extern_conformance!(
+    unsafe impl MKGeoJSONObject for MKPointAnnotation {}
+);
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
@@ -101,7 +109,9 @@ impl MKMultiPoint {
 }
 
 #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
-unsafe impl MKGeoJSONObject for MKMultiPoint {}
+extern_conformance!(
+    unsafe impl MKGeoJSONObject for MKMultiPoint {}
+);
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPolyline", feature = "MKShape"))]
@@ -110,7 +120,9 @@ impl MKMultiPolyline {
 }
 
 #[cfg(all(feature = "MKMultiPolyline", feature = "MKShape"))]
-unsafe impl MKGeoJSONObject for MKMultiPolyline {}
+extern_conformance!(
+    unsafe impl MKGeoJSONObject for MKMultiPolyline {}
+);
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
@@ -119,7 +131,9 @@ impl MKMultiPolygon {
 }
 
 #[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
-unsafe impl MKGeoJSONObject for MKMultiPolygon {}
+extern_conformance!(
+    unsafe impl MKGeoJSONObject for MKMultiPolygon {}
+);
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
@@ -128,7 +142,9 @@ impl MKPolyline {
 }
 
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
-unsafe impl MKGeoJSONObject for MKPolyline {}
+extern_conformance!(
+    unsafe impl MKGeoJSONObject for MKPolyline {}
+);
 
 /// MKGeoJSONSerialization.
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
@@ -137,4 +153,6 @@ impl MKPolygon {
 }
 
 #[cfg(all(feature = "MKMultiPoint", feature = "MKPolygon", feature = "MKShape"))]
-unsafe impl MKGeoJSONObject for MKPolygon {}
+extern_conformance!(
+    unsafe impl MKGeoJSONObject for MKPolygon {}
+);

@@ -13,17 +13,25 @@ extern_class!(
     pub struct CKRecordZoneID;
 );
 
-unsafe impl NSCoding for CKRecordZoneID {}
+extern_conformance!(
+    unsafe impl NSCoding for CKRecordZoneID {}
+);
 
-unsafe impl NSCopying for CKRecordZoneID {}
+extern_conformance!(
+    unsafe impl NSCopying for CKRecordZoneID {}
+);
 
 unsafe impl CopyingHelper for CKRecordZoneID {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKRecordZoneID {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKRecordZoneID {}
+);
 
-unsafe impl NSSecureCoding for CKRecordZoneID {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKRecordZoneID {}
+);
 
 impl CKRecordZoneID {
     extern_methods!(

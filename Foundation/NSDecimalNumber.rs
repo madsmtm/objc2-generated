@@ -74,10 +74,14 @@ unsafe impl Send for NSDecimalNumber {}
 unsafe impl Sync for NSDecimalNumber {}
 
 #[cfg(all(feature = "NSObject", feature = "NSValue"))]
-unsafe impl NSCoding for NSDecimalNumber {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDecimalNumber {}
+);
 
 #[cfg(all(feature = "NSObject", feature = "NSValue"))]
-unsafe impl NSCopying for NSDecimalNumber {}
+extern_conformance!(
+    unsafe impl NSCopying for NSDecimalNumber {}
+);
 
 #[cfg(all(feature = "NSObject", feature = "NSValue"))]
 unsafe impl CopyingHelper for NSDecimalNumber {
@@ -85,10 +89,14 @@ unsafe impl CopyingHelper for NSDecimalNumber {
 }
 
 #[cfg(feature = "NSValue")]
-unsafe impl NSObjectProtocol for NSDecimalNumber {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDecimalNumber {}
+);
 
 #[cfg(all(feature = "NSObject", feature = "NSValue"))]
-unsafe impl NSSecureCoding for NSDecimalNumber {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSDecimalNumber {}
+);
 
 #[cfg(feature = "NSValue")]
 impl NSDecimalNumber {
@@ -364,11 +372,17 @@ unsafe impl Send for NSDecimalNumberHandler {}
 unsafe impl Sync for NSDecimalNumberHandler {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSDecimalNumberHandler {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDecimalNumberHandler {}
+);
 
-unsafe impl NSDecimalNumberBehaviors for NSDecimalNumberHandler {}
+extern_conformance!(
+    unsafe impl NSDecimalNumberBehaviors for NSDecimalNumberHandler {}
+);
 
-unsafe impl NSObjectProtocol for NSDecimalNumberHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDecimalNumberHandler {}
+);
 
 impl NSDecimalNumberHandler {
     extern_methods!(

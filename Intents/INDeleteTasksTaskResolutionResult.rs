@@ -45,7 +45,9 @@ extern_class!(
     feature = "INIntentResolutionResult",
     feature = "INTaskResolutionResult"
 ))]
-unsafe impl NSObjectProtocol for INDeleteTasksTaskResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INDeleteTasksTaskResolutionResult {}
+);
 
 #[cfg(all(
     feature = "INIntentResolutionResult",

@@ -21,7 +21,9 @@ extern_class!(
     pub struct PHASEDefinition;
 );
 
-unsafe impl NSObjectProtocol for PHASEDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEDefinition {}
+);
 
 impl PHASEDefinition {
     extern_methods!(

@@ -71,7 +71,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphRandomOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphRandomOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphRandomOpDescriptor {
@@ -79,7 +81,9 @@ unsafe impl CopyingHelper for MPSGraphRandomOpDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphRandomOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphRandomOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphRandomOpDescriptor {

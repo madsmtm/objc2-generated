@@ -14,9 +14,13 @@ extern_class!(
     pub struct NSMovie;
 );
 
-unsafe impl NSCoding for NSMovie {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMovie {}
+);
 
-unsafe impl NSObjectProtocol for NSMovie {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMovie {}
+);
 
 impl NSMovie {
     extern_methods!(

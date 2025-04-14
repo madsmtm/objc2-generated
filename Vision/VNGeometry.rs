@@ -22,17 +22,25 @@ extern_class!(
     pub struct VNPoint;
 );
 
-unsafe impl NSCoding for VNPoint {}
+extern_conformance!(
+    unsafe impl NSCoding for VNPoint {}
+);
 
-unsafe impl NSCopying for VNPoint {}
+extern_conformance!(
+    unsafe impl NSCopying for VNPoint {}
+);
 
 unsafe impl CopyingHelper for VNPoint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNPoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNPoint {}
+);
 
-unsafe impl NSSecureCoding for VNPoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNPoint {}
+);
 
 impl VNPoint {
     extern_methods!(
@@ -127,17 +135,25 @@ extern_class!(
     pub struct VNPoint3D;
 );
 
-unsafe impl NSCoding for VNPoint3D {}
+extern_conformance!(
+    unsafe impl NSCoding for VNPoint3D {}
+);
 
-unsafe impl NSCopying for VNPoint3D {}
+extern_conformance!(
+    unsafe impl NSCopying for VNPoint3D {}
+);
 
 unsafe impl CopyingHelper for VNPoint3D {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNPoint3D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNPoint3D {}
+);
 
-unsafe impl NSSecureCoding for VNPoint3D {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNPoint3D {}
+);
 
 impl VNPoint3D {
     extern_methods!(
@@ -165,17 +181,25 @@ extern_class!(
     pub struct VNVector;
 );
 
-unsafe impl NSCoding for VNVector {}
+extern_conformance!(
+    unsafe impl NSCoding for VNVector {}
+);
 
-unsafe impl NSCopying for VNVector {}
+extern_conformance!(
+    unsafe impl NSCopying for VNVector {}
+);
 
 unsafe impl CopyingHelper for VNVector {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNVector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNVector {}
+);
 
-unsafe impl NSSecureCoding for VNVector {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNVector {}
+);
 
 impl VNVector {
     extern_methods!(
@@ -300,17 +324,25 @@ extern_class!(
     pub struct VNCircle;
 );
 
-unsafe impl NSCoding for VNCircle {}
+extern_conformance!(
+    unsafe impl NSCoding for VNCircle {}
+);
 
-unsafe impl NSCopying for VNCircle {}
+extern_conformance!(
+    unsafe impl NSCopying for VNCircle {}
+);
 
 unsafe impl CopyingHelper for VNCircle {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNCircle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNCircle {}
+);
 
-unsafe impl NSSecureCoding for VNCircle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNCircle {}
+);
 
 impl VNCircle {
     extern_methods!(
@@ -395,16 +427,22 @@ extern_class!(
     pub struct VNContour;
 );
 
-unsafe impl NSCopying for VNContour {}
+extern_conformance!(
+    unsafe impl NSCopying for VNContour {}
+);
 
 unsafe impl CopyingHelper for VNContour {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNContour {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNContour {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNContour {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNContour {}
+);
 
 impl VNContour {
     extern_methods!(

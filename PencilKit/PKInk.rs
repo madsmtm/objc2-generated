@@ -18,13 +18,17 @@ extern_class!(
     pub struct PKInk;
 );
 
-unsafe impl NSCopying for PKInk {}
+extern_conformance!(
+    unsafe impl NSCopying for PKInk {}
+);
 
 unsafe impl CopyingHelper for PKInk {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PKInk {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKInk {}
+);
 
 impl PKInk {
     extern_methods!(

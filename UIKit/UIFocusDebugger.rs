@@ -15,7 +15,9 @@ extern_class!(
     pub struct UIFocusDebugger;
 );
 
-unsafe impl NSObjectProtocol for UIFocusDebugger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFocusDebugger {}
+);
 
 impl UIFocusDebugger {
     extern_methods!(

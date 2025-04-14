@@ -18,7 +18,9 @@ unsafe impl Send for AVAssetTrackSegment {}
 
 unsafe impl Sync for AVAssetTrackSegment {}
 
-unsafe impl NSObjectProtocol for AVAssetTrackSegment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetTrackSegment {}
+);
 
 impl AVAssetTrackSegment {
     extern_methods!(

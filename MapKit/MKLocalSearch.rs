@@ -19,7 +19,9 @@ extern_class!(
     pub struct MKLocalSearch;
 );
 
-unsafe impl NSObjectProtocol for MKLocalSearch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKLocalSearch {}
+);
 
 impl MKLocalSearch {
     extern_methods!(

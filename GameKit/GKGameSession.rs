@@ -55,7 +55,9 @@ extern_class!(
     pub struct GKGameSession;
 );
 
-unsafe impl NSObjectProtocol for GKGameSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKGameSession {}
+);
 
 impl GKGameSession {
     extern_methods!(

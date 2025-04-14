@@ -107,10 +107,14 @@ unsafe impl Send for VTFrameRateConversionConfiguration {}
 unsafe impl Sync for VTFrameRateConversionConfiguration {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for VTFrameRateConversionConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VTFrameRateConversionConfiguration {}
+);
 
 #[cfg(all(feature = "VTFrameProcessorConfiguration", feature = "objc2"))]
-unsafe impl VTFrameProcessorConfiguration for VTFrameRateConversionConfiguration {}
+extern_conformance!(
+    unsafe impl VTFrameProcessorConfiguration for VTFrameRateConversionConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionConfiguration {
@@ -237,10 +241,14 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for VTFrameRateConversionParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VTFrameRateConversionParameters {}
+);
 
 #[cfg(all(feature = "VTFrameProcessorParameters", feature = "objc2"))]
-unsafe impl VTFrameProcessorParameters for VTFrameRateConversionParameters {}
+extern_conformance!(
+    unsafe impl VTFrameProcessorParameters for VTFrameRateConversionParameters {}
+);
 
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionParameters {

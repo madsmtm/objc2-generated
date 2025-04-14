@@ -107,26 +107,40 @@ extern_class!(
     pub struct SCNNode;
 );
 
-unsafe impl NSCoding for SCNNode {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNNode {}
+);
 
-unsafe impl NSCopying for SCNNode {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNNode {}
+);
 
 unsafe impl CopyingHelper for SCNNode {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNNode {}
+);
 
-unsafe impl NSSecureCoding for SCNNode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNNode {}
+);
 
 #[cfg(feature = "SCNAction")]
-unsafe impl SCNActionable for SCNNode {}
+extern_conformance!(
+    unsafe impl SCNActionable for SCNNode {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNNode {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNNode {}
+);
 
 #[cfg(feature = "SCNBoundingVolume")]
-unsafe impl SCNBoundingVolume for SCNNode {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNNode {}
+);
 
 impl SCNNode {
     extern_methods!(

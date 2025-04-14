@@ -15,7 +15,9 @@ extern_class!(
     pub struct UISwipeActionsConfiguration;
 );
 
-unsafe impl NSObjectProtocol for UISwipeActionsConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISwipeActionsConfiguration {}
+);
 
 impl UISwipeActionsConfiguration {
     extern_methods!(

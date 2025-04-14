@@ -23,7 +23,9 @@ extern_class!(
     pub struct AVPlayerVideoOutput;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerVideoOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerVideoOutput {}
+);
 
 impl AVPlayerVideoOutput {
     extern_methods!(
@@ -139,13 +141,17 @@ extern_class!(
     pub struct AVVideoOutputSpecification;
 );
 
-unsafe impl NSCopying for AVVideoOutputSpecification {}
+extern_conformance!(
+    unsafe impl NSCopying for AVVideoOutputSpecification {}
+);
 
 unsafe impl CopyingHelper for AVVideoOutputSpecification {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVVideoOutputSpecification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVVideoOutputSpecification {}
+);
 
 impl AVVideoOutputSpecification {
     extern_methods!(
@@ -292,7 +298,9 @@ extern_class!(
     pub struct AVPlayerVideoOutputConfiguration;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerVideoOutputConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerVideoOutputConfiguration {}
+);
 
 impl AVPlayerVideoOutputConfiguration {
     extern_methods!(

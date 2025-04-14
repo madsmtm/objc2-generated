@@ -65,7 +65,9 @@ extern_class!(
     pub struct AVAudioEnvironmentDistanceAttenuationParameters;
 );
 
-unsafe impl NSObjectProtocol for AVAudioEnvironmentDistanceAttenuationParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioEnvironmentDistanceAttenuationParameters {}
+);
 
 impl AVAudioEnvironmentDistanceAttenuationParameters {
     extern_methods!(
@@ -165,7 +167,9 @@ extern_class!(
     pub struct AVAudioEnvironmentReverbParameters;
 );
 
-unsafe impl NSObjectProtocol for AVAudioEnvironmentReverbParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioEnvironmentReverbParameters {}
+);
 
 impl AVAudioEnvironmentReverbParameters {
     extern_methods!(
@@ -298,16 +302,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
-unsafe impl AVAudio3DMixing for AVAudioEnvironmentNode {}
+extern_conformance!(
+    unsafe impl AVAudio3DMixing for AVAudioEnvironmentNode {}
+);
 
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
-unsafe impl AVAudioMixing for AVAudioEnvironmentNode {}
+extern_conformance!(
+    unsafe impl AVAudioMixing for AVAudioEnvironmentNode {}
+);
 
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
-unsafe impl AVAudioStereoMixing for AVAudioEnvironmentNode {}
+extern_conformance!(
+    unsafe impl AVAudioStereoMixing for AVAudioEnvironmentNode {}
+);
 
 #[cfg(feature = "AVAudioNode")]
-unsafe impl NSObjectProtocol for AVAudioEnvironmentNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioEnvironmentNode {}
+);
 
 #[cfg(feature = "AVAudioNode")]
 impl AVAudioEnvironmentNode {

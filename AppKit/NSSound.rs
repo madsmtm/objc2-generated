@@ -26,23 +26,35 @@ extern_class!(
     pub struct NSSound;
 );
 
-unsafe impl NSCoding for NSSound {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSound {}
+);
 
-unsafe impl NSCopying for NSSound {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSound {}
+);
 
 unsafe impl CopyingHelper for NSSound {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSound {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSound {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardReading for NSSound {}
+extern_conformance!(
+    unsafe impl NSPasteboardReading for NSSound {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardWriting for NSSound {}
+extern_conformance!(
+    unsafe impl NSPasteboardWriting for NSSound {}
+);
 
-unsafe impl NSSecureCoding for NSSound {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSound {}
+);
 
 impl NSSound {
     extern_methods!(

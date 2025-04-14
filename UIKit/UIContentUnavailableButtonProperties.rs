@@ -15,17 +15,25 @@ extern_class!(
     pub struct UIContentUnavailableButtonProperties;
 );
 
-unsafe impl NSCoding for UIContentUnavailableButtonProperties {}
+extern_conformance!(
+    unsafe impl NSCoding for UIContentUnavailableButtonProperties {}
+);
 
-unsafe impl NSCopying for UIContentUnavailableButtonProperties {}
+extern_conformance!(
+    unsafe impl NSCopying for UIContentUnavailableButtonProperties {}
+);
 
 unsafe impl CopyingHelper for UIContentUnavailableButtonProperties {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIContentUnavailableButtonProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIContentUnavailableButtonProperties {}
+);
 
-unsafe impl NSSecureCoding for UIContentUnavailableButtonProperties {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIContentUnavailableButtonProperties {}
+);
 
 impl UIContentUnavailableButtonProperties {
     extern_methods!(

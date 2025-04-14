@@ -31,7 +31,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCGramMatrixLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCGramMatrixLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCGramMatrixLayer {

@@ -21,7 +21,9 @@ unsafe impl Send for PHProject {}
 unsafe impl Sync for PHProject {}
 
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-unsafe impl NSCopying for PHProject {}
+extern_conformance!(
+    unsafe impl NSCopying for PHProject {}
+);
 
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 unsafe impl CopyingHelper for PHProject {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for PHProject {
 }
 
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-unsafe impl NSObjectProtocol for PHProject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProject {}
+);
 
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 impl PHProject {

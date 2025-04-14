@@ -22,7 +22,9 @@ unsafe impl Send for HMTimeEvent {}
 unsafe impl Sync for HMTimeEvent {}
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSObjectProtocol for HMTimeEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMTimeEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 impl HMTimeEvent {

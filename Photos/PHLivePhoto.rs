@@ -42,17 +42,25 @@ extern_class!(
     pub struct PHLivePhoto;
 );
 
-unsafe impl NSCoding for PHLivePhoto {}
+extern_conformance!(
+    unsafe impl NSCoding for PHLivePhoto {}
+);
 
-unsafe impl NSCopying for PHLivePhoto {}
+extern_conformance!(
+    unsafe impl NSCopying for PHLivePhoto {}
+);
 
 unsafe impl CopyingHelper for PHLivePhoto {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHLivePhoto {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHLivePhoto {}
+);
 
-unsafe impl NSSecureCoding for PHLivePhoto {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHLivePhoto {}
+);
 
 impl PHLivePhoto {
     extern_methods!(
@@ -104,4 +112,6 @@ impl PHLivePhoto {
     extern_methods!();
 }
 
-unsafe impl NSItemProviderReading for PHLivePhoto {}
+extern_conformance!(
+    unsafe impl NSItemProviderReading for PHLivePhoto {}
+);

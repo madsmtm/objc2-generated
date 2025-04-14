@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSAutoreleasePool;
 );
 
-unsafe impl NSObjectProtocol for NSAutoreleasePool {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAutoreleasePool {}
+);
 
 impl NSAutoreleasePool {
     extern_methods!(

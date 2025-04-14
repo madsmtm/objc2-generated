@@ -50,7 +50,9 @@ extern_class!(
     pub struct CMWaterSubmersionManager;
 );
 
-unsafe impl NSObjectProtocol for CMWaterSubmersionManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMWaterSubmersionManager {}
+);
 
 impl CMWaterSubmersionManager {
     extern_methods!(

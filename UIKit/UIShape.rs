@@ -69,15 +69,21 @@ extern_class!(
     pub struct UIShape;
 );
 
-unsafe impl NSCopying for UIShape {}
+extern_conformance!(
+    unsafe impl NSCopying for UIShape {}
+);
 
 unsafe impl CopyingHelper for UIShape {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIShape {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIShape {}
+);
 
-unsafe impl UIShapeProvider for UIShape {}
+extern_conformance!(
+    unsafe impl UIShapeProvider for UIShape {}
+);
 
 impl UIShape {
     extern_methods!(
@@ -222,13 +228,17 @@ extern_class!(
     pub struct UIResolvedShape;
 );
 
-unsafe impl NSCopying for UIResolvedShape {}
+extern_conformance!(
+    unsafe impl NSCopying for UIResolvedShape {}
+);
 
 unsafe impl CopyingHelper for UIResolvedShape {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIResolvedShape {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIResolvedShape {}
+);
 
 impl UIResolvedShape {
     extern_methods!(
@@ -297,7 +307,9 @@ extern_class!(
     pub struct UIShapeResolutionContext;
 );
 
-unsafe impl NSObjectProtocol for UIShapeResolutionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIShapeResolutionContext {}
+);
 
 impl UIShapeResolutionContext {
     extern_methods!(

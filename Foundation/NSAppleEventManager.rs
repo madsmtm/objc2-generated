@@ -50,7 +50,9 @@ extern_class!(
     pub struct NSAppleEventManager;
 );
 
-unsafe impl NSObjectProtocol for NSAppleEventManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAppleEventManager {}
+);
 
 impl NSAppleEventManager {
     extern_methods!(

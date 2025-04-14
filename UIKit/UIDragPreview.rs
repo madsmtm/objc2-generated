@@ -14,13 +14,17 @@ extern_class!(
     pub struct UIDragPreview;
 );
 
-unsafe impl NSCopying for UIDragPreview {}
+extern_conformance!(
+    unsafe impl NSCopying for UIDragPreview {}
+);
 
 unsafe impl CopyingHelper for UIDragPreview {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIDragPreview {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDragPreview {}
+);
 
 impl UIDragPreview {
     extern_methods!(

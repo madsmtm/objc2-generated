@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSImageRep")]
-unsafe impl NSCoding for NSCachedImageRep {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCachedImageRep {}
+);
 
 #[cfg(feature = "NSImageRep")]
-unsafe impl NSCopying for NSCachedImageRep {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCachedImageRep {}
+);
 
 #[cfg(feature = "NSImageRep")]
 unsafe impl CopyingHelper for NSCachedImageRep {
@@ -27,7 +31,9 @@ unsafe impl CopyingHelper for NSCachedImageRep {
 }
 
 #[cfg(feature = "NSImageRep")]
-unsafe impl NSObjectProtocol for NSCachedImageRep {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCachedImageRep {}
+);
 
 #[cfg(feature = "NSImageRep")]
 impl NSCachedImageRep {

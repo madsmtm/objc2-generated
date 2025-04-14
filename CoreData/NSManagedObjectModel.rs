@@ -14,17 +14,25 @@ extern_class!(
     pub struct NSManagedObjectModel;
 );
 
-unsafe impl NSCoding for NSManagedObjectModel {}
+extern_conformance!(
+    unsafe impl NSCoding for NSManagedObjectModel {}
+);
 
-unsafe impl NSCopying for NSManagedObjectModel {}
+extern_conformance!(
+    unsafe impl NSCopying for NSManagedObjectModel {}
+);
 
 unsafe impl CopyingHelper for NSManagedObjectModel {
     type Result = Self;
 }
 
-unsafe impl NSFastEnumeration for NSManagedObjectModel {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for NSManagedObjectModel {}
+);
 
-unsafe impl NSObjectProtocol for NSManagedObjectModel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSManagedObjectModel {}
+);
 
 impl NSManagedObjectModel {
     extern_methods!(

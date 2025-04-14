@@ -23,13 +23,17 @@ extern_class!(
     pub struct VZKeyboardConfiguration;
 );
 
-unsafe impl NSCopying for VZKeyboardConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZKeyboardConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZKeyboardConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZKeyboardConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZKeyboardConfiguration {}
+);
 
 impl VZKeyboardConfiguration {
     extern_methods!(

@@ -14,13 +14,17 @@ extern_class!(
     pub struct UISceneSessionActivationRequest;
 );
 
-unsafe impl NSCopying for UISceneSessionActivationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for UISceneSessionActivationRequest {}
+);
 
 unsafe impl CopyingHelper for UISceneSessionActivationRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UISceneSessionActivationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneSessionActivationRequest {}
+);
 
 impl UISceneSessionActivationRequest {
     extern_methods!(

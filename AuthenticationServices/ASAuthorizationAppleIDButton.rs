@@ -58,31 +58,49 @@ unsafe impl RefEncode for ASAuthorizationAppleIDButtonStyle {
 }
 
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for ASAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSAccessibility for ASAuthorizationAppleIDButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityButton for ASAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityButton for ASAuthorizationAppleIDButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for ASAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for ASAuthorizationAppleIDButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for ASAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for ASAuthorizationAppleIDButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for ASAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for ASAuthorizationAppleIDButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for ASAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationAppleIDButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for ASAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for ASAuthorizationAppleIDButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for ASAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationAppleIDButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for ASAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for ASAuthorizationAppleIDButton {}
+);
 
 #[cfg(target_os = "macos")]
 impl ASAuthorizationAppleIDButton {

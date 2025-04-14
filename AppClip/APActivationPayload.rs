@@ -61,17 +61,25 @@ extern_class!(
     pub struct APActivationPayload;
 );
 
-unsafe impl NSCoding for APActivationPayload {}
+extern_conformance!(
+    unsafe impl NSCoding for APActivationPayload {}
+);
 
-unsafe impl NSCopying for APActivationPayload {}
+extern_conformance!(
+    unsafe impl NSCopying for APActivationPayload {}
+);
 
 unsafe impl CopyingHelper for APActivationPayload {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for APActivationPayload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for APActivationPayload {}
+);
 
-unsafe impl NSSecureCoding for APActivationPayload {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for APActivationPayload {}
+);
 
 impl APActivationPayload {
     extern_methods!(

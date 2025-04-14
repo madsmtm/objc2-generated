@@ -48,17 +48,25 @@ extern_class!(
     pub struct SKUniform;
 );
 
-unsafe impl NSCoding for SKUniform {}
+extern_conformance!(
+    unsafe impl NSCoding for SKUniform {}
+);
 
-unsafe impl NSCopying for SKUniform {}
+extern_conformance!(
+    unsafe impl NSCopying for SKUniform {}
+);
 
 unsafe impl CopyingHelper for SKUniform {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKUniform {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKUniform {}
+);
 
-unsafe impl NSSecureCoding for SKUniform {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKUniform {}
+);
 
 impl SKUniform {
     extern_methods!(

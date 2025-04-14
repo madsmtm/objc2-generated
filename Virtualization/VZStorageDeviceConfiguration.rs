@@ -25,13 +25,17 @@ extern_class!(
     pub struct VZStorageDeviceConfiguration;
 );
 
-unsafe impl NSCopying for VZStorageDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZStorageDeviceConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZStorageDeviceConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZStorageDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZStorageDeviceConfiguration {}
+);
 
 impl VZStorageDeviceConfiguration {
     extern_methods!(

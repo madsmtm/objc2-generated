@@ -62,7 +62,9 @@ extern_class!(
     pub struct VNImageRequestHandler;
 );
 
-unsafe impl NSObjectProtocol for VNImageRequestHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNImageRequestHandler {}
+);
 
 impl VNImageRequestHandler {
     extern_methods!(
@@ -213,7 +215,9 @@ extern_class!(
     pub struct VNSequenceRequestHandler;
 );
 
-unsafe impl NSObjectProtocol for VNSequenceRequestHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNSequenceRequestHandler {}
+);
 
 impl VNSequenceRequestHandler {
     extern_methods!(

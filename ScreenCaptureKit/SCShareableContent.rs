@@ -44,7 +44,9 @@ extern_class!(
     pub struct SCRunningApplication;
 );
 
-unsafe impl NSObjectProtocol for SCRunningApplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCRunningApplication {}
+);
 
 impl SCRunningApplication {
     extern_methods!(
@@ -81,7 +83,9 @@ extern_class!(
     pub struct SCWindow;
 );
 
-unsafe impl NSObjectProtocol for SCWindow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCWindow {}
+);
 
 impl SCWindow {
     extern_methods!(
@@ -139,7 +143,9 @@ extern_class!(
     pub struct SCDisplay;
 );
 
-unsafe impl NSObjectProtocol for SCDisplay {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCDisplay {}
+);
 
 impl SCDisplay {
     extern_methods!(
@@ -186,7 +192,9 @@ extern_class!(
     pub struct SCShareableContentInfo;
 );
 
-unsafe impl NSObjectProtocol for SCShareableContentInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCShareableContentInfo {}
+);
 
 impl SCShareableContentInfo {
     extern_methods!(
@@ -228,7 +236,9 @@ extern_class!(
     pub struct SCShareableContent;
 );
 
-unsafe impl NSObjectProtocol for SCShareableContent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCShareableContent {}
+);
 
 impl SCShareableContent {
     extern_methods!(

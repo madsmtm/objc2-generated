@@ -17,7 +17,9 @@ extern_class!(
     pub struct UITabBarItemStateAppearance;
 );
 
-unsafe impl NSObjectProtocol for UITabBarItemStateAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabBarItemStateAppearance {}
+);
 
 impl UITabBarItemStateAppearance {
     extern_methods!(
@@ -154,17 +156,25 @@ extern_class!(
     pub struct UITabBarItemAppearance;
 );
 
-unsafe impl NSCoding for UITabBarItemAppearance {}
+extern_conformance!(
+    unsafe impl NSCoding for UITabBarItemAppearance {}
+);
 
-unsafe impl NSCopying for UITabBarItemAppearance {}
+extern_conformance!(
+    unsafe impl NSCopying for UITabBarItemAppearance {}
+);
 
 unsafe impl CopyingHelper for UITabBarItemAppearance {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITabBarItemAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabBarItemAppearance {}
+);
 
-unsafe impl NSSecureCoding for UITabBarItemAppearance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UITabBarItemAppearance {}
+);
 
 impl UITabBarItemAppearance {
     extern_methods!(
@@ -235,10 +245,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSCoding for UITabBarAppearance {}
+extern_conformance!(
+    unsafe impl NSCoding for UITabBarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSCopying for UITabBarAppearance {}
+extern_conformance!(
+    unsafe impl NSCopying for UITabBarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
 unsafe impl CopyingHelper for UITabBarAppearance {
@@ -246,10 +260,14 @@ unsafe impl CopyingHelper for UITabBarAppearance {
 }
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSObjectProtocol for UITabBarAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabBarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSSecureCoding for UITabBarAppearance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UITabBarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
 impl UITabBarAppearance {

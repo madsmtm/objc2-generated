@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl NSCoding for NSSharingServicePickerTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSharingServicePickerTouchBarItem {}
+);
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl NSObjectProtocol for NSSharingServicePickerTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSharingServicePickerTouchBarItem {}
+);
 
 #[cfg(feature = "NSTouchBarItem")]
 impl NSSharingServicePickerTouchBarItem {

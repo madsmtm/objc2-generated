@@ -16,15 +16,21 @@ extern_class!(
     pub struct NSRulerMarker;
 );
 
-unsafe impl NSCoding for NSRulerMarker {}
+extern_conformance!(
+    unsafe impl NSCoding for NSRulerMarker {}
+);
 
-unsafe impl NSCopying for NSRulerMarker {}
+extern_conformance!(
+    unsafe impl NSCopying for NSRulerMarker {}
+);
 
 unsafe impl CopyingHelper for NSRulerMarker {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSRulerMarker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRulerMarker {}
+);
 
 impl NSRulerMarker {
     extern_methods!(

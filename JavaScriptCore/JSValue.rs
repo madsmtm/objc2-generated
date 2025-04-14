@@ -31,7 +31,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for JSValue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for JSValue {}
+);
 
 #[cfg(feature = "objc2")]
 impl JSValue {

@@ -20,7 +20,9 @@ extern_class!(
     pub struct AVContinuityDevice;
 );
 
-unsafe impl NSObjectProtocol for AVContinuityDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVContinuityDevice {}
+);
 
 impl AVContinuityDevice {
     extern_methods!(

@@ -37,7 +37,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMHTMLOptGroupElement {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMHTMLOptGroupElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -46,7 +48,9 @@ unsafe impl DOMEventTarget for DOMHTMLOptGroupElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMHTMLOptGroupElement {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMHTMLOptGroupElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -66,7 +70,9 @@ unsafe impl CopyingHelper for DOMHTMLOptGroupElement {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMHTMLOptGroupElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMHTMLOptGroupElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",

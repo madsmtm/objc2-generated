@@ -88,7 +88,9 @@ extern_class!(
     pub struct BGTaskScheduler;
 );
 
-unsafe impl NSObjectProtocol for BGTaskScheduler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGTaskScheduler {}
+);
 
 impl BGTaskScheduler {
     extern_methods!(

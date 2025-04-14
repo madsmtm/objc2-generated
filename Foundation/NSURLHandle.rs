@@ -144,7 +144,9 @@ extern_class!(
     pub struct NSURLHandle;
 );
 
-unsafe impl NSObjectProtocol for NSURLHandle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLHandle {}
+);
 
 impl NSURLHandle {
     extern_methods!(

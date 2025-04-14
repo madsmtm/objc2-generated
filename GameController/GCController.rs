@@ -142,9 +142,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GCDevice")]
-unsafe impl GCDevice for GCController {}
+extern_conformance!(
+    unsafe impl GCDevice for GCController {}
+);
 
-unsafe impl NSObjectProtocol for GCController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCController {}
+);
 
 impl GCController {
     extern_methods!(

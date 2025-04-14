@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIFeedbackGenerator")]
-unsafe impl NSObjectProtocol for UICanvasFeedbackGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICanvasFeedbackGenerator {}
+);
 
 #[cfg(feature = "UIFeedbackGenerator")]
 impl UICanvasFeedbackGenerator {

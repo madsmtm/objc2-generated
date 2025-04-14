@@ -24,7 +24,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZBootLoader")]
-unsafe impl NSCopying for VZMacOSBootLoader {}
+extern_conformance!(
+    unsafe impl NSCopying for VZMacOSBootLoader {}
+);
 
 #[cfg(feature = "VZBootLoader")]
 unsafe impl CopyingHelper for VZMacOSBootLoader {
@@ -32,7 +34,9 @@ unsafe impl CopyingHelper for VZMacOSBootLoader {
 }
 
 #[cfg(feature = "VZBootLoader")]
-unsafe impl NSObjectProtocol for VZMacOSBootLoader {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacOSBootLoader {}
+);
 
 #[cfg(feature = "VZBootLoader")]
 impl VZMacOSBootLoader {

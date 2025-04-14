@@ -49,7 +49,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphFFTDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphFFTDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphFFTDescriptor {
@@ -57,7 +59,9 @@ unsafe impl CopyingHelper for MPSGraphFFTDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphFFTDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphFFTDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphFFTDescriptor {

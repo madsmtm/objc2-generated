@@ -21,7 +21,9 @@ extern_class!(
     pub struct NISession;
 );
 
-unsafe impl NSObjectProtocol for NISession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NISession {}
+);
 
 impl NISession {
     extern_methods!(
@@ -195,17 +197,25 @@ extern_class!(
     pub struct NIAlgorithmConvergence;
 );
 
-unsafe impl NSCoding for NIAlgorithmConvergence {}
+extern_conformance!(
+    unsafe impl NSCoding for NIAlgorithmConvergence {}
+);
 
-unsafe impl NSCopying for NIAlgorithmConvergence {}
+extern_conformance!(
+    unsafe impl NSCopying for NIAlgorithmConvergence {}
+);
 
 unsafe impl CopyingHelper for NIAlgorithmConvergence {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NIAlgorithmConvergence {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NIAlgorithmConvergence {}
+);
 
-unsafe impl NSSecureCoding for NIAlgorithmConvergence {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NIAlgorithmConvergence {}
+);
 
 impl NIAlgorithmConvergence {
     extern_methods!(

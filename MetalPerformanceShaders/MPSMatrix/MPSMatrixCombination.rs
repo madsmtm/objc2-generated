@@ -54,7 +54,9 @@ extern_class!(
     pub struct MPSMatrixCopyDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPSMatrixCopyDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixCopyDescriptor {}
+);
 
 impl MPSMatrixCopyDescriptor {
     extern_methods!(
@@ -160,10 +162,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSMatrixCopy {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixCopy {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSMatrixCopy {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixCopy {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixCopy {
@@ -171,10 +177,14 @@ unsafe impl CopyingHelper for MPSMatrixCopy {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSMatrixCopy {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixCopy {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSMatrixCopy {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixCopy {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSMatrixCopy {

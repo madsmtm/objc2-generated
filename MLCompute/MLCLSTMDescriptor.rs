@@ -17,13 +17,17 @@ extern_class!(
     pub struct MLCLSTMDescriptor;
 );
 
-unsafe impl NSCopying for MLCLSTMDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCLSTMDescriptor {}
+);
 
 unsafe impl CopyingHelper for MLCLSTMDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCLSTMDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCLSTMDescriptor {}
+);
 
 impl MLCLSTMDescriptor {
     extern_methods!(

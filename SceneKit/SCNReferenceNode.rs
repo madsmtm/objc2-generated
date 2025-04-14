@@ -43,10 +43,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SCNNode")]
-unsafe impl NSCoding for SCNReferenceNode {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNReferenceNode {}
+);
 
 #[cfg(feature = "SCNNode")]
-unsafe impl NSCopying for SCNReferenceNode {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNReferenceNode {}
+);
 
 #[cfg(feature = "SCNNode")]
 unsafe impl CopyingHelper for SCNReferenceNode {
@@ -54,19 +58,29 @@ unsafe impl CopyingHelper for SCNReferenceNode {
 }
 
 #[cfg(feature = "SCNNode")]
-unsafe impl NSObjectProtocol for SCNReferenceNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNReferenceNode {}
+);
 
 #[cfg(feature = "SCNNode")]
-unsafe impl NSSecureCoding for SCNReferenceNode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNReferenceNode {}
+);
 
 #[cfg(all(feature = "SCNAction", feature = "SCNNode"))]
-unsafe impl SCNActionable for SCNReferenceNode {}
+extern_conformance!(
+    unsafe impl SCNActionable for SCNReferenceNode {}
+);
 
 #[cfg(all(feature = "SCNAnimation", feature = "SCNNode"))]
-unsafe impl SCNAnimatable for SCNReferenceNode {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNReferenceNode {}
+);
 
 #[cfg(all(feature = "SCNBoundingVolume", feature = "SCNNode"))]
-unsafe impl SCNBoundingVolume for SCNReferenceNode {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNReferenceNode {}
+);
 
 #[cfg(feature = "SCNNode")]
 impl SCNReferenceNode {

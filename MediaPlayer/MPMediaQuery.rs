@@ -46,17 +46,25 @@ extern_class!(
     pub struct MPMediaQuery;
 );
 
-unsafe impl NSCoding for MPMediaQuery {}
+extern_conformance!(
+    unsafe impl NSCoding for MPMediaQuery {}
+);
 
-unsafe impl NSCopying for MPMediaQuery {}
+extern_conformance!(
+    unsafe impl NSCopying for MPMediaQuery {}
+);
 
 unsafe impl CopyingHelper for MPMediaQuery {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPMediaQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaQuery {}
+);
 
-unsafe impl NSSecureCoding for MPMediaQuery {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPMediaQuery {}
+);
 
 impl MPMediaQuery {
     extern_methods!(
@@ -174,11 +182,17 @@ extern_class!(
     pub struct MPMediaPredicate;
 );
 
-unsafe impl NSCoding for MPMediaPredicate {}
+extern_conformance!(
+    unsafe impl NSCoding for MPMediaPredicate {}
+);
 
-unsafe impl NSObjectProtocol for MPMediaPredicate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaPredicate {}
+);
 
-unsafe impl NSSecureCoding for MPMediaPredicate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPMediaPredicate {}
+);
 
 impl MPMediaPredicate {
     extern_methods!();
@@ -224,11 +238,17 @@ extern_class!(
     pub struct MPMediaPropertyPredicate;
 );
 
-unsafe impl NSCoding for MPMediaPropertyPredicate {}
+extern_conformance!(
+    unsafe impl NSCoding for MPMediaPropertyPredicate {}
+);
 
-unsafe impl NSObjectProtocol for MPMediaPropertyPredicate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaPropertyPredicate {}
+);
 
-unsafe impl NSSecureCoding for MPMediaPropertyPredicate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPMediaPropertyPredicate {}
+);
 
 impl MPMediaPropertyPredicate {
     extern_methods!(

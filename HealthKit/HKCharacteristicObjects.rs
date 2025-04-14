@@ -19,17 +19,25 @@ unsafe impl Send for HKBiologicalSexObject {}
 
 unsafe impl Sync for HKBiologicalSexObject {}
 
-unsafe impl NSCoding for HKBiologicalSexObject {}
+extern_conformance!(
+    unsafe impl NSCoding for HKBiologicalSexObject {}
+);
 
-unsafe impl NSCopying for HKBiologicalSexObject {}
+extern_conformance!(
+    unsafe impl NSCopying for HKBiologicalSexObject {}
+);
 
 unsafe impl CopyingHelper for HKBiologicalSexObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKBiologicalSexObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKBiologicalSexObject {}
+);
 
-unsafe impl NSSecureCoding for HKBiologicalSexObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKBiologicalSexObject {}
+);
 
 impl HKBiologicalSexObject {
     extern_methods!(
@@ -66,17 +74,25 @@ unsafe impl Send for HKBloodTypeObject {}
 
 unsafe impl Sync for HKBloodTypeObject {}
 
-unsafe impl NSCoding for HKBloodTypeObject {}
+extern_conformance!(
+    unsafe impl NSCoding for HKBloodTypeObject {}
+);
 
-unsafe impl NSCopying for HKBloodTypeObject {}
+extern_conformance!(
+    unsafe impl NSCopying for HKBloodTypeObject {}
+);
 
 unsafe impl CopyingHelper for HKBloodTypeObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKBloodTypeObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKBloodTypeObject {}
+);
 
-unsafe impl NSSecureCoding for HKBloodTypeObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKBloodTypeObject {}
+);
 
 impl HKBloodTypeObject {
     extern_methods!(
@@ -113,17 +129,25 @@ unsafe impl Send for HKFitzpatrickSkinTypeObject {}
 
 unsafe impl Sync for HKFitzpatrickSkinTypeObject {}
 
-unsafe impl NSCoding for HKFitzpatrickSkinTypeObject {}
+extern_conformance!(
+    unsafe impl NSCoding for HKFitzpatrickSkinTypeObject {}
+);
 
-unsafe impl NSCopying for HKFitzpatrickSkinTypeObject {}
+extern_conformance!(
+    unsafe impl NSCopying for HKFitzpatrickSkinTypeObject {}
+);
 
 unsafe impl CopyingHelper for HKFitzpatrickSkinTypeObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKFitzpatrickSkinTypeObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKFitzpatrickSkinTypeObject {}
+);
 
-unsafe impl NSSecureCoding for HKFitzpatrickSkinTypeObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKFitzpatrickSkinTypeObject {}
+);
 
 impl HKFitzpatrickSkinTypeObject {
     extern_methods!(
@@ -160,17 +184,25 @@ unsafe impl Send for HKWheelchairUseObject {}
 
 unsafe impl Sync for HKWheelchairUseObject {}
 
-unsafe impl NSCoding for HKWheelchairUseObject {}
+extern_conformance!(
+    unsafe impl NSCoding for HKWheelchairUseObject {}
+);
 
-unsafe impl NSCopying for HKWheelchairUseObject {}
+extern_conformance!(
+    unsafe impl NSCopying for HKWheelchairUseObject {}
+);
 
 unsafe impl CopyingHelper for HKWheelchairUseObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKWheelchairUseObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWheelchairUseObject {}
+);
 
-unsafe impl NSSecureCoding for HKWheelchairUseObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKWheelchairUseObject {}
+);
 
 impl HKWheelchairUseObject {
     extern_methods!(
@@ -207,17 +239,25 @@ unsafe impl Send for HKActivityMoveModeObject {}
 
 unsafe impl Sync for HKActivityMoveModeObject {}
 
-unsafe impl NSCoding for HKActivityMoveModeObject {}
+extern_conformance!(
+    unsafe impl NSCoding for HKActivityMoveModeObject {}
+);
 
-unsafe impl NSCopying for HKActivityMoveModeObject {}
+extern_conformance!(
+    unsafe impl NSCopying for HKActivityMoveModeObject {}
+);
 
 unsafe impl CopyingHelper for HKActivityMoveModeObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKActivityMoveModeObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKActivityMoveModeObject {}
+);
 
-unsafe impl NSSecureCoding for HKActivityMoveModeObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKActivityMoveModeObject {}
+);
 
 impl HKActivityMoveModeObject {
     extern_methods!(

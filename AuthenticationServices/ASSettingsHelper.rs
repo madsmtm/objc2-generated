@@ -16,7 +16,9 @@ extern_class!(
     pub struct ASSettingsHelper;
 );
 
-unsafe impl NSObjectProtocol for ASSettingsHelper {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASSettingsHelper {}
+);
 
 impl ASSettingsHelper {
     extern_methods!(

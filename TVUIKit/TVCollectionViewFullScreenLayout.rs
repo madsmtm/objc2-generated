@@ -17,15 +17,21 @@ extern_class!(
     pub struct TVCollectionViewFullScreenLayoutAttributes;
 );
 
-unsafe impl NSCopying for TVCollectionViewFullScreenLayoutAttributes {}
+extern_conformance!(
+    unsafe impl NSCopying for TVCollectionViewFullScreenLayoutAttributes {}
+);
 
 unsafe impl CopyingHelper for TVCollectionViewFullScreenLayoutAttributes {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVCollectionViewFullScreenLayoutAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVCollectionViewFullScreenLayoutAttributes {}
+);
 
-unsafe impl UIDynamicItem for TVCollectionViewFullScreenLayoutAttributes {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVCollectionViewFullScreenLayoutAttributes {}
+);
 
 impl TVCollectionViewFullScreenLayoutAttributes {
     extern_methods!(
@@ -159,9 +165,13 @@ extern_class!(
     pub struct TVCollectionViewFullScreenLayout;
 );
 
-unsafe impl NSCoding for TVCollectionViewFullScreenLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for TVCollectionViewFullScreenLayout {}
+);
 
-unsafe impl NSObjectProtocol for TVCollectionViewFullScreenLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVCollectionViewFullScreenLayout {}
+);
 
 impl TVCollectionViewFullScreenLayout {
     extern_methods!(

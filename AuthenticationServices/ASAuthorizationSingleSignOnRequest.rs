@@ -22,13 +22,17 @@ extern_class!(
     feature = "ASAuthorizationOpenIDRequest",
     feature = "ASAuthorizationRequest"
 ))]
-unsafe impl NSCoding for ASAuthorizationSingleSignOnRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationSingleSignOnRequest {}
+);
 
 #[cfg(all(
     feature = "ASAuthorizationOpenIDRequest",
     feature = "ASAuthorizationRequest"
 ))]
-unsafe impl NSCopying for ASAuthorizationSingleSignOnRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationSingleSignOnRequest {}
+);
 
 #[cfg(all(
     feature = "ASAuthorizationOpenIDRequest",
@@ -42,13 +46,17 @@ unsafe impl CopyingHelper for ASAuthorizationSingleSignOnRequest {
     feature = "ASAuthorizationOpenIDRequest",
     feature = "ASAuthorizationRequest"
 ))]
-unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnRequest {}
+);
 
 #[cfg(all(
     feature = "ASAuthorizationOpenIDRequest",
     feature = "ASAuthorizationRequest"
 ))]
-unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnRequest {}
+);
 
 #[cfg(all(
     feature = "ASAuthorizationOpenIDRequest",

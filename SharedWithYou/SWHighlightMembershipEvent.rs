@@ -35,20 +35,30 @@ extern_class!(
     pub struct SWHighlightMembershipEvent;
 );
 
-unsafe impl NSCoding for SWHighlightMembershipEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for SWHighlightMembershipEvent {}
+);
 
-unsafe impl NSCopying for SWHighlightMembershipEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for SWHighlightMembershipEvent {}
+);
 
 unsafe impl CopyingHelper for SWHighlightMembershipEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SWHighlightMembershipEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWHighlightMembershipEvent {}
+);
 
-unsafe impl NSSecureCoding for SWHighlightMembershipEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWHighlightMembershipEvent {}
+);
 
 #[cfg(feature = "SWHighlightEvent")]
-unsafe impl SWHighlightEvent for SWHighlightMembershipEvent {}
+extern_conformance!(
+    unsafe impl SWHighlightEvent for SWHighlightMembershipEvent {}
+);
 
 impl SWHighlightMembershipEvent {
     extern_methods!(

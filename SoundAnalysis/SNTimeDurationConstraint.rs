@@ -47,7 +47,9 @@ extern_class!(
     pub struct SNTimeDurationConstraint;
 );
 
-unsafe impl NSObjectProtocol for SNTimeDurationConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SNTimeDurationConstraint {}
+);
 
 impl SNTimeDurationConstraint {
     extern_methods!(

@@ -16,9 +16,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MLBatchProvider")]
-unsafe impl MLBatchProvider for MLArrayBatchProvider {}
+extern_conformance!(
+    unsafe impl MLBatchProvider for MLArrayBatchProvider {}
+);
 
-unsafe impl NSObjectProtocol for MLArrayBatchProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLArrayBatchProvider {}
+);
 
 impl MLArrayBatchProvider {
     extern_methods!(

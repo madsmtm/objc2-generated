@@ -35,7 +35,9 @@ extern_class!(
     pub struct NLEmbedding;
 );
 
-unsafe impl NSObjectProtocol for NLEmbedding {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NLEmbedding {}
+);
 
 impl NLEmbedding {
     extern_methods!(

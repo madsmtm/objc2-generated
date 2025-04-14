@@ -40,50 +40,70 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSProgressIndicator {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSProgressIndicator {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityGroup for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSAccessibilityGroup for NSProgressIndicator {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityProgressIndicator for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSAccessibilityProgressIndicator for NSProgressIndicator {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSProgressIndicator {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSProgressIndicator {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSCoding for NSProgressIndicator {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSProgressIndicator {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSProgressIndicator {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSProgressIndicator {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSProgressIndicator {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSProgressIndicator {

@@ -17,7 +17,9 @@ extern_class!(
     pub struct UITextDragPreviewRenderer;
 );
 
-unsafe impl NSObjectProtocol for UITextDragPreviewRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextDragPreviewRenderer {}
+);
 
 impl UITextDragPreviewRenderer {
     extern_methods!(

@@ -16,7 +16,9 @@ extern_class!(
     pub struct PKContact;
 );
 
-unsafe impl NSObjectProtocol for PKContact {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKContact {}
+);
 
 impl PKContact {
     extern_methods!(

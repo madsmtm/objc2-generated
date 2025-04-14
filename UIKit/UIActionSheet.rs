@@ -60,48 +60,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIActionSheet {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIActionSheet {}
+extern_conformance!(
+    unsafe impl NSCoding for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIActionSheet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIActionSheet {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIActionSheet {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIActionSheet {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIActionSheet {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIActionSheet {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIActionSheet {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIActionSheet {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIActionSheet {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIActionSheet {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIActionSheet {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIActionSheet {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIActionSheet {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIActionSheet {

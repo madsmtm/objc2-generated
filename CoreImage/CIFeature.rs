@@ -18,7 +18,9 @@ extern_class!(
     pub struct CIFeature;
 );
 
-unsafe impl NSObjectProtocol for CIFeature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIFeature {}
+);
 
 impl CIFeature {
     extern_methods!(
@@ -86,7 +88,9 @@ extern_class!(
     pub struct CIFaceFeature;
 );
 
-unsafe impl NSObjectProtocol for CIFaceFeature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIFaceFeature {}
+);
 
 impl CIFaceFeature {
     extern_methods!(
@@ -188,7 +192,9 @@ extern_class!(
     pub struct CIRectangleFeature;
 );
 
-unsafe impl NSObjectProtocol for CIRectangleFeature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIRectangleFeature {}
+);
 
 impl CIRectangleFeature {
     extern_methods!(
@@ -239,17 +245,25 @@ extern_class!(
     pub struct CIQRCodeFeature;
 );
 
-unsafe impl NSCoding for CIQRCodeFeature {}
+extern_conformance!(
+    unsafe impl NSCoding for CIQRCodeFeature {}
+);
 
-unsafe impl NSCopying for CIQRCodeFeature {}
+extern_conformance!(
+    unsafe impl NSCopying for CIQRCodeFeature {}
+);
 
 unsafe impl CopyingHelper for CIQRCodeFeature {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIQRCodeFeature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIQRCodeFeature {}
+);
 
-unsafe impl NSSecureCoding for CIQRCodeFeature {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIQRCodeFeature {}
+);
 
 impl CIQRCodeFeature {
     extern_methods!(
@@ -309,7 +323,9 @@ extern_class!(
     pub struct CITextFeature;
 );
 
-unsafe impl NSObjectProtocol for CITextFeature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CITextFeature {}
+);
 
 impl CITextFeature {
     extern_methods!(

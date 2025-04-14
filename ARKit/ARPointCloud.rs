@@ -24,13 +24,19 @@ unsafe impl Send for ARPointCloud {}
 unsafe impl Sync for ARPointCloud {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARPointCloud {}
+extern_conformance!(
+    unsafe impl NSCoding for ARPointCloud {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARPointCloud {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARPointCloud {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARPointCloud {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARPointCloud {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARPointCloud {

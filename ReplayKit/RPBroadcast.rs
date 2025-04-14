@@ -21,7 +21,9 @@ extern_class!(
     pub struct RPBroadcastActivityController;
 );
 
-unsafe impl NSObjectProtocol for RPBroadcastActivityController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for RPBroadcastActivityController {}
+);
 
 impl RPBroadcastActivityController {
     extern_methods!(
@@ -105,7 +107,9 @@ extern_class!(
     pub struct RPBroadcastController;
 );
 
-unsafe impl NSObjectProtocol for RPBroadcastController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for RPBroadcastController {}
+);
 
 impl RPBroadcastController {
     extern_methods!(

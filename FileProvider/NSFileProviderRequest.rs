@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSFileProviderRequest;
 );
 
-unsafe impl NSObjectProtocol for NSFileProviderRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileProviderRequest {}
+);
 
 impl NSFileProviderRequest {
     extern_methods!(

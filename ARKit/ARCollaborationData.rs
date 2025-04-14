@@ -58,13 +58,19 @@ unsafe impl Send for ARCollaborationData {}
 unsafe impl Sync for ARCollaborationData {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARCollaborationData {}
+extern_conformance!(
+    unsafe impl NSCoding for ARCollaborationData {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARCollaborationData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARCollaborationData {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARCollaborationData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARCollaborationData {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARCollaborationData {

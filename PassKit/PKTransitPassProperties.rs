@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PKStoredValuePassProperties")]
-unsafe impl NSObjectProtocol for PKTransitPassProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKTransitPassProperties {}
+);
 
 #[cfg(feature = "PKStoredValuePassProperties")]
 impl PKTransitPassProperties {

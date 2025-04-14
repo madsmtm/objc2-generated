@@ -119,7 +119,9 @@ extern_class!(
     pub struct CLLocationManager;
 );
 
-unsafe impl NSObjectProtocol for CLLocationManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLLocationManager {}
+);
 
 impl CLLocationManager {
     extern_methods!(

@@ -24,7 +24,9 @@ extern_class!(
     pub struct WKWebExtensionCommand;
 );
 
-unsafe impl NSObjectProtocol for WKWebExtensionCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebExtensionCommand {}
+);
 
 impl WKWebExtensionCommand {
     extern_methods!(

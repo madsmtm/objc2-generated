@@ -14,7 +14,9 @@ extern_class!(
     pub struct UIWindowSceneActivationConfiguration;
 );
 
-unsafe impl NSObjectProtocol for UIWindowSceneActivationConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneActivationConfiguration {}
+);
 
 impl UIWindowSceneActivationConfiguration {
     extern_methods!(

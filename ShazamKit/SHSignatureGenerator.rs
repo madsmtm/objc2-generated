@@ -21,7 +21,9 @@ extern_class!(
     pub struct SHSignatureGenerator;
 );
 
-unsafe impl NSObjectProtocol for SHSignatureGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHSignatureGenerator {}
+);
 
 impl SHSignatureGenerator {
     extern_methods!(

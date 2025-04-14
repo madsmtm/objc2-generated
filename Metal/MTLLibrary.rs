@@ -40,7 +40,9 @@ extern_class!(
     pub struct MTLVertexAttribute;
 );
 
-unsafe impl NSObjectProtocol for MTLVertexAttribute {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLVertexAttribute {}
+);
 
 impl MTLVertexAttribute {
     extern_methods!(
@@ -91,7 +93,9 @@ extern_class!(
     pub struct MTLAttribute;
 );
 
-unsafe impl NSObjectProtocol for MTLAttribute {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAttribute {}
+);
 
 impl MTLAttribute {
     extern_methods!(
@@ -187,7 +191,9 @@ extern_class!(
     pub struct MTLFunctionConstant;
 );
 
-unsafe impl NSObjectProtocol for MTLFunctionConstant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFunctionConstant {}
+);
 
 impl MTLFunctionConstant {
     extern_methods!(
@@ -486,13 +492,17 @@ extern_class!(
     pub struct MTLCompileOptions;
 );
 
-unsafe impl NSCopying for MTLCompileOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLCompileOptions {}
+);
 
 unsafe impl CopyingHelper for MTLCompileOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLCompileOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLCompileOptions {}
+);
 
 impl MTLCompileOptions {
     extern_methods!(

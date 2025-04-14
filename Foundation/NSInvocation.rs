@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSInvocation;
 );
 
-unsafe impl NSObjectProtocol for NSInvocation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSInvocation {}
+);
 
 impl NSInvocation {
     extern_methods!(

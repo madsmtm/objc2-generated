@@ -24,7 +24,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMCSSImportRule {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMCSSImportRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",
@@ -40,7 +42,9 @@ unsafe impl CopyingHelper for DOMCSSImportRule {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMCSSImportRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMCSSImportRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",

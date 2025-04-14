@@ -146,20 +146,28 @@ extern_class!(
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSButtonCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSButtonCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSButtonCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSButtonCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSButtonCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSButtonCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSButtonCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSButtonCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSButtonCell {
@@ -167,14 +175,18 @@ unsafe impl CopyingHelper for NSButtonCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSButtonCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSButtonCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSButtonCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSButtonCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSButtonCell {

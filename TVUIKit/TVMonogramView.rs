@@ -26,40 +26,64 @@ extern_class!(
 );
 
 #[cfg(all(feature = "TVLockupView", feature = "objc2-quartz-core"))]
-unsafe impl CALayerDelegate for TVMonogramView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl NSCoding for TVMonogramView {}
+extern_conformance!(
+    unsafe impl NSCoding for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl NSObjectProtocol for TVMonogramView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIAppearance for TVMonogramView {}
+extern_conformance!(
+    unsafe impl UIAppearance for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIAppearanceContainer for TVMonogramView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UICoordinateSpace for TVMonogramView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIDynamicItem for TVMonogramView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusEnvironment for TVMonogramView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusItem for TVMonogramView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusItemContainer for TVMonogramView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIResponderStandardEditActions for TVMonogramView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UITraitEnvironment for TVMonogramView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVMonogramView {}
+);
 
 #[cfg(feature = "TVLockupView")]
 impl TVMonogramView {

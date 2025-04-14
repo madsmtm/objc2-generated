@@ -13,17 +13,25 @@ extern_class!(
     pub struct MKPointOfInterestFilter;
 );
 
-unsafe impl NSCoding for MKPointOfInterestFilter {}
+extern_conformance!(
+    unsafe impl NSCoding for MKPointOfInterestFilter {}
+);
 
-unsafe impl NSCopying for MKPointOfInterestFilter {}
+extern_conformance!(
+    unsafe impl NSCopying for MKPointOfInterestFilter {}
+);
 
 unsafe impl CopyingHelper for MKPointOfInterestFilter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKPointOfInterestFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKPointOfInterestFilter {}
+);
 
-unsafe impl NSSecureCoding for MKPointOfInterestFilter {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MKPointOfInterestFilter {}
+);
 
 impl MKPointOfInterestFilter {
     extern_methods!(

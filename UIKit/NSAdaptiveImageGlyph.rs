@@ -19,17 +19,25 @@ unsafe impl Send for NSAdaptiveImageGlyph {}
 
 unsafe impl Sync for NSAdaptiveImageGlyph {}
 
-unsafe impl NSCoding for NSAdaptiveImageGlyph {}
+extern_conformance!(
+    unsafe impl NSCoding for NSAdaptiveImageGlyph {}
+);
 
-unsafe impl NSCopying for NSAdaptiveImageGlyph {}
+extern_conformance!(
+    unsafe impl NSCopying for NSAdaptiveImageGlyph {}
+);
 
 unsafe impl CopyingHelper for NSAdaptiveImageGlyph {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSAdaptiveImageGlyph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAdaptiveImageGlyph {}
+);
 
-unsafe impl NSSecureCoding for NSAdaptiveImageGlyph {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSAdaptiveImageGlyph {}
+);
 
 impl NSAdaptiveImageGlyph {
     extern_methods!(

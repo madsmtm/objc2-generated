@@ -70,7 +70,9 @@ extern_class!(
     pub struct NSHapticFeedbackManager;
 );
 
-unsafe impl NSObjectProtocol for NSHapticFeedbackManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSHapticFeedbackManager {}
+);
 
 impl NSHapticFeedbackManager {
     extern_methods!(

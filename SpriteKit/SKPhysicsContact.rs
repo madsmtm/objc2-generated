@@ -14,7 +14,9 @@ extern_class!(
     pub struct SKPhysicsContact;
 );
 
-unsafe impl NSObjectProtocol for SKPhysicsContact {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPhysicsContact {}
+);
 
 impl SKPhysicsContact {
     extern_methods!(

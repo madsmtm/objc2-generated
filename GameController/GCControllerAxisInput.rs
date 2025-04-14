@@ -27,7 +27,9 @@ extern_class!(
 );
 
 #[cfg(feature = "GCControllerElement")]
-unsafe impl NSObjectProtocol for GCControllerAxisInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCControllerAxisInput {}
+);
 
 #[cfg(feature = "GCControllerElement")]
 impl GCControllerAxisInput {

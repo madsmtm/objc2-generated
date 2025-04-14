@@ -78,7 +78,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibility for NSFontPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSFontPanel {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -86,7 +88,9 @@ unsafe impl NSAccessibility for NSFontPanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSFontPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSFontPanel {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -94,7 +98,9 @@ unsafe impl NSAccessibilityElementProtocol for NSFontPanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSFontPanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSFontPanel {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -102,10 +108,14 @@ unsafe impl NSAnimatablePropertyContainer for NSFontPanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAppearanceCustomization for NSFontPanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSFontPanel {}
+);
 
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSCoding for NSFontPanel {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFontPanel {}
+);
 
 #[cfg(all(
     feature = "NSMenu",
@@ -113,10 +123,14 @@ unsafe impl NSCoding for NSFontPanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSMenuItemValidation for NSFontPanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSFontPanel {}
+);
 
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSObjectProtocol for NSFontPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFontPanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -124,7 +138,9 @@ unsafe impl NSObjectProtocol for NSFontPanel {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSFontPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSFontPanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -132,7 +148,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSFontPanel {}
     feature = "NSUserInterfaceValidation",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceValidations for NSFontPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSFontPanel {}
+);
 
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
 impl NSFontPanel {

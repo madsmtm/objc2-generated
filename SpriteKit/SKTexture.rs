@@ -46,17 +46,25 @@ extern_class!(
     pub struct SKTexture;
 );
 
-unsafe impl NSCoding for SKTexture {}
+extern_conformance!(
+    unsafe impl NSCoding for SKTexture {}
+);
 
-unsafe impl NSCopying for SKTexture {}
+extern_conformance!(
+    unsafe impl NSCopying for SKTexture {}
+);
 
 unsafe impl CopyingHelper for SKTexture {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKTexture {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKTexture {}
+);
 
-unsafe impl NSSecureCoding for SKTexture {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKTexture {}
+);
 
 impl SKTexture {
     extern_methods!(

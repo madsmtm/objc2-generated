@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-unsafe impl NSCopying for VNTrackTranslationalImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNTrackTranslationalImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl CopyingHelper for VNTrackTranslationalImageRegistrationRequest {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for VNTrackTranslationalImageRegistrationRequest {
 }
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-unsafe impl NSObjectProtocol for VNTrackTranslationalImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNTrackTranslationalImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 impl VNTrackTranslationalImageRegistrationRequest {

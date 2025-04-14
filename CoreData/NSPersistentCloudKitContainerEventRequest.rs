@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl NSCopying for NSPersistentCloudKitContainerEventRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPersistentCloudKitContainerEventRequest {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl CopyingHelper for NSPersistentCloudKitContainerEventRequest {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for NSPersistentCloudKitContainerEventRequest {
 }
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventRequest {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 impl NSPersistentCloudKitContainerEventRequest {

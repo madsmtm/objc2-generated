@@ -40,7 +40,9 @@ extern_class!(
     feature = "DOMUIEvent",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMKeyboardEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMKeyboardEvent {}
+);
 
 #[cfg(all(
     feature = "DOMEvent",
@@ -58,7 +60,9 @@ unsafe impl CopyingHelper for DOMKeyboardEvent {
     feature = "DOMUIEvent",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMKeyboardEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMKeyboardEvent {}
+);
 
 #[cfg(all(
     feature = "DOMEvent",

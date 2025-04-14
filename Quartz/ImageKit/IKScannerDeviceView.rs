@@ -118,21 +118,37 @@ extern_class!(
     pub struct IKScannerDeviceView;
 );
 
-unsafe impl NSAccessibility for IKScannerDeviceView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IKScannerDeviceView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IKScannerDeviceView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IKScannerDeviceView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IKScannerDeviceView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IKScannerDeviceView {}
+);
 
-unsafe impl NSAppearanceCustomization for IKScannerDeviceView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IKScannerDeviceView {}
+);
 
-unsafe impl NSCoding for IKScannerDeviceView {}
+extern_conformance!(
+    unsafe impl NSCoding for IKScannerDeviceView {}
+);
 
-unsafe impl NSDraggingDestination for IKScannerDeviceView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for IKScannerDeviceView {}
+);
 
-unsafe impl NSObjectProtocol for IKScannerDeviceView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKScannerDeviceView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IKScannerDeviceView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IKScannerDeviceView {}
+);
 
 impl IKScannerDeviceView {
     extern_methods!(

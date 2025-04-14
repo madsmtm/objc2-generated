@@ -20,7 +20,9 @@ unsafe impl Send for HMCharacteristic {}
 
 unsafe impl Sync for HMCharacteristic {}
 
-unsafe impl NSObjectProtocol for HMCharacteristic {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCharacteristic {}
+);
 
 impl HMCharacteristic {
     extern_methods!(

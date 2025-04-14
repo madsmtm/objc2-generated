@@ -76,35 +76,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for PHLivePhotoView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for PHLivePhotoView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for PHLivePhotoView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for PHLivePhotoView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for PHLivePhotoView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for PHLivePhotoView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for PHLivePhotoView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for PHLivePhotoView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for PHLivePhotoView {}
+extern_conformance!(
+    unsafe impl NSCoding for PHLivePhotoView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for PHLivePhotoView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for PHLivePhotoView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for PHLivePhotoView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHLivePhotoView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for PHLivePhotoView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for PHLivePhotoView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

@@ -39,7 +39,9 @@ unsafe impl Send for UIWritingToolsCoordinatorAnimationParameters {}
 
 unsafe impl Sync for UIWritingToolsCoordinatorAnimationParameters {}
 
-unsafe impl NSObjectProtocol for UIWritingToolsCoordinatorAnimationParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWritingToolsCoordinatorAnimationParameters {}
+);
 
 impl UIWritingToolsCoordinatorAnimationParameters {
     extern_methods!(

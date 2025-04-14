@@ -364,17 +364,25 @@ extern_class!(
     pub struct UITextInputPasswordRules;
 );
 
-unsafe impl NSCoding for UITextInputPasswordRules {}
+extern_conformance!(
+    unsafe impl NSCoding for UITextInputPasswordRules {}
+);
 
-unsafe impl NSCopying for UITextInputPasswordRules {}
+extern_conformance!(
+    unsafe impl NSCopying for UITextInputPasswordRules {}
+);
 
 unsafe impl CopyingHelper for UITextInputPasswordRules {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITextInputPasswordRules {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextInputPasswordRules {}
+);
 
-unsafe impl NSSecureCoding for UITextInputPasswordRules {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UITextInputPasswordRules {}
+);
 
 impl UITextInputPasswordRules {
     extern_methods!(

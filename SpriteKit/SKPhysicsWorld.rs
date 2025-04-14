@@ -33,11 +33,17 @@ extern_class!(
     pub struct SKPhysicsWorld;
 );
 
-unsafe impl NSCoding for SKPhysicsWorld {}
+extern_conformance!(
+    unsafe impl NSCoding for SKPhysicsWorld {}
+);
 
-unsafe impl NSObjectProtocol for SKPhysicsWorld {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPhysicsWorld {}
+);
 
-unsafe impl NSSecureCoding for SKPhysicsWorld {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKPhysicsWorld {}
+);
 
 impl SKPhysicsWorld {
     extern_methods!(

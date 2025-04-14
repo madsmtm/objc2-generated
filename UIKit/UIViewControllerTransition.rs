@@ -12,7 +12,9 @@ extern_class!(
     pub struct UIViewControllerTransition;
 );
 
-unsafe impl NSObjectProtocol for UIViewControllerTransition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIViewControllerTransition {}
+);
 
 impl UIViewControllerTransition {
     extern_methods!(
@@ -86,7 +88,9 @@ extern_class!(
     pub struct UIZoomTransitionSourceViewProviderContext;
 );
 
-unsafe impl NSObjectProtocol for UIZoomTransitionSourceViewProviderContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIZoomTransitionSourceViewProviderContext {}
+);
 
 impl UIZoomTransitionSourceViewProviderContext {
     extern_methods!(

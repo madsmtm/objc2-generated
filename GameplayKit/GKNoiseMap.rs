@@ -25,7 +25,9 @@ extern_class!(
     pub struct GKNoiseMap;
 );
 
-unsafe impl NSObjectProtocol for GKNoiseMap {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKNoiseMap {}
+);
 
 impl GKNoiseMap {
     extern_methods!(

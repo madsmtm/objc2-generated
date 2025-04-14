@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZLinuxRosettaCachingOptions")]
-unsafe impl NSObjectProtocol for VZLinuxRosettaAbstractSocketCachingOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZLinuxRosettaAbstractSocketCachingOptions {}
+);
 
 #[cfg(feature = "VZLinuxRosettaCachingOptions")]
 impl VZLinuxRosettaAbstractSocketCachingOptions {

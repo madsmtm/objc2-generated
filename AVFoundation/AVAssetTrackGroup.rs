@@ -28,13 +28,17 @@ unsafe impl Send for AVAssetTrackGroup {}
 
 unsafe impl Sync for AVAssetTrackGroup {}
 
-unsafe impl NSCopying for AVAssetTrackGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAssetTrackGroup {}
+);
 
 unsafe impl CopyingHelper for AVAssetTrackGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAssetTrackGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetTrackGroup {}
+);
 
 impl AVAssetTrackGroup {
     extern_methods!(

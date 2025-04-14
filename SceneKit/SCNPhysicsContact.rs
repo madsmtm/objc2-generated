@@ -16,7 +16,9 @@ extern_class!(
     pub struct SCNPhysicsContact;
 );
 
-unsafe impl NSObjectProtocol for SCNPhysicsContact {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsContact {}
+);
 
 impl SCNPhysicsContact {
     extern_methods!(

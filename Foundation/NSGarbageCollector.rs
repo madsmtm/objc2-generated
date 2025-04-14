@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSGarbageCollector;
 );
 
-unsafe impl NSObjectProtocol for NSGarbageCollector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGarbageCollector {}
+);
 
 impl NSGarbageCollector {
     extern_methods!(

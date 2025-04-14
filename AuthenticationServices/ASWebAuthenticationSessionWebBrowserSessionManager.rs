@@ -13,7 +13,9 @@ extern_class!(
     pub struct ASWebAuthenticationSessionWebBrowserSessionManager;
 );
 
-unsafe impl NSObjectProtocol for ASWebAuthenticationSessionWebBrowserSessionManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASWebAuthenticationSessionWebBrowserSessionManager {}
+);
 
 impl ASWebAuthenticationSessionWebBrowserSessionManager {
     extern_methods!(

@@ -15,11 +15,17 @@ extern_class!(
     pub struct MLMultiArrayConstraint;
 );
 
-unsafe impl NSCoding for MLMultiArrayConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for MLMultiArrayConstraint {}
+);
 
-unsafe impl NSObjectProtocol for MLMultiArrayConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLMultiArrayConstraint {}
+);
 
-unsafe impl NSSecureCoding for MLMultiArrayConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLMultiArrayConstraint {}
+);
 
 impl MLMultiArrayConstraint {
     extern_methods!(

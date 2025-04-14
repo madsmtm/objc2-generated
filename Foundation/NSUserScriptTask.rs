@@ -17,7 +17,9 @@ extern_class!(
     pub struct NSUserScriptTask;
 );
 
-unsafe impl NSObjectProtocol for NSUserScriptTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUserScriptTask {}
+);
 
 impl NSUserScriptTask {
     extern_methods!(
@@ -68,7 +70,9 @@ extern_class!(
     pub struct NSUserUnixTask;
 );
 
-unsafe impl NSObjectProtocol for NSUserUnixTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUserUnixTask {}
+);
 
 impl NSUserUnixTask {
     extern_methods!(
@@ -163,7 +167,9 @@ extern_class!(
     pub struct NSUserAppleScriptTask;
 );
 
-unsafe impl NSObjectProtocol for NSUserAppleScriptTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUserAppleScriptTask {}
+);
 
 impl NSUserAppleScriptTask {
     extern_methods!(
@@ -220,7 +226,9 @@ extern_class!(
     pub struct NSUserAutomatorTask;
 );
 
-unsafe impl NSObjectProtocol for NSUserAutomatorTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUserAutomatorTask {}
+);
 
 impl NSUserAutomatorTask {
     extern_methods!(

@@ -16,7 +16,9 @@ extern_class!(
     pub struct TKTokenDriverConfiguration;
 );
 
-unsafe impl NSObjectProtocol for TKTokenDriverConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenDriverConfiguration {}
+);
 
 impl TKTokenDriverConfiguration {
     extern_methods!(
@@ -81,7 +83,9 @@ extern_class!(
     pub struct TKTokenConfiguration;
 );
 
-unsafe impl NSObjectProtocol for TKTokenConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenConfiguration {}
+);
 
 impl TKTokenConfiguration {
     extern_methods!(

@@ -13,17 +13,25 @@ extern_class!(
     pub struct INBalanceAmount;
 );
 
-unsafe impl NSCoding for INBalanceAmount {}
+extern_conformance!(
+    unsafe impl NSCoding for INBalanceAmount {}
+);
 
-unsafe impl NSCopying for INBalanceAmount {}
+extern_conformance!(
+    unsafe impl NSCopying for INBalanceAmount {}
+);
 
 unsafe impl CopyingHelper for INBalanceAmount {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INBalanceAmount {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INBalanceAmount {}
+);
 
-unsafe impl NSSecureCoding for INBalanceAmount {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INBalanceAmount {}
+);
 
 impl INBalanceAmount {
     extern_methods!(

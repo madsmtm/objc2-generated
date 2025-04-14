@@ -21,29 +21,53 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-quartz-core")]
-unsafe impl CALayerDelegate for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for BELayerHierarchyHostingView {}
+);
 
-unsafe impl NSCoding for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl NSCoding for BELayerHierarchyHostingView {}
+);
 
-unsafe impl NSObjectProtocol for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BELayerHierarchyHostingView {}
+);
 
-unsafe impl UIAppearance for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl UIAppearance for BELayerHierarchyHostingView {}
+);
 
-unsafe impl UIAppearanceContainer for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for BELayerHierarchyHostingView {}
+);
 
-unsafe impl UICoordinateSpace for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for BELayerHierarchyHostingView {}
+);
 
-unsafe impl UIDynamicItem for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for BELayerHierarchyHostingView {}
+);
 
-unsafe impl UIFocusEnvironment for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for BELayerHierarchyHostingView {}
+);
 
-unsafe impl UIFocusItem for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for BELayerHierarchyHostingView {}
+);
 
-unsafe impl UIFocusItemContainer for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for BELayerHierarchyHostingView {}
+);
 
-unsafe impl UIResponderStandardEditActions for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for BELayerHierarchyHostingView {}
+);
 
-unsafe impl UITraitEnvironment for BELayerHierarchyHostingView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for BELayerHierarchyHostingView {}
+);
 
 impl BELayerHierarchyHostingView {
     extern_methods!(

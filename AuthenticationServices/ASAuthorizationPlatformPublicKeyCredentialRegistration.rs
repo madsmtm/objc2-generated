@@ -14,35 +14,49 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationCredential")]
-unsafe impl ASAuthorizationCredential for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl ASAuthorizationCredential for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+);
 
 #[cfg(all(
     feature = "ASAuthorizationCredential",
     feature = "ASAuthorizationPublicKeyCredentialRegistration",
     feature = "ASPublicKeyCredential"
 ))]
-unsafe impl ASAuthorizationPublicKeyCredentialRegistration
-    for ASAuthorizationPlatformPublicKeyCredentialRegistration
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationPublicKeyCredentialRegistration
+        for ASAuthorizationPlatformPublicKeyCredentialRegistration
+    {
+    }
+);
 
 #[cfg(all(
     feature = "ASAuthorizationCredential",
     feature = "ASPublicKeyCredential"
 ))]
-unsafe impl ASPublicKeyCredential for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl ASPublicKeyCredential for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+);
 
-unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+);
 
-unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+);
 
 unsafe impl CopyingHelper for ASAuthorizationPlatformPublicKeyCredentialRegistration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+);
 
-unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialRegistration {}
+);
 
 impl ASAuthorizationPlatformPublicKeyCredentialRegistration {
     extern_methods!(

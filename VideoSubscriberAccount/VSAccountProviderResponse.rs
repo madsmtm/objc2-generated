@@ -37,7 +37,9 @@ extern_class!(
     pub struct VSAccountProviderResponse;
 );
 
-unsafe impl NSObjectProtocol for VSAccountProviderResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VSAccountProviderResponse {}
+);
 
 impl VSAccountProviderResponse {
     extern_methods!(

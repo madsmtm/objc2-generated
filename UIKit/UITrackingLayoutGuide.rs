@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UILayoutGuide")]
-unsafe impl NSCoding for UITrackingLayoutGuide {}
+extern_conformance!(
+    unsafe impl NSCoding for UITrackingLayoutGuide {}
+);
 
 #[cfg(feature = "UILayoutGuide")]
-unsafe impl NSObjectProtocol for UITrackingLayoutGuide {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITrackingLayoutGuide {}
+);
 
 #[cfg(feature = "UILayoutGuide")]
 impl UITrackingLayoutGuide {

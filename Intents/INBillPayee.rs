@@ -14,17 +14,25 @@ extern_class!(
     pub struct INBillPayee;
 );
 
-unsafe impl NSCoding for INBillPayee {}
+extern_conformance!(
+    unsafe impl NSCoding for INBillPayee {}
+);
 
-unsafe impl NSCopying for INBillPayee {}
+extern_conformance!(
+    unsafe impl NSCopying for INBillPayee {}
+);
 
 unsafe impl CopyingHelper for INBillPayee {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INBillPayee {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INBillPayee {}
+);
 
-unsafe impl NSSecureCoding for INBillPayee {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INBillPayee {}
+);
 
 impl INBillPayee {
     extern_methods!(

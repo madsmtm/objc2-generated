@@ -53,10 +53,14 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for CPTemplateApplicationInstrumentClusterScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPTemplateApplicationInstrumentClusterScene {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for CPTemplateApplicationInstrumentClusterScene {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for CPTemplateApplicationInstrumentClusterScene {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl CPTemplateApplicationInstrumentClusterScene {

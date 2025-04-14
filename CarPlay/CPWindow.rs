@@ -24,40 +24,64 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2-quartz-core", feature = "objc2-ui-kit"))]
-unsafe impl CALayerDelegate for CPWindow {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for CPWindow {}
+extern_conformance!(
+    unsafe impl NSCoding for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for CPWindow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearance for CPWindow {}
+extern_conformance!(
+    unsafe impl UIAppearance for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for CPWindow {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UICoordinateSpace for CPWindow {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIDynamicItem for CPWindow {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for CPWindow {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItem for CPWindow {}
+extern_conformance!(
+    unsafe impl UIFocusItem for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItemContainer for CPWindow {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for CPWindow {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for CPWindow {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for CPWindow {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl CPWindow {

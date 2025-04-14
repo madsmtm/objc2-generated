@@ -18,24 +18,34 @@ extern_class!(
     pub struct CNGroup;
 );
 
-unsafe impl NSCoding for CNGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for CNGroup {}
+);
 
-unsafe impl NSCopying for CNGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for CNGroup {}
+);
 
 unsafe impl CopyingHelper for CNGroup {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for CNGroup {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CNGroup {}
+);
 
 #[cfg(feature = "CNMutableGroup")]
 unsafe impl MutableCopyingHelper for CNGroup {
     type Result = CNMutableGroup;
 }
 
-unsafe impl NSObjectProtocol for CNGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNGroup {}
+);
 
-unsafe impl NSSecureCoding for CNGroup {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNGroup {}
+);
 
 impl CNGroup {
     extern_methods!(

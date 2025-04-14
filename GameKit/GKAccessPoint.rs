@@ -41,7 +41,9 @@ extern_class!(
     pub struct GKAccessPoint;
 );
 
-unsafe impl NSObjectProtocol for GKAccessPoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKAccessPoint {}
+);
 
 impl GKAccessPoint {
     extern_methods!(

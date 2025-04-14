@@ -13,7 +13,9 @@ extern_class!(
     pub struct SFSafariPageProperties;
 );
 
-unsafe impl NSObjectProtocol for SFSafariPageProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSafariPageProperties {}
+);
 
 impl SFSafariPageProperties {
     extern_methods!(

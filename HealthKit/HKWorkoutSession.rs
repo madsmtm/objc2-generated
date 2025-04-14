@@ -72,11 +72,17 @@ unsafe impl Send for HKWorkoutSession {}
 
 unsafe impl Sync for HKWorkoutSession {}
 
-unsafe impl NSCoding for HKWorkoutSession {}
+extern_conformance!(
+    unsafe impl NSCoding for HKWorkoutSession {}
+);
 
-unsafe impl NSObjectProtocol for HKWorkoutSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutSession {}
+);
 
-unsafe impl NSSecureCoding for HKWorkoutSession {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKWorkoutSession {}
+);
 
 impl HKWorkoutSession {
     extern_methods!(

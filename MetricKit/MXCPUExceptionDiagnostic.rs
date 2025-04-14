@@ -21,13 +21,19 @@ extern_class!(
 );
 
 #[cfg(feature = "MXDiagnostic")]
-unsafe impl NSCoding for MXCPUExceptionDiagnostic {}
+extern_conformance!(
+    unsafe impl NSCoding for MXCPUExceptionDiagnostic {}
+);
 
 #[cfg(feature = "MXDiagnostic")]
-unsafe impl NSObjectProtocol for MXCPUExceptionDiagnostic {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXCPUExceptionDiagnostic {}
+);
 
 #[cfg(feature = "MXDiagnostic")]
-unsafe impl NSSecureCoding for MXCPUExceptionDiagnostic {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXCPUExceptionDiagnostic {}
+);
 
 #[cfg(feature = "MXDiagnostic")]
 impl MXCPUExceptionDiagnostic {

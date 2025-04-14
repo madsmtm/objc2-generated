@@ -17,13 +17,17 @@ extern_class!(
     pub struct PHAssetResourceCreationOptions;
 );
 
-unsafe impl NSCopying for PHAssetResourceCreationOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for PHAssetResourceCreationOptions {}
+);
 
 unsafe impl CopyingHelper for PHAssetResourceCreationOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHAssetResourceCreationOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHAssetResourceCreationOptions {}
+);
 
 impl PHAssetResourceCreationOptions {
     extern_methods!(
@@ -78,7 +82,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
-unsafe impl NSObjectProtocol for PHAssetCreationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHAssetCreationRequest {}
+);
 
 #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
 impl PHAssetCreationRequest {

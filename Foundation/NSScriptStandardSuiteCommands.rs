@@ -37,10 +37,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSCloneCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCloneCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSCloneCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCloneCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSCloneCommand {
@@ -102,10 +106,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSCloseCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCloseCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSCloseCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCloseCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSCloseCommand {
@@ -161,10 +169,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSCountCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCountCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSCountCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCountCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSCountCommand {
@@ -216,10 +228,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSCreateCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCreateCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSCreateCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCreateCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSCreateCommand {
@@ -281,10 +297,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSDeleteCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDeleteCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSDeleteCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDeleteCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSDeleteCommand {
@@ -346,10 +366,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSExistsCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSExistsCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSExistsCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSExistsCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSExistsCommand {
@@ -401,10 +425,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSGetCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSGetCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSGetCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGetCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSGetCommand {
@@ -456,10 +484,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSMoveCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMoveCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSMoveCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMoveCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSMoveCommand {
@@ -521,10 +553,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSQuitCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSQuitCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSQuitCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSQuitCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSQuitCommand {
@@ -580,10 +616,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSScriptCommand"))]
-unsafe impl NSCoding for NSSetCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSetCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
-unsafe impl NSObjectProtocol for NSSetCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSetCommand {}
+);
 
 #[cfg(feature = "NSScriptCommand")]
 impl NSSetCommand {

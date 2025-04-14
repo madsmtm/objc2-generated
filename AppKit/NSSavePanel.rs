@@ -24,7 +24,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibility for NSSavePanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSavePanel {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -32,7 +34,9 @@ unsafe impl NSAccessibility for NSSavePanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSavePanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSavePanel {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -40,7 +44,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSavePanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSSavePanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSSavePanel {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -48,10 +54,14 @@ unsafe impl NSAnimatablePropertyContainer for NSSavePanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAppearanceCustomization for NSSavePanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSSavePanel {}
+);
 
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSCoding for NSSavePanel {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSavePanel {}
+);
 
 #[cfg(all(
     feature = "NSMenu",
@@ -59,10 +69,14 @@ unsafe impl NSCoding for NSSavePanel {}
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSMenuItemValidation for NSSavePanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSSavePanel {}
+);
 
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSObjectProtocol for NSSavePanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSavePanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -70,7 +84,9 @@ unsafe impl NSObjectProtocol for NSSavePanel {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSavePanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSavePanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -78,7 +94,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSSavePanel {}
     feature = "NSUserInterfaceValidation",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceValidations for NSSavePanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSSavePanel {}
+);
 
 #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
 impl NSSavePanel {

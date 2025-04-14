@@ -70,7 +70,9 @@ unsafe impl Send for UIWritingToolsCoordinatorContext {}
 
 unsafe impl Sync for UIWritingToolsCoordinatorContext {}
 
-unsafe impl NSObjectProtocol for UIWritingToolsCoordinatorContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWritingToolsCoordinatorContext {}
+);
 
 impl UIWritingToolsCoordinatorContext {
     extern_methods!(

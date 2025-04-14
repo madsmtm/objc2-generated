@@ -52,19 +52,25 @@ extern_class!(
     pub struct AVVideoComposition;
 );
 
-unsafe impl NSCopying for AVVideoComposition {}
+extern_conformance!(
+    unsafe impl NSCopying for AVVideoComposition {}
+);
 
 unsafe impl CopyingHelper for AVVideoComposition {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVVideoComposition {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVVideoComposition {}
+);
 
 unsafe impl MutableCopyingHelper for AVVideoComposition {
     type Result = AVMutableVideoComposition;
 }
 
-unsafe impl NSObjectProtocol for AVVideoComposition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVVideoComposition {}
+);
 
 impl AVVideoComposition {
     extern_methods!(
@@ -307,19 +313,25 @@ extern_class!(
     pub struct AVMutableVideoComposition;
 );
 
-unsafe impl NSCopying for AVMutableVideoComposition {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableVideoComposition {}
+);
 
 unsafe impl CopyingHelper for AVMutableVideoComposition {
     type Result = AVVideoComposition;
 }
 
-unsafe impl NSMutableCopying for AVMutableVideoComposition {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableVideoComposition {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableVideoComposition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableVideoComposition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableVideoComposition {}
+);
 
 impl AVMutableVideoComposition {
     extern_methods!(
@@ -705,25 +717,37 @@ extern_class!(
 );
 
 #[cfg(feature = "AVVideoCompositing")]
-unsafe impl AVVideoCompositionInstructionProtocol for AVVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl AVVideoCompositionInstructionProtocol for AVVideoCompositionInstruction {}
+);
 
-unsafe impl NSCoding for AVVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSCoding for AVVideoCompositionInstruction {}
+);
 
-unsafe impl NSCopying for AVVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSCopying for AVVideoCompositionInstruction {}
+);
 
 unsafe impl CopyingHelper for AVVideoCompositionInstruction {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVVideoCompositionInstruction {}
+);
 
 unsafe impl MutableCopyingHelper for AVVideoCompositionInstruction {
     type Result = AVMutableVideoCompositionInstruction;
 }
 
-unsafe impl NSObjectProtocol for AVVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVVideoCompositionInstruction {}
+);
 
-unsafe impl NSSecureCoding for AVVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVVideoCompositionInstruction {}
+);
 
 impl AVVideoCompositionInstruction {
     extern_methods!(
@@ -783,25 +807,37 @@ extern_class!(
 );
 
 #[cfg(feature = "AVVideoCompositing")]
-unsafe impl AVVideoCompositionInstructionProtocol for AVMutableVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl AVVideoCompositionInstructionProtocol for AVMutableVideoCompositionInstruction {}
+);
 
-unsafe impl NSCoding for AVMutableVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMutableVideoCompositionInstruction {}
+);
 
-unsafe impl NSCopying for AVMutableVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableVideoCompositionInstruction {}
+);
 
 unsafe impl CopyingHelper for AVMutableVideoCompositionInstruction {
     type Result = AVVideoCompositionInstruction;
 }
 
-unsafe impl NSMutableCopying for AVMutableVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableVideoCompositionInstruction {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableVideoCompositionInstruction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableVideoCompositionInstruction {}
+);
 
-unsafe impl NSSecureCoding for AVMutableVideoCompositionInstruction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMutableVideoCompositionInstruction {}
+);
 
 impl AVMutableVideoCompositionInstruction {
     extern_methods!(
@@ -888,23 +924,33 @@ extern_class!(
     pub struct AVVideoCompositionLayerInstruction;
 );
 
-unsafe impl NSCoding for AVVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSCoding for AVVideoCompositionLayerInstruction {}
+);
 
-unsafe impl NSCopying for AVVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSCopying for AVVideoCompositionLayerInstruction {}
+);
 
 unsafe impl CopyingHelper for AVVideoCompositionLayerInstruction {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVVideoCompositionLayerInstruction {}
+);
 
 unsafe impl MutableCopyingHelper for AVVideoCompositionLayerInstruction {
     type Result = AVMutableVideoCompositionLayerInstruction;
 }
 
-unsafe impl NSObjectProtocol for AVVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVVideoCompositionLayerInstruction {}
+);
 
-unsafe impl NSSecureCoding for AVVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVVideoCompositionLayerInstruction {}
+);
 
 impl AVVideoCompositionLayerInstruction {
     extern_methods!(
@@ -968,23 +1014,33 @@ extern_class!(
     pub struct AVMutableVideoCompositionLayerInstruction;
 );
 
-unsafe impl NSCoding for AVMutableVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMutableVideoCompositionLayerInstruction {}
+);
 
-unsafe impl NSCopying for AVMutableVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableVideoCompositionLayerInstruction {}
+);
 
 unsafe impl CopyingHelper for AVMutableVideoCompositionLayerInstruction {
     type Result = AVVideoCompositionInstruction;
 }
 
-unsafe impl NSMutableCopying for AVMutableVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableVideoCompositionLayerInstruction {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableVideoCompositionLayerInstruction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableVideoCompositionLayerInstruction {}
+);
 
-unsafe impl NSSecureCoding for AVMutableVideoCompositionLayerInstruction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMutableVideoCompositionLayerInstruction {}
+);
 
 impl AVMutableVideoCompositionLayerInstruction {
     extern_methods!(
@@ -1084,7 +1140,9 @@ extern_class!(
     pub struct AVVideoCompositionCoreAnimationTool;
 );
 
-unsafe impl NSObjectProtocol for AVVideoCompositionCoreAnimationTool {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVVideoCompositionCoreAnimationTool {}
+);
 
 impl AVVideoCompositionCoreAnimationTool {
     extern_methods!(

@@ -73,20 +73,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSTextCheckingResult {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextCheckingResult {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSTextCheckingResult {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTextCheckingResult {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSTextCheckingResult {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTextCheckingResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextCheckingResult {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSTextCheckingResult {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextCheckingResult {}
+);
 
 impl NSTextCheckingResult {
     extern_methods!(

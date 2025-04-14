@@ -41,4 +41,6 @@ impl private_SCNNodeGameplayKit::Sealed for SCNNode {}
 unsafe impl SCNNodeGameplayKit for SCNNode {}
 
 #[cfg(all(feature = "GKScene", feature = "objc2-scene-kit"))]
-unsafe impl GKSceneRootNodeType for SCNScene {}
+extern_conformance!(
+    unsafe impl GKSceneRootNodeType for SCNScene {}
+);

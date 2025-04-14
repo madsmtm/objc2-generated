@@ -248,9 +248,13 @@ extern_class!(
     pub struct NFCReaderSession;
 );
 
-unsafe impl NFCReaderSessionProtocol for NFCReaderSession {}
+extern_conformance!(
+    unsafe impl NFCReaderSessionProtocol for NFCReaderSession {}
+);
 
-unsafe impl NSObjectProtocol for NFCReaderSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCReaderSession {}
+);
 
 impl NFCReaderSession {
     extern_methods!(
@@ -372,13 +376,17 @@ extern_class!(
     pub struct NFCTagCommandConfiguration;
 );
 
-unsafe impl NSCopying for NFCTagCommandConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NFCTagCommandConfiguration {}
+);
 
 unsafe impl CopyingHelper for NFCTagCommandConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NFCTagCommandConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCTagCommandConfiguration {}
+);
 
 impl NFCTagCommandConfiguration {
     extern_methods!(
@@ -528,9 +536,13 @@ extern_class!(
     pub struct NFCTagReaderSession;
 );
 
-unsafe impl NFCReaderSessionProtocol for NFCTagReaderSession {}
+extern_conformance!(
+    unsafe impl NFCReaderSessionProtocol for NFCTagReaderSession {}
+);
 
-unsafe impl NSObjectProtocol for NFCTagReaderSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCTagReaderSession {}
+);
 
 impl NFCTagReaderSession {
     extern_methods!(
@@ -722,9 +734,13 @@ extern_class!(
     pub struct NFCNDEFReaderSession;
 );
 
-unsafe impl NFCReaderSessionProtocol for NFCNDEFReaderSession {}
+extern_conformance!(
+    unsafe impl NFCReaderSessionProtocol for NFCNDEFReaderSession {}
+);
 
-unsafe impl NSObjectProtocol for NFCNDEFReaderSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCNDEFReaderSession {}
+);
 
 impl NFCNDEFReaderSession {
     extern_methods!(
@@ -933,13 +949,17 @@ extern_class!(
     pub struct NFCISO15693CustomCommandConfiguration;
 );
 
-unsafe impl NSCopying for NFCISO15693CustomCommandConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NFCISO15693CustomCommandConfiguration {}
+);
 
 unsafe impl CopyingHelper for NFCISO15693CustomCommandConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NFCISO15693CustomCommandConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCISO15693CustomCommandConfiguration {}
+);
 
 impl NFCISO15693CustomCommandConfiguration {
     extern_methods!(
@@ -1034,13 +1054,17 @@ extern_class!(
     pub struct NFCISO15693ReadMultipleBlocksConfiguration;
 );
 
-unsafe impl NSCopying for NFCISO15693ReadMultipleBlocksConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NFCISO15693ReadMultipleBlocksConfiguration {}
+);
 
 unsafe impl CopyingHelper for NFCISO15693ReadMultipleBlocksConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NFCISO15693ReadMultipleBlocksConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCISO15693ReadMultipleBlocksConfiguration {}
+);
 
 impl NFCISO15693ReadMultipleBlocksConfiguration {
     extern_methods!(
@@ -2023,9 +2047,13 @@ extern_class!(
     pub struct NFCISO15693ReaderSession;
 );
 
-unsafe impl NFCReaderSessionProtocol for NFCISO15693ReaderSession {}
+extern_conformance!(
+    unsafe impl NFCReaderSessionProtocol for NFCISO15693ReaderSession {}
+);
 
-unsafe impl NSObjectProtocol for NFCISO15693ReaderSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCISO15693ReaderSession {}
+);
 
 impl NFCISO15693ReaderSession {
     extern_methods!(
@@ -2537,13 +2565,17 @@ extern_class!(
     pub struct NFCISO7816APDU;
 );
 
-unsafe impl NSCopying for NFCISO7816APDU {}
+extern_conformance!(
+    unsafe impl NSCopying for NFCISO7816APDU {}
+);
 
 unsafe impl CopyingHelper for NFCISO7816APDU {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NFCISO7816APDU {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCISO7816APDU {}
+);
 
 impl NFCISO7816APDU {
     extern_methods!(
@@ -2858,11 +2890,17 @@ extern_class!(
     pub struct NFCNDEFPayload;
 );
 
-unsafe impl NSCoding for NFCNDEFPayload {}
+extern_conformance!(
+    unsafe impl NSCoding for NFCNDEFPayload {}
+);
 
-unsafe impl NSObjectProtocol for NFCNDEFPayload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCNDEFPayload {}
+);
 
-unsafe impl NSSecureCoding for NFCNDEFPayload {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NFCNDEFPayload {}
+);
 
 impl NFCNDEFPayload {
     extern_methods!(
@@ -3020,11 +3058,17 @@ extern_class!(
     pub struct NFCNDEFMessage;
 );
 
-unsafe impl NSCoding for NFCNDEFMessage {}
+extern_conformance!(
+    unsafe impl NSCoding for NFCNDEFMessage {}
+);
 
-unsafe impl NSObjectProtocol for NFCNDEFMessage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCNDEFMessage {}
+);
 
-unsafe impl NSSecureCoding for NFCNDEFMessage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NFCNDEFMessage {}
+);
 
 impl NFCNDEFMessage {
     extern_methods!(
@@ -3108,13 +3152,17 @@ extern_class!(
     pub struct NFCVASCommandConfiguration;
 );
 
-unsafe impl NSCopying for NFCVASCommandConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NFCVASCommandConfiguration {}
+);
 
 unsafe impl CopyingHelper for NFCVASCommandConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NFCVASCommandConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCVASCommandConfiguration {}
+);
 
 impl NFCVASCommandConfiguration {
     extern_methods!(
@@ -3246,13 +3294,17 @@ extern_class!(
     pub struct NFCVASResponse;
 );
 
-unsafe impl NSCopying for NFCVASResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for NFCVASResponse {}
+);
 
 unsafe impl CopyingHelper for NFCVASResponse {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NFCVASResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCVASResponse {}
+);
 
 impl NFCVASResponse {
     extern_methods!(
@@ -3365,9 +3417,13 @@ extern_class!(
     pub struct NFCVASReaderSession;
 );
 
-unsafe impl NFCReaderSessionProtocol for NFCVASReaderSession {}
+extern_conformance!(
+    unsafe impl NFCReaderSessionProtocol for NFCVASReaderSession {}
+);
 
-unsafe impl NSObjectProtocol for NFCVASReaderSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCVASReaderSession {}
+);
 
 impl NFCVASReaderSession {
     extern_methods!(

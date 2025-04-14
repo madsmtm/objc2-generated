@@ -17,13 +17,17 @@ extern_class!(
     pub struct CLKGaugeProvider;
 );
 
-unsafe impl NSCopying for CLKGaugeProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKGaugeProvider {}
+);
 
 unsafe impl CopyingHelper for CLKGaugeProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKGaugeProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKGaugeProvider {}
+);
 
 impl CLKGaugeProvider {
     extern_methods!(
@@ -76,13 +80,17 @@ extern_class!(
     pub struct CLKSimpleGaugeProvider;
 );
 
-unsafe impl NSCopying for CLKSimpleGaugeProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKSimpleGaugeProvider {}
+);
 
 unsafe impl CopyingHelper for CLKSimpleGaugeProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKSimpleGaugeProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKSimpleGaugeProvider {}
+);
 
 impl CLKSimpleGaugeProvider {
     extern_methods!(
@@ -137,13 +145,17 @@ extern_class!(
     pub struct CLKTimeIntervalGaugeProvider;
 );
 
-unsafe impl NSCopying for CLKTimeIntervalGaugeProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKTimeIntervalGaugeProvider {}
+);
 
 unsafe impl CopyingHelper for CLKTimeIntervalGaugeProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKTimeIntervalGaugeProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKTimeIntervalGaugeProvider {}
+);
 
 impl CLKTimeIntervalGaugeProvider {
     extern_methods!(

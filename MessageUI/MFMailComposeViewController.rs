@@ -127,25 +127,39 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for MFMailComposeViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for MFMailComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for MFMailComposeViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MFMailComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for MFMailComposeViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for MFMailComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for MFMailComposeViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for MFMailComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for MFMailComposeViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for MFMailComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for MFMailComposeViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for MFMailComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for MFMailComposeViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for MFMailComposeViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl MFMailComposeViewController {

@@ -96,35 +96,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for WKWebView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for WKWebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for WKWebView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for WKWebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for WKWebView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for WKWebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for WKWebView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for WKWebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for WKWebView {}
+extern_conformance!(
+    unsafe impl NSCoding for WKWebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for WKWebView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for WKWebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for WKWebView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for WKWebView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for WKWebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
@@ -1071,7 +1087,9 @@ impl WKWebView {
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceValidations for WKWebView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for WKWebView {}
+);
 
 /// WKNSTextFinderClient.
 #[cfg(feature = "objc2-app-kit")]
@@ -1082,7 +1100,9 @@ impl WKWebView {
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSTextFinderClient for WKWebView {}
+extern_conformance!(
+    unsafe impl NSTextFinderClient for WKWebView {}
+);
 
 /// WKDeprecated.
 #[cfg(feature = "objc2-app-kit")]

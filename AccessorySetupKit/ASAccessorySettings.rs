@@ -18,7 +18,9 @@ unsafe impl Send for ASAccessorySettings {}
 
 unsafe impl Sync for ASAccessorySettings {}
 
-unsafe impl NSObjectProtocol for ASAccessorySettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAccessorySettings {}
+);
 
 impl ASAccessorySettings {
     extern_methods!(

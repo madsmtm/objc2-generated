@@ -24,29 +24,53 @@ extern_class!(
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for HKActivityRingView {}
+);
 
-unsafe impl NSCoding for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl NSCoding for HKActivityRingView {}
+);
 
-unsafe impl NSObjectProtocol for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKActivityRingView {}
+);
 
-unsafe impl UIAppearance for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl UIAppearance for HKActivityRingView {}
+);
 
-unsafe impl UIAppearanceContainer for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for HKActivityRingView {}
+);
 
-unsafe impl UICoordinateSpace for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for HKActivityRingView {}
+);
 
-unsafe impl UIDynamicItem for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for HKActivityRingView {}
+);
 
-unsafe impl UIFocusEnvironment for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for HKActivityRingView {}
+);
 
-unsafe impl UIFocusItem for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for HKActivityRingView {}
+);
 
-unsafe impl UIFocusItemContainer for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for HKActivityRingView {}
+);
 
-unsafe impl UIResponderStandardEditActions for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for HKActivityRingView {}
+);
 
-unsafe impl UITraitEnvironment for HKActivityRingView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for HKActivityRingView {}
+);
 
 impl HKActivityRingView {
     extern_methods!(

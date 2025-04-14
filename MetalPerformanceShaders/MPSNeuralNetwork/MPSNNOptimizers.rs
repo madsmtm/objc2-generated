@@ -49,7 +49,9 @@ extern_class!(
     pub struct MPSNNOptimizerDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPSNNOptimizerDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNOptimizerDescriptor {}
+);
 
 impl MPSNNOptimizerDescriptor {
     extern_methods!(
@@ -207,10 +209,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNOptimizer {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNOptimizer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNOptimizer {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNOptimizer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNOptimizer {
@@ -218,10 +224,14 @@ unsafe impl CopyingHelper for MPSNNOptimizer {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNOptimizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNOptimizer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNOptimizer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNOptimizer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNOptimizer {
@@ -369,10 +379,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNOptimizerStochasticGradientDescent {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNOptimizerStochasticGradientDescent {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNOptimizerStochasticGradientDescent {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNOptimizerStochasticGradientDescent {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNOptimizerStochasticGradientDescent {
@@ -380,10 +394,14 @@ unsafe impl CopyingHelper for MPSNNOptimizerStochasticGradientDescent {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNOptimizerStochasticGradientDescent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNOptimizerStochasticGradientDescent {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNOptimizerStochasticGradientDescent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNOptimizerStochasticGradientDescent {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNOptimizerStochasticGradientDescent {
@@ -747,10 +765,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNOptimizerRMSProp {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNOptimizerRMSProp {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNOptimizerRMSProp {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNOptimizerRMSProp {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNOptimizerRMSProp {
@@ -758,10 +780,14 @@ unsafe impl CopyingHelper for MPSNNOptimizerRMSProp {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNOptimizerRMSProp {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNOptimizerRMSProp {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNOptimizerRMSProp {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNOptimizerRMSProp {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNOptimizerRMSProp {
@@ -1089,10 +1115,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNOptimizerAdam {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNOptimizerAdam {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNOptimizerAdam {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNOptimizerAdam {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNOptimizerAdam {
@@ -1100,10 +1130,14 @@ unsafe impl CopyingHelper for MPSNNOptimizerAdam {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNOptimizerAdam {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNOptimizerAdam {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNOptimizerAdam {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNOptimizerAdam {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNOptimizerAdam {

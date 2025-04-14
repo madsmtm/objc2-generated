@@ -43,10 +43,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INShareFocusStatusIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INShareFocusStatusIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INShareFocusStatusIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INShareFocusStatusIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INShareFocusStatusIntentResponse {
@@ -54,10 +58,14 @@ unsafe impl CopyingHelper for INShareFocusStatusIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INShareFocusStatusIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INShareFocusStatusIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INShareFocusStatusIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INShareFocusStatusIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INShareFocusStatusIntentResponse {

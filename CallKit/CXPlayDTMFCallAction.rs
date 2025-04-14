@@ -38,10 +38,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-unsafe impl NSCoding for CXPlayDTMFCallAction {}
+extern_conformance!(
+    unsafe impl NSCoding for CXPlayDTMFCallAction {}
+);
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-unsafe impl NSCopying for CXPlayDTMFCallAction {}
+extern_conformance!(
+    unsafe impl NSCopying for CXPlayDTMFCallAction {}
+);
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl CopyingHelper for CXPlayDTMFCallAction {
@@ -49,10 +53,14 @@ unsafe impl CopyingHelper for CXPlayDTMFCallAction {
 }
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-unsafe impl NSObjectProtocol for CXPlayDTMFCallAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CXPlayDTMFCallAction {}
+);
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-unsafe impl NSSecureCoding for CXPlayDTMFCallAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CXPlayDTMFCallAction {}
+);
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 impl CXPlayDTMFCallAction {

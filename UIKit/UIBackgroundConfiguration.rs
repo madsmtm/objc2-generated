@@ -17,17 +17,25 @@ extern_class!(
     pub struct UIBackgroundConfiguration;
 );
 
-unsafe impl NSCoding for UIBackgroundConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UIBackgroundConfiguration {}
+);
 
-unsafe impl NSCopying for UIBackgroundConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UIBackgroundConfiguration {}
+);
 
 unsafe impl CopyingHelper for UIBackgroundConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIBackgroundConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBackgroundConfiguration {}
+);
 
-unsafe impl NSSecureCoding for UIBackgroundConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIBackgroundConfiguration {}
+);
 
 impl UIBackgroundConfiguration {
     extern_methods!(

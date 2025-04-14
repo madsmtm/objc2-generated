@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSSpellServer;
 );
 
-unsafe impl NSObjectProtocol for NSSpellServer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSpellServer {}
+);
 
 impl NSSpellServer {
     extern_methods!(

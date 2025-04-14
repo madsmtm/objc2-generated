@@ -51,11 +51,17 @@ extern_class!(
     pub struct CPNavigationAlert;
 );
 
-unsafe impl NSCoding for CPNavigationAlert {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNavigationAlert {}
+);
 
-unsafe impl NSObjectProtocol for CPNavigationAlert {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNavigationAlert {}
+);
 
-unsafe impl NSSecureCoding for CPNavigationAlert {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNavigationAlert {}
+);
 
 impl CPNavigationAlert {
     extern_methods!(

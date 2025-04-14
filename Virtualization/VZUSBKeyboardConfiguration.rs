@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZKeyboardConfiguration")]
-unsafe impl NSCopying for VZUSBKeyboardConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZUSBKeyboardConfiguration {}
+);
 
 #[cfg(feature = "VZKeyboardConfiguration")]
 unsafe impl CopyingHelper for VZUSBKeyboardConfiguration {
@@ -27,7 +29,9 @@ unsafe impl CopyingHelper for VZUSBKeyboardConfiguration {
 }
 
 #[cfg(feature = "VZKeyboardConfiguration")]
-unsafe impl NSObjectProtocol for VZUSBKeyboardConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZUSBKeyboardConfiguration {}
+);
 
 #[cfg(feature = "VZKeyboardConfiguration")]
 impl VZUSBKeyboardConfiguration {

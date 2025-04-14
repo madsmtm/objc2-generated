@@ -83,9 +83,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GCDevice")]
-unsafe impl GCDevice for GCMouse {}
+extern_conformance!(
+    unsafe impl GCDevice for GCMouse {}
+);
 
-unsafe impl NSObjectProtocol for GCMouse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCMouse {}
+);
 
 impl GCMouse {
     extern_methods!(

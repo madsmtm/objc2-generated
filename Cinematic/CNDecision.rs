@@ -23,13 +23,17 @@ unsafe impl Send for CNDecision {}
 
 unsafe impl Sync for CNDecision {}
 
-unsafe impl NSCopying for CNDecision {}
+extern_conformance!(
+    unsafe impl NSCopying for CNDecision {}
+);
 
 unsafe impl CopyingHelper for CNDecision {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNDecision {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNDecision {}
+);
 
 impl CNDecision {
     extern_methods!(

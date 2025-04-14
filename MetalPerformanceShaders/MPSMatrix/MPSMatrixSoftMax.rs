@@ -32,10 +32,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixSoftMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixSoftMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixSoftMax {
@@ -43,10 +47,14 @@ unsafe impl CopyingHelper for MPSMatrixSoftMax {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixSoftMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixSoftMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixSoftMax {
@@ -241,10 +249,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixLogSoftMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixLogSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixLogSoftMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixLogSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixLogSoftMax {
@@ -252,10 +264,14 @@ unsafe impl CopyingHelper for MPSMatrixLogSoftMax {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixLogSoftMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixLogSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixLogSoftMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixLogSoftMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixLogSoftMax {
@@ -358,10 +374,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixSoftMaxGradient {
@@ -369,10 +389,14 @@ unsafe impl CopyingHelper for MPSMatrixSoftMaxGradient {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixSoftMaxGradient {
@@ -561,10 +585,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixLogSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixLogSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixLogSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixLogSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixLogSoftMaxGradient {
@@ -572,10 +600,14 @@ unsafe impl CopyingHelper for MPSMatrixLogSoftMaxGradient {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixLogSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixLogSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixLogSoftMaxGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixLogSoftMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixLogSoftMaxGradient {

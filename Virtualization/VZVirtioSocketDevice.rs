@@ -27,7 +27,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZSocketDevice")]
-unsafe impl NSObjectProtocol for VZVirtioSocketDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioSocketDevice {}
+);
 
 #[cfg(feature = "VZSocketDevice")]
 impl VZVirtioSocketDevice {

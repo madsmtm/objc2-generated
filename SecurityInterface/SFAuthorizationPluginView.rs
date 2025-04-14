@@ -67,7 +67,9 @@ extern_class!(
     pub struct SFAuthorizationPluginView;
 );
 
-unsafe impl NSObjectProtocol for SFAuthorizationPluginView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFAuthorizationPluginView {}
+);
 
 impl SFAuthorizationPluginView {
     extern_methods!(

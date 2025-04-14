@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CKOperation")]
-unsafe impl NSObjectProtocol for CKFetchNotificationChangesOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKFetchNotificationChangesOperation {}
+);
 
 #[cfg(feature = "CKOperation")]
 impl CKFetchNotificationChangesOperation {

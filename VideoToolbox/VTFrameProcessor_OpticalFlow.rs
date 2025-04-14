@@ -105,10 +105,14 @@ unsafe impl Send for VTOpticalFlowConfiguration {}
 unsafe impl Sync for VTOpticalFlowConfiguration {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for VTOpticalFlowConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VTOpticalFlowConfiguration {}
+);
 
 #[cfg(all(feature = "VTFrameProcessorConfiguration", feature = "objc2"))]
-unsafe impl VTFrameProcessorConfiguration for VTOpticalFlowConfiguration {}
+extern_conformance!(
+    unsafe impl VTFrameProcessorConfiguration for VTOpticalFlowConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl VTOpticalFlowConfiguration {
@@ -229,10 +233,14 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for VTOpticalFlowParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VTOpticalFlowParameters {}
+);
 
 #[cfg(all(feature = "VTFrameProcessorParameters", feature = "objc2"))]
-unsafe impl VTFrameProcessorParameters for VTOpticalFlowParameters {}
+extern_conformance!(
+    unsafe impl VTFrameProcessorParameters for VTOpticalFlowParameters {}
+);
 
 #[cfg(feature = "objc2")]
 impl VTOpticalFlowParameters {

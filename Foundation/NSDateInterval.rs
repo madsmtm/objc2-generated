@@ -17,20 +17,28 @@ unsafe impl Send for NSDateInterval {}
 unsafe impl Sync for NSDateInterval {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSDateInterval {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDateInterval {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSDateInterval {}
+extern_conformance!(
+    unsafe impl NSCopying for NSDateInterval {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSDateInterval {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSDateInterval {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDateInterval {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSDateInterval {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSDateInterval {}
+);
 
 impl NSDateInterval {
     extern_methods!(

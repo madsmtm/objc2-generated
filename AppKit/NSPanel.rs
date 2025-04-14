@@ -20,47 +20,65 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibility for NSPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSPanel {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSPanel {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSAnimatablePropertyContainer for NSPanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSPanel {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
     feature = "NSResponder",
     feature = "NSWindow"
 ))]
-unsafe impl NSAppearanceCustomization for NSPanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSPanel {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSCoding for NSPanel {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPanel {}
+);
 
 #[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSMenuItemValidation for NSPanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSPanel {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-unsafe impl NSObjectProtocol for NSPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPanel {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSPanel {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceValidation",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceValidations for NSPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSPanel {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
 impl NSPanel {

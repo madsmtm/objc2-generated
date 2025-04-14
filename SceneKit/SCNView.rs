@@ -119,43 +119,63 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for SCNView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SCNView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for SCNView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SCNView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for SCNView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SCNView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for SCNView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SCNView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for SCNView {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for SCNView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for SCNView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for SCNView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for SCNView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SCNView {}
+);
 
 #[cfg(all(feature = "SCNSceneRenderer", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl SCNSceneRenderer for SCNView {}
+extern_conformance!(
+    unsafe impl SCNSceneRenderer for SCNView {}
+);
 
 #[cfg(all(feature = "SCNTechnique", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl SCNTechniqueSupport for SCNView {}
+extern_conformance!(
+    unsafe impl SCNTechniqueSupport for SCNView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

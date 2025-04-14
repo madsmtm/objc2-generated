@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-unsafe impl NSObjectProtocol for CKFetchWebAuthTokenOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKFetchWebAuthTokenOperation {}
+);
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 impl CKFetchWebAuthTokenOperation {

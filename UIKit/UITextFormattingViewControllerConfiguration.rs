@@ -16,17 +16,25 @@ extern_class!(
     pub struct UITextFormattingViewControllerConfiguration;
 );
 
-unsafe impl NSCoding for UITextFormattingViewControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UITextFormattingViewControllerConfiguration {}
+);
 
-unsafe impl NSCopying for UITextFormattingViewControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UITextFormattingViewControllerConfiguration {}
+);
 
 unsafe impl CopyingHelper for UITextFormattingViewControllerConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITextFormattingViewControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextFormattingViewControllerConfiguration {}
+);
 
-unsafe impl NSSecureCoding for UITextFormattingViewControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UITextFormattingViewControllerConfiguration {}
+);
 
 impl UITextFormattingViewControllerConfiguration {
     extern_methods!(

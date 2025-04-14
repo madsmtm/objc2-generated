@@ -43,7 +43,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNRecognizeTextRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNRecognizeTextRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNRecognizeTextRequest {
@@ -51,10 +53,14 @@ unsafe impl CopyingHelper for VNRecognizeTextRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNRecognizeTextRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNRecognizeTextRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
-unsafe impl VNRequestProgressProviding for VNRecognizeTextRequest {}
+extern_conformance!(
+    unsafe impl VNRequestProgressProviding for VNRecognizeTextRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNRecognizeTextRequest {

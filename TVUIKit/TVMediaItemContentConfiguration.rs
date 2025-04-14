@@ -44,19 +44,29 @@ extern_class!(
     pub struct TVMediaItemContentConfiguration;
 );
 
-unsafe impl NSCoding for TVMediaItemContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for TVMediaItemContentConfiguration {}
+);
 
-unsafe impl NSCopying for TVMediaItemContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for TVMediaItemContentConfiguration {}
+);
 
 unsafe impl CopyingHelper for TVMediaItemContentConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVMediaItemContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVMediaItemContentConfiguration {}
+);
 
-unsafe impl NSSecureCoding for TVMediaItemContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TVMediaItemContentConfiguration {}
+);
 
-unsafe impl UIContentConfiguration for TVMediaItemContentConfiguration {}
+extern_conformance!(
+    unsafe impl UIContentConfiguration for TVMediaItemContentConfiguration {}
+);
 
 impl TVMediaItemContentConfiguration {
     extern_methods!(
@@ -167,31 +177,57 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-quartz-core")]
-unsafe impl CALayerDelegate for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for TVMediaItemContentView {}
+);
 
-unsafe impl NSCoding for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl NSCoding for TVMediaItemContentView {}
+);
 
-unsafe impl NSObjectProtocol for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVMediaItemContentView {}
+);
 
-unsafe impl UIAppearance for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UIAppearance for TVMediaItemContentView {}
+);
 
-unsafe impl UIAppearanceContainer for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVMediaItemContentView {}
+);
 
-unsafe impl UIContentView for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UIContentView for TVMediaItemContentView {}
+);
 
-unsafe impl UICoordinateSpace for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for TVMediaItemContentView {}
+);
 
-unsafe impl UIDynamicItem for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVMediaItemContentView {}
+);
 
-unsafe impl UIFocusEnvironment for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVMediaItemContentView {}
+);
 
-unsafe impl UIFocusItem for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for TVMediaItemContentView {}
+);
 
-unsafe impl UIFocusItemContainer for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for TVMediaItemContentView {}
+);
 
-unsafe impl UIResponderStandardEditActions for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVMediaItemContentView {}
+);
 
-unsafe impl UITraitEnvironment for TVMediaItemContentView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVMediaItemContentView {}
+);
 
 impl TVMediaItemContentView {
     extern_methods!(
@@ -251,17 +287,25 @@ extern_class!(
     pub struct TVMediaItemContentTextProperties;
 );
 
-unsafe impl NSCoding for TVMediaItemContentTextProperties {}
+extern_conformance!(
+    unsafe impl NSCoding for TVMediaItemContentTextProperties {}
+);
 
-unsafe impl NSCopying for TVMediaItemContentTextProperties {}
+extern_conformance!(
+    unsafe impl NSCopying for TVMediaItemContentTextProperties {}
+);
 
 unsafe impl CopyingHelper for TVMediaItemContentTextProperties {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVMediaItemContentTextProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVMediaItemContentTextProperties {}
+);
 
-unsafe impl NSSecureCoding for TVMediaItemContentTextProperties {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TVMediaItemContentTextProperties {}
+);
 
 impl TVMediaItemContentTextProperties {
     extern_methods!(
@@ -312,17 +356,25 @@ extern_class!(
     pub struct TVMediaItemContentBadgeProperties;
 );
 
-unsafe impl NSCoding for TVMediaItemContentBadgeProperties {}
+extern_conformance!(
+    unsafe impl NSCoding for TVMediaItemContentBadgeProperties {}
+);
 
-unsafe impl NSCopying for TVMediaItemContentBadgeProperties {}
+extern_conformance!(
+    unsafe impl NSCopying for TVMediaItemContentBadgeProperties {}
+);
 
 unsafe impl CopyingHelper for TVMediaItemContentBadgeProperties {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVMediaItemContentBadgeProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVMediaItemContentBadgeProperties {}
+);
 
-unsafe impl NSSecureCoding for TVMediaItemContentBadgeProperties {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TVMediaItemContentBadgeProperties {}
+);
 
 impl TVMediaItemContentBadgeProperties {
     extern_methods!(

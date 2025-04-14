@@ -33,4 +33,6 @@ impl UIResponder {
     feature = "UIActivityItemsConfigurationReading",
     feature = "UIResponder"
 ))]
-unsafe impl UIActivityItemsConfigurationProviding for UIResponder {}
+extern_conformance!(
+    unsafe impl UIActivityItemsConfigurationProviding for UIResponder {}
+);

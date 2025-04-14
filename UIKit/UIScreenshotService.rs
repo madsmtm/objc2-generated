@@ -19,7 +19,9 @@ extern_class!(
     pub struct UIScreenshotService;
 );
 
-unsafe impl NSObjectProtocol for UIScreenshotService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIScreenshotService {}
+);
 
 impl UIScreenshotService {
     extern_methods!(

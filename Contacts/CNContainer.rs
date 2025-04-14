@@ -42,17 +42,25 @@ extern_class!(
     pub struct CNContainer;
 );
 
-unsafe impl NSCoding for CNContainer {}
+extern_conformance!(
+    unsafe impl NSCoding for CNContainer {}
+);
 
-unsafe impl NSCopying for CNContainer {}
+extern_conformance!(
+    unsafe impl NSCopying for CNContainer {}
+);
 
 unsafe impl CopyingHelper for CNContainer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNContainer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContainer {}
+);
 
-unsafe impl NSSecureCoding for CNContainer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNContainer {}
+);
 
 impl CNContainer {
     extern_methods!(

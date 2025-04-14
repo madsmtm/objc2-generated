@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZDirectoryShare")]
-unsafe impl NSObjectProtocol for VZSingleDirectoryShare {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZSingleDirectoryShare {}
+);
 
 #[cfg(feature = "VZDirectoryShare")]
 impl VZSingleDirectoryShare {

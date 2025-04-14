@@ -13,17 +13,25 @@ extern_class!(
     pub struct ASAuthorizationRequest;
 );
 
-unsafe impl NSCoding for ASAuthorizationRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationRequest {}
+);
 
-unsafe impl NSCopying for ASAuthorizationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationRequest {}
+);
 
 unsafe impl CopyingHelper for ASAuthorizationRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASAuthorizationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationRequest {}
+);
 
-unsafe impl NSSecureCoding for ASAuthorizationRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationRequest {}
+);
 
 impl ASAuthorizationRequest {
     extern_methods!(

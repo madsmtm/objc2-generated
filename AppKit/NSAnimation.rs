@@ -73,15 +73,21 @@ extern_class!(
     pub struct NSAnimation;
 );
 
-unsafe impl NSCoding for NSAnimation {}
+extern_conformance!(
+    unsafe impl NSCoding for NSAnimation {}
+);
 
-unsafe impl NSCopying for NSAnimation {}
+extern_conformance!(
+    unsafe impl NSCopying for NSAnimation {}
+);
 
 unsafe impl CopyingHelper for NSAnimation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSAnimation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAnimation {}
+);
 
 impl NSAnimation {
     extern_methods!(
@@ -320,15 +326,21 @@ extern_class!(
     pub struct NSViewAnimation;
 );
 
-unsafe impl NSCoding for NSViewAnimation {}
+extern_conformance!(
+    unsafe impl NSCoding for NSViewAnimation {}
+);
 
-unsafe impl NSCopying for NSViewAnimation {}
+extern_conformance!(
+    unsafe impl NSCopying for NSViewAnimation {}
+);
 
 unsafe impl CopyingHelper for NSViewAnimation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSViewAnimation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSViewAnimation {}
+);
 
 impl NSViewAnimation {
     extern_methods!(

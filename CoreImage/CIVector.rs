@@ -15,17 +15,25 @@ extern_class!(
     pub struct CIVector;
 );
 
-unsafe impl NSCoding for CIVector {}
+extern_conformance!(
+    unsafe impl NSCoding for CIVector {}
+);
 
-unsafe impl NSCopying for CIVector {}
+extern_conformance!(
+    unsafe impl NSCopying for CIVector {}
+);
 
 unsafe impl CopyingHelper for CIVector {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIVector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIVector {}
+);
 
-unsafe impl NSSecureCoding for CIVector {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIVector {}
+);
 
 impl CIVector {
     extern_methods!(

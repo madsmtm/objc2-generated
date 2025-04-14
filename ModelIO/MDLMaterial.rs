@@ -290,7 +290,9 @@ extern_class!(
     pub struct MDLTextureFilter;
 );
 
-unsafe impl NSObjectProtocol for MDLTextureFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTextureFilter {}
+);
 
 impl MDLTextureFilter {
     extern_methods!(
@@ -370,7 +372,9 @@ extern_class!(
     pub struct MDLTextureSampler;
 );
 
-unsafe impl NSObjectProtocol for MDLTextureSampler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTextureSampler {}
+);
 
 impl MDLTextureSampler {
     extern_methods!(
@@ -431,15 +435,21 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLMaterialProperty {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLMaterialProperty {}
+);
 
-unsafe impl NSCopying for MDLMaterialProperty {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLMaterialProperty {}
+);
 
 unsafe impl CopyingHelper for MDLMaterialProperty {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLMaterialProperty {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMaterialProperty {}
+);
 
 impl MDLMaterialProperty {
     extern_methods!(
@@ -611,9 +621,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLMaterialPropertyConnection {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLMaterialPropertyConnection {}
+);
 
-unsafe impl NSObjectProtocol for MDLMaterialPropertyConnection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMaterialPropertyConnection {}
+);
 
 impl MDLMaterialPropertyConnection {
     extern_methods!(
@@ -657,9 +671,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLMaterialPropertyNode {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLMaterialPropertyNode {}
+);
 
-unsafe impl NSObjectProtocol for MDLMaterialPropertyNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMaterialPropertyNode {}
+);
 
 impl MDLMaterialPropertyNode {
     extern_methods!(
@@ -724,9 +742,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLMaterialPropertyGraph {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLMaterialPropertyGraph {}
+);
 
-unsafe impl NSObjectProtocol for MDLMaterialPropertyGraph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMaterialPropertyGraph {}
+);
 
 impl MDLMaterialPropertyGraph {
     extern_methods!(
@@ -792,9 +814,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLScatteringFunction {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLScatteringFunction {}
+);
 
-unsafe impl NSObjectProtocol for MDLScatteringFunction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLScatteringFunction {}
+);
 
 impl MDLScatteringFunction {
     extern_methods!(
@@ -863,9 +889,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLPhysicallyPlausibleScatteringFunction {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLPhysicallyPlausibleScatteringFunction {}
+);
 
-unsafe impl NSObjectProtocol for MDLPhysicallyPlausibleScatteringFunction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLPhysicallyPlausibleScatteringFunction {}
+);
 
 impl MDLPhysicallyPlausibleScatteringFunction {
     extern_methods!(
@@ -962,11 +992,17 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLMaterial {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLMaterial {}
+);
 
-unsafe impl NSFastEnumeration for MDLMaterial {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for MDLMaterial {}
+);
 
-unsafe impl NSObjectProtocol for MDLMaterial {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMaterial {}
+);
 
 impl MDLMaterial {
     extern_methods!(

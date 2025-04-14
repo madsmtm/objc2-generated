@@ -13,7 +13,9 @@ extern_class!(
     pub struct EASession;
 );
 
-unsafe impl NSObjectProtocol for EASession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EASession {}
+);
 
 impl EASession {
     extern_methods!(

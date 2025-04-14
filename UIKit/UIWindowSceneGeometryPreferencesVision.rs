@@ -25,7 +25,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIWindowSceneGeometryPreferences")]
-unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferencesVision {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferencesVision {}
+);
 
 #[cfg(feature = "UIWindowSceneGeometryPreferences")]
 impl UIWindowSceneGeometryPreferencesVision {

@@ -23,11 +23,17 @@ extern_class!(
     pub struct MXMetricPayload;
 );
 
-unsafe impl NSCoding for MXMetricPayload {}
+extern_conformance!(
+    unsafe impl NSCoding for MXMetricPayload {}
+);
 
-unsafe impl NSObjectProtocol for MXMetricPayload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXMetricPayload {}
+);
 
-unsafe impl NSSecureCoding for MXMetricPayload {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXMetricPayload {}
+);
 
 impl MXMetricPayload {
     extern_methods!(

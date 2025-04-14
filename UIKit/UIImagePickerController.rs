@@ -218,14 +218,18 @@ extern_class!(
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl NSCoding for UIImagePickerController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIImagePickerController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl NSObjectProtocol for UIImagePickerController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIImagePickerController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -233,14 +237,18 @@ unsafe impl NSObjectProtocol for UIImagePickerController {}
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIImagePickerController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIImagePickerController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIContentContainer for UIImagePickerController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIImagePickerController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -248,14 +256,18 @@ unsafe impl UIContentContainer for UIImagePickerController {}
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIImagePickerController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIImagePickerController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIResponderStandardEditActions for UIImagePickerController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIImagePickerController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",
@@ -263,7 +275,9 @@ unsafe impl UIResponderStandardEditActions for UIImagePickerController {}
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIImagePickerController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIImagePickerController {}
+);
 
 #[cfg(all(
     feature = "UINavigationController",

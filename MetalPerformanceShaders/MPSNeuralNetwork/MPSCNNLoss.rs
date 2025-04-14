@@ -21,13 +21,17 @@ extern_class!(
     pub struct MPSCNNLossDataDescriptor;
 );
 
-unsafe impl NSCopying for MPSCNNLossDataDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNLossDataDescriptor {}
+);
 
 unsafe impl CopyingHelper for MPSCNNLossDataDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSCNNLossDataDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLossDataDescriptor {}
+);
 
 impl MPSCNNLossDataDescriptor {
     extern_methods!(
@@ -122,7 +126,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSCNNLossLabels {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLossLabels {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSCNNLossLabels {
@@ -396,13 +402,17 @@ extern_class!(
     pub struct MPSCNNLossDescriptor;
 );
 
-unsafe impl NSCopying for MPSCNNLossDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNLossDescriptor {}
+);
 
 unsafe impl CopyingHelper for MPSCNNLossDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSCNNLossDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLossDescriptor {}
+);
 
 impl MPSCNNLossDescriptor {
     extern_methods!(
@@ -766,10 +776,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNLoss {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNLoss {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNLoss {
@@ -777,10 +791,14 @@ unsafe impl CopyingHelper for MPSCNNLoss {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNLoss {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNLoss {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNLoss {
@@ -1005,13 +1023,17 @@ extern_class!(
     pub struct MPSCNNYOLOLossDescriptor;
 );
 
-unsafe impl NSCopying for MPSCNNYOLOLossDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNYOLOLossDescriptor {}
+);
 
 unsafe impl CopyingHelper for MPSCNNYOLOLossDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSCNNYOLOLossDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNYOLOLossDescriptor {}
+);
 
 impl MPSCNNYOLOLossDescriptor {
     extern_methods!(
@@ -1273,10 +1295,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNYOLOLoss {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNYOLOLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNYOLOLoss {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNYOLOLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNYOLOLoss {
@@ -1284,10 +1310,14 @@ unsafe impl CopyingHelper for MPSCNNYOLOLoss {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNYOLOLoss {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNYOLOLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNYOLOLoss {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNYOLOLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNYOLOLoss {
@@ -1518,10 +1548,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNForwardLoss {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNForwardLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNForwardLoss {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNForwardLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNForwardLoss {
@@ -1529,10 +1563,14 @@ unsafe impl CopyingHelper for MPSNNForwardLoss {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNForwardLoss {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNForwardLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNForwardLoss {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNForwardLoss {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNForwardLoss {
@@ -1737,10 +1775,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNLossGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNLossGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNLossGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNLossGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNLossGradient {
@@ -1748,10 +1790,14 @@ unsafe impl CopyingHelper for MPSNNLossGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNLossGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNLossGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNLossGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNLossGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNLossGradient {
@@ -1991,10 +2037,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNInitialGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNInitialGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNInitialGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNInitialGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNInitialGradient {
@@ -2002,10 +2052,14 @@ unsafe impl CopyingHelper for MPSNNInitialGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNInitialGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNInitialGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNInitialGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNInitialGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNInitialGradient {

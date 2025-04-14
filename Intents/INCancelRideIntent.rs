@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INCancelRideIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INCancelRideIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INCancelRideIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INCancelRideIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INCancelRideIntent {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INCancelRideIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INCancelRideIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCancelRideIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INCancelRideIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCancelRideIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INCancelRideIntent {

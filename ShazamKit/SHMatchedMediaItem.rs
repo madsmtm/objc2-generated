@@ -57,10 +57,14 @@ unsafe impl Send for SHMatchedMediaItem {}
 unsafe impl Sync for SHMatchedMediaItem {}
 
 #[cfg(feature = "SHMediaItem")]
-unsafe impl NSCoding for SHMatchedMediaItem {}
+extern_conformance!(
+    unsafe impl NSCoding for SHMatchedMediaItem {}
+);
 
 #[cfg(feature = "SHMediaItem")]
-unsafe impl NSCopying for SHMatchedMediaItem {}
+extern_conformance!(
+    unsafe impl NSCopying for SHMatchedMediaItem {}
+);
 
 #[cfg(feature = "SHMediaItem")]
 unsafe impl CopyingHelper for SHMatchedMediaItem {
@@ -68,10 +72,14 @@ unsafe impl CopyingHelper for SHMatchedMediaItem {
 }
 
 #[cfg(feature = "SHMediaItem")]
-unsafe impl NSObjectProtocol for SHMatchedMediaItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHMatchedMediaItem {}
+);
 
 #[cfg(feature = "SHMediaItem")]
-unsafe impl NSSecureCoding for SHMatchedMediaItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SHMatchedMediaItem {}
+);
 
 #[cfg(feature = "SHMediaItem")]
 impl SHMatchedMediaItem {

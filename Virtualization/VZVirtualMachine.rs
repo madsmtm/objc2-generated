@@ -82,7 +82,9 @@ extern_class!(
     pub struct VZVirtualMachine;
 );
 
-unsafe impl NSObjectProtocol for VZVirtualMachine {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtualMachine {}
+);
 
 impl VZVirtualMachine {
     extern_methods!(

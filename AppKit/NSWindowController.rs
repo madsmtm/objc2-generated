@@ -16,13 +16,19 @@ extern_class!(
 );
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSCoding for NSWindowController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSWindowController {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSObjectProtocol for NSWindowController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSWindowController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSStoryboardSegue"))]
-unsafe impl NSSeguePerforming for NSWindowController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for NSWindowController {}
+);
 
 #[cfg(feature = "NSResponder")]
 impl NSWindowController {

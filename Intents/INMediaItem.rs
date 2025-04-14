@@ -13,17 +13,25 @@ extern_class!(
     pub struct INMediaItem;
 );
 
-unsafe impl NSCoding for INMediaItem {}
+extern_conformance!(
+    unsafe impl NSCoding for INMediaItem {}
+);
 
-unsafe impl NSCopying for INMediaItem {}
+extern_conformance!(
+    unsafe impl NSCopying for INMediaItem {}
+);
 
 unsafe impl CopyingHelper for INMediaItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INMediaItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INMediaItem {}
+);
 
-unsafe impl NSSecureCoding for INMediaItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INMediaItem {}
+);
 
 impl INMediaItem {
     extern_methods!(

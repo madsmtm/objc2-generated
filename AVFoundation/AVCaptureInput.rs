@@ -25,7 +25,9 @@ extern_class!(
     pub struct AVCaptureInput;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureInput {}
+);
 
 impl AVCaptureInput {
     extern_methods!(
@@ -70,7 +72,9 @@ extern_class!(
     pub struct AVCaptureInputPort;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureInputPort {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureInputPort {}
+);
 
 impl AVCaptureInputPort {
     extern_methods!(
@@ -197,7 +201,9 @@ extern_class!(
     pub struct AVCaptureDeviceInput;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDeviceInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDeviceInput {}
+);
 
 impl AVCaptureDeviceInput {
     extern_methods!(
@@ -402,7 +408,9 @@ extern_class!(
     pub struct AVCaptureScreenInput;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureScreenInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureScreenInput {}
+);
 
 impl AVCaptureScreenInput {
     extern_methods!(
@@ -541,7 +549,9 @@ extern_class!(
     pub struct AVCaptureMetadataInput;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureMetadataInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureMetadataInput {}
+);
 
 impl AVCaptureMetadataInput {
     extern_methods!(

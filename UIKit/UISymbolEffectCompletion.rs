@@ -27,7 +27,9 @@ extern_class!(
     pub struct UISymbolEffectCompletionContext;
 );
 
-unsafe impl NSObjectProtocol for UISymbolEffectCompletionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISymbolEffectCompletionContext {}
+);
 
 impl UISymbolEffectCompletionContext {
     extern_methods!(

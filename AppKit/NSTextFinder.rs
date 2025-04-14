@@ -94,9 +94,13 @@ extern_class!(
     pub struct NSTextFinder;
 );
 
-unsafe impl NSCoding for NSTextFinder {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextFinder {}
+);
 
-unsafe impl NSObjectProtocol for NSTextFinder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextFinder {}
+);
 
 impl NSTextFinder {
     extern_methods!(

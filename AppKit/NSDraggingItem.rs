@@ -28,7 +28,9 @@ extern_class!(
     pub struct NSDraggingImageComponent;
 );
 
-unsafe impl NSObjectProtocol for NSDraggingImageComponent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDraggingImageComponent {}
+);
 
 impl NSDraggingImageComponent {
     extern_methods!(
@@ -94,7 +96,9 @@ extern_class!(
     pub struct NSDraggingItem;
 );
 
-unsafe impl NSObjectProtocol for NSDraggingItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDraggingItem {}
+);
 
 impl NSDraggingItem {
     extern_methods!(

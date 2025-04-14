@@ -19,7 +19,9 @@ extern_class!(
     pub struct WKWebExtensionTabConfiguration;
 );
 
-unsafe impl NSObjectProtocol for WKWebExtensionTabConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebExtensionTabConfiguration {}
+);
 
 impl WKWebExtensionTabConfiguration {
     extern_methods!(

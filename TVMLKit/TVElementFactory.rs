@@ -18,7 +18,9 @@ extern_class!(
     pub struct TVElementFactory;
 );
 
-unsafe impl NSObjectProtocol for TVElementFactory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVElementFactory {}
+);
 
 impl TVElementFactory {
     extern_methods!(

@@ -96,13 +96,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UITextField {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UITextField {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UITextField {}
+extern_conformance!(
+    unsafe impl NSCoding for UITextField {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UITextField {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -110,7 +116,9 @@ unsafe impl NSObjectProtocol for UITextField {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UITextField {}
+extern_conformance!(
+    unsafe impl UIAppearance for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -118,7 +126,9 @@ unsafe impl UIAppearance for UITextField {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UITextField {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIContentSizeCategoryAdjusting",
@@ -126,10 +136,14 @@ unsafe impl UIAppearanceContainer for UITextField {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIContentSizeCategoryAdjusting for UITextField {}
+extern_conformance!(
+    unsafe impl UIContentSizeCategoryAdjusting for UITextField {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UITextField {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -137,7 +151,9 @@ unsafe impl UICoordinateSpace for UITextField {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UITextField {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -145,7 +161,9 @@ unsafe impl UIDynamicItem for UITextField {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UITextField {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -153,7 +171,9 @@ unsafe impl UIFocusEnvironment for UITextField {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UITextField {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -161,7 +181,9 @@ unsafe impl UIFocusItem for UITextField {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UITextField {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -170,7 +192,9 @@ unsafe impl UIFocusItemContainer for UITextField {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UIKeyInput for UITextField {}
+extern_conformance!(
+    unsafe impl UIKeyInput for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -178,10 +202,14 @@ unsafe impl UIKeyInput for UITextField {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UILetterformAwareAdjusting for UITextField {}
+extern_conformance!(
+    unsafe impl UILetterformAwareAdjusting for UITextField {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UITextField {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -190,7 +218,9 @@ unsafe impl UIResponderStandardEditActions for UITextField {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UITextInput for UITextField {}
+extern_conformance!(
+    unsafe impl UITextInput for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -198,7 +228,9 @@ unsafe impl UITextInput for UITextField {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UITextInputTraits for UITextField {}
+extern_conformance!(
+    unsafe impl UITextInputTraits for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -206,7 +238,9 @@ unsafe impl UITextInputTraits for UITextField {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UITextField {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UITextField {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UITextField {
@@ -576,7 +610,9 @@ impl UITextField {
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UITextDraggable for UITextField {}
+extern_conformance!(
+    unsafe impl UITextDraggable for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -588,7 +624,9 @@ unsafe impl UITextDraggable for UITextField {}
     feature = "UITextPasteConfigurationSupporting",
     feature = "UIView"
 ))]
-unsafe impl UITextDroppable for UITextField {}
+extern_conformance!(
+    unsafe impl UITextDroppable for UITextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -597,7 +635,9 @@ unsafe impl UITextDroppable for UITextField {}
     feature = "UITextPasteConfigurationSupporting",
     feature = "UIView"
 ))]
-unsafe impl UITextPasteConfigurationSupporting for UITextField {}
+extern_conformance!(
+    unsafe impl UITextPasteConfigurationSupporting for UITextField {}
+);
 
 /// UIInteractionStateRestorable.
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]

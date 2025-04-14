@@ -18,15 +18,21 @@ extern_class!(
     pub struct UILocalNotification;
 );
 
-unsafe impl NSCoding for UILocalNotification {}
+extern_conformance!(
+    unsafe impl NSCoding for UILocalNotification {}
+);
 
-unsafe impl NSCopying for UILocalNotification {}
+extern_conformance!(
+    unsafe impl NSCopying for UILocalNotification {}
+);
 
 unsafe impl CopyingHelper for UILocalNotification {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UILocalNotification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UILocalNotification {}
+);
 
 impl UILocalNotification {
     extern_methods!(

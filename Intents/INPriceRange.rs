@@ -13,17 +13,25 @@ extern_class!(
     pub struct INPriceRange;
 );
 
-unsafe impl NSCoding for INPriceRange {}
+extern_conformance!(
+    unsafe impl NSCoding for INPriceRange {}
+);
 
-unsafe impl NSCopying for INPriceRange {}
+extern_conformance!(
+    unsafe impl NSCopying for INPriceRange {}
+);
 
 unsafe impl CopyingHelper for INPriceRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INPriceRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPriceRange {}
+);
 
-unsafe impl NSSecureCoding for INPriceRange {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INPriceRange {}
+);
 
 impl INPriceRange {
     extern_methods!(

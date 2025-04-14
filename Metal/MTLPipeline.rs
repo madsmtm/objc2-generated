@@ -61,13 +61,17 @@ extern_class!(
     pub struct MTLPipelineBufferDescriptor;
 );
 
-unsafe impl NSCopying for MTLPipelineBufferDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLPipelineBufferDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLPipelineBufferDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptor {}
+);
 
 impl MTLPipelineBufferDescriptor {
     extern_methods!(
@@ -103,7 +107,9 @@ extern_class!(
     pub struct MTLPipelineBufferDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptorArray {}
+);
 
 impl MTLPipelineBufferDescriptorArray {
     extern_methods!(

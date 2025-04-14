@@ -43,20 +43,28 @@ extern_class!(
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSPathCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSPathCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSPathCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSPathCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSPathCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPathCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSPathCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPathCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSPathCell {
@@ -64,20 +72,28 @@ unsafe impl CopyingHelper for NSPathCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSMenu"))]
-unsafe impl NSMenuItemValidation for NSPathCell {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSPathCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSPathCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPathCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSSavePanel"))]
-unsafe impl NSOpenSavePanelDelegate for NSPathCell {}
+extern_conformance!(
+    unsafe impl NSOpenSavePanelDelegate for NSPathCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSPathCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSPathCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSPathCell {

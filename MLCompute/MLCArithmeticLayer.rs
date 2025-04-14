@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCArithmeticLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCArithmeticLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCArithmeticLayer {

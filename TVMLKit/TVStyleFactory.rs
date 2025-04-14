@@ -58,7 +58,9 @@ extern_class!(
     pub struct TVStyleFactory;
 );
 
-unsafe impl NSObjectProtocol for TVStyleFactory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVStyleFactory {}
+);
 
 impl TVStyleFactory {
     extern_methods!(

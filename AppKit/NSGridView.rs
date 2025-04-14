@@ -84,36 +84,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSGridView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSGridView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSGridView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSGridView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSGridView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSGridView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSGridView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSGridView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSGridView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSGridView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSGridView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSGridView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSGridView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGridView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSGridView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSGridView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSGridView {
@@ -307,9 +323,13 @@ extern_class!(
     pub struct NSGridRow;
 );
 
-unsafe impl NSCoding for NSGridRow {}
+extern_conformance!(
+    unsafe impl NSCoding for NSGridRow {}
+);
 
-unsafe impl NSObjectProtocol for NSGridRow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGridRow {}
+);
 
 impl NSGridRow {
     extern_methods!(
@@ -413,9 +433,13 @@ extern_class!(
     pub struct NSGridColumn;
 );
 
-unsafe impl NSCoding for NSGridColumn {}
+extern_conformance!(
+    unsafe impl NSCoding for NSGridColumn {}
+);
 
-unsafe impl NSObjectProtocol for NSGridColumn {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGridColumn {}
+);
 
 impl NSGridColumn {
     extern_methods!(
@@ -510,9 +534,13 @@ extern_class!(
     pub struct NSGridCell;
 );
 
-unsafe impl NSCoding for NSGridCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSGridCell {}
+);
 
-unsafe impl NSObjectProtocol for NSGridCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGridCell {}
+);
 
 impl NSGridCell {
     extern_methods!(

@@ -192,7 +192,9 @@ extern_class!(
     pub struct WKInterfaceDevice;
 );
 
-unsafe impl NSObjectProtocol for WKInterfaceDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceDevice {}
+);
 
 impl WKInterfaceDevice {
     extern_methods!(

@@ -34,7 +34,9 @@ extern_class!(
     pub struct INUpcomingMediaManager;
 );
 
-unsafe impl NSObjectProtocol for INUpcomingMediaManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INUpcomingMediaManager {}
+);
 
 impl INUpcomingMediaManager {
     extern_methods!(

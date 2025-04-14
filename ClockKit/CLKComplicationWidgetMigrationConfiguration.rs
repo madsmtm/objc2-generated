@@ -15,13 +15,17 @@ extern_class!(
     pub struct CLKComplicationWidgetMigrationConfiguration;
 );
 
-unsafe impl NSCopying for CLKComplicationWidgetMigrationConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplicationWidgetMigrationConfiguration {}
+);
 
 unsafe impl CopyingHelper for CLKComplicationWidgetMigrationConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplicationWidgetMigrationConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationWidgetMigrationConfiguration {}
+);
 
 impl CLKComplicationWidgetMigrationConfiguration {
     extern_methods!(

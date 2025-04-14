@@ -113,7 +113,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CBManager")]
-unsafe impl NSObjectProtocol for CBCentralManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBCentralManager {}
+);
 
 #[cfg(feature = "CBManager")]
 impl CBCentralManager {

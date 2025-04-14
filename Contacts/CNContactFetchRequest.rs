@@ -21,13 +21,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CNFetchRequest")]
-unsafe impl NSCoding for CNContactFetchRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for CNContactFetchRequest {}
+);
 
 #[cfg(feature = "CNFetchRequest")]
-unsafe impl NSObjectProtocol for CNContactFetchRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContactFetchRequest {}
+);
 
 #[cfg(feature = "CNFetchRequest")]
-unsafe impl NSSecureCoding for CNContactFetchRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNContactFetchRequest {}
+);
 
 #[cfg(feature = "CNFetchRequest")]
 impl CNContactFetchRequest {

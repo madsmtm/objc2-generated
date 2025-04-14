@@ -18,7 +18,9 @@ unsafe impl Send for WKRefreshBackgroundTask {}
 
 unsafe impl Sync for WKRefreshBackgroundTask {}
 
-unsafe impl NSObjectProtocol for WKRefreshBackgroundTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKRefreshBackgroundTask {}
+);
 
 impl WKRefreshBackgroundTask {
     extern_methods!(
@@ -92,7 +94,9 @@ extern_class!(
     pub struct WKApplicationRefreshBackgroundTask;
 );
 
-unsafe impl NSObjectProtocol for WKApplicationRefreshBackgroundTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKApplicationRefreshBackgroundTask {}
+);
 
 impl WKApplicationRefreshBackgroundTask {
     extern_methods!();
@@ -144,7 +148,9 @@ extern_class!(
     pub struct WKSnapshotRefreshBackgroundTask;
 );
 
-unsafe impl NSObjectProtocol for WKSnapshotRefreshBackgroundTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKSnapshotRefreshBackgroundTask {}
+);
 
 impl WKSnapshotRefreshBackgroundTask {
     extern_methods!(
@@ -188,7 +194,9 @@ extern_class!(
     pub struct WKURLSessionRefreshBackgroundTask;
 );
 
-unsafe impl NSObjectProtocol for WKURLSessionRefreshBackgroundTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKURLSessionRefreshBackgroundTask {}
+);
 
 impl WKURLSessionRefreshBackgroundTask {
     extern_methods!(
@@ -218,7 +226,9 @@ extern_class!(
     pub struct WKWatchConnectivityRefreshBackgroundTask;
 );
 
-unsafe impl NSObjectProtocol for WKWatchConnectivityRefreshBackgroundTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWatchConnectivityRefreshBackgroundTask {}
+);
 
 impl WKWatchConnectivityRefreshBackgroundTask {
     extern_methods!();
@@ -244,7 +254,9 @@ extern_class!(
     pub struct WKRelevantShortcutRefreshBackgroundTask;
 );
 
-unsafe impl NSObjectProtocol for WKRelevantShortcutRefreshBackgroundTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKRelevantShortcutRefreshBackgroundTask {}
+);
 
 impl WKRelevantShortcutRefreshBackgroundTask {
     extern_methods!();
@@ -270,7 +282,9 @@ extern_class!(
     pub struct WKIntentDidRunRefreshBackgroundTask;
 );
 
-unsafe impl NSObjectProtocol for WKIntentDidRunRefreshBackgroundTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKIntentDidRunRefreshBackgroundTask {}
+);
 
 impl WKIntentDidRunRefreshBackgroundTask {
     extern_methods!();
@@ -300,7 +314,9 @@ extern_class!(
     pub struct WKBluetoothAlertRefreshBackgroundTask;
 );
 
-unsafe impl NSObjectProtocol for WKBluetoothAlertRefreshBackgroundTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKBluetoothAlertRefreshBackgroundTask {}
+);
 
 impl WKBluetoothAlertRefreshBackgroundTask {
     extern_methods!();

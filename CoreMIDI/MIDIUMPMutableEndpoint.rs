@@ -30,7 +30,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
-unsafe impl NSObjectProtocol for MIDIUMPMutableEndpoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDIUMPMutableEndpoint {}
+);
 
 #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
 impl MIDIUMPMutableEndpoint {

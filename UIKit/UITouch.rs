@@ -124,7 +124,9 @@ extern_class!(
     pub struct UITouch;
 );
 
-unsafe impl NSObjectProtocol for UITouch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITouch {}
+);
 
 impl UITouch {
     extern_methods!(

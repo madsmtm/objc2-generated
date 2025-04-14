@@ -47,7 +47,9 @@ extern_class!(
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCoding for MPSMatrixNeuron {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixNeuron {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -55,7 +57,9 @@ unsafe impl NSCoding for MPSMatrixNeuron {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCopying for MPSMatrixNeuron {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixNeuron {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -73,7 +77,9 @@ unsafe impl CopyingHelper for MPSMatrixNeuron {
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSObjectProtocol for MPSMatrixNeuron {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixNeuron {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -81,7 +87,9 @@ unsafe impl NSObjectProtocol for MPSMatrixNeuron {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSSecureCoding for MPSMatrixNeuron {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixNeuron {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -377,7 +385,9 @@ extern_class!(
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCoding for MPSMatrixNeuronGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixNeuronGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -385,7 +395,9 @@ unsafe impl NSCoding for MPSMatrixNeuronGradient {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCopying for MPSMatrixNeuronGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixNeuronGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -403,7 +415,9 @@ unsafe impl CopyingHelper for MPSMatrixNeuronGradient {
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSObjectProtocol for MPSMatrixNeuronGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixNeuronGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -411,7 +425,9 @@ unsafe impl NSObjectProtocol for MPSMatrixNeuronGradient {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSSecureCoding for MPSMatrixNeuronGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixNeuronGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",

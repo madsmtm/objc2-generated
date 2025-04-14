@@ -30,10 +30,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSAttributedString {}
+extern_conformance!(
+    unsafe impl NSCoding for NSAttributedString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSAttributedString {}
+extern_conformance!(
+    unsafe impl NSCopying for NSAttributedString {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSAttributedString {
@@ -41,17 +45,23 @@ unsafe impl CopyingHelper for NSAttributedString {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSAttributedString {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSAttributedString {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSAttributedString {
     type Result = NSMutableAttributedString;
 }
 
-unsafe impl NSObjectProtocol for NSAttributedString {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAttributedString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSAttributedString {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSAttributedString {}
+);
 
 impl NSAttributedString {
     extern_methods!(
@@ -254,10 +264,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMutableAttributedString {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMutableAttributedString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMutableAttributedString {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMutableAttributedString {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMutableAttributedString {
@@ -265,17 +279,23 @@ unsafe impl CopyingHelper for NSMutableAttributedString {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSMutableAttributedString {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSMutableAttributedString {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSMutableAttributedString {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMutableAttributedString {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMutableAttributedString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSMutableAttributedString {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMutableAttributedString {}
+);
 
 impl NSMutableAttributedString {
     extern_methods!(
@@ -501,20 +521,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSAttributedStringMarkdownSourcePosition {}
+extern_conformance!(
+    unsafe impl NSCoding for NSAttributedStringMarkdownSourcePosition {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSAttributedStringMarkdownSourcePosition {}
+extern_conformance!(
+    unsafe impl NSCopying for NSAttributedStringMarkdownSourcePosition {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSAttributedStringMarkdownSourcePosition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSAttributedStringMarkdownSourcePosition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAttributedStringMarkdownSourcePosition {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSAttributedStringMarkdownSourcePosition {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSAttributedStringMarkdownSourcePosition {}
+);
 
 impl NSAttributedStringMarkdownSourcePosition {
     extern_methods!(
@@ -572,14 +600,18 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSAttributedStringMarkdownParsingOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for NSAttributedStringMarkdownParsingOptions {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSAttributedStringMarkdownParsingOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSAttributedStringMarkdownParsingOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAttributedStringMarkdownParsingOptions {}
+);
 
 impl NSAttributedStringMarkdownParsingOptions {
     extern_methods!(
@@ -894,20 +926,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSPresentationIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPresentationIntent {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSPresentationIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPresentationIntent {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSPresentationIntent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPresentationIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPresentationIntent {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSPresentationIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSPresentationIntent {}
+);
 
 impl NSPresentationIntent {
     extern_methods!(

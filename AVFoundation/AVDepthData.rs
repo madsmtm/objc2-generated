@@ -71,7 +71,9 @@ extern_class!(
     pub struct AVDepthData;
 );
 
-unsafe impl NSObjectProtocol for AVDepthData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVDepthData {}
+);
 
 impl AVDepthData {
     extern_methods!(

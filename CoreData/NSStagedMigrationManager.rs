@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSStagedMigrationManager;
 );
 
-unsafe impl NSObjectProtocol for NSStagedMigrationManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStagedMigrationManager {}
+);
 
 impl NSStagedMigrationManager {
     extern_methods!(

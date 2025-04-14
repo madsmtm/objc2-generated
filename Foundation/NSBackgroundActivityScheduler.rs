@@ -38,7 +38,9 @@ extern_class!(
     pub struct NSBackgroundActivityScheduler;
 );
 
-unsafe impl NSObjectProtocol for NSBackgroundActivityScheduler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBackgroundActivityScheduler {}
+);
 
 impl NSBackgroundActivityScheduler {
     extern_methods!(

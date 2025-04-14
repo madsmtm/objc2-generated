@@ -19,21 +19,37 @@ extern_class!(
     pub struct SFCertificateView;
 );
 
-unsafe impl NSAccessibility for SFCertificateView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SFCertificateView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for SFCertificateView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SFCertificateView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for SFCertificateView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SFCertificateView {}
+);
 
-unsafe impl NSAppearanceCustomization for SFCertificateView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SFCertificateView {}
+);
 
-unsafe impl NSCoding for SFCertificateView {}
+extern_conformance!(
+    unsafe impl NSCoding for SFCertificateView {}
+);
 
-unsafe impl NSDraggingDestination for SFCertificateView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for SFCertificateView {}
+);
 
-unsafe impl NSObjectProtocol for SFCertificateView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFCertificateView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for SFCertificateView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SFCertificateView {}
+);
 
 impl SFCertificateView {
     extern_methods!(

@@ -19,17 +19,25 @@ unsafe impl Send for HKVerifiableClinicalRecordSubject {}
 
 unsafe impl Sync for HKVerifiableClinicalRecordSubject {}
 
-unsafe impl NSCoding for HKVerifiableClinicalRecordSubject {}
+extern_conformance!(
+    unsafe impl NSCoding for HKVerifiableClinicalRecordSubject {}
+);
 
-unsafe impl NSCopying for HKVerifiableClinicalRecordSubject {}
+extern_conformance!(
+    unsafe impl NSCopying for HKVerifiableClinicalRecordSubject {}
+);
 
 unsafe impl CopyingHelper for HKVerifiableClinicalRecordSubject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordSubject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordSubject {}
+);
 
-unsafe impl NSSecureCoding for HKVerifiableClinicalRecordSubject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKVerifiableClinicalRecordSubject {}
+);
 
 impl HKVerifiableClinicalRecordSubject {
     extern_methods!(

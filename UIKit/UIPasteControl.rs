@@ -44,11 +44,17 @@ extern_class!(
     pub struct UIPasteControlConfiguration;
 );
 
-unsafe impl NSCoding for UIPasteControlConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UIPasteControlConfiguration {}
+);
 
-unsafe impl NSObjectProtocol for UIPasteControlConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPasteControlConfiguration {}
+);
 
-unsafe impl NSSecureCoding for UIPasteControlConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIPasteControlConfiguration {}
+);
 
 impl UIPasteControlConfiguration {
     extern_methods!(
@@ -147,13 +153,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIPasteControl {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIPasteControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIPasteControl {}
+extern_conformance!(
+    unsafe impl NSCoding for UIPasteControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIPasteControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPasteControl {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -161,7 +173,9 @@ unsafe impl NSObjectProtocol for UIPasteControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UIPasteControl {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIPasteControl {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -169,10 +183,14 @@ unsafe impl UIAppearance for UIPasteControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UIPasteControl {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIPasteControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIPasteControl {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIPasteControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -180,7 +198,9 @@ unsafe impl UICoordinateSpace for UIPasteControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIPasteControl {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIPasteControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -188,7 +208,9 @@ unsafe impl UIDynamicItem for UIPasteControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UIPasteControl {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIPasteControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -196,7 +218,9 @@ unsafe impl UIFocusEnvironment for UIPasteControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UIPasteControl {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIPasteControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -204,10 +228,14 @@ unsafe impl UIFocusItem for UIPasteControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UIPasteControl {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIPasteControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIPasteControl {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIPasteControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -215,7 +243,9 @@ unsafe impl UIResponderStandardEditActions for UIPasteControl {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIPasteControl {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIPasteControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UIPasteControl {

@@ -23,7 +23,9 @@ extern_class!(
     pub struct VZVirtioSocketListener;
 );
 
-unsafe impl NSObjectProtocol for VZVirtioSocketListener {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioSocketListener {}
+);
 
 impl VZVirtioSocketListener {
     extern_methods!(

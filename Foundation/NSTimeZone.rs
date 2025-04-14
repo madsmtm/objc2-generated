@@ -18,20 +18,28 @@ unsafe impl Send for NSTimeZone {}
 unsafe impl Sync for NSTimeZone {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSTimeZone {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTimeZone {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSTimeZone {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTimeZone {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSTimeZone {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTimeZone {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTimeZone {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSTimeZone {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTimeZone {}
+);
 
 impl NSTimeZone {
     extern_methods!(

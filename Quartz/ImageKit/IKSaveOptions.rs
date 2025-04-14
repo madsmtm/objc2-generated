@@ -40,7 +40,9 @@ extern_class!(
     pub struct IKSaveOptions;
 );
 
-unsafe impl NSObjectProtocol for IKSaveOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKSaveOptions {}
+);
 
 impl IKSaveOptions {
     extern_methods!(

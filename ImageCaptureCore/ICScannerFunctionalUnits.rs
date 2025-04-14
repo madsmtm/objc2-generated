@@ -372,7 +372,9 @@ extern_class!(
     pub struct ICScannerFeature;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFeature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFeature {}
+);
 
 impl ICScannerFeature {
     extern_methods!(
@@ -420,7 +422,9 @@ extern_class!(
     pub struct ICScannerFeatureEnumeration;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFeatureEnumeration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFeatureEnumeration {}
+);
 
 impl ICScannerFeatureEnumeration {
     extern_methods!(
@@ -478,7 +482,9 @@ extern_class!(
     pub struct ICScannerFeatureRange;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFeatureRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFeatureRange {}
+);
 
 impl ICScannerFeatureRange {
     extern_methods!(
@@ -542,7 +548,9 @@ extern_class!(
     pub struct ICScannerFeatureBoolean;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFeatureBoolean {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFeatureBoolean {}
+);
 
 impl ICScannerFeatureBoolean {
     extern_methods!(
@@ -580,7 +588,9 @@ extern_class!(
     pub struct ICScannerFeatureTemplate;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFeatureTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFeatureTemplate {}
+);
 
 impl ICScannerFeatureTemplate {
     extern_methods!(
@@ -612,7 +622,9 @@ extern_class!(
     pub struct ICScannerFunctionalUnit;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFunctionalUnit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFunctionalUnit {}
+);
 
 impl ICScannerFunctionalUnit {
     extern_methods!(
@@ -862,7 +874,9 @@ extern_class!(
     pub struct ICScannerFunctionalUnitFlatbed;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFunctionalUnitFlatbed {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFunctionalUnitFlatbed {}
+);
 
 impl ICScannerFunctionalUnitFlatbed {
     extern_methods!(
@@ -912,7 +926,9 @@ extern_class!(
     pub struct ICScannerFunctionalUnitPositiveTransparency;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFunctionalUnitPositiveTransparency {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFunctionalUnitPositiveTransparency {}
+);
 
 impl ICScannerFunctionalUnitPositiveTransparency {
     extern_methods!(
@@ -962,7 +978,9 @@ extern_class!(
     pub struct ICScannerFunctionalUnitNegativeTransparency;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFunctionalUnitNegativeTransparency {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFunctionalUnitNegativeTransparency {}
+);
 
 impl ICScannerFunctionalUnitNegativeTransparency {
     extern_methods!(
@@ -1012,7 +1030,9 @@ extern_class!(
     pub struct ICScannerFunctionalUnitDocumentFeeder;
 );
 
-unsafe impl NSObjectProtocol for ICScannerFunctionalUnitDocumentFeeder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICScannerFunctionalUnitDocumentFeeder {}
+);
 
 impl ICScannerFunctionalUnitDocumentFeeder {
     extern_methods!(

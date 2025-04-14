@@ -16,7 +16,9 @@ extern_class!(
     pub struct CAMetalDisplayLinkUpdate;
 );
 
-unsafe impl NSObjectProtocol for CAMetalDisplayLinkUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAMetalDisplayLinkUpdate {}
+);
 
 impl CAMetalDisplayLinkUpdate {
     extern_methods!(
@@ -70,7 +72,9 @@ extern_class!(
     pub struct CAMetalDisplayLink;
 );
 
-unsafe impl NSObjectProtocol for CAMetalDisplayLink {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAMetalDisplayLink {}
+);
 
 impl CAMetalDisplayLink {
     extern_methods!(

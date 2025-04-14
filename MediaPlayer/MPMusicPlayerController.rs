@@ -102,9 +102,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MPMediaPlayback")]
-unsafe impl MPMediaPlayback for MPMusicPlayerController {}
+extern_conformance!(
+    unsafe impl MPMediaPlayback for MPMusicPlayerController {}
+);
 
-unsafe impl NSObjectProtocol for MPMusicPlayerController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMusicPlayerController {}
+);
 
 impl MPMusicPlayerController {
     extern_methods!(

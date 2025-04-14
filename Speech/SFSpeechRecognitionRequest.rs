@@ -18,7 +18,9 @@ extern_class!(
     pub struct SFSpeechRecognitionRequest;
 );
 
-unsafe impl NSObjectProtocol for SFSpeechRecognitionRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSpeechRecognitionRequest {}
+);
 
 impl SFSpeechRecognitionRequest {
     extern_methods!(
@@ -118,7 +120,9 @@ extern_class!(
     pub struct SFSpeechURLRecognitionRequest;
 );
 
-unsafe impl NSObjectProtocol for SFSpeechURLRecognitionRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSpeechURLRecognitionRequest {}
+);
 
 impl SFSpeechURLRecognitionRequest {
     extern_methods!(
@@ -152,7 +156,9 @@ extern_class!(
     pub struct SFSpeechAudioBufferRecognitionRequest;
 );
 
-unsafe impl NSObjectProtocol for SFSpeechAudioBufferRecognitionRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSpeechAudioBufferRecognitionRequest {}
+);
 
 impl SFSpeechAudioBufferRecognitionRequest {
     extern_methods!(

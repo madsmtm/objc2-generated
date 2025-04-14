@@ -17,17 +17,25 @@ unsafe impl Send for CKServerChangeToken {}
 
 unsafe impl Sync for CKServerChangeToken {}
 
-unsafe impl NSCoding for CKServerChangeToken {}
+extern_conformance!(
+    unsafe impl NSCoding for CKServerChangeToken {}
+);
 
-unsafe impl NSCopying for CKServerChangeToken {}
+extern_conformance!(
+    unsafe impl NSCopying for CKServerChangeToken {}
+);
 
 unsafe impl CopyingHelper for CKServerChangeToken {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKServerChangeToken {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKServerChangeToken {}
+);
 
-unsafe impl NSSecureCoding for CKServerChangeToken {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKServerChangeToken {}
+);
 
 impl CKServerChangeToken {
     extern_methods!(

@@ -24,13 +24,19 @@ extern_class!(
     pub struct SCNRenderer;
 );
 
-unsafe impl NSObjectProtocol for SCNRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNRenderer {}
+);
 
 #[cfg(feature = "SCNSceneRenderer")]
-unsafe impl SCNSceneRenderer for SCNRenderer {}
+extern_conformance!(
+    unsafe impl SCNSceneRenderer for SCNRenderer {}
+);
 
 #[cfg(feature = "SCNTechnique")]
-unsafe impl SCNTechniqueSupport for SCNRenderer {}
+extern_conformance!(
+    unsafe impl SCNTechniqueSupport for SCNRenderer {}
+);
 
 impl SCNRenderer {
     extern_methods!(

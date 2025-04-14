@@ -21,17 +21,23 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSNotification {}
+extern_conformance!(
+    unsafe impl NSCoding for NSNotification {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSNotification {}
+extern_conformance!(
+    unsafe impl NSCopying for NSNotification {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSNotification {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSNotification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNotification {}
+);
 
 impl NSNotification {
     extern_methods!(
@@ -104,7 +110,9 @@ unsafe impl Send for NSNotificationCenter {}
 
 unsafe impl Sync for NSNotificationCenter {}
 
-unsafe impl NSObjectProtocol for NSNotificationCenter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNotificationCenter {}
+);
 
 impl NSNotificationCenter {
     extern_methods!(

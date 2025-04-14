@@ -13,13 +13,17 @@ extern_class!(
     pub struct PDFAction;
 );
 
-unsafe impl NSCopying for PDFAction {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFAction {}
+);
 
 unsafe impl CopyingHelper for PDFAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PDFAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFAction {}
+);
 
 impl PDFAction {
     extern_methods!(

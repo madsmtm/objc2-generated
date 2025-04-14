@@ -28,7 +28,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-unsafe impl NSCopying for VNImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl CopyingHelper for VNImageRegistrationRequest {
@@ -36,7 +38,9 @@ unsafe impl CopyingHelper for VNImageRegistrationRequest {
 }
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-unsafe impl NSObjectProtocol for VNImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNImageRegistrationRequest {
@@ -305,7 +309,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-unsafe impl NSCopying for VNTranslationalImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNTranslationalImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl CopyingHelper for VNTranslationalImageRegistrationRequest {
@@ -313,7 +319,9 @@ unsafe impl CopyingHelper for VNTranslationalImageRegistrationRequest {
 }
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-unsafe impl NSObjectProtocol for VNTranslationalImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNTranslationalImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNTranslationalImageRegistrationRequest {
@@ -594,7 +602,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-unsafe impl NSCopying for VNHomographicImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNHomographicImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl CopyingHelper for VNHomographicImageRegistrationRequest {
@@ -602,7 +612,9 @@ unsafe impl CopyingHelper for VNHomographicImageRegistrationRequest {
 }
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-unsafe impl NSObjectProtocol for VNHomographicImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNHomographicImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNHomographicImageRegistrationRequest {

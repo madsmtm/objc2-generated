@@ -18,7 +18,9 @@ extern_class!(
     pub struct GKNotificationBanner;
 );
 
-unsafe impl NSObjectProtocol for GKNotificationBanner {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKNotificationBanner {}
+);
 
 impl GKNotificationBanner {
     extern_methods!(

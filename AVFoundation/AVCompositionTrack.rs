@@ -20,10 +20,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAssetTrack", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVCompositionTrack {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVCompositionTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSCopying for AVCompositionTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for AVCompositionTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl CopyingHelper for AVCompositionTrack {
@@ -31,7 +35,9 @@ unsafe impl CopyingHelper for AVCompositionTrack {
 }
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSObjectProtocol for AVCompositionTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCompositionTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 impl AVCompositionTrack {
@@ -98,10 +104,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAssetTrack", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVMutableCompositionTrack {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVMutableCompositionTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSCopying for AVMutableCompositionTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableCompositionTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl CopyingHelper for AVMutableCompositionTrack {
@@ -109,7 +119,9 @@ unsafe impl CopyingHelper for AVMutableCompositionTrack {
 }
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSObjectProtocol for AVMutableCompositionTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableCompositionTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 impl AVMutableCompositionTrack {
@@ -363,11 +375,17 @@ unsafe impl Send for AVCompositionTrackFormatDescriptionReplacement {}
 
 unsafe impl Sync for AVCompositionTrackFormatDescriptionReplacement {}
 
-unsafe impl NSCoding for AVCompositionTrackFormatDescriptionReplacement {}
+extern_conformance!(
+    unsafe impl NSCoding for AVCompositionTrackFormatDescriptionReplacement {}
+);
 
-unsafe impl NSObjectProtocol for AVCompositionTrackFormatDescriptionReplacement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCompositionTrackFormatDescriptionReplacement {}
+);
 
-unsafe impl NSSecureCoding for AVCompositionTrackFormatDescriptionReplacement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVCompositionTrackFormatDescriptionReplacement {}
+);
 
 impl AVCompositionTrackFormatDescriptionReplacement {
     extern_methods!(

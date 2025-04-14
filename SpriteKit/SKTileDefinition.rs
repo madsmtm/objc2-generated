@@ -44,17 +44,25 @@ extern_class!(
     pub struct SKTileDefinition;
 );
 
-unsafe impl NSCoding for SKTileDefinition {}
+extern_conformance!(
+    unsafe impl NSCoding for SKTileDefinition {}
+);
 
-unsafe impl NSCopying for SKTileDefinition {}
+extern_conformance!(
+    unsafe impl NSCopying for SKTileDefinition {}
+);
 
 unsafe impl CopyingHelper for SKTileDefinition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKTileDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKTileDefinition {}
+);
 
-unsafe impl NSSecureCoding for SKTileDefinition {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKTileDefinition {}
+);
 
 impl SKTileDefinition {
     extern_methods!(

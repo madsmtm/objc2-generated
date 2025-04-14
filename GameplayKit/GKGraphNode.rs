@@ -16,11 +16,17 @@ extern_class!(
     pub struct GKGraphNode;
 );
 
-unsafe impl NSCoding for GKGraphNode {}
+extern_conformance!(
+    unsafe impl NSCoding for GKGraphNode {}
+);
 
-unsafe impl NSObjectProtocol for GKGraphNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKGraphNode {}
+);
 
-unsafe impl NSSecureCoding for GKGraphNode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKGraphNode {}
+);
 
 impl GKGraphNode {
     extern_methods!(
@@ -115,11 +121,17 @@ extern_class!(
     pub struct GKGraphNode2D;
 );
 
-unsafe impl NSCoding for GKGraphNode2D {}
+extern_conformance!(
+    unsafe impl NSCoding for GKGraphNode2D {}
+);
 
-unsafe impl NSObjectProtocol for GKGraphNode2D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKGraphNode2D {}
+);
 
-unsafe impl NSSecureCoding for GKGraphNode2D {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKGraphNode2D {}
+);
 
 impl GKGraphNode2D {
     extern_methods!();
@@ -147,11 +159,17 @@ extern_class!(
     pub struct GKGraphNode3D;
 );
 
-unsafe impl NSCoding for GKGraphNode3D {}
+extern_conformance!(
+    unsafe impl NSCoding for GKGraphNode3D {}
+);
 
-unsafe impl NSObjectProtocol for GKGraphNode3D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKGraphNode3D {}
+);
 
-unsafe impl NSSecureCoding for GKGraphNode3D {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKGraphNode3D {}
+);
 
 impl GKGraphNode3D {
     extern_methods!();
@@ -179,11 +197,17 @@ extern_class!(
     pub struct GKGridGraphNode;
 );
 
-unsafe impl NSCoding for GKGridGraphNode {}
+extern_conformance!(
+    unsafe impl NSCoding for GKGridGraphNode {}
+);
 
-unsafe impl NSObjectProtocol for GKGridGraphNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKGridGraphNode {}
+);
 
-unsafe impl NSSecureCoding for GKGridGraphNode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKGridGraphNode {}
+);
 
 impl GKGridGraphNode {
     extern_methods!();

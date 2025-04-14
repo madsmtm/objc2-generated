@@ -37,7 +37,9 @@ extern_class!(
     pub struct EPDeveloperTool;
 );
 
-unsafe impl NSObjectProtocol for EPDeveloperTool {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EPDeveloperTool {}
+);
 
 impl EPDeveloperTool {
     extern_methods!(

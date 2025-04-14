@@ -20,7 +20,9 @@ extern_class!(
     pub struct SHMediaLibrary;
 );
 
-unsafe impl NSObjectProtocol for SHMediaLibrary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHMediaLibrary {}
+);
 
 impl SHMediaLibrary {
     extern_methods!(

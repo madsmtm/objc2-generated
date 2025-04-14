@@ -13,9 +13,13 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentHandlerProviding")]
-unsafe impl INIntentHandlerProviding for INExtension {}
+extern_conformance!(
+    unsafe impl INIntentHandlerProviding for INExtension {}
+);
 
-unsafe impl NSObjectProtocol for INExtension {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INExtension {}
+);
 
 impl INExtension {
     extern_methods!();

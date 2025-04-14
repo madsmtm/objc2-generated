@@ -61,7 +61,9 @@ extern_class!(
     pub struct UIContextMenuConfiguration;
 );
 
-unsafe impl NSObjectProtocol for UIContextMenuConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIContextMenuConfiguration {}
+);
 
 impl UIContextMenuConfiguration {
     extern_methods!(

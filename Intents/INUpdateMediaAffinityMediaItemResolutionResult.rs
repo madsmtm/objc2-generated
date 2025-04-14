@@ -53,7 +53,9 @@ extern_class!(
     feature = "INIntentResolutionResult",
     feature = "INMediaItemResolutionResult"
 ))]
-unsafe impl NSObjectProtocol for INUpdateMediaAffinityMediaItemResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INUpdateMediaAffinityMediaItemResolutionResult {}
+);
 
 #[cfg(all(
     feature = "INIntentResolutionResult",

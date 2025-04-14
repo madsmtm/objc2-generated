@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceDate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceDate {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceDate {

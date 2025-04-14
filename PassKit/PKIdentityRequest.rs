@@ -16,7 +16,9 @@ extern_class!(
     pub struct PKIdentityRequest;
 );
 
-unsafe impl NSObjectProtocol for PKIdentityRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityRequest {}
+);
 
 impl PKIdentityRequest {
     extern_methods!(

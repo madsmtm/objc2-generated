@@ -70,7 +70,9 @@ extern_class!(
     pub struct VZMacAuxiliaryStorage;
 );
 
-unsafe impl NSObjectProtocol for VZMacAuxiliaryStorage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacAuxiliaryStorage {}
+);
 
 impl VZMacAuxiliaryStorage {
     extern_methods!(

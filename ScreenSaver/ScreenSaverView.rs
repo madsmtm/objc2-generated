@@ -38,28 +38,44 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAccessibility for ScreenSaverView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for ScreenSaverView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAccessibilityElementProtocol for ScreenSaverView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for ScreenSaverView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAnimatablePropertyContainer for ScreenSaverView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for ScreenSaverView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAppearanceCustomization for ScreenSaverView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for ScreenSaverView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSCoding for ScreenSaverView {}
+extern_conformance!(
+    unsafe impl NSCoding for ScreenSaverView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSDraggingDestination for ScreenSaverView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for ScreenSaverView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSObjectProtocol for ScreenSaverView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ScreenSaverView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSUserInterfaceItemIdentification for ScreenSaverView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for ScreenSaverView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 impl ScreenSaverView {

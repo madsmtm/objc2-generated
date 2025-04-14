@@ -143,9 +143,13 @@ extern_class!(
     pub struct NSScrubberSelectionStyle;
 );
 
-unsafe impl NSCoding for NSScrubberSelectionStyle {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubberSelectionStyle {}
+);
 
-unsafe impl NSObjectProtocol for NSScrubberSelectionStyle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberSelectionStyle {}
+);
 
 impl NSScrubberSelectionStyle {
     extern_methods!(
@@ -213,36 +217,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSScrubber {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSScrubber {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSScrubber {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSScrubber {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSScrubber {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSScrubber {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSScrubber {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSScrubber {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSScrubber {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubber {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSScrubber {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSScrubber {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSScrubber {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubber {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSScrubber {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSScrubber {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSScrubber {

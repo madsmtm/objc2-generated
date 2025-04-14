@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSUbiquitousKeyValueStore;
 );
 
-unsafe impl NSObjectProtocol for NSUbiquitousKeyValueStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUbiquitousKeyValueStore {}
+);
 
 impl NSUbiquitousKeyValueStore {
     extern_methods!(

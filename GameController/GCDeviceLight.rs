@@ -15,7 +15,9 @@ extern_class!(
     pub struct GCDeviceLight;
 );
 
-unsafe impl NSObjectProtocol for GCDeviceLight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCDeviceLight {}
+);
 
 impl GCDeviceLight {
     extern_methods!(

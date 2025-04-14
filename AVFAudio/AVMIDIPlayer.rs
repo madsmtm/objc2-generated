@@ -22,7 +22,9 @@ extern_class!(
     pub struct AVMIDIPlayer;
 );
 
-unsafe impl NSObjectProtocol for AVMIDIPlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDIPlayer {}
+);
 
 impl AVMIDIPlayer {
     extern_methods!(

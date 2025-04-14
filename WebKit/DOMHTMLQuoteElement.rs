@@ -37,7 +37,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMHTMLQuoteElement {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMHTMLQuoteElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -46,7 +48,9 @@ unsafe impl DOMEventTarget for DOMHTMLQuoteElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMHTMLQuoteElement {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMHTMLQuoteElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -66,7 +70,9 @@ unsafe impl CopyingHelper for DOMHTMLQuoteElement {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMHTMLQuoteElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMHTMLQuoteElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",

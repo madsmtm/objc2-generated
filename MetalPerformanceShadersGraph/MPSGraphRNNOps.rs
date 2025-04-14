@@ -60,7 +60,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphSingleGateRNNDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphSingleGateRNNDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphSingleGateRNNDescriptor {
@@ -68,7 +70,9 @@ unsafe impl CopyingHelper for MPSGraphSingleGateRNNDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphSingleGateRNNDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphSingleGateRNNDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphSingleGateRNNDescriptor {
@@ -167,7 +171,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphLSTMDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphLSTMDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphLSTMDescriptor {
@@ -175,7 +181,9 @@ unsafe impl CopyingHelper for MPSGraphLSTMDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphLSTMDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphLSTMDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphLSTMDescriptor {
@@ -347,7 +355,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphGRUDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphGRUDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphGRUDescriptor {
@@ -355,7 +365,9 @@ unsafe impl CopyingHelper for MPSGraphGRUDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphGRUDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphGRUDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphGRUDescriptor {

@@ -85,7 +85,9 @@ unsafe impl Send for PHPhotoLibrary {}
 
 unsafe impl Sync for PHPhotoLibrary {}
 
-unsafe impl NSObjectProtocol for PHPhotoLibrary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHPhotoLibrary {}
+);
 
 impl PHPhotoLibrary {
     extern_methods!(

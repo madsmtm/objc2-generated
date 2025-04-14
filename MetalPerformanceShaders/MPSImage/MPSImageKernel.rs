@@ -31,10 +31,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSUnaryImageKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSUnaryImageKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSUnaryImageKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSUnaryImageKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSUnaryImageKernel {
@@ -42,10 +46,14 @@ unsafe impl CopyingHelper for MPSUnaryImageKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSUnaryImageKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSUnaryImageKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSUnaryImageKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSUnaryImageKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSUnaryImageKernel {
@@ -359,10 +367,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSBinaryImageKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSBinaryImageKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSBinaryImageKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSBinaryImageKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSBinaryImageKernel {
@@ -370,10 +382,14 @@ unsafe impl CopyingHelper for MPSBinaryImageKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSBinaryImageKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSBinaryImageKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSBinaryImageKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSBinaryImageKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSBinaryImageKernel {

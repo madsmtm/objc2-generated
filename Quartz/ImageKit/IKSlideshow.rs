@@ -77,7 +77,9 @@ extern_class!(
     pub struct IKSlideshow;
 );
 
-unsafe impl NSObjectProtocol for IKSlideshow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKSlideshow {}
+);
 
 impl IKSlideshow {
     extern_methods!(

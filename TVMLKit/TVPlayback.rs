@@ -182,9 +182,13 @@ extern_class!(
     pub struct TVPlaybackCustomEventUserInfo;
 );
 
-unsafe impl NSObjectProtocol for TVPlaybackCustomEventUserInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVPlaybackCustomEventUserInfo {}
+);
 
-unsafe impl TVPlaybackEventMarshaling for TVPlaybackCustomEventUserInfo {}
+extern_conformance!(
+    unsafe impl TVPlaybackEventMarshaling for TVPlaybackCustomEventUserInfo {}
+);
 
 impl TVPlaybackCustomEventUserInfo {
     extern_methods!(
@@ -238,7 +242,9 @@ extern_class!(
     pub struct TVPlaylist;
 );
 
-unsafe impl NSObjectProtocol for TVPlaylist {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVPlaylist {}
+);
 
 impl TVPlaylist {
     extern_methods!(
@@ -287,7 +293,9 @@ extern_class!(
     pub struct TVMediaItem;
 );
 
-unsafe impl NSObjectProtocol for TVMediaItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVMediaItem {}
+);
 
 impl TVMediaItem {
     extern_methods!(
@@ -383,7 +391,9 @@ extern_class!(
     pub struct TVTimeRange;
 );
 
-unsafe impl NSObjectProtocol for TVTimeRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVTimeRange {}
+);
 
 impl TVTimeRange {
     extern_methods!(
@@ -427,7 +437,9 @@ extern_class!(
     pub struct TVHighlightGroup;
 );
 
-unsafe impl NSObjectProtocol for TVHighlightGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVHighlightGroup {}
+);
 
 impl TVHighlightGroup {
     extern_methods!(
@@ -466,7 +478,9 @@ extern_class!(
     pub struct TVHighlight;
 );
 
-unsafe impl NSObjectProtocol for TVHighlight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVHighlight {}
+);
 
 impl TVHighlight {
     extern_methods!(
@@ -515,7 +529,9 @@ extern_class!(
     pub struct TVPlayer;
 );
 
-unsafe impl NSObjectProtocol for TVPlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVPlayer {}
+);
 
 impl TVPlayer {
     extern_methods!(

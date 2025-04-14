@@ -54,10 +54,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSearchForAccountsIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSearchForAccountsIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSearchForAccountsIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSearchForAccountsIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSearchForAccountsIntentResponse {
@@ -65,10 +69,14 @@ unsafe impl CopyingHelper for INSearchForAccountsIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSearchForAccountsIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSearchForAccountsIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSearchForAccountsIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSearchForAccountsIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSearchForAccountsIntentResponse {

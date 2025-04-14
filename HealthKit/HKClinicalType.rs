@@ -102,10 +102,14 @@ unsafe impl Send for HKClinicalType {}
 unsafe impl Sync for HKClinicalType {}
 
 #[cfg(feature = "HKObjectType")]
-unsafe impl NSCoding for HKClinicalType {}
+extern_conformance!(
+    unsafe impl NSCoding for HKClinicalType {}
+);
 
 #[cfg(feature = "HKObjectType")]
-unsafe impl NSCopying for HKClinicalType {}
+extern_conformance!(
+    unsafe impl NSCopying for HKClinicalType {}
+);
 
 #[cfg(feature = "HKObjectType")]
 unsafe impl CopyingHelper for HKClinicalType {
@@ -113,10 +117,14 @@ unsafe impl CopyingHelper for HKClinicalType {
 }
 
 #[cfg(feature = "HKObjectType")]
-unsafe impl NSObjectProtocol for HKClinicalType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKClinicalType {}
+);
 
 #[cfg(feature = "HKObjectType")]
-unsafe impl NSSecureCoding for HKClinicalType {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKClinicalType {}
+);
 
 #[cfg(feature = "HKObjectType")]
 impl HKClinicalType {

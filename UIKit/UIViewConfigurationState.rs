@@ -15,20 +15,30 @@ extern_class!(
     pub struct UIViewConfigurationState;
 );
 
-unsafe impl NSCoding for UIViewConfigurationState {}
+extern_conformance!(
+    unsafe impl NSCoding for UIViewConfigurationState {}
+);
 
-unsafe impl NSCopying for UIViewConfigurationState {}
+extern_conformance!(
+    unsafe impl NSCopying for UIViewConfigurationState {}
+);
 
 unsafe impl CopyingHelper for UIViewConfigurationState {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIViewConfigurationState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIViewConfigurationState {}
+);
 
-unsafe impl NSSecureCoding for UIViewConfigurationState {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIViewConfigurationState {}
+);
 
 #[cfg(feature = "UIConfigurationState")]
-unsafe impl UIConfigurationState for UIViewConfigurationState {}
+extern_conformance!(
+    unsafe impl UIConfigurationState for UIViewConfigurationState {}
+);
 
 impl UIViewConfigurationState {
     extern_methods!(

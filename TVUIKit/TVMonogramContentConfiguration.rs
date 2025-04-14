@@ -20,19 +20,29 @@ extern_class!(
     pub struct TVMonogramContentConfiguration;
 );
 
-unsafe impl NSCoding for TVMonogramContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for TVMonogramContentConfiguration {}
+);
 
-unsafe impl NSCopying for TVMonogramContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for TVMonogramContentConfiguration {}
+);
 
 unsafe impl CopyingHelper for TVMonogramContentConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVMonogramContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVMonogramContentConfiguration {}
+);
 
-unsafe impl NSSecureCoding for TVMonogramContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TVMonogramContentConfiguration {}
+);
 
-unsafe impl UIContentConfiguration for TVMonogramContentConfiguration {}
+extern_conformance!(
+    unsafe impl UIContentConfiguration for TVMonogramContentConfiguration {}
+);
 
 impl TVMonogramContentConfiguration {
     extern_methods!(
@@ -112,31 +122,57 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-quartz-core")]
-unsafe impl CALayerDelegate for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for TVMonogramContentView {}
+);
 
-unsafe impl NSCoding for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl NSCoding for TVMonogramContentView {}
+);
 
-unsafe impl NSObjectProtocol for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVMonogramContentView {}
+);
 
-unsafe impl UIAppearance for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UIAppearance for TVMonogramContentView {}
+);
 
-unsafe impl UIAppearanceContainer for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVMonogramContentView {}
+);
 
-unsafe impl UIContentView for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UIContentView for TVMonogramContentView {}
+);
 
-unsafe impl UICoordinateSpace for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for TVMonogramContentView {}
+);
 
-unsafe impl UIDynamicItem for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVMonogramContentView {}
+);
 
-unsafe impl UIFocusEnvironment for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVMonogramContentView {}
+);
 
-unsafe impl UIFocusItem for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for TVMonogramContentView {}
+);
 
-unsafe impl UIFocusItemContainer for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for TVMonogramContentView {}
+);
 
-unsafe impl UIResponderStandardEditActions for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVMonogramContentView {}
+);
 
-unsafe impl UITraitEnvironment for TVMonogramContentView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVMonogramContentView {}
+);
 
 impl TVMonogramContentView {
     extern_methods!(
@@ -196,17 +232,25 @@ extern_class!(
     pub struct TVMonogramContentTextProperties;
 );
 
-unsafe impl NSCoding for TVMonogramContentTextProperties {}
+extern_conformance!(
+    unsafe impl NSCoding for TVMonogramContentTextProperties {}
+);
 
-unsafe impl NSCopying for TVMonogramContentTextProperties {}
+extern_conformance!(
+    unsafe impl NSCopying for TVMonogramContentTextProperties {}
+);
 
 unsafe impl CopyingHelper for TVMonogramContentTextProperties {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVMonogramContentTextProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVMonogramContentTextProperties {}
+);
 
-unsafe impl NSSecureCoding for TVMonogramContentTextProperties {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TVMonogramContentTextProperties {}
+);
 
 impl TVMonogramContentTextProperties {
     extern_methods!(

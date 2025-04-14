@@ -88,7 +88,9 @@ extern_class!(
     pub struct NEAppProxyFlow;
 );
 
-unsafe impl NSObjectProtocol for NEAppProxyFlow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEAppProxyFlow {}
+);
 
 impl NEAppProxyFlow {
     extern_methods!(
@@ -219,7 +221,9 @@ extern_class!(
     pub struct NEProvider;
 );
 
-unsafe impl NSObjectProtocol for NEProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEProvider {}
+);
 
 impl NEProvider {
     extern_methods!(
@@ -426,7 +430,9 @@ extern_class!(
     pub struct NETunnelProvider;
 );
 
-unsafe impl NSObjectProtocol for NETunnelProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NETunnelProvider {}
+);
 
 impl NETunnelProvider {
     extern_methods!(
@@ -509,7 +515,9 @@ extern_class!(
     pub struct NEAppProxyProvider;
 );
 
-unsafe impl NSObjectProtocol for NEAppProxyProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEAppProxyProvider {}
+);
 
 impl NEAppProxyProvider {
     extern_methods!(
@@ -645,7 +653,9 @@ extern_class!(
     pub struct NEVPNManager;
 );
 
-unsafe impl NSObjectProtocol for NEVPNManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEVPNManager {}
+);
 
 impl NEVPNManager {
     extern_methods!(
@@ -792,7 +802,9 @@ extern_class!(
     pub struct NETunnelProviderManager;
 );
 
-unsafe impl NSObjectProtocol for NETunnelProviderManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NETunnelProviderManager {}
+);
 
 impl NETunnelProviderManager {
     extern_methods!(
@@ -921,7 +933,9 @@ extern_class!(
     pub struct NEAppProxyProviderManager;
 );
 
-unsafe impl NSObjectProtocol for NEAppProxyProviderManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEAppProxyProviderManager {}
+);
 
 impl NEAppProxyProviderManager {
     extern_methods!(
@@ -975,7 +989,9 @@ extern_class!(
     pub struct NEAppProxyTCPFlow;
 );
 
-unsafe impl NSObjectProtocol for NEAppProxyTCPFlow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEAppProxyTCPFlow {}
+);
 
 impl NEAppProxyTCPFlow {
     extern_methods!(
@@ -1038,7 +1054,9 @@ extern_class!(
     pub struct NEAppProxyUDPFlow;
 );
 
-unsafe impl NSObjectProtocol for NEAppProxyUDPFlow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEAppProxyUDPFlow {}
+);
 
 impl NEAppProxyUDPFlow {
     extern_methods!(
@@ -1108,17 +1126,25 @@ extern_class!(
     pub struct NEAppRule;
 );
 
-unsafe impl NSCoding for NEAppRule {}
+extern_conformance!(
+    unsafe impl NSCoding for NEAppRule {}
+);
 
-unsafe impl NSCopying for NEAppRule {}
+extern_conformance!(
+    unsafe impl NSCopying for NEAppRule {}
+);
 
 unsafe impl CopyingHelper for NEAppRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEAppRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEAppRule {}
+);
 
-unsafe impl NSSecureCoding for NEAppRule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEAppRule {}
+);
 
 impl NEAppRule {
     extern_methods!(
@@ -1252,7 +1278,9 @@ extern_class!(
     pub struct NEDNSProxyManager;
 );
 
-unsafe impl NSObjectProtocol for NEDNSProxyManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEDNSProxyManager {}
+);
 
 impl NEDNSProxyManager {
     extern_methods!(
@@ -1353,7 +1381,9 @@ extern_class!(
     pub struct NEDNSProxyProvider;
 );
 
-unsafe impl NSObjectProtocol for NEDNSProxyProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEDNSProxyProvider {}
+);
 
 impl NEDNSProxyProvider {
     extern_methods!(
@@ -1452,17 +1482,25 @@ extern_class!(
     pub struct NEProxyServer;
 );
 
-unsafe impl NSCoding for NEProxyServer {}
+extern_conformance!(
+    unsafe impl NSCoding for NEProxyServer {}
+);
 
-unsafe impl NSCopying for NEProxyServer {}
+extern_conformance!(
+    unsafe impl NSCopying for NEProxyServer {}
+);
 
 unsafe impl CopyingHelper for NEProxyServer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEProxyServer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEProxyServer {}
+);
 
-unsafe impl NSSecureCoding for NEProxyServer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEProxyServer {}
+);
 
 impl NEProxyServer {
     extern_methods!(
@@ -1545,17 +1583,25 @@ extern_class!(
     pub struct NEProxySettings;
 );
 
-unsafe impl NSCoding for NEProxySettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEProxySettings {}
+);
 
-unsafe impl NSCopying for NEProxySettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEProxySettings {}
+);
 
 unsafe impl CopyingHelper for NEProxySettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEProxySettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEProxySettings {}
+);
 
-unsafe impl NSSecureCoding for NEProxySettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEProxySettings {}
+);
 
 impl NEProxySettings {
     extern_methods!(
@@ -1696,17 +1742,25 @@ extern_class!(
     pub struct NEVPNProtocol;
 );
 
-unsafe impl NSCoding for NEVPNProtocol {}
+extern_conformance!(
+    unsafe impl NSCoding for NEVPNProtocol {}
+);
 
-unsafe impl NSCopying for NEVPNProtocol {}
+extern_conformance!(
+    unsafe impl NSCopying for NEVPNProtocol {}
+);
 
 unsafe impl CopyingHelper for NEVPNProtocol {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEVPNProtocol {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEVPNProtocol {}
+);
 
-unsafe impl NSSecureCoding for NEVPNProtocol {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEVPNProtocol {}
+);
 
 impl NEVPNProtocol {
     extern_methods!(
@@ -1901,17 +1955,25 @@ extern_class!(
     pub struct NEDNSProxyProviderProtocol;
 );
 
-unsafe impl NSCoding for NEDNSProxyProviderProtocol {}
+extern_conformance!(
+    unsafe impl NSCoding for NEDNSProxyProviderProtocol {}
+);
 
-unsafe impl NSCopying for NEDNSProxyProviderProtocol {}
+extern_conformance!(
+    unsafe impl NSCopying for NEDNSProxyProviderProtocol {}
+);
 
 unsafe impl CopyingHelper for NEDNSProxyProviderProtocol {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEDNSProxyProviderProtocol {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEDNSProxyProviderProtocol {}
+);
 
-unsafe impl NSSecureCoding for NEDNSProxyProviderProtocol {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEDNSProxyProviderProtocol {}
+);
 
 impl NEDNSProxyProviderProtocol {
     extern_methods!(
@@ -1991,17 +2053,25 @@ extern_class!(
     pub struct NEDNSSettings;
 );
 
-unsafe impl NSCoding for NEDNSSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEDNSSettings {}
+);
 
-unsafe impl NSCopying for NEDNSSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEDNSSettings {}
+);
 
 unsafe impl CopyingHelper for NEDNSSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEDNSSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEDNSSettings {}
+);
 
-unsafe impl NSSecureCoding for NEDNSSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEDNSSettings {}
+);
 
 impl NEDNSSettings {
     extern_methods!(
@@ -2087,17 +2157,25 @@ extern_class!(
     pub struct NEDNSOverTLSSettings;
 );
 
-unsafe impl NSCoding for NEDNSOverTLSSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEDNSOverTLSSettings {}
+);
 
-unsafe impl NSCopying for NEDNSOverTLSSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEDNSOverTLSSettings {}
+);
 
 unsafe impl CopyingHelper for NEDNSOverTLSSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEDNSOverTLSSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEDNSOverTLSSettings {}
+);
 
-unsafe impl NSSecureCoding for NEDNSOverTLSSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEDNSOverTLSSettings {}
+);
 
 impl NEDNSOverTLSSettings {
     extern_methods!(
@@ -2158,17 +2236,25 @@ extern_class!(
     pub struct NEDNSOverHTTPSSettings;
 );
 
-unsafe impl NSCoding for NEDNSOverHTTPSSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEDNSOverHTTPSSettings {}
+);
 
-unsafe impl NSCopying for NEDNSOverHTTPSSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEDNSOverHTTPSSettings {}
+);
 
 unsafe impl CopyingHelper for NEDNSOverHTTPSSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEDNSOverHTTPSSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEDNSOverHTTPSSettings {}
+);
 
-unsafe impl NSSecureCoding for NEDNSOverHTTPSSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEDNSOverHTTPSSettings {}
+);
 
 impl NEDNSOverHTTPSSettings {
     extern_methods!(
@@ -2271,7 +2357,9 @@ extern_class!(
     pub struct NEDNSSettingsManager;
 );
 
-unsafe impl NSObjectProtocol for NEDNSSettingsManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEDNSSettingsManager {}
+);
 
 impl NEDNSSettingsManager {
     extern_methods!(
@@ -2420,17 +2508,25 @@ extern_class!(
     pub struct NENetworkRule;
 );
 
-unsafe impl NSCoding for NENetworkRule {}
+extern_conformance!(
+    unsafe impl NSCoding for NENetworkRule {}
+);
 
-unsafe impl NSCopying for NENetworkRule {}
+extern_conformance!(
+    unsafe impl NSCopying for NENetworkRule {}
+);
 
 unsafe impl CopyingHelper for NENetworkRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NENetworkRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NENetworkRule {}
+);
 
-unsafe impl NSSecureCoding for NENetworkRule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NENetworkRule {}
+);
 
 impl NENetworkRule {
     extern_methods!(
@@ -2582,17 +2678,25 @@ extern_class!(
     pub struct NEFilterFlow;
 );
 
-unsafe impl NSCoding for NEFilterFlow {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterFlow {}
+);
 
-unsafe impl NSCopying for NEFilterFlow {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterFlow {}
+);
 
 unsafe impl CopyingHelper for NEFilterFlow {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterFlow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterFlow {}
+);
 
-unsafe impl NSSecureCoding for NEFilterFlow {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterFlow {}
+);
 
 impl NEFilterFlow {
     extern_methods!(
@@ -2664,17 +2768,25 @@ extern_class!(
     pub struct NEFilterBrowserFlow;
 );
 
-unsafe impl NSCoding for NEFilterBrowserFlow {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterBrowserFlow {}
+);
 
-unsafe impl NSCopying for NEFilterBrowserFlow {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterBrowserFlow {}
+);
 
 unsafe impl CopyingHelper for NEFilterBrowserFlow {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterBrowserFlow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterBrowserFlow {}
+);
 
-unsafe impl NSSecureCoding for NEFilterBrowserFlow {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterBrowserFlow {}
+);
 
 impl NEFilterBrowserFlow {
     extern_methods!(
@@ -2719,17 +2831,25 @@ extern_class!(
     pub struct NEFilterSocketFlow;
 );
 
-unsafe impl NSCoding for NEFilterSocketFlow {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterSocketFlow {}
+);
 
-unsafe impl NSCopying for NEFilterSocketFlow {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterSocketFlow {}
+);
 
 unsafe impl CopyingHelper for NEFilterSocketFlow {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterSocketFlow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterSocketFlow {}
+);
 
-unsafe impl NSSecureCoding for NEFilterSocketFlow {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterSocketFlow {}
+);
 
 impl NEFilterSocketFlow {
     extern_methods!(
@@ -2794,7 +2914,9 @@ extern_class!(
     pub struct NEFilterProvider;
 );
 
-unsafe impl NSObjectProtocol for NEFilterProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterProvider {}
+);
 
 impl NEFilterProvider {
     extern_methods!(
@@ -2895,17 +3017,25 @@ extern_class!(
     pub struct NEFilterVerdict;
 );
 
-unsafe impl NSCoding for NEFilterVerdict {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterVerdict {}
+);
 
-unsafe impl NSCopying for NEFilterVerdict {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterVerdict {}
+);
 
 unsafe impl CopyingHelper for NEFilterVerdict {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterVerdict {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterVerdict {}
+);
 
-unsafe impl NSSecureCoding for NEFilterVerdict {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterVerdict {}
+);
 
 impl NEFilterVerdict {
     extern_methods!(
@@ -2953,17 +3083,25 @@ extern_class!(
     pub struct NEFilterNewFlowVerdict;
 );
 
-unsafe impl NSCoding for NEFilterNewFlowVerdict {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterNewFlowVerdict {}
+);
 
-unsafe impl NSCopying for NEFilterNewFlowVerdict {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterNewFlowVerdict {}
+);
 
 unsafe impl CopyingHelper for NEFilterNewFlowVerdict {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterNewFlowVerdict {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterNewFlowVerdict {}
+);
 
-unsafe impl NSSecureCoding for NEFilterNewFlowVerdict {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterNewFlowVerdict {}
+);
 
 impl NEFilterNewFlowVerdict {
     extern_methods!(
@@ -3087,17 +3225,25 @@ extern_class!(
     pub struct NEFilterControlVerdict;
 );
 
-unsafe impl NSCoding for NEFilterControlVerdict {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterControlVerdict {}
+);
 
-unsafe impl NSCopying for NEFilterControlVerdict {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterControlVerdict {}
+);
 
 unsafe impl CopyingHelper for NEFilterControlVerdict {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterControlVerdict {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterControlVerdict {}
+);
 
-unsafe impl NSSecureCoding for NEFilterControlVerdict {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterControlVerdict {}
+);
 
 impl NEFilterControlVerdict {
     extern_methods!(
@@ -3215,17 +3361,25 @@ extern_class!(
     pub struct NEFilterReport;
 );
 
-unsafe impl NSCoding for NEFilterReport {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterReport {}
+);
 
-unsafe impl NSCopying for NEFilterReport {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterReport {}
+);
 
 unsafe impl CopyingHelper for NEFilterReport {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterReport {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterReport {}
+);
 
-unsafe impl NSSecureCoding for NEFilterReport {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterReport {}
+);
 
 impl NEFilterReport {
     extern_methods!(
@@ -3278,7 +3432,9 @@ extern_class!(
     pub struct NEFilterControlProvider;
 );
 
-unsafe impl NSObjectProtocol for NEFilterControlProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterControlProvider {}
+);
 
 impl NEFilterControlProvider {
     extern_methods!(
@@ -3409,7 +3565,9 @@ extern_class!(
     pub struct NEFilterDataProvider;
 );
 
-unsafe impl NSObjectProtocol for NEFilterDataProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterDataProvider {}
+);
 
 impl NEFilterDataProvider {
     extern_methods!(
@@ -3569,17 +3727,25 @@ extern_class!(
     pub struct NEFilterDataVerdict;
 );
 
-unsafe impl NSCoding for NEFilterDataVerdict {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterDataVerdict {}
+);
 
-unsafe impl NSCopying for NEFilterDataVerdict {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterDataVerdict {}
+);
 
 unsafe impl CopyingHelper for NEFilterDataVerdict {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterDataVerdict {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterDataVerdict {}
+);
 
-unsafe impl NSSecureCoding for NEFilterDataVerdict {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterDataVerdict {}
+);
 
 impl NEFilterDataVerdict {
     extern_methods!(
@@ -3681,17 +3847,25 @@ extern_class!(
     pub struct NEFilterRemediationVerdict;
 );
 
-unsafe impl NSCoding for NEFilterRemediationVerdict {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterRemediationVerdict {}
+);
 
-unsafe impl NSCopying for NEFilterRemediationVerdict {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterRemediationVerdict {}
+);
 
 unsafe impl CopyingHelper for NEFilterRemediationVerdict {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterRemediationVerdict {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterRemediationVerdict {}
+);
 
-unsafe impl NSSecureCoding for NEFilterRemediationVerdict {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterRemediationVerdict {}
+);
 
 impl NEFilterRemediationVerdict {
     extern_methods!(
@@ -3806,7 +3980,9 @@ extern_class!(
     pub struct NEFilterManager;
 );
 
-unsafe impl NSObjectProtocol for NEFilterManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterManager {}
+);
 
 impl NEFilterManager {
     extern_methods!(
@@ -3929,7 +4105,9 @@ extern_class!(
     pub struct NEFilterPacketContext;
 );
 
-unsafe impl NSObjectProtocol for NEFilterPacketContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterPacketContext {}
+);
 
 impl NEFilterPacketContext {
     extern_methods!();
@@ -3981,7 +4159,9 @@ extern_class!(
     pub struct NEFilterPacketProvider;
 );
 
-unsafe impl NSObjectProtocol for NEFilterPacketProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterPacketProvider {}
+);
 
 impl NEFilterPacketProvider {
     extern_methods!(
@@ -4031,17 +4211,25 @@ extern_class!(
     pub struct NEFilterProviderConfiguration;
 );
 
-unsafe impl NSCoding for NEFilterProviderConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterProviderConfiguration {}
+);
 
-unsafe impl NSCopying for NEFilterProviderConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterProviderConfiguration {}
+);
 
 unsafe impl CopyingHelper for NEFilterProviderConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterProviderConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterProviderConfiguration {}
+);
 
-unsafe impl NSSecureCoding for NEFilterProviderConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterProviderConfiguration {}
+);
 
 impl NEFilterProviderConfiguration {
     extern_methods!(
@@ -4198,17 +4386,25 @@ extern_class!(
     pub struct NEFilterRule;
 );
 
-unsafe impl NSCoding for NEFilterRule {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterRule {}
+);
 
-unsafe impl NSCopying for NEFilterRule {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterRule {}
+);
 
 unsafe impl CopyingHelper for NEFilterRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterRule {}
+);
 
-unsafe impl NSSecureCoding for NEFilterRule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterRule {}
+);
 
 impl NEFilterRule {
     extern_methods!(
@@ -4261,17 +4457,25 @@ extern_class!(
     pub struct NEFilterSettings;
 );
 
-unsafe impl NSCoding for NEFilterSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFilterSettings {}
+);
 
-unsafe impl NSCopying for NEFilterSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFilterSettings {}
+);
 
 unsafe impl CopyingHelper for NEFilterSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFilterSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFilterSettings {}
+);
 
-unsafe impl NSSecureCoding for NEFilterSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFilterSettings {}
+);
 
 impl NEFilterSettings {
     extern_methods!(
@@ -4332,17 +4536,25 @@ extern_class!(
     pub struct NEFlowMetaData;
 );
 
-unsafe impl NSCoding for NEFlowMetaData {}
+extern_conformance!(
+    unsafe impl NSCoding for NEFlowMetaData {}
+);
 
-unsafe impl NSCopying for NEFlowMetaData {}
+extern_conformance!(
+    unsafe impl NSCopying for NEFlowMetaData {}
+);
 
 unsafe impl CopyingHelper for NEFlowMetaData {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEFlowMetaData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEFlowMetaData {}
+);
 
-unsafe impl NSSecureCoding for NEFlowMetaData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEFlowMetaData {}
+);
 
 impl NEFlowMetaData {
     extern_methods!(
@@ -4421,7 +4633,9 @@ extern_class!(
     pub struct NEHotspotNetwork;
 );
 
-unsafe impl NSObjectProtocol for NEHotspotNetwork {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEHotspotNetwork {}
+);
 
 impl NEHotspotNetwork {
     extern_methods!(
@@ -4674,7 +4888,9 @@ extern_class!(
     pub struct NEHotspotHelperCommand;
 );
 
-unsafe impl NSObjectProtocol for NEHotspotHelperCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEHotspotHelperCommand {}
+);
 
 impl NEHotspotHelperCommand {
     extern_methods!(
@@ -4757,7 +4973,9 @@ extern_class!(
     pub struct NEHotspotHelperResponse;
 );
 
-unsafe impl NSObjectProtocol for NEHotspotHelperResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEHotspotHelperResponse {}
+);
 
 impl NEHotspotHelperResponse {
     extern_methods!(
@@ -4824,7 +5042,9 @@ extern_class!(
     pub struct NEHotspotHelper;
 );
 
-unsafe impl NSObjectProtocol for NEHotspotHelper {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEHotspotHelper {}
+);
 
 impl NEHotspotHelper {
     extern_methods!(
@@ -5019,17 +5239,25 @@ extern_class!(
     pub struct NEHotspotHS20Settings;
 );
 
-unsafe impl NSCoding for NEHotspotHS20Settings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEHotspotHS20Settings {}
+);
 
-unsafe impl NSCopying for NEHotspotHS20Settings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEHotspotHS20Settings {}
+);
 
 unsafe impl CopyingHelper for NEHotspotHS20Settings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEHotspotHS20Settings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEHotspotHS20Settings {}
+);
 
-unsafe impl NSSecureCoding for NEHotspotHS20Settings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEHotspotHS20Settings {}
+);
 
 impl NEHotspotHS20Settings {
     extern_methods!(
@@ -5124,17 +5352,25 @@ extern_class!(
     pub struct NEHotspotEAPSettings;
 );
 
-unsafe impl NSCoding for NEHotspotEAPSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEHotspotEAPSettings {}
+);
 
-unsafe impl NSCopying for NEHotspotEAPSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEHotspotEAPSettings {}
+);
 
 unsafe impl CopyingHelper for NEHotspotEAPSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEHotspotEAPSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEHotspotEAPSettings {}
+);
 
-unsafe impl NSSecureCoding for NEHotspotEAPSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEHotspotEAPSettings {}
+);
 
 impl NEHotspotEAPSettings {
     extern_methods!(
@@ -5295,17 +5531,25 @@ extern_class!(
     pub struct NEHotspotConfiguration;
 );
 
-unsafe impl NSCoding for NEHotspotConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for NEHotspotConfiguration {}
+);
 
-unsafe impl NSCopying for NEHotspotConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NEHotspotConfiguration {}
+);
 
 unsafe impl CopyingHelper for NEHotspotConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEHotspotConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEHotspotConfiguration {}
+);
 
-unsafe impl NSSecureCoding for NEHotspotConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEHotspotConfiguration {}
+);
 
 impl NEHotspotConfiguration {
     extern_methods!(
@@ -5532,7 +5776,9 @@ extern_class!(
     pub struct NEHotspotConfigurationManager;
 );
 
-unsafe impl NSObjectProtocol for NEHotspotConfigurationManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEHotspotConfigurationManager {}
+);
 
 impl NEHotspotConfigurationManager {
     extern_methods!(
@@ -5611,17 +5857,25 @@ extern_class!(
     pub struct NEIPv4Settings;
 );
 
-unsafe impl NSCoding for NEIPv4Settings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEIPv4Settings {}
+);
 
-unsafe impl NSCopying for NEIPv4Settings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEIPv4Settings {}
+);
 
 unsafe impl CopyingHelper for NEIPv4Settings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEIPv4Settings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEIPv4Settings {}
+);
 
-unsafe impl NSSecureCoding for NEIPv4Settings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEIPv4Settings {}
+);
 
 impl NEIPv4Settings {
     extern_methods!(
@@ -5713,17 +5967,25 @@ extern_class!(
     pub struct NEIPv4Route;
 );
 
-unsafe impl NSCoding for NEIPv4Route {}
+extern_conformance!(
+    unsafe impl NSCoding for NEIPv4Route {}
+);
 
-unsafe impl NSCopying for NEIPv4Route {}
+extern_conformance!(
+    unsafe impl NSCopying for NEIPv4Route {}
+);
 
 unsafe impl CopyingHelper for NEIPv4Route {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEIPv4Route {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEIPv4Route {}
+);
 
-unsafe impl NSSecureCoding for NEIPv4Route {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEIPv4Route {}
+);
 
 impl NEIPv4Route {
     extern_methods!(
@@ -5793,17 +6055,25 @@ extern_class!(
     pub struct NEIPv6Settings;
 );
 
-unsafe impl NSCoding for NEIPv6Settings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEIPv6Settings {}
+);
 
-unsafe impl NSCopying for NEIPv6Settings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEIPv6Settings {}
+);
 
 unsafe impl CopyingHelper for NEIPv6Settings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEIPv6Settings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEIPv6Settings {}
+);
 
-unsafe impl NSSecureCoding for NEIPv6Settings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEIPv6Settings {}
+);
 
 impl NEIPv6Settings {
     extern_methods!(
@@ -5888,17 +6158,25 @@ extern_class!(
     pub struct NEIPv6Route;
 );
 
-unsafe impl NSCoding for NEIPv6Route {}
+extern_conformance!(
+    unsafe impl NSCoding for NEIPv6Route {}
+);
 
-unsafe impl NSCopying for NEIPv6Route {}
+extern_conformance!(
+    unsafe impl NSCopying for NEIPv6Route {}
+);
 
 unsafe impl CopyingHelper for NEIPv6Route {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEIPv6Route {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEIPv6Route {}
+);
 
-unsafe impl NSSecureCoding for NEIPv6Route {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEIPv6Route {}
+);
 
 impl NEIPv6Route {
     extern_methods!(
@@ -5970,17 +6248,25 @@ extern_class!(
     pub struct NETunnelNetworkSettings;
 );
 
-unsafe impl NSCoding for NETunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NETunnelNetworkSettings {}
+);
 
-unsafe impl NSCopying for NETunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NETunnelNetworkSettings {}
+);
 
 unsafe impl CopyingHelper for NETunnelNetworkSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NETunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NETunnelNetworkSettings {}
+);
 
-unsafe impl NSSecureCoding for NETunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NETunnelNetworkSettings {}
+);
 
 impl NETunnelNetworkSettings {
     extern_methods!(
@@ -6047,17 +6333,25 @@ extern_class!(
     pub struct NEPacketTunnelNetworkSettings;
 );
 
-unsafe impl NSCoding for NEPacketTunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEPacketTunnelNetworkSettings {}
+);
 
-unsafe impl NSCopying for NEPacketTunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEPacketTunnelNetworkSettings {}
+);
 
 unsafe impl CopyingHelper for NEPacketTunnelNetworkSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEPacketTunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEPacketTunnelNetworkSettings {}
+);
 
-unsafe impl NSSecureCoding for NEPacketTunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEPacketTunnelNetworkSettings {}
+);
 
 impl NEPacketTunnelNetworkSettings {
     extern_methods!(
@@ -6144,17 +6438,25 @@ extern_class!(
     pub struct NEEthernetTunnelNetworkSettings;
 );
 
-unsafe impl NSCoding for NEEthernetTunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NEEthernetTunnelNetworkSettings {}
+);
 
-unsafe impl NSCopying for NEEthernetTunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NEEthernetTunnelNetworkSettings {}
+);
 
 unsafe impl CopyingHelper for NEEthernetTunnelNetworkSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEEthernetTunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEEthernetTunnelNetworkSettings {}
+);
 
-unsafe impl NSSecureCoding for NEEthernetTunnelNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEEthernetTunnelNetworkSettings {}
+);
 
 impl NEEthernetTunnelNetworkSettings {
     extern_methods!(
@@ -6220,7 +6522,9 @@ extern_class!(
     pub struct NEPacketTunnelProvider;
 );
 
-unsafe impl NSObjectProtocol for NEPacketTunnelProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEPacketTunnelProvider {}
+);
 
 impl NEPacketTunnelProvider {
     extern_methods!(
@@ -6328,7 +6632,9 @@ extern_class!(
     pub struct NEEthernetTunnelProvider;
 );
 
-unsafe impl NSObjectProtocol for NEEthernetTunnelProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEEthernetTunnelProvider {}
+);
 
 impl NEEthernetTunnelProvider {
     extern_methods!();
@@ -6412,17 +6718,25 @@ extern_class!(
     pub struct NEOnDemandRule;
 );
 
-unsafe impl NSCoding for NEOnDemandRule {}
+extern_conformance!(
+    unsafe impl NSCoding for NEOnDemandRule {}
+);
 
-unsafe impl NSCopying for NEOnDemandRule {}
+extern_conformance!(
+    unsafe impl NSCopying for NEOnDemandRule {}
+);
 
 unsafe impl CopyingHelper for NEOnDemandRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEOnDemandRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEOnDemandRule {}
+);
 
-unsafe impl NSSecureCoding for NEOnDemandRule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEOnDemandRule {}
+);
 
 impl NEOnDemandRule {
     extern_methods!(
@@ -6518,17 +6832,25 @@ extern_class!(
     pub struct NEOnDemandRuleConnect;
 );
 
-unsafe impl NSCoding for NEOnDemandRuleConnect {}
+extern_conformance!(
+    unsafe impl NSCoding for NEOnDemandRuleConnect {}
+);
 
-unsafe impl NSCopying for NEOnDemandRuleConnect {}
+extern_conformance!(
+    unsafe impl NSCopying for NEOnDemandRuleConnect {}
+);
 
 unsafe impl CopyingHelper for NEOnDemandRuleConnect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEOnDemandRuleConnect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEOnDemandRuleConnect {}
+);
 
-unsafe impl NSSecureCoding for NEOnDemandRuleConnect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEOnDemandRuleConnect {}
+);
 
 impl NEOnDemandRuleConnect {
     extern_methods!();
@@ -6560,17 +6882,25 @@ extern_class!(
     pub struct NEOnDemandRuleDisconnect;
 );
 
-unsafe impl NSCoding for NEOnDemandRuleDisconnect {}
+extern_conformance!(
+    unsafe impl NSCoding for NEOnDemandRuleDisconnect {}
+);
 
-unsafe impl NSCopying for NEOnDemandRuleDisconnect {}
+extern_conformance!(
+    unsafe impl NSCopying for NEOnDemandRuleDisconnect {}
+);
 
 unsafe impl CopyingHelper for NEOnDemandRuleDisconnect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEOnDemandRuleDisconnect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEOnDemandRuleDisconnect {}
+);
 
-unsafe impl NSSecureCoding for NEOnDemandRuleDisconnect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEOnDemandRuleDisconnect {}
+);
 
 impl NEOnDemandRuleDisconnect {
     extern_methods!();
@@ -6602,17 +6932,25 @@ extern_class!(
     pub struct NEOnDemandRuleIgnore;
 );
 
-unsafe impl NSCoding for NEOnDemandRuleIgnore {}
+extern_conformance!(
+    unsafe impl NSCoding for NEOnDemandRuleIgnore {}
+);
 
-unsafe impl NSCopying for NEOnDemandRuleIgnore {}
+extern_conformance!(
+    unsafe impl NSCopying for NEOnDemandRuleIgnore {}
+);
 
 unsafe impl CopyingHelper for NEOnDemandRuleIgnore {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEOnDemandRuleIgnore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEOnDemandRuleIgnore {}
+);
 
-unsafe impl NSSecureCoding for NEOnDemandRuleIgnore {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEOnDemandRuleIgnore {}
+);
 
 impl NEOnDemandRuleIgnore {
     extern_methods!();
@@ -6644,17 +6982,25 @@ extern_class!(
     pub struct NEOnDemandRuleEvaluateConnection;
 );
 
-unsafe impl NSCoding for NEOnDemandRuleEvaluateConnection {}
+extern_conformance!(
+    unsafe impl NSCoding for NEOnDemandRuleEvaluateConnection {}
+);
 
-unsafe impl NSCopying for NEOnDemandRuleEvaluateConnection {}
+extern_conformance!(
+    unsafe impl NSCopying for NEOnDemandRuleEvaluateConnection {}
+);
 
 unsafe impl CopyingHelper for NEOnDemandRuleEvaluateConnection {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEOnDemandRuleEvaluateConnection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEOnDemandRuleEvaluateConnection {}
+);
 
-unsafe impl NSSecureCoding for NEOnDemandRuleEvaluateConnection {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEOnDemandRuleEvaluateConnection {}
+);
 
 impl NEOnDemandRuleEvaluateConnection {
     extern_methods!(
@@ -6720,17 +7066,25 @@ extern_class!(
     pub struct NEEvaluateConnectionRule;
 );
 
-unsafe impl NSCoding for NEEvaluateConnectionRule {}
+extern_conformance!(
+    unsafe impl NSCoding for NEEvaluateConnectionRule {}
+);
 
-unsafe impl NSCopying for NEEvaluateConnectionRule {}
+extern_conformance!(
+    unsafe impl NSCopying for NEEvaluateConnectionRule {}
+);
 
 unsafe impl CopyingHelper for NEEvaluateConnectionRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEEvaluateConnectionRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEEvaluateConnectionRule {}
+);
 
-unsafe impl NSSecureCoding for NEEvaluateConnectionRule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEEvaluateConnectionRule {}
+);
 
 impl NEEvaluateConnectionRule {
     extern_methods!(
@@ -6802,17 +7156,25 @@ extern_class!(
     pub struct NEPacket;
 );
 
-unsafe impl NSCoding for NEPacket {}
+extern_conformance!(
+    unsafe impl NSCoding for NEPacket {}
+);
 
-unsafe impl NSCopying for NEPacket {}
+extern_conformance!(
+    unsafe impl NSCopying for NEPacket {}
+);
 
 unsafe impl CopyingHelper for NEPacket {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEPacket {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEPacket {}
+);
 
-unsafe impl NSSecureCoding for NEPacket {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEPacket {}
+);
 
 impl NEPacket {
     extern_methods!(
@@ -6881,7 +7243,9 @@ extern_class!(
     pub struct NEPacketTunnelFlow;
 );
 
-unsafe impl NSObjectProtocol for NEPacketTunnelFlow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEPacketTunnelFlow {}
+);
 
 impl NEPacketTunnelFlow {
     extern_methods!(
@@ -6956,17 +7320,25 @@ extern_class!(
     pub struct NERelay;
 );
 
-unsafe impl NSCoding for NERelay {}
+extern_conformance!(
+    unsafe impl NSCoding for NERelay {}
+);
 
-unsafe impl NSCopying for NERelay {}
+extern_conformance!(
+    unsafe impl NSCopying for NERelay {}
+);
 
 unsafe impl CopyingHelper for NERelay {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NERelay {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NERelay {}
+);
 
-unsafe impl NSSecureCoding for NERelay {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NERelay {}
+);
 
 impl NERelay {
     extern_methods!(
@@ -7180,7 +7552,9 @@ extern_class!(
     pub struct NERelayManager;
 );
 
-unsafe impl NSObjectProtocol for NERelayManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NERelayManager {}
+);
 
 impl NERelayManager {
     extern_methods!(
@@ -7364,7 +7738,9 @@ extern_class!(
     pub struct NETransparentProxyManager;
 );
 
-unsafe impl NSObjectProtocol for NETransparentProxyManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NETransparentProxyManager {}
+);
 
 impl NETransparentProxyManager {
     extern_methods!(
@@ -7408,17 +7784,25 @@ extern_class!(
     pub struct NETransparentProxyNetworkSettings;
 );
 
-unsafe impl NSCoding for NETransparentProxyNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for NETransparentProxyNetworkSettings {}
+);
 
-unsafe impl NSCopying for NETransparentProxyNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for NETransparentProxyNetworkSettings {}
+);
 
 unsafe impl CopyingHelper for NETransparentProxyNetworkSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NETransparentProxyNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NETransparentProxyNetworkSettings {}
+);
 
-unsafe impl NSSecureCoding for NETransparentProxyNetworkSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NETransparentProxyNetworkSettings {}
+);
 
 impl NETransparentProxyNetworkSettings {
     extern_methods!(
@@ -7507,7 +7891,9 @@ extern_class!(
     pub struct NETransparentProxyProvider;
 );
 
-unsafe impl NSObjectProtocol for NETransparentProxyProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NETransparentProxyProvider {}
+);
 
 impl NETransparentProxyProvider {
     extern_methods!();
@@ -7644,7 +8030,9 @@ extern_class!(
     pub struct NEVPNConnection;
 );
 
-unsafe impl NSObjectProtocol for NEVPNConnection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEVPNConnection {}
+);
 
 impl NEVPNConnection {
     extern_methods!(
@@ -7735,7 +8123,9 @@ extern_class!(
     pub struct NETunnelProviderSession;
 );
 
-unsafe impl NSObjectProtocol for NETunnelProviderSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NETunnelProviderSession {}
+);
 
 impl NETunnelProviderSession {
     extern_methods!(
@@ -7807,17 +8197,25 @@ extern_class!(
     pub struct NETunnelProviderProtocol;
 );
 
-unsafe impl NSCoding for NETunnelProviderProtocol {}
+extern_conformance!(
+    unsafe impl NSCoding for NETunnelProviderProtocol {}
+);
 
-unsafe impl NSCopying for NETunnelProviderProtocol {}
+extern_conformance!(
+    unsafe impl NSCopying for NETunnelProviderProtocol {}
+);
 
 unsafe impl CopyingHelper for NETunnelProviderProtocol {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NETunnelProviderProtocol {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NETunnelProviderProtocol {}
+);
 
-unsafe impl NSSecureCoding for NETunnelProviderProtocol {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NETunnelProviderProtocol {}
+);
 
 impl NETunnelProviderProtocol {
     extern_methods!(
@@ -7899,17 +8297,25 @@ extern_class!(
     pub struct NEVPNProtocolIPSec;
 );
 
-unsafe impl NSCoding for NEVPNProtocolIPSec {}
+extern_conformance!(
+    unsafe impl NSCoding for NEVPNProtocolIPSec {}
+);
 
-unsafe impl NSCopying for NEVPNProtocolIPSec {}
+extern_conformance!(
+    unsafe impl NSCopying for NEVPNProtocolIPSec {}
+);
 
 unsafe impl CopyingHelper for NEVPNProtocolIPSec {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEVPNProtocolIPSec {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEVPNProtocolIPSec {}
+);
 
-unsafe impl NSSecureCoding for NEVPNProtocolIPSec {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEVPNProtocolIPSec {}
+);
 
 impl NEVPNProtocolIPSec {
     extern_methods!(
@@ -8155,17 +8561,25 @@ extern_class!(
     pub struct NEVPNIKEv2SecurityAssociationParameters;
 );
 
-unsafe impl NSCoding for NEVPNIKEv2SecurityAssociationParameters {}
+extern_conformance!(
+    unsafe impl NSCoding for NEVPNIKEv2SecurityAssociationParameters {}
+);
 
-unsafe impl NSCopying for NEVPNIKEv2SecurityAssociationParameters {}
+extern_conformance!(
+    unsafe impl NSCopying for NEVPNIKEv2SecurityAssociationParameters {}
+);
 
 unsafe impl CopyingHelper for NEVPNIKEv2SecurityAssociationParameters {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEVPNIKEv2SecurityAssociationParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEVPNIKEv2SecurityAssociationParameters {}
+);
 
-unsafe impl NSSecureCoding for NEVPNIKEv2SecurityAssociationParameters {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEVPNIKEv2SecurityAssociationParameters {}
+);
 
 impl NEVPNIKEv2SecurityAssociationParameters {
     extern_methods!(
@@ -8247,13 +8661,17 @@ extern_class!(
     pub struct NEVPNIKEv2PPKConfiguration;
 );
 
-unsafe impl NSCopying for NEVPNIKEv2PPKConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NEVPNIKEv2PPKConfiguration {}
+);
 
 unsafe impl CopyingHelper for NEVPNIKEv2PPKConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEVPNIKEv2PPKConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEVPNIKEv2PPKConfiguration {}
+);
 
 impl NEVPNIKEv2PPKConfiguration {
     extern_methods!(
@@ -8317,17 +8735,25 @@ extern_class!(
     pub struct NEVPNProtocolIKEv2;
 );
 
-unsafe impl NSCoding for NEVPNProtocolIKEv2 {}
+extern_conformance!(
+    unsafe impl NSCoding for NEVPNProtocolIKEv2 {}
+);
 
-unsafe impl NSCopying for NEVPNProtocolIKEv2 {}
+extern_conformance!(
+    unsafe impl NSCopying for NEVPNProtocolIKEv2 {}
+);
 
 unsafe impl CopyingHelper for NEVPNProtocolIKEv2 {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEVPNProtocolIKEv2 {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEVPNProtocolIKEv2 {}
+);
 
-unsafe impl NSSecureCoding for NEVPNProtocolIKEv2 {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEVPNProtocolIKEv2 {}
+);
 
 impl NEVPNProtocolIKEv2 {
     extern_methods!(
@@ -8567,17 +8993,25 @@ extern_class!(
     pub struct NEPrivateLTENetwork;
 );
 
-unsafe impl NSCoding for NEPrivateLTENetwork {}
+extern_conformance!(
+    unsafe impl NSCoding for NEPrivateLTENetwork {}
+);
 
-unsafe impl NSCopying for NEPrivateLTENetwork {}
+extern_conformance!(
+    unsafe impl NSCopying for NEPrivateLTENetwork {}
+);
 
 unsafe impl CopyingHelper for NEPrivateLTENetwork {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NEPrivateLTENetwork {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEPrivateLTENetwork {}
+);
 
-unsafe impl NSSecureCoding for NEPrivateLTENetwork {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NEPrivateLTENetwork {}
+);
 
 impl NEPrivateLTENetwork {
     extern_methods!(
@@ -8639,7 +9073,9 @@ extern_class!(
     pub struct NEAppPushManager;
 );
 
-unsafe impl NSObjectProtocol for NEAppPushManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEAppPushManager {}
+);
 
 impl NEAppPushManager {
     extern_methods!(
@@ -8821,7 +9257,9 @@ extern_class!(
     pub struct NEAppPushProvider;
 );
 
-unsafe impl NSObjectProtocol for NEAppPushProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEAppPushProvider {}
+);
 
 impl NEAppPushProvider {
     extern_methods!(
@@ -8909,17 +9347,25 @@ extern_class!(
     pub struct NWEndpoint;
 );
 
-unsafe impl NSCoding for NWEndpoint {}
+extern_conformance!(
+    unsafe impl NSCoding for NWEndpoint {}
+);
 
-unsafe impl NSCopying for NWEndpoint {}
+extern_conformance!(
+    unsafe impl NSCopying for NWEndpoint {}
+);
 
 unsafe impl CopyingHelper for NWEndpoint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NWEndpoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NWEndpoint {}
+);
 
-unsafe impl NSSecureCoding for NWEndpoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NWEndpoint {}
+);
 
 impl NWEndpoint {
     extern_methods!();
@@ -8949,17 +9395,25 @@ extern_class!(
     pub struct NWHostEndpoint;
 );
 
-unsafe impl NSCoding for NWHostEndpoint {}
+extern_conformance!(
+    unsafe impl NSCoding for NWHostEndpoint {}
+);
 
-unsafe impl NSCopying for NWHostEndpoint {}
+extern_conformance!(
+    unsafe impl NSCopying for NWHostEndpoint {}
+);
 
 unsafe impl CopyingHelper for NWHostEndpoint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NWHostEndpoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NWHostEndpoint {}
+);
 
-unsafe impl NSSecureCoding for NWHostEndpoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NWHostEndpoint {}
+);
 
 impl NWHostEndpoint {
     extern_methods!(
@@ -9016,17 +9470,25 @@ extern_class!(
     pub struct NWBonjourServiceEndpoint;
 );
 
-unsafe impl NSCoding for NWBonjourServiceEndpoint {}
+extern_conformance!(
+    unsafe impl NSCoding for NWBonjourServiceEndpoint {}
+);
 
-unsafe impl NSCopying for NWBonjourServiceEndpoint {}
+extern_conformance!(
+    unsafe impl NSCopying for NWBonjourServiceEndpoint {}
+);
 
 unsafe impl CopyingHelper for NWBonjourServiceEndpoint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NWBonjourServiceEndpoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NWBonjourServiceEndpoint {}
+);
 
-unsafe impl NSSecureCoding for NWBonjourServiceEndpoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NWBonjourServiceEndpoint {}
+);
 
 impl NWBonjourServiceEndpoint {
     extern_methods!(
@@ -9123,7 +9585,9 @@ extern_class!(
     pub struct NWPath;
 );
 
-unsafe impl NSObjectProtocol for NWPath {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NWPath {}
+);
 
 impl NWPath {
     extern_methods!(
@@ -9221,7 +9685,9 @@ extern_class!(
     pub struct NWTCPConnection;
 );
 
-unsafe impl NSObjectProtocol for NWTCPConnection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NWTCPConnection {}
+);
 
 impl NWTCPConnection {
     extern_methods!(
@@ -9556,7 +10022,9 @@ extern_class!(
     pub struct NWUDPSession;
 );
 
-unsafe impl NSObjectProtocol for NWUDPSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NWUDPSession {}
+);
 
 impl NWUDPSession {
     extern_methods!(
@@ -9725,7 +10193,9 @@ extern_class!(
     pub struct NWTLSParameters;
 );
 
-unsafe impl NSObjectProtocol for NWTLSParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NWTLSParameters {}
+);
 
 impl NWTLSParameters {
     extern_methods!(

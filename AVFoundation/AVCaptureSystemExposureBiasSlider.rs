@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureControl")]
-unsafe impl NSObjectProtocol for AVCaptureSystemExposureBiasSlider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSystemExposureBiasSlider {}
+);
 
 #[cfg(feature = "AVCaptureControl")]
 impl AVCaptureSystemExposureBiasSlider {

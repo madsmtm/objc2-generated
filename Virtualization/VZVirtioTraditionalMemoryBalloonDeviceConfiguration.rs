@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
-unsafe impl NSCopying for VZVirtioTraditionalMemoryBalloonDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZVirtioTraditionalMemoryBalloonDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
 unsafe impl CopyingHelper for VZVirtioTraditionalMemoryBalloonDeviceConfiguration {
@@ -30,7 +32,9 @@ unsafe impl CopyingHelper for VZVirtioTraditionalMemoryBalloonDeviceConfiguratio
 }
 
 #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZVirtioTraditionalMemoryBalloonDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioTraditionalMemoryBalloonDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
 impl VZVirtioTraditionalMemoryBalloonDeviceConfiguration {

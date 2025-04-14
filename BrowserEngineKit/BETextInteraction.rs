@@ -18,9 +18,13 @@ extern_class!(
     pub struct BETextInteraction;
 );
 
-unsafe impl NSObjectProtocol for BETextInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BETextInteraction {}
+);
 
-unsafe impl UIInteraction for BETextInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for BETextInteraction {}
+);
 
 impl BETextInteraction {
     extern_methods!(

@@ -19,17 +19,25 @@ extern_class!(
     pub struct CPRouteChoice;
 );
 
-unsafe impl NSCoding for CPRouteChoice {}
+extern_conformance!(
+    unsafe impl NSCoding for CPRouteChoice {}
+);
 
-unsafe impl NSCopying for CPRouteChoice {}
+extern_conformance!(
+    unsafe impl NSCopying for CPRouteChoice {}
+);
 
 unsafe impl CopyingHelper for CPRouteChoice {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CPRouteChoice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPRouteChoice {}
+);
 
-unsafe impl NSSecureCoding for CPRouteChoice {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPRouteChoice {}
+);
 
 impl CPRouteChoice {
     extern_methods!(
@@ -94,11 +102,17 @@ extern_class!(
     pub struct CPTrip;
 );
 
-unsafe impl NSCoding for CPTrip {}
+extern_conformance!(
+    unsafe impl NSCoding for CPTrip {}
+);
 
-unsafe impl NSObjectProtocol for CPTrip {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPTrip {}
+);
 
-unsafe impl NSSecureCoding for CPTrip {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPTrip {}
+);
 
 impl CPTrip {
     extern_methods!(

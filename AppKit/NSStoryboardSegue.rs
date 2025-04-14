@@ -17,7 +17,9 @@ extern_class!(
     pub struct NSStoryboardSegue;
 );
 
-unsafe impl NSObjectProtocol for NSStoryboardSegue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStoryboardSegue {}
+);
 
 impl NSStoryboardSegue {
     extern_methods!(

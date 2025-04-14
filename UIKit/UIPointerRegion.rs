@@ -17,13 +17,17 @@ extern_class!(
     pub struct UIPointerRegion;
 );
 
-unsafe impl NSCopying for UIPointerRegion {}
+extern_conformance!(
+    unsafe impl NSCopying for UIPointerRegion {}
+);
 
 unsafe impl CopyingHelper for UIPointerRegion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIPointerRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPointerRegion {}
+);
 
 impl UIPointerRegion {
     extern_methods!(

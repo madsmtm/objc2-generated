@@ -16,11 +16,17 @@ extern_class!(
     pub struct ILMessageFilterCapabilitiesQueryResponse;
 );
 
-unsafe impl NSCoding for ILMessageFilterCapabilitiesQueryResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for ILMessageFilterCapabilitiesQueryResponse {}
+);
 
-unsafe impl NSObjectProtocol for ILMessageFilterCapabilitiesQueryResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ILMessageFilterCapabilitiesQueryResponse {}
+);
 
-unsafe impl NSSecureCoding for ILMessageFilterCapabilitiesQueryResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ILMessageFilterCapabilitiesQueryResponse {}
+);
 
 impl ILMessageFilterCapabilitiesQueryResponse {
     extern_methods!(

@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCPoolingLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCPoolingLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCPoolingLayer {

@@ -20,10 +20,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAsset", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVComposition {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVComposition {}
+);
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSCopying for AVComposition {}
+extern_conformance!(
+    unsafe impl NSCopying for AVComposition {}
+);
 
 #[cfg(feature = "AVAsset")]
 unsafe impl CopyingHelper for AVComposition {
@@ -31,7 +35,9 @@ unsafe impl CopyingHelper for AVComposition {
 }
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSMutableCopying for AVComposition {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVComposition {}
+);
 
 #[cfg(feature = "AVAsset")]
 unsafe impl MutableCopyingHelper for AVComposition {
@@ -39,7 +45,9 @@ unsafe impl MutableCopyingHelper for AVComposition {
 }
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSObjectProtocol for AVComposition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVComposition {}
+);
 
 #[cfg(feature = "AVAsset")]
 impl AVComposition {
@@ -238,10 +246,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAsset", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVMutableComposition {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVMutableComposition {}
+);
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSCopying for AVMutableComposition {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableComposition {}
+);
 
 #[cfg(feature = "AVAsset")]
 unsafe impl CopyingHelper for AVMutableComposition {
@@ -249,7 +261,9 @@ unsafe impl CopyingHelper for AVMutableComposition {
 }
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSMutableCopying for AVMutableComposition {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableComposition {}
+);
 
 #[cfg(feature = "AVAsset")]
 unsafe impl MutableCopyingHelper for AVMutableComposition {
@@ -257,7 +271,9 @@ unsafe impl MutableCopyingHelper for AVMutableComposition {
 }
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSObjectProtocol for AVMutableComposition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableComposition {}
+);
 
 #[cfg(feature = "AVAsset")]
 impl AVMutableComposition {

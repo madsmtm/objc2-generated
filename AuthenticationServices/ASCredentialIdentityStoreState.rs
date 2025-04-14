@@ -12,7 +12,9 @@ extern_class!(
     pub struct ASCredentialIdentityStoreState;
 );
 
-unsafe impl NSObjectProtocol for ASCredentialIdentityStoreState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASCredentialIdentityStoreState {}
+);
 
 impl ASCredentialIdentityStoreState {
     extern_methods!(

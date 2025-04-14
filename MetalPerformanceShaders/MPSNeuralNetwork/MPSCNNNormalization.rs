@@ -30,10 +30,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNSpatialNormalization {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNSpatialNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNSpatialNormalization {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNSpatialNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNSpatialNormalization {
@@ -41,10 +45,14 @@ unsafe impl CopyingHelper for MPSCNNSpatialNormalization {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNSpatialNormalization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNSpatialNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNSpatialNormalization {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNSpatialNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNSpatialNormalization {
@@ -197,10 +205,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNSpatialNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNSpatialNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNSpatialNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNSpatialNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNSpatialNormalizationGradient {
@@ -208,10 +220,14 @@ unsafe impl CopyingHelper for MPSCNNSpatialNormalizationGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNSpatialNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNSpatialNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNSpatialNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNSpatialNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNSpatialNormalizationGradient {
@@ -379,10 +395,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNLocalContrastNormalization {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNLocalContrastNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNLocalContrastNormalization {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNLocalContrastNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNLocalContrastNormalization {
@@ -390,10 +410,14 @@ unsafe impl CopyingHelper for MPSCNNLocalContrastNormalization {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNLocalContrastNormalization {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNLocalContrastNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNLocalContrastNormalization {
@@ -595,10 +619,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNLocalContrastNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNLocalContrastNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNLocalContrastNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNLocalContrastNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNLocalContrastNormalizationGradient {
@@ -606,10 +634,14 @@ unsafe impl CopyingHelper for MPSCNNLocalContrastNormalizationGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNLocalContrastNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNLocalContrastNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNLocalContrastNormalizationGradient {
@@ -805,10 +837,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNCrossChannelNormalization {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNCrossChannelNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNCrossChannelNormalization {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNCrossChannelNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNCrossChannelNormalization {
@@ -816,10 +852,14 @@ unsafe impl CopyingHelper for MPSCNNCrossChannelNormalization {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNCrossChannelNormalization {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNCrossChannelNormalization {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNCrossChannelNormalization {
@@ -973,10 +1013,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNCrossChannelNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNCrossChannelNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNCrossChannelNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNCrossChannelNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNCrossChannelNormalizationGradient {
@@ -984,10 +1028,14 @@ unsafe impl CopyingHelper for MPSCNNCrossChannelNormalizationGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNCrossChannelNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNCrossChannelNormalizationGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNCrossChannelNormalizationGradient {

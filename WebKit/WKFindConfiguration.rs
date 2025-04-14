@@ -15,13 +15,17 @@ extern_class!(
     pub struct WKFindConfiguration;
 );
 
-unsafe impl NSCopying for WKFindConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for WKFindConfiguration {}
+);
 
 unsafe impl CopyingHelper for WKFindConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WKFindConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKFindConfiguration {}
+);
 
 impl WKFindConfiguration {
     extern_methods!(

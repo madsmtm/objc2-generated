@@ -46,13 +46,17 @@ extern_class!(
     pub struct MTLHeapDescriptor;
 );
 
-unsafe impl NSCopying for MTLHeapDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLHeapDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLHeapDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLHeapDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLHeapDescriptor {}
+);
 
 impl MTLHeapDescriptor {
     extern_methods!(

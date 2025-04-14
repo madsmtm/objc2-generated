@@ -13,17 +13,25 @@ extern_class!(
     pub struct INRecurrenceRule;
 );
 
-unsafe impl NSCoding for INRecurrenceRule {}
+extern_conformance!(
+    unsafe impl NSCoding for INRecurrenceRule {}
+);
 
-unsafe impl NSCopying for INRecurrenceRule {}
+extern_conformance!(
+    unsafe impl NSCopying for INRecurrenceRule {}
+);
 
 unsafe impl CopyingHelper for INRecurrenceRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INRecurrenceRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRecurrenceRule {}
+);
 
-unsafe impl NSSecureCoding for INRecurrenceRule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRecurrenceRule {}
+);
 
 impl INRecurrenceRule {
     extern_methods!(

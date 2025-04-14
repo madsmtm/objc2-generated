@@ -20,7 +20,9 @@ unsafe impl Send for HKLiveWorkoutDataSource {}
 
 unsafe impl Sync for HKLiveWorkoutDataSource {}
 
-unsafe impl NSObjectProtocol for HKLiveWorkoutDataSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKLiveWorkoutDataSource {}
+);
 
 impl HKLiveWorkoutDataSource {
     extern_methods!(

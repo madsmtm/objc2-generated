@@ -64,17 +64,25 @@ extern_class!(
     pub struct SCNPhysicsBody;
 );
 
-unsafe impl NSCoding for SCNPhysicsBody {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNPhysicsBody {}
+);
 
-unsafe impl NSCopying for SCNPhysicsBody {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNPhysicsBody {}
+);
 
 unsafe impl CopyingHelper for SCNPhysicsBody {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNPhysicsBody {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNPhysicsBody {}
+);
 
-unsafe impl NSSecureCoding for SCNPhysicsBody {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNPhysicsBody {}
+);
 
 impl SCNPhysicsBody {
     extern_methods!(

@@ -54,7 +54,9 @@ extern_class!(
     pub struct NSGlyphGenerator;
 );
 
-unsafe impl NSObjectProtocol for NSGlyphGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGlyphGenerator {}
+);
 
 impl NSGlyphGenerator {
     extern_methods!(

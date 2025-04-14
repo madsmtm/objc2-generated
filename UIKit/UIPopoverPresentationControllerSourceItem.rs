@@ -28,7 +28,9 @@ impl UIView {
 }
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIPopoverPresentationControllerSourceItem for UIView {}
+extern_conformance!(
+    unsafe impl UIPopoverPresentationControllerSourceItem for UIView {}
+);
 
 /// UIPopoverPresentationControllerSourceItem.
 #[cfg(feature = "UILayoutGuide")]
@@ -37,7 +39,9 @@ impl UILayoutGuide {
 }
 
 #[cfg(feature = "UILayoutGuide")]
-unsafe impl UIPopoverPresentationControllerSourceItem for UILayoutGuide {}
+extern_conformance!(
+    unsafe impl UIPopoverPresentationControllerSourceItem for UILayoutGuide {}
+);
 
 /// UIPopoverPresentationControllerSourceItem.
 #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -46,7 +50,9 @@ impl UIBarButtonItem {
 }
 
 #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-unsafe impl UIPopoverPresentationControllerSourceItem for UIBarButtonItem {}
+extern_conformance!(
+    unsafe impl UIPopoverPresentationControllerSourceItem for UIBarButtonItem {}
+);
 
 /// UIPopoverPresentationControllerSourceItem.
 #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
@@ -55,4 +61,6 @@ impl UITabBarItem {
 }
 
 #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
-unsafe impl UIPopoverPresentationControllerSourceItem for UITabBarItem {}
+extern_conformance!(
+    unsafe impl UIPopoverPresentationControllerSourceItem for UITabBarItem {}
+);

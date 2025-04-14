@@ -18,17 +18,25 @@ extern_class!(
     pub struct BEAccessibilityTextMarker;
 );
 
-unsafe impl NSCoding for BEAccessibilityTextMarker {}
+extern_conformance!(
+    unsafe impl NSCoding for BEAccessibilityTextMarker {}
+);
 
-unsafe impl NSCopying for BEAccessibilityTextMarker {}
+extern_conformance!(
+    unsafe impl NSCopying for BEAccessibilityTextMarker {}
+);
 
 unsafe impl CopyingHelper for BEAccessibilityTextMarker {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for BEAccessibilityTextMarker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEAccessibilityTextMarker {}
+);
 
-unsafe impl NSSecureCoding for BEAccessibilityTextMarker {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for BEAccessibilityTextMarker {}
+);
 
 impl BEAccessibilityTextMarker {
     extern_methods!();
@@ -56,17 +64,25 @@ extern_class!(
     pub struct BEAccessibilityTextMarkerRange;
 );
 
-unsafe impl NSCoding for BEAccessibilityTextMarkerRange {}
+extern_conformance!(
+    unsafe impl NSCoding for BEAccessibilityTextMarkerRange {}
+);
 
-unsafe impl NSCopying for BEAccessibilityTextMarkerRange {}
+extern_conformance!(
+    unsafe impl NSCopying for BEAccessibilityTextMarkerRange {}
+);
 
 unsafe impl CopyingHelper for BEAccessibilityTextMarkerRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for BEAccessibilityTextMarkerRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEAccessibilityTextMarkerRange {}
+);
 
-unsafe impl NSSecureCoding for BEAccessibilityTextMarkerRange {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for BEAccessibilityTextMarkerRange {}
+);
 
 impl BEAccessibilityTextMarkerRange {
     extern_methods!(

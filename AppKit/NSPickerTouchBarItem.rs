@@ -60,10 +60,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl NSCoding for NSPickerTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPickerTouchBarItem {}
+);
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl NSObjectProtocol for NSPickerTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPickerTouchBarItem {}
+);
 
 #[cfg(feature = "NSTouchBarItem")]
 impl NSPickerTouchBarItem {

@@ -15,7 +15,9 @@ extern_class!(
     pub struct QLFilePreviewRequest;
 );
 
-unsafe impl NSObjectProtocol for QLFilePreviewRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QLFilePreviewRequest {}
+);
 
 impl QLFilePreviewRequest {
     extern_methods!(

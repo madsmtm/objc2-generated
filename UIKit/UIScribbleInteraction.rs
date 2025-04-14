@@ -20,10 +20,14 @@ extern_class!(
     pub struct UIScribbleInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIScribbleInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIScribbleInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIScribbleInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIScribbleInteraction {}
+);
 
 impl UIScribbleInteraction {
     extern_methods!(

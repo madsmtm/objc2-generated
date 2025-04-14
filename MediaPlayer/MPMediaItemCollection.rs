@@ -15,13 +15,19 @@ extern_class!(
 );
 
 #[cfg(feature = "MPMediaEntity")]
-unsafe impl NSCoding for MPMediaItemCollection {}
+extern_conformance!(
+    unsafe impl NSCoding for MPMediaItemCollection {}
+);
 
 #[cfg(feature = "MPMediaEntity")]
-unsafe impl NSObjectProtocol for MPMediaItemCollection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaItemCollection {}
+);
 
 #[cfg(feature = "MPMediaEntity")]
-unsafe impl NSSecureCoding for MPMediaItemCollection {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPMediaItemCollection {}
+);
 
 #[cfg(feature = "MPMediaEntity")]
 impl MPMediaItemCollection {

@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLTask")]
-unsafe impl NSObjectProtocol for MLUpdateTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLUpdateTask {}
+);
 
 #[cfg(feature = "MLTask")]
 impl MLUpdateTask {

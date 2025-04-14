@@ -20,7 +20,9 @@ extern_class!(
     pub struct WebFrame;
 );
 
-unsafe impl NSObjectProtocol for WebFrame {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebFrame {}
+);
 
 impl WebFrame {
     extern_methods!(

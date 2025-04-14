@@ -56,7 +56,9 @@ extern_class!(
     pub struct UIPrinter;
 );
 
-unsafe impl NSObjectProtocol for UIPrinter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPrinter {}
+);
 
 impl UIPrinter {
     extern_methods!(

@@ -26,7 +26,9 @@ extern_class!(
 );
 
 #[cfg(feature = "GKBasePlayer")]
-unsafe impl NSObjectProtocol for GKPlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKPlayer {}
+);
 
 #[cfg(feature = "GKBasePlayer")]
 impl GKPlayer {

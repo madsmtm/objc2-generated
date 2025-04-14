@@ -58,17 +58,25 @@ extern_class!(
     pub struct SKKeyframeSequence;
 );
 
-unsafe impl NSCoding for SKKeyframeSequence {}
+extern_conformance!(
+    unsafe impl NSCoding for SKKeyframeSequence {}
+);
 
-unsafe impl NSCopying for SKKeyframeSequence {}
+extern_conformance!(
+    unsafe impl NSCopying for SKKeyframeSequence {}
+);
 
 unsafe impl CopyingHelper for SKKeyframeSequence {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKKeyframeSequence {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKKeyframeSequence {}
+);
 
-unsafe impl NSSecureCoding for SKKeyframeSequence {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKKeyframeSequence {}
+);
 
 impl SKKeyframeSequence {
     extern_methods!(

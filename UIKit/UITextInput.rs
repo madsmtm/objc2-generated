@@ -111,7 +111,9 @@ extern_class!(
     pub struct UIDictationPhrase;
 );
 
-unsafe impl NSObjectProtocol for UIDictationPhrase {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDictationPhrase {}
+);
 
 impl UIDictationPhrase {
     extern_methods!(
@@ -146,7 +148,9 @@ extern_class!(
     pub struct UITextInputAssistantItem;
 );
 
-unsafe impl NSObjectProtocol for UITextInputAssistantItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextInputAssistantItem {}
+);
 
 impl UITextInputAssistantItem {
     extern_methods!(
@@ -228,7 +232,9 @@ extern_class!(
     pub struct UITextPlaceholder;
 );
 
-unsafe impl NSObjectProtocol for UITextPlaceholder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextPlaceholder {}
+);
 
 impl UITextPlaceholder {
     extern_methods!(
@@ -730,7 +736,9 @@ extern_class!(
     pub struct UITextPosition;
 );
 
-unsafe impl NSObjectProtocol for UITextPosition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextPosition {}
+);
 
 impl UITextPosition {
     extern_methods!();
@@ -757,7 +765,9 @@ extern_class!(
     pub struct UITextRange;
 );
 
-unsafe impl NSObjectProtocol for UITextRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextRange {}
+);
 
 impl UITextRange {
     extern_methods!(
@@ -796,7 +806,9 @@ extern_class!(
     pub struct UITextSelectionRect;
 );
 
-unsafe impl NSObjectProtocol for UITextSelectionRect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextSelectionRect {}
+);
 
 impl UITextSelectionRect {
     extern_methods!(
@@ -929,9 +941,13 @@ extern_class!(
     pub struct UITextInputStringTokenizer;
 );
 
-unsafe impl NSObjectProtocol for UITextInputStringTokenizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextInputStringTokenizer {}
+);
 
-unsafe impl UITextInputTokenizer for UITextInputStringTokenizer {}
+extern_conformance!(
+    unsafe impl UITextInputTokenizer for UITextInputStringTokenizer {}
+);
 
 impl UITextInputStringTokenizer {
     extern_methods!(
@@ -966,11 +982,17 @@ extern_class!(
     pub struct UITextInputMode;
 );
 
-unsafe impl NSCoding for UITextInputMode {}
+extern_conformance!(
+    unsafe impl NSCoding for UITextInputMode {}
+);
 
-unsafe impl NSObjectProtocol for UITextInputMode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextInputMode {}
+);
 
-unsafe impl NSSecureCoding for UITextInputMode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UITextInputMode {}
+);
 
 impl UITextInputMode {
     extern_methods!(

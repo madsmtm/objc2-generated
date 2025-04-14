@@ -18,7 +18,9 @@ extern_class!(
     pub struct VNCoreMLModel;
 );
 
-unsafe impl NSObjectProtocol for VNCoreMLModel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNCoreMLModel {}
+);
 
 impl VNCoreMLModel {
     extern_methods!(
@@ -90,7 +92,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNCoreMLRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNCoreMLRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNCoreMLRequest {
@@ -98,7 +102,9 @@ unsafe impl CopyingHelper for VNCoreMLRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNCoreMLRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNCoreMLRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNCoreMLRequest {

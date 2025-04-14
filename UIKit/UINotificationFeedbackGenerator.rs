@@ -40,7 +40,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIFeedbackGenerator")]
-unsafe impl NSObjectProtocol for UINotificationFeedbackGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UINotificationFeedbackGenerator {}
+);
 
 #[cfg(feature = "UIFeedbackGenerator")]
 impl UINotificationFeedbackGenerator {

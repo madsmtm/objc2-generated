@@ -17,11 +17,17 @@ extern_class!(
     pub struct MXDiagnostic;
 );
 
-unsafe impl NSCoding for MXDiagnostic {}
+extern_conformance!(
+    unsafe impl NSCoding for MXDiagnostic {}
+);
 
-unsafe impl NSObjectProtocol for MXDiagnostic {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXDiagnostic {}
+);
 
-unsafe impl NSSecureCoding for MXDiagnostic {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXDiagnostic {}
+);
 
 impl MXDiagnostic {
     extern_methods!(

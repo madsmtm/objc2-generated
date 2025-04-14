@@ -48,7 +48,9 @@ unsafe impl Send for HMEventTrigger {}
 unsafe impl Sync for HMEventTrigger {}
 
 #[cfg(feature = "HMTrigger")]
-unsafe impl NSObjectProtocol for HMEventTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMEventTrigger {}
+);
 
 #[cfg(feature = "HMTrigger")]
 impl HMEventTrigger {

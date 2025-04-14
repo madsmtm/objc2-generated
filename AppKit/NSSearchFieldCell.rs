@@ -37,7 +37,9 @@ extern_class!(
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSAccessibility for NSSearchFieldCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSearchFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -45,21 +47,27 @@ unsafe impl NSAccessibility for NSSearchFieldCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSearchFieldCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSearchFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSCoding for NSSearchFieldCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSearchFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSCopying for NSSearchFieldCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSearchFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -75,7 +83,9 @@ unsafe impl CopyingHelper for NSSearchFieldCell {
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSObjectProtocol for NSSearchFieldCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSearchFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -83,7 +93,9 @@ unsafe impl NSObjectProtocol for NSSearchFieldCell {}
     feature = "NSTextFieldCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSearchFieldCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSearchFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",

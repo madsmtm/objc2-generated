@@ -20,7 +20,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZGraphicsDeviceConfiguration")]
-unsafe impl NSCopying for VZMacGraphicsDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZMacGraphicsDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZGraphicsDeviceConfiguration")]
 unsafe impl CopyingHelper for VZMacGraphicsDeviceConfiguration {
@@ -28,7 +30,9 @@ unsafe impl CopyingHelper for VZMacGraphicsDeviceConfiguration {
 }
 
 #[cfg(feature = "VZGraphicsDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZMacGraphicsDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacGraphicsDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZGraphicsDeviceConfiguration")]
 impl VZMacGraphicsDeviceConfiguration {

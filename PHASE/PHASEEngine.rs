@@ -20,7 +20,9 @@ extern_class!(
     pub struct PHASEEngine;
 );
 
-unsafe impl NSObjectProtocol for PHASEEngine {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEEngine {}
+);
 
 impl PHASEEngine {
     extern_methods!(

@@ -19,10 +19,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageEuclideanDistanceTransform {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageEuclideanDistanceTransform {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageEuclideanDistanceTransform {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageEuclideanDistanceTransform {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageEuclideanDistanceTransform {
@@ -30,10 +34,14 @@ unsafe impl CopyingHelper for MPSImageEuclideanDistanceTransform {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageEuclideanDistanceTransform {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageEuclideanDistanceTransform {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageEuclideanDistanceTransform {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageEuclideanDistanceTransform {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageEuclideanDistanceTransform {

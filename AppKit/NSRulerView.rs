@@ -66,36 +66,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSRulerView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSRulerView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSRulerView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSRulerView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSRulerView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSRulerView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSRulerView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSRulerView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSRulerView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSRulerView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSRulerView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSRulerView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSRulerView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRulerView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSRulerView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSRulerView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSRulerView {

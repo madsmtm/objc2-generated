@@ -59,10 +59,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INRequestRideIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INRequestRideIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INRequestRideIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INRequestRideIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INRequestRideIntentResponse {
@@ -70,10 +74,14 @@ unsafe impl CopyingHelper for INRequestRideIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INRequestRideIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRequestRideIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INRequestRideIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRequestRideIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INRequestRideIntentResponse {

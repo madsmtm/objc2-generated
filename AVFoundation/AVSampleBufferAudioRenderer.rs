@@ -17,9 +17,13 @@ extern_class!(
 );
 
 #[cfg(feature = "AVQueuedSampleBufferRendering")]
-unsafe impl AVQueuedSampleBufferRendering for AVSampleBufferAudioRenderer {}
+extern_conformance!(
+    unsafe impl AVQueuedSampleBufferRendering for AVSampleBufferAudioRenderer {}
+);
 
-unsafe impl NSObjectProtocol for AVSampleBufferAudioRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSampleBufferAudioRenderer {}
+);
 
 impl AVSampleBufferAudioRenderer {
     extern_methods!(

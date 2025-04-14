@@ -64,13 +64,19 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for MIDICIDeviceInfo {}
+extern_conformance!(
+    unsafe impl NSCoding for MIDICIDeviceInfo {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDICIDeviceInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDICIDeviceInfo {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for MIDICIDeviceInfo {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MIDICIDeviceInfo {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDICIDeviceInfo {
@@ -146,13 +152,19 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for MIDICIDiscoveredNode {}
+extern_conformance!(
+    unsafe impl NSCoding for MIDICIDiscoveredNode {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDICIDiscoveredNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDICIDiscoveredNode {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for MIDICIDiscoveredNode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MIDICIDiscoveredNode {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDICIDiscoveredNode {
@@ -222,13 +234,19 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for MIDICIProfile {}
+extern_conformance!(
+    unsafe impl NSCoding for MIDICIProfile {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDICIProfile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDICIProfile {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for MIDICIProfile {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MIDICIProfile {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDICIProfile {
@@ -285,13 +303,19 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for MIDICIProfileState {}
+extern_conformance!(
+    unsafe impl NSCoding for MIDICIProfileState {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDICIProfileState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDICIProfileState {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for MIDICIProfileState {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MIDICIProfileState {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDICIProfileState {
@@ -385,7 +409,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDICISession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDICISession {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDICISession {
@@ -541,7 +567,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDICIDiscoveryManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDICIDiscoveryManager {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDICIDiscoveryManager {
@@ -632,7 +660,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDICIResponder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDICIResponder {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDICIResponder {

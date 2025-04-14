@@ -19,13 +19,19 @@ extern_class!(
 );
 
 #[cfg(feature = "UIResponder")]
-unsafe impl NSObjectProtocol for UIAccessibilityElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIAccessibilityElement {}
+);
 
 #[cfg(all(feature = "UIAccessibilityIdentification", feature = "UIResponder"))]
-unsafe impl UIAccessibilityIdentification for UIAccessibilityElement {}
+extern_conformance!(
+    unsafe impl UIAccessibilityIdentification for UIAccessibilityElement {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl UIResponderStandardEditActions for UIAccessibilityElement {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIAccessibilityElement {}
+);
 
 #[cfg(feature = "UIResponder")]
 impl UIAccessibilityElement {

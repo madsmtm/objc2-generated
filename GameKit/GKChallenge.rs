@@ -41,11 +41,17 @@ extern_class!(
     pub struct GKChallenge;
 );
 
-unsafe impl NSCoding for GKChallenge {}
+extern_conformance!(
+    unsafe impl NSCoding for GKChallenge {}
+);
 
-unsafe impl NSObjectProtocol for GKChallenge {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKChallenge {}
+);
 
-unsafe impl NSSecureCoding for GKChallenge {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKChallenge {}
+);
 
 impl GKChallenge {
     extern_methods!(
@@ -135,11 +141,17 @@ extern_class!(
     pub struct GKScoreChallenge;
 );
 
-unsafe impl NSCoding for GKScoreChallenge {}
+extern_conformance!(
+    unsafe impl NSCoding for GKScoreChallenge {}
+);
 
-unsafe impl NSObjectProtocol for GKScoreChallenge {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKScoreChallenge {}
+);
 
-unsafe impl NSSecureCoding for GKScoreChallenge {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKScoreChallenge {}
+);
 
 impl GKScoreChallenge {
     extern_methods!(
@@ -178,11 +190,17 @@ extern_class!(
     pub struct GKAchievementChallenge;
 );
 
-unsafe impl NSCoding for GKAchievementChallenge {}
+extern_conformance!(
+    unsafe impl NSCoding for GKAchievementChallenge {}
+);
 
-unsafe impl NSObjectProtocol for GKAchievementChallenge {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKAchievementChallenge {}
+);
 
-unsafe impl NSSecureCoding for GKAchievementChallenge {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKAchievementChallenge {}
+);
 
 impl GKAchievementChallenge {
     extern_methods!(

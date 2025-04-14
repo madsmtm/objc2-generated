@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSDictionaryControllerKeyValuePair;
 );
 
-unsafe impl NSObjectProtocol for NSDictionaryControllerKeyValuePair {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDictionaryControllerKeyValuePair {}
+);
 
 impl NSDictionaryControllerKeyValuePair {
     extern_methods!(
@@ -82,7 +84,9 @@ extern_class!(
     feature = "NSController",
     feature = "NSObjectController"
 ))]
-unsafe impl NSCoding for NSDictionaryController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDictionaryController {}
+);
 
 #[cfg(all(
     feature = "NSArrayController",
@@ -90,7 +94,9 @@ unsafe impl NSCoding for NSDictionaryController {}
     feature = "NSKeyValueBinding",
     feature = "NSObjectController"
 ))]
-unsafe impl NSEditor for NSDictionaryController {}
+extern_conformance!(
+    unsafe impl NSEditor for NSDictionaryController {}
+);
 
 #[cfg(all(
     feature = "NSArrayController",
@@ -98,14 +104,18 @@ unsafe impl NSEditor for NSDictionaryController {}
     feature = "NSKeyValueBinding",
     feature = "NSObjectController"
 ))]
-unsafe impl NSEditorRegistration for NSDictionaryController {}
+extern_conformance!(
+    unsafe impl NSEditorRegistration for NSDictionaryController {}
+);
 
 #[cfg(all(
     feature = "NSArrayController",
     feature = "NSController",
     feature = "NSObjectController"
 ))]
-unsafe impl NSObjectProtocol for NSDictionaryController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDictionaryController {}
+);
 
 #[cfg(all(
     feature = "NSArrayController",

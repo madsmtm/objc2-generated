@@ -21,7 +21,9 @@ extern_class!(
     pub struct BENetworkingProcess;
 );
 
-unsafe impl NSObjectProtocol for BENetworkingProcess {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BENetworkingProcess {}
+);
 
 impl BENetworkingProcess {
     extern_methods!(

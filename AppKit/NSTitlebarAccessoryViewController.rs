@@ -22,41 +22,55 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSViewController"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSTitlebarAccessoryViewController {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSTitlebarAccessoryViewController {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
     feature = "NSResponder",
     feature = "NSViewController"
 ))]
-unsafe impl NSAnimationDelegate for NSTitlebarAccessoryViewController {}
+extern_conformance!(
+    unsafe impl NSAnimationDelegate for NSTitlebarAccessoryViewController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSCoding for NSTitlebarAccessoryViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTitlebarAccessoryViewController {}
+);
 
 #[cfg(all(
     feature = "NSKeyValueBinding",
     feature = "NSResponder",
     feature = "NSViewController"
 ))]
-unsafe impl NSEditor for NSTitlebarAccessoryViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for NSTitlebarAccessoryViewController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSObjectProtocol for NSTitlebarAccessoryViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTitlebarAccessoryViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSStoryboardSegue",
     feature = "NSViewController"
 ))]
-unsafe impl NSSeguePerforming for NSTitlebarAccessoryViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for NSTitlebarAccessoryViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSViewController"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTitlebarAccessoryViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTitlebarAccessoryViewController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
 impl NSTitlebarAccessoryViewController {

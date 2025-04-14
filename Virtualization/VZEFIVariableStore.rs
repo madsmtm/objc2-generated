@@ -41,7 +41,9 @@ extern_class!(
     pub struct VZEFIVariableStore;
 );
 
-unsafe impl NSObjectProtocol for VZEFIVariableStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZEFIVariableStore {}
+);
 
 impl VZEFIVariableStore {
     extern_methods!(

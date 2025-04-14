@@ -62,15 +62,21 @@ extern_class!(
     pub struct MKDistanceFormatter;
 );
 
-unsafe impl NSCoding for MKDistanceFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for MKDistanceFormatter {}
+);
 
-unsafe impl NSCopying for MKDistanceFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for MKDistanceFormatter {}
+);
 
 unsafe impl CopyingHelper for MKDistanceFormatter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKDistanceFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKDistanceFormatter {}
+);
 
 impl MKDistanceFormatter {
     extern_methods!(

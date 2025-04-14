@@ -17,11 +17,17 @@ unsafe impl Send for PHCloudIdentifier {}
 
 unsafe impl Sync for PHCloudIdentifier {}
 
-unsafe impl NSCoding for PHCloudIdentifier {}
+extern_conformance!(
+    unsafe impl NSCoding for PHCloudIdentifier {}
+);
 
-unsafe impl NSObjectProtocol for PHCloudIdentifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHCloudIdentifier {}
+);
 
-unsafe impl NSSecureCoding for PHCloudIdentifier {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHCloudIdentifier {}
+);
 
 impl PHCloudIdentifier {
     extern_methods!(
@@ -73,7 +79,9 @@ unsafe impl Send for PHCloudIdentifierMapping {}
 
 unsafe impl Sync for PHCloudIdentifierMapping {}
 
-unsafe impl NSObjectProtocol for PHCloudIdentifierMapping {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHCloudIdentifierMapping {}
+);
 
 impl PHCloudIdentifierMapping {
     extern_methods!(
@@ -116,7 +124,9 @@ unsafe impl Send for PHLocalIdentifierMapping {}
 
 unsafe impl Sync for PHLocalIdentifierMapping {}
 
-unsafe impl NSObjectProtocol for PHLocalIdentifierMapping {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHLocalIdentifierMapping {}
+);
 
 impl PHLocalIdentifierMapping {
     extern_methods!(
@@ -149,7 +159,9 @@ impl PHCloudIdentifier {
     extern_methods!();
 }
 
-unsafe impl NSCopying for PHCloudIdentifier {}
+extern_conformance!(
+    unsafe impl NSCopying for PHCloudIdentifier {}
+);
 
 unsafe impl CopyingHelper for PHCloudIdentifier {
     type Result = Self;

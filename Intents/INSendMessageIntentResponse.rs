@@ -48,10 +48,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSendMessageIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSendMessageIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSendMessageIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSendMessageIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSendMessageIntentResponse {
@@ -59,10 +63,14 @@ unsafe impl CopyingHelper for INSendMessageIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSendMessageIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSendMessageIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSendMessageIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSendMessageIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSendMessageIntentResponse {

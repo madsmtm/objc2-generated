@@ -20,7 +20,9 @@ extern_class!(
     pub struct MLCLayer;
 );
 
-unsafe impl NSObjectProtocol for MLCLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCLayer {}
+);
 
 impl MLCLayer {
     extern_methods!(

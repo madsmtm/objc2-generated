@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "BETextSuggestion")]
-unsafe impl NSObjectProtocol for BEAutoFillTextSuggestion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEAutoFillTextSuggestion {}
+);
 
 #[cfg(feature = "BETextSuggestion")]
 impl BEAutoFillTextSuggestion {

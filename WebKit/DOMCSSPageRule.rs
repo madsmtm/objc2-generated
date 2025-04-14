@@ -25,7 +25,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMCSSPageRule {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMCSSPageRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",
@@ -41,7 +43,9 @@ unsafe impl CopyingHelper for DOMCSSPageRule {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMCSSPageRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMCSSPageRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",

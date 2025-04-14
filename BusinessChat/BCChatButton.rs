@@ -43,28 +43,44 @@ extern_class!(
 );
 
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for BCChatButton {}
+extern_conformance!(
+    unsafe impl NSAccessibility for BCChatButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for BCChatButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for BCChatButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for BCChatButton {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for BCChatButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for BCChatButton {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for BCChatButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for BCChatButton {}
+extern_conformance!(
+    unsafe impl NSCoding for BCChatButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for BCChatButton {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for BCChatButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for BCChatButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BCChatButton {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for BCChatButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for BCChatButton {}
+);
 
 #[cfg(target_os = "macos")]
 impl BCChatButton {

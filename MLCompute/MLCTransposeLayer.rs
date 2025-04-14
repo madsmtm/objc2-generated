@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCTransposeLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCTransposeLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCTransposeLayer {

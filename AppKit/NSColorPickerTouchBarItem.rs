@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl NSCoding for NSColorPickerTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSCoding for NSColorPickerTouchBarItem {}
+);
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl NSObjectProtocol for NSColorPickerTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSColorPickerTouchBarItem {}
+);
 
 #[cfg(feature = "NSTouchBarItem")]
 impl NSColorPickerTouchBarItem {

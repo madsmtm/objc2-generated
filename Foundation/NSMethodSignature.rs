@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSMethodSignature;
 );
 
-unsafe impl NSObjectProtocol for NSMethodSignature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMethodSignature {}
+);
 
 impl NSMethodSignature {
     extern_methods!(

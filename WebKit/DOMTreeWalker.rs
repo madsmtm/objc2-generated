@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSCopying for DOMTreeWalker {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMTreeWalker {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl CopyingHelper for DOMTreeWalker {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for DOMTreeWalker {
 }
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSObjectProtocol for DOMTreeWalker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMTreeWalker {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMTreeWalker {

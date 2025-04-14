@@ -20,7 +20,9 @@ unsafe impl Send for BEDownloadMonitorLocation {}
 
 unsafe impl Sync for BEDownloadMonitorLocation {}
 
-unsafe impl NSObjectProtocol for BEDownloadMonitorLocation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEDownloadMonitorLocation {}
+);
 
 impl BEDownloadMonitorLocation {
     extern_methods!(
@@ -53,7 +55,9 @@ unsafe impl Send for BEDownloadMonitor {}
 
 unsafe impl Sync for BEDownloadMonitor {}
 
-unsafe impl NSObjectProtocol for BEDownloadMonitor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEDownloadMonitor {}
+);
 
 impl BEDownloadMonitor {
     extern_methods!(

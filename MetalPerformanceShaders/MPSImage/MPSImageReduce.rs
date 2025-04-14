@@ -28,10 +28,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageReduceUnary {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageReduceUnary {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageReduceUnary {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageReduceUnary {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageReduceUnary {
@@ -39,10 +43,14 @@ unsafe impl CopyingHelper for MPSImageReduceUnary {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageReduceUnary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageReduceUnary {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageReduceUnary {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageReduceUnary {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageReduceUnary {
@@ -147,10 +155,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageReduceRowMin {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageReduceRowMin {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageReduceRowMin {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageReduceRowMin {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageReduceRowMin {
@@ -158,10 +170,14 @@ unsafe impl CopyingHelper for MPSImageReduceRowMin {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageReduceRowMin {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageReduceRowMin {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageReduceRowMin {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageReduceRowMin {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageReduceRowMin {
@@ -253,10 +269,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageReduceColumnMin {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageReduceColumnMin {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageReduceColumnMin {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageReduceColumnMin {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageReduceColumnMin {
@@ -264,10 +284,14 @@ unsafe impl CopyingHelper for MPSImageReduceColumnMin {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageReduceColumnMin {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageReduceColumnMin {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageReduceColumnMin {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageReduceColumnMin {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageReduceColumnMin {
@@ -359,10 +383,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageReduceRowMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageReduceRowMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageReduceRowMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageReduceRowMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageReduceRowMax {
@@ -370,10 +398,14 @@ unsafe impl CopyingHelper for MPSImageReduceRowMax {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageReduceRowMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageReduceRowMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageReduceRowMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageReduceRowMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageReduceRowMax {
@@ -465,10 +497,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageReduceColumnMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageReduceColumnMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageReduceColumnMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageReduceColumnMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageReduceColumnMax {
@@ -476,10 +512,14 @@ unsafe impl CopyingHelper for MPSImageReduceColumnMax {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageReduceColumnMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageReduceColumnMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageReduceColumnMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageReduceColumnMax {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageReduceColumnMax {
@@ -571,10 +611,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageReduceRowMean {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageReduceRowMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageReduceRowMean {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageReduceRowMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageReduceRowMean {
@@ -582,10 +626,14 @@ unsafe impl CopyingHelper for MPSImageReduceRowMean {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageReduceRowMean {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageReduceRowMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageReduceRowMean {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageReduceRowMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageReduceRowMean {
@@ -677,10 +725,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageReduceColumnMean {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageReduceColumnMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageReduceColumnMean {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageReduceColumnMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageReduceColumnMean {
@@ -688,10 +740,14 @@ unsafe impl CopyingHelper for MPSImageReduceColumnMean {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageReduceColumnMean {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageReduceColumnMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageReduceColumnMean {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageReduceColumnMean {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageReduceColumnMean {
@@ -783,10 +839,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageReduceRowSum {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageReduceRowSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageReduceRowSum {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageReduceRowSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageReduceRowSum {
@@ -794,10 +854,14 @@ unsafe impl CopyingHelper for MPSImageReduceRowSum {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageReduceRowSum {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageReduceRowSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageReduceRowSum {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageReduceRowSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageReduceRowSum {
@@ -889,10 +953,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageReduceColumnSum {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageReduceColumnSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageReduceColumnSum {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageReduceColumnSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageReduceColumnSum {
@@ -900,10 +968,14 @@ unsafe impl CopyingHelper for MPSImageReduceColumnSum {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageReduceColumnSum {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageReduceColumnSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageReduceColumnSum {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageReduceColumnSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageReduceColumnSum {

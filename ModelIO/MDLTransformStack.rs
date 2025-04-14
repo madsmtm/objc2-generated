@@ -54,9 +54,13 @@ extern_class!(
     pub struct MDLTransformRotateXOp;
 );
 
-unsafe impl MDLTransformOp for MDLTransformRotateXOp {}
+extern_conformance!(
+    unsafe impl MDLTransformOp for MDLTransformRotateXOp {}
+);
 
-unsafe impl NSObjectProtocol for MDLTransformRotateXOp {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransformRotateXOp {}
+);
 
 impl MDLTransformRotateXOp {
     extern_methods!(
@@ -91,9 +95,13 @@ extern_class!(
     pub struct MDLTransformRotateYOp;
 );
 
-unsafe impl MDLTransformOp for MDLTransformRotateYOp {}
+extern_conformance!(
+    unsafe impl MDLTransformOp for MDLTransformRotateYOp {}
+);
 
-unsafe impl NSObjectProtocol for MDLTransformRotateYOp {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransformRotateYOp {}
+);
 
 impl MDLTransformRotateYOp {
     extern_methods!(
@@ -128,9 +136,13 @@ extern_class!(
     pub struct MDLTransformRotateZOp;
 );
 
-unsafe impl MDLTransformOp for MDLTransformRotateZOp {}
+extern_conformance!(
+    unsafe impl MDLTransformOp for MDLTransformRotateZOp {}
+);
 
-unsafe impl NSObjectProtocol for MDLTransformRotateZOp {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransformRotateZOp {}
+);
 
 impl MDLTransformRotateZOp {
     extern_methods!(
@@ -165,9 +177,13 @@ extern_class!(
     pub struct MDLTransformRotateOp;
 );
 
-unsafe impl MDLTransformOp for MDLTransformRotateOp {}
+extern_conformance!(
+    unsafe impl MDLTransformOp for MDLTransformRotateOp {}
+);
 
-unsafe impl NSObjectProtocol for MDLTransformRotateOp {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransformRotateOp {}
+);
 
 impl MDLTransformRotateOp {
     extern_methods!(
@@ -202,9 +218,13 @@ extern_class!(
     pub struct MDLTransformTranslateOp;
 );
 
-unsafe impl MDLTransformOp for MDLTransformTranslateOp {}
+extern_conformance!(
+    unsafe impl MDLTransformOp for MDLTransformTranslateOp {}
+);
 
-unsafe impl NSObjectProtocol for MDLTransformTranslateOp {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransformTranslateOp {}
+);
 
 impl MDLTransformTranslateOp {
     extern_methods!(
@@ -239,9 +259,13 @@ extern_class!(
     pub struct MDLTransformScaleOp;
 );
 
-unsafe impl MDLTransformOp for MDLTransformScaleOp {}
+extern_conformance!(
+    unsafe impl MDLTransformOp for MDLTransformScaleOp {}
+);
 
-unsafe impl NSObjectProtocol for MDLTransformScaleOp {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransformScaleOp {}
+);
 
 impl MDLTransformScaleOp {
     extern_methods!(
@@ -276,9 +300,13 @@ extern_class!(
     pub struct MDLTransformMatrixOp;
 );
 
-unsafe impl MDLTransformOp for MDLTransformMatrixOp {}
+extern_conformance!(
+    unsafe impl MDLTransformOp for MDLTransformMatrixOp {}
+);
 
-unsafe impl NSObjectProtocol for MDLTransformMatrixOp {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransformMatrixOp {}
+);
 
 impl MDLTransformMatrixOp {
     extern_methods!(
@@ -313,9 +341,13 @@ extern_class!(
     pub struct MDLTransformOrientOp;
 );
 
-unsafe impl MDLTransformOp for MDLTransformOrientOp {}
+extern_conformance!(
+    unsafe impl MDLTransformOp for MDLTransformOrientOp {}
+);
 
-unsafe impl NSObjectProtocol for MDLTransformOrientOp {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransformOrientOp {}
+);
 
 impl MDLTransformOrientOp {
     extern_methods!(
@@ -351,18 +383,26 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLComponent for MDLTransformStack {}
+extern_conformance!(
+    unsafe impl MDLComponent for MDLTransformStack {}
+);
 
 #[cfg(all(feature = "MDLTransform", feature = "MDLTypes"))]
-unsafe impl MDLTransformComponent for MDLTransformStack {}
+extern_conformance!(
+    unsafe impl MDLTransformComponent for MDLTransformStack {}
+);
 
-unsafe impl NSCopying for MDLTransformStack {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLTransformStack {}
+);
 
 unsafe impl CopyingHelper for MDLTransformStack {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLTransformStack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransformStack {}
+);
 
 impl MDLTransformStack {
     extern_methods!(

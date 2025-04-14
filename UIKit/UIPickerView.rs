@@ -27,48 +27,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIPickerView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIPickerView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIPickerView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIPickerView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIPickerView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIPickerView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIPickerView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIPickerView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIPickerView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIPickerView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIPickerView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIPickerView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIPickerView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIPickerView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIPickerView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIPickerView {

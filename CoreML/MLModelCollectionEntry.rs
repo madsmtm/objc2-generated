@@ -17,7 +17,9 @@ extern_class!(
     pub struct MLModelCollectionEntry;
 );
 
-unsafe impl NSObjectProtocol for MLModelCollectionEntry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLModelCollectionEntry {}
+);
 
 impl MLModelCollectionEntry {
     extern_methods!(

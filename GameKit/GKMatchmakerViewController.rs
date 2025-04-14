@@ -45,27 +45,39 @@ extern_class!(
 
 #[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl GKViewController for GKMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl GKViewController for GKMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for GKMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for GKMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for GKMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for GKMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for GKMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for GKMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for GKMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for GKMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for GKMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

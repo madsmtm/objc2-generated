@@ -45,7 +45,9 @@ extern_class!(
     pub struct SLRequest;
 );
 
-unsafe impl NSObjectProtocol for SLRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SLRequest {}
+);
 
 impl SLRequest {
     extern_methods!(

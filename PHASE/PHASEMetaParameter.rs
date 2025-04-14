@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEMetaParameterDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEMetaParameterDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEMetaParameterDefinition {
@@ -57,7 +59,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASENumberMetaParameterDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASENumberMetaParameterDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASENumberMetaParameterDefinition {
@@ -160,7 +164,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEStringMetaParameterDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEStringMetaParameterDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEStringMetaParameterDefinition {
@@ -219,7 +225,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEMappedMetaParameterDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEMappedMetaParameterDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEMappedMetaParameterDefinition {
@@ -334,7 +342,9 @@ extern_class!(
     pub struct PHASEMetaParameter;
 );
 
-unsafe impl NSObjectProtocol for PHASEMetaParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEMetaParameter {}
+);
 
 impl PHASEMetaParameter {
     extern_methods!(
@@ -376,7 +386,9 @@ extern_class!(
     pub struct PHASENumberMetaParameter;
 );
 
-unsafe impl NSObjectProtocol for PHASENumberMetaParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASENumberMetaParameter {}
+);
 
 impl PHASENumberMetaParameter {
     extern_methods!(
@@ -422,7 +434,9 @@ extern_class!(
     pub struct PHASEStringMetaParameter;
 );
 
-unsafe impl NSObjectProtocol for PHASEStringMetaParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEStringMetaParameter {}
+);
 
 impl PHASEStringMetaParameter {
     extern_methods!(

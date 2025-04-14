@@ -16,13 +16,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSCoding for CPTabBarTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for CPTabBarTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSObjectProtocol for CPTabBarTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPTabBarTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSSecureCoding for CPTabBarTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPTabBarTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
 impl CPTabBarTemplate {

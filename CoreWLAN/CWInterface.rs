@@ -21,7 +21,9 @@ extern_class!(
     pub struct CWInterface;
 );
 
-unsafe impl NSObjectProtocol for CWInterface {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CWInterface {}
+);
 
 impl CWInterface {
     extern_methods!(

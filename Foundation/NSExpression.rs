@@ -56,20 +56,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSExpression {}
+extern_conformance!(
+    unsafe impl NSCoding for NSExpression {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSExpression {}
+extern_conformance!(
+    unsafe impl NSCopying for NSExpression {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSExpression {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSExpression {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSExpression {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSExpression {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSExpression {}
+);
 
 impl NSExpression {
     extern_methods!(

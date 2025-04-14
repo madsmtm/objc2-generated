@@ -14,17 +14,25 @@ extern_class!(
     pub struct INRideCompletionStatus;
 );
 
-unsafe impl NSCoding for INRideCompletionStatus {}
+extern_conformance!(
+    unsafe impl NSCoding for INRideCompletionStatus {}
+);
 
-unsafe impl NSCopying for INRideCompletionStatus {}
+extern_conformance!(
+    unsafe impl NSCopying for INRideCompletionStatus {}
+);
 
 unsafe impl CopyingHelper for INRideCompletionStatus {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INRideCompletionStatus {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRideCompletionStatus {}
+);
 
-unsafe impl NSSecureCoding for INRideCompletionStatus {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRideCompletionStatus {}
+);
 
 impl INRideCompletionStatus {
     extern_methods!(

@@ -15,11 +15,17 @@ extern_class!(
     pub struct CPImageSet;
 );
 
-unsafe impl NSCoding for CPImageSet {}
+extern_conformance!(
+    unsafe impl NSCoding for CPImageSet {}
+);
 
-unsafe impl NSObjectProtocol for CPImageSet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPImageSet {}
+);
 
-unsafe impl NSSecureCoding for CPImageSet {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPImageSet {}
+);
 
 impl CPImageSet {
     extern_methods!(

@@ -21,12 +21,18 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-foundation")]
-unsafe impl NSCoding for IOBluetoothSDPServiceRecord {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothSDPServiceRecord {}
+);
 
-unsafe impl NSObjectProtocol for IOBluetoothSDPServiceRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothSDPServiceRecord {}
+);
 
 #[cfg(feature = "objc2-foundation")]
-unsafe impl NSSecureCoding for IOBluetoothSDPServiceRecord {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for IOBluetoothSDPServiceRecord {}
+);
 
 impl IOBluetoothSDPServiceRecord {
     extern_methods!(

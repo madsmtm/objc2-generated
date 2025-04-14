@@ -30,7 +30,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZGraphicsDisplay")]
-unsafe impl NSObjectProtocol for VZMacGraphicsDisplay {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacGraphicsDisplay {}
+);
 
 #[cfg(feature = "VZGraphicsDisplay")]
 impl VZMacGraphicsDisplay {

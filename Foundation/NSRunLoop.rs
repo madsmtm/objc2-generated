@@ -27,7 +27,9 @@ extern_class!(
     pub struct NSRunLoop;
 );
 
-unsafe impl NSObjectProtocol for NSRunLoop {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRunLoop {}
+);
 
 impl NSRunLoop {
     extern_methods!(

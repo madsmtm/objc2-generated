@@ -15,7 +15,9 @@ extern_class!(
     pub struct CLKComplicationTimelineEntry;
 );
 
-unsafe impl NSObjectProtocol for CLKComplicationTimelineEntry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationTimelineEntry {}
+);
 
 impl CLKComplicationTimelineEntry {
     extern_methods!(

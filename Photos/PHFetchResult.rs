@@ -14,15 +14,21 @@ extern_class!(
     pub struct PHFetchResult<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized> NSCopying for PHFetchResult<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for PHFetchResult<ObjectType> {}
+);
 
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for PHFetchResult<ObjectType> {
     type Result = Self;
 }
 
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for PHFetchResult<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for PHFetchResult<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResult<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResult<ObjectType> {}
+);
 
 impl<ObjectType: Message> PHFetchResult<ObjectType> {
     extern_methods!(

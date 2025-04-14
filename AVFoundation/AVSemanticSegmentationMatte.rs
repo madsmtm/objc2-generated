@@ -61,7 +61,9 @@ extern_class!(
     pub struct AVSemanticSegmentationMatte;
 );
 
-unsafe impl NSObjectProtocol for AVSemanticSegmentationMatte {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSemanticSegmentationMatte {}
+);
 
 impl AVSemanticSegmentationMatte {
     extern_methods!(

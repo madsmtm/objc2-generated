@@ -92,35 +92,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for WebView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for WebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for WebView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for WebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for WebView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for WebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for WebView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for WebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for WebView {}
+extern_conformance!(
+    unsafe impl NSCoding for WebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for WebView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for WebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for WebView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for WebView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for WebView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
@@ -908,7 +924,9 @@ impl WebView {
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceValidations for WebView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for WebView {}
+);
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidbegineditingnotification?language=objc)

@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZVirtualMachineStartOptions")]
-unsafe impl NSObjectProtocol for VZMacOSVirtualMachineStartOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacOSVirtualMachineStartOptions {}
+);
 
 #[cfg(feature = "VZVirtualMachineStartOptions")]
 impl VZMacOSVirtualMachineStartOptions {

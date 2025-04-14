@@ -153,12 +153,18 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-foundation")]
-unsafe impl NSCoding for IOSurface {}
+extern_conformance!(
+    unsafe impl NSCoding for IOSurface {}
+);
 
-unsafe impl NSObjectProtocol for IOSurface {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOSurface {}
+);
 
 #[cfg(feature = "objc2-foundation")]
-unsafe impl NSSecureCoding for IOSurface {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for IOSurface {}
+);
 
 impl IOSurface {
     extern_methods!(

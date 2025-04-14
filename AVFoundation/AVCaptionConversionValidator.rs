@@ -53,7 +53,9 @@ extern_class!(
     pub struct AVCaptionConversionValidator;
 );
 
-unsafe impl NSObjectProtocol for AVCaptionConversionValidator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionConversionValidator {}
+);
 
 impl AVCaptionConversionValidator {
     extern_methods!(
@@ -189,7 +191,9 @@ unsafe impl Send for AVCaptionConversionWarning {}
 
 unsafe impl Sync for AVCaptionConversionWarning {}
 
-unsafe impl NSObjectProtocol for AVCaptionConversionWarning {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionConversionWarning {}
+);
 
 impl AVCaptionConversionWarning {
     extern_methods!(
@@ -251,7 +255,9 @@ unsafe impl Send for AVCaptionConversionAdjustment {}
 
 unsafe impl Sync for AVCaptionConversionAdjustment {}
 
-unsafe impl NSObjectProtocol for AVCaptionConversionAdjustment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionConversionAdjustment {}
+);
 
 impl AVCaptionConversionAdjustment {
     extern_methods!(
@@ -285,7 +291,9 @@ unsafe impl Send for AVCaptionConversionTimeRangeAdjustment {}
 
 unsafe impl Sync for AVCaptionConversionTimeRangeAdjustment {}
 
-unsafe impl NSObjectProtocol for AVCaptionConversionTimeRangeAdjustment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionConversionTimeRangeAdjustment {}
+);
 
 impl AVCaptionConversionTimeRangeAdjustment {
     extern_methods!(

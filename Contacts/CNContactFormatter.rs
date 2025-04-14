@@ -67,17 +67,25 @@ extern_class!(
     pub struct CNContactFormatter;
 );
 
-unsafe impl NSCoding for CNContactFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for CNContactFormatter {}
+);
 
-unsafe impl NSCopying for CNContactFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for CNContactFormatter {}
+);
 
 unsafe impl CopyingHelper for CNContactFormatter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNContactFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContactFormatter {}
+);
 
-unsafe impl NSSecureCoding for CNContactFormatter {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNContactFormatter {}
+);
 
 impl CNContactFormatter {
     extern_methods!(

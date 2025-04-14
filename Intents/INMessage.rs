@@ -97,17 +97,25 @@ extern_class!(
     pub struct INMessage;
 );
 
-unsafe impl NSCoding for INMessage {}
+extern_conformance!(
+    unsafe impl NSCoding for INMessage {}
+);
 
-unsafe impl NSCopying for INMessage {}
+extern_conformance!(
+    unsafe impl NSCopying for INMessage {}
+);
 
 unsafe impl CopyingHelper for INMessage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INMessage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INMessage {}
+);
 
-unsafe impl NSSecureCoding for INMessage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INMessage {}
+);
 
 impl INMessage {
     extern_methods!(

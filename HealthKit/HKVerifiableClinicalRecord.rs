@@ -79,13 +79,19 @@ unsafe impl Send for HKVerifiableClinicalRecord {}
 unsafe impl Sync for HKVerifiableClinicalRecord {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCoding for HKVerifiableClinicalRecord {}
+extern_conformance!(
+    unsafe impl NSCoding for HKVerifiableClinicalRecord {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSObjectProtocol for HKVerifiableClinicalRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKVerifiableClinicalRecord {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSSecureCoding for HKVerifiableClinicalRecord {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKVerifiableClinicalRecord {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKVerifiableClinicalRecord {

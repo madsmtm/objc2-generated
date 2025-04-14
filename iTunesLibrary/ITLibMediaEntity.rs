@@ -17,7 +17,9 @@ extern_class!(
     pub struct ITLibMediaEntity;
 );
 
-unsafe impl NSObjectProtocol for ITLibMediaEntity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ITLibMediaEntity {}
+);
 
 impl ITLibMediaEntity {
     extern_methods!(

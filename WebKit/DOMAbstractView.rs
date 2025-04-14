@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSCopying for DOMAbstractView {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMAbstractView {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl CopyingHelper for DOMAbstractView {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for DOMAbstractView {
 }
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSObjectProtocol for DOMAbstractView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMAbstractView {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMAbstractView {

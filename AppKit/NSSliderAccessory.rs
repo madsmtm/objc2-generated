@@ -15,9 +15,13 @@ extern_class!(
     pub struct NSSliderAccessory;
 );
 
-unsafe impl NSCoding for NSSliderAccessory {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSliderAccessory {}
+);
 
-unsafe impl NSObjectProtocol for NSSliderAccessory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSliderAccessory {}
+);
 
 impl NSSliderAccessory {
     extern_methods!(
@@ -69,10 +73,14 @@ impl NSSliderAccessory {
 }
 
 #[cfg(feature = "NSAccessibilityProtocols")]
-unsafe impl NSAccessibility for NSSliderAccessory {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSliderAccessory {}
+);
 
 #[cfg(feature = "NSAccessibilityProtocols")]
-unsafe impl NSAccessibilityElementProtocol for NSSliderAccessory {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSliderAccessory {}
+);
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessorybehavior?language=objc)
@@ -82,15 +90,21 @@ extern_class!(
     pub struct NSSliderAccessoryBehavior;
 );
 
-unsafe impl NSCoding for NSSliderAccessoryBehavior {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSliderAccessoryBehavior {}
+);
 
-unsafe impl NSCopying for NSSliderAccessoryBehavior {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSliderAccessoryBehavior {}
+);
 
 unsafe impl CopyingHelper for NSSliderAccessoryBehavior {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSliderAccessoryBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSliderAccessoryBehavior {}
+);
 
 impl NSSliderAccessoryBehavior {
     extern_methods!(

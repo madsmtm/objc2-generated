@@ -84,7 +84,9 @@ extern_class!(
     pub struct INVocabulary;
 );
 
-unsafe impl NSObjectProtocol for INVocabulary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INVocabulary {}
+);
 
 impl INVocabulary {
     extern_methods!(

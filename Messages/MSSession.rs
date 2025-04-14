@@ -18,11 +18,17 @@ extern_class!(
     pub struct MSSession;
 );
 
-unsafe impl NSCoding for MSSession {}
+extern_conformance!(
+    unsafe impl NSCoding for MSSession {}
+);
 
-unsafe impl NSObjectProtocol for MSSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSSession {}
+);
 
-unsafe impl NSSecureCoding for MSSession {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MSSession {}
+);
 
 impl MSSession {
     extern_methods!();

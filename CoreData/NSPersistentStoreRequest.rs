@@ -40,13 +40,17 @@ extern_class!(
     pub struct NSPersistentStoreRequest;
 );
 
-unsafe impl NSCopying for NSPersistentStoreRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPersistentStoreRequest {}
+);
 
 unsafe impl CopyingHelper for NSPersistentStoreRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPersistentStoreRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentStoreRequest {}
+);
 
 impl NSPersistentStoreRequest {
     extern_methods!(

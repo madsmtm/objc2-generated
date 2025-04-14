@@ -42,17 +42,25 @@ extern_class!(
     pub struct HKWorkoutConfiguration;
 );
 
-unsafe impl NSCoding for HKWorkoutConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for HKWorkoutConfiguration {}
+);
 
-unsafe impl NSCopying for HKWorkoutConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for HKWorkoutConfiguration {}
+);
 
 unsafe impl CopyingHelper for HKWorkoutConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKWorkoutConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutConfiguration {}
+);
 
-unsafe impl NSSecureCoding for HKWorkoutConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKWorkoutConfiguration {}
+);
 
 impl HKWorkoutConfiguration {
     extern_methods!(

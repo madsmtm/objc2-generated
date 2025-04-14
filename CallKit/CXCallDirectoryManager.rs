@@ -36,7 +36,9 @@ extern_class!(
     pub struct CXCallDirectoryManager;
 );
 
-unsafe impl NSObjectProtocol for CXCallDirectoryManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CXCallDirectoryManager {}
+);
 
 impl CXCallDirectoryManager {
     extern_methods!(

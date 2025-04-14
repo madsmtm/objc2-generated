@@ -21,23 +21,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for STWebpageController {}
+extern_conformance!(
+    unsafe impl NSCoding for STWebpageController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for STWebpageController {}
+extern_conformance!(
+    unsafe impl NSEditor for STWebpageController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for STWebpageController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for STWebpageController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for STWebpageController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for STWebpageController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for STWebpageController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for STWebpageController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

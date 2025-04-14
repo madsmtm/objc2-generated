@@ -132,11 +132,17 @@ extern_class!(
     pub struct NSLayoutManager;
 );
 
-unsafe impl NSCoding for NSLayoutManager {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLayoutManager {}
+);
 
-unsafe impl NSObjectProtocol for NSLayoutManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLayoutManager {}
+);
 
-unsafe impl NSSecureCoding for NSLayoutManager {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSLayoutManager {}
+);
 
 impl NSLayoutManager {
     extern_methods!(
@@ -1551,4 +1557,6 @@ impl NSLayoutManager {
 }
 
 #[cfg(feature = "NSGlyphGenerator")]
-unsafe impl NSGlyphStorage for NSLayoutManager {}
+extern_conformance!(
+    unsafe impl NSGlyphStorage for NSLayoutManager {}
+);

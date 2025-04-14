@@ -87,9 +87,13 @@ extern_class!(
     pub struct NSInputManager;
 );
 
-unsafe impl NSObjectProtocol for NSInputManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSInputManager {}
+);
 
-unsafe impl NSTextInput for NSInputManager {}
+extern_conformance!(
+    unsafe impl NSTextInput for NSInputManager {}
+);
 
 impl NSInputManager {
     extern_methods!(

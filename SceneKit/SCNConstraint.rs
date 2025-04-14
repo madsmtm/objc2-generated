@@ -18,20 +18,30 @@ extern_class!(
     pub struct SCNConstraint;
 );
 
-unsafe impl NSCoding for SCNConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNConstraint {}
+);
 
-unsafe impl NSCopying for SCNConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNConstraint {}
+);
 
 impl SCNConstraint {
     extern_methods!(
@@ -91,20 +101,30 @@ extern_class!(
     pub struct SCNLookAtConstraint;
 );
 
-unsafe impl NSCoding for SCNLookAtConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNLookAtConstraint {}
+);
 
-unsafe impl NSCopying for SCNLookAtConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNLookAtConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNLookAtConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNLookAtConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNLookAtConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNLookAtConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNLookAtConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNLookAtConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNLookAtConstraint {}
+);
 
 impl SCNLookAtConstraint {
     extern_methods!(
@@ -224,20 +244,30 @@ extern_class!(
     pub struct SCNBillboardConstraint;
 );
 
-unsafe impl NSCoding for SCNBillboardConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNBillboardConstraint {}
+);
 
-unsafe impl NSCopying for SCNBillboardConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNBillboardConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNBillboardConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNBillboardConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNBillboardConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNBillboardConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNBillboardConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNBillboardConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNBillboardConstraint {}
+);
 
 impl SCNBillboardConstraint {
     extern_methods!(
@@ -282,20 +312,30 @@ extern_class!(
     pub struct SCNTransformConstraint;
 );
 
-unsafe impl NSCoding for SCNTransformConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNTransformConstraint {}
+);
 
-unsafe impl NSCopying for SCNTransformConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNTransformConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNTransformConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNTransformConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNTransformConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNTransformConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNTransformConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNTransformConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNTransformConstraint {}
+);
 
 impl SCNTransformConstraint {
     extern_methods!(
@@ -384,20 +424,30 @@ extern_class!(
     pub struct SCNIKConstraint;
 );
 
-unsafe impl NSCoding for SCNIKConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNIKConstraint {}
+);
 
-unsafe impl NSCopying for SCNIKConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNIKConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNIKConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNIKConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNIKConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNIKConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNIKConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNIKConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNIKConstraint {}
+);
 
 impl SCNIKConstraint {
     extern_methods!(
@@ -479,20 +529,30 @@ extern_class!(
     pub struct SCNDistanceConstraint;
 );
 
-unsafe impl NSCoding for SCNDistanceConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNDistanceConstraint {}
+);
 
-unsafe impl NSCopying for SCNDistanceConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNDistanceConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNDistanceConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNDistanceConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNDistanceConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNDistanceConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNDistanceConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNDistanceConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNDistanceConstraint {}
+);
 
 impl SCNDistanceConstraint {
     extern_methods!(
@@ -562,20 +622,30 @@ extern_class!(
     pub struct SCNReplicatorConstraint;
 );
 
-unsafe impl NSCoding for SCNReplicatorConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNReplicatorConstraint {}
+);
 
-unsafe impl NSCopying for SCNReplicatorConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNReplicatorConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNReplicatorConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNReplicatorConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNReplicatorConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNReplicatorConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNReplicatorConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNReplicatorConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNReplicatorConstraint {}
+);
 
 impl SCNReplicatorConstraint {
     extern_methods!(
@@ -687,20 +757,30 @@ extern_class!(
     pub struct SCNAccelerationConstraint;
 );
 
-unsafe impl NSCoding for SCNAccelerationConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNAccelerationConstraint {}
+);
 
-unsafe impl NSCopying for SCNAccelerationConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNAccelerationConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNAccelerationConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNAccelerationConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNAccelerationConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNAccelerationConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNAccelerationConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNAccelerationConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNAccelerationConstraint {}
+);
 
 impl SCNAccelerationConstraint {
     extern_methods!(
@@ -785,20 +865,30 @@ extern_class!(
     pub struct SCNSliderConstraint;
 );
 
-unsafe impl NSCoding for SCNSliderConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNSliderConstraint {}
+);
 
-unsafe impl NSCopying for SCNSliderConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNSliderConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNSliderConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNSliderConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNSliderConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNSliderConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNSliderConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNSliderConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNSliderConstraint {}
+);
 
 impl SCNSliderConstraint {
     extern_methods!(
@@ -894,20 +984,30 @@ extern_class!(
     pub struct SCNAvoidOccluderConstraint;
 );
 
-unsafe impl NSCoding for SCNAvoidOccluderConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNAvoidOccluderConstraint {}
+);
 
-unsafe impl NSCopying for SCNAvoidOccluderConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNAvoidOccluderConstraint {}
+);
 
 unsafe impl CopyingHelper for SCNAvoidOccluderConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNAvoidOccluderConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNAvoidOccluderConstraint {}
+);
 
-unsafe impl NSSecureCoding for SCNAvoidOccluderConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNAvoidOccluderConstraint {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNAvoidOccluderConstraint {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNAvoidOccluderConstraint {}
+);
 
 impl SCNAvoidOccluderConstraint {
     extern_methods!(

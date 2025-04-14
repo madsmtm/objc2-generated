@@ -50,7 +50,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSImageView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSImageView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -58,7 +60,9 @@ unsafe impl NSAccessibility for NSImageView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSImageView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSImageView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -66,7 +70,9 @@ unsafe impl NSAccessibilityElementProtocol for NSImageView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityImage for NSImageView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityImage for NSImageView {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -74,7 +80,9 @@ unsafe impl NSAccessibilityImage for NSImageView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSImageView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSImageView {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -82,10 +90,14 @@ unsafe impl NSAnimatablePropertyContainer for NSImageView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSImageView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSImageView {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSImageView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSImageView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -93,7 +105,9 @@ unsafe impl NSCoding for NSImageView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSImageView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSImageView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -101,10 +115,14 @@ unsafe impl NSDraggingDestination for NSImageView {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSMenuItemValidation for NSImageView {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSImageView {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSImageView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSImageView {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -112,7 +130,9 @@ unsafe impl NSObjectProtocol for NSImageView {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSImageView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSImageView {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSImageView {

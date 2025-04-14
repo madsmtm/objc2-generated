@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCSplitLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCSplitLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCSplitLayer {

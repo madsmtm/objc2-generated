@@ -13,9 +13,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSScriptCommandDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScriptCommandDescription {}
+);
 
-unsafe impl NSObjectProtocol for NSScriptCommandDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScriptCommandDescription {}
+);
 
 impl NSScriptCommandDescription {
     extern_methods!(

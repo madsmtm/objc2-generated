@@ -22,7 +22,9 @@ extern_class!(
     pub struct QLPreviewReplyAttachment;
 );
 
-unsafe impl NSObjectProtocol for QLPreviewReplyAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QLPreviewReplyAttachment {}
+);
 
 impl QLPreviewReplyAttachment {
     extern_methods!(
@@ -75,7 +77,9 @@ extern_class!(
     pub struct QLPreviewReply;
 );
 
-unsafe impl NSObjectProtocol for QLPreviewReply {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QLPreviewReply {}
+);
 
 impl QLPreviewReply {
     extern_methods!(

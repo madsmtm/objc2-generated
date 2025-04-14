@@ -105,17 +105,25 @@ extern_class!(
     pub struct UNNotificationSettings;
 );
 
-unsafe impl NSCoding for UNNotificationSettings {}
+extern_conformance!(
+    unsafe impl NSCoding for UNNotificationSettings {}
+);
 
-unsafe impl NSCopying for UNNotificationSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for UNNotificationSettings {}
+);
 
 unsafe impl CopyingHelper for UNNotificationSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNNotificationSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNNotificationSettings {}
+);
 
-unsafe impl NSSecureCoding for UNNotificationSettings {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNNotificationSettings {}
+);
 
 impl UNNotificationSettings {
     extern_methods!(

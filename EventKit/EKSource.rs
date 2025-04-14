@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSObjectProtocol for EKSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKSource {}
+);
 
 #[cfg(feature = "EKObject")]
 impl EKSource {

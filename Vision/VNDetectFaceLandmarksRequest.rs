@@ -45,7 +45,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNDetectFaceLandmarksRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNDetectFaceLandmarksRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNDetectFaceLandmarksRequest {
@@ -53,10 +55,14 @@ unsafe impl CopyingHelper for VNDetectFaceLandmarksRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNDetectFaceLandmarksRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNDetectFaceLandmarksRequest {}
+);
 
 #[cfg(all(feature = "VNFaceObservationAccepting", feature = "VNRequest"))]
-unsafe impl VNFaceObservationAccepting for VNDetectFaceLandmarksRequest {}
+extern_conformance!(
+    unsafe impl VNFaceObservationAccepting for VNDetectFaceLandmarksRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNDetectFaceLandmarksRequest {

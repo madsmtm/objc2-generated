@@ -18,7 +18,9 @@ extern_class!(
     pub struct EKVirtualConferenceRoomTypeDescriptor;
 );
 
-unsafe impl NSObjectProtocol for EKVirtualConferenceRoomTypeDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKVirtualConferenceRoomTypeDescriptor {}
+);
 
 impl EKVirtualConferenceRoomTypeDescriptor {
     extern_methods!(
@@ -67,7 +69,9 @@ extern_class!(
     pub struct EKVirtualConferenceURLDescriptor;
 );
 
-unsafe impl NSObjectProtocol for EKVirtualConferenceURLDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKVirtualConferenceURLDescriptor {}
+);
 
 impl EKVirtualConferenceURLDescriptor {
     extern_methods!(
@@ -116,7 +120,9 @@ extern_class!(
     pub struct EKVirtualConferenceDescriptor;
 );
 
-unsafe impl NSObjectProtocol for EKVirtualConferenceDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKVirtualConferenceDescriptor {}
+);
 
 impl EKVirtualConferenceDescriptor {
     extern_methods!(

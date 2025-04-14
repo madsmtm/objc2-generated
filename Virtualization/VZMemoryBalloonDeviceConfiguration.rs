@@ -21,13 +21,17 @@ extern_class!(
     pub struct VZMemoryBalloonDeviceConfiguration;
 );
 
-unsafe impl NSCopying for VZMemoryBalloonDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZMemoryBalloonDeviceConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZMemoryBalloonDeviceConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZMemoryBalloonDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMemoryBalloonDeviceConfiguration {}
+);
 
 impl VZMemoryBalloonDeviceConfiguration {
     extern_methods!(

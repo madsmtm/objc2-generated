@@ -16,7 +16,9 @@ extern_class!(
     pub struct GKStateMachine;
 );
 
-unsafe impl NSObjectProtocol for GKStateMachine {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKStateMachine {}
+);
 
 impl GKStateMachine {
     extern_methods!(

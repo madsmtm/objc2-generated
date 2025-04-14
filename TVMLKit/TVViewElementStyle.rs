@@ -155,13 +155,17 @@ extern_class!(
     pub struct TVViewElementStyle;
 );
 
-unsafe impl NSCopying for TVViewElementStyle {}
+extern_conformance!(
+    unsafe impl NSCopying for TVViewElementStyle {}
+);
 
 unsafe impl CopyingHelper for TVViewElementStyle {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVViewElementStyle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVViewElementStyle {}
+);
 
 impl TVViewElementStyle {
     extern_methods!(

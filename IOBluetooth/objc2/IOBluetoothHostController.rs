@@ -21,7 +21,9 @@ extern_class!(
     pub struct IOBluetoothHostController;
 );
 
-unsafe impl NSObjectProtocol for IOBluetoothHostController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothHostController {}
+);
 
 impl IOBluetoothHostController {
     extern_methods!(

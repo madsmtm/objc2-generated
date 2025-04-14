@@ -14,13 +14,17 @@ extern_class!(
     pub struct CXProviderConfiguration;
 );
 
-unsafe impl NSCopying for CXProviderConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for CXProviderConfiguration {}
+);
 
 unsafe impl CopyingHelper for CXProviderConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CXProviderConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CXProviderConfiguration {}
+);
 
 impl CXProviderConfiguration {
     extern_methods!(

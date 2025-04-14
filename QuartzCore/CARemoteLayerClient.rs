@@ -13,7 +13,9 @@ extern_class!(
     pub struct CARemoteLayerClient;
 );
 
-unsafe impl NSObjectProtocol for CARemoteLayerClient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CARemoteLayerClient {}
+);
 
 impl CARemoteLayerClient {
     extern_methods!(

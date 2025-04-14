@@ -15,10 +15,12 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
-unsafe impl NSObjectProtocol
-    for ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest
-{
-}
+extern_conformance!(
+    unsafe impl NSObjectProtocol
+        for ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest
+    {
+    }
+);
 
 #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
 impl ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest {

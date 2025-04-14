@@ -19,17 +19,25 @@ extern_class!(
     pub struct GCColor;
 );
 
-unsafe impl NSCoding for GCColor {}
+extern_conformance!(
+    unsafe impl NSCoding for GCColor {}
+);
 
-unsafe impl NSCopying for GCColor {}
+extern_conformance!(
+    unsafe impl NSCopying for GCColor {}
+);
 
 unsafe impl CopyingHelper for GCColor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GCColor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCColor {}
+);
 
-unsafe impl NSSecureCoding for GCColor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GCColor {}
+);
 
 impl GCColor {
     extern_methods!(

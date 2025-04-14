@@ -19,10 +19,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageHistogram {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageHistogram {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageHistogram {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageHistogram {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageHistogram {
@@ -30,10 +34,14 @@ unsafe impl CopyingHelper for MPSImageHistogram {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageHistogram {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageHistogram {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageHistogram {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageHistogram {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSImageHistogram {
@@ -201,10 +209,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageNormalizedHistogram {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageNormalizedHistogram {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageNormalizedHistogram {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageNormalizedHistogram {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageNormalizedHistogram {
@@ -212,10 +224,14 @@ unsafe impl CopyingHelper for MPSImageNormalizedHistogram {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageNormalizedHistogram {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageNormalizedHistogram {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageNormalizedHistogram {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageNormalizedHistogram {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSImageNormalizedHistogram {
@@ -405,10 +421,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageHistogramEqualization {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageHistogramEqualization {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageHistogramEqualization {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageHistogramEqualization {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageHistogramEqualization {
@@ -416,10 +436,14 @@ unsafe impl CopyingHelper for MPSImageHistogramEqualization {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageHistogramEqualization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageHistogramEqualization {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageHistogramEqualization {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageHistogramEqualization {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageHistogramEqualization {
@@ -550,10 +574,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageHistogramSpecification {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageHistogramSpecification {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageHistogramSpecification {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageHistogramSpecification {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageHistogramSpecification {
@@ -561,10 +589,14 @@ unsafe impl CopyingHelper for MPSImageHistogramSpecification {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageHistogramSpecification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageHistogramSpecification {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageHistogramSpecification {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageHistogramSpecification {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageHistogramSpecification {

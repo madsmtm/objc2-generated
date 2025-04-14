@@ -18,7 +18,9 @@ unsafe impl Send for PHChange {}
 
 unsafe impl Sync for PHChange {}
 
-unsafe impl NSObjectProtocol for PHChange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHChange {}
+);
 
 impl PHChange {
     extern_methods!(
@@ -60,7 +62,9 @@ extern_class!(
     pub struct PHObjectChangeDetails<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHObjectChangeDetails<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHObjectChangeDetails<ObjectType> {}
+);
 
 impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
     extern_methods!(
@@ -102,7 +106,9 @@ extern_class!(
     pub struct PHFetchResultChangeDetails<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResultChangeDetails<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResultChangeDetails<ObjectType> {}
+);
 
 impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
     extern_methods!(

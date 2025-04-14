@@ -38,10 +38,14 @@ unsafe impl Send for HKClinicalRecord {}
 unsafe impl Sync for HKClinicalRecord {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCoding for HKClinicalRecord {}
+extern_conformance!(
+    unsafe impl NSCoding for HKClinicalRecord {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCopying for HKClinicalRecord {}
+extern_conformance!(
+    unsafe impl NSCopying for HKClinicalRecord {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl CopyingHelper for HKClinicalRecord {
@@ -49,10 +53,14 @@ unsafe impl CopyingHelper for HKClinicalRecord {
 }
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSObjectProtocol for HKClinicalRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKClinicalRecord {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSSecureCoding for HKClinicalRecord {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKClinicalRecord {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKClinicalRecord {

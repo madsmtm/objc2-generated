@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDynamicBehavior")]
-unsafe impl NSObjectProtocol for UIGravityBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIGravityBehavior {}
+);
 
 #[cfg(feature = "UIDynamicBehavior")]
 impl UIGravityBehavior {

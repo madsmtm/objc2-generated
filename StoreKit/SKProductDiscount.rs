@@ -67,7 +67,9 @@ unsafe impl Send for SKProductDiscount {}
 
 unsafe impl Sync for SKProductDiscount {}
 
-unsafe impl NSObjectProtocol for SKProductDiscount {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKProductDiscount {}
+);
 
 impl SKProductDiscount {
     extern_methods!(

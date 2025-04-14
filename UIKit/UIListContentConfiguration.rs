@@ -20,20 +20,30 @@ extern_class!(
     pub struct UIListContentConfiguration;
 );
 
-unsafe impl NSCoding for UIListContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UIListContentConfiguration {}
+);
 
-unsafe impl NSCopying for UIListContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UIListContentConfiguration {}
+);
 
 unsafe impl CopyingHelper for UIListContentConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIListContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIListContentConfiguration {}
+);
 
-unsafe impl NSSecureCoding for UIListContentConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIListContentConfiguration {}
+);
 
 #[cfg(feature = "UIContentConfiguration")]
-unsafe impl UIContentConfiguration for UIListContentConfiguration {}
+extern_conformance!(
+    unsafe impl UIContentConfiguration for UIListContentConfiguration {}
+);
 
 impl UIListContentConfiguration {
     extern_methods!(
@@ -338,55 +348,81 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIListContentView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIListContentView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIListContentView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIListContentView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIListContentView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIListContentView {}
+);
 
 #[cfg(all(
     feature = "UIContentConfiguration",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIContentView for UIListContentView {}
+extern_conformance!(
+    unsafe impl UIContentView for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIListContentView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIListContentView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIListContentView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIListContentView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIListContentView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIListContentView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIListContentView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIListContentView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIListContentView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIListContentView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIListContentView {

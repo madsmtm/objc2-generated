@@ -28,13 +28,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIStepper {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIStepper {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIStepper {}
+extern_conformance!(
+    unsafe impl NSCoding for UIStepper {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIStepper {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIStepper {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -42,7 +48,9 @@ unsafe impl NSObjectProtocol for UIStepper {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UIStepper {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIStepper {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -50,10 +58,14 @@ unsafe impl UIAppearance for UIStepper {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UIStepper {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIStepper {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIStepper {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIStepper {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -61,7 +73,9 @@ unsafe impl UICoordinateSpace for UIStepper {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIStepper {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIStepper {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -69,7 +83,9 @@ unsafe impl UIDynamicItem for UIStepper {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UIStepper {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIStepper {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -77,7 +93,9 @@ unsafe impl UIFocusEnvironment for UIStepper {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UIStepper {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIStepper {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -85,10 +103,14 @@ unsafe impl UIFocusItem for UIStepper {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UIStepper {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIStepper {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIStepper {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIStepper {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -96,7 +118,9 @@ unsafe impl UIResponderStandardEditActions for UIStepper {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIStepper {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIStepper {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UIStepper {

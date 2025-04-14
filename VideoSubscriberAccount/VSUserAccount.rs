@@ -58,7 +58,9 @@ unsafe impl Send for VSUserAccount {}
 
 unsafe impl Sync for VSUserAccount {}
 
-unsafe impl NSObjectProtocol for VSUserAccount {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VSUserAccount {}
+);
 
 impl VSUserAccount {
     extern_methods!(

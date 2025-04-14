@@ -97,7 +97,9 @@ extern_class!(
     pub struct NSURLConnection;
 );
 
-unsafe impl NSObjectProtocol for NSURLConnection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLConnection {}
+);
 
 impl NSURLConnection {
     extern_methods!(

@@ -15,7 +15,9 @@ extern_class!(
     pub struct BEWebAppManifest;
 );
 
-unsafe impl NSObjectProtocol for BEWebAppManifest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEWebAppManifest {}
+);
 
 impl BEWebAppManifest {
     extern_methods!(

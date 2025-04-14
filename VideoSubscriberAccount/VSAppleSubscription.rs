@@ -18,7 +18,9 @@ unsafe impl Send for VSAppleSubscription {}
 
 unsafe impl Sync for VSAppleSubscription {}
 
-unsafe impl NSObjectProtocol for VSAppleSubscription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VSAppleSubscription {}
+);
 
 impl VSAppleSubscription {
     extern_methods!(

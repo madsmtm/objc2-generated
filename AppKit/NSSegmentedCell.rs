@@ -22,20 +22,28 @@ extern_class!(
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSSegmentedCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSegmentedCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSegmentedCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSegmentedCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSSegmentedCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSegmentedCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSSegmentedCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSegmentedCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSSegmentedCell {
@@ -43,14 +51,18 @@ unsafe impl CopyingHelper for NSSegmentedCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSSegmentedCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSegmentedCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSegmentedCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSegmentedCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSSegmentedCell {

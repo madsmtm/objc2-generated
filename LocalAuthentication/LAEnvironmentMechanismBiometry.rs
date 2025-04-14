@@ -21,7 +21,9 @@ unsafe impl Send for LAEnvironmentMechanismBiometry {}
 unsafe impl Sync for LAEnvironmentMechanismBiometry {}
 
 #[cfg(feature = "LAEnvironmentMechanism")]
-unsafe impl NSObjectProtocol for LAEnvironmentMechanismBiometry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAEnvironmentMechanismBiometry {}
+);
 
 #[cfg(feature = "LAEnvironmentMechanism")]
 impl LAEnvironmentMechanismBiometry {

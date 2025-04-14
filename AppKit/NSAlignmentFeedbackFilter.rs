@@ -21,7 +21,9 @@ extern_class!(
     pub struct NSAlignmentFeedbackFilter;
 );
 
-unsafe impl NSObjectProtocol for NSAlignmentFeedbackFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAlignmentFeedbackFilter {}
+);
 
 impl NSAlignmentFeedbackFilter {
     extern_methods!(

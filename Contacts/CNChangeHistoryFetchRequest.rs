@@ -23,13 +23,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CNFetchRequest")]
-unsafe impl NSCoding for CNChangeHistoryFetchRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryFetchRequest {}
+);
 
 #[cfg(feature = "CNFetchRequest")]
-unsafe impl NSObjectProtocol for CNChangeHistoryFetchRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryFetchRequest {}
+);
 
 #[cfg(feature = "CNFetchRequest")]
-unsafe impl NSSecureCoding for CNChangeHistoryFetchRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryFetchRequest {}
+);
 
 #[cfg(feature = "CNFetchRequest")]
 impl CNChangeHistoryFetchRequest {

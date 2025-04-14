@@ -45,7 +45,9 @@ extern_class!(
     pub struct WCSession;
 );
 
-unsafe impl NSObjectProtocol for WCSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WCSession {}
+);
 
 impl WCSession {
     extern_methods!(

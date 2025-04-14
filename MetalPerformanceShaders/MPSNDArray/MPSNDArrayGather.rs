@@ -32,7 +32,9 @@ extern_class!(
     feature = "MPSNDArrayGradientState",
     feature = "MPSState"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayGatherGradientState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayGatherGradientState {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -210,14 +212,18 @@ extern_class!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCoding for MPSNDArrayGather {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayGather {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCopying for MPSNDArrayGather {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayGather {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -233,14 +239,18 @@ unsafe impl CopyingHelper for MPSNDArrayGather {
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayGather {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayGather {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSSecureCoding for MPSNDArrayGather {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayGather {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -366,14 +376,18 @@ extern_class!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCoding for MPSNDArrayGatherGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayGatherGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCopying for MPSNDArrayGatherGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayGatherGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -389,14 +403,18 @@ unsafe impl CopyingHelper for MPSNDArrayGatherGradient {
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayGatherGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayGatherGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSSecureCoding for MPSNDArrayGatherGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayGatherGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",

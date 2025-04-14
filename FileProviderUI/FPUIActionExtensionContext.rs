@@ -52,7 +52,9 @@ extern_class!(
     pub struct FPUIActionExtensionContext;
 );
 
-unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}
+);
 
 impl FPUIActionExtensionContext {
     extern_methods!(

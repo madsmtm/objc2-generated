@@ -14,7 +14,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INCallRecordTypeOptionsResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCallRecordTypeOptionsResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INCallRecordTypeOptionsResolutionResult {

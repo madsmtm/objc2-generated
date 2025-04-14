@@ -51,7 +51,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZDirectoryShare")]
-unsafe impl NSObjectProtocol for VZLinuxRosettaDirectoryShare {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZLinuxRosettaDirectoryShare {}
+);
 
 #[cfg(feature = "VZDirectoryShare")]
 impl VZLinuxRosettaDirectoryShare {

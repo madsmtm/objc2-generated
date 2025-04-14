@@ -170,10 +170,14 @@ extern_class!(
     pub struct UIWritingToolsCoordinator;
 );
 
-unsafe impl NSObjectProtocol for UIWritingToolsCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWritingToolsCoordinator {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIWritingToolsCoordinator {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIWritingToolsCoordinator {}
+);
 
 impl UIWritingToolsCoordinator {
     extern_methods!(

@@ -26,15 +26,21 @@ extern_class!(
     pub struct WebArchive;
 );
 
-unsafe impl NSCoding for WebArchive {}
+extern_conformance!(
+    unsafe impl NSCoding for WebArchive {}
+);
 
-unsafe impl NSCopying for WebArchive {}
+extern_conformance!(
+    unsafe impl NSCopying for WebArchive {}
+);
 
 unsafe impl CopyingHelper for WebArchive {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WebArchive {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebArchive {}
+);
 
 impl WebArchive {
     extern_methods!(

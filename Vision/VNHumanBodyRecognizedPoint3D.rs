@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
-unsafe impl NSCoding for VNHumanBodyRecognizedPoint3D {}
+extern_conformance!(
+    unsafe impl NSCoding for VNHumanBodyRecognizedPoint3D {}
+);
 
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
-unsafe impl NSCopying for VNHumanBodyRecognizedPoint3D {}
+extern_conformance!(
+    unsafe impl NSCopying for VNHumanBodyRecognizedPoint3D {}
+);
 
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
 unsafe impl CopyingHelper for VNHumanBodyRecognizedPoint3D {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for VNHumanBodyRecognizedPoint3D {
 }
 
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
-unsafe impl NSObjectProtocol for VNHumanBodyRecognizedPoint3D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNHumanBodyRecognizedPoint3D {}
+);
 
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
-unsafe impl NSSecureCoding for VNHumanBodyRecognizedPoint3D {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNHumanBodyRecognizedPoint3D {}
+);
 
 #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]
 impl VNHumanBodyRecognizedPoint3D {

@@ -13,7 +13,9 @@ extern_class!(
     pub struct CLKComplicationDescriptor;
 );
 
-unsafe impl NSObjectProtocol for CLKComplicationDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationDescriptor {}
+);
 
 impl CLKComplicationDescriptor {
     extern_methods!(

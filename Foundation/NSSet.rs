@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSCopying for NSSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for NSSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSSet<ObjectType> {
@@ -27,20 +31,28 @@ unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSSet<ObjectType> {
 }
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSSet<ObjectType> {
     type Result = NSMutableSet<ObjectType>;
 }
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSSet<ObjectType> {}
+);
 
 impl<ObjectType: Message> NSSet<ObjectType> {
     extern_methods!(
@@ -318,10 +330,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSMutableSet<ObjectType> {
@@ -329,20 +345,28 @@ unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSMutableSet<ObjectT
 }
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSMutableSet<ObjectType> {
     type Result = Self;
 }
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableSet<ObjectType> {}
+);
 
 impl<ObjectType: Message> NSMutableSet<ObjectType> {
     extern_methods!(
@@ -450,15 +474,23 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSCountedSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSCountedSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSCountedSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSCountedSet<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSCountedSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSCountedSet<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSCountedSet<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSCountedSet<ObjectType> {}
+);
 
 impl<ObjectType: Message> NSCountedSet<ObjectType> {
     extern_methods!(

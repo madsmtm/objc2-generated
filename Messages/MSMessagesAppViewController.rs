@@ -81,28 +81,44 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl MSMessagesAppTranscriptPresentation for MSMessagesAppViewController {}
+extern_conformance!(
+    unsafe impl MSMessagesAppTranscriptPresentation for MSMessagesAppViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for MSMessagesAppViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for MSMessagesAppViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for MSMessagesAppViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSMessagesAppViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for MSMessagesAppViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for MSMessagesAppViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for MSMessagesAppViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for MSMessagesAppViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for MSMessagesAppViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for MSMessagesAppViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for MSMessagesAppViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for MSMessagesAppViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for MSMessagesAppViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for MSMessagesAppViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl MSMessagesAppViewController {

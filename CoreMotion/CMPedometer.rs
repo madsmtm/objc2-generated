@@ -14,17 +14,25 @@ extern_class!(
     pub struct CMPedometerData;
 );
 
-unsafe impl NSCoding for CMPedometerData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMPedometerData {}
+);
 
-unsafe impl NSCopying for CMPedometerData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMPedometerData {}
+);
 
 unsafe impl CopyingHelper for CMPedometerData {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMPedometerData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMPedometerData {}
+);
 
-unsafe impl NSSecureCoding for CMPedometerData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMPedometerData {}
+);
 
 impl CMPedometerData {
     extern_methods!(
@@ -106,17 +114,25 @@ extern_class!(
     pub struct CMPedometerEvent;
 );
 
-unsafe impl NSCoding for CMPedometerEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CMPedometerEvent {}
+);
 
-unsafe impl NSCopying for CMPedometerEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CMPedometerEvent {}
+);
 
 unsafe impl CopyingHelper for CMPedometerEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMPedometerEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMPedometerEvent {}
+);
 
-unsafe impl NSSecureCoding for CMPedometerEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMPedometerEvent {}
+);
 
 impl CMPedometerEvent {
     extern_methods!(
@@ -159,7 +175,9 @@ extern_class!(
     pub struct CMPedometer;
 );
 
-unsafe impl NSObjectProtocol for CMPedometer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMPedometer {}
+);
 
 impl CMPedometer {
     extern_methods!(

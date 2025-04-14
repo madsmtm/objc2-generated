@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIPreviewParameters")]
-unsafe impl NSCopying for UIDragPreviewParameters {}
+extern_conformance!(
+    unsafe impl NSCopying for UIDragPreviewParameters {}
+);
 
 #[cfg(feature = "UIPreviewParameters")]
 unsafe impl CopyingHelper for UIDragPreviewParameters {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for UIDragPreviewParameters {
 }
 
 #[cfg(feature = "UIPreviewParameters")]
-unsafe impl NSObjectProtocol for UIDragPreviewParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDragPreviewParameters {}
+);
 
 #[cfg(feature = "UIPreviewParameters")]
 impl UIDragPreviewParameters {

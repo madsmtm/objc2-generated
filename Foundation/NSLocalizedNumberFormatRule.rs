@@ -13,20 +13,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSLocalizedNumberFormatRule {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLocalizedNumberFormatRule {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSLocalizedNumberFormatRule {}
+extern_conformance!(
+    unsafe impl NSCopying for NSLocalizedNumberFormatRule {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSLocalizedNumberFormatRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSLocalizedNumberFormatRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLocalizedNumberFormatRule {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSLocalizedNumberFormatRule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSLocalizedNumberFormatRule {}
+);
 
 impl NSLocalizedNumberFormatRule {
     extern_methods!(

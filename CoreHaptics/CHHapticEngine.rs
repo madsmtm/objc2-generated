@@ -169,7 +169,9 @@ extern_class!(
     pub struct CHHapticEngine;
 );
 
-unsafe impl NSObjectProtocol for CHHapticEngine {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CHHapticEngine {}
+);
 
 impl CHHapticEngine {
     extern_methods!(

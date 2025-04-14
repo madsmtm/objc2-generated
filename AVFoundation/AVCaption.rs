@@ -243,23 +243,33 @@ extern_class!(
     pub struct AVCaptionRegion;
 );
 
-unsafe impl NSCoding for AVCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSCoding for AVCaptionRegion {}
+);
 
-unsafe impl NSCopying for AVCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSCopying for AVCaptionRegion {}
+);
 
 unsafe impl CopyingHelper for AVCaptionRegion {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVCaptionRegion {}
+);
 
 unsafe impl MutableCopyingHelper for AVCaptionRegion {
     type Result = AVMutableCaptionRegion;
 }
 
-unsafe impl NSObjectProtocol for AVCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionRegion {}
+);
 
-unsafe impl NSSecureCoding for AVCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVCaptionRegion {}
+);
 
 impl AVCaptionRegion {
     extern_methods!(
@@ -391,23 +401,33 @@ extern_class!(
     pub struct AVMutableCaptionRegion;
 );
 
-unsafe impl NSCoding for AVMutableCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMutableCaptionRegion {}
+);
 
-unsafe impl NSCopying for AVMutableCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableCaptionRegion {}
+);
 
 unsafe impl CopyingHelper for AVMutableCaptionRegion {
     type Result = AVCaptionRegion;
 }
 
-unsafe impl NSMutableCopying for AVMutableCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableCaptionRegion {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableCaptionRegion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableCaptionRegion {}
+);
 
-unsafe impl NSSecureCoding for AVMutableCaptionRegion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMutableCaptionRegion {}
+);
 
 impl AVMutableCaptionRegion {
     extern_methods!(
@@ -525,23 +545,33 @@ extern_class!(
     pub struct AVCaption;
 );
 
-unsafe impl NSCoding for AVCaption {}
+extern_conformance!(
+    unsafe impl NSCoding for AVCaption {}
+);
 
-unsafe impl NSCopying for AVCaption {}
+extern_conformance!(
+    unsafe impl NSCopying for AVCaption {}
+);
 
 unsafe impl CopyingHelper for AVCaption {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVCaption {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVCaption {}
+);
 
 unsafe impl MutableCopyingHelper for AVCaption {
     type Result = AVMutableCaption;
 }
 
-unsafe impl NSObjectProtocol for AVCaption {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaption {}
+);
 
-unsafe impl NSSecureCoding for AVCaption {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVCaption {}
+);
 
 impl AVCaption {
     extern_methods!(
@@ -622,23 +652,33 @@ extern_class!(
     pub struct AVMutableCaption;
 );
 
-unsafe impl NSCoding for AVMutableCaption {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMutableCaption {}
+);
 
-unsafe impl NSCopying for AVMutableCaption {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableCaption {}
+);
 
 unsafe impl CopyingHelper for AVMutableCaption {
     type Result = AVCaption;
 }
 
-unsafe impl NSMutableCopying for AVMutableCaption {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableCaption {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableCaption {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableCaption {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableCaption {}
+);
 
-unsafe impl NSSecureCoding for AVMutableCaption {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMutableCaption {}
+);
 
 impl AVMutableCaption {
     extern_methods!(
@@ -1258,17 +1298,25 @@ unsafe impl Send for AVCaptionRuby {}
 
 unsafe impl Sync for AVCaptionRuby {}
 
-unsafe impl NSCoding for AVCaptionRuby {}
+extern_conformance!(
+    unsafe impl NSCoding for AVCaptionRuby {}
+);
 
-unsafe impl NSCopying for AVCaptionRuby {}
+extern_conformance!(
+    unsafe impl NSCopying for AVCaptionRuby {}
+);
 
 unsafe impl CopyingHelper for AVCaptionRuby {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVCaptionRuby {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionRuby {}
+);
 
-unsafe impl NSSecureCoding for AVCaptionRuby {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVCaptionRuby {}
+);
 
 impl AVCaptionRuby {
     extern_methods!(

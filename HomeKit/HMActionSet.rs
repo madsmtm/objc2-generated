@@ -21,7 +21,9 @@ unsafe impl Send for HMActionSet {}
 
 unsafe impl Sync for HMActionSet {}
 
-unsafe impl NSObjectProtocol for HMActionSet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMActionSet {}
+);
 
 impl HMActionSet {
     extern_methods!(

@@ -22,7 +22,9 @@ extern_class!(
     pub struct UISceneSystemProtectionManager;
 );
 
-unsafe impl NSObjectProtocol for UISceneSystemProtectionManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneSystemProtectionManager {}
+);
 
 impl UISceneSystemProtectionManager {
     extern_methods!(

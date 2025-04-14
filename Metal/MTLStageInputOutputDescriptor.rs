@@ -192,13 +192,17 @@ extern_class!(
     pub struct MTLBufferLayoutDescriptor;
 );
 
-unsafe impl NSCopying for MTLBufferLayoutDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLBufferLayoutDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLBufferLayoutDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptor {}
+);
 
 impl MTLBufferLayoutDescriptor {
     extern_methods!(
@@ -251,7 +255,9 @@ extern_class!(
     pub struct MTLBufferLayoutDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptorArray {}
+);
 
 impl MTLBufferLayoutDescriptorArray {
     extern_methods!(
@@ -292,13 +298,17 @@ extern_class!(
     pub struct MTLAttributeDescriptor;
 );
 
-unsafe impl NSCopying for MTLAttributeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLAttributeDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLAttributeDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLAttributeDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAttributeDescriptor {}
+);
 
 impl MTLAttributeDescriptor {
     extern_methods!(
@@ -351,7 +361,9 @@ extern_class!(
     pub struct MTLAttributeDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLAttributeDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAttributeDescriptorArray {}
+);
 
 impl MTLAttributeDescriptorArray {
     extern_methods!(
@@ -392,13 +404,17 @@ extern_class!(
     pub struct MTLStageInputOutputDescriptor;
 );
 
-unsafe impl NSCopying for MTLStageInputOutputDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLStageInputOutputDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLStageInputOutputDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLStageInputOutputDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLStageInputOutputDescriptor {}
+);
 
 impl MTLStageInputOutputDescriptor {
     extern_methods!(

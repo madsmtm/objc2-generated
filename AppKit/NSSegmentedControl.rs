@@ -107,7 +107,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSSegmentedControl {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSegmentedControl {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -115,7 +117,9 @@ unsafe impl NSAccessibility for NSSegmentedControl {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSegmentedControl {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSegmentedControl {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -123,7 +127,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSegmentedControl {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSSegmentedControl {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSSegmentedControl {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -131,10 +137,14 @@ unsafe impl NSAnimatablePropertyContainer for NSSegmentedControl {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSSegmentedControl {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSSegmentedControl {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSSegmentedControl {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSegmentedControl {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -142,10 +152,14 @@ unsafe impl NSCoding for NSSegmentedControl {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSSegmentedControl {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSSegmentedControl {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSSegmentedControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSegmentedControl {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -153,7 +167,9 @@ unsafe impl NSObjectProtocol for NSSegmentedControl {}
     feature = "NSUserInterfaceCompression",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceCompression for NSSegmentedControl {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceCompression for NSSegmentedControl {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -161,7 +177,9 @@ unsafe impl NSUserInterfaceCompression for NSSegmentedControl {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSegmentedControl {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSegmentedControl {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSSegmentedControl {

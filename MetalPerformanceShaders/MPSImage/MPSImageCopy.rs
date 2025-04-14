@@ -26,10 +26,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageCopyToMatrix {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageCopyToMatrix {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageCopyToMatrix {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageCopyToMatrix {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageCopyToMatrix {
@@ -37,10 +41,14 @@ unsafe impl CopyingHelper for MPSImageCopyToMatrix {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageCopyToMatrix {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageCopyToMatrix {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageCopyToMatrix {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageCopyToMatrix {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSImageCopyToMatrix {
@@ -235,10 +243,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSMatrixCopyToImage {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixCopyToImage {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSMatrixCopyToImage {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixCopyToImage {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixCopyToImage {
@@ -246,10 +258,14 @@ unsafe impl CopyingHelper for MPSMatrixCopyToImage {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSMatrixCopyToImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixCopyToImage {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSMatrixCopyToImage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixCopyToImage {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSMatrixCopyToImage {

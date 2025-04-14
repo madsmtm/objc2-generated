@@ -20,36 +20,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSScrubberArrangedView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSScrubberArrangedView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSScrubberArrangedView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSScrubberArrangedView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSScrubberArrangedView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSScrubberArrangedView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSScrubberArrangedView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSScrubberArrangedView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSScrubberArrangedView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubberArrangedView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSScrubberArrangedView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSScrubberArrangedView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSScrubberArrangedView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberArrangedView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSScrubberArrangedView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSScrubberArrangedView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSScrubberArrangedView {
@@ -132,36 +148,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSScrubberSelectionView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSScrubberSelectionView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSScrubberSelectionView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSScrubberSelectionView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSScrubberSelectionView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSScrubberSelectionView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSScrubberSelectionView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSScrubberSelectionView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSScrubberSelectionView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubberSelectionView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSScrubberSelectionView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSScrubberSelectionView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSScrubberSelectionView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberSelectionView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSScrubberSelectionView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSScrubberSelectionView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSScrubberSelectionView {
@@ -221,36 +253,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSScrubberItemView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSScrubberItemView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSScrubberItemView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSScrubberItemView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSScrubberItemView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSScrubberItemView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSScrubberItemView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSScrubberItemView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSScrubberItemView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubberItemView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSScrubberItemView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSScrubberItemView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSScrubberItemView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberItemView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSScrubberItemView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSScrubberItemView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSScrubberItemView {
@@ -316,36 +364,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSScrubberTextItemView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSScrubberTextItemView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSScrubberTextItemView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSScrubberTextItemView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSScrubberTextItemView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSScrubberTextItemView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSScrubberTextItemView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSScrubberTextItemView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSScrubberTextItemView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubberTextItemView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSScrubberTextItemView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSScrubberTextItemView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSScrubberTextItemView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberTextItemView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSScrubberTextItemView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSScrubberTextItemView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSScrubberTextItemView {
@@ -428,36 +492,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSScrubberImageItemView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSScrubberImageItemView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSScrubberImageItemView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSScrubberImageItemView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSScrubberImageItemView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSScrubberImageItemView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSScrubberImageItemView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSScrubberImageItemView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSScrubberImageItemView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubberImageItemView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSScrubberImageItemView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSScrubberImageItemView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSScrubberImageItemView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberImageItemView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSScrubberImageItemView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSScrubberImageItemView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSScrubberImageItemView {

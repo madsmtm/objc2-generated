@@ -14,7 +14,9 @@ extern_class!(
     pub struct PKIdentityDocumentMetadata;
 );
 
-unsafe impl NSObjectProtocol for PKIdentityDocumentMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityDocumentMetadata {}
+);
 
 impl PKIdentityDocumentMetadata {
     extern_methods!(
@@ -71,7 +73,9 @@ extern_class!(
     pub struct PKJapanIndividualNumberCardMetadata;
 );
 
-unsafe impl NSObjectProtocol for PKJapanIndividualNumberCardMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKJapanIndividualNumberCardMetadata {}
+);
 
 impl PKJapanIndividualNumberCardMetadata {
     extern_methods!(
@@ -167,7 +171,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PKAddSecureElementPassConfiguration")]
-unsafe impl NSObjectProtocol for PKAddIdentityDocumentConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKAddIdentityDocumentConfiguration {}
+);
 
 #[cfg(feature = "PKAddSecureElementPassConfiguration")]
 impl PKAddIdentityDocumentConfiguration {

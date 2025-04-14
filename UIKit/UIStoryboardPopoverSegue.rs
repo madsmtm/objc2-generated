@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIStoryboardSegue")]
-unsafe impl NSObjectProtocol for UIStoryboardPopoverSegue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIStoryboardPopoverSegue {}
+);
 
 #[cfg(feature = "UIStoryboardSegue")]
 impl UIStoryboardPopoverSegue {

@@ -61,7 +61,9 @@ extern_class!(
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
 ))]
-unsafe impl NSCoding for MPSNDArrayQuantizedMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayQuantizedMatrixMultiplication {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -69,7 +71,9 @@ unsafe impl NSCoding for MPSNDArrayQuantizedMatrixMultiplication {}
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
 ))]
-unsafe impl NSCopying for MPSNDArrayQuantizedMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayQuantizedMatrixMultiplication {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -87,7 +91,9 @@ unsafe impl CopyingHelper for MPSNDArrayQuantizedMatrixMultiplication {
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayQuantizedMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayQuantizedMatrixMultiplication {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -95,7 +101,9 @@ unsafe impl NSObjectProtocol for MPSNDArrayQuantizedMatrixMultiplication {}
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
 ))]
-unsafe impl NSSecureCoding for MPSNDArrayQuantizedMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayQuantizedMatrixMultiplication {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -237,14 +245,18 @@ extern_class!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCoding for MPSNDArrayLUTDequantize {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayLUTDequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCopying for MPSNDArrayLUTDequantize {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayLUTDequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -260,14 +272,18 @@ unsafe impl CopyingHelper for MPSNDArrayLUTDequantize {
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayLUTDequantize {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayLUTDequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSSecureCoding for MPSNDArrayLUTDequantize {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayLUTDequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -377,14 +393,18 @@ extern_class!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCoding for MPSNDArrayVectorLUTDequantize {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayVectorLUTDequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCopying for MPSNDArrayVectorLUTDequantize {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayVectorLUTDequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -400,14 +420,18 @@ unsafe impl CopyingHelper for MPSNDArrayVectorLUTDequantize {
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayVectorLUTDequantize {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayVectorLUTDequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSSecureCoding for MPSNDArrayVectorLUTDequantize {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayVectorLUTDequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -552,14 +576,18 @@ extern_class!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCoding for MPSNDArrayAffineInt4Dequantize {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayAffineInt4Dequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCopying for MPSNDArrayAffineInt4Dequantize {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayAffineInt4Dequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -575,14 +603,18 @@ unsafe impl CopyingHelper for MPSNDArrayAffineInt4Dequantize {
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayAffineInt4Dequantize {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayAffineInt4Dequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSSecureCoding for MPSNDArrayAffineInt4Dequantize {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayAffineInt4Dequantize {}
+);
 
 #[cfg(all(
     feature = "MPSCore",

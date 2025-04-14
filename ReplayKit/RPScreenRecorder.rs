@@ -41,7 +41,9 @@ extern_class!(
     pub struct RPScreenRecorder;
 );
 
-unsafe impl NSObjectProtocol for RPScreenRecorder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for RPScreenRecorder {}
+);
 
 impl RPScreenRecorder {
     extern_methods!(

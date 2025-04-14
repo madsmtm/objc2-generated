@@ -27,7 +27,9 @@ extern_class!(
     pub struct PKStoredValuePassBalance;
 );
 
-unsafe impl NSObjectProtocol for PKStoredValuePassBalance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKStoredValuePassBalance {}
+);
 
 impl PKStoredValuePassBalance {
     extern_methods!(

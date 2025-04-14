@@ -18,7 +18,9 @@ extern_class!(
     pub struct TKTokenKeychainItem;
 );
 
-unsafe impl NSObjectProtocol for TKTokenKeychainItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenKeychainItem {}
+);
 
 impl TKTokenKeychainItem {
     extern_methods!(
@@ -88,7 +90,9 @@ extern_class!(
     pub struct TKTokenKeychainCertificate;
 );
 
-unsafe impl NSObjectProtocol for TKTokenKeychainCertificate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenKeychainCertificate {}
+);
 
 impl TKTokenKeychainCertificate {
     extern_methods!(
@@ -145,7 +149,9 @@ extern_class!(
     pub struct TKTokenKeychainKey;
 );
 
-unsafe impl NSObjectProtocol for TKTokenKeychainKey {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenKeychainKey {}
+);
 
 impl TKTokenKeychainKey {
     extern_methods!(
@@ -286,7 +292,9 @@ extern_class!(
     pub struct TKTokenKeychainContents;
 );
 
-unsafe impl NSObjectProtocol for TKTokenKeychainContents {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenKeychainContents {}
+);
 
 impl TKTokenKeychainContents {
     extern_methods!(

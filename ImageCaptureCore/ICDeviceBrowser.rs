@@ -157,7 +157,9 @@ extern_class!(
     pub struct ICDeviceBrowser;
 );
 
-unsafe impl NSObjectProtocol for ICDeviceBrowser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICDeviceBrowser {}
+);
 
 impl ICDeviceBrowser {
     extern_methods!(

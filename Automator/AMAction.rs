@@ -40,7 +40,9 @@ extern_class!(
     pub struct AMAction;
 );
 
-unsafe impl NSObjectProtocol for AMAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AMAction {}
+);
 
 impl AMAction {
     extern_methods!(

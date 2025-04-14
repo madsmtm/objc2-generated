@@ -20,7 +20,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCFullyConnectedLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCFullyConnectedLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCFullyConnectedLayer {

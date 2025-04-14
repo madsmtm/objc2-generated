@@ -13,13 +13,17 @@ extern_class!(
     pub struct CBPeer;
 );
 
-unsafe impl NSCopying for CBPeer {}
+extern_conformance!(
+    unsafe impl NSCopying for CBPeer {}
+);
 
 unsafe impl CopyingHelper for CBPeer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CBPeer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBPeer {}
+);
 
 impl CBPeer {
     extern_methods!(

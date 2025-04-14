@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSCoding for ASAuthorizationPasswordRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationPasswordRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSCopying for ASAuthorizationPasswordRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationPasswordRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
 unsafe impl CopyingHelper for ASAuthorizationPasswordRequest {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for ASAuthorizationPasswordRequest {
 }
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSObjectProtocol for ASAuthorizationPasswordRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPasswordRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
-unsafe impl NSSecureCoding for ASAuthorizationPasswordRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationPasswordRequest {}
+);
 
 #[cfg(feature = "ASAuthorizationRequest")]
 impl ASAuthorizationPasswordRequest {

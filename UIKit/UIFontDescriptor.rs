@@ -132,17 +132,25 @@ unsafe impl Send for UIFontDescriptor {}
 
 unsafe impl Sync for UIFontDescriptor {}
 
-unsafe impl NSCoding for UIFontDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for UIFontDescriptor {}
+);
 
-unsafe impl NSCopying for UIFontDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for UIFontDescriptor {}
+);
 
 unsafe impl CopyingHelper for UIFontDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIFontDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFontDescriptor {}
+);
 
-unsafe impl NSSecureCoding for UIFontDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIFontDescriptor {}
+);
 
 impl UIFontDescriptor {
     extern_methods!(

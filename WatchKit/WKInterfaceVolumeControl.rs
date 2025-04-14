@@ -37,7 +37,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceVolumeControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceVolumeControl {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceVolumeControl {

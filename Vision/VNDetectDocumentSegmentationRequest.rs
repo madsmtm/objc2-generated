@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNDetectDocumentSegmentationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNDetectDocumentSegmentationRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNDetectDocumentSegmentationRequest {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for VNDetectDocumentSegmentationRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNDetectDocumentSegmentationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNDetectDocumentSegmentationRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNDetectDocumentSegmentationRequest {

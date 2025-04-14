@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSCopying for EKParticipant {}
+extern_conformance!(
+    unsafe impl NSCopying for EKParticipant {}
+);
 
 #[cfg(feature = "EKObject")]
 unsafe impl CopyingHelper for EKParticipant {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for EKParticipant {
 }
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSObjectProtocol for EKParticipant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKParticipant {}
+);
 
 #[cfg(feature = "EKObject")]
 impl EKParticipant {

@@ -13,11 +13,17 @@ extern_class!(
     pub struct MEEncodedOutgoingMessage;
 );
 
-unsafe impl NSCoding for MEEncodedOutgoingMessage {}
+extern_conformance!(
+    unsafe impl NSCoding for MEEncodedOutgoingMessage {}
+);
 
-unsafe impl NSObjectProtocol for MEEncodedOutgoingMessage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEEncodedOutgoingMessage {}
+);
 
-unsafe impl NSSecureCoding for MEEncodedOutgoingMessage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MEEncodedOutgoingMessage {}
+);
 
 impl MEEncodedOutgoingMessage {
     extern_methods!(

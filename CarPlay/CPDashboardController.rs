@@ -14,7 +14,9 @@ extern_class!(
     pub struct CPDashboardController;
 );
 
-unsafe impl NSObjectProtocol for CPDashboardController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPDashboardController {}
+);
 
 impl CPDashboardController {
     extern_methods!(

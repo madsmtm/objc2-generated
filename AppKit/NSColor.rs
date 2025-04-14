@@ -78,23 +78,35 @@ unsafe impl Send for NSColor {}
 
 unsafe impl Sync for NSColor {}
 
-unsafe impl NSCoding for NSColor {}
+extern_conformance!(
+    unsafe impl NSCoding for NSColor {}
+);
 
-unsafe impl NSCopying for NSColor {}
+extern_conformance!(
+    unsafe impl NSCopying for NSColor {}
+);
 
 unsafe impl CopyingHelper for NSColor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSColor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSColor {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardReading for NSColor {}
+extern_conformance!(
+    unsafe impl NSPasteboardReading for NSColor {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardWriting for NSColor {}
+extern_conformance!(
+    unsafe impl NSPasteboardWriting for NSColor {}
+);
 
-unsafe impl NSSecureCoding for NSColor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSColor {}
+);
 
 impl NSColor {
     extern_methods!(

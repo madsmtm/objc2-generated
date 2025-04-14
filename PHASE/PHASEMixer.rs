@@ -26,7 +26,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEMixerDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEMixerDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEMixerDefinition {
@@ -87,7 +89,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASESpatialMixerDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESpatialMixerDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASESpatialMixerDefinition {
@@ -210,7 +214,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEAmbientMixerDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEAmbientMixerDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEAmbientMixerDefinition {
@@ -250,7 +256,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEChannelMixerDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEChannelMixerDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEChannelMixerDefinition {
@@ -317,7 +325,9 @@ extern_class!(
     pub struct PHASEMixer;
 );
 
-unsafe impl NSObjectProtocol for PHASEMixer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEMixer {}
+);
 
 impl PHASEMixer {
     extern_methods!(
@@ -362,7 +372,9 @@ extern_class!(
     pub struct PHASEMixerParameters;
 );
 
-unsafe impl NSObjectProtocol for PHASEMixerParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEMixerParameters {}
+);
 
 impl PHASEMixerParameters {
     extern_methods!(

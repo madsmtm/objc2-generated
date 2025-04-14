@@ -31,13 +31,19 @@ unsafe impl Send for AREnvironmentProbeAnchor {}
 unsafe impl Sync for AREnvironmentProbeAnchor {}
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl ARAnchorCopying for AREnvironmentProbeAnchor {}
+extern_conformance!(
+    unsafe impl ARAnchorCopying for AREnvironmentProbeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for AREnvironmentProbeAnchor {}
+extern_conformance!(
+    unsafe impl NSCoding for AREnvironmentProbeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for AREnvironmentProbeAnchor {}
+extern_conformance!(
+    unsafe impl NSCopying for AREnvironmentProbeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for AREnvironmentProbeAnchor {
@@ -45,10 +51,14 @@ unsafe impl CopyingHelper for AREnvironmentProbeAnchor {
 }
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-unsafe impl NSObjectProtocol for AREnvironmentProbeAnchor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AREnvironmentProbeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for AREnvironmentProbeAnchor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AREnvironmentProbeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
 impl AREnvironmentProbeAnchor {

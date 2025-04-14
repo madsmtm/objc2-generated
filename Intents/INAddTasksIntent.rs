@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INAddTasksIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INAddTasksIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INAddTasksIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INAddTasksIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INAddTasksIntent {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INAddTasksIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INAddTasksIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INAddTasksIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INAddTasksIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INAddTasksIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INAddTasksIntent {

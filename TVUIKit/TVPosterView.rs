@@ -25,40 +25,64 @@ extern_class!(
 );
 
 #[cfg(all(feature = "TVLockupView", feature = "objc2-quartz-core"))]
-unsafe impl CALayerDelegate for TVPosterView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl NSCoding for TVPosterView {}
+extern_conformance!(
+    unsafe impl NSCoding for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl NSObjectProtocol for TVPosterView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIAppearance for TVPosterView {}
+extern_conformance!(
+    unsafe impl UIAppearance for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIAppearanceContainer for TVPosterView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UICoordinateSpace for TVPosterView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIDynamicItem for TVPosterView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusEnvironment for TVPosterView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusItem for TVPosterView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusItemContainer for TVPosterView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIResponderStandardEditActions for TVPosterView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UITraitEnvironment for TVPosterView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVPosterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
 impl TVPosterView {

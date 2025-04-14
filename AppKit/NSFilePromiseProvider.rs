@@ -14,10 +14,14 @@ extern_class!(
     pub struct NSFilePromiseProvider;
 );
 
-unsafe impl NSObjectProtocol for NSFilePromiseProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFilePromiseProvider {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardWriting for NSFilePromiseProvider {}
+extern_conformance!(
+    unsafe impl NSPasteboardWriting for NSFilePromiseProvider {}
+);
 
 impl NSFilePromiseProvider {
     extern_methods!(

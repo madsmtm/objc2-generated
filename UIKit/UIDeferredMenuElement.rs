@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSCoding for UIDeferredMenuElement {}
+extern_conformance!(
+    unsafe impl NSCoding for UIDeferredMenuElement {}
+);
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSCopying for UIDeferredMenuElement {}
+extern_conformance!(
+    unsafe impl NSCopying for UIDeferredMenuElement {}
+);
 
 #[cfg(feature = "UIMenuElement")]
 unsafe impl CopyingHelper for UIDeferredMenuElement {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for UIDeferredMenuElement {
 }
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSObjectProtocol for UIDeferredMenuElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDeferredMenuElement {}
+);
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSSecureCoding for UIDeferredMenuElement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIDeferredMenuElement {}
+);
 
 #[cfg(feature = "UIMenuElement")]
 impl UIDeferredMenuElement {

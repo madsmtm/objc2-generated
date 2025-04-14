@@ -17,7 +17,9 @@ unsafe impl Send for HMAccessoryOwnershipToken {}
 
 unsafe impl Sync for HMAccessoryOwnershipToken {}
 
-unsafe impl NSObjectProtocol for HMAccessoryOwnershipToken {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMAccessoryOwnershipToken {}
+);
 
 impl HMAccessoryOwnershipToken {
     extern_methods!(
@@ -57,7 +59,9 @@ unsafe impl Send for HMAccessorySetupPayload {}
 
 unsafe impl Sync for HMAccessorySetupPayload {}
 
-unsafe impl NSObjectProtocol for HMAccessorySetupPayload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMAccessorySetupPayload {}
+);
 
 impl HMAccessorySetupPayload {
     extern_methods!(

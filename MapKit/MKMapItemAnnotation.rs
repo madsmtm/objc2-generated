@@ -13,9 +13,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MKAnnotation")]
-unsafe impl MKAnnotation for MKMapItemAnnotation {}
+extern_conformance!(
+    unsafe impl MKAnnotation for MKMapItemAnnotation {}
+);
 
-unsafe impl NSObjectProtocol for MKMapItemAnnotation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapItemAnnotation {}
+);
 
 impl MKMapItemAnnotation {
     extern_methods!(

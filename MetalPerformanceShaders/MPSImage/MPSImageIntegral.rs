@@ -29,10 +29,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageIntegral {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageIntegral {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageIntegral {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageIntegral {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageIntegral {
@@ -40,10 +44,14 @@ unsafe impl CopyingHelper for MPSImageIntegral {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageIntegral {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageIntegral {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageIntegral {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageIntegral {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageIntegral {
@@ -148,10 +156,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageIntegralOfSquares {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageIntegralOfSquares {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageIntegralOfSquares {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageIntegralOfSquares {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageIntegralOfSquares {
@@ -159,10 +171,14 @@ unsafe impl CopyingHelper for MPSImageIntegralOfSquares {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageIntegralOfSquares {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageIntegralOfSquares {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageIntegralOfSquares {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageIntegralOfSquares {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageIntegralOfSquares {

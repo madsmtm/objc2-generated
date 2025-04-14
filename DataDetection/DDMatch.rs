@@ -21,7 +21,9 @@ extern_class!(
     pub struct DDMatch;
 );
 
-unsafe impl NSObjectProtocol for DDMatch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDMatch {}
+);
 
 impl DDMatch {
     extern_methods!(
@@ -64,7 +66,9 @@ extern_class!(
     pub struct DDMatchLink;
 );
 
-unsafe impl NSObjectProtocol for DDMatchLink {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDMatchLink {}
+);
 
 impl DDMatchLink {
     extern_methods!(
@@ -107,7 +111,9 @@ extern_class!(
     pub struct DDMatchPhoneNumber;
 );
 
-unsafe impl NSObjectProtocol for DDMatchPhoneNumber {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDMatchPhoneNumber {}
+);
 
 impl DDMatchPhoneNumber {
     extern_methods!(
@@ -155,7 +161,9 @@ extern_class!(
     pub struct DDMatchEmailAddress;
 );
 
-unsafe impl NSObjectProtocol for DDMatchEmailAddress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDMatchEmailAddress {}
+);
 
 impl DDMatchEmailAddress {
     extern_methods!(
@@ -203,7 +211,9 @@ extern_class!(
     pub struct DDMatchPostalAddress;
 );
 
-unsafe impl NSObjectProtocol for DDMatchPostalAddress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDMatchPostalAddress {}
+);
 
 impl DDMatchPostalAddress {
     extern_methods!(
@@ -266,7 +276,9 @@ extern_class!(
     pub struct DDMatchCalendarEvent;
 );
 
-unsafe impl NSObjectProtocol for DDMatchCalendarEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDMatchCalendarEvent {}
+);
 
 impl DDMatchCalendarEvent {
     extern_methods!(
@@ -329,7 +341,9 @@ extern_class!(
     pub struct DDMatchShipmentTrackingNumber;
 );
 
-unsafe impl NSObjectProtocol for DDMatchShipmentTrackingNumber {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDMatchShipmentTrackingNumber {}
+);
 
 impl DDMatchShipmentTrackingNumber {
     extern_methods!(
@@ -377,7 +391,9 @@ extern_class!(
     pub struct DDMatchFlightNumber;
 );
 
-unsafe impl NSObjectProtocol for DDMatchFlightNumber {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDMatchFlightNumber {}
+);
 
 impl DDMatchFlightNumber {
     extern_methods!(
@@ -425,7 +441,9 @@ extern_class!(
     pub struct DDMatchMoneyAmount;
 );
 
-unsafe impl NSObjectProtocol for DDMatchMoneyAmount {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDMatchMoneyAmount {}
+);
 
 impl DDMatchMoneyAmount {
     extern_methods!(

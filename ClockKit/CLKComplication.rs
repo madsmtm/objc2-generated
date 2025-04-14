@@ -14,13 +14,17 @@ extern_class!(
     pub struct CLKComplication;
 );
 
-unsafe impl NSCopying for CLKComplication {}
+extern_conformance!(
+    unsafe impl NSCopying for CLKComplication {}
+);
 
 unsafe impl CopyingHelper for CLKComplication {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLKComplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplication {}
+);
 
 impl CLKComplication {
     extern_methods!(

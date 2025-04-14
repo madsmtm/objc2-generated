@@ -21,7 +21,9 @@ extern_class!(
     pub struct MKMapSnapshotter;
 );
 
-unsafe impl NSObjectProtocol for MKMapSnapshotter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapSnapshotter {}
+);
 
 impl MKMapSnapshotter {
     extern_methods!(

@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INGetReservationDetailsIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INGetReservationDetailsIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INGetReservationDetailsIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INGetReservationDetailsIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INGetReservationDetailsIntent {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for INGetReservationDetailsIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INGetReservationDetailsIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INGetReservationDetailsIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INGetReservationDetailsIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INGetReservationDetailsIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INGetReservationDetailsIntent {

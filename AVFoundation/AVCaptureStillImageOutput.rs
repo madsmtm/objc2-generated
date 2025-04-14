@@ -24,7 +24,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureOutputBase")]
-unsafe impl NSObjectProtocol for AVCaptureStillImageOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureStillImageOutput {}
+);
 
 #[cfg(feature = "AVCaptureOutputBase")]
 impl AVCaptureStillImageOutput {
@@ -192,7 +194,9 @@ extern_class!(
     pub struct AVCaptureBracketedStillImageSettings;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureBracketedStillImageSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureBracketedStillImageSettings {}
+);
 
 impl AVCaptureBracketedStillImageSettings {
     extern_methods!(
@@ -218,7 +222,9 @@ extern_class!(
     pub struct AVCaptureManualExposureBracketedStillImageSettings;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureManualExposureBracketedStillImageSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureManualExposureBracketedStillImageSettings {}
+);
 
 impl AVCaptureManualExposureBracketedStillImageSettings {
     extern_methods!(
@@ -276,7 +282,9 @@ extern_class!(
     pub struct AVCaptureAutoExposureBracketedStillImageSettings;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureAutoExposureBracketedStillImageSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureAutoExposureBracketedStillImageSettings {}
+);
 
 impl AVCaptureAutoExposureBracketedStillImageSettings {
     extern_methods!(

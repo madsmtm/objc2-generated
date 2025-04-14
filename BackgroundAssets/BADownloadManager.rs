@@ -82,7 +82,9 @@ extern_class!(
     pub struct BADownloadManager;
 );
 
-unsafe impl NSObjectProtocol for BADownloadManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BADownloadManager {}
+);
 
 impl BADownloadManager {
     extern_methods!(

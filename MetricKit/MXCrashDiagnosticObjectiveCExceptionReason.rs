@@ -18,11 +18,17 @@ extern_class!(
     pub struct MXCrashDiagnosticObjectiveCExceptionReason;
 );
 
-unsafe impl NSCoding for MXCrashDiagnosticObjectiveCExceptionReason {}
+extern_conformance!(
+    unsafe impl NSCoding for MXCrashDiagnosticObjectiveCExceptionReason {}
+);
 
-unsafe impl NSObjectProtocol for MXCrashDiagnosticObjectiveCExceptionReason {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXCrashDiagnosticObjectiveCExceptionReason {}
+);
 
-unsafe impl NSSecureCoding for MXCrashDiagnosticObjectiveCExceptionReason {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXCrashDiagnosticObjectiveCExceptionReason {}
+);
 
 impl MXCrashDiagnosticObjectiveCExceptionReason {
     extern_methods!(

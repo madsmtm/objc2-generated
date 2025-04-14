@@ -88,10 +88,14 @@ extern_class!(
     pub struct UIPencilInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIPencilInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPencilInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIPencilInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIPencilInteraction {}
+);
 
 impl UIPencilInteraction {
     extern_methods!(
@@ -174,7 +178,9 @@ extern_class!(
     pub struct UIPencilHoverPose;
 );
 
-unsafe impl NSObjectProtocol for UIPencilHoverPose {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPencilHoverPose {}
+);
 
 impl UIPencilHoverPose {
     extern_methods!(
@@ -237,7 +243,9 @@ extern_class!(
     pub struct UIPencilInteractionTap;
 );
 
-unsafe impl NSObjectProtocol for UIPencilInteractionTap {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPencilInteractionTap {}
+);
 
 impl UIPencilInteractionTap {
     extern_methods!(
@@ -271,7 +279,9 @@ extern_class!(
     pub struct UIPencilInteractionSqueeze;
 );
 
-unsafe impl NSObjectProtocol for UIPencilInteractionSqueeze {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPencilInteractionSqueeze {}
+);
 
 impl UIPencilInteractionSqueeze {
     extern_methods!(

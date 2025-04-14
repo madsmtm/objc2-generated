@@ -28,7 +28,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZGraphicsDevice")]
-unsafe impl NSObjectProtocol for VZMacGraphicsDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacGraphicsDevice {}
+);
 
 #[cfg(feature = "VZGraphicsDevice")]
 impl VZMacGraphicsDevice {

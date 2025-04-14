@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INSetDefrosterSettingsInCarIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INSetDefrosterSettingsInCarIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INSetDefrosterSettingsInCarIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INSetDefrosterSettingsInCarIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INSetDefrosterSettingsInCarIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INSetDefrosterSettingsInCarIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INSetDefrosterSettingsInCarIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSetDefrosterSettingsInCarIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INSetDefrosterSettingsInCarIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSetDefrosterSettingsInCarIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INSetDefrosterSettingsInCarIntent {

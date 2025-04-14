@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARTrackedRaycast {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARTrackedRaycast {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARTrackedRaycast {

@@ -43,7 +43,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSComboButton {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSComboButton {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -51,7 +53,9 @@ unsafe impl NSAccessibility for NSComboButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSComboButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSComboButton {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -59,7 +63,9 @@ unsafe impl NSAccessibilityElementProtocol for NSComboButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSComboButton {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSComboButton {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -67,10 +73,14 @@ unsafe impl NSAnimatablePropertyContainer for NSComboButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSComboButton {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSComboButton {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSComboButton {}
+extern_conformance!(
+    unsafe impl NSCoding for NSComboButton {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -78,10 +88,14 @@ unsafe impl NSCoding for NSComboButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSComboButton {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSComboButton {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSComboButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSComboButton {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -89,7 +103,9 @@ unsafe impl NSObjectProtocol for NSComboButton {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSComboButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSComboButton {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSComboButton {

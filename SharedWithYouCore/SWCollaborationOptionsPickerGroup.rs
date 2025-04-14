@@ -20,10 +20,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SWCollaborationOptionsGroup")]
-unsafe impl NSCoding for SWCollaborationOptionsPickerGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for SWCollaborationOptionsPickerGroup {}
+);
 
 #[cfg(feature = "SWCollaborationOptionsGroup")]
-unsafe impl NSCopying for SWCollaborationOptionsPickerGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for SWCollaborationOptionsPickerGroup {}
+);
 
 #[cfg(feature = "SWCollaborationOptionsGroup")]
 unsafe impl CopyingHelper for SWCollaborationOptionsPickerGroup {
@@ -31,10 +35,14 @@ unsafe impl CopyingHelper for SWCollaborationOptionsPickerGroup {
 }
 
 #[cfg(feature = "SWCollaborationOptionsGroup")]
-unsafe impl NSObjectProtocol for SWCollaborationOptionsPickerGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWCollaborationOptionsPickerGroup {}
+);
 
 #[cfg(feature = "SWCollaborationOptionsGroup")]
-unsafe impl NSSecureCoding for SWCollaborationOptionsPickerGroup {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWCollaborationOptionsPickerGroup {}
+);
 
 #[cfg(feature = "SWCollaborationOptionsGroup")]
 impl SWCollaborationOptionsPickerGroup {

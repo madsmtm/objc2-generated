@@ -19,23 +19,41 @@ extern_class!(
     pub struct SFChooseIdentityPanel;
 );
 
-unsafe impl NSAccessibility for SFChooseIdentityPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SFChooseIdentityPanel {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for SFChooseIdentityPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SFChooseIdentityPanel {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for SFChooseIdentityPanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SFChooseIdentityPanel {}
+);
 
-unsafe impl NSAppearanceCustomization for SFChooseIdentityPanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SFChooseIdentityPanel {}
+);
 
-unsafe impl NSCoding for SFChooseIdentityPanel {}
+extern_conformance!(
+    unsafe impl NSCoding for SFChooseIdentityPanel {}
+);
 
-unsafe impl NSMenuItemValidation for SFChooseIdentityPanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for SFChooseIdentityPanel {}
+);
 
-unsafe impl NSObjectProtocol for SFChooseIdentityPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFChooseIdentityPanel {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for SFChooseIdentityPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SFChooseIdentityPanel {}
+);
 
-unsafe impl NSUserInterfaceValidations for SFChooseIdentityPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for SFChooseIdentityPanel {}
+);
 
 impl SFChooseIdentityPanel {
     extern_methods!(

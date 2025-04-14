@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSCopying for DOMStyleSheet {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMStyleSheet {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl CopyingHelper for DOMStyleSheet {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for DOMStyleSheet {
 }
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSObjectProtocol for DOMStyleSheet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMStyleSheet {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMStyleSheet {

@@ -102,17 +102,25 @@ extern_class!(
     pub struct CMAttitude;
 );
 
-unsafe impl NSCoding for CMAttitude {}
+extern_conformance!(
+    unsafe impl NSCoding for CMAttitude {}
+);
 
-unsafe impl NSCopying for CMAttitude {}
+extern_conformance!(
+    unsafe impl NSCopying for CMAttitude {}
+);
 
 unsafe impl CopyingHelper for CMAttitude {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMAttitude {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMAttitude {}
+);
 
-unsafe impl NSSecureCoding for CMAttitude {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMAttitude {}
+);
 
 impl CMAttitude {
     extern_methods!(

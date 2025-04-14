@@ -85,7 +85,9 @@ unsafe impl Send for NSRunningApplication {}
 
 unsafe impl Sync for NSRunningApplication {}
 
-unsafe impl NSObjectProtocol for NSRunningApplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRunningApplication {}
+);
 
 impl NSRunningApplication {
     extern_methods!(

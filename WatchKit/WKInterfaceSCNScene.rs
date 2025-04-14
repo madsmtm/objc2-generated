@@ -19,10 +19,14 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceSCNScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceSCNScene {}
+);
 
 #[cfg(all(feature = "WKInterfaceObject", feature = "objc2-scene-kit"))]
-unsafe impl SCNSceneRenderer for WKInterfaceSCNScene {}
+extern_conformance!(
+    unsafe impl SCNSceneRenderer for WKInterfaceSCNScene {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceSCNScene {

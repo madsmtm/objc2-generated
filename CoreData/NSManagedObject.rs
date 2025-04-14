@@ -44,7 +44,9 @@ extern_class!(
     pub struct NSManagedObject;
 );
 
-unsafe impl NSObjectProtocol for NSManagedObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSManagedObject {}
+);
 
 impl NSManagedObject {
     extern_methods!(

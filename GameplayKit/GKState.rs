@@ -24,7 +24,9 @@ extern_class!(
     pub struct GKState;
 );
 
-unsafe impl NSObjectProtocol for GKState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKState {}
+);
 
 impl GKState {
     extern_methods!(

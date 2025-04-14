@@ -80,37 +80,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIDocumentPickerViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIDocumentPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIDocumentPickerViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentPickerViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIDocumentPickerViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIDocumentPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIDocumentPickerViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIDocumentPickerViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIDocumentPickerViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIDocumentPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIDocumentPickerViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIDocumentPickerViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIDocumentPickerViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIDocumentPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIDocumentPickerViewController {

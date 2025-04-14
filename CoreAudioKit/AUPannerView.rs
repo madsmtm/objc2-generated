@@ -24,35 +24,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for AUPannerView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for AUPannerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for AUPannerView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for AUPannerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for AUPannerView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for AUPannerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for AUPannerView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for AUPannerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for AUPannerView {}
+extern_conformance!(
+    unsafe impl NSCoding for AUPannerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for AUPannerView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for AUPannerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for AUPannerView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUPannerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for AUPannerView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for AUPannerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

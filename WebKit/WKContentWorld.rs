@@ -28,7 +28,9 @@ extern_class!(
     pub struct WKContentWorld;
 );
 
-unsafe impl NSObjectProtocol for WKContentWorld {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKContentWorld {}
+);
 
 impl WKContentWorld {
     extern_methods!(

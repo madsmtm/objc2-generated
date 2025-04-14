@@ -48,7 +48,9 @@ extern_class!(
     pub struct NSMediaLibraryBrowserController;
 );
 
-unsafe impl NSObjectProtocol for NSMediaLibraryBrowserController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMediaLibraryBrowserController {}
+);
 
 impl NSMediaLibraryBrowserController {
     extern_methods!(

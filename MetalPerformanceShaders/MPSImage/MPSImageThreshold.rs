@@ -24,10 +24,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageThresholdBinary {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageThresholdBinary {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageThresholdBinary {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageThresholdBinary {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageThresholdBinary {
@@ -35,10 +39,14 @@ unsafe impl CopyingHelper for MPSImageThresholdBinary {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageThresholdBinary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageThresholdBinary {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageThresholdBinary {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageThresholdBinary {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageThresholdBinary {
@@ -159,10 +167,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageThresholdBinaryInverse {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageThresholdBinaryInverse {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageThresholdBinaryInverse {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageThresholdBinaryInverse {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageThresholdBinaryInverse {
@@ -170,10 +182,14 @@ unsafe impl CopyingHelper for MPSImageThresholdBinaryInverse {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageThresholdBinaryInverse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageThresholdBinaryInverse {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageThresholdBinaryInverse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageThresholdBinaryInverse {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageThresholdBinaryInverse {
@@ -294,10 +310,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageThresholdTruncate {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageThresholdTruncate {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageThresholdTruncate {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageThresholdTruncate {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageThresholdTruncate {
@@ -305,10 +325,14 @@ unsafe impl CopyingHelper for MPSImageThresholdTruncate {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageThresholdTruncate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageThresholdTruncate {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageThresholdTruncate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageThresholdTruncate {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageThresholdTruncate {
@@ -421,10 +445,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageThresholdToZero {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageThresholdToZero {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageThresholdToZero {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageThresholdToZero {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageThresholdToZero {
@@ -432,10 +460,14 @@ unsafe impl CopyingHelper for MPSImageThresholdToZero {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageThresholdToZero {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageThresholdToZero {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageThresholdToZero {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageThresholdToZero {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageThresholdToZero {
@@ -548,10 +580,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageThresholdToZeroInverse {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageThresholdToZeroInverse {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageThresholdToZeroInverse {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageThresholdToZeroInverse {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageThresholdToZeroInverse {
@@ -559,10 +595,14 @@ unsafe impl CopyingHelper for MPSImageThresholdToZeroInverse {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageThresholdToZeroInverse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageThresholdToZeroInverse {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageThresholdToZeroInverse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageThresholdToZeroInverse {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageThresholdToZeroInverse {

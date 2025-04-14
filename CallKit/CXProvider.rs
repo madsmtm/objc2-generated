@@ -206,7 +206,9 @@ extern_class!(
     pub struct CXProvider;
 );
 
-unsafe impl NSObjectProtocol for CXProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CXProvider {}
+);
 
 impl CXProvider {
     extern_methods!(

@@ -14,19 +14,29 @@ extern_class!(
 );
 
 #[cfg(feature = "INSpeakable")]
-unsafe impl INSpeakable for INSpeakableString {}
+extern_conformance!(
+    unsafe impl INSpeakable for INSpeakableString {}
+);
 
-unsafe impl NSCoding for INSpeakableString {}
+extern_conformance!(
+    unsafe impl NSCoding for INSpeakableString {}
+);
 
-unsafe impl NSCopying for INSpeakableString {}
+extern_conformance!(
+    unsafe impl NSCopying for INSpeakableString {}
+);
 
 unsafe impl CopyingHelper for INSpeakableString {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INSpeakableString {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSpeakableString {}
+);
 
-unsafe impl NSSecureCoding for INSpeakableString {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSpeakableString {}
+);
 
 impl INSpeakableString {
     extern_methods!(

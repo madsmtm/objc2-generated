@@ -18,11 +18,17 @@ extern_class!(
     pub struct CAMediaTimingFunction;
 );
 
-unsafe impl NSCoding for CAMediaTimingFunction {}
+extern_conformance!(
+    unsafe impl NSCoding for CAMediaTimingFunction {}
+);
 
-unsafe impl NSObjectProtocol for CAMediaTimingFunction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAMediaTimingFunction {}
+);
 
-unsafe impl NSSecureCoding for CAMediaTimingFunction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAMediaTimingFunction {}
+);
 
 impl CAMediaTimingFunction {
     extern_methods!(

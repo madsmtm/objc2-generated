@@ -116,37 +116,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIPageViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIPageViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIPageViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPageViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIPageViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIPageViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIPageViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIPageViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIPageViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIPageViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIPageViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIPageViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIPageViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIPageViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIPageViewController {

@@ -14,17 +14,25 @@ extern_class!(
     pub struct CXAction;
 );
 
-unsafe impl NSCoding for CXAction {}
+extern_conformance!(
+    unsafe impl NSCoding for CXAction {}
+);
 
-unsafe impl NSCopying for CXAction {}
+extern_conformance!(
+    unsafe impl NSCopying for CXAction {}
+);
 
 unsafe impl CopyingHelper for CXAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CXAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CXAction {}
+);
 
-unsafe impl NSSecureCoding for CXAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CXAction {}
+);
 
 impl CXAction {
     extern_methods!(

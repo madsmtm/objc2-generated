@@ -16,18 +16,26 @@ extern_class!(
     pub struct UICubicTimingParameters;
 );
 
-unsafe impl NSCoding for UICubicTimingParameters {}
+extern_conformance!(
+    unsafe impl NSCoding for UICubicTimingParameters {}
+);
 
-unsafe impl NSCopying for UICubicTimingParameters {}
+extern_conformance!(
+    unsafe impl NSCopying for UICubicTimingParameters {}
+);
 
 unsafe impl CopyingHelper for UICubicTimingParameters {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICubicTimingParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICubicTimingParameters {}
+);
 
 #[cfg(feature = "UITimingCurveProvider")]
-unsafe impl UITimingCurveProvider for UICubicTimingParameters {}
+extern_conformance!(
+    unsafe impl UITimingCurveProvider for UICubicTimingParameters {}
+);
 
 impl UICubicTimingParameters {
     extern_methods!(
@@ -93,18 +101,26 @@ extern_class!(
     pub struct UISpringTimingParameters;
 );
 
-unsafe impl NSCoding for UISpringTimingParameters {}
+extern_conformance!(
+    unsafe impl NSCoding for UISpringTimingParameters {}
+);
 
-unsafe impl NSCopying for UISpringTimingParameters {}
+extern_conformance!(
+    unsafe impl NSCopying for UISpringTimingParameters {}
+);
 
 unsafe impl CopyingHelper for UISpringTimingParameters {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UISpringTimingParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISpringTimingParameters {}
+);
 
 #[cfg(feature = "UITimingCurveProvider")]
-unsafe impl UITimingCurveProvider for UISpringTimingParameters {}
+extern_conformance!(
+    unsafe impl UITimingCurveProvider for UISpringTimingParameters {}
+);
 
 impl UISpringTimingParameters {
     extern_methods!(

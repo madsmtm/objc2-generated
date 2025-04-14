@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSExtensionContext;
 );
 
-unsafe impl NSObjectProtocol for NSExtensionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSExtensionContext {}
+);
 
 impl NSExtensionContext {
     extern_methods!(

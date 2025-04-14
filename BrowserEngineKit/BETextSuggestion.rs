@@ -13,7 +13,9 @@ extern_class!(
     pub struct BETextSuggestion;
 );
 
-unsafe impl NSObjectProtocol for BETextSuggestion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BETextSuggestion {}
+);
 
 impl BETextSuggestion {
     extern_methods!(

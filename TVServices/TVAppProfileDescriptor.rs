@@ -17,17 +17,25 @@ extern_class!(
     pub struct TVAppProfileDescriptor;
 );
 
-unsafe impl NSCoding for TVAppProfileDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for TVAppProfileDescriptor {}
+);
 
-unsafe impl NSCopying for TVAppProfileDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for TVAppProfileDescriptor {}
+);
 
 unsafe impl CopyingHelper for TVAppProfileDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVAppProfileDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVAppProfileDescriptor {}
+);
 
-unsafe impl NSSecureCoding for TVAppProfileDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TVAppProfileDescriptor {}
+);
 
 impl TVAppProfileDescriptor {
     extern_methods!(

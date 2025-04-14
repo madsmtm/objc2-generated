@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
-unsafe impl NSCopying for VZNVMExpressControllerDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZNVMExpressControllerDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 unsafe impl CopyingHelper for VZNVMExpressControllerDeviceConfiguration {
@@ -31,7 +33,9 @@ unsafe impl CopyingHelper for VZNVMExpressControllerDeviceConfiguration {
 }
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZNVMExpressControllerDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZNVMExpressControllerDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 impl VZNVMExpressControllerDeviceConfiguration {

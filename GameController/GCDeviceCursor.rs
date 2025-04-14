@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-unsafe impl NSObjectProtocol for GCDeviceCursor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCDeviceCursor {}
+);
 
 #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
 impl GCDeviceCursor {

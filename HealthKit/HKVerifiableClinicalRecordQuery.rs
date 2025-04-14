@@ -22,7 +22,9 @@ unsafe impl Send for HKVerifiableClinicalRecordQuery {}
 unsafe impl Sync for HKVerifiableClinicalRecordQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKVerifiableClinicalRecordQuery {

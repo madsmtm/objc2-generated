@@ -83,7 +83,9 @@ unsafe impl Send for ARSkeletonDefinition {}
 unsafe impl Sync for ARSkeletonDefinition {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARSkeletonDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARSkeletonDefinition {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARSkeletonDefinition {

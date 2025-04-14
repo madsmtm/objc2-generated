@@ -21,10 +21,14 @@ unsafe impl Send for BAURLDownload {}
 unsafe impl Sync for BAURLDownload {}
 
 #[cfg(feature = "BADownload")]
-unsafe impl NSCoding for BAURLDownload {}
+extern_conformance!(
+    unsafe impl NSCoding for BAURLDownload {}
+);
 
 #[cfg(feature = "BADownload")]
-unsafe impl NSCopying for BAURLDownload {}
+extern_conformance!(
+    unsafe impl NSCopying for BAURLDownload {}
+);
 
 #[cfg(feature = "BADownload")]
 unsafe impl CopyingHelper for BAURLDownload {
@@ -32,10 +36,14 @@ unsafe impl CopyingHelper for BAURLDownload {
 }
 
 #[cfg(feature = "BADownload")]
-unsafe impl NSObjectProtocol for BAURLDownload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BAURLDownload {}
+);
 
 #[cfg(feature = "BADownload")]
-unsafe impl NSSecureCoding for BAURLDownload {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for BAURLDownload {}
+);
 
 #[cfg(feature = "BADownload")]
 impl BAURLDownload {

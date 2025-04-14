@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCoding for CMRotationRateData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMRotationRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCopying for CMRotationRateData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMRotationRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl CopyingHelper for CMRotationRateData {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for CMRotationRateData {
 }
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSObjectProtocol for CMRotationRateData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMRotationRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSSecureCoding for CMRotationRateData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMRotationRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 impl CMRotationRateData {
@@ -64,10 +72,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCoding for CMRecordedRotationRateData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMRecordedRotationRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCopying for CMRecordedRotationRateData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMRecordedRotationRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl CopyingHelper for CMRecordedRotationRateData {
@@ -75,10 +87,14 @@ unsafe impl CopyingHelper for CMRecordedRotationRateData {
 }
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSObjectProtocol for CMRecordedRotationRateData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMRecordedRotationRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSSecureCoding for CMRecordedRotationRateData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMRecordedRotationRateData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 impl CMRecordedRotationRateData {

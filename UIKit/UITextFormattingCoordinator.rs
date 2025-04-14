@@ -30,10 +30,14 @@ extern_class!(
     pub struct UITextFormattingCoordinator;
 );
 
-unsafe impl NSObjectProtocol for UITextFormattingCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextFormattingCoordinator {}
+);
 
 #[cfg(feature = "UIFontPickerViewController")]
-unsafe impl UIFontPickerViewControllerDelegate for UITextFormattingCoordinator {}
+extern_conformance!(
+    unsafe impl UIFontPickerViewControllerDelegate for UITextFormattingCoordinator {}
+);
 
 impl UITextFormattingCoordinator {
     extern_methods!(

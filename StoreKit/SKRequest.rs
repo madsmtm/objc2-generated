@@ -15,7 +15,9 @@ extern_class!(
     pub struct SKRequest;
 );
 
-unsafe impl NSObjectProtocol for SKRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKRequest {}
+);
 
 impl SKRequest {
     extern_methods!(

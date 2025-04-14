@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INNoteContent")]
-unsafe impl NSCoding for INTextNoteContent {}
+extern_conformance!(
+    unsafe impl NSCoding for INTextNoteContent {}
+);
 
 #[cfg(feature = "INNoteContent")]
-unsafe impl NSCopying for INTextNoteContent {}
+extern_conformance!(
+    unsafe impl NSCopying for INTextNoteContent {}
+);
 
 #[cfg(feature = "INNoteContent")]
 unsafe impl CopyingHelper for INTextNoteContent {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for INTextNoteContent {
 }
 
 #[cfg(feature = "INNoteContent")]
-unsafe impl NSObjectProtocol for INTextNoteContent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INTextNoteContent {}
+);
 
 #[cfg(feature = "INNoteContent")]
-unsafe impl NSSecureCoding for INTextNoteContent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INTextNoteContent {}
+);
 
 #[cfg(feature = "INNoteContent")]
 impl INTextNoteContent {

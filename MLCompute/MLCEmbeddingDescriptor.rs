@@ -16,13 +16,17 @@ extern_class!(
     pub struct MLCEmbeddingDescriptor;
 );
 
-unsafe impl NSCopying for MLCEmbeddingDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCEmbeddingDescriptor {}
+);
 
 unsafe impl CopyingHelper for MLCEmbeddingDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCEmbeddingDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCEmbeddingDescriptor {}
+);
 
 impl MLCEmbeddingDescriptor {
     extern_methods!(

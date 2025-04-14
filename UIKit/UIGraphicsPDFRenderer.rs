@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIGraphicsRenderer")]
-unsafe impl NSCopying for UIGraphicsPDFRendererFormat {}
+extern_conformance!(
+    unsafe impl NSCopying for UIGraphicsPDFRendererFormat {}
+);
 
 #[cfg(feature = "UIGraphicsRenderer")]
 unsafe impl CopyingHelper for UIGraphicsPDFRendererFormat {
@@ -31,7 +33,9 @@ unsafe impl CopyingHelper for UIGraphicsPDFRendererFormat {
 }
 
 #[cfg(feature = "UIGraphicsRenderer")]
-unsafe impl NSObjectProtocol for UIGraphicsPDFRendererFormat {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIGraphicsPDFRendererFormat {}
+);
 
 #[cfg(feature = "UIGraphicsRenderer")]
 impl UIGraphicsPDFRendererFormat {
@@ -85,7 +89,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIGraphicsRenderer")]
-unsafe impl NSObjectProtocol for UIGraphicsPDFRendererContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIGraphicsPDFRendererContext {}
+);
 
 #[cfg(feature = "UIGraphicsRenderer")]
 impl UIGraphicsPDFRendererContext {
@@ -148,7 +154,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIGraphicsRenderer")]
-unsafe impl NSObjectProtocol for UIGraphicsPDFRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIGraphicsPDFRenderer {}
+);
 
 #[cfg(feature = "UIGraphicsRenderer")]
 impl UIGraphicsPDFRenderer {

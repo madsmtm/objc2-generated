@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INGetVisualCodeIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INGetVisualCodeIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INGetVisualCodeIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INGetVisualCodeIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INGetVisualCodeIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INGetVisualCodeIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INGetVisualCodeIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INGetVisualCodeIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INGetVisualCodeIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INGetVisualCodeIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INGetVisualCodeIntent {

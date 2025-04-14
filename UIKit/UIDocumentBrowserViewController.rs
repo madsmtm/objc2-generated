@@ -91,37 +91,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIDocumentBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIDocumentBrowserViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIDocumentBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentBrowserViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIDocumentBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIDocumentBrowserViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIDocumentBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIDocumentBrowserViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIDocumentBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIDocumentBrowserViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIDocumentBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIDocumentBrowserViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIDocumentBrowserViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIDocumentBrowserViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIDocumentBrowserViewController {
@@ -514,10 +528,14 @@ extern_class!(
     pub struct UIDocumentBrowserTransitionController;
 );
 
-unsafe impl NSObjectProtocol for UIDocumentBrowserTransitionController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentBrowserTransitionController {}
+);
 
 #[cfg(feature = "UIViewControllerTransitioning")]
-unsafe impl UIViewControllerAnimatedTransitioning for UIDocumentBrowserTransitionController {}
+extern_conformance!(
+    unsafe impl UIViewControllerAnimatedTransitioning for UIDocumentBrowserTransitionController {}
+);
 
 impl UIDocumentBrowserTransitionController {
     extern_methods!(

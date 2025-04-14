@@ -40,7 +40,9 @@ extern_class!(
     pub struct MDLMeshBufferMap;
 );
 
-unsafe impl NSObjectProtocol for MDLMeshBufferMap {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMeshBufferMap {}
+);
 
 impl MDLMeshBufferMap {
     extern_methods!(
@@ -146,15 +148,21 @@ extern_class!(
     pub struct MDLMeshBufferData;
 );
 
-unsafe impl MDLMeshBuffer for MDLMeshBufferData {}
+extern_conformance!(
+    unsafe impl MDLMeshBuffer for MDLMeshBufferData {}
+);
 
-unsafe impl NSCopying for MDLMeshBufferData {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLMeshBufferData {}
+);
 
 unsafe impl CopyingHelper for MDLMeshBufferData {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLMeshBufferData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMeshBufferData {}
+);
 
 impl MDLMeshBufferData {
     extern_methods!(
@@ -345,9 +353,13 @@ extern_class!(
     pub struct MDLMeshBufferDataAllocator;
 );
 
-unsafe impl MDLMeshBufferAllocator for MDLMeshBufferDataAllocator {}
+extern_conformance!(
+    unsafe impl MDLMeshBufferAllocator for MDLMeshBufferDataAllocator {}
+);
 
-unsafe impl NSObjectProtocol for MDLMeshBufferDataAllocator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMeshBufferDataAllocator {}
+);
 
 impl MDLMeshBufferDataAllocator {
     extern_methods!();
@@ -375,9 +387,13 @@ extern_class!(
     pub struct MDLMeshBufferZoneDefault;
 );
 
-unsafe impl MDLMeshBufferZone for MDLMeshBufferZoneDefault {}
+extern_conformance!(
+    unsafe impl MDLMeshBufferZone for MDLMeshBufferZoneDefault {}
+);
 
-unsafe impl NSObjectProtocol for MDLMeshBufferZoneDefault {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMeshBufferZoneDefault {}
+);
 
 impl MDLMeshBufferZoneDefault {
     extern_methods!(

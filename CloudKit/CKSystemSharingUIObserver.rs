@@ -14,7 +14,9 @@ extern_class!(
     pub struct CKSystemSharingUIObserver;
 );
 
-unsafe impl NSObjectProtocol for CKSystemSharingUIObserver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSystemSharingUIObserver {}
+);
 
 impl CKSystemSharingUIObserver {
     extern_methods!(

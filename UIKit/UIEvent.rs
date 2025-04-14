@@ -123,7 +123,9 @@ extern_class!(
     pub struct UIEvent;
 );
 
-unsafe impl NSObjectProtocol for UIEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIEvent {}
+);
 
 impl UIEvent {
     extern_methods!(

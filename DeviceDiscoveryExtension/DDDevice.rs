@@ -228,7 +228,9 @@ extern_class!(
     pub struct DDDevice;
 );
 
-unsafe impl NSObjectProtocol for DDDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDDevice {}
+);
 
 impl DDDevice {
     extern_methods!(

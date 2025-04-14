@@ -25,7 +25,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOperation {}
+);
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 impl CKFetchRecordZoneChangesOperation {
@@ -341,17 +343,25 @@ extern_class!(
     pub struct CKFetchRecordZoneChangesConfiguration;
 );
 
-unsafe impl NSCoding for CKFetchRecordZoneChangesConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for CKFetchRecordZoneChangesConfiguration {}
+);
 
-unsafe impl NSCopying for CKFetchRecordZoneChangesConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for CKFetchRecordZoneChangesConfiguration {}
+);
 
 unsafe impl CopyingHelper for CKFetchRecordZoneChangesConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesConfiguration {}
+);
 
-unsafe impl NSSecureCoding for CKFetchRecordZoneChangesConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKFetchRecordZoneChangesConfiguration {}
+);
 
 impl CKFetchRecordZoneChangesConfiguration {
     extern_methods!(
@@ -418,17 +428,25 @@ extern_class!(
     pub struct CKFetchRecordZoneChangesOptions;
 );
 
-unsafe impl NSCoding for CKFetchRecordZoneChangesOptions {}
+extern_conformance!(
+    unsafe impl NSCoding for CKFetchRecordZoneChangesOptions {}
+);
 
-unsafe impl NSCopying for CKFetchRecordZoneChangesOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for CKFetchRecordZoneChangesOptions {}
+);
 
 unsafe impl CopyingHelper for CKFetchRecordZoneChangesOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOptions {}
+);
 
-unsafe impl NSSecureCoding for CKFetchRecordZoneChangesOptions {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKFetchRecordZoneChangesOptions {}
+);
 
 impl CKFetchRecordZoneChangesOptions {
     extern_methods!(

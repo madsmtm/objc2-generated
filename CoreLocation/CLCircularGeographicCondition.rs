@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CLCondition")]
-unsafe impl NSCoding for CLCircularGeographicCondition {}
+extern_conformance!(
+    unsafe impl NSCoding for CLCircularGeographicCondition {}
+);
 
 #[cfg(feature = "CLCondition")]
-unsafe impl NSCopying for CLCircularGeographicCondition {}
+extern_conformance!(
+    unsafe impl NSCopying for CLCircularGeographicCondition {}
+);
 
 #[cfg(feature = "CLCondition")]
 unsafe impl CopyingHelper for CLCircularGeographicCondition {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for CLCircularGeographicCondition {
 }
 
 #[cfg(feature = "CLCondition")]
-unsafe impl NSObjectProtocol for CLCircularGeographicCondition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLCircularGeographicCondition {}
+);
 
 #[cfg(feature = "CLCondition")]
-unsafe impl NSSecureCoding for CLCircularGeographicCondition {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLCircularGeographicCondition {}
+);
 
 #[cfg(feature = "CLCondition")]
 impl CLCircularGeographicCondition {

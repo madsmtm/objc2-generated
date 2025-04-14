@@ -20,11 +20,17 @@ extern_class!(
     pub struct NSColorList;
 );
 
-unsafe impl NSCoding for NSColorList {}
+extern_conformance!(
+    unsafe impl NSCoding for NSColorList {}
+);
 
-unsafe impl NSObjectProtocol for NSColorList {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSColorList {}
+);
 
-unsafe impl NSSecureCoding for NSColorList {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSColorList {}
+);
 
 impl NSColorList {
     extern_methods!(

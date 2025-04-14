@@ -75,7 +75,9 @@ unsafe impl Send for AVContentKeySession {}
 
 unsafe impl Sync for AVContentKeySession {}
 
-unsafe impl NSObjectProtocol for AVContentKeySession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVContentKeySession {}
+);
 
 impl AVContentKeySession {
     extern_methods!(
@@ -511,7 +513,9 @@ unsafe impl Send for AVContentKeyRequest {}
 
 unsafe impl Sync for AVContentKeyRequest {}
 
-unsafe impl NSObjectProtocol for AVContentKeyRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVContentKeyRequest {}
+);
 
 impl AVContentKeyRequest {
     extern_methods!(
@@ -631,7 +635,9 @@ unsafe impl Send for AVPersistableContentKeyRequest {}
 
 unsafe impl Sync for AVPersistableContentKeyRequest {}
 
-unsafe impl NSObjectProtocol for AVPersistableContentKeyRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPersistableContentKeyRequest {}
+);
 
 impl AVPersistableContentKeyRequest {
     extern_methods!(
@@ -693,7 +699,9 @@ unsafe impl Send for AVContentKeyResponse {}
 
 unsafe impl Sync for AVContentKeyResponse {}
 
-unsafe impl NSObjectProtocol for AVContentKeyResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVContentKeyResponse {}
+);
 
 impl AVContentKeyResponse {
     extern_methods!(
@@ -801,7 +809,9 @@ unsafe impl Send for AVContentKeySpecifier {}
 
 unsafe impl Sync for AVContentKeySpecifier {}
 
-unsafe impl NSObjectProtocol for AVContentKeySpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVContentKeySpecifier {}
+);
 
 impl AVContentKeySpecifier {
     extern_methods!(
@@ -917,7 +927,9 @@ unsafe impl Send for AVContentKey {}
 
 unsafe impl Sync for AVContentKey {}
 
-unsafe impl NSObjectProtocol for AVContentKey {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVContentKey {}
+);
 
 impl AVContentKey {
     extern_methods!(

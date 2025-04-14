@@ -45,7 +45,9 @@ extern_class!(
     pub struct ODConfiguration;
 );
 
-unsafe impl NSObjectProtocol for ODConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ODConfiguration {}
+);
 
 impl ODConfiguration {
     extern_methods!(

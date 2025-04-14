@@ -19,10 +19,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UILayoutGuide", feature = "UITrackingLayoutGuide"))]
-unsafe impl NSCoding for UIKeyboardLayoutGuide {}
+extern_conformance!(
+    unsafe impl NSCoding for UIKeyboardLayoutGuide {}
+);
 
 #[cfg(all(feature = "UILayoutGuide", feature = "UITrackingLayoutGuide"))]
-unsafe impl NSObjectProtocol for UIKeyboardLayoutGuide {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIKeyboardLayoutGuide {}
+);
 
 #[cfg(all(feature = "UILayoutGuide", feature = "UITrackingLayoutGuide"))]
 impl UIKeyboardLayoutGuide {

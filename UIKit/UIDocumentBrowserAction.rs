@@ -38,7 +38,9 @@ extern_class!(
     pub struct UIDocumentBrowserAction;
 );
 
-unsafe impl NSObjectProtocol for UIDocumentBrowserAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentBrowserAction {}
+);
 
 impl UIDocumentBrowserAction {
     extern_methods!(

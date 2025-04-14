@@ -18,7 +18,9 @@ extern_class!(
     pub struct GKObstacle;
 );
 
-unsafe impl NSObjectProtocol for GKObstacle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKObstacle {}
+);
 
 impl GKObstacle {
     extern_methods!();
@@ -46,7 +48,9 @@ extern_class!(
     pub struct GKCircleObstacle;
 );
 
-unsafe impl NSObjectProtocol for GKCircleObstacle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKCircleObstacle {}
+);
 
 impl GKCircleObstacle {
     extern_methods!(
@@ -92,11 +96,17 @@ extern_class!(
     pub struct GKPolygonObstacle;
 );
 
-unsafe impl NSCoding for GKPolygonObstacle {}
+extern_conformance!(
+    unsafe impl NSCoding for GKPolygonObstacle {}
+);
 
-unsafe impl NSObjectProtocol for GKPolygonObstacle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKPolygonObstacle {}
+);
 
-unsafe impl NSSecureCoding for GKPolygonObstacle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKPolygonObstacle {}
+);
 
 impl GKPolygonObstacle {
     extern_methods!(
@@ -130,7 +140,9 @@ extern_class!(
     pub struct GKSphereObstacle;
 );
 
-unsafe impl NSObjectProtocol for GKSphereObstacle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKSphereObstacle {}
+);
 
 impl GKSphereObstacle {
     extern_methods!(

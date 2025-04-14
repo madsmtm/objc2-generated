@@ -27,7 +27,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -36,7 +38,9 @@ unsafe impl NSAccessibility for NSPopUpButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityButton for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityButton for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -45,7 +49,9 @@ unsafe impl NSAccessibilityButton for NSPopUpButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -54,7 +60,9 @@ unsafe impl NSAccessibilityElementProtocol for NSPopUpButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -63,7 +71,9 @@ unsafe impl NSAnimatablePropertyContainer for NSPopUpButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -71,7 +81,9 @@ unsafe impl NSAppearanceCustomization for NSPopUpButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSCoding for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -80,7 +92,9 @@ unsafe impl NSCoding for NSPopUpButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -88,7 +102,9 @@ unsafe impl NSDraggingDestination for NSPopUpButton {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSObjectProtocol for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -97,7 +113,9 @@ unsafe impl NSObjectProtocol for NSPopUpButton {}
     feature = "NSUserInterfaceCompression",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceCompression for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceCompression for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -106,7 +124,9 @@ unsafe impl NSUserInterfaceCompression for NSPopUpButton {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",
@@ -115,7 +135,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSPopUpButton {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSPopUpButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSPopUpButton {}
+);
 
 #[cfg(all(
     feature = "NSButton",

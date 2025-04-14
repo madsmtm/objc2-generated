@@ -28,13 +28,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UISlider {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UISlider {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UISlider {}
+extern_conformance!(
+    unsafe impl NSCoding for UISlider {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UISlider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISlider {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -42,7 +48,9 @@ unsafe impl NSObjectProtocol for UISlider {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UISlider {}
+extern_conformance!(
+    unsafe impl UIAppearance for UISlider {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -50,10 +58,14 @@ unsafe impl UIAppearance for UISlider {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UISlider {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UISlider {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UISlider {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UISlider {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -61,7 +73,9 @@ unsafe impl UICoordinateSpace for UISlider {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UISlider {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UISlider {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -69,7 +83,9 @@ unsafe impl UIDynamicItem for UISlider {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UISlider {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UISlider {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -77,7 +93,9 @@ unsafe impl UIFocusEnvironment for UISlider {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UISlider {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UISlider {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -85,10 +103,14 @@ unsafe impl UIFocusItem for UISlider {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UISlider {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UISlider {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UISlider {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UISlider {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -96,7 +118,9 @@ unsafe impl UIResponderStandardEditActions for UISlider {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UISlider {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UISlider {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UISlider {

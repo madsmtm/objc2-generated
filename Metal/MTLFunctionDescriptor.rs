@@ -57,13 +57,17 @@ extern_class!(
     pub struct MTLFunctionDescriptor;
 );
 
-unsafe impl NSCopying for MTLFunctionDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLFunctionDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLFunctionDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
+);
 
 impl MTLFunctionDescriptor {
     extern_methods!(
@@ -162,13 +166,17 @@ extern_class!(
     pub struct MTLIntersectionFunctionDescriptor;
 );
 
-unsafe impl NSCopying for MTLIntersectionFunctionDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLIntersectionFunctionDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLIntersectionFunctionDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLIntersectionFunctionDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLIntersectionFunctionDescriptor {}
+);
 
 impl MTLIntersectionFunctionDescriptor {
     extern_methods!();

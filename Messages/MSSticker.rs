@@ -13,7 +13,9 @@ extern_class!(
     pub struct MSSticker;
 );
 
-unsafe impl NSObjectProtocol for MSSticker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSSticker {}
+);
 
 impl MSSticker {
     extern_methods!(

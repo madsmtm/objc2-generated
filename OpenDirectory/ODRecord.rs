@@ -18,7 +18,9 @@ extern_class!(
     pub struct ODRecord;
 );
 
-unsafe impl NSObjectProtocol for ODRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ODRecord {}
+);
 
 impl ODRecord {
     extern_methods!(

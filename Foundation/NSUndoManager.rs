@@ -29,7 +29,9 @@ extern_class!(
     pub struct NSUndoManager;
 );
 
-unsafe impl NSObjectProtocol for NSUndoManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUndoManager {}
+);
 
 impl NSUndoManager {
     extern_methods!(

@@ -54,10 +54,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSetRadioStationIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSetRadioStationIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSetRadioStationIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSetRadioStationIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSetRadioStationIntentResponse {
@@ -65,10 +69,14 @@ unsafe impl CopyingHelper for INSetRadioStationIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSetRadioStationIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSetRadioStationIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSetRadioStationIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSetRadioStationIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSetRadioStationIntentResponse {

@@ -56,10 +56,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
-unsafe impl NSCoding for IOBluetoothDevice {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothDevice {}
+);
 
 #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
-unsafe impl NSCopying for IOBluetoothDevice {}
+extern_conformance!(
+    unsafe impl NSCopying for IOBluetoothDevice {}
+);
 
 #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for IOBluetoothDevice {
@@ -67,10 +71,14 @@ unsafe impl CopyingHelper for IOBluetoothDevice {
 }
 
 #[cfg(feature = "IOBluetoothObject")]
-unsafe impl NSObjectProtocol for IOBluetoothDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothDevice {}
+);
 
 #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for IOBluetoothDevice {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for IOBluetoothDevice {}
+);
 
 #[cfg(feature = "IOBluetoothObject")]
 impl IOBluetoothDevice {

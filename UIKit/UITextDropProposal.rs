@@ -79,7 +79,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDropInteraction")]
-unsafe impl NSCopying for UITextDropProposal {}
+extern_conformance!(
+    unsafe impl NSCopying for UITextDropProposal {}
+);
 
 #[cfg(feature = "UIDropInteraction")]
 unsafe impl CopyingHelper for UITextDropProposal {
@@ -87,7 +89,9 @@ unsafe impl CopyingHelper for UITextDropProposal {
 }
 
 #[cfg(feature = "UIDropInteraction")]
-unsafe impl NSObjectProtocol for UITextDropProposal {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextDropProposal {}
+);
 
 #[cfg(feature = "UIDropInteraction")]
 impl UITextDropProposal {

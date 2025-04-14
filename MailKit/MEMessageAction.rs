@@ -81,11 +81,17 @@ extern_class!(
     pub struct MEMessageAction;
 );
 
-unsafe impl NSCoding for MEMessageAction {}
+extern_conformance!(
+    unsafe impl NSCoding for MEMessageAction {}
+);
 
-unsafe impl NSObjectProtocol for MEMessageAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEMessageAction {}
+);
 
-unsafe impl NSSecureCoding for MEMessageAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MEMessageAction {}
+);
 
 impl MEMessageAction {
     extern_methods!(

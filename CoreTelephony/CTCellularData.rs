@@ -40,7 +40,9 @@ extern_class!(
     pub struct CTCellularData;
 );
 
-unsafe impl NSObjectProtocol for CTCellularData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CTCellularData {}
+);
 
 impl CTCellularData {
     extern_methods!(

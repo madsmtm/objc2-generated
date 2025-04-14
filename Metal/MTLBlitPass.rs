@@ -14,13 +14,17 @@ extern_class!(
     pub struct MTLBlitPassSampleBufferAttachmentDescriptor;
 );
 
-unsafe impl NSCopying for MTLBlitPassSampleBufferAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLBlitPassSampleBufferAttachmentDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLBlitPassSampleBufferAttachmentDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptor {}
+);
 
 impl MTLBlitPassSampleBufferAttachmentDescriptor {
     extern_methods!(
@@ -100,7 +104,9 @@ extern_class!(
     pub struct MTLBlitPassSampleBufferAttachmentDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptorArray {}
+);
 
 impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
     extern_methods!(
@@ -143,13 +149,17 @@ extern_class!(
     pub struct MTLBlitPassDescriptor;
 );
 
-unsafe impl NSCopying for MTLBlitPassDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLBlitPassDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLBlitPassDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLBlitPassDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLBlitPassDescriptor {}
+);
 
 impl MTLBlitPassDescriptor {
     extern_methods!(

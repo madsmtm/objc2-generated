@@ -57,40 +57,64 @@ extern_class!(
 );
 
 #[cfg(all(feature = "TVLockupView", feature = "objc2-quartz-core"))]
-unsafe impl CALayerDelegate for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl NSCoding for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl NSCoding for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl NSObjectProtocol for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIAppearance for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl UIAppearance for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIAppearanceContainer for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UICoordinateSpace for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIDynamicItem for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusEnvironment for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusItem for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusItemContainer for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIResponderStandardEditActions for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UITraitEnvironment for TVCaptionButtonView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVCaptionButtonView {}
+);
 
 #[cfg(feature = "TVLockupView")]
 impl TVCaptionButtonView {

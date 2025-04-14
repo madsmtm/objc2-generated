@@ -43,10 +43,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INUpdateMediaAffinityIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INUpdateMediaAffinityIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INUpdateMediaAffinityIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INUpdateMediaAffinityIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INUpdateMediaAffinityIntentResponse {
@@ -54,10 +58,14 @@ unsafe impl CopyingHelper for INUpdateMediaAffinityIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INUpdateMediaAffinityIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INUpdateMediaAffinityIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INUpdateMediaAffinityIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INUpdateMediaAffinityIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INUpdateMediaAffinityIntentResponse {

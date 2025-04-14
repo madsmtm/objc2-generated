@@ -15,7 +15,9 @@ extern_class!(
     pub struct WKOpenPanelParameters;
 );
 
-unsafe impl NSObjectProtocol for WKOpenPanelParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKOpenPanelParameters {}
+);
 
 impl WKOpenPanelParameters {
     extern_methods!(

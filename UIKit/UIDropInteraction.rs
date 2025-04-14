@@ -15,10 +15,14 @@ extern_class!(
     pub struct UIDropInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIDropInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDropInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIDropInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIDropInteraction {}
+);
 
 impl UIDropInteraction {
     extern_methods!(
@@ -89,13 +93,17 @@ extern_class!(
     pub struct UIDropProposal;
 );
 
-unsafe impl NSCopying for UIDropProposal {}
+extern_conformance!(
+    unsafe impl NSCopying for UIDropProposal {}
+);
 
 unsafe impl CopyingHelper for UIDropProposal {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIDropProposal {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDropProposal {}
+);
 
 impl UIDropProposal {
     extern_methods!(

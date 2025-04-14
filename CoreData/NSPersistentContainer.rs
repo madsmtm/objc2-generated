@@ -18,7 +18,9 @@ unsafe impl Send for NSPersistentContainer {}
 
 unsafe impl Sync for NSPersistentContainer {}
 
-unsafe impl NSObjectProtocol for NSPersistentContainer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentContainer {}
+);
 
 impl NSPersistentContainer {
     extern_methods!(

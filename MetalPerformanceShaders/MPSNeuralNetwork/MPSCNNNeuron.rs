@@ -78,17 +78,25 @@ extern_class!(
     pub struct MPSNNNeuronDescriptor;
 );
 
-unsafe impl NSCoding for MPSNNNeuronDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNNeuronDescriptor {}
+);
 
-unsafe impl NSCopying for MPSNNNeuronDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNNeuronDescriptor {}
+);
 
 unsafe impl CopyingHelper for MPSNNNeuronDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSNNNeuronDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNNeuronDescriptor {}
+);
 
-unsafe impl NSSecureCoding for MPSNNNeuronDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNNeuronDescriptor {}
+);
 
 impl MPSNNNeuronDescriptor {
     extern_methods!(
@@ -308,10 +316,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuron {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuron {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuron {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuron {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuron {
@@ -319,10 +331,14 @@ unsafe impl CopyingHelper for MPSCNNNeuron {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuron {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuron {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuron {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuron {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuron {
@@ -516,10 +532,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronGradient {
@@ -527,10 +547,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronGradient {
@@ -653,10 +677,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronLinear {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronLinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronLinear {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronLinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronLinear {
@@ -664,10 +692,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronLinear {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronLinear {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronLinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronLinear {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronLinear {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronLinear {
@@ -800,10 +832,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronReLU {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronReLU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronReLU {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronReLU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronReLU {
@@ -811,10 +847,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronReLU {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronReLU {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronReLU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronReLU {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronReLU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronReLU {
@@ -946,10 +986,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronPReLU {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronPReLU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronPReLU {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronPReLU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronPReLU {
@@ -957,10 +1001,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronPReLU {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronPReLU {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronPReLU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronPReLU {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronPReLU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronPReLU {
@@ -1088,10 +1136,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronSigmoid {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronSigmoid {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronSigmoid {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronSigmoid {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronSigmoid {
@@ -1099,10 +1151,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronSigmoid {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronSigmoid {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronSigmoid {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronSigmoid {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronSigmoid {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronSigmoid {
@@ -1216,10 +1272,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronHardSigmoid {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronHardSigmoid {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronHardSigmoid {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronHardSigmoid {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronHardSigmoid {
@@ -1227,10 +1287,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronHardSigmoid {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronHardSigmoid {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronHardSigmoid {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronHardSigmoid {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronHardSigmoid {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronHardSigmoid {
@@ -1358,10 +1422,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronTanH {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronTanH {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronTanH {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronTanH {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronTanH {
@@ -1369,10 +1437,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronTanH {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronTanH {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronTanH {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronTanH {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronTanH {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronTanH {
@@ -1499,10 +1571,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronAbsolute {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronAbsolute {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronAbsolute {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronAbsolute {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronAbsolute {
@@ -1510,10 +1586,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronAbsolute {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronAbsolute {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronAbsolute {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronAbsolute {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronAbsolute {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronAbsolute {
@@ -1628,10 +1708,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronSoftPlus {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronSoftPlus {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronSoftPlus {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronSoftPlus {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronSoftPlus {
@@ -1639,10 +1723,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronSoftPlus {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronSoftPlus {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronSoftPlus {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronSoftPlus {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronSoftPlus {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronSoftPlus {
@@ -1770,10 +1858,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronSoftSign {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronSoftSign {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronSoftSign {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronSoftSign {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronSoftSign {
@@ -1781,10 +1873,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronSoftSign {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronSoftSign {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronSoftSign {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronSoftSign {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronSoftSign {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronSoftSign {
@@ -1902,10 +1998,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronELU {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronELU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronELU {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronELU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronELU {
@@ -1913,10 +2013,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronELU {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronELU {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronELU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronELU {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronELU {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronELU {
@@ -2048,10 +2152,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronReLUN {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronReLUN {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronReLUN {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronReLUN {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronReLUN {
@@ -2059,10 +2167,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronReLUN {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronReLUN {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronReLUN {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronReLUN {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronReLUN {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronReLUN {
@@ -2190,10 +2302,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronPower {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronPower {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronPower {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronPower {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronPower {
@@ -2201,10 +2317,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronPower {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronPower {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronPower {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronPower {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronPower {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronPower {
@@ -2337,10 +2457,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronExponential {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronExponential {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronExponential {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronExponential {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronExponential {
@@ -2348,10 +2472,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronExponential {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronExponential {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronExponential {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronExponential {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronExponential {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronExponential {
@@ -2484,10 +2612,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNNeuronLogarithm {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNNeuronLogarithm {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNNeuronLogarithm {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNNeuronLogarithm {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNNeuronLogarithm {
@@ -2495,10 +2627,14 @@ unsafe impl CopyingHelper for MPSCNNNeuronLogarithm {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNNeuronLogarithm {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronLogarithm {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNNeuronLogarithm {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNNeuronLogarithm {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNNeuronLogarithm {

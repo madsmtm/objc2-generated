@@ -123,17 +123,25 @@ extern_class!(
     pub struct NSTextList;
 );
 
-unsafe impl NSCoding for NSTextList {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextList {}
+);
 
-unsafe impl NSCopying for NSTextList {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTextList {}
+);
 
 unsafe impl CopyingHelper for NSTextList {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTextList {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextList {}
+);
 
-unsafe impl NSSecureCoding for NSTextList {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextList {}
+);
 
 impl NSTextList {
     extern_methods!(

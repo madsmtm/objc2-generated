@@ -22,13 +22,17 @@ extern_class!(
     pub struct VZConsolePortConfiguration;
 );
 
-unsafe impl NSCopying for VZConsolePortConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZConsolePortConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZConsolePortConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZConsolePortConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZConsolePortConfiguration {}
+);
 
 impl VZConsolePortConfiguration {
     extern_methods!(

@@ -446,13 +446,17 @@ extern_class!(
     pub struct SRFetchResult<SampleType: ?Sized = AnyObject>;
 );
 
-unsafe impl<SampleType: ?Sized> NSCopying for SRFetchResult<SampleType> {}
+extern_conformance!(
+    unsafe impl<SampleType: ?Sized> NSCopying for SRFetchResult<SampleType> {}
+);
 
 unsafe impl<SampleType: ?Sized + Message> CopyingHelper for SRFetchResult<SampleType> {
     type Result = Self;
 }
 
-unsafe impl<SampleType: ?Sized> NSObjectProtocol for SRFetchResult<SampleType> {}
+extern_conformance!(
+    unsafe impl<SampleType: ?Sized> NSObjectProtocol for SRFetchResult<SampleType> {}
+);
 
 impl<SampleType: Message> SRFetchResult<SampleType> {
     extern_methods!(
@@ -489,17 +493,25 @@ extern_class!(
     pub struct SRDevice;
 );
 
-unsafe impl NSCoding for SRDevice {}
+extern_conformance!(
+    unsafe impl NSCoding for SRDevice {}
+);
 
-unsafe impl NSCopying for SRDevice {}
+extern_conformance!(
+    unsafe impl NSCopying for SRDevice {}
+);
 
 unsafe impl CopyingHelper for SRDevice {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRDevice {}
+);
 
-unsafe impl NSSecureCoding for SRDevice {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRDevice {}
+);
 
 impl SRDevice {
     extern_methods!(
@@ -549,7 +561,9 @@ extern_class!(
     pub struct SRFetchRequest;
 );
 
-unsafe impl NSObjectProtocol for SRFetchRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRFetchRequest {}
+);
 
 impl SRFetchRequest {
     extern_methods!(
@@ -764,7 +778,9 @@ extern_class!(
     pub struct SRSensorReader;
 );
 
-unsafe impl NSObjectProtocol for SRSensorReader {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRSensorReader {}
+);
 
 impl SRSensorReader {
     extern_methods!(
@@ -1005,7 +1021,9 @@ extern_class!(
     pub struct SRAmbientLightSample;
 );
 
-unsafe impl NSObjectProtocol for SRAmbientLightSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRAmbientLightSample {}
+);
 
 impl SRAmbientLightSample {
     extern_methods!(
@@ -1071,7 +1089,9 @@ extern_class!(
     pub struct SRVisit;
 );
 
-unsafe impl NSObjectProtocol for SRVisit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRVisit {}
+);
 
 impl SRVisit {
     extern_methods!(
@@ -1284,17 +1304,25 @@ unsafe impl Send for SRSupplementalCategory {}
 
 unsafe impl Sync for SRSupplementalCategory {}
 
-unsafe impl NSCoding for SRSupplementalCategory {}
+extern_conformance!(
+    unsafe impl NSCoding for SRSupplementalCategory {}
+);
 
-unsafe impl NSCopying for SRSupplementalCategory {}
+extern_conformance!(
+    unsafe impl NSCopying for SRSupplementalCategory {}
+);
 
 unsafe impl CopyingHelper for SRSupplementalCategory {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRSupplementalCategory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRSupplementalCategory {}
+);
 
-unsafe impl NSSecureCoding for SRSupplementalCategory {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRSupplementalCategory {}
+);
 
 impl SRSupplementalCategory {
     extern_methods!(
@@ -1322,7 +1350,9 @@ extern_class!(
     pub struct SRDeviceUsageReport;
 );
 
-unsafe impl NSObjectProtocol for SRDeviceUsageReport {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRDeviceUsageReport {}
+);
 
 impl SRDeviceUsageReport {
     extern_methods!(
@@ -1427,7 +1457,9 @@ extern_class!(
     pub struct SRTextInputSession;
 );
 
-unsafe impl NSObjectProtocol for SRTextInputSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRTextInputSession {}
+);
 
 impl SRTextInputSession {
     extern_methods!(
@@ -1466,7 +1498,9 @@ extern_class!(
     pub struct SRApplicationUsage;
 );
 
-unsafe impl NSObjectProtocol for SRApplicationUsage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRApplicationUsage {}
+);
 
 impl SRApplicationUsage {
     extern_methods!(
@@ -1586,7 +1620,9 @@ extern_class!(
     pub struct SRNotificationUsage;
 );
 
-unsafe impl NSObjectProtocol for SRNotificationUsage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRNotificationUsage {}
+);
 
 impl SRNotificationUsage {
     extern_methods!(
@@ -1621,7 +1657,9 @@ extern_class!(
     pub struct SRWebUsage;
 );
 
-unsafe impl NSObjectProtocol for SRWebUsage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRWebUsage {}
+);
 
 impl SRWebUsage {
     extern_methods!(
@@ -1651,7 +1689,9 @@ extern_class!(
     pub struct SRMessagesUsageReport;
 );
 
-unsafe impl NSObjectProtocol for SRMessagesUsageReport {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRMessagesUsageReport {}
+);
 
 impl SRMessagesUsageReport {
     extern_methods!(
@@ -1693,7 +1733,9 @@ extern_class!(
     pub struct SRPhoneUsageReport;
 );
 
-unsafe impl NSObjectProtocol for SRPhoneUsageReport {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRPhoneUsageReport {}
+);
 
 impl SRPhoneUsageReport {
     extern_methods!(
@@ -1739,7 +1781,9 @@ extern_class!(
     pub struct SRKeyboardMetrics;
 );
 
-unsafe impl NSObjectProtocol for SRKeyboardMetrics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRKeyboardMetrics {}
+);
 
 impl SRKeyboardMetrics {
     extern_methods!(
@@ -1900,7 +1944,9 @@ extern_class!(
     pub struct SRKeyboardProbabilityMetric<UnitType: ?Sized = AnyObject>;
 );
 
-unsafe impl<UnitType: ?Sized> NSObjectProtocol for SRKeyboardProbabilityMetric<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized> NSObjectProtocol for SRKeyboardProbabilityMetric<UnitType> {}
+);
 
 impl<UnitType: Message> SRKeyboardProbabilityMetric<UnitType> {
     extern_methods!(
@@ -2376,11 +2422,17 @@ extern_class!(
     pub struct SRDeletionRecord;
 );
 
-unsafe impl NSCoding for SRDeletionRecord {}
+extern_conformance!(
+    unsafe impl NSCoding for SRDeletionRecord {}
+);
 
-unsafe impl NSObjectProtocol for SRDeletionRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRDeletionRecord {}
+);
 
-unsafe impl NSSecureCoding for SRDeletionRecord {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRDeletionRecord {}
+);
 
 impl SRDeletionRecord {
     extern_methods!(
@@ -2488,7 +2540,9 @@ extern_class!(
     pub struct SRWristDetection;
 );
 
-unsafe impl NSObjectProtocol for SRWristDetection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRWristDetection {}
+);
 
 impl SRWristDetection {
     extern_methods!(
@@ -2574,17 +2628,25 @@ unsafe impl Send for SRWristTemperature {}
 
 unsafe impl Sync for SRWristTemperature {}
 
-unsafe impl NSCoding for SRWristTemperature {}
+extern_conformance!(
+    unsafe impl NSCoding for SRWristTemperature {}
+);
 
-unsafe impl NSCopying for SRWristTemperature {}
+extern_conformance!(
+    unsafe impl NSCopying for SRWristTemperature {}
+);
 
 unsafe impl CopyingHelper for SRWristTemperature {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRWristTemperature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRWristTemperature {}
+);
 
-unsafe impl NSSecureCoding for SRWristTemperature {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRWristTemperature {}
+);
 
 impl SRWristTemperature {
     extern_methods!(
@@ -2630,17 +2692,25 @@ unsafe impl Send for SRWristTemperatureSession {}
 
 unsafe impl Sync for SRWristTemperatureSession {}
 
-unsafe impl NSCoding for SRWristTemperatureSession {}
+extern_conformance!(
+    unsafe impl NSCoding for SRWristTemperatureSession {}
+);
 
-unsafe impl NSCopying for SRWristTemperatureSession {}
+extern_conformance!(
+    unsafe impl NSCopying for SRWristTemperatureSession {}
+);
 
 unsafe impl CopyingHelper for SRWristTemperatureSession {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRWristTemperatureSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRWristTemperatureSession {}
+);
 
-unsafe impl NSSecureCoding for SRWristTemperatureSession {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRWristTemperatureSession {}
+);
 
 impl SRWristTemperatureSession {
     extern_methods!(
@@ -2705,17 +2775,25 @@ unsafe impl Send for SRMediaEvent {}
 
 unsafe impl Sync for SRMediaEvent {}
 
-unsafe impl NSCoding for SRMediaEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for SRMediaEvent {}
+);
 
-unsafe impl NSCopying for SRMediaEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for SRMediaEvent {}
+);
 
 unsafe impl CopyingHelper for SRMediaEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRMediaEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRMediaEvent {}
+);
 
-unsafe impl NSSecureCoding for SRMediaEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRMediaEvent {}
+);
 
 impl SRMediaEvent {
     extern_methods!(
@@ -2761,17 +2839,25 @@ unsafe impl Send for SRSpeechExpression {}
 
 unsafe impl Sync for SRSpeechExpression {}
 
-unsafe impl NSCoding for SRSpeechExpression {}
+extern_conformance!(
+    unsafe impl NSCoding for SRSpeechExpression {}
+);
 
-unsafe impl NSCopying for SRSpeechExpression {}
+extern_conformance!(
+    unsafe impl NSCopying for SRSpeechExpression {}
+);
 
 unsafe impl CopyingHelper for SRSpeechExpression {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRSpeechExpression {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRSpeechExpression {}
+);
 
-unsafe impl NSSecureCoding for SRSpeechExpression {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRSpeechExpression {}
+);
 
 impl SRSpeechExpression {
     extern_methods!(
@@ -2850,17 +2936,25 @@ unsafe impl Send for SRAudioLevel {}
 
 unsafe impl Sync for SRAudioLevel {}
 
-unsafe impl NSCoding for SRAudioLevel {}
+extern_conformance!(
+    unsafe impl NSCoding for SRAudioLevel {}
+);
 
-unsafe impl NSCopying for SRAudioLevel {}
+extern_conformance!(
+    unsafe impl NSCopying for SRAudioLevel {}
+);
 
 unsafe impl CopyingHelper for SRAudioLevel {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRAudioLevel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRAudioLevel {}
+);
 
-unsafe impl NSSecureCoding for SRAudioLevel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRAudioLevel {}
+);
 
 impl SRAudioLevel {
     extern_methods!(
@@ -2930,17 +3024,25 @@ unsafe impl Send for SRSpeechMetrics {}
 
 unsafe impl Sync for SRSpeechMetrics {}
 
-unsafe impl NSCoding for SRSpeechMetrics {}
+extern_conformance!(
+    unsafe impl NSCoding for SRSpeechMetrics {}
+);
 
-unsafe impl NSCopying for SRSpeechMetrics {}
+extern_conformance!(
+    unsafe impl NSCopying for SRSpeechMetrics {}
+);
 
 unsafe impl CopyingHelper for SRSpeechMetrics {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRSpeechMetrics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRSpeechMetrics {}
+);
 
-unsafe impl NSSecureCoding for SRSpeechMetrics {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRSpeechMetrics {}
+);
 
 impl SRSpeechMetrics {
     extern_methods!(
@@ -3029,17 +3131,25 @@ unsafe impl Send for SRFaceMetricsExpression {}
 
 unsafe impl Sync for SRFaceMetricsExpression {}
 
-unsafe impl NSCoding for SRFaceMetricsExpression {}
+extern_conformance!(
+    unsafe impl NSCoding for SRFaceMetricsExpression {}
+);
 
-unsafe impl NSCopying for SRFaceMetricsExpression {}
+extern_conformance!(
+    unsafe impl NSCopying for SRFaceMetricsExpression {}
+);
 
 unsafe impl CopyingHelper for SRFaceMetricsExpression {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRFaceMetricsExpression {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRFaceMetricsExpression {}
+);
 
-unsafe impl NSSecureCoding for SRFaceMetricsExpression {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRFaceMetricsExpression {}
+);
 
 impl SRFaceMetricsExpression {
     extern_methods!(
@@ -3076,17 +3186,25 @@ unsafe impl Send for SRFaceMetrics {}
 
 unsafe impl Sync for SRFaceMetrics {}
 
-unsafe impl NSCoding for SRFaceMetrics {}
+extern_conformance!(
+    unsafe impl NSCoding for SRFaceMetrics {}
+);
 
-unsafe impl NSCopying for SRFaceMetrics {}
+extern_conformance!(
+    unsafe impl NSCopying for SRFaceMetrics {}
+);
 
 unsafe impl CopyingHelper for SRFaceMetrics {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRFaceMetrics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRFaceMetrics {}
+);
 
-unsafe impl NSSecureCoding for SRFaceMetrics {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRFaceMetrics {}
+);
 
 impl SRFaceMetrics {
     extern_methods!(
@@ -3195,17 +3313,25 @@ unsafe impl Send for SRElectrocardiogramSession {}
 
 unsafe impl Sync for SRElectrocardiogramSession {}
 
-unsafe impl NSCoding for SRElectrocardiogramSession {}
+extern_conformance!(
+    unsafe impl NSCoding for SRElectrocardiogramSession {}
+);
 
-unsafe impl NSCopying for SRElectrocardiogramSession {}
+extern_conformance!(
+    unsafe impl NSCopying for SRElectrocardiogramSession {}
+);
 
 unsafe impl CopyingHelper for SRElectrocardiogramSession {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRElectrocardiogramSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRElectrocardiogramSession {}
+);
 
-unsafe impl NSSecureCoding for SRElectrocardiogramSession {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRElectrocardiogramSession {}
+);
 
 impl SRElectrocardiogramSession {
     extern_methods!(
@@ -3279,17 +3405,25 @@ unsafe impl Send for SRElectrocardiogramData {}
 
 unsafe impl Sync for SRElectrocardiogramData {}
 
-unsafe impl NSCoding for SRElectrocardiogramData {}
+extern_conformance!(
+    unsafe impl NSCoding for SRElectrocardiogramData {}
+);
 
-unsafe impl NSCopying for SRElectrocardiogramData {}
+extern_conformance!(
+    unsafe impl NSCopying for SRElectrocardiogramData {}
+);
 
 unsafe impl CopyingHelper for SRElectrocardiogramData {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRElectrocardiogramData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRElectrocardiogramData {}
+);
 
-unsafe impl NSSecureCoding for SRElectrocardiogramData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRElectrocardiogramData {}
+);
 
 impl SRElectrocardiogramData {
     extern_methods!(
@@ -3345,17 +3479,25 @@ unsafe impl Send for SRElectrocardiogramSample {}
 
 unsafe impl Sync for SRElectrocardiogramSample {}
 
-unsafe impl NSCoding for SRElectrocardiogramSample {}
+extern_conformance!(
+    unsafe impl NSCoding for SRElectrocardiogramSample {}
+);
 
-unsafe impl NSCopying for SRElectrocardiogramSample {}
+extern_conformance!(
+    unsafe impl NSCopying for SRElectrocardiogramSample {}
+);
 
 unsafe impl CopyingHelper for SRElectrocardiogramSample {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRElectrocardiogramSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRElectrocardiogramSample {}
+);
 
-unsafe impl NSSecureCoding for SRElectrocardiogramSample {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRElectrocardiogramSample {}
+);
 
 impl SRElectrocardiogramSample {
     extern_methods!(
@@ -3419,17 +3561,25 @@ unsafe impl Send for SRPhotoplethysmogramOpticalSample {}
 
 unsafe impl Sync for SRPhotoplethysmogramOpticalSample {}
 
-unsafe impl NSCoding for SRPhotoplethysmogramOpticalSample {}
+extern_conformance!(
+    unsafe impl NSCoding for SRPhotoplethysmogramOpticalSample {}
+);
 
-unsafe impl NSCopying for SRPhotoplethysmogramOpticalSample {}
+extern_conformance!(
+    unsafe impl NSCopying for SRPhotoplethysmogramOpticalSample {}
+);
 
 unsafe impl CopyingHelper for SRPhotoplethysmogramOpticalSample {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRPhotoplethysmogramOpticalSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRPhotoplethysmogramOpticalSample {}
+);
 
-unsafe impl NSSecureCoding for SRPhotoplethysmogramOpticalSample {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRPhotoplethysmogramOpticalSample {}
+);
 
 impl SRPhotoplethysmogramOpticalSample {
     extern_methods!(
@@ -3559,17 +3709,25 @@ unsafe impl Send for SRPhotoplethysmogramAccelerometerSample {}
 
 unsafe impl Sync for SRPhotoplethysmogramAccelerometerSample {}
 
-unsafe impl NSCoding for SRPhotoplethysmogramAccelerometerSample {}
+extern_conformance!(
+    unsafe impl NSCoding for SRPhotoplethysmogramAccelerometerSample {}
+);
 
-unsafe impl NSCopying for SRPhotoplethysmogramAccelerometerSample {}
+extern_conformance!(
+    unsafe impl NSCopying for SRPhotoplethysmogramAccelerometerSample {}
+);
 
 unsafe impl CopyingHelper for SRPhotoplethysmogramAccelerometerSample {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRPhotoplethysmogramAccelerometerSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRPhotoplethysmogramAccelerometerSample {}
+);
 
-unsafe impl NSSecureCoding for SRPhotoplethysmogramAccelerometerSample {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRPhotoplethysmogramAccelerometerSample {}
+);
 
 impl SRPhotoplethysmogramAccelerometerSample {
     extern_methods!(
@@ -3671,17 +3829,25 @@ unsafe impl Send for SRPhotoplethysmogramSample {}
 
 unsafe impl Sync for SRPhotoplethysmogramSample {}
 
-unsafe impl NSCoding for SRPhotoplethysmogramSample {}
+extern_conformance!(
+    unsafe impl NSCoding for SRPhotoplethysmogramSample {}
+);
 
-unsafe impl NSCopying for SRPhotoplethysmogramSample {}
+extern_conformance!(
+    unsafe impl NSCopying for SRPhotoplethysmogramSample {}
+);
 
 unsafe impl CopyingHelper for SRPhotoplethysmogramSample {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SRPhotoplethysmogramSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRPhotoplethysmogramSample {}
+);
 
-unsafe impl NSSecureCoding for SRPhotoplethysmogramSample {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRPhotoplethysmogramSample {}
+);
 
 impl SRPhotoplethysmogramSample {
     extern_methods!(

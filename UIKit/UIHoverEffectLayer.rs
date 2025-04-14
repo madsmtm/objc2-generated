@@ -48,19 +48,27 @@ extern_class!(
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CAMediaTiming for UIHoverEffectLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for UIHoverEffectLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSCoding for UIHoverEffectLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for UIHoverEffectLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSObjectProtocol for UIHoverEffectLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIHoverEffectLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSSecureCoding for UIHoverEffectLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIHoverEffectLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]

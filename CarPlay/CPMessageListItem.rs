@@ -81,7 +81,9 @@ extern_class!(
     pub struct CPMessageListItemLeadingConfiguration;
 );
 
-unsafe impl NSObjectProtocol for CPMessageListItemLeadingConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPMessageListItemLeadingConfiguration {}
+);
 
 impl CPMessageListItemLeadingConfiguration {
     extern_methods!(
@@ -154,7 +156,9 @@ extern_class!(
     pub struct CPMessageListItemTrailingConfiguration;
 );
 
-unsafe impl NSObjectProtocol for CPMessageListItemTrailingConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPMessageListItemTrailingConfiguration {}
+);
 
 impl CPMessageListItemTrailingConfiguration {
     extern_methods!(
@@ -234,9 +238,13 @@ extern_class!(
 );
 
 #[cfg(feature = "CPListItemTypes")]
-unsafe impl CPListTemplateItem for CPMessageListItem {}
+extern_conformance!(
+    unsafe impl CPListTemplateItem for CPMessageListItem {}
+);
 
-unsafe impl NSObjectProtocol for CPMessageListItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPMessageListItem {}
+);
 
 impl CPMessageListItem {
     extern_methods!(

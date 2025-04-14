@@ -47,13 +47,17 @@ extern_class!(
     pub struct MTLBinaryArchiveDescriptor;
 );
 
-unsafe impl NSCopying for MTLBinaryArchiveDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLBinaryArchiveDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLBinaryArchiveDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}
+);
 
 impl MTLBinaryArchiveDescriptor {
     extern_methods!(

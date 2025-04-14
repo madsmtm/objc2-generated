@@ -14,7 +14,9 @@ extern_class!(
     pub struct ASAuthorizationProviderExtensionAuthorizationResult;
 );
 
-unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationResult {}
+);
 
 impl ASAuthorizationProviderExtensionAuthorizationResult {
     extern_methods!(

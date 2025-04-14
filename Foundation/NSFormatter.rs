@@ -63,17 +63,23 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFormatter {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSFormatter {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSFormatter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFormatter {}
+);
 
 impl NSFormatter {
     extern_methods!(

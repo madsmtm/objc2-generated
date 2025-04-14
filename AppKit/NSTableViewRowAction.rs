@@ -34,13 +34,17 @@ extern_class!(
     pub struct NSTableViewRowAction;
 );
 
-unsafe impl NSCopying for NSTableViewRowAction {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTableViewRowAction {}
+);
 
 unsafe impl CopyingHelper for NSTableViewRowAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTableViewRowAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTableViewRowAction {}
+);
 
 impl NSTableViewRowAction {
     extern_methods!(

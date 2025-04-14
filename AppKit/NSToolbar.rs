@@ -88,7 +88,9 @@ extern_class!(
     pub struct NSToolbar;
 );
 
-unsafe impl NSObjectProtocol for NSToolbar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSToolbar {}
+);
 
 impl NSToolbar {
     extern_methods!(

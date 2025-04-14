@@ -13,11 +13,17 @@ extern_class!(
     pub struct MEMessageActionDecision;
 );
 
-unsafe impl NSCoding for MEMessageActionDecision {}
+extern_conformance!(
+    unsafe impl NSCoding for MEMessageActionDecision {}
+);
 
-unsafe impl NSObjectProtocol for MEMessageActionDecision {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEMessageActionDecision {}
+);
 
-unsafe impl NSSecureCoding for MEMessageActionDecision {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MEMessageActionDecision {}
+);
 
 impl MEMessageActionDecision {
     extern_methods!(

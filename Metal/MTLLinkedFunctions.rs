@@ -18,13 +18,17 @@ extern_class!(
     pub struct MTLLinkedFunctions;
 );
 
-unsafe impl NSCopying for MTLLinkedFunctions {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLLinkedFunctions {}
+);
 
 unsafe impl CopyingHelper for MTLLinkedFunctions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
+);
 
 impl MTLLinkedFunctions {
     extern_methods!(

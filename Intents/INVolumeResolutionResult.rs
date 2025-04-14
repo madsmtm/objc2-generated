@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INVolumeResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INVolumeResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INVolumeResolutionResult {

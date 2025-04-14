@@ -384,7 +384,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AUAudioUnit")]
-unsafe impl NSObjectProtocol for AUAudioUnitV2Bridge {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUAudioUnitV2Bridge {}
+);
 
 #[cfg(feature = "AUAudioUnit")]
 impl AUAudioUnitV2Bridge {

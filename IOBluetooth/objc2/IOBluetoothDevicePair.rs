@@ -137,7 +137,9 @@ extern_class!(
     pub struct IOBluetoothDevicePair;
 );
 
-unsafe impl NSObjectProtocol for IOBluetoothDevicePair {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothDevicePair {}
+);
 
 impl IOBluetoothDevicePair {
     extern_methods!(

@@ -17,13 +17,17 @@ extern_class!(
     pub struct PKIdentityIntentToStore;
 );
 
-unsafe impl NSCopying for PKIdentityIntentToStore {}
+extern_conformance!(
+    unsafe impl NSCopying for PKIdentityIntentToStore {}
+);
 
 unsafe impl CopyingHelper for PKIdentityIntentToStore {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PKIdentityIntentToStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityIntentToStore {}
+);
 
 impl PKIdentityIntentToStore {
     extern_methods!(

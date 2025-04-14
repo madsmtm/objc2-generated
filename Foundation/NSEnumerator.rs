@@ -26,9 +26,13 @@ extern_class!(
     pub struct NSEnumerator<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSEnumerator<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSEnumerator<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
+);
 
 impl<ObjectType: Message> NSEnumerator<ObjectType> {
     extern_methods!(

@@ -15,7 +15,9 @@ extern_class!(
     pub struct UIStatusBarManager;
 );
 
-unsafe impl NSObjectProtocol for UIStatusBarManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIStatusBarManager {}
+);
 
 impl UIStatusBarManager {
     extern_methods!(

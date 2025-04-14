@@ -81,15 +81,21 @@ extern_class!(
     pub struct UIPrintInfo;
 );
 
-unsafe impl NSCoding for UIPrintInfo {}
+extern_conformance!(
+    unsafe impl NSCoding for UIPrintInfo {}
+);
 
-unsafe impl NSCopying for UIPrintInfo {}
+extern_conformance!(
+    unsafe impl NSCopying for UIPrintInfo {}
+);
 
 unsafe impl CopyingHelper for UIPrintInfo {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIPrintInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPrintInfo {}
+);
 
 impl UIPrintInfo {
     extern_methods!(

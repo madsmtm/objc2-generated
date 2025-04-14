@@ -81,11 +81,17 @@ extern_class!(
 );
 
 #[cfg(feature = "NSAnimation")]
-unsafe impl NSAnimatablePropertyContainer for NSSplitViewItem {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSSplitViewItem {}
+);
 
-unsafe impl NSCoding for NSSplitViewItem {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSplitViewItem {}
+);
 
-unsafe impl NSObjectProtocol for NSSplitViewItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSplitViewItem {}
+);
 
 impl NSSplitViewItem {
     extern_methods!(

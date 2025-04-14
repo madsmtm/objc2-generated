@@ -29,7 +29,9 @@ extern_class!(
     pub struct UIFocusAnimationCoordinator;
 );
 
-unsafe impl NSObjectProtocol for UIFocusAnimationCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFocusAnimationCoordinator {}
+);
 
 impl UIFocusAnimationCoordinator {
     extern_methods!(

@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INPerson")]
-unsafe impl NSCoding for INRestaurantGuest {}
+extern_conformance!(
+    unsafe impl NSCoding for INRestaurantGuest {}
+);
 
 #[cfg(feature = "INPerson")]
-unsafe impl NSCopying for INRestaurantGuest {}
+extern_conformance!(
+    unsafe impl NSCopying for INRestaurantGuest {}
+);
 
 #[cfg(feature = "INPerson")]
 unsafe impl CopyingHelper for INRestaurantGuest {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INRestaurantGuest {
 }
 
 #[cfg(feature = "INPerson")]
-unsafe impl NSObjectProtocol for INRestaurantGuest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRestaurantGuest {}
+);
 
 #[cfg(feature = "INPerson")]
-unsafe impl NSSecureCoding for INRestaurantGuest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRestaurantGuest {}
+);
 
 #[cfg(feature = "INPerson")]
 impl INRestaurantGuest {

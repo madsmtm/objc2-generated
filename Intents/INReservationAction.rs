@@ -13,17 +13,25 @@ extern_class!(
     pub struct INReservationAction;
 );
 
-unsafe impl NSCoding for INReservationAction {}
+extern_conformance!(
+    unsafe impl NSCoding for INReservationAction {}
+);
 
-unsafe impl NSCopying for INReservationAction {}
+extern_conformance!(
+    unsafe impl NSCopying for INReservationAction {}
+);
 
 unsafe impl CopyingHelper for INReservationAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INReservationAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INReservationAction {}
+);
 
-unsafe impl NSSecureCoding for INReservationAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INReservationAction {}
+);
 
 impl INReservationAction {
     extern_methods!(

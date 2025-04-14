@@ -102,13 +102,17 @@ extern_class!(
     pub struct MTLCommandQueueDescriptor;
 );
 
-unsafe impl NSCopying for MTLCommandQueueDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLCommandQueueDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLCommandQueueDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLCommandQueueDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLCommandQueueDescriptor {}
+);
 
 impl MTLCommandQueueDescriptor {
     extern_methods!(

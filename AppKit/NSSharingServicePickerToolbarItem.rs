@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSToolbarItem")]
-unsafe impl NSCopying for NSSharingServicePickerToolbarItem {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSharingServicePickerToolbarItem {}
+);
 
 #[cfg(feature = "NSToolbarItem")]
 unsafe impl CopyingHelper for NSSharingServicePickerToolbarItem {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for NSSharingServicePickerToolbarItem {
 }
 
 #[cfg(feature = "NSToolbarItem")]
-unsafe impl NSObjectProtocol for NSSharingServicePickerToolbarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSharingServicePickerToolbarItem {}
+);
 
 #[cfg(feature = "NSToolbarItem")]
 impl NSSharingServicePickerToolbarItem {

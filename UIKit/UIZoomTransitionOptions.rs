@@ -16,13 +16,17 @@ extern_class!(
     pub struct UIZoomTransitionOptions;
 );
 
-unsafe impl NSCopying for UIZoomTransitionOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for UIZoomTransitionOptions {}
+);
 
 unsafe impl CopyingHelper for UIZoomTransitionOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIZoomTransitionOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIZoomTransitionOptions {}
+);
 
 impl UIZoomTransitionOptions {
     extern_methods!(
@@ -115,7 +119,9 @@ extern_class!(
     pub struct UIZoomTransitionInteractionContext;
 );
 
-unsafe impl NSObjectProtocol for UIZoomTransitionInteractionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIZoomTransitionInteractionContext {}
+);
 
 impl UIZoomTransitionInteractionContext {
     extern_methods!(
@@ -158,7 +164,9 @@ extern_class!(
     pub struct UIZoomTransitionAlignmentRectContext;
 );
 
-unsafe impl NSObjectProtocol for UIZoomTransitionAlignmentRectContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIZoomTransitionAlignmentRectContext {}
+);
 
 impl UIZoomTransitionAlignmentRectContext {
     extern_methods!(

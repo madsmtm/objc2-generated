@@ -41,10 +41,14 @@ extern_class!(
     pub struct UITextSelectionDisplayInteraction;
 );
 
-unsafe impl NSObjectProtocol for UITextSelectionDisplayInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextSelectionDisplayInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UITextSelectionDisplayInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UITextSelectionDisplayInteraction {}
+);
 
 impl UITextSelectionDisplayInteraction {
     extern_methods!(

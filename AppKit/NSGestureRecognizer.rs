@@ -45,9 +45,13 @@ extern_class!(
     pub struct NSGestureRecognizer;
 );
 
-unsafe impl NSCoding for NSGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSCoding for NSGestureRecognizer {}
+);
 
-unsafe impl NSObjectProtocol for NSGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGestureRecognizer {}
+);
 
 impl NSGestureRecognizer {
     extern_methods!(

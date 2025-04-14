@@ -16,13 +16,17 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
-    for NSDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
+        for NSDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying for NSDictionary<KeyType, ObjectType> {}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying for NSDictionary<KeyType, ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> CopyingHelper
@@ -32,16 +36,20 @@ unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> CopyingHelp
 }
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
-    for NSDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
+        for NSDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSMutableCopying
-    for NSDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSMutableCopying
+        for NSDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> MutableCopyingHelper
@@ -50,16 +58,20 @@ unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> MutableCopy
     type Result = NSMutableDictionary<KeyType, ObjectType>;
 }
 
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
-    for NSDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
+        for NSDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
-    for NSDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding>
+        NSSecureCoding for NSDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
     extern_methods!(
@@ -476,16 +488,20 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
-    for NSMutableDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
+        for NSMutableDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying
-    for NSMutableDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying
+        for NSMutableDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> CopyingHelper
@@ -495,16 +511,20 @@ unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> CopyingHelp
 }
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
-    for NSMutableDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
+        for NSMutableDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSMutableCopying
-    for NSMutableDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSMutableCopying
+        for NSMutableDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> MutableCopyingHelper
@@ -513,16 +533,20 @@ unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> MutableCopy
     type Result = Self;
 }
 
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
-    for NSMutableDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
+        for NSMutableDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
-    for NSMutableDictionary<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding>
+        NSSecureCoding for NSMutableDictionary<KeyType, ObjectType>
+    {
+    }
+);
 
 impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
     extern_methods!(

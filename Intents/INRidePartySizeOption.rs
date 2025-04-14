@@ -13,17 +13,25 @@ extern_class!(
     pub struct INRidePartySizeOption;
 );
 
-unsafe impl NSCoding for INRidePartySizeOption {}
+extern_conformance!(
+    unsafe impl NSCoding for INRidePartySizeOption {}
+);
 
-unsafe impl NSCopying for INRidePartySizeOption {}
+extern_conformance!(
+    unsafe impl NSCopying for INRidePartySizeOption {}
+);
 
 unsafe impl CopyingHelper for INRidePartySizeOption {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INRidePartySizeOption {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRidePartySizeOption {}
+);
 
-unsafe impl NSSecureCoding for INRidePartySizeOption {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRidePartySizeOption {}
+);
 
 impl INRidePartySizeOption {
     extern_methods!(

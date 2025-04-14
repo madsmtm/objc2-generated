@@ -21,15 +21,21 @@ extern_class!(
     pub struct UIMotionEffect;
 );
 
-unsafe impl NSCoding for UIMotionEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for UIMotionEffect {}
+);
 
-unsafe impl NSCopying for UIMotionEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIMotionEffect {}
+);
 
 unsafe impl CopyingHelper for UIMotionEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIMotionEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMotionEffect {}
+);
 
 impl UIMotionEffect {
     extern_methods!(
@@ -126,15 +132,21 @@ extern_class!(
     pub struct UIInterpolatingMotionEffect;
 );
 
-unsafe impl NSCoding for UIInterpolatingMotionEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for UIInterpolatingMotionEffect {}
+);
 
-unsafe impl NSCopying for UIInterpolatingMotionEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIInterpolatingMotionEffect {}
+);
 
 unsafe impl CopyingHelper for UIInterpolatingMotionEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIInterpolatingMotionEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIInterpolatingMotionEffect {}
+);
 
 impl UIInterpolatingMotionEffect {
     extern_methods!(
@@ -210,15 +222,21 @@ extern_class!(
     pub struct UIMotionEffectGroup;
 );
 
-unsafe impl NSCoding for UIMotionEffectGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for UIMotionEffectGroup {}
+);
 
-unsafe impl NSCopying for UIMotionEffectGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for UIMotionEffectGroup {}
+);
 
 unsafe impl CopyingHelper for UIMotionEffectGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIMotionEffectGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMotionEffectGroup {}
+);
 
 impl UIMotionEffectGroup {
     extern_methods!(

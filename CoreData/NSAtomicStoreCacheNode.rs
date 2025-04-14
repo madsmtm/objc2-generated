@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSAtomicStoreCacheNode;
 );
 
-unsafe impl NSObjectProtocol for NSAtomicStoreCacheNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAtomicStoreCacheNode {}
+);
 
 impl NSAtomicStoreCacheNode {
     extern_methods!(

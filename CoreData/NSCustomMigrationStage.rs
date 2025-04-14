@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSMigrationStage")]
-unsafe impl NSObjectProtocol for NSCustomMigrationStage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCustomMigrationStage {}
+);
 
 #[cfg(feature = "NSMigrationStage")]
 impl NSCustomMigrationStage {

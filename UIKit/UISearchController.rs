@@ -135,51 +135,69 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UISearchController {}
+extern_conformance!(
+    unsafe impl NSCoding for UISearchController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UISearchController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISearchController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UISearchController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UISearchController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UISearchController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UISearchController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UISearchController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UISearchController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UISearchController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UISearchController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UISearchController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UISearchController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIViewController",
     feature = "UIViewControllerTransitioning"
 ))]
-unsafe impl UIViewControllerAnimatedTransitioning for UISearchController {}
+extern_conformance!(
+    unsafe impl UIViewControllerAnimatedTransitioning for UISearchController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIViewController",
     feature = "UIViewControllerTransitioning"
 ))]
-unsafe impl UIViewControllerTransitioningDelegate for UISearchController {}
+extern_conformance!(
+    unsafe impl UIViewControllerTransitioningDelegate for UISearchController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UISearchController {

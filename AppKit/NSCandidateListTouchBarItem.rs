@@ -16,13 +16,17 @@ extern_class!(
 );
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl<CandidateType: ?Sized + NSCoding> NSCoding
-    for NSCandidateListTouchBarItem<CandidateType>
-{
-}
+extern_conformance!(
+    unsafe impl<CandidateType: ?Sized + NSCoding> NSCoding
+        for NSCandidateListTouchBarItem<CandidateType>
+    {
+    }
+);
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl<CandidateType: ?Sized> NSObjectProtocol for NSCandidateListTouchBarItem<CandidateType> {}
+extern_conformance!(
+    unsafe impl<CandidateType: ?Sized> NSObjectProtocol for NSCandidateListTouchBarItem<CandidateType> {}
+);
 
 #[cfg(feature = "NSTouchBarItem")]
 impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {

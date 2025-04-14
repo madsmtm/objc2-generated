@@ -65,17 +65,25 @@ extern_class!(
     pub struct CSSearchQueryContext;
 );
 
-unsafe impl NSCoding for CSSearchQueryContext {}
+extern_conformance!(
+    unsafe impl NSCoding for CSSearchQueryContext {}
+);
 
-unsafe impl NSCopying for CSSearchQueryContext {}
+extern_conformance!(
+    unsafe impl NSCopying for CSSearchQueryContext {}
+);
 
 unsafe impl CopyingHelper for CSSearchQueryContext {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CSSearchQueryContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSSearchQueryContext {}
+);
 
-unsafe impl NSSecureCoding for CSSearchQueryContext {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CSSearchQueryContext {}
+);
 
 impl CSSearchQueryContext {
     extern_methods!(
@@ -137,7 +145,9 @@ extern_class!(
     pub struct CSSearchQuery;
 );
 
-unsafe impl NSObjectProtocol for CSSearchQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSSearchQuery {}
+);
 
 impl CSSearchQuery {
     extern_methods!(

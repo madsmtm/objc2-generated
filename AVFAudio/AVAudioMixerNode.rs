@@ -23,16 +23,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
-unsafe impl AVAudio3DMixing for AVAudioMixerNode {}
+extern_conformance!(
+    unsafe impl AVAudio3DMixing for AVAudioMixerNode {}
+);
 
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
-unsafe impl AVAudioMixing for AVAudioMixerNode {}
+extern_conformance!(
+    unsafe impl AVAudioMixing for AVAudioMixerNode {}
+);
 
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
-unsafe impl AVAudioStereoMixing for AVAudioMixerNode {}
+extern_conformance!(
+    unsafe impl AVAudioStereoMixing for AVAudioMixerNode {}
+);
 
 #[cfg(feature = "AVAudioNode")]
-unsafe impl NSObjectProtocol for AVAudioMixerNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioMixerNode {}
+);
 
 #[cfg(feature = "AVAudioNode")]
 impl AVAudioMixerNode {

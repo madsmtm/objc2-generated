@@ -45,7 +45,9 @@ extern_class!(
     pub struct AVAudioNode;
 );
 
-unsafe impl NSObjectProtocol for AVAudioNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioNode {}
+);
 
 impl AVAudioNode {
     extern_methods!(

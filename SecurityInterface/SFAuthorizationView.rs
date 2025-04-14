@@ -44,21 +44,37 @@ extern_class!(
     pub struct SFAuthorizationView;
 );
 
-unsafe impl NSAccessibility for SFAuthorizationView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SFAuthorizationView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for SFAuthorizationView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SFAuthorizationView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for SFAuthorizationView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SFAuthorizationView {}
+);
 
-unsafe impl NSAppearanceCustomization for SFAuthorizationView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SFAuthorizationView {}
+);
 
-unsafe impl NSCoding for SFAuthorizationView {}
+extern_conformance!(
+    unsafe impl NSCoding for SFAuthorizationView {}
+);
 
-unsafe impl NSDraggingDestination for SFAuthorizationView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for SFAuthorizationView {}
+);
 
-unsafe impl NSObjectProtocol for SFAuthorizationView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFAuthorizationView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for SFAuthorizationView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SFAuthorizationView {}
+);
 
 impl SFAuthorizationView {
     extern_methods!(

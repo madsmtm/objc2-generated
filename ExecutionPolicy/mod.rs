@@ -49,7 +49,9 @@ extern_class!(
     pub struct EPExecutionPolicy;
 );
 
-unsafe impl NSObjectProtocol for EPExecutionPolicy {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EPExecutionPolicy {}
+);
 
 impl EPExecutionPolicy {
     extern_methods!(

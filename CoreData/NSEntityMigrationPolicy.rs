@@ -43,7 +43,9 @@ extern_class!(
     pub struct NSEntityMigrationPolicy;
 );
 
-unsafe impl NSObjectProtocol for NSEntityMigrationPolicy {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSEntityMigrationPolicy {}
+);
 
 impl NSEntityMigrationPolicy {
     extern_methods!(

@@ -17,17 +17,25 @@ extern_class!(
     pub struct SCNLevelOfDetail;
 );
 
-unsafe impl NSCoding for SCNLevelOfDetail {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNLevelOfDetail {}
+);
 
-unsafe impl NSCopying for SCNLevelOfDetail {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNLevelOfDetail {}
+);
 
 unsafe impl CopyingHelper for SCNLevelOfDetail {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNLevelOfDetail {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNLevelOfDetail {}
+);
 
-unsafe impl NSSecureCoding for SCNLevelOfDetail {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNLevelOfDetail {}
+);
 
 impl SCNLevelOfDetail {
     extern_methods!(

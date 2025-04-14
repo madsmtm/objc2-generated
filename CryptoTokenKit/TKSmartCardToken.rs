@@ -18,13 +18,19 @@ extern_class!(
 );
 
 #[cfg(feature = "TKToken")]
-unsafe impl NSCoding for TKTokenSmartCardPINAuthOperation {}
+extern_conformance!(
+    unsafe impl NSCoding for TKTokenSmartCardPINAuthOperation {}
+);
 
 #[cfg(feature = "TKToken")]
-unsafe impl NSObjectProtocol for TKTokenSmartCardPINAuthOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenSmartCardPINAuthOperation {}
+);
 
 #[cfg(feature = "TKToken")]
-unsafe impl NSSecureCoding for TKTokenSmartCardPINAuthOperation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TKTokenSmartCardPINAuthOperation {}
+);
 
 #[cfg(feature = "TKToken")]
 impl TKTokenSmartCardPINAuthOperation {
@@ -114,7 +120,9 @@ extern_class!(
 );
 
 #[cfg(feature = "TKToken")]
-unsafe impl NSObjectProtocol for TKSmartCardTokenSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardTokenSession {}
+);
 
 #[cfg(feature = "TKToken")]
 impl TKSmartCardTokenSession {
@@ -169,7 +177,9 @@ extern_class!(
 );
 
 #[cfg(feature = "TKToken")]
-unsafe impl NSObjectProtocol for TKSmartCardToken {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardToken {}
+);
 
 #[cfg(feature = "TKToken")]
 impl TKSmartCardToken {
@@ -242,7 +252,9 @@ extern_class!(
 );
 
 #[cfg(feature = "TKToken")]
-unsafe impl NSObjectProtocol for TKSmartCardTokenDriver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardTokenDriver {}
+);
 
 #[cfg(feature = "TKToken")]
 impl TKSmartCardTokenDriver {

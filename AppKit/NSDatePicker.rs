@@ -21,7 +21,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSDatePicker {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSDatePicker {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -29,7 +31,9 @@ unsafe impl NSAccessibility for NSDatePicker {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSDatePicker {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSDatePicker {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -37,7 +41,9 @@ unsafe impl NSAccessibilityElementProtocol for NSDatePicker {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSDatePicker {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSDatePicker {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -45,10 +51,14 @@ unsafe impl NSAnimatablePropertyContainer for NSDatePicker {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSDatePicker {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSDatePicker {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSDatePicker {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDatePicker {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -56,10 +66,14 @@ unsafe impl NSCoding for NSDatePicker {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSDatePicker {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSDatePicker {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSDatePicker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDatePicker {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -67,7 +81,9 @@ unsafe impl NSObjectProtocol for NSDatePicker {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSDatePicker {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSDatePicker {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSDatePicker {

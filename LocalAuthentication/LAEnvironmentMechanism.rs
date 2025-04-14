@@ -17,7 +17,9 @@ unsafe impl Send for LAEnvironmentMechanism {}
 
 unsafe impl Sync for LAEnvironmentMechanism {}
 
-unsafe impl NSObjectProtocol for LAEnvironmentMechanism {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAEnvironmentMechanism {}
+);
 
 impl LAEnvironmentMechanism {
     extern_methods!(

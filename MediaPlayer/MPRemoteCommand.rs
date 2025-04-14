@@ -51,7 +51,9 @@ extern_class!(
     pub struct MPRemoteCommand;
 );
 
-unsafe impl NSObjectProtocol for MPRemoteCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPRemoteCommand {}
+);
 
 impl MPRemoteCommand {
     extern_methods!(
@@ -106,7 +108,9 @@ extern_class!(
     pub struct MPSkipIntervalCommand;
 );
 
-unsafe impl NSObjectProtocol for MPSkipIntervalCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSkipIntervalCommand {}
+);
 
 impl MPSkipIntervalCommand {
     extern_methods!(
@@ -142,7 +146,9 @@ extern_class!(
     pub struct MPFeedbackCommand;
 );
 
-unsafe impl NSObjectProtocol for MPFeedbackCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPFeedbackCommand {}
+);
 
 impl MPFeedbackCommand {
     extern_methods!(
@@ -202,7 +208,9 @@ extern_class!(
     pub struct MPRatingCommand;
 );
 
-unsafe impl NSObjectProtocol for MPRatingCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPRatingCommand {}
+);
 
 impl MPRatingCommand {
     extern_methods!(
@@ -248,7 +256,9 @@ extern_class!(
     pub struct MPChangePlaybackRateCommand;
 );
 
-unsafe impl NSObjectProtocol for MPChangePlaybackRateCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPChangePlaybackRateCommand {}
+);
 
 impl MPChangePlaybackRateCommand {
     extern_methods!(
@@ -291,7 +301,9 @@ extern_class!(
     pub struct MPChangePlaybackPositionCommand;
 );
 
-unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommand {}
+);
 
 impl MPChangePlaybackPositionCommand {
     extern_methods!();
@@ -322,7 +334,9 @@ extern_class!(
     pub struct MPChangeShuffleModeCommand;
 );
 
-unsafe impl NSObjectProtocol for MPChangeShuffleModeCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPChangeShuffleModeCommand {}
+);
 
 impl MPChangeShuffleModeCommand {
     extern_methods!(
@@ -365,7 +379,9 @@ extern_class!(
     pub struct MPChangeRepeatModeCommand;
 );
 
-unsafe impl NSObjectProtocol for MPChangeRepeatModeCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPChangeRepeatModeCommand {}
+);
 
 impl MPChangeRepeatModeCommand {
     extern_methods!(

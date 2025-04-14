@@ -44,13 +44,17 @@ extern_class!(
     pub struct WKUserScript;
 );
 
-unsafe impl NSCopying for WKUserScript {}
+extern_conformance!(
+    unsafe impl NSCopying for WKUserScript {}
+);
 
 unsafe impl CopyingHelper for WKUserScript {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WKUserScript {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKUserScript {}
+);
 
 impl WKUserScript {
     extern_methods!(

@@ -16,13 +16,17 @@ extern_class!(
     pub struct GKSavedGame;
 );
 
-unsafe impl NSCopying for GKSavedGame {}
+extern_conformance!(
+    unsafe impl NSCopying for GKSavedGame {}
+);
 
 unsafe impl CopyingHelper for GKSavedGame {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKSavedGame {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKSavedGame {}
+);
 
 impl GKSavedGame {
     extern_methods!(
@@ -121,4 +125,6 @@ impl GKLocalPlayer {
     feature = "GKPlayer",
     feature = "GKSavedGameListener"
 ))]
-unsafe impl GKSavedGameListener for GKLocalPlayer {}
+extern_conformance!(
+    unsafe impl GKSavedGameListener for GKLocalPlayer {}
+);

@@ -14,7 +14,9 @@ extern_class!(
     pub struct MKMapItemRequest;
 );
 
-unsafe impl NSObjectProtocol for MKMapItemRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapItemRequest {}
+);
 
 impl MKMapItemRequest {
     extern_methods!(

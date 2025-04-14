@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSManagedObjectModelReference;
 );
 
-unsafe impl NSObjectProtocol for NSManagedObjectModelReference {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSManagedObjectModelReference {}
+);
 
 impl NSManagedObjectModelReference {
     extern_methods!(

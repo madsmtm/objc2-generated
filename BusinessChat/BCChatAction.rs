@@ -42,7 +42,9 @@ extern_class!(
     pub struct BCChatAction;
 );
 
-unsafe impl NSObjectProtocol for BCChatAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BCChatAction {}
+);
 
 impl BCChatAction {
     extern_methods!(

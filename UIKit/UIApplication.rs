@@ -204,10 +204,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIResponder")]
-unsafe impl NSObjectProtocol for UIApplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIApplication {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl UIResponderStandardEditActions for UIApplication {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIApplication {}
+);
 
 #[cfg(feature = "UIResponder")]
 impl UIApplication {

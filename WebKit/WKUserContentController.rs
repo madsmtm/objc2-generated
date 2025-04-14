@@ -20,11 +20,17 @@ extern_class!(
     pub struct WKUserContentController;
 );
 
-unsafe impl NSCoding for WKUserContentController {}
+extern_conformance!(
+    unsafe impl NSCoding for WKUserContentController {}
+);
 
-unsafe impl NSObjectProtocol for WKUserContentController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKUserContentController {}
+);
 
-unsafe impl NSSecureCoding for WKUserContentController {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WKUserContentController {}
+);
 
 impl WKUserContentController {
     extern_methods!(

@@ -25,7 +25,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMCSSMediaRule {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMCSSMediaRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",
@@ -41,7 +43,9 @@ unsafe impl CopyingHelper for DOMCSSMediaRule {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMCSSMediaRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMCSSMediaRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",

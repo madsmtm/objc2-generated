@@ -14,7 +14,9 @@ extern_class!(
     pub struct PKDisbursementRequest;
 );
 
-unsafe impl NSObjectProtocol for PKDisbursementRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKDisbursementRequest {}
+);
 
 impl PKDisbursementRequest {
     extern_methods!(

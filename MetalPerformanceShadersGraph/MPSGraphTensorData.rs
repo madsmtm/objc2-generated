@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphTensorData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphTensorData {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphTensorData {

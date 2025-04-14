@@ -14,7 +14,9 @@ extern_class!(
     pub struct PKRecurringPaymentRequest;
 );
 
-unsafe impl NSObjectProtocol for PKRecurringPaymentRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKRecurringPaymentRequest {}
+);
 
 impl PKRecurringPaymentRequest {
     extern_methods!(

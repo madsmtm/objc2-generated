@@ -15,11 +15,17 @@ extern_class!(
     pub struct MLParameterDescription;
 );
 
-unsafe impl NSCoding for MLParameterDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for MLParameterDescription {}
+);
 
-unsafe impl NSObjectProtocol for MLParameterDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLParameterDescription {}
+);
 
-unsafe impl NSSecureCoding for MLParameterDescription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLParameterDescription {}
+);
 
 impl MLParameterDescription {
     extern_methods!(

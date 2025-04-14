@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
-unsafe impl NSObjectProtocol for MLCYOLOLossLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCYOLOLossLayer {}
+);
 
 #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
 impl MLCYOLOLossLayer {

@@ -88,9 +88,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLTexture {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLTexture {}
+);
 
-unsafe impl NSObjectProtocol for MDLTexture {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTexture {}
+);
 
 impl MDLTexture {
     extern_methods!(
@@ -275,9 +279,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLURLTexture {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLURLTexture {}
+);
 
-unsafe impl NSObjectProtocol for MDLURLTexture {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLURLTexture {}
+);
 
 impl MDLURLTexture {
     extern_methods!(
@@ -382,9 +390,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLCheckerboardTexture {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLCheckerboardTexture {}
+);
 
-unsafe impl NSObjectProtocol for MDLCheckerboardTexture {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLCheckerboardTexture {}
+);
 
 impl MDLCheckerboardTexture {
     extern_methods!(
@@ -544,9 +556,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLSkyCubeTexture {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLSkyCubeTexture {}
+);
 
-unsafe impl NSObjectProtocol for MDLSkyCubeTexture {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLSkyCubeTexture {}
+);
 
 impl MDLSkyCubeTexture {
     extern_methods!(
@@ -742,9 +758,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLColorSwatchTexture {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLColorSwatchTexture {}
+);
 
-unsafe impl NSObjectProtocol for MDLColorSwatchTexture {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLColorSwatchTexture {}
+);
 
 impl MDLColorSwatchTexture {
     extern_methods!();
@@ -831,9 +851,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLNoiseTexture {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLNoiseTexture {}
+);
 
-unsafe impl NSObjectProtocol for MDLNoiseTexture {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLNoiseTexture {}
+);
 
 impl MDLNoiseTexture {
     extern_methods!();
@@ -914,9 +938,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLNormalMapTexture {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLNormalMapTexture {}
+);
 
-unsafe impl NSObjectProtocol for MDLNormalMapTexture {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLNormalMapTexture {}
+);
 
 impl MDLNormalMapTexture {
     extern_methods!(

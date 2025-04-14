@@ -46,7 +46,9 @@ extern_class!(
     pub struct UIMenuController;
 );
 
-unsafe impl NSObjectProtocol for UIMenuController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMenuController {}
+);
 
 impl UIMenuController {
     extern_methods!(
@@ -177,7 +179,9 @@ extern_class!(
     pub struct UIMenuItem;
 );
 
-unsafe impl NSObjectProtocol for UIMenuItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMenuItem {}
+);
 
 impl UIMenuItem {
     extern_methods!(

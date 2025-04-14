@@ -18,7 +18,9 @@ unsafe impl Send for SKStorefront {}
 
 unsafe impl Sync for SKStorefront {}
 
-unsafe impl NSObjectProtocol for SKStorefront {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKStorefront {}
+);
 
 impl SKStorefront {
     extern_methods!(

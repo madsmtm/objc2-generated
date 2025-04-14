@@ -85,7 +85,9 @@ unsafe impl Send for HKLiveWorkoutBuilder {}
 unsafe impl Sync for HKLiveWorkoutBuilder {}
 
 #[cfg(feature = "HKWorkoutBuilder")]
-unsafe impl NSObjectProtocol for HKLiveWorkoutBuilder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKLiveWorkoutBuilder {}
+);
 
 #[cfg(feature = "HKWorkoutBuilder")]
 impl HKLiveWorkoutBuilder {

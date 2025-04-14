@@ -16,7 +16,9 @@ extern_class!(
     pub struct MEExtensionManager;
 );
 
-unsafe impl NSObjectProtocol for MEExtensionManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEExtensionManager {}
+);
 
 impl MEExtensionManager {
     extern_methods!(

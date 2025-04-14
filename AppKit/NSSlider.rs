@@ -23,7 +23,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSSlider {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSlider {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -31,7 +33,9 @@ unsafe impl NSAccessibility for NSSlider {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSlider {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSlider {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -39,7 +43,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSlider {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilitySlider for NSSlider {}
+extern_conformance!(
+    unsafe impl NSAccessibilitySlider for NSSlider {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -47,7 +53,9 @@ unsafe impl NSAccessibilitySlider for NSSlider {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSSlider {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSSlider {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -55,10 +63,14 @@ unsafe impl NSAnimatablePropertyContainer for NSSlider {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSSlider {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSSlider {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSSlider {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSlider {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -66,10 +78,14 @@ unsafe impl NSCoding for NSSlider {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSSlider {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSSlider {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSSlider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSlider {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -77,7 +93,9 @@ unsafe impl NSObjectProtocol for NSSlider {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSlider {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSlider {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSSlider {

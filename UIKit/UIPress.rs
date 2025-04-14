@@ -84,7 +84,9 @@ extern_class!(
     pub struct UIPress;
 );
 
-unsafe impl NSObjectProtocol for UIPress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPress {}
+);
 
 impl UIPress {
     extern_methods!(

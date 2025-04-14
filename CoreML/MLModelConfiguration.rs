@@ -43,17 +43,25 @@ extern_class!(
     pub struct MLModelConfiguration;
 );
 
-unsafe impl NSCoding for MLModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for MLModelConfiguration {}
+);
 
-unsafe impl NSCopying for MLModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for MLModelConfiguration {}
+);
 
 unsafe impl CopyingHelper for MLModelConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLModelConfiguration {}
+);
 
-unsafe impl NSSecureCoding for MLModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLModelConfiguration {}
+);
 
 impl MLModelConfiguration {
     extern_methods!(

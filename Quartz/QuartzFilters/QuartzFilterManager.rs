@@ -20,21 +20,37 @@ extern_class!(
     pub struct QuartzFilterView;
 );
 
-unsafe impl NSAccessibility for QuartzFilterView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for QuartzFilterView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for QuartzFilterView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for QuartzFilterView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for QuartzFilterView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for QuartzFilterView {}
+);
 
-unsafe impl NSAppearanceCustomization for QuartzFilterView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for QuartzFilterView {}
+);
 
-unsafe impl NSCoding for QuartzFilterView {}
+extern_conformance!(
+    unsafe impl NSCoding for QuartzFilterView {}
+);
 
-unsafe impl NSDraggingDestination for QuartzFilterView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for QuartzFilterView {}
+);
 
-unsafe impl NSObjectProtocol for QuartzFilterView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QuartzFilterView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for QuartzFilterView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for QuartzFilterView {}
+);
 
 impl QuartzFilterView {
     extern_methods!(
@@ -85,7 +101,9 @@ extern_class!(
     pub struct QuartzFilterManager;
 );
 
-unsafe impl NSObjectProtocol for QuartzFilterManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QuartzFilterManager {}
+);
 
 impl QuartzFilterManager {
     extern_methods!(

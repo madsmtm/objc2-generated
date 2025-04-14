@@ -14,17 +14,25 @@ extern_class!(
     pub struct INIntent;
 );
 
-unsafe impl NSCoding for INIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INIntent {}
+);
 
-unsafe impl NSCopying for INIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INIntent {}
+);
 
 unsafe impl CopyingHelper for INIntent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INIntent {}
+);
 
-unsafe impl NSSecureCoding for INIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INIntent {}
+);
 
 impl INIntent {
     extern_methods!(

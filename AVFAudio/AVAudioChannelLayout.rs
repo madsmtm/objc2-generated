@@ -26,11 +26,17 @@ unsafe impl Send for AVAudioChannelLayout {}
 
 unsafe impl Sync for AVAudioChannelLayout {}
 
-unsafe impl NSCoding for AVAudioChannelLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for AVAudioChannelLayout {}
+);
 
-unsafe impl NSObjectProtocol for AVAudioChannelLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioChannelLayout {}
+);
 
-unsafe impl NSSecureCoding for AVAudioChannelLayout {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVAudioChannelLayout {}
+);
 
 impl AVAudioChannelLayout {
     extern_methods!(

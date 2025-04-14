@@ -13,17 +13,25 @@ extern_class!(
     pub struct INSeat;
 );
 
-unsafe impl NSCoding for INSeat {}
+extern_conformance!(
+    unsafe impl NSCoding for INSeat {}
+);
 
-unsafe impl NSCopying for INSeat {}
+extern_conformance!(
+    unsafe impl NSCopying for INSeat {}
+);
 
 unsafe impl CopyingHelper for INSeat {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INSeat {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSeat {}
+);
 
-unsafe impl NSSecureCoding for INSeat {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSeat {}
+);
 
 impl INSeat {
     extern_methods!(

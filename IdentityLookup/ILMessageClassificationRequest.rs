@@ -15,13 +15,19 @@ extern_class!(
 );
 
 #[cfg(feature = "ILClassificationRequest")]
-unsafe impl NSCoding for ILMessageClassificationRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for ILMessageClassificationRequest {}
+);
 
 #[cfg(feature = "ILClassificationRequest")]
-unsafe impl NSObjectProtocol for ILMessageClassificationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ILMessageClassificationRequest {}
+);
 
 #[cfg(feature = "ILClassificationRequest")]
-unsafe impl NSSecureCoding for ILMessageClassificationRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ILMessageClassificationRequest {}
+);
 
 #[cfg(feature = "ILClassificationRequest")]
 impl ILMessageClassificationRequest {

@@ -18,17 +18,25 @@ extern_class!(
     pub struct AXBrailleMap;
 );
 
-unsafe impl NSCoding for AXBrailleMap {}
+extern_conformance!(
+    unsafe impl NSCoding for AXBrailleMap {}
+);
 
-unsafe impl NSCopying for AXBrailleMap {}
+extern_conformance!(
+    unsafe impl NSCopying for AXBrailleMap {}
+);
 
 unsafe impl CopyingHelper for AXBrailleMap {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AXBrailleMap {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXBrailleMap {}
+);
 
-unsafe impl NSSecureCoding for AXBrailleMap {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AXBrailleMap {}
+);
 
 impl AXBrailleMap {
     extern_methods!(

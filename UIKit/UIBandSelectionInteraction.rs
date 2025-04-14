@@ -40,10 +40,14 @@ extern_class!(
     pub struct UIBandSelectionInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIBandSelectionInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBandSelectionInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIBandSelectionInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIBandSelectionInteraction {}
+);
 
 impl UIBandSelectionInteraction {
     extern_methods!(

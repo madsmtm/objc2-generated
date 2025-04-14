@@ -77,13 +77,19 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
-unsafe impl NSCoding for MPMediaPlaylist {}
+extern_conformance!(
+    unsafe impl NSCoding for MPMediaPlaylist {}
+);
 
 #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
-unsafe impl NSObjectProtocol for MPMediaPlaylist {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaPlaylist {}
+);
 
 #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
-unsafe impl NSSecureCoding for MPMediaPlaylist {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPMediaPlaylist {}
+);
 
 #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
 impl MPMediaPlaylist {
@@ -172,7 +178,9 @@ extern_class!(
     pub struct MPMediaPlaylistCreationMetadata;
 );
 
-unsafe impl NSObjectProtocol for MPMediaPlaylistCreationMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaPlaylistCreationMetadata {}
+);
 
 impl MPMediaPlaylistCreationMetadata {
     extern_methods!(

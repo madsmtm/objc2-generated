@@ -88,17 +88,25 @@ extern_class!(
     pub struct WKWebViewConfiguration;
 );
 
-unsafe impl NSCoding for WKWebViewConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for WKWebViewConfiguration {}
+);
 
-unsafe impl NSCopying for WKWebViewConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for WKWebViewConfiguration {}
+);
 
 unsafe impl CopyingHelper for WKWebViewConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WKWebViewConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebViewConfiguration {}
+);
 
-unsafe impl NSSecureCoding for WKWebViewConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WKWebViewConfiguration {}
+);
 
 impl WKWebViewConfiguration {
     extern_methods!(

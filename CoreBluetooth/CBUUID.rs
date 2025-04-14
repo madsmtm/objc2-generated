@@ -108,13 +108,17 @@ extern_class!(
     pub struct CBUUID;
 );
 
-unsafe impl NSCopying for CBUUID {}
+extern_conformance!(
+    unsafe impl NSCopying for CBUUID {}
+);
 
 unsafe impl CopyingHelper for CBUUID {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CBUUID {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBUUID {}
+);
 
 impl CBUUID {
     extern_methods!(

@@ -23,10 +23,14 @@ extern_class!(
 );
 
 #[cfg(feature = "VZStorageDevice")]
-unsafe impl NSObjectProtocol for VZUSBMassStorageDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZUSBMassStorageDevice {}
+);
 
 #[cfg(all(feature = "VZStorageDevice", feature = "VZUSBDevice"))]
-unsafe impl VZUSBDevice for VZUSBMassStorageDevice {}
+extern_conformance!(
+    unsafe impl VZUSBDevice for VZUSBMassStorageDevice {}
+);
 
 #[cfg(feature = "VZStorageDevice")]
 impl VZUSBMassStorageDevice {

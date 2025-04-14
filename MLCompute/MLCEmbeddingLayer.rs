@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCEmbeddingLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCEmbeddingLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCEmbeddingLayer {

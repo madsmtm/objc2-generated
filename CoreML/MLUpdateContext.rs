@@ -15,7 +15,9 @@ extern_class!(
     pub struct MLUpdateContext;
 );
 
-unsafe impl NSObjectProtocol for MLUpdateContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLUpdateContext {}
+);
 
 impl MLUpdateContext {
     extern_methods!(

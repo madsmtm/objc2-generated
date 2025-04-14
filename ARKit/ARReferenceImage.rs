@@ -29,7 +29,9 @@ unsafe impl Send for ARReferenceImage {}
 unsafe impl Sync for ARReferenceImage {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARReferenceImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARReferenceImage {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARReferenceImage {

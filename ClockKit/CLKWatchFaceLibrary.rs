@@ -43,7 +43,9 @@ extern_class!(
     pub struct CLKWatchFaceLibrary;
 );
 
-unsafe impl NSObjectProtocol for CLKWatchFaceLibrary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKWatchFaceLibrary {}
+);
 
 impl CLKWatchFaceLibrary {
     extern_methods!(

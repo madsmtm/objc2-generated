@@ -18,7 +18,9 @@ extern_class!(
     pub struct CADisplayLink;
 );
 
-unsafe impl NSObjectProtocol for CADisplayLink {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CADisplayLink {}
+);
 
 impl CADisplayLink {
     extern_methods!(

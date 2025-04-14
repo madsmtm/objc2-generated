@@ -27,17 +27,25 @@ extern_class!(
     pub struct NSFont;
 );
 
-unsafe impl NSCoding for NSFont {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFont {}
+);
 
-unsafe impl NSCopying for NSFont {}
+extern_conformance!(
+    unsafe impl NSCopying for NSFont {}
+);
 
 unsafe impl CopyingHelper for NSFont {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSFont {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFont {}
+);
 
-unsafe impl NSSecureCoding for NSFont {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSFont {}
+);
 
 impl NSFont {
     extern_methods!(

@@ -92,20 +92,28 @@ extern_class!(
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSDatePickerCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSDatePickerCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSDatePickerCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSDatePickerCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSDatePickerCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDatePickerCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSDatePickerCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSDatePickerCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSDatePickerCell {
@@ -113,14 +121,18 @@ unsafe impl CopyingHelper for NSDatePickerCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSDatePickerCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDatePickerCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSDatePickerCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSDatePickerCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSDatePickerCell {

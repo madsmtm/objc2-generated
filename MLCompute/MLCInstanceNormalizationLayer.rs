@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCInstanceNormalizationLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCInstanceNormalizationLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCInstanceNormalizationLayer {

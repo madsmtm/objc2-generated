@@ -14,7 +14,9 @@ extern_class!(
     pub struct UIPointerLockState;
 );
 
-unsafe impl NSObjectProtocol for UIPointerLockState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPointerLockState {}
+);
 
 impl UIPointerLockState {
     extern_methods!(

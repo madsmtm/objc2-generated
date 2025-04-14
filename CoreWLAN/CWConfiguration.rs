@@ -20,23 +20,33 @@ extern_class!(
     pub struct CWConfiguration;
 );
 
-unsafe impl NSCoding for CWConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for CWConfiguration {}
+);
 
-unsafe impl NSCopying for CWConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for CWConfiguration {}
+);
 
 unsafe impl CopyingHelper for CWConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for CWConfiguration {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CWConfiguration {}
+);
 
 unsafe impl MutableCopyingHelper for CWConfiguration {
     type Result = CWMutableConfiguration;
 }
 
-unsafe impl NSObjectProtocol for CWConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CWConfiguration {}
+);
 
-unsafe impl NSSecureCoding for CWConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CWConfiguration {}
+);
 
 impl CWConfiguration {
     extern_methods!(
@@ -170,23 +180,33 @@ extern_class!(
     pub struct CWMutableConfiguration;
 );
 
-unsafe impl NSCoding for CWMutableConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for CWMutableConfiguration {}
+);
 
-unsafe impl NSCopying for CWMutableConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for CWMutableConfiguration {}
+);
 
 unsafe impl CopyingHelper for CWMutableConfiguration {
     type Result = CWConfiguration;
 }
 
-unsafe impl NSMutableCopying for CWMutableConfiguration {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CWMutableConfiguration {}
+);
 
 unsafe impl MutableCopyingHelper for CWMutableConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CWMutableConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CWMutableConfiguration {}
+);
 
-unsafe impl NSSecureCoding for CWMutableConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CWMutableConfiguration {}
+);
 
 impl CWMutableConfiguration {
     extern_methods!(

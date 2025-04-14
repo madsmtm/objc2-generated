@@ -16,37 +16,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIReferenceLibraryViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIReferenceLibraryViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIReferenceLibraryViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIReferenceLibraryViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIReferenceLibraryViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIReferenceLibraryViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIReferenceLibraryViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIReferenceLibraryViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIReferenceLibraryViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIReferenceLibraryViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIReferenceLibraryViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIReferenceLibraryViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIReferenceLibraryViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIReferenceLibraryViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIReferenceLibraryViewController {

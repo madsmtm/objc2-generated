@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSMetadataQuery;
 );
 
-unsafe impl NSObjectProtocol for NSMetadataQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMetadataQuery {}
+);
 
 impl NSMetadataQuery {
     extern_methods!(
@@ -348,7 +350,9 @@ extern_class!(
     pub struct NSMetadataItem;
 );
 
-unsafe impl NSObjectProtocol for NSMetadataItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMetadataItem {}
+);
 
 impl NSMetadataItem {
     extern_methods!(
@@ -397,7 +401,9 @@ extern_class!(
     pub struct NSMetadataQueryAttributeValueTuple;
 );
 
-unsafe impl NSObjectProtocol for NSMetadataQueryAttributeValueTuple {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMetadataQueryAttributeValueTuple {}
+);
 
 impl NSMetadataQueryAttributeValueTuple {
     extern_methods!(
@@ -436,7 +442,9 @@ extern_class!(
     pub struct NSMetadataQueryResultGroup;
 );
 
-unsafe impl NSObjectProtocol for NSMetadataQueryResultGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMetadataQueryResultGroup {}
+);
 
 impl NSMetadataQueryResultGroup {
     extern_methods!(

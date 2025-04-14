@@ -17,13 +17,17 @@ extern_class!(
     pub struct GKGoal;
 );
 
-unsafe impl NSCopying for GKGoal {}
+extern_conformance!(
+    unsafe impl NSCopying for GKGoal {}
+);
 
 unsafe impl CopyingHelper for GKGoal {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKGoal {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKGoal {}
+);
 
 impl GKGoal {
     extern_methods!(

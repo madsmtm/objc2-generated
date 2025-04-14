@@ -21,35 +21,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for MKPitchControl {}
+extern_conformance!(
+    unsafe impl NSAccessibility for MKPitchControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for MKPitchControl {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for MKPitchControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for MKPitchControl {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for MKPitchControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for MKPitchControl {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for MKPitchControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MKPitchControl {}
+extern_conformance!(
+    unsafe impl NSCoding for MKPitchControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for MKPitchControl {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for MKPitchControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MKPitchControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKPitchControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MKPitchControl {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MKPitchControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

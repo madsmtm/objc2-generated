@@ -74,7 +74,9 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitEffect"
 ))]
-unsafe impl NSObjectProtocol for AVAudioUnitReverb {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioUnitReverb {}
+);
 
 #[cfg(all(
     feature = "AVAudioNode",

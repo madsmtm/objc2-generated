@@ -20,4 +20,6 @@ impl INPerson {
 }
 
 #[cfg(all(feature = "INPerson", feature = "INSpeakable"))]
-unsafe impl INSpeakable for INPerson {}
+extern_conformance!(
+    unsafe impl INSpeakable for INPerson {}
+);

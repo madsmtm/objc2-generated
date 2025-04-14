@@ -41,7 +41,9 @@ extern_class!(
     pub struct CLUpdate;
 );
 
-unsafe impl NSObjectProtocol for CLUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLUpdate {}
+);
 
 impl CLUpdate {
     extern_methods!(
@@ -113,7 +115,9 @@ extern_class!(
     pub struct CLLocationUpdater;
 );
 
-unsafe impl NSObjectProtocol for CLLocationUpdater {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLLocationUpdater {}
+);
 
 impl CLLocationUpdater {
     extern_methods!(

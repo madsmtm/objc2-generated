@@ -128,20 +128,28 @@ unsafe impl Send for NSError {}
 unsafe impl Sync for NSError {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSError {}
+extern_conformance!(
+    unsafe impl NSCoding for NSError {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSError {}
+extern_conformance!(
+    unsafe impl NSCopying for NSError {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSError {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSError {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSError {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSError {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSError {}
+);
 
 impl NSError {
     extern_methods!(

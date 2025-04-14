@@ -12,7 +12,9 @@ extern_class!(
     pub struct AMWorkspace;
 );
 
-unsafe impl NSObjectProtocol for AMWorkspace {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AMWorkspace {}
+);
 
 impl AMWorkspace {
     extern_methods!(

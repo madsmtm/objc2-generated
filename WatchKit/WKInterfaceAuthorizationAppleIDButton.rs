@@ -34,7 +34,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceAuthorizationAppleIDButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceAuthorizationAppleIDButton {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceAuthorizationAppleIDButton {

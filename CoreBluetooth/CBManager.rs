@@ -81,7 +81,9 @@ extern_class!(
     pub struct CBManager;
 );
 
-unsafe impl NSObjectProtocol for CBManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBManager {}
+);
 
 impl CBManager {
     extern_methods!(

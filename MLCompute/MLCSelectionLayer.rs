@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCSelectionLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCSelectionLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCSelectionLayer {

@@ -20,7 +20,9 @@ extern_class!(
     pub struct MPSNDArrayDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPSNDArrayDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayDescriptor {}
+);
 
 impl MPSNDArrayDescriptor {
     extern_methods!(
@@ -325,7 +327,9 @@ extern_class!(
     pub struct MPSNDArray;
 );
 
-unsafe impl NSObjectProtocol for MPSNDArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArray {}
+);
 
 impl MPSNDArray {
     extern_methods!(
@@ -740,7 +744,9 @@ extern_class!(
     pub struct MPSTemporaryNDArray;
 );
 
-unsafe impl NSObjectProtocol for MPSTemporaryNDArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSTemporaryNDArray {}
+);
 
 impl MPSTemporaryNDArray {
     extern_methods!(

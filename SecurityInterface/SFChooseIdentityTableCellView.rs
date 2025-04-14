@@ -15,21 +15,37 @@ extern_class!(
     pub struct SFChooseIdentityTableCellView;
 );
 
-unsafe impl NSAccessibility for SFChooseIdentityTableCellView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SFChooseIdentityTableCellView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for SFChooseIdentityTableCellView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SFChooseIdentityTableCellView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for SFChooseIdentityTableCellView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SFChooseIdentityTableCellView {}
+);
 
-unsafe impl NSAppearanceCustomization for SFChooseIdentityTableCellView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SFChooseIdentityTableCellView {}
+);
 
-unsafe impl NSCoding for SFChooseIdentityTableCellView {}
+extern_conformance!(
+    unsafe impl NSCoding for SFChooseIdentityTableCellView {}
+);
 
-unsafe impl NSDraggingDestination for SFChooseIdentityTableCellView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for SFChooseIdentityTableCellView {}
+);
 
-unsafe impl NSObjectProtocol for SFChooseIdentityTableCellView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFChooseIdentityTableCellView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for SFChooseIdentityTableCellView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SFChooseIdentityTableCellView {}
+);
 
 impl SFChooseIdentityTableCellView {
     extern_methods!(

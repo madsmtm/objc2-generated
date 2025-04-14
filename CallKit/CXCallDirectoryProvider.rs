@@ -14,9 +14,13 @@ extern_class!(
     pub struct CXCallDirectoryProvider;
 );
 
-unsafe impl NSExtensionRequestHandling for CXCallDirectoryProvider {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for CXCallDirectoryProvider {}
+);
 
-unsafe impl NSObjectProtocol for CXCallDirectoryProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CXCallDirectoryProvider {}
+);
 
 impl CXCallDirectoryProvider {
     extern_methods!(

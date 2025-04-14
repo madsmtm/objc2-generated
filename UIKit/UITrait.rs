@@ -87,11 +87,17 @@ extern_class!(
     pub struct UITraitUserInterfaceIdiom;
 );
 
-unsafe impl NSObjectProtocol for UITraitUserInterfaceIdiom {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitUserInterfaceIdiom {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitUserInterfaceIdiom {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitUserInterfaceIdiom {}
+);
 
-unsafe impl UITraitDefinition for UITraitUserInterfaceIdiom {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitUserInterfaceIdiom {}
+);
 
 impl UITraitUserInterfaceIdiom {
     extern_methods!();
@@ -118,11 +124,17 @@ extern_class!(
     pub struct UITraitUserInterfaceStyle;
 );
 
-unsafe impl NSObjectProtocol for UITraitUserInterfaceStyle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitUserInterfaceStyle {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitUserInterfaceStyle {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitUserInterfaceStyle {}
+);
 
-unsafe impl UITraitDefinition for UITraitUserInterfaceStyle {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitUserInterfaceStyle {}
+);
 
 impl UITraitUserInterfaceStyle {
     extern_methods!();
@@ -149,11 +161,17 @@ extern_class!(
     pub struct UITraitLayoutDirection;
 );
 
-unsafe impl NSObjectProtocol for UITraitLayoutDirection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitLayoutDirection {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitLayoutDirection {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitLayoutDirection {}
+);
 
-unsafe impl UITraitDefinition for UITraitLayoutDirection {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitLayoutDirection {}
+);
 
 impl UITraitLayoutDirection {
     extern_methods!();
@@ -180,11 +198,17 @@ extern_class!(
     pub struct UITraitDisplayScale;
 );
 
-unsafe impl NSObjectProtocol for UITraitDisplayScale {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitDisplayScale {}
+);
 
-unsafe impl UICGFloatTraitDefinition for UITraitDisplayScale {}
+extern_conformance!(
+    unsafe impl UICGFloatTraitDefinition for UITraitDisplayScale {}
+);
 
-unsafe impl UITraitDefinition for UITraitDisplayScale {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitDisplayScale {}
+);
 
 impl UITraitDisplayScale {
     extern_methods!();
@@ -211,11 +235,17 @@ extern_class!(
     pub struct UITraitHorizontalSizeClass;
 );
 
-unsafe impl NSObjectProtocol for UITraitHorizontalSizeClass {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitHorizontalSizeClass {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitHorizontalSizeClass {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitHorizontalSizeClass {}
+);
 
-unsafe impl UITraitDefinition for UITraitHorizontalSizeClass {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitHorizontalSizeClass {}
+);
 
 impl UITraitHorizontalSizeClass {
     extern_methods!();
@@ -242,11 +272,17 @@ extern_class!(
     pub struct UITraitVerticalSizeClass;
 );
 
-unsafe impl NSObjectProtocol for UITraitVerticalSizeClass {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitVerticalSizeClass {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitVerticalSizeClass {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitVerticalSizeClass {}
+);
 
-unsafe impl UITraitDefinition for UITraitVerticalSizeClass {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitVerticalSizeClass {}
+);
 
 impl UITraitVerticalSizeClass {
     extern_methods!();
@@ -273,11 +309,17 @@ extern_class!(
     pub struct UITraitForceTouchCapability;
 );
 
-unsafe impl NSObjectProtocol for UITraitForceTouchCapability {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitForceTouchCapability {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitForceTouchCapability {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitForceTouchCapability {}
+);
 
-unsafe impl UITraitDefinition for UITraitForceTouchCapability {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitForceTouchCapability {}
+);
 
 impl UITraitForceTouchCapability {
     extern_methods!();
@@ -304,11 +346,17 @@ extern_class!(
     pub struct UITraitPreferredContentSizeCategory;
 );
 
-unsafe impl NSObjectProtocol for UITraitPreferredContentSizeCategory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitPreferredContentSizeCategory {}
+);
 
-unsafe impl UIObjectTraitDefinition for UITraitPreferredContentSizeCategory {}
+extern_conformance!(
+    unsafe impl UIObjectTraitDefinition for UITraitPreferredContentSizeCategory {}
+);
 
-unsafe impl UITraitDefinition for UITraitPreferredContentSizeCategory {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitPreferredContentSizeCategory {}
+);
 
 impl UITraitPreferredContentSizeCategory {
     extern_methods!();
@@ -335,11 +383,17 @@ extern_class!(
     pub struct UITraitDisplayGamut;
 );
 
-unsafe impl NSObjectProtocol for UITraitDisplayGamut {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitDisplayGamut {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitDisplayGamut {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitDisplayGamut {}
+);
 
-unsafe impl UITraitDefinition for UITraitDisplayGamut {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitDisplayGamut {}
+);
 
 impl UITraitDisplayGamut {
     extern_methods!();
@@ -366,11 +420,17 @@ extern_class!(
     pub struct UITraitAccessibilityContrast;
 );
 
-unsafe impl NSObjectProtocol for UITraitAccessibilityContrast {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitAccessibilityContrast {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitAccessibilityContrast {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitAccessibilityContrast {}
+);
 
-unsafe impl UITraitDefinition for UITraitAccessibilityContrast {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitAccessibilityContrast {}
+);
 
 impl UITraitAccessibilityContrast {
     extern_methods!();
@@ -397,11 +457,17 @@ extern_class!(
     pub struct UITraitUserInterfaceLevel;
 );
 
-unsafe impl NSObjectProtocol for UITraitUserInterfaceLevel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitUserInterfaceLevel {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitUserInterfaceLevel {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitUserInterfaceLevel {}
+);
 
-unsafe impl UITraitDefinition for UITraitUserInterfaceLevel {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitUserInterfaceLevel {}
+);
 
 impl UITraitUserInterfaceLevel {
     extern_methods!();
@@ -428,11 +494,17 @@ extern_class!(
     pub struct UITraitLegibilityWeight;
 );
 
-unsafe impl NSObjectProtocol for UITraitLegibilityWeight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitLegibilityWeight {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitLegibilityWeight {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitLegibilityWeight {}
+);
 
-unsafe impl UITraitDefinition for UITraitLegibilityWeight {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitLegibilityWeight {}
+);
 
 impl UITraitLegibilityWeight {
     extern_methods!();
@@ -459,11 +531,17 @@ extern_class!(
     pub struct UITraitActiveAppearance;
 );
 
-unsafe impl NSObjectProtocol for UITraitActiveAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitActiveAppearance {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitActiveAppearance {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitActiveAppearance {}
+);
 
-unsafe impl UITraitDefinition for UITraitActiveAppearance {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitActiveAppearance {}
+);
 
 impl UITraitActiveAppearance {
     extern_methods!();
@@ -490,11 +568,17 @@ extern_class!(
     pub struct UITraitToolbarItemPresentationSize;
 );
 
-unsafe impl NSObjectProtocol for UITraitToolbarItemPresentationSize {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitToolbarItemPresentationSize {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitToolbarItemPresentationSize {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitToolbarItemPresentationSize {}
+);
 
-unsafe impl UITraitDefinition for UITraitToolbarItemPresentationSize {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitToolbarItemPresentationSize {}
+);
 
 impl UITraitToolbarItemPresentationSize {
     extern_methods!();
@@ -521,11 +605,17 @@ extern_class!(
     pub struct UITraitImageDynamicRange;
 );
 
-unsafe impl NSObjectProtocol for UITraitImageDynamicRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitImageDynamicRange {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitImageDynamicRange {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitImageDynamicRange {}
+);
 
-unsafe impl UITraitDefinition for UITraitImageDynamicRange {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitImageDynamicRange {}
+);
 
 impl UITraitImageDynamicRange {
     extern_methods!();
@@ -552,11 +642,17 @@ extern_class!(
     pub struct UITraitTypesettingLanguage;
 );
 
-unsafe impl NSObjectProtocol for UITraitTypesettingLanguage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitTypesettingLanguage {}
+);
 
-unsafe impl UIObjectTraitDefinition for UITraitTypesettingLanguage {}
+extern_conformance!(
+    unsafe impl UIObjectTraitDefinition for UITraitTypesettingLanguage {}
+);
 
-unsafe impl UITraitDefinition for UITraitTypesettingLanguage {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitTypesettingLanguage {}
+);
 
 impl UITraitTypesettingLanguage {
     extern_methods!();
@@ -583,11 +679,17 @@ extern_class!(
     pub struct UITraitSceneCaptureState;
 );
 
-unsafe impl NSObjectProtocol for UITraitSceneCaptureState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitSceneCaptureState {}
+);
 
-unsafe impl UINSIntegerTraitDefinition for UITraitSceneCaptureState {}
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitSceneCaptureState {}
+);
 
-unsafe impl UITraitDefinition for UITraitSceneCaptureState {}
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitSceneCaptureState {}
+);
 
 impl UITraitSceneCaptureState {
     extern_methods!();

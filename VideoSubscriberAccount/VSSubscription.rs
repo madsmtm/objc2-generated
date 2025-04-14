@@ -48,7 +48,9 @@ extern_class!(
     pub struct VSSubscription;
 );
 
-unsafe impl NSObjectProtocol for VSSubscription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VSSubscription {}
+);
 
 impl VSSubscription {
     extern_methods!(

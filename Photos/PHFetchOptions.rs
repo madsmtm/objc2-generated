@@ -14,13 +14,17 @@ extern_class!(
     pub struct PHFetchOptions;
 );
 
-unsafe impl NSCopying for PHFetchOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for PHFetchOptions {}
+);
 
 unsafe impl CopyingHelper for PHFetchOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHFetchOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHFetchOptions {}
+);
 
 impl PHFetchOptions {
     extern_methods!(

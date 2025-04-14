@@ -23,7 +23,9 @@ extern_class!(
     pub struct AVAssetReaderOutput;
 );
 
-unsafe impl NSObjectProtocol for AVAssetReaderOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetReaderOutput {}
+);
 
 impl AVAssetReaderOutput {
     extern_methods!(
@@ -159,7 +161,9 @@ extern_class!(
     pub struct AVAssetReaderTrackOutput;
 );
 
-unsafe impl NSObjectProtocol for AVAssetReaderTrackOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetReaderTrackOutput {}
+);
 
 impl AVAssetReaderTrackOutput {
     extern_methods!(
@@ -307,7 +311,9 @@ extern_class!(
     pub struct AVAssetReaderAudioMixOutput;
 );
 
-unsafe impl NSObjectProtocol for AVAssetReaderAudioMixOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetReaderAudioMixOutput {}
+);
 
 impl AVAssetReaderAudioMixOutput {
     extern_methods!(
@@ -443,7 +449,9 @@ extern_class!(
     pub struct AVAssetReaderVideoCompositionOutput;
 );
 
-unsafe impl NSObjectProtocol for AVAssetReaderVideoCompositionOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetReaderVideoCompositionOutput {}
+);
 
 impl AVAssetReaderVideoCompositionOutput {
     extern_methods!(
@@ -573,7 +581,9 @@ extern_class!(
     pub struct AVAssetReaderOutputMetadataAdaptor;
 );
 
-unsafe impl NSObjectProtocol for AVAssetReaderOutputMetadataAdaptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetReaderOutputMetadataAdaptor {}
+);
 
 impl AVAssetReaderOutputMetadataAdaptor {
     extern_methods!(
@@ -656,7 +666,9 @@ extern_class!(
     pub struct AVAssetReaderOutputCaptionAdaptor;
 );
 
-unsafe impl NSObjectProtocol for AVAssetReaderOutputCaptionAdaptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetReaderOutputCaptionAdaptor {}
+);
 
 impl AVAssetReaderOutputCaptionAdaptor {
     extern_methods!(
@@ -799,7 +811,9 @@ extern_class!(
     pub struct AVAssetReaderSampleReferenceOutput;
 );
 
-unsafe impl NSObjectProtocol for AVAssetReaderSampleReferenceOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetReaderSampleReferenceOutput {}
+);
 
 impl AVAssetReaderSampleReferenceOutput {
     extern_methods!(

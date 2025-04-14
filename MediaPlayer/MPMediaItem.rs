@@ -259,13 +259,19 @@ extern_class!(
 );
 
 #[cfg(feature = "MPMediaEntity")]
-unsafe impl NSCoding for MPMediaItem {}
+extern_conformance!(
+    unsafe impl NSCoding for MPMediaItem {}
+);
 
 #[cfg(feature = "MPMediaEntity")]
-unsafe impl NSObjectProtocol for MPMediaItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaItem {}
+);
 
 #[cfg(feature = "MPMediaEntity")]
-unsafe impl NSSecureCoding for MPMediaItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPMediaItem {}
+);
 
 #[cfg(feature = "MPMediaEntity")]
 impl MPMediaItem {
@@ -449,7 +455,9 @@ extern_class!(
     pub struct MPMediaItemArtwork;
 );
 
-unsafe impl NSObjectProtocol for MPMediaItemArtwork {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaItemArtwork {}
+);
 
 impl MPMediaItemArtwork {
     extern_methods!(

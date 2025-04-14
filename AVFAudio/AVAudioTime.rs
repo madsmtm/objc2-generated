@@ -38,7 +38,9 @@ unsafe impl Send for AVAudioTime {}
 
 unsafe impl Sync for AVAudioTime {}
 
-unsafe impl NSObjectProtocol for AVAudioTime {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioTime {}
+);
 
 impl AVAudioTime {
     extern_methods!(

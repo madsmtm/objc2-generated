@@ -82,7 +82,9 @@ extern_class!(
     pub struct NSNetService;
 );
 
-unsafe impl NSObjectProtocol for NSNetService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNetService {}
+);
 
 impl NSNetService {
     extern_methods!(
@@ -283,7 +285,9 @@ extern_class!(
     pub struct NSNetServiceBrowser;
 );
 
-unsafe impl NSObjectProtocol for NSNetServiceBrowser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNetServiceBrowser {}
+);
 
 impl NSNetServiceBrowser {
     extern_methods!(

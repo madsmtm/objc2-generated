@@ -17,13 +17,17 @@ unsafe impl Send for NSManagedObjectID {}
 
 unsafe impl Sync for NSManagedObjectID {}
 
-unsafe impl NSCopying for NSManagedObjectID {}
+extern_conformance!(
+    unsafe impl NSCopying for NSManagedObjectID {}
+);
 
 unsafe impl CopyingHelper for NSManagedObjectID {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSManagedObjectID {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSManagedObjectID {}
+);
 
 impl NSManagedObjectID {
     extern_methods!(

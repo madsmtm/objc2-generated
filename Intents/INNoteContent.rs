@@ -13,17 +13,25 @@ extern_class!(
     pub struct INNoteContent;
 );
 
-unsafe impl NSCoding for INNoteContent {}
+extern_conformance!(
+    unsafe impl NSCoding for INNoteContent {}
+);
 
-unsafe impl NSCopying for INNoteContent {}
+extern_conformance!(
+    unsafe impl NSCopying for INNoteContent {}
+);
 
 unsafe impl CopyingHelper for INNoteContent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INNoteContent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INNoteContent {}
+);
 
-unsafe impl NSSecureCoding for INNoteContent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INNoteContent {}
+);
 
 impl INNoteContent {
     extern_methods!();

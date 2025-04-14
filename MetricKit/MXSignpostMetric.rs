@@ -21,11 +21,17 @@ extern_class!(
     pub struct MXSignpostIntervalData;
 );
 
-unsafe impl NSCoding for MXSignpostIntervalData {}
+extern_conformance!(
+    unsafe impl NSCoding for MXSignpostIntervalData {}
+);
 
-unsafe impl NSObjectProtocol for MXSignpostIntervalData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXSignpostIntervalData {}
+);
 
-unsafe impl NSSecureCoding for MXSignpostIntervalData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXSignpostIntervalData {}
+);
 
 impl MXSignpostIntervalData {
     extern_methods!(
@@ -95,13 +101,19 @@ extern_class!(
 );
 
 #[cfg(feature = "MXMetric")]
-unsafe impl NSCoding for MXSignpostMetric {}
+extern_conformance!(
+    unsafe impl NSCoding for MXSignpostMetric {}
+);
 
 #[cfg(feature = "MXMetric")]
-unsafe impl NSObjectProtocol for MXSignpostMetric {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXSignpostMetric {}
+);
 
 #[cfg(feature = "MXMetric")]
-unsafe impl NSSecureCoding for MXSignpostMetric {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXSignpostMetric {}
+);
 
 #[cfg(feature = "MXMetric")]
 impl MXSignpostMetric {

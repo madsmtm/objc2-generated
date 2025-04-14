@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INAppendToNoteIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INAppendToNoteIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INAppendToNoteIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INAppendToNoteIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INAppendToNoteIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INAppendToNoteIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INAppendToNoteIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INAppendToNoteIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INAppendToNoteIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INAppendToNoteIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INAppendToNoteIntent {

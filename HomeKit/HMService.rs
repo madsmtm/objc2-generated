@@ -25,7 +25,9 @@ unsafe impl Send for HMService {}
 
 unsafe impl Sync for HMService {}
 
-unsafe impl NSObjectProtocol for HMService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMService {}
+);
 
 impl HMService {
     extern_methods!(

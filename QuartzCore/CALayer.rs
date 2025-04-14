@@ -140,13 +140,21 @@ extern_class!(
 );
 
 #[cfg(feature = "CAMediaTiming")]
-unsafe impl CAMediaTiming for CALayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CALayer {}
+);
 
-unsafe impl NSCoding for CALayer {}
+extern_conformance!(
+    unsafe impl NSCoding for CALayer {}
+);
 
-unsafe impl NSObjectProtocol for CALayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CALayer {}
+);
 
-unsafe impl NSSecureCoding for CALayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CALayer {}
+);
 
 impl CALayer {
     extern_methods!(
@@ -987,7 +995,9 @@ extern_protocol!(
     }
 );
 
-unsafe impl CAAction for NSNull {}
+extern_conformance!(
+    unsafe impl CAAction for NSNull {}
+);
 
 extern_protocol!(
     /// Delegate methods. *

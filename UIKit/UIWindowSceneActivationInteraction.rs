@@ -41,10 +41,14 @@ extern_class!(
     pub struct UIWindowSceneActivationInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIWindowSceneActivationInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneActivationInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIWindowSceneActivationInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIWindowSceneActivationInteraction {}
+);
 
 impl UIWindowSceneActivationInteraction {
     extern_methods!(

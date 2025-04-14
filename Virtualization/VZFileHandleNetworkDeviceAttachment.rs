@@ -28,7 +28,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZNetworkDeviceAttachment")]
-unsafe impl NSObjectProtocol for VZFileHandleNetworkDeviceAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZFileHandleNetworkDeviceAttachment {}
+);
 
 #[cfg(feature = "VZNetworkDeviceAttachment")]
 impl VZFileHandleNetworkDeviceAttachment {

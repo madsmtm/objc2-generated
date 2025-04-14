@@ -62,7 +62,9 @@ extern_class!(
     pub struct MPNowPlayingInfoCenter;
 );
 
-unsafe impl NSObjectProtocol for MPNowPlayingInfoCenter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPNowPlayingInfoCenter {}
+);
 
 impl MPNowPlayingInfoCenter {
     extern_methods!(

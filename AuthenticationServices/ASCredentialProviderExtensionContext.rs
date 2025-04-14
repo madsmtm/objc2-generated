@@ -14,7 +14,9 @@ extern_class!(
     pub struct ASCredentialProviderExtensionContext;
 );
 
-unsafe impl NSObjectProtocol for ASCredentialProviderExtensionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASCredentialProviderExtensionContext {}
+);
 
 impl ASCredentialProviderExtensionContext {
     extern_methods!(

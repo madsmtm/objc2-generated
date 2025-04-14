@@ -22,10 +22,14 @@ extern_class!(
     pub struct SNClassifySoundRequest;
 );
 
-unsafe impl NSObjectProtocol for SNClassifySoundRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SNClassifySoundRequest {}
+);
 
 #[cfg(feature = "SNRequest")]
-unsafe impl SNRequest for SNClassifySoundRequest {}
+extern_conformance!(
+    unsafe impl SNRequest for SNClassifySoundRequest {}
+);
 
 impl SNClassifySoundRequest {
     extern_methods!(

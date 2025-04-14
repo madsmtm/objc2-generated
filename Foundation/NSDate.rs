@@ -27,20 +27,28 @@ unsafe impl Send for NSDate {}
 unsafe impl Sync for NSDate {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSDate {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDate {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSDate {}
+extern_conformance!(
+    unsafe impl NSCopying for NSDate {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSDate {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSDate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDate {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSDate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSDate {}
+);
 
 impl NSDate {
     extern_methods!(

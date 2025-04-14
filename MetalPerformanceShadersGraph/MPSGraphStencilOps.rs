@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphStencilOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphStencilOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphStencilOpDescriptor {
@@ -31,7 +33,9 @@ unsafe impl CopyingHelper for MPSGraphStencilOpDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphStencilOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphStencilOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphStencilOpDescriptor {

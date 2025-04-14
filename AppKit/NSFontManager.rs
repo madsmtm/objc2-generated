@@ -112,9 +112,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSMenu")]
-unsafe impl NSMenuItemValidation for NSFontManager {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSFontManager {}
+);
 
-unsafe impl NSObjectProtocol for NSFontManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFontManager {}
+);
 
 impl NSFontManager {
     extern_methods!(

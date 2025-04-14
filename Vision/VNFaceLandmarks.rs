@@ -17,20 +17,30 @@ extern_class!(
     pub struct VNFaceLandmarkRegion;
 );
 
-unsafe impl NSCoding for VNFaceLandmarkRegion {}
+extern_conformance!(
+    unsafe impl NSCoding for VNFaceLandmarkRegion {}
+);
 
-unsafe impl NSCopying for VNFaceLandmarkRegion {}
+extern_conformance!(
+    unsafe impl NSCopying for VNFaceLandmarkRegion {}
+);
 
 unsafe impl CopyingHelper for VNFaceLandmarkRegion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNFaceLandmarkRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNFaceLandmarkRegion {}
+);
 
-unsafe impl NSSecureCoding for VNFaceLandmarkRegion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNFaceLandmarkRegion {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNFaceLandmarkRegion {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNFaceLandmarkRegion {}
+);
 
 impl VNFaceLandmarkRegion {
     extern_methods!(
@@ -58,20 +68,30 @@ extern_class!(
     pub struct VNFaceLandmarkRegion2D;
 );
 
-unsafe impl NSCoding for VNFaceLandmarkRegion2D {}
+extern_conformance!(
+    unsafe impl NSCoding for VNFaceLandmarkRegion2D {}
+);
 
-unsafe impl NSCopying for VNFaceLandmarkRegion2D {}
+extern_conformance!(
+    unsafe impl NSCopying for VNFaceLandmarkRegion2D {}
+);
 
 unsafe impl CopyingHelper for VNFaceLandmarkRegion2D {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNFaceLandmarkRegion2D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNFaceLandmarkRegion2D {}
+);
 
-unsafe impl NSSecureCoding for VNFaceLandmarkRegion2D {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNFaceLandmarkRegion2D {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNFaceLandmarkRegion2D {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNFaceLandmarkRegion2D {}
+);
 
 impl VNFaceLandmarkRegion2D {
     extern_methods!(
@@ -145,20 +165,30 @@ extern_class!(
     pub struct VNFaceLandmarks;
 );
 
-unsafe impl NSCoding for VNFaceLandmarks {}
+extern_conformance!(
+    unsafe impl NSCoding for VNFaceLandmarks {}
+);
 
-unsafe impl NSCopying for VNFaceLandmarks {}
+extern_conformance!(
+    unsafe impl NSCopying for VNFaceLandmarks {}
+);
 
 unsafe impl CopyingHelper for VNFaceLandmarks {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNFaceLandmarks {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNFaceLandmarks {}
+);
 
-unsafe impl NSSecureCoding for VNFaceLandmarks {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNFaceLandmarks {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNFaceLandmarks {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNFaceLandmarks {}
+);
 
 impl VNFaceLandmarks {
     extern_methods!(
@@ -192,20 +222,30 @@ extern_class!(
     pub struct VNFaceLandmarks2D;
 );
 
-unsafe impl NSCoding for VNFaceLandmarks2D {}
+extern_conformance!(
+    unsafe impl NSCoding for VNFaceLandmarks2D {}
+);
 
-unsafe impl NSCopying for VNFaceLandmarks2D {}
+extern_conformance!(
+    unsafe impl NSCopying for VNFaceLandmarks2D {}
+);
 
 unsafe impl CopyingHelper for VNFaceLandmarks2D {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNFaceLandmarks2D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNFaceLandmarks2D {}
+);
 
-unsafe impl NSSecureCoding for VNFaceLandmarks2D {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNFaceLandmarks2D {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNFaceLandmarks2D {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNFaceLandmarks2D {}
+);
 
 impl VNFaceLandmarks2D {
     extern_methods!(

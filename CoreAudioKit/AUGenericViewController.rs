@@ -19,23 +19,33 @@ pub type AUViewColor = NSColor;
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for AUGenericViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for AUGenericViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for AUGenericViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for AUGenericViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for AUGenericViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUGenericViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for AUGenericViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for AUGenericViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for AUGenericViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for AUGenericViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

@@ -44,14 +44,18 @@ extern_class!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCoding for MPSNDArrayMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayMatrixMultiplication {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCopying for MPSNDArrayMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayMatrixMultiplication {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -67,14 +71,18 @@ unsafe impl CopyingHelper for MPSNDArrayMatrixMultiplication {
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayMatrixMultiplication {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSSecureCoding for MPSNDArrayMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayMatrixMultiplication {}
+);
 
 #[cfg(all(
     feature = "MPSCore",

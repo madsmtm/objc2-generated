@@ -14,13 +14,17 @@ extern_class!(
     pub struct NSPersistentStoreDescription;
 );
 
-unsafe impl NSCopying for NSPersistentStoreDescription {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPersistentStoreDescription {}
+);
 
 unsafe impl CopyingHelper for NSPersistentStoreDescription {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPersistentStoreDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentStoreDescription {}
+);
 
 impl NSPersistentStoreDescription {
     extern_methods!(

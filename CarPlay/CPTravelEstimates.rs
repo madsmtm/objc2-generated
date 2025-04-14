@@ -15,11 +15,17 @@ extern_class!(
     pub struct CPTravelEstimates;
 );
 
-unsafe impl NSCoding for CPTravelEstimates {}
+extern_conformance!(
+    unsafe impl NSCoding for CPTravelEstimates {}
+);
 
-unsafe impl NSObjectProtocol for CPTravelEstimates {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPTravelEstimates {}
+);
 
-unsafe impl NSSecureCoding for CPTravelEstimates {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPTravelEstimates {}
+);
 
 impl CPTravelEstimates {
     extern_methods!(

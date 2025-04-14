@@ -16,15 +16,21 @@ extern_class!(
     pub struct UIRegion;
 );
 
-unsafe impl NSCoding for UIRegion {}
+extern_conformance!(
+    unsafe impl NSCoding for UIRegion {}
+);
 
-unsafe impl NSCopying for UIRegion {}
+extern_conformance!(
+    unsafe impl NSCopying for UIRegion {}
+);
 
 unsafe impl CopyingHelper for UIRegion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIRegion {}
+);
 
 impl UIRegion {
     extern_methods!(

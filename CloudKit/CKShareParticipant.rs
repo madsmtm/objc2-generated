@@ -124,17 +124,25 @@ extern_class!(
     pub struct CKShareParticipant;
 );
 
-unsafe impl NSCoding for CKShareParticipant {}
+extern_conformance!(
+    unsafe impl NSCoding for CKShareParticipant {}
+);
 
-unsafe impl NSCopying for CKShareParticipant {}
+extern_conformance!(
+    unsafe impl NSCopying for CKShareParticipant {}
+);
 
 unsafe impl CopyingHelper for CKShareParticipant {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKShareParticipant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKShareParticipant {}
+);
 
-unsafe impl NSSecureCoding for CKShareParticipant {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKShareParticipant {}
+);
 
 impl CKShareParticipant {
     extern_methods!(

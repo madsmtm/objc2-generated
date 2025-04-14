@@ -24,27 +24,39 @@ extern_class!(
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CAMediaTiming for SCNLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for SCNLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSCoding for SCNLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSObjectProtocol for SCNLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSSecureCoding for SCNLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNLayer {}
+);
 
 #[cfg(all(feature = "SCNSceneRenderer", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl SCNSceneRenderer for SCNLayer {}
+extern_conformance!(
+    unsafe impl SCNSceneRenderer for SCNLayer {}
+);
 
 #[cfg(all(feature = "SCNTechnique", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl SCNTechniqueSupport for SCNLayer {}
+extern_conformance!(
+    unsafe impl SCNTechniqueSupport for SCNLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]

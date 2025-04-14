@@ -35,7 +35,9 @@ extern_class!(
     pub struct NLModel;
 );
 
-unsafe impl NSObjectProtocol for NLModel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NLModel {}
+);
 
 impl NLModel {
     extern_methods!(
@@ -108,17 +110,25 @@ extern_class!(
     pub struct NLModelConfiguration;
 );
 
-unsafe impl NSCoding for NLModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for NLModelConfiguration {}
+);
 
-unsafe impl NSCopying for NLModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NLModelConfiguration {}
+);
 
 unsafe impl CopyingHelper for NLModelConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NLModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NLModelConfiguration {}
+);
 
-unsafe impl NSSecureCoding for NLModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NLModelConfiguration {}
+);
 
 impl NLModelConfiguration {
     extern_methods!(

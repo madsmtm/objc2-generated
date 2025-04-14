@@ -13,11 +13,17 @@ extern_class!(
     pub struct SWPerson;
 );
 
-unsafe impl NSCoding for SWPerson {}
+extern_conformance!(
+    unsafe impl NSCoding for SWPerson {}
+);
 
-unsafe impl NSObjectProtocol for SWPerson {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWPerson {}
+);
 
-unsafe impl NSSecureCoding for SWPerson {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWPerson {}
+);
 
 impl SWPerson {
     extern_methods!(

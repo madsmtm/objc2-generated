@@ -107,13 +107,17 @@ extern_class!(
     pub struct AVPlayerItem;
 );
 
-unsafe impl NSCopying for AVPlayerItem {}
+extern_conformance!(
+    unsafe impl NSCopying for AVPlayerItem {}
+);
 
 unsafe impl CopyingHelper for AVPlayerItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVPlayerItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItem {}
+);
 
 impl AVPlayerItem {
     extern_methods!(
@@ -1186,13 +1190,17 @@ unsafe impl Send for AVPlayerItemAccessLog {}
 
 unsafe impl Sync for AVPlayerItemAccessLog {}
 
-unsafe impl NSCopying for AVPlayerItemAccessLog {}
+extern_conformance!(
+    unsafe impl NSCopying for AVPlayerItemAccessLog {}
+);
 
 unsafe impl CopyingHelper for AVPlayerItemAccessLog {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVPlayerItemAccessLog {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemAccessLog {}
+);
 
 impl AVPlayerItemAccessLog {
     extern_methods!(
@@ -1251,13 +1259,17 @@ unsafe impl Send for AVPlayerItemErrorLog {}
 
 unsafe impl Sync for AVPlayerItemErrorLog {}
 
-unsafe impl NSCopying for AVPlayerItemErrorLog {}
+extern_conformance!(
+    unsafe impl NSCopying for AVPlayerItemErrorLog {}
+);
 
 unsafe impl CopyingHelper for AVPlayerItemErrorLog {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVPlayerItemErrorLog {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemErrorLog {}
+);
 
 impl AVPlayerItemErrorLog {
     extern_methods!(
@@ -1317,13 +1329,17 @@ unsafe impl Send for AVPlayerItemAccessLogEvent {}
 
 unsafe impl Sync for AVPlayerItemAccessLogEvent {}
 
-unsafe impl NSCopying for AVPlayerItemAccessLogEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for AVPlayerItemAccessLogEvent {}
+);
 
 unsafe impl CopyingHelper for AVPlayerItemAccessLogEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVPlayerItemAccessLogEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemAccessLogEvent {}
+);
 
 impl AVPlayerItemAccessLogEvent {
     extern_methods!(
@@ -1577,13 +1593,17 @@ unsafe impl Send for AVPlayerItemErrorLogEvent {}
 
 unsafe impl Sync for AVPlayerItemErrorLogEvent {}
 
-unsafe impl NSCopying for AVPlayerItemErrorLogEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for AVPlayerItemErrorLogEvent {}
+);
 
 unsafe impl CopyingHelper for AVPlayerItemErrorLogEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVPlayerItemErrorLogEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemErrorLogEvent {}
+);
 
 impl AVPlayerItemErrorLogEvent {
     extern_methods!(
@@ -1665,4 +1685,6 @@ impl AVPlayerItem {
 }
 
 #[cfg(feature = "AVMetrics")]
-unsafe impl AVMetricEventStreamPublisher for AVPlayerItem {}
+extern_conformance!(
+    unsafe impl AVMetricEventStreamPublisher for AVPlayerItem {}
+);

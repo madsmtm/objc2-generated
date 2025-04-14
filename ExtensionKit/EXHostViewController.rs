@@ -23,23 +23,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for EXHostViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for EXHostViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for EXHostViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for EXHostViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for EXHostViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EXHostViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for EXHostViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for EXHostViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for EXHostViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for EXHostViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

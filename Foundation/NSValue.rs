@@ -14,20 +14,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSValue {}
+extern_conformance!(
+    unsafe impl NSCoding for NSValue {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSValue {}
+extern_conformance!(
+    unsafe impl NSCopying for NSValue {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSValue {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSValue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSValue {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSValue {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSValue {}
+);
 
 impl NSValue {
     extern_methods!(
@@ -115,20 +123,28 @@ unsafe impl Send for NSNumber {}
 unsafe impl Sync for NSNumber {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSNumber {}
+extern_conformance!(
+    unsafe impl NSCoding for NSNumber {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSNumber {}
+extern_conformance!(
+    unsafe impl NSCopying for NSNumber {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSNumber {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSNumber {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNumber {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSNumber {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSNumber {}
+);
 
 impl NSNumber {
     extern_methods!(

@@ -24,7 +24,9 @@ unsafe impl Send for HKWorkoutRouteQuery {}
 unsafe impl Sync for HKWorkoutRouteQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKWorkoutRouteQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutRouteQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKWorkoutRouteQuery {

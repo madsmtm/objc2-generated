@@ -78,16 +78,22 @@ extern_class!(
     pub struct UICollectionViewLayoutAttributes;
 );
 
-unsafe impl NSCopying for UICollectionViewLayoutAttributes {}
+extern_conformance!(
+    unsafe impl NSCopying for UICollectionViewLayoutAttributes {}
+);
 
 unsafe impl CopyingHelper for UICollectionViewLayoutAttributes {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICollectionViewLayoutAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewLayoutAttributes {}
+);
 
 #[cfg(feature = "UIDynamicBehavior")]
-unsafe impl UIDynamicItem for UICollectionViewLayoutAttributes {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UICollectionViewLayoutAttributes {}
+);
 
 impl UICollectionViewLayoutAttributes {
     extern_methods!(
@@ -251,7 +257,9 @@ extern_class!(
     pub struct UICollectionViewLayoutInvalidationContext;
 );
 
-unsafe impl NSObjectProtocol for UICollectionViewLayoutInvalidationContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewLayoutInvalidationContext {}
+);
 
 impl UICollectionViewLayoutInvalidationContext {
     extern_methods!(
@@ -361,9 +369,13 @@ extern_class!(
     pub struct UICollectionViewLayout;
 );
 
-unsafe impl NSCoding for UICollectionViewLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for UICollectionViewLayout {}
+);
 
-unsafe impl NSObjectProtocol for UICollectionViewLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewLayout {}
+);
 
 impl UICollectionViewLayout {
     extern_methods!(

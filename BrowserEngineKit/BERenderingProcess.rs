@@ -22,7 +22,9 @@ extern_class!(
     pub struct BERenderingProcess;
 );
 
-unsafe impl NSObjectProtocol for BERenderingProcess {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BERenderingProcess {}
+);
 
 impl BERenderingProcess {
     extern_methods!(

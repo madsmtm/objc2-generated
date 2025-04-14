@@ -56,10 +56,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixDecompositionLU {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixDecompositionLU {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixDecompositionLU {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixDecompositionLU {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixDecompositionLU {
@@ -67,10 +71,14 @@ unsafe impl CopyingHelper for MPSMatrixDecompositionLU {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixDecompositionLU {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixDecompositionLU {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixDecompositionLU {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixDecompositionLU {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixDecompositionLU {
@@ -249,10 +257,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixDecompositionCholesky {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixDecompositionCholesky {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixDecompositionCholesky {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixDecompositionCholesky {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixDecompositionCholesky {
@@ -260,10 +272,14 @@ unsafe impl CopyingHelper for MPSMatrixDecompositionCholesky {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixDecompositionCholesky {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixDecompositionCholesky {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixDecompositionCholesky {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixDecompositionCholesky {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixDecompositionCholesky {

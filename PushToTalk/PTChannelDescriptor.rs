@@ -19,7 +19,9 @@ unsafe impl Send for PTChannelDescriptor {}
 
 unsafe impl Sync for PTChannelDescriptor {}
 
-unsafe impl NSObjectProtocol for PTChannelDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PTChannelDescriptor {}
+);
 
 impl PTChannelDescriptor {
     extern_methods!(

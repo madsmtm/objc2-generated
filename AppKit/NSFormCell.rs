@@ -22,20 +22,28 @@ extern_class!(
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSFormCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSFormCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSFormCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSFormCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSFormCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFormCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSFormCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSFormCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSFormCell {
@@ -43,14 +51,18 @@ unsafe impl CopyingHelper for NSFormCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSFormCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFormCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSFormCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSFormCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSFormCell {

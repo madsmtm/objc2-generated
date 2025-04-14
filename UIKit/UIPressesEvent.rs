@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIEvent")]
-unsafe impl NSObjectProtocol for UIPressesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPressesEvent {}
+);
 
 #[cfg(feature = "UIEvent")]
 impl UIPressesEvent {

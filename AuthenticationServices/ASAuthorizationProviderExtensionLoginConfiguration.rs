@@ -16,7 +16,9 @@ extern_class!(
     pub struct ASAuthorizationProviderExtensionKerberosMapping;
 );
 
-unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionKerberosMapping {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionKerberosMapping {}
+);
 
 impl ASAuthorizationProviderExtensionKerberosMapping {
     extern_methods!(
@@ -231,7 +233,9 @@ extern_class!(
     pub struct ASAuthorizationProviderExtensionLoginConfiguration;
 );
 
-unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginConfiguration {}
+);
 
 impl ASAuthorizationProviderExtensionLoginConfiguration {
     extern_methods!(

@@ -39,10 +39,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageEDLines {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageEDLines {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageEDLines {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageEDLines {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageEDLines {
@@ -50,10 +54,14 @@ unsafe impl CopyingHelper for MPSImageEDLines {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageEDLines {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageEDLines {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageEDLines {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageEDLines {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSImageEDLines {

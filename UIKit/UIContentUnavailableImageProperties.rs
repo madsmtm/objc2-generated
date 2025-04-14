@@ -17,17 +17,25 @@ extern_class!(
     pub struct UIContentUnavailableImageProperties;
 );
 
-unsafe impl NSCoding for UIContentUnavailableImageProperties {}
+extern_conformance!(
+    unsafe impl NSCoding for UIContentUnavailableImageProperties {}
+);
 
-unsafe impl NSCopying for UIContentUnavailableImageProperties {}
+extern_conformance!(
+    unsafe impl NSCopying for UIContentUnavailableImageProperties {}
+);
 
 unsafe impl CopyingHelper for UIContentUnavailableImageProperties {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIContentUnavailableImageProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIContentUnavailableImageProperties {}
+);
 
-unsafe impl NSSecureCoding for UIContentUnavailableImageProperties {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIContentUnavailableImageProperties {}
+);
 
 impl UIContentUnavailableImageProperties {
     extern_methods!(

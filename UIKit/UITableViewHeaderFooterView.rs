@@ -38,48 +38,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl NSCoding for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UITableViewHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UITableViewHeaderFooterView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UITableViewHeaderFooterView {

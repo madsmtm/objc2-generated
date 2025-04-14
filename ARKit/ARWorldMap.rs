@@ -25,10 +25,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARWorldMap {}
+extern_conformance!(
+    unsafe impl NSCoding for ARWorldMap {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARWorldMap {}
+extern_conformance!(
+    unsafe impl NSCopying for ARWorldMap {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARWorldMap {
@@ -36,10 +40,14 @@ unsafe impl CopyingHelper for ARWorldMap {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARWorldMap {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARWorldMap {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARWorldMap {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARWorldMap {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARWorldMap {

@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSConnection;
 );
 
-unsafe impl NSObjectProtocol for NSConnection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSConnection {}
+);
 
 impl NSConnection {
     extern_methods!(
@@ -401,7 +403,9 @@ extern_class!(
     pub struct NSDistantObjectRequest;
 );
 
-unsafe impl NSObjectProtocol for NSDistantObjectRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDistantObjectRequest {}
+);
 
 impl NSDistantObjectRequest {
     extern_methods!(

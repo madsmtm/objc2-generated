@@ -47,7 +47,9 @@ extern_class!(
     pub struct WKHTTPCookieStore;
 );
 
-unsafe impl NSObjectProtocol for WKHTTPCookieStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKHTTPCookieStore {}
+);
 
 impl WKHTTPCookieStore {
     extern_methods!(

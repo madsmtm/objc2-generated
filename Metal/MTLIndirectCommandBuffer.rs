@@ -72,13 +72,17 @@ extern_class!(
     pub struct MTLIndirectCommandBufferDescriptor;
 );
 
-unsafe impl NSCopying for MTLIndirectCommandBufferDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLIndirectCommandBufferDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLIndirectCommandBufferDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLIndirectCommandBufferDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLIndirectCommandBufferDescriptor {}
+);
 
 impl MTLIndirectCommandBufferDescriptor {
     extern_methods!(

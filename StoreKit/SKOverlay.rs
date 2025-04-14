@@ -64,7 +64,9 @@ extern_class!(
     pub struct SKOverlay;
 );
 
-unsafe impl NSObjectProtocol for SKOverlay {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKOverlay {}
+);
 
 impl SKOverlay {
     extern_methods!(

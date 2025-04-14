@@ -42,7 +42,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZMemoryBalloonDevice")]
-unsafe impl NSObjectProtocol for VZVirtioTraditionalMemoryBalloonDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioTraditionalMemoryBalloonDevice {}
+);
 
 #[cfg(feature = "VZMemoryBalloonDevice")]
 impl VZVirtioTraditionalMemoryBalloonDevice {

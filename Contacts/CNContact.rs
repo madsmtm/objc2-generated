@@ -62,7 +62,9 @@ extern_protocol!(
     pub unsafe trait CNKeyDescriptor: NSObjectProtocol + NSSecureCoding + NSCopying {}
 );
 
-unsafe impl CNKeyDescriptor for NSString {}
+extern_conformance!(
+    unsafe impl CNKeyDescriptor for NSString {}
+);
 
 extern_class!(
     /// An immutable value object representing a contact.
@@ -78,24 +80,34 @@ extern_class!(
     pub struct CNContact;
 );
 
-unsafe impl NSCoding for CNContact {}
+extern_conformance!(
+    unsafe impl NSCoding for CNContact {}
+);
 
-unsafe impl NSCopying for CNContact {}
+extern_conformance!(
+    unsafe impl NSCopying for CNContact {}
+);
 
 unsafe impl CopyingHelper for CNContact {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for CNContact {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CNContact {}
+);
 
 #[cfg(feature = "CNMutableContact")]
 unsafe impl MutableCopyingHelper for CNContact {
     type Result = CNMutableContact;
 }
 
-unsafe impl NSObjectProtocol for CNContact {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContact {}
+);
 
-unsafe impl NSSecureCoding for CNContact {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNContact {}
+);
 
 impl CNContact {
     extern_methods!(

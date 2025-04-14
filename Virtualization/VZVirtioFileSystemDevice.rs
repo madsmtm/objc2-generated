@@ -30,7 +30,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZDirectorySharingDevice")]
-unsafe impl NSObjectProtocol for VZVirtioFileSystemDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioFileSystemDevice {}
+);
 
 #[cfg(feature = "VZDirectorySharingDevice")]
 impl VZVirtioFileSystemDevice {

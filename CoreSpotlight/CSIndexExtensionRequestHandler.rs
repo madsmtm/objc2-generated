@@ -14,11 +14,17 @@ extern_class!(
 );
 
 #[cfg(feature = "CSSearchableIndex")]
-unsafe impl CSSearchableIndexDelegate for CSIndexExtensionRequestHandler {}
+extern_conformance!(
+    unsafe impl CSSearchableIndexDelegate for CSIndexExtensionRequestHandler {}
+);
 
-unsafe impl NSExtensionRequestHandling for CSIndexExtensionRequestHandler {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for CSIndexExtensionRequestHandler {}
+);
 
-unsafe impl NSObjectProtocol for CSIndexExtensionRequestHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSIndexExtensionRequestHandler {}
+);
 
 impl CSIndexExtensionRequestHandler {
     extern_methods!();

@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCoding for CMAbsoluteAltitudeData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMAbsoluteAltitudeData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCopying for CMAbsoluteAltitudeData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMAbsoluteAltitudeData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl CopyingHelper for CMAbsoluteAltitudeData {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for CMAbsoluteAltitudeData {
 }
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSObjectProtocol for CMAbsoluteAltitudeData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMAbsoluteAltitudeData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSSecureCoding for CMAbsoluteAltitudeData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMAbsoluteAltitudeData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 impl CMAbsoluteAltitudeData {

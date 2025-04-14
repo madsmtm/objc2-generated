@@ -21,7 +21,9 @@ extern_class!(
     pub struct AVRenderedCaptionImage;
 );
 
-unsafe impl NSObjectProtocol for AVRenderedCaptionImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVRenderedCaptionImage {}
+);
 
 impl AVRenderedCaptionImage {
     extern_methods!(

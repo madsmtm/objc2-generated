@@ -34,7 +34,9 @@ extern_class!(
     pub struct THClient;
 );
 
-unsafe impl NSObjectProtocol for THClient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for THClient {}
+);
 
 impl THClient {
     extern_methods!(

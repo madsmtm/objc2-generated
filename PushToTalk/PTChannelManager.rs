@@ -68,7 +68,9 @@ unsafe impl Send for PTChannelManager {}
 
 unsafe impl Sync for PTChannelManager {}
 
-unsafe impl NSObjectProtocol for PTChannelManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PTChannelManager {}
+);
 
 impl PTChannelManager {
     extern_methods!(

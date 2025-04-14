@@ -18,7 +18,9 @@ extern_class!(
     pub struct NSTextInputContext;
 );
 
-unsafe impl NSObjectProtocol for NSTextInputContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextInputContext {}
+);
 
 impl NSTextInputContext {
     extern_methods!(

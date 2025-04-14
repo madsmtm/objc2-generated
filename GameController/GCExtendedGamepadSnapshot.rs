@@ -28,7 +28,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
-unsafe impl NSObjectProtocol for GCExtendedGamepadSnapshot {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCExtendedGamepadSnapshot {}
+);
 
 #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
 impl GCExtendedGamepadSnapshot {

@@ -56,7 +56,9 @@ extern_class!(
     pub struct UISheetPresentationControllerDetent;
 );
 
-unsafe impl NSObjectProtocol for UISheetPresentationControllerDetent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISheetPresentationControllerDetent {}
+);
 
 impl UISheetPresentationControllerDetent {
     extern_methods!(
@@ -137,19 +139,29 @@ extern_class!(
 );
 
 #[cfg(feature = "UIPresentationController")]
-unsafe impl NSObjectProtocol for UISheetPresentationController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISheetPresentationController {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIPresentationController"))]
-unsafe impl UIAppearanceContainer for UISheetPresentationController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UISheetPresentationController {}
+);
 
 #[cfg(all(feature = "UIPresentationController", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UISheetPresentationController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UISheetPresentationController {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIPresentationController"))]
-unsafe impl UIFocusEnvironment for UISheetPresentationController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UISheetPresentationController {}
+);
 
 #[cfg(all(feature = "UIPresentationController", feature = "UITraitCollection"))]
-unsafe impl UITraitEnvironment for UISheetPresentationController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UISheetPresentationController {}
+);
 
 #[cfg(feature = "UIPresentationController")]
 impl UISheetPresentationController {

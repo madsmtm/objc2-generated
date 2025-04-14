@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDynamicBehavior")]
-unsafe impl NSObjectProtocol for UISnapBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISnapBehavior {}
+);
 
 #[cfg(feature = "UIDynamicBehavior")]
 impl UISnapBehavior {

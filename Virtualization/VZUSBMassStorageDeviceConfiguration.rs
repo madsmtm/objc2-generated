@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
-unsafe impl NSCopying for VZUSBMassStorageDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZUSBMassStorageDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 unsafe impl CopyingHelper for VZUSBMassStorageDeviceConfiguration {
@@ -27,13 +29,17 @@ unsafe impl CopyingHelper for VZUSBMassStorageDeviceConfiguration {
 }
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZUSBMassStorageDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZUSBMassStorageDeviceConfiguration {}
+);
 
 #[cfg(all(
     feature = "VZStorageDeviceConfiguration",
     feature = "VZUSBDeviceConfiguration"
 ))]
-unsafe impl VZUSBDeviceConfiguration for VZUSBMassStorageDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl VZUSBDeviceConfiguration for VZUSBMassStorageDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZStorageDeviceConfiguration")]
 impl VZUSBMassStorageDeviceConfiguration {

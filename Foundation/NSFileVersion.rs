@@ -53,7 +53,9 @@ extern_class!(
     pub struct NSFileVersion;
 );
 
-unsafe impl NSObjectProtocol for NSFileVersion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileVersion {}
+);
 
 impl NSFileVersion {
     extern_methods!(

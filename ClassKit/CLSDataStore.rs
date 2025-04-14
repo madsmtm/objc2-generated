@@ -58,7 +58,9 @@ extern_class!(
     pub struct CLSDataStore;
 );
 
-unsafe impl NSObjectProtocol for CLSDataStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLSDataStore {}
+);
 
 impl CLSDataStore {
     extern_methods!(

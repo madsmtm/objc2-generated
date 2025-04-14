@@ -14,7 +14,9 @@ extern_class!(
     pub struct VNGeometryUtils;
 );
 
-unsafe impl NSObjectProtocol for VNGeometryUtils {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNGeometryUtils {}
+);
 
 impl VNGeometryUtils {
     extern_methods!(

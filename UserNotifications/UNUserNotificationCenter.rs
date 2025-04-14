@@ -55,7 +55,9 @@ extern_class!(
     pub struct UNUserNotificationCenter;
 );
 
-unsafe impl NSObjectProtocol for UNUserNotificationCenter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNUserNotificationCenter {}
+);
 
 impl UNUserNotificationCenter {
     extern_methods!(

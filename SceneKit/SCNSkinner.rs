@@ -16,11 +16,17 @@ extern_class!(
     pub struct SCNSkinner;
 );
 
-unsafe impl NSCoding for SCNSkinner {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNSkinner {}
+);
 
-unsafe impl NSObjectProtocol for SCNSkinner {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNSkinner {}
+);
 
-unsafe impl NSSecureCoding for SCNSkinner {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNSkinner {}
+);
 
 impl SCNSkinner {
     extern_methods!(

@@ -36,14 +36,18 @@ extern_class!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCoding for MPSNDArrayStridedSlice {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayStridedSlice {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCopying for MPSNDArrayStridedSlice {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayStridedSlice {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -59,14 +63,18 @@ unsafe impl CopyingHelper for MPSNDArrayStridedSlice {
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayStridedSlice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayStridedSlice {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSSecureCoding for MPSNDArrayStridedSlice {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayStridedSlice {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -193,14 +201,18 @@ extern_class!(
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCoding for MPSNDArrayStridedSliceGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayStridedSliceGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSCopying for MPSNDArrayStridedSliceGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayStridedSliceGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -216,14 +228,18 @@ unsafe impl CopyingHelper for MPSNDArrayStridedSliceGradient {
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSObjectProtocol for MPSNDArrayStridedSliceGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayStridedSliceGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel"
 ))]
-unsafe impl NSSecureCoding for MPSNDArrayStridedSliceGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayStridedSliceGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",

@@ -20,13 +20,17 @@ extern_class!(
     pub struct VZMACAddress;
 );
 
-unsafe impl NSCopying for VZMACAddress {}
+extern_conformance!(
+    unsafe impl NSCopying for VZMACAddress {}
+);
 
 unsafe impl CopyingHelper for VZMACAddress {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZMACAddress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMACAddress {}
+);
 
 impl VZMACAddress {
     extern_methods!(

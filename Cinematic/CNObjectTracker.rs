@@ -22,13 +22,17 @@ extern_class!(
     pub struct CNBoundsPrediction;
 );
 
-unsafe impl NSCopying for CNBoundsPrediction {}
+extern_conformance!(
+    unsafe impl NSCopying for CNBoundsPrediction {}
+);
 
 unsafe impl CopyingHelper for CNBoundsPrediction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNBoundsPrediction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNBoundsPrediction {}
+);
 
 impl CNBoundsPrediction {
     extern_methods!(
@@ -78,7 +82,9 @@ extern_class!(
     pub struct CNObjectTracker;
 );
 
-unsafe impl NSObjectProtocol for CNObjectTracker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNObjectTracker {}
+);
 
 impl CNObjectTracker {
     extern_methods!(

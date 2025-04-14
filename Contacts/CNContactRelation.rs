@@ -18,17 +18,25 @@ extern_class!(
     pub struct CNContactRelation;
 );
 
-unsafe impl NSCoding for CNContactRelation {}
+extern_conformance!(
+    unsafe impl NSCoding for CNContactRelation {}
+);
 
-unsafe impl NSCopying for CNContactRelation {}
+extern_conformance!(
+    unsafe impl NSCopying for CNContactRelation {}
+);
 
 unsafe impl CopyingHelper for CNContactRelation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNContactRelation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContactRelation {}
+);
 
-unsafe impl NSSecureCoding for CNContactRelation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNContactRelation {}
+);
 
 impl CNContactRelation {
     extern_methods!(

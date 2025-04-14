@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-unsafe impl NSObjectProtocol for CKModifyRecordZonesOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKModifyRecordZonesOperation {}
+);
 
 #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
 impl CKModifyRecordZonesOperation {

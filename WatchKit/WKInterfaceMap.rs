@@ -66,7 +66,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceMap {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceMap {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceMap {

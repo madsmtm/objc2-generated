@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceSKScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceSKScene {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceSKScene {

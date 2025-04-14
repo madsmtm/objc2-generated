@@ -34,13 +34,17 @@ extern_class!(
     pub struct NSToolbarItem;
 );
 
-unsafe impl NSCopying for NSToolbarItem {}
+extern_conformance!(
+    unsafe impl NSCopying for NSToolbarItem {}
+);
 
 unsafe impl CopyingHelper for NSToolbarItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSToolbarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSToolbarItem {}
+);
 
 impl NSToolbarItem {
     extern_methods!(
@@ -338,10 +342,14 @@ impl NSToolbarItem {
 }
 
 #[cfg(feature = "NSMenu")]
-unsafe impl NSMenuItemValidation for NSToolbarItem {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSToolbarItem {}
+);
 
 #[cfg(feature = "NSUserInterfaceValidation")]
-unsafe impl NSValidatedUserInterfaceItem for NSToolbarItem {}
+extern_conformance!(
+    unsafe impl NSValidatedUserInterfaceItem for NSToolbarItem {}
+);
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvalidation?language=objc)

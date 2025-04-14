@@ -25,7 +25,9 @@ unsafe impl Send for HMCameraProfile {}
 unsafe impl Sync for HMCameraProfile {}
 
 #[cfg(feature = "HMAccessoryProfile")]
-unsafe impl NSObjectProtocol for HMCameraProfile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCameraProfile {}
+);
 
 #[cfg(feature = "HMAccessoryProfile")]
 impl HMCameraProfile {

@@ -14,7 +14,9 @@ extern_class!(
     pub struct PKPaymentAuthorizationResult;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentAuthorizationResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentAuthorizationResult {}
+);
 
 impl PKPaymentAuthorizationResult {
     extern_methods!(
@@ -78,7 +80,9 @@ extern_class!(
     pub struct PKPaymentRequestUpdate;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentRequestUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentRequestUpdate {}
+);
 
 impl PKPaymentRequestUpdate {
     extern_methods!(
@@ -208,7 +212,9 @@ extern_class!(
     pub struct PKPaymentRequestShippingContactUpdate;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentRequestShippingContactUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentRequestShippingContactUpdate {}
+);
 
 impl PKPaymentRequestShippingContactUpdate {
     extern_methods!(
@@ -277,7 +283,9 @@ extern_class!(
     pub struct PKPaymentRequestShippingMethodUpdate;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentRequestShippingMethodUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentRequestShippingMethodUpdate {}
+);
 
 impl PKPaymentRequestShippingMethodUpdate {
     extern_methods!();
@@ -316,7 +324,9 @@ extern_class!(
     pub struct PKPaymentRequestPaymentMethodUpdate;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentRequestPaymentMethodUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentRequestPaymentMethodUpdate {}
+);
 
 impl PKPaymentRequestPaymentMethodUpdate {
     extern_methods!(
@@ -373,7 +383,9 @@ extern_class!(
     pub struct PKPaymentRequestMerchantSessionUpdate;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentRequestMerchantSessionUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentRequestMerchantSessionUpdate {}
+);
 
 impl PKPaymentRequestMerchantSessionUpdate {
     extern_methods!(
@@ -430,7 +442,9 @@ extern_class!(
     pub struct PKPaymentRequestCouponCodeUpdate;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentRequestCouponCodeUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentRequestCouponCodeUpdate {}
+);
 
 impl PKPaymentRequestCouponCodeUpdate {
     extern_methods!(
@@ -488,7 +502,9 @@ extern_class!(
     pub struct PKPaymentOrderDetails;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentOrderDetails {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentOrderDetails {}
+);
 
 impl PKPaymentOrderDetails {
     extern_methods!(

@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSCopying for DOMRGBColor {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMRGBColor {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl CopyingHelper for DOMRGBColor {
@@ -27,7 +29,9 @@ unsafe impl CopyingHelper for DOMRGBColor {
 }
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSObjectProtocol for DOMRGBColor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMRGBColor {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMRGBColor {

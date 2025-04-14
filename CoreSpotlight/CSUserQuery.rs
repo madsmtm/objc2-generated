@@ -38,10 +38,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CSSearchQuery")]
-unsafe impl NSCoding for CSUserQueryContext {}
+extern_conformance!(
+    unsafe impl NSCoding for CSUserQueryContext {}
+);
 
 #[cfg(feature = "CSSearchQuery")]
-unsafe impl NSCopying for CSUserQueryContext {}
+extern_conformance!(
+    unsafe impl NSCopying for CSUserQueryContext {}
+);
 
 #[cfg(feature = "CSSearchQuery")]
 unsafe impl CopyingHelper for CSUserQueryContext {
@@ -49,10 +53,14 @@ unsafe impl CopyingHelper for CSUserQueryContext {
 }
 
 #[cfg(feature = "CSSearchQuery")]
-unsafe impl NSObjectProtocol for CSUserQueryContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSUserQueryContext {}
+);
 
 #[cfg(feature = "CSSearchQuery")]
-unsafe impl NSSecureCoding for CSUserQueryContext {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CSUserQueryContext {}
+);
 
 #[cfg(feature = "CSSearchQuery")]
 impl CSUserQueryContext {
@@ -138,7 +146,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CSSearchQuery")]
-unsafe impl NSObjectProtocol for CSUserQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSUserQuery {}
+);
 
 #[cfg(feature = "CSSearchQuery")]
 impl CSUserQuery {

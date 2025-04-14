@@ -78,7 +78,9 @@ extern_class!(
     pub struct NSPreferencePane;
 );
 
-unsafe impl NSObjectProtocol for NSPreferencePane {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPreferencePane {}
+);
 
 impl NSPreferencePane {
     extern_methods!(

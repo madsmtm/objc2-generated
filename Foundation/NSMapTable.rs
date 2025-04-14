@@ -44,13 +44,17 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
-    for NSMapTable<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding
+        for NSMapTable<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying for NSMapTable<KeyType, ObjectType> {}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSCopying for NSMapTable<KeyType, ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> CopyingHelper
@@ -60,21 +64,27 @@ unsafe impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> CopyingHelp
 }
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
-    for NSMapTable<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSFastEnumeration
+        for NSMapTable<KeyType, ObjectType>
+    {
+    }
+);
 
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
-    for NSMapTable<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol
+        for NSMapTable<KeyType, ObjectType>
+    {
+    }
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
-    for NSMapTable<KeyType, ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCoding>
+        NSSecureCoding for NSMapTable<KeyType, ObjectType>
+    {
+    }
+);
 
 impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
     extern_methods!(

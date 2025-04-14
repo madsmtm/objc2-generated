@@ -213,11 +213,17 @@ unsafe impl Send for AVSpeechSynthesisVoice {}
 
 unsafe impl Sync for AVSpeechSynthesisVoice {}
 
-unsafe impl NSCoding for AVSpeechSynthesisVoice {}
+extern_conformance!(
+    unsafe impl NSCoding for AVSpeechSynthesisVoice {}
+);
 
-unsafe impl NSObjectProtocol for AVSpeechSynthesisVoice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSpeechSynthesisVoice {}
+);
 
-unsafe impl NSSecureCoding for AVSpeechSynthesisVoice {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVSpeechSynthesisVoice {}
+);
 
 impl AVSpeechSynthesisVoice {
     extern_methods!(
@@ -311,17 +317,25 @@ extern_class!(
     pub struct AVSpeechUtterance;
 );
 
-unsafe impl NSCoding for AVSpeechUtterance {}
+extern_conformance!(
+    unsafe impl NSCoding for AVSpeechUtterance {}
+);
 
-unsafe impl NSCopying for AVSpeechUtterance {}
+extern_conformance!(
+    unsafe impl NSCopying for AVSpeechUtterance {}
+);
 
 unsafe impl CopyingHelper for AVSpeechUtterance {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVSpeechUtterance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSpeechUtterance {}
+);
 
-unsafe impl NSSecureCoding for AVSpeechUtterance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVSpeechUtterance {}
+);
 
 impl AVSpeechUtterance {
     extern_methods!(
@@ -475,7 +489,9 @@ extern_class!(
     pub struct AVSpeechSynthesizer;
 );
 
-unsafe impl NSObjectProtocol for AVSpeechSynthesizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSpeechSynthesizer {}
+);
 
 impl AVSpeechSynthesizer {
     extern_methods!(
@@ -695,17 +711,25 @@ unsafe impl Send for AVSpeechSynthesisMarker {}
 
 unsafe impl Sync for AVSpeechSynthesisMarker {}
 
-unsafe impl NSCoding for AVSpeechSynthesisMarker {}
+extern_conformance!(
+    unsafe impl NSCoding for AVSpeechSynthesisMarker {}
+);
 
-unsafe impl NSCopying for AVSpeechSynthesisMarker {}
+extern_conformance!(
+    unsafe impl NSCopying for AVSpeechSynthesisMarker {}
+);
 
 unsafe impl CopyingHelper for AVSpeechSynthesisMarker {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVSpeechSynthesisMarker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSpeechSynthesisMarker {}
+);
 
-unsafe impl NSSecureCoding for AVSpeechSynthesisMarker {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVSpeechSynthesisMarker {}
+);
 
 impl AVSpeechSynthesisMarker {
     extern_methods!(

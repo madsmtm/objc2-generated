@@ -71,13 +71,17 @@ extern_class!(
     pub struct MTLIntersectionFunctionTableDescriptor;
 );
 
-unsafe impl NSCopying for MTLIntersectionFunctionTableDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLIntersectionFunctionTableDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLIntersectionFunctionTableDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLIntersectionFunctionTableDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLIntersectionFunctionTableDescriptor {}
+);
 
 impl MTLIntersectionFunctionTableDescriptor {
     extern_methods!(

@@ -39,10 +39,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSEnergyFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSEnergyFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSEnergyFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSEnergyFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSEnergyFormatter {
@@ -50,7 +54,9 @@ unsafe impl CopyingHelper for NSEnergyFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSEnergyFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSEnergyFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSEnergyFormatter {

@@ -13,17 +13,25 @@ extern_class!(
     pub struct INRideFareLineItem;
 );
 
-unsafe impl NSCoding for INRideFareLineItem {}
+extern_conformance!(
+    unsafe impl NSCoding for INRideFareLineItem {}
+);
 
-unsafe impl NSCopying for INRideFareLineItem {}
+extern_conformance!(
+    unsafe impl NSCopying for INRideFareLineItem {}
+);
 
 unsafe impl CopyingHelper for INRideFareLineItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INRideFareLineItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRideFareLineItem {}
+);
 
-unsafe impl NSSecureCoding for INRideFareLineItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRideFareLineItem {}
+);
 
 impl INRideFareLineItem {
     extern_methods!(

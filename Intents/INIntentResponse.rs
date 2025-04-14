@@ -14,17 +14,25 @@ extern_class!(
     pub struct INIntentResponse;
 );
 
-unsafe impl NSCoding for INIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INIntentResponse {}
+);
 
-unsafe impl NSCopying for INIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INIntentResponse {}
+);
 
 unsafe impl CopyingHelper for INIntentResponse {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INIntentResponse {}
+);
 
-unsafe impl NSSecureCoding for INIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INIntentResponse {}
+);
 
 impl INIntentResponse {
     extern_methods!(

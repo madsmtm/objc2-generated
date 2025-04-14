@@ -130,7 +130,9 @@ extern_class!(
     pub struct ICCameraItem;
 );
 
-unsafe impl NSObjectProtocol for ICCameraItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICCameraItem {}
+);
 
 impl ICCameraItem {
     extern_methods!(

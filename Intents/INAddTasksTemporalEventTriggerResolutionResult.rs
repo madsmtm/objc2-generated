@@ -45,7 +45,9 @@ extern_class!(
     feature = "INIntentResolutionResult",
     feature = "INTemporalEventTriggerResolutionResult"
 ))]
-unsafe impl NSObjectProtocol for INAddTasksTemporalEventTriggerResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INAddTasksTemporalEventTriggerResolutionResult {}
+);
 
 #[cfg(all(
     feature = "INIntentResolutionResult",

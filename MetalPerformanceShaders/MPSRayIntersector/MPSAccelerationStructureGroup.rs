@@ -25,7 +25,9 @@ extern_class!(
     pub struct MPSAccelerationStructureGroup;
 );
 
-unsafe impl NSObjectProtocol for MPSAccelerationStructureGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSAccelerationStructureGroup {}
+);
 
 impl MPSAccelerationStructureGroup {
     extern_methods!(

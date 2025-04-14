@@ -18,11 +18,17 @@ extern_class!(
     pub struct CLSObject;
 );
 
-unsafe impl NSCoding for CLSObject {}
+extern_conformance!(
+    unsafe impl NSCoding for CLSObject {}
+);
 
-unsafe impl NSObjectProtocol for CLSObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLSObject {}
+);
 
-unsafe impl NSSecureCoding for CLSObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLSObject {}
+);
 
 impl CLSObject {
     extern_methods!(

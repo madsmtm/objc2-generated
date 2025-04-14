@@ -16,11 +16,17 @@ extern_class!(
     pub struct SKPhysicsJoint;
 );
 
-unsafe impl NSCoding for SKPhysicsJoint {}
+extern_conformance!(
+    unsafe impl NSCoding for SKPhysicsJoint {}
+);
 
-unsafe impl NSObjectProtocol for SKPhysicsJoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPhysicsJoint {}
+);
 
-unsafe impl NSSecureCoding for SKPhysicsJoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKPhysicsJoint {}
+);
 
 impl SKPhysicsJoint {
     extern_methods!(
@@ -78,11 +84,17 @@ extern_class!(
     pub struct SKPhysicsJointPin;
 );
 
-unsafe impl NSCoding for SKPhysicsJointPin {}
+extern_conformance!(
+    unsafe impl NSCoding for SKPhysicsJointPin {}
+);
 
-unsafe impl NSObjectProtocol for SKPhysicsJointPin {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPhysicsJointPin {}
+);
 
-unsafe impl NSSecureCoding for SKPhysicsJointPin {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKPhysicsJointPin {}
+);
 
 impl SKPhysicsJointPin {
     extern_methods!(
@@ -170,11 +182,17 @@ extern_class!(
     pub struct SKPhysicsJointSpring;
 );
 
-unsafe impl NSCoding for SKPhysicsJointSpring {}
+extern_conformance!(
+    unsafe impl NSCoding for SKPhysicsJointSpring {}
+);
 
-unsafe impl NSObjectProtocol for SKPhysicsJointSpring {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPhysicsJointSpring {}
+);
 
-unsafe impl NSSecureCoding for SKPhysicsJointSpring {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKPhysicsJointSpring {}
+);
 
 impl SKPhysicsJointSpring {
     extern_methods!(
@@ -232,11 +250,17 @@ extern_class!(
     pub struct SKPhysicsJointFixed;
 );
 
-unsafe impl NSCoding for SKPhysicsJointFixed {}
+extern_conformance!(
+    unsafe impl NSCoding for SKPhysicsJointFixed {}
+);
 
-unsafe impl NSObjectProtocol for SKPhysicsJointFixed {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPhysicsJointFixed {}
+);
 
-unsafe impl NSSecureCoding for SKPhysicsJointFixed {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKPhysicsJointFixed {}
+);
 
 impl SKPhysicsJointFixed {
     extern_methods!(
@@ -271,11 +295,17 @@ extern_class!(
     pub struct SKPhysicsJointSliding;
 );
 
-unsafe impl NSCoding for SKPhysicsJointSliding {}
+extern_conformance!(
+    unsafe impl NSCoding for SKPhysicsJointSliding {}
+);
 
-unsafe impl NSObjectProtocol for SKPhysicsJointSliding {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPhysicsJointSliding {}
+);
 
-unsafe impl NSSecureCoding for SKPhysicsJointSliding {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKPhysicsJointSliding {}
+);
 
 impl SKPhysicsJointSliding {
     extern_methods!(
@@ -342,11 +372,17 @@ extern_class!(
     pub struct SKPhysicsJointLimit;
 );
 
-unsafe impl NSCoding for SKPhysicsJointLimit {}
+extern_conformance!(
+    unsafe impl NSCoding for SKPhysicsJointLimit {}
+);
 
-unsafe impl NSObjectProtocol for SKPhysicsJointLimit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPhysicsJointLimit {}
+);
 
-unsafe impl NSSecureCoding for SKPhysicsJointLimit {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKPhysicsJointLimit {}
+);
 
 impl SKPhysicsJointLimit {
     extern_methods!(

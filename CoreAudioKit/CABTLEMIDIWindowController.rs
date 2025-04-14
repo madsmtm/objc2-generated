@@ -25,15 +25,21 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for CABTLEMIDIWindowController {}
+extern_conformance!(
+    unsafe impl NSCoding for CABTLEMIDIWindowController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for CABTLEMIDIWindowController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CABTLEMIDIWindowController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for CABTLEMIDIWindowController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for CABTLEMIDIWindowController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

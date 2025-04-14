@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCMatMulLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCMatMulLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCMatMulLayer {

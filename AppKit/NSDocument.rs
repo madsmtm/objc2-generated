@@ -77,17 +77,27 @@ extern_class!(
 );
 
 #[cfg(feature = "NSKeyValueBinding")]
-unsafe impl NSEditorRegistration for NSDocument {}
+extern_conformance!(
+    unsafe impl NSEditorRegistration for NSDocument {}
+);
 
-unsafe impl NSFilePresenter for NSDocument {}
+extern_conformance!(
+    unsafe impl NSFilePresenter for NSDocument {}
+);
 
 #[cfg(feature = "NSMenu")]
-unsafe impl NSMenuItemValidation for NSDocument {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSDocument {}
+);
 
-unsafe impl NSObjectProtocol for NSDocument {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDocument {}
+);
 
 #[cfg(feature = "NSUserInterfaceValidation")]
-unsafe impl NSUserInterfaceValidations for NSDocument {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSDocument {}
+);
 
 impl NSDocument {
     extern_methods!(

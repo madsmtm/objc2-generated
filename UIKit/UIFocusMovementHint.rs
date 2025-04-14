@@ -20,13 +20,17 @@ extern_class!(
     pub struct UIFocusMovementHint;
 );
 
-unsafe impl NSCopying for UIFocusMovementHint {}
+extern_conformance!(
+    unsafe impl NSCopying for UIFocusMovementHint {}
+);
 
 unsafe impl CopyingHelper for UIFocusMovementHint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIFocusMovementHint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFocusMovementHint {}
+);
 
 impl UIFocusMovementHint {
     extern_methods!(

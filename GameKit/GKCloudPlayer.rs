@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "GKBasePlayer")]
-unsafe impl NSObjectProtocol for GKCloudPlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKCloudPlayer {}
+);
 
 #[cfg(feature = "GKBasePlayer")]
 impl GKCloudPlayer {

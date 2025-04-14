@@ -41,7 +41,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "PKObject", feature = "PKPass"))]
-unsafe impl NSObjectProtocol for PKSecureElementPass {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKSecureElementPass {}
+);
 
 #[cfg(all(feature = "PKObject", feature = "PKPass"))]
 impl PKSecureElementPass {

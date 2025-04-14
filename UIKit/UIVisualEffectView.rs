@@ -27,51 +27,77 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSSecureCoding for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIVisualEffectView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIVisualEffectView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIVisualEffectView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIVisualEffectView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIVisualEffectView {

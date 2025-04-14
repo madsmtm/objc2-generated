@@ -21,7 +21,9 @@ unsafe impl Send for HMAccessoryBrowser {}
 
 unsafe impl Sync for HMAccessoryBrowser {}
 
-unsafe impl NSObjectProtocol for HMAccessoryBrowser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMAccessoryBrowser {}
+);
 
 impl HMAccessoryBrowser {
     extern_methods!(

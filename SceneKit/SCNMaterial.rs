@@ -150,23 +150,35 @@ extern_class!(
     pub struct SCNMaterial;
 );
 
-unsafe impl NSCoding for SCNMaterial {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNMaterial {}
+);
 
-unsafe impl NSCopying for SCNMaterial {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNMaterial {}
+);
 
 unsafe impl CopyingHelper for SCNMaterial {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNMaterial {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNMaterial {}
+);
 
-unsafe impl NSSecureCoding for SCNMaterial {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNMaterial {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNMaterial {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNMaterial {}
+);
 
 #[cfg(feature = "SCNShadable")]
-unsafe impl SCNShadable for SCNMaterial {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNMaterial {}
+);
 
 impl SCNMaterial {
     extern_methods!(

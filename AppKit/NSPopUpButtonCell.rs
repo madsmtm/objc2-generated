@@ -49,7 +49,9 @@ extern_class!(
     feature = "NSCell",
     feature = "NSMenuItemCell"
 ))]
-unsafe impl NSAccessibility for NSPopUpButtonCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSPopUpButtonCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -58,7 +60,9 @@ unsafe impl NSAccessibility for NSPopUpButtonCell {}
     feature = "NSCell",
     feature = "NSMenuItemCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSPopUpButtonCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSPopUpButtonCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -66,7 +70,9 @@ unsafe impl NSAccessibilityElementProtocol for NSPopUpButtonCell {}
     feature = "NSCell",
     feature = "NSMenuItemCell"
 ))]
-unsafe impl NSCoding for NSPopUpButtonCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPopUpButtonCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -74,7 +80,9 @@ unsafe impl NSCoding for NSPopUpButtonCell {}
     feature = "NSCell",
     feature = "NSMenuItemCell"
 ))]
-unsafe impl NSCopying for NSPopUpButtonCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPopUpButtonCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -93,7 +101,9 @@ unsafe impl CopyingHelper for NSPopUpButtonCell {
     feature = "NSMenu",
     feature = "NSMenuItemCell"
 ))]
-unsafe impl NSMenuItemValidation for NSPopUpButtonCell {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSPopUpButtonCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -101,7 +111,9 @@ unsafe impl NSMenuItemValidation for NSPopUpButtonCell {}
     feature = "NSCell",
     feature = "NSMenuItemCell"
 ))]
-unsafe impl NSObjectProtocol for NSPopUpButtonCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPopUpButtonCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -110,7 +122,9 @@ unsafe impl NSObjectProtocol for NSPopUpButtonCell {}
     feature = "NSMenuItemCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSPopUpButtonCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSPopUpButtonCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",

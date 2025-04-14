@@ -32,7 +32,9 @@ extern_class!(
     pub struct PHLivePhotoEditingContext;
 );
 
-unsafe impl NSObjectProtocol for PHLivePhotoEditingContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHLivePhotoEditingContext {}
+);
 
 impl PHLivePhotoEditingContext {
     extern_methods!(

@@ -46,7 +46,9 @@ extern_class!(
     pub struct UITextItem;
 );
 
-unsafe impl NSObjectProtocol for UITextItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextItem {}
+);
 
 impl UITextItem {
     extern_methods!(
@@ -96,7 +98,9 @@ extern_class!(
     pub struct UITextItemMenuPreview;
 );
 
-unsafe impl NSObjectProtocol for UITextItemMenuPreview {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextItemMenuPreview {}
+);
 
 impl UITextItemMenuPreview {
     extern_methods!(
@@ -129,7 +133,9 @@ extern_class!(
     pub struct UITextItemMenuConfiguration;
 );
 
-unsafe impl NSObjectProtocol for UITextItemMenuConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextItemMenuConfiguration {}
+);
 
 impl UITextItemMenuConfiguration {
     extern_methods!(

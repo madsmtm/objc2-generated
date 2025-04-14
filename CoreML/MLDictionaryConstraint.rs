@@ -17,11 +17,17 @@ extern_class!(
     pub struct MLDictionaryConstraint;
 );
 
-unsafe impl NSCoding for MLDictionaryConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for MLDictionaryConstraint {}
+);
 
-unsafe impl NSObjectProtocol for MLDictionaryConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLDictionaryConstraint {}
+);
 
-unsafe impl NSSecureCoding for MLDictionaryConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLDictionaryConstraint {}
+);
 
 impl MLDictionaryConstraint {
     extern_methods!(

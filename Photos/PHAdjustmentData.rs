@@ -13,7 +13,9 @@ extern_class!(
     pub struct PHAdjustmentData;
 );
 
-unsafe impl NSObjectProtocol for PHAdjustmentData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHAdjustmentData {}
+);
 
 impl PHAdjustmentData {
     extern_methods!(

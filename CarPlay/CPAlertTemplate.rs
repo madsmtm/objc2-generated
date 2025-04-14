@@ -18,13 +18,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSCoding for CPAlertTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for CPAlertTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSObjectProtocol for CPAlertTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPAlertTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSSecureCoding for CPAlertTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPAlertTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
 impl CPAlertTemplate {

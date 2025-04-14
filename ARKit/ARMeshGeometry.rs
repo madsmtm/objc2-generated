@@ -28,13 +28,19 @@ unsafe impl Send for ARGeometrySource {}
 unsafe impl Sync for ARGeometrySource {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARGeometrySource {}
+extern_conformance!(
+    unsafe impl NSCoding for ARGeometrySource {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARGeometrySource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARGeometrySource {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARGeometrySource {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARGeometrySource {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARGeometrySource {
@@ -128,13 +134,19 @@ unsafe impl Send for ARGeometryElement {}
 unsafe impl Sync for ARGeometryElement {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARGeometryElement {}
+extern_conformance!(
+    unsafe impl NSCoding for ARGeometryElement {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARGeometryElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARGeometryElement {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARGeometryElement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARGeometryElement {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARGeometryElement {
@@ -236,13 +248,19 @@ unsafe impl Send for ARMeshGeometry {}
 unsafe impl Sync for ARMeshGeometry {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARMeshGeometry {}
+extern_conformance!(
+    unsafe impl NSCoding for ARMeshGeometry {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARMeshGeometry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARMeshGeometry {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARMeshGeometry {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARMeshGeometry {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARMeshGeometry {

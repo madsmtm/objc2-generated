@@ -14,17 +14,25 @@ extern_class!(
     pub struct CMDyskineticSymptomResult;
 );
 
-unsafe impl NSCoding for CMDyskineticSymptomResult {}
+extern_conformance!(
+    unsafe impl NSCoding for CMDyskineticSymptomResult {}
+);
 
-unsafe impl NSCopying for CMDyskineticSymptomResult {}
+extern_conformance!(
+    unsafe impl NSCopying for CMDyskineticSymptomResult {}
+);
 
 unsafe impl CopyingHelper for CMDyskineticSymptomResult {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMDyskineticSymptomResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMDyskineticSymptomResult {}
+);
 
-unsafe impl NSSecureCoding for CMDyskineticSymptomResult {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMDyskineticSymptomResult {}
+);
 
 impl CMDyskineticSymptomResult {
     extern_methods!(
@@ -73,17 +81,25 @@ extern_class!(
     pub struct CMTremorResult;
 );
 
-unsafe impl NSCoding for CMTremorResult {}
+extern_conformance!(
+    unsafe impl NSCoding for CMTremorResult {}
+);
 
-unsafe impl NSCopying for CMTremorResult {}
+extern_conformance!(
+    unsafe impl NSCopying for CMTremorResult {}
+);
 
 unsafe impl CopyingHelper for CMTremorResult {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMTremorResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMTremorResult {}
+);
 
-unsafe impl NSSecureCoding for CMTremorResult {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMTremorResult {}
+);
 
 impl CMTremorResult {
     extern_methods!(
@@ -168,7 +184,9 @@ extern_class!(
     pub struct CMMovementDisorderManager;
 );
 
-unsafe impl NSObjectProtocol for CMMovementDisorderManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMMovementDisorderManager {}
+);
 
 impl CMMovementDisorderManager {
     extern_methods!(

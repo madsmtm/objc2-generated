@@ -46,51 +46,77 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIPopoverBackgroundViewMethods for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UIPopoverBackgroundViewMethods for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIPopoverBackgroundView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIPopoverBackgroundView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIPopoverBackgroundView {

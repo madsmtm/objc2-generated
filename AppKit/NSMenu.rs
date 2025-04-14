@@ -83,26 +83,40 @@ extern_class!(
 );
 
 #[cfg(feature = "NSAccessibilityProtocols")]
-unsafe impl NSAccessibility for NSMenu {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSMenu {}
+);
 
 #[cfg(feature = "NSAccessibilityProtocols")]
-unsafe impl NSAccessibilityElementProtocol for NSMenu {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSMenu {}
+);
 
 #[cfg(feature = "NSAppearance")]
-unsafe impl NSAppearanceCustomization for NSMenu {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSMenu {}
+);
 
-unsafe impl NSCoding for NSMenu {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMenu {}
+);
 
-unsafe impl NSCopying for NSMenu {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMenu {}
+);
 
 unsafe impl CopyingHelper for NSMenu {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMenu {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMenu {}
+);
 
 #[cfg(feature = "NSUserInterfaceItemIdentification")]
-unsafe impl NSUserInterfaceItemIdentification for NSMenu {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSMenu {}
+);
 
 impl NSMenu {
     extern_methods!(

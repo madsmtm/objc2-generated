@@ -37,23 +37,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MKMapItemDetailViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for MKMapItemDetailViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for MKMapItemDetailViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for MKMapItemDetailViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MKMapItemDetailViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapItemDetailViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for MKMapItemDetailViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for MKMapItemDetailViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MKMapItemDetailViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MKMapItemDetailViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

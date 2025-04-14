@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MAFlashingLightsProcessorResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MAFlashingLightsProcessorResult {}
+);
 
 #[cfg(feature = "objc2")]
 impl MAFlashingLightsProcessorResult {
@@ -70,7 +72,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MAFlashingLightsProcessor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MAFlashingLightsProcessor {}
+);
 
 #[cfg(feature = "objc2")]
 impl MAFlashingLightsProcessor {

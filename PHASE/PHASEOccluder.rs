@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEObject")]
-unsafe impl NSCopying for PHASEOccluder {}
+extern_conformance!(
+    unsafe impl NSCopying for PHASEOccluder {}
+);
 
 #[cfg(feature = "PHASEObject")]
 unsafe impl CopyingHelper for PHASEOccluder {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for PHASEOccluder {
 }
 
 #[cfg(feature = "PHASEObject")]
-unsafe impl NSObjectProtocol for PHASEOccluder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEOccluder {}
+);
 
 #[cfg(feature = "PHASEObject")]
 impl PHASEOccluder {

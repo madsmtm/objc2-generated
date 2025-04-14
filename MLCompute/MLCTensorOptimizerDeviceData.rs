@@ -14,13 +14,17 @@ extern_class!(
     pub struct MLCTensorOptimizerDeviceData;
 );
 
-unsafe impl NSCopying for MLCTensorOptimizerDeviceData {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCTensorOptimizerDeviceData {}
+);
 
 unsafe impl CopyingHelper for MLCTensorOptimizerDeviceData {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCTensorOptimizerDeviceData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCTensorOptimizerDeviceData {}
+);
 
 impl MLCTensorOptimizerDeviceData {
     extern_methods!(

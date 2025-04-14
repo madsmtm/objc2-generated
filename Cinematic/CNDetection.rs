@@ -85,13 +85,17 @@ unsafe impl Send for CNDetection {}
 
 unsafe impl Sync for CNDetection {}
 
-unsafe impl NSCopying for CNDetection {}
+extern_conformance!(
+    unsafe impl NSCopying for CNDetection {}
+);
 
 unsafe impl CopyingHelper for CNDetection {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNDetection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNDetection {}
+);
 
 impl CNDetection {
     extern_methods!(

@@ -315,7 +315,9 @@ extern_class!(
     pub struct NSPasteboard;
 );
 
-unsafe impl NSObjectProtocol for NSPasteboard {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPasteboard {}
+);
 
 impl NSPasteboard {
     extern_methods!(
@@ -716,13 +718,21 @@ pub unsafe trait NSURLNSPasteboardSupport:
 impl private_NSURLNSPasteboardSupport::Sealed for NSURL {}
 unsafe impl NSURLNSPasteboardSupport for NSURL {}
 
-unsafe impl NSPasteboardReading for NSURL {}
+extern_conformance!(
+    unsafe impl NSPasteboardReading for NSURL {}
+);
 
-unsafe impl NSPasteboardWriting for NSURL {}
+extern_conformance!(
+    unsafe impl NSPasteboardWriting for NSURL {}
+);
 
-unsafe impl NSPasteboardReading for NSString {}
+extern_conformance!(
+    unsafe impl NSPasteboardReading for NSString {}
+);
 
-unsafe impl NSPasteboardWriting for NSString {}
+extern_conformance!(
+    unsafe impl NSPasteboardWriting for NSString {}
+);
 
 /// NSFileContents.
 /// * File Contents **

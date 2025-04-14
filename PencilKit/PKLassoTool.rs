@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PKTool")]
-unsafe impl NSCopying for PKLassoTool {}
+extern_conformance!(
+    unsafe impl NSCopying for PKLassoTool {}
+);
 
 #[cfg(feature = "PKTool")]
 unsafe impl CopyingHelper for PKLassoTool {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for PKLassoTool {
 }
 
 #[cfg(feature = "PKTool")]
-unsafe impl NSObjectProtocol for PKLassoTool {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKLassoTool {}
+);
 
 #[cfg(feature = "PKTool")]
 impl PKLassoTool {

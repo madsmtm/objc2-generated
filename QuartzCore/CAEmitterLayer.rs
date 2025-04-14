@@ -30,16 +30,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]
-unsafe impl CAMediaTiming for CAEmitterLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CAEmitterLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSCoding for CAEmitterLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for CAEmitterLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSObjectProtocol for CAEmitterLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAEmitterLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSSecureCoding for CAEmitterLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAEmitterLayer {}
+);
 
 #[cfg(feature = "CALayer")]
 impl CAEmitterLayer {

@@ -14,7 +14,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INPlaybackQueueLocationResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPlaybackQueueLocationResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INPlaybackQueueLocationResolutionResult {

@@ -37,13 +37,17 @@ extern_class!(
     pub struct MTLFXSpatialScalerDescriptor;
 );
 
-unsafe impl NSCopying for MTLFXSpatialScalerDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLFXSpatialScalerDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLFXSpatialScalerDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLFXSpatialScalerDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFXSpatialScalerDescriptor {}
+);
 
 impl MTLFXSpatialScalerDescriptor {
     extern_methods!(

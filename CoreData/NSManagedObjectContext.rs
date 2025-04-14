@@ -122,11 +122,17 @@ extern_class!(
     pub struct NSManagedObjectContext;
 );
 
-unsafe impl NSCoding for NSManagedObjectContext {}
+extern_conformance!(
+    unsafe impl NSCoding for NSManagedObjectContext {}
+);
 
-unsafe impl NSLocking for NSManagedObjectContext {}
+extern_conformance!(
+    unsafe impl NSLocking for NSManagedObjectContext {}
+);
 
-unsafe impl NSObjectProtocol for NSManagedObjectContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSManagedObjectContext {}
+);
 
 impl NSManagedObjectContext {
     extern_methods!(

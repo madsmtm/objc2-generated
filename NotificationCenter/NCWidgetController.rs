@@ -15,7 +15,9 @@ extern_class!(
     pub struct NCWidgetController;
 );
 
-unsafe impl NSObjectProtocol for NCWidgetController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NCWidgetController {}
+);
 
 impl NCWidgetController {
     extern_methods!(

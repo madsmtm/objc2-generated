@@ -131,7 +131,9 @@ unsafe impl Send for CKSyncEngine {}
 
 unsafe impl Sync for CKSyncEngine {}
 
-unsafe impl NSObjectProtocol for CKSyncEngine {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngine {}
+);
 
 impl CKSyncEngine {
     extern_methods!(
@@ -377,13 +379,17 @@ unsafe impl Send for CKSyncEngineFetchChangesOptions {}
 
 unsafe impl Sync for CKSyncEngineFetchChangesOptions {}
 
-unsafe impl NSCopying for CKSyncEngineFetchChangesOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for CKSyncEngineFetchChangesOptions {}
+);
 
 unsafe impl CopyingHelper for CKSyncEngineFetchChangesOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesOptions {}
+);
 
 impl CKSyncEngineFetchChangesOptions {
     extern_methods!(
@@ -468,13 +474,17 @@ unsafe impl Send for CKSyncEngineFetchChangesScope {}
 
 unsafe impl Sync for CKSyncEngineFetchChangesScope {}
 
-unsafe impl NSCopying for CKSyncEngineFetchChangesScope {}
+extern_conformance!(
+    unsafe impl NSCopying for CKSyncEngineFetchChangesScope {}
+);
 
 unsafe impl CopyingHelper for CKSyncEngineFetchChangesScope {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesScope {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesScope {}
+);
 
 impl CKSyncEngineFetchChangesScope {
     extern_methods!(
@@ -545,13 +555,17 @@ unsafe impl Send for CKSyncEngineSendChangesOptions {}
 
 unsafe impl Sync for CKSyncEngineSendChangesOptions {}
 
-unsafe impl NSCopying for CKSyncEngineSendChangesOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for CKSyncEngineSendChangesOptions {}
+);
 
 unsafe impl CopyingHelper for CKSyncEngineSendChangesOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKSyncEngineSendChangesOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineSendChangesOptions {}
+);
 
 impl CKSyncEngineSendChangesOptions {
     extern_methods!(
@@ -617,13 +631,17 @@ unsafe impl Send for CKSyncEngineSendChangesScope {}
 
 unsafe impl Sync for CKSyncEngineSendChangesScope {}
 
-unsafe impl NSCopying for CKSyncEngineSendChangesScope {}
+extern_conformance!(
+    unsafe impl NSCopying for CKSyncEngineSendChangesScope {}
+);
 
 unsafe impl CopyingHelper for CKSyncEngineSendChangesScope {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKSyncEngineSendChangesScope {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineSendChangesScope {}
+);
 
 impl CKSyncEngineSendChangesScope {
     extern_methods!(
@@ -755,7 +773,9 @@ unsafe impl Send for CKSyncEngineFetchChangesContext {}
 
 unsafe impl Sync for CKSyncEngineFetchChangesContext {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesContext {}
+);
 
 impl CKSyncEngineFetchChangesContext {
     extern_methods!(
@@ -797,7 +817,9 @@ unsafe impl Send for CKSyncEngineSendChangesContext {}
 
 unsafe impl Sync for CKSyncEngineSendChangesContext {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineSendChangesContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineSendChangesContext {}
+);
 
 impl CKSyncEngineSendChangesContext {
     extern_methods!(

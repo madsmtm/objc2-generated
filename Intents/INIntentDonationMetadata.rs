@@ -13,17 +13,25 @@ extern_class!(
     pub struct INIntentDonationMetadata;
 );
 
-unsafe impl NSCoding for INIntentDonationMetadata {}
+extern_conformance!(
+    unsafe impl NSCoding for INIntentDonationMetadata {}
+);
 
-unsafe impl NSCopying for INIntentDonationMetadata {}
+extern_conformance!(
+    unsafe impl NSCopying for INIntentDonationMetadata {}
+);
 
 unsafe impl CopyingHelper for INIntentDonationMetadata {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INIntentDonationMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INIntentDonationMetadata {}
+);
 
-unsafe impl NSSecureCoding for INIntentDonationMetadata {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INIntentDonationMetadata {}
+);
 
 impl INIntentDonationMetadata {
     extern_methods!(

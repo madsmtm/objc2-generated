@@ -68,19 +68,29 @@ extern_class!(
 );
 
 #[cfg(feature = "UIPresentationController")]
-unsafe impl NSObjectProtocol for UIPopoverPresentationController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPopoverPresentationController {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIPresentationController"))]
-unsafe impl UIAppearanceContainer for UIPopoverPresentationController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIPopoverPresentationController {}
+);
 
 #[cfg(all(feature = "UIPresentationController", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIPopoverPresentationController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIPopoverPresentationController {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIPresentationController"))]
-unsafe impl UIFocusEnvironment for UIPopoverPresentationController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIPopoverPresentationController {}
+);
 
 #[cfg(all(feature = "UIPresentationController", feature = "UITraitCollection"))]
-unsafe impl UITraitEnvironment for UIPopoverPresentationController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIPopoverPresentationController {}
+);
 
 #[cfg(feature = "UIPresentationController")]
 impl UIPopoverPresentationController {

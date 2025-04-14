@@ -39,7 +39,9 @@ extern_class!(
     pub struct MTLSharedEventListener;
 );
 
-unsafe impl NSObjectProtocol for MTLSharedEventListener {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLSharedEventListener {}
+);
 
 impl MTLSharedEventListener {
     extern_methods!(
@@ -122,11 +124,17 @@ extern_class!(
     pub struct MTLSharedEventHandle;
 );
 
-unsafe impl NSCoding for MTLSharedEventHandle {}
+extern_conformance!(
+    unsafe impl NSCoding for MTLSharedEventHandle {}
+);
 
-unsafe impl NSObjectProtocol for MTLSharedEventHandle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLSharedEventHandle {}
+);
 
-unsafe impl NSSecureCoding for MTLSharedEventHandle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MTLSharedEventHandle {}
+);
 
 impl MTLSharedEventHandle {
     extern_methods!(

@@ -55,7 +55,9 @@ extern_class!(
     pub struct SAEmergencyResponseManager;
 );
 
-unsafe impl NSObjectProtocol for SAEmergencyResponseManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SAEmergencyResponseManager {}
+);
 
 impl SAEmergencyResponseManager {
     extern_methods!(

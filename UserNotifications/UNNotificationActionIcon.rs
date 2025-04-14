@@ -13,17 +13,25 @@ extern_class!(
     pub struct UNNotificationActionIcon;
 );
 
-unsafe impl NSCoding for UNNotificationActionIcon {}
+extern_conformance!(
+    unsafe impl NSCoding for UNNotificationActionIcon {}
+);
 
-unsafe impl NSCopying for UNNotificationActionIcon {}
+extern_conformance!(
+    unsafe impl NSCopying for UNNotificationActionIcon {}
+);
 
 unsafe impl CopyingHelper for UNNotificationActionIcon {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNNotificationActionIcon {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNNotificationActionIcon {}
+);
 
-unsafe impl NSSecureCoding for UNNotificationActionIcon {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNNotificationActionIcon {}
+);
 
 impl UNNotificationActionIcon {
     extern_methods!(

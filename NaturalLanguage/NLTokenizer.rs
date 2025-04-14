@@ -62,7 +62,9 @@ extern_class!(
     pub struct NLTokenizer;
 );
 
-unsafe impl NSObjectProtocol for NLTokenizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NLTokenizer {}
+);
 
 impl NLTokenizer {
     extern_methods!(

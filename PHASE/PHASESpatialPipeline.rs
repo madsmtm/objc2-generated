@@ -75,7 +75,9 @@ extern_class!(
     pub struct PHASESpatialPipelineEntry;
 );
 
-unsafe impl NSObjectProtocol for PHASESpatialPipelineEntry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESpatialPipelineEntry {}
+);
 
 impl PHASESpatialPipelineEntry {
     extern_methods!(
@@ -136,7 +138,9 @@ extern_class!(
     pub struct PHASESpatialPipeline;
 );
 
-unsafe impl NSObjectProtocol for PHASESpatialPipeline {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESpatialPipeline {}
+);
 
 impl PHASESpatialPipeline {
     extern_methods!(

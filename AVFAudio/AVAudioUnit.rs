@@ -24,7 +24,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVAudioNode")]
-unsafe impl NSObjectProtocol for AVAudioUnit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioUnit {}
+);
 
 #[cfg(feature = "AVAudioNode")]
 impl AVAudioUnit {

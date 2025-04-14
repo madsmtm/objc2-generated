@@ -47,10 +47,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSCoding for UIAction {}
+extern_conformance!(
+    unsafe impl NSCoding for UIAction {}
+);
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSCopying for UIAction {}
+extern_conformance!(
+    unsafe impl NSCopying for UIAction {}
+);
 
 #[cfg(feature = "UIMenuElement")]
 unsafe impl CopyingHelper for UIAction {
@@ -58,13 +62,19 @@ unsafe impl CopyingHelper for UIAction {
 }
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSObjectProtocol for UIAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIAction {}
+);
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl NSSecureCoding for UIAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIAction {}
+);
 
 #[cfg(all(feature = "UIMenuElement", feature = "UIMenuLeaf"))]
-unsafe impl UIMenuLeaf for UIAction {}
+extern_conformance!(
+    unsafe impl UIMenuLeaf for UIAction {}
+);
 
 #[cfg(feature = "UIMenuElement")]
 impl UIAction {

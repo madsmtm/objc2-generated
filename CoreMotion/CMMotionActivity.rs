@@ -37,10 +37,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCoding for CMMotionActivity {}
+extern_conformance!(
+    unsafe impl NSCoding for CMMotionActivity {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCopying for CMMotionActivity {}
+extern_conformance!(
+    unsafe impl NSCopying for CMMotionActivity {}
+);
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl CopyingHelper for CMMotionActivity {
@@ -48,10 +52,14 @@ unsafe impl CopyingHelper for CMMotionActivity {
 }
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSObjectProtocol for CMMotionActivity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMMotionActivity {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSSecureCoding for CMMotionActivity {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMMotionActivity {}
+);
 
 #[cfg(feature = "CMLogItem")]
 impl CMMotionActivity {

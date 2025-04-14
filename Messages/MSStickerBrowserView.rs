@@ -53,40 +53,64 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2-quartz-core", feature = "objc2-ui-kit"))]
-unsafe impl CALayerDelegate for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl NSCoding for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearance for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl UIAppearance for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UICoordinateSpace for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIDynamicItem for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItem for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItemContainer for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for MSStickerBrowserView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for MSStickerBrowserView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl MSStickerBrowserView {

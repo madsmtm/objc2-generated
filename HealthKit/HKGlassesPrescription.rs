@@ -39,14 +39,18 @@ unsafe impl Sync for HKGlassesPrescription {}
     feature = "HKSample",
     feature = "HKVisionPrescription"
 ))]
-unsafe impl NSCoding for HKGlassesPrescription {}
+extern_conformance!(
+    unsafe impl NSCoding for HKGlassesPrescription {}
+);
 
 #[cfg(all(
     feature = "HKObject",
     feature = "HKSample",
     feature = "HKVisionPrescription"
 ))]
-unsafe impl NSCopying for HKGlassesPrescription {}
+extern_conformance!(
+    unsafe impl NSCopying for HKGlassesPrescription {}
+);
 
 #[cfg(all(
     feature = "HKObject",
@@ -62,14 +66,18 @@ unsafe impl CopyingHelper for HKGlassesPrescription {
     feature = "HKSample",
     feature = "HKVisionPrescription"
 ))]
-unsafe impl NSObjectProtocol for HKGlassesPrescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKGlassesPrescription {}
+);
 
 #[cfg(all(
     feature = "HKObject",
     feature = "HKSample",
     feature = "HKVisionPrescription"
 ))]
-unsafe impl NSSecureCoding for HKGlassesPrescription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKGlassesPrescription {}
+);
 
 #[cfg(all(
     feature = "HKObject",

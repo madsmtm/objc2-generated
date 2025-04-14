@@ -15,11 +15,17 @@ extern_class!(
     pub struct ILNetworkResponse;
 );
 
-unsafe impl NSCoding for ILNetworkResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for ILNetworkResponse {}
+);
 
-unsafe impl NSObjectProtocol for ILNetworkResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ILNetworkResponse {}
+);
 
-unsafe impl NSSecureCoding for ILNetworkResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ILNetworkResponse {}
+);
 
 impl ILNetworkResponse {
     extern_methods!(

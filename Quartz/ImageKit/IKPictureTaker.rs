@@ -17,23 +17,41 @@ extern_class!(
     pub struct IKPictureTaker;
 );
 
-unsafe impl NSAccessibility for IKPictureTaker {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IKPictureTaker {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IKPictureTaker {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IKPictureTaker {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IKPictureTaker {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IKPictureTaker {}
+);
 
-unsafe impl NSAppearanceCustomization for IKPictureTaker {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IKPictureTaker {}
+);
 
-unsafe impl NSCoding for IKPictureTaker {}
+extern_conformance!(
+    unsafe impl NSCoding for IKPictureTaker {}
+);
 
-unsafe impl NSMenuItemValidation for IKPictureTaker {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for IKPictureTaker {}
+);
 
-unsafe impl NSObjectProtocol for IKPictureTaker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKPictureTaker {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IKPictureTaker {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IKPictureTaker {}
+);
 
-unsafe impl NSUserInterfaceValidations for IKPictureTaker {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for IKPictureTaker {}
+);
 
 impl IKPictureTaker {
     extern_methods!(

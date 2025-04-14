@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INRadioTypeResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRadioTypeResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INRadioTypeResolutionResult {

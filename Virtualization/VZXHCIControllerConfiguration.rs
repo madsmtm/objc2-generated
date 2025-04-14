@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZUSBControllerConfiguration")]
-unsafe impl NSCopying for VZXHCIControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZXHCIControllerConfiguration {}
+);
 
 #[cfg(feature = "VZUSBControllerConfiguration")]
 unsafe impl CopyingHelper for VZXHCIControllerConfiguration {
@@ -27,7 +29,9 @@ unsafe impl CopyingHelper for VZXHCIControllerConfiguration {
 }
 
 #[cfg(feature = "VZUSBControllerConfiguration")]
-unsafe impl NSObjectProtocol for VZXHCIControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZXHCIControllerConfiguration {}
+);
 
 #[cfg(feature = "VZUSBControllerConfiguration")]
 impl VZXHCIControllerConfiguration {

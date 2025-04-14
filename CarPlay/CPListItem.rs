@@ -67,12 +67,18 @@ extern_class!(
 );
 
 #[cfg(feature = "CPListItemTypes")]
-unsafe impl CPListTemplateItem for CPListItem {}
+extern_conformance!(
+    unsafe impl CPListTemplateItem for CPListItem {}
+);
 
 #[cfg(feature = "CPListItemTypes")]
-unsafe impl CPSelectableListItem for CPListItem {}
+extern_conformance!(
+    unsafe impl CPSelectableListItem for CPListItem {}
+);
 
-unsafe impl NSObjectProtocol for CPListItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPListItem {}
+);
 
 impl CPListItem {
     extern_methods!(

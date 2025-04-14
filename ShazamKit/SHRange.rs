@@ -20,17 +20,25 @@ unsafe impl Send for SHRange {}
 
 unsafe impl Sync for SHRange {}
 
-unsafe impl NSCoding for SHRange {}
+extern_conformance!(
+    unsafe impl NSCoding for SHRange {}
+);
 
-unsafe impl NSCopying for SHRange {}
+extern_conformance!(
+    unsafe impl NSCopying for SHRange {}
+);
 
 unsafe impl CopyingHelper for SHRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SHRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHRange {}
+);
 
-unsafe impl NSSecureCoding for SHRange {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SHRange {}
+);
 
 impl SHRange {
     extern_methods!(

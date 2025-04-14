@@ -18,9 +18,13 @@ extern_class!(
     pub struct NSTouchBar;
 );
 
-unsafe impl NSCoding for NSTouchBar {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTouchBar {}
+);
 
-unsafe impl NSObjectProtocol for NSTouchBar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTouchBar {}
+);
 
 impl NSTouchBar {
     extern_methods!(
@@ -230,7 +234,9 @@ impl NSResponder {
 }
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSTouchBarProvider for NSResponder {}
+extern_conformance!(
+    unsafe impl NSTouchBarProvider for NSResponder {}
+);
 
 /// NSTouchBarCustomization.
 #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]

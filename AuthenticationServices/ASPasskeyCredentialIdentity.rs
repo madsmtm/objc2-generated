@@ -18,19 +18,29 @@ extern_class!(
 );
 
 #[cfg(feature = "ASCredentialIdentity")]
-unsafe impl ASCredentialIdentity for ASPasskeyCredentialIdentity {}
+extern_conformance!(
+    unsafe impl ASCredentialIdentity for ASPasskeyCredentialIdentity {}
+);
 
-unsafe impl NSCoding for ASPasskeyCredentialIdentity {}
+extern_conformance!(
+    unsafe impl NSCoding for ASPasskeyCredentialIdentity {}
+);
 
-unsafe impl NSCopying for ASPasskeyCredentialIdentity {}
+extern_conformance!(
+    unsafe impl NSCopying for ASPasskeyCredentialIdentity {}
+);
 
 unsafe impl CopyingHelper for ASPasskeyCredentialIdentity {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASPasskeyCredentialIdentity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASPasskeyCredentialIdentity {}
+);
 
-unsafe impl NSSecureCoding for ASPasskeyCredentialIdentity {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASPasskeyCredentialIdentity {}
+);
 
 impl ASPasskeyCredentialIdentity {
     extern_methods!(

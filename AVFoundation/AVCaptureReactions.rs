@@ -100,7 +100,9 @@ extern_class!(
     pub struct AVCaptureReactionEffectState;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureReactionEffectState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureReactionEffectState {}
+);
 
 impl AVCaptureReactionEffectState {
     extern_methods!(

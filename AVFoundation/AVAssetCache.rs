@@ -24,7 +24,9 @@ unsafe impl Send for AVAssetCache {}
 
 unsafe impl Sync for AVAssetCache {}
 
-unsafe impl NSObjectProtocol for AVAssetCache {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetCache {}
+);
 
 impl AVAssetCache {
     extern_methods!(

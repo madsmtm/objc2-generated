@@ -21,7 +21,9 @@ extern_class!(
     pub struct AVExternalStorageDevice;
 );
 
-unsafe impl NSObjectProtocol for AVExternalStorageDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVExternalStorageDevice {}
+);
 
 impl AVExternalStorageDevice {
     extern_methods!(
@@ -153,7 +155,9 @@ extern_class!(
     pub struct AVExternalStorageDeviceDiscoverySession;
 );
 
-unsafe impl NSObjectProtocol for AVExternalStorageDeviceDiscoverySession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVExternalStorageDeviceDiscoverySession {}
+);
 
 impl AVExternalStorageDeviceDiscoverySession {
     extern_methods!(

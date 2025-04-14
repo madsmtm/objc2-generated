@@ -177,10 +177,14 @@ unsafe impl Send for ARGeoTrackingStatus {}
 unsafe impl Sync for ARGeoTrackingStatus {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARGeoTrackingStatus {}
+extern_conformance!(
+    unsafe impl NSCoding for ARGeoTrackingStatus {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARGeoTrackingStatus {}
+extern_conformance!(
+    unsafe impl NSCopying for ARGeoTrackingStatus {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARGeoTrackingStatus {
@@ -188,10 +192,14 @@ unsafe impl CopyingHelper for ARGeoTrackingStatus {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARGeoTrackingStatus {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARGeoTrackingStatus {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARGeoTrackingStatus {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARGeoTrackingStatus {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingStatus {

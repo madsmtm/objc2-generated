@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MKOverlayRenderer")]
-unsafe impl NSObjectProtocol for MKTileOverlayRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKTileOverlayRenderer {}
+);
 
 #[cfg(feature = "MKOverlayRenderer")]
 impl MKTileOverlayRenderer {

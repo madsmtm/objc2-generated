@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIResponder")]
-unsafe impl NSObjectProtocol for UIScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIScene {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl UIResponderStandardEditActions for UIScene {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIScene {}
+);
 
 #[cfg(feature = "UIResponder")]
 impl UIScene {

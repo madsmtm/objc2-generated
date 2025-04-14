@@ -67,9 +67,13 @@ extern_class!(
     pub struct BEDragInteraction;
 );
 
-unsafe impl NSObjectProtocol for BEDragInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEDragInteraction {}
+);
 
-unsafe impl UIInteraction for BEDragInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for BEDragInteraction {}
+);
 
 impl BEDragInteraction {
     extern_methods!(

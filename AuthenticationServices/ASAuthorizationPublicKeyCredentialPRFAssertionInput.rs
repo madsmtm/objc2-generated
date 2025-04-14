@@ -13,7 +13,9 @@ extern_class!(
     pub struct ASAuthorizationPublicKeyCredentialPRFAssertionInputValues;
 );
 
-unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFAssertionInputValues {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFAssertionInputValues {}
+);
 
 impl ASAuthorizationPublicKeyCredentialPRFAssertionInputValues {
     extern_methods!(
@@ -55,7 +57,9 @@ extern_class!(
     pub struct ASAuthorizationPublicKeyCredentialPRFAssertionInput;
 );
 
-unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFAssertionInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFAssertionInput {}
+);
 
 impl ASAuthorizationPublicKeyCredentialPRFAssertionInput {
     extern_methods!(

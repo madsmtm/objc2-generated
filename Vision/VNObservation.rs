@@ -28,20 +28,30 @@ extern_class!(
     pub struct VNObservation;
 );
 
-unsafe impl NSCoding for VNObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNObservation {}
+);
 
-unsafe impl NSCopying for VNObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNObservation {}
+);
 
 unsafe impl CopyingHelper for VNObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNObservation {}
+);
 
-unsafe impl NSSecureCoding for VNObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNObservation {}
+);
 
 impl VNObservation {
     extern_methods!(
@@ -92,20 +102,30 @@ extern_class!(
     pub struct VNDetectedObjectObservation;
 );
 
-unsafe impl NSCoding for VNDetectedObjectObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNDetectedObjectObservation {}
+);
 
-unsafe impl NSCopying for VNDetectedObjectObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNDetectedObjectObservation {}
+);
 
 unsafe impl CopyingHelper for VNDetectedObjectObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNDetectedObjectObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNDetectedObjectObservation {}
+);
 
-unsafe impl NSSecureCoding for VNDetectedObjectObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNDetectedObjectObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNDetectedObjectObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNDetectedObjectObservation {}
+);
 
 impl VNDetectedObjectObservation {
     extern_methods!(
@@ -160,20 +180,30 @@ extern_class!(
     pub struct VNFaceObservation;
 );
 
-unsafe impl NSCoding for VNFaceObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNFaceObservation {}
+);
 
-unsafe impl NSCopying for VNFaceObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNFaceObservation {}
+);
 
 unsafe impl CopyingHelper for VNFaceObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNFaceObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNFaceObservation {}
+);
 
-unsafe impl NSSecureCoding for VNFaceObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNFaceObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNFaceObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNFaceObservation {}
+);
 
 impl VNFaceObservation {
     extern_methods!(
@@ -279,20 +309,30 @@ extern_class!(
     pub struct VNClassificationObservation;
 );
 
-unsafe impl NSCoding for VNClassificationObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNClassificationObservation {}
+);
 
-unsafe impl NSCopying for VNClassificationObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNClassificationObservation {}
+);
 
 unsafe impl CopyingHelper for VNClassificationObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNClassificationObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNClassificationObservation {}
+);
 
-unsafe impl NSSecureCoding for VNClassificationObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNClassificationObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNClassificationObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNClassificationObservation {}
+);
 
 impl VNClassificationObservation {
     extern_methods!(
@@ -376,20 +416,30 @@ extern_class!(
     pub struct VNRecognizedObjectObservation;
 );
 
-unsafe impl NSCoding for VNRecognizedObjectObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNRecognizedObjectObservation {}
+);
 
-unsafe impl NSCopying for VNRecognizedObjectObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNRecognizedObjectObservation {}
+);
 
 unsafe impl CopyingHelper for VNRecognizedObjectObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNRecognizedObjectObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNRecognizedObjectObservation {}
+);
 
-unsafe impl NSSecureCoding for VNRecognizedObjectObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNRecognizedObjectObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNRecognizedObjectObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNRecognizedObjectObservation {}
+);
 
 impl VNRecognizedObjectObservation {
     extern_methods!(
@@ -442,20 +492,30 @@ extern_class!(
     pub struct VNCoreMLFeatureValueObservation;
 );
 
-unsafe impl NSCoding for VNCoreMLFeatureValueObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNCoreMLFeatureValueObservation {}
+);
 
-unsafe impl NSCopying for VNCoreMLFeatureValueObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNCoreMLFeatureValueObservation {}
+);
 
 unsafe impl CopyingHelper for VNCoreMLFeatureValueObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNCoreMLFeatureValueObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNCoreMLFeatureValueObservation {}
+);
 
-unsafe impl NSSecureCoding for VNCoreMLFeatureValueObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNCoreMLFeatureValueObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNCoreMLFeatureValueObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNCoreMLFeatureValueObservation {}
+);
 
 impl VNCoreMLFeatureValueObservation {
     extern_methods!(
@@ -496,20 +556,30 @@ extern_class!(
     pub struct VNPixelBufferObservation;
 );
 
-unsafe impl NSCoding for VNPixelBufferObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNPixelBufferObservation {}
+);
 
-unsafe impl NSCopying for VNPixelBufferObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNPixelBufferObservation {}
+);
 
 unsafe impl CopyingHelper for VNPixelBufferObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNPixelBufferObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNPixelBufferObservation {}
+);
 
-unsafe impl NSSecureCoding for VNPixelBufferObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNPixelBufferObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNPixelBufferObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNPixelBufferObservation {}
+);
 
 impl VNPixelBufferObservation {
     extern_methods!(
@@ -550,20 +620,30 @@ extern_class!(
     pub struct VNRectangleObservation;
 );
 
-unsafe impl NSCoding for VNRectangleObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNRectangleObservation {}
+);
 
-unsafe impl NSCopying for VNRectangleObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNRectangleObservation {}
+);
 
 unsafe impl CopyingHelper for VNRectangleObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNRectangleObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNRectangleObservation {}
+);
 
-unsafe impl NSSecureCoding for VNRectangleObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNRectangleObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNRectangleObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNRectangleObservation {}
+);
 
 impl VNRectangleObservation {
     extern_methods!(
@@ -679,20 +759,30 @@ extern_class!(
     pub struct VNTrajectoryObservation;
 );
 
-unsafe impl NSCoding for VNTrajectoryObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNTrajectoryObservation {}
+);
 
-unsafe impl NSCopying for VNTrajectoryObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNTrajectoryObservation {}
+);
 
 unsafe impl CopyingHelper for VNTrajectoryObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNTrajectoryObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNTrajectoryObservation {}
+);
 
-unsafe impl NSSecureCoding for VNTrajectoryObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNTrajectoryObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNTrajectoryObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNTrajectoryObservation {}
+);
 
 impl VNTrajectoryObservation {
     extern_methods!(
@@ -749,20 +839,30 @@ extern_class!(
     pub struct VNTextObservation;
 );
 
-unsafe impl NSCoding for VNTextObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNTextObservation {}
+);
 
-unsafe impl NSCopying for VNTextObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNTextObservation {}
+);
 
 unsafe impl CopyingHelper for VNTextObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNTextObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNTextObservation {}
+);
 
-unsafe impl NSSecureCoding for VNTextObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNTextObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNTextObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNTextObservation {}
+);
 
 impl VNTextObservation {
     extern_methods!(
@@ -871,20 +971,30 @@ extern_class!(
     pub struct VNRecognizedText;
 );
 
-unsafe impl NSCoding for VNRecognizedText {}
+extern_conformance!(
+    unsafe impl NSCoding for VNRecognizedText {}
+);
 
-unsafe impl NSCopying for VNRecognizedText {}
+extern_conformance!(
+    unsafe impl NSCopying for VNRecognizedText {}
+);
 
 unsafe impl CopyingHelper for VNRecognizedText {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNRecognizedText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNRecognizedText {}
+);
 
-unsafe impl NSSecureCoding for VNRecognizedText {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNRecognizedText {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNRecognizedText {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNRecognizedText {}
+);
 
 impl VNRecognizedText {
     extern_methods!(
@@ -930,20 +1040,30 @@ extern_class!(
     pub struct VNRecognizedTextObservation;
 );
 
-unsafe impl NSCoding for VNRecognizedTextObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNRecognizedTextObservation {}
+);
 
-unsafe impl NSCopying for VNRecognizedTextObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNRecognizedTextObservation {}
+);
 
 unsafe impl CopyingHelper for VNRecognizedTextObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNRecognizedTextObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNRecognizedTextObservation {}
+);
 
-unsafe impl NSSecureCoding for VNRecognizedTextObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNRecognizedTextObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNRecognizedTextObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNRecognizedTextObservation {}
+);
 
 impl VNRecognizedTextObservation {
     extern_methods!(
@@ -1059,20 +1179,30 @@ extern_class!(
     pub struct VNBarcodeObservation;
 );
 
-unsafe impl NSCoding for VNBarcodeObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNBarcodeObservation {}
+);
 
-unsafe impl NSCopying for VNBarcodeObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNBarcodeObservation {}
+);
 
 unsafe impl CopyingHelper for VNBarcodeObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNBarcodeObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNBarcodeObservation {}
+);
 
-unsafe impl NSSecureCoding for VNBarcodeObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNBarcodeObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNBarcodeObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNBarcodeObservation {}
+);
 
 impl VNBarcodeObservation {
     extern_methods!(
@@ -1226,20 +1356,30 @@ extern_class!(
     pub struct VNHorizonObservation;
 );
 
-unsafe impl NSCoding for VNHorizonObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNHorizonObservation {}
+);
 
-unsafe impl NSCopying for VNHorizonObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNHorizonObservation {}
+);
 
 unsafe impl CopyingHelper for VNHorizonObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNHorizonObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNHorizonObservation {}
+);
 
-unsafe impl NSSecureCoding for VNHorizonObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNHorizonObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNHorizonObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNHorizonObservation {}
+);
 
 impl VNHorizonObservation {
     extern_methods!(
@@ -1291,20 +1431,30 @@ extern_class!(
     pub struct VNImageAlignmentObservation;
 );
 
-unsafe impl NSCoding for VNImageAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNImageAlignmentObservation {}
+);
 
-unsafe impl NSCopying for VNImageAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNImageAlignmentObservation {}
+);
 
 unsafe impl CopyingHelper for VNImageAlignmentObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNImageAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNImageAlignmentObservation {}
+);
 
-unsafe impl NSSecureCoding for VNImageAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNImageAlignmentObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNImageAlignmentObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNImageAlignmentObservation {}
+);
 
 impl VNImageAlignmentObservation {
     extern_methods!();
@@ -1332,20 +1482,30 @@ extern_class!(
     pub struct VNImageTranslationAlignmentObservation;
 );
 
-unsafe impl NSCoding for VNImageTranslationAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNImageTranslationAlignmentObservation {}
+);
 
-unsafe impl NSCopying for VNImageTranslationAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNImageTranslationAlignmentObservation {}
+);
 
 unsafe impl CopyingHelper for VNImageTranslationAlignmentObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNImageTranslationAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNImageTranslationAlignmentObservation {}
+);
 
-unsafe impl NSSecureCoding for VNImageTranslationAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNImageTranslationAlignmentObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNImageTranslationAlignmentObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNImageTranslationAlignmentObservation {}
+);
 
 impl VNImageTranslationAlignmentObservation {
     extern_methods!(
@@ -1378,20 +1538,30 @@ extern_class!(
     pub struct VNImageHomographicAlignmentObservation;
 );
 
-unsafe impl NSCoding for VNImageHomographicAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNImageHomographicAlignmentObservation {}
+);
 
-unsafe impl NSCopying for VNImageHomographicAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNImageHomographicAlignmentObservation {}
+);
 
 unsafe impl CopyingHelper for VNImageHomographicAlignmentObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNImageHomographicAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNImageHomographicAlignmentObservation {}
+);
 
-unsafe impl NSSecureCoding for VNImageHomographicAlignmentObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNImageHomographicAlignmentObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNImageHomographicAlignmentObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNImageHomographicAlignmentObservation {}
+);
 
 impl VNImageHomographicAlignmentObservation {
     extern_methods!();
@@ -1421,20 +1591,30 @@ extern_class!(
     pub struct VNSaliencyImageObservation;
 );
 
-unsafe impl NSCoding for VNSaliencyImageObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNSaliencyImageObservation {}
+);
 
-unsafe impl NSCopying for VNSaliencyImageObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNSaliencyImageObservation {}
+);
 
 unsafe impl CopyingHelper for VNSaliencyImageObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNSaliencyImageObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNSaliencyImageObservation {}
+);
 
-unsafe impl NSSecureCoding for VNSaliencyImageObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNSaliencyImageObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNSaliencyImageObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNSaliencyImageObservation {}
+);
 
 impl VNSaliencyImageObservation {
     extern_methods!(
@@ -1465,20 +1645,30 @@ extern_class!(
     pub struct VNFeaturePrintObservation;
 );
 
-unsafe impl NSCoding for VNFeaturePrintObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNFeaturePrintObservation {}
+);
 
-unsafe impl NSCopying for VNFeaturePrintObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNFeaturePrintObservation {}
+);
 
 unsafe impl CopyingHelper for VNFeaturePrintObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNFeaturePrintObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNFeaturePrintObservation {}
+);
 
-unsafe impl NSSecureCoding for VNFeaturePrintObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNFeaturePrintObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNFeaturePrintObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNFeaturePrintObservation {}
+);
 
 impl VNFeaturePrintObservation {
     extern_methods!(
@@ -1531,20 +1721,30 @@ extern_class!(
     pub struct VNContoursObservation;
 );
 
-unsafe impl NSCoding for VNContoursObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNContoursObservation {}
+);
 
-unsafe impl NSCopying for VNContoursObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNContoursObservation {}
+);
 
 unsafe impl CopyingHelper for VNContoursObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNContoursObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNContoursObservation {}
+);
 
-unsafe impl NSSecureCoding for VNContoursObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNContoursObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNContoursObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNContoursObservation {}
+);
 
 impl VNContoursObservation {
     extern_methods!(
@@ -1638,20 +1838,30 @@ extern_class!(
     pub struct VNRecognizedPointsObservation;
 );
 
-unsafe impl NSCoding for VNRecognizedPointsObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNRecognizedPointsObservation {}
+);
 
-unsafe impl NSCopying for VNRecognizedPointsObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNRecognizedPointsObservation {}
+);
 
 unsafe impl CopyingHelper for VNRecognizedPointsObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNRecognizedPointsObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNRecognizedPointsObservation {}
+);
 
-unsafe impl NSSecureCoding for VNRecognizedPointsObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNRecognizedPointsObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNRecognizedPointsObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNRecognizedPointsObservation {}
+);
 
 impl VNRecognizedPointsObservation {
     extern_methods!(
@@ -1752,20 +1962,30 @@ extern_class!(
     pub struct VNHumanObservation;
 );
 
-unsafe impl NSCoding for VNHumanObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNHumanObservation {}
+);
 
-unsafe impl NSCopying for VNHumanObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNHumanObservation {}
+);
 
 unsafe impl CopyingHelper for VNHumanObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNHumanObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNHumanObservation {}
+);
 
-unsafe impl NSSecureCoding for VNHumanObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNHumanObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNHumanObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNHumanObservation {}
+);
 
 impl VNHumanObservation {
     extern_methods!(
@@ -1817,20 +2037,30 @@ extern_class!(
     pub struct VNInstanceMaskObservation;
 );
 
-unsafe impl NSCoding for VNInstanceMaskObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNInstanceMaskObservation {}
+);
 
-unsafe impl NSCopying for VNInstanceMaskObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNInstanceMaskObservation {}
+);
 
 unsafe impl CopyingHelper for VNInstanceMaskObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNInstanceMaskObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNInstanceMaskObservation {}
+);
 
-unsafe impl NSSecureCoding for VNInstanceMaskObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNInstanceMaskObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNInstanceMaskObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNInstanceMaskObservation {}
+);
 
 impl VNInstanceMaskObservation {
     extern_methods!(
@@ -1868,20 +2098,30 @@ extern_class!(
     pub struct VNAnimalBodyPoseObservation;
 );
 
-unsafe impl NSCoding for VNAnimalBodyPoseObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNAnimalBodyPoseObservation {}
+);
 
-unsafe impl NSCopying for VNAnimalBodyPoseObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNAnimalBodyPoseObservation {}
+);
 
 unsafe impl CopyingHelper for VNAnimalBodyPoseObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNAnimalBodyPoseObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNAnimalBodyPoseObservation {}
+);
 
-unsafe impl NSSecureCoding for VNAnimalBodyPoseObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNAnimalBodyPoseObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNAnimalBodyPoseObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNAnimalBodyPoseObservation {}
+);
 
 impl VNAnimalBodyPoseObservation {
     extern_methods!(
@@ -1979,20 +2219,30 @@ extern_class!(
     pub struct VNRecognizedPoints3DObservation;
 );
 
-unsafe impl NSCoding for VNRecognizedPoints3DObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNRecognizedPoints3DObservation {}
+);
 
-unsafe impl NSCopying for VNRecognizedPoints3DObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNRecognizedPoints3DObservation {}
+);
 
 unsafe impl CopyingHelper for VNRecognizedPoints3DObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNRecognizedPoints3DObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNRecognizedPoints3DObservation {}
+);
 
-unsafe impl NSSecureCoding for VNRecognizedPoints3DObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNRecognizedPoints3DObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNRecognizedPoints3DObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNRecognizedPoints3DObservation {}
+);
 
 impl VNRecognizedPoints3DObservation {
     extern_methods!(
@@ -2094,20 +2344,30 @@ extern_class!(
     pub struct VNHumanBodyPose3DObservation;
 );
 
-unsafe impl NSCoding for VNHumanBodyPose3DObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNHumanBodyPose3DObservation {}
+);
 
-unsafe impl NSCopying for VNHumanBodyPose3DObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNHumanBodyPose3DObservation {}
+);
 
 unsafe impl CopyingHelper for VNHumanBodyPose3DObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNHumanBodyPose3DObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNHumanBodyPose3DObservation {}
+);
 
-unsafe impl NSSecureCoding for VNHumanBodyPose3DObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNHumanBodyPose3DObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNHumanBodyPose3DObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNHumanBodyPose3DObservation {}
+);
 
 impl VNHumanBodyPose3DObservation {
     extern_methods!(
@@ -2240,20 +2500,30 @@ extern_class!(
     pub struct VNImageAestheticsScoresObservation;
 );
 
-unsafe impl NSCoding for VNImageAestheticsScoresObservation {}
+extern_conformance!(
+    unsafe impl NSCoding for VNImageAestheticsScoresObservation {}
+);
 
-unsafe impl NSCopying for VNImageAestheticsScoresObservation {}
+extern_conformance!(
+    unsafe impl NSCopying for VNImageAestheticsScoresObservation {}
+);
 
 unsafe impl CopyingHelper for VNImageAestheticsScoresObservation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNImageAestheticsScoresObservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNImageAestheticsScoresObservation {}
+);
 
-unsafe impl NSSecureCoding for VNImageAestheticsScoresObservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNImageAestheticsScoresObservation {}
+);
 
 #[cfg(feature = "VNRequestRevisionProviding")]
-unsafe impl VNRequestRevisionProviding for VNImageAestheticsScoresObservation {}
+extern_conformance!(
+    unsafe impl VNRequestRevisionProviding for VNImageAestheticsScoresObservation {}
+);
 
 impl VNImageAestheticsScoresObservation {
     extern_methods!(

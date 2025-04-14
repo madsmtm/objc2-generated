@@ -15,7 +15,9 @@ extern_class!(
     pub struct STScreenTimeConfiguration;
 );
 
-unsafe impl NSObjectProtocol for STScreenTimeConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for STScreenTimeConfiguration {}
+);
 
 impl STScreenTimeConfiguration {
     extern_methods!(
@@ -49,7 +51,9 @@ extern_class!(
     pub struct STScreenTimeConfigurationObserver;
 );
 
-unsafe impl NSObjectProtocol for STScreenTimeConfigurationObserver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for STScreenTimeConfigurationObserver {}
+);
 
 impl STScreenTimeConfigurationObserver {
     extern_methods!(

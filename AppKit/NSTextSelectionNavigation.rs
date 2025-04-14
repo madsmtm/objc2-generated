@@ -138,7 +138,9 @@ extern_class!(
     pub struct NSTextSelectionNavigation;
 );
 
-unsafe impl NSObjectProtocol for NSTextSelectionNavigation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextSelectionNavigation {}
+);
 
 impl NSTextSelectionNavigation {
     extern_methods!(

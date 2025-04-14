@@ -15,7 +15,9 @@ extern_class!(
     pub struct SKOverlayTransitionContext;
 );
 
-unsafe impl NSObjectProtocol for SKOverlayTransitionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKOverlayTransitionContext {}
+);
 
 impl SKOverlayTransitionContext {
     extern_methods!(

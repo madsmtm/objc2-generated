@@ -17,13 +17,17 @@ extern_class!(
     pub struct MLCOptimizerDescriptor;
 );
 
-unsafe impl NSCopying for MLCOptimizerDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCOptimizerDescriptor {}
+);
 
 unsafe impl CopyingHelper for MLCOptimizerDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCOptimizerDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCOptimizerDescriptor {}
+);
 
 impl MLCOptimizerDescriptor {
     extern_methods!(

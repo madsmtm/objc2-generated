@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl NSCoding for NSCustomTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCustomTouchBarItem {}
+);
 
 #[cfg(feature = "NSTouchBarItem")]
-unsafe impl NSObjectProtocol for NSCustomTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCustomTouchBarItem {}
+);
 
 #[cfg(feature = "NSTouchBarItem")]
 impl NSCustomTouchBarItem {

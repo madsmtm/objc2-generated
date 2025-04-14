@@ -16,9 +16,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSColorPicking")]
-unsafe impl NSColorPickingDefault for NSColorPicker {}
+extern_conformance!(
+    unsafe impl NSColorPickingDefault for NSColorPicker {}
+);
 
-unsafe impl NSObjectProtocol for NSColorPicker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSColorPicker {}
+);
 
 impl NSColorPicker {
     extern_methods!(

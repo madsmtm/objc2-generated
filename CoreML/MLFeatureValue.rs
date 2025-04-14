@@ -21,17 +21,25 @@ extern_class!(
     pub struct MLFeatureValue;
 );
 
-unsafe impl NSCoding for MLFeatureValue {}
+extern_conformance!(
+    unsafe impl NSCoding for MLFeatureValue {}
+);
 
-unsafe impl NSCopying for MLFeatureValue {}
+extern_conformance!(
+    unsafe impl NSCopying for MLFeatureValue {}
+);
 
 unsafe impl CopyingHelper for MLFeatureValue {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLFeatureValue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLFeatureValue {}
+);
 
-unsafe impl NSSecureCoding for MLFeatureValue {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLFeatureValue {}
+);
 
 impl MLFeatureValue {
     extern_methods!(

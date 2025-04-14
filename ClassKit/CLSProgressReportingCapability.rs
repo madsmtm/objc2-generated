@@ -43,13 +43,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CLSObject")]
-unsafe impl NSCoding for CLSProgressReportingCapability {}
+extern_conformance!(
+    unsafe impl NSCoding for CLSProgressReportingCapability {}
+);
 
 #[cfg(feature = "CLSObject")]
-unsafe impl NSObjectProtocol for CLSProgressReportingCapability {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLSProgressReportingCapability {}
+);
 
 #[cfg(feature = "CLSObject")]
-unsafe impl NSSecureCoding for CLSProgressReportingCapability {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLSProgressReportingCapability {}
+);
 
 #[cfg(feature = "CLSObject")]
 impl CLSProgressReportingCapability {

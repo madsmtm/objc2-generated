@@ -38,11 +38,17 @@ extern_class!(
     pub struct CTCellularPlanProvisioningRequest;
 );
 
-unsafe impl NSCoding for CTCellularPlanProvisioningRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for CTCellularPlanProvisioningRequest {}
+);
 
-unsafe impl NSObjectProtocol for CTCellularPlanProvisioningRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CTCellularPlanProvisioningRequest {}
+);
 
-unsafe impl NSSecureCoding for CTCellularPlanProvisioningRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CTCellularPlanProvisioningRequest {}
+);
 
 impl CTCellularPlanProvisioningRequest {
     extern_methods!(

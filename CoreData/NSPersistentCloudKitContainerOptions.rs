@@ -15,7 +15,9 @@ extern_class!(
     pub struct NSPersistentCloudKitContainerOptions;
 );
 
-unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerOptions {}
+);
 
 impl NSPersistentCloudKitContainerOptions {
     extern_methods!(

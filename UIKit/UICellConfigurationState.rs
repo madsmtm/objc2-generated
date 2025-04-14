@@ -68,10 +68,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIViewConfigurationState")]
-unsafe impl NSCoding for UICellConfigurationState {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellConfigurationState {}
+);
 
 #[cfg(feature = "UIViewConfigurationState")]
-unsafe impl NSCopying for UICellConfigurationState {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellConfigurationState {}
+);
 
 #[cfg(feature = "UIViewConfigurationState")]
 unsafe impl CopyingHelper for UICellConfigurationState {
@@ -79,13 +83,19 @@ unsafe impl CopyingHelper for UICellConfigurationState {
 }
 
 #[cfg(feature = "UIViewConfigurationState")]
-unsafe impl NSObjectProtocol for UICellConfigurationState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellConfigurationState {}
+);
 
 #[cfg(feature = "UIViewConfigurationState")]
-unsafe impl NSSecureCoding for UICellConfigurationState {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellConfigurationState {}
+);
 
 #[cfg(all(feature = "UIConfigurationState", feature = "UIViewConfigurationState"))]
-unsafe impl UIConfigurationState for UICellConfigurationState {}
+extern_conformance!(
+    unsafe impl UIConfigurationState for UICellConfigurationState {}
+);
 
 #[cfg(feature = "UIViewConfigurationState")]
 impl UICellConfigurationState {

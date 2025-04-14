@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNDetectAnimalBodyPoseRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNDetectAnimalBodyPoseRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNDetectAnimalBodyPoseRequest {
@@ -27,7 +29,9 @@ unsafe impl CopyingHelper for VNDetectAnimalBodyPoseRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNDetectAnimalBodyPoseRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNDetectAnimalBodyPoseRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNDetectAnimalBodyPoseRequest {

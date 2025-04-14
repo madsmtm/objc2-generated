@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfacePicker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfacePicker {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfacePicker {
@@ -78,11 +80,17 @@ extern_class!(
     pub struct WKPickerItem;
 );
 
-unsafe impl NSCoding for WKPickerItem {}
+extern_conformance!(
+    unsafe impl NSCoding for WKPickerItem {}
+);
 
-unsafe impl NSObjectProtocol for WKPickerItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKPickerItem {}
+);
 
-unsafe impl NSSecureCoding for WKPickerItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WKPickerItem {}
+);
 
 impl WKPickerItem {
     extern_methods!(

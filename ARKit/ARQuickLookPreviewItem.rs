@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARQuickLookPreviewItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARQuickLookPreviewItem {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARQuickLookPreviewItem {

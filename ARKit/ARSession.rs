@@ -65,7 +65,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARSession {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARSession {

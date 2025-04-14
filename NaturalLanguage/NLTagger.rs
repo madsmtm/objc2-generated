@@ -66,7 +66,9 @@ extern_class!(
     pub struct NLTagger;
 );
 
-unsafe impl NSObjectProtocol for NLTagger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NLTagger {}
+);
 
 impl NLTagger {
     extern_methods!(

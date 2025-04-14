@@ -25,7 +25,9 @@ extern_class!(
     pub struct AVCustomRoutingActionItem;
 );
 
-unsafe impl NSObjectProtocol for AVCustomRoutingActionItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCustomRoutingActionItem {}
+);
 
 impl AVCustomRoutingActionItem {
     extern_methods!(

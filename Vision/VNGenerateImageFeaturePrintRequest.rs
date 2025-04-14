@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNGenerateImageFeaturePrintRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNGenerateImageFeaturePrintRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNGenerateImageFeaturePrintRequest {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for VNGenerateImageFeaturePrintRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNGenerateImageFeaturePrintRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNGenerateImageFeaturePrintRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNGenerateImageFeaturePrintRequest {

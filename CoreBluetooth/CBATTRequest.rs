@@ -16,7 +16,9 @@ extern_class!(
     pub struct CBATTRequest;
 );
 
-unsafe impl NSObjectProtocol for CBATTRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBATTRequest {}
+);
 
 impl CBATTRequest {
     extern_methods!(

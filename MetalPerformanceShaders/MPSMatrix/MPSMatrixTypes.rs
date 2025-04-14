@@ -21,10 +21,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSMatrixUnaryKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixUnaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSMatrixUnaryKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixUnaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixUnaryKernel {
@@ -32,10 +36,14 @@ unsafe impl CopyingHelper for MPSMatrixUnaryKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSMatrixUnaryKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixUnaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSMatrixUnaryKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixUnaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSMatrixUnaryKernel {
@@ -180,10 +188,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSMatrixBinaryKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixBinaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSMatrixBinaryKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixBinaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixBinaryKernel {
@@ -191,10 +203,14 @@ unsafe impl CopyingHelper for MPSMatrixBinaryKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSMatrixBinaryKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixBinaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSMatrixBinaryKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixBinaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSMatrixBinaryKernel {

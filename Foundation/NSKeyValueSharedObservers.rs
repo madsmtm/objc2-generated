@@ -16,7 +16,9 @@ extern_class!(
     pub struct NSKeyValueSharedObserversSnapshot;
 );
 
-unsafe impl NSObjectProtocol for NSKeyValueSharedObserversSnapshot {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSKeyValueSharedObserversSnapshot {}
+);
 
 impl NSKeyValueSharedObserversSnapshot {
     extern_methods!(
@@ -40,7 +42,9 @@ extern_class!(
     pub struct NSKeyValueSharedObservers;
 );
 
-unsafe impl NSObjectProtocol for NSKeyValueSharedObservers {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSKeyValueSharedObservers {}
+);
 
 impl NSKeyValueSharedObservers {
     extern_methods!(

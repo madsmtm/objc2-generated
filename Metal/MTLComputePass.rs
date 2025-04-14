@@ -14,13 +14,17 @@ extern_class!(
     pub struct MTLComputePassSampleBufferAttachmentDescriptor;
 );
 
-unsafe impl NSCopying for MTLComputePassSampleBufferAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLComputePassSampleBufferAttachmentDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLComputePassSampleBufferAttachmentDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptor {}
+);
 
 impl MTLComputePassSampleBufferAttachmentDescriptor {
     extern_methods!(
@@ -100,7 +104,9 @@ extern_class!(
     pub struct MTLComputePassSampleBufferAttachmentDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptorArray {}
+);
 
 impl MTLComputePassSampleBufferAttachmentDescriptorArray {
     extern_methods!(
@@ -143,13 +149,17 @@ extern_class!(
     pub struct MTLComputePassDescriptor;
 );
 
-unsafe impl NSCopying for MTLComputePassDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLComputePassDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLComputePassDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLComputePassDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLComputePassDescriptor {}
+);
 
 impl MTLComputePassDescriptor {
     extern_methods!(

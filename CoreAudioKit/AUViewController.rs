@@ -21,27 +21,39 @@ pub type AUViewControllerBase = NSViewController;
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for AUViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for AUViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for AUViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for AUViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSExtensionRequestHandling for AUViewController {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for AUViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for AUViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for AUViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for AUViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for AUViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for AUViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
@@ -109,11 +121,17 @@ extern_class!(
     pub struct AUAudioUnitViewConfiguration;
 );
 
-unsafe impl NSCoding for AUAudioUnitViewConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for AUAudioUnitViewConfiguration {}
+);
 
-unsafe impl NSObjectProtocol for AUAudioUnitViewConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUAudioUnitViewConfiguration {}
+);
 
-unsafe impl NSSecureCoding for AUAudioUnitViewConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AUAudioUnitViewConfiguration {}
+);
 
 impl AUAudioUnitViewConfiguration {
     extern_methods!(

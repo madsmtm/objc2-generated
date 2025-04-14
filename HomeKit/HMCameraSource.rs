@@ -19,7 +19,9 @@ unsafe impl Send for HMCameraSource {}
 
 unsafe impl Sync for HMCameraSource {}
 
-unsafe impl NSObjectProtocol for HMCameraSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCameraSource {}
+);
 
 impl HMCameraSource {
     extern_methods!(

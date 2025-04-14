@@ -38,7 +38,9 @@ extern_class!(
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
-unsafe impl NSCoding for MPSQuadrilateralAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSQuadrilateralAccelerationStructure {}
+);
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
@@ -46,7 +48,9 @@ unsafe impl NSCoding for MPSQuadrilateralAccelerationStructure {}
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
-unsafe impl NSCopying for MPSQuadrilateralAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSQuadrilateralAccelerationStructure {}
+);
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
@@ -64,7 +68,9 @@ unsafe impl CopyingHelper for MPSQuadrilateralAccelerationStructure {
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
-unsafe impl NSObjectProtocol for MPSQuadrilateralAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSQuadrilateralAccelerationStructure {}
+);
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
@@ -72,7 +78,9 @@ unsafe impl NSObjectProtocol for MPSQuadrilateralAccelerationStructure {}
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
-unsafe impl NSSecureCoding for MPSQuadrilateralAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSQuadrilateralAccelerationStructure {}
+);
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",

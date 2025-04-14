@@ -14,7 +14,9 @@ extern_class!(
     pub struct MCNearbyServiceAdvertiser;
 );
 
-unsafe impl NSObjectProtocol for MCNearbyServiceAdvertiser {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MCNearbyServiceAdvertiser {}
+);
 
 impl MCNearbyServiceAdvertiser {
     extern_methods!(

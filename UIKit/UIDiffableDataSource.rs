@@ -17,10 +17,12 @@ extern_class!(
     >;
 );
 
-unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCopying
-    for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCopying
+        for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
     CopyingHelper for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
@@ -28,10 +30,12 @@ unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized 
     type Result = Self;
 }
 
-unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
-    for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
+        for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
@@ -278,10 +282,12 @@ extern_class!(
     >;
 );
 
-unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
-    for NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
+        for NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
@@ -338,10 +344,12 @@ extern_class!(
     >;
 );
 
-unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
-    for NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
+        for NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
@@ -403,10 +411,12 @@ extern_class!(
     >;
 );
 
-unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSCopying
-    for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSCopying
+        for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
+    {
+    }
+);
 
 unsafe impl<SectionType: ?Sized + Message, ItemType: ?Sized + Message> CopyingHelper
     for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
@@ -414,10 +424,12 @@ unsafe impl<SectionType: ?Sized + Message, ItemType: ?Sized + Message> CopyingHe
     type Result = Self;
 }
 
-unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSObjectProtocol
-    for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSObjectProtocol
+        for UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
+    {
+    }
+);
 
 impl<SectionType: Message, ItemType: Message>
     UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
@@ -510,10 +522,12 @@ extern_class!(
     >;
 );
 
-unsafe impl<ItemType: ?Sized> NSCopying
-    for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
-{
-}
+extern_conformance!(
+    unsafe impl<ItemType: ?Sized> NSCopying
+        for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
+    {
+    }
+);
 
 unsafe impl<ItemType: ?Sized + Message> CopyingHelper
     for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
@@ -521,10 +535,12 @@ unsafe impl<ItemType: ?Sized + Message> CopyingHelper
     type Result = Self;
 }
 
-unsafe impl<ItemType: ?Sized> NSObjectProtocol
-    for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
-{
-}
+extern_conformance!(
+    unsafe impl<ItemType: ?Sized> NSObjectProtocol
+        for UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
+    {
+    }
+);
 
 impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType> {
     extern_methods!(
@@ -651,17 +667,21 @@ extern_class!(
     >;
 );
 
-unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
-    for UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
+        for UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 #[cfg(feature = "UICollectionView")]
-unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-    UICollectionViewDataSource
-    for UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+        UICollectionViewDataSource
+        for UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
@@ -882,17 +902,21 @@ extern_class!(
     >;
 );
 
-unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
-    for UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
+        for UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 #[cfg(feature = "UITableView")]
-unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
-    UITableViewDataSource
-    for UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+        UITableViewDataSource
+        for UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>

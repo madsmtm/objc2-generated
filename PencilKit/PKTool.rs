@@ -16,13 +16,17 @@ extern_class!(
     pub struct PKTool;
 );
 
-unsafe impl NSCopying for PKTool {}
+extern_conformance!(
+    unsafe impl NSCopying for PKTool {}
+);
 
 unsafe impl CopyingHelper for PKTool {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PKTool {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKTool {}
+);
 
 impl PKTool {
     extern_methods!(

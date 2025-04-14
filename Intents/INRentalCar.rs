@@ -13,17 +13,25 @@ extern_class!(
     pub struct INRentalCar;
 );
 
-unsafe impl NSCoding for INRentalCar {}
+extern_conformance!(
+    unsafe impl NSCoding for INRentalCar {}
+);
 
-unsafe impl NSCopying for INRentalCar {}
+extern_conformance!(
+    unsafe impl NSCopying for INRentalCar {}
+);
 
 unsafe impl CopyingHelper for INRentalCar {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INRentalCar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRentalCar {}
+);
 
-unsafe impl NSSecureCoding for INRentalCar {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRentalCar {}
+);
 
 impl INRentalCar {
     extern_methods!(

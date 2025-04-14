@@ -17,7 +17,9 @@ extern_class!(
     pub struct MLCPlatform;
 );
 
-unsafe impl NSObjectProtocol for MLCPlatform {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCPlatform {}
+);
 
 impl MLCPlatform {
     extern_methods!(

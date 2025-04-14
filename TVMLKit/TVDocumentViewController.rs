@@ -151,25 +151,39 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for TVDocumentViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for TVDocumentViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for TVDocumentViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVDocumentViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for TVDocumentViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVDocumentViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for TVDocumentViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for TVDocumentViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for TVDocumentViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVDocumentViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for TVDocumentViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVDocumentViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for TVDocumentViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVDocumentViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl TVDocumentViewController {

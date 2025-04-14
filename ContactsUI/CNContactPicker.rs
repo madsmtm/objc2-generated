@@ -19,7 +19,9 @@ extern_class!(
     pub struct CNContactPicker;
 );
 
-unsafe impl NSObjectProtocol for CNContactPicker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContactPicker {}
+);
 
 impl CNContactPicker {
     extern_methods!(

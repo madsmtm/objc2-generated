@@ -59,17 +59,25 @@ extern_class!(
     pub struct CLRegion;
 );
 
-unsafe impl NSCoding for CLRegion {}
+extern_conformance!(
+    unsafe impl NSCoding for CLRegion {}
+);
 
-unsafe impl NSCopying for CLRegion {}
+extern_conformance!(
+    unsafe impl NSCopying for CLRegion {}
+);
 
 unsafe impl CopyingHelper for CLRegion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLRegion {}
+);
 
-unsafe impl NSSecureCoding for CLRegion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLRegion {}
+);
 
 impl CLRegion {
     extern_methods!(

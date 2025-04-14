@@ -65,17 +65,25 @@ unsafe impl Send for HKStatistics {}
 
 unsafe impl Sync for HKStatistics {}
 
-unsafe impl NSCoding for HKStatistics {}
+extern_conformance!(
+    unsafe impl NSCoding for HKStatistics {}
+);
 
-unsafe impl NSCopying for HKStatistics {}
+extern_conformance!(
+    unsafe impl NSCopying for HKStatistics {}
+);
 
 unsafe impl CopyingHelper for HKStatistics {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKStatistics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKStatistics {}
+);
 
-unsafe impl NSSecureCoding for HKStatistics {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKStatistics {}
+);
 
 impl HKStatistics {
     extern_methods!(

@@ -53,17 +53,25 @@ extern_class!(
     pub struct UIActivityCollaborationModeRestriction;
 );
 
-unsafe impl NSCoding for UIActivityCollaborationModeRestriction {}
+extern_conformance!(
+    unsafe impl NSCoding for UIActivityCollaborationModeRestriction {}
+);
 
-unsafe impl NSCopying for UIActivityCollaborationModeRestriction {}
+extern_conformance!(
+    unsafe impl NSCopying for UIActivityCollaborationModeRestriction {}
+);
 
 unsafe impl CopyingHelper for UIActivityCollaborationModeRestriction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIActivityCollaborationModeRestriction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIActivityCollaborationModeRestriction {}
+);
 
-unsafe impl NSSecureCoding for UIActivityCollaborationModeRestriction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIActivityCollaborationModeRestriction {}
+);
 
 impl UIActivityCollaborationModeRestriction {
     extern_methods!(

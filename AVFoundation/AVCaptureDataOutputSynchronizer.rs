@@ -27,7 +27,9 @@ extern_class!(
     pub struct AVCaptureDataOutputSynchronizer;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDataOutputSynchronizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDataOutputSynchronizer {}
+);
 
 impl AVCaptureDataOutputSynchronizer {
     extern_methods!(
@@ -134,9 +136,13 @@ extern_class!(
     pub struct AVCaptureSynchronizedDataCollection;
 );
 
-unsafe impl NSFastEnumeration for AVCaptureSynchronizedDataCollection {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for AVCaptureSynchronizedDataCollection {}
+);
 
-unsafe impl NSObjectProtocol for AVCaptureSynchronizedDataCollection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSynchronizedDataCollection {}
+);
 
 impl AVCaptureSynchronizedDataCollection {
     extern_methods!(
@@ -202,7 +208,9 @@ extern_class!(
     pub struct AVCaptureSynchronizedData;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureSynchronizedData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSynchronizedData {}
+);
 
 impl AVCaptureSynchronizedData {
     extern_methods!(
@@ -237,7 +245,9 @@ extern_class!(
     pub struct AVCaptureSynchronizedSampleBufferData;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureSynchronizedSampleBufferData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSynchronizedSampleBufferData {}
+);
 
 impl AVCaptureSynchronizedSampleBufferData {
     extern_methods!(
@@ -294,7 +304,9 @@ extern_class!(
     pub struct AVCaptureSynchronizedMetadataObjectData;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureSynchronizedMetadataObjectData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSynchronizedMetadataObjectData {}
+);
 
 impl AVCaptureSynchronizedMetadataObjectData {
     extern_methods!(
@@ -334,7 +346,9 @@ extern_class!(
     pub struct AVCaptureSynchronizedDepthData;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureSynchronizedDepthData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSynchronizedDepthData {}
+);
 
 impl AVCaptureSynchronizedDepthData {
     extern_methods!(

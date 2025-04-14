@@ -43,13 +43,17 @@ extern_class!(
     pub struct MPSMatrixRandomDistributionDescriptor;
 );
 
-unsafe impl NSCopying for MPSMatrixRandomDistributionDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixRandomDistributionDescriptor {}
+);
 
 unsafe impl CopyingHelper for MPSMatrixRandomDistributionDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSMatrixRandomDistributionDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixRandomDistributionDescriptor {}
+);
 
 impl MPSMatrixRandomDistributionDescriptor {
     extern_methods!(
@@ -186,10 +190,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSMatrixRandom {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixRandom {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSMatrixRandom {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixRandom {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixRandom {
@@ -197,10 +205,14 @@ unsafe impl CopyingHelper for MPSMatrixRandom {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSMatrixRandom {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixRandom {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSMatrixRandom {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixRandom {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSMatrixRandom {
@@ -348,10 +360,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSMatrixRandomMTGP32 {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixRandomMTGP32 {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSMatrixRandomMTGP32 {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixRandomMTGP32 {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixRandomMTGP32 {
@@ -359,10 +375,14 @@ unsafe impl CopyingHelper for MPSMatrixRandomMTGP32 {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSMatrixRandomMTGP32 {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixRandomMTGP32 {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSMatrixRandomMTGP32 {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixRandomMTGP32 {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSMatrixRandomMTGP32 {
@@ -483,10 +503,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSMatrixRandomPhilox {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixRandomPhilox {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSMatrixRandomPhilox {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixRandomPhilox {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixRandomPhilox {
@@ -494,10 +518,14 @@ unsafe impl CopyingHelper for MPSMatrixRandomPhilox {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSMatrixRandomPhilox {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixRandomPhilox {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSMatrixRandomPhilox {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixRandomPhilox {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSMatrixRandomPhilox {

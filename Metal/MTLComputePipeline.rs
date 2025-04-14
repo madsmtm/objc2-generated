@@ -14,7 +14,9 @@ extern_class!(
     pub struct MTLComputePipelineReflection;
 );
 
-unsafe impl NSObjectProtocol for MTLComputePipelineReflection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLComputePipelineReflection {}
+);
 
 impl MTLComputePipelineReflection {
     extern_methods!(
@@ -51,13 +53,17 @@ extern_class!(
     pub struct MTLComputePipelineDescriptor;
 );
 
-unsafe impl NSCopying for MTLComputePipelineDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLComputePipelineDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLComputePipelineDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLComputePipelineDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLComputePipelineDescriptor {}
+);
 
 impl MTLComputePipelineDescriptor {
     extern_methods!(

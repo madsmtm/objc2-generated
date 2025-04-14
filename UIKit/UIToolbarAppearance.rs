@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSCoding for UIToolbarAppearance {}
+extern_conformance!(
+    unsafe impl NSCoding for UIToolbarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSCopying for UIToolbarAppearance {}
+extern_conformance!(
+    unsafe impl NSCopying for UIToolbarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
 unsafe impl CopyingHelper for UIToolbarAppearance {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for UIToolbarAppearance {
 }
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSObjectProtocol for UIToolbarAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIToolbarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSSecureCoding for UIToolbarAppearance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIToolbarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
 impl UIToolbarAppearance {

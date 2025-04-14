@@ -23,7 +23,9 @@ extern_class!(
     pub struct NSStatusBar;
 );
 
-unsafe impl NSObjectProtocol for NSStatusBar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStatusBar {}
+);
 
 impl NSStatusBar {
     extern_methods!(

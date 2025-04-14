@@ -106,7 +106,9 @@ unsafe impl Send for AVAudioSessionChannelDescription {}
 
 unsafe impl Sync for AVAudioSessionChannelDescription {}
 
-unsafe impl NSObjectProtocol for AVAudioSessionChannelDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSessionChannelDescription {}
+);
 
 impl AVAudioSessionChannelDescription {
     extern_methods!(
@@ -159,7 +161,9 @@ unsafe impl Send for AVAudioSessionDataSourceDescription {}
 
 unsafe impl Sync for AVAudioSessionDataSourceDescription {}
 
-unsafe impl NSObjectProtocol for AVAudioSessionDataSourceDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSessionDataSourceDescription {}
+);
 
 impl AVAudioSessionDataSourceDescription {
     extern_methods!(
@@ -251,7 +255,9 @@ unsafe impl Send for AVAudioSessionPortDescription {}
 
 unsafe impl Sync for AVAudioSessionPortDescription {}
 
-unsafe impl NSObjectProtocol for AVAudioSessionPortDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSessionPortDescription {}
+);
 
 impl AVAudioSessionPortDescription {
     extern_methods!(
@@ -371,7 +377,9 @@ unsafe impl Send for AVAudioSessionRouteDescription {}
 
 unsafe impl Sync for AVAudioSessionRouteDescription {}
 
-unsafe impl NSObjectProtocol for AVAudioSessionRouteDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSessionRouteDescription {}
+);
 
 impl AVAudioSessionRouteDescription {
     extern_methods!(

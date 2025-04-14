@@ -45,7 +45,9 @@ extern_class!(
     pub struct MEComposeContext;
 );
 
-unsafe impl NSObjectProtocol for MEComposeContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEComposeContext {}
+);
 
 impl MEComposeContext {
     extern_methods!(

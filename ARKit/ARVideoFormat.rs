@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARVideoFormat {}
+extern_conformance!(
+    unsafe impl NSCopying for ARVideoFormat {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARVideoFormat {
@@ -30,7 +32,9 @@ unsafe impl CopyingHelper for ARVideoFormat {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARVideoFormat {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARVideoFormat {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARVideoFormat {

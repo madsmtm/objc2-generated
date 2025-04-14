@@ -28,7 +28,9 @@ unsafe impl Send for CNScript {}
 
 unsafe impl Sync for CNScript {}
 
-unsafe impl NSObjectProtocol for CNScript {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNScript {}
+);
 
 impl CNScript {
     extern_methods!(
@@ -278,7 +280,9 @@ extern_class!(
     pub struct CNScriptChanges;
 );
 
-unsafe impl NSObjectProtocol for CNScriptChanges {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNScriptChanges {}
+);
 
 impl CNScriptChanges {
     extern_methods!(
@@ -345,13 +349,17 @@ unsafe impl Send for CNScriptFrame {}
 
 unsafe impl Sync for CNScriptFrame {}
 
-unsafe impl NSCopying for CNScriptFrame {}
+extern_conformance!(
+    unsafe impl NSCopying for CNScriptFrame {}
+);
 
 unsafe impl CopyingHelper for CNScriptFrame {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNScriptFrame {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNScriptFrame {}
+);
 
 impl CNScriptFrame {
     extern_methods!(

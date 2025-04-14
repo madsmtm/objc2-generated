@@ -25,7 +25,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureControl")]
-unsafe impl NSObjectProtocol for AVCaptureIndexPicker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureIndexPicker {}
+);
 
 #[cfg(feature = "AVCaptureControl")]
 impl AVCaptureIndexPicker {

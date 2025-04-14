@@ -51,20 +51,28 @@ unsafe impl Send for NSURLCredential {}
 unsafe impl Sync for NSURLCredential {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSURLCredential {}
+extern_conformance!(
+    unsafe impl NSCoding for NSURLCredential {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLCredential {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLCredential {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLCredential {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLCredential {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLCredential {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSURLCredential {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSURLCredential {}
+);
 
 impl NSURLCredential {
     extern_methods!(

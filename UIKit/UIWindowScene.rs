@@ -21,10 +21,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-unsafe impl NSObjectProtocol for UIWindowScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowScene {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-unsafe impl UIResponderStandardEditActions for UIWindowScene {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIWindowScene {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
 impl UIWindowScene {
@@ -152,14 +156,18 @@ impl UIWindowScene {
     feature = "UIScene",
     feature = "UITraitCollection"
 ))]
-unsafe impl UITraitChangeObservable for UIWindowScene {}
+extern_conformance!(
+    unsafe impl UITraitChangeObservable for UIWindowScene {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIScene",
     feature = "UITraitCollection"
 ))]
-unsafe impl UITraitEnvironment for UIWindowScene {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIWindowScene {}
+);
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenedelegate?language=objc)
@@ -278,7 +286,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UISceneOptions")]
-unsafe impl NSObjectProtocol for UIWindowSceneDestructionRequestOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneDestructionRequestOptions {}
+);
 
 #[cfg(feature = "UISceneOptions")]
 impl UIWindowSceneDestructionRequestOptions {
@@ -319,7 +329,9 @@ extern_class!(
     pub struct UISceneSizeRestrictions;
 );
 
-unsafe impl NSObjectProtocol for UISceneSizeRestrictions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneSizeRestrictions {}
+);
 
 impl UISceneSizeRestrictions {
     extern_methods!(

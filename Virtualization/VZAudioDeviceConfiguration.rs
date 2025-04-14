@@ -21,13 +21,17 @@ extern_class!(
     pub struct VZAudioDeviceConfiguration;
 );
 
-unsafe impl NSCopying for VZAudioDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZAudioDeviceConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZAudioDeviceConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZAudioDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZAudioDeviceConfiguration {}
+);
 
 impl VZAudioDeviceConfiguration {
     extern_methods!(

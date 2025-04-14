@@ -29,55 +29,81 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIStandardTextCursorView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIStandardTextCursorView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITextCursorView",
     feature = "UIView"
 ))]
-unsafe impl UITextCursorView for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UITextCursorView for UIStandardTextCursorView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIStandardTextCursorView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIStandardTextCursorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIStandardTextCursorView {

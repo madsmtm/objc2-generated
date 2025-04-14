@@ -16,7 +16,9 @@ extern_class!(
     pub struct UITextLoupeSession;
 );
 
-unsafe impl NSObjectProtocol for UITextLoupeSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextLoupeSession {}
+);
 
 impl UITextLoupeSession {
     extern_methods!(

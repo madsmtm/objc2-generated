@@ -1071,10 +1071,14 @@ impl private_NSAttributedStringPasteboardAdditions::Sealed for NSAttributedStrin
 unsafe impl NSAttributedStringPasteboardAdditions for NSAttributedString {}
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardReading for NSAttributedString {}
+extern_conformance!(
+    unsafe impl NSPasteboardReading for NSAttributedString {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardWriting for NSAttributedString {}
+extern_conformance!(
+    unsafe impl NSPasteboardWriting for NSAttributedString {}
+);
 
 mod private_NSMutableAttributedStringAppKitAdditions {
     pub trait Sealed {}

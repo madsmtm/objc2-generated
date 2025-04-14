@@ -59,16 +59,20 @@ extern_class!(
     >;
 );
 
-unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
-    for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
+        for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 #[cfg(feature = "NSTableView")]
-unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSTableViewDataSource
-    for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-{
-}
+extern_conformance!(
+    unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSTableViewDataSource
+        for NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+    {
+    }
+);
 
 impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     NSTableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>

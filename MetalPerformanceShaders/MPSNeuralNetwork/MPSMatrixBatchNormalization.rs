@@ -46,7 +46,9 @@ extern_class!(
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCoding for MPSMatrixBatchNormalization {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixBatchNormalization {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -54,7 +56,9 @@ unsafe impl NSCoding for MPSMatrixBatchNormalization {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCopying for MPSMatrixBatchNormalization {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixBatchNormalization {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -72,7 +76,9 @@ unsafe impl CopyingHelper for MPSMatrixBatchNormalization {
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSObjectProtocol for MPSMatrixBatchNormalization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixBatchNormalization {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -80,7 +86,9 @@ unsafe impl NSObjectProtocol for MPSMatrixBatchNormalization {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSSecureCoding for MPSMatrixBatchNormalization {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixBatchNormalization {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -381,7 +389,9 @@ extern_class!(
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCoding for MPSMatrixBatchNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixBatchNormalizationGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -389,7 +399,9 @@ unsafe impl NSCoding for MPSMatrixBatchNormalizationGradient {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCopying for MPSMatrixBatchNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixBatchNormalizationGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -407,7 +419,9 @@ unsafe impl CopyingHelper for MPSMatrixBatchNormalizationGradient {
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSObjectProtocol for MPSMatrixBatchNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixBatchNormalizationGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -415,7 +429,9 @@ unsafe impl NSObjectProtocol for MPSMatrixBatchNormalizationGradient {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSSecureCoding for MPSMatrixBatchNormalizationGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixBatchNormalizationGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",

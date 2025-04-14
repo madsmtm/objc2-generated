@@ -24,7 +24,9 @@ extern_class!(
     pub struct AVAudioFile;
 );
 
-unsafe impl NSObjectProtocol for AVAudioFile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioFile {}
+);
 
 impl AVAudioFile {
     extern_methods!(

@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNStatefulRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNStatefulRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNStatefulRequest {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for VNStatefulRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNStatefulRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNStatefulRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNStatefulRequest {

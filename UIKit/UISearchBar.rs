@@ -88,61 +88,91 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UISearchBar {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UISearchBar {}
+extern_conformance!(
+    unsafe impl NSCoding for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UISearchBar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UISearchBar {}
+extern_conformance!(
+    unsafe impl UIAppearance for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UISearchBar {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIBarCommon", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIBarPositioning for UISearchBar {}
+extern_conformance!(
+    unsafe impl UIBarPositioning for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UISearchBar {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UISearchBar {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UISearchBar {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UISearchBar {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UISearchBar {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UISearchBar {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UILookToDictateCapable for UISearchBar {}
+extern_conformance!(
+    unsafe impl UILookToDictateCapable for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UISearchBar {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UISearchBar {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UITextInputTraits for UISearchBar {}
+extern_conformance!(
+    unsafe impl UITextInputTraits for UISearchBar {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UISearchBar {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UISearchBar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UISearchBar {

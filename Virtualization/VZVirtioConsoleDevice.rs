@@ -68,7 +68,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZConsoleDevice")]
-unsafe impl NSObjectProtocol for VZVirtioConsoleDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioConsoleDevice {}
+);
 
 #[cfg(feature = "VZConsoleDevice")]
 impl VZVirtioConsoleDevice {

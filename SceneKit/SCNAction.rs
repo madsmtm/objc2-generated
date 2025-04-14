@@ -87,17 +87,25 @@ extern_class!(
     pub struct SCNAction;
 );
 
-unsafe impl NSCoding for SCNAction {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNAction {}
+);
 
-unsafe impl NSCopying for SCNAction {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNAction {}
+);
 
 unsafe impl CopyingHelper for SCNAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNAction {}
+);
 
-unsafe impl NSSecureCoding for SCNAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNAction {}
+);
 
 impl SCNAction {
     extern_methods!(

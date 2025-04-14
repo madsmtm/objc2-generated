@@ -19,7 +19,9 @@ unsafe impl Send for HMAccessoryProfile {}
 
 unsafe impl Sync for HMAccessoryProfile {}
 
-unsafe impl NSObjectProtocol for HMAccessoryProfile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMAccessoryProfile {}
+);
 
 impl HMAccessoryProfile {
     extern_methods!(

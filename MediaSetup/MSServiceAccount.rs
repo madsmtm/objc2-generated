@@ -16,7 +16,9 @@ extern_class!(
     pub struct MSServiceAccount;
 );
 
-unsafe impl NSObjectProtocol for MSServiceAccount {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSServiceAccount {}
+);
 
 impl MSServiceAccount {
     extern_methods!(

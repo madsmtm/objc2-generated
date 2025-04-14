@@ -30,7 +30,9 @@ extern_class!(
     pub struct AVSampleBufferRenderSynchronizer;
 );
 
-unsafe impl NSObjectProtocol for AVSampleBufferRenderSynchronizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSampleBufferRenderSynchronizer {}
+);
 
 impl AVSampleBufferRenderSynchronizer {
     extern_methods!(

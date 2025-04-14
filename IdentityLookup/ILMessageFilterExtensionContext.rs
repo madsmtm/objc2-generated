@@ -16,7 +16,9 @@ extern_class!(
     pub struct ILMessageFilterExtensionContext;
 );
 
-unsafe impl NSObjectProtocol for ILMessageFilterExtensionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ILMessageFilterExtensionContext {}
+);
 
 impl ILMessageFilterExtensionContext {
     extern_methods!(

@@ -14,13 +14,17 @@ extern_class!(
     pub struct MTLVisibleFunctionTableDescriptor;
 );
 
-unsafe impl NSCopying for MTLVisibleFunctionTableDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLVisibleFunctionTableDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLVisibleFunctionTableDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}
+);
 
 impl MTLVisibleFunctionTableDescriptor {
     extern_methods!(

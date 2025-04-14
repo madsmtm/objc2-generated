@@ -20,7 +20,9 @@ extern_class!(
     pub struct CBIdentityAuthority;
 );
 
-unsafe impl NSObjectProtocol for CBIdentityAuthority {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBIdentityAuthority {}
+);
 
 impl CBIdentityAuthority {
     extern_methods!(

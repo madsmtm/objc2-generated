@@ -17,7 +17,9 @@ extern_class!(
     pub struct WKScriptMessage;
 );
 
-unsafe impl NSObjectProtocol for WKScriptMessage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKScriptMessage {}
+);
 
 impl WKScriptMessage {
     extern_methods!(

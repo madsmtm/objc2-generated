@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIGestureRecognizer")]
-unsafe impl NSObjectProtocol for UILongPressGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UILongPressGestureRecognizer {}
+);
 
 #[cfg(feature = "UIGestureRecognizer")]
 impl UILongPressGestureRecognizer {

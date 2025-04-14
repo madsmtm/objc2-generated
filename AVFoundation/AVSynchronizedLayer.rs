@@ -21,19 +21,27 @@ extern_class!(
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CAMediaTiming for AVSynchronizedLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for AVSynchronizedLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSCoding for AVSynchronizedLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for AVSynchronizedLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSObjectProtocol for AVSynchronizedLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSynchronizedLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSSecureCoding for AVSynchronizedLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVSynchronizedLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]

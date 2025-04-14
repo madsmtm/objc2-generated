@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INStartAudioCallIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INStartAudioCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INStartAudioCallIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INStartAudioCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INStartAudioCallIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INStartAudioCallIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INStartAudioCallIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INStartAudioCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INStartAudioCallIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INStartAudioCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INStartAudioCallIntent {

@@ -57,13 +57,19 @@ extern_class!(
 );
 
 #[cfg(feature = "UIBarItem")]
-unsafe impl NSCoding for UITabBarItem {}
+extern_conformance!(
+    unsafe impl NSCoding for UITabBarItem {}
+);
 
 #[cfg(feature = "UIBarItem")]
-unsafe impl NSObjectProtocol for UITabBarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabBarItem {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIBarItem"))]
-unsafe impl UIAppearance for UITabBarItem {}
+extern_conformance!(
+    unsafe impl UIAppearance for UITabBarItem {}
+);
 
 #[cfg(feature = "UIBarItem")]
 impl UITabBarItem {
@@ -240,4 +246,6 @@ impl UITabBarItem {
 }
 
 #[cfg(all(feature = "UIBarItem", feature = "UISpringLoadedInteractionSupporting"))]
-unsafe impl UISpringLoadedInteractionSupporting for UITabBarItem {}
+extern_conformance!(
+    unsafe impl UISpringLoadedInteractionSupporting for UITabBarItem {}
+);

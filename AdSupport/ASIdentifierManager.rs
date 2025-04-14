@@ -15,7 +15,9 @@ extern_class!(
     pub struct ASIdentifierManager;
 );
 
-unsafe impl NSObjectProtocol for ASIdentifierManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASIdentifierManager {}
+);
 
 impl ASIdentifierManager {
     extern_methods!(

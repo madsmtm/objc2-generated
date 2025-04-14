@@ -46,25 +46,39 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for EKEventEditViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for EKEventEditViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for EKEventEditViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKEventEditViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for EKEventEditViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for EKEventEditViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for EKEventEditViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for EKEventEditViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for EKEventEditViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for EKEventEditViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for EKEventEditViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for EKEventEditViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for EKEventEditViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for EKEventEditViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl EKEventEditViewController {

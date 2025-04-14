@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSFileProviderExtension;
 );
 
-unsafe impl NSObjectProtocol for NSFileProviderExtension {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileProviderExtension {}
+);
 
 impl NSFileProviderExtension {
     extern_methods!(
@@ -205,7 +207,9 @@ extern_class!(
     pub struct NSFileProviderManager;
 );
 
-unsafe impl NSObjectProtocol for NSFileProviderManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileProviderManager {}
+);
 
 impl NSFileProviderManager {
     extern_methods!(

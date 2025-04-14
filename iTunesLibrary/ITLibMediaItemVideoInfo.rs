@@ -15,7 +15,9 @@ extern_class!(
     pub struct ITLibMediaItemVideoInfo;
 );
 
-unsafe impl NSObjectProtocol for ITLibMediaItemVideoInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ITLibMediaItemVideoInfo {}
+);
 
 impl ITLibMediaItemVideoInfo {
     extern_methods!(

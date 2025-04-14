@@ -35,13 +35,17 @@ extern_class!(
     pub struct VNRequest;
 );
 
-unsafe impl NSCopying for VNRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNRequest {}
+);
 
 unsafe impl CopyingHelper for VNRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNRequest {}
+);
 
 impl VNRequest {
     extern_methods!(
@@ -212,13 +216,17 @@ extern_class!(
     pub struct VNImageBasedRequest;
 );
 
-unsafe impl NSCopying for VNImageBasedRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNImageBasedRequest {}
+);
 
 unsafe impl CopyingHelper for VNImageBasedRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNImageBasedRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNImageBasedRequest {}
+);
 
 impl VNImageBasedRequest {
     extern_methods!(

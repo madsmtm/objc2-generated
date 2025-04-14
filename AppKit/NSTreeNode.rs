@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSTreeNode;
 );
 
-unsafe impl NSObjectProtocol for NSTreeNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTreeNode {}
+);
 
 impl NSTreeNode {
     extern_methods!(

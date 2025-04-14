@@ -20,7 +20,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSCNNNormalizationGammaAndBetaState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNormalizationGammaAndBetaState {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSCNNNormalizationGammaAndBetaState {

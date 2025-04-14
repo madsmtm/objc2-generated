@@ -28,7 +28,9 @@ extern_class!(
     pub struct AVRouteDetector;
 );
 
-unsafe impl NSObjectProtocol for AVRouteDetector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVRouteDetector {}
+);
 
 impl AVRouteDetector {
     extern_methods!(

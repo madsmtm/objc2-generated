@@ -13,17 +13,25 @@ extern_class!(
     pub struct ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput;
 );
 
-unsafe impl NSCoding for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}
+);
 
-unsafe impl NSCopying for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}
+);
 
 unsafe impl CopyingHelper for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}
+);
 
-unsafe impl NSSecureCoding for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {}
+);
 
 impl ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {
     extern_methods!(

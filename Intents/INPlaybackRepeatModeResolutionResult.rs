@@ -14,7 +14,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INPlaybackRepeatModeResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPlaybackRepeatModeResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INPlaybackRepeatModeResolutionResult {

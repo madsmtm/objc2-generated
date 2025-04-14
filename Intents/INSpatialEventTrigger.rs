@@ -15,17 +15,25 @@ extern_class!(
     pub struct INSpatialEventTrigger;
 );
 
-unsafe impl NSCoding for INSpatialEventTrigger {}
+extern_conformance!(
+    unsafe impl NSCoding for INSpatialEventTrigger {}
+);
 
-unsafe impl NSCopying for INSpatialEventTrigger {}
+extern_conformance!(
+    unsafe impl NSCopying for INSpatialEventTrigger {}
+);
 
 unsafe impl CopyingHelper for INSpatialEventTrigger {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INSpatialEventTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSpatialEventTrigger {}
+);
 
-unsafe impl NSSecureCoding for INSpatialEventTrigger {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSpatialEventTrigger {}
+);
 
 impl INSpatialEventTrigger {
     extern_methods!(

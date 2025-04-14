@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIGestureRecognizer")]
-unsafe impl NSObjectProtocol for UIHoverGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIHoverGestureRecognizer {}
+);
 
 #[cfg(feature = "UIGestureRecognizer")]
 impl UIHoverGestureRecognizer {

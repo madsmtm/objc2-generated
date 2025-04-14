@@ -15,17 +15,25 @@ extern_class!(
     pub struct WKImage;
 );
 
-unsafe impl NSCoding for WKImage {}
+extern_conformance!(
+    unsafe impl NSCoding for WKImage {}
+);
 
-unsafe impl NSCopying for WKImage {}
+extern_conformance!(
+    unsafe impl NSCopying for WKImage {}
+);
 
 unsafe impl CopyingHelper for WKImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WKImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKImage {}
+);
 
-unsafe impl NSSecureCoding for WKImage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WKImage {}
+);
 
 impl WKImage {
     extern_methods!(

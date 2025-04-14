@@ -14,10 +14,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSPointerArray {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPointerArray {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSPointerArray {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPointerArray {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSPointerArray {
@@ -25,12 +29,18 @@ unsafe impl CopyingHelper for NSPointerArray {
 }
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl NSFastEnumeration for NSPointerArray {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for NSPointerArray {}
+);
 
-unsafe impl NSObjectProtocol for NSPointerArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPointerArray {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSPointerArray {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSPointerArray {}
+);
 
 impl NSPointerArray {
     extern_methods!(

@@ -18,17 +18,25 @@ extern_class!(
     pub struct MKMapCamera;
 );
 
-unsafe impl NSCoding for MKMapCamera {}
+extern_conformance!(
+    unsafe impl NSCoding for MKMapCamera {}
+);
 
-unsafe impl NSCopying for MKMapCamera {}
+extern_conformance!(
+    unsafe impl NSCopying for MKMapCamera {}
+);
 
 unsafe impl CopyingHelper for MKMapCamera {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKMapCamera {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapCamera {}
+);
 
-unsafe impl NSSecureCoding for MKMapCamera {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MKMapCamera {}
+);
 
 impl MKMapCamera {
     extern_methods!(

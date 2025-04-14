@@ -17,13 +17,17 @@ unsafe impl Send for HMAccessorySetupResult {}
 
 unsafe impl Sync for HMAccessorySetupResult {}
 
-unsafe impl NSCopying for HMAccessorySetupResult {}
+extern_conformance!(
+    unsafe impl NSCopying for HMAccessorySetupResult {}
+);
 
 unsafe impl CopyingHelper for HMAccessorySetupResult {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HMAccessorySetupResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMAccessorySetupResult {}
+);
 
 impl HMAccessorySetupResult {
     extern_methods!(

@@ -16,7 +16,9 @@ extern_class!(
     pub struct PKIdentityAuthorizationController;
 );
 
-unsafe impl NSObjectProtocol for PKIdentityAuthorizationController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityAuthorizationController {}
+);
 
 impl PKIdentityAuthorizationController {
     extern_methods!(

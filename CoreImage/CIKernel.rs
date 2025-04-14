@@ -22,7 +22,9 @@ extern_class!(
     pub struct CIKernel;
 );
 
-unsafe impl NSObjectProtocol for CIKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIKernel {}
+);
 
 impl CIKernel {
     extern_methods!(
@@ -107,7 +109,9 @@ extern_class!(
     pub struct CIColorKernel;
 );
 
-unsafe impl NSObjectProtocol for CIColorKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIColorKernel {}
+);
 
 impl CIColorKernel {
     extern_methods!(
@@ -168,7 +172,9 @@ extern_class!(
     pub struct CIWarpKernel;
 );
 
-unsafe impl NSObjectProtocol for CIWarpKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIWarpKernel {}
+);
 
 impl CIWarpKernel {
     extern_methods!(
@@ -235,7 +241,9 @@ extern_class!(
     pub struct CIBlendKernel;
 );
 
-unsafe impl NSObjectProtocol for CIBlendKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIBlendKernel {}
+);
 
 impl CIBlendKernel {
     extern_methods!(

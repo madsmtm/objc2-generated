@@ -109,7 +109,9 @@ extern_class!(
     pub struct AVAudioUnitEQFilterParameters;
 );
 
-unsafe impl NSObjectProtocol for AVAudioUnitEQFilterParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioUnitEQFilterParameters {}
+);
 
 impl AVAudioUnitEQFilterParameters {
     extern_methods!(
@@ -211,7 +213,9 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitEffect"
 ))]
-unsafe impl NSObjectProtocol for AVAudioUnitEQ {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioUnitEQ {}
+);
 
 #[cfg(all(
     feature = "AVAudioNode",

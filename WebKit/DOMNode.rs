@@ -76,10 +76,14 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMNode {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMNode {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSCopying for DOMNode {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMNode {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl CopyingHelper for DOMNode {
@@ -87,7 +91,9 @@ unsafe impl CopyingHelper for DOMNode {
 }
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSObjectProtocol for DOMNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMNode {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMNode {

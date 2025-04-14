@@ -15,7 +15,9 @@ extern_class!(
     pub struct UIBarButtonItemStateAppearance;
 );
 
-unsafe impl NSObjectProtocol for UIBarButtonItemStateAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBarButtonItemStateAppearance {}
+);
 
 impl UIBarButtonItemStateAppearance {
     extern_methods!(
@@ -91,17 +93,25 @@ extern_class!(
     pub struct UIBarButtonItemAppearance;
 );
 
-unsafe impl NSCoding for UIBarButtonItemAppearance {}
+extern_conformance!(
+    unsafe impl NSCoding for UIBarButtonItemAppearance {}
+);
 
-unsafe impl NSCopying for UIBarButtonItemAppearance {}
+extern_conformance!(
+    unsafe impl NSCopying for UIBarButtonItemAppearance {}
+);
 
 unsafe impl CopyingHelper for UIBarButtonItemAppearance {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIBarButtonItemAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBarButtonItemAppearance {}
+);
 
-unsafe impl NSSecureCoding for UIBarButtonItemAppearance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIBarButtonItemAppearance {}
+);
 
 impl UIBarButtonItemAppearance {
     extern_methods!(

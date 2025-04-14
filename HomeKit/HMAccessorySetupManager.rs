@@ -22,7 +22,9 @@ unsafe impl Send for HMAccessorySetupManager {}
 
 unsafe impl Sync for HMAccessorySetupManager {}
 
-unsafe impl NSObjectProtocol for HMAccessorySetupManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMAccessorySetupManager {}
+);
 
 impl HMAccessorySetupManager {
     extern_methods!(

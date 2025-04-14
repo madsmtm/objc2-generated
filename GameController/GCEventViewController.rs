@@ -25,23 +25,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for GCEventViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for GCEventViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for GCEventViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for GCEventViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for GCEventViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCEventViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for GCEventViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for GCEventViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for GCEventViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for GCEventViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

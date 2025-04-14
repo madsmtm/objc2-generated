@@ -102,36 +102,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSTabView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTabView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSTabView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTabView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSTabView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSTabView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSTabView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSTabView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSTabView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTabView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSTabView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSTabView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSTabView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTabView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTabView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTabView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSTabView {

@@ -26,7 +26,9 @@ extern_class!(
     pub struct VZSocketDevice;
 );
 
-unsafe impl NSObjectProtocol for VZSocketDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZSocketDevice {}
+);
 
 impl VZSocketDevice {
     extern_methods!(

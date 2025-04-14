@@ -14,38 +14,52 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationCredential")]
-unsafe impl ASAuthorizationCredential
-    for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationCredential
+        for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration
+    {
+    }
+);
 
 #[cfg(all(
     feature = "ASAuthorizationCredential",
     feature = "ASAuthorizationPublicKeyCredentialRegistration",
     feature = "ASPublicKeyCredential"
 ))]
-unsafe impl ASAuthorizationPublicKeyCredentialRegistration
-    for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationPublicKeyCredentialRegistration
+        for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration
+    {
+    }
+);
 
 #[cfg(all(
     feature = "ASAuthorizationCredential",
     feature = "ASPublicKeyCredential"
 ))]
-unsafe impl ASPublicKeyCredential for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl ASPublicKeyCredential for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+);
 
-unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+);
 
-unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+);
 
 unsafe impl CopyingHelper for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+);
 
-unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {}
+);
 
 impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
     extern_methods!(

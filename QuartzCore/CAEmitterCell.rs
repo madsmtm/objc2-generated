@@ -19,13 +19,21 @@ extern_class!(
 );
 
 #[cfg(feature = "CAMediaTiming")]
-unsafe impl CAMediaTiming for CAEmitterCell {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CAEmitterCell {}
+);
 
-unsafe impl NSCoding for CAEmitterCell {}
+extern_conformance!(
+    unsafe impl NSCoding for CAEmitterCell {}
+);
 
-unsafe impl NSObjectProtocol for CAEmitterCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAEmitterCell {}
+);
 
-unsafe impl NSSecureCoding for CAEmitterCell {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAEmitterCell {}
+);
 
 impl CAEmitterCell {
     extern_methods!(

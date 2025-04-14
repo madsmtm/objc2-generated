@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSDate", feature = "NSObject"))]
-unsafe impl NSCoding for NSCalendarDate {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCalendarDate {}
+);
 
 #[cfg(all(feature = "NSDate", feature = "NSObject"))]
-unsafe impl NSCopying for NSCalendarDate {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCalendarDate {}
+);
 
 #[cfg(all(feature = "NSDate", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSCalendarDate {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for NSCalendarDate {
 }
 
 #[cfg(feature = "NSDate")]
-unsafe impl NSObjectProtocol for NSCalendarDate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCalendarDate {}
+);
 
 #[cfg(all(feature = "NSDate", feature = "NSObject"))]
-unsafe impl NSSecureCoding for NSCalendarDate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSCalendarDate {}
+);
 
 #[cfg(feature = "NSDate")]
 impl NSCalendarDate {

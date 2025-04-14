@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceSlider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceSlider {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceSlider {

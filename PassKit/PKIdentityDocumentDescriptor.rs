@@ -52,9 +52,13 @@ extern_class!(
     pub struct PKIdentityDriversLicenseDescriptor;
 );
 
-unsafe impl NSObjectProtocol for PKIdentityDriversLicenseDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityDriversLicenseDescriptor {}
+);
 
-unsafe impl PKIdentityDocumentDescriptor for PKIdentityDriversLicenseDescriptor {}
+extern_conformance!(
+    unsafe impl PKIdentityDocumentDescriptor for PKIdentityDriversLicenseDescriptor {}
+);
 
 impl PKIdentityDriversLicenseDescriptor {
     extern_methods!();
@@ -82,9 +86,13 @@ extern_class!(
     pub struct PKIdentityNationalIDCardDescriptor;
 );
 
-unsafe impl NSObjectProtocol for PKIdentityNationalIDCardDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityNationalIDCardDescriptor {}
+);
 
-unsafe impl PKIdentityDocumentDescriptor for PKIdentityNationalIDCardDescriptor {}
+extern_conformance!(
+    unsafe impl PKIdentityDocumentDescriptor for PKIdentityNationalIDCardDescriptor {}
+);
 
 impl PKIdentityNationalIDCardDescriptor {
     extern_methods!(

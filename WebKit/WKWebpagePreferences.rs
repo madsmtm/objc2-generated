@@ -79,7 +79,9 @@ extern_class!(
     pub struct WKWebpagePreferences;
 );
 
-unsafe impl NSObjectProtocol for WKWebpagePreferences {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebpagePreferences {}
+);
 
 impl WKWebpagePreferences {
     extern_methods!(

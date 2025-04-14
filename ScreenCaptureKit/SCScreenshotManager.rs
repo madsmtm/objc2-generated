@@ -20,7 +20,9 @@ extern_class!(
     pub struct SCScreenshotManager;
 );
 
-unsafe impl NSObjectProtocol for SCScreenshotManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCScreenshotManager {}
+);
 
 impl SCScreenshotManager {
     extern_methods!(

@@ -24,7 +24,9 @@ unsafe impl Send for HMPresenceEvent {}
 unsafe impl Sync for HMPresenceEvent {}
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSCopying for HMPresenceEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMPresenceEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl CopyingHelper for HMPresenceEvent {
@@ -32,7 +34,9 @@ unsafe impl CopyingHelper for HMPresenceEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSMutableCopying for HMPresenceEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMPresenceEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl MutableCopyingHelper for HMPresenceEvent {
@@ -40,7 +44,9 @@ unsafe impl MutableCopyingHelper for HMPresenceEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSObjectProtocol for HMPresenceEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMPresenceEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 impl HMPresenceEvent {
@@ -110,7 +116,9 @@ unsafe impl Send for HMMutablePresenceEvent {}
 unsafe impl Sync for HMMutablePresenceEvent {}
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSCopying for HMMutablePresenceEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMMutablePresenceEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl CopyingHelper for HMMutablePresenceEvent {
@@ -118,7 +126,9 @@ unsafe impl CopyingHelper for HMMutablePresenceEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSMutableCopying for HMMutablePresenceEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMMutablePresenceEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl MutableCopyingHelper for HMMutablePresenceEvent {
@@ -126,7 +136,9 @@ unsafe impl MutableCopyingHelper for HMMutablePresenceEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSObjectProtocol for HMMutablePresenceEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMMutablePresenceEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 impl HMMutablePresenceEvent {

@@ -23,4 +23,6 @@ impl NSColor {
 }
 
 #[cfg(feature = "NSColor")]
-unsafe impl NSAccessibilityColor for NSColor {}
+extern_conformance!(
+    unsafe impl NSAccessibilityColor for NSColor {}
+);

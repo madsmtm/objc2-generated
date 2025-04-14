@@ -19,7 +19,9 @@ unsafe impl Send for SKPaymentQueue {}
 
 unsafe impl Sync for SKPaymentQueue {}
 
-unsafe impl NSObjectProtocol for SKPaymentQueue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPaymentQueue {}
+);
 
 impl SKPaymentQueue {
     extern_methods!(

@@ -43,17 +43,25 @@ extern_class!(
     pub struct MKAddressFilter;
 );
 
-unsafe impl NSCoding for MKAddressFilter {}
+extern_conformance!(
+    unsafe impl NSCoding for MKAddressFilter {}
+);
 
-unsafe impl NSCopying for MKAddressFilter {}
+extern_conformance!(
+    unsafe impl NSCopying for MKAddressFilter {}
+);
 
 unsafe impl CopyingHelper for MKAddressFilter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKAddressFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKAddressFilter {}
+);
 
-unsafe impl NSSecureCoding for MKAddressFilter {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MKAddressFilter {}
+);
 
 impl MKAddressFilter {
     extern_methods!(

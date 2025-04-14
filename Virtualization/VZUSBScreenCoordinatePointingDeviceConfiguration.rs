@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
-unsafe impl NSCopying for VZUSBScreenCoordinatePointingDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZUSBScreenCoordinatePointingDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
 unsafe impl CopyingHelper for VZUSBScreenCoordinatePointingDeviceConfiguration {
@@ -27,7 +29,9 @@ unsafe impl CopyingHelper for VZUSBScreenCoordinatePointingDeviceConfiguration {
 }
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZUSBScreenCoordinatePointingDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZUSBScreenCoordinatePointingDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
 impl VZUSBScreenCoordinatePointingDeviceConfiguration {

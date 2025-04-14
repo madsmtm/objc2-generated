@@ -22,25 +22,39 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for ILClassificationUIExtensionViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for ILClassificationUIExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for ILClassificationUIExtensionViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ILClassificationUIExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for ILClassificationUIExtensionViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for ILClassificationUIExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for ILClassificationUIExtensionViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for ILClassificationUIExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for ILClassificationUIExtensionViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for ILClassificationUIExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for ILClassificationUIExtensionViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for ILClassificationUIExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for ILClassificationUIExtensionViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for ILClassificationUIExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl ILClassificationUIExtensionViewController {

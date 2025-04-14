@@ -240,10 +240,14 @@ unsafe impl Send for HKStateOfMind {}
 unsafe impl Sync for HKStateOfMind {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCoding for HKStateOfMind {}
+extern_conformance!(
+    unsafe impl NSCoding for HKStateOfMind {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCopying for HKStateOfMind {}
+extern_conformance!(
+    unsafe impl NSCopying for HKStateOfMind {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 unsafe impl CopyingHelper for HKStateOfMind {
@@ -251,10 +255,14 @@ unsafe impl CopyingHelper for HKStateOfMind {
 }
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSObjectProtocol for HKStateOfMind {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKStateOfMind {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSSecureCoding for HKStateOfMind {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKStateOfMind {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKStateOfMind {

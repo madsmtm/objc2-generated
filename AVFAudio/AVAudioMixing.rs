@@ -426,13 +426,21 @@ extern_class!(
     pub struct AVAudioMixingDestination;
 );
 
-unsafe impl AVAudio3DMixing for AVAudioMixingDestination {}
+extern_conformance!(
+    unsafe impl AVAudio3DMixing for AVAudioMixingDestination {}
+);
 
-unsafe impl AVAudioMixing for AVAudioMixingDestination {}
+extern_conformance!(
+    unsafe impl AVAudioMixing for AVAudioMixingDestination {}
+);
 
-unsafe impl AVAudioStereoMixing for AVAudioMixingDestination {}
+extern_conformance!(
+    unsafe impl AVAudioStereoMixing for AVAudioMixingDestination {}
+);
 
-unsafe impl NSObjectProtocol for AVAudioMixingDestination {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioMixingDestination {}
+);
 
 impl AVAudioMixingDestination {
     extern_methods!(

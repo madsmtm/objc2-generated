@@ -14,11 +14,17 @@ extern_class!(
     pub struct NSTextAlternatives;
 );
 
-unsafe impl NSCoding for NSTextAlternatives {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextAlternatives {}
+);
 
-unsafe impl NSObjectProtocol for NSTextAlternatives {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextAlternatives {}
+);
 
-unsafe impl NSSecureCoding for NSTextAlternatives {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextAlternatives {}
+);
 
 impl NSTextAlternatives {
     extern_methods!(

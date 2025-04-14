@@ -15,11 +15,17 @@ extern_class!(
     pub struct MEAddressAnnotation;
 );
 
-unsafe impl NSCoding for MEAddressAnnotation {}
+extern_conformance!(
+    unsafe impl NSCoding for MEAddressAnnotation {}
+);
 
-unsafe impl NSObjectProtocol for MEAddressAnnotation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEAddressAnnotation {}
+);
 
-unsafe impl NSSecureCoding for MEAddressAnnotation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MEAddressAnnotation {}
+);
 
 impl MEAddressAnnotation {
     extern_methods!(

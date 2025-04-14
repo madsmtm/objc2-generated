@@ -34,17 +34,25 @@ extern_class!(
     pub struct AXCustomContent;
 );
 
-unsafe impl NSCoding for AXCustomContent {}
+extern_conformance!(
+    unsafe impl NSCoding for AXCustomContent {}
+);
 
-unsafe impl NSCopying for AXCustomContent {}
+extern_conformance!(
+    unsafe impl NSCopying for AXCustomContent {}
+);
 
 unsafe impl CopyingHelper for AXCustomContent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AXCustomContent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXCustomContent {}
+);
 
-unsafe impl NSSecureCoding for AXCustomContent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AXCustomContent {}
+);
 
 impl AXCustomContent {
     extern_methods!(

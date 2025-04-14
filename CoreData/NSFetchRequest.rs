@@ -38,9 +38,13 @@ extern_protocol!(
     pub unsafe trait NSFetchRequestResult: NSObjectProtocol {}
 );
 
-unsafe impl NSFetchRequestResult for NSNumber {}
+extern_conformance!(
+    unsafe impl NSFetchRequestResult for NSNumber {}
+);
 
-unsafe impl NSFetchRequestResult for NSDictionary {}
+extern_conformance!(
+    unsafe impl NSFetchRequestResult for NSDictionary {}
+);
 
 /// NSFetchedResultSupport.
 #[cfg(feature = "NSManagedObject")]
@@ -49,7 +53,9 @@ impl NSManagedObject {
 }
 
 #[cfg(feature = "NSManagedObject")]
-unsafe impl NSFetchRequestResult for NSManagedObject {}
+extern_conformance!(
+    unsafe impl NSFetchRequestResult for NSManagedObject {}
+);
 
 /// NSFetchedResultSupport.
 #[cfg(feature = "NSManagedObjectID")]
@@ -58,7 +64,9 @@ impl NSManagedObjectID {
 }
 
 #[cfg(feature = "NSManagedObjectID")]
-unsafe impl NSFetchRequestResult for NSManagedObjectID {}
+extern_conformance!(
+    unsafe impl NSFetchRequestResult for NSManagedObjectID {}
+);
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequest?language=objc)
@@ -69,10 +77,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl<ResultType: ?Sized + NSCoding> NSCoding for NSFetchRequest<ResultType> {}
+extern_conformance!(
+    unsafe impl<ResultType: ?Sized + NSCoding> NSCoding for NSFetchRequest<ResultType> {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl<ResultType: ?Sized> NSCopying for NSFetchRequest<ResultType> {}
+extern_conformance!(
+    unsafe impl<ResultType: ?Sized> NSCopying for NSFetchRequest<ResultType> {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSFetchRequest<ResultType> {
@@ -80,7 +92,9 @@ unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSFetchRequest<Resul
 }
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> {}
+extern_conformance!(
+    unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 impl<ResultType: Message> NSFetchRequest<ResultType> {
@@ -314,7 +328,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl<ResultType: ?Sized> NSCopying for NSAsynchronousFetchRequest<ResultType> {}
+extern_conformance!(
+    unsafe impl<ResultType: ?Sized> NSCopying for NSAsynchronousFetchRequest<ResultType> {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSAsynchronousFetchRequest<ResultType> {
@@ -322,7 +338,9 @@ unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSAsynchronousFetchR
 }
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}
+extern_conformance!(
+    unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {

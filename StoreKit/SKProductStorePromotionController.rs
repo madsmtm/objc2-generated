@@ -40,7 +40,9 @@ extern_class!(
     pub struct SKProductStorePromotionController;
 );
 
-unsafe impl NSObjectProtocol for SKProductStorePromotionController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKProductStorePromotionController {}
+);
 
 impl SKProductStorePromotionController {
     extern_methods!(

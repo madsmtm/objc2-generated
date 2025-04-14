@@ -99,10 +99,14 @@ extern_class!(
     pub struct UIScreen;
 );
 
-unsafe impl NSObjectProtocol for UIScreen {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIScreen {}
+);
 
 #[cfg(feature = "UITraitCollection")]
-unsafe impl UITraitEnvironment for UIScreen {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIScreen {}
+);
 
 impl UIScreen {
     extern_methods!(

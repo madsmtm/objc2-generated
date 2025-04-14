@@ -19,10 +19,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INStartPhotoPlaybackIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INStartPhotoPlaybackIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INStartPhotoPlaybackIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INStartPhotoPlaybackIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INStartPhotoPlaybackIntent {
@@ -30,10 +34,14 @@ unsafe impl CopyingHelper for INStartPhotoPlaybackIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INStartPhotoPlaybackIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INStartPhotoPlaybackIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INStartPhotoPlaybackIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INStartPhotoPlaybackIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INStartPhotoPlaybackIntent {

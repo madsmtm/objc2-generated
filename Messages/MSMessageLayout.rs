@@ -15,13 +15,17 @@ extern_class!(
     pub struct MSMessageLayout;
 );
 
-unsafe impl NSCopying for MSMessageLayout {}
+extern_conformance!(
+    unsafe impl NSCopying for MSMessageLayout {}
+);
 
 unsafe impl CopyingHelper for MSMessageLayout {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MSMessageLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSMessageLayout {}
+);
 
 impl MSMessageLayout {
     extern_methods!();

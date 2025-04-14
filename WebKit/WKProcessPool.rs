@@ -20,11 +20,17 @@ extern_class!(
     pub struct WKProcessPool;
 );
 
-unsafe impl NSCoding for WKProcessPool {}
+extern_conformance!(
+    unsafe impl NSCoding for WKProcessPool {}
+);
 
-unsafe impl NSObjectProtocol for WKProcessPool {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKProcessPool {}
+);
 
-unsafe impl NSSecureCoding for WKProcessPool {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WKProcessPool {}
+);
 
 impl WKProcessPool {
     extern_methods!();

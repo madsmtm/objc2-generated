@@ -17,7 +17,9 @@ extern_class!(
     pub struct QLFileThumbnailRequest;
 );
 
-unsafe impl NSObjectProtocol for QLFileThumbnailRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QLFileThumbnailRequest {}
+);
 
 impl QLFileThumbnailRequest {
     extern_methods!(

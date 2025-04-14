@@ -23,7 +23,9 @@ extern_class!(
     pub struct NSHost;
 );
 
-unsafe impl NSObjectProtocol for NSHost {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSHost {}
+);
 
 impl NSHost {
     extern_methods!(

@@ -39,7 +39,9 @@ extern_class!(
     pub struct NSPDFPanel;
 );
 
-unsafe impl NSObjectProtocol for NSPDFPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPDFPanel {}
+);
 
 impl NSPDFPanel {
     extern_methods!(

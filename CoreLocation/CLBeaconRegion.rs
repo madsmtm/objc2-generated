@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CLRegion")]
-unsafe impl NSCoding for CLBeaconRegion {}
+extern_conformance!(
+    unsafe impl NSCoding for CLBeaconRegion {}
+);
 
 #[cfg(feature = "CLRegion")]
-unsafe impl NSCopying for CLBeaconRegion {}
+extern_conformance!(
+    unsafe impl NSCopying for CLBeaconRegion {}
+);
 
 #[cfg(feature = "CLRegion")]
 unsafe impl CopyingHelper for CLBeaconRegion {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for CLBeaconRegion {
 }
 
 #[cfg(feature = "CLRegion")]
-unsafe impl NSObjectProtocol for CLBeaconRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLBeaconRegion {}
+);
 
 #[cfg(feature = "CLRegion")]
-unsafe impl NSSecureCoding for CLBeaconRegion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLBeaconRegion {}
+);
 
 #[cfg(feature = "CLRegion")]
 impl CLBeaconRegion {
@@ -197,17 +205,25 @@ extern_class!(
     pub struct CLBeacon;
 );
 
-unsafe impl NSCoding for CLBeacon {}
+extern_conformance!(
+    unsafe impl NSCoding for CLBeacon {}
+);
 
-unsafe impl NSCopying for CLBeacon {}
+extern_conformance!(
+    unsafe impl NSCopying for CLBeacon {}
+);
 
 unsafe impl CopyingHelper for CLBeacon {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLBeacon {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLBeacon {}
+);
 
-unsafe impl NSSecureCoding for CLBeacon {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLBeacon {}
+);
 
 impl CLBeacon {
     extern_methods!(

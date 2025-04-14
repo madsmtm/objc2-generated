@@ -27,7 +27,9 @@ unsafe impl Send for HMLocationEvent {}
 unsafe impl Sync for HMLocationEvent {}
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSCopying for HMLocationEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMLocationEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl CopyingHelper for HMLocationEvent {
@@ -35,7 +37,9 @@ unsafe impl CopyingHelper for HMLocationEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSMutableCopying for HMLocationEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMLocationEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl MutableCopyingHelper for HMLocationEvent {
@@ -43,7 +47,9 @@ unsafe impl MutableCopyingHelper for HMLocationEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSObjectProtocol for HMLocationEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMLocationEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 impl HMLocationEvent {
@@ -121,7 +127,9 @@ unsafe impl Send for HMMutableLocationEvent {}
 unsafe impl Sync for HMMutableLocationEvent {}
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSCopying for HMMutableLocationEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMMutableLocationEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl CopyingHelper for HMMutableLocationEvent {
@@ -129,7 +137,9 @@ unsafe impl CopyingHelper for HMMutableLocationEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSMutableCopying for HMMutableLocationEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMMutableLocationEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl MutableCopyingHelper for HMMutableLocationEvent {
@@ -137,7 +147,9 @@ unsafe impl MutableCopyingHelper for HMMutableLocationEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSObjectProtocol for HMMutableLocationEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMMutableLocationEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 impl HMMutableLocationEvent {

@@ -44,10 +44,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSnoozeTasksIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSnoozeTasksIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSnoozeTasksIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSnoozeTasksIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSnoozeTasksIntentResponse {
@@ -55,10 +59,14 @@ unsafe impl CopyingHelper for INSnoozeTasksIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSnoozeTasksIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSnoozeTasksIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSnoozeTasksIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSnoozeTasksIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSnoozeTasksIntentResponse {

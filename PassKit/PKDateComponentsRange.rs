@@ -13,17 +13,25 @@ extern_class!(
     pub struct PKDateComponentsRange;
 );
 
-unsafe impl NSCoding for PKDateComponentsRange {}
+extern_conformance!(
+    unsafe impl NSCoding for PKDateComponentsRange {}
+);
 
-unsafe impl NSCopying for PKDateComponentsRange {}
+extern_conformance!(
+    unsafe impl NSCopying for PKDateComponentsRange {}
+);
 
 unsafe impl CopyingHelper for PKDateComponentsRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PKDateComponentsRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKDateComponentsRange {}
+);
 
-unsafe impl NSSecureCoding for PKDateComponentsRange {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PKDateComponentsRange {}
+);
 
 impl PKDateComponentsRange {
     extern_methods!(

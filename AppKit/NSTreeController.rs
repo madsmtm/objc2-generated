@@ -17,24 +17,32 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-unsafe impl NSCoding for NSTreeController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTreeController {}
+);
 
 #[cfg(all(
     feature = "NSController",
     feature = "NSKeyValueBinding",
     feature = "NSObjectController"
 ))]
-unsafe impl NSEditor for NSTreeController {}
+extern_conformance!(
+    unsafe impl NSEditor for NSTreeController {}
+);
 
 #[cfg(all(
     feature = "NSController",
     feature = "NSKeyValueBinding",
     feature = "NSObjectController"
 ))]
-unsafe impl NSEditorRegistration for NSTreeController {}
+extern_conformance!(
+    unsafe impl NSEditorRegistration for NSTreeController {}
+);
 
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-unsafe impl NSObjectProtocol for NSTreeController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTreeController {}
+);
 
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 impl NSTreeController {

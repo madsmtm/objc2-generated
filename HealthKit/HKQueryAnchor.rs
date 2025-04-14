@@ -19,17 +19,25 @@ unsafe impl Send for HKQueryAnchor {}
 
 unsafe impl Sync for HKQueryAnchor {}
 
-unsafe impl NSCoding for HKQueryAnchor {}
+extern_conformance!(
+    unsafe impl NSCoding for HKQueryAnchor {}
+);
 
-unsafe impl NSCopying for HKQueryAnchor {}
+extern_conformance!(
+    unsafe impl NSCopying for HKQueryAnchor {}
+);
 
 unsafe impl CopyingHelper for HKQueryAnchor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKQueryAnchor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKQueryAnchor {}
+);
 
-unsafe impl NSSecureCoding for HKQueryAnchor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKQueryAnchor {}
+);
 
 impl HKQueryAnchor {
     extern_methods!(

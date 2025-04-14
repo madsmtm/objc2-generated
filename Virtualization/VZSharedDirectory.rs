@@ -15,7 +15,9 @@ extern_class!(
     pub struct VZSharedDirectory;
 );
 
-unsafe impl NSObjectProtocol for VZSharedDirectory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZSharedDirectory {}
+);
 
 impl VZSharedDirectory {
     extern_methods!(

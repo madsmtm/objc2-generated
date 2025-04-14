@@ -52,10 +52,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INCreateTaskListIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INCreateTaskListIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INCreateTaskListIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INCreateTaskListIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INCreateTaskListIntentResponse {
@@ -63,10 +67,14 @@ unsafe impl CopyingHelper for INCreateTaskListIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INCreateTaskListIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCreateTaskListIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INCreateTaskListIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCreateTaskListIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INCreateTaskListIntentResponse {

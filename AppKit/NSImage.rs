@@ -90,7 +90,9 @@ extern_class!(
     pub struct NSImage;
 );
 
-unsafe impl NSObjectProtocol for NSImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSImage {}
+);
 
 impl NSImage {
     extern_methods!(
@@ -565,27 +567,39 @@ impl NSImage {
     extern_methods!();
 }
 
-unsafe impl NSCopying for NSImage {}
+extern_conformance!(
+    unsafe impl NSCopying for NSImage {}
+);
 
 unsafe impl CopyingHelper for NSImage {
     type Result = Self;
 }
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardReading for NSImage {}
+extern_conformance!(
+    unsafe impl NSPasteboardReading for NSImage {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardWriting for NSImage {}
+extern_conformance!(
+    unsafe impl NSPasteboardWriting for NSImage {}
+);
 
-unsafe impl NSSecureCoding for NSImage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSImage {}
+);
 
 impl NSImage {
     extern_methods!();
 }
 
-unsafe impl NSItemProviderReading for NSImage {}
+extern_conformance!(
+    unsafe impl NSItemProviderReading for NSImage {}
+);
 
-unsafe impl NSItemProviderWriting for NSImage {}
+extern_conformance!(
+    unsafe impl NSItemProviderWriting for NSImage {}
+);
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagedelegate?language=objc)
@@ -1562,17 +1576,25 @@ extern_class!(
     pub struct NSImageSymbolConfiguration;
 );
 
-unsafe impl NSCoding for NSImageSymbolConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for NSImageSymbolConfiguration {}
+);
 
-unsafe impl NSCopying for NSImageSymbolConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NSImageSymbolConfiguration {}
+);
 
 unsafe impl CopyingHelper for NSImageSymbolConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSImageSymbolConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSImageSymbolConfiguration {}
+);
 
-unsafe impl NSSecureCoding for NSImageSymbolConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSImageSymbolConfiguration {}
+);
 
 impl NSImageSymbolConfiguration {
     extern_methods!(

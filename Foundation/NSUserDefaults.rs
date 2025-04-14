@@ -66,7 +66,9 @@ extern_class!(
     pub struct NSUserDefaults;
 );
 
-unsafe impl NSObjectProtocol for NSUserDefaults {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUserDefaults {}
+);
 
 impl NSUserDefaults {
     extern_methods!(

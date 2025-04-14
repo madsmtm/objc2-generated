@@ -14,17 +14,25 @@ extern_class!(
     pub struct INObjectCollection<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for INObjectCollection<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for INObjectCollection<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSCopying for INObjectCollection<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for INObjectCollection<ObjectType> {}
+);
 
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for INObjectCollection<ObjectType> {
     type Result = Self;
 }
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for INObjectCollection<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for INObjectCollection<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for INObjectCollection<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for INObjectCollection<ObjectType> {}
+);
 
 impl<ObjectType: Message> INObjectCollection<ObjectType> {
     extern_methods!(

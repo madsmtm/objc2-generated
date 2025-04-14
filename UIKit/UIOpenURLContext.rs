@@ -14,7 +14,9 @@ extern_class!(
     pub struct UIOpenURLContext;
 );
 
-unsafe impl NSObjectProtocol for UIOpenURLContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIOpenURLContext {}
+);
 
 impl UIOpenURLContext {
     extern_methods!(

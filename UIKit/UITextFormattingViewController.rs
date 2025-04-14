@@ -99,37 +99,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UITextFormattingViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UITextFormattingViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UITextFormattingViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextFormattingViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UITextFormattingViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UITextFormattingViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UITextFormattingViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UITextFormattingViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UITextFormattingViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UITextFormattingViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UITextFormattingViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UITextFormattingViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UITextFormattingViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UITextFormattingViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UITextFormattingViewController {

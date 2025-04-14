@@ -61,15 +61,21 @@ extern_class!(
     pub struct PDFBorder;
 );
 
-unsafe impl NSCoding for PDFBorder {}
+extern_conformance!(
+    unsafe impl NSCoding for PDFBorder {}
+);
 
-unsafe impl NSCopying for PDFBorder {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFBorder {}
+);
 
 unsafe impl CopyingHelper for PDFBorder {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PDFBorder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFBorder {}
+);
 
 impl PDFBorder {
     extern_methods!(

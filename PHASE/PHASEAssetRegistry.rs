@@ -21,7 +21,9 @@ extern_class!(
     pub struct PHASEAsset;
 );
 
-unsafe impl NSObjectProtocol for PHASEAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEAsset {}
+);
 
 impl PHASEAsset {
     extern_methods!(
@@ -53,7 +55,9 @@ extern_class!(
     pub struct PHASESoundAsset;
 );
 
-unsafe impl NSObjectProtocol for PHASESoundAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESoundAsset {}
+);
 
 impl PHASESoundAsset {
     extern_methods!(
@@ -96,7 +100,9 @@ extern_class!(
     pub struct PHASESoundEventNodeAsset;
 );
 
-unsafe impl NSObjectProtocol for PHASESoundEventNodeAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESoundEventNodeAsset {}
+);
 
 impl PHASESoundEventNodeAsset {
     extern_methods!(
@@ -123,7 +129,9 @@ extern_class!(
     pub struct PHASEGlobalMetaParameterAsset;
 );
 
-unsafe impl NSObjectProtocol for PHASEGlobalMetaParameterAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEGlobalMetaParameterAsset {}
+);
 
 impl PHASEGlobalMetaParameterAsset {
     extern_methods!(
@@ -150,7 +158,9 @@ extern_class!(
     pub struct PHASEAssetRegistry;
 );
 
-unsafe impl NSObjectProtocol for PHASEAssetRegistry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEAssetRegistry {}
+);
 
 impl PHASEAssetRegistry {
     extern_methods!(

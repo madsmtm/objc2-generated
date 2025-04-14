@@ -15,9 +15,13 @@ extern_class!(
     pub struct UIBarButtonItemGroup;
 );
 
-unsafe impl NSCoding for UIBarButtonItemGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for UIBarButtonItemGroup {}
+);
 
-unsafe impl NSObjectProtocol for UIBarButtonItemGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBarButtonItemGroup {}
+);
 
 impl UIBarButtonItemGroup {
     extern_methods!(

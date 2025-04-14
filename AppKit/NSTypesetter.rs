@@ -16,7 +16,9 @@ extern_class!(
     pub struct NSTypesetter;
 );
 
-unsafe impl NSObjectProtocol for NSTypesetter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTypesetter {}
+);
 
 impl NSTypesetter {
     extern_methods!(

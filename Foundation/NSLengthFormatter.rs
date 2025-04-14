@@ -47,10 +47,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSLengthFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLengthFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSLengthFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSLengthFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSLengthFormatter {
@@ -58,7 +62,9 @@ unsafe impl CopyingHelper for NSLengthFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSLengthFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLengthFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSLengthFormatter {

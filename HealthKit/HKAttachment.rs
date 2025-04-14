@@ -21,17 +21,25 @@ unsafe impl Send for HKAttachment {}
 
 unsafe impl Sync for HKAttachment {}
 
-unsafe impl NSCoding for HKAttachment {}
+extern_conformance!(
+    unsafe impl NSCoding for HKAttachment {}
+);
 
-unsafe impl NSCopying for HKAttachment {}
+extern_conformance!(
+    unsafe impl NSCopying for HKAttachment {}
+);
 
 unsafe impl CopyingHelper for HKAttachment {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKAttachment {}
+);
 
-unsafe impl NSSecureCoding for HKAttachment {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKAttachment {}
+);
 
 impl HKAttachment {
     extern_methods!(

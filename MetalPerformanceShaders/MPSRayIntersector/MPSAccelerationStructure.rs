@@ -353,10 +353,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSAccelerationStructure {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSAccelerationStructure {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSAccelerationStructure {
@@ -364,10 +368,14 @@ unsafe impl CopyingHelper for MPSAccelerationStructure {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSAccelerationStructure {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSAccelerationStructure {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSAccelerationStructure {

@@ -28,7 +28,9 @@ unsafe impl Send for HKQuantitySeriesSampleBuilder {}
 
 unsafe impl Sync for HKQuantitySeriesSampleBuilder {}
 
-unsafe impl NSObjectProtocol for HKQuantitySeriesSampleBuilder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKQuantitySeriesSampleBuilder {}
+);
 
 impl HKQuantitySeriesSampleBuilder {
     extern_methods!(

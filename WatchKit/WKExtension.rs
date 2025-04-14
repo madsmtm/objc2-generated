@@ -67,7 +67,9 @@ extern_class!(
     pub struct WKExtension;
 );
 
-unsafe impl NSObjectProtocol for WKExtension {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKExtension {}
+);
 
 impl WKExtension {
     extern_methods!(

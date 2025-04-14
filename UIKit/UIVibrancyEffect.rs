@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIVisualEffect")]
-unsafe impl NSCoding for UIVibrancyEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for UIVibrancyEffect {}
+);
 
 #[cfg(feature = "UIVisualEffect")]
-unsafe impl NSCopying for UIVibrancyEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIVibrancyEffect {}
+);
 
 #[cfg(feature = "UIVisualEffect")]
 unsafe impl CopyingHelper for UIVibrancyEffect {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for UIVibrancyEffect {
 }
 
 #[cfg(feature = "UIVisualEffect")]
-unsafe impl NSObjectProtocol for UIVibrancyEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIVibrancyEffect {}
+);
 
 #[cfg(feature = "UIVisualEffect")]
-unsafe impl NSSecureCoding for UIVibrancyEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIVibrancyEffect {}
+);
 
 #[cfg(feature = "UIVisualEffect")]
 impl UIVibrancyEffect {

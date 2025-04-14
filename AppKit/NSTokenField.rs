@@ -154,7 +154,9 @@ extern_class!(
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -163,7 +165,9 @@ unsafe impl NSAccessibility for NSTokenField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -172,7 +176,9 @@ unsafe impl NSAccessibilityElementProtocol for NSTokenField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityNavigableStaticText for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityNavigableStaticText for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -181,7 +187,9 @@ unsafe impl NSAccessibilityNavigableStaticText for NSTokenField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityStaticText for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityStaticText for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -190,7 +198,9 @@ unsafe impl NSAccessibilityStaticText for NSTokenField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -199,7 +209,9 @@ unsafe impl NSAnimatablePropertyContainer for NSTokenField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -207,7 +219,9 @@ unsafe impl NSAppearanceCustomization for NSTokenField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSCoding for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -216,7 +230,9 @@ unsafe impl NSCoding for NSTokenField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -224,7 +240,9 @@ unsafe impl NSDraggingDestination for NSTokenField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSObjectProtocol for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -233,7 +251,9 @@ unsafe impl NSObjectProtocol for NSTokenField {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSTextContent for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSTextContent for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -242,7 +262,9 @@ unsafe impl NSTextContent for NSTokenField {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -251,7 +273,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSTokenField {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSTokenField {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSTokenField {}
+);
 
 #[cfg(all(
     feature = "NSControl",

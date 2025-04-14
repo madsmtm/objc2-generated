@@ -21,20 +21,30 @@ extern_class!(
     pub struct SCNTechnique;
 );
 
-unsafe impl NSCoding for SCNTechnique {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNTechnique {}
+);
 
-unsafe impl NSCopying for SCNTechnique {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNTechnique {}
+);
 
 unsafe impl CopyingHelper for SCNTechnique {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNTechnique {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNTechnique {}
+);
 
-unsafe impl NSSecureCoding for SCNTechnique {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNTechnique {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNTechnique {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNTechnique {}
+);
 
 impl SCNTechnique {
     extern_methods!(

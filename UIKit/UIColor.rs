@@ -49,17 +49,25 @@ unsafe impl Send for UIColor {}
 
 unsafe impl Sync for UIColor {}
 
-unsafe impl NSCoding for UIColor {}
+extern_conformance!(
+    unsafe impl NSCoding for UIColor {}
+);
 
-unsafe impl NSCopying for UIColor {}
+extern_conformance!(
+    unsafe impl NSCopying for UIColor {}
+);
 
 unsafe impl CopyingHelper for UIColor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIColor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIColor {}
+);
 
-unsafe impl NSSecureCoding for UIColor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIColor {}
+);
 
 impl UIColor {
     extern_methods!(
@@ -316,9 +324,13 @@ impl UIColor {
     extern_methods!();
 }
 
-unsafe impl NSItemProviderReading for UIColor {}
+extern_conformance!(
+    unsafe impl NSItemProviderReading for UIColor {}
+);
 
-unsafe impl NSItemProviderWriting for UIColor {}
+extern_conformance!(
+    unsafe impl NSItemProviderWriting for UIColor {}
+);
 
 mod private_CIColorUIKitAdditions {
     pub trait Sealed {}

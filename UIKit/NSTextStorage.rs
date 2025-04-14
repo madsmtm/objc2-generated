@@ -36,11 +36,17 @@ extern_class!(
     pub struct NSTextStorage;
 );
 
-unsafe impl NSCoding for NSTextStorage {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextStorage {}
+);
 
-unsafe impl NSObjectProtocol for NSTextStorage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextStorage {}
+);
 
-unsafe impl NSSecureCoding for NSTextStorage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextStorage {}
+);
 
 impl NSTextStorage {
     extern_methods!(

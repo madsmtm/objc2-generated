@@ -19,7 +19,9 @@ extern_class!(
     pub struct MPContentItem;
 );
 
-unsafe impl NSObjectProtocol for MPContentItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPContentItem {}
+);
 
 impl MPContentItem {
     extern_methods!(

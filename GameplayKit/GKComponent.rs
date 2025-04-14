@@ -23,17 +23,25 @@ extern_class!(
     pub struct GKComponent;
 );
 
-unsafe impl NSCoding for GKComponent {}
+extern_conformance!(
+    unsafe impl NSCoding for GKComponent {}
+);
 
-unsafe impl NSCopying for GKComponent {}
+extern_conformance!(
+    unsafe impl NSCopying for GKComponent {}
+);
 
 unsafe impl CopyingHelper for GKComponent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKComponent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKComponent {}
+);
 
-unsafe impl NSSecureCoding for GKComponent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKComponent {}
+);
 
 impl GKComponent {
     extern_methods!(
@@ -84,9 +92,13 @@ extern_class!(
     pub struct GKComponentSystem<ComponentType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ComponentType: ?Sized> NSFastEnumeration for GKComponentSystem<ComponentType> {}
+extern_conformance!(
+    unsafe impl<ComponentType: ?Sized> NSFastEnumeration for GKComponentSystem<ComponentType> {}
+);
 
-unsafe impl<ComponentType: ?Sized> NSObjectProtocol for GKComponentSystem<ComponentType> {}
+extern_conformance!(
+    unsafe impl<ComponentType: ?Sized> NSObjectProtocol for GKComponentSystem<ComponentType> {}
+);
 
 impl<ComponentType: Message> GKComponentSystem<ComponentType> {
     extern_methods!(

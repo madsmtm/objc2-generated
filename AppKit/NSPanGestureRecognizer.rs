@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSGestureRecognizer")]
-unsafe impl NSCoding for NSPanGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPanGestureRecognizer {}
+);
 
 #[cfg(feature = "NSGestureRecognizer")]
-unsafe impl NSObjectProtocol for NSPanGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPanGestureRecognizer {}
+);
 
 #[cfg(feature = "NSGestureRecognizer")]
 impl NSPanGestureRecognizer {

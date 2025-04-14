@@ -101,14 +101,18 @@ unsafe impl Sync for HKGAD7Assessment {}
     feature = "HKSample",
     feature = "HKScoredAssessment"
 ))]
-unsafe impl NSCoding for HKGAD7Assessment {}
+extern_conformance!(
+    unsafe impl NSCoding for HKGAD7Assessment {}
+);
 
 #[cfg(all(
     feature = "HKObject",
     feature = "HKSample",
     feature = "HKScoredAssessment"
 ))]
-unsafe impl NSCopying for HKGAD7Assessment {}
+extern_conformance!(
+    unsafe impl NSCopying for HKGAD7Assessment {}
+);
 
 #[cfg(all(
     feature = "HKObject",
@@ -124,14 +128,18 @@ unsafe impl CopyingHelper for HKGAD7Assessment {
     feature = "HKSample",
     feature = "HKScoredAssessment"
 ))]
-unsafe impl NSObjectProtocol for HKGAD7Assessment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKGAD7Assessment {}
+);
 
 #[cfg(all(
     feature = "HKObject",
     feature = "HKSample",
     feature = "HKScoredAssessment"
 ))]
-unsafe impl NSSecureCoding for HKGAD7Assessment {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKGAD7Assessment {}
+);
 
 #[cfg(all(
     feature = "HKObject",

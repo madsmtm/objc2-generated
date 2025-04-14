@@ -26,7 +26,9 @@ unsafe impl Send for AVCustomDeviceRoute {}
 
 unsafe impl Sync for AVCustomDeviceRoute {}
 
-unsafe impl NSObjectProtocol for AVCustomDeviceRoute {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCustomDeviceRoute {}
+);
 
 impl AVCustomDeviceRoute {
     extern_methods!(

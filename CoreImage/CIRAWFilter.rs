@@ -59,10 +59,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CIFilter")]
-unsafe impl NSCoding for CIRAWFilter {}
+extern_conformance!(
+    unsafe impl NSCoding for CIRAWFilter {}
+);
 
 #[cfg(feature = "CIFilter")]
-unsafe impl NSCopying for CIRAWFilter {}
+extern_conformance!(
+    unsafe impl NSCopying for CIRAWFilter {}
+);
 
 #[cfg(feature = "CIFilter")]
 unsafe impl CopyingHelper for CIRAWFilter {
@@ -70,10 +74,14 @@ unsafe impl CopyingHelper for CIRAWFilter {
 }
 
 #[cfg(feature = "CIFilter")]
-unsafe impl NSObjectProtocol for CIRAWFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIRAWFilter {}
+);
 
 #[cfg(feature = "CIFilter")]
-unsafe impl NSSecureCoding for CIRAWFilter {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIRAWFilter {}
+);
 
 #[cfg(feature = "CIFilter")]
 impl CIRAWFilter {

@@ -16,13 +16,17 @@ extern_class!(
     pub struct MLCTensorDescriptor;
 );
 
-unsafe impl NSCopying for MLCTensorDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCTensorDescriptor {}
+);
 
 unsafe impl CopyingHelper for MLCTensorDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCTensorDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCTensorDescriptor {}
+);
 
 impl MLCTensorDescriptor {
     extern_methods!(

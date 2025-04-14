@@ -21,7 +21,9 @@ unsafe impl Send for AVPlayerMediaSelectionCriteria {}
 
 unsafe impl Sync for AVPlayerMediaSelectionCriteria {}
 
-unsafe impl NSObjectProtocol for AVPlayerMediaSelectionCriteria {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerMediaSelectionCriteria {}
+);
 
 impl AVPlayerMediaSelectionCriteria {
     extern_methods!(

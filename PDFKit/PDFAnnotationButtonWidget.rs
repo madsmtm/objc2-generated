@@ -20,10 +20,14 @@ extern_class!(
 );
 
 #[cfg(feature = "PDFAnnotation")]
-unsafe impl NSCoding for PDFAnnotationButtonWidget {}
+extern_conformance!(
+    unsafe impl NSCoding for PDFAnnotationButtonWidget {}
+);
 
 #[cfg(feature = "PDFAnnotation")]
-unsafe impl NSCopying for PDFAnnotationButtonWidget {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFAnnotationButtonWidget {}
+);
 
 #[cfg(feature = "PDFAnnotation")]
 unsafe impl CopyingHelper for PDFAnnotationButtonWidget {
@@ -31,7 +35,9 @@ unsafe impl CopyingHelper for PDFAnnotationButtonWidget {
 }
 
 #[cfg(feature = "PDFAnnotation")]
-unsafe impl NSObjectProtocol for PDFAnnotationButtonWidget {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFAnnotationButtonWidget {}
+);
 
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationButtonWidget {

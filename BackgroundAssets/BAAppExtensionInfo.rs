@@ -17,11 +17,17 @@ unsafe impl Send for BAAppExtensionInfo {}
 
 unsafe impl Sync for BAAppExtensionInfo {}
 
-unsafe impl NSCoding for BAAppExtensionInfo {}
+extern_conformance!(
+    unsafe impl NSCoding for BAAppExtensionInfo {}
+);
 
-unsafe impl NSObjectProtocol for BAAppExtensionInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BAAppExtensionInfo {}
+);
 
-unsafe impl NSSecureCoding for BAAppExtensionInfo {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for BAAppExtensionInfo {}
+);
 
 impl BAAppExtensionInfo {
     extern_methods!(

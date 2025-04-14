@@ -149,13 +149,17 @@ extern_class!(
     pub struct MTLSamplerDescriptor;
 );
 
-unsafe impl NSCopying for MTLSamplerDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLSamplerDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLSamplerDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLSamplerDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLSamplerDescriptor {}
+);
 
 impl MTLSamplerDescriptor {
     extern_methods!(

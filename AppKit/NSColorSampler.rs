@@ -15,7 +15,9 @@ extern_class!(
     pub struct NSColorSampler;
 );
 
-unsafe impl NSObjectProtocol for NSColorSampler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSColorSampler {}
+);
 
 impl NSColorSampler {
     extern_methods!(

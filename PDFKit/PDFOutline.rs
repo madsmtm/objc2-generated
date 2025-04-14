@@ -14,7 +14,9 @@ extern_class!(
     pub struct PDFOutline;
 );
 
-unsafe impl NSObjectProtocol for PDFOutline {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFOutline {}
+);
 
 impl PDFOutline {
     extern_methods!(

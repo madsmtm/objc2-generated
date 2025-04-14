@@ -17,7 +17,9 @@ extern_class!(
     pub struct NSUserActivity;
 );
 
-unsafe impl NSObjectProtocol for NSUserActivity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUserActivity {}
+);
 
 impl NSUserActivity {
     extern_methods!(

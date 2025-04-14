@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphTensor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphTensor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphTensor {
@@ -30,7 +32,9 @@ unsafe impl CopyingHelper for MPSGraphTensor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphTensor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphTensor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphTensor {

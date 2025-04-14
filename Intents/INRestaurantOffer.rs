@@ -14,17 +14,25 @@ extern_class!(
     pub struct INRestaurantOffer;
 );
 
-unsafe impl NSCoding for INRestaurantOffer {}
+extern_conformance!(
+    unsafe impl NSCoding for INRestaurantOffer {}
+);
 
-unsafe impl NSCopying for INRestaurantOffer {}
+extern_conformance!(
+    unsafe impl NSCopying for INRestaurantOffer {}
+);
 
 unsafe impl CopyingHelper for INRestaurantOffer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INRestaurantOffer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRestaurantOffer {}
+);
 
-unsafe impl NSSecureCoding for INRestaurantOffer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRestaurantOffer {}
+);
 
 impl INRestaurantOffer {
     extern_methods!(

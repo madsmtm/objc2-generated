@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSTypesetter")]
-unsafe impl NSObjectProtocol for NSATSTypesetter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSATSTypesetter {}
+);
 
 #[cfg(feature = "NSTypesetter")]
 impl NSATSTypesetter {

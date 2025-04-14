@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "IOBluetoothHandsFree")]
-unsafe impl NSObjectProtocol for IOBluetoothHandsFreeAudioGateway {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothHandsFreeAudioGateway {}
+);
 
 #[cfg(feature = "IOBluetoothHandsFree")]
 impl IOBluetoothHandsFreeAudioGateway {

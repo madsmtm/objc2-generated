@@ -154,13 +154,17 @@ extern_class!(
     pub struct PHPickerFilter;
 );
 
-unsafe impl NSCopying for PHPickerFilter {}
+extern_conformance!(
+    unsafe impl NSCopying for PHPickerFilter {}
+);
 
 unsafe impl CopyingHelper for PHPickerFilter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHPickerFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHPickerFilter {}
+);
 
 impl PHPickerFilter {
     extern_methods!(
@@ -272,13 +276,17 @@ extern_class!(
     pub struct PHPickerUpdateConfiguration;
 );
 
-unsafe impl NSCopying for PHPickerUpdateConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for PHPickerUpdateConfiguration {}
+);
 
 unsafe impl CopyingHelper for PHPickerUpdateConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHPickerUpdateConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHPickerUpdateConfiguration {}
+);
 
 impl PHPickerUpdateConfiguration {
     extern_methods!(
@@ -334,13 +342,17 @@ extern_class!(
     pub struct PHPickerConfiguration;
 );
 
-unsafe impl NSCopying for PHPickerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for PHPickerConfiguration {}
+);
 
 unsafe impl CopyingHelper for PHPickerConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHPickerConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHPickerConfiguration {}
+);
 
 impl PHPickerConfiguration {
     extern_methods!(
@@ -495,7 +507,9 @@ extern_class!(
     pub struct PHPickerResult;
 );
 
-unsafe impl NSObjectProtocol for PHPickerResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHPickerResult {}
+);
 
 impl PHPickerResult {
     extern_methods!(
@@ -554,23 +568,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for PHPickerViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for PHPickerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for PHPickerViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for PHPickerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for PHPickerViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHPickerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for PHPickerViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for PHPickerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for PHPickerViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for PHPickerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

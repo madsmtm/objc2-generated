@@ -55,20 +55,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSAffineTransform {}
+extern_conformance!(
+    unsafe impl NSCoding for NSAffineTransform {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSAffineTransform {}
+extern_conformance!(
+    unsafe impl NSCopying for NSAffineTransform {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSAffineTransform {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSAffineTransform {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAffineTransform {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSAffineTransform {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSAffineTransform {}
+);
 
 impl NSAffineTransform {
     extern_methods!(

@@ -17,9 +17,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSCoreTypes")]
-unsafe impl MPSDeviceProvider for MPSKeyedUnarchiver {}
+extern_conformance!(
+    unsafe impl MPSDeviceProvider for MPSKeyedUnarchiver {}
+);
 
-unsafe impl NSObjectProtocol for MPSKeyedUnarchiver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSKeyedUnarchiver {}
+);
 
 impl MPSKeyedUnarchiver {
     extern_methods!(

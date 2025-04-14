@@ -21,23 +21,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for PKPaymentAuthorizationViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for PKPaymentAuthorizationViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for PKPaymentAuthorizationViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for PKPaymentAuthorizationViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for PKPaymentAuthorizationViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentAuthorizationViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for PKPaymentAuthorizationViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for PKPaymentAuthorizationViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for PKPaymentAuthorizationViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for PKPaymentAuthorizationViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

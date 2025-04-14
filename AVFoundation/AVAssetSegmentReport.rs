@@ -52,7 +52,9 @@ unsafe impl Send for AVAssetSegmentReport {}
 
 unsafe impl Sync for AVAssetSegmentReport {}
 
-unsafe impl NSObjectProtocol for AVAssetSegmentReport {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetSegmentReport {}
+);
 
 impl AVAssetSegmentReport {
     extern_methods!(
@@ -91,7 +93,9 @@ unsafe impl Send for AVAssetSegmentTrackReport {}
 
 unsafe impl Sync for AVAssetSegmentTrackReport {}
 
-unsafe impl NSObjectProtocol for AVAssetSegmentTrackReport {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetSegmentTrackReport {}
+);
 
 impl AVAssetSegmentTrackReport {
     extern_methods!(
@@ -151,7 +155,9 @@ unsafe impl Send for AVAssetSegmentReportSampleInformation {}
 
 unsafe impl Sync for AVAssetSegmentReportSampleInformation {}
 
-unsafe impl NSObjectProtocol for AVAssetSegmentReportSampleInformation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetSegmentReportSampleInformation {}
+);
 
 impl AVAssetSegmentReportSampleInformation {
     extern_methods!(

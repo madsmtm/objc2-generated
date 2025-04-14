@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZPlatformConfiguration")]
-unsafe impl NSCopying for VZGenericPlatformConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZGenericPlatformConfiguration {}
+);
 
 #[cfg(feature = "VZPlatformConfiguration")]
 unsafe impl CopyingHelper for VZGenericPlatformConfiguration {
@@ -31,7 +33,9 @@ unsafe impl CopyingHelper for VZGenericPlatformConfiguration {
 }
 
 #[cfg(feature = "VZPlatformConfiguration")]
-unsafe impl NSObjectProtocol for VZGenericPlatformConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZGenericPlatformConfiguration {}
+);
 
 #[cfg(feature = "VZPlatformConfiguration")]
 impl VZGenericPlatformConfiguration {

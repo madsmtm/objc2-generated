@@ -817,10 +817,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSRayIntersector {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSRayIntersector {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSRayIntersector {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSRayIntersector {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSRayIntersector {
@@ -828,10 +832,14 @@ unsafe impl CopyingHelper for MPSRayIntersector {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSRayIntersector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSRayIntersector {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSRayIntersector {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSRayIntersector {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSRayIntersector {

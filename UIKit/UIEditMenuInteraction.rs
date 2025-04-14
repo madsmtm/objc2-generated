@@ -43,7 +43,9 @@ extern_class!(
     pub struct UIEditMenuConfiguration;
 );
 
-unsafe impl NSObjectProtocol for UIEditMenuConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIEditMenuConfiguration {}
+);
 
 impl UIEditMenuConfiguration {
     extern_methods!(
@@ -103,10 +105,14 @@ extern_class!(
     pub struct UIEditMenuInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIEditMenuInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIEditMenuInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIEditMenuInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIEditMenuInteraction {}
+);
 
 impl UIEditMenuInteraction {
     extern_methods!(

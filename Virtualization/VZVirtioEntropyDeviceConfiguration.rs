@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZEntropyDeviceConfiguration")]
-unsafe impl NSCopying for VZVirtioEntropyDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZVirtioEntropyDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZEntropyDeviceConfiguration")]
 unsafe impl CopyingHelper for VZVirtioEntropyDeviceConfiguration {
@@ -27,7 +29,9 @@ unsafe impl CopyingHelper for VZVirtioEntropyDeviceConfiguration {
 }
 
 #[cfg(feature = "VZEntropyDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZVirtioEntropyDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioEntropyDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZEntropyDeviceConfiguration")]
 impl VZVirtioEntropyDeviceConfiguration {

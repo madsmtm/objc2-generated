@@ -18,17 +18,25 @@ extern_class!(
     pub struct SWCollaborationOption;
 );
 
-unsafe impl NSCoding for SWCollaborationOption {}
+extern_conformance!(
+    unsafe impl NSCoding for SWCollaborationOption {}
+);
 
-unsafe impl NSCopying for SWCollaborationOption {}
+extern_conformance!(
+    unsafe impl NSCopying for SWCollaborationOption {}
+);
 
 unsafe impl CopyingHelper for SWCollaborationOption {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SWCollaborationOption {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWCollaborationOption {}
+);
 
-unsafe impl NSSecureCoding for SWCollaborationOption {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWCollaborationOption {}
+);
 
 impl SWCollaborationOption {
     extern_methods!(

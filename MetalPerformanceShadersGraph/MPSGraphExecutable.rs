@@ -51,7 +51,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphExecutableExecutionDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphExecutableExecutionDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphExecutableExecutionDescriptor {
@@ -59,7 +61,9 @@ unsafe impl CopyingHelper for MPSGraphExecutableExecutionDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphExecutableExecutionDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphExecutableExecutionDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphExecutableExecutionDescriptor {
@@ -198,7 +202,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphExecutableSerializationDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphExecutableSerializationDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphExecutableSerializationDescriptor {
@@ -268,7 +274,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphExecutable {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphExecutable {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphExecutable {

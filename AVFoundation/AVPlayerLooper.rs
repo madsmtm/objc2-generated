@@ -80,7 +80,9 @@ unsafe impl Send for AVPlayerLooper {}
 
 unsafe impl Sync for AVPlayerLooper {}
 
-unsafe impl NSObjectProtocol for AVPlayerLooper {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerLooper {}
+);
 
 impl AVPlayerLooper {
     extern_methods!(

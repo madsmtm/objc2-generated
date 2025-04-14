@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-unsafe impl NSCoding for CXAnswerCallAction {}
+extern_conformance!(
+    unsafe impl NSCoding for CXAnswerCallAction {}
+);
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-unsafe impl NSCopying for CXAnswerCallAction {}
+extern_conformance!(
+    unsafe impl NSCopying for CXAnswerCallAction {}
+);
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 unsafe impl CopyingHelper for CXAnswerCallAction {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for CXAnswerCallAction {
 }
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-unsafe impl NSObjectProtocol for CXAnswerCallAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CXAnswerCallAction {}
+);
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
-unsafe impl NSSecureCoding for CXAnswerCallAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CXAnswerCallAction {}
+);
 
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 impl CXAnswerCallAction {

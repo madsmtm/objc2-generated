@@ -63,19 +63,29 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
-unsafe impl NSAccessibility for NSPopover {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSPopover {}
+);
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
-unsafe impl NSAccessibilityElementProtocol for NSPopover {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSPopover {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder"))]
-unsafe impl NSAppearanceCustomization for NSPopover {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSPopover {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSCoding for NSPopover {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPopover {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSObjectProtocol for NSPopover {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPopover {}
+);
 
 #[cfg(feature = "NSResponder")]
 impl NSPopover {

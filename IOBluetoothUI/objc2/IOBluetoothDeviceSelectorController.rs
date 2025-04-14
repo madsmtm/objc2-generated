@@ -23,11 +23,17 @@ extern_class!(
     pub struct IOBluetoothDeviceSelectorController;
 );
 
-unsafe impl NSCoding for IOBluetoothDeviceSelectorController {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothDeviceSelectorController {}
+);
 
-unsafe impl NSObjectProtocol for IOBluetoothDeviceSelectorController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothDeviceSelectorController {}
+);
 
-unsafe impl NSSeguePerforming for IOBluetoothDeviceSelectorController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for IOBluetoothDeviceSelectorController {}
+);
 
 impl IOBluetoothDeviceSelectorController {
     extern_methods!(

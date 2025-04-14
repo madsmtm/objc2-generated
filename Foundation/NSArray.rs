@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSCopying for NSArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for NSArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSArray<ObjectType> {
@@ -27,20 +31,28 @@ unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSArray<ObjectType> 
 }
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSArray<ObjectType> {
     type Result = NSMutableArray<ObjectType>;
 }
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSArray<ObjectType> {}
+);
 
 impl<ObjectType: Message> NSArray<ObjectType> {
     extern_methods!(
@@ -624,10 +636,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSMutableArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for NSMutableArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSMutableArray<ObjectType> {
@@ -635,20 +651,28 @@ unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSMutableArray<Objec
 }
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSMutableArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSMutableCopying for NSMutableArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + Message> MutableCopyingHelper for NSMutableArray<ObjectType> {
     type Result = Self;
 }
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSMutableArray<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableArray<ObjectType> {}
+);
 
 impl<ObjectType: Message> NSMutableArray<ObjectType> {
     extern_methods!(

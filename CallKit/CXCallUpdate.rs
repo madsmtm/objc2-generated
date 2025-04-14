@@ -14,13 +14,17 @@ extern_class!(
     pub struct CXCallUpdate;
 );
 
-unsafe impl NSCopying for CXCallUpdate {}
+extern_conformance!(
+    unsafe impl NSCopying for CXCallUpdate {}
+);
 
 unsafe impl CopyingHelper for CXCallUpdate {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CXCallUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CXCallUpdate {}
+);
 
 impl CXCallUpdate {
     extern_methods!(

@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PKAddSecureElementPassConfiguration")]
-unsafe impl NSObjectProtocol for PKShareablePassMetadataPreview {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKShareablePassMetadataPreview {}
+);
 
 #[cfg(feature = "PKAddSecureElementPassConfiguration")]
 impl PKShareablePassMetadataPreview {
@@ -93,7 +95,9 @@ extern_class!(
     pub struct PKShareablePassMetadata;
 );
 
-unsafe impl NSObjectProtocol for PKShareablePassMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKShareablePassMetadata {}
+);
 
 impl PKShareablePassMetadata {
     extern_methods!(
@@ -278,7 +282,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PKAddSecureElementPassConfiguration")]
-unsafe impl NSObjectProtocol for PKAddShareablePassConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKAddShareablePassConfiguration {}
+);
 
 #[cfg(feature = "PKAddSecureElementPassConfiguration")]
 impl PKAddShareablePassConfiguration {

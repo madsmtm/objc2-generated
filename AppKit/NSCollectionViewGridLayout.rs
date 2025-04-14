@@ -18,10 +18,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSCollectionViewLayout")]
-unsafe impl NSCoding for NSCollectionViewGridLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCollectionViewGridLayout {}
+);
 
 #[cfg(feature = "NSCollectionViewLayout")]
-unsafe impl NSObjectProtocol for NSCollectionViewGridLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCollectionViewGridLayout {}
+);
 
 #[cfg(feature = "NSCollectionViewLayout")]
 impl NSCollectionViewGridLayout {

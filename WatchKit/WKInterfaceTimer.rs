@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceTimer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceTimer {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceTimer {

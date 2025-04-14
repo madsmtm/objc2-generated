@@ -56,10 +56,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSearchCallHistoryIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSearchCallHistoryIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSearchCallHistoryIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSearchCallHistoryIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSearchCallHistoryIntentResponse {
@@ -67,10 +71,14 @@ unsafe impl CopyingHelper for INSearchCallHistoryIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSearchCallHistoryIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSearchCallHistoryIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSearchCallHistoryIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSearchCallHistoryIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSearchCallHistoryIntentResponse {

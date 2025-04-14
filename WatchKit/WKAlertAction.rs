@@ -40,7 +40,9 @@ extern_class!(
     pub struct WKAlertAction;
 );
 
-unsafe impl NSObjectProtocol for WKAlertAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKAlertAction {}
+);
 
 impl WKAlertAction {
     extern_methods!(

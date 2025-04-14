@@ -12,7 +12,11 @@ impl CNContact {
 }
 
 #[cfg(feature = "CNContact")]
-unsafe impl NSItemProviderReading for CNContact {}
+extern_conformance!(
+    unsafe impl NSItemProviderReading for CNContact {}
+);
 
 #[cfg(feature = "CNContact")]
-unsafe impl NSItemProviderWriting for CNContact {}
+extern_conformance!(
+    unsafe impl NSItemProviderWriting for CNContact {}
+);

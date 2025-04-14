@@ -24,7 +24,9 @@ extern_class!(
     pub struct NSStoryboard;
 );
 
-unsafe impl NSObjectProtocol for NSStoryboard {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStoryboard {}
+);
 
 impl NSStoryboard {
     extern_methods!(

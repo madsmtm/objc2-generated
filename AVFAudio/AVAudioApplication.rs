@@ -110,7 +110,9 @@ unsafe impl Send for AVAudioApplication {}
 
 unsafe impl Sync for AVAudioApplication {}
 
-unsafe impl NSObjectProtocol for AVAudioApplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioApplication {}
+);
 
 impl AVAudioApplication {
     extern_methods!(

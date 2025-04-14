@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCConcatenationLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCConcatenationLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCConcatenationLayer {

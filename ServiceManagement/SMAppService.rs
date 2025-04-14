@@ -91,7 +91,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for SMAppService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SMAppService {}
+);
 
 #[cfg(feature = "objc2")]
 impl SMAppService {

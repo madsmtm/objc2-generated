@@ -15,20 +15,30 @@ extern_class!(
     pub struct UIContentUnavailableConfigurationState;
 );
 
-unsafe impl NSCoding for UIContentUnavailableConfigurationState {}
+extern_conformance!(
+    unsafe impl NSCoding for UIContentUnavailableConfigurationState {}
+);
 
-unsafe impl NSCopying for UIContentUnavailableConfigurationState {}
+extern_conformance!(
+    unsafe impl NSCopying for UIContentUnavailableConfigurationState {}
+);
 
 unsafe impl CopyingHelper for UIContentUnavailableConfigurationState {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIContentUnavailableConfigurationState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIContentUnavailableConfigurationState {}
+);
 
-unsafe impl NSSecureCoding for UIContentUnavailableConfigurationState {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIContentUnavailableConfigurationState {}
+);
 
 #[cfg(feature = "UIConfigurationState")]
-unsafe impl UIConfigurationState for UIContentUnavailableConfigurationState {}
+extern_conformance!(
+    unsafe impl UIConfigurationState for UIContentUnavailableConfigurationState {}
+);
 
 impl UIContentUnavailableConfigurationState {
     extern_methods!(

@@ -140,20 +140,28 @@ unsafe impl Send for NSURLProtectionSpace {}
 unsafe impl Sync for NSURLProtectionSpace {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSURLProtectionSpace {}
+extern_conformance!(
+    unsafe impl NSCoding for NSURLProtectionSpace {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLProtectionSpace {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLProtectionSpace {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLProtectionSpace {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLProtectionSpace {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLProtectionSpace {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSURLProtectionSpace {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSURLProtectionSpace {}
+);
 
 impl NSURLProtectionSpace {
     extern_methods!(

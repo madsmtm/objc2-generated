@@ -223,55 +223,81 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UITableViewCell {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UITableViewCell {}
+extern_conformance!(
+    unsafe impl NSCoding for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UITableViewCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UIAppearance for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UITableViewCell {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UITableViewCell {}
+);
 
 #[cfg(all(
     feature = "UIGestureRecognizer",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIGestureRecognizerDelegate for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UIGestureRecognizerDelegate for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UITableViewCell {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UITableViewCell {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UITableViewCell {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UITableViewCell {

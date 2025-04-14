@@ -15,16 +15,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]
-unsafe impl CAMediaTiming for CATransformLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CATransformLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSCoding for CATransformLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for CATransformLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSObjectProtocol for CATransformLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CATransformLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSSecureCoding for CATransformLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CATransformLayer {}
+);
 
 #[cfg(feature = "CALayer")]
 impl CATransformLayer {

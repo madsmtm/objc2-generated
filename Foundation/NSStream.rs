@@ -80,7 +80,9 @@ extern_class!(
     pub struct NSStream;
 );
 
-unsafe impl NSObjectProtocol for NSStream {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStream {}
+);
 
 impl NSStream {
     extern_methods!(
@@ -167,7 +169,9 @@ extern_class!(
     pub struct NSInputStream;
 );
 
-unsafe impl NSObjectProtocol for NSInputStream {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSInputStream {}
+);
 
 impl NSInputStream {
     extern_methods!(
@@ -219,7 +223,9 @@ extern_class!(
     pub struct NSOutputStream;
 );
 
-unsafe impl NSObjectProtocol for NSOutputStream {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSOutputStream {}
+);
 
 impl NSOutputStream {
     extern_methods!(

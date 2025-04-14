@@ -151,43 +151,63 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for PDFView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for PDFView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for PDFView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimationDelegate for PDFView {}
+extern_conformance!(
+    unsafe impl NSAnimationDelegate for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for PDFView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for PDFView {}
+extern_conformance!(
+    unsafe impl NSCoding for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for PDFView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSMenuDelegate for PDFView {}
+extern_conformance!(
+    unsafe impl NSMenuDelegate for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for PDFView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for PDFView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for PDFView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

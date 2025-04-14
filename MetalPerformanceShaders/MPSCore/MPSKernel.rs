@@ -78,17 +78,25 @@ extern_class!(
     pub struct MPSKernel;
 );
 
-unsafe impl NSCoding for MPSKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSKernel {}
+);
 
-unsafe impl NSCopying for MPSKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSKernel {}
+);
 
 unsafe impl CopyingHelper for MPSKernel {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSKernel {}
+);
 
-unsafe impl NSSecureCoding for MPSKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSKernel {}
+);
 
 impl MPSKernel {
     extern_methods!(

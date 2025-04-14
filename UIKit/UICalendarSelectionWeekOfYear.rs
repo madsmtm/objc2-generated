@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UICalendarSelection")]
-unsafe impl NSObjectProtocol for UICalendarSelectionWeekOfYear {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICalendarSelectionWeekOfYear {}
+);
 
 #[cfg(feature = "UICalendarSelection")]
 impl UICalendarSelectionWeekOfYear {

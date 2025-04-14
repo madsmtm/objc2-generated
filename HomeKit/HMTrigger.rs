@@ -24,7 +24,9 @@ unsafe impl Send for HMTrigger {}
 
 unsafe impl Sync for HMTrigger {}
 
-unsafe impl NSObjectProtocol for HMTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMTrigger {}
+);
 
 impl HMTrigger {
     extern_methods!(

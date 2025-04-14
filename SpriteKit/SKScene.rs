@@ -122,7 +122,9 @@ extern_class!(
     feature = "objc2-app-kit"
 ))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for SKScene {}
+extern_conformance!(
+    unsafe impl NSCoding for SKScene {}
+);
 
 #[cfg(all(
     feature = "SKEffectNode",
@@ -130,7 +132,9 @@ unsafe impl NSCoding for SKScene {}
     feature = "objc2-app-kit"
 ))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCopying for SKScene {}
+extern_conformance!(
+    unsafe impl NSCopying for SKScene {}
+);
 
 #[cfg(all(
     feature = "SKEffectNode",
@@ -148,7 +152,9 @@ unsafe impl CopyingHelper for SKScene {
     feature = "objc2-app-kit"
 ))]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for SKScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKScene {}
+);
 
 #[cfg(all(
     feature = "SKEffectNode",
@@ -156,7 +162,9 @@ unsafe impl NSObjectProtocol for SKScene {}
     feature = "objc2-app-kit"
 ))]
 #[cfg(target_os = "macos")]
-unsafe impl NSSecureCoding for SKScene {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKScene {}
+);
 
 #[cfg(all(
     feature = "SKEffectNode",
@@ -165,7 +173,9 @@ unsafe impl NSSecureCoding for SKScene {}
     feature = "objc2-app-kit"
 ))]
 #[cfg(target_os = "macos")]
-unsafe impl SKWarpable for SKScene {}
+extern_conformance!(
+    unsafe impl SKWarpable for SKScene {}
+);
 
 #[cfg(all(
     feature = "SKEffectNode",

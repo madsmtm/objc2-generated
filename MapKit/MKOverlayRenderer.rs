@@ -17,7 +17,9 @@ extern_class!(
     pub struct MKOverlayRenderer;
 );
 
-unsafe impl NSObjectProtocol for MKOverlayRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKOverlayRenderer {}
+);
 
 impl MKOverlayRenderer {
     extern_methods!(

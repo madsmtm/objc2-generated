@@ -65,7 +65,9 @@ extern_class!(
     pub struct PKPassLibrary;
 );
 
-unsafe impl NSObjectProtocol for PKPassLibrary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPassLibrary {}
+);
 
 impl PKPassLibrary {
     extern_methods!(

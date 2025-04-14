@@ -47,7 +47,9 @@ extern_class!(
     pub struct AVMetricEventStream;
 );
 
-unsafe impl NSObjectProtocol for AVMetricEventStream {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricEventStream {}
+);
 
 impl AVMetricEventStream {
     extern_methods!(
@@ -122,11 +124,17 @@ unsafe impl Send for AVMetricEvent {}
 
 unsafe impl Sync for AVMetricEvent {}
 
-unsafe impl NSCoding for AVMetricEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricEvent {}
+);
 
 impl AVMetricEvent {
     extern_methods!(
@@ -171,11 +179,17 @@ unsafe impl Send for AVMetricErrorEvent {}
 
 unsafe impl Sync for AVMetricErrorEvent {}
 
-unsafe impl NSCoding for AVMetricErrorEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricErrorEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricErrorEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricErrorEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricErrorEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricErrorEvent {}
+);
 
 impl AVMetricErrorEvent {
     extern_methods!(
@@ -214,11 +228,17 @@ unsafe impl Send for AVMetricMediaResourceRequestEvent {}
 
 unsafe impl Sync for AVMetricMediaResourceRequestEvent {}
 
-unsafe impl NSCoding for AVMetricMediaResourceRequestEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricMediaResourceRequestEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricMediaResourceRequestEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricMediaResourceRequestEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricMediaResourceRequestEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricMediaResourceRequestEvent {}
+);
 
 impl AVMetricMediaResourceRequestEvent {
     extern_methods!(
@@ -298,11 +318,17 @@ unsafe impl Send for AVMetricHLSPlaylistRequestEvent {}
 
 unsafe impl Sync for AVMetricHLSPlaylistRequestEvent {}
 
-unsafe impl NSCoding for AVMetricHLSPlaylistRequestEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricHLSPlaylistRequestEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricHLSPlaylistRequestEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricHLSPlaylistRequestEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricHLSPlaylistRequestEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricHLSPlaylistRequestEvent {}
+);
 
 impl AVMetricHLSPlaylistRequestEvent {
     extern_methods!(
@@ -354,11 +380,17 @@ unsafe impl Send for AVMetricHLSMediaSegmentRequestEvent {}
 
 unsafe impl Sync for AVMetricHLSMediaSegmentRequestEvent {}
 
-unsafe impl NSCoding for AVMetricHLSMediaSegmentRequestEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricHLSMediaSegmentRequestEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricHLSMediaSegmentRequestEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricHLSMediaSegmentRequestEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricHLSMediaSegmentRequestEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricHLSMediaSegmentRequestEvent {}
+);
 
 impl AVMetricHLSMediaSegmentRequestEvent {
     extern_methods!(
@@ -420,11 +452,17 @@ unsafe impl Send for AVMetricContentKeyRequestEvent {}
 
 unsafe impl Sync for AVMetricContentKeyRequestEvent {}
 
-unsafe impl NSCoding for AVMetricContentKeyRequestEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricContentKeyRequestEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricContentKeyRequestEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricContentKeyRequestEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricContentKeyRequestEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricContentKeyRequestEvent {}
+);
 
 impl AVMetricContentKeyRequestEvent {
     extern_methods!(
@@ -477,11 +515,17 @@ unsafe impl Send for AVMetricPlayerItemLikelyToKeepUpEvent {}
 
 unsafe impl Sync for AVMetricPlayerItemLikelyToKeepUpEvent {}
 
-unsafe impl NSCoding for AVMetricPlayerItemLikelyToKeepUpEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlayerItemLikelyToKeepUpEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricPlayerItemLikelyToKeepUpEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlayerItemLikelyToKeepUpEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricPlayerItemLikelyToKeepUpEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlayerItemLikelyToKeepUpEvent {}
+);
 
 impl AVMetricPlayerItemLikelyToKeepUpEvent {
     extern_methods!(
@@ -528,11 +572,17 @@ unsafe impl Send for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
 
 unsafe impl Sync for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
 
-unsafe impl NSCoding for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
+);
 
 impl AVMetricPlayerItemInitialLikelyToKeepUpEvent {
     extern_methods!(
@@ -582,11 +632,17 @@ unsafe impl Send for AVMetricPlayerItemRateChangeEvent {}
 
 unsafe impl Sync for AVMetricPlayerItemRateChangeEvent {}
 
-unsafe impl NSCoding for AVMetricPlayerItemRateChangeEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlayerItemRateChangeEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricPlayerItemRateChangeEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlayerItemRateChangeEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricPlayerItemRateChangeEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlayerItemRateChangeEvent {}
+);
 
 impl AVMetricPlayerItemRateChangeEvent {
     extern_methods!(
@@ -631,11 +687,17 @@ unsafe impl Send for AVMetricPlayerItemStallEvent {}
 
 unsafe impl Sync for AVMetricPlayerItemStallEvent {}
 
-unsafe impl NSCoding for AVMetricPlayerItemStallEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlayerItemStallEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricPlayerItemStallEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlayerItemStallEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricPlayerItemStallEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlayerItemStallEvent {}
+);
 
 impl AVMetricPlayerItemStallEvent {
     extern_methods!(
@@ -664,11 +726,17 @@ unsafe impl Send for AVMetricPlayerItemSeekEvent {}
 
 unsafe impl Sync for AVMetricPlayerItemSeekEvent {}
 
-unsafe impl NSCoding for AVMetricPlayerItemSeekEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlayerItemSeekEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricPlayerItemSeekEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlayerItemSeekEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricPlayerItemSeekEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlayerItemSeekEvent {}
+);
 
 impl AVMetricPlayerItemSeekEvent {
     extern_methods!(
@@ -697,11 +765,17 @@ unsafe impl Send for AVMetricPlayerItemSeekDidCompleteEvent {}
 
 unsafe impl Sync for AVMetricPlayerItemSeekDidCompleteEvent {}
 
-unsafe impl NSCoding for AVMetricPlayerItemSeekDidCompleteEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlayerItemSeekDidCompleteEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricPlayerItemSeekDidCompleteEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlayerItemSeekDidCompleteEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricPlayerItemSeekDidCompleteEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlayerItemSeekDidCompleteEvent {}
+);
 
 impl AVMetricPlayerItemSeekDidCompleteEvent {
     extern_methods!(
@@ -735,11 +809,17 @@ unsafe impl Send for AVMetricPlayerItemVariantSwitchEvent {}
 
 unsafe impl Sync for AVMetricPlayerItemVariantSwitchEvent {}
 
-unsafe impl NSCoding for AVMetricPlayerItemVariantSwitchEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlayerItemVariantSwitchEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricPlayerItemVariantSwitchEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlayerItemVariantSwitchEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricPlayerItemVariantSwitchEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlayerItemVariantSwitchEvent {}
+);
 
 impl AVMetricPlayerItemVariantSwitchEvent {
     extern_methods!(
@@ -792,11 +872,17 @@ unsafe impl Send for AVMetricPlayerItemVariantSwitchStartEvent {}
 
 unsafe impl Sync for AVMetricPlayerItemVariantSwitchStartEvent {}
 
-unsafe impl NSCoding for AVMetricPlayerItemVariantSwitchStartEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlayerItemVariantSwitchStartEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricPlayerItemVariantSwitchStartEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlayerItemVariantSwitchStartEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricPlayerItemVariantSwitchStartEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlayerItemVariantSwitchStartEvent {}
+);
 
 impl AVMetricPlayerItemVariantSwitchStartEvent {
     extern_methods!(
@@ -844,11 +930,17 @@ unsafe impl Send for AVMetricPlayerItemPlaybackSummaryEvent {}
 
 unsafe impl Sync for AVMetricPlayerItemPlaybackSummaryEvent {}
 
-unsafe impl NSCoding for AVMetricPlayerItemPlaybackSummaryEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlayerItemPlaybackSummaryEvent {}
+);
 
-unsafe impl NSObjectProtocol for AVMetricPlayerItemPlaybackSummaryEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlayerItemPlaybackSummaryEvent {}
+);
 
-unsafe impl NSSecureCoding for AVMetricPlayerItemPlaybackSummaryEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlayerItemPlaybackSummaryEvent {}
+);
 
 impl AVMetricPlayerItemPlaybackSummaryEvent {
     extern_methods!(

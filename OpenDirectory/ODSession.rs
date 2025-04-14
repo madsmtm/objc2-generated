@@ -54,7 +54,9 @@ extern_class!(
     pub struct ODSession;
 );
 
-unsafe impl NSObjectProtocol for ODSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ODSession {}
+);
 
 impl ODSession {
     extern_methods!(

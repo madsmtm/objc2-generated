@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSCopying for DOMCounter {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMCounter {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl CopyingHelper for DOMCounter {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for DOMCounter {
 }
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSObjectProtocol for DOMCounter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMCounter {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMCounter {

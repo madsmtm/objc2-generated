@@ -277,13 +277,17 @@ extern_class!(
     pub struct MDLVertexBufferLayout;
 );
 
-unsafe impl NSCopying for MDLVertexBufferLayout {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLVertexBufferLayout {}
+);
 
 unsafe impl CopyingHelper for MDLVertexBufferLayout {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLVertexBufferLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLVertexBufferLayout {}
+);
 
 impl MDLVertexBufferLayout {
     extern_methods!(
@@ -331,13 +335,17 @@ extern_class!(
     pub struct MDLVertexAttribute;
 );
 
-unsafe impl NSCopying for MDLVertexAttribute {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLVertexAttribute {}
+);
 
 unsafe impl CopyingHelper for MDLVertexAttribute {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLVertexAttribute {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLVertexAttribute {}
+);
 
 impl MDLVertexAttribute {
     extern_methods!(
@@ -442,13 +450,17 @@ extern_class!(
     pub struct MDLVertexDescriptor;
 );
 
-unsafe impl NSCopying for MDLVertexDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLVertexDescriptor {}
+);
 
 unsafe impl CopyingHelper for MDLVertexDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLVertexDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLVertexDescriptor {}
+);
 
 impl MDLVertexDescriptor {
     extern_methods!(

@@ -52,48 +52,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIAlertView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIAlertView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIAlertView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIAlertView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIAlertView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIAlertView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIAlertView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIAlertView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIAlertView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIAlertView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIAlertView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIAlertView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIAlertView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIAlertView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIAlertView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIAlertView {

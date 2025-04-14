@@ -18,10 +18,14 @@ extern_class!(
     pub struct UIPopoverController;
 );
 
-unsafe impl NSObjectProtocol for UIPopoverController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPopoverController {}
+);
 
 #[cfg(feature = "UIAppearance")]
-unsafe impl UIAppearanceContainer for UIPopoverController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIPopoverController {}
+);
 
 impl UIPopoverController {
     extern_methods!(

@@ -18,17 +18,25 @@ extern_class!(
     pub struct MPSPolygonBuffer;
 );
 
-unsafe impl NSCoding for MPSPolygonBuffer {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSPolygonBuffer {}
+);
 
-unsafe impl NSCopying for MPSPolygonBuffer {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSPolygonBuffer {}
+);
 
 unsafe impl CopyingHelper for MPSPolygonBuffer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSPolygonBuffer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSPolygonBuffer {}
+);
 
-unsafe impl NSSecureCoding for MPSPolygonBuffer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSPolygonBuffer {}
+);
 
 impl MPSPolygonBuffer {
     extern_methods!(

@@ -14,7 +14,9 @@ extern_class!(
     pub struct SKArcadeService;
 );
 
-unsafe impl NSObjectProtocol for SKArcadeService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKArcadeService {}
+);
 
 impl SKArcadeService {
     extern_methods!(

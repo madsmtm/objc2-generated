@@ -22,50 +22,70 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTableRowView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTableRowView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityGroup for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityGroup for NSTableRowView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityRow for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityRow for NSTableRowView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSTableRowView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSTableRowView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTableRowView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSTableRowView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTableRowView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTableRowView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTableRowView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSTableRowView {

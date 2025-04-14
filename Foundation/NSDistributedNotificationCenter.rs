@@ -80,7 +80,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSNotification")]
-unsafe impl NSObjectProtocol for NSDistributedNotificationCenter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDistributedNotificationCenter {}
+);
 
 #[cfg(feature = "NSNotification")]
 impl NSDistributedNotificationCenter {

@@ -141,17 +141,25 @@ unsafe impl Send for SHMediaItem {}
 
 unsafe impl Sync for SHMediaItem {}
 
-unsafe impl NSCoding for SHMediaItem {}
+extern_conformance!(
+    unsafe impl NSCoding for SHMediaItem {}
+);
 
-unsafe impl NSCopying for SHMediaItem {}
+extern_conformance!(
+    unsafe impl NSCopying for SHMediaItem {}
+);
 
 unsafe impl CopyingHelper for SHMediaItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SHMediaItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHMediaItem {}
+);
 
-unsafe impl NSSecureCoding for SHMediaItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SHMediaItem {}
+);
 
 impl SHMediaItem {
     extern_methods!(

@@ -17,11 +17,17 @@ unsafe impl Send for BELayerHierarchyHandle {}
 
 unsafe impl Sync for BELayerHierarchyHandle {}
 
-unsafe impl NSCoding for BELayerHierarchyHandle {}
+extern_conformance!(
+    unsafe impl NSCoding for BELayerHierarchyHandle {}
+);
 
-unsafe impl NSObjectProtocol for BELayerHierarchyHandle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BELayerHierarchyHandle {}
+);
 
-unsafe impl NSSecureCoding for BELayerHierarchyHandle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for BELayerHierarchyHandle {}
+);
 
 impl BELayerHierarchyHandle {
     extern_methods!(

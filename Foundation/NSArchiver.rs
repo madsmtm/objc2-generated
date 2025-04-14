@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSCoder")]
-unsafe impl NSObjectProtocol for NSArchiver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSArchiver {}
+);
 
 #[cfg(feature = "NSCoder")]
 impl NSArchiver {
@@ -112,7 +114,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSCoder")]
-unsafe impl NSObjectProtocol for NSUnarchiver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUnarchiver {}
+);
 
 #[cfg(feature = "NSCoder")]
 impl NSUnarchiver {

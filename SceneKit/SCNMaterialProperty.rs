@@ -73,14 +73,22 @@ extern_class!(
     pub struct SCNMaterialProperty;
 );
 
-unsafe impl NSCoding for SCNMaterialProperty {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNMaterialProperty {}
+);
 
-unsafe impl NSObjectProtocol for SCNMaterialProperty {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNMaterialProperty {}
+);
 
-unsafe impl NSSecureCoding for SCNMaterialProperty {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNMaterialProperty {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNMaterialProperty {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNMaterialProperty {}
+);
 
 impl SCNMaterialProperty {
     extern_methods!(

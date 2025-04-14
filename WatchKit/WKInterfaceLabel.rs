@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceLabel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceLabel {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceLabel {

@@ -73,23 +73,41 @@ extern_class!(
     pub struct IKImageEditPanel;
 );
 
-unsafe impl NSAccessibility for IKImageEditPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IKImageEditPanel {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IKImageEditPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IKImageEditPanel {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IKImageEditPanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IKImageEditPanel {}
+);
 
-unsafe impl NSAppearanceCustomization for IKImageEditPanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IKImageEditPanel {}
+);
 
-unsafe impl NSCoding for IKImageEditPanel {}
+extern_conformance!(
+    unsafe impl NSCoding for IKImageEditPanel {}
+);
 
-unsafe impl NSMenuItemValidation for IKImageEditPanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for IKImageEditPanel {}
+);
 
-unsafe impl NSObjectProtocol for IKImageEditPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKImageEditPanel {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IKImageEditPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IKImageEditPanel {}
+);
 
-unsafe impl NSUserInterfaceValidations for IKImageEditPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for IKImageEditPanel {}
+);
 
 impl IKImageEditPanel {
     extern_methods!(

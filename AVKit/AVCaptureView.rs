@@ -57,35 +57,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for AVCaptureView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for AVCaptureView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for AVCaptureView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for AVCaptureView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for AVCaptureView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for AVCaptureView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for AVCaptureView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for AVCaptureView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for AVCaptureView {}
+extern_conformance!(
+    unsafe impl NSCoding for AVCaptureView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for AVCaptureView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for AVCaptureView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for AVCaptureView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for AVCaptureView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for AVCaptureView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

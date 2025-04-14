@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "IOUSBHostIOSource")]
-unsafe impl NSObjectProtocol for IOUSBHostPipe {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOUSBHostPipe {}
+);
 
 #[cfg(feature = "IOUSBHostIOSource")]
 impl IOUSBHostPipe {

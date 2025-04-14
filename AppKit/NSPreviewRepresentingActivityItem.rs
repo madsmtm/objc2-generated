@@ -47,9 +47,13 @@ extern_class!(
     pub struct NSPreviewRepresentingActivityItem;
 );
 
-unsafe impl NSObjectProtocol for NSPreviewRepresentingActivityItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPreviewRepresentingActivityItem {}
+);
 
-unsafe impl NSPreviewRepresentableActivityItem for NSPreviewRepresentingActivityItem {}
+extern_conformance!(
+    unsafe impl NSPreviewRepresentableActivityItem for NSPreviewRepresentingActivityItem {}
+);
 
 impl NSPreviewRepresentingActivityItem {
     extern_methods!(

@@ -77,35 +77,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for MKMapView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for MKMapView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for MKMapView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for MKMapView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for MKMapView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for MKMapView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for MKMapView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for MKMapView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MKMapView {}
+extern_conformance!(
+    unsafe impl NSCoding for MKMapView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for MKMapView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for MKMapView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MKMapView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MKMapView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MKMapView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

@@ -106,7 +106,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSRuleEditor {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSRuleEditor {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -114,7 +116,9 @@ unsafe impl NSAccessibility for NSRuleEditor {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSRuleEditor {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSRuleEditor {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -122,7 +126,9 @@ unsafe impl NSAccessibilityElementProtocol for NSRuleEditor {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSRuleEditor {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSRuleEditor {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -130,10 +136,14 @@ unsafe impl NSAnimatablePropertyContainer for NSRuleEditor {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSRuleEditor {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSRuleEditor {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSRuleEditor {}
+extern_conformance!(
+    unsafe impl NSCoding for NSRuleEditor {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -141,10 +151,14 @@ unsafe impl NSCoding for NSRuleEditor {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSRuleEditor {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSRuleEditor {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSRuleEditor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRuleEditor {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -152,7 +166,9 @@ unsafe impl NSObjectProtocol for NSRuleEditor {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSRuleEditor {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSRuleEditor {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSRuleEditor {

@@ -61,10 +61,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSISO8601DateFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSISO8601DateFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSISO8601DateFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSISO8601DateFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSISO8601DateFormatter {
@@ -72,10 +76,14 @@ unsafe impl CopyingHelper for NSISO8601DateFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSISO8601DateFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSISO8601DateFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSSecureCoding for NSISO8601DateFormatter {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSISO8601DateFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSISO8601DateFormatter {

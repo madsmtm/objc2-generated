@@ -382,7 +382,9 @@ extern_class!(
     pub struct AUAudioUnit;
 );
 
-unsafe impl NSObjectProtocol for AUAudioUnit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUAudioUnit {}
+);
 
 impl AUAudioUnit {
     extern_methods!(
@@ -1568,9 +1570,13 @@ extern_class!(
     pub struct AUAudioUnitBusArray;
 );
 
-unsafe impl NSFastEnumeration for AUAudioUnitBusArray {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for AUAudioUnitBusArray {}
+);
 
-unsafe impl NSObjectProtocol for AUAudioUnitBusArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUAudioUnitBusArray {}
+);
 
 impl AUAudioUnitBusArray {
     extern_methods!(
@@ -1671,7 +1677,9 @@ extern_class!(
     pub struct AUAudioUnitBus;
 );
 
-unsafe impl NSObjectProtocol for AUAudioUnitBus {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUAudioUnitBus {}
+);
 
 impl AUAudioUnitBus {
     extern_methods!(
@@ -1820,11 +1828,17 @@ extern_class!(
     pub struct AUAudioUnitPreset;
 );
 
-unsafe impl NSCoding for AUAudioUnitPreset {}
+extern_conformance!(
+    unsafe impl NSCoding for AUAudioUnitPreset {}
+);
 
-unsafe impl NSObjectProtocol for AUAudioUnitPreset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUAudioUnitPreset {}
+);
 
-unsafe impl NSSecureCoding for AUAudioUnitPreset {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AUAudioUnitPreset {}
+);
 
 impl AUAudioUnitPreset {
     extern_methods!(

@@ -34,7 +34,9 @@ extern_class!(
     pub struct PKPaymentSummaryItem;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentSummaryItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentSummaryItem {}
+);
 
 impl PKPaymentSummaryItem {
     extern_methods!(

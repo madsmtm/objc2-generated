@@ -134,17 +134,25 @@ extern_class!(
     pub struct SKTileSet;
 );
 
-unsafe impl NSCoding for SKTileSet {}
+extern_conformance!(
+    unsafe impl NSCoding for SKTileSet {}
+);
 
-unsafe impl NSCopying for SKTileSet {}
+extern_conformance!(
+    unsafe impl NSCopying for SKTileSet {}
+);
 
 unsafe impl CopyingHelper for SKTileSet {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKTileSet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKTileSet {}
+);
 
-unsafe impl NSSecureCoding for SKTileSet {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKTileSet {}
+);
 
 impl SKTileSet {
     extern_methods!(
@@ -279,17 +287,25 @@ extern_class!(
     pub struct SKTileGroup;
 );
 
-unsafe impl NSCoding for SKTileGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for SKTileGroup {}
+);
 
-unsafe impl NSCopying for SKTileGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for SKTileGroup {}
+);
 
 unsafe impl CopyingHelper for SKTileGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKTileGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKTileGroup {}
+);
 
-unsafe impl NSSecureCoding for SKTileGroup {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKTileGroup {}
+);
 
 impl SKTileGroup {
     extern_methods!(
@@ -380,17 +396,25 @@ extern_class!(
     pub struct SKTileGroupRule;
 );
 
-unsafe impl NSCoding for SKTileGroupRule {}
+extern_conformance!(
+    unsafe impl NSCoding for SKTileGroupRule {}
+);
 
-unsafe impl NSCopying for SKTileGroupRule {}
+extern_conformance!(
+    unsafe impl NSCopying for SKTileGroupRule {}
+);
 
 unsafe impl CopyingHelper for SKTileGroupRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKTileGroupRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKTileGroupRule {}
+);
 
-unsafe impl NSSecureCoding for SKTileGroupRule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKTileGroupRule {}
+);
 
 impl SKTileGroupRule {
     extern_methods!(

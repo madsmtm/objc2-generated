@@ -25,7 +25,9 @@ unsafe impl Send for HMCharacteristicThresholdRangeEvent {}
 unsafe impl Sync for HMCharacteristicThresholdRangeEvent {}
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSCopying for HMCharacteristicThresholdRangeEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMCharacteristicThresholdRangeEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl CopyingHelper for HMCharacteristicThresholdRangeEvent {
@@ -33,7 +35,9 @@ unsafe impl CopyingHelper for HMCharacteristicThresholdRangeEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSMutableCopying for HMCharacteristicThresholdRangeEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMCharacteristicThresholdRangeEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl MutableCopyingHelper for HMCharacteristicThresholdRangeEvent {
@@ -41,7 +45,9 @@ unsafe impl MutableCopyingHelper for HMCharacteristicThresholdRangeEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSObjectProtocol for HMCharacteristicThresholdRangeEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCharacteristicThresholdRangeEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 impl HMCharacteristicThresholdRangeEvent {
@@ -113,7 +119,9 @@ unsafe impl Send for HMMutableCharacteristicThresholdRangeEvent {}
 unsafe impl Sync for HMMutableCharacteristicThresholdRangeEvent {}
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSCopying for HMMutableCharacteristicThresholdRangeEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMMutableCharacteristicThresholdRangeEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl CopyingHelper for HMMutableCharacteristicThresholdRangeEvent {
@@ -121,7 +129,9 @@ unsafe impl CopyingHelper for HMMutableCharacteristicThresholdRangeEvent {
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSMutableCopying for HMMutableCharacteristicThresholdRangeEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMMutableCharacteristicThresholdRangeEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 unsafe impl MutableCopyingHelper for HMMutableCharacteristicThresholdRangeEvent {
@@ -129,7 +139,9 @@ unsafe impl MutableCopyingHelper for HMMutableCharacteristicThresholdRangeEvent 
 }
 
 #[cfg(feature = "HMEvent")]
-unsafe impl NSObjectProtocol for HMMutableCharacteristicThresholdRangeEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMMutableCharacteristicThresholdRangeEvent {}
+);
 
 #[cfg(feature = "HMEvent")]
 impl HMMutableCharacteristicThresholdRangeEvent {

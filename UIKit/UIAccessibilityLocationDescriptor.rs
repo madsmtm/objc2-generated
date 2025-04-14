@@ -16,7 +16,9 @@ extern_class!(
     pub struct UIAccessibilityLocationDescriptor;
 );
 
-unsafe impl NSObjectProtocol for UIAccessibilityLocationDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIAccessibilityLocationDescriptor {}
+);
 
 impl UIAccessibilityLocationDescriptor {
     extern_methods!(

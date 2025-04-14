@@ -21,7 +21,9 @@ unsafe impl Send for HMNetworkConfigurationProfile {}
 unsafe impl Sync for HMNetworkConfigurationProfile {}
 
 #[cfg(feature = "HMAccessoryProfile")]
-unsafe impl NSObjectProtocol for HMNetworkConfigurationProfile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMNetworkConfigurationProfile {}
+);
 
 #[cfg(feature = "HMAccessoryProfile")]
 impl HMNetworkConfigurationProfile {

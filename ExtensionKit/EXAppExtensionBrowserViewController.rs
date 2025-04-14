@@ -22,23 +22,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for EXAppExtensionBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for EXAppExtensionBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for EXAppExtensionBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for EXAppExtensionBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for EXAppExtensionBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EXAppExtensionBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for EXAppExtensionBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for EXAppExtensionBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for EXAppExtensionBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for EXAppExtensionBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

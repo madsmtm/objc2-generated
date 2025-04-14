@@ -26,7 +26,9 @@ unsafe impl Send for HKObserverQuery {}
 unsafe impl Sync for HKObserverQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKObserverQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKObserverQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKObserverQuery {

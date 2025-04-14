@@ -51,10 +51,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INSetSeatSettingsInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INSetSeatSettingsInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INSetSeatSettingsInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INSetSeatSettingsInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INSetSeatSettingsInCarIntentResponse {
@@ -62,10 +66,14 @@ unsafe impl CopyingHelper for INSetSeatSettingsInCarIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INSetSeatSettingsInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSetSeatSettingsInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INSetSeatSettingsInCarIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSetSeatSettingsInCarIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INSetSeatSettingsInCarIntentResponse {

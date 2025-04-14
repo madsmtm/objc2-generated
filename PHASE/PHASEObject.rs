@@ -20,13 +20,17 @@ extern_class!(
     pub struct PHASEObject;
 );
 
-unsafe impl NSCopying for PHASEObject {}
+extern_conformance!(
+    unsafe impl NSCopying for PHASEObject {}
+);
 
 unsafe impl CopyingHelper for PHASEObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHASEObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEObject {}
+);
 
 impl PHASEObject {
     extern_methods!(

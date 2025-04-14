@@ -84,47 +84,69 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSAccessibility for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityButton for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityButton for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSCoding for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceCompression for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceCompression for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceValidations for INUIAddVoiceShortcutButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for INUIAddVoiceShortcutButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

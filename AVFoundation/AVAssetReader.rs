@@ -66,7 +66,9 @@ extern_class!(
     pub struct AVAssetReader;
 );
 
-unsafe impl NSObjectProtocol for AVAssetReader {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetReader {}
+);
 
 impl AVAssetReader {
     extern_methods!(

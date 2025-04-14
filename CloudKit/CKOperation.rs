@@ -17,7 +17,9 @@ extern_class!(
     pub struct CKOperation;
 );
 
-unsafe impl NSObjectProtocol for CKOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKOperation {}
+);
 
 impl CKOperation {
     extern_methods!(
@@ -119,7 +121,9 @@ extern_class!(
     pub struct CKOperationConfiguration;
 );
 
-unsafe impl NSObjectProtocol for CKOperationConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKOperationConfiguration {}
+);
 
 impl CKOperationConfiguration {
     extern_methods!(

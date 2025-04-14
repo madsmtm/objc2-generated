@@ -13,7 +13,9 @@ extern_class!(
     pub struct UNNotificationServiceExtension;
 );
 
-unsafe impl NSObjectProtocol for UNNotificationServiceExtension {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNNotificationServiceExtension {}
+);
 
 impl UNNotificationServiceExtension {
     extern_methods!(

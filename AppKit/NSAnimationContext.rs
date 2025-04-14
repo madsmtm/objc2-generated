@@ -17,7 +17,9 @@ extern_class!(
     pub struct NSAnimationContext;
 );
 
-unsafe impl NSObjectProtocol for NSAnimationContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAnimationContext {}
+);
 
 impl NSAnimationContext {
     extern_methods!(

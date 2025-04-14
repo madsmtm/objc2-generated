@@ -27,7 +27,9 @@ extern_class!(
     pub struct CMAltimeter;
 );
 
-unsafe impl NSObjectProtocol for CMAltimeter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMAltimeter {}
+);
 
 impl CMAltimeter {
     extern_methods!(

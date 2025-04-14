@@ -14,7 +14,9 @@ extern_class!(
     pub struct ODAttributeMap;
 );
 
-unsafe impl NSObjectProtocol for ODAttributeMap {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ODAttributeMap {}
+);
 
 impl ODAttributeMap {
     extern_methods!(

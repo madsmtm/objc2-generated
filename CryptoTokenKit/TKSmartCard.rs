@@ -16,7 +16,9 @@ extern_class!(
     pub struct TKSmartCardSlotManager;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCardSlotManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardSlotManager {}
+);
 
 impl TKSmartCardSlotManager {
     extern_methods!(
@@ -240,7 +242,9 @@ extern_class!(
     pub struct TKSmartCardPINFormat;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCardPINFormat {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardPINFormat {}
+);
 
 impl TKSmartCardPINFormat {
     extern_methods!(
@@ -446,7 +450,9 @@ extern_class!(
     pub struct TKSmartCardUserInteraction;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCardUserInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardUserInteraction {}
+);
 
 impl TKSmartCardUserInteraction {
     extern_methods!(
@@ -529,7 +535,9 @@ extern_class!(
     pub struct TKSmartCardUserInteractionForPINOperation;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCardUserInteractionForPINOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardUserInteractionForPINOperation {}
+);
 
 impl TKSmartCardUserInteractionForPINOperation {
     extern_methods!(
@@ -621,7 +629,9 @@ extern_class!(
     pub struct TKSmartCardUserInteractionForSecurePINVerification;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCardUserInteractionForSecurePINVerification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardUserInteractionForSecurePINVerification {}
+);
 
 impl TKSmartCardUserInteractionForSecurePINVerification {
     extern_methods!();
@@ -655,7 +665,9 @@ extern_class!(
     pub struct TKSmartCardUserInteractionForSecurePINChange;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCardUserInteractionForSecurePINChange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardUserInteractionForSecurePINChange {}
+);
 
 impl TKSmartCardUserInteractionForSecurePINChange {
     extern_methods!(
@@ -695,7 +707,9 @@ extern_class!(
     pub struct TKSmartCardSlot;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCardSlot {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardSlot {}
+);
 
 impl TKSmartCardSlot {
     extern_methods!(
@@ -758,7 +772,9 @@ extern_class!(
     pub struct TKSmartCard;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCard {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCard {}
+);
 
 impl TKSmartCard {
     extern_methods!(

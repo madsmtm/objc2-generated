@@ -37,45 +37,59 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSCoding for NSSplitViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSplitViewController {}
+);
 
 #[cfg(all(
     feature = "NSKeyValueBinding",
     feature = "NSResponder",
     feature = "NSViewController"
 ))]
-unsafe impl NSEditor for NSSplitViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for NSSplitViewController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSObjectProtocol for NSSplitViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSplitViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSStoryboardSegue",
     feature = "NSViewController"
 ))]
-unsafe impl NSSeguePerforming for NSSplitViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for NSSplitViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSSplitView",
     feature = "NSViewController"
 ))]
-unsafe impl NSSplitViewDelegate for NSSplitViewController {}
+extern_conformance!(
+    unsafe impl NSSplitViewDelegate for NSSplitViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSViewController"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSplitViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSplitViewController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceValidation",
     feature = "NSViewController"
 ))]
-unsafe impl NSUserInterfaceValidations for NSSplitViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSSplitViewController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
 impl NSSplitViewController {

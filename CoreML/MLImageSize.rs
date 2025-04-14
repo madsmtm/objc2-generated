@@ -13,11 +13,17 @@ extern_class!(
     pub struct MLImageSize;
 );
 
-unsafe impl NSCoding for MLImageSize {}
+extern_conformance!(
+    unsafe impl NSCoding for MLImageSize {}
+);
 
-unsafe impl NSObjectProtocol for MLImageSize {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLImageSize {}
+);
 
-unsafe impl NSSecureCoding for MLImageSize {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLImageSize {}
+);
 
 impl MLImageSize {
     extern_methods!(

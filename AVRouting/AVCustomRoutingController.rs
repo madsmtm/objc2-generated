@@ -28,7 +28,9 @@ extern_class!(
     pub struct AVCustomRoutingController;
 );
 
-unsafe impl NSObjectProtocol for AVCustomRoutingController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCustomRoutingController {}
+);
 
 impl AVCustomRoutingController {
     extern_methods!(
@@ -229,7 +231,9 @@ unsafe impl Send for AVCustomRoutingPartialIP {}
 
 unsafe impl Sync for AVCustomRoutingPartialIP {}
 
-unsafe impl NSObjectProtocol for AVCustomRoutingPartialIP {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCustomRoutingPartialIP {}
+);
 
 impl AVCustomRoutingPartialIP {
     extern_methods!(

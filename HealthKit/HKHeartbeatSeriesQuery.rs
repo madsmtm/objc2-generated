@@ -22,7 +22,9 @@ unsafe impl Send for HKHeartbeatSeriesQuery {}
 unsafe impl Sync for HKHeartbeatSeriesQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKHeartbeatSeriesQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKHeartbeatSeriesQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKHeartbeatSeriesQuery {

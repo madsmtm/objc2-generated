@@ -23,13 +23,19 @@ unsafe impl Send for HKSeriesSample {}
 unsafe impl Sync for HKSeriesSample {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCoding for HKSeriesSample {}
+extern_conformance!(
+    unsafe impl NSCoding for HKSeriesSample {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSObjectProtocol for HKSeriesSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKSeriesSample {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSSecureCoding for HKSeriesSample {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKSeriesSample {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKSeriesSample {

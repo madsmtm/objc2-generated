@@ -15,17 +15,25 @@ extern_class!(
     pub struct INBusTrip;
 );
 
-unsafe impl NSCoding for INBusTrip {}
+extern_conformance!(
+    unsafe impl NSCoding for INBusTrip {}
+);
 
-unsafe impl NSCopying for INBusTrip {}
+extern_conformance!(
+    unsafe impl NSCopying for INBusTrip {}
+);
 
 unsafe impl CopyingHelper for INBusTrip {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INBusTrip {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INBusTrip {}
+);
 
-unsafe impl NSSecureCoding for INBusTrip {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INBusTrip {}
+);
 
 impl INBusTrip {
     extern_methods!(

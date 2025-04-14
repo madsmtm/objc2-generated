@@ -20,7 +20,9 @@ unsafe impl Send for CLMonitorConfiguration {}
 
 unsafe impl Sync for CLMonitorConfiguration {}
 
-unsafe impl NSObjectProtocol for CLMonitorConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLMonitorConfiguration {}
+);
 
 impl CLMonitorConfiguration {
     extern_methods!(

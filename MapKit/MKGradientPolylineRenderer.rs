@@ -27,7 +27,9 @@ extern_class!(
     feature = "MKOverlayRenderer",
     feature = "MKPolylineRenderer"
 ))]
-unsafe impl NSObjectProtocol for MKGradientPolylineRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKGradientPolylineRenderer {}
+);
 
 #[cfg(all(
     feature = "MKOverlayPathRenderer",

@@ -23,11 +23,17 @@ extern_class!(
     pub struct CPVoiceControlState;
 );
 
-unsafe impl NSCoding for CPVoiceControlState {}
+extern_conformance!(
+    unsafe impl NSCoding for CPVoiceControlState {}
+);
 
-unsafe impl NSObjectProtocol for CPVoiceControlState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPVoiceControlState {}
+);
 
-unsafe impl NSSecureCoding for CPVoiceControlState {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPVoiceControlState {}
+);
 
 impl CPVoiceControlState {
     extern_methods!(
@@ -98,13 +104,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSCoding for CPVoiceControlTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for CPVoiceControlTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSObjectProtocol for CPVoiceControlTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPVoiceControlTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSSecureCoding for CPVoiceControlTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPVoiceControlTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
 impl CPVoiceControlTemplate {

@@ -26,48 +26,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIEventAttributionView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIEventAttributionView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIEventAttributionView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIEventAttributionView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIEventAttributionView {

@@ -23,7 +23,9 @@ unsafe impl Send for AVCompositionTrackSegment {}
 unsafe impl Sync for AVCompositionTrackSegment {}
 
 #[cfg(feature = "AVAssetTrackSegment")]
-unsafe impl NSObjectProtocol for AVCompositionTrackSegment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCompositionTrackSegment {}
+);
 
 #[cfg(feature = "AVAssetTrackSegment")]
 impl AVCompositionTrackSegment {

@@ -81,7 +81,9 @@ extern_class!(
     pub struct CNContactStore;
 );
 
-unsafe impl NSObjectProtocol for CNContactStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContactStore {}
+);
 
 impl CNContactStore {
     extern_methods!(

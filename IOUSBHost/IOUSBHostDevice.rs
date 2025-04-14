@@ -25,7 +25,9 @@ extern_class!(
 );
 
 #[cfg(feature = "IOUSBHostObject")]
-unsafe impl NSObjectProtocol for IOUSBHostDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOUSBHostDevice {}
+);
 
 #[cfg(feature = "IOUSBHostObject")]
 impl IOUSBHostDevice {

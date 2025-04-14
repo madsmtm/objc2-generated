@@ -40,10 +40,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCoding for CMMagnetometerData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMMagnetometerData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCopying for CMMagnetometerData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMMagnetometerData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl CopyingHelper for CMMagnetometerData {
@@ -51,10 +55,14 @@ unsafe impl CopyingHelper for CMMagnetometerData {
 }
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSObjectProtocol for CMMagnetometerData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMMagnetometerData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSSecureCoding for CMMagnetometerData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMMagnetometerData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 impl CMMagnetometerData {

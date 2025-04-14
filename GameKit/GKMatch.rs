@@ -61,7 +61,9 @@ extern_class!(
     pub struct GKMatch;
 );
 
-unsafe impl NSObjectProtocol for GKMatch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKMatch {}
+);
 
 impl GKMatch {
     extern_methods!(

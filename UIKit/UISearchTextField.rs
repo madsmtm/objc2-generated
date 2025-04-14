@@ -43,7 +43,9 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UISearchTextField {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -51,7 +53,9 @@ unsafe impl CALayerDelegate for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl NSCoding for UISearchTextField {}
+extern_conformance!(
+    unsafe impl NSCoding for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -59,16 +63,9 @@ unsafe impl NSCoding for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl NSObjectProtocol for UISearchTextField {}
-
-#[cfg(all(
-    feature = "UIAppearance",
-    feature = "UIControl",
-    feature = "UIResponder",
-    feature = "UITextField",
-    feature = "UIView"
-))]
-unsafe impl UIAppearance for UISearchTextField {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -77,7 +74,20 @@ unsafe impl UIAppearance for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UIAppearance for UISearchTextField {}
+);
+
+#[cfg(all(
+    feature = "UIAppearance",
+    feature = "UIControl",
+    feature = "UIResponder",
+    feature = "UITextField",
+    feature = "UIView"
+))]
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIContentSizeCategoryAdjusting",
@@ -86,7 +96,9 @@ unsafe impl UIAppearanceContainer for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl UIContentSizeCategoryAdjusting for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UIContentSizeCategoryAdjusting for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -94,7 +106,9 @@ unsafe impl UIContentSizeCategoryAdjusting for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl UICoordinateSpace for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -103,7 +117,9 @@ unsafe impl UICoordinateSpace for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -112,7 +128,9 @@ unsafe impl UIDynamicItem for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -121,7 +139,9 @@ unsafe impl UIFocusEnvironment for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -130,7 +150,9 @@ unsafe impl UIFocusItem for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -140,7 +162,9 @@ unsafe impl UIFocusItemContainer for UISearchTextField {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UIKeyInput for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UIKeyInput for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -149,7 +173,9 @@ unsafe impl UIKeyInput for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl UILetterformAwareAdjusting for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UILetterformAwareAdjusting for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -157,7 +183,9 @@ unsafe impl UILetterformAwareAdjusting for UISearchTextField {}
     feature = "UITextField",
     feature = "UIView"
 ))]
-unsafe impl UIResponderStandardEditActions for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -167,7 +195,9 @@ unsafe impl UIResponderStandardEditActions for UISearchTextField {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UITextInput for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UITextInput for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -176,7 +206,9 @@ unsafe impl UITextInput for UISearchTextField {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UITextInputTraits for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UITextInputTraits for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -185,7 +217,9 @@ unsafe impl UITextInputTraits for UISearchTextField {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UISearchTextField {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UISearchTextField {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -386,7 +420,9 @@ extern_class!(
     pub struct UISearchToken;
 );
 
-unsafe impl NSObjectProtocol for UISearchToken {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISearchToken {}
+);
 
 impl UISearchToken {
     extern_methods!(

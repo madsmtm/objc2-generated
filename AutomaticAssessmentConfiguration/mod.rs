@@ -35,13 +35,17 @@ extern_class!(
     pub struct AEAssessmentApplication;
 );
 
-unsafe impl NSCopying for AEAssessmentApplication {}
+extern_conformance!(
+    unsafe impl NSCopying for AEAssessmentApplication {}
+);
 
 unsafe impl CopyingHelper for AEAssessmentApplication {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AEAssessmentApplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AEAssessmentApplication {}
+);
 
 impl AEAssessmentApplication {
     extern_methods!(
@@ -118,13 +122,17 @@ extern_class!(
     pub struct AEAssessmentConfiguration;
 );
 
-unsafe impl NSCopying for AEAssessmentConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for AEAssessmentConfiguration {}
+);
 
 unsafe impl CopyingHelper for AEAssessmentConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AEAssessmentConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AEAssessmentConfiguration {}
+);
 
 impl AEAssessmentConfiguration {
     extern_methods!(
@@ -255,13 +263,17 @@ extern_class!(
     pub struct AEAssessmentParticipantConfiguration;
 );
 
-unsafe impl NSCopying for AEAssessmentParticipantConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for AEAssessmentParticipantConfiguration {}
+);
 
 unsafe impl CopyingHelper for AEAssessmentParticipantConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AEAssessmentParticipantConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AEAssessmentParticipantConfiguration {}
+);
 
 impl AEAssessmentParticipantConfiguration {
     extern_methods!(
@@ -303,7 +315,9 @@ extern_class!(
     pub struct AEAssessmentSession;
 );
 
-unsafe impl NSObjectProtocol for AEAssessmentSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AEAssessmentSession {}
+);
 
 impl AEAssessmentSession {
     extern_methods!(

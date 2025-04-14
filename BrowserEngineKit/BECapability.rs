@@ -35,7 +35,9 @@ extern_class!(
     pub struct BEMediaEnvironment;
 );
 
-unsafe impl NSObjectProtocol for BEMediaEnvironment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEMediaEnvironment {}
+);
 
 impl BEMediaEnvironment {
     extern_methods!(
@@ -86,7 +88,9 @@ extern_class!(
     pub struct BEProcessCapability;
 );
 
-unsafe impl NSObjectProtocol for BEProcessCapability {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEProcessCapability {}
+);
 
 impl BEProcessCapability {
     extern_methods!(

@@ -68,17 +68,25 @@ extern_class!(
     pub struct CKAllowedSharingOptions;
 );
 
-unsafe impl NSCoding for CKAllowedSharingOptions {}
+extern_conformance!(
+    unsafe impl NSCoding for CKAllowedSharingOptions {}
+);
 
-unsafe impl NSCopying for CKAllowedSharingOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for CKAllowedSharingOptions {}
+);
 
 unsafe impl CopyingHelper for CKAllowedSharingOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKAllowedSharingOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKAllowedSharingOptions {}
+);
 
-unsafe impl NSSecureCoding for CKAllowedSharingOptions {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKAllowedSharingOptions {}
+);
 
 impl CKAllowedSharingOptions {
     extern_methods!(

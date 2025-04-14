@@ -15,7 +15,9 @@ extern_class!(
     pub struct MPSStateResourceList;
 );
 
-unsafe impl NSObjectProtocol for MPSStateResourceList {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSStateResourceList {}
+);
 
 impl MPSStateResourceList {
     extern_methods!(
@@ -177,7 +179,9 @@ extern_class!(
     pub struct MPSState;
 );
 
-unsafe impl NSObjectProtocol for MPSState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSState {}
+);
 
 impl MPSState {
     extern_methods!(

@@ -64,18 +64,26 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLComponent for MDLTransform {}
+extern_conformance!(
+    unsafe impl MDLComponent for MDLTransform {}
+);
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLTransformComponent for MDLTransform {}
+extern_conformance!(
+    unsafe impl MDLTransformComponent for MDLTransform {}
+);
 
-unsafe impl NSCopying for MDLTransform {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLTransform {}
+);
 
 unsafe impl CopyingHelper for MDLTransform {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLTransform {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLTransform {}
+);
 
 impl MDLTransform {
     extern_methods!(

@@ -54,7 +54,9 @@ extern_class!(
     pub struct UITab;
 );
 
-unsafe impl NSObjectProtocol for UITab {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITab {}
+);
 
 impl UITab {
     extern_methods!(
@@ -246,7 +248,9 @@ impl UITab {
 }
 
 #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
-unsafe impl UIPopoverPresentationControllerSourceItem for UITab {}
+extern_conformance!(
+    unsafe impl UIPopoverPresentationControllerSourceItem for UITab {}
+);
 
 /// UISpringLoadedInteractionSupporting.
 impl UITab {
@@ -254,7 +258,9 @@ impl UITab {
 }
 
 #[cfg(feature = "UISpringLoadedInteractionSupporting")]
-unsafe impl UISpringLoadedInteractionSupporting for UITab {}
+extern_conformance!(
+    unsafe impl UISpringLoadedInteractionSupporting for UITab {}
+);
 
 /// UIAccessibility.
 impl UITab {
@@ -262,7 +268,9 @@ impl UITab {
 }
 
 #[cfg(feature = "UIAccessibilityIdentification")]
-unsafe impl UIAccessibilityIdentification for UITab {}
+extern_conformance!(
+    unsafe impl UIAccessibilityIdentification for UITab {}
+);
 
 /// UITab.
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

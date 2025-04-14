@@ -16,37 +16,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UISearchContainerViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UISearchContainerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UISearchContainerViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISearchContainerViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UISearchContainerViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UISearchContainerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UISearchContainerViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UISearchContainerViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UISearchContainerViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UISearchContainerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UISearchContainerViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UISearchContainerViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UISearchContainerViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UISearchContainerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UISearchContainerViewController {

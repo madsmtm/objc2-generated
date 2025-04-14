@@ -36,7 +36,9 @@ extern_class!(
     pub struct VSUserAccountManager;
 );
 
-unsafe impl NSObjectProtocol for VSUserAccountManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VSUserAccountManager {}
+);
 
 impl VSUserAccountManager {
     extern_methods!(

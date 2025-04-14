@@ -27,7 +27,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for JSVirtualMachine {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for JSVirtualMachine {}
+);
 
 #[cfg(feature = "objc2")]
 impl JSVirtualMachine {

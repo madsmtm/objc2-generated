@@ -56,9 +56,13 @@ extern_class!(
     pub struct MTLFunctionStitchingAttributeAlwaysInline;
 );
 
-unsafe impl MTLFunctionStitchingAttribute for MTLFunctionStitchingAttributeAlwaysInline {}
+extern_conformance!(
+    unsafe impl MTLFunctionStitchingAttribute for MTLFunctionStitchingAttributeAlwaysInline {}
+);
 
-unsafe impl NSObjectProtocol for MTLFunctionStitchingAttributeAlwaysInline {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFunctionStitchingAttributeAlwaysInline {}
+);
 
 impl MTLFunctionStitchingAttributeAlwaysInline {
     extern_methods!();
@@ -93,15 +97,21 @@ extern_class!(
     pub struct MTLFunctionStitchingInputNode;
 );
 
-unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingInputNode {}
+extern_conformance!(
+    unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingInputNode {}
+);
 
-unsafe impl NSCopying for MTLFunctionStitchingInputNode {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLFunctionStitchingInputNode {}
+);
 
 unsafe impl CopyingHelper for MTLFunctionStitchingInputNode {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLFunctionStitchingInputNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFunctionStitchingInputNode {}
+);
 
 impl MTLFunctionStitchingInputNode {
     extern_methods!(
@@ -145,15 +155,21 @@ extern_class!(
     pub struct MTLFunctionStitchingFunctionNode;
 );
 
-unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingFunctionNode {}
+extern_conformance!(
+    unsafe impl MTLFunctionStitchingNode for MTLFunctionStitchingFunctionNode {}
+);
 
-unsafe impl NSCopying for MTLFunctionStitchingFunctionNode {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLFunctionStitchingFunctionNode {}
+);
 
 unsafe impl CopyingHelper for MTLFunctionStitchingFunctionNode {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLFunctionStitchingFunctionNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFunctionStitchingFunctionNode {}
+);
 
 impl MTLFunctionStitchingFunctionNode {
     extern_methods!(
@@ -229,13 +245,17 @@ extern_class!(
     pub struct MTLFunctionStitchingGraph;
 );
 
-unsafe impl NSCopying for MTLFunctionStitchingGraph {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLFunctionStitchingGraph {}
+);
 
 unsafe impl CopyingHelper for MTLFunctionStitchingGraph {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLFunctionStitchingGraph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFunctionStitchingGraph {}
+);
 
 impl MTLFunctionStitchingGraph {
     extern_methods!(
@@ -314,13 +334,17 @@ extern_class!(
     pub struct MTLStitchedLibraryDescriptor;
 );
 
-unsafe impl NSCopying for MTLStitchedLibraryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLStitchedLibraryDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLStitchedLibraryDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLStitchedLibraryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLStitchedLibraryDescriptor {}
+);
 
 impl MTLStitchedLibraryDescriptor {
     extern_methods!(

@@ -478,13 +478,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UITextView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UITextView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl NSCoding for UITextView {}
+extern_conformance!(
+    unsafe impl NSCoding for UITextView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UITextView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -492,7 +498,9 @@ unsafe impl NSObjectProtocol for UITextView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UITextView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -500,7 +508,9 @@ unsafe impl UIAppearance for UITextView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UITextView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIContentSizeCategoryAdjusting",
@@ -508,10 +518,14 @@ unsafe impl UIAppearanceContainer for UITextView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIContentSizeCategoryAdjusting for UITextView {}
+extern_conformance!(
+    unsafe impl UIContentSizeCategoryAdjusting for UITextView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UITextView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
@@ -519,7 +533,9 @@ unsafe impl UICoordinateSpace for UITextView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UITextView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -527,7 +543,9 @@ unsafe impl UIDynamicItem for UITextView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UITextView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -535,7 +553,9 @@ unsafe impl UIFocusEnvironment for UITextView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UITextView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -543,7 +563,9 @@ unsafe impl UIFocusItem for UITextView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UITextView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -551,7 +573,9 @@ unsafe impl UIFocusItemContainer for UITextView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemScrollableContainer for UITextView {}
+extern_conformance!(
+    unsafe impl UIFocusItemScrollableContainer for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
@@ -560,7 +584,9 @@ unsafe impl UIFocusItemScrollableContainer for UITextView {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UIKeyInput for UITextView {}
+extern_conformance!(
+    unsafe impl UIKeyInput for UITextView {}
+);
 
 #[cfg(all(
     feature = "UILetterformAwareAdjusting",
@@ -568,10 +594,14 @@ unsafe impl UIKeyInput for UITextView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UILetterformAwareAdjusting for UITextView {}
+extern_conformance!(
+    unsafe impl UILetterformAwareAdjusting for UITextView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UITextView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
@@ -580,7 +610,9 @@ unsafe impl UIResponderStandardEditActions for UITextView {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UITextInput for UITextView {}
+extern_conformance!(
+    unsafe impl UITextInput for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
@@ -588,7 +620,9 @@ unsafe impl UITextInput for UITextView {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UITextInputTraits for UITextView {}
+extern_conformance!(
+    unsafe impl UITextInputTraits for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
@@ -596,7 +630,9 @@ unsafe impl UITextInputTraits for UITextView {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UITextView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UITextView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
 impl UITextView {
@@ -987,7 +1023,9 @@ impl UITextView {
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFindInteractionDelegate for UITextView {}
+extern_conformance!(
+    unsafe impl UIFindInteractionDelegate for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
@@ -997,7 +1035,9 @@ unsafe impl UIFindInteractionDelegate for UITextView {}
     feature = "UITextInputTraits",
     feature = "UIView"
 ))]
-unsafe impl UITextDraggable for UITextView {}
+extern_conformance!(
+    unsafe impl UITextDraggable for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIPasteConfigurationSupporting",
@@ -1009,7 +1049,9 @@ unsafe impl UITextDraggable for UITextView {}
     feature = "UITextPasteConfigurationSupporting",
     feature = "UIView"
 ))]
-unsafe impl UITextDroppable for UITextView {}
+extern_conformance!(
+    unsafe impl UITextDroppable for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIPasteConfigurationSupporting",
@@ -1018,7 +1060,9 @@ unsafe impl UITextDroppable for UITextView {}
     feature = "UITextPasteConfigurationSupporting",
     feature = "UIView"
 ))]
-unsafe impl UITextPasteConfigurationSupporting for UITextView {}
+extern_conformance!(
+    unsafe impl UITextPasteConfigurationSupporting for UITextView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
@@ -1026,7 +1070,9 @@ unsafe impl UITextPasteConfigurationSupporting for UITextView {}
     feature = "UITextSearching",
     feature = "UIView"
 ))]
-unsafe impl UITextSearching for UITextView {}
+extern_conformance!(
+    unsafe impl UITextSearching for UITextView {}
+);
 
 /// UIInteractionStateRestorable.
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]

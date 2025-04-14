@@ -38,7 +38,9 @@ extern_class!(
     pub struct CLServiceSessionDiagnostic;
 );
 
-unsafe impl NSObjectProtocol for CLServiceSessionDiagnostic {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLServiceSessionDiagnostic {}
+);
 
 impl CLServiceSessionDiagnostic {
     extern_methods!(
@@ -96,7 +98,9 @@ extern_class!(
     pub struct CLServiceSession;
 );
 
-unsafe impl NSObjectProtocol for CLServiceSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLServiceSession {}
+);
 
 impl CLServiceSession {
     extern_methods!(

@@ -48,35 +48,51 @@ extern_class!(
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for MKPinAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for MKPinAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for MKPinAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for MKPinAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for MKPinAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for MKPinAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for MKPinAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for MKPinAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MKPinAnnotationView {}
+extern_conformance!(
+    unsafe impl NSCoding for MKPinAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for MKPinAnnotationView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for MKPinAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MKPinAnnotationView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKPinAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MKPinAnnotationView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MKPinAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]

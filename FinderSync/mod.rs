@@ -43,7 +43,9 @@ extern_class!(
     pub struct FIFinderSyncController;
 );
 
-unsafe impl NSObjectProtocol for FIFinderSyncController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for FIFinderSyncController {}
+);
 
 impl FIFinderSyncController {
     extern_methods!(
@@ -418,11 +420,17 @@ extern_class!(
     pub struct FIFinderSync;
 );
 
-unsafe impl FIFinderSyncProtocol for FIFinderSync {}
+extern_conformance!(
+    unsafe impl FIFinderSyncProtocol for FIFinderSync {}
+);
 
-unsafe impl NSExtensionRequestHandling for FIFinderSync {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for FIFinderSync {}
+);
 
-unsafe impl NSObjectProtocol for FIFinderSync {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for FIFinderSync {}
+);
 
 impl FIFinderSync {
     extern_methods!();

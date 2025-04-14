@@ -33,17 +33,25 @@ unsafe impl Send for SHSignature {}
 
 unsafe impl Sync for SHSignature {}
 
-unsafe impl NSCoding for SHSignature {}
+extern_conformance!(
+    unsafe impl NSCoding for SHSignature {}
+);
 
-unsafe impl NSCopying for SHSignature {}
+extern_conformance!(
+    unsafe impl NSCopying for SHSignature {}
+);
 
 unsafe impl CopyingHelper for SHSignature {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SHSignature {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHSignature {}
+);
 
-unsafe impl NSSecureCoding for SHSignature {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SHSignature {}
+);
 
 impl SHSignature {
     extern_methods!(

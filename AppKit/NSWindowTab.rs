@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSWindowTab;
 );
 
-unsafe impl NSObjectProtocol for NSWindowTab {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSWindowTab {}
+);
 
 impl NSWindowTab {
     extern_methods!(

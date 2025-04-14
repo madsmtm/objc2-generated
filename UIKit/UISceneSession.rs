@@ -15,17 +15,25 @@ extern_class!(
     pub struct UISceneConfiguration;
 );
 
-unsafe impl NSCoding for UISceneConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UISceneConfiguration {}
+);
 
-unsafe impl NSCopying for UISceneConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UISceneConfiguration {}
+);
 
 unsafe impl CopyingHelper for UISceneConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UISceneConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneConfiguration {}
+);
 
-unsafe impl NSSecureCoding for UISceneConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UISceneConfiguration {}
+);
 
 impl UISceneConfiguration {
     extern_methods!(
@@ -108,11 +116,17 @@ extern_class!(
     pub struct UISceneSession;
 );
 
-unsafe impl NSCoding for UISceneSession {}
+extern_conformance!(
+    unsafe impl NSCoding for UISceneSession {}
+);
 
-unsafe impl NSObjectProtocol for UISceneSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneSession {}
+);
 
-unsafe impl NSSecureCoding for UISceneSession {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UISceneSession {}
+);
 
 impl UISceneSession {
     extern_methods!(

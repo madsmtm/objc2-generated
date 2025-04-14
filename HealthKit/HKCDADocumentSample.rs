@@ -39,21 +39,27 @@ unsafe impl Sync for HKCDADocumentSample {}
     feature = "HKObject",
     feature = "HKSample"
 ))]
-unsafe impl NSCoding for HKCDADocumentSample {}
+extern_conformance!(
+    unsafe impl NSCoding for HKCDADocumentSample {}
+);
 
 #[cfg(all(
     feature = "HKDocumentSample",
     feature = "HKObject",
     feature = "HKSample"
 ))]
-unsafe impl NSObjectProtocol for HKCDADocumentSample {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKCDADocumentSample {}
+);
 
 #[cfg(all(
     feature = "HKDocumentSample",
     feature = "HKObject",
     feature = "HKSample"
 ))]
-unsafe impl NSSecureCoding for HKCDADocumentSample {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKCDADocumentSample {}
+);
 
 #[cfg(all(
     feature = "HKDocumentSample",
@@ -141,7 +147,9 @@ unsafe impl Send for HKCDADocument {}
 
 unsafe impl Sync for HKCDADocument {}
 
-unsafe impl NSObjectProtocol for HKCDADocument {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKCDADocument {}
+);
 
 impl HKCDADocument {
     extern_methods!(

@@ -17,7 +17,9 @@ unsafe impl Send for PHPersistentObjectChangeDetails {}
 
 unsafe impl Sync for PHPersistentObjectChangeDetails {}
 
-unsafe impl NSObjectProtocol for PHPersistentObjectChangeDetails {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHPersistentObjectChangeDetails {}
+);
 
 impl PHPersistentObjectChangeDetails {
     extern_methods!(

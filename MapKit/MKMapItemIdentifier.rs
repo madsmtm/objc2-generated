@@ -13,17 +13,25 @@ extern_class!(
     pub struct MKMapItemIdentifier;
 );
 
-unsafe impl NSCoding for MKMapItemIdentifier {}
+extern_conformance!(
+    unsafe impl NSCoding for MKMapItemIdentifier {}
+);
 
-unsafe impl NSCopying for MKMapItemIdentifier {}
+extern_conformance!(
+    unsafe impl NSCopying for MKMapItemIdentifier {}
+);
 
 unsafe impl CopyingHelper for MKMapItemIdentifier {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKMapItemIdentifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapItemIdentifier {}
+);
 
-unsafe impl NSSecureCoding for MKMapItemIdentifier {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MKMapItemIdentifier {}
+);
 
 impl MKMapItemIdentifier {
     extern_methods!(

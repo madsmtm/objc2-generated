@@ -88,11 +88,17 @@ extern_class!(
     pub struct NSCursor;
 );
 
-unsafe impl NSCoding for NSCursor {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCursor {}
+);
 
-unsafe impl NSObjectProtocol for NSCursor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCursor {}
+);
 
-unsafe impl NSSecureCoding for NSCursor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSCursor {}
+);
 
 impl NSCursor {
     extern_methods!(

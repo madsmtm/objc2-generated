@@ -86,7 +86,9 @@ extern_class!(
     pub struct WKWebsiteDataRecord;
 );
 
-unsafe impl NSObjectProtocol for WKWebsiteDataRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebsiteDataRecord {}
+);
 
 impl WKWebsiteDataRecord {
     extern_methods!(

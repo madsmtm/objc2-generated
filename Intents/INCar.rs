@@ -16,17 +16,25 @@ extern_class!(
     pub struct INCar;
 );
 
-unsafe impl NSCoding for INCar {}
+extern_conformance!(
+    unsafe impl NSCoding for INCar {}
+);
 
-unsafe impl NSCopying for INCar {}
+extern_conformance!(
+    unsafe impl NSCopying for INCar {}
+);
 
 unsafe impl CopyingHelper for INCar {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INCar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCar {}
+);
 
-unsafe impl NSSecureCoding for INCar {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCar {}
+);
 
 impl INCar {
     extern_methods!(

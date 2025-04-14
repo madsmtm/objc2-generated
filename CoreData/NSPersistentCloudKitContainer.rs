@@ -45,7 +45,9 @@ unsafe impl Send for NSPersistentCloudKitContainer {}
 unsafe impl Sync for NSPersistentCloudKitContainer {}
 
 #[cfg(feature = "NSPersistentContainer")]
-unsafe impl NSObjectProtocol for NSPersistentCloudKitContainer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentCloudKitContainer {}
+);
 
 #[cfg(feature = "NSPersistentContainer")]
 impl NSPersistentCloudKitContainer {

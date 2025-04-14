@@ -19,28 +19,44 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MSStickerBrowserViewDataSource", feature = "objc2-ui-kit"))]
-unsafe impl MSStickerBrowserViewDataSource for MSStickerBrowserViewController {}
+extern_conformance!(
+    unsafe impl MSStickerBrowserViewDataSource for MSStickerBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for MSStickerBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for MSStickerBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for MSStickerBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSStickerBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for MSStickerBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for MSStickerBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for MSStickerBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for MSStickerBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for MSStickerBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for MSStickerBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for MSStickerBrowserViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for MSStickerBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for MSStickerBrowserViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for MSStickerBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl MSStickerBrowserViewController {

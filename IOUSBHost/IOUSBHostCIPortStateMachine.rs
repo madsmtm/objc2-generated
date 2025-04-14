@@ -21,7 +21,9 @@ extern_class!(
     pub struct IOUSBHostCIPortStateMachine;
 );
 
-unsafe impl NSObjectProtocol for IOUSBHostCIPortStateMachine {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOUSBHostCIPortStateMachine {}
+);
 
 impl IOUSBHostCIPortStateMachine {
     extern_methods!(

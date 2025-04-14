@@ -162,13 +162,17 @@ extern_class!(
     pub struct UITableViewRowAction;
 );
 
-unsafe impl NSCopying for UITableViewRowAction {}
+extern_conformance!(
+    unsafe impl NSCopying for UITableViewRowAction {}
+);
 
 unsafe impl CopyingHelper for UITableViewRowAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITableViewRowAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITableViewRowAction {}
+);
 
 impl UITableViewRowAction {
     extern_methods!(
@@ -250,7 +254,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIFocus")]
-unsafe impl NSObjectProtocol for UITableViewFocusUpdateContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITableViewFocusUpdateContext {}
+);
 
 #[cfg(feature = "UIFocus")]
 impl UITableViewFocusUpdateContext {
@@ -1071,13 +1077,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UITableView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UITableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl NSCoding for UITableView {}
+extern_conformance!(
+    unsafe impl NSCoding for UITableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UITableView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITableView {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -1085,7 +1097,9 @@ unsafe impl NSObjectProtocol for UITableView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UITableView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UITableView {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -1093,10 +1107,14 @@ unsafe impl UIAppearance for UITableView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UITableView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UITableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UITableView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UITableView {}
+);
 
 #[cfg(all(
     feature = "UIDataSourceTranslating",
@@ -1104,7 +1122,9 @@ unsafe impl UICoordinateSpace for UITableView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIDataSourceTranslating for UITableView {}
+extern_conformance!(
+    unsafe impl UIDataSourceTranslating for UITableView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
@@ -1112,7 +1132,9 @@ unsafe impl UIDataSourceTranslating for UITableView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UITableView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UITableView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -1120,7 +1142,9 @@ unsafe impl UIDynamicItem for UITableView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UITableView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UITableView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -1128,7 +1152,9 @@ unsafe impl UIFocusEnvironment for UITableView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UITableView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UITableView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -1136,7 +1162,9 @@ unsafe impl UIFocusItem for UITableView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UITableView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UITableView {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
@@ -1144,10 +1172,14 @@ unsafe impl UIFocusItemContainer for UITableView {}
     feature = "UIScrollView",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemScrollableContainer for UITableView {}
+extern_conformance!(
+    unsafe impl UIFocusItemScrollableContainer for UITableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UITableView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UITableView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
@@ -1155,7 +1187,9 @@ unsafe impl UIResponderStandardEditActions for UITableView {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UITableView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UITableView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
 impl UITableView {
@@ -1986,7 +2020,9 @@ impl UITableView {
     feature = "UISpringLoadedInteractionSupporting",
     feature = "UIView"
 ))]
-unsafe impl UISpringLoadedInteractionSupporting for UITableView {}
+extern_conformance!(
+    unsafe impl UISpringLoadedInteractionSupporting for UITableView {}
+);
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdatasource?language=objc)
@@ -2392,7 +2428,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDropInteraction")]
-unsafe impl NSCopying for UITableViewDropProposal {}
+extern_conformance!(
+    unsafe impl NSCopying for UITableViewDropProposal {}
+);
 
 #[cfg(feature = "UIDropInteraction")]
 unsafe impl CopyingHelper for UITableViewDropProposal {
@@ -2400,7 +2438,9 @@ unsafe impl CopyingHelper for UITableViewDropProposal {
 }
 
 #[cfg(feature = "UIDropInteraction")]
-unsafe impl NSObjectProtocol for UITableViewDropProposal {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITableViewDropProposal {}
+);
 
 #[cfg(feature = "UIDropInteraction")]
 impl UITableViewDropProposal {
@@ -2517,7 +2557,9 @@ extern_class!(
     pub struct UITableViewPlaceholder;
 );
 
-unsafe impl NSObjectProtocol for UITableViewPlaceholder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITableViewPlaceholder {}
+);
 
 impl UITableViewPlaceholder {
     extern_methods!(
@@ -2575,7 +2617,9 @@ extern_class!(
     pub struct UITableViewDropPlaceholder;
 );
 
-unsafe impl NSObjectProtocol for UITableViewDropPlaceholder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITableViewDropPlaceholder {}
+);
 
 impl UITableViewDropPlaceholder {
     extern_methods!(

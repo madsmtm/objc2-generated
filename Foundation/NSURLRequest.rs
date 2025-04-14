@@ -203,10 +203,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSURLRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for NSURLRequest {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLRequest {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLRequest {
@@ -214,17 +218,23 @@ unsafe impl CopyingHelper for NSURLRequest {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSURLRequest {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSURLRequest {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSURLRequest {
     type Result = NSMutableURLRequest;
 }
 
-unsafe impl NSObjectProtocol for NSURLRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLRequest {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSURLRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSURLRequest {}
+);
 
 impl NSURLRequest {
     extern_methods!(
@@ -497,10 +507,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMutableURLRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMutableURLRequest {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMutableURLRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMutableURLRequest {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMutableURLRequest {
@@ -508,17 +522,23 @@ unsafe impl CopyingHelper for NSMutableURLRequest {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSMutableURLRequest {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSMutableURLRequest {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSMutableURLRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMutableURLRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMutableURLRequest {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSMutableURLRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMutableURLRequest {}
+);
 
 impl NSMutableURLRequest {
     extern_methods!(

@@ -87,7 +87,9 @@ extern_class!(
     pub struct VZMacOSInstaller;
 );
 
-unsafe impl NSObjectProtocol for VZMacOSInstaller {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacOSInstaller {}
+);
 
 impl VZMacOSInstaller {
     extern_methods!(

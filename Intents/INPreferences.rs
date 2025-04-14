@@ -14,7 +14,9 @@ extern_class!(
     pub struct INPreferences;
 );
 
-unsafe impl NSObjectProtocol for INPreferences {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPreferences {}
+);
 
 impl INPreferences {
     extern_methods!(

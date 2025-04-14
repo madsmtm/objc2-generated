@@ -38,11 +38,17 @@ extern_class!(
     pub struct MPMediaLibrary;
 );
 
-unsafe impl NSCoding for MPMediaLibrary {}
+extern_conformance!(
+    unsafe impl NSCoding for MPMediaLibrary {}
+);
 
-unsafe impl NSObjectProtocol for MPMediaLibrary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaLibrary {}
+);
 
-unsafe impl NSSecureCoding for MPMediaLibrary {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPMediaLibrary {}
+);
 
 impl MPMediaLibrary {
     extern_methods!(

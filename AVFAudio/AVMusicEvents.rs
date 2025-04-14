@@ -18,7 +18,9 @@ extern_class!(
     pub struct AVMusicEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMusicEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMusicEvent {}
+);
 
 impl AVMusicEvent {
     extern_methods!();
@@ -57,7 +59,9 @@ extern_class!(
     pub struct AVMIDINoteEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMIDINoteEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDINoteEvent {}
+);
 
 impl AVMIDINoteEvent {
     extern_methods!(
@@ -147,7 +151,9 @@ extern_class!(
     pub struct AVMIDIChannelEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMIDIChannelEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDIChannelEvent {}
+);
 
 impl AVMIDIChannelEvent {
     extern_methods!(
@@ -273,7 +279,9 @@ extern_class!(
     pub struct AVMIDIControlChangeEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMIDIControlChangeEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDIControlChangeEvent {}
+);
 
 impl AVMIDIControlChangeEvent {
     extern_methods!(
@@ -327,7 +335,9 @@ extern_class!(
     pub struct AVMIDIPolyPressureEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMIDIPolyPressureEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDIPolyPressureEvent {}
+);
 
 impl AVMIDIPolyPressureEvent {
     extern_methods!(
@@ -393,7 +403,9 @@ extern_class!(
     pub struct AVMIDIProgramChangeEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMIDIProgramChangeEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDIProgramChangeEvent {}
+);
 
 impl AVMIDIProgramChangeEvent {
     extern_methods!(
@@ -450,7 +462,9 @@ extern_class!(
     pub struct AVMIDIChannelPressureEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMIDIChannelPressureEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDIChannelPressureEvent {}
+);
 
 impl AVMIDIChannelPressureEvent {
     extern_methods!(
@@ -504,7 +518,9 @@ extern_class!(
     pub struct AVMIDIPitchBendEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMIDIPitchBendEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDIPitchBendEvent {}
+);
 
 impl AVMIDIPitchBendEvent {
     extern_methods!(
@@ -557,7 +573,9 @@ extern_class!(
     pub struct AVMIDISysexEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMIDISysexEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDISysexEvent {}
+);
 
 impl AVMIDISysexEvent {
     extern_methods!(
@@ -654,7 +672,9 @@ extern_class!(
     pub struct AVMIDIMetaEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMIDIMetaEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMIDIMetaEvent {}
+);
 
 impl AVMIDIMetaEvent {
     extern_methods!(
@@ -705,7 +725,9 @@ extern_class!(
     pub struct AVMusicUserEvent;
 );
 
-unsafe impl NSObjectProtocol for AVMusicUserEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMusicUserEvent {}
+);
 
 impl AVMusicUserEvent {
     extern_methods!(
@@ -759,7 +781,9 @@ extern_class!(
     pub struct AVExtendedNoteOnEvent;
 );
 
-unsafe impl NSObjectProtocol for AVExtendedNoteOnEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVExtendedNoteOnEvent {}
+);
 
 impl AVExtendedNoteOnEvent {
     extern_methods!(
@@ -892,7 +916,9 @@ extern_class!(
     pub struct AVParameterEvent;
 );
 
-unsafe impl NSObjectProtocol for AVParameterEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVParameterEvent {}
+);
 
 impl AVParameterEvent {
     extern_methods!(
@@ -982,7 +1008,9 @@ extern_class!(
     pub struct AVAUPresetEvent;
 );
 
-unsafe impl NSObjectProtocol for AVAUPresetEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAUPresetEvent {}
+);
 
 impl AVAUPresetEvent {
     extern_methods!(
@@ -1058,7 +1086,9 @@ extern_class!(
     pub struct AVExtendedTempoEvent;
 );
 
-unsafe impl NSObjectProtocol for AVExtendedTempoEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVExtendedTempoEvent {}
+);
 
 impl AVExtendedTempoEvent {
     extern_methods!(

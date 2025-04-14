@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INCancelWorkoutIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INCancelWorkoutIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INCancelWorkoutIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INCancelWorkoutIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INCancelWorkoutIntent {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INCancelWorkoutIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INCancelWorkoutIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCancelWorkoutIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INCancelWorkoutIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCancelWorkoutIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INCancelWorkoutIntent {

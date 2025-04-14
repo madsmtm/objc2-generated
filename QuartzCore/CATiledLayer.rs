@@ -18,16 +18,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CALayer", feature = "CAMediaTiming"))]
-unsafe impl CAMediaTiming for CATiledLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CATiledLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSCoding for CATiledLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for CATiledLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSObjectProtocol for CATiledLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CATiledLayer {}
+);
 
 #[cfg(feature = "CALayer")]
-unsafe impl NSSecureCoding for CATiledLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CATiledLayer {}
+);
 
 #[cfg(feature = "CALayer")]
 impl CATiledLayer {

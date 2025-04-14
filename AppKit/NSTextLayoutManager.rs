@@ -68,14 +68,22 @@ extern_class!(
     pub struct NSTextLayoutManager;
 );
 
-unsafe impl NSCoding for NSTextLayoutManager {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextLayoutManager {}
+);
 
-unsafe impl NSObjectProtocol for NSTextLayoutManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextLayoutManager {}
+);
 
-unsafe impl NSSecureCoding for NSTextLayoutManager {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextLayoutManager {}
+);
 
 #[cfg(feature = "NSTextSelectionNavigation")]
-unsafe impl NSTextSelectionDataSource for NSTextLayoutManager {}
+extern_conformance!(
+    unsafe impl NSTextSelectionDataSource for NSTextLayoutManager {}
+);
 
 impl NSTextLayoutManager {
     extern_methods!(

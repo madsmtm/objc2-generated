@@ -37,7 +37,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMHTMLFontElement {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMHTMLFontElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -46,7 +48,9 @@ unsafe impl DOMEventTarget for DOMHTMLFontElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMHTMLFontElement {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMHTMLFontElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -66,7 +70,9 @@ unsafe impl CopyingHelper for DOMHTMLFontElement {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMHTMLFontElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMHTMLFontElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",

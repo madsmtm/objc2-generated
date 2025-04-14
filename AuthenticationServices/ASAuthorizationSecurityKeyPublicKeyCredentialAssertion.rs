@@ -14,35 +14,49 @@ extern_class!(
 );
 
 #[cfg(feature = "ASAuthorizationCredential")]
-unsafe impl ASAuthorizationCredential for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl ASAuthorizationCredential for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+);
 
 #[cfg(all(
     feature = "ASAuthorizationCredential",
     feature = "ASAuthorizationPublicKeyCredentialAssertion",
     feature = "ASPublicKeyCredential"
 ))]
-unsafe impl ASAuthorizationPublicKeyCredentialAssertion
-    for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion
-{
-}
+extern_conformance!(
+    unsafe impl ASAuthorizationPublicKeyCredentialAssertion
+        for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion
+    {
+    }
+);
 
 #[cfg(all(
     feature = "ASAuthorizationCredential",
     feature = "ASPublicKeyCredential"
 ))]
-unsafe impl ASPublicKeyCredential for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl ASPublicKeyCredential for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+);
 
-unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+);
 
-unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+);
 
 unsafe impl CopyingHelper for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+);
 
-unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {}
+);
 
 impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertion {
     extern_methods!(

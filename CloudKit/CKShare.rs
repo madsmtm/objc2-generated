@@ -65,10 +65,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CKRecord")]
-unsafe impl NSCoding for CKShare {}
+extern_conformance!(
+    unsafe impl NSCoding for CKShare {}
+);
 
 #[cfg(feature = "CKRecord")]
-unsafe impl NSCopying for CKShare {}
+extern_conformance!(
+    unsafe impl NSCopying for CKShare {}
+);
 
 #[cfg(feature = "CKRecord")]
 unsafe impl CopyingHelper for CKShare {
@@ -76,10 +80,14 @@ unsafe impl CopyingHelper for CKShare {
 }
 
 #[cfg(feature = "CKRecord")]
-unsafe impl NSObjectProtocol for CKShare {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKShare {}
+);
 
 #[cfg(feature = "CKRecord")]
-unsafe impl NSSecureCoding for CKShare {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKShare {}
+);
 
 #[cfg(feature = "CKRecord")]
 impl CKShare {

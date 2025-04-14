@@ -16,13 +16,17 @@ extern_class!(
     pub struct UIPreviewTarget;
 );
 
-unsafe impl NSCopying for UIPreviewTarget {}
+extern_conformance!(
+    unsafe impl NSCopying for UIPreviewTarget {}
+);
 
 unsafe impl CopyingHelper for UIPreviewTarget {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIPreviewTarget {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPreviewTarget {}
+);
 
 impl UIPreviewTarget {
     extern_methods!(
@@ -86,13 +90,17 @@ extern_class!(
     pub struct UITargetedPreview;
 );
 
-unsafe impl NSCopying for UITargetedPreview {}
+extern_conformance!(
+    unsafe impl NSCopying for UITargetedPreview {}
+);
 
 unsafe impl CopyingHelper for UITargetedPreview {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITargetedPreview {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITargetedPreview {}
+);
 
 impl UITargetedPreview {
     extern_methods!(

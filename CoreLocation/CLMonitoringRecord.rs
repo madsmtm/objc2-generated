@@ -13,11 +13,17 @@ extern_class!(
     pub struct CLMonitoringRecord;
 );
 
-unsafe impl NSCoding for CLMonitoringRecord {}
+extern_conformance!(
+    unsafe impl NSCoding for CLMonitoringRecord {}
+);
 
-unsafe impl NSObjectProtocol for CLMonitoringRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLMonitoringRecord {}
+);
 
-unsafe impl NSSecureCoding for CLMonitoringRecord {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLMonitoringRecord {}
+);
 
 impl CLMonitoringRecord {
     extern_methods!(

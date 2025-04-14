@@ -21,7 +21,9 @@ unsafe impl Send for HMCharacteristicMetadata {}
 
 unsafe impl Sync for HMCharacteristicMetadata {}
 
-unsafe impl NSObjectProtocol for HMCharacteristicMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCharacteristicMetadata {}
+);
 
 impl HMCharacteristicMetadata {
     extern_methods!(

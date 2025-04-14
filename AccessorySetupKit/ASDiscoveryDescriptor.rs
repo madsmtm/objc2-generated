@@ -46,7 +46,9 @@ unsafe impl Send for ASDiscoveryDescriptor {}
 
 unsafe impl Sync for ASDiscoveryDescriptor {}
 
-unsafe impl NSObjectProtocol for ASDiscoveryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASDiscoveryDescriptor {}
+);
 
 impl ASDiscoveryDescriptor {
     extern_methods!(

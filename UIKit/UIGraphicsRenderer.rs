@@ -18,13 +18,17 @@ extern_class!(
     pub struct UIGraphicsRendererFormat;
 );
 
-unsafe impl NSCopying for UIGraphicsRendererFormat {}
+extern_conformance!(
+    unsafe impl NSCopying for UIGraphicsRendererFormat {}
+);
 
 unsafe impl CopyingHelper for UIGraphicsRendererFormat {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIGraphicsRendererFormat {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIGraphicsRendererFormat {}
+);
 
 impl UIGraphicsRendererFormat {
     extern_methods!(
@@ -64,7 +68,9 @@ extern_class!(
     pub struct UIGraphicsRendererContext;
 );
 
-unsafe impl NSObjectProtocol for UIGraphicsRendererContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIGraphicsRendererContext {}
+);
 
 impl UIGraphicsRendererContext {
     extern_methods!(
@@ -124,7 +130,9 @@ extern_class!(
     pub struct UIGraphicsRenderer;
 );
 
-unsafe impl NSObjectProtocol for UIGraphicsRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIGraphicsRenderer {}
+);
 
 impl UIGraphicsRenderer {
     extern_methods!(

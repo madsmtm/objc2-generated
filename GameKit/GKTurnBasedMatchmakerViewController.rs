@@ -21,27 +21,39 @@ extern_class!(
 
 #[cfg(all(feature = "GKDialogController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl GKViewController for GKTurnBasedMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl GKViewController for GKTurnBasedMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for GKTurnBasedMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for GKTurnBasedMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for GKTurnBasedMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for GKTurnBasedMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for GKTurnBasedMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKTurnBasedMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for GKTurnBasedMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for GKTurnBasedMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for GKTurnBasedMatchmakerViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for GKTurnBasedMatchmakerViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

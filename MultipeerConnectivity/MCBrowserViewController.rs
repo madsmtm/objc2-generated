@@ -21,27 +21,39 @@ extern_class!(
 
 #[cfg(all(feature = "MCNearbyServiceBrowser", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl MCNearbyServiceBrowserDelegate for MCBrowserViewController {}
+extern_conformance!(
+    unsafe impl MCNearbyServiceBrowserDelegate for MCBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MCBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for MCBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for MCBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for MCBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MCBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MCBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for MCBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for MCBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MCBrowserViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MCBrowserViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

@@ -164,7 +164,9 @@ extern_class!(
 );
 
 #[cfg(feature = "ITLibMediaEntity")]
-unsafe impl NSObjectProtocol for ITLibPlaylist {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ITLibPlaylist {}
+);
 
 #[cfg(feature = "ITLibMediaEntity")]
 impl ITLibPlaylist {

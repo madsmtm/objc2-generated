@@ -35,17 +35,25 @@ extern_class!(
     pub struct INPerson;
 );
 
-unsafe impl NSCoding for INPerson {}
+extern_conformance!(
+    unsafe impl NSCoding for INPerson {}
+);
 
-unsafe impl NSCopying for INPerson {}
+extern_conformance!(
+    unsafe impl NSCopying for INPerson {}
+);
 
 unsafe impl CopyingHelper for INPerson {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INPerson {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPerson {}
+);
 
-unsafe impl NSSecureCoding for INPerson {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INPerson {}
+);
 
 impl INPerson {
     extern_methods!(

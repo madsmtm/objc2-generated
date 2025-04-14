@@ -56,10 +56,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INPlayMediaIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INPlayMediaIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INPlayMediaIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INPlayMediaIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INPlayMediaIntentResponse {
@@ -67,10 +71,14 @@ unsafe impl CopyingHelper for INPlayMediaIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INPlayMediaIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPlayMediaIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INPlayMediaIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INPlayMediaIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INPlayMediaIntentResponse {

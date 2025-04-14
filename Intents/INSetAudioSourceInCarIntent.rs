@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INSetAudioSourceInCarIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INSetAudioSourceInCarIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INSetAudioSourceInCarIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INSetAudioSourceInCarIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INSetAudioSourceInCarIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INSetAudioSourceInCarIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INSetAudioSourceInCarIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSetAudioSourceInCarIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INSetAudioSourceInCarIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSetAudioSourceInCarIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INSetAudioSourceInCarIntent {

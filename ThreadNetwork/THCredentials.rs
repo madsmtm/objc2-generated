@@ -19,11 +19,17 @@ extern_class!(
     pub struct THCredentials;
 );
 
-unsafe impl NSCoding for THCredentials {}
+extern_conformance!(
+    unsafe impl NSCoding for THCredentials {}
+);
 
-unsafe impl NSObjectProtocol for THCredentials {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for THCredentials {}
+);
 
-unsafe impl NSSecureCoding for THCredentials {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for THCredentials {}
+);
 
 impl THCredentials {
     extern_methods!(

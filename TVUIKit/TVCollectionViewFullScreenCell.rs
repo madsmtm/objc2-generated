@@ -26,29 +26,53 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-quartz-core")]
-unsafe impl CALayerDelegate for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl NSCoding for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl NSCoding for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl NSObjectProtocol for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl UIAppearance for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl UIAppearance for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl UIAppearanceContainer for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl UICoordinateSpace for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl UIDynamicItem for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl UIFocusEnvironment for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl UIFocusItem for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl UIFocusItem for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl UIFocusItemContainer for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl UIResponderStandardEditActions for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVCollectionViewFullScreenCell {}
+);
 
-unsafe impl UITraitEnvironment for TVCollectionViewFullScreenCell {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVCollectionViewFullScreenCell {}
+);
 
 impl TVCollectionViewFullScreenCell {
     extern_methods!(

@@ -19,10 +19,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UICollectionViewLayout")]
-unsafe impl NSCoding for UICollectionViewTransitionLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for UICollectionViewTransitionLayout {}
+);
 
 #[cfg(feature = "UICollectionViewLayout")]
-unsafe impl NSObjectProtocol for UICollectionViewTransitionLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewTransitionLayout {}
+);
 
 #[cfg(feature = "UICollectionViewLayout")]
 impl UICollectionViewTransitionLayout {

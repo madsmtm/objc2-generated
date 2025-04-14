@@ -1002,20 +1002,28 @@ unsafe impl Send for NSURL {}
 unsafe impl Sync for NSURL {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSURL {}
+extern_conformance!(
+    unsafe impl NSCoding for NSURL {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURL {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURL {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURL {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURL {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURL {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSURL {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSURL {}
+);
 
 impl NSURL {
     extern_methods!(
@@ -1514,10 +1522,14 @@ impl NSURL {
 }
 
 #[cfg(feature = "NSItemProvider")]
-unsafe impl NSItemProviderReading for NSURL {}
+extern_conformance!(
+    unsafe impl NSItemProviderReading for NSURL {}
+);
 
 #[cfg(feature = "NSItemProvider")]
-unsafe impl NSItemProviderWriting for NSURL {}
+extern_conformance!(
+    unsafe impl NSItemProviderWriting for NSURL {}
+);
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlqueryitem?language=objc)
@@ -1531,20 +1543,28 @@ unsafe impl Send for NSURLQueryItem {}
 unsafe impl Sync for NSURLQueryItem {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSURLQueryItem {}
+extern_conformance!(
+    unsafe impl NSCoding for NSURLQueryItem {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLQueryItem {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLQueryItem {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLQueryItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLQueryItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLQueryItem {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSURLQueryItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSURLQueryItem {}
+);
 
 impl NSURLQueryItem {
     extern_methods!(
@@ -1598,14 +1618,18 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLComponents {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLComponents {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLComponents {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLComponents {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLComponents {}
+);
 
 impl NSURLComponents {
     extern_methods!(
@@ -2077,20 +2101,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSFileSecurity {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFileSecurity {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSFileSecurity {}
+extern_conformance!(
+    unsafe impl NSCopying for NSFileSecurity {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSFileSecurity {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSFileSecurity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileSecurity {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSFileSecurity {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSFileSecurity {}
+);
 
 impl NSFileSecurity {
     extern_methods!(

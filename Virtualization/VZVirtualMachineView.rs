@@ -25,28 +25,44 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAccessibility for VZVirtualMachineView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for VZVirtualMachineView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAccessibilityElementProtocol for VZVirtualMachineView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for VZVirtualMachineView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAnimatablePropertyContainer for VZVirtualMachineView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for VZVirtualMachineView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAppearanceCustomization for VZVirtualMachineView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for VZVirtualMachineView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSCoding for VZVirtualMachineView {}
+extern_conformance!(
+    unsafe impl NSCoding for VZVirtualMachineView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSDraggingDestination for VZVirtualMachineView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for VZVirtualMachineView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSObjectProtocol for VZVirtualMachineView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtualMachineView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSUserInterfaceItemIdentification for VZVirtualMachineView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for VZVirtualMachineView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 impl VZVirtualMachineView {

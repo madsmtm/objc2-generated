@@ -13,9 +13,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GCDevicePhysicalInputState")]
-unsafe impl GCDevicePhysicalInputState for GCControllerInputState {}
+extern_conformance!(
+    unsafe impl GCDevicePhysicalInputState for GCControllerInputState {}
+);
 
-unsafe impl NSObjectProtocol for GCControllerInputState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCControllerInputState {}
+);
 
 impl GCControllerInputState {
     extern_methods!();
@@ -45,12 +49,18 @@ extern_class!(
     feature = "GCDevicePhysicalInput",
     feature = "GCDevicePhysicalInputState"
 ))]
-unsafe impl GCDevicePhysicalInput for GCControllerLiveInput {}
+extern_conformance!(
+    unsafe impl GCDevicePhysicalInput for GCControllerLiveInput {}
+);
 
 #[cfg(feature = "GCDevicePhysicalInputState")]
-unsafe impl GCDevicePhysicalInputState for GCControllerLiveInput {}
+extern_conformance!(
+    unsafe impl GCDevicePhysicalInputState for GCControllerLiveInput {}
+);
 
-unsafe impl NSObjectProtocol for GCControllerLiveInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCControllerLiveInput {}
+);
 
 impl GCControllerLiveInput {
     extern_methods!(

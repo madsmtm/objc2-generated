@@ -17,19 +17,29 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSCoding for MEExtensionViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for MEExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSEditor for MEExtensionViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for MEExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSObjectProtocol for MEExtensionViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSSeguePerforming for MEExtensionViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for MEExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSUserInterfaceItemIdentification for MEExtensionViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MEExtensionViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 impl MEExtensionViewController {

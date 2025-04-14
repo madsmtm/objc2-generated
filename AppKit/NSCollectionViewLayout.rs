@@ -51,13 +51,17 @@ extern_class!(
     pub struct NSCollectionViewLayoutAttributes;
 );
 
-unsafe impl NSCopying for NSCollectionViewLayoutAttributes {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCollectionViewLayoutAttributes {}
+);
 
 unsafe impl CopyingHelper for NSCollectionViewLayoutAttributes {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSCollectionViewLayoutAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCollectionViewLayoutAttributes {}
+);
 
 impl NSCollectionViewLayoutAttributes {
     extern_methods!(
@@ -205,7 +209,9 @@ extern_class!(
     pub struct NSCollectionViewUpdateItem;
 );
 
-unsafe impl NSObjectProtocol for NSCollectionViewUpdateItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCollectionViewUpdateItem {}
+);
 
 impl NSCollectionViewUpdateItem {
     extern_methods!(
@@ -244,7 +250,9 @@ extern_class!(
     pub struct NSCollectionViewLayoutInvalidationContext;
 );
 
-unsafe impl NSObjectProtocol for NSCollectionViewLayoutInvalidationContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCollectionViewLayoutInvalidationContext {}
+);
 
 impl NSCollectionViewLayoutInvalidationContext {
     extern_methods!(
@@ -337,9 +345,13 @@ extern_class!(
     pub struct NSCollectionViewLayout;
 );
 
-unsafe impl NSCoding for NSCollectionViewLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCollectionViewLayout {}
+);
 
-unsafe impl NSObjectProtocol for NSCollectionViewLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCollectionViewLayout {}
+);
 
 impl NSCollectionViewLayout {
     extern_methods!(

@@ -21,7 +21,9 @@ extern_class!(
     pub struct CIPlugIn;
 );
 
-unsafe impl NSObjectProtocol for CIPlugIn {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIPlugIn {}
+);
 
 impl CIPlugIn {
     extern_methods!(

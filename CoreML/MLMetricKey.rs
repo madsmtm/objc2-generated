@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "MLKey")]
-unsafe impl NSCoding for MLMetricKey {}
+extern_conformance!(
+    unsafe impl NSCoding for MLMetricKey {}
+);
 
 #[cfg(feature = "MLKey")]
-unsafe impl NSCopying for MLMetricKey {}
+extern_conformance!(
+    unsafe impl NSCopying for MLMetricKey {}
+);
 
 #[cfg(feature = "MLKey")]
 unsafe impl CopyingHelper for MLMetricKey {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for MLMetricKey {
 }
 
 #[cfg(feature = "MLKey")]
-unsafe impl NSObjectProtocol for MLMetricKey {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLMetricKey {}
+);
 
 #[cfg(feature = "MLKey")]
-unsafe impl NSSecureCoding for MLMetricKey {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLMetricKey {}
+);
 
 #[cfg(feature = "MLKey")]
 impl MLMetricKey {

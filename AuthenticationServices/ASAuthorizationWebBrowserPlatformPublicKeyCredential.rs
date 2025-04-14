@@ -13,7 +13,9 @@ extern_class!(
     pub struct ASAuthorizationWebBrowserPlatformPublicKeyCredential;
 );
 
-unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPlatformPublicKeyCredential {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPlatformPublicKeyCredential {}
+);
 
 impl ASAuthorizationWebBrowserPlatformPublicKeyCredential {
     extern_methods!(

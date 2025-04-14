@@ -14,17 +14,25 @@ extern_class!(
     pub struct NSEntityDescription;
 );
 
-unsafe impl NSCoding for NSEntityDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for NSEntityDescription {}
+);
 
-unsafe impl NSCopying for NSEntityDescription {}
+extern_conformance!(
+    unsafe impl NSCopying for NSEntityDescription {}
+);
 
 unsafe impl CopyingHelper for NSEntityDescription {
     type Result = Self;
 }
 
-unsafe impl NSFastEnumeration for NSEntityDescription {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for NSEntityDescription {}
+);
 
-unsafe impl NSObjectProtocol for NSEntityDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSEntityDescription {}
+);
 
 impl NSEntityDescription {
     extern_methods!(

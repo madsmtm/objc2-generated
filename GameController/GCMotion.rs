@@ -175,7 +175,9 @@ extern_class!(
     pub struct GCMotion;
 );
 
-unsafe impl NSObjectProtocol for GCMotion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCMotion {}
+);
 
 impl GCMotion {
     extern_methods!(

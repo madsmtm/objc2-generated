@@ -13,17 +13,25 @@ extern_class!(
     pub struct MCPeerID;
 );
 
-unsafe impl NSCoding for MCPeerID {}
+extern_conformance!(
+    unsafe impl NSCoding for MCPeerID {}
+);
 
-unsafe impl NSCopying for MCPeerID {}
+extern_conformance!(
+    unsafe impl NSCopying for MCPeerID {}
+);
 
 unsafe impl CopyingHelper for MCPeerID {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MCPeerID {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MCPeerID {}
+);
 
-unsafe impl NSSecureCoding for MCPeerID {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MCPeerID {}
+);
 
 impl MCPeerID {
     extern_methods!(

@@ -83,17 +83,25 @@ extern_class!(
     pub struct CKRecord;
 );
 
-unsafe impl NSCoding for CKRecord {}
+extern_conformance!(
+    unsafe impl NSCoding for CKRecord {}
+);
 
-unsafe impl NSCopying for CKRecord {}
+extern_conformance!(
+    unsafe impl NSCopying for CKRecord {}
+);
 
 unsafe impl CopyingHelper for CKRecord {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKRecord {}
+);
 
-unsafe impl NSSecureCoding for CKRecord {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKRecord {}
+);
 
 impl CKRecord {
     extern_methods!(
@@ -351,15 +359,25 @@ impl CKRecord {
     );
 }
 
-unsafe impl CKRecordValue for NSString {}
+extern_conformance!(
+    unsafe impl CKRecordValue for NSString {}
+);
 
-unsafe impl CKRecordValue for NSNumber {}
+extern_conformance!(
+    unsafe impl CKRecordValue for NSNumber {}
+);
 
-unsafe impl CKRecordValue for NSArray {}
+extern_conformance!(
+    unsafe impl CKRecordValue for NSArray {}
+);
 
-unsafe impl CKRecordValue for NSDate {}
+extern_conformance!(
+    unsafe impl CKRecordValue for NSDate {}
+);
 
-unsafe impl CKRecordValue for NSData {}
+extern_conformance!(
+    unsafe impl CKRecordValue for NSData {}
+);
 
 /// CKRecordValue.
 #[cfg(feature = "CKReference")]
@@ -368,7 +386,9 @@ impl CKReference {
 }
 
 #[cfg(feature = "CKReference")]
-unsafe impl CKRecordValue for CKReference {}
+extern_conformance!(
+    unsafe impl CKRecordValue for CKReference {}
+);
 
 /// CKRecordValue.
 #[cfg(feature = "CKAsset")]
@@ -377,10 +397,14 @@ impl CKAsset {
 }
 
 #[cfg(feature = "CKAsset")]
-unsafe impl CKRecordValue for CKAsset {}
+extern_conformance!(
+    unsafe impl CKRecordValue for CKAsset {}
+);
 
 #[cfg(feature = "objc2-core-location")]
-unsafe impl CKRecordValue for CLLocation {}
+extern_conformance!(
+    unsafe impl CKRecordValue for CLLocation {}
+);
 
 extern_protocol!(
     /// Formalizes a protocol for getting and setting keys on a CKRecord.  Not intended to be used directly by client code
@@ -441,4 +465,6 @@ impl CKRecord {
     );
 }
 
-unsafe impl CKRecordKeyValueSetting for CKRecord {}
+extern_conformance!(
+    unsafe impl CKRecordKeyValueSetting for CKRecord {}
+);

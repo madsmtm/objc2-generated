@@ -42,13 +42,17 @@ extern_class!(
     pub struct MPSNDArrayQuantizationDescriptor;
 );
 
-unsafe impl NSCopying for MPSNDArrayQuantizationDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayQuantizationDescriptor {}
+);
 
 unsafe impl CopyingHelper for MPSNDArrayQuantizationDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSNDArrayQuantizationDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayQuantizationDescriptor {}
+);
 
 impl MPSNDArrayQuantizationDescriptor {
     extern_methods!(
@@ -89,13 +93,17 @@ extern_class!(
     pub struct MPSNDArrayAffineQuantizationDescriptor;
 );
 
-unsafe impl NSCopying for MPSNDArrayAffineQuantizationDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayAffineQuantizationDescriptor {}
+);
 
 unsafe impl CopyingHelper for MPSNDArrayAffineQuantizationDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSNDArrayAffineQuantizationDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayAffineQuantizationDescriptor {}
+);
 
 impl MPSNDArrayAffineQuantizationDescriptor {
     extern_methods!(
@@ -179,13 +187,17 @@ extern_class!(
     pub struct MPSNDArrayLUTQuantizationDescriptor;
 );
 
-unsafe impl NSCopying for MPSNDArrayLUTQuantizationDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayLUTQuantizationDescriptor {}
+);
 
 unsafe impl CopyingHelper for MPSNDArrayLUTQuantizationDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSNDArrayLUTQuantizationDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayLUTQuantizationDescriptor {}
+);
 
 impl MPSNDArrayLUTQuantizationDescriptor {
     extern_methods!(

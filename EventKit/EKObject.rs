@@ -13,7 +13,9 @@ extern_class!(
     pub struct EKObject;
 );
 
-unsafe impl NSObjectProtocol for EKObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKObject {}
+);
 
 impl EKObject {
     extern_methods!(

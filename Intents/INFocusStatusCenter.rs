@@ -37,7 +37,9 @@ extern_class!(
     pub struct INFocusStatusCenter;
 );
 
-unsafe impl NSObjectProtocol for INFocusStatusCenter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INFocusStatusCenter {}
+);
 
 impl INFocusStatusCenter {
     extern_methods!(

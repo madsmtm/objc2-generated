@@ -177,7 +177,9 @@ extern_class!(
     pub struct NSLayoutConstraint;
 );
 
-unsafe impl NSObjectProtocol for NSLayoutConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLayoutConstraint {}
+);
 
 impl NSLayoutConstraint {
     extern_methods!(
@@ -318,7 +320,9 @@ impl NSLayoutConstraint {
 }
 
 #[cfg(feature = "NSAnimation")]
-unsafe impl NSAnimatablePropertyContainer for NSLayoutConstraint {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSLayoutConstraint {}
+);
 
 /// NSConstraintBasedLayoutInstallingConstraints.
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]

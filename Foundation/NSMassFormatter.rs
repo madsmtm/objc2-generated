@@ -41,10 +41,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSMassFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMassFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSMassFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMassFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSMassFormatter {
@@ -52,7 +56,9 @@ unsafe impl CopyingHelper for NSMassFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSMassFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMassFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSMassFormatter {

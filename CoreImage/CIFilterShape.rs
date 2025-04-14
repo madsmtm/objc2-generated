@@ -16,13 +16,17 @@ extern_class!(
     pub struct CIFilterShape;
 );
 
-unsafe impl NSCopying for CIFilterShape {}
+extern_conformance!(
+    unsafe impl NSCopying for CIFilterShape {}
+);
 
 unsafe impl CopyingHelper for CIFilterShape {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIFilterShape {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIFilterShape {}
+);
 
 impl CIFilterShape {
     extern_methods!(

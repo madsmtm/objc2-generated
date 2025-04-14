@@ -94,7 +94,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASESoundEventNodeDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESoundEventNodeDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASESoundEventNodeDefinition {
@@ -129,7 +131,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEGeneratorNodeDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEGeneratorNodeDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEGeneratorNodeDefinition {
@@ -260,7 +264,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASESamplerNodeDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESamplerNodeDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASESamplerNodeDefinition {
@@ -364,7 +370,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEContainerNodeDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEContainerNodeDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEContainerNodeDefinition {
@@ -421,7 +429,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEBlendNodeDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEBlendNodeDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEBlendNodeDefinition {
@@ -610,7 +620,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASESwitchNodeDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESwitchNodeDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASESwitchNodeDefinition {
@@ -692,7 +704,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASERandomNodeDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASERandomNodeDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASERandomNodeDefinition {
@@ -768,7 +782,9 @@ extern_class!(
     pub struct PHASEStreamNode;
 );
 
-unsafe impl NSObjectProtocol for PHASEStreamNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEStreamNode {}
+);
 
 impl PHASEStreamNode {
     extern_methods!(
@@ -826,7 +842,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEPushStreamNodeDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEPushStreamNodeDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEPushStreamNodeDefinition {
@@ -910,7 +928,9 @@ extern_class!(
     pub struct PHASEPushStreamNode;
 );
 
-unsafe impl NSObjectProtocol for PHASEPushStreamNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEPushStreamNode {}
+);
 
 impl PHASEPushStreamNode {
     extern_methods!(
@@ -1087,7 +1107,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEDefinition")]
-unsafe impl NSObjectProtocol for PHASEPullStreamNodeDefinition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEPullStreamNodeDefinition {}
+);
 
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEPullStreamNodeDefinition {
@@ -1171,7 +1193,9 @@ extern_class!(
     pub struct PHASEPullStreamNode;
 );
 
-unsafe impl NSObjectProtocol for PHASEPullStreamNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEPullStreamNode {}
+);
 
 impl PHASEPullStreamNode {
     extern_methods!(

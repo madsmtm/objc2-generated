@@ -14,7 +14,9 @@ extern_class!(
     pub struct GKDecisionNode;
 );
 
-unsafe impl NSObjectProtocol for GKDecisionNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKDecisionNode {}
+);
 
 impl GKDecisionNode {
     extern_methods!(
@@ -91,11 +93,17 @@ extern_class!(
     pub struct GKDecisionTree;
 );
 
-unsafe impl NSCoding for GKDecisionTree {}
+extern_conformance!(
+    unsafe impl NSCoding for GKDecisionTree {}
+);
 
-unsafe impl NSObjectProtocol for GKDecisionTree {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKDecisionTree {}
+);
 
-unsafe impl NSSecureCoding for GKDecisionTree {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKDecisionTree {}
+);
 
 impl GKDecisionTree {
     extern_methods!(

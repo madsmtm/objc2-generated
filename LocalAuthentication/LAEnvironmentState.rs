@@ -17,13 +17,17 @@ unsafe impl Send for LAEnvironmentState {}
 
 unsafe impl Sync for LAEnvironmentState {}
 
-unsafe impl NSCopying for LAEnvironmentState {}
+extern_conformance!(
+    unsafe impl NSCopying for LAEnvironmentState {}
+);
 
 unsafe impl CopyingHelper for LAEnvironmentState {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for LAEnvironmentState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAEnvironmentState {}
+);
 
 impl LAEnvironmentState {
     extern_methods!(

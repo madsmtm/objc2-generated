@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSImageRep")]
-unsafe impl NSCoding for NSCustomImageRep {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCustomImageRep {}
+);
 
 #[cfg(feature = "NSImageRep")]
-unsafe impl NSCopying for NSCustomImageRep {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCustomImageRep {}
+);
 
 #[cfg(feature = "NSImageRep")]
 unsafe impl CopyingHelper for NSCustomImageRep {
@@ -26,7 +30,9 @@ unsafe impl CopyingHelper for NSCustomImageRep {
 }
 
 #[cfg(feature = "NSImageRep")]
-unsafe impl NSObjectProtocol for NSCustomImageRep {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCustomImageRep {}
+);
 
 #[cfg(feature = "NSImageRep")]
 impl NSCustomImageRep {

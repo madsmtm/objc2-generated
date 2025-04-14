@@ -22,7 +22,9 @@ extern_class!(
     pub struct AVCaptureControl;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureControl {}
+);
 
 impl AVCaptureControl {
     extern_methods!(

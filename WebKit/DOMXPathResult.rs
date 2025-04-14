@@ -48,7 +48,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSCopying for DOMXPathResult {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMXPathResult {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 unsafe impl CopyingHelper for DOMXPathResult {
@@ -56,7 +58,9 @@ unsafe impl CopyingHelper for DOMXPathResult {
 }
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
-unsafe impl NSObjectProtocol for DOMXPathResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMXPathResult {}
+);
 
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMXPathResult {

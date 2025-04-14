@@ -40,10 +40,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INCancelRideIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INCancelRideIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INCancelRideIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INCancelRideIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INCancelRideIntentResponse {
@@ -51,10 +55,14 @@ unsafe impl CopyingHelper for INCancelRideIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INCancelRideIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCancelRideIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INCancelRideIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCancelRideIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INCancelRideIntentResponse {

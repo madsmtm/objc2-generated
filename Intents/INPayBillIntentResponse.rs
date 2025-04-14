@@ -58,10 +58,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INPayBillIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INPayBillIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INPayBillIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INPayBillIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INPayBillIntentResponse {
@@ -69,10 +73,14 @@ unsafe impl CopyingHelper for INPayBillIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INPayBillIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPayBillIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INPayBillIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INPayBillIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INPayBillIntentResponse {

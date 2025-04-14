@@ -76,7 +76,9 @@ extern_class!(
     pub struct SHSession;
 );
 
-unsafe impl NSObjectProtocol for SHSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHSession {}
+);
 
 impl SHSession {
     extern_methods!(

@@ -47,7 +47,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDIUMPCIProfile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDIUMPCIProfile {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDIUMPCIProfile {

@@ -42,7 +42,9 @@ extern_class!(
     feature = "INDoubleResolutionResult",
     feature = "INIntentResolutionResult"
 ))]
-unsafe impl NSObjectProtocol for INPlayMediaPlaybackSpeedResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPlayMediaPlaybackSpeedResolutionResult {}
+);
 
 #[cfg(all(
     feature = "INDoubleResolutionResult",

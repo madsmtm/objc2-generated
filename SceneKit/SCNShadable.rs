@@ -322,17 +322,25 @@ extern_class!(
     pub struct SCNProgram;
 );
 
-unsafe impl NSCoding for SCNProgram {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNProgram {}
+);
 
-unsafe impl NSCopying for SCNProgram {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNProgram {}
+);
 
 unsafe impl CopyingHelper for SCNProgram {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNProgram {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNProgram {}
+);
 
-unsafe impl NSSecureCoding for SCNProgram {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNProgram {}
+);
 
 impl SCNProgram {
     extern_methods!(

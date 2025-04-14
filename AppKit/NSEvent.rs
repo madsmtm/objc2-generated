@@ -659,15 +659,21 @@ extern_class!(
     pub struct NSEvent;
 );
 
-unsafe impl NSCoding for NSEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for NSEvent {}
+);
 
-unsafe impl NSCopying for NSEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for NSEvent {}
+);
 
 unsafe impl CopyingHelper for NSEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSEvent {}
+);
 
 impl NSEvent {
     extern_methods!(

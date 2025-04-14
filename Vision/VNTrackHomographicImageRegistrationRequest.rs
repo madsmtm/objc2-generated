@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-unsafe impl NSCopying for VNTrackHomographicImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNTrackHomographicImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl CopyingHelper for VNTrackHomographicImageRegistrationRequest {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for VNTrackHomographicImageRegistrationRequest {
 }
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-unsafe impl NSObjectProtocol for VNTrackHomographicImageRegistrationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNTrackHomographicImageRegistrationRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 impl VNTrackHomographicImageRegistrationRequest {

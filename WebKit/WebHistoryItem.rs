@@ -28,13 +28,17 @@ extern_class!(
     pub struct WebHistoryItem;
 );
 
-unsafe impl NSCopying for WebHistoryItem {}
+extern_conformance!(
+    unsafe impl NSCopying for WebHistoryItem {}
+);
 
 unsafe impl CopyingHelper for WebHistoryItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WebHistoryItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebHistoryItem {}
+);
 
 impl WebHistoryItem {
     extern_methods!(

@@ -18,7 +18,9 @@ extern_class!(
     pub struct LAPrivateKey;
 );
 
-unsafe impl NSObjectProtocol for LAPrivateKey {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAPrivateKey {}
+);
 
 impl LAPrivateKey {
     extern_methods!(

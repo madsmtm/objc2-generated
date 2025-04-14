@@ -25,14 +25,18 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMEntityReference {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMEntityReference {}
+);
 
 #[cfg(all(
     feature = "DOMNode",
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMEntityReference {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMEntityReference {}
+);
 
 #[cfg(all(
     feature = "DOMNode",
@@ -48,7 +52,9 @@ unsafe impl CopyingHelper for DOMEntityReference {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMEntityReference {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMEntityReference {}
+);
 
 #[cfg(all(
     feature = "DOMNode",

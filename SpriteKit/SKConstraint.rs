@@ -18,17 +18,25 @@ extern_class!(
     pub struct SKRange;
 );
 
-unsafe impl NSCoding for SKRange {}
+extern_conformance!(
+    unsafe impl NSCoding for SKRange {}
+);
 
-unsafe impl NSCopying for SKRange {}
+extern_conformance!(
+    unsafe impl NSCopying for SKRange {}
+);
 
 unsafe impl CopyingHelper for SKRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKRange {}
+);
 
-unsafe impl NSSecureCoding for SKRange {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKRange {}
+);
 
 impl SKRange {
     extern_methods!(
@@ -120,17 +128,25 @@ extern_class!(
     pub struct SKConstraint;
 );
 
-unsafe impl NSCoding for SKConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for SKConstraint {}
+);
 
-unsafe impl NSCopying for SKConstraint {}
+extern_conformance!(
+    unsafe impl NSCopying for SKConstraint {}
+);
 
 unsafe impl CopyingHelper for SKConstraint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKConstraint {}
+);
 
-unsafe impl NSSecureCoding for SKConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKConstraint {}
+);
 
 impl SKConstraint {
     extern_methods!(

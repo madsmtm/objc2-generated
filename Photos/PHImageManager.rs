@@ -92,13 +92,17 @@ extern_class!(
     pub struct PHImageRequestOptions;
 );
 
-unsafe impl NSCopying for PHImageRequestOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for PHImageRequestOptions {}
+);
 
 unsafe impl CopyingHelper for PHImageRequestOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHImageRequestOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHImageRequestOptions {}
+);
 
 impl PHImageRequestOptions {
     extern_methods!(
@@ -200,13 +204,17 @@ extern_class!(
     pub struct PHLivePhotoRequestOptions;
 );
 
-unsafe impl NSCopying for PHLivePhotoRequestOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for PHLivePhotoRequestOptions {}
+);
 
 unsafe impl CopyingHelper for PHLivePhotoRequestOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHLivePhotoRequestOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHLivePhotoRequestOptions {}
+);
 
 impl PHLivePhotoRequestOptions {
     extern_methods!(
@@ -319,13 +327,17 @@ extern_class!(
     pub struct PHVideoRequestOptions;
 );
 
-unsafe impl NSCopying for PHVideoRequestOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for PHVideoRequestOptions {}
+);
 
 unsafe impl CopyingHelper for PHVideoRequestOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHVideoRequestOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHVideoRequestOptions {}
+);
 
 impl PHVideoRequestOptions {
     extern_methods!(
@@ -426,7 +438,9 @@ extern_class!(
     pub struct PHImageManager;
 );
 
-unsafe impl NSObjectProtocol for PHImageManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHImageManager {}
+);
 
 impl PHImageManager {
     extern_methods!(
@@ -548,7 +562,9 @@ extern_class!(
     pub struct PHCachingImageManager;
 );
 
-unsafe impl NSObjectProtocol for PHCachingImageManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHCachingImageManager {}
+);
 
 impl PHCachingImageManager {
     extern_methods!(

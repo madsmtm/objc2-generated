@@ -24,7 +24,9 @@ unsafe impl Send for HMSignificantTimeEvent {}
 unsafe impl Sync for HMSignificantTimeEvent {}
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSCopying for HMSignificantTimeEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMSignificantTimeEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl CopyingHelper for HMSignificantTimeEvent {
@@ -32,7 +34,9 @@ unsafe impl CopyingHelper for HMSignificantTimeEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSMutableCopying for HMSignificantTimeEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMSignificantTimeEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl MutableCopyingHelper for HMSignificantTimeEvent {
@@ -40,7 +44,9 @@ unsafe impl MutableCopyingHelper for HMSignificantTimeEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSObjectProtocol for HMSignificantTimeEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMSignificantTimeEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMSignificantTimeEvent {
@@ -113,7 +119,9 @@ unsafe impl Send for HMMutableSignificantTimeEvent {}
 unsafe impl Sync for HMMutableSignificantTimeEvent {}
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSCopying for HMMutableSignificantTimeEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMMutableSignificantTimeEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl CopyingHelper for HMMutableSignificantTimeEvent {
@@ -121,7 +129,9 @@ unsafe impl CopyingHelper for HMMutableSignificantTimeEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSMutableCopying for HMMutableSignificantTimeEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMMutableSignificantTimeEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl MutableCopyingHelper for HMMutableSignificantTimeEvent {
@@ -129,7 +139,9 @@ unsafe impl MutableCopyingHelper for HMMutableSignificantTimeEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSObjectProtocol for HMMutableSignificantTimeEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMMutableSignificantTimeEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMMutableSignificantTimeEvent {

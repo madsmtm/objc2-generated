@@ -37,7 +37,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMHTMLAnchorElement {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMHTMLAnchorElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -46,7 +48,9 @@ unsafe impl DOMEventTarget for DOMHTMLAnchorElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMHTMLAnchorElement {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMHTMLAnchorElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -66,7 +70,9 @@ unsafe impl CopyingHelper for DOMHTMLAnchorElement {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMHTMLAnchorElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMHTMLAnchorElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",

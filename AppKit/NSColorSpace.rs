@@ -53,11 +53,17 @@ unsafe impl Send for NSColorSpace {}
 
 unsafe impl Sync for NSColorSpace {}
 
-unsafe impl NSCoding for NSColorSpace {}
+extern_conformance!(
+    unsafe impl NSCoding for NSColorSpace {}
+);
 
-unsafe impl NSObjectProtocol for NSColorSpace {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSColorSpace {}
+);
 
-unsafe impl NSSecureCoding for NSColorSpace {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSColorSpace {}
+);
 
 impl NSColorSpace {
     extern_methods!(

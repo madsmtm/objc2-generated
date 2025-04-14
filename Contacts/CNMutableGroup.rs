@@ -21,10 +21,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CNGroup")]
-unsafe impl NSCoding for CNMutableGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for CNMutableGroup {}
+);
 
 #[cfg(feature = "CNGroup")]
-unsafe impl NSCopying for CNMutableGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for CNMutableGroup {}
+);
 
 #[cfg(feature = "CNGroup")]
 unsafe impl CopyingHelper for CNMutableGroup {
@@ -32,7 +36,9 @@ unsafe impl CopyingHelper for CNMutableGroup {
 }
 
 #[cfg(feature = "CNGroup")]
-unsafe impl NSMutableCopying for CNMutableGroup {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CNMutableGroup {}
+);
 
 #[cfg(feature = "CNGroup")]
 unsafe impl MutableCopyingHelper for CNMutableGroup {
@@ -40,10 +46,14 @@ unsafe impl MutableCopyingHelper for CNMutableGroup {
 }
 
 #[cfg(feature = "CNGroup")]
-unsafe impl NSObjectProtocol for CNMutableGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNMutableGroup {}
+);
 
 #[cfg(feature = "CNGroup")]
-unsafe impl NSSecureCoding for CNMutableGroup {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNMutableGroup {}
+);
 
 #[cfg(feature = "CNGroup")]
 impl CNMutableGroup {

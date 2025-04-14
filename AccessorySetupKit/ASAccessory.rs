@@ -95,7 +95,9 @@ unsafe impl Send for ASAccessory {}
 
 unsafe impl Sync for ASAccessory {}
 
-unsafe impl NSObjectProtocol for ASAccessory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAccessory {}
+);
 
 impl ASAccessory {
     extern_methods!(

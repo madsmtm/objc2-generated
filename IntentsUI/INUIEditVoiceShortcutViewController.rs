@@ -29,23 +29,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for INUIEditVoiceShortcutViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for INUIEditVoiceShortcutViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for INUIEditVoiceShortcutViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for INUIEditVoiceShortcutViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for INUIEditVoiceShortcutViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INUIEditVoiceShortcutViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for INUIEditVoiceShortcutViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for INUIEditVoiceShortcutViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for INUIEditVoiceShortcutViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for INUIEditVoiceShortcutViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

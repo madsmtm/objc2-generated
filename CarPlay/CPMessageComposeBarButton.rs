@@ -18,13 +18,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CPBarButton")]
-unsafe impl NSCoding for CPMessageComposeBarButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPMessageComposeBarButton {}
+);
 
 #[cfg(feature = "CPBarButton")]
-unsafe impl NSObjectProtocol for CPMessageComposeBarButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPMessageComposeBarButton {}
+);
 
 #[cfg(feature = "CPBarButton")]
-unsafe impl NSSecureCoding for CPMessageComposeBarButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPMessageComposeBarButton {}
+);
 
 #[cfg(feature = "CPBarButton")]
 impl CPMessageComposeBarButton {

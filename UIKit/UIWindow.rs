@@ -32,48 +32,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIWindow {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIWindow {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIWindow {}
+extern_conformance!(
+    unsafe impl NSCoding for UIWindow {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIWindow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindow {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIWindow {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIWindow {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIWindow {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIWindow {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIWindow {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIWindow {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIWindow {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIWindow {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIWindow {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIWindow {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIWindow {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIWindow {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIWindow {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIWindow {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIWindow {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIWindow {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIWindow {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIWindow {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIWindow {

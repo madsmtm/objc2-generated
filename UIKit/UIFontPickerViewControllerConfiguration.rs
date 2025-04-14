@@ -15,13 +15,17 @@ extern_class!(
     pub struct UIFontPickerViewControllerConfiguration;
 );
 
-unsafe impl NSCopying for UIFontPickerViewControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UIFontPickerViewControllerConfiguration {}
+);
 
 unsafe impl CopyingHelper for UIFontPickerViewControllerConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIFontPickerViewControllerConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFontPickerViewControllerConfiguration {}
+);
 
 impl UIFontPickerViewControllerConfiguration {
     extern_methods!(

@@ -45,17 +45,25 @@ extern_class!(
     pub struct SACrashDetectionEvent;
 );
 
-unsafe impl NSCoding for SACrashDetectionEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for SACrashDetectionEvent {}
+);
 
-unsafe impl NSCopying for SACrashDetectionEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for SACrashDetectionEvent {}
+);
 
 unsafe impl CopyingHelper for SACrashDetectionEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SACrashDetectionEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SACrashDetectionEvent {}
+);
 
-unsafe impl NSSecureCoding for SACrashDetectionEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SACrashDetectionEvent {}
+);
 
 impl SACrashDetectionEvent {
     extern_methods!(

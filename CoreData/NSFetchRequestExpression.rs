@@ -16,17 +16,25 @@ extern_class!(
     pub struct NSFetchRequestExpression;
 );
 
-unsafe impl NSCoding for NSFetchRequestExpression {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFetchRequestExpression {}
+);
 
-unsafe impl NSCopying for NSFetchRequestExpression {}
+extern_conformance!(
+    unsafe impl NSCopying for NSFetchRequestExpression {}
+);
 
 unsafe impl CopyingHelper for NSFetchRequestExpression {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSFetchRequestExpression {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFetchRequestExpression {}
+);
 
-unsafe impl NSSecureCoding for NSFetchRequestExpression {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSFetchRequestExpression {}
+);
 
 impl NSFetchRequestExpression {
     extern_methods!(

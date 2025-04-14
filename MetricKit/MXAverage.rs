@@ -16,11 +16,17 @@ extern_class!(
     pub struct MXAverage<UnitType: ?Sized = AnyObject>;
 );
 
-unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXAverage<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXAverage<UnitType> {}
+);
 
-unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXAverage<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXAverage<UnitType> {}
+);
 
-unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXAverage<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXAverage<UnitType> {}
+);
 
 impl<UnitType: Message> MXAverage<UnitType> {
     extern_methods!(

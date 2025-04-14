@@ -18,37 +18,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIDocumentPickerExtensionViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIDocumentPickerExtensionViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIDocumentPickerExtensionViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentPickerExtensionViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIDocumentPickerExtensionViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIDocumentPickerExtensionViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIDocumentPickerExtensionViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIDocumentPickerExtensionViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIDocumentPickerExtensionViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIDocumentPickerExtensionViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIDocumentPickerExtensionViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIDocumentPickerExtensionViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIDocumentPickerExtensionViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIDocumentPickerExtensionViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIDocumentPickerExtensionViewController {

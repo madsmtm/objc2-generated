@@ -16,11 +16,17 @@ extern_class!(
     pub struct CPMapButton;
 );
 
-unsafe impl NSCoding for CPMapButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPMapButton {}
+);
 
-unsafe impl NSObjectProtocol for CPMapButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPMapButton {}
+);
 
-unsafe impl NSSecureCoding for CPMapButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPMapButton {}
+);
 
 impl CPMapButton {
     extern_methods!(

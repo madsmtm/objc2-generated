@@ -37,22 +37,34 @@ extern_class!(
 );
 
 #[cfg(feature = "CALayer")]
-unsafe impl CAAction for CAAnimation {}
+extern_conformance!(
+    unsafe impl CAAction for CAAnimation {}
+);
 
 #[cfg(feature = "CAMediaTiming")]
-unsafe impl CAMediaTiming for CAAnimation {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CAAnimation {}
+);
 
-unsafe impl NSCoding for CAAnimation {}
+extern_conformance!(
+    unsafe impl NSCoding for CAAnimation {}
+);
 
-unsafe impl NSCopying for CAAnimation {}
+extern_conformance!(
+    unsafe impl NSCopying for CAAnimation {}
+);
 
 unsafe impl CopyingHelper for CAAnimation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CAAnimation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAAnimation {}
+);
 
-unsafe impl NSSecureCoding for CAAnimation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAAnimation {}
+);
 
 impl CAAnimation {
     extern_methods!(
@@ -154,22 +166,34 @@ extern_class!(
 );
 
 #[cfg(feature = "CALayer")]
-unsafe impl CAAction for CAPropertyAnimation {}
+extern_conformance!(
+    unsafe impl CAAction for CAPropertyAnimation {}
+);
 
 #[cfg(feature = "CAMediaTiming")]
-unsafe impl CAMediaTiming for CAPropertyAnimation {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CAPropertyAnimation {}
+);
 
-unsafe impl NSCoding for CAPropertyAnimation {}
+extern_conformance!(
+    unsafe impl NSCoding for CAPropertyAnimation {}
+);
 
-unsafe impl NSCopying for CAPropertyAnimation {}
+extern_conformance!(
+    unsafe impl NSCopying for CAPropertyAnimation {}
+);
 
 unsafe impl CopyingHelper for CAPropertyAnimation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CAPropertyAnimation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAPropertyAnimation {}
+);
 
-unsafe impl NSSecureCoding for CAPropertyAnimation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAPropertyAnimation {}
+);
 
 impl CAPropertyAnimation {
     extern_methods!(
@@ -249,22 +273,34 @@ extern_class!(
 );
 
 #[cfg(feature = "CALayer")]
-unsafe impl CAAction for CABasicAnimation {}
+extern_conformance!(
+    unsafe impl CAAction for CABasicAnimation {}
+);
 
 #[cfg(feature = "CAMediaTiming")]
-unsafe impl CAMediaTiming for CABasicAnimation {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CABasicAnimation {}
+);
 
-unsafe impl NSCoding for CABasicAnimation {}
+extern_conformance!(
+    unsafe impl NSCoding for CABasicAnimation {}
+);
 
-unsafe impl NSCopying for CABasicAnimation {}
+extern_conformance!(
+    unsafe impl NSCopying for CABasicAnimation {}
+);
 
 unsafe impl CopyingHelper for CABasicAnimation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CABasicAnimation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CABasicAnimation {}
+);
 
-unsafe impl NSSecureCoding for CABasicAnimation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CABasicAnimation {}
+);
 
 impl CABasicAnimation {
     extern_methods!(
@@ -338,22 +374,34 @@ extern_class!(
 );
 
 #[cfg(feature = "CALayer")]
-unsafe impl CAAction for CAKeyframeAnimation {}
+extern_conformance!(
+    unsafe impl CAAction for CAKeyframeAnimation {}
+);
 
 #[cfg(feature = "CAMediaTiming")]
-unsafe impl CAMediaTiming for CAKeyframeAnimation {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CAKeyframeAnimation {}
+);
 
-unsafe impl NSCoding for CAKeyframeAnimation {}
+extern_conformance!(
+    unsafe impl NSCoding for CAKeyframeAnimation {}
+);
 
-unsafe impl NSCopying for CAKeyframeAnimation {}
+extern_conformance!(
+    unsafe impl NSCopying for CAKeyframeAnimation {}
+);
 
 unsafe impl CopyingHelper for CAKeyframeAnimation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CAKeyframeAnimation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAKeyframeAnimation {}
+);
 
-unsafe impl NSSecureCoding for CAKeyframeAnimation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAKeyframeAnimation {}
+);
 
 impl CAKeyframeAnimation {
     extern_methods!(
@@ -523,22 +571,34 @@ extern_class!(
 );
 
 #[cfg(feature = "CALayer")]
-unsafe impl CAAction for CASpringAnimation {}
+extern_conformance!(
+    unsafe impl CAAction for CASpringAnimation {}
+);
 
 #[cfg(feature = "CAMediaTiming")]
-unsafe impl CAMediaTiming for CASpringAnimation {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CASpringAnimation {}
+);
 
-unsafe impl NSCoding for CASpringAnimation {}
+extern_conformance!(
+    unsafe impl NSCoding for CASpringAnimation {}
+);
 
-unsafe impl NSCopying for CASpringAnimation {}
+extern_conformance!(
+    unsafe impl NSCopying for CASpringAnimation {}
+);
 
 unsafe impl CopyingHelper for CASpringAnimation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CASpringAnimation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CASpringAnimation {}
+);
 
-unsafe impl NSSecureCoding for CASpringAnimation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CASpringAnimation {}
+);
 
 impl CASpringAnimation {
     extern_methods!(
@@ -662,22 +722,34 @@ extern_class!(
 );
 
 #[cfg(feature = "CALayer")]
-unsafe impl CAAction for CATransition {}
+extern_conformance!(
+    unsafe impl CAAction for CATransition {}
+);
 
 #[cfg(feature = "CAMediaTiming")]
-unsafe impl CAMediaTiming for CATransition {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CATransition {}
+);
 
-unsafe impl NSCoding for CATransition {}
+extern_conformance!(
+    unsafe impl NSCoding for CATransition {}
+);
 
-unsafe impl NSCopying for CATransition {}
+extern_conformance!(
+    unsafe impl NSCopying for CATransition {}
+);
 
 unsafe impl CopyingHelper for CATransition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CATransition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CATransition {}
+);
 
-unsafe impl NSSecureCoding for CATransition {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CATransition {}
+);
 
 impl CATransition {
     extern_methods!(
@@ -800,22 +872,34 @@ extern_class!(
 );
 
 #[cfg(feature = "CALayer")]
-unsafe impl CAAction for CAAnimationGroup {}
+extern_conformance!(
+    unsafe impl CAAction for CAAnimationGroup {}
+);
 
 #[cfg(feature = "CAMediaTiming")]
-unsafe impl CAMediaTiming for CAAnimationGroup {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for CAAnimationGroup {}
+);
 
-unsafe impl NSCoding for CAAnimationGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for CAAnimationGroup {}
+);
 
-unsafe impl NSCopying for CAAnimationGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for CAAnimationGroup {}
+);
 
 unsafe impl CopyingHelper for CAAnimationGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CAAnimationGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAAnimationGroup {}
+);
 
-unsafe impl NSSecureCoding for CAAnimationGroup {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAAnimationGroup {}
+);
 
 impl CAAnimationGroup {
     extern_methods!(

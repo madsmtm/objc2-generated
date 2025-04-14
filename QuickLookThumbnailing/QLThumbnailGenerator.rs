@@ -16,7 +16,9 @@ extern_class!(
     pub struct QLThumbnailGenerator;
 );
 
-unsafe impl NSObjectProtocol for QLThumbnailGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QLThumbnailGenerator {}
+);
 
 impl QLThumbnailGenerator {
     extern_methods!(

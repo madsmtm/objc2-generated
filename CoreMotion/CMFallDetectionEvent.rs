@@ -54,7 +54,9 @@ extern_class!(
     pub struct CMFallDetectionEvent;
 );
 
-unsafe impl NSObjectProtocol for CMFallDetectionEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMFallDetectionEvent {}
+);
 
 impl CMFallDetectionEvent {
     extern_methods!(

@@ -14,17 +14,25 @@ extern_class!(
     pub struct SWAction;
 );
 
-unsafe impl NSCoding for SWAction {}
+extern_conformance!(
+    unsafe impl NSCoding for SWAction {}
+);
 
-unsafe impl NSCopying for SWAction {}
+extern_conformance!(
+    unsafe impl NSCopying for SWAction {}
+);
 
 unsafe impl CopyingHelper for SWAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SWAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWAction {}
+);
 
-unsafe impl NSSecureCoding for SWAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWAction {}
+);
 
 impl SWAction {
     extern_methods!(

@@ -70,17 +70,25 @@ unsafe impl Send for HKVisionPrism {}
 
 unsafe impl Sync for HKVisionPrism {}
 
-unsafe impl NSCoding for HKVisionPrism {}
+extern_conformance!(
+    unsafe impl NSCoding for HKVisionPrism {}
+);
 
-unsafe impl NSCopying for HKVisionPrism {}
+extern_conformance!(
+    unsafe impl NSCopying for HKVisionPrism {}
+);
 
 unsafe impl CopyingHelper for HKVisionPrism {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKVisionPrism {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKVisionPrism {}
+);
 
-unsafe impl NSSecureCoding for HKVisionPrism {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKVisionPrism {}
+);
 
 impl HKVisionPrism {
     extern_methods!(

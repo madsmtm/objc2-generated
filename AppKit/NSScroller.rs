@@ -120,7 +120,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSScroller {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSScroller {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -128,7 +130,9 @@ unsafe impl NSAccessibility for NSScroller {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSScroller {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSScroller {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -136,7 +140,9 @@ unsafe impl NSAccessibilityElementProtocol for NSScroller {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSScroller {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSScroller {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -144,10 +150,14 @@ unsafe impl NSAnimatablePropertyContainer for NSScroller {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSScroller {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSScroller {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSScroller {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScroller {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -155,10 +165,14 @@ unsafe impl NSCoding for NSScroller {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSScroller {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSScroller {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSScroller {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScroller {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -166,7 +180,9 @@ unsafe impl NSObjectProtocol for NSScroller {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSScroller {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSScroller {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSScroller {

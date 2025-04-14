@@ -44,20 +44,28 @@ extern_class!(
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSLevelIndicatorCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSLevelIndicatorCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSLevelIndicatorCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSLevelIndicatorCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSLevelIndicatorCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLevelIndicatorCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSLevelIndicatorCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSLevelIndicatorCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSLevelIndicatorCell {
@@ -65,14 +73,18 @@ unsafe impl CopyingHelper for NSLevelIndicatorCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSLevelIndicatorCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLevelIndicatorCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSLevelIndicatorCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSLevelIndicatorCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSLevelIndicatorCell {

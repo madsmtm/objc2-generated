@@ -33,7 +33,9 @@ extern_class!(
     pub struct ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput;
 );
 
-unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {}
+);
 
 impl ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {
     extern_methods!(

@@ -25,7 +25,9 @@ extern_class!(
     pub struct TKTLVRecord;
 );
 
-unsafe impl NSObjectProtocol for TKTLVRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTLVRecord {}
+);
 
 impl TKTLVRecord {
     extern_methods!(
@@ -91,7 +93,9 @@ extern_class!(
     pub struct TKBERTLVRecord;
 );
 
-unsafe impl NSObjectProtocol for TKBERTLVRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKBERTLVRecord {}
+);
 
 impl TKBERTLVRecord {
     extern_methods!(
@@ -176,7 +180,9 @@ extern_class!(
     pub struct TKSimpleTLVRecord;
 );
 
-unsafe impl NSObjectProtocol for TKSimpleTLVRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSimpleTLVRecord {}
+);
 
 impl TKSimpleTLVRecord {
     extern_methods!(
@@ -239,7 +245,9 @@ extern_class!(
     pub struct TKCompactTLVRecord;
 );
 
-unsafe impl NSObjectProtocol for TKCompactTLVRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKCompactTLVRecord {}
+);
 
 impl TKCompactTLVRecord {
     extern_methods!(

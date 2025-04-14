@@ -22,23 +22,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for NCWidgetListViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for NCWidgetListViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for NCWidgetListViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for NCWidgetListViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for NCWidgetListViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NCWidgetListViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for NCWidgetListViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for NCWidgetListViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for NCWidgetListViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NCWidgetListViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

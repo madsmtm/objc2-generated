@@ -27,7 +27,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureOutputBase")]
-unsafe impl NSObjectProtocol for AVCaptureFileOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureFileOutput {}
+);
 
 #[cfg(feature = "AVCaptureOutputBase")]
 impl AVCaptureFileOutput {
@@ -446,7 +448,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureOutputBase")]
-unsafe impl NSObjectProtocol for AVCaptureMovieFileOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureMovieFileOutput {}
+);
 
 #[cfg(feature = "AVCaptureOutputBase")]
 impl AVCaptureMovieFileOutput {
@@ -687,7 +691,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureOutputBase")]
-unsafe impl NSObjectProtocol for AVCaptureAudioFileOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureAudioFileOutput {}
+);
 
 #[cfg(feature = "AVCaptureOutputBase")]
 impl AVCaptureAudioFileOutput {

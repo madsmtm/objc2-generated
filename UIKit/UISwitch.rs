@@ -50,13 +50,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UISwitch {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UISwitch {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UISwitch {}
+extern_conformance!(
+    unsafe impl NSCoding for UISwitch {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UISwitch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISwitch {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -64,7 +70,9 @@ unsafe impl NSObjectProtocol for UISwitch {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UISwitch {}
+extern_conformance!(
+    unsafe impl UIAppearance for UISwitch {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -72,10 +80,14 @@ unsafe impl UIAppearance for UISwitch {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UISwitch {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UISwitch {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UISwitch {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UISwitch {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -83,7 +95,9 @@ unsafe impl UICoordinateSpace for UISwitch {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UISwitch {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UISwitch {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -91,7 +105,9 @@ unsafe impl UIDynamicItem for UISwitch {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UISwitch {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UISwitch {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -99,7 +115,9 @@ unsafe impl UIFocusEnvironment for UISwitch {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UISwitch {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UISwitch {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -107,10 +125,14 @@ unsafe impl UIFocusItem for UISwitch {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UISwitch {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UISwitch {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UISwitch {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UISwitch {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -118,7 +140,9 @@ unsafe impl UIResponderStandardEditActions for UISwitch {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UISwitch {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UISwitch {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UISwitch {

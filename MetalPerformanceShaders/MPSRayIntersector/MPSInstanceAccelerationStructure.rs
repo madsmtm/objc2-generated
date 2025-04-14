@@ -165,14 +165,18 @@ extern_class!(
     feature = "MPSCore",
     feature = "MPSKernel"
 ))]
-unsafe impl NSCoding for MPSInstanceAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSInstanceAccelerationStructure {}
+);
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
     feature = "MPSCore",
     feature = "MPSKernel"
 ))]
-unsafe impl NSCopying for MPSInstanceAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSInstanceAccelerationStructure {}
+);
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
@@ -188,14 +192,18 @@ unsafe impl CopyingHelper for MPSInstanceAccelerationStructure {
     feature = "MPSCore",
     feature = "MPSKernel"
 ))]
-unsafe impl NSObjectProtocol for MPSInstanceAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSInstanceAccelerationStructure {}
+);
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
     feature = "MPSCore",
     feature = "MPSKernel"
 ))]
-unsafe impl NSSecureCoding for MPSInstanceAccelerationStructure {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSInstanceAccelerationStructure {}
+);
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",

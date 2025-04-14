@@ -29,7 +29,9 @@ impl UIView {
 }
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAccessibilityIdentification for UIView {}
+extern_conformance!(
+    unsafe impl UIAccessibilityIdentification for UIView {}
+);
 
 /// UIAccessibility.
 #[cfg(feature = "UIBarItem")]
@@ -38,7 +40,9 @@ impl UIBarItem {
 }
 
 #[cfg(feature = "UIBarItem")]
-unsafe impl UIAccessibilityIdentification for UIBarItem {}
+extern_conformance!(
+    unsafe impl UIAccessibilityIdentification for UIBarItem {}
+);
 
 /// UIAccessibility.
 #[cfg(feature = "UIAlertController")]
@@ -47,7 +51,9 @@ impl UIAlertAction {
 }
 
 #[cfg(feature = "UIAlertController")]
-unsafe impl UIAccessibilityIdentification for UIAlertAction {}
+extern_conformance!(
+    unsafe impl UIAccessibilityIdentification for UIAlertAction {}
+);
 
 /// UIAccessibility.
 #[cfg(feature = "UIMenuElement")]
@@ -56,7 +62,9 @@ impl UIMenuElement {
 }
 
 #[cfg(feature = "UIMenuElement")]
-unsafe impl UIAccessibilityIdentification for UIMenuElement {}
+extern_conformance!(
+    unsafe impl UIAccessibilityIdentification for UIMenuElement {}
+);
 
 /// UIAccessibility.
 #[cfg(feature = "UIImage")]

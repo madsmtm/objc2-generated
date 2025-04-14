@@ -20,7 +20,9 @@ extern_class!(
     pub struct PHProjectExtensionContext;
 );
 
-unsafe impl NSObjectProtocol for PHProjectExtensionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectExtensionContext {}
+);
 
 impl PHProjectExtensionContext {
     extern_methods!(

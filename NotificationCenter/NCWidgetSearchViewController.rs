@@ -22,23 +22,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for NCWidgetSearchViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for NCWidgetSearchViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for NCWidgetSearchViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for NCWidgetSearchViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for NCWidgetSearchViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NCWidgetSearchViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for NCWidgetSearchViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for NCWidgetSearchViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for NCWidgetSearchViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NCWidgetSearchViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

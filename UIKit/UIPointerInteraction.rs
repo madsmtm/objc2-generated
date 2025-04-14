@@ -16,10 +16,14 @@ extern_class!(
     pub struct UIPointerInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIPointerInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPointerInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIPointerInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIPointerInteraction {}
+);
 
 impl UIPointerInteraction {
     extern_methods!(
@@ -163,7 +167,9 @@ extern_class!(
     pub struct UIPointerRegionRequest;
 );
 
-unsafe impl NSObjectProtocol for UIPointerRegionRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPointerRegionRequest {}
+);
 
 impl UIPointerRegionRequest {
     extern_methods!(

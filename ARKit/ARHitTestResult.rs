@@ -63,7 +63,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARHitTestResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARHitTestResult {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARHitTestResult {

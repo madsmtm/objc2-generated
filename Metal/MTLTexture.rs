@@ -110,11 +110,17 @@ extern_class!(
     pub struct MTLSharedTextureHandle;
 );
 
-unsafe impl NSCoding for MTLSharedTextureHandle {}
+extern_conformance!(
+    unsafe impl NSCoding for MTLSharedTextureHandle {}
+);
 
-unsafe impl NSObjectProtocol for MTLSharedTextureHandle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLSharedTextureHandle {}
+);
 
-unsafe impl NSSecureCoding for MTLSharedTextureHandle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MTLSharedTextureHandle {}
+);
 
 impl MTLSharedTextureHandle {
     extern_methods!(
@@ -207,13 +213,17 @@ extern_class!(
     pub struct MTLTextureDescriptor;
 );
 
-unsafe impl NSCopying for MTLTextureDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLTextureDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLTextureDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLTextureDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLTextureDescriptor {}
+);
 
 impl MTLTextureDescriptor {
     extern_methods!(

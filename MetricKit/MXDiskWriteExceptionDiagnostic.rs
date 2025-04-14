@@ -19,13 +19,19 @@ extern_class!(
 );
 
 #[cfg(feature = "MXDiagnostic")]
-unsafe impl NSCoding for MXDiskWriteExceptionDiagnostic {}
+extern_conformance!(
+    unsafe impl NSCoding for MXDiskWriteExceptionDiagnostic {}
+);
 
 #[cfg(feature = "MXDiagnostic")]
-unsafe impl NSObjectProtocol for MXDiskWriteExceptionDiagnostic {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXDiskWriteExceptionDiagnostic {}
+);
 
 #[cfg(feature = "MXDiagnostic")]
-unsafe impl NSSecureCoding for MXDiskWriteExceptionDiagnostic {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXDiskWriteExceptionDiagnostic {}
+);
 
 #[cfg(feature = "MXDiagnostic")]
 impl MXDiskWriteExceptionDiagnostic {

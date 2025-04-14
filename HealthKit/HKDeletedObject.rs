@@ -19,11 +19,17 @@ unsafe impl Send for HKDeletedObject {}
 
 unsafe impl Sync for HKDeletedObject {}
 
-unsafe impl NSCoding for HKDeletedObject {}
+extern_conformance!(
+    unsafe impl NSCoding for HKDeletedObject {}
+);
 
-unsafe impl NSObjectProtocol for HKDeletedObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKDeletedObject {}
+);
 
-unsafe impl NSSecureCoding for HKDeletedObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKDeletedObject {}
+);
 
 impl HKDeletedObject {
     extern_methods!(

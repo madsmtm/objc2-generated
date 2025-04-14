@@ -15,7 +15,9 @@ extern_class!(
     pub struct MKSelectionAccessory;
 );
 
-unsafe impl NSObjectProtocol for MKSelectionAccessory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKSelectionAccessory {}
+);
 
 impl MKSelectionAccessory {
     extern_methods!(
@@ -64,7 +66,9 @@ extern_class!(
     pub struct MKMapItemDetailSelectionAccessoryPresentationStyle;
 );
 
-unsafe impl NSObjectProtocol for MKMapItemDetailSelectionAccessoryPresentationStyle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapItemDetailSelectionAccessoryPresentationStyle {}
+);
 
 impl MKMapItemDetailSelectionAccessoryPresentationStyle {
     extern_methods!(

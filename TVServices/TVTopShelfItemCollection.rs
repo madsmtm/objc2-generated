@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "TVTopShelfObject")]
-unsafe impl<Item: ?Sized> NSObjectProtocol for TVTopShelfItemCollection<Item> {}
+extern_conformance!(
+    unsafe impl<Item: ?Sized> NSObjectProtocol for TVTopShelfItemCollection<Item> {}
+);
 
 #[cfg(feature = "TVTopShelfObject")]
 impl<Item: Message> TVTopShelfItemCollection<Item> {

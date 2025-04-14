@@ -141,16 +141,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
-unsafe impl NSAccessibility for NSTextAttachmentCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTextAttachmentCell {}
+);
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
-unsafe impl NSAccessibilityElementProtocol for NSTextAttachmentCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTextAttachmentCell {}
+);
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSCoding for NSTextAttachmentCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextAttachmentCell {}
+);
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSCopying for NSTextAttachmentCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTextAttachmentCell {}
+);
 
 #[cfg(feature = "NSCell")]
 unsafe impl CopyingHelper for NSTextAttachmentCell {
@@ -158,13 +166,19 @@ unsafe impl CopyingHelper for NSTextAttachmentCell {
 }
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSObjectProtocol for NSTextAttachmentCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextAttachmentCell {}
+);
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSTextAttachmentCellProtocol for NSTextAttachmentCell {}
+extern_conformance!(
+    unsafe impl NSTextAttachmentCellProtocol for NSTextAttachmentCell {}
+);
 
 #[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]
-unsafe impl NSUserInterfaceItemIdentification for NSTextAttachmentCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTextAttachmentCell {}
+);
 
 #[cfg(feature = "NSCell")]
 impl NSTextAttachmentCell {

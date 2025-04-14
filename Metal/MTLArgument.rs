@@ -378,7 +378,9 @@ extern_class!(
     pub struct MTLType;
 );
 
-unsafe impl NSObjectProtocol for MTLType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLType {}
+);
 
 impl MTLType {
     extern_methods!(
@@ -408,7 +410,9 @@ extern_class!(
     pub struct MTLStructMember;
 );
 
-unsafe impl NSObjectProtocol for MTLStructMember {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLStructMember {}
+);
 
 impl MTLStructMember {
     extern_methods!(
@@ -466,7 +470,9 @@ extern_class!(
     pub struct MTLStructType;
 );
 
-unsafe impl NSObjectProtocol for MTLStructType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLStructType {}
+);
 
 impl MTLStructType {
     extern_methods!(
@@ -500,7 +506,9 @@ extern_class!(
     pub struct MTLArrayType;
 );
 
-unsafe impl NSObjectProtocol for MTLArrayType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLArrayType {}
+);
 
 impl MTLArrayType {
     extern_methods!(
@@ -560,7 +568,9 @@ extern_class!(
     pub struct MTLPointerType;
 );
 
-unsafe impl NSObjectProtocol for MTLPointerType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLPointerType {}
+);
 
 impl MTLPointerType {
     extern_methods!(
@@ -614,7 +624,9 @@ extern_class!(
     pub struct MTLTextureReferenceType;
 );
 
-unsafe impl NSObjectProtocol for MTLTextureReferenceType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLTextureReferenceType {}
+);
 
 impl MTLTextureReferenceType {
     extern_methods!(
@@ -660,7 +672,9 @@ extern_class!(
     pub struct MTLArgument;
 );
 
-unsafe impl NSObjectProtocol for MTLArgument {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLArgument {}
+);
 
 impl MTLArgument {
     extern_methods!(

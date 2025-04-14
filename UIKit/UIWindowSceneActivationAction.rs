@@ -36,10 +36,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
-unsafe impl NSCoding for UIWindowSceneActivationAction {}
+extern_conformance!(
+    unsafe impl NSCoding for UIWindowSceneActivationAction {}
+);
 
 #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
-unsafe impl NSCopying for UIWindowSceneActivationAction {}
+extern_conformance!(
+    unsafe impl NSCopying for UIWindowSceneActivationAction {}
+);
 
 #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
 unsafe impl CopyingHelper for UIWindowSceneActivationAction {
@@ -47,17 +51,23 @@ unsafe impl CopyingHelper for UIWindowSceneActivationAction {
 }
 
 #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
-unsafe impl NSObjectProtocol for UIWindowSceneActivationAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneActivationAction {}
+);
 
 #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
-unsafe impl NSSecureCoding for UIWindowSceneActivationAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIWindowSceneActivationAction {}
+);
 
 #[cfg(all(
     feature = "UIAction",
     feature = "UIMenuElement",
     feature = "UIMenuLeaf"
 ))]
-unsafe impl UIMenuLeaf for UIWindowSceneActivationAction {}
+extern_conformance!(
+    unsafe impl UIMenuLeaf for UIWindowSceneActivationAction {}
+);
 
 #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
 impl UIWindowSceneActivationAction {

@@ -277,7 +277,9 @@ extern_class!(
     pub struct WKInterfaceController;
 );
 
-unsafe impl NSObjectProtocol for WKInterfaceController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceController {}
+);
 
 impl WKInterfaceController {
     extern_methods!(
@@ -647,7 +649,9 @@ extern_class!(
     pub struct WKUserNotificationInterfaceController;
 );
 
-unsafe impl NSObjectProtocol for WKUserNotificationInterfaceController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKUserNotificationInterfaceController {}
+);
 
 impl WKUserNotificationInterfaceController {
     extern_methods!(

@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNDetectBarcodesRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNDetectBarcodesRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNDetectBarcodesRequest {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for VNDetectBarcodesRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNDetectBarcodesRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNDetectBarcodesRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNDetectBarcodesRequest {

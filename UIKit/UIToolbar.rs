@@ -27,51 +27,77 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIToolbar {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIToolbar {}
+extern_conformance!(
+    unsafe impl NSCoding for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIToolbar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIToolbar {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIToolbar {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIBarCommon", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIBarPositioning for UIToolbar {}
+extern_conformance!(
+    unsafe impl UIBarPositioning for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIToolbar {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIToolbar {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIToolbar {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIToolbar {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIToolbar {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIToolbar {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIToolbar {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIToolbar {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIToolbar {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIToolbar {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIToolbar {

@@ -18,11 +18,17 @@ extern_class!(
     pub struct NSTextLineFragment;
 );
 
-unsafe impl NSCoding for NSTextLineFragment {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextLineFragment {}
+);
 
-unsafe impl NSObjectProtocol for NSTextLineFragment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextLineFragment {}
+);
 
-unsafe impl NSSecureCoding for NSTextLineFragment {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextLineFragment {}
+);
 
 impl NSTextLineFragment {
     extern_methods!(

@@ -15,7 +15,9 @@ extern_class!(
     pub struct MKDirectionsResponse;
 );
 
-unsafe impl NSObjectProtocol for MKDirectionsResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKDirectionsResponse {}
+);
 
 impl MKDirectionsResponse {
     extern_methods!(
@@ -55,7 +57,9 @@ extern_class!(
     pub struct MKRoute;
 );
 
-unsafe impl NSObjectProtocol for MKRoute {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKRoute {}
+);
 
 impl MKRoute {
     extern_methods!(
@@ -120,7 +124,9 @@ extern_class!(
     pub struct MKRouteStep;
 );
 
-unsafe impl NSObjectProtocol for MKRouteStep {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKRouteStep {}
+);
 
 impl MKRouteStep {
     extern_methods!(
@@ -169,7 +175,9 @@ extern_class!(
     pub struct MKETAResponse;
 );
 
-unsafe impl NSObjectProtocol for MKETAResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKETAResponse {}
+);
 
 impl MKETAResponse {
     extern_methods!(

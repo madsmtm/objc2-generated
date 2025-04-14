@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCGraph")]
-unsafe impl NSObjectProtocol for MLCInferenceGraph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCInferenceGraph {}
+);
 
 #[cfg(feature = "MLCGraph")]
 impl MLCInferenceGraph {

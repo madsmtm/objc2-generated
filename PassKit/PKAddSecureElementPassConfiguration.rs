@@ -16,7 +16,9 @@ extern_class!(
     pub struct PKAddPassMetadataPreview;
 );
 
-unsafe impl NSObjectProtocol for PKAddPassMetadataPreview {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKAddPassMetadataPreview {}
+);
 
 impl PKAddPassMetadataPreview {
     extern_methods!(
@@ -69,7 +71,9 @@ extern_class!(
     pub struct PKAddSecureElementPassConfiguration;
 );
 
-unsafe impl NSObjectProtocol for PKAddSecureElementPassConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKAddSecureElementPassConfiguration {}
+);
 
 impl PKAddSecureElementPassConfiguration {
     extern_methods!(

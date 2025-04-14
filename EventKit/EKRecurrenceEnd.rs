@@ -30,17 +30,25 @@ extern_class!(
     pub struct EKRecurrenceEnd;
 );
 
-unsafe impl NSCoding for EKRecurrenceEnd {}
+extern_conformance!(
+    unsafe impl NSCoding for EKRecurrenceEnd {}
+);
 
-unsafe impl NSCopying for EKRecurrenceEnd {}
+extern_conformance!(
+    unsafe impl NSCopying for EKRecurrenceEnd {}
+);
 
 unsafe impl CopyingHelper for EKRecurrenceEnd {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for EKRecurrenceEnd {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKRecurrenceEnd {}
+);
 
-unsafe impl NSSecureCoding for EKRecurrenceEnd {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for EKRecurrenceEnd {}
+);
 
 impl EKRecurrenceEnd {
     extern_methods!(

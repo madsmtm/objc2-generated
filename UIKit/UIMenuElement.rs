@@ -66,17 +66,25 @@ extern_class!(
     pub struct UIMenuElement;
 );
 
-unsafe impl NSCoding for UIMenuElement {}
+extern_conformance!(
+    unsafe impl NSCoding for UIMenuElement {}
+);
 
-unsafe impl NSCopying for UIMenuElement {}
+extern_conformance!(
+    unsafe impl NSCopying for UIMenuElement {}
+);
 
 unsafe impl CopyingHelper for UIMenuElement {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIMenuElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMenuElement {}
+);
 
-unsafe impl NSSecureCoding for UIMenuElement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIMenuElement {}
+);
 
 impl UIMenuElement {
     extern_methods!(

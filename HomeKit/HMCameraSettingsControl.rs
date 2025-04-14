@@ -22,7 +22,9 @@ unsafe impl Send for HMCameraSettingsControl {}
 unsafe impl Sync for HMCameraSettingsControl {}
 
 #[cfg(feature = "HMCameraControl")]
-unsafe impl NSObjectProtocol for HMCameraSettingsControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCameraSettingsControl {}
+);
 
 #[cfg(feature = "HMCameraControl")]
 impl HMCameraSettingsControl {

@@ -49,7 +49,9 @@ extern_class!(
 );
 
 #[cfg(feature = "TVViewElement")]
-unsafe impl NSCopying for TVImageElement {}
+extern_conformance!(
+    unsafe impl NSCopying for TVImageElement {}
+);
 
 #[cfg(feature = "TVViewElement")]
 unsafe impl CopyingHelper for TVImageElement {
@@ -57,7 +59,9 @@ unsafe impl CopyingHelper for TVImageElement {
 }
 
 #[cfg(feature = "TVViewElement")]
-unsafe impl NSObjectProtocol for TVImageElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVImageElement {}
+);
 
 #[cfg(feature = "TVViewElement")]
 impl TVImageElement {

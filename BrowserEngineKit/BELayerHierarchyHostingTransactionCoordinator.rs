@@ -18,11 +18,17 @@ unsafe impl Send for BELayerHierarchyHostingTransactionCoordinator {}
 
 unsafe impl Sync for BELayerHierarchyHostingTransactionCoordinator {}
 
-unsafe impl NSCoding for BELayerHierarchyHostingTransactionCoordinator {}
+extern_conformance!(
+    unsafe impl NSCoding for BELayerHierarchyHostingTransactionCoordinator {}
+);
 
-unsafe impl NSObjectProtocol for BELayerHierarchyHostingTransactionCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BELayerHierarchyHostingTransactionCoordinator {}
+);
 
-unsafe impl NSSecureCoding for BELayerHierarchyHostingTransactionCoordinator {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for BELayerHierarchyHostingTransactionCoordinator {}
+);
 
 impl BELayerHierarchyHostingTransactionCoordinator {
     extern_methods!(

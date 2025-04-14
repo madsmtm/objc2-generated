@@ -13,17 +13,25 @@ extern_class!(
     pub struct CKUserIdentityLookupInfo;
 );
 
-unsafe impl NSCoding for CKUserIdentityLookupInfo {}
+extern_conformance!(
+    unsafe impl NSCoding for CKUserIdentityLookupInfo {}
+);
 
-unsafe impl NSCopying for CKUserIdentityLookupInfo {}
+extern_conformance!(
+    unsafe impl NSCopying for CKUserIdentityLookupInfo {}
+);
 
 unsafe impl CopyingHelper for CKUserIdentityLookupInfo {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKUserIdentityLookupInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKUserIdentityLookupInfo {}
+);
 
-unsafe impl NSSecureCoding for CKUserIdentityLookupInfo {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKUserIdentityLookupInfo {}
+);
 
 impl CKUserIdentityLookupInfo {
     extern_methods!(

@@ -24,17 +24,25 @@ extern_class!(
     pub struct GKEntity;
 );
 
-unsafe impl NSCoding for GKEntity {}
+extern_conformance!(
+    unsafe impl NSCoding for GKEntity {}
+);
 
-unsafe impl NSCopying for GKEntity {}
+extern_conformance!(
+    unsafe impl NSCopying for GKEntity {}
+);
 
 unsafe impl CopyingHelper for GKEntity {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKEntity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKEntity {}
+);
 
-unsafe impl NSSecureCoding for GKEntity {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKEntity {}
+);
 
 impl GKEntity {
     extern_methods!(

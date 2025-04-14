@@ -16,7 +16,9 @@ extern_class!(
     pub struct AVCaptionFormatConformer;
 );
 
-unsafe impl NSObjectProtocol for AVCaptionFormatConformer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionFormatConformer {}
+);
 
 impl AVCaptionFormatConformer {
     extern_methods!(

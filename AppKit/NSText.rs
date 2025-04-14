@@ -42,50 +42,70 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSText {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSText {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSText {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSText {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSText {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSText {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSText {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSText {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSSpellProtocol",
     feature = "NSView"
 ))]
-unsafe impl NSChangeSpelling for NSText {}
+extern_conformance!(
+    unsafe impl NSChangeSpelling for NSText {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSText {}
+extern_conformance!(
+    unsafe impl NSCoding for NSText {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSText {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSText {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSSpellProtocol",
     feature = "NSView"
 ))]
-unsafe impl NSIgnoreMisspelledWords for NSText {}
+extern_conformance!(
+    unsafe impl NSIgnoreMisspelledWords for NSText {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSText {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSText {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSText {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSText {

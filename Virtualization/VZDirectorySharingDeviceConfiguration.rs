@@ -21,13 +21,17 @@ extern_class!(
     pub struct VZDirectorySharingDeviceConfiguration;
 );
 
-unsafe impl NSCopying for VZDirectorySharingDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZDirectorySharingDeviceConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZDirectorySharingDeviceConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZDirectorySharingDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZDirectorySharingDeviceConfiguration {}
+);
 
 impl VZDirectorySharingDeviceConfiguration {
     extern_methods!(

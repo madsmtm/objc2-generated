@@ -15,17 +15,25 @@ extern_class!(
     pub struct MXUnitSignalBars;
 );
 
-unsafe impl NSCoding for MXUnitSignalBars {}
+extern_conformance!(
+    unsafe impl NSCoding for MXUnitSignalBars {}
+);
 
-unsafe impl NSCopying for MXUnitSignalBars {}
+extern_conformance!(
+    unsafe impl NSCopying for MXUnitSignalBars {}
+);
 
 unsafe impl CopyingHelper for MXUnitSignalBars {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MXUnitSignalBars {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXUnitSignalBars {}
+);
 
-unsafe impl NSSecureCoding for MXUnitSignalBars {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXUnitSignalBars {}
+);
 
 impl MXUnitSignalBars {
     extern_methods!(
@@ -78,17 +86,25 @@ extern_class!(
     pub struct MXUnitAveragePixelLuminance;
 );
 
-unsafe impl NSCoding for MXUnitAveragePixelLuminance {}
+extern_conformance!(
+    unsafe impl NSCoding for MXUnitAveragePixelLuminance {}
+);
 
-unsafe impl NSCopying for MXUnitAveragePixelLuminance {}
+extern_conformance!(
+    unsafe impl NSCopying for MXUnitAveragePixelLuminance {}
+);
 
 unsafe impl CopyingHelper for MXUnitAveragePixelLuminance {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MXUnitAveragePixelLuminance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXUnitAveragePixelLuminance {}
+);
 
-unsafe impl NSSecureCoding for MXUnitAveragePixelLuminance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXUnitAveragePixelLuminance {}
+);
 
 impl MXUnitAveragePixelLuminance {
     extern_methods!(

@@ -15,7 +15,9 @@ extern_class!(
     pub struct CLBackgroundActivitySessionDiagnostic;
 );
 
-unsafe impl NSObjectProtocol for CLBackgroundActivitySessionDiagnostic {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLBackgroundActivitySessionDiagnostic {}
+);
 
 impl CLBackgroundActivitySessionDiagnostic {
     extern_methods!(
@@ -65,7 +67,9 @@ extern_class!(
     pub struct CLBackgroundActivitySession;
 );
 
-unsafe impl NSObjectProtocol for CLBackgroundActivitySession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLBackgroundActivitySession {}
+);
 
 impl CLBackgroundActivitySession {
     extern_methods!(

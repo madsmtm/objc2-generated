@@ -188,7 +188,9 @@ extern_class!(
     pub struct AVCaptureSession;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSession {}
+);
 
 impl AVCaptureSession {
     extern_methods!(
@@ -764,7 +766,9 @@ extern_class!(
     pub struct AVCaptureMultiCamSession;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureMultiCamSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureMultiCamSession {}
+);
 
 impl AVCaptureMultiCamSession {
     extern_methods!(
@@ -865,7 +869,9 @@ extern_class!(
     pub struct AVCaptureConnection;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureConnection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureConnection {}
+);
 
 impl AVCaptureConnection {
     extern_methods!(
@@ -1330,7 +1336,9 @@ extern_class!(
     pub struct AVCaptureAudioChannel;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureAudioChannel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureAudioChannel {}
+);
 
 impl AVCaptureAudioChannel {
     extern_methods!(

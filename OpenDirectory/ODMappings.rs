@@ -14,7 +14,9 @@ extern_class!(
     pub struct ODMappings;
 );
 
-unsafe impl NSObjectProtocol for ODMappings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ODMappings {}
+);
 
 impl ODMappings {
     extern_methods!(

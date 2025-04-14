@@ -18,17 +18,25 @@ extern_class!(
     pub struct INDefaultCardTemplate;
 );
 
-unsafe impl NSCoding for INDefaultCardTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for INDefaultCardTemplate {}
+);
 
-unsafe impl NSCopying for INDefaultCardTemplate {}
+extern_conformance!(
+    unsafe impl NSCopying for INDefaultCardTemplate {}
+);
 
 unsafe impl CopyingHelper for INDefaultCardTemplate {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INDefaultCardTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INDefaultCardTemplate {}
+);
 
-unsafe impl NSSecureCoding for INDefaultCardTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INDefaultCardTemplate {}
+);
 
 impl INDefaultCardTemplate {
     extern_methods!(

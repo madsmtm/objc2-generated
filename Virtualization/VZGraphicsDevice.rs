@@ -26,7 +26,9 @@ extern_class!(
     pub struct VZGraphicsDevice;
 );
 
-unsafe impl NSObjectProtocol for VZGraphicsDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZGraphicsDevice {}
+);
 
 impl VZGraphicsDevice {
     extern_methods!(

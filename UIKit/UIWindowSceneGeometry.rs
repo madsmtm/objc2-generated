@@ -43,13 +43,17 @@ extern_class!(
     pub struct UIWindowSceneGeometry;
 );
 
-unsafe impl NSCopying for UIWindowSceneGeometry {}
+extern_conformance!(
+    unsafe impl NSCopying for UIWindowSceneGeometry {}
+);
 
 unsafe impl CopyingHelper for UIWindowSceneGeometry {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIWindowSceneGeometry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneGeometry {}
+);
 
 impl UIWindowSceneGeometry {
     extern_methods!(

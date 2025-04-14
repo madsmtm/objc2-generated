@@ -23,13 +23,17 @@ unsafe impl Send for NSDataAsset {}
 
 unsafe impl Sync for NSDataAsset {}
 
-unsafe impl NSCopying for NSDataAsset {}
+extern_conformance!(
+    unsafe impl NSCopying for NSDataAsset {}
+);
 
 unsafe impl CopyingHelper for NSDataAsset {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSDataAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDataAsset {}
+);
 
 impl NSDataAsset {
     extern_methods!(

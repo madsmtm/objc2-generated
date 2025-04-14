@@ -105,10 +105,14 @@ unsafe impl Send for VTMotionBlurConfiguration {}
 unsafe impl Sync for VTMotionBlurConfiguration {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for VTMotionBlurConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VTMotionBlurConfiguration {}
+);
 
 #[cfg(all(feature = "VTFrameProcessorConfiguration", feature = "objc2"))]
-unsafe impl VTFrameProcessorConfiguration for VTMotionBlurConfiguration {}
+extern_conformance!(
+    unsafe impl VTFrameProcessorConfiguration for VTMotionBlurConfiguration {}
+);
 
 #[cfg(feature = "objc2")]
 impl VTMotionBlurConfiguration {
@@ -235,10 +239,14 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for VTMotionBlurParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VTMotionBlurParameters {}
+);
 
 #[cfg(all(feature = "VTFrameProcessorParameters", feature = "objc2"))]
-unsafe impl VTFrameProcessorParameters for VTMotionBlurParameters {}
+extern_conformance!(
+    unsafe impl VTFrameProcessorParameters for VTMotionBlurParameters {}
+);
 
 #[cfg(feature = "objc2")]
 impl VTMotionBlurParameters {

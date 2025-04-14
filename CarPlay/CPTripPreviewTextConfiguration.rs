@@ -13,11 +13,17 @@ extern_class!(
     pub struct CPTripPreviewTextConfiguration;
 );
 
-unsafe impl NSCoding for CPTripPreviewTextConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for CPTripPreviewTextConfiguration {}
+);
 
-unsafe impl NSObjectProtocol for CPTripPreviewTextConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPTripPreviewTextConfiguration {}
+);
 
-unsafe impl NSSecureCoding for CPTripPreviewTextConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPTripPreviewTextConfiguration {}
+);
 
 impl CPTripPreviewTextConfiguration {
     extern_methods!(

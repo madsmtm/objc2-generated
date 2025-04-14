@@ -20,13 +20,17 @@ extern_class!(
     pub struct VNVideoProcessorCadence;
 );
 
-unsafe impl NSCopying for VNVideoProcessorCadence {}
+extern_conformance!(
+    unsafe impl NSCopying for VNVideoProcessorCadence {}
+);
 
 unsafe impl CopyingHelper for VNVideoProcessorCadence {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNVideoProcessorCadence {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNVideoProcessorCadence {}
+);
 
 impl VNVideoProcessorCadence {
     extern_methods!();
@@ -54,13 +58,17 @@ extern_class!(
     pub struct VNVideoProcessorFrameRateCadence;
 );
 
-unsafe impl NSCopying for VNVideoProcessorFrameRateCadence {}
+extern_conformance!(
+    unsafe impl NSCopying for VNVideoProcessorFrameRateCadence {}
+);
 
 unsafe impl CopyingHelper for VNVideoProcessorFrameRateCadence {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNVideoProcessorFrameRateCadence {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNVideoProcessorFrameRateCadence {}
+);
 
 impl VNVideoProcessorFrameRateCadence {
     extern_methods!(
@@ -99,13 +107,17 @@ extern_class!(
     pub struct VNVideoProcessorTimeIntervalCadence;
 );
 
-unsafe impl NSCopying for VNVideoProcessorTimeIntervalCadence {}
+extern_conformance!(
+    unsafe impl NSCopying for VNVideoProcessorTimeIntervalCadence {}
+);
 
 unsafe impl CopyingHelper for VNVideoProcessorTimeIntervalCadence {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNVideoProcessorTimeIntervalCadence {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNVideoProcessorTimeIntervalCadence {}
+);
 
 impl VNVideoProcessorTimeIntervalCadence {
     extern_methods!(
@@ -146,13 +158,17 @@ extern_class!(
     pub struct VNVideoProcessorRequestProcessingOptions;
 );
 
-unsafe impl NSCopying for VNVideoProcessorRequestProcessingOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for VNVideoProcessorRequestProcessingOptions {}
+);
 
 unsafe impl CopyingHelper for VNVideoProcessorRequestProcessingOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VNVideoProcessorRequestProcessingOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNVideoProcessorRequestProcessingOptions {}
+);
 
 impl VNVideoProcessorRequestProcessingOptions {
     extern_methods!(
@@ -194,7 +210,9 @@ extern_class!(
     pub struct VNVideoProcessor;
 );
 
-unsafe impl NSObjectProtocol for VNVideoProcessor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNVideoProcessor {}
+);
 
 impl VNVideoProcessor {
     extern_methods!(

@@ -46,9 +46,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GCDevice")]
-unsafe impl GCDevice for GCRacingWheel {}
+extern_conformance!(
+    unsafe impl GCDevice for GCRacingWheel {}
+);
 
-unsafe impl NSObjectProtocol for GCRacingWheel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCRacingWheel {}
+);
 
 impl GCRacingWheel {
     extern_methods!(

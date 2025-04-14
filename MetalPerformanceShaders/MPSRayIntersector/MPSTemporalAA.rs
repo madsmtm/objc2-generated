@@ -33,10 +33,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSTemporalAA {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSTemporalAA {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSTemporalAA {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSTemporalAA {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSTemporalAA {
@@ -44,10 +48,14 @@ unsafe impl CopyingHelper for MPSTemporalAA {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSTemporalAA {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSTemporalAA {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSTemporalAA {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSTemporalAA {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSTemporalAA {

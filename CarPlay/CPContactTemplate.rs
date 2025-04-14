@@ -16,16 +16,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CPBarButtonProviding", feature = "CPTemplate"))]
-unsafe impl CPBarButtonProviding for CPContactTemplate {}
+extern_conformance!(
+    unsafe impl CPBarButtonProviding for CPContactTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSCoding for CPContactTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for CPContactTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSObjectProtocol for CPContactTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPContactTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSSecureCoding for CPContactTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPContactTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
 impl CPContactTemplate {

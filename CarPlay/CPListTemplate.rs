@@ -81,11 +81,17 @@ extern_class!(
     pub struct CPAssistantCellConfiguration;
 );
 
-unsafe impl NSCoding for CPAssistantCellConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for CPAssistantCellConfiguration {}
+);
 
-unsafe impl NSObjectProtocol for CPAssistantCellConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPAssistantCellConfiguration {}
+);
 
-unsafe impl NSSecureCoding for CPAssistantCellConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPAssistantCellConfiguration {}
+);
 
 impl CPAssistantCellConfiguration {
     extern_methods!(
@@ -146,16 +152,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "CPBarButtonProviding", feature = "CPTemplate"))]
-unsafe impl CPBarButtonProviding for CPListTemplate {}
+extern_conformance!(
+    unsafe impl CPBarButtonProviding for CPListTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSCoding for CPListTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for CPListTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSObjectProtocol for CPListTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPListTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSSecureCoding for CPListTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPListTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
 impl CPListTemplate {

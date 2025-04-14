@@ -20,13 +20,17 @@ extern_class!(
     pub struct WKFrameInfo;
 );
 
-unsafe impl NSCopying for WKFrameInfo {}
+extern_conformance!(
+    unsafe impl NSCopying for WKFrameInfo {}
+);
 
 unsafe impl CopyingHelper for WKFrameInfo {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WKFrameInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKFrameInfo {}
+);
 
 impl WKFrameInfo {
     extern_methods!(

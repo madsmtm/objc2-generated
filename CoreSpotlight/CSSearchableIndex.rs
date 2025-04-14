@@ -53,7 +53,9 @@ extern_class!(
     pub struct CSSearchableIndex;
 );
 
-unsafe impl NSObjectProtocol for CSSearchableIndex {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSSearchableIndex {}
+);
 
 impl CSSearchableIndex {
     extern_methods!(

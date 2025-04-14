@@ -14,7 +14,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INTemporalEventTriggerTypeOptionsResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INTemporalEventTriggerTypeOptionsResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INTemporalEventTriggerTypeOptionsResolutionResult {

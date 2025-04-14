@@ -14,15 +14,21 @@ extern_class!(
     pub struct UIKey;
 );
 
-unsafe impl NSCoding for UIKey {}
+extern_conformance!(
+    unsafe impl NSCoding for UIKey {}
+);
 
-unsafe impl NSCopying for UIKey {}
+extern_conformance!(
+    unsafe impl NSCopying for UIKey {}
+);
 
 unsafe impl CopyingHelper for UIKey {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIKey {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIKey {}
+);
 
 impl UIKey {
     extern_methods!(

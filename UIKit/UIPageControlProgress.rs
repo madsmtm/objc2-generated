@@ -51,7 +51,9 @@ extern_class!(
     pub struct UIPageControlProgress;
 );
 
-unsafe impl NSObjectProtocol for UIPageControlProgress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPageControlProgress {}
+);
 
 impl UIPageControlProgress {
     extern_methods!(
@@ -134,7 +136,9 @@ extern_class!(
     pub struct UIPageControlTimerProgress;
 );
 
-unsafe impl NSObjectProtocol for UIPageControlTimerProgress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPageControlTimerProgress {}
+);
 
 impl UIPageControlTimerProgress {
     extern_methods!(

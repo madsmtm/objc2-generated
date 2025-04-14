@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CBAttribute")]
-unsafe impl NSObjectProtocol for CBDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBDescriptor {}
+);
 
 #[cfg(feature = "CBAttribute")]
 impl CBDescriptor {
@@ -101,7 +103,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CBAttribute")]
-unsafe impl NSObjectProtocol for CBMutableDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBMutableDescriptor {}
+);
 
 #[cfg(feature = "CBAttribute")]
 impl CBMutableDescriptor {

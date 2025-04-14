@@ -17,11 +17,17 @@ extern_class!(
     pub struct INFile;
 );
 
-unsafe impl NSCoding for INFile {}
+extern_conformance!(
+    unsafe impl NSCoding for INFile {}
+);
 
-unsafe impl NSObjectProtocol for INFile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INFile {}
+);
 
-unsafe impl NSSecureCoding for INFile {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INFile {}
+);
 
 impl INFile {
     extern_methods!(

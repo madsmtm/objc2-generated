@@ -108,7 +108,9 @@ extern_class!(
     pub struct NSPersistentStoreResult;
 );
 
-unsafe impl NSObjectProtocol for NSPersistentStoreResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentStoreResult {}
+);
 
 impl NSPersistentStoreResult {
     extern_methods!();
@@ -134,7 +136,9 @@ extern_class!(
     pub struct NSPersistentStoreAsynchronousResult;
 );
 
-unsafe impl NSObjectProtocol for NSPersistentStoreAsynchronousResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentStoreAsynchronousResult {}
+);
 
 impl NSPersistentStoreAsynchronousResult {
     extern_methods!(
@@ -177,7 +181,9 @@ extern_class!(
     pub struct NSAsynchronousFetchResult<ResultType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchResult<ResultType> {}
+extern_conformance!(
+    unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchResult<ResultType> {}
+);
 
 impl<ResultType: Message> NSAsynchronousFetchResult<ResultType> {
     extern_methods!(
@@ -212,7 +218,9 @@ extern_class!(
     pub struct NSBatchInsertResult;
 );
 
-unsafe impl NSObjectProtocol for NSBatchInsertResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBatchInsertResult {}
+);
 
 impl NSBatchInsertResult {
     extern_methods!(
@@ -246,7 +254,9 @@ extern_class!(
     pub struct NSBatchUpdateResult;
 );
 
-unsafe impl NSObjectProtocol for NSBatchUpdateResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBatchUpdateResult {}
+);
 
 impl NSBatchUpdateResult {
     extern_methods!(
@@ -280,7 +290,9 @@ extern_class!(
     pub struct NSBatchDeleteResult;
 );
 
-unsafe impl NSObjectProtocol for NSBatchDeleteResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBatchDeleteResult {}
+);
 
 impl NSBatchDeleteResult {
     extern_methods!(
@@ -314,7 +326,9 @@ extern_class!(
     pub struct NSPersistentHistoryResult;
 );
 
-unsafe impl NSObjectProtocol for NSPersistentHistoryResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentHistoryResult {}
+);
 
 impl NSPersistentHistoryResult {
     extern_methods!(
@@ -368,7 +382,9 @@ extern_class!(
     pub struct NSPersistentCloudKitContainerEventResult;
 );
 
-unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEventResult {}
+);
 
 impl NSPersistentCloudKitContainerEventResult {
     extern_methods!(

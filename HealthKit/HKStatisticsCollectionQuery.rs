@@ -18,7 +18,9 @@ unsafe impl Send for HKStatisticsCollection {}
 
 unsafe impl Sync for HKStatisticsCollection {}
 
-unsafe impl NSObjectProtocol for HKStatisticsCollection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKStatisticsCollection {}
+);
 
 impl HKStatisticsCollection {
     extern_methods!(
@@ -91,7 +93,9 @@ unsafe impl Send for HKStatisticsCollectionQuery {}
 unsafe impl Sync for HKStatisticsCollectionQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKStatisticsCollectionQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKStatisticsCollectionQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKStatisticsCollectionQuery {

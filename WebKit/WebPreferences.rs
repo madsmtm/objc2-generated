@@ -69,9 +69,13 @@ extern_class!(
     pub struct WebPreferences;
 );
 
-unsafe impl NSCoding for WebPreferences {}
+extern_conformance!(
+    unsafe impl NSCoding for WebPreferences {}
+);
 
-unsafe impl NSObjectProtocol for WebPreferences {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebPreferences {}
+);
 
 impl WebPreferences {
     extern_methods!(

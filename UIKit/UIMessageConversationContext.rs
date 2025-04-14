@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIConversationContext")]
-unsafe impl NSObjectProtocol for UIMessageConversationContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMessageConversationContext {}
+);
 
 #[cfg(feature = "UIConversationContext")]
 impl UIMessageConversationContext {

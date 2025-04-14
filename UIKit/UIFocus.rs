@@ -313,7 +313,9 @@ extern_class!(
     pub struct UIFocusUpdateContext;
 );
 
-unsafe impl NSObjectProtocol for UIFocusUpdateContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFocusUpdateContext {}
+);
 
 impl UIFocusUpdateContext {
     extern_methods!(

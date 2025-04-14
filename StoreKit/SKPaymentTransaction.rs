@@ -50,7 +50,9 @@ unsafe impl Send for SKPaymentTransaction {}
 
 unsafe impl Sync for SKPaymentTransaction {}
 
-unsafe impl NSObjectProtocol for SKPaymentTransaction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPaymentTransaction {}
+);
 
 impl SKPaymentTransaction {
     extern_methods!(

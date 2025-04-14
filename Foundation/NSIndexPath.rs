@@ -14,20 +14,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSIndexPath {}
+extern_conformance!(
+    unsafe impl NSCoding for NSIndexPath {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSIndexPath {}
+extern_conformance!(
+    unsafe impl NSCopying for NSIndexPath {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSIndexPath {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSIndexPath {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSIndexPath {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSIndexPath {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSIndexPath {}
+);
 
 impl NSIndexPath {
     extern_methods!(

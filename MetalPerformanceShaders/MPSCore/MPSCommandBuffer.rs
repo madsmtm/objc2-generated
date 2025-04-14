@@ -31,7 +31,9 @@ extern_class!(
     pub struct MPSPredicate;
 );
 
-unsafe impl NSObjectProtocol for MPSPredicate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSPredicate {}
+);
 
 impl MPSPredicate {
     extern_methods!(
@@ -175,9 +177,13 @@ extern_class!(
     pub struct MPSCommandBuffer;
 );
 
-unsafe impl MTLCommandBuffer for MPSCommandBuffer {}
+extern_conformance!(
+    unsafe impl MTLCommandBuffer for MPSCommandBuffer {}
+);
 
-unsafe impl NSObjectProtocol for MPSCommandBuffer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCommandBuffer {}
+);
 
 impl MPSCommandBuffer {
     extern_methods!(

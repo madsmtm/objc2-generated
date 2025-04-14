@@ -40,15 +40,21 @@ extern_class!(
 );
 
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
-unsafe impl AVAsynchronousKeyValueLoading for AVAssetTrack {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVAssetTrack {}
+);
 
-unsafe impl NSCopying for AVAssetTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAssetTrack {}
+);
 
 unsafe impl CopyingHelper for AVAssetTrack {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAssetTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetTrack {}
+);
 
 impl AVAssetTrack {
     extern_methods!(
@@ -499,15 +505,21 @@ unsafe impl Send for AVFragmentedAssetTrack {}
 unsafe impl Sync for AVFragmentedAssetTrack {}
 
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
-unsafe impl AVAsynchronousKeyValueLoading for AVFragmentedAssetTrack {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVFragmentedAssetTrack {}
+);
 
-unsafe impl NSCopying for AVFragmentedAssetTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for AVFragmentedAssetTrack {}
+);
 
 unsafe impl CopyingHelper for AVFragmentedAssetTrack {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVFragmentedAssetTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVFragmentedAssetTrack {}
+);
 
 impl AVFragmentedAssetTrack {
     extern_methods!();

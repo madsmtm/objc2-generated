@@ -23,10 +23,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNPooling {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNPooling {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNPooling {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNPooling {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPooling {
@@ -34,10 +38,14 @@ unsafe impl CopyingHelper for MPSCNNPooling {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNPooling {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPooling {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNPooling {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNPooling {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNPooling {
@@ -159,10 +167,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNPoolingMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNPoolingMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNPoolingMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNPoolingMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingMax {
@@ -170,10 +182,14 @@ unsafe impl CopyingHelper for MPSCNNPoolingMax {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNPoolingMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNPoolingMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNPoolingMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNPoolingMax {
@@ -308,10 +324,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNPoolingAverage {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNPoolingAverage {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNPoolingAverage {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNPoolingAverage {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingAverage {
@@ -319,10 +339,14 @@ unsafe impl CopyingHelper for MPSCNNPoolingAverage {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNPoolingAverage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingAverage {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNPoolingAverage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNPoolingAverage {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNPoolingAverage {
@@ -489,10 +513,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNPoolingL2Norm {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNPoolingL2Norm {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNPoolingL2Norm {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNPoolingL2Norm {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingL2Norm {
@@ -500,10 +528,14 @@ unsafe impl CopyingHelper for MPSCNNPoolingL2Norm {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNPoolingL2Norm {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingL2Norm {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNPoolingL2Norm {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNPoolingL2Norm {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNPoolingL2Norm {
@@ -631,10 +663,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNDilatedPoolingMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNDilatedPoolingMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNDilatedPoolingMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNDilatedPoolingMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNDilatedPoolingMax {
@@ -642,10 +678,14 @@ unsafe impl CopyingHelper for MPSCNNDilatedPoolingMax {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNDilatedPoolingMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNDilatedPoolingMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNDilatedPoolingMax {
@@ -850,10 +890,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNPoolingGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNPoolingGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNPoolingGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNPoolingGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingGradient {
@@ -861,10 +905,14 @@ unsafe impl CopyingHelper for MPSCNNPoolingGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNPoolingGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNPoolingGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNPoolingGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNPoolingGradient {
@@ -1042,10 +1090,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNPoolingAverageGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNPoolingAverageGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNPoolingAverageGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNPoolingAverageGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingAverageGradient {
@@ -1053,10 +1105,14 @@ unsafe impl CopyingHelper for MPSCNNPoolingAverageGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNPoolingAverageGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingAverageGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNPoolingAverageGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNPoolingAverageGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNPoolingAverageGradient {
@@ -1262,10 +1318,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNPoolingMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNPoolingMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNPoolingMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNPoolingMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingMaxGradient {
@@ -1273,10 +1333,14 @@ unsafe impl CopyingHelper for MPSCNNPoolingMaxGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNPoolingMaxGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNPoolingMaxGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNPoolingMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNPoolingMaxGradient {
@@ -1430,10 +1494,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNPoolingL2NormGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNPoolingL2NormGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNPoolingL2NormGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNPoolingL2NormGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingL2NormGradient {
@@ -1441,10 +1509,14 @@ unsafe impl CopyingHelper for MPSCNNPoolingL2NormGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNPoolingL2NormGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNPoolingL2NormGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNPoolingL2NormGradient {
@@ -1578,10 +1650,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSCNNDilatedPoolingMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSCNNDilatedPoolingMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSCNNDilatedPoolingMaxGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSCNNDilatedPoolingMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNDilatedPoolingMaxGradient {
@@ -1589,10 +1665,14 @@ unsafe impl CopyingHelper for MPSCNNDilatedPoolingMaxGradient {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMaxGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSCNNDilatedPoolingMaxGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSCNNDilatedPoolingMaxGradient {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNDilatedPoolingMaxGradient {

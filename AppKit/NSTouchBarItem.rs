@@ -32,9 +32,13 @@ extern_class!(
     pub struct NSTouchBarItem;
 );
 
-unsafe impl NSCoding for NSTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTouchBarItem {}
+);
 
-unsafe impl NSObjectProtocol for NSTouchBarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTouchBarItem {}
+);
 
 impl NSTouchBarItem {
     extern_methods!(

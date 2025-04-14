@@ -80,17 +80,25 @@ extern_class!(
     pub struct LPLinkMetadata;
 );
 
-unsafe impl NSCoding for LPLinkMetadata {}
+extern_conformance!(
+    unsafe impl NSCoding for LPLinkMetadata {}
+);
 
-unsafe impl NSCopying for LPLinkMetadata {}
+extern_conformance!(
+    unsafe impl NSCopying for LPLinkMetadata {}
+);
 
 unsafe impl CopyingHelper for LPLinkMetadata {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for LPLinkMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LPLinkMetadata {}
+);
 
-unsafe impl NSSecureCoding for LPLinkMetadata {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for LPLinkMetadata {}
+);
 
 impl LPLinkMetadata {
     extern_methods!(

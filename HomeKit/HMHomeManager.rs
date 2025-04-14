@@ -49,7 +49,9 @@ unsafe impl Send for HMHomeManager {}
 
 unsafe impl Sync for HMHomeManager {}
 
-unsafe impl NSObjectProtocol for HMHomeManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMHomeManager {}
+);
 
 impl HMHomeManager {
     extern_methods!(

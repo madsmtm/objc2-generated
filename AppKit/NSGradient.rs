@@ -42,17 +42,25 @@ unsafe impl Send for NSGradient {}
 
 unsafe impl Sync for NSGradient {}
 
-unsafe impl NSCoding for NSGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for NSGradient {}
+);
 
-unsafe impl NSCopying for NSGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for NSGradient {}
+);
 
 unsafe impl CopyingHelper for NSGradient {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSGradient {}
+);
 
-unsafe impl NSSecureCoding for NSGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSGradient {}
+);
 
 impl NSGradient {
     extern_methods!(

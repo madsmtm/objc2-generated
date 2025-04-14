@@ -14,17 +14,25 @@ extern_class!(
     pub struct UIVisualEffect;
 );
 
-unsafe impl NSCoding for UIVisualEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for UIVisualEffect {}
+);
 
-unsafe impl NSCopying for UIVisualEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIVisualEffect {}
+);
 
 unsafe impl CopyingHelper for UIVisualEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIVisualEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIVisualEffect {}
+);
 
-unsafe impl NSSecureCoding for UIVisualEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIVisualEffect {}
+);
 
 impl UIVisualEffect {
     extern_methods!();

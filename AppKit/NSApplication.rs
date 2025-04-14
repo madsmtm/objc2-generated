@@ -451,22 +451,34 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
-unsafe impl NSAccessibility for NSApplication {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSApplication {}
+);
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
-unsafe impl NSAccessibilityElementProtocol for NSApplication {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSApplication {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSCoding for NSApplication {}
+extern_conformance!(
+    unsafe impl NSCoding for NSApplication {}
+);
 
 #[cfg(all(feature = "NSMenu", feature = "NSResponder"))]
-unsafe impl NSMenuItemValidation for NSApplication {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSApplication {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSObjectProtocol for NSApplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSApplication {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceValidation"))]
-unsafe impl NSUserInterfaceValidations for NSApplication {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSApplication {}
+);
 
 #[cfg(feature = "NSResponder")]
 impl NSApplication {
@@ -847,7 +859,9 @@ impl NSApplication {
 }
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder"))]
-unsafe impl NSAppearanceCustomization for NSApplication {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSApplication {}
+);
 
 /// NSEvent.
 #[cfg(feature = "NSResponder")]

@@ -14,17 +14,25 @@ extern_class!(
     pub struct INMessageLinkMetadata;
 );
 
-unsafe impl NSCoding for INMessageLinkMetadata {}
+extern_conformance!(
+    unsafe impl NSCoding for INMessageLinkMetadata {}
+);
 
-unsafe impl NSCopying for INMessageLinkMetadata {}
+extern_conformance!(
+    unsafe impl NSCopying for INMessageLinkMetadata {}
+);
 
 unsafe impl CopyingHelper for INMessageLinkMetadata {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INMessageLinkMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INMessageLinkMetadata {}
+);
 
-unsafe impl NSSecureCoding for INMessageLinkMetadata {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INMessageLinkMetadata {}
+);
 
 impl INMessageLinkMetadata {
     extern_methods!(

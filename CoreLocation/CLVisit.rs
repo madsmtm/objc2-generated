@@ -13,17 +13,25 @@ extern_class!(
     pub struct CLVisit;
 );
 
-unsafe impl NSCoding for CLVisit {}
+extern_conformance!(
+    unsafe impl NSCoding for CLVisit {}
+);
 
-unsafe impl NSCopying for CLVisit {}
+extern_conformance!(
+    unsafe impl NSCopying for CLVisit {}
+);
 
 unsafe impl CopyingHelper for CLVisit {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLVisit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLVisit {}
+);
 
-unsafe impl NSSecureCoding for CLVisit {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLVisit {}
+);
 
 impl CLVisit {
     extern_methods!(

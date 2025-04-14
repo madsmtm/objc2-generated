@@ -107,7 +107,9 @@ unsafe impl Send for ARFrame {}
 unsafe impl Sync for ARFrame {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARFrame {}
+extern_conformance!(
+    unsafe impl NSCopying for ARFrame {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARFrame {
@@ -115,7 +117,9 @@ unsafe impl CopyingHelper for ARFrame {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARFrame {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARFrame {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARFrame {

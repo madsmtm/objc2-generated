@@ -14,7 +14,9 @@ extern_class!(
     pub struct CMBatchedSensorManager;
 );
 
-unsafe impl NSObjectProtocol for CMBatchedSensorManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMBatchedSensorManager {}
+);
 
 impl CMBatchedSensorManager {
     extern_methods!(

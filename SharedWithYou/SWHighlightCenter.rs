@@ -34,7 +34,9 @@ extern_class!(
     pub struct SWHighlightCenter;
 );
 
-unsafe impl NSObjectProtocol for SWHighlightCenter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWHighlightCenter {}
+);
 
 impl SWHighlightCenter {
     extern_methods!(

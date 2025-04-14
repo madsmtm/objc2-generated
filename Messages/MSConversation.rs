@@ -14,7 +14,9 @@ extern_class!(
     pub struct MSConversation;
 );
 
-unsafe impl NSObjectProtocol for MSConversation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSConversation {}
+);
 
 impl MSConversation {
     extern_methods!(

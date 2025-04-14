@@ -22,11 +22,17 @@ extern_class!(
     pub struct MPMediaEntity;
 );
 
-unsafe impl NSCoding for MPMediaEntity {}
+extern_conformance!(
+    unsafe impl NSCoding for MPMediaEntity {}
+);
 
-unsafe impl NSObjectProtocol for MPMediaEntity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaEntity {}
+);
 
-unsafe impl NSSecureCoding for MPMediaEntity {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPMediaEntity {}
+);
 
 impl MPMediaEntity {
     extern_methods!(

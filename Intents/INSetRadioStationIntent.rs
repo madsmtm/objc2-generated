@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INSetRadioStationIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INSetRadioStationIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INSetRadioStationIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INSetRadioStationIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INSetRadioStationIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INSetRadioStationIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INSetRadioStationIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSetRadioStationIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INSetRadioStationIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSetRadioStationIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INSetRadioStationIntent {

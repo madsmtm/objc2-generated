@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
-unsafe impl NSCoding for UIKeyCommand {}
+extern_conformance!(
+    unsafe impl NSCoding for UIKeyCommand {}
+);
 
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
-unsafe impl NSCopying for UIKeyCommand {}
+extern_conformance!(
+    unsafe impl NSCopying for UIKeyCommand {}
+);
 
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
 unsafe impl CopyingHelper for UIKeyCommand {
@@ -28,17 +32,23 @@ unsafe impl CopyingHelper for UIKeyCommand {
 }
 
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
-unsafe impl NSObjectProtocol for UIKeyCommand {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIKeyCommand {}
+);
 
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
-unsafe impl NSSecureCoding for UIKeyCommand {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIKeyCommand {}
+);
 
 #[cfg(all(
     feature = "UICommand",
     feature = "UIMenuElement",
     feature = "UIMenuLeaf"
 ))]
-unsafe impl UIMenuLeaf for UIKeyCommand {}
+extern_conformance!(
+    unsafe impl UIMenuLeaf for UIKeyCommand {}
+);
 
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
 impl UIKeyCommand {

@@ -13,13 +13,17 @@ extern_class!(
     pub struct AVMediaSelectionGroup;
 );
 
-unsafe impl NSCopying for AVMediaSelectionGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMediaSelectionGroup {}
+);
 
 unsafe impl CopyingHelper for AVMediaSelectionGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMediaSelectionGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMediaSelectionGroup {}
+);
 
 impl AVMediaSelectionGroup {
     extern_methods!(
@@ -160,13 +164,17 @@ extern_class!(
     pub struct AVMediaSelectionOption;
 );
 
-unsafe impl NSCopying for AVMediaSelectionOption {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMediaSelectionOption {}
+);
 
 unsafe impl CopyingHelper for AVMediaSelectionOption {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMediaSelectionOption {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMediaSelectionOption {}
+);
 
 impl AVMediaSelectionOption {
     extern_methods!(

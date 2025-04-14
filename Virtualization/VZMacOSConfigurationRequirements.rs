@@ -20,7 +20,9 @@ extern_class!(
     pub struct VZMacOSConfigurationRequirements;
 );
 
-unsafe impl NSObjectProtocol for VZMacOSConfigurationRequirements {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacOSConfigurationRequirements {}
+);
 
 impl VZMacOSConfigurationRequirements {
     extern_methods!(

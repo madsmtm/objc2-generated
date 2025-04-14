@@ -246,7 +246,9 @@ extern_class!(
     pub struct ICDevice;
 );
 
-unsafe impl NSObjectProtocol for ICDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ICDevice {}
+);
 
 impl ICDevice {
     extern_methods!(

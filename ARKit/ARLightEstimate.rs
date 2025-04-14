@@ -28,7 +28,9 @@ unsafe impl Send for ARLightEstimate {}
 unsafe impl Sync for ARLightEstimate {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARLightEstimate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARLightEstimate {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARLightEstimate {
@@ -80,7 +82,9 @@ unsafe impl Send for ARDirectionalLightEstimate {}
 unsafe impl Sync for ARDirectionalLightEstimate {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARDirectionalLightEstimate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARDirectionalLightEstimate {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARDirectionalLightEstimate {

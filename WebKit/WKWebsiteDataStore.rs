@@ -19,11 +19,17 @@ extern_class!(
     pub struct WKWebsiteDataStore;
 );
 
-unsafe impl NSCoding for WKWebsiteDataStore {}
+extern_conformance!(
+    unsafe impl NSCoding for WKWebsiteDataStore {}
+);
 
-unsafe impl NSObjectProtocol for WKWebsiteDataStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebsiteDataStore {}
+);
 
-unsafe impl NSSecureCoding for WKWebsiteDataStore {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WKWebsiteDataStore {}
+);
 
 impl WKWebsiteDataStore {
     extern_methods!(

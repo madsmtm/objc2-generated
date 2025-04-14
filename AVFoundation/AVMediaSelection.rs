@@ -14,19 +14,25 @@ extern_class!(
     pub struct AVMediaSelection;
 );
 
-unsafe impl NSCopying for AVMediaSelection {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMediaSelection {}
+);
 
 unsafe impl CopyingHelper for AVMediaSelection {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVMediaSelection {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMediaSelection {}
+);
 
 unsafe impl MutableCopyingHelper for AVMediaSelection {
     type Result = AVMutableMediaSelection;
 }
 
-unsafe impl NSObjectProtocol for AVMediaSelection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMediaSelection {}
+);
 
 impl AVMediaSelection {
     extern_methods!(
@@ -87,19 +93,25 @@ extern_class!(
     pub struct AVMutableMediaSelection;
 );
 
-unsafe impl NSCopying for AVMutableMediaSelection {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableMediaSelection {}
+);
 
 unsafe impl CopyingHelper for AVMutableMediaSelection {
     type Result = AVMediaSelection;
 }
 
-unsafe impl NSMutableCopying for AVMutableMediaSelection {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableMediaSelection {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableMediaSelection {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableMediaSelection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableMediaSelection {}
+);
 
 impl AVMutableMediaSelection {
     extern_methods!(

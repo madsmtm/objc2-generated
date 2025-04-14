@@ -53,7 +53,9 @@ extern_class!(
     pub struct MLComputePlan;
 );
 
-unsafe impl NSObjectProtocol for MLComputePlan {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLComputePlan {}
+);
 
 impl MLComputePlan {
     extern_methods!(

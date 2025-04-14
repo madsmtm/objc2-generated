@@ -71,7 +71,9 @@ extern_class!(
     pub struct WKGestureRecognizer;
 );
 
-unsafe impl NSObjectProtocol for WKGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKGestureRecognizer {}
+);
 
 impl WKGestureRecognizer {
     extern_methods!(
@@ -120,7 +122,9 @@ extern_class!(
     pub struct WKTapGestureRecognizer;
 );
 
-unsafe impl NSObjectProtocol for WKTapGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKTapGestureRecognizer {}
+);
 
 impl WKTapGestureRecognizer {
     extern_methods!(
@@ -155,7 +159,9 @@ extern_class!(
     pub struct WKLongPressGestureRecognizer;
 );
 
-unsafe impl NSObjectProtocol for WKLongPressGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKLongPressGestureRecognizer {}
+);
 
 impl WKLongPressGestureRecognizer {
     extern_methods!(
@@ -212,7 +218,9 @@ extern_class!(
     pub struct WKSwipeGestureRecognizer;
 );
 
-unsafe impl NSObjectProtocol for WKSwipeGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKSwipeGestureRecognizer {}
+);
 
 impl WKSwipeGestureRecognizer {
     extern_methods!(
@@ -247,7 +255,9 @@ extern_class!(
     pub struct WKPanGestureRecognizer;
 );
 
-unsafe impl NSObjectProtocol for WKPanGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKPanGestureRecognizer {}
+);
 
 impl WKPanGestureRecognizer {
     extern_methods!(

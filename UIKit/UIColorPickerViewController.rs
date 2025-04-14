@@ -71,37 +71,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIColorPickerViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIColorPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIColorPickerViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIColorPickerViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIColorPickerViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIColorPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIColorPickerViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIColorPickerViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIColorPickerViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIColorPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIColorPickerViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIColorPickerViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIColorPickerViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIColorPickerViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIColorPickerViewController {

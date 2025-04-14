@@ -22,13 +22,17 @@ extern_class!(
     pub struct VZNetworkDeviceConfiguration;
 );
 
-unsafe impl NSCopying for VZNetworkDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZNetworkDeviceConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZNetworkDeviceConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZNetworkDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZNetworkDeviceConfiguration {}
+);
 
 impl VZNetworkDeviceConfiguration {
     extern_methods!(

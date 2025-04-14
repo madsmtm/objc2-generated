@@ -46,7 +46,9 @@ extern_class!(
     pub struct CIRenderDestination;
 );
 
-unsafe impl NSObjectProtocol for CIRenderDestination {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIRenderDestination {}
+);
 
 impl CIRenderDestination {
     extern_methods!(
@@ -209,7 +211,9 @@ extern_class!(
     pub struct CIRenderInfo;
 );
 
-unsafe impl NSObjectProtocol for CIRenderInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIRenderInfo {}
+);
 
 impl CIRenderInfo {
     extern_methods!(
@@ -251,7 +255,9 @@ extern_class!(
     pub struct CIRenderTask;
 );
 
-unsafe impl NSObjectProtocol for CIRenderTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIRenderTask {}
+);
 
 impl CIRenderTask {
     extern_methods!(

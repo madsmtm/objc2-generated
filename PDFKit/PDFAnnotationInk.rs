@@ -20,10 +20,14 @@ extern_class!(
 );
 
 #[cfg(feature = "PDFAnnotation")]
-unsafe impl NSCoding for PDFAnnotationInk {}
+extern_conformance!(
+    unsafe impl NSCoding for PDFAnnotationInk {}
+);
 
 #[cfg(feature = "PDFAnnotation")]
-unsafe impl NSCopying for PDFAnnotationInk {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFAnnotationInk {}
+);
 
 #[cfg(feature = "PDFAnnotation")]
 unsafe impl CopyingHelper for PDFAnnotationInk {
@@ -31,7 +35,9 @@ unsafe impl CopyingHelper for PDFAnnotationInk {
 }
 
 #[cfg(feature = "PDFAnnotation")]
-unsafe impl NSObjectProtocol for PDFAnnotationInk {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFAnnotationInk {}
+);
 
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationInk {

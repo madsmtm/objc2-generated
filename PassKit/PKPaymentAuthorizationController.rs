@@ -208,7 +208,9 @@ extern_class!(
     pub struct PKPaymentAuthorizationController;
 );
 
-unsafe impl NSObjectProtocol for PKPaymentAuthorizationController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentAuthorizationController {}
+);
 
 impl PKPaymentAuthorizationController {
     extern_methods!(

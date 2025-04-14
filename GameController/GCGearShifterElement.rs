@@ -17,9 +17,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GCPhysicalInputElement")]
-unsafe impl GCPhysicalInputElement for GCGearShifterElement {}
+extern_conformance!(
+    unsafe impl GCPhysicalInputElement for GCGearShifterElement {}
+);
 
-unsafe impl NSObjectProtocol for GCGearShifterElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCGearShifterElement {}
+);
 
 impl GCGearShifterElement {
     extern_methods!(

@@ -19,17 +19,25 @@ unsafe impl Send for HKSourceRevision {}
 
 unsafe impl Sync for HKSourceRevision {}
 
-unsafe impl NSCoding for HKSourceRevision {}
+extern_conformance!(
+    unsafe impl NSCoding for HKSourceRevision {}
+);
 
-unsafe impl NSCopying for HKSourceRevision {}
+extern_conformance!(
+    unsafe impl NSCopying for HKSourceRevision {}
+);
 
 unsafe impl CopyingHelper for HKSourceRevision {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKSourceRevision {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKSourceRevision {}
+);
 
-unsafe impl NSSecureCoding for HKSourceRevision {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKSourceRevision {}
+);
 
 impl HKSourceRevision {
     extern_methods!(

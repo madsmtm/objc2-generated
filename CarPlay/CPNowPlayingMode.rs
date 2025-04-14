@@ -15,11 +15,17 @@ extern_class!(
     pub struct CPNowPlayingMode;
 );
 
-unsafe impl NSCoding for CPNowPlayingMode {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingMode {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingMode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingMode {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingMode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingMode {}
+);
 
 impl CPNowPlayingMode {
     extern_methods!(
@@ -55,11 +61,17 @@ extern_class!(
     pub struct CPNowPlayingModeSports;
 );
 
-unsafe impl NSCoding for CPNowPlayingModeSports {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingModeSports {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingModeSports {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingModeSports {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingModeSports {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingModeSports {}
+);
 
 impl CPNowPlayingModeSports {
     extern_methods!(
@@ -153,11 +165,17 @@ extern_class!(
     pub struct CPNowPlayingSportsTeam;
 );
 
-unsafe impl NSCoding for CPNowPlayingSportsTeam {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingSportsTeam {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingSportsTeam {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingSportsTeam {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingSportsTeam {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingSportsTeam {}
+);
 
 impl CPNowPlayingSportsTeam {
     extern_methods!(
@@ -252,11 +270,17 @@ extern_class!(
     pub struct CPNowPlayingSportsEventStatus;
 );
 
-unsafe impl NSCoding for CPNowPlayingSportsEventStatus {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingSportsEventStatus {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingSportsEventStatus {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingSportsEventStatus {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingSportsEventStatus {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingSportsEventStatus {}
+);
 
 impl CPNowPlayingSportsEventStatus {
     extern_methods!(
@@ -343,11 +367,17 @@ extern_class!(
     pub struct CPNowPlayingSportsClock;
 );
 
-unsafe impl NSCoding for CPNowPlayingSportsClock {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingSportsClock {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingSportsClock {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingSportsClock {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingSportsClock {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingSportsClock {}
+);
 
 impl CPNowPlayingSportsClock {
     extern_methods!(
@@ -416,11 +446,17 @@ extern_class!(
     pub struct CPNowPlayingSportsTeamLogo;
 );
 
-unsafe impl NSCoding for CPNowPlayingSportsTeamLogo {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingSportsTeamLogo {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingSportsTeamLogo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingSportsTeamLogo {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingSportsTeamLogo {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingSportsTeamLogo {}
+);
 
 impl CPNowPlayingSportsTeamLogo {
     extern_methods!(

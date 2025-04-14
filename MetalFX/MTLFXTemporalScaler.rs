@@ -15,13 +15,17 @@ extern_class!(
     pub struct MTLFXTemporalScalerDescriptor;
 );
 
-unsafe impl NSCopying for MTLFXTemporalScalerDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLFXTemporalScalerDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLFXTemporalScalerDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLFXTemporalScalerDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFXTemporalScalerDescriptor {}
+);
 
 impl MTLFXTemporalScalerDescriptor {
     extern_methods!(

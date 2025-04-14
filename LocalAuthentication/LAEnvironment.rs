@@ -13,7 +13,9 @@ extern_class!(
     pub struct LAEnvironment;
 );
 
-unsafe impl NSObjectProtocol for LAEnvironment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAEnvironment {}
+);
 
 impl LAEnvironment {
     extern_methods!(

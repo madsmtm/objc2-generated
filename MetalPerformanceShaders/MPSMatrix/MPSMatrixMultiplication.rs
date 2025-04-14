@@ -39,10 +39,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixMultiplication {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixMultiplication {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixMultiplication {
@@ -50,10 +54,14 @@ unsafe impl CopyingHelper for MPSMatrixMultiplication {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixMultiplication {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSMatrixMultiplication {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixMultiplication {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSMatrixMultiplication {
@@ -344,10 +352,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCoding for MPSMatrixVectorMultiplication {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixVectorMultiplication {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSCopying for MPSMatrixVectorMultiplication {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixVectorMultiplication {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixVectorMultiplication {
@@ -355,10 +367,14 @@ unsafe impl CopyingHelper for MPSMatrixVectorMultiplication {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSObjectProtocol for MPSMatrixVectorMultiplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixVectorMultiplication {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
-unsafe impl NSSecureCoding for MPSMatrixVectorMultiplication {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixVectorMultiplication {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 impl MPSMatrixVectorMultiplication {

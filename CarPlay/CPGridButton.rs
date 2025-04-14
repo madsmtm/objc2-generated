@@ -16,11 +16,17 @@ extern_class!(
     pub struct CPGridButton;
 );
 
-unsafe impl NSCoding for CPGridButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPGridButton {}
+);
 
-unsafe impl NSObjectProtocol for CPGridButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPGridButton {}
+);
 
-unsafe impl NSSecureCoding for CPGridButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPGridButton {}
+);
 
 impl CPGridButton {
     extern_methods!(

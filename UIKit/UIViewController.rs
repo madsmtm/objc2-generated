@@ -143,25 +143,39 @@ extern_class!(
 );
 
 #[cfg(feature = "UIResponder")]
-unsafe impl NSCoding for UIViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIViewController {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl NSObjectProtocol for UIViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIViewController {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder"))]
-unsafe impl UIAppearanceContainer for UIViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIViewController {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl UIContentContainer for UIViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIViewController {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder"))]
-unsafe impl UIFocusEnvironment for UIViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIViewController {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl UIResponderStandardEditActions for UIViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UITraitCollection"))]
-unsafe impl UITraitEnvironment for UIViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIViewController {}
+);
 
 #[cfg(feature = "UIResponder")]
 impl UIViewController {
@@ -1046,7 +1060,9 @@ impl UIViewController {
 }
 
 #[cfg(all(feature = "UIResponder", feature = "UIStateRestoration"))]
-unsafe impl UIStateRestoring for UIViewController {}
+extern_conformance!(
+    unsafe impl UIStateRestoring for UIViewController {}
+);
 
 /// UIConstraintBasedLayoutCoreMethods.
 #[cfg(feature = "UIResponder")]
@@ -1185,7 +1201,9 @@ impl UIViewController {
 }
 
 #[cfg(feature = "UIResponder")]
-unsafe impl NSExtensionRequestHandling for UIViewController {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for UIViewController {}
+);
 
 /// UIPresentationController.
 #[cfg(feature = "UIResponder")]
@@ -1465,7 +1483,9 @@ impl UIViewController {
 }
 
 #[cfg(all(feature = "UIResponder", feature = "UITraitCollection"))]
-unsafe impl UITraitChangeObservable for UIViewController {}
+extern_conformance!(
+    unsafe impl UITraitChangeObservable for UIViewController {}
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle?language=objc)
 // NS_ENUM
@@ -1552,15 +1572,21 @@ extern_class!(
     pub struct UIPreviewAction;
 );
 
-unsafe impl NSCopying for UIPreviewAction {}
+extern_conformance!(
+    unsafe impl NSCopying for UIPreviewAction {}
+);
 
 unsafe impl CopyingHelper for UIPreviewAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIPreviewAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPreviewAction {}
+);
 
-unsafe impl UIPreviewActionItem for UIPreviewAction {}
+extern_conformance!(
+    unsafe impl UIPreviewActionItem for UIPreviewAction {}
+);
 
 impl UIPreviewAction {
     extern_methods!(
@@ -1609,15 +1635,21 @@ extern_class!(
     pub struct UIPreviewActionGroup;
 );
 
-unsafe impl NSCopying for UIPreviewActionGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for UIPreviewActionGroup {}
+);
 
 unsafe impl CopyingHelper for UIPreviewActionGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIPreviewActionGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPreviewActionGroup {}
+);
 
-unsafe impl UIPreviewActionItem for UIPreviewActionGroup {}
+extern_conformance!(
+    unsafe impl UIPreviewActionItem for UIPreviewActionGroup {}
+);
 
 impl UIPreviewActionGroup {
     extern_methods!(

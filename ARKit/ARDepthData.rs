@@ -54,7 +54,9 @@ unsafe impl Send for ARDepthData {}
 unsafe impl Sync for ARDepthData {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARDepthData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARDepthData {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARDepthData {

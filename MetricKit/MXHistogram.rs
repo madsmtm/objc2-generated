@@ -19,11 +19,17 @@ extern_class!(
     pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject>;
 );
 
-unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogramBucket<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogramBucket<UnitType> {}
+);
 
-unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogramBucket<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogramBucket<UnitType> {}
+);
 
-unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogramBucket<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogramBucket<UnitType> {}
+);
 
 impl<UnitType: Message> MXHistogramBucket<UnitType> {
     extern_methods!(
@@ -66,11 +72,17 @@ extern_class!(
     pub struct MXHistogram<UnitType: ?Sized = AnyObject>;
 );
 
-unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogram<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogram<UnitType> {}
+);
 
-unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogram<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogram<UnitType> {}
+);
 
-unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogram<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogram<UnitType> {}
+);
 
 impl<UnitType: Message> MXHistogram<UnitType> {
     extern_methods!(

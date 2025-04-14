@@ -180,7 +180,9 @@ extern_class!(
     pub struct NSLayoutConstraint;
 );
 
-unsafe impl NSObjectProtocol for NSLayoutConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLayoutConstraint {}
+);
 
 impl NSLayoutConstraint {
     extern_methods!(

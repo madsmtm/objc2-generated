@@ -17,9 +17,13 @@ extern_class!(
     pub struct UILayoutGuide;
 );
 
-unsafe impl NSCoding for UILayoutGuide {}
+extern_conformance!(
+    unsafe impl NSCoding for UILayoutGuide {}
+);
 
-unsafe impl NSObjectProtocol for UILayoutGuide {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UILayoutGuide {}
+);
 
 impl UILayoutGuide {
     extern_methods!(

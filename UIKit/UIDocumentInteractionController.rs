@@ -17,10 +17,14 @@ extern_class!(
     pub struct UIDocumentInteractionController;
 );
 
-unsafe impl NSObjectProtocol for UIDocumentInteractionController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentInteractionController {}
+);
 
 #[cfg(feature = "UIActionSheet")]
-unsafe impl UIActionSheetDelegate for UIDocumentInteractionController {}
+extern_conformance!(
+    unsafe impl UIActionSheetDelegate for UIDocumentInteractionController {}
+);
 
 impl UIDocumentInteractionController {
     extern_methods!(

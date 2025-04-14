@@ -103,13 +103,21 @@ extern_class!(
     pub struct NSTextContentManager;
 );
 
-unsafe impl NSCoding for NSTextContentManager {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextContentManager {}
+);
 
-unsafe impl NSObjectProtocol for NSTextContentManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextContentManager {}
+);
 
-unsafe impl NSSecureCoding for NSTextContentManager {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextContentManager {}
+);
 
-unsafe impl NSTextElementProvider for NSTextContentManager {}
+extern_conformance!(
+    unsafe impl NSTextElementProvider for NSTextContentManager {}
+);
 
 impl NSTextContentManager {
     extern_methods!(
@@ -288,16 +296,26 @@ extern_class!(
     pub struct NSTextContentStorage;
 );
 
-unsafe impl NSCoding for NSTextContentStorage {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextContentStorage {}
+);
 
-unsafe impl NSObjectProtocol for NSTextContentStorage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextContentStorage {}
+);
 
-unsafe impl NSSecureCoding for NSTextContentStorage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextContentStorage {}
+);
 
-unsafe impl NSTextElementProvider for NSTextContentStorage {}
+extern_conformance!(
+    unsafe impl NSTextElementProvider for NSTextContentStorage {}
+);
 
 #[cfg(feature = "NSTextStorage")]
-unsafe impl NSTextStorageObserving for NSTextContentStorage {}
+extern_conformance!(
+    unsafe impl NSTextStorageObserving for NSTextContentStorage {}
+);
 
 impl NSTextContentStorage {
     extern_methods!(

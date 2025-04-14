@@ -32,7 +32,9 @@ extern_class!(
     pub struct TVUserManager;
 );
 
-unsafe impl NSObjectProtocol for TVUserManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVUserManager {}
+);
 
 impl TVUserManager {
     extern_methods!(

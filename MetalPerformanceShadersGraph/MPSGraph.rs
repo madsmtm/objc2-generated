@@ -191,7 +191,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphCompilationDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphCompilationDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphCompilationDescriptor {
@@ -199,7 +201,9 @@ unsafe impl CopyingHelper for MPSGraphCompilationDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphCompilationDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphCompilationDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphCompilationDescriptor {
@@ -316,7 +320,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphExecutionDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphExecutionDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphExecutionDescriptor {
@@ -451,7 +457,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraph {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraph {

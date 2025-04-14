@@ -21,7 +21,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSwitch {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -29,7 +31,9 @@ unsafe impl NSAccessibility for NSSwitch {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityButton for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSAccessibilityButton for NSSwitch {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -37,7 +41,9 @@ unsafe impl NSAccessibilityButton for NSSwitch {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSwitch {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -45,7 +51,9 @@ unsafe impl NSAccessibilityElementProtocol for NSSwitch {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilitySwitch for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSAccessibilitySwitch for NSSwitch {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -53,7 +61,9 @@ unsafe impl NSAccessibilitySwitch for NSSwitch {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSSwitch {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -61,10 +71,14 @@ unsafe impl NSAnimatablePropertyContainer for NSSwitch {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSSwitch {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSwitch {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -72,10 +86,14 @@ unsafe impl NSCoding for NSSwitch {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSSwitch {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSwitch {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -83,7 +101,9 @@ unsafe impl NSObjectProtocol for NSSwitch {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSwitch {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSwitch {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSSwitch {

@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCoding for CMAmbientPressureData {}
+extern_conformance!(
+    unsafe impl NSCoding for CMAmbientPressureData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSCopying for CMAmbientPressureData {}
+extern_conformance!(
+    unsafe impl NSCopying for CMAmbientPressureData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 unsafe impl CopyingHelper for CMAmbientPressureData {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for CMAmbientPressureData {
 }
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSObjectProtocol for CMAmbientPressureData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMAmbientPressureData {}
+);
 
 #[cfg(feature = "CMLogItem")]
-unsafe impl NSSecureCoding for CMAmbientPressureData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMAmbientPressureData {}
+);
 
 #[cfg(feature = "CMLogItem")]
 impl CMAmbientPressureData {

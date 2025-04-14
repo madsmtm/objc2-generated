@@ -18,7 +18,9 @@ unsafe impl Send for AVAudioSession {}
 
 unsafe impl Sync for AVAudioSession {}
 
-unsafe impl NSObjectProtocol for AVAudioSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSession {}
+);
 
 impl AVAudioSession {
     extern_methods!(

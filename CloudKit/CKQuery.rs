@@ -30,17 +30,25 @@ extern_class!(
     pub struct CKQuery;
 );
 
-unsafe impl NSCoding for CKQuery {}
+extern_conformance!(
+    unsafe impl NSCoding for CKQuery {}
+);
 
-unsafe impl NSCopying for CKQuery {}
+extern_conformance!(
+    unsafe impl NSCopying for CKQuery {}
+);
 
 unsafe impl CopyingHelper for CKQuery {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKQuery {}
+);
 
-unsafe impl NSSecureCoding for CKQuery {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKQuery {}
+);
 
 impl CKQuery {
     extern_methods!(

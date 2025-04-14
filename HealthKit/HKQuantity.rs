@@ -20,17 +20,25 @@ unsafe impl Send for HKQuantity {}
 
 unsafe impl Sync for HKQuantity {}
 
-unsafe impl NSCoding for HKQuantity {}
+extern_conformance!(
+    unsafe impl NSCoding for HKQuantity {}
+);
 
-unsafe impl NSCopying for HKQuantity {}
+extern_conformance!(
+    unsafe impl NSCopying for HKQuantity {}
+);
 
 unsafe impl CopyingHelper for HKQuantity {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKQuantity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKQuantity {}
+);
 
-unsafe impl NSSecureCoding for HKQuantity {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKQuantity {}
+);
 
 impl HKQuantity {
     extern_methods!(

@@ -34,7 +34,9 @@ extern_class!(
 );
 
 #[cfg(feature = "GCPhysicalInputProfile")]
-unsafe impl NSObjectProtocol for GCMouseInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCMouseInput {}
+);
 
 #[cfg(feature = "GCPhysicalInputProfile")]
 impl GCMouseInput {

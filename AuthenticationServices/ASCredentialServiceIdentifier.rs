@@ -35,17 +35,25 @@ extern_class!(
     pub struct ASCredentialServiceIdentifier;
 );
 
-unsafe impl NSCoding for ASCredentialServiceIdentifier {}
+extern_conformance!(
+    unsafe impl NSCoding for ASCredentialServiceIdentifier {}
+);
 
-unsafe impl NSCopying for ASCredentialServiceIdentifier {}
+extern_conformance!(
+    unsafe impl NSCopying for ASCredentialServiceIdentifier {}
+);
 
 unsafe impl CopyingHelper for ASCredentialServiceIdentifier {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASCredentialServiceIdentifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASCredentialServiceIdentifier {}
+);
 
-unsafe impl NSSecureCoding for ASCredentialServiceIdentifier {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASCredentialServiceIdentifier {}
+);
 
 impl ASCredentialServiceIdentifier {
     extern_methods!(

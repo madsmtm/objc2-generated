@@ -16,15 +16,21 @@ extern_class!(
     pub struct NSLayoutAnchor<AnchorType: ?Sized = AnyObject>;
 );
 
-unsafe impl<AnchorType: ?Sized + NSCoding> NSCoding for NSLayoutAnchor<AnchorType> {}
+extern_conformance!(
+    unsafe impl<AnchorType: ?Sized + NSCoding> NSCoding for NSLayoutAnchor<AnchorType> {}
+);
 
-unsafe impl<AnchorType: ?Sized> NSCopying for NSLayoutAnchor<AnchorType> {}
+extern_conformance!(
+    unsafe impl<AnchorType: ?Sized> NSCopying for NSLayoutAnchor<AnchorType> {}
+);
 
 unsafe impl<AnchorType: ?Sized + Message> CopyingHelper for NSLayoutAnchor<AnchorType> {
     type Result = Self;
 }
 
-unsafe impl<AnchorType: ?Sized> NSObjectProtocol for NSLayoutAnchor<AnchorType> {}
+extern_conformance!(
+    unsafe impl<AnchorType: ?Sized> NSObjectProtocol for NSLayoutAnchor<AnchorType> {}
+);
 
 impl<AnchorType: Message> NSLayoutAnchor<AnchorType> {
     extern_methods!(
@@ -125,15 +131,21 @@ extern_class!(
     pub struct NSLayoutXAxisAnchor;
 );
 
-unsafe impl NSCoding for NSLayoutXAxisAnchor {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLayoutXAxisAnchor {}
+);
 
-unsafe impl NSCopying for NSLayoutXAxisAnchor {}
+extern_conformance!(
+    unsafe impl NSCopying for NSLayoutXAxisAnchor {}
+);
 
 unsafe impl CopyingHelper for NSLayoutXAxisAnchor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSLayoutXAxisAnchor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLayoutXAxisAnchor {}
+);
 
 impl NSLayoutXAxisAnchor {
     extern_methods!(
@@ -167,15 +179,21 @@ extern_class!(
     pub struct NSLayoutYAxisAnchor;
 );
 
-unsafe impl NSCoding for NSLayoutYAxisAnchor {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLayoutYAxisAnchor {}
+);
 
-unsafe impl NSCopying for NSLayoutYAxisAnchor {}
+extern_conformance!(
+    unsafe impl NSCopying for NSLayoutYAxisAnchor {}
+);
 
 unsafe impl CopyingHelper for NSLayoutYAxisAnchor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSLayoutYAxisAnchor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLayoutYAxisAnchor {}
+);
 
 impl NSLayoutYAxisAnchor {
     extern_methods!(
@@ -209,15 +227,21 @@ extern_class!(
     pub struct NSLayoutDimension;
 );
 
-unsafe impl NSCoding for NSLayoutDimension {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLayoutDimension {}
+);
 
-unsafe impl NSCopying for NSLayoutDimension {}
+extern_conformance!(
+    unsafe impl NSCopying for NSLayoutDimension {}
+);
 
 unsafe impl CopyingHelper for NSLayoutDimension {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSLayoutDimension {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLayoutDimension {}
+);
 
 impl NSLayoutDimension {
     extern_methods!(

@@ -25,7 +25,9 @@ extern_class!(
     pub struct NSTextRange;
 );
 
-unsafe impl NSObjectProtocol for NSTextRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextRange {}
+);
 
 impl NSTextRange {
     extern_methods!(

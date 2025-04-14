@@ -18,7 +18,9 @@ extern_class!(
     pub struct NSDockTile;
 );
 
-unsafe impl NSObjectProtocol for NSDockTile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDockTile {}
+);
 
 impl NSDockTile {
     extern_methods!(

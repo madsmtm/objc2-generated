@@ -28,7 +28,9 @@ unsafe impl Send for NSBundle {}
 
 unsafe impl Sync for NSBundle {}
 
-unsafe impl NSObjectProtocol for NSBundle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBundle {}
+);
 
 impl NSBundle {
     extern_methods!(
@@ -469,10 +471,14 @@ extern_class!(
     pub struct NSBundleResourceRequest;
 );
 
-unsafe impl NSObjectProtocol for NSBundleResourceRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBundleResourceRequest {}
+);
 
 #[cfg(feature = "NSProgress")]
-unsafe impl NSProgressReporting for NSBundleResourceRequest {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for NSBundleResourceRequest {}
+);
 
 impl NSBundleResourceRequest {
     extern_methods!(

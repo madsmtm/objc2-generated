@@ -20,17 +20,25 @@ unsafe impl Send for HKUnit {}
 
 unsafe impl Sync for HKUnit {}
 
-unsafe impl NSCoding for HKUnit {}
+extern_conformance!(
+    unsafe impl NSCoding for HKUnit {}
+);
 
-unsafe impl NSCopying for HKUnit {}
+extern_conformance!(
+    unsafe impl NSCopying for HKUnit {}
+);
 
 unsafe impl CopyingHelper for HKUnit {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKUnit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKUnit {}
+);
 
-unsafe impl NSSecureCoding for HKUnit {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKUnit {}
+);
 
 impl HKUnit {
     extern_methods!(

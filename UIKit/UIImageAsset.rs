@@ -18,11 +18,17 @@ unsafe impl Send for UIImageAsset {}
 
 unsafe impl Sync for UIImageAsset {}
 
-unsafe impl NSCoding for UIImageAsset {}
+extern_conformance!(
+    unsafe impl NSCoding for UIImageAsset {}
+);
 
-unsafe impl NSObjectProtocol for UIImageAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIImageAsset {}
+);
 
-unsafe impl NSSecureCoding for UIImageAsset {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIImageAsset {}
+);
 
 impl UIImageAsset {
     extern_methods!(

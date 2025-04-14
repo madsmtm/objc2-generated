@@ -16,17 +16,25 @@ extern_class!(
     pub struct NSSymbolEffectOptionsRepeatBehavior;
 );
 
-unsafe impl NSCoding for NSSymbolEffectOptionsRepeatBehavior {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolEffectOptionsRepeatBehavior {}
+);
 
-unsafe impl NSCopying for NSSymbolEffectOptionsRepeatBehavior {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolEffectOptionsRepeatBehavior {}
+);
 
 unsafe impl CopyingHelper for NSSymbolEffectOptionsRepeatBehavior {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolEffectOptionsRepeatBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolEffectOptionsRepeatBehavior {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolEffectOptionsRepeatBehavior {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolEffectOptionsRepeatBehavior {}
+);
 
 impl NSSymbolEffectOptionsRepeatBehavior {
     extern_methods!(
@@ -111,17 +119,25 @@ extern_class!(
     pub struct NSSymbolEffectOptions;
 );
 
-unsafe impl NSCoding for NSSymbolEffectOptions {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolEffectOptions {}
+);
 
-unsafe impl NSCopying for NSSymbolEffectOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolEffectOptions {}
+);
 
 unsafe impl CopyingHelper for NSSymbolEffectOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolEffectOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolEffectOptions {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolEffectOptions {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolEffectOptions {}
+);
 
 impl NSSymbolEffectOptions {
     extern_methods!(
@@ -240,17 +256,25 @@ extern_class!(
     pub struct NSSymbolEffect;
 );
 
-unsafe impl NSCoding for NSSymbolEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolEffect {}
+);
 
 impl NSSymbolEffect {
     extern_methods!(
@@ -277,17 +301,25 @@ extern_class!(
     pub struct NSSymbolPulseEffect;
 );
 
-unsafe impl NSCoding for NSSymbolPulseEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolPulseEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolPulseEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolPulseEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolPulseEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolPulseEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolPulseEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolPulseEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolPulseEffect {}
+);
 
 impl NSSymbolPulseEffect {
     extern_methods!(
@@ -333,17 +365,25 @@ extern_class!(
     pub struct NSSymbolBounceEffect;
 );
 
-unsafe impl NSCoding for NSSymbolBounceEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolBounceEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolBounceEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolBounceEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolBounceEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolBounceEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolBounceEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolBounceEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolBounceEffect {}
+);
 
 impl NSSymbolBounceEffect {
     extern_methods!(
@@ -402,17 +442,25 @@ extern_class!(
     pub struct NSSymbolVariableColorEffect;
 );
 
-unsafe impl NSCoding for NSSymbolVariableColorEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolVariableColorEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolVariableColorEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolVariableColorEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolVariableColorEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolVariableColorEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolVariableColorEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolVariableColorEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolVariableColorEffect {}
+);
 
 impl NSSymbolVariableColorEffect {
     extern_methods!(
@@ -476,17 +524,25 @@ extern_class!(
     pub struct NSSymbolScaleEffect;
 );
 
-unsafe impl NSCoding for NSSymbolScaleEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolScaleEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolScaleEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolScaleEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolScaleEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolScaleEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolScaleEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolScaleEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolScaleEffect {}
+);
 
 impl NSSymbolScaleEffect {
     extern_methods!(
@@ -543,17 +599,25 @@ extern_class!(
     pub struct NSSymbolAppearEffect;
 );
 
-unsafe impl NSCoding for NSSymbolAppearEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolAppearEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolAppearEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolAppearEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolAppearEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolAppearEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolAppearEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolAppearEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolAppearEffect {}
+);
 
 impl NSSymbolAppearEffect {
     extern_methods!(
@@ -610,17 +674,25 @@ extern_class!(
     pub struct NSSymbolDisappearEffect;
 );
 
-unsafe impl NSCoding for NSSymbolDisappearEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolDisappearEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolDisappearEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolDisappearEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolDisappearEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolDisappearEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolDisappearEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolDisappearEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolDisappearEffect {}
+);
 
 impl NSSymbolDisappearEffect {
     extern_methods!(
@@ -676,17 +748,25 @@ extern_class!(
     pub struct NSSymbolWiggleEffect;
 );
 
-unsafe impl NSCoding for NSSymbolWiggleEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolWiggleEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolWiggleEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolWiggleEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolWiggleEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolWiggleEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolWiggleEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolWiggleEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolWiggleEffect {}
+);
 
 impl NSSymbolWiggleEffect {
     extern_methods!(
@@ -789,17 +869,25 @@ extern_class!(
     pub struct NSSymbolRotateEffect;
 );
 
-unsafe impl NSCoding for NSSymbolRotateEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolRotateEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolRotateEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolRotateEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolRotateEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolRotateEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolRotateEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolRotateEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolRotateEffect {}
+);
 
 impl NSSymbolRotateEffect {
     extern_methods!(
@@ -855,17 +943,25 @@ extern_class!(
     pub struct NSSymbolBreatheEffect;
 );
 
-unsafe impl NSCoding for NSSymbolBreatheEffect {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolBreatheEffect {}
+);
 
-unsafe impl NSCopying for NSSymbolBreatheEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolBreatheEffect {}
+);
 
 unsafe impl CopyingHelper for NSSymbolBreatheEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolBreatheEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolBreatheEffect {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolBreatheEffect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolBreatheEffect {}
+);
 
 impl NSSymbolBreatheEffect {
     extern_methods!(
@@ -923,17 +1019,25 @@ extern_class!(
     pub struct NSSymbolContentTransition;
 );
 
-unsafe impl NSCoding for NSSymbolContentTransition {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolContentTransition {}
+);
 
-unsafe impl NSCopying for NSSymbolContentTransition {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolContentTransition {}
+);
 
 unsafe impl CopyingHelper for NSSymbolContentTransition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolContentTransition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolContentTransition {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolContentTransition {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolContentTransition {}
+);
 
 impl NSSymbolContentTransition {
     extern_methods!(
@@ -960,17 +1064,25 @@ extern_class!(
     pub struct NSSymbolMagicReplaceContentTransition;
 );
 
-unsafe impl NSCoding for NSSymbolMagicReplaceContentTransition {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolMagicReplaceContentTransition {}
+);
 
-unsafe impl NSCopying for NSSymbolMagicReplaceContentTransition {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolMagicReplaceContentTransition {}
+);
 
 unsafe impl CopyingHelper for NSSymbolMagicReplaceContentTransition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolMagicReplaceContentTransition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolMagicReplaceContentTransition {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolMagicReplaceContentTransition {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolMagicReplaceContentTransition {}
+);
 
 impl NSSymbolMagicReplaceContentTransition {
     extern_methods!();
@@ -999,17 +1111,25 @@ extern_class!(
     pub struct NSSymbolReplaceContentTransition;
 );
 
-unsafe impl NSCoding for NSSymbolReplaceContentTransition {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolReplaceContentTransition {}
+);
 
-unsafe impl NSCopying for NSSymbolReplaceContentTransition {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolReplaceContentTransition {}
+);
 
 unsafe impl CopyingHelper for NSSymbolReplaceContentTransition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolReplaceContentTransition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolReplaceContentTransition {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolReplaceContentTransition {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolReplaceContentTransition {}
+);
 
 impl NSSymbolReplaceContentTransition {
     extern_methods!(
@@ -1078,17 +1198,25 @@ extern_class!(
     pub struct NSSymbolAutomaticContentTransition;
 );
 
-unsafe impl NSCoding for NSSymbolAutomaticContentTransition {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolAutomaticContentTransition {}
+);
 
-unsafe impl NSCopying for NSSymbolAutomaticContentTransition {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolAutomaticContentTransition {}
+);
 
 unsafe impl CopyingHelper for NSSymbolAutomaticContentTransition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSymbolAutomaticContentTransition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolAutomaticContentTransition {}
+);
 
-unsafe impl NSSecureCoding for NSSymbolAutomaticContentTransition {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolAutomaticContentTransition {}
+);
 
 impl NSSymbolAutomaticContentTransition {
     extern_methods!(

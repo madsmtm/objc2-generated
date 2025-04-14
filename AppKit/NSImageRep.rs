@@ -48,15 +48,21 @@ extern_class!(
     pub struct NSImageRep;
 );
 
-unsafe impl NSCoding for NSImageRep {}
+extern_conformance!(
+    unsafe impl NSCoding for NSImageRep {}
+);
 
-unsafe impl NSCopying for NSImageRep {}
+extern_conformance!(
+    unsafe impl NSCopying for NSImageRep {}
+);
 
 unsafe impl CopyingHelper for NSImageRep {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSImageRep {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSImageRep {}
+);
 
 impl NSImageRep {
     extern_methods!(

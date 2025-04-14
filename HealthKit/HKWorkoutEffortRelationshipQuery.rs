@@ -18,17 +18,25 @@ unsafe impl Send for HKWorkoutEffortRelationship {}
 
 unsafe impl Sync for HKWorkoutEffortRelationship {}
 
-unsafe impl NSCoding for HKWorkoutEffortRelationship {}
+extern_conformance!(
+    unsafe impl NSCoding for HKWorkoutEffortRelationship {}
+);
 
-unsafe impl NSCopying for HKWorkoutEffortRelationship {}
+extern_conformance!(
+    unsafe impl NSCopying for HKWorkoutEffortRelationship {}
+);
 
 unsafe impl CopyingHelper for HKWorkoutEffortRelationship {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKWorkoutEffortRelationship {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutEffortRelationship {}
+);
 
-unsafe impl NSSecureCoding for HKWorkoutEffortRelationship {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKWorkoutEffortRelationship {}
+);
 
 impl HKWorkoutEffortRelationship {
     extern_methods!(
@@ -102,7 +110,9 @@ unsafe impl Send for HKWorkoutEffortRelationshipQuery {}
 unsafe impl Sync for HKWorkoutEffortRelationshipQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKWorkoutEffortRelationshipQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutEffortRelationshipQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKWorkoutEffortRelationshipQuery {

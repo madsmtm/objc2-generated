@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSPropertyMapping;
 );
 
-unsafe impl NSObjectProtocol for NSPropertyMapping {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPropertyMapping {}
+);
 
 impl NSPropertyMapping {
     extern_methods!(

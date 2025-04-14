@@ -14,9 +14,13 @@ extern_class!(
     pub struct NSNibConnector;
 );
 
-unsafe impl NSCoding for NSNibConnector {}
+extern_conformance!(
+    unsafe impl NSCoding for NSNibConnector {}
+);
 
-unsafe impl NSObjectProtocol for NSNibConnector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNibConnector {}
+);
 
 impl NSNibConnector {
     extern_methods!(

@@ -45,34 +45,46 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSViewController"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSPageController {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSPageController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSCoding for NSPageController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPageController {}
+);
 
 #[cfg(all(
     feature = "NSKeyValueBinding",
     feature = "NSResponder",
     feature = "NSViewController"
 ))]
-unsafe impl NSEditor for NSPageController {}
+extern_conformance!(
+    unsafe impl NSEditor for NSPageController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-unsafe impl NSObjectProtocol for NSPageController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPageController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSStoryboardSegue",
     feature = "NSViewController"
 ))]
-unsafe impl NSSeguePerforming for NSPageController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for NSPageController {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSViewController"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSPageController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSPageController {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
 impl NSPageController {

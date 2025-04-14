@@ -14,11 +14,17 @@ extern_class!(
     pub struct INUserContext;
 );
 
-unsafe impl NSCoding for INUserContext {}
+extern_conformance!(
+    unsafe impl NSCoding for INUserContext {}
+);
 
-unsafe impl NSObjectProtocol for INUserContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INUserContext {}
+);
 
-unsafe impl NSSecureCoding for INUserContext {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INUserContext {}
+);
 
 impl INUserContext {
     extern_methods!(

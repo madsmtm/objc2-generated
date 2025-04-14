@@ -119,7 +119,9 @@ extern_class!(
     pub struct NSPrintPanel;
 );
 
-unsafe impl NSObjectProtocol for NSPrintPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPrintPanel {}
+);
 
 impl NSPrintPanel {
     extern_methods!(

@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStore")]
-unsafe impl NSObjectProtocol for NSAtomicStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAtomicStore {}
+);
 
 #[cfg(feature = "NSPersistentStore")]
 impl NSAtomicStore {

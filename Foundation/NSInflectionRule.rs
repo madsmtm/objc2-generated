@@ -13,20 +13,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSInflectionRule {}
+extern_conformance!(
+    unsafe impl NSCoding for NSInflectionRule {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSInflectionRule {}
+extern_conformance!(
+    unsafe impl NSCopying for NSInflectionRule {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSInflectionRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSInflectionRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSInflectionRule {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSInflectionRule {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSInflectionRule {}
+);
 
 impl NSInflectionRule {
     extern_methods!(
@@ -57,20 +65,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSInflectionRuleExplicit {}
+extern_conformance!(
+    unsafe impl NSCoding for NSInflectionRuleExplicit {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSInflectionRuleExplicit {}
+extern_conformance!(
+    unsafe impl NSCopying for NSInflectionRuleExplicit {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSInflectionRuleExplicit {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSInflectionRuleExplicit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSInflectionRuleExplicit {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSInflectionRuleExplicit {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSInflectionRuleExplicit {}
+);
 
 impl NSInflectionRuleExplicit {
     extern_methods!(

@@ -23,13 +23,19 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-foundation")]
-unsafe impl NSCoding for IOBluetoothSDPUUID {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothSDPUUID {}
+);
 
 #[cfg(feature = "objc2-foundation")]
-unsafe impl NSObjectProtocol for IOBluetoothSDPUUID {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothSDPUUID {}
+);
 
 #[cfg(feature = "objc2-foundation")]
-unsafe impl NSSecureCoding for IOBluetoothSDPUUID {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for IOBluetoothSDPUUID {}
+);
 
 #[cfg(feature = "objc2-foundation")]
 impl IOBluetoothSDPUUID {

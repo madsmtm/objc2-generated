@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INReservation")]
-unsafe impl NSCoding for INTrainReservation {}
+extern_conformance!(
+    unsafe impl NSCoding for INTrainReservation {}
+);
 
 #[cfg(feature = "INReservation")]
-unsafe impl NSCopying for INTrainReservation {}
+extern_conformance!(
+    unsafe impl NSCopying for INTrainReservation {}
+);
 
 #[cfg(feature = "INReservation")]
 unsafe impl CopyingHelper for INTrainReservation {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for INTrainReservation {
 }
 
 #[cfg(feature = "INReservation")]
-unsafe impl NSObjectProtocol for INTrainReservation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INTrainReservation {}
+);
 
 #[cfg(feature = "INReservation")]
-unsafe impl NSSecureCoding for INTrainReservation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INTrainReservation {}
+);
 
 #[cfg(feature = "INReservation")]
 impl INTrainReservation {

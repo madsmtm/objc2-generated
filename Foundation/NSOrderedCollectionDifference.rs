@@ -43,9 +43,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSOrderedCollectionDifference<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSOrderedCollectionDifference<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionDifference<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionDifference<ObjectType> {}
+);
 
 impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
     extern_methods!(

@@ -79,17 +79,25 @@ extern_class!(
     pub struct NSTextTab;
 );
 
-unsafe impl NSCoding for NSTextTab {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextTab {}
+);
 
-unsafe impl NSCopying for NSTextTab {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTextTab {}
+);
 
 unsafe impl CopyingHelper for NSTextTab {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTextTab {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextTab {}
+);
 
-unsafe impl NSSecureCoding for NSTextTab {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextTab {}
+);
 
 impl NSTextTab {
     extern_methods!(
@@ -130,23 +138,33 @@ extern_class!(
     pub struct NSParagraphStyle;
 );
 
-unsafe impl NSCoding for NSParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSCoding for NSParagraphStyle {}
+);
 
-unsafe impl NSCopying for NSParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSCopying for NSParagraphStyle {}
+);
 
 unsafe impl CopyingHelper for NSParagraphStyle {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for NSParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSParagraphStyle {}
+);
 
 unsafe impl MutableCopyingHelper for NSParagraphStyle {
     type Result = NSMutableParagraphStyle;
 }
 
-unsafe impl NSObjectProtocol for NSParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSParagraphStyle {}
+);
 
-unsafe impl NSSecureCoding for NSParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSParagraphStyle {}
+);
 
 impl NSParagraphStyle {
     extern_methods!(
@@ -267,23 +285,33 @@ extern_class!(
     pub struct NSMutableParagraphStyle;
 );
 
-unsafe impl NSCoding for NSMutableParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMutableParagraphStyle {}
+);
 
-unsafe impl NSCopying for NSMutableParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMutableParagraphStyle {}
+);
 
 unsafe impl CopyingHelper for NSMutableParagraphStyle {
     type Result = NSParagraphStyle;
 }
 
-unsafe impl NSMutableCopying for NSMutableParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSMutableParagraphStyle {}
+);
 
 unsafe impl MutableCopyingHelper for NSMutableParagraphStyle {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMutableParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMutableParagraphStyle {}
+);
 
-unsafe impl NSSecureCoding for NSMutableParagraphStyle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMutableParagraphStyle {}
+);
 
 impl NSMutableParagraphStyle {
     extern_methods!(

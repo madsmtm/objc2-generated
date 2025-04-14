@@ -14,12 +14,18 @@ extern_class!(
     pub struct NSLayoutGuide;
 );
 
-unsafe impl NSCoding for NSLayoutGuide {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLayoutGuide {}
+);
 
-unsafe impl NSObjectProtocol for NSLayoutGuide {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLayoutGuide {}
+);
 
 #[cfg(feature = "NSUserInterfaceItemIdentification")]
-unsafe impl NSUserInterfaceItemIdentification for NSLayoutGuide {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSLayoutGuide {}
+);
 
 impl NSLayoutGuide {
     extern_methods!(

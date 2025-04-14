@@ -53,7 +53,9 @@ extern_class!(
 );
 
 #[cfg(feature = "GCControllerElement")]
-unsafe impl NSObjectProtocol for GCControllerButtonInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCControllerButtonInput {}
+);
 
 #[cfg(feature = "GCControllerElement")]
 impl GCControllerButtonInput {

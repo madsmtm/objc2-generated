@@ -14,20 +14,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for NSMeasurement<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for NSMeasurement<UnitType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<UnitType: ?Sized> NSCopying for NSMeasurement<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized> NSCopying for NSMeasurement<UnitType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<UnitType: ?Sized + Message> CopyingHelper for NSMeasurement<UnitType> {
     type Result = Self;
 }
 
-unsafe impl<UnitType: ?Sized> NSObjectProtocol for NSMeasurement<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized> NSObjectProtocol for NSMeasurement<UnitType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for NSMeasurement<UnitType> {}
+extern_conformance!(
+    unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for NSMeasurement<UnitType> {}
+);
 
 impl<UnitType: Message> NSMeasurement<UnitType> {
     extern_methods!(

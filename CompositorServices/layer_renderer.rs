@@ -61,7 +61,9 @@ extern_class!(
     pub struct CP_OBJECT_cp_layer_renderer;
 );
 
-unsafe impl NSObjectProtocol for CP_OBJECT_cp_layer_renderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CP_OBJECT_cp_layer_renderer {}
+);
 
 impl CP_OBJECT_cp_layer_renderer {
     extern_methods!(

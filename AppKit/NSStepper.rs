@@ -21,7 +21,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSStepper {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSStepper {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -29,7 +31,9 @@ unsafe impl NSAccessibility for NSStepper {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSStepper {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSStepper {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -37,7 +41,9 @@ unsafe impl NSAccessibilityElementProtocol for NSStepper {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityStepper for NSStepper {}
+extern_conformance!(
+    unsafe impl NSAccessibilityStepper for NSStepper {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -45,7 +51,9 @@ unsafe impl NSAccessibilityStepper for NSStepper {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSStepper {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSStepper {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -53,10 +61,14 @@ unsafe impl NSAnimatablePropertyContainer for NSStepper {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSStepper {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSStepper {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSStepper {}
+extern_conformance!(
+    unsafe impl NSCoding for NSStepper {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -64,10 +76,14 @@ unsafe impl NSCoding for NSStepper {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSStepper {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSStepper {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSStepper {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStepper {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -75,7 +91,9 @@ unsafe impl NSObjectProtocol for NSStepper {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSStepper {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSStepper {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSStepper {

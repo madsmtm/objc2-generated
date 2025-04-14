@@ -20,7 +20,9 @@ unsafe impl Send for ASAccessorySession {}
 
 unsafe impl Sync for ASAccessorySession {}
 
-unsafe impl NSObjectProtocol for ASAccessorySession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAccessorySession {}
+);
 
 impl ASAccessorySession {
     extern_methods!(

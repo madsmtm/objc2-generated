@@ -41,12 +41,18 @@ extern_class!(
     pub struct NSTableColumn;
 );
 
-unsafe impl NSCoding for NSTableColumn {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTableColumn {}
+);
 
-unsafe impl NSObjectProtocol for NSTableColumn {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTableColumn {}
+);
 
 #[cfg(feature = "NSUserInterfaceItemIdentification")]
-unsafe impl NSUserInterfaceItemIdentification for NSTableColumn {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTableColumn {}
+);
 
 impl NSTableColumn {
     extern_methods!(

@@ -17,13 +17,17 @@ extern_class!(
     pub struct MLCMultiheadAttentionDescriptor;
 );
 
-unsafe impl NSCopying for MLCMultiheadAttentionDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCMultiheadAttentionDescriptor {}
+);
 
 unsafe impl CopyingHelper for MLCMultiheadAttentionDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCMultiheadAttentionDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCMultiheadAttentionDescriptor {}
+);
 
 impl MLCMultiheadAttentionDescriptor {
     extern_methods!(

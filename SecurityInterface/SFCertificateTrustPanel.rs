@@ -25,31 +25,49 @@ extern_class!(
 );
 
 #[cfg(feature = "SFCertificatePanel")]
-unsafe impl NSAccessibility for SFCertificateTrustPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SFCertificateTrustPanel {}
+);
 
 #[cfg(feature = "SFCertificatePanel")]
-unsafe impl NSAccessibilityElementProtocol for SFCertificateTrustPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SFCertificateTrustPanel {}
+);
 
 #[cfg(feature = "SFCertificatePanel")]
-unsafe impl NSAnimatablePropertyContainer for SFCertificateTrustPanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SFCertificateTrustPanel {}
+);
 
 #[cfg(feature = "SFCertificatePanel")]
-unsafe impl NSAppearanceCustomization for SFCertificateTrustPanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SFCertificateTrustPanel {}
+);
 
 #[cfg(feature = "SFCertificatePanel")]
-unsafe impl NSCoding for SFCertificateTrustPanel {}
+extern_conformance!(
+    unsafe impl NSCoding for SFCertificateTrustPanel {}
+);
 
 #[cfg(feature = "SFCertificatePanel")]
-unsafe impl NSMenuItemValidation for SFCertificateTrustPanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for SFCertificateTrustPanel {}
+);
 
 #[cfg(feature = "SFCertificatePanel")]
-unsafe impl NSObjectProtocol for SFCertificateTrustPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFCertificateTrustPanel {}
+);
 
 #[cfg(feature = "SFCertificatePanel")]
-unsafe impl NSUserInterfaceItemIdentification for SFCertificateTrustPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SFCertificateTrustPanel {}
+);
 
 #[cfg(feature = "SFCertificatePanel")]
-unsafe impl NSUserInterfaceValidations for SFCertificateTrustPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for SFCertificateTrustPanel {}
+);
 
 #[cfg(feature = "SFCertificatePanel")]
 impl SFCertificateTrustPanel {

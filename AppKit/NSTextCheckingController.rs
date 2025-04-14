@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSTextCheckingController;
 );
 
-unsafe impl NSObjectProtocol for NSTextCheckingController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextCheckingController {}
+);
 
 impl NSTextCheckingController {
     extern_methods!(

@@ -23,7 +23,9 @@ extern_class!(
     feature = "NSButtonCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSMenuItemCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSMenuItemCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -31,13 +33,19 @@ unsafe impl NSAccessibility for NSMenuItemCell {}
     feature = "NSButtonCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSMenuItemCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSMenuItemCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSMenuItemCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMenuItemCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSMenuItemCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMenuItemCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSMenuItemCell {
@@ -45,7 +53,9 @@ unsafe impl CopyingHelper for NSMenuItemCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSMenuItemCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMenuItemCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -53,7 +63,9 @@ unsafe impl NSObjectProtocol for NSMenuItemCell {}
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSMenuItemCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSMenuItemCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
 impl NSMenuItemCell {

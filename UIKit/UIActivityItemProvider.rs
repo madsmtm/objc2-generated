@@ -94,9 +94,13 @@ extern_class!(
     pub struct UIActivityItemProvider;
 );
 
-unsafe impl NSObjectProtocol for UIActivityItemProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIActivityItemProvider {}
+);
 
-unsafe impl UIActivityItemSource for UIActivityItemProvider {}
+extern_conformance!(
+    unsafe impl UIActivityItemSource for UIActivityItemProvider {}
+);
 
 impl UIActivityItemProvider {
     extern_methods!(

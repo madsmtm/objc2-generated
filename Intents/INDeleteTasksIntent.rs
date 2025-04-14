@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INDeleteTasksIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INDeleteTasksIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INDeleteTasksIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INDeleteTasksIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INDeleteTasksIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INDeleteTasksIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INDeleteTasksIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INDeleteTasksIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INDeleteTasksIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INDeleteTasksIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INDeleteTasksIntent {

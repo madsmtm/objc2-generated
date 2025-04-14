@@ -23,7 +23,9 @@ unsafe impl Send for AVVideoPerformanceMetrics {}
 
 unsafe impl Sync for AVVideoPerformanceMetrics {}
 
-unsafe impl NSObjectProtocol for AVVideoPerformanceMetrics {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVVideoPerformanceMetrics {}
+);
 
 impl AVVideoPerformanceMetrics {
     extern_methods!(

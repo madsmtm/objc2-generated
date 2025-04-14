@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIWindowScenePlacement")]
-unsafe impl NSCopying for UIWindowSceneProminentPlacement {}
+extern_conformance!(
+    unsafe impl NSCopying for UIWindowSceneProminentPlacement {}
+);
 
 #[cfg(feature = "UIWindowScenePlacement")]
 unsafe impl CopyingHelper for UIWindowSceneProminentPlacement {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for UIWindowSceneProminentPlacement {
 }
 
 #[cfg(feature = "UIWindowScenePlacement")]
-unsafe impl NSObjectProtocol for UIWindowSceneProminentPlacement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneProminentPlacement {}
+);
 
 #[cfg(feature = "UIWindowScenePlacement")]
 impl UIWindowSceneProminentPlacement {

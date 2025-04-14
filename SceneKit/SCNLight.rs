@@ -149,20 +149,30 @@ extern_class!(
     pub struct SCNLight;
 );
 
-unsafe impl NSCoding for SCNLight {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNLight {}
+);
 
-unsafe impl NSCopying for SCNLight {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNLight {}
+);
 
 unsafe impl CopyingHelper for SCNLight {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNLight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNLight {}
+);
 
-unsafe impl NSSecureCoding for SCNLight {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNLight {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNLight {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNLight {}
+);
 
 impl SCNLight {
     extern_methods!(

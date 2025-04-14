@@ -60,7 +60,9 @@ extern_class!(
     pub struct IKImageBrowserCell;
 );
 
-unsafe impl NSObjectProtocol for IKImageBrowserCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKImageBrowserCell {}
+);
 
 impl IKImageBrowserCell {
     extern_methods!(

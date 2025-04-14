@@ -19,7 +19,9 @@ extern_class!(
     pub struct SCNTransaction;
 );
 
-unsafe impl NSObjectProtocol for SCNTransaction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNTransaction {}
+);
 
 impl SCNTransaction {
     extern_methods!(

@@ -18,13 +18,17 @@ extern_class!(
     pub struct PKIdentityElement;
 );
 
-unsafe impl NSCopying for PKIdentityElement {}
+extern_conformance!(
+    unsafe impl NSCopying for PKIdentityElement {}
+);
 
 unsafe impl CopyingHelper for PKIdentityElement {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PKIdentityElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityElement {}
+);
 
 impl PKIdentityElement {
     extern_methods!(

@@ -22,17 +22,25 @@ unsafe impl Send for UITraitCollection {}
 
 unsafe impl Sync for UITraitCollection {}
 
-unsafe impl NSCoding for UITraitCollection {}
+extern_conformance!(
+    unsafe impl NSCoding for UITraitCollection {}
+);
 
-unsafe impl NSCopying for UITraitCollection {}
+extern_conformance!(
+    unsafe impl NSCopying for UITraitCollection {}
+);
 
 unsafe impl CopyingHelper for UITraitCollection {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITraitCollection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitCollection {}
+);
 
-unsafe impl NSSecureCoding for UITraitCollection {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UITraitCollection {}
+);
 
 impl UITraitCollection {
     extern_methods!(

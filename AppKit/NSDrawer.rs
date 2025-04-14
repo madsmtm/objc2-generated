@@ -47,16 +47,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
-unsafe impl NSAccessibility for NSDrawer {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSDrawer {}
+);
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
-unsafe impl NSAccessibilityElementProtocol for NSDrawer {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSDrawer {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSCoding for NSDrawer {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDrawer {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSObjectProtocol for NSDrawer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDrawer {}
+);
 
 #[cfg(feature = "NSResponder")]
 impl NSDrawer {

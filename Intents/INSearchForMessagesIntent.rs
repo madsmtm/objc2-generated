@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INSearchForMessagesIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INSearchForMessagesIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INSearchForMessagesIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INSearchForMessagesIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INSearchForMessagesIntent {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INSearchForMessagesIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INSearchForMessagesIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSearchForMessagesIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INSearchForMessagesIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSearchForMessagesIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INSearchForMessagesIntent {

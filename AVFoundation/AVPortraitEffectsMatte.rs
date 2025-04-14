@@ -22,7 +22,9 @@ extern_class!(
     pub struct AVPortraitEffectsMatte;
 );
 
-unsafe impl NSObjectProtocol for AVPortraitEffectsMatte {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPortraitEffectsMatte {}
+);
 
 impl AVPortraitEffectsMatte {
     extern_methods!(

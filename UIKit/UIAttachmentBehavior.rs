@@ -89,7 +89,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDynamicBehavior")]
-unsafe impl NSObjectProtocol for UIAttachmentBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIAttachmentBehavior {}
+);
 
 #[cfg(feature = "UIDynamicBehavior")]
 impl UIAttachmentBehavior {

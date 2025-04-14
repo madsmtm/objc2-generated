@@ -16,7 +16,9 @@ extern_class!(
     pub struct WKBackForwardListItem;
 );
 
-unsafe impl NSObjectProtocol for WKBackForwardListItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKBackForwardListItem {}
+);
 
 impl WKBackForwardListItem {
     extern_methods!(

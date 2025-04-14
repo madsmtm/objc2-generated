@@ -12,7 +12,9 @@ extern_class!(
     pub struct ASAccountAuthenticationModificationRequest;
 );
 
-unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationRequest {}
+);
 
 impl ASAccountAuthenticationModificationRequest {
     extern_methods!();

@@ -24,11 +24,17 @@ extern_class!(
     pub struct NSFileProviderDomainVersion;
 );
 
-unsafe impl NSCoding for NSFileProviderDomainVersion {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFileProviderDomainVersion {}
+);
 
-unsafe impl NSObjectProtocol for NSFileProviderDomainVersion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileProviderDomainVersion {}
+);
 
-unsafe impl NSSecureCoding for NSFileProviderDomainVersion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSFileProviderDomainVersion {}
+);
 
 impl NSFileProviderDomainVersion {
     extern_methods!(
@@ -156,7 +162,9 @@ extern_class!(
     pub struct NSFileProviderDomain;
 );
 
-unsafe impl NSObjectProtocol for NSFileProviderDomain {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileProviderDomain {}
+);
 
 impl NSFileProviderDomain {
     extern_methods!(

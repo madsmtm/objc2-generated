@@ -89,13 +89,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIDatePicker {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIDatePicker {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIDatePicker {}
+extern_conformance!(
+    unsafe impl NSCoding for UIDatePicker {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIDatePicker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDatePicker {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -103,7 +109,9 @@ unsafe impl NSObjectProtocol for UIDatePicker {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UIDatePicker {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIDatePicker {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -111,10 +119,14 @@ unsafe impl UIAppearance for UIDatePicker {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UIDatePicker {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIDatePicker {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIDatePicker {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIDatePicker {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -122,7 +134,9 @@ unsafe impl UICoordinateSpace for UIDatePicker {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIDatePicker {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIDatePicker {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -130,7 +144,9 @@ unsafe impl UIDynamicItem for UIDatePicker {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UIDatePicker {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIDatePicker {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -138,7 +154,9 @@ unsafe impl UIFocusEnvironment for UIDatePicker {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UIDatePicker {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIDatePicker {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -146,10 +164,14 @@ unsafe impl UIFocusItem for UIDatePicker {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UIDatePicker {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIDatePicker {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIDatePicker {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIDatePicker {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -157,7 +179,9 @@ unsafe impl UIResponderStandardEditActions for UIDatePicker {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIDatePicker {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIDatePicker {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UIDatePicker {

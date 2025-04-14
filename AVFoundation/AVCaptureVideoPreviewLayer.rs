@@ -30,19 +30,27 @@ extern_class!(
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CAMediaTiming for AVCaptureVideoPreviewLayer {}
+extern_conformance!(
+    unsafe impl CAMediaTiming for AVCaptureVideoPreviewLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSCoding for AVCaptureVideoPreviewLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for AVCaptureVideoPreviewLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSObjectProtocol for AVCaptureVideoPreviewLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureVideoPreviewLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSSecureCoding for AVCaptureVideoPreviewLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVCaptureVideoPreviewLayer {}
+);
 
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]

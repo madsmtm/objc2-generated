@@ -20,7 +20,9 @@ extern_class!(
     pub struct IOBluetoothUserNotification;
 );
 
-unsafe impl NSObjectProtocol for IOBluetoothUserNotification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothUserNotification {}
+);
 
 impl IOBluetoothUserNotification {
     extern_methods!(

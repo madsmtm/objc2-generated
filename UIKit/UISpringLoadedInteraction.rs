@@ -48,10 +48,14 @@ extern_class!(
     pub struct UISpringLoadedInteraction;
 );
 
-unsafe impl NSObjectProtocol for UISpringLoadedInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISpringLoadedInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UISpringLoadedInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UISpringLoadedInteraction {}
+);
 
 impl UISpringLoadedInteraction {
     extern_methods!(

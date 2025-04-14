@@ -46,7 +46,9 @@ extern_class!(
     pub struct UITabSidebarScrollTarget;
 );
 
-unsafe impl NSObjectProtocol for UITabSidebarScrollTarget {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabSidebarScrollTarget {}
+);
 
 impl UITabSidebarScrollTarget {
     extern_methods!(
@@ -89,7 +91,9 @@ extern_class!(
     pub struct UITabBarControllerSidebar;
 );
 
-unsafe impl NSObjectProtocol for UITabBarControllerSidebar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabBarControllerSidebar {}
+);
 
 impl UITabBarControllerSidebar {
     extern_methods!(

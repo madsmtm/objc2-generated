@@ -116,7 +116,9 @@ extern_class!(
     pub struct GKTurnBasedParticipant;
 );
 
-unsafe impl NSObjectProtocol for GKTurnBasedParticipant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKTurnBasedParticipant {}
+);
 
 impl GKTurnBasedParticipant {
     extern_methods!(
@@ -286,7 +288,9 @@ extern_class!(
     pub struct GKTurnBasedMatch;
 );
 
-unsafe impl NSObjectProtocol for GKTurnBasedMatch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKTurnBasedMatch {}
+);
 
 impl GKTurnBasedMatch {
     extern_methods!(
@@ -616,7 +620,9 @@ extern_class!(
     pub struct GKTurnBasedExchange;
 );
 
-unsafe impl NSObjectProtocol for GKTurnBasedExchange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKTurnBasedExchange {}
+);
 
 impl GKTurnBasedExchange {
     extern_methods!(
@@ -703,7 +709,9 @@ extern_class!(
     pub struct GKTurnBasedExchangeReply;
 );
 
-unsafe impl NSObjectProtocol for GKTurnBasedExchangeReply {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKTurnBasedExchangeReply {}
+);
 
 impl GKTurnBasedExchangeReply {
     extern_methods!(
@@ -778,7 +786,9 @@ extern_class!(
     pub struct GKTurnBasedEventHandler;
 );
 
-unsafe impl NSObjectProtocol for GKTurnBasedEventHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKTurnBasedEventHandler {}
+);
 
 impl GKTurnBasedEventHandler {
     extern_methods!(

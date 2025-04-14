@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNDArrayMultiaryBase {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayMultiaryBase {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNDArrayMultiaryBase {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayMultiaryBase {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayMultiaryBase {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for MPSNDArrayMultiaryBase {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNDArrayMultiaryBase {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayMultiaryBase {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNDArrayMultiaryBase {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayMultiaryBase {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayMultiaryBase {
@@ -257,10 +265,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNDArrayMultiaryKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayMultiaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNDArrayMultiaryKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayMultiaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayMultiaryKernel {
@@ -268,10 +280,14 @@ unsafe impl CopyingHelper for MPSNDArrayMultiaryKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNDArrayMultiaryKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayMultiaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNDArrayMultiaryKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayMultiaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayMultiaryKernel {
@@ -452,10 +468,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNDArrayMultiaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayMultiaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNDArrayMultiaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayMultiaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayMultiaryGradientKernel {
@@ -463,10 +483,14 @@ unsafe impl CopyingHelper for MPSNDArrayMultiaryGradientKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNDArrayMultiaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayMultiaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNDArrayMultiaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayMultiaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayMultiaryGradientKernel {
@@ -587,10 +611,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNDArrayUnaryKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayUnaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNDArrayUnaryKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayUnaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayUnaryKernel {
@@ -598,10 +626,14 @@ unsafe impl CopyingHelper for MPSNDArrayUnaryKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNDArrayUnaryKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayUnaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNDArrayUnaryKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayUnaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayUnaryKernel {
@@ -802,10 +834,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNDArrayUnaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayUnaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNDArrayUnaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayUnaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayUnaryGradientKernel {
@@ -813,10 +849,14 @@ unsafe impl CopyingHelper for MPSNDArrayUnaryGradientKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNDArrayUnaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayUnaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNDArrayUnaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayUnaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayUnaryGradientKernel {
@@ -928,10 +968,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNDArrayBinaryKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayBinaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNDArrayBinaryKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayBinaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayBinaryKernel {
@@ -939,10 +983,14 @@ unsafe impl CopyingHelper for MPSNDArrayBinaryKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNDArrayBinaryKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayBinaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNDArrayBinaryKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayBinaryKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayBinaryKernel {
@@ -1203,10 +1251,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNDArrayBinaryPrimaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayBinaryPrimaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNDArrayBinaryPrimaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayBinaryPrimaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayBinaryPrimaryGradientKernel {
@@ -1214,10 +1266,14 @@ unsafe impl CopyingHelper for MPSNDArrayBinaryPrimaryGradientKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNDArrayBinaryPrimaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayBinaryPrimaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNDArrayBinaryPrimaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayBinaryPrimaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayBinaryPrimaryGradientKernel {
@@ -1338,10 +1394,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNDArrayBinarySecondaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNDArrayBinarySecondaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNDArrayBinarySecondaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNDArrayBinarySecondaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayBinarySecondaryGradientKernel {
@@ -1349,10 +1409,14 @@ unsafe impl CopyingHelper for MPSNDArrayBinarySecondaryGradientKernel {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNDArrayBinarySecondaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNDArrayBinarySecondaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNDArrayBinarySecondaryGradientKernel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNDArrayBinarySecondaryGradientKernel {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayBinarySecondaryGradientKernel {

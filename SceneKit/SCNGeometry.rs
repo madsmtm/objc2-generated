@@ -96,26 +96,40 @@ extern_class!(
     pub struct SCNGeometry;
 );
 
-unsafe impl NSCoding for SCNGeometry {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNGeometry {}
+);
 
-unsafe impl NSCopying for SCNGeometry {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNGeometry {}
+);
 
 unsafe impl CopyingHelper for SCNGeometry {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNGeometry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNGeometry {}
+);
 
-unsafe impl NSSecureCoding for SCNGeometry {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNGeometry {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNGeometry {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNGeometry {}
+);
 
 #[cfg(feature = "SCNBoundingVolume")]
-unsafe impl SCNBoundingVolume for SCNGeometry {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for SCNGeometry {}
+);
 
 #[cfg(feature = "SCNShadable")]
-unsafe impl SCNShadable for SCNGeometry {}
+extern_conformance!(
+    unsafe impl SCNShadable for SCNGeometry {}
+);
 
 impl SCNGeometry {
     extern_methods!(
@@ -433,11 +447,17 @@ extern_class!(
     pub struct SCNGeometrySource;
 );
 
-unsafe impl NSCoding for SCNGeometrySource {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNGeometrySource {}
+);
 
-unsafe impl NSObjectProtocol for SCNGeometrySource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNGeometrySource {}
+);
 
-unsafe impl NSSecureCoding for SCNGeometrySource {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNGeometrySource {}
+);
 
 impl SCNGeometrySource {
     extern_methods!(
@@ -633,11 +653,17 @@ extern_class!(
     pub struct SCNGeometryElement;
 );
 
-unsafe impl NSCoding for SCNGeometryElement {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNGeometryElement {}
+);
 
-unsafe impl NSObjectProtocol for SCNGeometryElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNGeometryElement {}
+);
 
-unsafe impl NSSecureCoding for SCNGeometryElement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNGeometryElement {}
+);
 
 impl SCNGeometryElement {
     extern_methods!(
@@ -844,17 +870,25 @@ extern_class!(
     pub struct SCNGeometryTessellator;
 );
 
-unsafe impl NSCoding for SCNGeometryTessellator {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNGeometryTessellator {}
+);
 
-unsafe impl NSCopying for SCNGeometryTessellator {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNGeometryTessellator {}
+);
 
 unsafe impl CopyingHelper for SCNGeometryTessellator {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNGeometryTessellator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNGeometryTessellator {}
+);
 
-unsafe impl NSSecureCoding for SCNGeometryTessellator {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNGeometryTessellator {}
+);
 
 impl SCNGeometryTessellator {
     extern_methods!(

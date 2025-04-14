@@ -15,7 +15,9 @@ extern_class!(
     pub struct UIDocumentProperties;
 );
 
-unsafe impl NSObjectProtocol for UIDocumentProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentProperties {}
+);
 
 impl UIDocumentProperties {
     extern_methods!(

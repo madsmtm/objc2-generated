@@ -47,62 +47,90 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UILabel {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UILabel {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UILabel {}
+extern_conformance!(
+    unsafe impl NSCoding for UILabel {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UILabel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UILabel {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UILabel {}
+extern_conformance!(
+    unsafe impl UIAppearance for UILabel {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UILabel {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UILabel {}
+);
 
 #[cfg(all(
     feature = "UIContentSizeCategoryAdjusting",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIContentSizeCategoryAdjusting for UILabel {}
+extern_conformance!(
+    unsafe impl UIContentSizeCategoryAdjusting for UILabel {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UILabel {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UILabel {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UILabel {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UILabel {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UILabel {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UILabel {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UILabel {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UILabel {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UILabel {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UILabel {}
+);
 
 #[cfg(all(
     feature = "UILetterformAwareAdjusting",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UILetterformAwareAdjusting for UILabel {}
+extern_conformance!(
+    unsafe impl UILetterformAwareAdjusting for UILabel {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UILabel {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UILabel {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UILabel {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UILabel {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UILabel {

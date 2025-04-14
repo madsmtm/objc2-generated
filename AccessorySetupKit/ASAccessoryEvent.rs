@@ -78,7 +78,9 @@ unsafe impl Send for ASAccessoryEvent {}
 
 unsafe impl Sync for ASAccessoryEvent {}
 
-unsafe impl NSObjectProtocol for ASAccessoryEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAccessoryEvent {}
+);
 
 impl ASAccessoryEvent {
     extern_methods!(

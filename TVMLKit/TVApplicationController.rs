@@ -21,13 +21,17 @@ extern_class!(
     pub struct TVApplicationControllerContext;
 );
 
-unsafe impl NSCopying for TVApplicationControllerContext {}
+extern_conformance!(
+    unsafe impl NSCopying for TVApplicationControllerContext {}
+);
 
 unsafe impl CopyingHelper for TVApplicationControllerContext {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVApplicationControllerContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVApplicationControllerContext {}
+);
 
 impl TVApplicationControllerContext {
     extern_methods!(
@@ -177,7 +181,9 @@ extern_class!(
     pub struct TVApplicationController;
 );
 
-unsafe impl NSObjectProtocol for TVApplicationController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVApplicationController {}
+);
 
 impl TVApplicationController {
     extern_methods!(

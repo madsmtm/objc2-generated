@@ -54,7 +54,9 @@ extern_class!(
     pub struct NSValueTransformer;
 );
 
-unsafe impl NSObjectProtocol for NSValueTransformer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSValueTransformer {}
+);
 
 impl NSValueTransformer {
     extern_methods!(
@@ -125,7 +127,9 @@ extern_class!(
     pub struct NSSecureUnarchiveFromDataTransformer;
 );
 
-unsafe impl NSObjectProtocol for NSSecureUnarchiveFromDataTransformer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSecureUnarchiveFromDataTransformer {}
+);
 
 impl NSSecureUnarchiveFromDataTransformer {
     extern_methods!(

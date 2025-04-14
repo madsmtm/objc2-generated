@@ -71,7 +71,9 @@ unsafe impl Send for NSFileAccessIntent {}
 
 unsafe impl Sync for NSFileAccessIntent {}
 
-unsafe impl NSObjectProtocol for NSFileAccessIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileAccessIntent {}
+);
 
 impl NSFileAccessIntent {
     extern_methods!(
@@ -118,7 +120,9 @@ extern_class!(
     pub struct NSFileCoordinator;
 );
 
-unsafe impl NSObjectProtocol for NSFileCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileCoordinator {}
+);
 
 impl NSFileCoordinator {
     extern_methods!(

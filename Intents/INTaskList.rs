@@ -13,17 +13,25 @@ extern_class!(
     pub struct INTaskList;
 );
 
-unsafe impl NSCoding for INTaskList {}
+extern_conformance!(
+    unsafe impl NSCoding for INTaskList {}
+);
 
-unsafe impl NSCopying for INTaskList {}
+extern_conformance!(
+    unsafe impl NSCopying for INTaskList {}
+);
 
 unsafe impl CopyingHelper for INTaskList {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INTaskList {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INTaskList {}
+);
 
-unsafe impl NSSecureCoding for INTaskList {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INTaskList {}
+);
 
 impl INTaskList {
     extern_methods!(

@@ -16,7 +16,9 @@ extern_class!(
     pub struct AVCaptionGrouper;
 );
 
-unsafe impl NSObjectProtocol for AVCaptionGrouper {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionGrouper {}
+);
 
 impl AVCaptionGrouper {
     extern_methods!(

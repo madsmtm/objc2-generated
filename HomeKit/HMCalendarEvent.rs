@@ -31,7 +31,9 @@ unsafe impl Send for HMCalendarEvent {}
 unsafe impl Sync for HMCalendarEvent {}
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSCopying for HMCalendarEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMCalendarEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl CopyingHelper for HMCalendarEvent {
@@ -39,7 +41,9 @@ unsafe impl CopyingHelper for HMCalendarEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSMutableCopying for HMCalendarEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMCalendarEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl MutableCopyingHelper for HMCalendarEvent {
@@ -47,7 +51,9 @@ unsafe impl MutableCopyingHelper for HMCalendarEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSObjectProtocol for HMCalendarEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCalendarEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMCalendarEvent {
@@ -119,7 +125,9 @@ unsafe impl Send for HMMutableCalendarEvent {}
 unsafe impl Sync for HMMutableCalendarEvent {}
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSCopying for HMMutableCalendarEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HMMutableCalendarEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl CopyingHelper for HMMutableCalendarEvent {
@@ -127,7 +135,9 @@ unsafe impl CopyingHelper for HMMutableCalendarEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSMutableCopying for HMMutableCalendarEvent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for HMMutableCalendarEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 unsafe impl MutableCopyingHelper for HMMutableCalendarEvent {
@@ -135,7 +145,9 @@ unsafe impl MutableCopyingHelper for HMMutableCalendarEvent {
 }
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
-unsafe impl NSObjectProtocol for HMMutableCalendarEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMMutableCalendarEvent {}
+);
 
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMMutableCalendarEvent {

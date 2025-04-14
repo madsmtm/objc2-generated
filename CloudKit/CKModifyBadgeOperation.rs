@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CKOperation")]
-unsafe impl NSObjectProtocol for CKModifyBadgeOperation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKModifyBadgeOperation {}
+);
 
 #[cfg(feature = "CKOperation")]
 impl CKModifyBadgeOperation {

@@ -13,17 +13,25 @@ extern_class!(
     pub struct MPMediaQuerySection;
 );
 
-unsafe impl NSCoding for MPMediaQuerySection {}
+extern_conformance!(
+    unsafe impl NSCoding for MPMediaQuerySection {}
+);
 
-unsafe impl NSCopying for MPMediaQuerySection {}
+extern_conformance!(
+    unsafe impl NSCopying for MPMediaQuerySection {}
+);
 
 unsafe impl CopyingHelper for MPMediaQuerySection {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPMediaQuerySection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMediaQuerySection {}
+);
 
-unsafe impl NSSecureCoding for MPMediaQuerySection {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPMediaQuerySection {}
+);
 
 impl MPMediaQuerySection {
     extern_methods!(

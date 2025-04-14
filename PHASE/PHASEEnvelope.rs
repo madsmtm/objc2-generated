@@ -20,7 +20,9 @@ extern_class!(
     pub struct PHASENumericPair;
 );
 
-unsafe impl NSObjectProtocol for PHASENumericPair {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASENumericPair {}
+);
 
 impl PHASENumericPair {
     extern_methods!(
@@ -94,7 +96,9 @@ extern_class!(
     pub struct PHASEEnvelopeSegment;
 );
 
-unsafe impl NSObjectProtocol for PHASEEnvelopeSegment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEEnvelopeSegment {}
+);
 
 impl PHASEEnvelopeSegment {
     extern_methods!(
@@ -140,7 +144,9 @@ extern_class!(
     pub struct PHASEEnvelope;
 );
 
-unsafe impl NSObjectProtocol for PHASEEnvelope {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEEnvelope {}
+);
 
 impl PHASEEnvelope {
     extern_methods!(

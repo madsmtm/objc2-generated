@@ -70,12 +70,18 @@ unsafe impl Send for NSURLAuthenticationChallenge {}
 unsafe impl Sync for NSURLAuthenticationChallenge {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSURLAuthenticationChallenge {}
+extern_conformance!(
+    unsafe impl NSCoding for NSURLAuthenticationChallenge {}
+);
 
-unsafe impl NSObjectProtocol for NSURLAuthenticationChallenge {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLAuthenticationChallenge {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSURLAuthenticationChallenge {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSURLAuthenticationChallenge {}
+);
 
 impl NSURLAuthenticationChallenge {
     extern_methods!(

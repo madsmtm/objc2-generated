@@ -17,11 +17,17 @@ extern_class!(
     pub struct MLImageConstraint;
 );
 
-unsafe impl NSCoding for MLImageConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for MLImageConstraint {}
+);
 
-unsafe impl NSObjectProtocol for MLImageConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLImageConstraint {}
+);
 
-unsafe impl NSSecureCoding for MLImageConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLImageConstraint {}
+);
 
 impl MLImageConstraint {
     extern_methods!(

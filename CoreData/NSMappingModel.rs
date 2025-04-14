@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSMappingModel;
 );
 
-unsafe impl NSObjectProtocol for NSMappingModel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMappingModel {}
+);
 
 impl NSMappingModel {
     extern_methods!(

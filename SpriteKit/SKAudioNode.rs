@@ -34,11 +34,15 @@ extern_class!(
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for SKAudioNode {}
+extern_conformance!(
+    unsafe impl NSCoding for SKAudioNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCopying for SKAudioNode {}
+extern_conformance!(
+    unsafe impl NSCopying for SKAudioNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
@@ -48,11 +52,15 @@ unsafe impl CopyingHelper for SKAudioNode {
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for SKAudioNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKAudioNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSSecureCoding for SKAudioNode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKAudioNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]

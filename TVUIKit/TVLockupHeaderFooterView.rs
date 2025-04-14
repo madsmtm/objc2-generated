@@ -22,32 +22,58 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-quartz-core")]
-unsafe impl CALayerDelegate for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for TVLockupHeaderFooterView {}
+);
 
-unsafe impl NSCoding for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl NSCoding for TVLockupHeaderFooterView {}
+);
 
-unsafe impl NSObjectProtocol for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVLockupHeaderFooterView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl TVLockupViewComponent for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl TVLockupViewComponent for TVLockupHeaderFooterView {}
+);
 
-unsafe impl UIAppearance for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIAppearance for TVLockupHeaderFooterView {}
+);
 
-unsafe impl UIAppearanceContainer for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVLockupHeaderFooterView {}
+);
 
-unsafe impl UICoordinateSpace for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for TVLockupHeaderFooterView {}
+);
 
-unsafe impl UIDynamicItem for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVLockupHeaderFooterView {}
+);
 
-unsafe impl UIFocusEnvironment for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVLockupHeaderFooterView {}
+);
 
-unsafe impl UIFocusItem for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for TVLockupHeaderFooterView {}
+);
 
-unsafe impl UIFocusItemContainer for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for TVLockupHeaderFooterView {}
+);
 
-unsafe impl UIResponderStandardEditActions for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVLockupHeaderFooterView {}
+);
 
-unsafe impl UITraitEnvironment for TVLockupHeaderFooterView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVLockupHeaderFooterView {}
+);
 
 impl TVLockupHeaderFooterView {
     extern_methods!(

@@ -21,7 +21,9 @@ extern_class!(
     pub struct MPPlayableContentManager;
 );
 
-unsafe impl NSObjectProtocol for MPPlayableContentManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPPlayableContentManager {}
+);
 
 impl MPPlayableContentManager {
     extern_methods!(

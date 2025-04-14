@@ -13,17 +13,25 @@ extern_class!(
     pub struct ASAuthorizationPublicKeyCredentialParameters;
 );
 
-unsafe impl NSCoding for ASAuthorizationPublicKeyCredentialParameters {}
+extern_conformance!(
+    unsafe impl NSCoding for ASAuthorizationPublicKeyCredentialParameters {}
+);
 
-unsafe impl NSCopying for ASAuthorizationPublicKeyCredentialParameters {}
+extern_conformance!(
+    unsafe impl NSCopying for ASAuthorizationPublicKeyCredentialParameters {}
+);
 
 unsafe impl CopyingHelper for ASAuthorizationPublicKeyCredentialParameters {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialParameters {}
+);
 
-unsafe impl NSSecureCoding for ASAuthorizationPublicKeyCredentialParameters {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASAuthorizationPublicKeyCredentialParameters {}
+);
 
 impl ASAuthorizationPublicKeyCredentialParameters {
     extern_methods!(

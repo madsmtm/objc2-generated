@@ -40,7 +40,9 @@ unsafe impl Send for CKSyncEngineState {}
 
 unsafe impl Sync for CKSyncEngineState {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineState {}
+);
 
 impl CKSyncEngineState {
     extern_methods!(
@@ -160,11 +162,17 @@ unsafe impl Send for CKSyncEngineStateSerialization {}
 
 unsafe impl Sync for CKSyncEngineStateSerialization {}
 
-unsafe impl NSCoding for CKSyncEngineStateSerialization {}
+extern_conformance!(
+    unsafe impl NSCoding for CKSyncEngineStateSerialization {}
+);
 
-unsafe impl NSObjectProtocol for CKSyncEngineStateSerialization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineStateSerialization {}
+);
 
-unsafe impl NSSecureCoding for CKSyncEngineStateSerialization {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKSyncEngineStateSerialization {}
+);
 
 impl CKSyncEngineStateSerialization {
     extern_methods!(
@@ -211,7 +219,9 @@ unsafe impl Send for CKSyncEnginePendingRecordZoneChange {}
 
 unsafe impl Sync for CKSyncEnginePendingRecordZoneChange {}
 
-unsafe impl NSObjectProtocol for CKSyncEnginePendingRecordZoneChange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEnginePendingRecordZoneChange {}
+);
 
 impl CKSyncEnginePendingRecordZoneChange {
     extern_methods!(
@@ -276,7 +286,9 @@ unsafe impl Send for CKSyncEnginePendingDatabaseChange {}
 
 unsafe impl Sync for CKSyncEnginePendingDatabaseChange {}
 
-unsafe impl NSObjectProtocol for CKSyncEnginePendingDatabaseChange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEnginePendingDatabaseChange {}
+);
 
 impl CKSyncEnginePendingDatabaseChange {
     extern_methods!(
@@ -312,7 +324,9 @@ unsafe impl Send for CKSyncEnginePendingZoneSave {}
 
 unsafe impl Sync for CKSyncEnginePendingZoneSave {}
 
-unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneSave {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneSave {}
+);
 
 impl CKSyncEnginePendingZoneSave {
     extern_methods!(
@@ -354,7 +368,9 @@ unsafe impl Send for CKSyncEnginePendingZoneDelete {}
 
 unsafe impl Sync for CKSyncEnginePendingZoneDelete {}
 
-unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneDelete {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneDelete {}
+);
 
 impl CKSyncEnginePendingZoneDelete {
     extern_methods!(

@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl NSCopying for NSBatchDeleteRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for NSBatchDeleteRequest {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 unsafe impl CopyingHelper for NSBatchDeleteRequest {
@@ -24,7 +26,9 @@ unsafe impl CopyingHelper for NSBatchDeleteRequest {
 }
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl NSObjectProtocol for NSBatchDeleteRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBatchDeleteRequest {}
+);
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 impl NSBatchDeleteRequest {

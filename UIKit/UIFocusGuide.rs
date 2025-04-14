@@ -19,10 +19,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UILayoutGuide")]
-unsafe impl NSCoding for UIFocusGuide {}
+extern_conformance!(
+    unsafe impl NSCoding for UIFocusGuide {}
+);
 
 #[cfg(feature = "UILayoutGuide")]
-unsafe impl NSObjectProtocol for UIFocusGuide {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFocusGuide {}
+);
 
 #[cfg(feature = "UILayoutGuide")]
 impl UIFocusGuide {

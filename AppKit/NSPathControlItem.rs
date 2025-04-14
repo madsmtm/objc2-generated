@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSPathControlItem;
 );
 
-unsafe impl NSObjectProtocol for NSPathControlItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPathControlItem {}
+);
 
 impl NSPathControlItem {
     extern_methods!(

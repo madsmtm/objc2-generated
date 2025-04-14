@@ -52,7 +52,9 @@ unsafe impl Send for AVPlayerItemSegment {}
 
 unsafe impl Sync for AVPlayerItemSegment {}
 
-unsafe impl NSObjectProtocol for AVPlayerItemSegment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemSegment {}
+);
 
 impl AVPlayerItemSegment {
     extern_methods!(
@@ -118,7 +120,9 @@ unsafe impl Send for AVPlayerItemIntegratedTimelineSnapshot {}
 
 unsafe impl Sync for AVPlayerItemIntegratedTimelineSnapshot {}
 
-unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimelineSnapshot {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimelineSnapshot {}
+);
 
 impl AVPlayerItemIntegratedTimelineSnapshot {
     extern_methods!(
@@ -201,7 +205,9 @@ unsafe impl Send for AVPlayerItemIntegratedTimeline {}
 
 unsafe impl Sync for AVPlayerItemIntegratedTimeline {}
 
-unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimeline {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimeline {}
+);
 
 impl AVPlayerItemIntegratedTimeline {
     extern_methods!(

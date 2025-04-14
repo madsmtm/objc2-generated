@@ -23,7 +23,9 @@ unsafe impl Send for PHAsset {}
 unsafe impl Sync for PHAsset {}
 
 #[cfg(feature = "PHObject")]
-unsafe impl NSCopying for PHAsset {}
+extern_conformance!(
+    unsafe impl NSCopying for PHAsset {}
+);
 
 #[cfg(feature = "PHObject")]
 unsafe impl CopyingHelper for PHAsset {
@@ -31,7 +33,9 @@ unsafe impl CopyingHelper for PHAsset {
 }
 
 #[cfg(feature = "PHObject")]
-unsafe impl NSObjectProtocol for PHAsset {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHAsset {}
+);
 
 #[cfg(feature = "PHObject")]
 impl PHAsset {

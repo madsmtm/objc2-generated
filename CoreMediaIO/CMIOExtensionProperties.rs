@@ -184,12 +184,16 @@ extern_class!(
     pub struct CMIOExtensionPropertyAttributes<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding
-    for CMIOExtensionPropertyAttributes<ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding
+        for CMIOExtensionPropertyAttributes<ObjectType>
+    {
+    }
+);
 
-unsafe impl<ObjectType: ?Sized> NSCopying for CMIOExtensionPropertyAttributes<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for CMIOExtensionPropertyAttributes<ObjectType> {}
+);
 
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper
     for CMIOExtensionPropertyAttributes<ObjectType>
@@ -197,12 +201,16 @@ unsafe impl<ObjectType: ?Sized + Message> CopyingHelper
     type Result = Self;
 }
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for CMIOExtensionPropertyAttributes<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for CMIOExtensionPropertyAttributes<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
-    for CMIOExtensionPropertyAttributes<ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
+        for CMIOExtensionPropertyAttributes<ObjectType>
+    {
+    }
+);
 
 impl<ObjectType: Message> CMIOExtensionPropertyAttributes<ObjectType> {
     extern_methods!(
@@ -303,20 +311,28 @@ extern_class!(
     pub struct CMIOExtensionPropertyState<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for CMIOExtensionPropertyState<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for CMIOExtensionPropertyState<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSCopying for CMIOExtensionPropertyState<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for CMIOExtensionPropertyState<ObjectType> {}
+);
 
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for CMIOExtensionPropertyState<ObjectType> {
     type Result = Self;
 }
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for CMIOExtensionPropertyState<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for CMIOExtensionPropertyState<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
-    for CMIOExtensionPropertyState<ObjectType>
-{
-}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding
+        for CMIOExtensionPropertyState<ObjectType>
+    {
+    }
+);
 
 impl<ObjectType: Message> CMIOExtensionPropertyState<ObjectType> {
     extern_methods!(
@@ -410,17 +426,25 @@ extern_class!(
     pub struct CMIOExtensionStreamCustomClockConfiguration;
 );
 
-unsafe impl NSCoding for CMIOExtensionStreamCustomClockConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for CMIOExtensionStreamCustomClockConfiguration {}
+);
 
-unsafe impl NSCopying for CMIOExtensionStreamCustomClockConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for CMIOExtensionStreamCustomClockConfiguration {}
+);
 
 unsafe impl CopyingHelper for CMIOExtensionStreamCustomClockConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMIOExtensionStreamCustomClockConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMIOExtensionStreamCustomClockConfiguration {}
+);
 
-unsafe impl NSSecureCoding for CMIOExtensionStreamCustomClockConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMIOExtensionStreamCustomClockConfiguration {}
+);
 
 impl CMIOExtensionStreamCustomClockConfiguration {
     extern_methods!(
@@ -520,17 +544,25 @@ extern_class!(
     pub struct CMIOExtensionStreamFormat;
 );
 
-unsafe impl NSCoding for CMIOExtensionStreamFormat {}
+extern_conformance!(
+    unsafe impl NSCoding for CMIOExtensionStreamFormat {}
+);
 
-unsafe impl NSCopying for CMIOExtensionStreamFormat {}
+extern_conformance!(
+    unsafe impl NSCopying for CMIOExtensionStreamFormat {}
+);
 
 unsafe impl CopyingHelper for CMIOExtensionStreamFormat {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMIOExtensionStreamFormat {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMIOExtensionStreamFormat {}
+);
 
-unsafe impl NSSecureCoding for CMIOExtensionStreamFormat {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMIOExtensionStreamFormat {}
+);
 
 impl CMIOExtensionStreamFormat {
     extern_methods!(
@@ -623,17 +655,25 @@ extern_class!(
     pub struct CMIOExtensionScheduledOutput;
 );
 
-unsafe impl NSCoding for CMIOExtensionScheduledOutput {}
+extern_conformance!(
+    unsafe impl NSCoding for CMIOExtensionScheduledOutput {}
+);
 
-unsafe impl NSCopying for CMIOExtensionScheduledOutput {}
+extern_conformance!(
+    unsafe impl NSCopying for CMIOExtensionScheduledOutput {}
+);
 
 unsafe impl CopyingHelper for CMIOExtensionScheduledOutput {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMIOExtensionScheduledOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMIOExtensionScheduledOutput {}
+);
 
-unsafe impl NSSecureCoding for CMIOExtensionScheduledOutput {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CMIOExtensionScheduledOutput {}
+);
 
 impl CMIOExtensionScheduledOutput {
     extern_methods!(
@@ -693,13 +733,17 @@ extern_class!(
     pub struct CMIOExtensionClient;
 );
 
-unsafe impl NSCopying for CMIOExtensionClient {}
+extern_conformance!(
+    unsafe impl NSCopying for CMIOExtensionClient {}
+);
 
 unsafe impl CopyingHelper for CMIOExtensionClient {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CMIOExtensionClient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMIOExtensionClient {}
+);
 
 impl CMIOExtensionClient {
     extern_methods!(

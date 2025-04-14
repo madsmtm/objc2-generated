@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSPortMessage;
 );
 
-unsafe impl NSObjectProtocol for NSPortMessage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPortMessage {}
+);
 
 impl NSPortMessage {
     extern_methods!(

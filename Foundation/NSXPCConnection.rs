@@ -59,9 +59,13 @@ extern_class!(
     pub struct NSXPCConnection;
 );
 
-unsafe impl NSObjectProtocol for NSXPCConnection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSXPCConnection {}
+);
 
-unsafe impl NSXPCProxyCreating for NSXPCConnection {}
+extern_conformance!(
+    unsafe impl NSXPCProxyCreating for NSXPCConnection {}
+);
 
 impl NSXPCConnection {
     extern_methods!(
@@ -245,7 +249,9 @@ extern_class!(
     pub struct NSXPCListener;
 );
 
-unsafe impl NSObjectProtocol for NSXPCListener {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSXPCListener {}
+);
 
 impl NSXPCListener {
     extern_methods!(
@@ -344,7 +350,9 @@ extern_class!(
     pub struct NSXPCInterface;
 );
 
-unsafe impl NSObjectProtocol for NSXPCInterface {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSXPCInterface {}
+);
 
 impl NSXPCInterface {
     extern_methods!(
@@ -428,12 +436,18 @@ unsafe impl Send for NSXPCListenerEndpoint {}
 unsafe impl Sync for NSXPCListenerEndpoint {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSXPCListenerEndpoint {}
+extern_conformance!(
+    unsafe impl NSCoding for NSXPCListenerEndpoint {}
+);
 
-unsafe impl NSObjectProtocol for NSXPCListenerEndpoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSXPCListenerEndpoint {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSXPCListenerEndpoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSXPCListenerEndpoint {}
+);
 
 impl NSXPCListenerEndpoint {
     extern_methods!();
@@ -461,7 +475,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSCoder")]
-unsafe impl NSObjectProtocol for NSXPCCoder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSXPCCoder {}
+);
 
 #[cfg(feature = "NSCoder")]
 impl NSXPCCoder {

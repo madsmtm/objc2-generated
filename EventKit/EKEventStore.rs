@@ -63,7 +63,9 @@ extern_class!(
     pub struct EKEventStore;
 );
 
-unsafe impl NSObjectProtocol for EKEventStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKEventStore {}
+);
 
 impl EKEventStore {
     extern_methods!(

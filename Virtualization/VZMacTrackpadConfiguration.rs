@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
-unsafe impl NSCopying for VZMacTrackpadConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZMacTrackpadConfiguration {}
+);
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
 unsafe impl CopyingHelper for VZMacTrackpadConfiguration {
@@ -31,7 +33,9 @@ unsafe impl CopyingHelper for VZMacTrackpadConfiguration {
 }
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZMacTrackpadConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMacTrackpadConfiguration {}
+);
 
 #[cfg(feature = "VZPointingDeviceConfiguration")]
 impl VZMacTrackpadConfiguration {

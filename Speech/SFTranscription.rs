@@ -14,17 +14,25 @@ extern_class!(
     pub struct SFTranscription;
 );
 
-unsafe impl NSCoding for SFTranscription {}
+extern_conformance!(
+    unsafe impl NSCoding for SFTranscription {}
+);
 
-unsafe impl NSCopying for SFTranscription {}
+extern_conformance!(
+    unsafe impl NSCopying for SFTranscription {}
+);
 
 unsafe impl CopyingHelper for SFTranscription {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SFTranscription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFTranscription {}
+);
 
-unsafe impl NSSecureCoding for SFTranscription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SFTranscription {}
+);
 
 impl SFTranscription {
     extern_methods!(

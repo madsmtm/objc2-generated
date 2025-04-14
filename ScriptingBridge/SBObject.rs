@@ -44,9 +44,13 @@ extern_class!(
     pub struct SBObject;
 );
 
-unsafe impl NSCoding for SBObject {}
+extern_conformance!(
+    unsafe impl NSCoding for SBObject {}
+);
 
-unsafe impl NSObjectProtocol for SBObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SBObject {}
+);
 
 impl SBObject {
     extern_methods!(

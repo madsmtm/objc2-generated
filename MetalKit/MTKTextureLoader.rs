@@ -185,7 +185,9 @@ extern_class!(
     pub struct MTKTextureLoader;
 );
 
-unsafe impl NSObjectProtocol for MTKTextureLoader {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTKTextureLoader {}
+);
 
 impl MTKTextureLoader {
     extern_methods!(

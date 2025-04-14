@@ -26,11 +26,17 @@ unsafe impl Send for PHProjectTypeDescription {}
 
 unsafe impl Sync for PHProjectTypeDescription {}
 
-unsafe impl NSCoding for PHProjectTypeDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectTypeDescription {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectTypeDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectTypeDescription {}
+);
 
-unsafe impl NSSecureCoding for PHProjectTypeDescription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectTypeDescription {}
+);
 
 impl PHProjectTypeDescription {
     extern_methods!(

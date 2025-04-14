@@ -22,7 +22,9 @@ extern_class!(
     pub struct MXMetricManager;
 );
 
-unsafe impl NSObjectProtocol for MXMetricManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXMetricManager {}
+);
 
 impl MXMetricManager {
     extern_methods!(

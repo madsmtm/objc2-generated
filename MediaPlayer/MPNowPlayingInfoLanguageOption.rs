@@ -85,7 +85,9 @@ extern_class!(
     pub struct MPNowPlayingInfoLanguageOption;
 );
 
-unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOption {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOption {}
+);
 
 impl MPNowPlayingInfoLanguageOption {
     extern_methods!(
@@ -165,7 +167,9 @@ extern_class!(
     pub struct MPNowPlayingInfoLanguageOptionGroup;
 );
 
-unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOptionGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOptionGroup {}
+);
 
 impl MPNowPlayingInfoLanguageOptionGroup {
     extern_methods!(

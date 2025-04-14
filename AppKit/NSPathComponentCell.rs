@@ -25,7 +25,9 @@ extern_class!(
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSAccessibility for NSPathComponentCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSPathComponentCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -33,21 +35,27 @@ unsafe impl NSAccessibility for NSPathComponentCell {}
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSPathComponentCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSPathComponentCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSCoding for NSPathComponentCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPathComponentCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSCopying for NSPathComponentCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPathComponentCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -63,7 +71,9 @@ unsafe impl CopyingHelper for NSPathComponentCell {
     feature = "NSCell",
     feature = "NSTextFieldCell"
 ))]
-unsafe impl NSObjectProtocol for NSPathComponentCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPathComponentCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
@@ -71,7 +81,9 @@ unsafe impl NSObjectProtocol for NSPathComponentCell {}
     feature = "NSTextFieldCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSPathComponentCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSPathComponentCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",

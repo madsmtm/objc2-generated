@@ -35,7 +35,9 @@ extern_class!(
     pub struct UICalendarViewDecoration;
 );
 
-unsafe impl NSObjectProtocol for UICalendarViewDecoration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICalendarViewDecoration {}
+);
 
 impl UICalendarViewDecoration {
     extern_methods!(

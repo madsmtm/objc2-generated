@@ -83,7 +83,9 @@ extern_class!(
     pub struct CIContext;
 );
 
-unsafe impl NSObjectProtocol for CIContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIContext {}
+);
 
 impl CIContext {
     extern_methods!(

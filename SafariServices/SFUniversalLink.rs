@@ -20,7 +20,9 @@ extern_class!(
     pub struct SFUniversalLink;
 );
 
-unsafe impl NSObjectProtocol for SFUniversalLink {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFUniversalLink {}
+);
 
 impl SFUniversalLink {
     extern_methods!(

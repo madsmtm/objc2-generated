@@ -50,7 +50,9 @@ extern_class!(
     pub struct WKWebExtensionMessagePort;
 );
 
-unsafe impl NSObjectProtocol for WKWebExtensionMessagePort {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebExtensionMessagePort {}
+);
 
 impl WKWebExtensionMessagePort {
     extern_methods!(

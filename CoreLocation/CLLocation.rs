@@ -126,17 +126,25 @@ extern_class!(
     pub struct CLFloor;
 );
 
-unsafe impl NSCoding for CLFloor {}
+extern_conformance!(
+    unsafe impl NSCoding for CLFloor {}
+);
 
-unsafe impl NSCopying for CLFloor {}
+extern_conformance!(
+    unsafe impl NSCopying for CLFloor {}
+);
 
 unsafe impl CopyingHelper for CLFloor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLFloor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLFloor {}
+);
 
-unsafe impl NSSecureCoding for CLFloor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLFloor {}
+);
 
 impl CLFloor {
     extern_methods!(
@@ -166,17 +174,25 @@ extern_class!(
     pub struct CLLocationSourceInformation;
 );
 
-unsafe impl NSCoding for CLLocationSourceInformation {}
+extern_conformance!(
+    unsafe impl NSCoding for CLLocationSourceInformation {}
+);
 
-unsafe impl NSCopying for CLLocationSourceInformation {}
+extern_conformance!(
+    unsafe impl NSCopying for CLLocationSourceInformation {}
+);
 
 unsafe impl CopyingHelper for CLLocationSourceInformation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLLocationSourceInformation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLLocationSourceInformation {}
+);
 
-unsafe impl NSSecureCoding for CLLocationSourceInformation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLLocationSourceInformation {}
+);
 
 impl CLLocationSourceInformation {
     extern_methods!(
@@ -222,17 +238,25 @@ unsafe impl Send for CLLocation {}
 
 unsafe impl Sync for CLLocation {}
 
-unsafe impl NSCoding for CLLocation {}
+extern_conformance!(
+    unsafe impl NSCoding for CLLocation {}
+);
 
-unsafe impl NSCopying for CLLocation {}
+extern_conformance!(
+    unsafe impl NSCopying for CLLocation {}
+);
 
 unsafe impl CopyingHelper for CLLocation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLLocation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLLocation {}
+);
 
-unsafe impl NSSecureCoding for CLLocation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLLocation {}
+);
 
 impl CLLocation {
     extern_methods!(

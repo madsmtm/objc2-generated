@@ -29,7 +29,9 @@ extern_class!(
     pub struct VZBridgedNetworkInterface;
 );
 
-unsafe impl NSObjectProtocol for VZBridgedNetworkInterface {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZBridgedNetworkInterface {}
+);
 
 impl VZBridgedNetworkInterface {
     extern_methods!(

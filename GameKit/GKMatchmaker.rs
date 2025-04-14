@@ -84,7 +84,9 @@ extern_class!(
     pub struct GKMatchRequest;
 );
 
-unsafe impl NSObjectProtocol for GKMatchRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKMatchRequest {}
+);
 
 impl GKMatchRequest {
     extern_methods!(
@@ -293,7 +295,9 @@ extern_class!(
     pub struct GKInvite;
 );
 
-unsafe impl NSObjectProtocol for GKInvite {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKInvite {}
+);
 
 impl GKInvite {
     extern_methods!(
@@ -381,7 +385,9 @@ extern_class!(
     pub struct GKMatchedPlayers;
 );
 
-unsafe impl NSObjectProtocol for GKMatchedPlayers {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKMatchedPlayers {}
+);
 
 impl GKMatchedPlayers {
     extern_methods!(
@@ -426,7 +432,9 @@ extern_class!(
     pub struct GKMatchmaker;
 );
 
-unsafe impl NSObjectProtocol for GKMatchmaker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKMatchmaker {}
+);
 
 impl GKMatchmaker {
     extern_methods!(

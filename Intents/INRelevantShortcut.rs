@@ -44,17 +44,25 @@ extern_class!(
     pub struct INRelevantShortcut;
 );
 
-unsafe impl NSCoding for INRelevantShortcut {}
+extern_conformance!(
+    unsafe impl NSCoding for INRelevantShortcut {}
+);
 
-unsafe impl NSCopying for INRelevantShortcut {}
+extern_conformance!(
+    unsafe impl NSCopying for INRelevantShortcut {}
+);
 
 unsafe impl CopyingHelper for INRelevantShortcut {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INRelevantShortcut {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRelevantShortcut {}
+);
 
-unsafe impl NSSecureCoding for INRelevantShortcut {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRelevantShortcut {}
+);
 
 impl INRelevantShortcut {
     extern_methods!(

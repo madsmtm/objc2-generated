@@ -252,20 +252,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMorphology {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMorphology {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMorphology {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMorphology {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMorphology {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMorphology {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMorphology {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSMorphology {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMorphology {}
+);
 
 impl NSMorphology {
     extern_methods!(
@@ -364,20 +372,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMorphologyPronoun {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMorphologyPronoun {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMorphologyPronoun {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMorphologyPronoun {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMorphologyPronoun {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMorphologyPronoun {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMorphologyPronoun {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSMorphologyPronoun {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMorphologyPronoun {}
+);
 
 impl NSMorphologyPronoun {
     extern_methods!(
@@ -447,20 +463,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMorphologyCustomPronoun {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMorphologyCustomPronoun {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMorphologyCustomPronoun {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMorphologyCustomPronoun {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMorphologyCustomPronoun {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMorphologyCustomPronoun {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMorphologyCustomPronoun {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSMorphologyCustomPronoun {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMorphologyCustomPronoun {}
+);
 
 impl NSMorphologyCustomPronoun {
     extern_methods!(

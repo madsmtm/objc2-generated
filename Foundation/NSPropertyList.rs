@@ -64,7 +64,9 @@ extern_class!(
     pub struct NSPropertyListSerialization;
 );
 
-unsafe impl NSObjectProtocol for NSPropertyListSerialization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPropertyListSerialization {}
+);
 
 impl NSPropertyListSerialization {
     extern_methods!(

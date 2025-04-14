@@ -26,11 +26,17 @@ extern_class!(
     pub struct IOBluetoothServiceBrowserController;
 );
 
-unsafe impl NSCoding for IOBluetoothServiceBrowserController {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothServiceBrowserController {}
+);
 
-unsafe impl NSObjectProtocol for IOBluetoothServiceBrowserController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothServiceBrowserController {}
+);
 
-unsafe impl NSSeguePerforming for IOBluetoothServiceBrowserController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for IOBluetoothServiceBrowserController {}
+);
 
 impl IOBluetoothServiceBrowserController {
     extern_methods!(

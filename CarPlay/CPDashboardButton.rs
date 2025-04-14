@@ -16,11 +16,17 @@ extern_class!(
     pub struct CPDashboardButton;
 );
 
-unsafe impl NSCoding for CPDashboardButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPDashboardButton {}
+);
 
-unsafe impl NSObjectProtocol for CPDashboardButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPDashboardButton {}
+);
 
-unsafe impl NSSecureCoding for CPDashboardButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPDashboardButton {}
+);
 
 impl CPDashboardButton {
     extern_methods!(

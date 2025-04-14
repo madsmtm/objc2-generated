@@ -34,17 +34,25 @@ extern_class!(
     pub struct MKMapConfiguration;
 );
 
-unsafe impl NSCoding for MKMapConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for MKMapConfiguration {}
+);
 
-unsafe impl NSCopying for MKMapConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for MKMapConfiguration {}
+);
 
 unsafe impl CopyingHelper for MKMapConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKMapConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapConfiguration {}
+);
 
-unsafe impl NSSecureCoding for MKMapConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MKMapConfiguration {}
+);
 
 impl MKMapConfiguration {
     extern_methods!(

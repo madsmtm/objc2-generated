@@ -69,21 +69,37 @@ extern_class!(
     pub struct IKDeviceBrowserView;
 );
 
-unsafe impl NSAccessibility for IKDeviceBrowserView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IKDeviceBrowserView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IKDeviceBrowserView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IKDeviceBrowserView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IKDeviceBrowserView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IKDeviceBrowserView {}
+);
 
-unsafe impl NSAppearanceCustomization for IKDeviceBrowserView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IKDeviceBrowserView {}
+);
 
-unsafe impl NSCoding for IKDeviceBrowserView {}
+extern_conformance!(
+    unsafe impl NSCoding for IKDeviceBrowserView {}
+);
 
-unsafe impl NSDraggingDestination for IKDeviceBrowserView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for IKDeviceBrowserView {}
+);
 
-unsafe impl NSObjectProtocol for IKDeviceBrowserView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKDeviceBrowserView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IKDeviceBrowserView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IKDeviceBrowserView {}
+);
 
 impl IKDeviceBrowserView {
     extern_methods!(

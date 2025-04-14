@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INDateComponentsRangeResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INDateComponentsRangeResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INDateComponentsRangeResolutionResult {

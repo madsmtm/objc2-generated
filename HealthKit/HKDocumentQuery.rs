@@ -24,7 +24,9 @@ unsafe impl Send for HKDocumentQuery {}
 unsafe impl Sync for HKDocumentQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKDocumentQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKDocumentQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKDocumentQuery {

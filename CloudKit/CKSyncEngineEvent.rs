@@ -108,7 +108,9 @@ unsafe impl Send for CKSyncEngineEvent {}
 
 unsafe impl Sync for CKSyncEngineEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineEvent {}
+);
 
 impl CKSyncEngineEvent {
     extern_methods!(
@@ -210,7 +212,9 @@ unsafe impl Send for CKSyncEngineStateUpdateEvent {}
 
 unsafe impl Sync for CKSyncEngineStateUpdateEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineStateUpdateEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineStateUpdateEvent {}
+);
 
 impl CKSyncEngineStateUpdateEvent {
     extern_methods!(
@@ -293,7 +297,9 @@ unsafe impl Send for CKSyncEngineAccountChangeEvent {}
 
 unsafe impl Sync for CKSyncEngineAccountChangeEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineAccountChangeEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineAccountChangeEvent {}
+);
 
 impl CKSyncEngineAccountChangeEvent {
     extern_methods!(
@@ -352,7 +358,9 @@ unsafe impl Send for CKSyncEngineFetchedDatabaseChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineFetchedDatabaseChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineFetchedDatabaseChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineFetchedDatabaseChangesEvent {}
+);
 
 impl CKSyncEngineFetchedDatabaseChangesEvent {
     extern_methods!(
@@ -397,7 +405,9 @@ unsafe impl Send for CKSyncEngineFetchedRecordZoneChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineFetchedRecordZoneChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineFetchedRecordZoneChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineFetchedRecordZoneChangesEvent {}
+);
 
 impl CKSyncEngineFetchedRecordZoneChangesEvent {
     extern_methods!(
@@ -440,7 +450,9 @@ unsafe impl Send for CKSyncEngineSentDatabaseChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineSentDatabaseChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineSentDatabaseChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineSentDatabaseChangesEvent {}
+);
 
 impl CKSyncEngineSentDatabaseChangesEvent {
     extern_methods!(
@@ -497,7 +509,9 @@ unsafe impl Send for CKSyncEngineSentRecordZoneChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineSentRecordZoneChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineSentRecordZoneChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineSentRecordZoneChangesEvent {}
+);
 
 impl CKSyncEngineSentRecordZoneChangesEvent {
     extern_methods!(
@@ -555,7 +569,9 @@ unsafe impl Send for CKSyncEngineWillFetchChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineWillFetchChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineWillFetchChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineWillFetchChangesEvent {}
+);
 
 impl CKSyncEngineWillFetchChangesEvent {
     extern_methods!(
@@ -594,7 +610,9 @@ unsafe impl Send for CKSyncEngineWillFetchRecordZoneChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineWillFetchRecordZoneChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineWillFetchRecordZoneChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineWillFetchRecordZoneChangesEvent {}
+);
 
 impl CKSyncEngineWillFetchRecordZoneChangesEvent {
     extern_methods!(
@@ -635,7 +653,9 @@ unsafe impl Send for CKSyncEngineDidFetchRecordZoneChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineDidFetchRecordZoneChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineDidFetchRecordZoneChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineDidFetchRecordZoneChangesEvent {}
+);
 
 impl CKSyncEngineDidFetchRecordZoneChangesEvent {
     extern_methods!(
@@ -680,7 +700,9 @@ unsafe impl Send for CKSyncEngineDidFetchChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineDidFetchChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineDidFetchChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineDidFetchChangesEvent {}
+);
 
 impl CKSyncEngineDidFetchChangesEvent {
     extern_methods!(
@@ -717,7 +739,9 @@ unsafe impl Send for CKSyncEngineWillSendChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineWillSendChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineWillSendChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineWillSendChangesEvent {}
+);
 
 impl CKSyncEngineWillSendChangesEvent {
     extern_methods!(
@@ -756,7 +780,9 @@ unsafe impl Send for CKSyncEngineDidSendChangesEvent {}
 
 unsafe impl Sync for CKSyncEngineDidSendChangesEvent {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineDidSendChangesEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineDidSendChangesEvent {}
+);
 
 impl CKSyncEngineDidSendChangesEvent {
     extern_methods!(
@@ -791,7 +817,9 @@ unsafe impl Send for CKSyncEngineFetchedRecordDeletion {}
 
 unsafe impl Sync for CKSyncEngineFetchedRecordDeletion {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineFetchedRecordDeletion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineFetchedRecordDeletion {}
+);
 
 impl CKSyncEngineFetchedRecordDeletion {
     extern_methods!(
@@ -853,7 +881,9 @@ unsafe impl Send for CKSyncEngineFetchedZoneDeletion {}
 
 unsafe impl Sync for CKSyncEngineFetchedZoneDeletion {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineFetchedZoneDeletion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineFetchedZoneDeletion {}
+);
 
 impl CKSyncEngineFetchedZoneDeletion {
     extern_methods!(
@@ -887,7 +917,9 @@ unsafe impl Send for CKSyncEngineFailedRecordSave {}
 
 unsafe impl Sync for CKSyncEngineFailedRecordSave {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineFailedRecordSave {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineFailedRecordSave {}
+);
 
 impl CKSyncEngineFailedRecordSave {
     extern_methods!(
@@ -921,7 +953,9 @@ unsafe impl Send for CKSyncEngineFailedZoneSave {}
 
 unsafe impl Sync for CKSyncEngineFailedZoneSave {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineFailedZoneSave {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineFailedZoneSave {}
+);
 
 impl CKSyncEngineFailedZoneSave {
     extern_methods!(

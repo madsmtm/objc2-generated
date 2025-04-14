@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentDonationMetadata")]
-unsafe impl NSCoding for INSendMessageIntentDonationMetadata {}
+extern_conformance!(
+    unsafe impl NSCoding for INSendMessageIntentDonationMetadata {}
+);
 
 #[cfg(feature = "INIntentDonationMetadata")]
-unsafe impl NSCopying for INSendMessageIntentDonationMetadata {}
+extern_conformance!(
+    unsafe impl NSCopying for INSendMessageIntentDonationMetadata {}
+);
 
 #[cfg(feature = "INIntentDonationMetadata")]
 unsafe impl CopyingHelper for INSendMessageIntentDonationMetadata {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INSendMessageIntentDonationMetadata {
 }
 
 #[cfg(feature = "INIntentDonationMetadata")]
-unsafe impl NSObjectProtocol for INSendMessageIntentDonationMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSendMessageIntentDonationMetadata {}
+);
 
 #[cfg(feature = "INIntentDonationMetadata")]
-unsafe impl NSSecureCoding for INSendMessageIntentDonationMetadata {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSendMessageIntentDonationMetadata {}
+);
 
 #[cfg(feature = "INIntentDonationMetadata")]
 impl INSendMessageIntentDonationMetadata {

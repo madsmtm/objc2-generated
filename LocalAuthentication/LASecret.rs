@@ -16,7 +16,9 @@ extern_class!(
     pub struct LASecret;
 );
 
-unsafe impl NSObjectProtocol for LASecret {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LASecret {}
+);
 
 impl LASecret {
     extern_methods!(

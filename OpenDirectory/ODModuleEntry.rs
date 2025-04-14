@@ -14,7 +14,9 @@ extern_class!(
     pub struct ODModuleEntry;
 );
 
-unsafe impl NSObjectProtocol for ODModuleEntry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ODModuleEntry {}
+);
 
 impl ODModuleEntry {
     extern_methods!(

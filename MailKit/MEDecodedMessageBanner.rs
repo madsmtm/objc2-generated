@@ -15,17 +15,25 @@ extern_class!(
     pub struct MEDecodedMessageBanner;
 );
 
-unsafe impl NSCoding for MEDecodedMessageBanner {}
+extern_conformance!(
+    unsafe impl NSCoding for MEDecodedMessageBanner {}
+);
 
-unsafe impl NSCopying for MEDecodedMessageBanner {}
+extern_conformance!(
+    unsafe impl NSCopying for MEDecodedMessageBanner {}
+);
 
 unsafe impl CopyingHelper for MEDecodedMessageBanner {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MEDecodedMessageBanner {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEDecodedMessageBanner {}
+);
 
-unsafe impl NSSecureCoding for MEDecodedMessageBanner {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MEDecodedMessageBanner {}
+);
 
 impl MEDecodedMessageBanner {
     extern_methods!(

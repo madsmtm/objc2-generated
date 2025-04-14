@@ -35,7 +35,9 @@ extern_class!(
     pub struct NSPageLayout;
 );
 
-unsafe impl NSObjectProtocol for NSPageLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPageLayout {}
+);
 
 impl NSPageLayout {
     extern_methods!(

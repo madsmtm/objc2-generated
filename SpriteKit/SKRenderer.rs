@@ -21,7 +21,9 @@ extern_class!(
     pub struct SKRenderer;
 );
 
-unsafe impl NSObjectProtocol for SKRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKRenderer {}
+);
 
 impl SKRenderer {
     extern_methods!(

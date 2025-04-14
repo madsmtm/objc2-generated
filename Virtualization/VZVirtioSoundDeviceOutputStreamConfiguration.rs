@@ -20,7 +20,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
-unsafe impl NSCopying for VZVirtioSoundDeviceOutputStreamConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZVirtioSoundDeviceOutputStreamConfiguration {}
+);
 
 #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
 unsafe impl CopyingHelper for VZVirtioSoundDeviceOutputStreamConfiguration {
@@ -28,7 +30,9 @@ unsafe impl CopyingHelper for VZVirtioSoundDeviceOutputStreamConfiguration {
 }
 
 #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
-unsafe impl NSObjectProtocol for VZVirtioSoundDeviceOutputStreamConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioSoundDeviceOutputStreamConfiguration {}
+);
 
 #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
 impl VZVirtioSoundDeviceOutputStreamConfiguration {

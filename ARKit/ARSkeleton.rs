@@ -30,7 +30,9 @@ unsafe impl Send for ARSkeleton {}
 unsafe impl Sync for ARSkeleton {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARSkeleton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARSkeleton {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARSkeleton {
@@ -85,7 +87,9 @@ unsafe impl Send for ARSkeleton3D {}
 unsafe impl Sync for ARSkeleton3D {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARSkeleton3D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARSkeleton3D {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARSkeleton3D {
@@ -119,7 +123,9 @@ unsafe impl Send for ARSkeleton2D {}
 unsafe impl Sync for ARSkeleton2D {}
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARSkeleton2D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARSkeleton2D {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARSkeleton2D {

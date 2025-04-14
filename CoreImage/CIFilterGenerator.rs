@@ -41,19 +41,29 @@ extern_class!(
 );
 
 #[cfg(feature = "CIFilterConstructor")]
-unsafe impl CIFilterConstructor for CIFilterGenerator {}
+extern_conformance!(
+    unsafe impl CIFilterConstructor for CIFilterGenerator {}
+);
 
-unsafe impl NSCoding for CIFilterGenerator {}
+extern_conformance!(
+    unsafe impl NSCoding for CIFilterGenerator {}
+);
 
-unsafe impl NSCopying for CIFilterGenerator {}
+extern_conformance!(
+    unsafe impl NSCopying for CIFilterGenerator {}
+);
 
 unsafe impl CopyingHelper for CIFilterGenerator {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIFilterGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIFilterGenerator {}
+);
 
-unsafe impl NSSecureCoding for CIFilterGenerator {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIFilterGenerator {}
+);
 
 impl CIFilterGenerator {
     extern_methods!(

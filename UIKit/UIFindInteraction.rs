@@ -57,10 +57,14 @@ extern_class!(
     pub struct UIFindInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIFindInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFindInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIFindInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIFindInteraction {}
+);
 
 impl UIFindInteraction {
     extern_methods!(

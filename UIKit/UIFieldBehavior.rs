@@ -19,7 +19,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDynamicBehavior")]
-unsafe impl NSObjectProtocol for UIFieldBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFieldBehavior {}
+);
 
 #[cfg(feature = "UIDynamicBehavior")]
 impl UIFieldBehavior {

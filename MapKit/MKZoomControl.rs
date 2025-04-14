@@ -21,35 +21,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for MKZoomControl {}
+extern_conformance!(
+    unsafe impl NSAccessibility for MKZoomControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for MKZoomControl {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for MKZoomControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for MKZoomControl {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for MKZoomControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for MKZoomControl {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for MKZoomControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MKZoomControl {}
+extern_conformance!(
+    unsafe impl NSCoding for MKZoomControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for MKZoomControl {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for MKZoomControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MKZoomControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKZoomControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MKZoomControl {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MKZoomControl {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

@@ -45,13 +45,17 @@ extern_class!(
     pub struct NSPersistentCloudKitContainerEvent;
 );
 
-unsafe impl NSCopying for NSPersistentCloudKitContainerEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPersistentCloudKitContainerEvent {}
+);
 
 unsafe impl CopyingHelper for NSPersistentCloudKitContainerEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEvent {}
+);
 
 impl NSPersistentCloudKitContainerEvent {
     extern_methods!(

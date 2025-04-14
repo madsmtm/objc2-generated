@@ -79,11 +79,17 @@ unsafe impl Send for PHProjectInfo {}
 
 unsafe impl Sync for PHProjectInfo {}
 
-unsafe impl NSCoding for PHProjectInfo {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectInfo {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectInfo {}
+);
 
-unsafe impl NSSecureCoding for PHProjectInfo {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectInfo {}
+);
 
 impl PHProjectInfo {
     extern_methods!(
@@ -190,11 +196,17 @@ unsafe impl Send for PHProjectSection {}
 
 unsafe impl Sync for PHProjectSection {}
 
-unsafe impl NSCoding for PHProjectSection {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectSection {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectSection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectSection {}
+);
 
-unsafe impl NSSecureCoding for PHProjectSection {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectSection {}
+);
 
 impl PHProjectSection {
     extern_methods!(
@@ -240,11 +252,17 @@ unsafe impl Send for PHProjectSectionContent {}
 
 unsafe impl Sync for PHProjectSectionContent {}
 
-unsafe impl NSCoding for PHProjectSectionContent {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectSectionContent {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectSectionContent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectSectionContent {}
+);
 
-unsafe impl NSSecureCoding for PHProjectSectionContent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectSectionContent {}
+);
 
 impl PHProjectSectionContent {
     extern_methods!(
@@ -305,11 +323,17 @@ unsafe impl Send for PHProjectElement {}
 
 unsafe impl Sync for PHProjectElement {}
 
-unsafe impl NSCoding for PHProjectElement {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectElement {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectElement {}
+);
 
-unsafe impl NSSecureCoding for PHProjectElement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectElement {}
+);
 
 impl PHProjectElement {
     extern_methods!(
@@ -360,11 +384,17 @@ extern_class!(
     pub struct PHProjectRegionOfInterest;
 );
 
-unsafe impl NSCoding for PHProjectRegionOfInterest {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectRegionOfInterest {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectRegionOfInterest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectRegionOfInterest {}
+);
 
-unsafe impl NSSecureCoding for PHProjectRegionOfInterest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectRegionOfInterest {}
+);
 
 impl PHProjectRegionOfInterest {
     extern_methods!(
@@ -423,11 +453,17 @@ unsafe impl Send for PHProjectAssetElement {}
 
 unsafe impl Sync for PHProjectAssetElement {}
 
-unsafe impl NSCoding for PHProjectAssetElement {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectAssetElement {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectAssetElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectAssetElement {}
+);
 
-unsafe impl NSSecureCoding for PHProjectAssetElement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectAssetElement {}
+);
 
 impl PHProjectAssetElement {
     extern_methods!(
@@ -533,11 +569,17 @@ unsafe impl Send for PHProjectTextElement {}
 
 unsafe impl Sync for PHProjectTextElement {}
 
-unsafe impl NSCoding for PHProjectTextElement {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectTextElement {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectTextElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectTextElement {}
+);
 
-unsafe impl NSSecureCoding for PHProjectTextElement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectTextElement {}
+);
 
 impl PHProjectTextElement {
     extern_methods!(
@@ -586,11 +628,17 @@ unsafe impl Send for PHProjectJournalEntryElement {}
 
 unsafe impl Sync for PHProjectJournalEntryElement {}
 
-unsafe impl NSCoding for PHProjectJournalEntryElement {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectJournalEntryElement {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectJournalEntryElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectJournalEntryElement {}
+);
 
-unsafe impl NSSecureCoding for PHProjectJournalEntryElement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectJournalEntryElement {}
+);
 
 impl PHProjectJournalEntryElement {
     extern_methods!(
@@ -638,11 +686,17 @@ unsafe impl Send for PHProjectMapElement {}
 
 unsafe impl Sync for PHProjectMapElement {}
 
-unsafe impl NSCoding for PHProjectMapElement {}
+extern_conformance!(
+    unsafe impl NSCoding for PHProjectMapElement {}
+);
 
-unsafe impl NSObjectProtocol for PHProjectMapElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHProjectMapElement {}
+);
 
-unsafe impl NSSecureCoding for PHProjectMapElement {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for PHProjectMapElement {}
+);
 
 impl PHProjectMapElement {
     extern_methods!(

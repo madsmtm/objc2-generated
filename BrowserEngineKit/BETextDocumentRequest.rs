@@ -44,7 +44,9 @@ extern_class!(
     pub struct BETextDocumentRequest;
 );
 
-unsafe impl NSObjectProtocol for BETextDocumentRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BETextDocumentRequest {}
+);
 
 impl BETextDocumentRequest {
     extern_methods!(

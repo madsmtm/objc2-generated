@@ -33,7 +33,9 @@ extern_class!(
     pub struct SKAdNetwork;
 );
 
-unsafe impl NSObjectProtocol for SKAdNetwork {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKAdNetwork {}
+);
 
 impl SKAdNetwork {
     extern_methods!(

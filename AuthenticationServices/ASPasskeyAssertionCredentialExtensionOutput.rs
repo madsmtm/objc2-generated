@@ -15,17 +15,25 @@ extern_class!(
     pub struct ASPasskeyAssertionCredentialExtensionOutput;
 );
 
-unsafe impl NSCoding for ASPasskeyAssertionCredentialExtensionOutput {}
+extern_conformance!(
+    unsafe impl NSCoding for ASPasskeyAssertionCredentialExtensionOutput {}
+);
 
-unsafe impl NSCopying for ASPasskeyAssertionCredentialExtensionOutput {}
+extern_conformance!(
+    unsafe impl NSCopying for ASPasskeyAssertionCredentialExtensionOutput {}
+);
 
 unsafe impl CopyingHelper for ASPasskeyAssertionCredentialExtensionOutput {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for ASPasskeyAssertionCredentialExtensionOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASPasskeyAssertionCredentialExtensionOutput {}
+);
 
-unsafe impl NSSecureCoding for ASPasskeyAssertionCredentialExtensionOutput {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ASPasskeyAssertionCredentialExtensionOutput {}
+);
 
 impl ASPasskeyAssertionCredentialExtensionOutput {
     extern_methods!(

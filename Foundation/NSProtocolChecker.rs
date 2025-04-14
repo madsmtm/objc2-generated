@@ -14,7 +14,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSProxy")]
-unsafe impl NSObjectProtocol for NSProtocolChecker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSProtocolChecker {}
+);
 
 #[cfg(feature = "NSProxy")]
 impl NSProtocolChecker {

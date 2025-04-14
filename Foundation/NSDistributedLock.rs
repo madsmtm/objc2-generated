@@ -17,7 +17,9 @@ unsafe impl Send for NSDistributedLock {}
 
 unsafe impl Sync for NSDistributedLock {}
 
-unsafe impl NSObjectProtocol for NSDistributedLock {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDistributedLock {}
+);
 
 impl NSDistributedLock {
     extern_methods!(

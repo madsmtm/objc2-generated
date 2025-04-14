@@ -21,7 +21,9 @@ extern_class!(
     pub struct AVCaptureDeskViewApplication;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDeskViewApplication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDeskViewApplication {}
+);
 
 impl AVCaptureDeskViewApplication {
     extern_methods!(
@@ -86,7 +88,9 @@ extern_class!(
     pub struct AVCaptureDeskViewApplicationLaunchConfiguration;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDeskViewApplicationLaunchConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDeskViewApplicationLaunchConfiguration {}
+);
 
 impl AVCaptureDeskViewApplicationLaunchConfiguration {
     extern_methods!(

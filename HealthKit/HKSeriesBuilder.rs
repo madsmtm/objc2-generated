@@ -20,7 +20,9 @@ unsafe impl Send for HKSeriesBuilder {}
 
 unsafe impl Sync for HKSeriesBuilder {}
 
-unsafe impl NSObjectProtocol for HKSeriesBuilder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKSeriesBuilder {}
+);
 
 impl HKSeriesBuilder {
     extern_methods!(

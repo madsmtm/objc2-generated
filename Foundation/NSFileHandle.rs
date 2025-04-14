@@ -18,12 +18,18 @@ unsafe impl Send for NSFileHandle {}
 unsafe impl Sync for NSFileHandle {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSFileHandle {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFileHandle {}
+);
 
-unsafe impl NSObjectProtocol for NSFileHandle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileHandle {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSFileHandle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSFileHandle {}
+);
 
 impl NSFileHandle {
     extern_methods!(
@@ -391,7 +397,9 @@ unsafe impl Send for NSPipe {}
 
 unsafe impl Sync for NSPipe {}
 
-unsafe impl NSObjectProtocol for NSPipe {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPipe {}
+);
 
 impl NSPipe {
     extern_methods!(

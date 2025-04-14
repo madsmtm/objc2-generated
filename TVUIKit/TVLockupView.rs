@@ -40,29 +40,53 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-quartz-core")]
-unsafe impl CALayerDelegate for TVLockupView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for TVLockupView {}
+);
 
-unsafe impl NSCoding for TVLockupView {}
+extern_conformance!(
+    unsafe impl NSCoding for TVLockupView {}
+);
 
-unsafe impl NSObjectProtocol for TVLockupView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVLockupView {}
+);
 
-unsafe impl UIAppearance for TVLockupView {}
+extern_conformance!(
+    unsafe impl UIAppearance for TVLockupView {}
+);
 
-unsafe impl UIAppearanceContainer for TVLockupView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVLockupView {}
+);
 
-unsafe impl UICoordinateSpace for TVLockupView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for TVLockupView {}
+);
 
-unsafe impl UIDynamicItem for TVLockupView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVLockupView {}
+);
 
-unsafe impl UIFocusEnvironment for TVLockupView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVLockupView {}
+);
 
-unsafe impl UIFocusItem for TVLockupView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for TVLockupView {}
+);
 
-unsafe impl UIFocusItemContainer for TVLockupView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for TVLockupView {}
+);
 
-unsafe impl UIResponderStandardEditActions for TVLockupView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVLockupView {}
+);
 
-unsafe impl UITraitEnvironment for TVLockupView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVLockupView {}
+);
 
 impl TVLockupView {
     extern_methods!(

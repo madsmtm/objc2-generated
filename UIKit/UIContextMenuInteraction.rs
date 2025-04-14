@@ -59,10 +59,14 @@ extern_class!(
     pub struct UIContextMenuInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIContextMenuInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIContextMenuInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIContextMenuInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIContextMenuInteraction {}
+);
 
 impl UIContextMenuInteraction {
     extern_methods!(

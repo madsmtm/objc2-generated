@@ -18,10 +18,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSGestureRecognizer")]
-unsafe impl NSCoding for NSMagnificationGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMagnificationGestureRecognizer {}
+);
 
 #[cfg(feature = "NSGestureRecognizer")]
-unsafe impl NSObjectProtocol for NSMagnificationGestureRecognizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMagnificationGestureRecognizer {}
+);
 
 #[cfg(feature = "NSGestureRecognizer")]
 impl NSMagnificationGestureRecognizer {

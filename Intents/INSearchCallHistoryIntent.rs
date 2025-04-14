@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INSearchCallHistoryIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INSearchCallHistoryIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INSearchCallHistoryIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INSearchCallHistoryIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INSearchCallHistoryIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INSearchCallHistoryIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INSearchCallHistoryIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSearchCallHistoryIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INSearchCallHistoryIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSearchCallHistoryIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INSearchCallHistoryIntent {

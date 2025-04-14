@@ -18,11 +18,17 @@ extern_class!(
     pub struct CPTemplate;
 );
 
-unsafe impl NSCoding for CPTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for CPTemplate {}
+);
 
-unsafe impl NSObjectProtocol for CPTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPTemplate {}
+);
 
-unsafe impl NSSecureCoding for CPTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPTemplate {}
+);
 
 impl CPTemplate {
     extern_methods!(

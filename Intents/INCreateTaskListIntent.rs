@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INCreateTaskListIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INCreateTaskListIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INCreateTaskListIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INCreateTaskListIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INCreateTaskListIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INCreateTaskListIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INCreateTaskListIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCreateTaskListIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INCreateTaskListIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCreateTaskListIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INCreateTaskListIntent {

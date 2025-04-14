@@ -19,13 +19,17 @@ extern_class!(
     pub struct UIFocusEffect;
 );
 
-unsafe impl NSCopying for UIFocusEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIFocusEffect {}
+);
 
 unsafe impl CopyingHelper for UIFocusEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIFocusEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFocusEffect {}
+);
 
 impl UIFocusEffect {
     extern_methods!(
@@ -76,13 +80,17 @@ extern_class!(
     pub struct UIFocusHaloEffect;
 );
 
-unsafe impl NSCopying for UIFocusHaloEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIFocusHaloEffect {}
+);
 
 unsafe impl CopyingHelper for UIFocusHaloEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIFocusHaloEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFocusHaloEffect {}
+);
 
 impl UIFocusHaloEffect {
     extern_methods!(

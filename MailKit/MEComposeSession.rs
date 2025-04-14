@@ -17,11 +17,17 @@ extern_class!(
     pub struct MEComposeSession;
 );
 
-unsafe impl NSCoding for MEComposeSession {}
+extern_conformance!(
+    unsafe impl NSCoding for MEComposeSession {}
+);
 
-unsafe impl NSObjectProtocol for MEComposeSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEComposeSession {}
+);
 
-unsafe impl NSSecureCoding for MEComposeSession {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MEComposeSession {}
+);
 
 impl MEComposeSession {
     extern_methods!(

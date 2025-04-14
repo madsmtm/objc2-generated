@@ -13,20 +13,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSOrthography {}
+extern_conformance!(
+    unsafe impl NSCoding for NSOrthography {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSOrthography {}
+extern_conformance!(
+    unsafe impl NSCopying for NSOrthography {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSOrthography {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSOrthography {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSOrthography {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSOrthography {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSOrthography {}
+);
 
 impl NSOrthography {
     extern_methods!(

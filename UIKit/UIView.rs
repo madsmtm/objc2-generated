@@ -369,40 +369,64 @@ extern_class!(
 
 #[cfg(all(feature = "UIResponder", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIView {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl NSCoding for UIView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIView {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl NSObjectProtocol for UIView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder"))]
-unsafe impl UIAppearance for UIView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder"))]
-unsafe impl UIAppearanceContainer for UIView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIView {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl UICoordinateSpace for UIView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIView {}
+);
 
 #[cfg(all(feature = "UIDynamicBehavior", feature = "UIResponder"))]
-unsafe impl UIDynamicItem for UIView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder"))]
-unsafe impl UIFocusEnvironment for UIView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder"))]
-unsafe impl UIFocusItem for UIView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder"))]
-unsafe impl UIFocusItemContainer for UIView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIView {}
+);
 
 #[cfg(feature = "UIResponder")]
-unsafe impl UIResponderStandardEditActions for UIView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UITraitCollection"))]
-unsafe impl UITraitEnvironment for UIView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIView {}
+);
 
 #[cfg(feature = "UIResponder")]
 impl UIView {
@@ -1837,4 +1861,6 @@ impl UIView {
 }
 
 #[cfg(all(feature = "UIResponder", feature = "UITraitCollection"))]
-unsafe impl UITraitChangeObservable for UIView {}
+extern_conformance!(
+    unsafe impl UITraitChangeObservable for UIView {}
+);

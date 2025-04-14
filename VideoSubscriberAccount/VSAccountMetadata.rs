@@ -15,7 +15,9 @@ extern_class!(
     pub struct VSAccountMetadata;
 );
 
-unsafe impl NSObjectProtocol for VSAccountMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VSAccountMetadata {}
+);
 
 impl VSAccountMetadata {
     extern_methods!(

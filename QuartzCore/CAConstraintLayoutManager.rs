@@ -71,9 +71,13 @@ extern_class!(
 );
 
 #[cfg(feature = "CALayer")]
-unsafe impl CALayoutManager for CAConstraintLayoutManager {}
+extern_conformance!(
+    unsafe impl CALayoutManager for CAConstraintLayoutManager {}
+);
 
-unsafe impl NSObjectProtocol for CAConstraintLayoutManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAConstraintLayoutManager {}
+);
 
 impl CAConstraintLayoutManager {
     extern_methods!(
@@ -105,11 +109,17 @@ extern_class!(
     pub struct CAConstraint;
 );
 
-unsafe impl NSCoding for CAConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for CAConstraint {}
+);
 
-unsafe impl NSObjectProtocol for CAConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAConstraint {}
+);
 
-unsafe impl NSSecureCoding for CAConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CAConstraint {}
+);
 
 impl CAConstraint {
     extern_methods!(

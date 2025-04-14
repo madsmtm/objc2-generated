@@ -16,7 +16,9 @@ unsafe impl Send for SFSafariExtensionState {}
 
 unsafe impl Sync for SFSafariExtensionState {}
 
-unsafe impl NSObjectProtocol for SFSafariExtensionState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSafariExtensionState {}
+);
 
 impl SFSafariExtensionState {
     extern_methods!(

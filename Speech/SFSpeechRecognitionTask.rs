@@ -40,7 +40,9 @@ extern_class!(
     pub struct SFSpeechRecognitionTask;
 );
 
-unsafe impl NSObjectProtocol for SFSpeechRecognitionTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSpeechRecognitionTask {}
+);
 
 impl SFSpeechRecognitionTask {
     extern_methods!(

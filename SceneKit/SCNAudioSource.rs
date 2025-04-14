@@ -18,17 +18,25 @@ extern_class!(
     pub struct SCNAudioSource;
 );
 
-unsafe impl NSCoding for SCNAudioSource {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNAudioSource {}
+);
 
-unsafe impl NSCopying for SCNAudioSource {}
+extern_conformance!(
+    unsafe impl NSCopying for SCNAudioSource {}
+);
 
 unsafe impl CopyingHelper for SCNAudioSource {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SCNAudioSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNAudioSource {}
+);
 
-unsafe impl NSSecureCoding for SCNAudioSource {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNAudioSource {}
+);
 
 impl SCNAudioSource {
     extern_methods!(
@@ -143,7 +151,9 @@ extern_class!(
     pub struct SCNAudioPlayer;
 );
 
-unsafe impl NSObjectProtocol for SCNAudioPlayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNAudioPlayer {}
+);
 
 impl SCNAudioPlayer {
     extern_methods!(

@@ -17,13 +17,17 @@ extern_class!(
     pub struct MLCYOLOLossDescriptor;
 );
 
-unsafe impl NSCopying for MLCYOLOLossDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCYOLOLossDescriptor {}
+);
 
 unsafe impl CopyingHelper for MLCYOLOLossDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCYOLOLossDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCYOLOLossDescriptor {}
+);
 
 impl MLCYOLOLossDescriptor {
     extern_methods!(

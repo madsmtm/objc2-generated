@@ -18,13 +18,17 @@ extern_class!(
     pub struct PKStrokePath;
 );
 
-unsafe impl NSCopying for PKStrokePath {}
+extern_conformance!(
+    unsafe impl NSCopying for PKStrokePath {}
+);
 
 unsafe impl CopyingHelper for PKStrokePath {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PKStrokePath {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKStrokePath {}
+);
 
 impl PKStrokePath {
     extern_methods!(

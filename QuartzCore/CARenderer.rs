@@ -20,7 +20,9 @@ extern_class!(
     pub struct CARenderer;
 );
 
-unsafe impl NSObjectProtocol for CARenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CARenderer {}
+);
 
 impl CARenderer {
     extern_methods!(

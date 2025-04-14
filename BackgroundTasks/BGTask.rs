@@ -17,7 +17,9 @@ extern_class!(
     pub struct BGTask;
 );
 
-unsafe impl NSObjectProtocol for BGTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGTask {}
+);
 
 impl BGTask {
     extern_methods!(
@@ -113,7 +115,9 @@ extern_class!(
     pub struct BGProcessingTask;
 );
 
-unsafe impl NSObjectProtocol for BGProcessingTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGProcessingTask {}
+);
 
 impl BGProcessingTask {
     extern_methods!();
@@ -145,7 +149,9 @@ extern_class!(
     pub struct BGHealthResearchTask;
 );
 
-unsafe impl NSObjectProtocol for BGHealthResearchTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGHealthResearchTask {}
+);
 
 impl BGHealthResearchTask {
     extern_methods!();
@@ -183,7 +189,9 @@ extern_class!(
     pub struct BGAppRefreshTask;
 );
 
-unsafe impl NSObjectProtocol for BGAppRefreshTask {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGAppRefreshTask {}
+);
 
 impl BGAppRefreshTask {
     extern_methods!();

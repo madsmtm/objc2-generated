@@ -13,7 +13,9 @@ extern_class!(
     pub struct GKLeaderboardEntry;
 );
 
-unsafe impl NSObjectProtocol for GKLeaderboardEntry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKLeaderboardEntry {}
+);
 
 impl GKLeaderboardEntry {
     extern_methods!(

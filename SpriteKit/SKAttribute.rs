@@ -48,11 +48,17 @@ extern_class!(
     pub struct SKAttribute;
 );
 
-unsafe impl NSCoding for SKAttribute {}
+extern_conformance!(
+    unsafe impl NSCoding for SKAttribute {}
+);
 
-unsafe impl NSObjectProtocol for SKAttribute {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKAttribute {}
+);
 
-unsafe impl NSSecureCoding for SKAttribute {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKAttribute {}
+);
 
 impl SKAttribute {
     extern_methods!(
@@ -101,11 +107,17 @@ extern_class!(
     pub struct SKAttributeValue;
 );
 
-unsafe impl NSCoding for SKAttributeValue {}
+extern_conformance!(
+    unsafe impl NSCoding for SKAttributeValue {}
+);
 
-unsafe impl NSObjectProtocol for SKAttributeValue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKAttributeValue {}
+);
 
-unsafe impl NSSecureCoding for SKAttributeValue {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKAttributeValue {}
+);
 
 impl SKAttributeValue {
     extern_methods!(

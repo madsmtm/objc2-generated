@@ -20,13 +20,17 @@ extern_class!(
     pub struct AVAudioBuffer;
 );
 
-unsafe impl NSCopying for AVAudioBuffer {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAudioBuffer {}
+);
 
 unsafe impl CopyingHelper for AVAudioBuffer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAudioBuffer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioBuffer {}
+);
 
 impl AVAudioBuffer {
     extern_methods!(
@@ -87,13 +91,17 @@ extern_class!(
     pub struct AVAudioPCMBuffer;
 );
 
-unsafe impl NSCopying for AVAudioPCMBuffer {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAudioPCMBuffer {}
+);
 
 unsafe impl CopyingHelper for AVAudioPCMBuffer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAudioPCMBuffer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioPCMBuffer {}
+);
 
 impl AVAudioPCMBuffer {
     extern_methods!(
@@ -248,13 +256,17 @@ extern_class!(
     pub struct AVAudioCompressedBuffer;
 );
 
-unsafe impl NSCopying for AVAudioCompressedBuffer {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAudioCompressedBuffer {}
+);
 
 unsafe impl CopyingHelper for AVAudioCompressedBuffer {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAudioCompressedBuffer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioCompressedBuffer {}
+);
 
 impl AVAudioCompressedBuffer {
     extern_methods!(

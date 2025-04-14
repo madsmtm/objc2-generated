@@ -55,7 +55,9 @@ extern_class!(
     pub struct NLContextualEmbedding;
 );
 
-unsafe impl NSObjectProtocol for NLContextualEmbedding {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NLContextualEmbedding {}
+);
 
 impl NLContextualEmbedding {
     extern_methods!(
@@ -164,7 +166,9 @@ extern_class!(
     pub struct NLContextualEmbeddingResult;
 );
 
-unsafe impl NSObjectProtocol for NLContextualEmbeddingResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NLContextualEmbeddingResult {}
+);
 
 impl NLContextualEmbeddingResult {
     extern_methods!(

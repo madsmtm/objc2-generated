@@ -15,13 +15,17 @@ extern_class!(
     pub struct UIPreviewParameters;
 );
 
-unsafe impl NSCopying for UIPreviewParameters {}
+extern_conformance!(
+    unsafe impl NSCopying for UIPreviewParameters {}
+);
 
 unsafe impl CopyingHelper for UIPreviewParameters {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIPreviewParameters {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPreviewParameters {}
+);
 
 impl UIPreviewParameters {
     extern_methods!(

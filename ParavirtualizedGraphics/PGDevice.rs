@@ -68,7 +68,9 @@ extern_class!(
     pub struct PGDeviceDescriptor;
 );
 
-unsafe impl NSObjectProtocol for PGDeviceDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PGDeviceDescriptor {}
+);
 
 impl PGDeviceDescriptor {
     extern_methods!(

@@ -201,7 +201,9 @@ extern_class!(
     pub struct AVAudioEngine;
 );
 
-unsafe impl NSObjectProtocol for AVAudioEngine {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioEngine {}
+);
 
 impl AVAudioEngine {
     extern_methods!(

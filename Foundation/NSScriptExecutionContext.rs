@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSScriptExecutionContext;
 );
 
-unsafe impl NSObjectProtocol for NSScriptExecutionContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScriptExecutionContext {}
+);
 
 impl NSScriptExecutionContext {
     extern_methods!(

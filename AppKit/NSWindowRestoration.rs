@@ -34,7 +34,9 @@ impl NSDocumentController {
 }
 
 #[cfg(feature = "NSDocumentController")]
-unsafe impl NSWindowRestoration for NSDocumentController {}
+extern_conformance!(
+    unsafe impl NSWindowRestoration for NSDocumentController {}
+);
 
 /// NSWindowRestoration.
 #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]

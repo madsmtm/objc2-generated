@@ -18,28 +18,44 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAccessibility for AMWorkflowView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for AMWorkflowView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAccessibilityElementProtocol for AMWorkflowView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for AMWorkflowView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAnimatablePropertyContainer for AMWorkflowView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for AMWorkflowView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAppearanceCustomization for AMWorkflowView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for AMWorkflowView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSCoding for AMWorkflowView {}
+extern_conformance!(
+    unsafe impl NSCoding for AMWorkflowView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSDraggingDestination for AMWorkflowView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for AMWorkflowView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSObjectProtocol for AMWorkflowView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AMWorkflowView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSUserInterfaceItemIdentification for AMWorkflowView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for AMWorkflowView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 impl AMWorkflowView {

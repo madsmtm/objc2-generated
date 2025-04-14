@@ -16,17 +16,25 @@ extern_class!(
     pub struct NSShadow;
 );
 
-unsafe impl NSCoding for NSShadow {}
+extern_conformance!(
+    unsafe impl NSCoding for NSShadow {}
+);
 
-unsafe impl NSCopying for NSShadow {}
+extern_conformance!(
+    unsafe impl NSCopying for NSShadow {}
+);
 
 unsafe impl CopyingHelper for NSShadow {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSShadow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSShadow {}
+);
 
-unsafe impl NSSecureCoding for NSShadow {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSShadow {}
+);
 
 impl NSShadow {
     extern_methods!(

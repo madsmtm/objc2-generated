@@ -30,7 +30,9 @@ extern_class!(
     pub struct ScreenSaverDefaults;
 );
 
-unsafe impl NSObjectProtocol for ScreenSaverDefaults {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ScreenSaverDefaults {}
+);
 
 impl ScreenSaverDefaults {
     extern_methods!(

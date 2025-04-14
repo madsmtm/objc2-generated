@@ -25,23 +25,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for CAInterDeviceAudioViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for CAInterDeviceAudioViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for CAInterDeviceAudioViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for CAInterDeviceAudioViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for CAInterDeviceAudioViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CAInterDeviceAudioViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for CAInterDeviceAudioViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for CAInterDeviceAudioViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for CAInterDeviceAudioViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for CAInterDeviceAudioViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

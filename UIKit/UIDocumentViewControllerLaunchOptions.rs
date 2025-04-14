@@ -15,7 +15,9 @@ extern_class!(
     pub struct UIDocumentViewControllerLaunchOptions;
 );
 
-unsafe impl NSObjectProtocol for UIDocumentViewControllerLaunchOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentViewControllerLaunchOptions {}
+);
 
 impl UIDocumentViewControllerLaunchOptions {
     extern_methods!(

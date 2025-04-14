@@ -15,11 +15,17 @@ extern_class!(
     pub struct ILCommunication;
 );
 
-unsafe impl NSCoding for ILCommunication {}
+extern_conformance!(
+    unsafe impl NSCoding for ILCommunication {}
+);
 
-unsafe impl NSObjectProtocol for ILCommunication {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ILCommunication {}
+);
 
-unsafe impl NSSecureCoding for ILCommunication {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ILCommunication {}
+);
 
 impl ILCommunication {
     extern_methods!(

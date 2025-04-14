@@ -20,7 +20,9 @@ unsafe impl Send for SKStoreReviewController {}
 
 unsafe impl Sync for SKStoreReviewController {}
 
-unsafe impl NSObjectProtocol for SKStoreReviewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKStoreReviewController {}
+);
 
 impl SKStoreReviewController {
     extern_methods!(

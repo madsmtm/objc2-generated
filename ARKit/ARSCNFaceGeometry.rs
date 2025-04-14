@@ -29,14 +29,18 @@ extern_class!(
     feature = "objc2-foundation",
     feature = "objc2-scene-kit"
 ))]
-unsafe impl NSCoding for ARSCNFaceGeometry {}
+extern_conformance!(
+    unsafe impl NSCoding for ARSCNFaceGeometry {}
+);
 
 #[cfg(all(
     feature = "objc2",
     feature = "objc2-foundation",
     feature = "objc2-scene-kit"
 ))]
-unsafe impl NSCopying for ARSCNFaceGeometry {}
+extern_conformance!(
+    unsafe impl NSCopying for ARSCNFaceGeometry {}
+);
 
 #[cfg(all(
     feature = "objc2",
@@ -48,23 +52,33 @@ unsafe impl CopyingHelper for ARSCNFaceGeometry {
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
-unsafe impl NSObjectProtocol for ARSCNFaceGeometry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARSCNFaceGeometry {}
+);
 
 #[cfg(all(
     feature = "objc2",
     feature = "objc2-foundation",
     feature = "objc2-scene-kit"
 ))]
-unsafe impl NSSecureCoding for ARSCNFaceGeometry {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARSCNFaceGeometry {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
-unsafe impl SCNAnimatable for ARSCNFaceGeometry {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for ARSCNFaceGeometry {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
-unsafe impl SCNBoundingVolume for ARSCNFaceGeometry {}
+extern_conformance!(
+    unsafe impl SCNBoundingVolume for ARSCNFaceGeometry {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
-unsafe impl SCNShadable for ARSCNFaceGeometry {}
+extern_conformance!(
+    unsafe impl SCNShadable for ARSCNFaceGeometry {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
 impl ARSCNFaceGeometry {

@@ -94,13 +94,17 @@ extern_class!(
     pub struct UIPointerAccessory;
 );
 
-unsafe impl NSCopying for UIPointerAccessory {}
+extern_conformance!(
+    unsafe impl NSCopying for UIPointerAccessory {}
+);
 
 unsafe impl CopyingHelper for UIPointerAccessory {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIPointerAccessory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPointerAccessory {}
+);
 
 impl UIPointerAccessory {
     extern_methods!(

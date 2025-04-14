@@ -15,10 +15,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SWAction")]
-unsafe impl NSCoding for SWUpdateCollaborationParticipantsAction {}
+extern_conformance!(
+    unsafe impl NSCoding for SWUpdateCollaborationParticipantsAction {}
+);
 
 #[cfg(feature = "SWAction")]
-unsafe impl NSCopying for SWUpdateCollaborationParticipantsAction {}
+extern_conformance!(
+    unsafe impl NSCopying for SWUpdateCollaborationParticipantsAction {}
+);
 
 #[cfg(feature = "SWAction")]
 unsafe impl CopyingHelper for SWUpdateCollaborationParticipantsAction {
@@ -26,10 +30,14 @@ unsafe impl CopyingHelper for SWUpdateCollaborationParticipantsAction {
 }
 
 #[cfg(feature = "SWAction")]
-unsafe impl NSObjectProtocol for SWUpdateCollaborationParticipantsAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWUpdateCollaborationParticipantsAction {}
+);
 
 #[cfg(feature = "SWAction")]
-unsafe impl NSSecureCoding for SWUpdateCollaborationParticipantsAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWUpdateCollaborationParticipantsAction {}
+);
 
 #[cfg(feature = "SWAction")]
 impl SWUpdateCollaborationParticipantsAction {

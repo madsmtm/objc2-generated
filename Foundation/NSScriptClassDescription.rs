@@ -14,7 +14,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSClassDescription")]
-unsafe impl NSObjectProtocol for NSScriptClassDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScriptClassDescription {}
+);
 
 #[cfg(feature = "NSClassDescription")]
 impl NSScriptClassDescription {

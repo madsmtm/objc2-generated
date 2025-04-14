@@ -130,17 +130,25 @@ extern_class!(
     pub struct NSTextBlock;
 );
 
-unsafe impl NSCoding for NSTextBlock {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextBlock {}
+);
 
-unsafe impl NSCopying for NSTextBlock {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTextBlock {}
+);
 
 unsafe impl CopyingHelper for NSTextBlock {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTextBlock {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextBlock {}
+);
 
-unsafe impl NSSecureCoding for NSTextBlock {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextBlock {}
+);
 
 impl NSTextBlock {
     extern_methods!(
@@ -312,17 +320,25 @@ extern_class!(
     pub struct NSTextTableBlock;
 );
 
-unsafe impl NSCoding for NSTextTableBlock {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextTableBlock {}
+);
 
-unsafe impl NSCopying for NSTextTableBlock {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTextTableBlock {}
+);
 
 unsafe impl CopyingHelper for NSTextTableBlock {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTextTableBlock {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextTableBlock {}
+);
 
-unsafe impl NSSecureCoding for NSTextTableBlock {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextTableBlock {}
+);
 
 impl NSTextTableBlock {
     extern_methods!(
@@ -384,17 +400,25 @@ extern_class!(
     pub struct NSTextTable;
 );
 
-unsafe impl NSCoding for NSTextTable {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextTable {}
+);
 
-unsafe impl NSCopying for NSTextTable {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTextTable {}
+);
 
 unsafe impl CopyingHelper for NSTextTable {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTextTable {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextTable {}
+);
 
-unsafe impl NSSecureCoding for NSTextTable {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextTable {}
+);
 
 impl NSTextTable {
     extern_methods!(

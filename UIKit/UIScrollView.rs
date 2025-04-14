@@ -136,51 +136,77 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIScrollView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIScrollView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIScrollView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIScrollView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIScrollView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIScrollView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIScrollView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIScrollView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIScrollView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIScrollView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIScrollView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemScrollableContainer for UIScrollView {}
+extern_conformance!(
+    unsafe impl UIFocusItemScrollableContainer for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIScrollView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIScrollView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIScrollView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIScrollView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIScrollView {

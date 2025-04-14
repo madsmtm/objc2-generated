@@ -13,13 +13,17 @@ extern_class!(
     pub struct MKLookAroundScene;
 );
 
-unsafe impl NSCopying for MKLookAroundScene {}
+extern_conformance!(
+    unsafe impl NSCopying for MKLookAroundScene {}
+);
 
 unsafe impl CopyingHelper for MKLookAroundScene {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKLookAroundScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKLookAroundScene {}
+);
 
 impl MKLookAroundScene {
     extern_methods!(

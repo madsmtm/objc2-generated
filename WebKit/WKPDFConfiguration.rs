@@ -17,13 +17,17 @@ extern_class!(
     pub struct WKPDFConfiguration;
 );
 
-unsafe impl NSCopying for WKPDFConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for WKPDFConfiguration {}
+);
 
 unsafe impl CopyingHelper for WKPDFConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WKPDFConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKPDFConfiguration {}
+);
 
 impl WKPDFConfiguration {
     extern_methods!(

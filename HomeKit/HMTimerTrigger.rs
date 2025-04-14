@@ -27,7 +27,9 @@ unsafe impl Send for HMTimerTrigger {}
 unsafe impl Sync for HMTimerTrigger {}
 
 #[cfg(feature = "HMTrigger")]
-unsafe impl NSObjectProtocol for HMTimerTrigger {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMTimerTrigger {}
+);
 
 #[cfg(feature = "HMTrigger")]
 impl HMTimerTrigger {

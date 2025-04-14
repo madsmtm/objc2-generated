@@ -47,7 +47,9 @@ unsafe impl Send for MLState {}
 
 unsafe impl Sync for MLState {}
 
-unsafe impl NSObjectProtocol for MLState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLState {}
+);
 
 impl MLState {
     extern_methods!(

@@ -44,7 +44,9 @@ unsafe impl Send for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
 
 unsafe impl Sync for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
 
-unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPublicKeyCredentialManager {}
+);
 
 impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
     extern_methods!(

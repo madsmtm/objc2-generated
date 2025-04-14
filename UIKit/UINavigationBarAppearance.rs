@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSCoding for UINavigationBarAppearance {}
+extern_conformance!(
+    unsafe impl NSCoding for UINavigationBarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSCopying for UINavigationBarAppearance {}
+extern_conformance!(
+    unsafe impl NSCopying for UINavigationBarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
 unsafe impl CopyingHelper for UINavigationBarAppearance {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for UINavigationBarAppearance {
 }
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSObjectProtocol for UINavigationBarAppearance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UINavigationBarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
-unsafe impl NSSecureCoding for UINavigationBarAppearance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UINavigationBarAppearance {}
+);
 
 #[cfg(feature = "UIBarAppearance")]
 impl UINavigationBarAppearance {

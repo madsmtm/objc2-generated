@@ -13,17 +13,25 @@ extern_class!(
     pub struct INObjectSection<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for INObjectSection<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for INObjectSection<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSCopying for INObjectSection<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for INObjectSection<ObjectType> {}
+);
 
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for INObjectSection<ObjectType> {
     type Result = Self;
 }
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for INObjectSection<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for INObjectSection<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for INObjectSection<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for INObjectSection<ObjectType> {}
+);
 
 impl<ObjectType: Message> INObjectSection<ObjectType> {
     extern_methods!(

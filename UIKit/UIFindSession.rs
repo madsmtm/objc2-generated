@@ -65,7 +65,9 @@ extern_class!(
     pub struct UITextSearchOptions;
 );
 
-unsafe impl NSObjectProtocol for UITextSearchOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextSearchOptions {}
+);
 
 impl UITextSearchOptions {
     extern_methods!(
@@ -111,7 +113,9 @@ extern_class!(
     pub struct UIFindSession;
 );
 
-unsafe impl NSObjectProtocol for UIFindSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIFindSession {}
+);
 
 impl UIFindSession {
     extern_methods!(
@@ -262,7 +266,9 @@ extern_class!(
     pub struct UITextSearchingFindSession;
 );
 
-unsafe impl NSObjectProtocol for UITextSearchingFindSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextSearchingFindSession {}
+);
 
 impl UITextSearchingFindSession {
     extern_methods!(

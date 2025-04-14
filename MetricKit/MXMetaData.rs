@@ -15,11 +15,17 @@ extern_class!(
     pub struct MXMetaData;
 );
 
-unsafe impl NSCoding for MXMetaData {}
+extern_conformance!(
+    unsafe impl NSCoding for MXMetaData {}
+);
 
-unsafe impl NSObjectProtocol for MXMetaData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXMetaData {}
+);
 
-unsafe impl NSSecureCoding for MXMetaData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXMetaData {}
+);
 
 impl MXMetaData {
     extern_methods!(

@@ -13,17 +13,25 @@ extern_class!(
     pub struct INAirportGate;
 );
 
-unsafe impl NSCoding for INAirportGate {}
+extern_conformance!(
+    unsafe impl NSCoding for INAirportGate {}
+);
 
-unsafe impl NSCopying for INAirportGate {}
+extern_conformance!(
+    unsafe impl NSCopying for INAirportGate {}
+);
 
 unsafe impl CopyingHelper for INAirportGate {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INAirportGate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INAirportGate {}
+);
 
-unsafe impl NSSecureCoding for INAirportGate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INAirportGate {}
+);
 
 impl INAirportGate {
     extern_methods!(

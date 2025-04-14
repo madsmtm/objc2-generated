@@ -24,7 +24,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMCSSCharsetRule {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMCSSCharsetRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",
@@ -40,7 +42,9 @@ unsafe impl CopyingHelper for DOMCSSCharsetRule {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMCSSCharsetRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMCSSCharsetRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",

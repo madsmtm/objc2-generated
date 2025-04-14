@@ -15,17 +15,25 @@ extern_class!(
     pub struct CWNetwork;
 );
 
-unsafe impl NSCoding for CWNetwork {}
+extern_conformance!(
+    unsafe impl NSCoding for CWNetwork {}
+);
 
-unsafe impl NSCopying for CWNetwork {}
+extern_conformance!(
+    unsafe impl NSCopying for CWNetwork {}
+);
 
 unsafe impl CopyingHelper for CWNetwork {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CWNetwork {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CWNetwork {}
+);
 
-unsafe impl NSSecureCoding for CWNetwork {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CWNetwork {}
+);
 
 impl CWNetwork {
     extern_methods!(

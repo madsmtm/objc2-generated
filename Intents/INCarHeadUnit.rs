@@ -13,17 +13,25 @@ extern_class!(
     pub struct INCarHeadUnit;
 );
 
-unsafe impl NSCoding for INCarHeadUnit {}
+extern_conformance!(
+    unsafe impl NSCoding for INCarHeadUnit {}
+);
 
-unsafe impl NSCopying for INCarHeadUnit {}
+extern_conformance!(
+    unsafe impl NSCopying for INCarHeadUnit {}
+);
 
 unsafe impl CopyingHelper for INCarHeadUnit {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INCarHeadUnit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCarHeadUnit {}
+);
 
-unsafe impl NSSecureCoding for INCarHeadUnit {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCarHeadUnit {}
+);
 
 impl INCarHeadUnit {
     extern_methods!(

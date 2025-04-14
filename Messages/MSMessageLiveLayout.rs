@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MSMessageLayout")]
-unsafe impl NSCopying for MSMessageLiveLayout {}
+extern_conformance!(
+    unsafe impl NSCopying for MSMessageLiveLayout {}
+);
 
 #[cfg(feature = "MSMessageLayout")]
 unsafe impl CopyingHelper for MSMessageLiveLayout {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for MSMessageLiveLayout {
 }
 
 #[cfg(feature = "MSMessageLayout")]
-unsafe impl NSObjectProtocol for MSMessageLiveLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MSMessageLiveLayout {}
+);
 
 #[cfg(feature = "MSMessageLayout")]
 impl MSMessageLiveLayout {

@@ -328,7 +328,9 @@ extern_class!(
     pub struct NSWritingToolsCoordinator;
 );
 
-unsafe impl NSObjectProtocol for NSWritingToolsCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSWritingToolsCoordinator {}
+);
 
 impl NSWritingToolsCoordinator {
     extern_methods!(
@@ -1327,7 +1329,9 @@ extern_class!(
     pub struct NSTextPreview;
 );
 
-unsafe impl NSObjectProtocol for NSTextPreview {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextPreview {}
+);
 
 impl NSTextPreview {
     extern_methods!(

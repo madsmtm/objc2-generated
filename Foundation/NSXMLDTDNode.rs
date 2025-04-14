@@ -83,7 +83,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSXMLNode"))]
-unsafe impl NSCopying for NSXMLDTDNode {}
+extern_conformance!(
+    unsafe impl NSCopying for NSXMLDTDNode {}
+);
 
 #[cfg(all(feature = "NSObject", feature = "NSXMLNode"))]
 unsafe impl CopyingHelper for NSXMLDTDNode {
@@ -91,7 +93,9 @@ unsafe impl CopyingHelper for NSXMLDTDNode {
 }
 
 #[cfg(feature = "NSXMLNode")]
-unsafe impl NSObjectProtocol for NSXMLDTDNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSXMLDTDNode {}
+);
 
 #[cfg(feature = "NSXMLNode")]
 impl NSXMLDTDNode {

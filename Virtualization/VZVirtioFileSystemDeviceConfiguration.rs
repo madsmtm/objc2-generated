@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
-unsafe impl NSCopying for VZVirtioFileSystemDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZVirtioFileSystemDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
 unsafe impl CopyingHelper for VZVirtioFileSystemDeviceConfiguration {
@@ -29,7 +31,9 @@ unsafe impl CopyingHelper for VZVirtioFileSystemDeviceConfiguration {
 }
 
 #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
-unsafe impl NSObjectProtocol for VZVirtioFileSystemDeviceConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioFileSystemDeviceConfiguration {}
+);
 
 #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
 impl VZVirtioFileSystemDeviceConfiguration {

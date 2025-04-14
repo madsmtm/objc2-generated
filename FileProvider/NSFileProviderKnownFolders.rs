@@ -16,7 +16,9 @@ extern_class!(
     pub struct NSFileProviderKnownFolderLocation;
 );
 
-unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocation {}
+);
 
 impl NSFileProviderKnownFolderLocation {
     extern_methods!(
@@ -72,7 +74,9 @@ extern_class!(
     pub struct NSFileProviderKnownFolderLocations;
 );
 
-unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocations {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocations {}
+);
 
 impl NSFileProviderKnownFolderLocations {
     extern_methods!(

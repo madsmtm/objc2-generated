@@ -282,17 +282,25 @@ extern_class!(
     pub struct CIImage;
 );
 
-unsafe impl NSCoding for CIImage {}
+extern_conformance!(
+    unsafe impl NSCoding for CIImage {}
+);
 
-unsafe impl NSCopying for CIImage {}
+extern_conformance!(
+    unsafe impl NSCopying for CIImage {}
+);
 
 unsafe impl CopyingHelper for CIImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIImage {}
+);
 
-unsafe impl NSSecureCoding for CIImage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIImage {}
+);
 
 impl CIImage {
     extern_methods!(

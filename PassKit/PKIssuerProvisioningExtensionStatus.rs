@@ -13,7 +13,9 @@ extern_class!(
     pub struct PKIssuerProvisioningExtensionStatus;
 );
 
-unsafe impl NSObjectProtocol for PKIssuerProvisioningExtensionStatus {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIssuerProvisioningExtensionStatus {}
+);
 
 impl PKIssuerProvisioningExtensionStatus {
     extern_methods!(

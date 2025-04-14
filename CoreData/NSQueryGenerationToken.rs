@@ -13,17 +13,25 @@ extern_class!(
     pub struct NSQueryGenerationToken;
 );
 
-unsafe impl NSCoding for NSQueryGenerationToken {}
+extern_conformance!(
+    unsafe impl NSCoding for NSQueryGenerationToken {}
+);
 
-unsafe impl NSCopying for NSQueryGenerationToken {}
+extern_conformance!(
+    unsafe impl NSCopying for NSQueryGenerationToken {}
+);
 
 unsafe impl CopyingHelper for NSQueryGenerationToken {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSQueryGenerationToken {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSQueryGenerationToken {}
+);
 
-unsafe impl NSSecureCoding for NSQueryGenerationToken {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSQueryGenerationToken {}
+);
 
 impl NSQueryGenerationToken {
     extern_methods!(

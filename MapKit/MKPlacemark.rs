@@ -20,13 +20,19 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MKAnnotation", feature = "objc2-core-location"))]
-unsafe impl MKAnnotation for MKPlacemark {}
+extern_conformance!(
+    unsafe impl MKAnnotation for MKPlacemark {}
+);
 
 #[cfg(feature = "objc2-core-location")]
-unsafe impl NSCoding for MKPlacemark {}
+extern_conformance!(
+    unsafe impl NSCoding for MKPlacemark {}
+);
 
 #[cfg(feature = "objc2-core-location")]
-unsafe impl NSCopying for MKPlacemark {}
+extern_conformance!(
+    unsafe impl NSCopying for MKPlacemark {}
+);
 
 #[cfg(feature = "objc2-core-location")]
 unsafe impl CopyingHelper for MKPlacemark {
@@ -34,10 +40,14 @@ unsafe impl CopyingHelper for MKPlacemark {
 }
 
 #[cfg(feature = "objc2-core-location")]
-unsafe impl NSObjectProtocol for MKPlacemark {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKPlacemark {}
+);
 
 #[cfg(feature = "objc2-core-location")]
-unsafe impl NSSecureCoding for MKPlacemark {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MKPlacemark {}
+);
 
 #[cfg(feature = "objc2-core-location")]
 impl MKPlacemark {

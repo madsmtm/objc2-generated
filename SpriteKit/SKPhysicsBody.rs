@@ -22,17 +22,25 @@ extern_class!(
     pub struct SKPhysicsBody;
 );
 
-unsafe impl NSCoding for SKPhysicsBody {}
+extern_conformance!(
+    unsafe impl NSCoding for SKPhysicsBody {}
+);
 
-unsafe impl NSCopying for SKPhysicsBody {}
+extern_conformance!(
+    unsafe impl NSCopying for SKPhysicsBody {}
+);
 
 unsafe impl CopyingHelper for SKPhysicsBody {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKPhysicsBody {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPhysicsBody {}
+);
 
-unsafe impl NSSecureCoding for SKPhysicsBody {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKPhysicsBody {}
+);
 
 impl SKPhysicsBody {
     extern_methods!(

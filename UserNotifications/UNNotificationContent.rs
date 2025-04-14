@@ -43,23 +43,33 @@ extern_class!(
     pub struct UNNotificationContent;
 );
 
-unsafe impl NSCoding for UNNotificationContent {}
+extern_conformance!(
+    unsafe impl NSCoding for UNNotificationContent {}
+);
 
-unsafe impl NSCopying for UNNotificationContent {}
+extern_conformance!(
+    unsafe impl NSCopying for UNNotificationContent {}
+);
 
 unsafe impl CopyingHelper for UNNotificationContent {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for UNNotificationContent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for UNNotificationContent {}
+);
 
 unsafe impl MutableCopyingHelper for UNNotificationContent {
     type Result = UNMutableNotificationContent;
 }
 
-unsafe impl NSObjectProtocol for UNNotificationContent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNNotificationContent {}
+);
 
-unsafe impl NSSecureCoding for UNNotificationContent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNNotificationContent {}
+);
 
 impl UNNotificationContent {
     extern_methods!(
@@ -170,23 +180,33 @@ extern_class!(
     pub struct UNMutableNotificationContent;
 );
 
-unsafe impl NSCoding for UNMutableNotificationContent {}
+extern_conformance!(
+    unsafe impl NSCoding for UNMutableNotificationContent {}
+);
 
-unsafe impl NSCopying for UNMutableNotificationContent {}
+extern_conformance!(
+    unsafe impl NSCopying for UNMutableNotificationContent {}
+);
 
 unsafe impl CopyingHelper for UNMutableNotificationContent {
     type Result = UNNotificationContent;
 }
 
-unsafe impl NSMutableCopying for UNMutableNotificationContent {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for UNMutableNotificationContent {}
+);
 
 unsafe impl MutableCopyingHelper for UNMutableNotificationContent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNMutableNotificationContent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNMutableNotificationContent {}
+);
 
-unsafe impl NSSecureCoding for UNMutableNotificationContent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNMutableNotificationContent {}
+);
 
 impl UNMutableNotificationContent {
     extern_methods!(

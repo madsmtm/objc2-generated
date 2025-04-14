@@ -16,16 +16,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
-unsafe impl NSAccessibility for NSBrowserCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSBrowserCell {}
+);
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
-unsafe impl NSAccessibilityElementProtocol for NSBrowserCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSBrowserCell {}
+);
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSCoding for NSBrowserCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSBrowserCell {}
+);
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSCopying for NSBrowserCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSBrowserCell {}
+);
 
 #[cfg(feature = "NSCell")]
 unsafe impl CopyingHelper for NSBrowserCell {
@@ -33,10 +41,14 @@ unsafe impl CopyingHelper for NSBrowserCell {
 }
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSObjectProtocol for NSBrowserCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSBrowserCell {}
+);
 
 #[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]
-unsafe impl NSUserInterfaceItemIdentification for NSBrowserCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSBrowserCell {}
+);
 
 #[cfg(feature = "NSCell")]
 impl NSBrowserCell {

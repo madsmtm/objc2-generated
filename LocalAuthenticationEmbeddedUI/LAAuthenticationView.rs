@@ -29,35 +29,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for LAAuthenticationView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for LAAuthenticationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for LAAuthenticationView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for LAAuthenticationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for LAAuthenticationView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for LAAuthenticationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for LAAuthenticationView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for LAAuthenticationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for LAAuthenticationView {}
+extern_conformance!(
+    unsafe impl NSCoding for LAAuthenticationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for LAAuthenticationView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for LAAuthenticationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for LAAuthenticationView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAAuthenticationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for LAAuthenticationView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for LAAuthenticationView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

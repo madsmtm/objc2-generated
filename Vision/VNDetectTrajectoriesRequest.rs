@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-unsafe impl NSCopying for VNDetectTrajectoriesRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNDetectTrajectoriesRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 unsafe impl CopyingHelper for VNDetectTrajectoriesRequest {
@@ -31,7 +33,9 @@ unsafe impl CopyingHelper for VNDetectTrajectoriesRequest {
 }
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
-unsafe impl NSObjectProtocol for VNDetectTrajectoriesRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNDetectTrajectoriesRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 impl VNDetectTrajectoriesRequest {

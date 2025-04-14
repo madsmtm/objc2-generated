@@ -15,14 +15,18 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-foundation")]
-unsafe impl NSCopying for IOBluetoothObject {}
+extern_conformance!(
+    unsafe impl NSCopying for IOBluetoothObject {}
+);
 
 #[cfg(feature = "objc2-foundation")]
 unsafe impl CopyingHelper for IOBluetoothObject {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for IOBluetoothObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothObject {}
+);
 
 impl IOBluetoothObject {
     extern_methods!();

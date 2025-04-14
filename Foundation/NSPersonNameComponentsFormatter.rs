@@ -67,10 +67,14 @@ unsafe impl Send for NSPersonNameComponentsFormatter {}
 unsafe impl Sync for NSPersonNameComponentsFormatter {}
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSPersonNameComponentsFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPersonNameComponentsFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSPersonNameComponentsFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPersonNameComponentsFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSPersonNameComponentsFormatter {
@@ -78,7 +82,9 @@ unsafe impl CopyingHelper for NSPersonNameComponentsFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSPersonNameComponentsFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersonNameComponentsFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSPersonNameComponentsFormatter {

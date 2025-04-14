@@ -26,7 +26,9 @@ unsafe impl Send for AVAssetVariant {}
 
 unsafe impl Sync for AVAssetVariant {}
 
-unsafe impl NSObjectProtocol for AVAssetVariant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetVariant {}
+);
 
 impl AVAssetVariant {
     extern_methods!(
@@ -71,7 +73,9 @@ extern_class!(
     pub struct AVAssetVariantVideoAttributes;
 );
 
-unsafe impl NSObjectProtocol for AVAssetVariantVideoAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetVariantVideoAttributes {}
+);
 
 impl AVAssetVariantVideoAttributes {
     extern_methods!(
@@ -129,7 +133,9 @@ unsafe impl Send for AVAssetVariantVideoLayoutAttributes {}
 
 unsafe impl Sync for AVAssetVariantVideoLayoutAttributes {}
 
-unsafe impl NSObjectProtocol for AVAssetVariantVideoLayoutAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetVariantVideoLayoutAttributes {}
+);
 
 impl AVAssetVariantVideoLayoutAttributes {
     extern_methods!(
@@ -165,7 +171,9 @@ unsafe impl Send for AVAssetVariantAudioAttributes {}
 
 unsafe impl Sync for AVAssetVariantAudioAttributes {}
 
-unsafe impl NSObjectProtocol for AVAssetVariantAudioAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetVariantAudioAttributes {}
+);
 
 impl AVAssetVariantAudioAttributes {
     extern_methods!(
@@ -210,7 +218,9 @@ unsafe impl Send for AVAssetVariantAudioRenditionSpecificAttributes {}
 
 unsafe impl Sync for AVAssetVariantAudioRenditionSpecificAttributes {}
 
-unsafe impl NSObjectProtocol for AVAssetVariantAudioRenditionSpecificAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetVariantAudioRenditionSpecificAttributes {}
+);
 
 impl AVAssetVariantAudioRenditionSpecificAttributes {
     extern_methods!(
@@ -272,13 +282,17 @@ unsafe impl Send for AVAssetVariantQualifier {}
 
 unsafe impl Sync for AVAssetVariantQualifier {}
 
-unsafe impl NSCopying for AVAssetVariantQualifier {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAssetVariantQualifier {}
+);
 
 unsafe impl CopyingHelper for AVAssetVariantQualifier {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVAssetVariantQualifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetVariantQualifier {}
+);
 
 impl AVAssetVariantQualifier {
     extern_methods!(

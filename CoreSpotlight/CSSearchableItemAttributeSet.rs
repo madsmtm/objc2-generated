@@ -16,17 +16,25 @@ extern_class!(
     pub struct CSSearchableItemAttributeSet;
 );
 
-unsafe impl NSCoding for CSSearchableItemAttributeSet {}
+extern_conformance!(
+    unsafe impl NSCoding for CSSearchableItemAttributeSet {}
+);
 
-unsafe impl NSCopying for CSSearchableItemAttributeSet {}
+extern_conformance!(
+    unsafe impl NSCopying for CSSearchableItemAttributeSet {}
+);
 
 unsafe impl CopyingHelper for CSSearchableItemAttributeSet {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CSSearchableItemAttributeSet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSSearchableItemAttributeSet {}
+);
 
-unsafe impl NSSecureCoding for CSSearchableItemAttributeSet {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CSSearchableItemAttributeSet {}
+);
 
 impl CSSearchableItemAttributeSet {
     extern_methods!(
@@ -68,23 +76,33 @@ extern_class!(
     pub struct CSLocalizedString;
 );
 
-unsafe impl NSCoding for CSLocalizedString {}
+extern_conformance!(
+    unsafe impl NSCoding for CSLocalizedString {}
+);
 
-unsafe impl NSCopying for CSLocalizedString {}
+extern_conformance!(
+    unsafe impl NSCopying for CSLocalizedString {}
+);
 
 unsafe impl CopyingHelper for CSLocalizedString {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for CSLocalizedString {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CSLocalizedString {}
+);
 
 unsafe impl MutableCopyingHelper for CSLocalizedString {
     type Result = NSMutableString;
 }
 
-unsafe impl NSObjectProtocol for CSLocalizedString {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSLocalizedString {}
+);
 
-unsafe impl NSSecureCoding for CSLocalizedString {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CSLocalizedString {}
+);
 
 impl CSLocalizedString {
     extern_methods!(
@@ -133,17 +151,25 @@ extern_class!(
     pub struct CSCustomAttributeKey;
 );
 
-unsafe impl NSCoding for CSCustomAttributeKey {}
+extern_conformance!(
+    unsafe impl NSCoding for CSCustomAttributeKey {}
+);
 
-unsafe impl NSCopying for CSCustomAttributeKey {}
+extern_conformance!(
+    unsafe impl NSCopying for CSCustomAttributeKey {}
+);
 
 unsafe impl CopyingHelper for CSCustomAttributeKey {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CSCustomAttributeKey {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CSCustomAttributeKey {}
+);
 
-unsafe impl NSSecureCoding for CSCustomAttributeKey {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CSCustomAttributeKey {}
+);
 
 impl CSCustomAttributeKey {
     extern_methods!(

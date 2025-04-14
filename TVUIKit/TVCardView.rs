@@ -25,40 +25,64 @@ extern_class!(
 );
 
 #[cfg(all(feature = "TVLockupView", feature = "objc2-quartz-core"))]
-unsafe impl CALayerDelegate for TVCardView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl NSCoding for TVCardView {}
+extern_conformance!(
+    unsafe impl NSCoding for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl NSObjectProtocol for TVCardView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIAppearance for TVCardView {}
+extern_conformance!(
+    unsafe impl UIAppearance for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIAppearanceContainer for TVCardView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UICoordinateSpace for TVCardView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIDynamicItem for TVCardView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusEnvironment for TVCardView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusItem for TVCardView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIFocusItemContainer for TVCardView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UIResponderStandardEditActions for TVCardView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
-unsafe impl UITraitEnvironment for TVCardView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for TVCardView {}
+);
 
 #[cfg(feature = "TVLockupView")]
 impl TVCardView {

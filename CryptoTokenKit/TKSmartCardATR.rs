@@ -46,7 +46,9 @@ extern_class!(
     pub struct TKSmartCardATRInterfaceGroup;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCardATRInterfaceGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardATRInterfaceGroup {}
+);
 
 impl TKSmartCardATRInterfaceGroup {
     extern_methods!(
@@ -94,7 +96,9 @@ extern_class!(
     pub struct TKSmartCardATR;
 );
 
-unsafe impl NSObjectProtocol for TKSmartCardATR {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKSmartCardATR {}
+);
 
 impl TKSmartCardATR {
     extern_methods!(

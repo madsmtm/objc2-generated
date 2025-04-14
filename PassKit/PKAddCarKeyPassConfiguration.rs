@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PKAddSecureElementPassConfiguration")]
-unsafe impl NSObjectProtocol for PKAddCarKeyPassConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKAddCarKeyPassConfiguration {}
+);
 
 #[cfg(feature = "PKAddSecureElementPassConfiguration")]
 impl PKAddCarKeyPassConfiguration {

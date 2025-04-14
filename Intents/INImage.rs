@@ -14,17 +14,25 @@ extern_class!(
     pub struct INImage;
 );
 
-unsafe impl NSCoding for INImage {}
+extern_conformance!(
+    unsafe impl NSCoding for INImage {}
+);
 
-unsafe impl NSCopying for INImage {}
+extern_conformance!(
+    unsafe impl NSCopying for INImage {}
+);
 
 unsafe impl CopyingHelper for INImage {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INImage {}
+);
 
-unsafe impl NSSecureCoding for INImage {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INImage {}
+);
 
 impl INImage {
     extern_methods!(

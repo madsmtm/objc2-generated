@@ -89,7 +89,9 @@ extern_class!(
     pub struct GKChallengeEventHandler;
 );
 
-unsafe impl NSObjectProtocol for GKChallengeEventHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKChallengeEventHandler {}
+);
 
 impl GKChallengeEventHandler {
     extern_methods!(

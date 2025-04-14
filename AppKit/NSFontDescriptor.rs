@@ -119,17 +119,25 @@ extern_class!(
     pub struct NSFontDescriptor;
 );
 
-unsafe impl NSCoding for NSFontDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFontDescriptor {}
+);
 
-unsafe impl NSCopying for NSFontDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for NSFontDescriptor {}
+);
 
 unsafe impl CopyingHelper for NSFontDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSFontDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFontDescriptor {}
+);
 
-unsafe impl NSSecureCoding for NSFontDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSFontDescriptor {}
+);
 
 impl NSFontDescriptor {
     extern_methods!(

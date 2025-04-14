@@ -111,7 +111,9 @@ extern_class!(
     pub struct AVAssetImageGenerator;
 );
 
-unsafe impl NSObjectProtocol for AVAssetImageGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetImageGenerator {}
+);
 
 impl AVAssetImageGenerator {
     extern_methods!(

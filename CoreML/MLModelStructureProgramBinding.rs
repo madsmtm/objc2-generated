@@ -21,7 +21,9 @@ unsafe impl Send for MLModelStructureProgramBinding {}
 
 unsafe impl Sync for MLModelStructureProgramBinding {}
 
-unsafe impl NSObjectProtocol for MLModelStructureProgramBinding {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLModelStructureProgramBinding {}
+);
 
 impl MLModelStructureProgramBinding {
     extern_methods!(

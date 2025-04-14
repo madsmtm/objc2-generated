@@ -99,19 +99,29 @@ extern_class!(
     pub struct GKRandomSource;
 );
 
-unsafe impl GKRandom for GKRandomSource {}
+extern_conformance!(
+    unsafe impl GKRandom for GKRandomSource {}
+);
 
-unsafe impl NSCoding for GKRandomSource {}
+extern_conformance!(
+    unsafe impl NSCoding for GKRandomSource {}
+);
 
-unsafe impl NSCopying for GKRandomSource {}
+extern_conformance!(
+    unsafe impl NSCopying for GKRandomSource {}
+);
 
 unsafe impl CopyingHelper for GKRandomSource {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKRandomSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKRandomSource {}
+);
 
-unsafe impl NSSecureCoding for GKRandomSource {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKRandomSource {}
+);
 
 impl GKRandomSource {
     extern_methods!(
@@ -210,19 +220,29 @@ extern_class!(
     pub struct GKARC4RandomSource;
 );
 
-unsafe impl GKRandom for GKARC4RandomSource {}
+extern_conformance!(
+    unsafe impl GKRandom for GKARC4RandomSource {}
+);
 
-unsafe impl NSCoding for GKARC4RandomSource {}
+extern_conformance!(
+    unsafe impl NSCoding for GKARC4RandomSource {}
+);
 
-unsafe impl NSCopying for GKARC4RandomSource {}
+extern_conformance!(
+    unsafe impl NSCopying for GKARC4RandomSource {}
+);
 
 unsafe impl CopyingHelper for GKARC4RandomSource {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKARC4RandomSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKARC4RandomSource {}
+);
 
-unsafe impl NSSecureCoding for GKARC4RandomSource {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKARC4RandomSource {}
+);
 
 impl GKARC4RandomSource {
     extern_methods!(
@@ -296,19 +316,29 @@ extern_class!(
     pub struct GKLinearCongruentialRandomSource;
 );
 
-unsafe impl GKRandom for GKLinearCongruentialRandomSource {}
+extern_conformance!(
+    unsafe impl GKRandom for GKLinearCongruentialRandomSource {}
+);
 
-unsafe impl NSCoding for GKLinearCongruentialRandomSource {}
+extern_conformance!(
+    unsafe impl NSCoding for GKLinearCongruentialRandomSource {}
+);
 
-unsafe impl NSCopying for GKLinearCongruentialRandomSource {}
+extern_conformance!(
+    unsafe impl NSCopying for GKLinearCongruentialRandomSource {}
+);
 
 unsafe impl CopyingHelper for GKLinearCongruentialRandomSource {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKLinearCongruentialRandomSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKLinearCongruentialRandomSource {}
+);
 
-unsafe impl NSSecureCoding for GKLinearCongruentialRandomSource {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKLinearCongruentialRandomSource {}
+);
 
 impl GKLinearCongruentialRandomSource {
     extern_methods!(
@@ -375,19 +405,29 @@ extern_class!(
     pub struct GKMersenneTwisterRandomSource;
 );
 
-unsafe impl GKRandom for GKMersenneTwisterRandomSource {}
+extern_conformance!(
+    unsafe impl GKRandom for GKMersenneTwisterRandomSource {}
+);
 
-unsafe impl NSCoding for GKMersenneTwisterRandomSource {}
+extern_conformance!(
+    unsafe impl NSCoding for GKMersenneTwisterRandomSource {}
+);
 
-unsafe impl NSCopying for GKMersenneTwisterRandomSource {}
+extern_conformance!(
+    unsafe impl NSCopying for GKMersenneTwisterRandomSource {}
+);
 
 unsafe impl CopyingHelper for GKMersenneTwisterRandomSource {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKMersenneTwisterRandomSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKMersenneTwisterRandomSource {}
+);
 
-unsafe impl NSSecureCoding for GKMersenneTwisterRandomSource {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKMersenneTwisterRandomSource {}
+);
 
 impl GKMersenneTwisterRandomSource {
     extern_methods!(

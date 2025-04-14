@@ -17,13 +17,17 @@ extern_class!(
     pub struct MKMapSnapshotOptions;
 );
 
-unsafe impl NSCopying for MKMapSnapshotOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for MKMapSnapshotOptions {}
+);
 
 unsafe impl CopyingHelper for MKMapSnapshotOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKMapSnapshotOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapSnapshotOptions {}
+);
 
 impl MKMapSnapshotOptions {
     extern_methods!(

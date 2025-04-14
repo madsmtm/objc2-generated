@@ -26,23 +26,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for CNContactViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for CNContactViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for CNContactViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for CNContactViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for CNContactViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNContactViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for CNContactViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for CNContactViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for CNContactViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for CNContactViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

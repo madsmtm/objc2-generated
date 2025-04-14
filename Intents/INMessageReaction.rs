@@ -15,17 +15,25 @@ extern_class!(
     pub struct INMessageReaction;
 );
 
-unsafe impl NSCoding for INMessageReaction {}
+extern_conformance!(
+    unsafe impl NSCoding for INMessageReaction {}
+);
 
-unsafe impl NSCopying for INMessageReaction {}
+extern_conformance!(
+    unsafe impl NSCopying for INMessageReaction {}
+);
 
 unsafe impl CopyingHelper for INMessageReaction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INMessageReaction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INMessageReaction {}
+);
 
-unsafe impl NSSecureCoding for INMessageReaction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INMessageReaction {}
+);
 
 impl INMessageReaction {
     extern_methods!(

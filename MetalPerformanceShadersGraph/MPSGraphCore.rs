@@ -20,7 +20,9 @@ extern_class!(
     pub struct MPSGraphObject;
 );
 
-unsafe impl NSObjectProtocol for MPSGraphObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphObject {}
+);
 
 impl MPSGraphObject {
     extern_methods!();
@@ -48,13 +50,17 @@ extern_class!(
     pub struct MPSGraphType;
 );
 
-unsafe impl NSCopying for MPSGraphType {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphType {}
+);
 
 unsafe impl CopyingHelper for MPSGraphType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSGraphType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphType {}
+);
 
 impl MPSGraphType {
     extern_methods!();
@@ -82,13 +88,17 @@ extern_class!(
     pub struct MPSGraphShapedType;
 );
 
-unsafe impl NSCopying for MPSGraphShapedType {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphShapedType {}
+);
 
 unsafe impl CopyingHelper for MPSGraphShapedType {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSGraphShapedType {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphShapedType {}
+);
 
 impl MPSGraphShapedType {
     extern_methods!(

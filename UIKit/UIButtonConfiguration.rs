@@ -172,17 +172,25 @@ extern_class!(
     pub struct UIButtonConfiguration;
 );
 
-unsafe impl NSCoding for UIButtonConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UIButtonConfiguration {}
+);
 
-unsafe impl NSCopying for UIButtonConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UIButtonConfiguration {}
+);
 
 unsafe impl CopyingHelper for UIButtonConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIButtonConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIButtonConfiguration {}
+);
 
-unsafe impl NSSecureCoding for UIButtonConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIButtonConfiguration {}
+);
 
 impl UIButtonConfiguration {
     extern_methods!(

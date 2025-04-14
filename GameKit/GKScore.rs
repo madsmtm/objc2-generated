@@ -17,11 +17,17 @@ extern_class!(
     pub struct GKScore;
 );
 
-unsafe impl NSCoding for GKScore {}
+extern_conformance!(
+    unsafe impl NSCoding for GKScore {}
+);
 
-unsafe impl NSObjectProtocol for GKScore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKScore {}
+);
 
-unsafe impl NSSecureCoding for GKScore {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKScore {}
+);
 
 impl GKScore {
     extern_methods!(

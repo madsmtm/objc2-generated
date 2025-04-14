@@ -55,7 +55,9 @@ extern_class!(
     pub struct LPMetadataProvider;
 );
 
-unsafe impl NSObjectProtocol for LPMetadataProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LPMetadataProvider {}
+);
 
 impl LPMetadataProvider {
     extern_methods!(

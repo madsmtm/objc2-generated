@@ -93,13 +93,17 @@ unsafe impl Send for NSTouch {}
 
 unsafe impl Sync for NSTouch {}
 
-unsafe impl NSCopying for NSTouch {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTouch {}
+);
 
 unsafe impl CopyingHelper for NSTouch {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTouch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTouch {}
+);
 
 impl NSTouch {
     extern_methods!(

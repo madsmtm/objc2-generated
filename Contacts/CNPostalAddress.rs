@@ -18,24 +18,34 @@ extern_class!(
     pub struct CNPostalAddress;
 );
 
-unsafe impl NSCoding for CNPostalAddress {}
+extern_conformance!(
+    unsafe impl NSCoding for CNPostalAddress {}
+);
 
-unsafe impl NSCopying for CNPostalAddress {}
+extern_conformance!(
+    unsafe impl NSCopying for CNPostalAddress {}
+);
 
 unsafe impl CopyingHelper for CNPostalAddress {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for CNPostalAddress {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CNPostalAddress {}
+);
 
 #[cfg(feature = "CNMutablePostalAddress")]
 unsafe impl MutableCopyingHelper for CNPostalAddress {
     type Result = CNMutablePostalAddress;
 }
 
-unsafe impl NSObjectProtocol for CNPostalAddress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNPostalAddress {}
+);
 
-unsafe impl NSSecureCoding for CNPostalAddress {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNPostalAddress {}
+);
 
 impl CNPostalAddress {
     extern_methods!(

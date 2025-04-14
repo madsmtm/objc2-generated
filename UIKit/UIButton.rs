@@ -112,13 +112,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIButton {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIButton {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIButton {}
+extern_conformance!(
+    unsafe impl NSCoding for UIButton {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIButton {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -126,7 +132,9 @@ unsafe impl NSObjectProtocol for UIButton {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UIButton {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIButton {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -134,10 +142,14 @@ unsafe impl UIAppearance for UIButton {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UIButton {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIButton {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIButton {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIButton {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -145,7 +157,9 @@ unsafe impl UICoordinateSpace for UIButton {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIButton {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIButton {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -153,7 +167,9 @@ unsafe impl UIDynamicItem for UIButton {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UIButton {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIButton {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -161,7 +177,9 @@ unsafe impl UIFocusEnvironment for UIButton {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UIButton {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIButton {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -169,10 +187,14 @@ unsafe impl UIFocusItem for UIButton {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UIButton {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIButton {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIButton {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIButton {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -180,7 +202,9 @@ unsafe impl UIResponderStandardEditActions for UIButton {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIButton {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIButton {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UIButton {
@@ -772,4 +796,6 @@ impl UIButton {
     feature = "UISpringLoadedInteractionSupporting",
     feature = "UIView"
 ))]
-unsafe impl UISpringLoadedInteractionSupporting for UIButton {}
+extern_conformance!(
+    unsafe impl UISpringLoadedInteractionSupporting for UIButton {}
+);

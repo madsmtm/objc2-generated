@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INSetCarLockStatusIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INSetCarLockStatusIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INSetCarLockStatusIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INSetCarLockStatusIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INSetCarLockStatusIntent {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INSetCarLockStatusIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INSetCarLockStatusIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSetCarLockStatusIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INSetCarLockStatusIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSetCarLockStatusIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INSetCarLockStatusIntent {

@@ -78,13 +78,17 @@ extern_class!(
     pub struct MTLStencilDescriptor;
 );
 
-unsafe impl NSCopying for MTLStencilDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLStencilDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLStencilDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLStencilDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLStencilDescriptor {}
+);
 
 impl MTLStencilDescriptor {
     extern_methods!(
@@ -170,13 +174,17 @@ extern_class!(
     pub struct MTLDepthStencilDescriptor;
 );
 
-unsafe impl NSCopying for MTLDepthStencilDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLDepthStencilDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLDepthStencilDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLDepthStencilDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLDepthStencilDescriptor {}
+);
 
 impl MTLDepthStencilDescriptor {
     extern_methods!(

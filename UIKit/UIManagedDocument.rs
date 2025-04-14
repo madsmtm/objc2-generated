@@ -19,13 +19,19 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDocument")]
-unsafe impl NSFilePresenter for UIManagedDocument {}
+extern_conformance!(
+    unsafe impl NSFilePresenter for UIManagedDocument {}
+);
 
 #[cfg(feature = "UIDocument")]
-unsafe impl NSObjectProtocol for UIManagedDocument {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIManagedDocument {}
+);
 
 #[cfg(feature = "UIDocument")]
-unsafe impl NSProgressReporting for UIManagedDocument {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for UIManagedDocument {}
+);
 
 #[cfg(feature = "UIDocument")]
 impl UIManagedDocument {

@@ -19,19 +19,29 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSDocument", feature = "NSKeyValueBinding"))]
-unsafe impl NSEditorRegistration for NSPersistentDocument {}
+extern_conformance!(
+    unsafe impl NSEditorRegistration for NSPersistentDocument {}
+);
 
 #[cfg(feature = "NSDocument")]
-unsafe impl NSFilePresenter for NSPersistentDocument {}
+extern_conformance!(
+    unsafe impl NSFilePresenter for NSPersistentDocument {}
+);
 
 #[cfg(all(feature = "NSDocument", feature = "NSMenu"))]
-unsafe impl NSMenuItemValidation for NSPersistentDocument {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSPersistentDocument {}
+);
 
 #[cfg(feature = "NSDocument")]
-unsafe impl NSObjectProtocol for NSPersistentDocument {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentDocument {}
+);
 
 #[cfg(all(feature = "NSDocument", feature = "NSUserInterfaceValidation"))]
-unsafe impl NSUserInterfaceValidations for NSPersistentDocument {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSPersistentDocument {}
+);
 
 #[cfg(feature = "NSDocument")]
 impl NSPersistentDocument {

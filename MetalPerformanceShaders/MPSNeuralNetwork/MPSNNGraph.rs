@@ -59,10 +59,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNGraph {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNGraph {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNGraph {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNGraph {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNGraph {
@@ -70,10 +74,14 @@ unsafe impl CopyingHelper for MPSNNGraph {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNGraph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNGraph {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNGraph {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNGraph {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNGraph {

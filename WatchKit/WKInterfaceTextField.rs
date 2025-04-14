@@ -157,7 +157,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceTextField {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceTextField {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceTextField {

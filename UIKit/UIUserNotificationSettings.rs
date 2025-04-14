@@ -126,7 +126,9 @@ extern_class!(
     pub struct UIUserNotificationSettings;
 );
 
-unsafe impl NSObjectProtocol for UIUserNotificationSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIUserNotificationSettings {}
+);
 
 impl UIUserNotificationSettings {
     extern_methods!(
@@ -173,23 +175,33 @@ extern_class!(
     pub struct UIUserNotificationCategory;
 );
 
-unsafe impl NSCoding for UIUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSCoding for UIUserNotificationCategory {}
+);
 
-unsafe impl NSCopying for UIUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSCopying for UIUserNotificationCategory {}
+);
 
 unsafe impl CopyingHelper for UIUserNotificationCategory {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for UIUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for UIUserNotificationCategory {}
+);
 
 unsafe impl MutableCopyingHelper for UIUserNotificationCategory {
     type Result = UIMutableUserNotificationCategory;
 }
 
-unsafe impl NSObjectProtocol for UIUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIUserNotificationCategory {}
+);
 
-unsafe impl NSSecureCoding for UIUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIUserNotificationCategory {}
+);
 
 impl UIUserNotificationCategory {
     extern_methods!(
@@ -235,23 +247,33 @@ extern_class!(
     pub struct UIMutableUserNotificationCategory;
 );
 
-unsafe impl NSCoding for UIMutableUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSCoding for UIMutableUserNotificationCategory {}
+);
 
-unsafe impl NSCopying for UIMutableUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSCopying for UIMutableUserNotificationCategory {}
+);
 
 unsafe impl CopyingHelper for UIMutableUserNotificationCategory {
     type Result = UIUserNotificationCategory;
 }
 
-unsafe impl NSMutableCopying for UIMutableUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for UIMutableUserNotificationCategory {}
+);
 
 unsafe impl MutableCopyingHelper for UIMutableUserNotificationCategory {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIMutableUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMutableUserNotificationCategory {}
+);
 
-unsafe impl NSSecureCoding for UIMutableUserNotificationCategory {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIMutableUserNotificationCategory {}
+);
 
 impl UIMutableUserNotificationCategory {
     extern_methods!(
@@ -311,23 +333,33 @@ extern_class!(
     pub struct UIUserNotificationAction;
 );
 
-unsafe impl NSCoding for UIUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSCoding for UIUserNotificationAction {}
+);
 
-unsafe impl NSCopying for UIUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSCopying for UIUserNotificationAction {}
+);
 
 unsafe impl CopyingHelper for UIUserNotificationAction {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for UIUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for UIUserNotificationAction {}
+);
 
 unsafe impl MutableCopyingHelper for UIUserNotificationAction {
     type Result = UIMutableUserNotificationAction;
 }
 
-unsafe impl NSObjectProtocol for UIUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIUserNotificationAction {}
+);
 
-unsafe impl NSSecureCoding for UIUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIUserNotificationAction {}
+);
 
 impl UIUserNotificationAction {
     extern_methods!(
@@ -390,23 +422,33 @@ extern_class!(
     pub struct UIMutableUserNotificationAction;
 );
 
-unsafe impl NSCoding for UIMutableUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSCoding for UIMutableUserNotificationAction {}
+);
 
-unsafe impl NSCopying for UIMutableUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSCopying for UIMutableUserNotificationAction {}
+);
 
 unsafe impl CopyingHelper for UIMutableUserNotificationAction {
     type Result = UIUserNotificationAction;
 }
 
-unsafe impl NSMutableCopying for UIMutableUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for UIMutableUserNotificationAction {}
+);
 
 unsafe impl MutableCopyingHelper for UIMutableUserNotificationAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIMutableUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMutableUserNotificationAction {}
+);
 
-unsafe impl NSSecureCoding for UIMutableUserNotificationAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIMutableUserNotificationAction {}
+);
 
 impl UIMutableUserNotificationAction {
     extern_methods!(

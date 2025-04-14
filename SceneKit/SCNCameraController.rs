@@ -64,7 +64,9 @@ extern_class!(
     pub struct SCNCameraController;
 );
 
-unsafe impl NSObjectProtocol for SCNCameraController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNCameraController {}
+);
 
 impl SCNCameraController {
     extern_methods!(

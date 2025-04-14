@@ -18,13 +18,17 @@ extern_class!(
     pub struct MPAdTimeRange;
 );
 
-unsafe impl NSCopying for MPAdTimeRange {}
+extern_conformance!(
+    unsafe impl NSCopying for MPAdTimeRange {}
+);
 
 unsafe impl CopyingHelper for MPAdTimeRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPAdTimeRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPAdTimeRange {}
+);
 
 impl MPAdTimeRange {
     extern_methods!(
@@ -66,7 +70,9 @@ extern_class!(
     pub struct MPNowPlayingSession;
 );
 
-unsafe impl NSObjectProtocol for MPNowPlayingSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPNowPlayingSession {}
+);
 
 impl MPNowPlayingSession {
     extern_methods!(

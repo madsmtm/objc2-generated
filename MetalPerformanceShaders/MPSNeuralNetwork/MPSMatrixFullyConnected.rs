@@ -46,7 +46,9 @@ extern_class!(
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCoding for MPSMatrixFullyConnected {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixFullyConnected {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -54,7 +56,9 @@ unsafe impl NSCoding for MPSMatrixFullyConnected {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCopying for MPSMatrixFullyConnected {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixFullyConnected {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -72,7 +76,9 @@ unsafe impl CopyingHelper for MPSMatrixFullyConnected {
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSObjectProtocol for MPSMatrixFullyConnected {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixFullyConnected {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -80,7 +86,9 @@ unsafe impl NSObjectProtocol for MPSMatrixFullyConnected {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSSecureCoding for MPSMatrixFullyConnected {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixFullyConnected {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -384,7 +392,9 @@ extern_class!(
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCoding for MPSMatrixFullyConnectedGradient {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixFullyConnectedGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -392,7 +402,9 @@ unsafe impl NSCoding for MPSMatrixFullyConnectedGradient {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSCopying for MPSMatrixFullyConnectedGradient {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixFullyConnectedGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -410,7 +422,9 @@ unsafe impl CopyingHelper for MPSMatrixFullyConnectedGradient {
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSObjectProtocol for MPSMatrixFullyConnectedGradient {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixFullyConnectedGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",
@@ -418,7 +432,9 @@ unsafe impl NSObjectProtocol for MPSMatrixFullyConnectedGradient {}
     feature = "MPSMatrix",
     feature = "MPSMatrixTypes"
 ))]
-unsafe impl NSSecureCoding for MPSMatrixFullyConnectedGradient {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixFullyConnectedGradient {}
+);
 
 #[cfg(all(
     feature = "MPSCore",

@@ -13,13 +13,17 @@ extern_class!(
     pub struct AVTextStyleRule;
 );
 
-unsafe impl NSCopying for AVTextStyleRule {}
+extern_conformance!(
+    unsafe impl NSCopying for AVTextStyleRule {}
+);
 
 unsafe impl CopyingHelper for AVTextStyleRule {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVTextStyleRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVTextStyleRule {}
+);
 
 impl AVTextStyleRule {
     extern_methods!(

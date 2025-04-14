@@ -26,7 +26,9 @@ extern_class!(
 );
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSCopying for EKRecurrenceRule {}
+extern_conformance!(
+    unsafe impl NSCopying for EKRecurrenceRule {}
+);
 
 #[cfg(feature = "EKObject")]
 unsafe impl CopyingHelper for EKRecurrenceRule {
@@ -34,7 +36,9 @@ unsafe impl CopyingHelper for EKRecurrenceRule {
 }
 
 #[cfg(feature = "EKObject")]
-unsafe impl NSObjectProtocol for EKRecurrenceRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKRecurrenceRule {}
+);
 
 #[cfg(feature = "EKObject")]
 impl EKRecurrenceRule {

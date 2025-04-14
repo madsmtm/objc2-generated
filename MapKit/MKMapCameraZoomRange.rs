@@ -21,17 +21,25 @@ extern_class!(
     pub struct MKMapCameraZoomRange;
 );
 
-unsafe impl NSCoding for MKMapCameraZoomRange {}
+extern_conformance!(
+    unsafe impl NSCoding for MKMapCameraZoomRange {}
+);
 
-unsafe impl NSCopying for MKMapCameraZoomRange {}
+extern_conformance!(
+    unsafe impl NSCopying for MKMapCameraZoomRange {}
+);
 
 unsafe impl CopyingHelper for MKMapCameraZoomRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKMapCameraZoomRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMapCameraZoomRange {}
+);
 
-unsafe impl NSSecureCoding for MKMapCameraZoomRange {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MKMapCameraZoomRange {}
+);
 
 impl MKMapCameraZoomRange {
     extern_methods!(

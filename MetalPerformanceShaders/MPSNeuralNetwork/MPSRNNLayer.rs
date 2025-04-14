@@ -66,7 +66,9 @@ extern_class!(
     pub struct MPSRNNDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPSRNNDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSRNNDescriptor {}
+);
 
 impl MPSRNNDescriptor {
     extern_methods!(
@@ -201,7 +203,9 @@ extern_class!(
     pub struct MPSRNNSingleGateDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPSRNNSingleGateDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSRNNSingleGateDescriptor {}
+);
 
 impl MPSRNNSingleGateDescriptor {
     extern_methods!(
@@ -325,7 +329,9 @@ extern_class!(
     pub struct MPSGRUDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPSGRUDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGRUDescriptor {}
+);
 
 impl MPSGRUDescriptor {
     extern_methods!(
@@ -569,7 +575,9 @@ extern_class!(
     pub struct MPSLSTMDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPSLSTMDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSLSTMDescriptor {}
+);
 
 impl MPSLSTMDescriptor {
     extern_methods!(
@@ -898,7 +906,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSRNNRecurrentImageState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSRNNRecurrentImageState {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSRNNRecurrentImageState {
@@ -1080,10 +1090,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSRNNImageInferenceLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSRNNImageInferenceLayer {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSRNNImageInferenceLayer {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSRNNImageInferenceLayer {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSRNNImageInferenceLayer {
@@ -1091,10 +1105,14 @@ unsafe impl CopyingHelper for MPSRNNImageInferenceLayer {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSRNNImageInferenceLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSRNNImageInferenceLayer {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSRNNImageInferenceLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSRNNImageInferenceLayer {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSRNNImageInferenceLayer {
@@ -1392,7 +1410,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSRNNRecurrentMatrixState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSRNNRecurrentMatrixState {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSRNNRecurrentMatrixState {
@@ -1604,10 +1624,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSRNNMatrixInferenceLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSRNNMatrixInferenceLayer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSRNNMatrixInferenceLayer {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSRNNMatrixInferenceLayer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSRNNMatrixInferenceLayer {
@@ -1615,10 +1639,14 @@ unsafe impl CopyingHelper for MPSRNNMatrixInferenceLayer {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSRNNMatrixInferenceLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSRNNMatrixInferenceLayer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSRNNMatrixInferenceLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSRNNMatrixInferenceLayer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSRNNMatrixInferenceLayer {
@@ -1937,7 +1965,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
-unsafe impl NSObjectProtocol for MPSRNNMatrixTrainingState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSRNNMatrixTrainingState {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSRNNMatrixTrainingState {
@@ -2181,10 +2211,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSRNNMatrixTrainingLayer {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSRNNMatrixTrainingLayer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSRNNMatrixTrainingLayer {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSRNNMatrixTrainingLayer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSRNNMatrixTrainingLayer {
@@ -2192,10 +2226,14 @@ unsafe impl CopyingHelper for MPSRNNMatrixTrainingLayer {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSRNNMatrixTrainingLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSRNNMatrixTrainingLayer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSRNNMatrixTrainingLayer {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSRNNMatrixTrainingLayer {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSRNNMatrixTrainingLayer {

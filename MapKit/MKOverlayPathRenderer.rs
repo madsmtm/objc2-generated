@@ -23,7 +23,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MKOverlayRenderer")]
-unsafe impl NSObjectProtocol for MKOverlayPathRenderer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKOverlayPathRenderer {}
+);
 
 #[cfg(feature = "MKOverlayRenderer")]
 impl MKOverlayPathRenderer {

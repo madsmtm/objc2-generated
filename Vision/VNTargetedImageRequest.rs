@@ -25,7 +25,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNTargetedImageRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNTargetedImageRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNTargetedImageRequest {
@@ -33,7 +35,9 @@ unsafe impl CopyingHelper for VNTargetedImageRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNTargetedImageRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNTargetedImageRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNTargetedImageRequest {

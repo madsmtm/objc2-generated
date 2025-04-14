@@ -41,7 +41,9 @@ extern_class!(
     pub struct UIContextualAction;
 );
 
-unsafe impl NSObjectProtocol for UIContextualAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIContextualAction {}
+);
 
 impl UIContextualAction {
     extern_methods!(

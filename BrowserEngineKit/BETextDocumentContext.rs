@@ -16,7 +16,9 @@ extern_class!(
     pub struct BETextDocumentContext;
 );
 
-unsafe impl NSObjectProtocol for BETextDocumentContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BETextDocumentContext {}
+);
 
 impl BETextDocumentContext {
     extern_methods!(

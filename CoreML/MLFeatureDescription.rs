@@ -15,17 +15,25 @@ extern_class!(
     pub struct MLFeatureDescription;
 );
 
-unsafe impl NSCoding for MLFeatureDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for MLFeatureDescription {}
+);
 
-unsafe impl NSCopying for MLFeatureDescription {}
+extern_conformance!(
+    unsafe impl NSCopying for MLFeatureDescription {}
+);
 
 unsafe impl CopyingHelper for MLFeatureDescription {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLFeatureDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLFeatureDescription {}
+);
 
-unsafe impl NSSecureCoding for MLFeatureDescription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLFeatureDescription {}
+);
 
 impl MLFeatureDescription {
     extern_methods!(

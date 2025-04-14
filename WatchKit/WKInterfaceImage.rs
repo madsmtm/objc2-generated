@@ -40,10 +40,14 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceImage {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl WKImageAnimatable for WKInterfaceImage {}
+extern_conformance!(
+    unsafe impl WKImageAnimatable for WKInterfaceImage {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceImage {

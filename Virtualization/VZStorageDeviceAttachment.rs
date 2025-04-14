@@ -22,7 +22,9 @@ extern_class!(
     pub struct VZStorageDeviceAttachment;
 );
 
-unsafe impl NSObjectProtocol for VZStorageDeviceAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZStorageDeviceAttachment {}
+);
 
 impl VZStorageDeviceAttachment {
     extern_methods!(

@@ -40,15 +40,21 @@ extern_class!(
     pub struct CNPostalAddressFormatter;
 );
 
-unsafe impl NSCoding for CNPostalAddressFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for CNPostalAddressFormatter {}
+);
 
-unsafe impl NSCopying for CNPostalAddressFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for CNPostalAddressFormatter {}
+);
 
 unsafe impl CopyingHelper for CNPostalAddressFormatter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNPostalAddressFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNPostalAddressFormatter {}
+);
 
 impl CNPostalAddressFormatter {
     extern_methods!(

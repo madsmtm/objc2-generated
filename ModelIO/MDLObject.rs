@@ -20,9 +20,13 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLNamed for MDLObject {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLObject {}
+);
 
-unsafe impl NSObjectProtocol for MDLObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLObject {}
+);
 
 impl MDLObject {
     extern_methods!(
@@ -237,14 +241,22 @@ extern_class!(
 );
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLComponent for MDLObjectContainer {}
+extern_conformance!(
+    unsafe impl MDLComponent for MDLObjectContainer {}
+);
 
 #[cfg(feature = "MDLTypes")]
-unsafe impl MDLObjectContainerComponent for MDLObjectContainer {}
+extern_conformance!(
+    unsafe impl MDLObjectContainerComponent for MDLObjectContainer {}
+);
 
-unsafe impl NSFastEnumeration for MDLObjectContainer {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for MDLObjectContainer {}
+);
 
-unsafe impl NSObjectProtocol for MDLObjectContainer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLObjectContainer {}
+);
 
 impl MDLObjectContainer {
     extern_methods!();

@@ -26,7 +26,9 @@ extern_class!(
     pub struct VZMemoryBalloonDevice;
 );
 
-unsafe impl NSObjectProtocol for VZMemoryBalloonDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZMemoryBalloonDevice {}
+);
 
 impl VZMemoryBalloonDevice {
     extern_methods!(

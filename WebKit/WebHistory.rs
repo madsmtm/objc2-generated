@@ -48,7 +48,9 @@ extern_class!(
     pub struct WebHistory;
 );
 
-unsafe impl NSObjectProtocol for WebHistory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebHistory {}
+);
 
 impl WebHistory {
     extern_methods!(

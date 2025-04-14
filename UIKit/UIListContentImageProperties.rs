@@ -17,17 +17,25 @@ extern_class!(
     pub struct UIListContentImageProperties;
 );
 
-unsafe impl NSCoding for UIListContentImageProperties {}
+extern_conformance!(
+    unsafe impl NSCoding for UIListContentImageProperties {}
+);
 
-unsafe impl NSCopying for UIListContentImageProperties {}
+extern_conformance!(
+    unsafe impl NSCopying for UIListContentImageProperties {}
+);
 
 unsafe impl CopyingHelper for UIListContentImageProperties {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIListContentImageProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIListContentImageProperties {}
+);
 
-unsafe impl NSSecureCoding for UIListContentImageProperties {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIListContentImageProperties {}
+);
 
 impl UIListContentImageProperties {
     extern_methods!(

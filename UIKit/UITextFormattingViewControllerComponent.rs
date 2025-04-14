@@ -129,17 +129,25 @@ extern_class!(
     pub struct UITextFormattingViewControllerComponent;
 );
 
-unsafe impl NSCoding for UITextFormattingViewControllerComponent {}
+extern_conformance!(
+    unsafe impl NSCoding for UITextFormattingViewControllerComponent {}
+);
 
-unsafe impl NSCopying for UITextFormattingViewControllerComponent {}
+extern_conformance!(
+    unsafe impl NSCopying for UITextFormattingViewControllerComponent {}
+);
 
 unsafe impl CopyingHelper for UITextFormattingViewControllerComponent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITextFormattingViewControllerComponent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextFormattingViewControllerComponent {}
+);
 
-unsafe impl NSSecureCoding for UITextFormattingViewControllerComponent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UITextFormattingViewControllerComponent {}
+);
 
 impl UITextFormattingViewControllerComponent {
     extern_methods!(
@@ -185,17 +193,25 @@ extern_class!(
     pub struct UITextFormattingViewControllerComponentGroup;
 );
 
-unsafe impl NSCoding for UITextFormattingViewControllerComponentGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for UITextFormattingViewControllerComponentGroup {}
+);
 
-unsafe impl NSCopying for UITextFormattingViewControllerComponentGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for UITextFormattingViewControllerComponentGroup {}
+);
 
 unsafe impl CopyingHelper for UITextFormattingViewControllerComponentGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UITextFormattingViewControllerComponentGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextFormattingViewControllerComponentGroup {}
+);
 
-unsafe impl NSSecureCoding for UITextFormattingViewControllerComponentGroup {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UITextFormattingViewControllerComponentGroup {}
+);
 
 impl UITextFormattingViewControllerComponentGroup {
     extern_methods!(

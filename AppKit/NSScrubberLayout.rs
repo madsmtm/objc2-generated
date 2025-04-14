@@ -25,13 +25,17 @@ extern_class!(
     pub struct NSScrubberLayoutAttributes;
 );
 
-unsafe impl NSCopying for NSScrubberLayoutAttributes {}
+extern_conformance!(
+    unsafe impl NSCopying for NSScrubberLayoutAttributes {}
+);
 
 unsafe impl CopyingHelper for NSScrubberLayoutAttributes {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSScrubberLayoutAttributes {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberLayoutAttributes {}
+);
 
 impl NSScrubberLayoutAttributes {
     extern_methods!(
@@ -94,9 +98,13 @@ extern_class!(
     pub struct NSScrubberLayout;
 );
 
-unsafe impl NSCoding for NSScrubberLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubberLayout {}
+);
 
-unsafe impl NSObjectProtocol for NSScrubberLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberLayout {}
+);
 
 impl NSScrubberLayout {
     extern_methods!(
@@ -244,9 +252,13 @@ extern_class!(
     pub struct NSScrubberFlowLayout;
 );
 
-unsafe impl NSCoding for NSScrubberFlowLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubberFlowLayout {}
+);
 
-unsafe impl NSObjectProtocol for NSScrubberFlowLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberFlowLayout {}
+);
 
 impl NSScrubberFlowLayout {
     extern_methods!(
@@ -309,9 +321,13 @@ extern_class!(
     pub struct NSScrubberProportionalLayout;
 );
 
-unsafe impl NSCoding for NSScrubberProportionalLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScrubberProportionalLayout {}
+);
 
-unsafe impl NSObjectProtocol for NSScrubberProportionalLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScrubberProportionalLayout {}
+);
 
 impl NSScrubberProportionalLayout {
     extern_methods!(

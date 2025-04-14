@@ -17,10 +17,14 @@ extern_class!(
     pub struct UIToolTipInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIToolTipInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIToolTipInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIToolTipInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIToolTipInteraction {}
+);
 
 impl UIToolTipInteraction {
     extern_methods!(
@@ -91,7 +95,9 @@ extern_class!(
     pub struct UIToolTipConfiguration;
 );
 
-unsafe impl NSObjectProtocol for UIToolTipConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIToolTipConfiguration {}
+);
 
 impl UIToolTipConfiguration {
     extern_methods!(

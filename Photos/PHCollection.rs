@@ -23,7 +23,9 @@ unsafe impl Send for PHCollection {}
 unsafe impl Sync for PHCollection {}
 
 #[cfg(feature = "PHObject")]
-unsafe impl NSCopying for PHCollection {}
+extern_conformance!(
+    unsafe impl NSCopying for PHCollection {}
+);
 
 #[cfg(feature = "PHObject")]
 unsafe impl CopyingHelper for PHCollection {
@@ -31,7 +33,9 @@ unsafe impl CopyingHelper for PHCollection {
 }
 
 #[cfg(feature = "PHObject")]
-unsafe impl NSObjectProtocol for PHCollection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHCollection {}
+);
 
 #[cfg(feature = "PHObject")]
 impl PHCollection {
@@ -102,7 +106,9 @@ unsafe impl Send for PHAssetCollection {}
 unsafe impl Sync for PHAssetCollection {}
 
 #[cfg(feature = "PHObject")]
-unsafe impl NSCopying for PHAssetCollection {}
+extern_conformance!(
+    unsafe impl NSCopying for PHAssetCollection {}
+);
 
 #[cfg(feature = "PHObject")]
 unsafe impl CopyingHelper for PHAssetCollection {
@@ -110,7 +116,9 @@ unsafe impl CopyingHelper for PHAssetCollection {
 }
 
 #[cfg(feature = "PHObject")]
-unsafe impl NSObjectProtocol for PHAssetCollection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHAssetCollection {}
+);
 
 #[cfg(feature = "PHObject")]
 impl PHAssetCollection {
@@ -254,7 +262,9 @@ unsafe impl Send for PHCollectionList {}
 unsafe impl Sync for PHCollectionList {}
 
 #[cfg(feature = "PHObject")]
-unsafe impl NSCopying for PHCollectionList {}
+extern_conformance!(
+    unsafe impl NSCopying for PHCollectionList {}
+);
 
 #[cfg(feature = "PHObject")]
 unsafe impl CopyingHelper for PHCollectionList {
@@ -262,7 +272,9 @@ unsafe impl CopyingHelper for PHCollectionList {
 }
 
 #[cfg(feature = "PHObject")]
-unsafe impl NSObjectProtocol for PHCollectionList {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHCollectionList {}
+);
 
 #[cfg(feature = "PHObject")]
 impl PHCollectionList {

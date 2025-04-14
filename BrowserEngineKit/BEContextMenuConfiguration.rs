@@ -18,7 +18,9 @@ extern_class!(
     pub struct BEContextMenuConfiguration;
 );
 
-unsafe impl NSObjectProtocol for BEContextMenuConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEContextMenuConfiguration {}
+);
 
 impl BEContextMenuConfiguration {
     extern_methods!(

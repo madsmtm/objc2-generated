@@ -17,24 +17,32 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-unsafe impl NSCoding for NSArrayController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSArrayController {}
+);
 
 #[cfg(all(
     feature = "NSController",
     feature = "NSKeyValueBinding",
     feature = "NSObjectController"
 ))]
-unsafe impl NSEditor for NSArrayController {}
+extern_conformance!(
+    unsafe impl NSEditor for NSArrayController {}
+);
 
 #[cfg(all(
     feature = "NSController",
     feature = "NSKeyValueBinding",
     feature = "NSObjectController"
 ))]
-unsafe impl NSEditorRegistration for NSArrayController {}
+extern_conformance!(
+    unsafe impl NSEditorRegistration for NSArrayController {}
+);
 
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
-unsafe impl NSObjectProtocol for NSArrayController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSArrayController {}
+);
 
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 impl NSArrayController {

@@ -19,7 +19,9 @@ unsafe impl Send for MLModelStructureProgramFunction {}
 
 unsafe impl Sync for MLModelStructureProgramFunction {}
 
-unsafe impl NSObjectProtocol for MLModelStructureProgramFunction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLModelStructureProgramFunction {}
+);
 
 impl MLModelStructureProgramFunction {
     extern_methods!(

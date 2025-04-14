@@ -19,10 +19,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SWHighlight")]
-unsafe impl NSCoding for SWCollaborationHighlight {}
+extern_conformance!(
+    unsafe impl NSCoding for SWCollaborationHighlight {}
+);
 
 #[cfg(feature = "SWHighlight")]
-unsafe impl NSCopying for SWCollaborationHighlight {}
+extern_conformance!(
+    unsafe impl NSCopying for SWCollaborationHighlight {}
+);
 
 #[cfg(feature = "SWHighlight")]
 unsafe impl CopyingHelper for SWCollaborationHighlight {
@@ -30,10 +34,14 @@ unsafe impl CopyingHelper for SWCollaborationHighlight {
 }
 
 #[cfg(feature = "SWHighlight")]
-unsafe impl NSObjectProtocol for SWCollaborationHighlight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWCollaborationHighlight {}
+);
 
 #[cfg(feature = "SWHighlight")]
-unsafe impl NSSecureCoding for SWCollaborationHighlight {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWCollaborationHighlight {}
+);
 
 #[cfg(feature = "SWHighlight")]
 impl SWCollaborationHighlight {

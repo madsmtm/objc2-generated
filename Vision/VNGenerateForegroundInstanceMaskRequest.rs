@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNGenerateForegroundInstanceMaskRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNGenerateForegroundInstanceMaskRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNGenerateForegroundInstanceMaskRequest {
@@ -25,7 +27,9 @@ unsafe impl CopyingHelper for VNGenerateForegroundInstanceMaskRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNGenerateForegroundInstanceMaskRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNGenerateForegroundInstanceMaskRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNGenerateForegroundInstanceMaskRequest {

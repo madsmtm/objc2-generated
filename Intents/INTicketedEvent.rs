@@ -15,17 +15,25 @@ extern_class!(
     pub struct INTicketedEvent;
 );
 
-unsafe impl NSCoding for INTicketedEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for INTicketedEvent {}
+);
 
-unsafe impl NSCopying for INTicketedEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for INTicketedEvent {}
+);
 
 unsafe impl CopyingHelper for INTicketedEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INTicketedEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INTicketedEvent {}
+);
 
-unsafe impl NSSecureCoding for INTicketedEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INTicketedEvent {}
+);
 
 impl INTicketedEvent {
     extern_methods!(

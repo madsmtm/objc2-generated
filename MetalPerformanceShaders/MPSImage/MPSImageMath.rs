@@ -56,10 +56,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageArithmetic {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageArithmetic {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageArithmetic {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageArithmetic {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageArithmetic {
@@ -67,10 +71,14 @@ unsafe impl CopyingHelper for MPSImageArithmetic {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageArithmetic {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageArithmetic {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageArithmetic {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageArithmetic {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageArithmetic {
@@ -234,10 +242,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageAdd {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageAdd {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageAdd {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageAdd {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageAdd {
@@ -245,10 +257,14 @@ unsafe impl CopyingHelper for MPSImageAdd {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageAdd {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageAdd {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageAdd {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageAdd {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageAdd {
@@ -344,10 +360,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageSubtract {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageSubtract {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageSubtract {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageSubtract {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageSubtract {
@@ -355,10 +375,14 @@ unsafe impl CopyingHelper for MPSImageSubtract {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageSubtract {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageSubtract {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageSubtract {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageSubtract {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageSubtract {
@@ -454,10 +478,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageMultiply {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageMultiply {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageMultiply {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageMultiply {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageMultiply {
@@ -465,10 +493,14 @@ unsafe impl CopyingHelper for MPSImageMultiply {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageMultiply {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageMultiply {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageMultiply {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageMultiply {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageMultiply {
@@ -564,10 +596,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSImageDivide {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSImageDivide {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSImageDivide {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageDivide {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageDivide {
@@ -575,10 +611,14 @@ unsafe impl CopyingHelper for MPSImageDivide {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSImageDivide {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageDivide {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSImageDivide {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSImageDivide {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 impl MPSImageDivide {

@@ -17,17 +17,25 @@ unsafe impl Send for HKQueryDescriptor {}
 
 unsafe impl Sync for HKQueryDescriptor {}
 
-unsafe impl NSCoding for HKQueryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for HKQueryDescriptor {}
+);
 
-unsafe impl NSCopying for HKQueryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for HKQueryDescriptor {}
+);
 
 unsafe impl CopyingHelper for HKQueryDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKQueryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKQueryDescriptor {}
+);
 
-unsafe impl NSSecureCoding for HKQueryDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKQueryDescriptor {}
+);
 
 impl HKQueryDescriptor {
     extern_methods!(

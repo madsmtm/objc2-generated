@@ -45,7 +45,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSColorWell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSColorWell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -53,7 +55,9 @@ unsafe impl NSAccessibility for NSColorWell {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSColorWell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSColorWell {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -61,7 +65,9 @@ unsafe impl NSAccessibilityElementProtocol for NSColorWell {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSColorWell {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSColorWell {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -69,10 +75,14 @@ unsafe impl NSAnimatablePropertyContainer for NSColorWell {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSColorWell {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSColorWell {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSColorWell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSColorWell {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -80,10 +90,14 @@ unsafe impl NSCoding for NSColorWell {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSColorWell {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSColorWell {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSColorWell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSColorWell {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -91,7 +105,9 @@ unsafe impl NSObjectProtocol for NSColorWell {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSColorWell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSColorWell {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSColorWell {

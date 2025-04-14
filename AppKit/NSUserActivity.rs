@@ -36,7 +36,9 @@ impl NSResponder {
 }
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSUserActivityRestoring for NSResponder {}
+extern_conformance!(
+    unsafe impl NSUserActivityRestoring for NSResponder {}
+);
 
 /// NSUserActivity.
 #[cfg(feature = "NSDocument")]
@@ -58,7 +60,9 @@ impl NSDocument {
 }
 
 #[cfg(feature = "NSDocument")]
-unsafe impl NSUserActivityRestoring for NSDocument {}
+extern_conformance!(
+    unsafe impl NSUserActivityRestoring for NSDocument {}
+);
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuseractivitydocumenturlkey?language=objc)

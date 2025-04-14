@@ -41,17 +41,25 @@ extern_class!(
     pub struct NSSharingCollaborationModeRestriction;
 );
 
-unsafe impl NSCoding for NSSharingCollaborationModeRestriction {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSharingCollaborationModeRestriction {}
+);
 
-unsafe impl NSCopying for NSSharingCollaborationModeRestriction {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSharingCollaborationModeRestriction {}
+);
 
 unsafe impl CopyingHelper for NSSharingCollaborationModeRestriction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSharingCollaborationModeRestriction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSharingCollaborationModeRestriction {}
+);
 
-unsafe impl NSSecureCoding for NSSharingCollaborationModeRestriction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSharingCollaborationModeRestriction {}
+);
 
 impl NSSharingCollaborationModeRestriction {
     extern_methods!(

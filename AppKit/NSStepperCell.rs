@@ -20,20 +20,28 @@ extern_class!(
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSStepperCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSStepperCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSStepperCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSStepperCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSStepperCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSStepperCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSStepperCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSStepperCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSStepperCell {
@@ -41,14 +49,18 @@ unsafe impl CopyingHelper for NSStepperCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSStepperCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStepperCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSStepperCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSStepperCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSStepperCell {

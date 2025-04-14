@@ -14,7 +14,9 @@ extern_class!(
     pub struct TKTokenWatcherTokenInfo;
 );
 
-unsafe impl NSObjectProtocol for TKTokenWatcherTokenInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenWatcherTokenInfo {}
+);
 
 impl TKTokenWatcherTokenInfo {
     extern_methods!(
@@ -50,7 +52,9 @@ extern_class!(
     pub struct TKTokenWatcher;
 );
 
-unsafe impl NSObjectProtocol for TKTokenWatcher {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TKTokenWatcher {}
+);
 
 impl TKTokenWatcher {
     extern_methods!(

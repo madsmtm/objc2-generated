@@ -194,9 +194,13 @@ extern_class!(
     pub struct UIResponder;
 );
 
-unsafe impl NSObjectProtocol for UIResponder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIResponder {}
+);
 
-unsafe impl UIResponderStandardEditActions for UIResponder {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIResponder {}
+);
 
 impl UIResponder {
     extern_methods!(
@@ -569,7 +573,9 @@ impl UIResponder {
 }
 
 #[cfg(feature = "UIUserActivity")]
-unsafe impl UIUserActivityRestoring for UIResponder {}
+extern_conformance!(
+    unsafe impl UIUserActivityRestoring for UIResponder {}
+);
 
 /// UIPasteConfigurationSupporting.
 impl UIResponder {
@@ -577,7 +583,9 @@ impl UIResponder {
 }
 
 #[cfg(feature = "UIPasteConfigurationSupporting")]
-unsafe impl UIPasteConfigurationSupporting for UIResponder {}
+extern_conformance!(
+    unsafe impl UIPasteConfigurationSupporting for UIResponder {}
+);
 
 /// UICaptureTextFromCameraSupporting.
 impl UIResponder {

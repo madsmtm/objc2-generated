@@ -45,31 +45,57 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-quartz-core")]
-unsafe impl CALayerDelegate for BEScrollView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for BEScrollView {}
+);
 
-unsafe impl NSCoding for BEScrollView {}
+extern_conformance!(
+    unsafe impl NSCoding for BEScrollView {}
+);
 
-unsafe impl NSObjectProtocol for BEScrollView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEScrollView {}
+);
 
-unsafe impl UIAppearance for BEScrollView {}
+extern_conformance!(
+    unsafe impl UIAppearance for BEScrollView {}
+);
 
-unsafe impl UIAppearanceContainer for BEScrollView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for BEScrollView {}
+);
 
-unsafe impl UICoordinateSpace for BEScrollView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for BEScrollView {}
+);
 
-unsafe impl UIDynamicItem for BEScrollView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for BEScrollView {}
+);
 
-unsafe impl UIFocusEnvironment for BEScrollView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for BEScrollView {}
+);
 
-unsafe impl UIFocusItem for BEScrollView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for BEScrollView {}
+);
 
-unsafe impl UIFocusItemContainer for BEScrollView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for BEScrollView {}
+);
 
-unsafe impl UIFocusItemScrollableContainer for BEScrollView {}
+extern_conformance!(
+    unsafe impl UIFocusItemScrollableContainer for BEScrollView {}
+);
 
-unsafe impl UIResponderStandardEditActions for BEScrollView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for BEScrollView {}
+);
 
-unsafe impl UITraitEnvironment for BEScrollView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for BEScrollView {}
+);
 
 impl BEScrollView {
     extern_methods!(
@@ -151,7 +177,9 @@ extern_class!(
     pub struct BEScrollViewScrollUpdate;
 );
 
-unsafe impl NSObjectProtocol for BEScrollViewScrollUpdate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEScrollViewScrollUpdate {}
+);
 
 impl BEScrollViewScrollUpdate {
     extern_methods!(

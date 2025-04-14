@@ -88,7 +88,9 @@ unsafe impl SKNodeGameplayKit for SKNode {}
 
 #[cfg(all(feature = "GKScene", feature = "objc2-sprite-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl GKSceneRootNodeType for SKScene {}
+extern_conformance!(
+    unsafe impl GKSceneRootNodeType for SKScene {}
+);
 
 mod private_SKTileMapNodeGameplayKit {
     pub trait Sealed {}

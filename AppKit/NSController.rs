@@ -15,15 +15,23 @@ extern_class!(
     pub struct NSController;
 );
 
-unsafe impl NSCoding for NSController {}
+extern_conformance!(
+    unsafe impl NSCoding for NSController {}
+);
 
 #[cfg(feature = "NSKeyValueBinding")]
-unsafe impl NSEditor for NSController {}
+extern_conformance!(
+    unsafe impl NSEditor for NSController {}
+);
 
 #[cfg(feature = "NSKeyValueBinding")]
-unsafe impl NSEditorRegistration for NSController {}
+extern_conformance!(
+    unsafe impl NSEditorRegistration for NSController {}
+);
 
-unsafe impl NSObjectProtocol for NSController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSController {}
+);
 
 impl NSController {
     extern_methods!(

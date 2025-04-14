@@ -12,7 +12,9 @@ extern_class!(
     pub struct UIWindowSceneGeometryPreferences;
 );
 
-unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferences {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferences {}
+);
 
 impl UIWindowSceneGeometryPreferences {
     extern_methods!(

@@ -12,7 +12,9 @@ extern_class!(
     pub struct INIntentResolutionResult;
 );
 
-unsafe impl NSObjectProtocol for INIntentResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INIntentResolutionResult {}
+);
 
 impl INIntentResolutionResult {
     extern_methods!(

@@ -15,17 +15,25 @@ extern_class!(
     pub struct MLKey;
 );
 
-unsafe impl NSCoding for MLKey {}
+extern_conformance!(
+    unsafe impl NSCoding for MLKey {}
+);
 
-unsafe impl NSCopying for MLKey {}
+extern_conformance!(
+    unsafe impl NSCopying for MLKey {}
+);
 
 unsafe impl CopyingHelper for MLKey {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLKey {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLKey {}
+);
 
-unsafe impl NSSecureCoding for MLKey {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLKey {}
+);
 
 impl MLKey {
     extern_methods!(

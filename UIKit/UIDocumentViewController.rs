@@ -16,37 +16,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UIDocumentViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UIDocumentViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UIDocumentViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocumentViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UIDocumentViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIDocumentViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UIDocumentViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIDocumentViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UIDocumentViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIDocumentViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UIDocumentViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIDocumentViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UIDocumentViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIDocumentViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIDocumentViewController {

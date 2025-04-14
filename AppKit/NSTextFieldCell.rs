@@ -40,20 +40,28 @@ extern_class!(
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTextFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTextFieldCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextFieldCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTextFieldCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSTextFieldCell {
@@ -61,14 +69,18 @@ unsafe impl CopyingHelper for NSTextFieldCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextFieldCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTextFieldCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSTextFieldCell {

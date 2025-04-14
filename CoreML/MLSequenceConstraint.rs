@@ -15,11 +15,17 @@ extern_class!(
     pub struct MLSequenceConstraint;
 );
 
-unsafe impl NSCoding for MLSequenceConstraint {}
+extern_conformance!(
+    unsafe impl NSCoding for MLSequenceConstraint {}
+);
 
-unsafe impl NSObjectProtocol for MLSequenceConstraint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLSequenceConstraint {}
+);
 
-unsafe impl NSSecureCoding for MLSequenceConstraint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLSequenceConstraint {}
+);
 
 impl MLSequenceConstraint {
     extern_methods!(

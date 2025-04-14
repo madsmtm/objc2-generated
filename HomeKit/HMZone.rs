@@ -26,7 +26,9 @@ unsafe impl Send for HMZone {}
 
 unsafe impl Sync for HMZone {}
 
-unsafe impl NSObjectProtocol for HMZone {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMZone {}
+);
 
 impl HMZone {
     extern_methods!(

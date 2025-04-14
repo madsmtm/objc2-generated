@@ -103,11 +103,17 @@ extern_class!(
     pub struct UIDocument;
 );
 
-unsafe impl NSFilePresenter for UIDocument {}
+extern_conformance!(
+    unsafe impl NSFilePresenter for UIDocument {}
+);
 
-unsafe impl NSObjectProtocol for UIDocument {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDocument {}
+);
 
-unsafe impl NSProgressReporting for UIDocument {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for UIDocument {}
+);
 
 impl UIDocument {
     extern_methods!(
@@ -330,7 +336,9 @@ impl UIDocument {
 }
 
 #[cfg(feature = "UINavigationItem")]
-unsafe impl UINavigationItemRenameDelegate for UIDocument {}
+extern_conformance!(
+    unsafe impl UINavigationItemRenameDelegate for UIDocument {}
+);
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsuseractivitydocumenturlkey?language=objc)
@@ -360,4 +368,6 @@ impl UIDocument {
 }
 
 #[cfg(feature = "UIUserActivity")]
-unsafe impl UIUserActivityRestoring for UIDocument {}
+extern_conformance!(
+    unsafe impl UIUserActivityRestoring for UIDocument {}
+);

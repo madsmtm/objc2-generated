@@ -26,17 +26,25 @@ extern_class!(
     pub struct INParameter;
 );
 
-unsafe impl NSCoding for INParameter {}
+extern_conformance!(
+    unsafe impl NSCoding for INParameter {}
+);
 
-unsafe impl NSCopying for INParameter {}
+extern_conformance!(
+    unsafe impl NSCopying for INParameter {}
+);
 
 unsafe impl CopyingHelper for INParameter {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INParameter {}
+);
 
-unsafe impl NSSecureCoding for INParameter {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INParameter {}
+);
 
 impl INParameter {
     extern_methods!(

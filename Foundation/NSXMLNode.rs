@@ -58,14 +58,18 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSXMLNode {}
+extern_conformance!(
+    unsafe impl NSCopying for NSXMLNode {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSXMLNode {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSXMLNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSXMLNode {}
+);
 
 impl NSXMLNode {
     extern_methods!(

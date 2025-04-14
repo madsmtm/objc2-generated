@@ -38,13 +38,17 @@ extern_class!(
     pub struct MKLocalSearchRequest;
 );
 
-unsafe impl NSCopying for MKLocalSearchRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for MKLocalSearchRequest {}
+);
 
 unsafe impl CopyingHelper for MKLocalSearchRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MKLocalSearchRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKLocalSearchRequest {}
+);
 
 impl MKLocalSearchRequest {
     extern_methods!(

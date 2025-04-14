@@ -58,10 +58,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLLight {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLLight {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLLight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLLight {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLLight {
@@ -119,10 +123,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLPhysicallyPlausibleLight {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLPhysicallyPlausibleLight {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLPhysicallyPlausibleLight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLPhysicallyPlausibleLight {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLPhysicallyPlausibleLight {
@@ -215,10 +223,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLAreaLight {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLAreaLight {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLAreaLight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAreaLight {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLAreaLight {
@@ -275,10 +287,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLPhotometricLight {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLPhotometricLight {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLPhotometricLight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLPhotometricLight {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLPhotometricLight {
@@ -354,10 +370,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLLightProbe {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLLightProbe {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLLightProbe {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLLightProbe {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLLightProbe {

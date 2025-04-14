@@ -56,48 +56,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl NSCoding for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIActivityIndicatorView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIActivityIndicatorView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIActivityIndicatorView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIActivityIndicatorView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIActivityIndicatorView {

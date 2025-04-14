@@ -13,17 +13,25 @@ extern_class!(
     pub struct CKShareMetadata;
 );
 
-unsafe impl NSCoding for CKShareMetadata {}
+extern_conformance!(
+    unsafe impl NSCoding for CKShareMetadata {}
+);
 
-unsafe impl NSCopying for CKShareMetadata {}
+extern_conformance!(
+    unsafe impl NSCopying for CKShareMetadata {}
+);
 
 unsafe impl CopyingHelper for CKShareMetadata {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKShareMetadata {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKShareMetadata {}
+);
 
-unsafe impl NSSecureCoding for CKShareMetadata {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKShareMetadata {}
+);
 
 impl CKShareMetadata {
     extern_methods!(

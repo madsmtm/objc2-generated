@@ -17,17 +17,25 @@ extern_class!(
     pub struct SFSafariToolbarItem;
 );
 
-unsafe impl NSCoding for SFSafariToolbarItem {}
+extern_conformance!(
+    unsafe impl NSCoding for SFSafariToolbarItem {}
+);
 
-unsafe impl NSCopying for SFSafariToolbarItem {}
+extern_conformance!(
+    unsafe impl NSCopying for SFSafariToolbarItem {}
+);
 
 unsafe impl CopyingHelper for SFSafariToolbarItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SFSafariToolbarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSafariToolbarItem {}
+);
 
-unsafe impl NSSecureCoding for SFSafariToolbarItem {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SFSafariToolbarItem {}
+);
 
 impl SFSafariToolbarItem {
     extern_methods!(

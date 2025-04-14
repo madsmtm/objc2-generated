@@ -133,10 +133,14 @@ unsafe impl Send for NSNumberFormatter {}
 unsafe impl Sync for NSNumberFormatter {}
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCoding for NSNumberFormatter {}
+extern_conformance!(
+    unsafe impl NSCoding for NSNumberFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
-unsafe impl NSCopying for NSNumberFormatter {}
+extern_conformance!(
+    unsafe impl NSCopying for NSNumberFormatter {}
+);
 
 #[cfg(all(feature = "NSFormatter", feature = "NSObject"))]
 unsafe impl CopyingHelper for NSNumberFormatter {
@@ -144,7 +148,9 @@ unsafe impl CopyingHelper for NSNumberFormatter {
 }
 
 #[cfg(feature = "NSFormatter")]
-unsafe impl NSObjectProtocol for NSNumberFormatter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNumberFormatter {}
+);
 
 #[cfg(feature = "NSFormatter")]
 impl NSNumberFormatter {

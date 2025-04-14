@@ -60,20 +60,28 @@ unsafe impl Send for NSCachedURLResponse {}
 unsafe impl Sync for NSCachedURLResponse {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSCachedURLResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCachedURLResponse {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSCachedURLResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCachedURLResponse {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSCachedURLResponse {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSCachedURLResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCachedURLResponse {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSCachedURLResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSCachedURLResponse {}
+);
 
 impl NSCachedURLResponse {
     extern_methods!(
@@ -185,7 +193,9 @@ unsafe impl Send for NSURLCache {}
 
 unsafe impl Sync for NSURLCache {}
 
-unsafe impl NSObjectProtocol for NSURLCache {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLCache {}
+);
 
 impl NSURLCache {
     extern_methods!(

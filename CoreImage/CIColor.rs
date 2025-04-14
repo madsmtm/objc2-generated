@@ -17,17 +17,25 @@ extern_class!(
     pub struct CIColor;
 );
 
-unsafe impl NSCoding for CIColor {}
+extern_conformance!(
+    unsafe impl NSCoding for CIColor {}
+);
 
-unsafe impl NSCopying for CIColor {}
+extern_conformance!(
+    unsafe impl NSCopying for CIColor {}
+);
 
 unsafe impl CopyingHelper for CIColor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIColor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIColor {}
+);
 
-unsafe impl NSSecureCoding for CIColor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIColor {}
+);
 
 impl CIColor {
     extern_methods!(

@@ -24,11 +24,17 @@ extern_class!(
     pub struct CPNowPlayingButton;
 );
 
-unsafe impl NSCoding for CPNowPlayingButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingButton {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingButton {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingButton {}
+);
 
 impl CPNowPlayingButton {
     extern_methods!(
@@ -96,11 +102,17 @@ extern_class!(
     pub struct CPNowPlayingShuffleButton;
 );
 
-unsafe impl NSCoding for CPNowPlayingShuffleButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingShuffleButton {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingShuffleButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingShuffleButton {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingShuffleButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingShuffleButton {}
+);
 
 impl CPNowPlayingShuffleButton {
     extern_methods!();
@@ -143,11 +155,17 @@ extern_class!(
     pub struct CPNowPlayingAddToLibraryButton;
 );
 
-unsafe impl NSCoding for CPNowPlayingAddToLibraryButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingAddToLibraryButton {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingAddToLibraryButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingAddToLibraryButton {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingAddToLibraryButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingAddToLibraryButton {}
+);
 
 impl CPNowPlayingAddToLibraryButton {
     extern_methods!();
@@ -192,11 +210,17 @@ extern_class!(
     pub struct CPNowPlayingMoreButton;
 );
 
-unsafe impl NSCoding for CPNowPlayingMoreButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingMoreButton {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingMoreButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingMoreButton {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingMoreButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingMoreButton {}
+);
 
 impl CPNowPlayingMoreButton {
     extern_methods!();
@@ -239,11 +263,17 @@ extern_class!(
     pub struct CPNowPlayingPlaybackRateButton;
 );
 
-unsafe impl NSCoding for CPNowPlayingPlaybackRateButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingPlaybackRateButton {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingPlaybackRateButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingPlaybackRateButton {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingPlaybackRateButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingPlaybackRateButton {}
+);
 
 impl CPNowPlayingPlaybackRateButton {
     extern_methods!();
@@ -286,11 +316,17 @@ extern_class!(
     pub struct CPNowPlayingRepeatButton;
 );
 
-unsafe impl NSCoding for CPNowPlayingRepeatButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingRepeatButton {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingRepeatButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingRepeatButton {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingRepeatButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingRepeatButton {}
+);
 
 impl CPNowPlayingRepeatButton {
     extern_methods!();
@@ -333,11 +369,17 @@ extern_class!(
     pub struct CPNowPlayingImageButton;
 );
 
-unsafe impl NSCoding for CPNowPlayingImageButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingImageButton {}
+);
 
-unsafe impl NSObjectProtocol for CPNowPlayingImageButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingImageButton {}
+);
 
-unsafe impl NSSecureCoding for CPNowPlayingImageButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingImageButton {}
+);
 
 impl CPNowPlayingImageButton {
     extern_methods!(

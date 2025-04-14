@@ -21,7 +21,9 @@ extern_class!(
     pub struct BEWebContentProcess;
 );
 
-unsafe impl NSObjectProtocol for BEWebContentProcess {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BEWebContentProcess {}
+);
 
 impl BEWebContentProcess {
     extern_methods!(

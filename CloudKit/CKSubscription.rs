@@ -39,17 +39,25 @@ extern_class!(
     pub struct CKSubscription;
 );
 
-unsafe impl NSCoding for CKSubscription {}
+extern_conformance!(
+    unsafe impl NSCoding for CKSubscription {}
+);
 
-unsafe impl NSCopying for CKSubscription {}
+extern_conformance!(
+    unsafe impl NSCopying for CKSubscription {}
+);
 
 unsafe impl CopyingHelper for CKSubscription {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKSubscription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSubscription {}
+);
 
-unsafe impl NSSecureCoding for CKSubscription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKSubscription {}
+);
 
 impl CKSubscription {
     extern_methods!(
@@ -124,17 +132,25 @@ extern_class!(
     pub struct CKQuerySubscription;
 );
 
-unsafe impl NSCoding for CKQuerySubscription {}
+extern_conformance!(
+    unsafe impl NSCoding for CKQuerySubscription {}
+);
 
-unsafe impl NSCopying for CKQuerySubscription {}
+extern_conformance!(
+    unsafe impl NSCopying for CKQuerySubscription {}
+);
 
 unsafe impl CopyingHelper for CKQuerySubscription {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKQuerySubscription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKQuerySubscription {}
+);
 
-unsafe impl NSSecureCoding for CKQuerySubscription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKQuerySubscription {}
+);
 
 impl CKQuerySubscription {
     extern_methods!(
@@ -229,17 +245,25 @@ extern_class!(
     pub struct CKRecordZoneSubscription;
 );
 
-unsafe impl NSCoding for CKRecordZoneSubscription {}
+extern_conformance!(
+    unsafe impl NSCoding for CKRecordZoneSubscription {}
+);
 
-unsafe impl NSCopying for CKRecordZoneSubscription {}
+extern_conformance!(
+    unsafe impl NSCopying for CKRecordZoneSubscription {}
+);
 
 unsafe impl CopyingHelper for CKRecordZoneSubscription {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKRecordZoneSubscription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKRecordZoneSubscription {}
+);
 
-unsafe impl NSSecureCoding for CKRecordZoneSubscription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKRecordZoneSubscription {}
+);
 
 impl CKRecordZoneSubscription {
     extern_methods!(
@@ -309,17 +333,25 @@ extern_class!(
     pub struct CKDatabaseSubscription;
 );
 
-unsafe impl NSCoding for CKDatabaseSubscription {}
+extern_conformance!(
+    unsafe impl NSCoding for CKDatabaseSubscription {}
+);
 
-unsafe impl NSCopying for CKDatabaseSubscription {}
+extern_conformance!(
+    unsafe impl NSCopying for CKDatabaseSubscription {}
+);
 
 unsafe impl CopyingHelper for CKDatabaseSubscription {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKDatabaseSubscription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKDatabaseSubscription {}
+);
 
-unsafe impl NSSecureCoding for CKDatabaseSubscription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKDatabaseSubscription {}
+);
 
 impl CKDatabaseSubscription {
     extern_methods!(
@@ -376,17 +408,25 @@ extern_class!(
     pub struct CKNotificationInfo;
 );
 
-unsafe impl NSCoding for CKNotificationInfo {}
+extern_conformance!(
+    unsafe impl NSCoding for CKNotificationInfo {}
+);
 
-unsafe impl NSCopying for CKNotificationInfo {}
+extern_conformance!(
+    unsafe impl NSCopying for CKNotificationInfo {}
+);
 
 unsafe impl CopyingHelper for CKNotificationInfo {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CKNotificationInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKNotificationInfo {}
+);
 
-unsafe impl NSSecureCoding for CKNotificationInfo {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKNotificationInfo {}
+);
 
 impl CKNotificationInfo {
     extern_methods!(

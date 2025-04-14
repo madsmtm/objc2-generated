@@ -10,19 +10,29 @@ use objc2_foundation::*;
 use crate::*;
 
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for ASCredentialProviderViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for ASCredentialProviderViewController {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for ASCredentialProviderViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for ASCredentialProviderViewController {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for ASCredentialProviderViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASCredentialProviderViewController {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for ASCredentialProviderViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for ASCredentialProviderViewController {}
+);
 
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for ASCredentialProviderViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for ASCredentialProviderViewController {}
+);
 
 #[cfg(target_os = "macos")]
 impl ASCredentialProviderViewController {

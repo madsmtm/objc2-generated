@@ -70,7 +70,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]
-unsafe impl NSObjectProtocol for TVTopShelfCarouselItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVTopShelfCarouselItem {}
+);
 
 #[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]
 impl TVTopShelfCarouselItem {

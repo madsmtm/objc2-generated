@@ -45,7 +45,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSMatrix {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -53,7 +55,9 @@ unsafe impl NSAccessibility for NSMatrix {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSMatrix {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -61,7 +65,9 @@ unsafe impl NSAccessibilityElementProtocol for NSMatrix {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSMatrix {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -69,10 +75,14 @@ unsafe impl NSAnimatablePropertyContainer for NSMatrix {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSMatrix {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMatrix {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -80,10 +90,14 @@ unsafe impl NSCoding for NSMatrix {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSMatrix {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMatrix {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -91,7 +105,9 @@ unsafe impl NSObjectProtocol for NSMatrix {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSMatrix {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -99,10 +115,14 @@ unsafe impl NSUserInterfaceItemIdentification for NSMatrix {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSMatrix {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSViewToolTipOwner for NSMatrix {}
+extern_conformance!(
+    unsafe impl NSViewToolTipOwner for NSMatrix {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSMatrix {

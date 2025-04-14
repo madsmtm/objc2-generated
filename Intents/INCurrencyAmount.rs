@@ -13,17 +13,25 @@ extern_class!(
     pub struct INCurrencyAmount;
 );
 
-unsafe impl NSCoding for INCurrencyAmount {}
+extern_conformance!(
+    unsafe impl NSCoding for INCurrencyAmount {}
+);
 
-unsafe impl NSCopying for INCurrencyAmount {}
+extern_conformance!(
+    unsafe impl NSCopying for INCurrencyAmount {}
+);
 
 unsafe impl CopyingHelper for INCurrencyAmount {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INCurrencyAmount {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCurrencyAmount {}
+);
 
-unsafe impl NSSecureCoding for INCurrencyAmount {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCurrencyAmount {}
+);
 
 impl INCurrencyAmount {
     extern_methods!(

@@ -17,7 +17,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceHMCamera {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceHMCamera {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceHMCamera {

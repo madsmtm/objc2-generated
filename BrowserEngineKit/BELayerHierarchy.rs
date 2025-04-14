@@ -17,7 +17,9 @@ extern_class!(
     pub struct BELayerHierarchy;
 );
 
-unsafe impl NSObjectProtocol for BELayerHierarchy {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BELayerHierarchy {}
+);
 
 impl BELayerHierarchy {
     extern_methods!(

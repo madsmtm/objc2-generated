@@ -24,7 +24,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMFile {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMFile {}
+);
 
 #[cfg(all(
     feature = "DOMBlob",
@@ -40,7 +42,9 @@ unsafe impl CopyingHelper for DOMFile {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMFile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMFile {}
+);
 
 #[cfg(all(
     feature = "DOMBlob",

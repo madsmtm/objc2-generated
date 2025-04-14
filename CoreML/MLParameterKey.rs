@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "MLKey")]
-unsafe impl NSCoding for MLParameterKey {}
+extern_conformance!(
+    unsafe impl NSCoding for MLParameterKey {}
+);
 
 #[cfg(feature = "MLKey")]
-unsafe impl NSCopying for MLParameterKey {}
+extern_conformance!(
+    unsafe impl NSCopying for MLParameterKey {}
+);
 
 #[cfg(feature = "MLKey")]
 unsafe impl CopyingHelper for MLParameterKey {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for MLParameterKey {
 }
 
 #[cfg(feature = "MLKey")]
-unsafe impl NSObjectProtocol for MLParameterKey {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLParameterKey {}
+);
 
 #[cfg(feature = "MLKey")]
-unsafe impl NSSecureCoding for MLParameterKey {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLParameterKey {}
+);
 
 #[cfg(feature = "MLKey")]
 impl MLParameterKey {

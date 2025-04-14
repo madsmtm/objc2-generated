@@ -19,11 +19,17 @@ extern_class!(
     pub struct MXForegroundExitData;
 );
 
-unsafe impl NSCoding for MXForegroundExitData {}
+extern_conformance!(
+    unsafe impl NSCoding for MXForegroundExitData {}
+);
 
-unsafe impl NSObjectProtocol for MXForegroundExitData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXForegroundExitData {}
+);
 
-unsafe impl NSSecureCoding for MXForegroundExitData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXForegroundExitData {}
+);
 
 impl MXForegroundExitData {
     extern_methods!(
@@ -91,11 +97,17 @@ extern_class!(
     pub struct MXBackgroundExitData;
 );
 
-unsafe impl NSCoding for MXBackgroundExitData {}
+extern_conformance!(
+    unsafe impl NSCoding for MXBackgroundExitData {}
+);
 
-unsafe impl NSObjectProtocol for MXBackgroundExitData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXBackgroundExitData {}
+);
 
-unsafe impl NSSecureCoding for MXBackgroundExitData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXBackgroundExitData {}
+);
 
 impl MXBackgroundExitData {
     extern_methods!(
@@ -189,13 +201,19 @@ extern_class!(
 );
 
 #[cfg(feature = "MXMetric")]
-unsafe impl NSCoding for MXAppExitMetric {}
+extern_conformance!(
+    unsafe impl NSCoding for MXAppExitMetric {}
+);
 
 #[cfg(feature = "MXMetric")]
-unsafe impl NSObjectProtocol for MXAppExitMetric {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXAppExitMetric {}
+);
 
 #[cfg(feature = "MXMetric")]
-unsafe impl NSSecureCoding for MXAppExitMetric {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXAppExitMetric {}
+);
 
 #[cfg(feature = "MXMetric")]
 impl MXAppExitMetric {

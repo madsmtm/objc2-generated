@@ -87,7 +87,9 @@ extern_class!(
     pub struct PGDisplayDescriptor;
 );
 
-unsafe impl NSObjectProtocol for PGDisplayDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PGDisplayDescriptor {}
+);
 
 impl PGDisplayDescriptor {
     extern_methods!(
@@ -231,7 +233,9 @@ extern_class!(
     pub struct PGDisplayMode;
 );
 
-unsafe impl NSObjectProtocol for PGDisplayMode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PGDisplayMode {}
+);
 
 impl PGDisplayMode {
     extern_methods!(

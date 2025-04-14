@@ -157,10 +157,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSData {}
+extern_conformance!(
+    unsafe impl NSCoding for NSData {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSData {}
+extern_conformance!(
+    unsafe impl NSCopying for NSData {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSData {
@@ -168,17 +172,23 @@ unsafe impl CopyingHelper for NSData {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSData {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSData {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSData {
     type Result = NSMutableData;
 }
 
-unsafe impl NSObjectProtocol for NSData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSData {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSData {}
+);
 
 impl NSData {
     extern_methods!(
@@ -737,10 +747,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMutableData {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMutableData {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMutableData {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMutableData {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMutableData {
@@ -748,17 +762,23 @@ unsafe impl CopyingHelper for NSMutableData {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSMutableData {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSMutableData {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSMutableData {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMutableData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMutableData {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSMutableData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMutableData {}
+);
 
 impl NSMutableData {
     extern_methods!(
@@ -888,15 +908,23 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSPurgeableData {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPurgeableData {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSDiscardableContent for NSPurgeableData {}
+extern_conformance!(
+    unsafe impl NSDiscardableContent for NSPurgeableData {}
+);
 
-unsafe impl NSObjectProtocol for NSPurgeableData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPurgeableData {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSPurgeableData {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSPurgeableData {}
+);
 
 impl NSPurgeableData {
     extern_methods!();

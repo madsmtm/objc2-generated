@@ -17,10 +17,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INStartVideoCallIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INStartVideoCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INStartVideoCallIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INStartVideoCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INStartVideoCallIntent {
@@ -28,10 +32,14 @@ unsafe impl CopyingHelper for INStartVideoCallIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INStartVideoCallIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INStartVideoCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INStartVideoCallIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INStartVideoCallIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INStartVideoCallIntent {

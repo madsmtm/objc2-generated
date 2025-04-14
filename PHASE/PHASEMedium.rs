@@ -38,7 +38,9 @@ extern_class!(
     pub struct PHASEMedium;
 );
 
-unsafe impl NSObjectProtocol for PHASEMedium {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEMedium {}
+);
 
 impl PHASEMedium {
     extern_methods!(

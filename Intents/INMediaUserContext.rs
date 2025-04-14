@@ -41,13 +41,19 @@ extern_class!(
 );
 
 #[cfg(feature = "INUserContext")]
-unsafe impl NSCoding for INMediaUserContext {}
+extern_conformance!(
+    unsafe impl NSCoding for INMediaUserContext {}
+);
 
 #[cfg(feature = "INUserContext")]
-unsafe impl NSObjectProtocol for INMediaUserContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INMediaUserContext {}
+);
 
 #[cfg(feature = "INUserContext")]
-unsafe impl NSSecureCoding for INMediaUserContext {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INMediaUserContext {}
+);
 
 #[cfg(feature = "INUserContext")]
 impl INMediaUserContext {

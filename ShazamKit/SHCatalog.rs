@@ -19,7 +19,9 @@ extern_class!(
     pub struct SHCatalog;
 );
 
-unsafe impl NSObjectProtocol for SHCatalog {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHCatalog {}
+);
 
 impl SHCatalog {
     extern_methods!(

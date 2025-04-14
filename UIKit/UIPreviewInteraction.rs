@@ -16,7 +16,9 @@ extern_class!(
     pub struct UIPreviewInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIPreviewInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPreviewInteraction {}
+);
 
 impl UIPreviewInteraction {
     extern_methods!(

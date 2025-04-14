@@ -16,7 +16,9 @@ extern_class!(
     pub struct PHContentEditingOutput;
 );
 
-unsafe impl NSObjectProtocol for PHContentEditingOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHContentEditingOutput {}
+);
 
 impl PHContentEditingOutput {
     extern_methods!(

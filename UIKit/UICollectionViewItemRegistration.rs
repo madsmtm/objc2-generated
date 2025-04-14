@@ -26,7 +26,9 @@ extern_class!(
     pub struct UICollectionViewCellRegistration;
 );
 
-unsafe impl NSObjectProtocol for UICollectionViewCellRegistration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewCellRegistration {}
+);
 
 impl UICollectionViewCellRegistration {
     extern_methods!(
@@ -114,7 +116,9 @@ extern_class!(
     pub struct UICollectionViewSupplementaryRegistration;
 );
 
-unsafe impl NSObjectProtocol for UICollectionViewSupplementaryRegistration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewSupplementaryRegistration {}
+);
 
 impl UICollectionViewSupplementaryRegistration {
     extern_methods!(

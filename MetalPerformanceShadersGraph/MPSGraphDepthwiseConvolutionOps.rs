@@ -26,7 +26,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphDepthwiseConvolution2DOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphDepthwiseConvolution2DOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphDepthwiseConvolution2DOpDescriptor {
@@ -34,7 +36,9 @@ unsafe impl CopyingHelper for MPSGraphDepthwiseConvolution2DOpDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphDepthwiseConvolution2DOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphDepthwiseConvolution2DOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphDepthwiseConvolution2DOpDescriptor {
@@ -267,7 +271,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSCopying for MPSGraphDepthwiseConvolution3DOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSGraphDepthwiseConvolution3DOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 unsafe impl CopyingHelper for MPSGraphDepthwiseConvolution3DOpDescriptor {
@@ -275,7 +281,9 @@ unsafe impl CopyingHelper for MPSGraphDepthwiseConvolution3DOpDescriptor {
 }
 
 #[cfg(feature = "MPSGraphCore")]
-unsafe impl NSObjectProtocol for MPSGraphDepthwiseConvolution3DOpDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphDepthwiseConvolution3DOpDescriptor {}
+);
 
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphDepthwiseConvolution3DOpDescriptor {

@@ -15,13 +15,17 @@ extern_class!(
     pub struct PKFloatRange;
 );
 
-unsafe impl NSCopying for PKFloatRange {}
+extern_conformance!(
+    unsafe impl NSCopying for PKFloatRange {}
+);
 
 unsafe impl CopyingHelper for PKFloatRange {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PKFloatRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKFloatRange {}
+);
 
 impl PKFloatRange {
     extern_methods!(

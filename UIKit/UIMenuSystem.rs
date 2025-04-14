@@ -16,7 +16,9 @@ extern_class!(
     pub struct UIMenuSystem;
 );
 
-unsafe impl NSObjectProtocol for UIMenuSystem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMenuSystem {}
+);
 
 impl UIMenuSystem {
     extern_methods!(

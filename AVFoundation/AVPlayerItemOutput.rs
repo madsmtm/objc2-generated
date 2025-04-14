@@ -22,7 +22,9 @@ extern_class!(
     pub struct AVPlayerItemOutput;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerItemOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemOutput {}
+);
 
 impl AVPlayerItemOutput {
     extern_methods!(
@@ -102,7 +104,9 @@ extern_class!(
     pub struct AVPlayerItemVideoOutput;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerItemVideoOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemVideoOutput {}
+);
 
 impl AVPlayerItemVideoOutput {
     extern_methods!(
@@ -266,7 +270,9 @@ extern_class!(
     pub struct AVPlayerItemLegibleOutput;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerItemLegibleOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemLegibleOutput {}
+);
 
 impl AVPlayerItemLegibleOutput {
     extern_methods!(
@@ -465,7 +471,9 @@ extern_class!(
     pub struct AVPlayerItemMetadataOutput;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerItemMetadataOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemMetadataOutput {}
+);
 
 impl AVPlayerItemMetadataOutput {
     extern_methods!(
@@ -586,7 +594,9 @@ extern_class!(
     pub struct AVPlayerItemRenderedLegibleOutput;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerItemRenderedLegibleOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemRenderedLegibleOutput {}
+);
 
 impl AVPlayerItemRenderedLegibleOutput {
     extern_methods!(

@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "GKBehavior")]
-unsafe impl NSCopying for GKCompositeBehavior {}
+extern_conformance!(
+    unsafe impl NSCopying for GKCompositeBehavior {}
+);
 
 #[cfg(feature = "GKBehavior")]
 unsafe impl CopyingHelper for GKCompositeBehavior {
@@ -24,10 +26,14 @@ unsafe impl CopyingHelper for GKCompositeBehavior {
 }
 
 #[cfg(feature = "GKBehavior")]
-unsafe impl NSFastEnumeration for GKCompositeBehavior {}
+extern_conformance!(
+    unsafe impl NSFastEnumeration for GKCompositeBehavior {}
+);
 
 #[cfg(feature = "GKBehavior")]
-unsafe impl NSObjectProtocol for GKCompositeBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKCompositeBehavior {}
+);
 
 #[cfg(feature = "GKBehavior")]
 impl GKCompositeBehavior {

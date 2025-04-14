@@ -71,13 +71,21 @@ extern_class!(
     pub struct NSTextAttachment;
 );
 
-unsafe impl NSCoding for NSTextAttachment {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextAttachment {}
+);
 
-unsafe impl NSObjectProtocol for NSTextAttachment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextAttachment {}
+);
 
-unsafe impl NSSecureCoding for NSTextAttachment {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTextAttachment {}
+);
 
-unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
+extern_conformance!(
+    unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
+);
 
 impl NSTextAttachment {
     extern_methods!(
@@ -228,7 +236,9 @@ extern_class!(
     pub struct NSTextAttachmentViewProvider;
 );
 
-unsafe impl NSObjectProtocol for NSTextAttachmentViewProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextAttachmentViewProvider {}
+);
 
 impl NSTextAttachmentViewProvider {
     extern_methods!(
@@ -350,4 +360,6 @@ impl NSTextAttachment {
     extern_methods!();
 }
 
-unsafe impl NSTextAttachmentContainer for NSTextAttachment {}
+extern_conformance!(
+    unsafe impl NSTextAttachmentContainer for NSTextAttachment {}
+);

@@ -45,7 +45,9 @@ extern_class!(
     pub struct GCDeviceBattery;
 );
 
-unsafe impl NSObjectProtocol for GCDeviceBattery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCDeviceBattery {}
+);
 
 impl GCDeviceBattery {
     extern_methods!(

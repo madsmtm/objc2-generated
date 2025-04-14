@@ -16,17 +16,25 @@ extern_class!(
     pub struct CPLaneGuidance;
 );
 
-unsafe impl NSCoding for CPLaneGuidance {}
+extern_conformance!(
+    unsafe impl NSCoding for CPLaneGuidance {}
+);
 
-unsafe impl NSCopying for CPLaneGuidance {}
+extern_conformance!(
+    unsafe impl NSCopying for CPLaneGuidance {}
+);
 
 unsafe impl CopyingHelper for CPLaneGuidance {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CPLaneGuidance {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPLaneGuidance {}
+);
 
-unsafe impl NSSecureCoding for CPLaneGuidance {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPLaneGuidance {}
+);
 
 impl CPLaneGuidance {
     extern_methods!(

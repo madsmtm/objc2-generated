@@ -102,7 +102,9 @@ extern_class!(
     pub struct SCNHitTestResult;
 );
 
-unsafe impl NSObjectProtocol for SCNHitTestResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNHitTestResult {}
+);
 
 impl SCNHitTestResult {
     extern_methods!(

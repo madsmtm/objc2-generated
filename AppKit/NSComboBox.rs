@@ -136,7 +136,9 @@ extern_class!(
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -145,7 +147,9 @@ unsafe impl NSAccessibility for NSComboBox {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -154,7 +158,9 @@ unsafe impl NSAccessibilityElementProtocol for NSComboBox {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityNavigableStaticText for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSAccessibilityNavigableStaticText for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -163,7 +169,9 @@ unsafe impl NSAccessibilityNavigableStaticText for NSComboBox {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityStaticText for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSAccessibilityStaticText for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -172,7 +180,9 @@ unsafe impl NSAccessibilityStaticText for NSComboBox {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -181,7 +191,9 @@ unsafe impl NSAnimatablePropertyContainer for NSComboBox {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -189,7 +201,9 @@ unsafe impl NSAppearanceCustomization for NSComboBox {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSCoding for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSCoding for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -198,7 +212,9 @@ unsafe impl NSCoding for NSComboBox {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -206,7 +222,9 @@ unsafe impl NSDraggingDestination for NSComboBox {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSObjectProtocol for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -215,7 +233,9 @@ unsafe impl NSObjectProtocol for NSComboBox {}
     feature = "NSTextField",
     feature = "NSView"
 ))]
-unsafe impl NSTextContent for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSTextContent for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -224,7 +244,9 @@ unsafe impl NSTextContent for NSComboBox {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -233,7 +255,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSComboBox {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSComboBox {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSComboBox {}
+);
 
 #[cfg(all(
     feature = "NSControl",

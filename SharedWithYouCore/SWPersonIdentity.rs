@@ -15,17 +15,25 @@ extern_class!(
     pub struct SWPersonIdentity;
 );
 
-unsafe impl NSCoding for SWPersonIdentity {}
+extern_conformance!(
+    unsafe impl NSCoding for SWPersonIdentity {}
+);
 
-unsafe impl NSCopying for SWPersonIdentity {}
+extern_conformance!(
+    unsafe impl NSCopying for SWPersonIdentity {}
+);
 
 unsafe impl CopyingHelper for SWPersonIdentity {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SWPersonIdentity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SWPersonIdentity {}
+);
 
-unsafe impl NSSecureCoding for SWPersonIdentity {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SWPersonIdentity {}
+);
 
 impl SWPersonIdentity {
     extern_methods!(

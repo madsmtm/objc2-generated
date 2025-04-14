@@ -17,9 +17,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GKRandomSource")]
-unsafe impl GKRandom for GKRandomDistribution {}
+extern_conformance!(
+    unsafe impl GKRandom for GKRandomDistribution {}
+);
 
-unsafe impl NSObjectProtocol for GKRandomDistribution {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKRandomDistribution {}
+);
 
 impl GKRandomDistribution {
     extern_methods!(
@@ -150,9 +154,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GKRandomSource")]
-unsafe impl GKRandom for GKGaussianDistribution {}
+extern_conformance!(
+    unsafe impl GKRandom for GKGaussianDistribution {}
+);
 
-unsafe impl NSObjectProtocol for GKGaussianDistribution {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKGaussianDistribution {}
+);
 
 impl GKGaussianDistribution {
     extern_methods!(
@@ -266,9 +274,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GKRandomSource")]
-unsafe impl GKRandom for GKShuffledDistribution {}
+extern_conformance!(
+    unsafe impl GKRandom for GKShuffledDistribution {}
+);
 
-unsafe impl NSObjectProtocol for GKShuffledDistribution {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKShuffledDistribution {}
+);
 
 impl GKShuffledDistribution {
     extern_methods!();

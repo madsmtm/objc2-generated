@@ -61,13 +61,17 @@ extern_class!(
     pub struct MTLLogStateDescriptor;
 );
 
-unsafe impl NSCopying for MTLLogStateDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLLogStateDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLLogStateDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLLogStateDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLLogStateDescriptor {}
+);
 
 impl MTLLogStateDescriptor {
     extern_methods!(

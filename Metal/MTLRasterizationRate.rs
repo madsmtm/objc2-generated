@@ -16,7 +16,9 @@ extern_class!(
     pub struct MTLRasterizationRateSampleArray;
 );
 
-unsafe impl NSObjectProtocol for MTLRasterizationRateSampleArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRasterizationRateSampleArray {}
+);
 
 impl MTLRasterizationRateSampleArray {
     extern_methods!(
@@ -66,13 +68,17 @@ extern_class!(
     pub struct MTLRasterizationRateLayerDescriptor;
 );
 
-unsafe impl NSCopying for MTLRasterizationRateLayerDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLRasterizationRateLayerDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLRasterizationRateLayerDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLRasterizationRateLayerDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRasterizationRateLayerDescriptor {}
+);
 
 impl MTLRasterizationRateLayerDescriptor {
     extern_methods!(
@@ -181,7 +187,9 @@ extern_class!(
     pub struct MTLRasterizationRateLayerArray;
 );
 
-unsafe impl NSObjectProtocol for MTLRasterizationRateLayerArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRasterizationRateLayerArray {}
+);
 
 impl MTLRasterizationRateLayerArray {
     extern_methods!(
@@ -232,13 +240,17 @@ extern_class!(
     pub struct MTLRasterizationRateMapDescriptor;
 );
 
-unsafe impl NSCopying for MTLRasterizationRateMapDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLRasterizationRateMapDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLRasterizationRateMapDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLRasterizationRateMapDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLRasterizationRateMapDescriptor {}
+);
 
 impl MTLRasterizationRateMapDescriptor {
     extern_methods!(

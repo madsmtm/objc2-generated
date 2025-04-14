@@ -34,13 +34,21 @@ extern_class!(
     pub struct SBElementArray<ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for SBElementArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for SBElementArray<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for SBElementArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for SBElementArray<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for SBElementArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for SBElementArray<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for SBElementArray<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for SBElementArray<ObjectType> {}
+);
 
 impl<ObjectType: Message> SBElementArray<ObjectType> {
     extern_methods!(

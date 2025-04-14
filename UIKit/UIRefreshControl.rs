@@ -28,13 +28,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UIRefreshControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl NSCoding for UIRefreshControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIRefreshControl {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -42,7 +48,9 @@ unsafe impl NSObjectProtocol for UIRefreshControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIRefreshControl {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -50,10 +58,14 @@ unsafe impl UIAppearance for UIRefreshControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIRefreshControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UIRefreshControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -61,7 +73,9 @@ unsafe impl UICoordinateSpace for UIRefreshControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIRefreshControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -69,7 +83,9 @@ unsafe impl UIDynamicItem for UIRefreshControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIRefreshControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -77,7 +93,9 @@ unsafe impl UIFocusEnvironment for UIRefreshControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UIRefreshControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -85,10 +103,14 @@ unsafe impl UIFocusItem for UIRefreshControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UIRefreshControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UIRefreshControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -96,7 +118,9 @@ unsafe impl UIResponderStandardEditActions for UIRefreshControl {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UIRefreshControl {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIRefreshControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UIRefreshControl {

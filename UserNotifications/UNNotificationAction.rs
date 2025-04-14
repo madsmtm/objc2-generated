@@ -41,17 +41,25 @@ extern_class!(
     pub struct UNNotificationAction;
 );
 
-unsafe impl NSCoding for UNNotificationAction {}
+extern_conformance!(
+    unsafe impl NSCoding for UNNotificationAction {}
+);
 
-unsafe impl NSCopying for UNNotificationAction {}
+extern_conformance!(
+    unsafe impl NSCopying for UNNotificationAction {}
+);
 
 unsafe impl CopyingHelper for UNNotificationAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNNotificationAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNNotificationAction {}
+);
 
-unsafe impl NSSecureCoding for UNNotificationAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNNotificationAction {}
+);
 
 impl UNNotificationAction {
     extern_methods!(
@@ -112,17 +120,25 @@ extern_class!(
     pub struct UNTextInputNotificationAction;
 );
 
-unsafe impl NSCoding for UNTextInputNotificationAction {}
+extern_conformance!(
+    unsafe impl NSCoding for UNTextInputNotificationAction {}
+);
 
-unsafe impl NSCopying for UNTextInputNotificationAction {}
+extern_conformance!(
+    unsafe impl NSCopying for UNTextInputNotificationAction {}
+);
 
 unsafe impl CopyingHelper for UNTextInputNotificationAction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UNTextInputNotificationAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UNTextInputNotificationAction {}
+);
 
-unsafe impl NSSecureCoding for UNTextInputNotificationAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UNTextInputNotificationAction {}
+);
 
 impl UNTextInputNotificationAction {
     extern_methods!(

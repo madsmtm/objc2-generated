@@ -44,10 +44,14 @@ extern_class!(
 );
 
 #[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized + NSCoding> NSCoding for GKMeshGraph<NodeType> {}
+extern_conformance!(
+    unsafe impl<NodeType: ?Sized + NSCoding> NSCoding for GKMeshGraph<NodeType> {}
+);
 
 #[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized> NSCopying for GKMeshGraph<NodeType> {}
+extern_conformance!(
+    unsafe impl<NodeType: ?Sized> NSCopying for GKMeshGraph<NodeType> {}
+);
 
 #[cfg(feature = "GKGraph")]
 unsafe impl<NodeType: ?Sized + Message> CopyingHelper for GKMeshGraph<NodeType> {
@@ -55,10 +59,14 @@ unsafe impl<NodeType: ?Sized + Message> CopyingHelper for GKMeshGraph<NodeType> 
 }
 
 #[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized> NSObjectProtocol for GKMeshGraph<NodeType> {}
+extern_conformance!(
+    unsafe impl<NodeType: ?Sized> NSObjectProtocol for GKMeshGraph<NodeType> {}
+);
 
 #[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized + NSSecureCoding> NSSecureCoding for GKMeshGraph<NodeType> {}
+extern_conformance!(
+    unsafe impl<NodeType: ?Sized + NSSecureCoding> NSSecureCoding for GKMeshGraph<NodeType> {}
+);
 
 #[cfg(feature = "GKGraph")]
 impl<NodeType: Message> GKMeshGraph<NodeType> {

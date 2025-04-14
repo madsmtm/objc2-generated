@@ -53,10 +53,14 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for CPTemplateApplicationDashboardScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPTemplateApplicationDashboardScene {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for CPTemplateApplicationDashboardScene {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for CPTemplateApplicationDashboardScene {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl CPTemplateApplicationDashboardScene {

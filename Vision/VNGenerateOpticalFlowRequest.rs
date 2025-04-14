@@ -81,7 +81,9 @@ extern_class!(
 );
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-unsafe impl NSCopying for VNGenerateOpticalFlowRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNGenerateOpticalFlowRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 unsafe impl CopyingHelper for VNGenerateOpticalFlowRequest {
@@ -89,7 +91,9 @@ unsafe impl CopyingHelper for VNGenerateOpticalFlowRequest {
 }
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
-unsafe impl NSObjectProtocol for VNGenerateOpticalFlowRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNGenerateOpticalFlowRequest {}
+);
 
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNGenerateOpticalFlowRequest {

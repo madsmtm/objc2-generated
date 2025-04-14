@@ -31,17 +31,25 @@ extern_class!(
     pub struct TVContentIdentifier;
 );
 
-unsafe impl NSCoding for TVContentIdentifier {}
+extern_conformance!(
+    unsafe impl NSCoding for TVContentIdentifier {}
+);
 
-unsafe impl NSCopying for TVContentIdentifier {}
+extern_conformance!(
+    unsafe impl NSCopying for TVContentIdentifier {}
+);
 
 unsafe impl CopyingHelper for TVContentIdentifier {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVContentIdentifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVContentIdentifier {}
+);
 
-unsafe impl NSSecureCoding for TVContentIdentifier {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for TVContentIdentifier {}
+);
 
 impl TVContentIdentifier {
     extern_methods!(

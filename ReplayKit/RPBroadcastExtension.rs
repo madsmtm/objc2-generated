@@ -57,9 +57,13 @@ extern_class!(
     pub struct RPBroadcastHandler;
 );
 
-unsafe impl NSExtensionRequestHandling for RPBroadcastHandler {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for RPBroadcastHandler {}
+);
 
-unsafe impl NSObjectProtocol for RPBroadcastHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for RPBroadcastHandler {}
+);
 
 impl RPBroadcastHandler {
     extern_methods!(
@@ -141,9 +145,13 @@ extern_class!(
     pub struct RPBroadcastSampleHandler;
 );
 
-unsafe impl NSExtensionRequestHandling for RPBroadcastSampleHandler {}
+extern_conformance!(
+    unsafe impl NSExtensionRequestHandling for RPBroadcastSampleHandler {}
+);
 
-unsafe impl NSObjectProtocol for RPBroadcastSampleHandler {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for RPBroadcastSampleHandler {}
+);
 
 impl RPBroadcastSampleHandler {
     extern_methods!(

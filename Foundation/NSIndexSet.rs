@@ -14,10 +14,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSIndexSet {}
+extern_conformance!(
+    unsafe impl NSCoding for NSIndexSet {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSIndexSet {}
+extern_conformance!(
+    unsafe impl NSCopying for NSIndexSet {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSIndexSet {
@@ -25,17 +29,23 @@ unsafe impl CopyingHelper for NSIndexSet {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSIndexSet {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSIndexSet {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSIndexSet {
     type Result = NSMutableIndexSet;
 }
 
-unsafe impl NSObjectProtocol for NSIndexSet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSIndexSet {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSIndexSet {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSIndexSet {}
+);
 
 impl NSIndexSet {
     extern_methods!(
@@ -267,10 +277,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMutableIndexSet {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMutableIndexSet {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMutableIndexSet {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMutableIndexSet {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMutableIndexSet {
@@ -278,17 +292,23 @@ unsafe impl CopyingHelper for NSMutableIndexSet {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSMutableIndexSet {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSMutableIndexSet {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSMutableIndexSet {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMutableIndexSet {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMutableIndexSet {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSMutableIndexSet {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMutableIndexSet {}
+);
 
 impl NSMutableIndexSet {
     extern_methods!(

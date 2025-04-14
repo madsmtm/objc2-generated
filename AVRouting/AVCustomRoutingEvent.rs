@@ -48,7 +48,9 @@ unsafe impl Send for AVCustomRoutingEvent {}
 
 unsafe impl Sync for AVCustomRoutingEvent {}
 
-unsafe impl NSObjectProtocol for AVCustomRoutingEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCustomRoutingEvent {}
+);
 
 impl AVCustomRoutingEvent {
     extern_methods!(

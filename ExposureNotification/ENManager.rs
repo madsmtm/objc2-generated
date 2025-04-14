@@ -146,7 +146,9 @@ extern_class!(
     pub struct ENManager;
 );
 
-unsafe impl NSObjectProtocol for ENManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ENManager {}
+);
 
 impl ENManager {
     extern_methods!(

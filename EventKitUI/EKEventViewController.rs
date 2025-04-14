@@ -42,25 +42,39 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for EKEventViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for EKEventViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for EKEventViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKEventViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for EKEventViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for EKEventViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIContentContainer for EKEventViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for EKEventViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for EKEventViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for EKEventViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for EKEventViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for EKEventViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for EKEventViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for EKEventViewController {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl EKEventViewController {

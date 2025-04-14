@@ -45,9 +45,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSScriptWhoseTest {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScriptWhoseTest {}
+);
 
-unsafe impl NSObjectProtocol for NSScriptWhoseTest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScriptWhoseTest {}
+);
 
 impl NSScriptWhoseTest {
     extern_methods!(
@@ -86,9 +90,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSLogicalTest {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLogicalTest {}
+);
 
-unsafe impl NSObjectProtocol for NSLogicalTest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLogicalTest {}
+);
 
 impl NSLogicalTest {
     extern_methods!(
@@ -151,9 +159,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSSpecifierTest {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSpecifierTest {}
+);
 
-unsafe impl NSObjectProtocol for NSSpecifierTest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSpecifierTest {}
+);
 
 impl NSSpecifierTest {
     extern_methods!(

@@ -43,13 +43,19 @@ extern_class!(
 );
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSCoding for CPNowPlayingTemplate {}
+extern_conformance!(
+    unsafe impl NSCoding for CPNowPlayingTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSObjectProtocol for CPNowPlayingTemplate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPNowPlayingTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
-unsafe impl NSSecureCoding for CPNowPlayingTemplate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPNowPlayingTemplate {}
+);
 
 #[cfg(feature = "CPTemplate")]
 impl CPNowPlayingTemplate {

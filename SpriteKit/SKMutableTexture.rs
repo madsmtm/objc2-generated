@@ -23,10 +23,14 @@ extern_class!(
 );
 
 #[cfg(feature = "SKTexture")]
-unsafe impl NSCoding for SKMutableTexture {}
+extern_conformance!(
+    unsafe impl NSCoding for SKMutableTexture {}
+);
 
 #[cfg(feature = "SKTexture")]
-unsafe impl NSCopying for SKMutableTexture {}
+extern_conformance!(
+    unsafe impl NSCopying for SKMutableTexture {}
+);
 
 #[cfg(feature = "SKTexture")]
 unsafe impl CopyingHelper for SKMutableTexture {
@@ -34,10 +38,14 @@ unsafe impl CopyingHelper for SKMutableTexture {
 }
 
 #[cfg(feature = "SKTexture")]
-unsafe impl NSObjectProtocol for SKMutableTexture {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKMutableTexture {}
+);
 
 #[cfg(feature = "SKTexture")]
-unsafe impl NSSecureCoding for SKMutableTexture {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKMutableTexture {}
+);
 
 #[cfg(feature = "SKTexture")]
 impl SKMutableTexture {

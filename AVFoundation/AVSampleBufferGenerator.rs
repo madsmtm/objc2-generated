@@ -20,7 +20,9 @@ unsafe impl Send for AVSampleBufferGenerator {}
 
 unsafe impl Sync for AVSampleBufferGenerator {}
 
-unsafe impl NSObjectProtocol for AVSampleBufferGenerator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSampleBufferGenerator {}
+);
 
 impl AVSampleBufferGenerator {
     extern_methods!(
@@ -151,7 +153,9 @@ extern_class!(
     pub struct AVSampleBufferRequest;
 );
 
-unsafe impl NSObjectProtocol for AVSampleBufferRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSampleBufferRequest {}
+);
 
 impl AVSampleBufferRequest {
     extern_methods!(
@@ -254,7 +258,9 @@ unsafe impl Send for AVSampleBufferGeneratorBatch {}
 
 unsafe impl Sync for AVSampleBufferGeneratorBatch {}
 
-unsafe impl NSObjectProtocol for AVSampleBufferGeneratorBatch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSampleBufferGeneratorBatch {}
+);
 
 impl AVSampleBufferGeneratorBatch {
     extern_methods!(

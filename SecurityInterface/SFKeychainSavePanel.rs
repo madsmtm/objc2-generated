@@ -19,23 +19,41 @@ extern_class!(
     pub struct SFKeychainSavePanel;
 );
 
-unsafe impl NSAccessibility for SFKeychainSavePanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for SFKeychainSavePanel {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for SFKeychainSavePanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for SFKeychainSavePanel {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for SFKeychainSavePanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for SFKeychainSavePanel {}
+);
 
-unsafe impl NSAppearanceCustomization for SFKeychainSavePanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for SFKeychainSavePanel {}
+);
 
-unsafe impl NSCoding for SFKeychainSavePanel {}
+extern_conformance!(
+    unsafe impl NSCoding for SFKeychainSavePanel {}
+);
 
-unsafe impl NSMenuItemValidation for SFKeychainSavePanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for SFKeychainSavePanel {}
+);
 
-unsafe impl NSObjectProtocol for SFKeychainSavePanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFKeychainSavePanel {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for SFKeychainSavePanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for SFKeychainSavePanel {}
+);
 
-unsafe impl NSUserInterfaceValidations for SFKeychainSavePanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for SFKeychainSavePanel {}
+);
 
 impl SFKeychainSavePanel {
     extern_methods!(

@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSPersistentStore;
 );
 
-unsafe impl NSObjectProtocol for NSPersistentStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentStore {}
+);
 
 impl NSPersistentStore {
     extern_methods!(

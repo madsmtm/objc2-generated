@@ -87,15 +87,21 @@ extern_class!(
     pub struct AXNumericDataAxisDescriptor;
 );
 
-unsafe impl AXDataAxisDescriptor for AXNumericDataAxisDescriptor {}
+extern_conformance!(
+    unsafe impl AXDataAxisDescriptor for AXNumericDataAxisDescriptor {}
+);
 
-unsafe impl NSCopying for AXNumericDataAxisDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for AXNumericDataAxisDescriptor {}
+);
 
 unsafe impl CopyingHelper for AXNumericDataAxisDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AXNumericDataAxisDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXNumericDataAxisDescriptor {}
+);
 
 impl AXNumericDataAxisDescriptor {
     extern_methods!(
@@ -199,15 +205,21 @@ extern_class!(
     pub struct AXCategoricalDataAxisDescriptor;
 );
 
-unsafe impl AXDataAxisDescriptor for AXCategoricalDataAxisDescriptor {}
+extern_conformance!(
+    unsafe impl AXDataAxisDescriptor for AXCategoricalDataAxisDescriptor {}
+);
 
-unsafe impl NSCopying for AXCategoricalDataAxisDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for AXCategoricalDataAxisDescriptor {}
+);
 
 unsafe impl CopyingHelper for AXCategoricalDataAxisDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AXCategoricalDataAxisDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXCategoricalDataAxisDescriptor {}
+);
 
 impl AXCategoricalDataAxisDescriptor {
     extern_methods!(
@@ -261,13 +273,17 @@ extern_class!(
     pub struct AXDataPointValue;
 );
 
-unsafe impl NSCopying for AXDataPointValue {}
+extern_conformance!(
+    unsafe impl NSCopying for AXDataPointValue {}
+);
 
 unsafe impl CopyingHelper for AXDataPointValue {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AXDataPointValue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXDataPointValue {}
+);
 
 impl AXDataPointValue {
     extern_methods!(
@@ -316,13 +332,17 @@ extern_class!(
     pub struct AXDataPoint;
 );
 
-unsafe impl NSCopying for AXDataPoint {}
+extern_conformance!(
+    unsafe impl NSCopying for AXDataPoint {}
+);
 
 unsafe impl CopyingHelper for AXDataPoint {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AXDataPoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXDataPoint {}
+);
 
 impl AXDataPoint {
     extern_methods!(
@@ -425,13 +445,17 @@ extern_class!(
     pub struct AXDataSeriesDescriptor;
 );
 
-unsafe impl NSCopying for AXDataSeriesDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for AXDataSeriesDescriptor {}
+);
 
 unsafe impl CopyingHelper for AXDataSeriesDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AXDataSeriesDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXDataSeriesDescriptor {}
+);
 
 impl AXDataSeriesDescriptor {
     extern_methods!(
@@ -544,13 +568,17 @@ extern_class!(
     pub struct AXChartDescriptor;
 );
 
-unsafe impl NSCopying for AXChartDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for AXChartDescriptor {}
+);
 
 unsafe impl CopyingHelper for AXChartDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AXChartDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXChartDescriptor {}
+);
 
 impl AXChartDescriptor {
     extern_methods!(
@@ -721,7 +749,9 @@ extern_class!(
     pub struct AXLiveAudioGraph;
 );
 
-unsafe impl NSObjectProtocol for AXLiveAudioGraph {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXLiveAudioGraph {}
+);
 
 impl AXLiveAudioGraph {
     extern_methods!(

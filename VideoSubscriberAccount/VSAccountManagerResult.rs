@@ -15,7 +15,9 @@ extern_class!(
     pub struct VSAccountManagerResult;
 );
 
-unsafe impl NSObjectProtocol for VSAccountManagerResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VSAccountManagerResult {}
+);
 
 impl VSAccountManagerResult {
     extern_methods!(

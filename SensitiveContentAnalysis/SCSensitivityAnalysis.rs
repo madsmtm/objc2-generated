@@ -18,7 +18,9 @@ unsafe impl Send for SCSensitivityAnalysis {}
 
 unsafe impl Sync for SCSensitivityAnalysis {}
 
-unsafe impl NSObjectProtocol for SCSensitivityAnalysis {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCSensitivityAnalysis {}
+);
 
 impl SCSensitivityAnalysis {
     extern_methods!(

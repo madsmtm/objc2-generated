@@ -18,17 +18,25 @@ extern_class!(
     pub struct MLOptimizationHints;
 );
 
-unsafe impl NSCoding for MLOptimizationHints {}
+extern_conformance!(
+    unsafe impl NSCoding for MLOptimizationHints {}
+);
 
-unsafe impl NSCopying for MLOptimizationHints {}
+extern_conformance!(
+    unsafe impl NSCopying for MLOptimizationHints {}
+);
 
 unsafe impl CopyingHelper for MLOptimizationHints {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLOptimizationHints {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLOptimizationHints {}
+);
 
-unsafe impl NSSecureCoding for MLOptimizationHints {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLOptimizationHints {}
+);
 
 impl MLOptimizationHints {
     extern_methods!(

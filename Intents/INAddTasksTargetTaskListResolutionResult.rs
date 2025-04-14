@@ -39,7 +39,9 @@ extern_class!(
     feature = "INIntentResolutionResult",
     feature = "INTaskListResolutionResult"
 ))]
-unsafe impl NSObjectProtocol for INAddTasksTargetTaskListResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INAddTasksTargetTaskListResolutionResult {}
+);
 
 #[cfg(all(
     feature = "INIntentResolutionResult",

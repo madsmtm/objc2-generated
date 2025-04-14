@@ -16,15 +16,21 @@ extern_class!(
     pub struct WebResource;
 );
 
-unsafe impl NSCoding for WebResource {}
+extern_conformance!(
+    unsafe impl NSCoding for WebResource {}
+);
 
-unsafe impl NSCopying for WebResource {}
+extern_conformance!(
+    unsafe impl NSCopying for WebResource {}
+);
 
 unsafe impl CopyingHelper for WebResource {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WebResource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebResource {}
+);
 
 impl WebResource {
     extern_methods!(

@@ -50,10 +50,14 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSCoding for IMKCandidates {}
+extern_conformance!(
+    unsafe impl NSCoding for IMKCandidates {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSObjectProtocol for IMKCandidates {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IMKCandidates {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 impl IMKCandidates {

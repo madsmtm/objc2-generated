@@ -240,17 +240,25 @@ unsafe impl Send for HKWorkoutEvent {}
 
 unsafe impl Sync for HKWorkoutEvent {}
 
-unsafe impl NSCoding for HKWorkoutEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for HKWorkoutEvent {}
+);
 
-unsafe impl NSCopying for HKWorkoutEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for HKWorkoutEvent {}
+);
 
 unsafe impl CopyingHelper for HKWorkoutEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKWorkoutEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkoutEvent {}
+);
 
-unsafe impl NSSecureCoding for HKWorkoutEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKWorkoutEvent {}
+);
 
 impl HKWorkoutEvent {
     extern_methods!(
@@ -344,13 +352,19 @@ unsafe impl Send for HKWorkout {}
 unsafe impl Sync for HKWorkout {}
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSCoding for HKWorkout {}
+extern_conformance!(
+    unsafe impl NSCoding for HKWorkout {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSObjectProtocol for HKWorkout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKWorkout {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
-unsafe impl NSSecureCoding for HKWorkout {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKWorkout {}
+);
 
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKWorkout {

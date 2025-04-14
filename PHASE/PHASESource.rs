@@ -26,7 +26,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHASEObject")]
-unsafe impl NSCopying for PHASESource {}
+extern_conformance!(
+    unsafe impl NSCopying for PHASESource {}
+);
 
 #[cfg(feature = "PHASEObject")]
 unsafe impl CopyingHelper for PHASESource {
@@ -34,7 +36,9 @@ unsafe impl CopyingHelper for PHASESource {
 }
 
 #[cfg(feature = "PHASEObject")]
-unsafe impl NSObjectProtocol for PHASESource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESource {}
+);
 
 #[cfg(feature = "PHASEObject")]
 impl PHASESource {

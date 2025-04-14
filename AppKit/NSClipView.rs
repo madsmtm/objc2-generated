@@ -20,36 +20,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSClipView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSClipView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSClipView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSClipView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSClipView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSClipView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSClipView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSClipView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSClipView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSClipView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSClipView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSClipView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSClipView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSClipView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSClipView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSClipView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSClipView {

@@ -31,7 +31,9 @@ extern_class!(
     pub struct CMMotionActivityManager;
 );
 
-unsafe impl NSObjectProtocol for CMMotionActivityManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CMMotionActivityManager {}
+);
 
 impl CMMotionActivityManager {
     extern_methods!(

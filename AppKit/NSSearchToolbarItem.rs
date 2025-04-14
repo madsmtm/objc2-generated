@@ -20,7 +20,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSToolbarItem")]
-unsafe impl NSCopying for NSSearchToolbarItem {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSearchToolbarItem {}
+);
 
 #[cfg(feature = "NSToolbarItem")]
 unsafe impl CopyingHelper for NSSearchToolbarItem {
@@ -28,7 +30,9 @@ unsafe impl CopyingHelper for NSSearchToolbarItem {
 }
 
 #[cfg(feature = "NSToolbarItem")]
-unsafe impl NSObjectProtocol for NSSearchToolbarItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSearchToolbarItem {}
+);
 
 #[cfg(feature = "NSToolbarItem")]
 impl NSSearchToolbarItem {

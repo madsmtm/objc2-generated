@@ -206,17 +206,25 @@ extern_class!(
     pub struct CPManeuver;
 );
 
-unsafe impl NSCoding for CPManeuver {}
+extern_conformance!(
+    unsafe impl NSCoding for CPManeuver {}
+);
 
-unsafe impl NSCopying for CPManeuver {}
+extern_conformance!(
+    unsafe impl NSCopying for CPManeuver {}
+);
 
 unsafe impl CopyingHelper for CPManeuver {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CPManeuver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPManeuver {}
+);
 
-unsafe impl NSSecureCoding for CPManeuver {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPManeuver {}
+);
 
 impl CPManeuver {
     extern_methods!(

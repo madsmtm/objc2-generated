@@ -13,17 +13,25 @@ extern_class!(
     pub struct INFlight;
 );
 
-unsafe impl NSCoding for INFlight {}
+extern_conformance!(
+    unsafe impl NSCoding for INFlight {}
+);
 
-unsafe impl NSCopying for INFlight {}
+extern_conformance!(
+    unsafe impl NSCopying for INFlight {}
+);
 
 unsafe impl CopyingHelper for INFlight {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INFlight {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INFlight {}
+);
 
-unsafe impl NSSecureCoding for INFlight {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INFlight {}
+);
 
 impl INFlight {
     extern_methods!(

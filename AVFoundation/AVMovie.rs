@@ -42,10 +42,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAsset", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVMovie {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSCopying for AVMovie {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
 unsafe impl CopyingHelper for AVMovie {
@@ -53,7 +57,9 @@ unsafe impl CopyingHelper for AVMovie {
 }
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSMutableCopying for AVMovie {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
 unsafe impl MutableCopyingHelper for AVMovie {
@@ -61,7 +67,9 @@ unsafe impl MutableCopyingHelper for AVMovie {
 }
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSObjectProtocol for AVMovie {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
 impl AVMovie {
@@ -446,10 +454,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAsset", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVMutableMovie {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVMutableMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSCopying for AVMutableMovie {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
 unsafe impl CopyingHelper for AVMutableMovie {
@@ -457,7 +469,9 @@ unsafe impl CopyingHelper for AVMutableMovie {
 }
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSMutableCopying for AVMutableMovie {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
 unsafe impl MutableCopyingHelper for AVMutableMovie {
@@ -465,7 +479,9 @@ unsafe impl MutableCopyingHelper for AVMutableMovie {
 }
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSObjectProtocol for AVMutableMovie {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
 impl AVMutableMovie {
@@ -1113,7 +1129,9 @@ unsafe impl Send for AVMediaDataStorage {}
 
 unsafe impl Sync for AVMediaDataStorage {}
 
-unsafe impl NSObjectProtocol for AVMediaDataStorage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMediaDataStorage {}
+);
 
 impl AVMediaDataStorage {
     extern_methods!(
@@ -1189,13 +1207,19 @@ unsafe impl Send for AVFragmentedMovie {}
 unsafe impl Sync for AVFragmentedMovie {}
 
 #[cfg(all(feature = "AVAsset", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVFragmentedMovie {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVFragmentedMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
-unsafe impl AVFragmentMinding for AVFragmentedMovie {}
+extern_conformance!(
+    unsafe impl AVFragmentMinding for AVFragmentedMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSObjectProtocol for AVFragmentedMovie {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVFragmentedMovie {}
+);
 
 #[cfg(feature = "AVAsset")]
 impl AVFragmentedMovie {
@@ -1468,7 +1492,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVAsset")]
-unsafe impl NSObjectProtocol for AVFragmentedMovieMinder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVFragmentedMovieMinder {}
+);
 
 #[cfg(feature = "AVAsset")]
 impl AVFragmentedMovieMinder {

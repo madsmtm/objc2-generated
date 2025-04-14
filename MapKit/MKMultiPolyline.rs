@@ -15,13 +15,19 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MKAnnotation", feature = "MKShape"))]
-unsafe impl MKAnnotation for MKMultiPolyline {}
+extern_conformance!(
+    unsafe impl MKAnnotation for MKMultiPolyline {}
+);
 
 #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay", feature = "MKShape"))]
-unsafe impl MKOverlay for MKMultiPolyline {}
+extern_conformance!(
+    unsafe impl MKOverlay for MKMultiPolyline {}
+);
 
 #[cfg(feature = "MKShape")]
-unsafe impl NSObjectProtocol for MKMultiPolyline {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMultiPolyline {}
+);
 
 #[cfg(feature = "MKShape")]
 impl MKMultiPolyline {

@@ -21,35 +21,51 @@ extern_class!(
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for MKMarkerAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for MKMarkerAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for MKMarkerAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for MKMarkerAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for MKMarkerAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for MKMarkerAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for MKMarkerAnnotationView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for MKMarkerAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MKMarkerAnnotationView {}
+extern_conformance!(
+    unsafe impl NSCoding for MKMarkerAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for MKMarkerAnnotationView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for MKMarkerAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MKMarkerAnnotationView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMarkerAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MKMarkerAnnotationView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MKMarkerAnnotationView {}
+);
 
 #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]

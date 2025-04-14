@@ -48,7 +48,9 @@ extern_class!(
     pub struct EAWiFiUnconfiguredAccessory;
 );
 
-unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessory {}
+);
 
 impl EAWiFiUnconfiguredAccessory {
     extern_methods!(

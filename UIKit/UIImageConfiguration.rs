@@ -17,17 +17,25 @@ unsafe impl Send for UIImageConfiguration {}
 
 unsafe impl Sync for UIImageConfiguration {}
 
-unsafe impl NSCoding for UIImageConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for UIImageConfiguration {}
+);
 
-unsafe impl NSCopying for UIImageConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for UIImageConfiguration {}
+);
 
 unsafe impl CopyingHelper for UIImageConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIImageConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIImageConfiguration {}
+);
 
-unsafe impl NSSecureCoding for UIImageConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIImageConfiguration {}
+);
 
 impl UIImageConfiguration {
     extern_methods!(

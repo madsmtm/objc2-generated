@@ -22,20 +22,28 @@ unsafe impl Send for NSLocale {}
 unsafe impl Sync for NSLocale {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSLocale {}
+extern_conformance!(
+    unsafe impl NSCoding for NSLocale {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSLocale {}
+extern_conformance!(
+    unsafe impl NSCopying for NSLocale {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSLocale {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSLocale {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLocale {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSLocale {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSLocale {}
+);
 
 impl NSLocale {
     extern_methods!(

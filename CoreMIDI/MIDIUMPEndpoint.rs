@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDI2DeviceInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDI2DeviceInfo {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDI2DeviceInfo {
@@ -150,7 +152,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDIUMPEndpoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDIUMPEndpoint {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDIUMPEndpoint {

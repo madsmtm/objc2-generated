@@ -44,9 +44,13 @@ extern_class!(
 );
 
 #[cfg(feature = "GCDevice")]
-unsafe impl GCDevice for GCKeyboard {}
+extern_conformance!(
+    unsafe impl GCDevice for GCKeyboard {}
+);
 
-unsafe impl NSObjectProtocol for GCKeyboard {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCKeyboard {}
+);
 
 impl GCKeyboard {
     extern_methods!(

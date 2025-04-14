@@ -176,7 +176,9 @@ extern_class!(
     pub struct AUParameterNode;
 );
 
-unsafe impl NSObjectProtocol for AUParameterNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUParameterNode {}
+);
 
 impl AUParameterNode {
     extern_methods!(
@@ -325,11 +327,17 @@ extern_class!(
     pub struct AUParameterGroup;
 );
 
-unsafe impl NSCoding for AUParameterGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for AUParameterGroup {}
+);
 
-unsafe impl NSObjectProtocol for AUParameterGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUParameterGroup {}
+);
 
-unsafe impl NSSecureCoding for AUParameterGroup {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AUParameterGroup {}
+);
 
 impl AUParameterGroup {
     extern_methods!(
@@ -379,11 +387,17 @@ extern_class!(
     pub struct AUParameterTree;
 );
 
-unsafe impl NSCoding for AUParameterTree {}
+extern_conformance!(
+    unsafe impl NSCoding for AUParameterTree {}
+);
 
-unsafe impl NSObjectProtocol for AUParameterTree {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUParameterTree {}
+);
 
-unsafe impl NSSecureCoding for AUParameterTree {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AUParameterTree {}
+);
 
 impl AUParameterTree {
     extern_methods!(
@@ -439,11 +453,17 @@ extern_class!(
     pub struct AUParameter;
 );
 
-unsafe impl NSCoding for AUParameter {}
+extern_conformance!(
+    unsafe impl NSCoding for AUParameter {}
+);
 
-unsafe impl NSObjectProtocol for AUParameter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AUParameter {}
+);
 
-unsafe impl NSSecureCoding for AUParameter {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AUParameter {}
+);
 
 impl AUParameter {
     extern_methods!(

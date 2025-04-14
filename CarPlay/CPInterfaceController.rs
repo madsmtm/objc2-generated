@@ -21,7 +21,9 @@ extern_class!(
     pub struct CPInterfaceController;
 );
 
-unsafe impl NSObjectProtocol for CPInterfaceController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPInterfaceController {}
+);
 
 impl CPInterfaceController {
     extern_methods!(

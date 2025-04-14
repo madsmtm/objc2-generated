@@ -20,7 +20,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNDetectHorizonRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNDetectHorizonRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNDetectHorizonRequest {
@@ -28,7 +30,9 @@ unsafe impl CopyingHelper for VNDetectHorizonRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNDetectHorizonRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNDetectHorizonRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNDetectHorizonRequest {

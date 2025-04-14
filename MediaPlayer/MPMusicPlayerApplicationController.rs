@@ -14,7 +14,9 @@ extern_class!(
     pub struct MPMusicPlayerControllerQueue;
 );
 
-unsafe impl NSObjectProtocol for MPMusicPlayerControllerQueue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMusicPlayerControllerQueue {}
+);
 
 impl MPMusicPlayerControllerQueue {
     extern_methods!(
@@ -40,7 +42,9 @@ extern_class!(
     pub struct MPMusicPlayerControllerMutableQueue;
 );
 
-unsafe impl NSObjectProtocol for MPMusicPlayerControllerMutableQueue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMusicPlayerControllerMutableQueue {}
+);
 
 impl MPMusicPlayerControllerMutableQueue {
     extern_methods!(
@@ -86,10 +90,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPMediaPlayback", feature = "MPMusicPlayerController"))]
-unsafe impl MPMediaPlayback for MPMusicPlayerApplicationController {}
+extern_conformance!(
+    unsafe impl MPMediaPlayback for MPMusicPlayerApplicationController {}
+);
 
 #[cfg(feature = "MPMusicPlayerController")]
-unsafe impl NSObjectProtocol for MPMusicPlayerApplicationController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPMusicPlayerApplicationController {}
+);
 
 #[cfg(feature = "MPMusicPlayerController")]
 impl MPMusicPlayerApplicationController {

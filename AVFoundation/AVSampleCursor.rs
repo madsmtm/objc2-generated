@@ -19,13 +19,17 @@ unsafe impl Send for AVSampleCursor {}
 
 unsafe impl Sync for AVSampleCursor {}
 
-unsafe impl NSCopying for AVSampleCursor {}
+extern_conformance!(
+    unsafe impl NSCopying for AVSampleCursor {}
+);
 
 unsafe impl CopyingHelper for AVSampleCursor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVSampleCursor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSampleCursor {}
+);
 
 impl AVSampleCursor {
     extern_methods!(

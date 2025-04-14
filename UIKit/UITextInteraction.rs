@@ -62,10 +62,14 @@ extern_class!(
     pub struct UITextInteraction;
 );
 
-unsafe impl NSObjectProtocol for UITextInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITextInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UITextInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UITextInteraction {}
+);
 
 impl UITextInteraction {
     extern_methods!(

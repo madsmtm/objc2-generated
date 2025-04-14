@@ -35,17 +35,25 @@ extern_class!(
     pub struct CXHandle;
 );
 
-unsafe impl NSCoding for CXHandle {}
+extern_conformance!(
+    unsafe impl NSCoding for CXHandle {}
+);
 
-unsafe impl NSCopying for CXHandle {}
+extern_conformance!(
+    unsafe impl NSCopying for CXHandle {}
+);
 
 unsafe impl CopyingHelper for CXHandle {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CXHandle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CXHandle {}
+);
 
-unsafe impl NSSecureCoding for CXHandle {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CXHandle {}
+);
 
 impl CXHandle {
     extern_methods!(

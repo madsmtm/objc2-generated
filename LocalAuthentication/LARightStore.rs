@@ -17,7 +17,9 @@ extern_class!(
     pub struct LARightStore;
 );
 
-unsafe impl NSObjectProtocol for LARightStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LARightStore {}
+);
 
 impl LARightStore {
     extern_methods!(

@@ -20,13 +20,17 @@ extern_class!(
     pub struct MPSImageDescriptor;
 );
 
-unsafe impl NSCopying for MPSImageDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSImageDescriptor {}
+);
 
 unsafe impl CopyingHelper for MPSImageDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MPSImageDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImageDescriptor {}
+);
 
 impl MPSImageDescriptor {
     extern_methods!(
@@ -520,7 +524,9 @@ extern_class!(
     pub struct MPSImage;
 );
 
-unsafe impl NSObjectProtocol for MPSImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSImage {}
+);
 
 impl MPSImage {
     extern_methods!(
@@ -1171,7 +1177,9 @@ extern_class!(
     pub struct MPSTemporaryImage;
 );
 
-unsafe impl NSObjectProtocol for MPSTemporaryImage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSTemporaryImage {}
+);
 
 impl MPSTemporaryImage {
     extern_methods!(

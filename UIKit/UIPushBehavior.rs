@@ -39,7 +39,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UIDynamicBehavior")]
-unsafe impl NSObjectProtocol for UIPushBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPushBehavior {}
+);
 
 #[cfg(feature = "UIDynamicBehavior")]
 impl UIPushBehavior {

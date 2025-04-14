@@ -23,47 +23,69 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSAccessibility for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityButton for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityButton for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSCoding for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceCompression for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceCompression for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceValidations for PKPaymentButton {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for PKPaymentButton {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

@@ -107,13 +107,17 @@ extern_class!(
     pub struct MTLAccelerationStructureDescriptor;
 );
 
-unsafe impl NSCopying for MTLAccelerationStructureDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLAccelerationStructureDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLAccelerationStructureDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLAccelerationStructureDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAccelerationStructureDescriptor {}
+);
 
 impl MTLAccelerationStructureDescriptor {
     extern_methods!(
@@ -151,13 +155,17 @@ extern_class!(
     pub struct MTLAccelerationStructureGeometryDescriptor;
 );
 
-unsafe impl NSCopying for MTLAccelerationStructureGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLAccelerationStructureGeometryDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLAccelerationStructureGeometryDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLAccelerationStructureGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAccelerationStructureGeometryDescriptor {}
+);
 
 impl MTLAccelerationStructureGeometryDescriptor {
     extern_methods!(
@@ -312,13 +320,17 @@ extern_class!(
     pub struct MTLPrimitiveAccelerationStructureDescriptor;
 );
 
-unsafe impl NSCopying for MTLPrimitiveAccelerationStructureDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLPrimitiveAccelerationStructureDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLPrimitiveAccelerationStructureDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLPrimitiveAccelerationStructureDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLPrimitiveAccelerationStructureDescriptor {}
+);
 
 impl MTLPrimitiveAccelerationStructureDescriptor {
     extern_methods!(
@@ -421,13 +433,17 @@ extern_class!(
     pub struct MTLAccelerationStructureTriangleGeometryDescriptor;
 );
 
-unsafe impl NSCopying for MTLAccelerationStructureTriangleGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLAccelerationStructureTriangleGeometryDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLAccelerationStructureTriangleGeometryDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLAccelerationStructureTriangleGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAccelerationStructureTriangleGeometryDescriptor {}
+);
 
 impl MTLAccelerationStructureTriangleGeometryDescriptor {
     extern_methods!(
@@ -621,13 +637,17 @@ extern_class!(
     pub struct MTLAccelerationStructureBoundingBoxGeometryDescriptor;
 );
 
-unsafe impl NSCopying for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLAccelerationStructureBoundingBoxGeometryDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAccelerationStructureBoundingBoxGeometryDescriptor {}
+);
 
 impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
     extern_methods!(
@@ -714,7 +734,9 @@ extern_class!(
     pub struct MTLMotionKeyframeData;
 );
 
-unsafe impl NSObjectProtocol for MTLMotionKeyframeData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLMotionKeyframeData {}
+);
 
 impl MTLMotionKeyframeData {
     extern_methods!(
@@ -776,13 +798,17 @@ extern_class!(
     pub struct MTLAccelerationStructureMotionTriangleGeometryDescriptor;
 );
 
-unsafe impl NSCopying for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLAccelerationStructureMotionTriangleGeometryDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionTriangleGeometryDescriptor {}
+);
 
 impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
     extern_methods!(
@@ -955,13 +981,17 @@ extern_class!(
     pub struct MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor;
 );
 
-unsafe impl NSCopying for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {}
+);
 
 impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
     extern_methods!(
@@ -1136,13 +1166,17 @@ extern_class!(
     pub struct MTLAccelerationStructureCurveGeometryDescriptor;
 );
 
-unsafe impl NSCopying for MTLAccelerationStructureCurveGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLAccelerationStructureCurveGeometryDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLAccelerationStructureCurveGeometryDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLAccelerationStructureCurveGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAccelerationStructureCurveGeometryDescriptor {}
+);
 
 impl MTLAccelerationStructureCurveGeometryDescriptor {
     extern_methods!(
@@ -1402,13 +1436,17 @@ extern_class!(
     pub struct MTLAccelerationStructureMotionCurveGeometryDescriptor;
 );
 
-unsafe impl NSCopying for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLAccelerationStructureMotionCurveGeometryDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionCurveGeometryDescriptor {}
+);
 
 impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
     extern_methods!(
@@ -1917,13 +1955,17 @@ extern_class!(
     pub struct MTLInstanceAccelerationStructureDescriptor;
 );
 
-unsafe impl NSCopying for MTLInstanceAccelerationStructureDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLInstanceAccelerationStructureDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLInstanceAccelerationStructureDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLInstanceAccelerationStructureDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLInstanceAccelerationStructureDescriptor {}
+);
 
 impl MTLInstanceAccelerationStructureDescriptor {
     extern_methods!(
@@ -2136,13 +2178,17 @@ extern_class!(
     pub struct MTLIndirectInstanceAccelerationStructureDescriptor;
 );
 
-unsafe impl NSCopying for MTLIndirectInstanceAccelerationStructureDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLIndirectInstanceAccelerationStructureDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLIndirectInstanceAccelerationStructureDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLIndirectInstanceAccelerationStructureDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLIndirectInstanceAccelerationStructureDescriptor {}
+);
 
 impl MTLIndirectInstanceAccelerationStructureDescriptor {
     extern_methods!(

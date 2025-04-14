@@ -14,7 +14,9 @@ extern_class!(
     pub struct NSIncrementalStoreNode;
 );
 
-unsafe impl NSObjectProtocol for NSIncrementalStoreNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSIncrementalStoreNode {}
+);
 
 impl NSIncrementalStoreNode {
     extern_methods!(

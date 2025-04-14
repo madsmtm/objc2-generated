@@ -20,7 +20,9 @@ extern_class!(
     pub struct PKPushCredentials;
 );
 
-unsafe impl NSObjectProtocol for PKPushCredentials {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPushCredentials {}
+);
 
 impl PKPushCredentials {
     extern_methods!(

@@ -17,13 +17,17 @@ extern_class!(
     pub struct MLCLossDescriptor;
 );
 
-unsafe impl NSCopying for MLCLossDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MLCLossDescriptor {}
+);
 
 unsafe impl CopyingHelper for MLCLossDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MLCLossDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCLossDescriptor {}
+);
 
 impl MLCLossDescriptor {
     extern_methods!(

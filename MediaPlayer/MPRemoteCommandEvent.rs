@@ -14,7 +14,9 @@ extern_class!(
     pub struct MPRemoteCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPRemoteCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPRemoteCommandEvent {}
+);
 
 impl MPRemoteCommandEvent {
     extern_methods!(
@@ -51,7 +53,9 @@ extern_class!(
     pub struct MPSkipIntervalCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPSkipIntervalCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSkipIntervalCommandEvent {}
+);
 
 impl MPSkipIntervalCommandEvent {
     extern_methods!(
@@ -102,7 +106,9 @@ extern_class!(
     pub struct MPSeekCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPSeekCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSeekCommandEvent {}
+);
 
 impl MPSeekCommandEvent {
     extern_methods!(
@@ -134,7 +140,9 @@ extern_class!(
     pub struct MPRatingCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPRatingCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPRatingCommandEvent {}
+);
 
 impl MPRatingCommandEvent {
     extern_methods!(
@@ -166,7 +174,9 @@ extern_class!(
     pub struct MPChangePlaybackRateCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPChangePlaybackRateCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPChangePlaybackRateCommandEvent {}
+);
 
 impl MPChangePlaybackRateCommandEvent {
     extern_methods!(
@@ -199,7 +209,9 @@ extern_class!(
     pub struct MPFeedbackCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPFeedbackCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPFeedbackCommandEvent {}
+);
 
 impl MPFeedbackCommandEvent {
     extern_methods!(
@@ -237,7 +249,9 @@ extern_class!(
     pub struct MPChangeLanguageOptionCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPChangeLanguageOptionCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPChangeLanguageOptionCommandEvent {}
+);
 
 impl MPChangeLanguageOptionCommandEvent {
     extern_methods!(
@@ -278,7 +292,9 @@ extern_class!(
     pub struct MPChangePlaybackPositionCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommandEvent {}
+);
 
 impl MPChangePlaybackPositionCommandEvent {
     extern_methods!(
@@ -309,7 +325,9 @@ extern_class!(
     pub struct MPChangeShuffleModeCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPChangeShuffleModeCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPChangeShuffleModeCommandEvent {}
+);
 
 impl MPChangeShuffleModeCommandEvent {
     extern_methods!(
@@ -346,7 +364,9 @@ extern_class!(
     pub struct MPChangeRepeatModeCommandEvent;
 );
 
-unsafe impl NSObjectProtocol for MPChangeRepeatModeCommandEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPChangeRepeatModeCommandEvent {}
+);
 
 impl MPChangeRepeatModeCommandEvent {
     extern_methods!(

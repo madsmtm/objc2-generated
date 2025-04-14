@@ -22,7 +22,9 @@ unsafe impl Send for HKActivitySummaryQuery {}
 unsafe impl Sync for HKActivitySummaryQuery {}
 
 #[cfg(feature = "HKQuery")]
-unsafe impl NSObjectProtocol for HKActivitySummaryQuery {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKActivitySummaryQuery {}
+);
 
 #[cfg(feature = "HKQuery")]
 impl HKActivitySummaryQuery {

@@ -83,17 +83,25 @@ extern_class!(
     pub struct INRelevanceProvider;
 );
 
-unsafe impl NSCoding for INRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSCoding for INRelevanceProvider {}
+);
 
-unsafe impl NSCopying for INRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for INRelevanceProvider {}
+);
 
 unsafe impl CopyingHelper for INRelevanceProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INRelevanceProvider {}
+);
 
-unsafe impl NSSecureCoding for INRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INRelevanceProvider {}
+);
 
 impl INRelevanceProvider {
     extern_methods!(
@@ -122,17 +130,25 @@ extern_class!(
     pub struct INDateRelevanceProvider;
 );
 
-unsafe impl NSCoding for INDateRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSCoding for INDateRelevanceProvider {}
+);
 
-unsafe impl NSCopying for INDateRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for INDateRelevanceProvider {}
+);
 
 unsafe impl CopyingHelper for INDateRelevanceProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INDateRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INDateRelevanceProvider {}
+);
 
-unsafe impl NSSecureCoding for INDateRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INDateRelevanceProvider {}
+);
 
 impl INDateRelevanceProvider {
     extern_methods!(
@@ -187,17 +203,25 @@ extern_class!(
     pub struct INLocationRelevanceProvider;
 );
 
-unsafe impl NSCoding for INLocationRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSCoding for INLocationRelevanceProvider {}
+);
 
-unsafe impl NSCopying for INLocationRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for INLocationRelevanceProvider {}
+);
 
 unsafe impl CopyingHelper for INLocationRelevanceProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INLocationRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INLocationRelevanceProvider {}
+);
 
-unsafe impl NSSecureCoding for INLocationRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INLocationRelevanceProvider {}
+);
 
 impl INLocationRelevanceProvider {
     extern_methods!(
@@ -247,17 +271,25 @@ extern_class!(
     pub struct INDailyRoutineRelevanceProvider;
 );
 
-unsafe impl NSCoding for INDailyRoutineRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSCoding for INDailyRoutineRelevanceProvider {}
+);
 
-unsafe impl NSCopying for INDailyRoutineRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for INDailyRoutineRelevanceProvider {}
+);
 
 unsafe impl CopyingHelper for INDailyRoutineRelevanceProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INDailyRoutineRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INDailyRoutineRelevanceProvider {}
+);
 
-unsafe impl NSSecureCoding for INDailyRoutineRelevanceProvider {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INDailyRoutineRelevanceProvider {}
+);
 
 impl INDailyRoutineRelevanceProvider {
     extern_methods!(

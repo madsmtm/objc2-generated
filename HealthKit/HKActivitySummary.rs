@@ -16,17 +16,25 @@ extern_class!(
     pub struct HKActivitySummary;
 );
 
-unsafe impl NSCoding for HKActivitySummary {}
+extern_conformance!(
+    unsafe impl NSCoding for HKActivitySummary {}
+);
 
-unsafe impl NSCopying for HKActivitySummary {}
+extern_conformance!(
+    unsafe impl NSCopying for HKActivitySummary {}
+);
 
 unsafe impl CopyingHelper for HKActivitySummary {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for HKActivitySummary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKActivitySummary {}
+);
 
-unsafe impl NSSecureCoding for HKActivitySummary {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKActivitySummary {}
+);
 
 impl HKActivitySummary {
     extern_methods!(

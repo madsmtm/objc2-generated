@@ -23,17 +23,23 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSPort {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPort {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSPort {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPort {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSPort {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPort {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPort {}
+);
 
 impl NSPort {
     extern_methods!(
@@ -184,17 +190,23 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMachPort {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMachPort {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMachPort {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMachPort {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMachPort {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMachPort {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMachPort {}
+);
 
 impl NSMachPort {
     extern_methods!(
@@ -279,17 +291,23 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMessagePort {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMessagePort {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMessagePort {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMessagePort {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMessagePort {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMessagePort {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMessagePort {}
+);
 
 impl NSMessagePort {
     extern_methods!();
@@ -316,17 +334,23 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSSocketPort {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSocketPort {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSSocketPort {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSocketPort {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSSocketPort {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSSocketPort {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSocketPort {}
+);
 
 impl NSSocketPort {
     extern_methods!(

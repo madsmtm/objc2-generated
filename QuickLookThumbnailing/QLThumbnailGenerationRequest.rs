@@ -44,17 +44,25 @@ extern_class!(
     pub struct QLThumbnailGenerationRequest;
 );
 
-unsafe impl NSCoding for QLThumbnailGenerationRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for QLThumbnailGenerationRequest {}
+);
 
-unsafe impl NSCopying for QLThumbnailGenerationRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for QLThumbnailGenerationRequest {}
+);
 
 unsafe impl CopyingHelper for QLThumbnailGenerationRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for QLThumbnailGenerationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QLThumbnailGenerationRequest {}
+);
 
-unsafe impl NSSecureCoding for QLThumbnailGenerationRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for QLThumbnailGenerationRequest {}
+);
 
 impl QLThumbnailGenerationRequest {
     extern_methods!(

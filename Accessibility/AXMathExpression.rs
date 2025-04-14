@@ -17,7 +17,9 @@ unsafe impl Send for AXMathExpression {}
 
 unsafe impl Sync for AXMathExpression {}
 
-unsafe impl NSObjectProtocol for AXMathExpression {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpression {}
+);
 
 impl AXMathExpression {
     extern_methods!();
@@ -43,7 +45,9 @@ extern_class!(
     pub struct AXMathExpressionNumber;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionNumber {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionNumber {}
+);
 
 impl AXMathExpressionNumber {
     extern_methods!(
@@ -77,7 +81,9 @@ extern_class!(
     pub struct AXMathExpressionIdentifier;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionIdentifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionIdentifier {}
+);
 
 impl AXMathExpressionIdentifier {
     extern_methods!(
@@ -111,7 +117,9 @@ extern_class!(
     pub struct AXMathExpressionOperator;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionOperator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionOperator {}
+);
 
 impl AXMathExpressionOperator {
     extern_methods!(
@@ -145,7 +153,9 @@ extern_class!(
     pub struct AXMathExpressionText;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionText {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionText {}
+);
 
 impl AXMathExpressionText {
     extern_methods!(
@@ -179,7 +189,9 @@ extern_class!(
     pub struct AXMathExpressionFenced;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionFenced {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionFenced {}
+);
 
 impl AXMathExpressionFenced {
     extern_methods!(
@@ -226,7 +238,9 @@ extern_class!(
     pub struct AXMathExpressionRow;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionRow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionRow {}
+);
 
 impl AXMathExpressionRow {
     extern_methods!(
@@ -263,7 +277,9 @@ extern_class!(
     pub struct AXMathExpressionTable;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionTable {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionTable {}
+);
 
 impl AXMathExpressionTable {
     extern_methods!(
@@ -300,7 +316,9 @@ extern_class!(
     pub struct AXMathExpressionTableRow;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionTableRow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionTableRow {}
+);
 
 impl AXMathExpressionTableRow {
     extern_methods!(
@@ -337,7 +355,9 @@ extern_class!(
     pub struct AXMathExpressionTableCell;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionTableCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionTableCell {}
+);
 
 impl AXMathExpressionTableCell {
     extern_methods!(
@@ -374,7 +394,9 @@ extern_class!(
     pub struct AXMathExpressionUnderOver;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionUnderOver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionUnderOver {}
+);
 
 impl AXMathExpressionUnderOver {
     extern_methods!(
@@ -421,7 +443,9 @@ extern_class!(
     pub struct AXMathExpressionSubSuperscript;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionSubSuperscript {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionSubSuperscript {}
+);
 
 impl AXMathExpressionSubSuperscript {
     extern_methods!(
@@ -468,7 +492,9 @@ extern_class!(
     pub struct AXMathExpressionFraction;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionFraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionFraction {}
+);
 
 impl AXMathExpressionFraction {
     extern_methods!(
@@ -510,7 +536,9 @@ extern_class!(
     pub struct AXMathExpressionMultiscript;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionMultiscript {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionMultiscript {}
+);
 
 impl AXMathExpressionMultiscript {
     extern_methods!(
@@ -561,7 +589,9 @@ extern_class!(
     pub struct AXMathExpressionRoot;
 );
 
-unsafe impl NSObjectProtocol for AXMathExpressionRoot {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AXMathExpressionRoot {}
+);
 
 impl AXMathExpressionRoot {
     extern_methods!(

@@ -131,7 +131,9 @@ extern_class!(
     pub struct NSSharingService;
 );
 
-unsafe impl NSObjectProtocol for NSSharingService {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSharingService {}
+);
 
 impl NSSharingService {
     extern_methods!(
@@ -512,7 +514,9 @@ extern_class!(
     pub struct NSSharingServicePicker;
 );
 
-unsafe impl NSObjectProtocol for NSSharingServicePicker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSharingServicePicker {}
+);
 
 impl NSSharingServicePicker {
     extern_methods!(

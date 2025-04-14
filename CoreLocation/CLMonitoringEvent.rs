@@ -37,11 +37,17 @@ extern_class!(
     pub struct CLMonitoringEvent;
 );
 
-unsafe impl NSCoding for CLMonitoringEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CLMonitoringEvent {}
+);
 
-unsafe impl NSObjectProtocol for CLMonitoringEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLMonitoringEvent {}
+);
 
-unsafe impl NSSecureCoding for CLMonitoringEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLMonitoringEvent {}
+);
 
 impl CLMonitoringEvent {
     extern_methods!(

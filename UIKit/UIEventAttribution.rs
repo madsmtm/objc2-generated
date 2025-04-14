@@ -14,13 +14,17 @@ extern_class!(
     pub struct UIEventAttribution;
 );
 
-unsafe impl NSCopying for UIEventAttribution {}
+extern_conformance!(
+    unsafe impl NSCopying for UIEventAttribution {}
+);
 
 unsafe impl CopyingHelper for UIEventAttribution {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIEventAttribution {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIEventAttribution {}
+);
 
 impl UIEventAttribution {
     extern_methods!(

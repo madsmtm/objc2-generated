@@ -17,11 +17,17 @@ unsafe impl Send for HKAudiogramSensitivityPoint {}
 
 unsafe impl Sync for HKAudiogramSensitivityPoint {}
 
-unsafe impl NSCoding for HKAudiogramSensitivityPoint {}
+extern_conformance!(
+    unsafe impl NSCoding for HKAudiogramSensitivityPoint {}
+);
 
-unsafe impl NSObjectProtocol for HKAudiogramSensitivityPoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKAudiogramSensitivityPoint {}
+);
 
-unsafe impl NSSecureCoding for HKAudiogramSensitivityPoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKAudiogramSensitivityPoint {}
+);
 
 impl HKAudiogramSensitivityPoint {
     extern_methods!(

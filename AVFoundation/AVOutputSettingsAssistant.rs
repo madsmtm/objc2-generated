@@ -88,7 +88,9 @@ extern_class!(
     pub struct AVOutputSettingsAssistant;
 );
 
-unsafe impl NSObjectProtocol for AVOutputSettingsAssistant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVOutputSettingsAssistant {}
+);
 
 impl AVOutputSettingsAssistant {
     extern_methods!(

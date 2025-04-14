@@ -18,7 +18,9 @@ extern_class!(
     pub struct SNClassification;
 );
 
-unsafe impl NSObjectProtocol for SNClassification {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SNClassification {}
+);
 
 impl SNClassification {
     extern_methods!(
@@ -51,10 +53,14 @@ extern_class!(
     pub struct SNClassificationResult;
 );
 
-unsafe impl NSObjectProtocol for SNClassificationResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SNClassificationResult {}
+);
 
 #[cfg(feature = "SNResult")]
-unsafe impl SNResult for SNClassificationResult {}
+extern_conformance!(
+    unsafe impl SNResult for SNClassificationResult {}
+);
 
 impl SNClassificationResult {
     extern_methods!(

@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "SHCatalog")]
-unsafe impl NSObjectProtocol for SHCustomCatalog {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SHCustomCatalog {}
+);
 
 #[cfg(feature = "SHCatalog")]
 impl SHCustomCatalog {

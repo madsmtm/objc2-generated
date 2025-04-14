@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureOutputBase")]
-unsafe impl NSObjectProtocol for AVCaptureAudioPreviewOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureAudioPreviewOutput {}
+);
 
 #[cfg(feature = "AVCaptureOutputBase")]
 impl AVCaptureAudioPreviewOutput {

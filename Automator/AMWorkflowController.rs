@@ -19,16 +19,24 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSCoding for AMWorkflowController {}
+extern_conformance!(
+    unsafe impl NSCoding for AMWorkflowController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSEditor for AMWorkflowController {}
+extern_conformance!(
+    unsafe impl NSEditor for AMWorkflowController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSEditorRegistration for AMWorkflowController {}
+extern_conformance!(
+    unsafe impl NSEditorRegistration for AMWorkflowController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSObjectProtocol for AMWorkflowController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AMWorkflowController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 impl AMWorkflowController {

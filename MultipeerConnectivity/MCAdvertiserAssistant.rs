@@ -14,7 +14,9 @@ extern_class!(
     pub struct MCAdvertiserAssistant;
 );
 
-unsafe impl NSObjectProtocol for MCAdvertiserAssistant {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MCAdvertiserAssistant {}
+);
 
 impl MCAdvertiserAssistant {
     extern_methods!(

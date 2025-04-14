@@ -33,7 +33,9 @@ extern_class!(
     pub struct CTCall;
 );
 
-unsafe impl NSObjectProtocol for CTCall {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CTCall {}
+);
 
 impl CTCall {
     extern_methods!(

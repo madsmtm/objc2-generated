@@ -476,31 +476,49 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
-unsafe impl NSAccessibility for NSWindow {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSWindow {}
+);
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSResponder"))]
-unsafe impl NSAccessibilityElementProtocol for NSWindow {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSWindow {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder"))]
-unsafe impl NSAnimatablePropertyContainer for NSWindow {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSWindow {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder"))]
-unsafe impl NSAppearanceCustomization for NSWindow {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSWindow {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSCoding for NSWindow {}
+extern_conformance!(
+    unsafe impl NSCoding for NSWindow {}
+);
 
 #[cfg(all(feature = "NSMenu", feature = "NSResponder"))]
-unsafe impl NSMenuItemValidation for NSWindow {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSWindow {}
+);
 
 #[cfg(feature = "NSResponder")]
-unsafe impl NSObjectProtocol for NSWindow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSWindow {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceItemIdentification"))]
-unsafe impl NSUserInterfaceItemIdentification for NSWindow {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSWindow {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSUserInterfaceValidation"))]
-unsafe impl NSUserInterfaceValidations for NSWindow {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSWindow {}
+);
 
 #[cfg(feature = "NSResponder")]
 impl NSWindow {

@@ -36,10 +36,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
-unsafe impl NSCoding for NSCompoundPredicate {}
+extern_conformance!(
+    unsafe impl NSCoding for NSCompoundPredicate {}
+);
 
 #[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
-unsafe impl NSCopying for NSCompoundPredicate {}
+extern_conformance!(
+    unsafe impl NSCopying for NSCompoundPredicate {}
+);
 
 #[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
 unsafe impl CopyingHelper for NSCompoundPredicate {
@@ -47,10 +51,14 @@ unsafe impl CopyingHelper for NSCompoundPredicate {
 }
 
 #[cfg(feature = "NSPredicate")]
-unsafe impl NSObjectProtocol for NSCompoundPredicate {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCompoundPredicate {}
+);
 
 #[cfg(all(feature = "NSObject", feature = "NSPredicate"))]
-unsafe impl NSSecureCoding for NSCompoundPredicate {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSCompoundPredicate {}
+);
 
 #[cfg(feature = "NSPredicate")]
 impl NSCompoundPredicate {

@@ -15,13 +15,17 @@ extern_class!(
     pub struct UIWindowScenePlacement;
 );
 
-unsafe impl NSCopying for UIWindowScenePlacement {}
+extern_conformance!(
+    unsafe impl NSCopying for UIWindowScenePlacement {}
+);
 
 unsafe impl CopyingHelper for UIWindowScenePlacement {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIWindowScenePlacement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowScenePlacement {}
+);
 
 impl UIWindowScenePlacement {
     extern_methods!(

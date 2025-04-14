@@ -108,7 +108,9 @@ extern_class!(
     pub struct ATTrackingManager;
 );
 
-unsafe impl NSObjectProtocol for ATTrackingManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ATTrackingManager {}
+);
 
 impl ATTrackingManager {
     extern_methods!(

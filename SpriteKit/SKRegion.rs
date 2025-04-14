@@ -18,17 +18,25 @@ extern_class!(
     pub struct SKRegion;
 );
 
-unsafe impl NSCoding for SKRegion {}
+extern_conformance!(
+    unsafe impl NSCoding for SKRegion {}
+);
 
-unsafe impl NSCopying for SKRegion {}
+extern_conformance!(
+    unsafe impl NSCopying for SKRegion {}
+);
 
 unsafe impl CopyingHelper for SKRegion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKRegion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKRegion {}
+);
 
-unsafe impl NSSecureCoding for SKRegion {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKRegion {}
+);
 
 impl SKRegion {
     extern_methods!(

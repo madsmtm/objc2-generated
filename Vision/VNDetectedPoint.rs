@@ -22,10 +22,14 @@ extern_class!(
 );
 
 #[cfg(feature = "VNGeometry")]
-unsafe impl NSCoding for VNDetectedPoint {}
+extern_conformance!(
+    unsafe impl NSCoding for VNDetectedPoint {}
+);
 
 #[cfg(feature = "VNGeometry")]
-unsafe impl NSCopying for VNDetectedPoint {}
+extern_conformance!(
+    unsafe impl NSCopying for VNDetectedPoint {}
+);
 
 #[cfg(feature = "VNGeometry")]
 unsafe impl CopyingHelper for VNDetectedPoint {
@@ -33,10 +37,14 @@ unsafe impl CopyingHelper for VNDetectedPoint {
 }
 
 #[cfg(feature = "VNGeometry")]
-unsafe impl NSObjectProtocol for VNDetectedPoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNDetectedPoint {}
+);
 
 #[cfg(feature = "VNGeometry")]
-unsafe impl NSSecureCoding for VNDetectedPoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNDetectedPoint {}
+);
 
 #[cfg(feature = "VNGeometry")]
 impl VNDetectedPoint {
@@ -83,10 +91,14 @@ extern_class!(
 );
 
 #[cfg(feature = "VNGeometry")]
-unsafe impl NSCoding for VNRecognizedPoint {}
+extern_conformance!(
+    unsafe impl NSCoding for VNRecognizedPoint {}
+);
 
 #[cfg(feature = "VNGeometry")]
-unsafe impl NSCopying for VNRecognizedPoint {}
+extern_conformance!(
+    unsafe impl NSCopying for VNRecognizedPoint {}
+);
 
 #[cfg(feature = "VNGeometry")]
 unsafe impl CopyingHelper for VNRecognizedPoint {
@@ -94,10 +106,14 @@ unsafe impl CopyingHelper for VNRecognizedPoint {
 }
 
 #[cfg(feature = "VNGeometry")]
-unsafe impl NSObjectProtocol for VNRecognizedPoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNRecognizedPoint {}
+);
 
 #[cfg(feature = "VNGeometry")]
-unsafe impl NSSecureCoding for VNRecognizedPoint {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for VNRecognizedPoint {}
+);
 
 #[cfg(feature = "VNGeometry")]
 impl VNRecognizedPoint {

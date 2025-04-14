@@ -50,28 +50,44 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAccessibility for QLPreviewView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for QLPreviewView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAccessibilityElementProtocol for QLPreviewView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for QLPreviewView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAnimatablePropertyContainer for QLPreviewView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for QLPreviewView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSAppearanceCustomization for QLPreviewView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for QLPreviewView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSCoding for QLPreviewView {}
+extern_conformance!(
+    unsafe impl NSCoding for QLPreviewView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSDraggingDestination for QLPreviewView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for QLPreviewView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSObjectProtocol for QLPreviewView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QLPreviewView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
-unsafe impl NSUserInterfaceItemIdentification for QLPreviewView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for QLPreviewView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 impl QLPreviewView {

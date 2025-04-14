@@ -17,20 +17,28 @@ unsafe impl Send for NSNull {}
 unsafe impl Sync for NSNull {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSNull {}
+extern_conformance!(
+    unsafe impl NSCoding for NSNull {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSNull {}
+extern_conformance!(
+    unsafe impl NSCopying for NSNull {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSNull {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSNull {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNull {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSNull {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSNull {}
+);
 
 impl NSNull {
     extern_methods!(

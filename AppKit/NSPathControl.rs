@@ -21,7 +21,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSPathControl {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSPathControl {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -29,7 +31,9 @@ unsafe impl NSAccessibility for NSPathControl {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSPathControl {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSPathControl {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -37,7 +41,9 @@ unsafe impl NSAccessibilityElementProtocol for NSPathControl {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSPathControl {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSPathControl {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -45,10 +51,14 @@ unsafe impl NSAnimatablePropertyContainer for NSPathControl {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSPathControl {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSPathControl {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSPathControl {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPathControl {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -56,10 +66,14 @@ unsafe impl NSCoding for NSPathControl {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSPathControl {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSPathControl {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSPathControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPathControl {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -67,7 +81,9 @@ unsafe impl NSObjectProtocol for NSPathControl {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSPathControl {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSPathControl {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSPathControl {

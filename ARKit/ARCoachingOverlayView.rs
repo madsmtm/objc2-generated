@@ -71,44 +71,68 @@ extern_class!(
     feature = "objc2-quartz-core",
     feature = "objc2-ui-kit"
 ))]
-unsafe impl CALayerDelegate for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for ARCoachingOverlayView {}
+);
 
 #[cfg(all(
     feature = "objc2",
     feature = "objc2-foundation",
     feature = "objc2-ui-kit"
 ))]
-unsafe impl NSCoding for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl NSCoding for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl NSObjectProtocol for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl UIAppearance for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl UIAppearance for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl UIAppearanceContainer for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl UICoordinateSpace for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl UIDynamicItem for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl UIFocusEnvironment for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl UIFocusItem for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl UIFocusItemContainer for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl UIResponderStandardEditActions for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
-unsafe impl UITraitEnvironment for ARCoachingOverlayView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for ARCoachingOverlayView {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
 impl ARCoachingOverlayView {

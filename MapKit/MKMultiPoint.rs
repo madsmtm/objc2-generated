@@ -20,10 +20,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MKAnnotation", feature = "MKShape"))]
-unsafe impl MKAnnotation for MKMultiPoint {}
+extern_conformance!(
+    unsafe impl MKAnnotation for MKMultiPoint {}
+);
 
 #[cfg(feature = "MKShape")]
-unsafe impl NSObjectProtocol for MKMultiPoint {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKMultiPoint {}
+);
 
 #[cfg(feature = "MKShape")]
 impl MKMultiPoint {

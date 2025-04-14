@@ -103,7 +103,9 @@ extern_class!(
     pub struct AVCaptureSystemPressureState;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureSystemPressureState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSystemPressureState {}
+);
 
 impl AVCaptureSystemPressureState {
     extern_methods!(

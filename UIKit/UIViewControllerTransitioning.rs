@@ -270,9 +270,13 @@ extern_class!(
     pub struct UIPercentDrivenInteractiveTransition;
 );
 
-unsafe impl NSObjectProtocol for UIPercentDrivenInteractiveTransition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPercentDrivenInteractiveTransition {}
+);
 
-unsafe impl UIViewControllerInteractiveTransitioning for UIPercentDrivenInteractiveTransition {}
+extern_conformance!(
+    unsafe impl UIViewControllerInteractiveTransitioning for UIPercentDrivenInteractiveTransition {}
+);
 
 impl UIPercentDrivenInteractiveTransition {
     extern_methods!(

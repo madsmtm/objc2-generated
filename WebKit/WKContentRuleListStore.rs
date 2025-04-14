@@ -15,7 +15,9 @@ extern_class!(
     pub struct WKContentRuleListStore;
 );
 
-unsafe impl NSObjectProtocol for WKContentRuleListStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKContentRuleListStore {}
+);
 
 impl WKContentRuleListStore {
     extern_methods!(

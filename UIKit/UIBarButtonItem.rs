@@ -113,13 +113,19 @@ extern_class!(
 );
 
 #[cfg(feature = "UIBarItem")]
-unsafe impl NSCoding for UIBarButtonItem {}
+extern_conformance!(
+    unsafe impl NSCoding for UIBarButtonItem {}
+);
 
 #[cfg(feature = "UIBarItem")]
-unsafe impl NSObjectProtocol for UIBarButtonItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBarButtonItem {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIBarItem"))]
-unsafe impl UIAppearance for UIBarButtonItem {}
+extern_conformance!(
+    unsafe impl UIAppearance for UIBarButtonItem {}
+);
 
 #[cfg(feature = "UIBarItem")]
 impl UIBarButtonItem {
@@ -644,7 +650,9 @@ impl UIBarButtonItem {
 }
 
 #[cfg(all(feature = "UIBarItem", feature = "UISpringLoadedInteractionSupporting"))]
-unsafe impl UISpringLoadedInteractionSupporting for UIBarButtonItem {}
+extern_conformance!(
+    unsafe impl UISpringLoadedInteractionSupporting for UIBarButtonItem {}
+);
 
 #[cfg(feature = "UIBarItem")]
 impl UIBarButtonItem {

@@ -89,7 +89,9 @@ extern_class!(
     pub struct OBEXSession;
 );
 
-unsafe impl NSObjectProtocol for OBEXSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OBEXSession {}
+);
 
 impl OBEXSession {
     extern_methods!(

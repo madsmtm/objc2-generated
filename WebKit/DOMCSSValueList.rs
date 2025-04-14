@@ -25,7 +25,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMCSSValueList {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMCSSValueList {}
+);
 
 #[cfg(all(
     feature = "DOMCSSValue",
@@ -41,7 +43,9 @@ unsafe impl CopyingHelper for DOMCSSValueList {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMCSSValueList {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMCSSValueList {}
+);
 
 #[cfg(all(
     feature = "DOMCSSValue",

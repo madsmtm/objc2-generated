@@ -43,7 +43,9 @@ extern_class!(
     pub struct GKRTree<ElementType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ElementType: ?Sized> NSObjectProtocol for GKRTree<ElementType> {}
+extern_conformance!(
+    unsafe impl<ElementType: ?Sized> NSObjectProtocol for GKRTree<ElementType> {}
+);
 
 impl<ElementType: Message> GKRTree<ElementType> {
     extern_methods!(

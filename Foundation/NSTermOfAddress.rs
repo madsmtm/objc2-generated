@@ -13,20 +13,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSTermOfAddress {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTermOfAddress {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSTermOfAddress {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTermOfAddress {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSTermOfAddress {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTermOfAddress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTermOfAddress {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSTermOfAddress {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSTermOfAddress {}
+);
 
 impl NSTermOfAddress {
     extern_methods!(

@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "MLCLayer")]
-unsafe impl NSObjectProtocol for MLCDropoutLayer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLCDropoutLayer {}
+);
 
 #[cfg(feature = "MLCLayer")]
 impl MLCDropoutLayer {

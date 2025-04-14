@@ -28,7 +28,9 @@ extern_class!(
     pub struct CTSubscriber;
 );
 
-unsafe impl NSObjectProtocol for CTSubscriber {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CTSubscriber {}
+);
 
 impl CTSubscriber {
     extern_methods!(

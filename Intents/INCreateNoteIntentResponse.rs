@@ -44,10 +44,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INCreateNoteIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INCreateNoteIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INCreateNoteIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INCreateNoteIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INCreateNoteIntentResponse {
@@ -55,10 +59,14 @@ unsafe impl CopyingHelper for INCreateNoteIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INCreateNoteIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INCreateNoteIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INCreateNoteIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INCreateNoteIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INCreateNoteIntentResponse {

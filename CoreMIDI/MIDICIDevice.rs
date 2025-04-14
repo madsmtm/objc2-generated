@@ -24,7 +24,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDICIDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDICIDevice {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDICIDevice {

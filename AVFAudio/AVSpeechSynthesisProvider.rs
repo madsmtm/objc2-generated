@@ -31,17 +31,25 @@ unsafe impl Send for AVSpeechSynthesisProviderVoice {}
 
 unsafe impl Sync for AVSpeechSynthesisProviderVoice {}
 
-unsafe impl NSCoding for AVSpeechSynthesisProviderVoice {}
+extern_conformance!(
+    unsafe impl NSCoding for AVSpeechSynthesisProviderVoice {}
+);
 
-unsafe impl NSCopying for AVSpeechSynthesisProviderVoice {}
+extern_conformance!(
+    unsafe impl NSCopying for AVSpeechSynthesisProviderVoice {}
+);
 
 unsafe impl CopyingHelper for AVSpeechSynthesisProviderVoice {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVSpeechSynthesisProviderVoice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSpeechSynthesisProviderVoice {}
+);
 
-unsafe impl NSSecureCoding for AVSpeechSynthesisProviderVoice {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVSpeechSynthesisProviderVoice {}
+);
 
 impl AVSpeechSynthesisProviderVoice {
     extern_methods!(
@@ -168,17 +176,25 @@ unsafe impl Send for AVSpeechSynthesisProviderRequest {}
 
 unsafe impl Sync for AVSpeechSynthesisProviderRequest {}
 
-unsafe impl NSCoding for AVSpeechSynthesisProviderRequest {}
+extern_conformance!(
+    unsafe impl NSCoding for AVSpeechSynthesisProviderRequest {}
+);
 
-unsafe impl NSCopying for AVSpeechSynthesisProviderRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for AVSpeechSynthesisProviderRequest {}
+);
 
 unsafe impl CopyingHelper for AVSpeechSynthesisProviderRequest {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVSpeechSynthesisProviderRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSpeechSynthesisProviderRequest {}
+);
 
-unsafe impl NSSecureCoding for AVSpeechSynthesisProviderRequest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVSpeechSynthesisProviderRequest {}
+);
 
 impl AVSpeechSynthesisProviderRequest {
     extern_methods!(
@@ -235,7 +251,9 @@ extern_class!(
 
 #[cfg(feature = "objc2-audio-toolbox")]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl NSObjectProtocol for AVSpeechSynthesisProviderAudioUnit {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVSpeechSynthesisProviderAudioUnit {}
+);
 
 #[cfg(feature = "objc2-audio-toolbox")]
 #[cfg(not(target_os = "watchos"))]

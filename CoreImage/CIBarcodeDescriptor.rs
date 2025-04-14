@@ -18,17 +18,25 @@ extern_class!(
     pub struct CIBarcodeDescriptor;
 );
 
-unsafe impl NSCoding for CIBarcodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for CIBarcodeDescriptor {}
+);
 
-unsafe impl NSCopying for CIBarcodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for CIBarcodeDescriptor {}
+);
 
 unsafe impl CopyingHelper for CIBarcodeDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIBarcodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIBarcodeDescriptor {}
+);
 
-unsafe impl NSSecureCoding for CIBarcodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIBarcodeDescriptor {}
+);
 
 impl CIBarcodeDescriptor {
     extern_methods!();
@@ -91,17 +99,25 @@ extern_class!(
     pub struct CIQRCodeDescriptor;
 );
 
-unsafe impl NSCoding for CIQRCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for CIQRCodeDescriptor {}
+);
 
-unsafe impl NSCopying for CIQRCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for CIQRCodeDescriptor {}
+);
 
 unsafe impl CopyingHelper for CIQRCodeDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIQRCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIQRCodeDescriptor {}
+);
 
-unsafe impl NSSecureCoding for CIQRCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIQRCodeDescriptor {}
+);
 
 impl CIQRCodeDescriptor {
     extern_methods!(
@@ -185,17 +201,25 @@ extern_class!(
     pub struct CIAztecCodeDescriptor;
 );
 
-unsafe impl NSCoding for CIAztecCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for CIAztecCodeDescriptor {}
+);
 
-unsafe impl NSCopying for CIAztecCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for CIAztecCodeDescriptor {}
+);
 
 unsafe impl CopyingHelper for CIAztecCodeDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIAztecCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIAztecCodeDescriptor {}
+);
 
-unsafe impl NSSecureCoding for CIAztecCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIAztecCodeDescriptor {}
+);
 
 impl CIAztecCodeDescriptor {
     extern_methods!(
@@ -283,17 +307,25 @@ extern_class!(
     pub struct CIPDF417CodeDescriptor;
 );
 
-unsafe impl NSCoding for CIPDF417CodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for CIPDF417CodeDescriptor {}
+);
 
-unsafe impl NSCopying for CIPDF417CodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for CIPDF417CodeDescriptor {}
+);
 
 unsafe impl CopyingHelper for CIPDF417CodeDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIPDF417CodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIPDF417CodeDescriptor {}
+);
 
-unsafe impl NSSecureCoding for CIPDF417CodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIPDF417CodeDescriptor {}
+);
 
 impl CIPDF417CodeDescriptor {
     extern_methods!(
@@ -420,17 +452,25 @@ extern_class!(
     pub struct CIDataMatrixCodeDescriptor;
 );
 
-unsafe impl NSCoding for CIDataMatrixCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCoding for CIDataMatrixCodeDescriptor {}
+);
 
-unsafe impl NSCopying for CIDataMatrixCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for CIDataMatrixCodeDescriptor {}
+);
 
 unsafe impl CopyingHelper for CIDataMatrixCodeDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CIDataMatrixCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CIDataMatrixCodeDescriptor {}
+);
 
-unsafe impl NSSecureCoding for CIDataMatrixCodeDescriptor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CIDataMatrixCodeDescriptor {}
+);
 
 impl CIDataMatrixCodeDescriptor {
     extern_methods!(

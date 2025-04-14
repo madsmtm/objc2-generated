@@ -16,11 +16,17 @@ extern_class!(
     pub struct CPContact;
 );
 
-unsafe impl NSCoding for CPContact {}
+extern_conformance!(
+    unsafe impl NSCoding for CPContact {}
+);
 
-unsafe impl NSObjectProtocol for CPContact {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPContact {}
+);
 
-unsafe impl NSSecureCoding for CPContact {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPContact {}
+);
 
 impl CPContact {
     extern_methods!(
@@ -135,7 +141,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CPButton")]
-unsafe impl NSObjectProtocol for CPContactCallButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPContactCallButton {}
+);
 
 #[cfg(feature = "CPButton")]
 impl CPContactCallButton {
@@ -186,7 +194,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CPButton")]
-unsafe impl NSObjectProtocol for CPContactMessageButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPContactMessageButton {}
+);
 
 #[cfg(feature = "CPButton")]
 impl CPContactMessageButton {
@@ -264,7 +274,9 @@ extern_class!(
 );
 
 #[cfg(feature = "CPButton")]
-unsafe impl NSObjectProtocol for CPContactDirectionsButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPContactDirectionsButton {}
+);
 
 #[cfg(feature = "CPButton")]
 impl CPContactDirectionsButton {

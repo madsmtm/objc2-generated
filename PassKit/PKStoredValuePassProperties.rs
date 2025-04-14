@@ -13,7 +13,9 @@ extern_class!(
     pub struct PKStoredValuePassProperties;
 );
 
-unsafe impl NSObjectProtocol for PKStoredValuePassProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKStoredValuePassProperties {}
+);
 
 impl PKStoredValuePassProperties {
     extern_methods!(

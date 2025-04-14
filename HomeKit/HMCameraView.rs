@@ -26,40 +26,64 @@ extern_class!(
 
 #[cfg(all(feature = "objc2-quartz-core", feature = "objc2-ui-kit"))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for HMCameraView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for HMCameraView {}
+extern_conformance!(
+    unsafe impl NSCoding for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for HMCameraView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearance for HMCameraView {}
+extern_conformance!(
+    unsafe impl UIAppearance for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for HMCameraView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UICoordinateSpace for HMCameraView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIDynamicItem for HMCameraView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for HMCameraView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItem for HMCameraView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItemContainer for HMCameraView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for HMCameraView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for HMCameraView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for HMCameraView {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl HMCameraView {

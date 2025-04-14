@@ -23,7 +23,9 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSTextField {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTextField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -31,7 +33,9 @@ unsafe impl NSAccessibility for NSTextField {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSTextField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTextField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -39,7 +43,9 @@ unsafe impl NSAccessibilityElementProtocol for NSTextField {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityNavigableStaticText for NSTextField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityNavigableStaticText for NSTextField {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -47,7 +53,9 @@ unsafe impl NSAccessibilityNavigableStaticText for NSTextField {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityStaticText for NSTextField {}
+extern_conformance!(
+    unsafe impl NSAccessibilityStaticText for NSTextField {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -55,7 +63,9 @@ unsafe impl NSAccessibilityStaticText for NSTextField {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSTextField {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSTextField {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -63,10 +73,14 @@ unsafe impl NSAnimatablePropertyContainer for NSTextField {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAppearanceCustomization for NSTextField {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSTextField {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSTextField {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -74,10 +88,14 @@ unsafe impl NSCoding for NSTextField {}
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSDraggingDestination for NSTextField {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSTextField {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSTextField {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -85,7 +103,9 @@ unsafe impl NSObjectProtocol for NSTextField {}
     feature = "NSTextContent",
     feature = "NSView"
 ))]
-unsafe impl NSTextContent for NSTextField {}
+extern_conformance!(
+    unsafe impl NSTextContent for NSTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -93,7 +113,9 @@ unsafe impl NSTextContent for NSTextField {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTextField {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTextField {}
+);
 
 #[cfg(all(
     feature = "NSControl",
@@ -101,7 +123,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSTextField {}
     feature = "NSUserInterfaceValidation",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceValidations for NSTextField {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSTextField {}
+);
 
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSTextField {

@@ -37,7 +37,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMHTMLIFrameElement {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMHTMLIFrameElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -46,7 +48,9 @@ unsafe impl DOMEventTarget for DOMHTMLIFrameElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMHTMLIFrameElement {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMHTMLIFrameElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -66,7 +70,9 @@ unsafe impl CopyingHelper for DOMHTMLIFrameElement {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMHTMLIFrameElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMHTMLIFrameElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",

@@ -101,9 +101,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSScriptObjectSpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSScriptObjectSpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSScriptObjectSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSScriptObjectSpecifier {}
+);
 
 impl NSScriptObjectSpecifier {
     extern_methods!(
@@ -309,9 +313,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSIndexSpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSIndexSpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSIndexSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSIndexSpecifier {}
+);
 
 impl NSIndexSpecifier {
     extern_methods!(
@@ -398,9 +406,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMiddleSpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMiddleSpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSMiddleSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMiddleSpecifier {}
+);
 
 impl NSMiddleSpecifier {
     extern_methods!();
@@ -463,9 +475,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSNameSpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSNameSpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSNameSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSNameSpecifier {}
+);
 
 impl NSNameSpecifier {
     extern_methods!(
@@ -553,7 +569,9 @@ extern_class!(
     pub struct NSPositionalSpecifier;
 );
 
-unsafe impl NSObjectProtocol for NSPositionalSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPositionalSpecifier {}
+);
 
 impl NSPositionalSpecifier {
     extern_methods!(
@@ -625,9 +643,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSPropertySpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPropertySpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSPropertySpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPropertySpecifier {}
+);
 
 impl NSPropertySpecifier {
     extern_methods!();
@@ -690,9 +712,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSRandomSpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSRandomSpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSRandomSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRandomSpecifier {}
+);
 
 impl NSRandomSpecifier {
     extern_methods!();
@@ -755,9 +781,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSRangeSpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSRangeSpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSRangeSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRangeSpecifier {}
+);
 
 impl NSRangeSpecifier {
     extern_methods!(
@@ -854,9 +884,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSRelativeSpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSRelativeSpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSRelativeSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRelativeSpecifier {}
+);
 
 impl NSRelativeSpecifier {
     extern_methods!(
@@ -953,9 +987,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSUniqueIDSpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSUniqueIDSpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSUniqueIDSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSUniqueIDSpecifier {}
+);
 
 impl NSUniqueIDSpecifier {
     extern_methods!(
@@ -1042,9 +1080,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSWhoseSpecifier {}
+extern_conformance!(
+    unsafe impl NSCoding for NSWhoseSpecifier {}
+);
 
-unsafe impl NSObjectProtocol for NSWhoseSpecifier {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSWhoseSpecifier {}
+);
 
 impl NSWhoseSpecifier {
     extern_methods!(

@@ -13,7 +13,9 @@ extern_class!(
     pub struct NSCache<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
 
-unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<KeyType, ObjectType> {}
+extern_conformance!(
+    unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<KeyType, ObjectType> {}
+);
 
 impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
     extern_methods!(

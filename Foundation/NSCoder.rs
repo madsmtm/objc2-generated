@@ -35,7 +35,9 @@ extern_class!(
     pub struct NSCoder;
 );
 
-unsafe impl NSObjectProtocol for NSCoder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCoder {}
+);
 
 impl NSCoder {
     extern_methods!(

@@ -65,7 +65,9 @@ extern_class!(
 );
 
 #[cfg(feature = "NSToolbarItem")]
-unsafe impl NSCopying for NSToolbarItemGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for NSToolbarItemGroup {}
+);
 
 #[cfg(feature = "NSToolbarItem")]
 unsafe impl CopyingHelper for NSToolbarItemGroup {
@@ -73,7 +75,9 @@ unsafe impl CopyingHelper for NSToolbarItemGroup {
 }
 
 #[cfg(feature = "NSToolbarItem")]
-unsafe impl NSObjectProtocol for NSToolbarItemGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSToolbarItemGroup {}
+);
 
 #[cfg(feature = "NSToolbarItem")]
 impl NSToolbarItemGroup {

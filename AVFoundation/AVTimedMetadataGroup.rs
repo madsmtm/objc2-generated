@@ -18,7 +18,9 @@ extern_class!(
     pub struct AVMetadataGroup;
 );
 
-unsafe impl NSObjectProtocol for AVMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataGroup {}
+);
 
 impl AVMetadataGroup {
     extern_methods!(
@@ -64,19 +66,25 @@ extern_class!(
     pub struct AVTimedMetadataGroup;
 );
 
-unsafe impl NSCopying for AVTimedMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for AVTimedMetadataGroup {}
+);
 
 unsafe impl CopyingHelper for AVTimedMetadataGroup {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVTimedMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVTimedMetadataGroup {}
+);
 
 unsafe impl MutableCopyingHelper for AVTimedMetadataGroup {
     type Result = AVMutableTimedMetadataGroup;
 }
 
-unsafe impl NSObjectProtocol for AVTimedMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVTimedMetadataGroup {}
+);
 
 impl AVTimedMetadataGroup {
     extern_methods!(
@@ -161,19 +169,25 @@ extern_class!(
     pub struct AVMutableTimedMetadataGroup;
 );
 
-unsafe impl NSCopying for AVMutableTimedMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableTimedMetadataGroup {}
+);
 
 unsafe impl CopyingHelper for AVMutableTimedMetadataGroup {
     type Result = AVTimedMetadataGroup;
 }
 
-unsafe impl NSMutableCopying for AVMutableTimedMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableTimedMetadataGroup {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableTimedMetadataGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableTimedMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableTimedMetadataGroup {}
+);
 
 impl AVMutableTimedMetadataGroup {
     extern_methods!(
@@ -257,19 +271,25 @@ extern_class!(
     pub struct AVDateRangeMetadataGroup;
 );
 
-unsafe impl NSCopying for AVDateRangeMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for AVDateRangeMetadataGroup {}
+);
 
 unsafe impl CopyingHelper for AVDateRangeMetadataGroup {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for AVDateRangeMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVDateRangeMetadataGroup {}
+);
 
 unsafe impl MutableCopyingHelper for AVDateRangeMetadataGroup {
     type Result = AVMutableDateRangeMetadataGroup;
 }
 
-unsafe impl NSObjectProtocol for AVDateRangeMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVDateRangeMetadataGroup {}
+);
 
 impl AVDateRangeMetadataGroup {
     extern_methods!(
@@ -329,19 +349,25 @@ extern_class!(
     pub struct AVMutableDateRangeMetadataGroup;
 );
 
-unsafe impl NSCopying for AVMutableDateRangeMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableDateRangeMetadataGroup {}
+);
 
 unsafe impl CopyingHelper for AVMutableDateRangeMetadataGroup {
     type Result = AVDateRangeMetadataGroup;
 }
 
-unsafe impl NSMutableCopying for AVMutableDateRangeMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for AVMutableDateRangeMetadataGroup {}
+);
 
 unsafe impl MutableCopyingHelper for AVMutableDateRangeMetadataGroup {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVMutableDateRangeMetadataGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableDateRangeMetadataGroup {}
+);
 
 impl AVMutableDateRangeMetadataGroup {
     extern_methods!(

@@ -29,7 +29,9 @@ unsafe impl Send for HKHeartbeatSeriesBuilder {}
 unsafe impl Sync for HKHeartbeatSeriesBuilder {}
 
 #[cfg(feature = "HKSeriesBuilder")]
-unsafe impl NSObjectProtocol for HKHeartbeatSeriesBuilder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKHeartbeatSeriesBuilder {}
+);
 
 #[cfg(feature = "HKSeriesBuilder")]
 impl HKHeartbeatSeriesBuilder {

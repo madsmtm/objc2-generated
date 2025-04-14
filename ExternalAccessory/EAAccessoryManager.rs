@@ -67,7 +67,9 @@ extern_class!(
     pub struct EAAccessoryManager;
 );
 
-unsafe impl NSObjectProtocol for EAAccessoryManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EAAccessoryManager {}
+);
 
 impl EAAccessoryManager {
     extern_methods!(

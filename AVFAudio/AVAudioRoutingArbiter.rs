@@ -53,7 +53,9 @@ unsafe impl Send for AVAudioRoutingArbiter {}
 
 unsafe impl Sync for AVAudioRoutingArbiter {}
 
-unsafe impl NSObjectProtocol for AVAudioRoutingArbiter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioRoutingArbiter {}
+);
 
 impl AVAudioRoutingArbiter {
     extern_methods!(

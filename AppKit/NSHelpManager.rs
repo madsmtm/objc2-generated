@@ -24,7 +24,9 @@ extern_class!(
     pub struct NSHelpManager;
 );
 
-unsafe impl NSObjectProtocol for NSHelpManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSHelpManager {}
+);
 
 impl NSHelpManager {
     extern_methods!(

@@ -20,10 +20,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAssetTrack", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVMovieTrack {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVMovieTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSCopying for AVMovieTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMovieTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl CopyingHelper for AVMovieTrack {
@@ -31,7 +35,9 @@ unsafe impl CopyingHelper for AVMovieTrack {
 }
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSObjectProtocol for AVMovieTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMovieTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 impl AVMovieTrack {
@@ -91,10 +97,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAssetTrack", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVMutableMovieTrack {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVMutableMovieTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSCopying for AVMutableMovieTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for AVMutableMovieTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl CopyingHelper for AVMutableMovieTrack {
@@ -102,7 +112,9 @@ unsafe impl CopyingHelper for AVMutableMovieTrack {
 }
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSObjectProtocol for AVMutableMovieTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMutableMovieTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 impl AVMutableMovieTrack {
@@ -640,10 +652,14 @@ unsafe impl Send for AVFragmentedMovieTrack {}
 unsafe impl Sync for AVFragmentedMovieTrack {}
 
 #[cfg(all(feature = "AVAssetTrack", feature = "AVAsynchronousKeyValueLoading"))]
-unsafe impl AVAsynchronousKeyValueLoading for AVFragmentedMovieTrack {}
+extern_conformance!(
+    unsafe impl AVAsynchronousKeyValueLoading for AVFragmentedMovieTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSCopying for AVFragmentedMovieTrack {}
+extern_conformance!(
+    unsafe impl NSCopying for AVFragmentedMovieTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 unsafe impl CopyingHelper for AVFragmentedMovieTrack {
@@ -651,7 +667,9 @@ unsafe impl CopyingHelper for AVFragmentedMovieTrack {
 }
 
 #[cfg(feature = "AVAssetTrack")]
-unsafe impl NSObjectProtocol for AVFragmentedMovieTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVFragmentedMovieTrack {}
+);
 
 #[cfg(feature = "AVAssetTrack")]
 impl AVFragmentedMovieTrack {

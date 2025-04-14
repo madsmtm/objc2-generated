@@ -75,7 +75,9 @@ extern_class!(
     pub struct AVAudioUnitComponent;
 );
 
-unsafe impl NSObjectProtocol for AVAudioUnitComponent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioUnitComponent {}
+);
 
 impl AVAudioUnitComponent {
     extern_methods!(
@@ -241,7 +243,9 @@ extern_class!(
     pub struct AVAudioUnitComponentManager;
 );
 
-unsafe impl NSObjectProtocol for AVAudioUnitComponentManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioUnitComponentManager {}
+);
 
 impl AVAudioUnitComponentManager {
     extern_methods!(

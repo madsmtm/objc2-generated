@@ -38,11 +38,15 @@ extern_class!(
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for SKCameraNode {}
+extern_conformance!(
+    unsafe impl NSCoding for SKCameraNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSCopying for SKCameraNode {}
+extern_conformance!(
+    unsafe impl NSCopying for SKCameraNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
@@ -52,11 +56,15 @@ unsafe impl CopyingHelper for SKCameraNode {
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for SKCameraNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKCameraNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-unsafe impl NSSecureCoding for SKCameraNode {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKCameraNode {}
+);
 
 #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]

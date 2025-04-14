@@ -83,35 +83,51 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for AVRoutePickerView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for AVRoutePickerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for AVRoutePickerView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for AVRoutePickerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for AVRoutePickerView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for AVRoutePickerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for AVRoutePickerView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for AVRoutePickerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for AVRoutePickerView {}
+extern_conformance!(
+    unsafe impl NSCoding for AVRoutePickerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for AVRoutePickerView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for AVRoutePickerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for AVRoutePickerView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVRoutePickerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for AVRoutePickerView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for AVRoutePickerView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

@@ -83,17 +83,25 @@ extern_class!(
     pub struct WKWebExtensionMatchPattern;
 );
 
-unsafe impl NSCoding for WKWebExtensionMatchPattern {}
+extern_conformance!(
+    unsafe impl NSCoding for WKWebExtensionMatchPattern {}
+);
 
-unsafe impl NSCopying for WKWebExtensionMatchPattern {}
+extern_conformance!(
+    unsafe impl NSCopying for WKWebExtensionMatchPattern {}
+);
 
 unsafe impl CopyingHelper for WKWebExtensionMatchPattern {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for WKWebExtensionMatchPattern {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKWebExtensionMatchPattern {}
+);
 
-unsafe impl NSSecureCoding for WKWebExtensionMatchPattern {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WKWebExtensionMatchPattern {}
+);
 
 impl WKWebExtensionMatchPattern {
     extern_methods!(

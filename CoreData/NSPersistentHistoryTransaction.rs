@@ -13,13 +13,17 @@ extern_class!(
     pub struct NSPersistentHistoryTransaction;
 );
 
-unsafe impl NSCopying for NSPersistentHistoryTransaction {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPersistentHistoryTransaction {}
+);
 
 unsafe impl CopyingHelper for NSPersistentHistoryTransaction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPersistentHistoryTransaction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPersistentHistoryTransaction {}
+);
 
 impl NSPersistentHistoryTransaction {
     extern_methods!(

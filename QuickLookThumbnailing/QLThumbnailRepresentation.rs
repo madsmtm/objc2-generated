@@ -44,7 +44,9 @@ extern_class!(
     pub struct QLThumbnailRepresentation;
 );
 
-unsafe impl NSObjectProtocol for QLThumbnailRepresentation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QLThumbnailRepresentation {}
+);
 
 impl QLThumbnailRepresentation {
     extern_methods!(

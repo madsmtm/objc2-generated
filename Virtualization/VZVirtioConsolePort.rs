@@ -18,7 +18,9 @@ extern_class!(
     pub struct VZVirtioConsolePort;
 );
 
-unsafe impl NSObjectProtocol for VZVirtioConsolePort {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZVirtioConsolePort {}
+);
 
 impl VZVirtioConsolePort {
     extern_methods!(

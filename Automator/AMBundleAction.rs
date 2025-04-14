@@ -18,10 +18,14 @@ extern_class!(
 );
 
 #[cfg(feature = "AMAction")]
-unsafe impl NSCoding for AMBundleAction {}
+extern_conformance!(
+    unsafe impl NSCoding for AMBundleAction {}
+);
 
 #[cfg(feature = "AMAction")]
-unsafe impl NSCopying for AMBundleAction {}
+extern_conformance!(
+    unsafe impl NSCopying for AMBundleAction {}
+);
 
 #[cfg(feature = "AMAction")]
 unsafe impl CopyingHelper for AMBundleAction {
@@ -29,10 +33,14 @@ unsafe impl CopyingHelper for AMBundleAction {
 }
 
 #[cfg(feature = "AMAction")]
-unsafe impl NSObjectProtocol for AMBundleAction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AMBundleAction {}
+);
 
 #[cfg(feature = "AMAction")]
-unsafe impl NSSecureCoding for AMBundleAction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for AMBundleAction {}
+);
 
 #[cfg(feature = "AMAction")]
 impl AMBundleAction {

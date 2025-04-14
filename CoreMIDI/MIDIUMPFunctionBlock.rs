@@ -27,7 +27,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for MIDIUMPFunctionBlock {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MIDIUMPFunctionBlock {}
+);
 
 #[cfg(feature = "objc2")]
 impl MIDIUMPFunctionBlock {

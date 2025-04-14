@@ -51,15 +51,21 @@ extern_class!(
     pub struct NSTrackingArea;
 );
 
-unsafe impl NSCoding for NSTrackingArea {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTrackingArea {}
+);
 
-unsafe impl NSCopying for NSTrackingArea {}
+extern_conformance!(
+    unsafe impl NSCopying for NSTrackingArea {}
+);
 
 unsafe impl CopyingHelper for NSTrackingArea {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSTrackingArea {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTrackingArea {}
+);
 
 impl NSTrackingArea {
     extern_methods!(

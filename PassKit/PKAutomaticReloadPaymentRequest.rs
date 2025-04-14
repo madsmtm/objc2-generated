@@ -14,7 +14,9 @@ extern_class!(
     pub struct PKAutomaticReloadPaymentRequest;
 );
 
-unsafe impl NSObjectProtocol for PKAutomaticReloadPaymentRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKAutomaticReloadPaymentRequest {}
+);
 
 impl PKAutomaticReloadPaymentRequest {
     extern_methods!(

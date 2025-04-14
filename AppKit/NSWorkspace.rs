@@ -39,7 +39,9 @@ extern_class!(
     pub struct NSWorkspace;
 );
 
-unsafe impl NSObjectProtocol for NSWorkspace {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSWorkspace {}
+);
 
 impl NSWorkspace {
     extern_methods!(
@@ -320,13 +322,17 @@ extern_class!(
     pub struct NSWorkspaceOpenConfiguration;
 );
 
-unsafe impl NSCopying for NSWorkspaceOpenConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for NSWorkspaceOpenConfiguration {}
+);
 
 unsafe impl CopyingHelper for NSWorkspaceOpenConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSWorkspaceOpenConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSWorkspaceOpenConfiguration {}
+);
 
 impl NSWorkspaceOpenConfiguration {
     extern_methods!(
@@ -540,7 +546,9 @@ extern_class!(
     pub struct NSWorkspaceAuthorization;
 );
 
-unsafe impl NSObjectProtocol for NSWorkspaceAuthorization {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSWorkspaceAuthorization {}
+);
 
 impl NSWorkspaceAuthorization {
     extern_methods!();

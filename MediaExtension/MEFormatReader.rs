@@ -94,13 +94,17 @@ unsafe impl Send for MEFormatReaderInstantiationOptions {}
 
 unsafe impl Sync for MEFormatReaderInstantiationOptions {}
 
-unsafe impl NSCopying for MEFormatReaderInstantiationOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for MEFormatReaderInstantiationOptions {}
+);
 
 unsafe impl CopyingHelper for MEFormatReaderInstantiationOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MEFormatReaderInstantiationOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEFormatReaderInstantiationOptions {}
+);
 
 impl MEFormatReaderInstantiationOptions {
     extern_methods!(
@@ -257,13 +261,17 @@ unsafe impl Send for MEFileInfo {}
 
 unsafe impl Sync for MEFileInfo {}
 
-unsafe impl NSCopying for MEFileInfo {}
+extern_conformance!(
+    unsafe impl NSCopying for MEFileInfo {}
+);
 
 unsafe impl CopyingHelper for MEFileInfo {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MEFileInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEFileInfo {}
+);
 
 impl MEFileInfo {
     extern_methods!(
@@ -479,13 +487,17 @@ unsafe impl Send for METrackInfo {}
 
 unsafe impl Sync for METrackInfo {}
 
-unsafe impl NSCopying for METrackInfo {}
+extern_conformance!(
+    unsafe impl NSCopying for METrackInfo {}
+);
 
 unsafe impl CopyingHelper for METrackInfo {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for METrackInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for METrackInfo {}
+);
 
 impl METrackInfo {
     extern_methods!(
@@ -975,13 +987,17 @@ unsafe impl Send for MESampleCursorChunk {}
 
 unsafe impl Sync for MESampleCursorChunk {}
 
-unsafe impl NSCopying for MESampleCursorChunk {}
+extern_conformance!(
+    unsafe impl NSCopying for MESampleCursorChunk {}
+);
 
 unsafe impl CopyingHelper for MESampleCursorChunk {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MESampleCursorChunk {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MESampleCursorChunk {}
+);
 
 impl MESampleCursorChunk {
     extern_methods!(
@@ -1057,13 +1073,17 @@ unsafe impl Send for MESampleLocation {}
 
 unsafe impl Sync for MESampleLocation {}
 
-unsafe impl NSCopying for MESampleLocation {}
+extern_conformance!(
+    unsafe impl NSCopying for MESampleLocation {}
+);
 
 unsafe impl CopyingHelper for MESampleLocation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MESampleLocation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MESampleLocation {}
+);
 
 impl MESampleLocation {
     extern_methods!(
@@ -1117,13 +1137,17 @@ unsafe impl Send for MEEstimatedSampleLocation {}
 
 unsafe impl Sync for MEEstimatedSampleLocation {}
 
-unsafe impl NSCopying for MEEstimatedSampleLocation {}
+extern_conformance!(
+    unsafe impl NSCopying for MEEstimatedSampleLocation {}
+);
 
 unsafe impl CopyingHelper for MEEstimatedSampleLocation {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MEEstimatedSampleLocation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEEstimatedSampleLocation {}
+);
 
 impl MEEstimatedSampleLocation {
     extern_methods!(
@@ -1188,13 +1212,17 @@ unsafe impl Send for MEHEVCDependencyInfo {}
 
 unsafe impl Sync for MEHEVCDependencyInfo {}
 
-unsafe impl NSCopying for MEHEVCDependencyInfo {}
+extern_conformance!(
+    unsafe impl NSCopying for MEHEVCDependencyInfo {}
+);
 
 unsafe impl CopyingHelper for MEHEVCDependencyInfo {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MEHEVCDependencyInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEHEVCDependencyInfo {}
+);
 
 impl MEHEVCDependencyInfo {
     extern_methods!(
@@ -1365,7 +1393,9 @@ unsafe impl Send for MEByteSource {}
 
 unsafe impl Sync for MEByteSource {}
 
-unsafe impl NSObjectProtocol for MEByteSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MEByteSource {}
+);
 
 impl MEByteSource {
     extern_methods!(

@@ -16,11 +16,17 @@ extern_class!(
     pub struct MLModelDescription;
 );
 
-unsafe impl NSCoding for MLModelDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for MLModelDescription {}
+);
 
-unsafe impl NSObjectProtocol for MLModelDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MLModelDescription {}
+);
 
-unsafe impl NSSecureCoding for MLModelDescription {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MLModelDescription {}
+);
 
 impl MLModelDescription {
     extern_methods!(

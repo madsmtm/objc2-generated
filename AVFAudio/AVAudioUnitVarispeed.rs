@@ -28,7 +28,9 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitTimeEffect"
 ))]
-unsafe impl NSObjectProtocol for AVAudioUnitVarispeed {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioUnitVarispeed {}
+);
 
 #[cfg(all(
     feature = "AVAudioNode",

@@ -36,10 +36,14 @@ extern_class!(
 );
 
 #[cfg(feature = "MKMapConfiguration")]
-unsafe impl NSCoding for MKStandardMapConfiguration {}
+extern_conformance!(
+    unsafe impl NSCoding for MKStandardMapConfiguration {}
+);
 
 #[cfg(feature = "MKMapConfiguration")]
-unsafe impl NSCopying for MKStandardMapConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for MKStandardMapConfiguration {}
+);
 
 #[cfg(feature = "MKMapConfiguration")]
 unsafe impl CopyingHelper for MKStandardMapConfiguration {
@@ -47,10 +51,14 @@ unsafe impl CopyingHelper for MKStandardMapConfiguration {
 }
 
 #[cfg(feature = "MKMapConfiguration")]
-unsafe impl NSObjectProtocol for MKStandardMapConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKStandardMapConfiguration {}
+);
 
 #[cfg(feature = "MKMapConfiguration")]
-unsafe impl NSSecureCoding for MKStandardMapConfiguration {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MKStandardMapConfiguration {}
+);
 
 #[cfg(feature = "MKMapConfiguration")]
 impl MKStandardMapConfiguration {

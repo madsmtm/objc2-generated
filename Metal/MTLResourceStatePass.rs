@@ -14,13 +14,17 @@ extern_class!(
     pub struct MTLResourceStatePassSampleBufferAttachmentDescriptor;
 );
 
-unsafe impl NSCopying for MTLResourceStatePassSampleBufferAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLResourceStatePassSampleBufferAttachmentDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLResourceStatePassSampleBufferAttachmentDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescriptor {}
+);
 
 impl MTLResourceStatePassSampleBufferAttachmentDescriptor {
     extern_methods!(
@@ -100,7 +104,9 @@ extern_class!(
     pub struct MTLResourceStatePassSampleBufferAttachmentDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescriptorArray {}
+);
 
 impl MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
     extern_methods!(
@@ -143,13 +149,17 @@ extern_class!(
     pub struct MTLResourceStatePassDescriptor;
 );
 
-unsafe impl NSCopying for MTLResourceStatePassDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLResourceStatePassDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLResourceStatePassDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLResourceStatePassDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLResourceStatePassDescriptor {}
+);
 
 impl MTLResourceStatePassDescriptor {
     extern_methods!(

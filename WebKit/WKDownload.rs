@@ -15,9 +15,13 @@ extern_class!(
     pub struct WKDownload;
 );
 
-unsafe impl NSObjectProtocol for WKDownload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKDownload {}
+);
 
-unsafe impl NSProgressReporting for WKDownload {}
+extern_conformance!(
+    unsafe impl NSProgressReporting for WKDownload {}
+);
 
 impl WKDownload {
     extern_methods!(

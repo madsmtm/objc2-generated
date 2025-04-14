@@ -31,7 +31,9 @@ extern_class!(
     pub struct UIDynamicAnimator;
 );
 
-unsafe impl NSObjectProtocol for UIDynamicAnimator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDynamicAnimator {}
+);
 
 impl UIDynamicAnimator {
     extern_methods!(

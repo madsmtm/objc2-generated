@@ -135,13 +135,19 @@ unsafe impl Send for ARPlaneExtent {}
 unsafe impl Sync for ARPlaneExtent {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARPlaneExtent {}
+extern_conformance!(
+    unsafe impl NSCoding for ARPlaneExtent {}
+);
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARPlaneExtent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARPlaneExtent {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARPlaneExtent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARPlaneExtent {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARPlaneExtent {
@@ -197,13 +203,19 @@ unsafe impl Send for ARPlaneAnchor {}
 unsafe impl Sync for ARPlaneAnchor {}
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl ARAnchorCopying for ARPlaneAnchor {}
+extern_conformance!(
+    unsafe impl ARAnchorCopying for ARPlaneAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARPlaneAnchor {}
+extern_conformance!(
+    unsafe impl NSCoding for ARPlaneAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARPlaneAnchor {}
+extern_conformance!(
+    unsafe impl NSCopying for ARPlaneAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARPlaneAnchor {
@@ -211,10 +223,14 @@ unsafe impl CopyingHelper for ARPlaneAnchor {
 }
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-unsafe impl NSObjectProtocol for ARPlaneAnchor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARPlaneAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARPlaneAnchor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARPlaneAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
 impl ARPlaneAnchor {

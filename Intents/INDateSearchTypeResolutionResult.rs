@@ -14,7 +14,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INDateSearchTypeResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INDateSearchTypeResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INDateSearchTypeResolutionResult {

@@ -24,7 +24,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMCSSFontFaceRule {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMCSSFontFaceRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",
@@ -40,7 +42,9 @@ unsafe impl CopyingHelper for DOMCSSFontFaceRule {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMCSSFontFaceRule {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMCSSFontFaceRule {}
+);
 
 #[cfg(all(
     feature = "DOMCSSRule",

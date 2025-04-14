@@ -18,13 +18,17 @@ unsafe impl Send for SFSpeechLanguageModelConfiguration {}
 
 unsafe impl Sync for SFSpeechLanguageModelConfiguration {}
 
-unsafe impl NSCopying for SFSpeechLanguageModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for SFSpeechLanguageModelConfiguration {}
+);
 
 unsafe impl CopyingHelper for SFSpeechLanguageModelConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
+);
 
 impl SFSpeechLanguageModelConfiguration {
     extern_methods!(
@@ -73,7 +77,9 @@ extern_class!(
     pub struct SFSpeechLanguageModel;
 );
 
-unsafe impl NSObjectProtocol for SFSpeechLanguageModel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSpeechLanguageModel {}
+);
 
 impl SFSpeechLanguageModel {
     extern_methods!(

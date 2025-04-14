@@ -37,7 +37,9 @@ extern_class!(
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl DOMEventTarget for DOMHTMLInputElement {}
+extern_conformance!(
+    unsafe impl DOMEventTarget for DOMHTMLInputElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -46,7 +48,9 @@ unsafe impl DOMEventTarget for DOMHTMLInputElement {}
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSCopying for DOMHTMLInputElement {}
+extern_conformance!(
+    unsafe impl NSCopying for DOMHTMLInputElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",
@@ -66,7 +70,9 @@ unsafe impl CopyingHelper for DOMHTMLInputElement {
     feature = "DOMObject",
     feature = "WebScriptObject"
 ))]
-unsafe impl NSObjectProtocol for DOMHTMLInputElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DOMHTMLInputElement {}
+);
 
 #[cfg(all(
     feature = "DOMElement",

@@ -34,7 +34,9 @@ extern_class!(
     pub struct PKAddPaymentPassRequestConfiguration;
 );
 
-unsafe impl NSObjectProtocol for PKAddPaymentPassRequestConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKAddPaymentPassRequestConfiguration {}
+);
 
 impl PKAddPaymentPassRequestConfiguration {
     extern_methods!(
@@ -161,7 +163,9 @@ extern_class!(
     pub struct PKAddPaymentPassRequest;
 );
 
-unsafe impl NSObjectProtocol for PKAddPaymentPassRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKAddPaymentPassRequest {}
+);
 
 impl PKAddPaymentPassRequest {
     extern_methods!(

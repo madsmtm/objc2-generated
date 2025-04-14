@@ -31,7 +31,9 @@ impl UIImageView {
 }
 
 #[cfg(all(feature = "UIImageView", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAccessibilityContentSizeCategoryImageAdjusting for UIImageView {}
+extern_conformance!(
+    unsafe impl UIAccessibilityContentSizeCategoryImageAdjusting for UIImageView {}
+);
 
 /// UIAccessibilityContentSizeCategoryImageAdjusting.
 #[cfg(all(
@@ -50,7 +52,9 @@ impl UIButton {
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAccessibilityContentSizeCategoryImageAdjusting for UIButton {}
+extern_conformance!(
+    unsafe impl UIAccessibilityContentSizeCategoryImageAdjusting for UIButton {}
+);
 
 /// UIAccessibilityContentSizeCategoryImageAdjusting.
 #[cfg(feature = "NSTextAttachment")]

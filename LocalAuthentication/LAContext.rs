@@ -197,7 +197,9 @@ extern_class!(
     pub struct LAContext;
 );
 
-unsafe impl NSObjectProtocol for LAContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAContext {}
+);
 
 impl LAContext {
     extern_methods!(

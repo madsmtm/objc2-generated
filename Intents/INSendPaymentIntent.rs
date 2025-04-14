@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCoding for INSendPaymentIntent {}
+extern_conformance!(
+    unsafe impl NSCoding for INSendPaymentIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSCopying for INSendPaymentIntent {}
+extern_conformance!(
+    unsafe impl NSCopying for INSendPaymentIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 unsafe impl CopyingHelper for INSendPaymentIntent {
@@ -27,10 +31,14 @@ unsafe impl CopyingHelper for INSendPaymentIntent {
 }
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSObjectProtocol for INSendPaymentIntent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSendPaymentIntent {}
+);
 
 #[cfg(feature = "INIntent")]
-unsafe impl NSSecureCoding for INSendPaymentIntent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSendPaymentIntent {}
+);
 
 #[cfg(feature = "INIntent")]
 impl INSendPaymentIntent {

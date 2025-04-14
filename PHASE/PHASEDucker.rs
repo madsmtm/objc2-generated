@@ -20,7 +20,9 @@ extern_class!(
     pub struct PHASEDucker;
 );
 
-unsafe impl NSObjectProtocol for PHASEDucker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEDucker {}
+);
 
 impl PHASEDucker {
     extern_methods!(

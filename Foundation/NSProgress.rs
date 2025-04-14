@@ -41,7 +41,9 @@ unsafe impl Send for NSProgress {}
 
 unsafe impl Sync for NSProgress {}
 
-unsafe impl NSObjectProtocol for NSProgress {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSProgress {}
+);
 
 impl NSProgress {
     extern_methods!(

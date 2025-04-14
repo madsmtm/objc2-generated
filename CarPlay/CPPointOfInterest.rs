@@ -20,11 +20,17 @@ extern_class!(
     pub struct CPPointOfInterest;
 );
 
-unsafe impl NSCoding for CPPointOfInterest {}
+extern_conformance!(
+    unsafe impl NSCoding for CPPointOfInterest {}
+);
 
-unsafe impl NSObjectProtocol for CPPointOfInterest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPPointOfInterest {}
+);
 
-unsafe impl NSSecureCoding for CPPointOfInterest {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPPointOfInterest {}
+);
 
 impl CPPointOfInterest {
     extern_methods!(

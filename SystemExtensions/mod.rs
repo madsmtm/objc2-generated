@@ -169,7 +169,9 @@ extern_class!(
     pub struct OSSystemExtensionRequest;
 );
 
-unsafe impl NSObjectProtocol for OSSystemExtensionRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OSSystemExtensionRequest {}
+);
 
 impl OSSystemExtensionRequest {
     extern_methods!(
@@ -300,7 +302,9 @@ extern_class!(
     pub struct OSSystemExtensionProperties;
 );
 
-unsafe impl NSObjectProtocol for OSSystemExtensionProperties {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OSSystemExtensionProperties {}
+);
 
 impl OSSystemExtensionProperties {
     extern_methods!(
@@ -465,7 +469,9 @@ extern_class!(
     pub struct OSSystemExtensionManager;
 );
 
-unsafe impl NSObjectProtocol for OSSystemExtensionManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OSSystemExtensionManager {}
+);
 
 impl OSSystemExtensionManager {
     extern_methods!(
@@ -511,7 +517,9 @@ unsafe impl Send for OSSystemExtensionInfo {}
 
 unsafe impl Sync for OSSystemExtensionInfo {}
 
-unsafe impl NSObjectProtocol for OSSystemExtensionInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OSSystemExtensionInfo {}
+);
 
 impl OSSystemExtensionInfo {
     extern_methods!(
@@ -590,7 +598,9 @@ unsafe impl Send for OSSystemExtensionsWorkspace {}
 
 unsafe impl Sync for OSSystemExtensionsWorkspace {}
 
-unsafe impl NSObjectProtocol for OSSystemExtensionsWorkspace {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for OSSystemExtensionsWorkspace {}
+);
 
 impl OSSystemExtensionsWorkspace {
     extern_methods!(

@@ -14,17 +14,25 @@ extern_class!(
     pub struct CNChangeHistoryEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryEvent {}
+);
 
 impl CNChangeHistoryEvent {
     extern_methods!(
@@ -59,17 +67,25 @@ extern_class!(
     pub struct CNChangeHistoryDropEverythingEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryDropEverythingEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryDropEverythingEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryDropEverythingEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryDropEverythingEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryDropEverythingEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryDropEverythingEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryDropEverythingEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryDropEverythingEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryDropEverythingEvent {}
+);
 
 impl CNChangeHistoryDropEverythingEvent {
     extern_methods!();
@@ -97,17 +113,25 @@ extern_class!(
     pub struct CNChangeHistoryAddContactEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryAddContactEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryAddContactEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryAddContactEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryAddContactEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryAddContactEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryAddContactEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryAddContactEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryAddContactEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryAddContactEvent {}
+);
 
 impl CNChangeHistoryAddContactEvent {
     extern_methods!(
@@ -144,17 +168,25 @@ extern_class!(
     pub struct CNChangeHistoryUpdateContactEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryUpdateContactEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryUpdateContactEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryUpdateContactEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryUpdateContactEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryUpdateContactEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryUpdateContactEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryUpdateContactEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryUpdateContactEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryUpdateContactEvent {}
+);
 
 impl CNChangeHistoryUpdateContactEvent {
     extern_methods!(
@@ -187,17 +219,25 @@ extern_class!(
     pub struct CNChangeHistoryDeleteContactEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryDeleteContactEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryDeleteContactEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryDeleteContactEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryDeleteContactEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryDeleteContactEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryDeleteContactEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryDeleteContactEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryDeleteContactEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryDeleteContactEvent {}
+);
 
 impl CNChangeHistoryDeleteContactEvent {
     extern_methods!(
@@ -229,17 +269,25 @@ extern_class!(
     pub struct CNChangeHistoryAddGroupEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryAddGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryAddGroupEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryAddGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryAddGroupEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryAddGroupEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryAddGroupEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryAddGroupEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryAddGroupEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryAddGroupEvent {}
+);
 
 impl CNChangeHistoryAddGroupEvent {
     extern_methods!(
@@ -276,17 +324,25 @@ extern_class!(
     pub struct CNChangeHistoryUpdateGroupEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryUpdateGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryUpdateGroupEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryUpdateGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryUpdateGroupEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryUpdateGroupEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryUpdateGroupEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryUpdateGroupEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryUpdateGroupEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryUpdateGroupEvent {}
+);
 
 impl CNChangeHistoryUpdateGroupEvent {
     extern_methods!(
@@ -319,17 +375,25 @@ extern_class!(
     pub struct CNChangeHistoryDeleteGroupEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryDeleteGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryDeleteGroupEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryDeleteGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryDeleteGroupEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryDeleteGroupEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryDeleteGroupEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryDeleteGroupEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryDeleteGroupEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryDeleteGroupEvent {}
+);
 
 impl CNChangeHistoryDeleteGroupEvent {
     extern_methods!(
@@ -361,17 +425,25 @@ extern_class!(
     pub struct CNChangeHistoryAddMemberToGroupEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryAddMemberToGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryAddMemberToGroupEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryAddMemberToGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryAddMemberToGroupEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryAddMemberToGroupEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryAddMemberToGroupEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryAddMemberToGroupEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryAddMemberToGroupEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryAddMemberToGroupEvent {}
+);
 
 impl CNChangeHistoryAddMemberToGroupEvent {
     extern_methods!(
@@ -409,17 +481,25 @@ extern_class!(
     pub struct CNChangeHistoryRemoveMemberFromGroupEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryRemoveMemberFromGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryRemoveMemberFromGroupEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryRemoveMemberFromGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryRemoveMemberFromGroupEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryRemoveMemberFromGroupEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryRemoveMemberFromGroupEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryRemoveMemberFromGroupEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryRemoveMemberFromGroupEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryRemoveMemberFromGroupEvent {}
+);
 
 impl CNChangeHistoryRemoveMemberFromGroupEvent {
     extern_methods!(
@@ -457,17 +537,25 @@ extern_class!(
     pub struct CNChangeHistoryAddSubgroupToGroupEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryAddSubgroupToGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryAddSubgroupToGroupEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryAddSubgroupToGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryAddSubgroupToGroupEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryAddSubgroupToGroupEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryAddSubgroupToGroupEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryAddSubgroupToGroupEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryAddSubgroupToGroupEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryAddSubgroupToGroupEvent {}
+);
 
 impl CNChangeHistoryAddSubgroupToGroupEvent {
     extern_methods!(
@@ -505,17 +593,25 @@ extern_class!(
     pub struct CNChangeHistoryRemoveSubgroupFromGroupEvent;
 );
 
-unsafe impl NSCoding for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCoding for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+);
 
-unsafe impl NSCopying for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+extern_conformance!(
+    unsafe impl NSCopying for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+);
 
 unsafe impl CopyingHelper for CNChangeHistoryRemoveSubgroupFromGroupEvent {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+);
 
-unsafe impl NSSecureCoding for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
+);
 
 impl CNChangeHistoryRemoveSubgroupFromGroupEvent {
     extern_methods!(

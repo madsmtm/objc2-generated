@@ -27,48 +27,72 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UICalendarView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UICalendarView {}
+extern_conformance!(
+    unsafe impl NSCoding for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UICalendarView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearance for UICalendarView {}
+extern_conformance!(
+    unsafe impl UIAppearance for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIAppearance", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIAppearanceContainer for UICalendarView {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UICalendarView {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UICalendarView {}
+);
 
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UICalendarView {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusEnvironment for UICalendarView {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItem for UICalendarView {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIFocus", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIFocusItemContainer for UICalendarView {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UICalendarView {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UICalendarView {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UICalendarView {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UICalendarView {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UICalendarView {

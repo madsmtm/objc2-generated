@@ -13,10 +13,14 @@ extern_class!(
     pub struct UIWindowSceneDragInteraction;
 );
 
-unsafe impl NSObjectProtocol for UIWindowSceneDragInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIWindowSceneDragInteraction {}
+);
 
 #[cfg(feature = "UIInteraction")]
-unsafe impl UIInteraction for UIWindowSceneDragInteraction {}
+extern_conformance!(
+    unsafe impl UIInteraction for UIWindowSceneDragInteraction {}
+);
 
 impl UIWindowSceneDragInteraction {
     extern_methods!(

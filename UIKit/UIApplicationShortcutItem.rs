@@ -88,13 +88,17 @@ extern_class!(
     pub struct UIApplicationShortcutIcon;
 );
 
-unsafe impl NSCopying for UIApplicationShortcutIcon {}
+extern_conformance!(
+    unsafe impl NSCopying for UIApplicationShortcutIcon {}
+);
 
 unsafe impl CopyingHelper for UIApplicationShortcutIcon {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIApplicationShortcutIcon {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIApplicationShortcutIcon {}
+);
 
 impl UIApplicationShortcutIcon {
     extern_methods!(
@@ -132,19 +136,25 @@ extern_class!(
     pub struct UIApplicationShortcutItem;
 );
 
-unsafe impl NSCopying for UIApplicationShortcutItem {}
+extern_conformance!(
+    unsafe impl NSCopying for UIApplicationShortcutItem {}
+);
 
 unsafe impl CopyingHelper for UIApplicationShortcutItem {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for UIApplicationShortcutItem {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for UIApplicationShortcutItem {}
+);
 
 unsafe impl MutableCopyingHelper for UIApplicationShortcutItem {
     type Result = UIMutableApplicationShortcutItem;
 }
 
-unsafe impl NSObjectProtocol for UIApplicationShortcutItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIApplicationShortcutItem {}
+);
 
 impl UIApplicationShortcutItem {
     extern_methods!(
@@ -215,19 +225,25 @@ extern_class!(
     pub struct UIMutableApplicationShortcutItem;
 );
 
-unsafe impl NSCopying for UIMutableApplicationShortcutItem {}
+extern_conformance!(
+    unsafe impl NSCopying for UIMutableApplicationShortcutItem {}
+);
 
 unsafe impl CopyingHelper for UIMutableApplicationShortcutItem {
     type Result = UIApplicationShortcutItem;
 }
 
-unsafe impl NSMutableCopying for UIMutableApplicationShortcutItem {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for UIMutableApplicationShortcutItem {}
+);
 
 unsafe impl MutableCopyingHelper for UIMutableApplicationShortcutItem {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIMutableApplicationShortcutItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIMutableApplicationShortcutItem {}
+);
 
 impl UIMutableApplicationShortcutItem {
     extern_methods!(

@@ -42,10 +42,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSHashTable<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for NSHashTable<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized> NSCopying for NSHashTable<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSCopying for NSHashTable<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSHashTable<ObjectType> {
@@ -53,12 +57,18 @@ unsafe impl<ObjectType: ?Sized + Message> CopyingHelper for NSHashTable<ObjectTy
 }
 
 #[cfg(feature = "NSEnumerator")]
-unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSHashTable<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSHashTable<ObjectType> {}
+);
 
-unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSHashTable<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSHashTable<ObjectType> {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSHashTable<ObjectType> {}
+extern_conformance!(
+    unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSHashTable<ObjectType> {}
+);
 
 impl<ObjectType: Message> NSHashTable<ObjectType> {
     extern_methods!(

@@ -235,7 +235,9 @@ extern_class!(
     pub struct NSSpeechSynthesizer;
 );
 
-unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}
+);
 
 impl NSSpeechSynthesizer {
     extern_methods!(

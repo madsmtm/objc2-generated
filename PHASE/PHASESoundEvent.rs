@@ -20,7 +20,9 @@ extern_class!(
     pub struct PHASESoundEvent;
 );
 
-unsafe impl NSObjectProtocol for PHASESoundEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASESoundEvent {}
+);
 
 impl PHASESoundEvent {
     extern_methods!(

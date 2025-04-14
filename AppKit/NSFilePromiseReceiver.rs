@@ -14,10 +14,14 @@ extern_class!(
     pub struct NSFilePromiseReceiver;
 );
 
-unsafe impl NSObjectProtocol for NSFilePromiseReceiver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFilePromiseReceiver {}
+);
 
 #[cfg(feature = "NSPasteboard")]
-unsafe impl NSPasteboardReading for NSFilePromiseReceiver {}
+extern_conformance!(
+    unsafe impl NSPasteboardReading for NSFilePromiseReceiver {}
+);
 
 impl NSFilePromiseReceiver {
     extern_methods!(

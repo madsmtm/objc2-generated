@@ -31,9 +31,13 @@ extern_class!(
     pub struct MDLRelativeAssetResolver;
 );
 
-unsafe impl MDLAssetResolver for MDLRelativeAssetResolver {}
+extern_conformance!(
+    unsafe impl MDLAssetResolver for MDLRelativeAssetResolver {}
+);
 
-unsafe impl NSObjectProtocol for MDLRelativeAssetResolver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLRelativeAssetResolver {}
+);
 
 impl MDLRelativeAssetResolver {
     extern_methods!(
@@ -88,9 +92,13 @@ extern_class!(
     pub struct MDLPathAssetResolver;
 );
 
-unsafe impl MDLAssetResolver for MDLPathAssetResolver {}
+extern_conformance!(
+    unsafe impl MDLAssetResolver for MDLPathAssetResolver {}
+);
 
-unsafe impl NSObjectProtocol for MDLPathAssetResolver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLPathAssetResolver {}
+);
 
 impl MDLPathAssetResolver {
     extern_methods!(
@@ -129,9 +137,13 @@ extern_class!(
     pub struct MDLBundleAssetResolver;
 );
 
-unsafe impl MDLAssetResolver for MDLBundleAssetResolver {}
+extern_conformance!(
+    unsafe impl MDLAssetResolver for MDLBundleAssetResolver {}
+);
 
-unsafe impl NSObjectProtocol for MDLBundleAssetResolver {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLBundleAssetResolver {}
+);
 
 impl MDLBundleAssetResolver {
     extern_methods!(

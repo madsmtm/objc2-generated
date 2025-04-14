@@ -14,11 +14,17 @@ extern_class!(
     pub struct SKTextureAtlas;
 );
 
-unsafe impl NSCoding for SKTextureAtlas {}
+extern_conformance!(
+    unsafe impl NSCoding for SKTextureAtlas {}
+);
 
-unsafe impl NSObjectProtocol for SKTextureAtlas {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKTextureAtlas {}
+);
 
-unsafe impl NSSecureCoding for SKTextureAtlas {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SKTextureAtlas {}
+);
 
 impl SKTextureAtlas {
     extern_methods!(

@@ -53,17 +53,25 @@ extern_class!(
     pub struct UICellAccessory;
 );
 
-unsafe impl NSCoding for UICellAccessory {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessory {}
+);
 
-unsafe impl NSCopying for UICellAccessory {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessory {}
+);
 
 unsafe impl CopyingHelper for UICellAccessory {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessory {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessory {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessory {}
+);
 
 impl UICellAccessory {
     extern_methods!(
@@ -147,17 +155,25 @@ extern_class!(
     pub struct UICellAccessoryDisclosureIndicator;
 );
 
-unsafe impl NSCoding for UICellAccessoryDisclosureIndicator {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryDisclosureIndicator {}
+);
 
-unsafe impl NSCopying for UICellAccessoryDisclosureIndicator {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryDisclosureIndicator {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryDisclosureIndicator {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryDisclosureIndicator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryDisclosureIndicator {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryDisclosureIndicator {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryDisclosureIndicator {}
+);
 
 impl UICellAccessoryDisclosureIndicator {
     extern_methods!();
@@ -198,17 +214,25 @@ extern_class!(
     pub struct UICellAccessoryDetail;
 );
 
-unsafe impl NSCoding for UICellAccessoryDetail {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryDetail {}
+);
 
-unsafe impl NSCopying for UICellAccessoryDetail {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryDetail {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryDetail {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryDetail {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryDetail {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryDetail {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryDetail {}
+);
 
 impl UICellAccessoryDetail {
     extern_methods!(
@@ -261,17 +285,25 @@ extern_class!(
     pub struct UICellAccessoryCheckmark;
 );
 
-unsafe impl NSCoding for UICellAccessoryCheckmark {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryCheckmark {}
+);
 
-unsafe impl NSCopying for UICellAccessoryCheckmark {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryCheckmark {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryCheckmark {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryCheckmark {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryCheckmark {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryCheckmark {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryCheckmark {}
+);
 
 impl UICellAccessoryCheckmark {
     extern_methods!();
@@ -312,17 +344,25 @@ extern_class!(
     pub struct UICellAccessoryDelete;
 );
 
-unsafe impl NSCoding for UICellAccessoryDelete {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryDelete {}
+);
 
-unsafe impl NSCopying for UICellAccessoryDelete {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryDelete {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryDelete {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryDelete {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryDelete {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryDelete {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryDelete {}
+);
 
 impl UICellAccessoryDelete {
     extern_methods!(
@@ -387,17 +427,25 @@ extern_class!(
     pub struct UICellAccessoryInsert;
 );
 
-unsafe impl NSCoding for UICellAccessoryInsert {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryInsert {}
+);
 
-unsafe impl NSCopying for UICellAccessoryInsert {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryInsert {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryInsert {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryInsert {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryInsert {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryInsert {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryInsert {}
+);
 
 impl UICellAccessoryInsert {
     extern_methods!(
@@ -463,17 +511,25 @@ extern_class!(
     pub struct UICellAccessoryReorder;
 );
 
-unsafe impl NSCoding for UICellAccessoryReorder {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryReorder {}
+);
 
-unsafe impl NSCopying for UICellAccessoryReorder {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryReorder {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryReorder {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryReorder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryReorder {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryReorder {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryReorder {}
+);
 
 impl UICellAccessoryReorder {
     extern_methods!(
@@ -525,17 +581,25 @@ extern_class!(
     pub struct UICellAccessoryMultiselect;
 );
 
-unsafe impl NSCoding for UICellAccessoryMultiselect {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryMultiselect {}
+);
 
-unsafe impl NSCopying for UICellAccessoryMultiselect {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryMultiselect {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryMultiselect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryMultiselect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryMultiselect {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryMultiselect {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryMultiselect {}
+);
 
 impl UICellAccessoryMultiselect {
     extern_methods!(
@@ -615,17 +679,25 @@ extern_class!(
     pub struct UICellAccessoryOutlineDisclosure;
 );
 
-unsafe impl NSCoding for UICellAccessoryOutlineDisclosure {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryOutlineDisclosure {}
+);
 
-unsafe impl NSCopying for UICellAccessoryOutlineDisclosure {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryOutlineDisclosure {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryOutlineDisclosure {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryOutlineDisclosure {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryOutlineDisclosure {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryOutlineDisclosure {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryOutlineDisclosure {}
+);
 
 impl UICellAccessoryOutlineDisclosure {
     extern_methods!(
@@ -689,17 +761,25 @@ extern_class!(
     pub struct UICellAccessoryPopUpMenu;
 );
 
-unsafe impl NSCoding for UICellAccessoryPopUpMenu {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryPopUpMenu {}
+);
 
-unsafe impl NSCopying for UICellAccessoryPopUpMenu {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryPopUpMenu {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryPopUpMenu {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryPopUpMenu {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryPopUpMenu {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryPopUpMenu {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryPopUpMenu {}
+);
 
 impl UICellAccessoryPopUpMenu {
     extern_methods!(
@@ -758,17 +838,25 @@ extern_class!(
     pub struct UICellAccessoryLabel;
 );
 
-unsafe impl NSCoding for UICellAccessoryLabel {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryLabel {}
+);
 
-unsafe impl NSCopying for UICellAccessoryLabel {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryLabel {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryLabel {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryLabel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryLabel {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryLabel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryLabel {}
+);
 
 impl UICellAccessoryLabel {
     extern_methods!(
@@ -878,17 +966,25 @@ extern_class!(
     pub struct UICellAccessoryCustomView;
 );
 
-unsafe impl NSCoding for UICellAccessoryCustomView {}
+extern_conformance!(
+    unsafe impl NSCoding for UICellAccessoryCustomView {}
+);
 
-unsafe impl NSCopying for UICellAccessoryCustomView {}
+extern_conformance!(
+    unsafe impl NSCopying for UICellAccessoryCustomView {}
+);
 
 unsafe impl CopyingHelper for UICellAccessoryCustomView {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UICellAccessoryCustomView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICellAccessoryCustomView {}
+);
 
-unsafe impl NSSecureCoding for UICellAccessoryCustomView {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UICellAccessoryCustomView {}
+);
 
 impl UICellAccessoryCustomView {
     extern_methods!(

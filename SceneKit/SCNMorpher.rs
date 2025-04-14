@@ -38,14 +38,22 @@ extern_class!(
     pub struct SCNMorpher;
 );
 
-unsafe impl NSCoding for SCNMorpher {}
+extern_conformance!(
+    unsafe impl NSCoding for SCNMorpher {}
+);
 
-unsafe impl NSObjectProtocol for SCNMorpher {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCNMorpher {}
+);
 
-unsafe impl NSSecureCoding for SCNMorpher {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SCNMorpher {}
+);
 
 #[cfg(feature = "SCNAnimation")]
-unsafe impl SCNAnimatable for SCNMorpher {}
+extern_conformance!(
+    unsafe impl SCNAnimatable for SCNMorpher {}
+);
 
 impl SCNMorpher {
     extern_methods!(

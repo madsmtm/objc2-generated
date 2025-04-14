@@ -30,9 +30,13 @@ unsafe impl Send for NSLock {}
 
 unsafe impl Sync for NSLock {}
 
-unsafe impl NSLocking for NSLock {}
+extern_conformance!(
+    unsafe impl NSLocking for NSLock {}
+);
 
-unsafe impl NSObjectProtocol for NSLock {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSLock {}
+);
 
 impl NSLock {
     extern_methods!(
@@ -89,9 +93,13 @@ unsafe impl Send for NSConditionLock {}
 
 unsafe impl Sync for NSConditionLock {}
 
-unsafe impl NSLocking for NSConditionLock {}
+extern_conformance!(
+    unsafe impl NSLocking for NSConditionLock {}
+);
 
-unsafe impl NSObjectProtocol for NSConditionLock {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSConditionLock {}
+);
 
 impl NSConditionLock {
     extern_methods!(
@@ -173,9 +181,13 @@ unsafe impl Send for NSRecursiveLock {}
 
 unsafe impl Sync for NSRecursiveLock {}
 
-unsafe impl NSLocking for NSRecursiveLock {}
+extern_conformance!(
+    unsafe impl NSLocking for NSRecursiveLock {}
+);
 
-unsafe impl NSObjectProtocol for NSRecursiveLock {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRecursiveLock {}
+);
 
 impl NSRecursiveLock {
     extern_methods!(
@@ -225,9 +237,13 @@ unsafe impl Send for NSCondition {}
 
 unsafe impl Sync for NSCondition {}
 
-unsafe impl NSLocking for NSCondition {}
+extern_conformance!(
+    unsafe impl NSLocking for NSCondition {}
+);
 
-unsafe impl NSObjectProtocol for NSCondition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSCondition {}
+);
 
 impl NSCondition {
     extern_methods!(

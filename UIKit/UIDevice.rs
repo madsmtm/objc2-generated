@@ -69,7 +69,9 @@ extern_class!(
     pub struct UIDevice;
 );
 
-unsafe impl NSObjectProtocol for UIDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDevice {}
+);
 
 impl UIDevice {
     extern_methods!(

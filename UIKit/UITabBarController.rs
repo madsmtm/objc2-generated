@@ -54,44 +54,60 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UITabBarController {}
+extern_conformance!(
+    unsafe impl NSCoding for UITabBarController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UITabBarController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITabBarController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UITabBarController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UITabBarController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UITabBarController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UITabBarController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UITabBarController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UITabBarController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UITabBarController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UITabBarController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITabBar",
     feature = "UIViewController"
 ))]
-unsafe impl UITabBarDelegate for UITabBarController {}
+extern_conformance!(
+    unsafe impl UITabBarDelegate for UITabBarController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UITabBarController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UITabBarController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UITabBarController {

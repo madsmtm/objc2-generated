@@ -22,7 +22,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for VTFrameProcessorFrame {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VTFrameProcessorFrame {}
+);
 
 #[cfg(feature = "objc2")]
 impl VTFrameProcessorFrame {
@@ -75,7 +77,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for VTFrameProcessorOpticalFlow {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VTFrameProcessorOpticalFlow {}
+);
 
 #[cfg(feature = "objc2")]
 impl VTFrameProcessorOpticalFlow {

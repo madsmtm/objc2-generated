@@ -66,20 +66,28 @@ extern_class!(
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibility for NSSliderCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSSliderCell {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSActionCell",
     feature = "NSCell"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSSliderCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSSliderCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCoding for NSSliderCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSliderCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSCopying for NSSliderCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSSliderCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 unsafe impl CopyingHelper for NSSliderCell {
@@ -87,14 +95,18 @@ unsafe impl CopyingHelper for NSSliderCell {
 }
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
-unsafe impl NSObjectProtocol for NSSliderCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSliderCell {}
+);
 
 #[cfg(all(
     feature = "NSActionCell",
     feature = "NSCell",
     feature = "NSUserInterfaceItemIdentification"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSSliderCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSSliderCell {}
+);
 
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSSliderCell {

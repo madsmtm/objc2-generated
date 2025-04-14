@@ -52,10 +52,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INStartPhotoPlaybackIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INStartPhotoPlaybackIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INStartPhotoPlaybackIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INStartPhotoPlaybackIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INStartPhotoPlaybackIntentResponse {
@@ -63,10 +67,14 @@ unsafe impl CopyingHelper for INStartPhotoPlaybackIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INStartPhotoPlaybackIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INStartPhotoPlaybackIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INStartPhotoPlaybackIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INStartPhotoPlaybackIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INStartPhotoPlaybackIntentResponse {

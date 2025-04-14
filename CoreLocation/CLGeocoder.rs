@@ -22,7 +22,9 @@ extern_class!(
     pub struct CLGeocoder;
 );
 
-unsafe impl NSObjectProtocol for CLGeocoder {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLGeocoder {}
+);
 
 impl CLGeocoder {
     extern_methods!(

@@ -15,19 +15,25 @@ extern_class!(
     pub struct SKPayment;
 );
 
-unsafe impl NSCopying for SKPayment {}
+extern_conformance!(
+    unsafe impl NSCopying for SKPayment {}
+);
 
 unsafe impl CopyingHelper for SKPayment {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for SKPayment {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for SKPayment {}
+);
 
 unsafe impl MutableCopyingHelper for SKPayment {
     type Result = SKMutablePayment;
 }
 
-unsafe impl NSObjectProtocol for SKPayment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKPayment {}
+);
 
 impl SKPayment {
     extern_methods!(
@@ -96,19 +102,25 @@ extern_class!(
     pub struct SKMutablePayment;
 );
 
-unsafe impl NSCopying for SKMutablePayment {}
+extern_conformance!(
+    unsafe impl NSCopying for SKMutablePayment {}
+);
 
 unsafe impl CopyingHelper for SKMutablePayment {
     type Result = SKPayment;
 }
 
-unsafe impl NSMutableCopying for SKMutablePayment {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for SKMutablePayment {}
+);
 
 unsafe impl MutableCopyingHelper for SKMutablePayment {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SKMutablePayment {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKMutablePayment {}
+);
 
 impl SKMutablePayment {
     extern_methods!(

@@ -27,7 +27,9 @@ extern_class!(
     feature = "NSSavePanel",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibility for NSOpenPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSOpenPanel {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
@@ -36,7 +38,9 @@ unsafe impl NSAccessibility for NSOpenPanel {}
     feature = "NSSavePanel",
     feature = "NSWindow"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSOpenPanel {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSOpenPanel {}
+);
 
 #[cfg(all(
     feature = "NSAnimation",
@@ -45,7 +49,9 @@ unsafe impl NSAccessibilityElementProtocol for NSOpenPanel {}
     feature = "NSSavePanel",
     feature = "NSWindow"
 ))]
-unsafe impl NSAnimatablePropertyContainer for NSOpenPanel {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSOpenPanel {}
+);
 
 #[cfg(all(
     feature = "NSAppearance",
@@ -54,7 +60,9 @@ unsafe impl NSAnimatablePropertyContainer for NSOpenPanel {}
     feature = "NSSavePanel",
     feature = "NSWindow"
 ))]
-unsafe impl NSAppearanceCustomization for NSOpenPanel {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSOpenPanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -62,7 +70,9 @@ unsafe impl NSAppearanceCustomization for NSOpenPanel {}
     feature = "NSSavePanel",
     feature = "NSWindow"
 ))]
-unsafe impl NSCoding for NSOpenPanel {}
+extern_conformance!(
+    unsafe impl NSCoding for NSOpenPanel {}
+);
 
 #[cfg(all(
     feature = "NSMenu",
@@ -71,7 +81,9 @@ unsafe impl NSCoding for NSOpenPanel {}
     feature = "NSSavePanel",
     feature = "NSWindow"
 ))]
-unsafe impl NSMenuItemValidation for NSOpenPanel {}
+extern_conformance!(
+    unsafe impl NSMenuItemValidation for NSOpenPanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -79,7 +91,9 @@ unsafe impl NSMenuItemValidation for NSOpenPanel {}
     feature = "NSSavePanel",
     feature = "NSWindow"
 ))]
-unsafe impl NSObjectProtocol for NSOpenPanel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSOpenPanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -88,7 +102,9 @@ unsafe impl NSObjectProtocol for NSOpenPanel {}
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSOpenPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSOpenPanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",
@@ -97,7 +113,9 @@ unsafe impl NSUserInterfaceItemIdentification for NSOpenPanel {}
     feature = "NSUserInterfaceValidation",
     feature = "NSWindow"
 ))]
-unsafe impl NSUserInterfaceValidations for NSOpenPanel {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceValidations for NSOpenPanel {}
+);
 
 #[cfg(all(
     feature = "NSPanel",

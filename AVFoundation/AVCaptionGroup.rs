@@ -38,7 +38,9 @@ extern_class!(
     pub struct AVCaptionGroup;
 );
 
-unsafe impl NSObjectProtocol for AVCaptionGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptionGroup {}
+);
 
 impl AVCaptionGroup {
     extern_methods!(

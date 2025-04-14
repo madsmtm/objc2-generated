@@ -19,7 +19,9 @@ unsafe impl Send for NSURLCredentialStorage {}
 
 unsafe impl Sync for NSURLCredentialStorage {}
 
-unsafe impl NSObjectProtocol for NSURLCredentialStorage {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLCredentialStorage {}
+);
 
 impl NSURLCredentialStorage {
     extern_methods!(

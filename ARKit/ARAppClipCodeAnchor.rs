@@ -58,16 +58,24 @@ unsafe impl Send for ARAppClipCodeAnchor {}
 unsafe impl Sync for ARAppClipCodeAnchor {}
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl ARAnchorCopying for ARAppClipCodeAnchor {}
+extern_conformance!(
+    unsafe impl ARAnchorCopying for ARAppClipCodeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-unsafe impl ARTrackable for ARAppClipCodeAnchor {}
+extern_conformance!(
+    unsafe impl ARTrackable for ARAppClipCodeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCoding for ARAppClipCodeAnchor {}
+extern_conformance!(
+    unsafe impl NSCoding for ARAppClipCodeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARAppClipCodeAnchor {}
+extern_conformance!(
+    unsafe impl NSCopying for ARAppClipCodeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARAppClipCodeAnchor {
@@ -75,10 +83,14 @@ unsafe impl CopyingHelper for ARAppClipCodeAnchor {
 }
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
-unsafe impl NSObjectProtocol for ARAppClipCodeAnchor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARAppClipCodeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSSecureCoding for ARAppClipCodeAnchor {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for ARAppClipCodeAnchor {}
+);
 
 #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
 impl ARAppClipCodeAnchor {

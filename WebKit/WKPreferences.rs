@@ -43,11 +43,17 @@ extern_class!(
     pub struct WKPreferences;
 );
 
-unsafe impl NSCoding for WKPreferences {}
+extern_conformance!(
+    unsafe impl NSCoding for WKPreferences {}
+);
 
-unsafe impl NSObjectProtocol for WKPreferences {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKPreferences {}
+);
 
-unsafe impl NSSecureCoding for WKPreferences {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for WKPreferences {}
+);
 
 impl WKPreferences {
     extern_methods!(

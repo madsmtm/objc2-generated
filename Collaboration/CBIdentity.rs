@@ -43,15 +43,21 @@ extern_class!(
     pub struct CBIdentity;
 );
 
-unsafe impl NSCoding for CBIdentity {}
+extern_conformance!(
+    unsafe impl NSCoding for CBIdentity {}
+);
 
-unsafe impl NSCopying for CBIdentity {}
+extern_conformance!(
+    unsafe impl NSCopying for CBIdentity {}
+);
 
 unsafe impl CopyingHelper for CBIdentity {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CBIdentity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBIdentity {}
+);
 
 impl CBIdentity {
     extern_methods!(
@@ -282,15 +288,21 @@ extern_class!(
     pub struct CBUserIdentity;
 );
 
-unsafe impl NSCoding for CBUserIdentity {}
+extern_conformance!(
+    unsafe impl NSCoding for CBUserIdentity {}
+);
 
-unsafe impl NSCopying for CBUserIdentity {}
+extern_conformance!(
+    unsafe impl NSCopying for CBUserIdentity {}
+);
 
 unsafe impl CopyingHelper for CBUserIdentity {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CBUserIdentity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBUserIdentity {}
+);
 
 impl CBUserIdentity {
     extern_methods!(
@@ -389,15 +401,21 @@ extern_class!(
     pub struct CBGroupIdentity;
 );
 
-unsafe impl NSCoding for CBGroupIdentity {}
+extern_conformance!(
+    unsafe impl NSCoding for CBGroupIdentity {}
+);
 
-unsafe impl NSCopying for CBGroupIdentity {}
+extern_conformance!(
+    unsafe impl NSCopying for CBGroupIdentity {}
+);
 
 unsafe impl CopyingHelper for CBGroupIdentity {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CBGroupIdentity {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBGroupIdentity {}
+);
 
 impl CBGroupIdentity {
     extern_methods!(

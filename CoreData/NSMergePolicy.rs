@@ -39,7 +39,9 @@ extern_class!(
     pub struct NSMergeConflict;
 );
 
-unsafe impl NSObjectProtocol for NSMergeConflict {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMergeConflict {}
+);
 
 impl NSMergeConflict {
     extern_methods!(
@@ -104,7 +106,9 @@ extern_class!(
     pub struct NSConstraintConflict;
 );
 
-unsafe impl NSObjectProtocol for NSConstraintConflict {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSConstraintConflict {}
+);
 
 impl NSConstraintConflict {
     extern_methods!(
@@ -170,7 +174,9 @@ extern_class!(
     pub struct NSMergePolicy;
 );
 
-unsafe impl NSObjectProtocol for NSMergePolicy {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMergePolicy {}
+);
 
 impl NSMergePolicy {
     extern_methods!(

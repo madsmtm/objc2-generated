@@ -20,7 +20,9 @@ extern_class!(
     pub struct WebDataSource;
 );
 
-unsafe impl NSObjectProtocol for WebDataSource {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WebDataSource {}
+);
 
 impl WebDataSource {
     extern_methods!(

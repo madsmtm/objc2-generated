@@ -34,13 +34,17 @@ extern_class!(
     pub struct MDLAnimatedValue;
 );
 
-unsafe impl NSCopying for MDLAnimatedValue {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedValue {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedValue {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedValue {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedValue {}
+);
 
 impl MDLAnimatedValue {
     extern_methods!(
@@ -114,13 +118,17 @@ extern_class!(
     pub struct MDLAnimatedScalarArray;
 );
 
-unsafe impl NSCopying for MDLAnimatedScalarArray {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedScalarArray {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedScalarArray {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedScalarArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedScalarArray {}
+);
 
 impl MDLAnimatedScalarArray {
     extern_methods!(
@@ -229,13 +237,17 @@ extern_class!(
     pub struct MDLAnimatedVector3Array;
 );
 
-unsafe impl NSCopying for MDLAnimatedVector3Array {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedVector3Array {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedVector3Array {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedVector3Array {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedVector3Array {}
+);
 
 impl MDLAnimatedVector3Array {
     extern_methods!(
@@ -272,13 +284,17 @@ extern_class!(
     pub struct MDLAnimatedQuaternionArray;
 );
 
-unsafe impl NSCopying for MDLAnimatedQuaternionArray {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedQuaternionArray {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedQuaternionArray {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedQuaternionArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedQuaternionArray {}
+);
 
 impl MDLAnimatedQuaternionArray {
     extern_methods!(
@@ -317,13 +333,17 @@ extern_class!(
     pub struct MDLAnimatedScalar;
 );
 
-unsafe impl NSCopying for MDLAnimatedScalar {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedScalar {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedScalar {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedScalar {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedScalar {}
+);
 
 impl MDLAnimatedScalar {
     extern_methods!(
@@ -399,13 +419,17 @@ extern_class!(
     pub struct MDLAnimatedVector2;
 );
 
-unsafe impl NSCopying for MDLAnimatedVector2 {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedVector2 {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedVector2 {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedVector2 {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedVector2 {}
+);
 
 impl MDLAnimatedVector2 {
     extern_methods!();
@@ -431,13 +455,17 @@ extern_class!(
     pub struct MDLAnimatedVector3;
 );
 
-unsafe impl NSCopying for MDLAnimatedVector3 {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedVector3 {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedVector3 {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedVector3 {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedVector3 {}
+);
 
 impl MDLAnimatedVector3 {
     extern_methods!();
@@ -463,13 +491,17 @@ extern_class!(
     pub struct MDLAnimatedVector4;
 );
 
-unsafe impl NSCopying for MDLAnimatedVector4 {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedVector4 {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedVector4 {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedVector4 {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedVector4 {}
+);
 
 impl MDLAnimatedVector4 {
     extern_methods!();
@@ -495,13 +527,17 @@ extern_class!(
     pub struct MDLAnimatedQuaternion;
 );
 
-unsafe impl NSCopying for MDLAnimatedQuaternion {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedQuaternion {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedQuaternion {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedQuaternion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedQuaternion {}
+);
 
 impl MDLAnimatedQuaternion {
     extern_methods!();
@@ -527,13 +563,17 @@ extern_class!(
     pub struct MDLAnimatedMatrix4x4;
 );
 
-unsafe impl NSCopying for MDLAnimatedMatrix4x4 {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLAnimatedMatrix4x4 {}
+);
 
 unsafe impl CopyingHelper for MDLAnimatedMatrix4x4 {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLAnimatedMatrix4x4 {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLAnimatedMatrix4x4 {}
+);
 
 impl MDLAnimatedMatrix4x4 {
     extern_methods!();

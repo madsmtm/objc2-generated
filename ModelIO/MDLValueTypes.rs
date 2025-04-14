@@ -14,13 +14,17 @@ extern_class!(
     pub struct MDLMatrix4x4Array;
 );
 
-unsafe impl NSCopying for MDLMatrix4x4Array {}
+extern_conformance!(
+    unsafe impl NSCopying for MDLMatrix4x4Array {}
+);
 
 unsafe impl CopyingHelper for MDLMatrix4x4Array {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MDLMatrix4x4Array {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMatrix4x4Array {}
+);
 
 impl MDLMatrix4x4Array {
     extern_methods!(

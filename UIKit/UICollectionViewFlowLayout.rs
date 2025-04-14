@@ -47,7 +47,9 @@ extern_class!(
 );
 
 #[cfg(feature = "UICollectionViewLayout")]
-unsafe impl NSObjectProtocol for UICollectionViewFlowLayoutInvalidationContext {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewFlowLayoutInvalidationContext {}
+);
 
 #[cfg(feature = "UICollectionViewLayout")]
 impl UICollectionViewFlowLayoutInvalidationContext {
@@ -207,10 +209,14 @@ extern_class!(
 );
 
 #[cfg(feature = "UICollectionViewLayout")]
-unsafe impl NSCoding for UICollectionViewFlowLayout {}
+extern_conformance!(
+    unsafe impl NSCoding for UICollectionViewFlowLayout {}
+);
 
 #[cfg(feature = "UICollectionViewLayout")]
-unsafe impl NSObjectProtocol for UICollectionViewFlowLayout {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICollectionViewFlowLayout {}
+);
 
 #[cfg(feature = "UICollectionViewLayout")]
 impl UICollectionViewFlowLayout {

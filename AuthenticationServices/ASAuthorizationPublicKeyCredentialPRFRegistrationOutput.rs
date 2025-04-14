@@ -13,7 +13,9 @@ extern_class!(
     pub struct ASAuthorizationPublicKeyCredentialPRFRegistrationOutput;
 );
 
-unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFRegistrationOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFRegistrationOutput {}
+);
 
 impl ASAuthorizationPublicKeyCredentialPRFRegistrationOutput {
     extern_methods!(

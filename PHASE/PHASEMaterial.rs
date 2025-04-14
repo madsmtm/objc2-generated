@@ -48,7 +48,9 @@ extern_class!(
     pub struct PHASEMaterial;
 );
 
-unsafe impl NSObjectProtocol for PHASEMaterial {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHASEMaterial {}
+);
 
 impl PHASEMaterial {
     extern_methods!(

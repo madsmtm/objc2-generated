@@ -101,37 +101,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UICloudSharingController {}
+extern_conformance!(
+    unsafe impl NSCoding for UICloudSharingController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UICloudSharingController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UICloudSharingController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UICloudSharingController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UICloudSharingController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UICloudSharingController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UICloudSharingController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UICloudSharingController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UICloudSharingController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UICloudSharingController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UICloudSharingController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UICloudSharingController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UICloudSharingController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UICloudSharingController {

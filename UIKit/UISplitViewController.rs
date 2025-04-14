@@ -197,37 +197,51 @@ extern_class!(
 );
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSCoding for UISplitViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for UISplitViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl NSObjectProtocol for UISplitViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISplitViewController {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIAppearanceContainer for UISplitViewController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UISplitViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIContentContainer for UISplitViewController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UISplitViewController {}
+);
 
 #[cfg(all(
     feature = "UIFocus",
     feature = "UIResponder",
     feature = "UIViewController"
 ))]
-unsafe impl UIFocusEnvironment for UISplitViewController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UISplitViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-unsafe impl UIResponderStandardEditActions for UISplitViewController {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UISplitViewController {}
+);
 
 #[cfg(all(
     feature = "UIResponder",
     feature = "UITraitCollection",
     feature = "UIViewController"
 ))]
-unsafe impl UITraitEnvironment for UISplitViewController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UISplitViewController {}
+);
 
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UISplitViewController {

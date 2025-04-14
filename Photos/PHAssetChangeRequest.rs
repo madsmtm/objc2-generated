@@ -21,7 +21,9 @@ extern_class!(
 );
 
 #[cfg(feature = "PHChangeRequest")]
-unsafe impl NSObjectProtocol for PHAssetChangeRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHAssetChangeRequest {}
+);
 
 #[cfg(feature = "PHChangeRequest")]
 impl PHAssetChangeRequest {
@@ -140,7 +142,9 @@ extern_class!(
     pub struct PHContentEditingInputRequestOptions;
 );
 
-unsafe impl NSObjectProtocol for PHContentEditingInputRequestOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHContentEditingInputRequestOptions {}
+);
 
 impl PHContentEditingInputRequestOptions {
     extern_methods!(

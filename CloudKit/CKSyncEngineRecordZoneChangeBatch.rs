@@ -20,7 +20,9 @@ unsafe impl Send for CKSyncEngineRecordZoneChangeBatch {}
 
 unsafe impl Sync for CKSyncEngineRecordZoneChangeBatch {}
 
-unsafe impl NSObjectProtocol for CKSyncEngineRecordZoneChangeBatch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKSyncEngineRecordZoneChangeBatch {}
+);
 
 impl CKSyncEngineRecordZoneChangeBatch {
     extern_methods!(

@@ -28,7 +28,9 @@ extern_class!(
     pub struct AVPlayerItemTrack;
 );
 
-unsafe impl NSObjectProtocol for AVPlayerItemTrack {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVPlayerItemTrack {}
+);
 
 impl AVPlayerItemTrack {
     extern_methods!(

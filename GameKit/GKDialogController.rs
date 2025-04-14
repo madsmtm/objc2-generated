@@ -26,11 +26,15 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for GKDialogController {}
+extern_conformance!(
+    unsafe impl NSCoding for GKDialogController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for GKDialogController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKDialogController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

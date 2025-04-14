@@ -39,13 +39,17 @@ extern_class!(
     pub struct PDFSelection;
 );
 
-unsafe impl NSCopying for PDFSelection {}
+extern_conformance!(
+    unsafe impl NSCopying for PDFSelection {}
+);
 
 unsafe impl CopyingHelper for PDFSelection {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PDFSelection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PDFSelection {}
+);
 
 impl PDFSelection {
     extern_methods!(

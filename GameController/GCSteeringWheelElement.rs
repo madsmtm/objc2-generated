@@ -14,12 +14,18 @@ extern_class!(
 );
 
 #[cfg(all(feature = "GCAxisElement", feature = "GCPhysicalInputElement"))]
-unsafe impl GCAxisElement for GCSteeringWheelElement {}
+extern_conformance!(
+    unsafe impl GCAxisElement for GCSteeringWheelElement {}
+);
 
 #[cfg(feature = "GCPhysicalInputElement")]
-unsafe impl GCPhysicalInputElement for GCSteeringWheelElement {}
+extern_conformance!(
+    unsafe impl GCPhysicalInputElement for GCSteeringWheelElement {}
+);
 
-unsafe impl NSObjectProtocol for GCSteeringWheelElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GCSteeringWheelElement {}
+);
 
 impl GCSteeringWheelElement {
     extern_methods!(

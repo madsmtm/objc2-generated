@@ -16,13 +16,19 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MKAnnotation", feature = "MKShape"))]
-unsafe impl MKAnnotation for MKCircle {}
+extern_conformance!(
+    unsafe impl MKAnnotation for MKCircle {}
+);
 
 #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay", feature = "MKShape"))]
-unsafe impl MKOverlay for MKCircle {}
+extern_conformance!(
+    unsafe impl MKOverlay for MKCircle {}
+);
 
 #[cfg(feature = "MKShape")]
-unsafe impl NSObjectProtocol for MKCircle {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MKCircle {}
+);
 
 #[cfg(feature = "MKShape")]
 impl MKCircle {

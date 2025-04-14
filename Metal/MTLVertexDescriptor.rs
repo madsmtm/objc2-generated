@@ -173,13 +173,17 @@ extern_class!(
     pub struct MTLVertexBufferLayoutDescriptor;
 );
 
-unsafe impl NSCopying for MTLVertexBufferLayoutDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLVertexBufferLayoutDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLVertexBufferLayoutDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptor {}
+);
 
 impl MTLVertexBufferLayoutDescriptor {
     extern_methods!(
@@ -239,7 +243,9 @@ extern_class!(
     pub struct MTLVertexBufferLayoutDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptorArray {}
+);
 
 impl MTLVertexBufferLayoutDescriptorArray {
     extern_methods!(
@@ -280,13 +286,17 @@ extern_class!(
     pub struct MTLVertexAttributeDescriptor;
 );
 
-unsafe impl NSCopying for MTLVertexAttributeDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLVertexAttributeDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLVertexAttributeDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptor {}
+);
 
 impl MTLVertexAttributeDescriptor {
     extern_methods!(
@@ -346,7 +356,9 @@ extern_class!(
     pub struct MTLVertexAttributeDescriptorArray;
 );
 
-unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptorArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptorArray {}
+);
 
 impl MTLVertexAttributeDescriptorArray {
     extern_methods!(
@@ -387,13 +399,17 @@ extern_class!(
     pub struct MTLVertexDescriptor;
 );
 
-unsafe impl NSCopying for MTLVertexDescriptor {}
+extern_conformance!(
+    unsafe impl NSCopying for MTLVertexDescriptor {}
+);
 
 unsafe impl CopyingHelper for MTLVertexDescriptor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
+);
 
 impl MTLVertexDescriptor {
     extern_methods!(

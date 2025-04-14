@@ -160,7 +160,9 @@ extern_class!(
     pub struct CHHapticPattern;
 );
 
-unsafe impl NSObjectProtocol for CHHapticPattern {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CHHapticPattern {}
+);
 
 impl CHHapticPattern {
     extern_methods!(

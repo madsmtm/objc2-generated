@@ -15,17 +15,25 @@ extern_class!(
     pub struct INSticker;
 );
 
-unsafe impl NSCoding for INSticker {}
+extern_conformance!(
+    unsafe impl NSCoding for INSticker {}
+);
 
-unsafe impl NSCopying for INSticker {}
+extern_conformance!(
+    unsafe impl NSCopying for INSticker {}
+);
 
 unsafe impl CopyingHelper for INSticker {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INSticker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INSticker {}
+);
 
-unsafe impl NSSecureCoding for INSticker {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INSticker {}
+);
 
 impl INSticker {
     extern_methods!(

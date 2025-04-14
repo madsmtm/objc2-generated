@@ -33,17 +33,25 @@ extern_class!(
     pub struct EKRecurrenceDayOfWeek;
 );
 
-unsafe impl NSCoding for EKRecurrenceDayOfWeek {}
+extern_conformance!(
+    unsafe impl NSCoding for EKRecurrenceDayOfWeek {}
+);
 
-unsafe impl NSCopying for EKRecurrenceDayOfWeek {}
+extern_conformance!(
+    unsafe impl NSCopying for EKRecurrenceDayOfWeek {}
+);
 
 unsafe impl CopyingHelper for EKRecurrenceDayOfWeek {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for EKRecurrenceDayOfWeek {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EKRecurrenceDayOfWeek {}
+);
 
-unsafe impl NSSecureCoding for EKRecurrenceDayOfWeek {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for EKRecurrenceDayOfWeek {}
+);
 
 impl EKRecurrenceDayOfWeek {
     extern_methods!(

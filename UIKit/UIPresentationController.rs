@@ -109,19 +109,29 @@ extern_class!(
     pub struct UIPresentationController;
 );
 
-unsafe impl NSObjectProtocol for UIPresentationController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPresentationController {}
+);
 
 #[cfg(feature = "UIAppearance")]
-unsafe impl UIAppearanceContainer for UIPresentationController {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UIPresentationController {}
+);
 
 #[cfg(feature = "UIViewController")]
-unsafe impl UIContentContainer for UIPresentationController {}
+extern_conformance!(
+    unsafe impl UIContentContainer for UIPresentationController {}
+);
 
 #[cfg(feature = "UIFocus")]
-unsafe impl UIFocusEnvironment for UIPresentationController {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UIPresentationController {}
+);
 
 #[cfg(feature = "UITraitCollection")]
-unsafe impl UITraitEnvironment for UIPresentationController {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UIPresentationController {}
+);
 
 impl UIPresentationController {
     extern_methods!(
@@ -265,4 +275,6 @@ impl UIPresentationController {
 }
 
 #[cfg(feature = "UITraitCollection")]
-unsafe impl UITraitChangeObservable for UIPresentationController {}
+extern_conformance!(
+    unsafe impl UITraitChangeObservable for UIPresentationController {}
+);

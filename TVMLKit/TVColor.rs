@@ -47,13 +47,17 @@ extern_class!(
     pub struct TVColor;
 );
 
-unsafe impl NSCopying for TVColor {}
+extern_conformance!(
+    unsafe impl NSCopying for TVColor {}
+);
 
 unsafe impl CopyingHelper for TVColor {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for TVColor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for TVColor {}
+);
 
 impl TVColor {
     extern_methods!(

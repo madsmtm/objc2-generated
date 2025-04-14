@@ -19,7 +19,9 @@ extern_class!(
     pub struct IMKServer;
 );
 
-unsafe impl NSObjectProtocol for IMKServer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IMKServer {}
+);
 
 impl IMKServer {
     extern_methods!(

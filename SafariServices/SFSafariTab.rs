@@ -14,17 +14,25 @@ extern_class!(
     pub struct SFSafariTab;
 );
 
-unsafe impl NSCoding for SFSafariTab {}
+extern_conformance!(
+    unsafe impl NSCoding for SFSafariTab {}
+);
 
-unsafe impl NSCopying for SFSafariTab {}
+extern_conformance!(
+    unsafe impl NSCopying for SFSafariTab {}
+);
 
 unsafe impl CopyingHelper for SFSafariTab {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for SFSafariTab {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFSafariTab {}
+);
 
-unsafe impl NSSecureCoding for SFSafariTab {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for SFSafariTab {}
+);
 
 impl SFSafariTab {
     extern_methods!(

@@ -26,7 +26,9 @@ extern_class!(
     pub struct CBIdentityPicker;
 );
 
-unsafe impl NSObjectProtocol for CBIdentityPicker {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBIdentityPicker {}
+);
 
 impl CBIdentityPicker {
     extern_methods!(

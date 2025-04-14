@@ -21,23 +21,33 @@ extern_class!(
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for RPPreviewViewController {}
+extern_conformance!(
+    unsafe impl NSCoding for RPPreviewViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSEditor for RPPreviewViewController {}
+extern_conformance!(
+    unsafe impl NSEditor for RPPreviewViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for RPPreviewViewController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for RPPreviewViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSSeguePerforming for RPPreviewViewController {}
+extern_conformance!(
+    unsafe impl NSSeguePerforming for RPPreviewViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for RPPreviewViewController {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for RPPreviewViewController {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

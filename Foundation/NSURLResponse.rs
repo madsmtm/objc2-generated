@@ -28,20 +28,28 @@ unsafe impl Send for NSURLResponse {}
 unsafe impl Sync for NSURLResponse {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSURLResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for NSURLResponse {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSURLResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for NSURLResponse {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSURLResponse {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSURLResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSURLResponse {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSURLResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSURLResponse {}
+);
 
 impl NSURLResponse {
     extern_methods!(
@@ -171,20 +179,28 @@ unsafe impl Send for NSHTTPURLResponse {}
 unsafe impl Sync for NSHTTPURLResponse {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSHTTPURLResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for NSHTTPURLResponse {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSHTTPURLResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for NSHTTPURLResponse {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSHTTPURLResponse {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSHTTPURLResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSHTTPURLResponse {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSHTTPURLResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSHTTPURLResponse {}
+);
 
 impl NSHTTPURLResponse {
     extern_methods!(

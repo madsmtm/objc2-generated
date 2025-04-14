@@ -40,7 +40,9 @@ extern_class!(
     pub struct CPInstrumentClusterController;
 );
 
-unsafe impl NSObjectProtocol for CPInstrumentClusterController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPInstrumentClusterController {}
+);
 
 impl CPInstrumentClusterController {
     extern_methods!(

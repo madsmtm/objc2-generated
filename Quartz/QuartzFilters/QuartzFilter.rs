@@ -16,7 +16,9 @@ extern_class!(
     pub struct QuartzFilter;
 );
 
-unsafe impl NSObjectProtocol for QuartzFilter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for QuartzFilter {}
+);
 
 impl QuartzFilter {
     extern_methods!(

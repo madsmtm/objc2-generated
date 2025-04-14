@@ -66,7 +66,9 @@ extern_class!(
     pub struct AVAssetWriter;
 );
 
-unsafe impl NSObjectProtocol for AVAssetWriter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetWriter {}
+);
 
 impl AVAssetWriter {
     extern_methods!(
@@ -576,7 +578,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVMediaSelectionGroup")]
-unsafe impl NSCopying for AVAssetWriterInputGroup {}
+extern_conformance!(
+    unsafe impl NSCopying for AVAssetWriterInputGroup {}
+);
 
 #[cfg(feature = "AVMediaSelectionGroup")]
 unsafe impl CopyingHelper for AVAssetWriterInputGroup {
@@ -584,7 +588,9 @@ unsafe impl CopyingHelper for AVAssetWriterInputGroup {
 }
 
 #[cfg(feature = "AVMediaSelectionGroup")]
-unsafe impl NSObjectProtocol for AVAssetWriterInputGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetWriterInputGroup {}
+);
 
 #[cfg(feature = "AVMediaSelectionGroup")]
 impl AVAssetWriterInputGroup {

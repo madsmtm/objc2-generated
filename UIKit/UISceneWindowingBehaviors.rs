@@ -14,7 +14,9 @@ extern_class!(
     pub struct UISceneWindowingBehaviors;
 );
 
-unsafe impl NSObjectProtocol for UISceneWindowingBehaviors {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneWindowingBehaviors {}
+);
 
 impl UISceneWindowingBehaviors {
     extern_methods!(

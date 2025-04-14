@@ -15,9 +15,13 @@ extern_class!(
 );
 
 #[cfg(feature = "NSAccessibilityProtocols")]
-unsafe impl NSAccessibility for NSAccessibilityElement {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSAccessibilityElement {}
+);
 
-unsafe impl NSObjectProtocol for NSAccessibilityElement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSAccessibilityElement {}
+);
 
 impl NSAccessibilityElement {
     extern_methods!(

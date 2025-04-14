@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INMediaDestinationResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INMediaDestinationResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INMediaDestinationResolutionResult {

@@ -22,7 +22,9 @@ unsafe impl Send for HMHomeAccessControl {}
 unsafe impl Sync for HMHomeAccessControl {}
 
 #[cfg(feature = "HMAccessControl")]
-unsafe impl NSObjectProtocol for HMHomeAccessControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMHomeAccessControl {}
+);
 
 #[cfg(feature = "HMAccessControl")]
 impl HMHomeAccessControl {

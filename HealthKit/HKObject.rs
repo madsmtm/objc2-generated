@@ -17,11 +17,17 @@ unsafe impl Send for HKObject {}
 
 unsafe impl Sync for HKObject {}
 
-unsafe impl NSCoding for HKObject {}
+extern_conformance!(
+    unsafe impl NSCoding for HKObject {}
+);
 
-unsafe impl NSObjectProtocol for HKObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKObject {}
+);
 
-unsafe impl NSSecureCoding for HKObject {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKObject {}
+);
 
 impl HKObject {
     extern_methods!(

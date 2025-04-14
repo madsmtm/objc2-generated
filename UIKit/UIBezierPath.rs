@@ -18,17 +18,25 @@ extern_class!(
     pub struct UIBezierPath;
 );
 
-unsafe impl NSCoding for UIBezierPath {}
+extern_conformance!(
+    unsafe impl NSCoding for UIBezierPath {}
+);
 
-unsafe impl NSCopying for UIBezierPath {}
+extern_conformance!(
+    unsafe impl NSCopying for UIBezierPath {}
+);
 
 unsafe impl CopyingHelper for UIBezierPath {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIBezierPath {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIBezierPath {}
+);
 
-unsafe impl NSSecureCoding for UIBezierPath {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIBezierPath {}
+);
 
 impl UIBezierPath {
     extern_methods!(

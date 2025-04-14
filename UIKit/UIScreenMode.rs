@@ -18,7 +18,9 @@ unsafe impl Send for UIScreenMode {}
 
 unsafe impl Sync for UIScreenMode {}
 
-unsafe impl NSObjectProtocol for UIScreenMode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIScreenMode {}
+);
 
 impl UIScreenMode {
     extern_methods!(

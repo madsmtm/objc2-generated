@@ -16,23 +16,33 @@ extern_class!(
     pub struct CWNetworkProfile;
 );
 
-unsafe impl NSCoding for CWNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSCoding for CWNetworkProfile {}
+);
 
-unsafe impl NSCopying for CWNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSCopying for CWNetworkProfile {}
+);
 
 unsafe impl CopyingHelper for CWNetworkProfile {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for CWNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CWNetworkProfile {}
+);
 
 unsafe impl MutableCopyingHelper for CWNetworkProfile {
     type Result = CWMutableNetworkProfile;
 }
 
-unsafe impl NSObjectProtocol for CWNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CWNetworkProfile {}
+);
 
-unsafe impl NSSecureCoding for CWNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CWNetworkProfile {}
+);
 
 impl CWNetworkProfile {
     extern_methods!(
@@ -141,23 +151,33 @@ extern_class!(
     pub struct CWMutableNetworkProfile;
 );
 
-unsafe impl NSCoding for CWMutableNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSCoding for CWMutableNetworkProfile {}
+);
 
-unsafe impl NSCopying for CWMutableNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSCopying for CWMutableNetworkProfile {}
+);
 
 unsafe impl CopyingHelper for CWMutableNetworkProfile {
     type Result = CWNetworkProfile;
 }
 
-unsafe impl NSMutableCopying for CWMutableNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for CWMutableNetworkProfile {}
+);
 
 unsafe impl MutableCopyingHelper for CWMutableNetworkProfile {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CWMutableNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CWMutableNetworkProfile {}
+);
 
-unsafe impl NSSecureCoding for CWMutableNetworkProfile {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CWMutableNetworkProfile {}
+);
 
 impl CWMutableNetworkProfile {
     extern_methods!(

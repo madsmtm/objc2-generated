@@ -19,7 +19,9 @@ unsafe impl Send for HMEvent {}
 
 unsafe impl Sync for HMEvent {}
 
-unsafe impl NSObjectProtocol for HMEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMEvent {}
+);
 
 impl HMEvent {
     extern_methods!(

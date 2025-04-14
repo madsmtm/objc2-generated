@@ -40,21 +40,37 @@ extern_class!(
     pub struct IOBluetoothPasskeyDisplay;
 );
 
-unsafe impl NSAccessibility for IOBluetoothPasskeyDisplay {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IOBluetoothPasskeyDisplay {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IOBluetoothPasskeyDisplay {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IOBluetoothPasskeyDisplay {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IOBluetoothPasskeyDisplay {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IOBluetoothPasskeyDisplay {}
+);
 
-unsafe impl NSAppearanceCustomization for IOBluetoothPasskeyDisplay {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IOBluetoothPasskeyDisplay {}
+);
 
-unsafe impl NSCoding for IOBluetoothPasskeyDisplay {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothPasskeyDisplay {}
+);
 
-unsafe impl NSDraggingDestination for IOBluetoothPasskeyDisplay {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for IOBluetoothPasskeyDisplay {}
+);
 
-unsafe impl NSObjectProtocol for IOBluetoothPasskeyDisplay {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothPasskeyDisplay {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IOBluetoothPasskeyDisplay {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IOBluetoothPasskeyDisplay {}
+);
 
 impl IOBluetoothPasskeyDisplay {
     extern_methods!(
@@ -222,21 +238,33 @@ extern_class!(
     pub struct IOBluetoothAccessibilityIgnoredTextFieldCell;
 );
 
-unsafe impl NSAccessibility for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+);
 
-unsafe impl NSCoding for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+);
 
-unsafe impl NSCopying for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSCopying for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+);
 
 unsafe impl CopyingHelper for IOBluetoothAccessibilityIgnoredTextFieldCell {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IOBluetoothAccessibilityIgnoredTextFieldCell {}
+);
 
 impl IOBluetoothAccessibilityIgnoredTextFieldCell {
     extern_methods!();
@@ -287,21 +315,33 @@ extern_class!(
     pub struct IOBluetoothAccessibilityIgnoredImageCell;
 );
 
-unsafe impl NSAccessibility for IOBluetoothAccessibilityIgnoredImageCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IOBluetoothAccessibilityIgnoredImageCell {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IOBluetoothAccessibilityIgnoredImageCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IOBluetoothAccessibilityIgnoredImageCell {}
+);
 
-unsafe impl NSCoding for IOBluetoothAccessibilityIgnoredImageCell {}
+extern_conformance!(
+    unsafe impl NSCoding for IOBluetoothAccessibilityIgnoredImageCell {}
+);
 
-unsafe impl NSCopying for IOBluetoothAccessibilityIgnoredImageCell {}
+extern_conformance!(
+    unsafe impl NSCopying for IOBluetoothAccessibilityIgnoredImageCell {}
+);
 
 unsafe impl CopyingHelper for IOBluetoothAccessibilityIgnoredImageCell {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for IOBluetoothAccessibilityIgnoredImageCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOBluetoothAccessibilityIgnoredImageCell {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IOBluetoothAccessibilityIgnoredImageCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IOBluetoothAccessibilityIgnoredImageCell {}
+);
 
 impl IOBluetoothAccessibilityIgnoredImageCell {
     extern_methods!();

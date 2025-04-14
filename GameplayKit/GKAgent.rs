@@ -45,10 +45,14 @@ extern_class!(
 );
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSCoding for GKAgent {}
+extern_conformance!(
+    unsafe impl NSCoding for GKAgent {}
+);
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSCopying for GKAgent {}
+extern_conformance!(
+    unsafe impl NSCopying for GKAgent {}
+);
 
 #[cfg(feature = "GKComponent")]
 unsafe impl CopyingHelper for GKAgent {
@@ -56,10 +60,14 @@ unsafe impl CopyingHelper for GKAgent {
 }
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSObjectProtocol for GKAgent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKAgent {}
+);
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSSecureCoding for GKAgent {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKAgent {}
+);
 
 #[cfg(feature = "GKComponent")]
 impl GKAgent {
@@ -178,10 +186,14 @@ extern_class!(
 );
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSCoding for GKAgent2D {}
+extern_conformance!(
+    unsafe impl NSCoding for GKAgent2D {}
+);
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSCopying for GKAgent2D {}
+extern_conformance!(
+    unsafe impl NSCopying for GKAgent2D {}
+);
 
 #[cfg(feature = "GKComponent")]
 unsafe impl CopyingHelper for GKAgent2D {
@@ -189,10 +201,14 @@ unsafe impl CopyingHelper for GKAgent2D {
 }
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSObjectProtocol for GKAgent2D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKAgent2D {}
+);
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSSecureCoding for GKAgent2D {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKAgent2D {}
+);
 
 #[cfg(feature = "GKComponent")]
 impl GKAgent2D {
@@ -240,10 +256,14 @@ extern_class!(
 );
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSCoding for GKAgent3D {}
+extern_conformance!(
+    unsafe impl NSCoding for GKAgent3D {}
+);
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSCopying for GKAgent3D {}
+extern_conformance!(
+    unsafe impl NSCopying for GKAgent3D {}
+);
 
 #[cfg(feature = "GKComponent")]
 unsafe impl CopyingHelper for GKAgent3D {
@@ -251,10 +271,14 @@ unsafe impl CopyingHelper for GKAgent3D {
 }
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSObjectProtocol for GKAgent3D {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKAgent3D {}
+);
 
 #[cfg(feature = "GKComponent")]
-unsafe impl NSSecureCoding for GKAgent3D {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKAgent3D {}
+);
 
 #[cfg(feature = "GKComponent")]
 impl GKAgent3D {

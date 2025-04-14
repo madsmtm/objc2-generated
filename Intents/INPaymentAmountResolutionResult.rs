@@ -15,7 +15,9 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResolutionResult")]
-unsafe impl NSObjectProtocol for INPaymentAmountResolutionResult {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INPaymentAmountResolutionResult {}
+);
 
 #[cfg(feature = "INIntentResolutionResult")]
 impl INPaymentAmountResolutionResult {

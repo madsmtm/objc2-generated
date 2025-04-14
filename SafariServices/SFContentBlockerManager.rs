@@ -14,7 +14,9 @@ extern_class!(
     pub struct SFContentBlockerManager;
 );
 
-unsafe impl NSObjectProtocol for SFContentBlockerManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SFContentBlockerManager {}
+);
 
 impl SFContentBlockerManager {
     extern_methods!(

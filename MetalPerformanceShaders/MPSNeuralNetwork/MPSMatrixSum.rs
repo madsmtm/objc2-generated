@@ -42,10 +42,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSMatrixSum {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSMatrixSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSMatrixSum {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSMatrixSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixSum {
@@ -53,10 +57,14 @@ unsafe impl CopyingHelper for MPSMatrixSum {
 }
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSMatrixSum {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSMatrixSum {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSMatrixSum {}
+);
 
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSMatrixSum {

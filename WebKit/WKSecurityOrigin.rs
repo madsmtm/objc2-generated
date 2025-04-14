@@ -20,7 +20,9 @@ extern_class!(
     pub struct WKSecurityOrigin;
 );
 
-unsafe impl NSObjectProtocol for WKSecurityOrigin {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKSecurityOrigin {}
+);
 
 impl WKSecurityOrigin {
     extern_methods!(

@@ -86,13 +86,19 @@ extern_class!(
     feature = "objc2-quartz-core"
 ))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for UISegmentedControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSCoding for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl NSCoding for UISegmentedControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl NSObjectProtocol for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISegmentedControl {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -100,7 +106,9 @@ unsafe impl NSObjectProtocol for UISegmentedControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearance for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UIAppearance for UISegmentedControl {}
+);
 
 #[cfg(all(
     feature = "UIAppearance",
@@ -108,10 +116,14 @@ unsafe impl UIAppearance for UISegmentedControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIAppearanceContainer for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for UISegmentedControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UICoordinateSpace for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for UISegmentedControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -119,7 +131,9 @@ unsafe impl UICoordinateSpace for UISegmentedControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIDynamicItem for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UISegmentedControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -127,7 +141,9 @@ unsafe impl UIDynamicItem for UISegmentedControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusEnvironment for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for UISegmentedControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -135,7 +151,9 @@ unsafe impl UIFocusEnvironment for UISegmentedControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItem for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UIFocusItem for UISegmentedControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -143,10 +161,14 @@ unsafe impl UIFocusItem for UISegmentedControl {}
     feature = "UIResponder",
     feature = "UIView"
 ))]
-unsafe impl UIFocusItemContainer for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for UISegmentedControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
-unsafe impl UIResponderStandardEditActions for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for UISegmentedControl {}
+);
 
 #[cfg(all(
     feature = "UIControl",
@@ -154,7 +176,9 @@ unsafe impl UIResponderStandardEditActions for UISegmentedControl {}
     feature = "UITraitCollection",
     feature = "UIView"
 ))]
-unsafe impl UITraitEnvironment for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for UISegmentedControl {}
+);
 
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UISegmentedControl {
@@ -511,4 +535,6 @@ impl UISegmentedControl {
     feature = "UISpringLoadedInteractionSupporting",
     feature = "UIView"
 ))]
-unsafe impl UISpringLoadedInteractionSupporting for UISegmentedControl {}
+extern_conformance!(
+    unsafe impl UISpringLoadedInteractionSupporting for UISegmentedControl {}
+);

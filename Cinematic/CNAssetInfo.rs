@@ -22,7 +22,9 @@ extern_class!(
     pub struct CNAssetInfo;
 );
 
-unsafe impl NSObjectProtocol for CNAssetInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNAssetInfo {}
+);
 
 impl CNAssetInfo {
     extern_methods!(
@@ -142,7 +144,9 @@ extern_class!(
     pub struct CNCompositionInfo;
 );
 
-unsafe impl NSObjectProtocol for CNCompositionInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNCompositionInfo {}
+);
 
 impl CNCompositionInfo {
     extern_methods!(

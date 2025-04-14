@@ -16,10 +16,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPropertyDescription")]
-unsafe impl NSCoding for NSFetchedPropertyDescription {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFetchedPropertyDescription {}
+);
 
 #[cfg(feature = "NSPropertyDescription")]
-unsafe impl NSCopying for NSFetchedPropertyDescription {}
+extern_conformance!(
+    unsafe impl NSCopying for NSFetchedPropertyDescription {}
+);
 
 #[cfg(feature = "NSPropertyDescription")]
 unsafe impl CopyingHelper for NSFetchedPropertyDescription {
@@ -27,7 +31,9 @@ unsafe impl CopyingHelper for NSFetchedPropertyDescription {
 }
 
 #[cfg(feature = "NSPropertyDescription")]
-unsafe impl NSObjectProtocol for NSFetchedPropertyDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFetchedPropertyDescription {}
+);
 
 #[cfg(feature = "NSPropertyDescription")]
 impl NSFetchedPropertyDescription {

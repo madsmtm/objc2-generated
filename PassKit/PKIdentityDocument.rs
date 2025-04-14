@@ -15,7 +15,9 @@ extern_class!(
     pub struct PKIdentityDocument;
 );
 
-unsafe impl NSObjectProtocol for PKIdentityDocument {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityDocument {}
+);
 
 impl PKIdentityDocument {
     extern_methods!(

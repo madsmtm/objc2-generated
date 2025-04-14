@@ -25,7 +25,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureOutputBase")]
-unsafe impl NSObjectProtocol for AVCaptureMetadataOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureMetadataOutput {}
+);
 
 #[cfg(feature = "AVCaptureOutputBase")]
 impl AVCaptureMetadataOutput {

@@ -18,7 +18,9 @@ extern_class!(
     pub struct HKAttachmentStore;
 );
 
-unsafe impl NSObjectProtocol for HKAttachmentStore {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKAttachmentStore {}
+);
 
 impl HKAttachmentStore {
     extern_methods!(

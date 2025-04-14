@@ -66,17 +66,25 @@ extern_class!(
     pub struct INInteraction;
 );
 
-unsafe impl NSCoding for INInteraction {}
+extern_conformance!(
+    unsafe impl NSCoding for INInteraction {}
+);
 
-unsafe impl NSCopying for INInteraction {}
+extern_conformance!(
+    unsafe impl NSCopying for INInteraction {}
+);
 
 unsafe impl CopyingHelper for INInteraction {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INInteraction {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INInteraction {}
+);
 
-unsafe impl NSSecureCoding for INInteraction {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INInteraction {}
+);
 
 impl INInteraction {
     extern_methods!(

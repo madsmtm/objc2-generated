@@ -58,10 +58,14 @@ extern_class!(
 );
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCoding for INGetVisualCodeIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCoding for INGetVisualCodeIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSCopying for INGetVisualCodeIntentResponse {}
+extern_conformance!(
+    unsafe impl NSCopying for INGetVisualCodeIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 unsafe impl CopyingHelper for INGetVisualCodeIntentResponse {
@@ -69,10 +73,14 @@ unsafe impl CopyingHelper for INGetVisualCodeIntentResponse {
 }
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSObjectProtocol for INGetVisualCodeIntentResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INGetVisualCodeIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
-unsafe impl NSSecureCoding for INGetVisualCodeIntentResponse {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INGetVisualCodeIntentResponse {}
+);
 
 #[cfg(feature = "INIntentResponse")]
 impl INGetVisualCodeIntentResponse {

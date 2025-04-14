@@ -22,7 +22,9 @@ extern_class!(
     pub struct MPSMatrixDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPSMatrixDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrixDescriptor {}
+);
 
 impl MPSMatrixDescriptor {
     extern_methods!(
@@ -223,7 +225,9 @@ extern_class!(
     pub struct MPSVectorDescriptor;
 );
 
-unsafe impl NSObjectProtocol for MPSVectorDescriptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSVectorDescriptor {}
+);
 
 impl MPSVectorDescriptor {
     extern_methods!(
@@ -371,7 +375,9 @@ extern_class!(
     pub struct MPSMatrix;
 );
 
-unsafe impl NSObjectProtocol for MPSMatrix {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSMatrix {}
+);
 
 impl MPSMatrix {
     extern_methods!(
@@ -563,7 +569,9 @@ extern_class!(
     pub struct MPSVector;
 );
 
-unsafe impl NSObjectProtocol for MPSVector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSVector {}
+);
 
 impl MPSVector {
     extern_methods!(
@@ -741,7 +749,9 @@ extern_class!(
     pub struct MPSTemporaryMatrix;
 );
 
-unsafe impl NSObjectProtocol for MPSTemporaryMatrix {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSTemporaryMatrix {}
+);
 
 impl MPSTemporaryMatrix {
     extern_methods!(
@@ -899,7 +909,9 @@ extern_class!(
     pub struct MPSTemporaryVector;
 );
 
-unsafe impl NSObjectProtocol for MPSTemporaryVector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSTemporaryVector {}
+);
 
 impl MPSTemporaryVector {
     extern_methods!(

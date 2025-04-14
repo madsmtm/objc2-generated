@@ -23,13 +23,17 @@ extern_class!(
     pub struct VZGraphicsDisplayConfiguration;
 );
 
-unsafe impl NSCopying for VZGraphicsDisplayConfiguration {}
+extern_conformance!(
+    unsafe impl NSCopying for VZGraphicsDisplayConfiguration {}
+);
 
 unsafe impl CopyingHelper for VZGraphicsDisplayConfiguration {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for VZGraphicsDisplayConfiguration {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZGraphicsDisplayConfiguration {}
+);
 
 impl VZGraphicsDisplayConfiguration {
     extern_methods!(

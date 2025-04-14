@@ -134,7 +134,9 @@ extern_class!(
     pub struct MPSNNImageNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNImageNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNImageNode {}
+);
 
 impl MPSNNImageNode {
     extern_methods!(
@@ -288,7 +290,9 @@ extern_class!(
     pub struct MPSNNStateNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNStateNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNStateNode {}
+);
 
 impl MPSNNStateNode {
     extern_methods!(
@@ -375,7 +379,9 @@ extern_class!(
     pub struct MPSNNGradientStateNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNGradientStateNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNGradientStateNode {}
+);
 
 impl MPSNNGradientStateNode {
     extern_methods!();
@@ -406,7 +412,9 @@ extern_class!(
     pub struct MPSCNNConvolutionGradientStateNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNConvolutionGradientStateNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNConvolutionGradientStateNode {}
+);
 
 impl MPSCNNConvolutionGradientStateNode {
     extern_methods!();
@@ -442,7 +450,9 @@ extern_class!(
     pub struct MPSCNNConvolutionTransposeGradientStateNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeGradientStateNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeGradientStateNode {}
+);
 
 impl MPSCNNConvolutionTransposeGradientStateNode {
     extern_methods!();
@@ -473,7 +483,9 @@ extern_class!(
     pub struct MPSNNBinaryGradientStateNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNBinaryGradientStateNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNBinaryGradientStateNode {}
+);
 
 impl MPSNNBinaryGradientStateNode {
     extern_methods!();
@@ -504,7 +516,9 @@ extern_class!(
     pub struct MPSNNMultiaryGradientStateNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNMultiaryGradientStateNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNMultiaryGradientStateNode {}
+);
 
 impl MPSNNMultiaryGradientStateNode {
     extern_methods!();
@@ -535,7 +549,9 @@ extern_class!(
     pub struct MPSNNArithmeticGradientStateNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNArithmeticGradientStateNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNArithmeticGradientStateNode {}
+);
 
 impl MPSNNArithmeticGradientStateNode {
     extern_methods!();
@@ -609,7 +625,9 @@ extern_class!(
     pub struct MPSNNFilterNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNFilterNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNFilterNode {}
+);
 
 impl MPSNNFilterNode {
     extern_methods!(
@@ -828,7 +846,9 @@ extern_class!(
     pub struct MPSNNGradientFilterNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNGradientFilterNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNGradientFilterNode {}
+);
 
 impl MPSNNGradientFilterNode {
     extern_methods!(
@@ -889,9 +909,13 @@ extern_class!(
     pub struct MPSCNNConvolutionNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNConvolutionNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNConvolutionNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNConvolutionNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNConvolutionNode {}
+);
 
 impl MPSCNNConvolutionNode {
     extern_methods!(
@@ -1002,9 +1026,13 @@ extern_class!(
     pub struct MPSCNNFullyConnectedNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNFullyConnectedNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNFullyConnectedNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNFullyConnectedNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNFullyConnectedNode {}
+);
 
 impl MPSCNNFullyConnectedNode {
     extern_methods!(
@@ -1072,9 +1100,13 @@ extern_class!(
     pub struct MPSCNNBinaryConvolutionNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNBinaryConvolutionNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNBinaryConvolutionNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNBinaryConvolutionNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNBinaryConvolutionNode {}
+);
 
 impl MPSCNNBinaryConvolutionNode {
     extern_methods!(
@@ -1293,9 +1325,13 @@ extern_class!(
     pub struct MPSCNNBinaryFullyConnectedNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNBinaryFullyConnectedNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNBinaryFullyConnectedNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNBinaryFullyConnectedNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNBinaryFullyConnectedNode {}
+);
 
 impl MPSCNNBinaryFullyConnectedNode {
     extern_methods!(
@@ -1502,9 +1538,13 @@ extern_class!(
     pub struct MPSCNNConvolutionTransposeNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNConvolutionTransposeNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNConvolutionTransposeNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeNode {}
+);
 
 impl MPSCNNConvolutionTransposeNode {
     extern_methods!(
@@ -1633,9 +1673,13 @@ extern_class!(
     pub struct MPSCNNConvolutionGradientNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNConvolutionGradientNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNConvolutionGradientNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNConvolutionGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNConvolutionGradientNode {}
+);
 
 impl MPSCNNConvolutionGradientNode {
     extern_methods!(
@@ -1722,9 +1766,13 @@ extern_class!(
     pub struct MPSCNNFullyConnectedGradientNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNFullyConnectedGradientNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNFullyConnectedGradientNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNFullyConnectedGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNFullyConnectedGradientNode {}
+);
 
 impl MPSCNNFullyConnectedGradientNode {
     extern_methods!(
@@ -1811,9 +1859,13 @@ extern_class!(
     pub struct MPSCNNConvolutionTransposeGradientNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNConvolutionTransposeGradientNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNConvolutionTransposeGradientNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeGradientNode {}
+);
 
 impl MPSCNNConvolutionTransposeGradientNode {
     extern_methods!(
@@ -1968,7 +2020,9 @@ extern_class!(
     pub struct MPSCNNNeuronNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronNode {}
+);
 
 impl MPSCNNNeuronNode {
     extern_methods!(
@@ -2026,7 +2080,9 @@ extern_class!(
     pub struct MPSCNNNeuronAbsoluteNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronAbsoluteNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronAbsoluteNode {}
+);
 
 impl MPSCNNNeuronAbsoluteNode {
     extern_methods!(
@@ -2092,7 +2148,9 @@ extern_class!(
     pub struct MPSCNNNeuronELUNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronELUNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronELUNode {}
+);
 
 impl MPSCNNNeuronELUNode {
     extern_methods!(
@@ -2169,7 +2227,9 @@ extern_class!(
     pub struct MPSCNNNeuronReLUNNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronReLUNNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronReLUNNode {}
+);
 
 impl MPSCNNNeuronReLUNNode {
     extern_methods!(
@@ -2251,7 +2311,9 @@ extern_class!(
     pub struct MPSCNNNeuronLinearNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronLinearNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronLinearNode {}
+);
 
 impl MPSCNNNeuronLinearNode {
     extern_methods!(
@@ -2343,7 +2405,9 @@ extern_class!(
     pub struct MPSCNNNeuronReLUNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronReLUNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronReLUNode {}
+);
 
 impl MPSCNNNeuronReLUNode {
     extern_methods!(
@@ -2423,7 +2487,9 @@ extern_class!(
     pub struct MPSCNNNeuronSigmoidNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronSigmoidNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronSigmoidNode {}
+);
 
 impl MPSCNNNeuronSigmoidNode {
     extern_methods!(
@@ -2488,7 +2554,9 @@ extern_class!(
     pub struct MPSCNNNeuronHardSigmoidNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronHardSigmoidNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronHardSigmoidNode {}
+);
 
 impl MPSCNNNeuronHardSigmoidNode {
     extern_methods!(
@@ -2579,7 +2647,9 @@ extern_class!(
     pub struct MPSCNNNeuronSoftPlusNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronSoftPlusNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronSoftPlusNode {}
+);
 
 impl MPSCNNNeuronSoftPlusNode {
     extern_methods!(
@@ -2670,7 +2740,9 @@ extern_class!(
     pub struct MPSCNNNeuronSoftSignNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronSoftSignNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronSoftSignNode {}
+);
 
 impl MPSCNNNeuronSoftSignNode {
     extern_methods!(
@@ -2735,7 +2807,9 @@ extern_class!(
     pub struct MPSCNNNeuronTanHNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronTanHNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronTanHNode {}
+);
 
 impl MPSCNNNeuronTanHNode {
     extern_methods!(
@@ -2836,7 +2910,9 @@ extern_class!(
     pub struct MPSCNNNeuronPReLUNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronPReLUNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronPReLUNode {}
+);
 
 impl MPSCNNNeuronPReLUNode {
     extern_methods!(
@@ -2925,7 +3001,9 @@ extern_class!(
     pub struct MPSCNNNeuronPowerNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronPowerNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronPowerNode {}
+);
 
 impl MPSCNNNeuronPowerNode {
     extern_methods!(
@@ -3023,7 +3101,9 @@ extern_class!(
     pub struct MPSCNNNeuronExponentialNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronExponentialNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronExponentialNode {}
+);
 
 impl MPSCNNNeuronExponentialNode {
     extern_methods!(
@@ -3121,7 +3201,9 @@ extern_class!(
     pub struct MPSCNNNeuronLogarithmNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronLogarithmNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronLogarithmNode {}
+);
 
 impl MPSCNNNeuronLogarithmNode {
     extern_methods!(
@@ -3215,7 +3297,9 @@ extern_class!(
     pub struct MPSCNNNeuronGeLUNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronGeLUNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronGeLUNode {}
+);
 
 impl MPSCNNNeuronGeLUNode {
     extern_methods!(
@@ -3279,7 +3363,9 @@ extern_class!(
     pub struct MPSCNNNeuronGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNeuronGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNeuronGradientNode {}
+);
 
 impl MPSCNNNeuronGradientNode {
     extern_methods!(
@@ -3346,7 +3432,9 @@ extern_class!(
     pub struct MPSNNUnaryReductionNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNUnaryReductionNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNUnaryReductionNode {}
+);
 
 impl MPSNNUnaryReductionNode {
     extern_methods!(
@@ -3408,7 +3496,9 @@ extern_class!(
     pub struct MPSNNReductionRowMinNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionRowMinNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionRowMinNode {}
+);
 
 impl MPSNNReductionRowMinNode {
     extern_methods!();
@@ -3465,7 +3555,9 @@ extern_class!(
     pub struct MPSNNReductionColumnMinNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionColumnMinNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionColumnMinNode {}
+);
 
 impl MPSNNReductionColumnMinNode {
     extern_methods!();
@@ -3522,7 +3614,9 @@ extern_class!(
     pub struct MPSNNReductionFeatureChannelsMinNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsMinNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsMinNode {}
+);
 
 impl MPSNNReductionFeatureChannelsMinNode {
     extern_methods!();
@@ -3579,7 +3673,9 @@ extern_class!(
     pub struct MPSNNReductionFeatureChannelsArgumentMinNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsArgumentMinNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsArgumentMinNode {}
+);
 
 impl MPSNNReductionFeatureChannelsArgumentMinNode {
     extern_methods!();
@@ -3636,7 +3732,9 @@ extern_class!(
     pub struct MPSNNReductionRowMaxNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionRowMaxNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionRowMaxNode {}
+);
 
 impl MPSNNReductionRowMaxNode {
     extern_methods!();
@@ -3693,7 +3791,9 @@ extern_class!(
     pub struct MPSNNReductionColumnMaxNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionColumnMaxNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionColumnMaxNode {}
+);
 
 impl MPSNNReductionColumnMaxNode {
     extern_methods!();
@@ -3750,7 +3850,9 @@ extern_class!(
     pub struct MPSNNReductionFeatureChannelsMaxNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsMaxNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsMaxNode {}
+);
 
 impl MPSNNReductionFeatureChannelsMaxNode {
     extern_methods!();
@@ -3807,7 +3909,9 @@ extern_class!(
     pub struct MPSNNReductionFeatureChannelsArgumentMaxNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsArgumentMaxNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsArgumentMaxNode {}
+);
 
 impl MPSNNReductionFeatureChannelsArgumentMaxNode {
     extern_methods!();
@@ -3864,7 +3968,9 @@ extern_class!(
     pub struct MPSNNReductionRowMeanNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionRowMeanNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionRowMeanNode {}
+);
 
 impl MPSNNReductionRowMeanNode {
     extern_methods!();
@@ -3921,7 +4027,9 @@ extern_class!(
     pub struct MPSNNReductionColumnMeanNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionColumnMeanNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionColumnMeanNode {}
+);
 
 impl MPSNNReductionColumnMeanNode {
     extern_methods!();
@@ -3978,7 +4086,9 @@ extern_class!(
     pub struct MPSNNReductionFeatureChannelsMeanNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsMeanNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsMeanNode {}
+);
 
 impl MPSNNReductionFeatureChannelsMeanNode {
     extern_methods!();
@@ -4035,7 +4145,9 @@ extern_class!(
     pub struct MPSNNReductionSpatialMeanNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionSpatialMeanNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionSpatialMeanNode {}
+);
 
 impl MPSNNReductionSpatialMeanNode {
     extern_methods!();
@@ -4092,7 +4204,9 @@ extern_class!(
     pub struct MPSNNReductionRowSumNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionRowSumNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionRowSumNode {}
+);
 
 impl MPSNNReductionRowSumNode {
     extern_methods!();
@@ -4149,7 +4263,9 @@ extern_class!(
     pub struct MPSNNReductionColumnSumNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionColumnSumNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionColumnSumNode {}
+);
 
 impl MPSNNReductionColumnSumNode {
     extern_methods!();
@@ -4206,7 +4322,9 @@ extern_class!(
     pub struct MPSNNReductionFeatureChannelsSumNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsSumNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsSumNode {}
+);
 
 impl MPSNNReductionFeatureChannelsSumNode {
     extern_methods!(
@@ -4279,7 +4397,9 @@ extern_class!(
     pub struct MPSCNNPoolingNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNPoolingNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingNode {}
+);
 
 impl MPSCNNPoolingNode {
     extern_methods!(
@@ -4418,7 +4538,9 @@ extern_class!(
     pub struct MPSCNNPoolingAverageNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNPoolingAverageNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingAverageNode {}
+);
 
 impl MPSCNNPoolingAverageNode {
     extern_methods!();
@@ -4546,7 +4668,9 @@ extern_class!(
     pub struct MPSCNNPoolingL2NormNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormNode {}
+);
 
 impl MPSCNNPoolingL2NormNode {
     extern_methods!();
@@ -4674,7 +4798,9 @@ extern_class!(
     pub struct MPSCNNPoolingMaxNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNPoolingMaxNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingMaxNode {}
+);
 
 impl MPSCNNPoolingMaxNode {
     extern_methods!();
@@ -4802,7 +4928,9 @@ extern_class!(
     pub struct MPSCNNDilatedPoolingMaxNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMaxNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMaxNode {}
+);
 
 impl MPSCNNDilatedPoolingMaxNode {
     extern_methods!(
@@ -4941,7 +5069,9 @@ extern_class!(
     pub struct MPSCNNPoolingGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNPoolingGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingGradientNode {}
+);
 
 impl MPSCNNPoolingGradientNode {
     extern_methods!(
@@ -5056,7 +5186,9 @@ extern_class!(
     pub struct MPSCNNPoolingMaxGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNPoolingMaxGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingMaxGradientNode {}
+);
 
 impl MPSCNNPoolingMaxGradientNode {
     extern_methods!();
@@ -5160,7 +5292,9 @@ extern_class!(
     pub struct MPSCNNPoolingAverageGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNPoolingAverageGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingAverageGradientNode {}
+);
 
 impl MPSCNNPoolingAverageGradientNode {
     extern_methods!();
@@ -5264,7 +5398,9 @@ extern_class!(
     pub struct MPSCNNPoolingL2NormGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormGradientNode {}
+);
 
 impl MPSCNNPoolingL2NormGradientNode {
     extern_methods!();
@@ -5368,7 +5504,9 @@ extern_class!(
     pub struct MPSCNNDilatedPoolingMaxGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMaxGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMaxGradientNode {}
+);
 
 impl MPSCNNDilatedPoolingMaxGradientNode {
     extern_methods!(
@@ -5540,7 +5678,9 @@ extern_class!(
     pub struct MPSCNNNormalizationNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNNormalizationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNNormalizationNode {}
+);
 
 impl MPSCNNNormalizationNode {
     extern_methods!(
@@ -5628,7 +5768,9 @@ extern_class!(
     pub struct MPSCNNSpatialNormalizationNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNSpatialNormalizationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNSpatialNormalizationNode {}
+);
 
 impl MPSCNNSpatialNormalizationNode {
     extern_methods!(
@@ -5708,7 +5850,9 @@ extern_class!(
     pub struct MPSCNNSpatialNormalizationGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNSpatialNormalizationGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNSpatialNormalizationGradientNode {}
+);
 
 impl MPSCNNSpatialNormalizationGradientNode {
     extern_methods!(
@@ -5826,7 +5970,9 @@ extern_class!(
     pub struct MPSCNNLocalContrastNormalizationNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalizationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalizationNode {}
+);
 
 impl MPSCNNLocalContrastNormalizationNode {
     extern_methods!(
@@ -5933,7 +6079,9 @@ extern_class!(
     pub struct MPSCNNLocalContrastNormalizationGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalizationGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalizationGradientNode {}
+);
 
 impl MPSCNNLocalContrastNormalizationGradientNode {
     extern_methods!(
@@ -6079,7 +6227,9 @@ extern_class!(
     pub struct MPSCNNCrossChannelNormalizationNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalizationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalizationNode {}
+);
 
 impl MPSCNNCrossChannelNormalizationNode {
     extern_methods!(
@@ -6153,7 +6303,9 @@ extern_class!(
     pub struct MPSCNNCrossChannelNormalizationGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalizationGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalizationGradientNode {}
+);
 
 impl MPSCNNCrossChannelNormalizationGradientNode {
     extern_methods!(
@@ -6207,9 +6359,13 @@ extern_class!(
     pub struct MPSCNNInstanceNormalizationNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNInstanceNormalizationNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNInstanceNormalizationNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNInstanceNormalizationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNInstanceNormalizationNode {}
+);
 
 impl MPSCNNInstanceNormalizationNode {
     extern_methods!(
@@ -6269,9 +6425,13 @@ extern_class!(
     pub struct MPSCNNInstanceNormalizationGradientNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNInstanceNormalizationGradientNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNInstanceNormalizationGradientNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNInstanceNormalizationGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNInstanceNormalizationGradientNode {}
+);
 
 impl MPSCNNInstanceNormalizationGradientNode {
     extern_methods!(
@@ -6319,9 +6479,13 @@ extern_class!(
     pub struct MPSCNNGroupNormalizationNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNGroupNormalizationNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNGroupNormalizationNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNGroupNormalizationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNGroupNormalizationNode {}
+);
 
 impl MPSCNNGroupNormalizationNode {
     extern_methods!(
@@ -6381,9 +6545,13 @@ extern_class!(
     pub struct MPSCNNGroupNormalizationGradientNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNGroupNormalizationGradientNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNGroupNormalizationGradientNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNGroupNormalizationGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNGroupNormalizationGradientNode {}
+);
 
 impl MPSCNNGroupNormalizationGradientNode {
     extern_methods!(
@@ -6454,9 +6622,13 @@ extern_class!(
     pub struct MPSCNNBatchNormalizationNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNBatchNormalizationNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNBatchNormalizationNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationNode {}
+);
 
 impl MPSCNNBatchNormalizationNode {
     extern_methods!(
@@ -6537,9 +6709,13 @@ extern_class!(
     pub struct MPSCNNBatchNormalizationGradientNode;
 );
 
-unsafe impl MPSNNTrainableNode for MPSCNNBatchNormalizationGradientNode {}
+extern_conformance!(
+    unsafe impl MPSNNTrainableNode for MPSCNNBatchNormalizationGradientNode {}
+);
 
-unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationGradientNode {}
+);
 
 impl MPSCNNBatchNormalizationGradientNode {
     extern_methods!(
@@ -6605,7 +6781,9 @@ extern_class!(
     pub struct MPSNNScaleNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNScaleNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNScaleNode {}
+);
 
 impl MPSNNScaleNode {
     extern_methods!(
@@ -6699,7 +6877,9 @@ extern_class!(
     pub struct MPSNNBilinearScaleNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNBilinearScaleNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNBilinearScaleNode {}
+);
 
 impl MPSNNBilinearScaleNode {
     extern_methods!();
@@ -6799,7 +6979,9 @@ extern_class!(
     pub struct MPSNNLanczosScaleNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNLanczosScaleNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNLanczosScaleNode {}
+);
 
 impl MPSNNLanczosScaleNode {
     extern_methods!();
@@ -6893,7 +7075,9 @@ extern_class!(
     pub struct MPSNNBinaryArithmeticNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNBinaryArithmeticNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNBinaryArithmeticNode {}
+);
 
 impl MPSNNBinaryArithmeticNode {
     extern_methods!(
@@ -7095,7 +7279,9 @@ extern_class!(
     pub struct MPSNNAdditionNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNAdditionNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNAdditionNode {}
+);
 
 impl MPSNNAdditionNode {
     extern_methods!();
@@ -7175,7 +7361,9 @@ extern_class!(
     pub struct MPSNNSubtractionNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNSubtractionNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNSubtractionNode {}
+);
 
 impl MPSNNSubtractionNode {
     extern_methods!();
@@ -7255,7 +7443,9 @@ extern_class!(
     pub struct MPSNNMultiplicationNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNMultiplicationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNMultiplicationNode {}
+);
 
 impl MPSNNMultiplicationNode {
     extern_methods!();
@@ -7335,7 +7525,9 @@ extern_class!(
     pub struct MPSNNDivisionNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNDivisionNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNDivisionNode {}
+);
 
 impl MPSNNDivisionNode {
     extern_methods!();
@@ -7415,7 +7607,9 @@ extern_class!(
     pub struct MPSNNComparisonNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNComparisonNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNComparisonNode {}
+);
 
 impl MPSNNComparisonNode {
     extern_methods!(
@@ -7506,7 +7700,9 @@ extern_class!(
     pub struct MPSNNArithmeticGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNArithmeticGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNArithmeticGradientNode {}
+);
 
 impl MPSNNArithmeticGradientNode {
     extern_methods!(
@@ -7686,7 +7882,9 @@ extern_class!(
     pub struct MPSNNAdditionGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNAdditionGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNAdditionGradientNode {}
+);
 
 impl MPSNNAdditionGradientNode {
     extern_methods!();
@@ -7792,7 +7990,9 @@ extern_class!(
     pub struct MPSNNSubtractionGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNSubtractionGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNSubtractionGradientNode {}
+);
 
 impl MPSNNSubtractionGradientNode {
     extern_methods!();
@@ -7898,7 +8098,9 @@ extern_class!(
     pub struct MPSNNMultiplicationGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNMultiplicationGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNMultiplicationGradientNode {}
+);
 
 impl MPSNNMultiplicationGradientNode {
     extern_methods!();
@@ -7995,7 +8197,9 @@ extern_class!(
     pub struct MPSCNNDropoutNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNDropoutNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNDropoutNode {}
+);
 
 impl MPSCNNDropoutNode {
     extern_methods!(
@@ -8083,7 +8287,9 @@ extern_class!(
     pub struct MPSCNNDropoutGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNDropoutGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNDropoutGradientNode {}
+);
 
 impl MPSCNNDropoutGradientNode {
     extern_methods!(
@@ -8165,7 +8371,9 @@ extern_class!(
     pub struct MPSNNLabelsNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNLabelsNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNLabelsNode {}
+);
 
 impl MPSNNLabelsNode {
     extern_methods!();
@@ -8205,7 +8413,9 @@ extern_class!(
     pub struct MPSCNNLossNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNLossNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLossNode {}
+);
 
 impl MPSCNNLossNode {
     extern_methods!(
@@ -8278,7 +8488,9 @@ extern_class!(
     pub struct MPSCNNYOLOLossNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNYOLOLossNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNYOLOLossNode {}
+);
 
 impl MPSCNNYOLOLossNode {
     extern_methods!(
@@ -8344,7 +8556,9 @@ extern_class!(
     pub struct MPSNNConcatenationNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNConcatenationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNConcatenationNode {}
+);
 
 impl MPSNNConcatenationNode {
     extern_methods!(
@@ -8467,7 +8681,9 @@ extern_class!(
     pub struct MPSNNConcatenationGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNConcatenationGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNConcatenationGradientNode {}
+);
 
 impl MPSNNConcatenationGradientNode {
     extern_methods!(
@@ -8535,7 +8751,9 @@ extern_class!(
     pub struct MPSNNReshapeNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReshapeNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReshapeNode {}
+);
 
 impl MPSNNReshapeNode {
     extern_methods!(
@@ -8607,7 +8825,9 @@ extern_class!(
     pub struct MPSNNReshapeGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReshapeGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReshapeGradientNode {}
+);
 
 impl MPSNNReshapeGradientNode {
     extern_methods!(
@@ -8669,7 +8889,9 @@ extern_class!(
     pub struct MPSNNReductionSpatialMeanGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNReductionSpatialMeanGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReductionSpatialMeanGradientNode {}
+);
 
 impl MPSNNReductionSpatialMeanGradientNode {
     extern_methods!(
@@ -8744,7 +8966,9 @@ extern_class!(
     pub struct MPSNNPadNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNPadNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNPadNode {}
+);
 
 impl MPSNNPadNode {
     extern_methods!(
@@ -8835,7 +9059,9 @@ extern_class!(
     pub struct MPSNNPadGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNPadGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNPadGradientNode {}
+);
 
 impl MPSNNPadGradientNode {
     extern_methods!(
@@ -8899,7 +9125,9 @@ extern_class!(
     pub struct MPSCNNSoftMaxNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNSoftMaxNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNSoftMaxNode {}
+);
 
 impl MPSCNNSoftMaxNode {
     extern_methods!(
@@ -8953,7 +9181,9 @@ extern_class!(
     pub struct MPSCNNSoftMaxGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNSoftMaxGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNSoftMaxGradientNode {}
+);
 
 impl MPSCNNSoftMaxGradientNode {
     extern_methods!(
@@ -9003,7 +9233,9 @@ extern_class!(
     pub struct MPSCNNLogSoftMaxNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNLogSoftMaxNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLogSoftMaxNode {}
+);
 
 impl MPSCNNLogSoftMaxNode {
     extern_methods!(
@@ -9057,7 +9289,9 @@ extern_class!(
     pub struct MPSCNNLogSoftMaxGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNLogSoftMaxGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNLogSoftMaxGradientNode {}
+);
 
 impl MPSCNNLogSoftMaxGradientNode {
     extern_methods!(
@@ -9107,7 +9341,9 @@ extern_class!(
     pub struct MPSCNNUpsamplingNearestNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNUpsamplingNearestNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNUpsamplingNearestNode {}
+);
 
 impl MPSCNNUpsamplingNearestNode {
     extern_methods!(
@@ -9183,7 +9419,9 @@ extern_class!(
     pub struct MPSCNNUpsamplingBilinearNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNUpsamplingBilinearNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNUpsamplingBilinearNode {}
+);
 
 impl MPSCNNUpsamplingBilinearNode {
     extern_methods!(
@@ -9304,7 +9542,9 @@ extern_class!(
     pub struct MPSCNNUpsamplingNearestGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNUpsamplingNearestGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNUpsamplingNearestGradientNode {}
+);
 
 impl MPSCNNUpsamplingNearestGradientNode {
     extern_methods!(
@@ -9396,7 +9636,9 @@ extern_class!(
     pub struct MPSCNNUpsamplingBilinearGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSCNNUpsamplingBilinearGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSCNNUpsamplingBilinearGradientNode {}
+);
 
 impl MPSCNNUpsamplingBilinearGradientNode {
     extern_methods!(
@@ -9516,7 +9758,9 @@ extern_class!(
     pub struct MPSNNGramMatrixCalculationNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNGramMatrixCalculationNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNGramMatrixCalculationNode {}
+);
 
 impl MPSNNGramMatrixCalculationNode {
     extern_methods!(
@@ -9621,7 +9865,9 @@ extern_class!(
     pub struct MPSNNGramMatrixCalculationGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNGramMatrixCalculationGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNGramMatrixCalculationGradientNode {}
+);
 
 impl MPSNNGramMatrixCalculationGradientNode {
     extern_methods!(
@@ -9723,7 +9969,9 @@ extern_class!(
     pub struct MPSNNForwardLossNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNForwardLossNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNForwardLossNode {}
+);
 
 impl MPSNNForwardLossNode {
     extern_methods!(
@@ -9905,7 +10153,9 @@ extern_class!(
     pub struct MPSNNLossGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNLossGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNLossGradientNode {}
+);
 
 impl MPSNNLossGradientNode {
     extern_methods!(
@@ -10092,7 +10342,9 @@ extern_class!(
     pub struct MPSNNInitialGradientNode;
 );
 
-unsafe impl NSObjectProtocol for MPSNNInitialGradientNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNInitialGradientNode {}
+);
 
 impl MPSNNInitialGradientNode {
     extern_methods!(

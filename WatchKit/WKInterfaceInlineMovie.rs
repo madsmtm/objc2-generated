@@ -16,7 +16,9 @@ extern_class!(
 );
 
 #[cfg(feature = "WKInterfaceObject")]
-unsafe impl NSObjectProtocol for WKInterfaceInlineMovie {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for WKInterfaceInlineMovie {}
+);
 
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceInlineMovie {

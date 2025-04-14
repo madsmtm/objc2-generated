@@ -13,7 +13,9 @@ extern_class!(
     pub struct LADomainStateBiometry;
 );
 
-unsafe impl NSObjectProtocol for LADomainStateBiometry {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LADomainStateBiometry {}
+);
 
 impl LADomainStateBiometry {
     extern_methods!(
@@ -55,7 +57,9 @@ extern_class!(
     pub struct LADomainStateCompanion;
 );
 
-unsafe impl NSObjectProtocol for LADomainStateCompanion {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LADomainStateCompanion {}
+);
 
 impl LADomainStateCompanion {
     extern_methods!(
@@ -122,7 +126,9 @@ extern_class!(
     pub struct LADomainState;
 );
 
-unsafe impl NSObjectProtocol for LADomainState {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LADomainState {}
+);
 
 impl LADomainState {
     extern_methods!(

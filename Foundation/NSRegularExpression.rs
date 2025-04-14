@@ -50,20 +50,28 @@ unsafe impl Send for NSRegularExpression {}
 unsafe impl Sync for NSRegularExpression {}
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSRegularExpression {}
+extern_conformance!(
+    unsafe impl NSCoding for NSRegularExpression {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSRegularExpression {}
+extern_conformance!(
+    unsafe impl NSCopying for NSRegularExpression {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSRegularExpression {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSRegularExpression {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSRegularExpression {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSRegularExpression {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSRegularExpression {}
+);
 
 impl NSRegularExpression {
     extern_methods!(
@@ -296,20 +304,28 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSDataDetector {}
+extern_conformance!(
+    unsafe impl NSCoding for NSDataDetector {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSDataDetector {}
+extern_conformance!(
+    unsafe impl NSCopying for NSDataDetector {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSDataDetector {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSDataDetector {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSDataDetector {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSDataDetector {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSDataDetector {}
+);
 
 impl NSDataDetector {
     extern_methods!(

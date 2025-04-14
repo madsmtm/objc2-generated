@@ -50,7 +50,9 @@ extern_class!(
     pub struct DCDevice;
 );
 
-unsafe impl NSObjectProtocol for DCDevice {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DCDevice {}
+);
 
 impl DCDevice {
     extern_methods!(

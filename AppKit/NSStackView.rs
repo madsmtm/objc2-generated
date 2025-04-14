@@ -100,36 +100,52 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSStackView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSStackView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSStackView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSStackView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSStackView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSStackView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSStackView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSStackView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSStackView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSStackView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSStackView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSStackView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSStackView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSStackView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSStackView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSStackView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSStackView {

@@ -18,17 +18,25 @@ extern_class!(
     pub struct CNPhoneNumber;
 );
 
-unsafe impl NSCoding for CNPhoneNumber {}
+extern_conformance!(
+    unsafe impl NSCoding for CNPhoneNumber {}
+);
 
-unsafe impl NSCopying for CNPhoneNumber {}
+extern_conformance!(
+    unsafe impl NSCopying for CNPhoneNumber {}
+);
 
 unsafe impl CopyingHelper for CNPhoneNumber {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CNPhoneNumber {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNPhoneNumber {}
+);
 
-unsafe impl NSSecureCoding for CNPhoneNumber {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CNPhoneNumber {}
+);
 
 impl CNPhoneNumber {
     extern_methods!(

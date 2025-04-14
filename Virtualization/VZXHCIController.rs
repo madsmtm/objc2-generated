@@ -24,7 +24,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VZUSBController")]
-unsafe impl NSObjectProtocol for VZXHCIController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VZXHCIController {}
+);
 
 #[cfg(feature = "VZUSBController")]
 impl VZXHCIController {

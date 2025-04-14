@@ -14,7 +14,9 @@ extern_class!(
     pub struct GKPath;
 );
 
-unsafe impl NSObjectProtocol for GKPath {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKPath {}
+);
 
 impl GKPath {
     extern_methods!(

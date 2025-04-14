@@ -19,7 +19,9 @@ extern_class!(
     pub struct GKSession;
 );
 
-unsafe impl NSObjectProtocol for GKSession {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKSession {}
+);
 
 impl GKSession {
     extern_methods!(

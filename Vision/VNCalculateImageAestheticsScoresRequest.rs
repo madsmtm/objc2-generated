@@ -18,7 +18,9 @@ extern_class!(
 );
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSCopying for VNCalculateImageAestheticsScoresRequest {}
+extern_conformance!(
+    unsafe impl NSCopying for VNCalculateImageAestheticsScoresRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 unsafe impl CopyingHelper for VNCalculateImageAestheticsScoresRequest {
@@ -26,7 +28,9 @@ unsafe impl CopyingHelper for VNCalculateImageAestheticsScoresRequest {
 }
 
 #[cfg(feature = "VNRequest")]
-unsafe impl NSObjectProtocol for VNCalculateImageAestheticsScoresRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for VNCalculateImageAestheticsScoresRequest {}
+);
 
 #[cfg(feature = "VNRequest")]
 impl VNCalculateImageAestheticsScoresRequest {

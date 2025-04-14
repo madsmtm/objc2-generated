@@ -24,13 +24,17 @@ extern_class!(
     pub struct PHAssetResourceRequestOptions;
 );
 
-unsafe impl NSCopying for PHAssetResourceRequestOptions {}
+extern_conformance!(
+    unsafe impl NSCopying for PHAssetResourceRequestOptions {}
+);
 
 unsafe impl CopyingHelper for PHAssetResourceRequestOptions {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for PHAssetResourceRequestOptions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHAssetResourceRequestOptions {}
+);
 
 impl PHAssetResourceRequestOptions {
     extern_methods!(
@@ -76,7 +80,9 @@ extern_class!(
     pub struct PHAssetResourceManager;
 );
 
-unsafe impl NSObjectProtocol for PHAssetResourceManager {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHAssetResourceManager {}
+);
 
 impl PHAssetResourceManager {
     extern_methods!(

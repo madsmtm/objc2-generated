@@ -21,7 +21,9 @@ extern_class!(
     pub struct PHContentEditingInput;
 );
 
-unsafe impl NSObjectProtocol for PHContentEditingInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHContentEditingInput {}
+);
 
 impl PHContentEditingInput {
     extern_methods!(

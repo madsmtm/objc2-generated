@@ -22,39 +22,57 @@ extern_class!(
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibility for NSTableHeaderView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSTableHeaderView {}
+);
 
 #[cfg(all(
     feature = "NSAccessibilityProtocols",
     feature = "NSResponder",
     feature = "NSView"
 ))]
-unsafe impl NSAccessibilityElementProtocol for NSTableHeaderView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSTableHeaderView {}
+);
 
 #[cfg(all(feature = "NSAnimation", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAnimatablePropertyContainer for NSTableHeaderView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for NSTableHeaderView {}
+);
 
 #[cfg(all(feature = "NSAppearance", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSAppearanceCustomization for NSTableHeaderView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for NSTableHeaderView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSCoding for NSTableHeaderView {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTableHeaderView {}
+);
 
 #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSDraggingDestination for NSTableHeaderView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for NSTableHeaderView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSObjectProtocol for NSTableHeaderView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTableHeaderView {}
+);
 
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSUserInterfaceItemIdentification",
     feature = "NSView"
 ))]
-unsafe impl NSUserInterfaceItemIdentification for NSTableHeaderView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSTableHeaderView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-unsafe impl NSViewToolTipOwner for NSTableHeaderView {}
+extern_conformance!(
+    unsafe impl NSViewToolTipOwner for NSTableHeaderView {}
+);
 
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSTableHeaderView {

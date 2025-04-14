@@ -20,7 +20,9 @@ extern_class!(
     pub struct MDLVertexAttributeData;
 );
 
-unsafe impl NSObjectProtocol for MDLVertexAttributeData {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLVertexAttributeData {}
+);
 
 impl MDLVertexAttributeData {
     extern_methods!(
@@ -102,10 +104,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLMesh {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLMesh {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLMesh {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLMesh {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLMesh {

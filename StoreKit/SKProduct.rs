@@ -47,7 +47,9 @@ unsafe impl Send for SKProductSubscriptionPeriod {}
 
 unsafe impl Sync for SKProductSubscriptionPeriod {}
 
-unsafe impl NSObjectProtocol for SKProductSubscriptionPeriod {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKProductSubscriptionPeriod {}
+);
 
 impl SKProductSubscriptionPeriod {
     extern_methods!(
@@ -88,7 +90,9 @@ unsafe impl Send for SKProduct {}
 
 unsafe impl Sync for SKProduct {}
 
-unsafe impl NSObjectProtocol for SKProduct {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SKProduct {}
+);
 
 impl SKProduct {
     extern_methods!(

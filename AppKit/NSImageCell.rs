@@ -76,16 +76,24 @@ extern_class!(
 );
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
-unsafe impl NSAccessibility for NSImageCell {}
+extern_conformance!(
+    unsafe impl NSAccessibility for NSImageCell {}
+);
 
 #[cfg(all(feature = "NSAccessibilityProtocols", feature = "NSCell"))]
-unsafe impl NSAccessibilityElementProtocol for NSImageCell {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for NSImageCell {}
+);
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSCoding for NSImageCell {}
+extern_conformance!(
+    unsafe impl NSCoding for NSImageCell {}
+);
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSCopying for NSImageCell {}
+extern_conformance!(
+    unsafe impl NSCopying for NSImageCell {}
+);
 
 #[cfg(feature = "NSCell")]
 unsafe impl CopyingHelper for NSImageCell {
@@ -93,10 +101,14 @@ unsafe impl CopyingHelper for NSImageCell {
 }
 
 #[cfg(feature = "NSCell")]
-unsafe impl NSObjectProtocol for NSImageCell {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSImageCell {}
+);
 
 #[cfg(all(feature = "NSCell", feature = "NSUserInterfaceItemIdentification"))]
-unsafe impl NSUserInterfaceItemIdentification for NSImageCell {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for NSImageCell {}
+);
 
 #[cfg(feature = "NSCell")]
 impl NSImageCell {

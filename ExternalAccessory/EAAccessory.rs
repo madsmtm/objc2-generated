@@ -17,7 +17,9 @@ extern_class!(
     pub struct EAAccessory;
 );
 
-unsafe impl NSObjectProtocol for EAAccessory {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for EAAccessory {}
+);
 
 impl EAAccessory {
     extern_methods!(

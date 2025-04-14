@@ -217,7 +217,9 @@ extern_class!(
     pub struct AVAudioConverter;
 );
 
-unsafe impl NSObjectProtocol for AVAudioConverter {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioConverter {}
+);
 
 impl AVAudioConverter {
     extern_methods!(

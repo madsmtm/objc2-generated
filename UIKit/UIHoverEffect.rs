@@ -25,15 +25,21 @@ extern_class!(
     pub struct UIHoverHighlightEffect;
 );
 
-unsafe impl NSCopying for UIHoverHighlightEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIHoverHighlightEffect {}
+);
 
 unsafe impl CopyingHelper for UIHoverHighlightEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIHoverHighlightEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIHoverHighlightEffect {}
+);
 
-unsafe impl UIHoverEffect for UIHoverHighlightEffect {}
+extern_conformance!(
+    unsafe impl UIHoverEffect for UIHoverHighlightEffect {}
+);
 
 impl UIHoverHighlightEffect {
     extern_methods!(
@@ -61,15 +67,21 @@ extern_class!(
     pub struct UIHoverLiftEffect;
 );
 
-unsafe impl NSCopying for UIHoverLiftEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIHoverLiftEffect {}
+);
 
 unsafe impl CopyingHelper for UIHoverLiftEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIHoverLiftEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIHoverLiftEffect {}
+);
 
-unsafe impl UIHoverEffect for UIHoverLiftEffect {}
+extern_conformance!(
+    unsafe impl UIHoverEffect for UIHoverLiftEffect {}
+);
 
 impl UIHoverLiftEffect {
     extern_methods!(
@@ -98,15 +110,21 @@ extern_class!(
     pub struct UIHoverAutomaticEffect;
 );
 
-unsafe impl NSCopying for UIHoverAutomaticEffect {}
+extern_conformance!(
+    unsafe impl NSCopying for UIHoverAutomaticEffect {}
+);
 
 unsafe impl CopyingHelper for UIHoverAutomaticEffect {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for UIHoverAutomaticEffect {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIHoverAutomaticEffect {}
+);
 
-unsafe impl UIHoverEffect for UIHoverAutomaticEffect {}
+extern_conformance!(
+    unsafe impl UIHoverEffect for UIHoverAutomaticEffect {}
+);
 
 impl UIHoverAutomaticEffect {
     extern_methods!(

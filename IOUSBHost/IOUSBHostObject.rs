@@ -28,7 +28,9 @@ extern_class!(
     pub struct IOUSBHostObject;
 );
 
-unsafe impl NSObjectProtocol for IOUSBHostObject {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IOUSBHostObject {}
+);
 
 impl IOUSBHostObject {
     extern_methods!(

@@ -63,21 +63,29 @@ extern_class!(
     pub struct NSFontCollection;
 );
 
-unsafe impl NSCoding for NSFontCollection {}
+extern_conformance!(
+    unsafe impl NSCoding for NSFontCollection {}
+);
 
-unsafe impl NSCopying for NSFontCollection {}
+extern_conformance!(
+    unsafe impl NSCopying for NSFontCollection {}
+);
 
 unsafe impl CopyingHelper for NSFontCollection {
     type Result = Self;
 }
 
-unsafe impl NSMutableCopying for NSFontCollection {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSFontCollection {}
+);
 
 unsafe impl MutableCopyingHelper for NSFontCollection {
     type Result = NSMutableFontCollection;
 }
 
-unsafe impl NSObjectProtocol for NSFontCollection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSFontCollection {}
+);
 
 impl NSFontCollection {
     extern_methods!(
@@ -200,21 +208,29 @@ extern_class!(
     pub struct NSMutableFontCollection;
 );
 
-unsafe impl NSCoding for NSMutableFontCollection {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMutableFontCollection {}
+);
 
-unsafe impl NSCopying for NSMutableFontCollection {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMutableFontCollection {}
+);
 
 unsafe impl CopyingHelper for NSMutableFontCollection {
     type Result = NSFontCollection;
 }
 
-unsafe impl NSMutableCopying for NSMutableFontCollection {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSMutableFontCollection {}
+);
 
 unsafe impl MutableCopyingHelper for NSMutableFontCollection {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMutableFontCollection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMutableFontCollection {}
+);
 
 impl NSMutableFontCollection {
     extern_methods!(

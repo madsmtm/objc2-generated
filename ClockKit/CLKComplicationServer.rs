@@ -20,7 +20,9 @@ extern_class!(
     pub struct CLKComplicationServer;
 );
 
-unsafe impl NSObjectProtocol for CLKComplicationServer {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLKComplicationServer {}
+);
 
 impl CLKComplicationServer {
     extern_methods!(

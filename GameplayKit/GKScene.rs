@@ -26,17 +26,25 @@ extern_class!(
     pub struct GKScene;
 );
 
-unsafe impl NSCoding for GKScene {}
+extern_conformance!(
+    unsafe impl NSCoding for GKScene {}
+);
 
-unsafe impl NSCopying for GKScene {}
+extern_conformance!(
+    unsafe impl NSCopying for GKScene {}
+);
 
 unsafe impl CopyingHelper for GKScene {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for GKScene {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKScene {}
+);
 
-unsafe impl NSSecureCoding for GKScene {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for GKScene {}
+);
 
 impl GKScene {
     extern_methods!(

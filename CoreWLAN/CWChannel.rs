@@ -18,17 +18,25 @@ extern_class!(
     pub struct CWChannel;
 );
 
-unsafe impl NSCoding for CWChannel {}
+extern_conformance!(
+    unsafe impl NSCoding for CWChannel {}
+);
 
-unsafe impl NSCopying for CWChannel {}
+extern_conformance!(
+    unsafe impl NSCopying for CWChannel {}
+);
 
 unsafe impl CopyingHelper for CWChannel {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CWChannel {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CWChannel {}
+);
 
-unsafe impl NSSecureCoding for CWChannel {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CWChannel {}
+);
 
 impl CWChannel {
     extern_methods!(

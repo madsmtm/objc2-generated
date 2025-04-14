@@ -31,11 +31,17 @@ extern_class!(
     pub struct CPListSection;
 );
 
-unsafe impl NSCoding for CPListSection {}
+extern_conformance!(
+    unsafe impl NSCoding for CPListSection {}
+);
 
-unsafe impl NSObjectProtocol for CPListSection {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPListSection {}
+);
 
-unsafe impl NSSecureCoding for CPListSection {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPListSection {}
+);
 
 impl CPListSection {
     extern_methods!(

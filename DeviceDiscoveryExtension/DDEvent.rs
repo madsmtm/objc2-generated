@@ -62,7 +62,9 @@ extern_class!(
     pub struct DDDeviceEvent;
 );
 
-unsafe impl NSObjectProtocol for DDDeviceEvent {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for DDDeviceEvent {}
+);
 
 impl DDDeviceEvent {
     extern_methods!(

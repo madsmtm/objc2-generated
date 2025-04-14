@@ -15,7 +15,9 @@ extern_class!(
     pub struct GKQuadtreeNode;
 );
 
-unsafe impl NSObjectProtocol for GKQuadtreeNode {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for GKQuadtreeNode {}
+);
 
 impl GKQuadtreeNode {
     extern_methods!();
@@ -44,7 +46,9 @@ extern_class!(
     pub struct GKQuadtree<ElementType: ?Sized = AnyObject>;
 );
 
-unsafe impl<ElementType: ?Sized> NSObjectProtocol for GKQuadtree<ElementType> {}
+extern_conformance!(
+    unsafe impl<ElementType: ?Sized> NSObjectProtocol for GKQuadtree<ElementType> {}
+);
 
 impl<ElementType: Message> GKQuadtree<ElementType> {
     extern_methods!(

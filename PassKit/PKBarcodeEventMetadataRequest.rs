@@ -14,7 +14,9 @@ extern_class!(
     pub struct PKBarcodeEventMetadataRequest;
 );
 
-unsafe impl NSObjectProtocol for PKBarcodeEventMetadataRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKBarcodeEventMetadataRequest {}
+);
 
 impl PKBarcodeEventMetadataRequest {
     extern_methods!(
@@ -48,7 +50,9 @@ extern_class!(
     pub struct PKBarcodeEventMetadataResponse;
 );
 
-unsafe impl NSObjectProtocol for PKBarcodeEventMetadataResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKBarcodeEventMetadataResponse {}
+);
 
 impl PKBarcodeEventMetadataResponse {
     extern_methods!(
@@ -90,7 +94,9 @@ extern_class!(
     pub struct PKBarcodeEventSignatureRequest;
 );
 
-unsafe impl NSObjectProtocol for PKBarcodeEventSignatureRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKBarcodeEventSignatureRequest {}
+);
 
 impl PKBarcodeEventSignatureRequest {
     extern_methods!(
@@ -156,7 +162,9 @@ extern_class!(
     pub struct PKBarcodeEventSignatureResponse;
 );
 
-unsafe impl NSObjectProtocol for PKBarcodeEventSignatureResponse {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKBarcodeEventSignatureResponse {}
+);
 
 impl PKBarcodeEventSignatureResponse {
     extern_methods!(
@@ -220,7 +228,9 @@ extern_class!(
     pub struct PKBarcodeEventConfigurationRequest;
 );
 
-unsafe impl NSObjectProtocol for PKBarcodeEventConfigurationRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKBarcodeEventConfigurationRequest {}
+);
 
 impl PKBarcodeEventConfigurationRequest {
     extern_methods!(

@@ -15,11 +15,17 @@ extern_class!(
     pub struct UISceneActivationConditions;
 );
 
-unsafe impl NSCoding for UISceneActivationConditions {}
+extern_conformance!(
+    unsafe impl NSCoding for UISceneActivationConditions {}
+);
 
-unsafe impl NSObjectProtocol for UISceneActivationConditions {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UISceneActivationConditions {}
+);
 
-unsafe impl NSSecureCoding for UISceneActivationConditions {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for UISceneActivationConditions {}
+);
 
 impl UISceneActivationConditions {
     extern_methods!(

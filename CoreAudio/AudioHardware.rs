@@ -1745,7 +1745,9 @@ extern_class!(
 );
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for CATapDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CATapDescription {}
+);
 
 #[cfg(feature = "objc2")]
 impl CATapDescription {

@@ -140,14 +140,18 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSItemProvider {}
+extern_conformance!(
+    unsafe impl NSCopying for NSItemProvider {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSItemProvider {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSItemProvider {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSItemProvider {}
+);
 
 impl NSItemProvider {
     extern_methods!(

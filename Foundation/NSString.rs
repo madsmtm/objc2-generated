@@ -125,10 +125,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSString {}
+extern_conformance!(
+    unsafe impl NSCoding for NSString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSString {}
+extern_conformance!(
+    unsafe impl NSCopying for NSString {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSString {
@@ -136,17 +140,23 @@ unsafe impl CopyingHelper for NSString {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSString {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSString {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSString {
     type Result = NSMutableString;
 }
 
-unsafe impl NSObjectProtocol for NSString {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSString {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSString {}
+);
 
 impl NSString {
     extern_methods!(
@@ -1263,10 +1273,14 @@ impl NSString {
 }
 
 #[cfg(feature = "NSItemProvider")]
-unsafe impl NSItemProviderReading for NSString {}
+extern_conformance!(
+    unsafe impl NSItemProviderReading for NSString {}
+);
 
 #[cfg(feature = "NSItemProvider")]
-unsafe impl NSItemProviderWriting for NSString {}
+extern_conformance!(
+    unsafe impl NSItemProviderWriting for NSString {}
+);
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablestring?language=objc)
@@ -1276,10 +1290,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSMutableString {}
+extern_conformance!(
+    unsafe impl NSCoding for NSMutableString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCopying for NSMutableString {}
+extern_conformance!(
+    unsafe impl NSCopying for NSMutableString {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl CopyingHelper for NSMutableString {
@@ -1287,17 +1305,23 @@ unsafe impl CopyingHelper for NSMutableString {
 }
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSMutableCopying for NSMutableString {}
+extern_conformance!(
+    unsafe impl NSMutableCopying for NSMutableString {}
+);
 
 #[cfg(feature = "NSObject")]
 unsafe impl MutableCopyingHelper for NSMutableString {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSMutableString {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSMutableString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSMutableString {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSMutableString {}
+);
 
 impl NSMutableString {
     extern_methods!(
@@ -1614,12 +1638,18 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSSimpleCString {}
+extern_conformance!(
+    unsafe impl NSCoding for NSSimpleCString {}
+);
 
-unsafe impl NSObjectProtocol for NSSimpleCString {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSimpleCString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSSimpleCString {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSimpleCString {}
+);
 
 impl NSSimpleCString {
     extern_methods!();
@@ -1659,12 +1689,18 @@ extern_class!(
 );
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSCoding for NSConstantString {}
+extern_conformance!(
+    unsafe impl NSCoding for NSConstantString {}
+);
 
-unsafe impl NSObjectProtocol for NSConstantString {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSConstantString {}
+);
 
 #[cfg(feature = "NSObject")]
-unsafe impl NSSecureCoding for NSConstantString {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSConstantString {}
+);
 
 impl NSConstantString {
     extern_methods!();

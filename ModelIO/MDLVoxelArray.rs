@@ -20,10 +20,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MDLObject", feature = "MDLTypes"))]
-unsafe impl MDLNamed for MDLVoxelArray {}
+extern_conformance!(
+    unsafe impl MDLNamed for MDLVoxelArray {}
+);
 
 #[cfg(feature = "MDLObject")]
-unsafe impl NSObjectProtocol for MDLVoxelArray {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MDLVoxelArray {}
+);
 
 #[cfg(feature = "MDLObject")]
 impl MDLVoxelArray {

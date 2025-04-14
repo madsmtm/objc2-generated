@@ -32,10 +32,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceUnary {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceUnary {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceUnary {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceUnary {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceUnary {
@@ -43,10 +47,14 @@ unsafe impl CopyingHelper for MPSNNReduceUnary {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceUnary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceUnary {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceUnary {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceUnary {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceUnary {
@@ -163,10 +171,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceRowMin {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceRowMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceRowMin {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceRowMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceRowMin {
@@ -174,10 +186,14 @@ unsafe impl CopyingHelper for MPSNNReduceRowMin {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceRowMin {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceRowMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceRowMin {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceRowMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceRowMin {
@@ -259,10 +275,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceColumnMin {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceColumnMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceColumnMin {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceColumnMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceColumnMin {
@@ -270,10 +290,14 @@ unsafe impl CopyingHelper for MPSNNReduceColumnMin {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceColumnMin {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceColumnMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceColumnMin {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceColumnMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceColumnMin {
@@ -355,10 +379,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceFeatureChannelsMin {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceFeatureChannelsMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceFeatureChannelsMin {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceFeatureChannelsMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsMin {
@@ -366,10 +394,14 @@ unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsMin {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsMin {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsMin {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsMin {
@@ -452,10 +484,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceFeatureChannelsArgumentMin {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceFeatureChannelsArgumentMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceFeatureChannelsArgumentMin {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceFeatureChannelsArgumentMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsArgumentMin {
@@ -463,10 +499,14 @@ unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsArgumentMin {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsArgumentMin {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsArgumentMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsArgumentMin {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsArgumentMin {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsArgumentMin {
@@ -548,10 +588,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceRowMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceRowMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceRowMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceRowMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceRowMax {
@@ -559,10 +603,14 @@ unsafe impl CopyingHelper for MPSNNReduceRowMax {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceRowMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceRowMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceRowMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceRowMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceRowMax {
@@ -644,10 +692,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceColumnMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceColumnMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceColumnMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceColumnMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceColumnMax {
@@ -655,10 +707,14 @@ unsafe impl CopyingHelper for MPSNNReduceColumnMax {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceColumnMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceColumnMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceColumnMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceColumnMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceColumnMax {
@@ -740,10 +796,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceFeatureChannelsMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceFeatureChannelsMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceFeatureChannelsMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceFeatureChannelsMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsMax {
@@ -751,10 +811,14 @@ unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsMax {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsMax {
@@ -837,10 +901,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceFeatureChannelsArgumentMax {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceFeatureChannelsArgumentMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceFeatureChannelsArgumentMax {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceFeatureChannelsArgumentMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsArgumentMax {
@@ -848,10 +916,14 @@ unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsArgumentMax {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsArgumentMax {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsArgumentMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsArgumentMax {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsArgumentMax {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsArgumentMax {
@@ -933,10 +1005,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceRowMean {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceRowMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceRowMean {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceRowMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceRowMean {
@@ -944,10 +1020,14 @@ unsafe impl CopyingHelper for MPSNNReduceRowMean {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceRowMean {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceRowMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceRowMean {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceRowMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceRowMean {
@@ -1029,10 +1109,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceColumnMean {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceColumnMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceColumnMean {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceColumnMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceColumnMean {
@@ -1040,10 +1124,14 @@ unsafe impl CopyingHelper for MPSNNReduceColumnMean {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceColumnMean {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceColumnMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceColumnMean {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceColumnMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceColumnMean {
@@ -1125,10 +1213,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceFeatureChannelsMean {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceFeatureChannelsMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceFeatureChannelsMean {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceFeatureChannelsMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsMean {
@@ -1136,10 +1228,14 @@ unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsMean {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsMean {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsMean {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsMean {
@@ -1221,10 +1317,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceRowSum {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceRowSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceRowSum {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceRowSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceRowSum {
@@ -1232,10 +1332,14 @@ unsafe impl CopyingHelper for MPSNNReduceRowSum {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceRowSum {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceRowSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceRowSum {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceRowSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceRowSum {
@@ -1317,10 +1421,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceColumnSum {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceColumnSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceColumnSum {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceColumnSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceColumnSum {
@@ -1328,10 +1436,14 @@ unsafe impl CopyingHelper for MPSNNReduceColumnSum {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceColumnSum {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceColumnSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceColumnSum {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceColumnSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceColumnSum {
@@ -1413,10 +1525,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceFeatureChannelsSum {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceFeatureChannelsSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceFeatureChannelsSum {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceFeatureChannelsSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsSum {
@@ -1424,10 +1540,14 @@ unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsSum {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsSum {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsSum {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsSum {
@@ -1524,10 +1644,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceBinary {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceBinary {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceBinary {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceBinary {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceBinary {
@@ -1535,10 +1659,14 @@ unsafe impl CopyingHelper for MPSNNReduceBinary {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceBinary {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceBinary {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceBinary {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceBinary {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceBinary {
@@ -1689,10 +1817,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceFeatureChannelsAndWeightsMean {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceFeatureChannelsAndWeightsMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceFeatureChannelsAndWeightsMean {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceFeatureChannelsAndWeightsMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsAndWeightsMean {
@@ -1700,10 +1832,14 @@ unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsAndWeightsMean {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsAndWeightsMean {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsAndWeightsMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsAndWeightsMean {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsAndWeightsMean {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsAndWeightsMean {
@@ -1783,10 +1919,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNReduceFeatureChannelsAndWeightsSum {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNReduceFeatureChannelsAndWeightsSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNReduceFeatureChannelsAndWeightsSum {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNReduceFeatureChannelsAndWeightsSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsAndWeightsSum {
@@ -1794,10 +1934,14 @@ unsafe impl CopyingHelper for MPSNNReduceFeatureChannelsAndWeightsSum {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsAndWeightsSum {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNReduceFeatureChannelsAndWeightsSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsAndWeightsSum {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsAndWeightsSum {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNReduceFeatureChannelsAndWeightsSum {
@@ -1915,10 +2059,14 @@ extern_class!(
 );
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCoding for MPSNNLocalCorrelation {}
+extern_conformance!(
+    unsafe impl NSCoding for MPSNNLocalCorrelation {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSCopying for MPSNNLocalCorrelation {}
+extern_conformance!(
+    unsafe impl NSCopying for MPSNNLocalCorrelation {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNLocalCorrelation {
@@ -1926,10 +2074,14 @@ unsafe impl CopyingHelper for MPSNNLocalCorrelation {
 }
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSObjectProtocol for MPSNNLocalCorrelation {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSNNLocalCorrelation {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
-unsafe impl NSSecureCoding for MPSNNLocalCorrelation {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MPSNNLocalCorrelation {}
+);
 
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNNLocalCorrelation {

@@ -101,21 +101,37 @@ extern_class!(
     pub struct IKCameraDeviceView;
 );
 
-unsafe impl NSAccessibility for IKCameraDeviceView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IKCameraDeviceView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IKCameraDeviceView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IKCameraDeviceView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IKCameraDeviceView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IKCameraDeviceView {}
+);
 
-unsafe impl NSAppearanceCustomization for IKCameraDeviceView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IKCameraDeviceView {}
+);
 
-unsafe impl NSCoding for IKCameraDeviceView {}
+extern_conformance!(
+    unsafe impl NSCoding for IKCameraDeviceView {}
+);
 
-unsafe impl NSDraggingDestination for IKCameraDeviceView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for IKCameraDeviceView {}
+);
 
-unsafe impl NSObjectProtocol for IKCameraDeviceView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKCameraDeviceView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IKCameraDeviceView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IKCameraDeviceView {}
+);
 
 impl IKCameraDeviceView {
     extern_methods!(

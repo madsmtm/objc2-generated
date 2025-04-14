@@ -22,7 +22,9 @@ extern_class!(
     pub struct PKPushPayload;
 );
 
-unsafe impl NSObjectProtocol for PKPushPayload {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKPushPayload {}
+);
 
 impl PKPushPayload {
     extern_methods!(

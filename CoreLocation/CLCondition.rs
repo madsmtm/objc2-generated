@@ -17,17 +17,25 @@ unsafe impl Send for CLCondition {}
 
 unsafe impl Sync for CLCondition {}
 
-unsafe impl NSCoding for CLCondition {}
+extern_conformance!(
+    unsafe impl NSCoding for CLCondition {}
+);
 
-unsafe impl NSCopying for CLCondition {}
+extern_conformance!(
+    unsafe impl NSCopying for CLCondition {}
+);
 
 unsafe impl CopyingHelper for CLCondition {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for CLCondition {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLCondition {}
+);
 
-unsafe impl NSSecureCoding for CLCondition {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLCondition {}
+);
 
 impl CLCondition {
     extern_methods!(

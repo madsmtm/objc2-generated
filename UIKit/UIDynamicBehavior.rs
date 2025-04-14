@@ -86,9 +86,13 @@ extern_class!(
     pub struct UIDynamicItemGroup;
 );
 
-unsafe impl NSObjectProtocol for UIDynamicItemGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDynamicItemGroup {}
+);
 
-unsafe impl UIDynamicItem for UIDynamicItemGroup {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for UIDynamicItemGroup {}
+);
 
 impl UIDynamicItemGroup {
     extern_methods!(
@@ -126,7 +130,9 @@ extern_class!(
     pub struct UIDynamicBehavior;
 );
 
-unsafe impl NSObjectProtocol for UIDynamicBehavior {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIDynamicBehavior {}
+);
 
 impl UIDynamicBehavior {
     extern_methods!(

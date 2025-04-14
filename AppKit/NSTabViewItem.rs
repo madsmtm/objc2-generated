@@ -36,9 +36,13 @@ extern_class!(
     pub struct NSTabViewItem;
 );
 
-unsafe impl NSCoding for NSTabViewItem {}
+extern_conformance!(
+    unsafe impl NSCoding for NSTabViewItem {}
+);
 
-unsafe impl NSObjectProtocol for NSTabViewItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSTabViewItem {}
+);
 
 impl NSTabViewItem {
     extern_methods!(

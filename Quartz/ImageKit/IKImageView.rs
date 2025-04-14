@@ -80,21 +80,37 @@ extern_class!(
     pub struct IKImageView;
 );
 
-unsafe impl NSAccessibility for IKImageView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for IKImageView {}
+);
 
-unsafe impl NSAccessibilityElementProtocol for IKImageView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for IKImageView {}
+);
 
-unsafe impl NSAnimatablePropertyContainer for IKImageView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for IKImageView {}
+);
 
-unsafe impl NSAppearanceCustomization for IKImageView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for IKImageView {}
+);
 
-unsafe impl NSCoding for IKImageView {}
+extern_conformance!(
+    unsafe impl NSCoding for IKImageView {}
+);
 
-unsafe impl NSDraggingDestination for IKImageView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for IKImageView {}
+);
 
-unsafe impl NSObjectProtocol for IKImageView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for IKImageView {}
+);
 
-unsafe impl NSUserInterfaceItemIdentification for IKImageView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for IKImageView {}
+);
 
 impl IKImageView {
     extern_methods!(

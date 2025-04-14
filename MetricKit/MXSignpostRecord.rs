@@ -17,11 +17,17 @@ extern_class!(
     pub struct MXSignpostRecord;
 );
 
-unsafe impl NSCoding for MXSignpostRecord {}
+extern_conformance!(
+    unsafe impl NSCoding for MXSignpostRecord {}
+);
 
-unsafe impl NSObjectProtocol for MXSignpostRecord {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MXSignpostRecord {}
+);
 
-unsafe impl NSSecureCoding for MXSignpostRecord {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for MXSignpostRecord {}
+);
 
 impl MXSignpostRecord {
     extern_methods!(

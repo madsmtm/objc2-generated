@@ -13,7 +13,9 @@ extern_class!(
     pub struct HMAddAccessoryRequest;
 );
 
-unsafe impl NSObjectProtocol for HMAddAccessoryRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMAddAccessoryRequest {}
+);
 
 impl HMAddAccessoryRequest {
     extern_methods!(

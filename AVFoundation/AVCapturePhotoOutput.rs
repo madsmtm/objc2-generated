@@ -107,7 +107,9 @@ extern_class!(
 );
 
 #[cfg(feature = "AVCaptureOutputBase")]
-unsafe impl NSObjectProtocol for AVCapturePhotoOutput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCapturePhotoOutput {}
+);
 
 #[cfg(feature = "AVCaptureOutputBase")]
 impl AVCapturePhotoOutput {
@@ -892,7 +894,9 @@ extern_class!(
     pub struct AVCapturePhotoOutputReadinessCoordinator;
 );
 
-unsafe impl NSObjectProtocol for AVCapturePhotoOutputReadinessCoordinator {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCapturePhotoOutputReadinessCoordinator {}
+);
 
 impl AVCapturePhotoOutputReadinessCoordinator {
     extern_methods!(
@@ -1281,13 +1285,17 @@ extern_class!(
     pub struct AVCapturePhotoSettings;
 );
 
-unsafe impl NSCopying for AVCapturePhotoSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for AVCapturePhotoSettings {}
+);
 
 unsafe impl CopyingHelper for AVCapturePhotoSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVCapturePhotoSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCapturePhotoSettings {}
+);
 
 impl AVCapturePhotoSettings {
     extern_methods!(
@@ -1981,13 +1989,17 @@ extern_class!(
     pub struct AVCapturePhotoBracketSettings;
 );
 
-unsafe impl NSCopying for AVCapturePhotoBracketSettings {}
+extern_conformance!(
+    unsafe impl NSCopying for AVCapturePhotoBracketSettings {}
+);
 
 unsafe impl CopyingHelper for AVCapturePhotoBracketSettings {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for AVCapturePhotoBracketSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCapturePhotoBracketSettings {}
+);
 
 impl AVCapturePhotoBracketSettings {
     extern_methods!(
@@ -2204,7 +2216,9 @@ extern_class!(
     pub struct AVCaptureResolvedPhotoSettings;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureResolvedPhotoSettings {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureResolvedPhotoSettings {}
+);
 
 impl AVCaptureResolvedPhotoSettings {
     extern_methods!(
@@ -2372,7 +2386,9 @@ extern_class!(
     pub struct AVCapturePhoto;
 );
 
-unsafe impl NSObjectProtocol for AVCapturePhoto {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCapturePhoto {}
+);
 
 impl AVCapturePhoto {
     extern_methods!(
@@ -2743,7 +2759,9 @@ extern_class!(
     pub struct AVCaptureDeferredPhotoProxy;
 );
 
-unsafe impl NSObjectProtocol for AVCaptureDeferredPhotoProxy {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureDeferredPhotoProxy {}
+);
 
 impl AVCaptureDeferredPhotoProxy {
     extern_methods!(

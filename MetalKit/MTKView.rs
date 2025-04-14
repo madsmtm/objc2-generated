@@ -31,39 +31,57 @@ extern_class!(
 
 #[cfg(all(feature = "objc2-app-kit", feature = "objc2-quartz-core"))]
 #[cfg(target_os = "macos")]
-unsafe impl CALayerDelegate for MTKView {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for MTKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibility for MTKView {}
+extern_conformance!(
+    unsafe impl NSAccessibility for MTKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAccessibilityElementProtocol for MTKView {}
+extern_conformance!(
+    unsafe impl NSAccessibilityElementProtocol for MTKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAnimatablePropertyContainer for MTKView {}
+extern_conformance!(
+    unsafe impl NSAnimatablePropertyContainer for MTKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSAppearanceCustomization for MTKView {}
+extern_conformance!(
+    unsafe impl NSAppearanceCustomization for MTKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSCoding for MTKView {}
+extern_conformance!(
+    unsafe impl NSCoding for MTKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSDraggingDestination for MTKView {}
+extern_conformance!(
+    unsafe impl NSDraggingDestination for MTKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSObjectProtocol for MTKView {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
-unsafe impl NSUserInterfaceItemIdentification for MTKView {}
+extern_conformance!(
+    unsafe impl NSUserInterfaceItemIdentification for MTKView {}
+);
 
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]

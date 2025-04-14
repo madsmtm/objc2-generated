@@ -29,7 +29,9 @@ unsafe impl Send for ARCamera {}
 unsafe impl Sync for ARCamera {}
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
-unsafe impl NSCopying for ARCamera {}
+extern_conformance!(
+    unsafe impl NSCopying for ARCamera {}
+);
 
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 unsafe impl CopyingHelper for ARCamera {
@@ -37,7 +39,9 @@ unsafe impl CopyingHelper for ARCamera {
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl NSObjectProtocol for ARCamera {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ARCamera {}
+);
 
 #[cfg(feature = "objc2")]
 impl ARCamera {

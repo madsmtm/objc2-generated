@@ -29,12 +29,18 @@ extern_class!(
 );
 
 #[cfg(feature = "CPListItemTypes")]
-unsafe impl CPListTemplateItem for CPListImageRowItem {}
+extern_conformance!(
+    unsafe impl CPListTemplateItem for CPListImageRowItem {}
+);
 
 #[cfg(feature = "CPListItemTypes")]
-unsafe impl CPSelectableListItem for CPListImageRowItem {}
+extern_conformance!(
+    unsafe impl CPSelectableListItem for CPListImageRowItem {}
+);
 
-unsafe impl NSObjectProtocol for CPListImageRowItem {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPListImageRowItem {}
+);
 
 impl CPListImageRowItem {
     extern_methods!(

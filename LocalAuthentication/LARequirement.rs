@@ -15,7 +15,9 @@ extern_class!(
     pub struct LAAuthenticationRequirement;
 );
 
-unsafe impl NSObjectProtocol for LAAuthenticationRequirement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LAAuthenticationRequirement {}
+);
 
 impl LAAuthenticationRequirement {
     extern_methods!(
@@ -90,7 +92,9 @@ extern_class!(
     pub struct LABiometryFallbackRequirement;
 );
 
-unsafe impl NSObjectProtocol for LABiometryFallbackRequirement {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for LABiometryFallbackRequirement {}
+);
 
 impl LABiometryFallbackRequirement {
     extern_methods!(

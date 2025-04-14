@@ -62,11 +62,17 @@ extern_class!(
     pub struct CKOperationGroup;
 );
 
-unsafe impl NSCoding for CKOperationGroup {}
+extern_conformance!(
+    unsafe impl NSCoding for CKOperationGroup {}
+);
 
-unsafe impl NSObjectProtocol for CKOperationGroup {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CKOperationGroup {}
+);
 
-unsafe impl NSSecureCoding for CKOperationGroup {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CKOperationGroup {}
+);
 
 impl CKOperationGroup {
     extern_methods!(

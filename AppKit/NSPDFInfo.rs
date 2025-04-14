@@ -14,15 +14,21 @@ extern_class!(
     pub struct NSPDFInfo;
 );
 
-unsafe impl NSCoding for NSPDFInfo {}
+extern_conformance!(
+    unsafe impl NSCoding for NSPDFInfo {}
+);
 
-unsafe impl NSCopying for NSPDFInfo {}
+extern_conformance!(
+    unsafe impl NSCopying for NSPDFInfo {}
+);
 
 unsafe impl CopyingHelper for NSPDFInfo {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for NSPDFInfo {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSPDFInfo {}
+);
 
 impl NSPDFInfo {
     extern_methods!(

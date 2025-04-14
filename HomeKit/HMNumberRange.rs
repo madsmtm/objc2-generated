@@ -19,7 +19,9 @@ unsafe impl Send for HMNumberRange {}
 
 unsafe impl Sync for HMNumberRange {}
 
-unsafe impl NSObjectProtocol for HMNumberRange {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HMNumberRange {}
+);
 
 impl HMNumberRange {
     extern_methods!(

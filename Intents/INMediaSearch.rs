@@ -13,17 +13,25 @@ extern_class!(
     pub struct INMediaSearch;
 );
 
-unsafe impl NSCoding for INMediaSearch {}
+extern_conformance!(
+    unsafe impl NSCoding for INMediaSearch {}
+);
 
-unsafe impl NSCopying for INMediaSearch {}
+extern_conformance!(
+    unsafe impl NSCopying for INMediaSearch {}
+);
 
 unsafe impl CopyingHelper for INMediaSearch {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INMediaSearch {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INMediaSearch {}
+);
 
-unsafe impl NSSecureCoding for INMediaSearch {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INMediaSearch {}
+);
 
 impl INMediaSearch {
     extern_methods!(

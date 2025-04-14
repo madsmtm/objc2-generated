@@ -48,7 +48,9 @@ extern_class!(
     pub struct UIPrintInteractionController;
 );
 
-unsafe impl NSObjectProtocol for UIPrintInteractionController {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIPrintInteractionController {}
+);
 
 impl UIPrintInteractionController {
     extern_methods!(

@@ -13,17 +13,25 @@ extern_class!(
     pub struct INFocusStatus;
 );
 
-unsafe impl NSCoding for INFocusStatus {}
+extern_conformance!(
+    unsafe impl NSCoding for INFocusStatus {}
+);
 
-unsafe impl NSCopying for INFocusStatus {}
+extern_conformance!(
+    unsafe impl NSCopying for INFocusStatus {}
+);
 
 unsafe impl CopyingHelper for INFocusStatus {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INFocusStatus {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INFocusStatus {}
+);
 
-unsafe impl NSSecureCoding for INFocusStatus {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INFocusStatus {}
+);
 
 impl INFocusStatus {
     extern_methods!(

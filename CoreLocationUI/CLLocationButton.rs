@@ -156,43 +156,69 @@ extern_class!(
 
 #[cfg(all(feature = "objc2-quartz-core", feature = "objc2-ui-kit"))]
 #[cfg(not(target_os = "watchos"))]
-unsafe impl CALayerDelegate for CLLocationButton {}
+extern_conformance!(
+    unsafe impl CALayerDelegate for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSCoding for CLLocationButton {}
+extern_conformance!(
+    unsafe impl NSCoding for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSObjectProtocol for CLLocationButton {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl NSSecureCoding for CLLocationButton {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearance for CLLocationButton {}
+extern_conformance!(
+    unsafe impl UIAppearance for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIAppearanceContainer for CLLocationButton {}
+extern_conformance!(
+    unsafe impl UIAppearanceContainer for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UICoordinateSpace for CLLocationButton {}
+extern_conformance!(
+    unsafe impl UICoordinateSpace for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIDynamicItem for CLLocationButton {}
+extern_conformance!(
+    unsafe impl UIDynamicItem for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusEnvironment for CLLocationButton {}
+extern_conformance!(
+    unsafe impl UIFocusEnvironment for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItem for CLLocationButton {}
+extern_conformance!(
+    unsafe impl UIFocusItem for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIFocusItemContainer for CLLocationButton {}
+extern_conformance!(
+    unsafe impl UIFocusItemContainer for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UIResponderStandardEditActions for CLLocationButton {}
+extern_conformance!(
+    unsafe impl UIResponderStandardEditActions for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
-unsafe impl UITraitEnvironment for CLLocationButton {}
+extern_conformance!(
+    unsafe impl UITraitEnvironment for CLLocationButton {}
+);
 
 #[cfg(feature = "objc2-ui-kit")]
 impl CLLocationButton {

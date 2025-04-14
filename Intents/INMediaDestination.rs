@@ -13,17 +13,25 @@ extern_class!(
     pub struct INMediaDestination;
 );
 
-unsafe impl NSCoding for INMediaDestination {}
+extern_conformance!(
+    unsafe impl NSCoding for INMediaDestination {}
+);
 
-unsafe impl NSCopying for INMediaDestination {}
+extern_conformance!(
+    unsafe impl NSCopying for INMediaDestination {}
+);
 
 unsafe impl CopyingHelper for INMediaDestination {
     type Result = Self;
 }
 
-unsafe impl NSObjectProtocol for INMediaDestination {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for INMediaDestination {}
+);
 
-unsafe impl NSSecureCoding for INMediaDestination {}
+extern_conformance!(
+    unsafe impl NSSecureCoding for INMediaDestination {}
+);
 
 impl INMediaDestination {
     extern_methods!(

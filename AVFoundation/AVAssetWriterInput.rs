@@ -31,7 +31,9 @@ extern_class!(
     pub struct AVAssetWriterInput;
 );
 
-unsafe impl NSObjectProtocol for AVAssetWriterInput {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetWriterInput {}
+);
 
 impl AVAssetWriterInput {
     extern_methods!(
@@ -753,7 +755,9 @@ unsafe impl Send for AVAssetWriterInputPassDescription {}
 
 unsafe impl Sync for AVAssetWriterInputPassDescription {}
 
-unsafe impl NSObjectProtocol for AVAssetWriterInputPassDescription {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetWriterInputPassDescription {}
+);
 
 impl AVAssetWriterInputPassDescription {
     extern_methods!(
@@ -787,7 +791,9 @@ extern_class!(
     pub struct AVAssetWriterInputPixelBufferAdaptor;
 );
 
-unsafe impl NSObjectProtocol for AVAssetWriterInputPixelBufferAdaptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetWriterInputPixelBufferAdaptor {}
+);
 
 impl AVAssetWriterInputPixelBufferAdaptor {
     extern_methods!(
@@ -932,7 +938,9 @@ extern_class!(
     pub struct AVAssetWriterInputTaggedPixelBufferGroupAdaptor;
 );
 
-unsafe impl NSObjectProtocol for AVAssetWriterInputTaggedPixelBufferGroupAdaptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetWriterInputTaggedPixelBufferGroupAdaptor {}
+);
 
 impl AVAssetWriterInputTaggedPixelBufferGroupAdaptor {
     extern_methods!(
@@ -1094,7 +1102,9 @@ extern_class!(
     pub struct AVAssetWriterInputMetadataAdaptor;
 );
 
-unsafe impl NSObjectProtocol for AVAssetWriterInputMetadataAdaptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetWriterInputMetadataAdaptor {}
+);
 
 impl AVAssetWriterInputMetadataAdaptor {
     extern_methods!(
@@ -1188,7 +1198,9 @@ extern_class!(
     pub struct AVAssetWriterInputCaptionAdaptor;
 );
 
-unsafe impl NSObjectProtocol for AVAssetWriterInputCaptionAdaptor {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetWriterInputCaptionAdaptor {}
+);
 
 impl AVAssetWriterInputCaptionAdaptor {
     extern_methods!(

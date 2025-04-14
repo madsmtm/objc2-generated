@@ -12,7 +12,9 @@ extern_class!(
     pub struct CNFetchRequest;
 );
 
-unsafe impl NSObjectProtocol for CNFetchRequest {}
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNFetchRequest {}
+);
 
 impl CNFetchRequest {
     extern_methods!();
